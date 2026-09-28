@@ -6,6 +6,10 @@
 
 ---
 
+> 🌐 **GitHub 下载 APK 限速？不想装 App？** [点这里使用网页版备选](https://mihsian77.github.io/EmuHub/) — 浏览器直接下载驱动与组件，内置国内加速。
+
+---
+
 ## ✨ 特性
 
 ### 📱 Android App（主力产品）
@@ -21,11 +25,11 @@
 
 ### 🌐 网页版（次选）
 
-`web/` 目录下提供一个简化版网页，作为无法安装 App 时的备用方案：
-- 中文界面，移动端适配
-- 基础加速节点切换
-- Turnip 驱动最新版本获取
-- 常用组件下载链接
+独立网页版作为无法安装 App 时的备用方案：
+- 在线地址：**https://mihsian77.github.io/EmuHub/**
+- 仓库：[mihsian77/EmuHub](https://github.com/mihsian77/EmuHub)（已归档，稳定备选）
+- 中文界面，移动端适配，内置国内加速节点
+- 可直接在浏览器下载 Turnip 驱动、Wine、DXVK 等常用组件
 
 > ⚠️ 网页版功能有限，**推荐使用 Android App 获得完整体验**。
 
@@ -100,8 +104,6 @@ EmuHub-CN/
 │           └── values-pt*/           # 葡萄牙语
 ├── scripts/
 │   └── check-i18n.py                 # i18n 校验脚本
-├── web/
-│   └── index.html                     # 简化版网页（次选）
 ├── .github/workflows/
 │   └── ci.yml                         # CI 构建与校验
 └── README.md
