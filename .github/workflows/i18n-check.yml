@@ -1,0 +1,47 @@
+name: I18N Check
+
+# 每次 push / PR / 手动触发时运行，也可被 deploy-pages.yml 复用：
+#   1. extract-i18n.mjs — 检查 HTML/JS 中使用的 key 是否都在 en.json 中
+#   2. check-i18n.mjs   — 检查漏译、多译、空译、占位符丢失
+# 任一失败则阻断合并。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'locales/**'
+      - 'scripts/**'
+      - '.github/workflows/i18n-check.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'locales/**'
+      - 'scripts/**'
+      - '.github/workflows/i18n-check.yml'
+  workflow_dispatch:
+  workflow_call:   # 允许 deploy-pages.yml 复用本工作流
+
+jobs:
+  i18n:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Extract & check keys in sync
+        run: node scripts/extract-i18n.mjs
+
+      - name: Check translation completeness
+        run: node scripts/check-i18n.mjs
+
+      - name: Validate JSON syntax
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('locales/en.json','utf-8')); console.log('en.json: valid JSON')"
+          node -e "JSON.parse(require('fs').readFileSync('locales/zh-CN.json','utf-8')); console.log('zh-CN.json: valid JSON')"
