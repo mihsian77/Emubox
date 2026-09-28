@@ -59,7 +59,8 @@ object SourceCatalogRepository {
     suspend fun load(url: String = SettingsManager.getSourceCatalogUrl()): SourceCatalog =
         withContext(Dispatchers.IO) {
             try {
-                val request = Request.Builder().url(url).build()
+                val acceleratedUrl = Accelerator.rewriteUrl(url)
+                val request = Request.Builder().url(acceleratedUrl).build()
                 sourceCatalogClient.newCall(request).execute().use { response ->
                     if (!response.isSuccessful) return@withContext builtInCatalog()
                     val body = response.body?.string().orEmpty()

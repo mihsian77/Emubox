@@ -53,6 +53,7 @@
     <string name="language_italian">Italiano</string>
     <string name="language_dutch">Nederlands</string>
     <string name="language_polish">Polski</string>
+    <string name="language_chinese">简体中文</string>
     <string name="theme_mode">Theme mode</string>
     <string name="theme_mode_desc">Choose how light and dark mode are applied.</string>
     <string name="color_theme">Color theme</string>
@@ -64,6 +65,7 @@
     <string name="theme_blue">Blue</string>
     <string name="theme_purple">Purple</string>
     <string name="theme_orange">Orange</string>
+    <string name="theme_cn">CN Edition</string>
     <string name="sources">Sources</string>
     <string name="sources_desc">Manage the remote catalog that tells EmuHub where to fetch releases.</string>
     <string name="source_catalog">Source catalog</string>
@@ -264,4 +266,28 @@
     <string name="custom_folder">Custom folder</string>
     <string name="no_version">No version</string>
     <string name="version_latest_format">%1$s • Latest</string>
+
+    <!-- 国内下载加速 -->
+    <string name="accelerator_title">Download accelerator</string>
+    <string name="accelerator_desc">Speed up GitHub downloads in mainland China. Auto mode picks the fastest node.</string>
+    <string name="accelerator_mode">Accelerator mode</string>
+    <string name="accelerator_mode_auto">Auto (fastest)</string>
+    <string name="accelerator_mode_manual">Manual</string>
+    <string name="accelerator_mode_off">Off</string>
+    <string name="accelerator_node">Accelerator node</string>
+    <string name="accelerator_test_latency">Test latency</string>
+    <string name="accelerator_testing">Testing…</string>
+    <string name="accelerator_auto_selecting">Selecting fastest node…</string>
+    <string name="accelerator_current">Current: %1$s</string>
+    <string name="accelerator_node_with_latency">%1$s (%2$s)</string>
+    <string name="accelerator_direct">Direct connection</string>
+    <string name="accelerator_auto_result">Fastest: %1$s (%2$s)</string>
+
+    <!-- 关于 / 汉化署名 -->
+    <string name="about_section">About</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_translation">Chinese localization</string>
+    <string name="about_translation_by">by moon279</string>
+    <string name="about_upstream">Based on EmuHub by NotZeetaa, maintained by Rodrig02005</string>
+    <string name="about_license">MIT License</string>
 </resources>

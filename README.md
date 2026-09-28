@@ -1,216 +1,150 @@
-# EmuHub – Turnip & DXVK Driver Manager for Android
+# EmuHub 国内版
 
-<img width="1254" height="1254" alt="EmuHub Logo" src="https://github.com/user-attachments/assets/767978e8-2783-490a-8cf1-d3827cca5f48" />
+> 安卓驱动与模拟组件下载管理器 — 完整中文界面 + 国内下载加速 + UI 重做
 
-EmuHub is an open‑source Android application that helps users download and manage GPU drivers (Turnip and Qualcomm) as well as PC emulation components (Wine, Proton, Box64, DXVK, FEXCore, VKD3D, and more) for Adreno‑powered devices.
-
-The app automatically fetches the latest releases from GitHub, selects the newest available version, and allows users to switch between different driver sources when applicable.
+基于 [NotZeetaa](https://github.com/NotZeetaa) 原创、[Rodrig02005](https://github.com/Rodrig02005) 维护的 [EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)（MIT 协议）修改而来的国内增强版。
 
 ---
 
-## Features
+## ✨ 特性
 
-### Device Information
+### 📱 Android App（主力产品）
 
-- Displays Android version
-- Shows total RAM
-- Detects GPU model
-- Identifies Adreno GPU series
+- **完整中文界面** — 288 条词条全部汉化，专业国内用语，无 AI 翻译腔
+- **国内下载加速** — 内置 5 个公益加速节点，支持自动选最低延迟 / 手动切换 / 关闭，设置里实时测速显示延迟
+- **国内版专属配色** — 深蓝 + 朱红主题，区别于原版
+- **多语言支持** — 简体中文 / English / Português / Español / Français / Deutsch，可在设置内切换
+- **驱动与组件管理** — Turnip / 高通 GPU 驱动、Wine / Proton、DXVK / VKD3D / D7VK、Box64 / FEXCore 等
+- **硬件检测** — 自动识别 GPU 型号、Adreno 代际、安卓版本、运行内存
+- **下载管理** — 暂停 / 继续 / 断点续传 / 下载库管理
+- **组件指南** — 每个组件的作用、优先尝试、适用场景、切换时机
 
-### Turnip Driver Support
+### 🌐 网页版（次选）
 
-- Automatically recommends the most suitable Turnip driver based on the detected Adreno series.
-- **Adreno 8xx** devices can choose between:
-  - *StevenMXZ* (official source)
-  - *whitebelyash* (experimental source)
-- **Adreno 6xx and 7xx** devices use:
-  - *StevenMXZ* source only
-  - Stable v26.x branch
+`web/` 目录下提供一个简化版网页，作为无法安装 App 时的备用方案：
+- 中文界面，移动端适配
+- 基础加速节点切换
+- Turnip 驱动最新版本获取
+- 常用组件下载链接
 
-### Qualcomm Driver Support
-
-- Provides the official Qualcomm driver (v863.1) for Adreno 6xx and 7xx devices.
-
-### Emulation Components
-
-Download and manage:
-
-- Wine
-- Proton
-- Box64
-- WOWBox64
-- DXVK
-- FEXCore
-- VKD3D
-
-All components are sourced from the [WinNative-Emu Components](https://github.com/WinNative-Emu/Components) repository.
-
-### Smart Version Detection
-
-- Versions are sorted using semantic versioning.
-- The latest version is automatically selected.
-- Examples: `2.10` > `2.9`, `2.7.1` > `2.7.0`
-
-### Download Manager (New! 🚀)
-
-- **Custom download folder** – Choose any folder on your device (via Storage Access Framework). The default is the Downloads folder.
-- **Active downloads badge** – The download icon in the top bar shows the number of ongoing downloads.
-- **Start toast** – A brief notification confirms that a download has begun.
-- **Progress tracking** – Linear progress indicator with percentage and byte counts.
-- **Unique filenames** – Duplicate files are automatically renamed with a counter before the extension (e.g., `file (1).zip`).
-- **Delete confirmation** – Delete files from the history with a confirmation dialog (file is physically removed).
-- **File location display** – Shows the exact folder and filename (e.g., `Download/MyFolder/file.zip`).
-
-### Additional Features
-
-- Manual refresh button to reload data from GitHub.
-- One‑tap donation button.
-- Modern UI built with Jetpack Compose and Material 3.
-- Dynamic colors, animations, and rounded card design.
-- Settings screen to manage the download folder.
+> ⚠️ 网页版功能有限，**推荐使用 Android App 获得完整体验**。
 
 ---
 
-## Screenshots
+## 🚀 下载
 
-### Main Screen
+从 [Releases](https://github.com/mihsian77/EmuHub-CN/releases) 页面下载最新 APK。
 
-![EmuHub Main Screen](screenshots/main_screen.png)
-
-### Downloads Screen
-
-![Downloads Screen](screenshots/downloads_screen.png)
-
-### Settings Screen
-
-![EmuHub Main Screen](screenshots/settings_screen.png)
-
-### Guide Screen
-
-![Downloads Screen](screenshots/guide_screen.png)
+最低系统要求：Android 9.0（API 28）
 
 ---
 
-## Build Instructions
+## 🛠 构建
 
-### 1. Clone the Repository
+### 环境要求
+- JDK 17
+- Android Studio Hedgehog 或更高版本
+- Android SDK（compileSdk 36, targetSdk 37）
 
+### 编译步骤
 ```bash
-git clone https://github.com/notzeetaa/EmuHub.git
-cd EmuHub
+git clone https://github.com/mihsian77/EmuHub-CN.git
+cd EmuHub-CN
+./gradlew assembleDebug
+```
+APK 输出路径：`app/build/outputs/apk/debug/`
+
+### 运行 i18n 校验
+```bash
+python3 scripts/check-i18n.py
+```
+检查内容：翻译完整性（漏译/多译）、占位符一致性、空翻译、Kotlin 硬编码扫描。
+
+---
+
+## ⚙️ CI/CD
+
+| Workflow | 触发 | 功能 |
+|----------|------|------|
+| `ci.yml` | push / PR 到 main | i18n 校验 → Android Lint → 编译 Debug APK |
+
+CI 会自动：
+1. 运行 `scripts/check-i18n.py` 检查翻译完整性
+2. 运行 `./gradlew lint` 检查代码质量（含 MissingTranslation / ExtraTranslation）
+3. 运行 `./gradlew assembleDebug` 验证编译通过
+4. 上传 Lint 报告和 Debug APK 作为构建产物
+
+---
+
+## 📁 项目结构
+
+```
+EmuHub-CN/
+├── app/
+│   └── src/main/
+│       ├── java/com/emuhub/cn/
+│       │   ├── Accelerator.kt        # 国内加速核心（节点管理 + 延迟测速 + URL重写）
+│       │   ├── Screens.kt            # UI 界面（含加速设置 + 汉化署名）
+│       │   ├── DownloadUtils.kt      # 下载逻辑（加速注入）
+│       │   ├── Localization.kt       # 多语言框架
+│       │   ├── SettingsManager.kt    # 设置存储
+│       │   ├── NetworkUtils.kt       # 网络请求（加速注入）
+│       │   ├── SourceCatalog.kt      # 资源目录（加速注入）
+│       │   └── ui/theme/             # 主题（含国内版配色）
+│       └── res/
+│           ├── values/                # 英文（默认）
+│           ├── values-zh-rCN/        # 简体中文
+│           ├── values-de/             # 德语
+│           ├── values-es/             # 西班牙语
+│           ├── values-fr/             # 法语
+│           └── values-pt*/           # 葡萄牙语
+├── scripts/
+│   └── check-i18n.py                 # i18n 校验脚本
+├── web/
+│   └── index.html                     # 简化版网页（次选）
+├── .github/workflows/
+│   └── ci.yml                         # CI 构建与校验
+└── README.md
 ```
 
-### 2. Open in Android Studio
+---
 
-Use Android Studio Ladybug or newer.
+## ⚡ 国内加速说明
 
-### 3. Add Required Dependencies
+App 内所有 GitHub 资源下载（驱动文件、组件、资源目录、API 请求）均会经过加速节点。
 
-Ensure your module-level build.gradle.kts contains:
+内置节点：
+| 节点 | 域名 | 说明 |
+|------|------|------|
+| gh-proxy 官方 | gh-proxy.com | 主力节点，日调用量百万级 |
+| ghfast 多线 | ghfast.top | 多线 CDN |
+| ghproxy 镜像 | mirror.ghproxy.com | 老牌镜像 |
+| moeyy 公益 | github.moeyy.xyz | 国内公益 |
+| llkk 公益 | gh.llkk.cc | 国内公益 |
+| 直连 | github.com | 不加速 |
 
-```kotlin
-dependencies {
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("org.json:json:20240303")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-    implementation("androidx.documentfile:documentfile:1.0.1")
-}
-```
-
-### 4. Internet Permission
-
-Already declared in AndroidManifest.xml:
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-        <!-- For Android 9 and below; Android 10+ uses MediaStore or SAF -->
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
-```
-
-### 5. Run the Application
-
-Connect an Android device or emulator running Android 5.0 (API 21) or newer and click Run.
+加速模式：
+- **自动**：测试所有节点延迟，自动选择最低延迟的节点
+- **手动**：用户自行选择节点
+- **关闭**：直连 GitHub
 
 ---
 
-## How It Works
+## 📜 开源协议
 
-### Device Information
+MIT License
 
-GPU and RAM information are obtained using:
+- 原作者：[NotZeetaa](https://github.com/NotZeetaa)
+- 维护者：[Rodrig02005](https://github.com/Rodrig02005)
+- 国内版修改：[moon279](https://github.com/mihsian77)
 
-* ActivityManager
-* OpenGL/EGL APIs
-
-### Driver and Component Retrieval
-
-* GitHub Releases are fetched through the public GitHub API (no authentication required).
-* The component manifest (Wine, Proton, DXVK, etc.) is downloaded from the WinNative-Emu Components repository.
-
-
-### Version Comparison
-
-* Versions are compared intelligently using semantic version rules to ensure the newest release is selected automatically.
-
-### Downloads
-
-* Files are saved using the Storage Access Framework (Android 10+) or the classic file system (Android 9 and below).
-* If a custom folder is selected, the app stores the folder URI and writes files there.
-* Duplicate file names are handled gracefully: file.zip, file (1).zip, file (2).zip, etc.
-* Progress is updated in real time.
+所有驱动与软件版权归原作者所有。本项目仅提供下载管理与汉化加速功能。
 
 ---
 
-## Credits and Sources
+## 🙏 致谢
 
-| Component                                 | Source                               |
-| ----------------------------------------- | ------------------------------------ |
-| Turnip Drivers                            | StevenMXZ/Adreno-Tools-Drivers       |
-| Experimental Turnip Drivers               | whitebelyash/AdrenoToolsDrivers      |
-| Qualcomm Driver                           | StevenMXZ/Adreno-Tools-Drivers       |
-| Wine, Proton, DXVK, Box64, FEXCore, VKD3D | WinNative-Emu/Components             |
-| Donations                                 | notzeetaa.github.io/Donate-NotZeetaa |
-
----
-
-## Requirements
-
-* Android 9.0 (API 28) or newer
-* Adreno GPU recommended
-
-The application can still be used on non-Adreno devices, although some drivers and components may not function correctly.
-
----
-
-## Roadmap
-
-Planned improvements include:
-
-* Automatic update checks
-* Additional driver repository support
-* Improved error handling and logging (optional)
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-### Third-Party Components
-
-EmuHub does not own any of the drivers, emulation components, or other third-party software available through the application. All rights belong to their respective authors and maintainers.
-
-This application only provides a convenient interface for downloading and managing publicly available releases from their original sources.
----
-
-## Support the Developer
-
-If you find EmuHub useful, consider supporting development:
-
-Donate here
-
-Thank you for supporting the project.
-
----
-
-EmuHub — Simplifying driver management for Android emulation.
+- NotZeetaa — EmuHub 原创作者
+- Rodrig02005 — EmuHub-APP 维护者
+- 各公益 GitHub 加速节点运营者
+- Mesa / Turnip / DXVK / Wine / Box64 等开源项目开发者

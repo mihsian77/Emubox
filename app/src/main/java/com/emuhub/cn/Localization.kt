@@ -17,7 +17,8 @@ enum class AppLanguage(val languageTag: String?) {
     PORTUGUESE_BRAZIL("pt-BR"),
     SPANISH("es"),
     FRENCH("fr"),
-    GERMAN("de")
+    GERMAN("de"),
+    CHINESE("zh-CN")
 }
 
 private val LocalAppResources = staticCompositionLocalOf<Resources> {

@@ -116,14 +116,16 @@ fun cancelActiveDownload(context: Context, fileName: String) {
 
 suspend fun downloadAsset(context: Context, release: GithubRelease, asset: GithubAsset) {
     val desiredName = sanitizeFileName("${release.tagName}_${asset.name}")
-    downloadFileWithProgress(context.applicationContext, asset.downloadUrl, desiredName)
+    val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName)
 }
 
 suspend fun downloadComponent(context: Context, component: Component) {
     val fileName = sanitizeFileName(
         Uri.decode(component.remoteUrl.substringAfterLast("/"))
     )
-    downloadFileWithProgress(context.applicationContext, component.remoteUrl, fileName)
+    val acceleratedUrl = Accelerator.rewriteUrl(component.remoteUrl)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName)
 }
 
 private fun sanitizeFileName(name: String): String {

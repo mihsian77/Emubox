@@ -15,7 +15,8 @@ enum class ColorTheme {
     EMUHUB,
     BLUE,
     PURPLE,
-    ORANGE
+    ORANGE,
+    CN
 }
 
 private const val PREFS_SETTINGS = "emu_hub_settings"
@@ -27,6 +28,8 @@ private const val KEY_TURNIP_SOURCE = "turnip_source"
 private const val KEY_QUALCOMM_SOURCE = "qualcomm_source"
 private const val KEY_SOURCE_CATALOG_URL = "source_catalog_url"
 private const val KEY_APP_LANGUAGE = "app_language"
+private const val KEY_ACCELERATOR_MODE = "accelerator_mode"
+private const val KEY_ACCELERATOR_NODE = "accelerator_node"
 
 object SettingsManager {
     private lateinit var prefs: SharedPreferences
@@ -57,6 +60,25 @@ object SettingsManager {
 
     fun setAppLanguage(language: AppLanguage) {
         prefs.edit().putString(KEY_APP_LANGUAGE, language.name).apply()
+    }
+
+    // ── 国内下载加速 ──────────────────────────────────────────────
+
+    fun getAcceleratorMode(): Accelerator.Mode =
+        enumPreference(KEY_ACCELERATOR_MODE, Accelerator.Mode.AUTO)
+
+    fun setAcceleratorMode(mode: Accelerator.Mode) {
+        prefs.edit().putString(KEY_ACCELERATOR_MODE, mode.name).apply()
+        Accelerator.clearCache()
+    }
+
+    fun getAcceleratorNodeId(): String =
+        prefs.getString(KEY_ACCELERATOR_NODE, Accelerator.BUILTIN_NODES.first().id)
+            ?: Accelerator.BUILTIN_NODES.first().id
+
+    fun setAcceleratorNodeId(nodeId: String) {
+        prefs.edit().putString(KEY_ACCELERATOR_NODE, nodeId).apply()
+        Accelerator.clearCache()
     }
 
     fun setColorTheme(theme: ColorTheme) {

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EmuHub 国内版 — 网页版（次选）</title>
+<style>
+  :root {
+    --primary: #1A5FB4;
+    --primary-dark: #004899;
+    --accent: #B3261E;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #5a6a7e;
+    --border: #e2e8f0;
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* 顶部横幅 */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 24px; margin-bottom: 8px; }
+  .hero p { opacity: 0.9; font-size: 14px; margin-bottom: 20px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .app-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(179,38,30,0.3);
+  }
+  .app-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(179,38,30,0.4); }
+
+  /* 加速设置 */
+  .accel-bar {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .accel-bar label { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .accel-bar select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    color: var(--text);
+  }
+  .accel-status { font-size: 13px; color: var(--text-secondary); }
+
+  /* 分类卡片 */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--primary);
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .card h3 { font-size: 16px; font-weight: 600; }
+  .card .tag {
+    font-size: 11px;
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .card p { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+  .dl-btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .dl-btn:hover { background: var(--primary-dark); }
+  .loading { text-align: center; padding: 40px; color: var(--text-secondary); }
+  .error { text-align: center; padding: 20px; color: var(--accent); font-size: 14px; }
+
+  /* 底部 */
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--primary); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 顶部：推荐下载 App -->
+  <div class="hero">
+    <div class="badge">网页版（次选）</div>
+    <h1>EmuHub 国内版</h1>
+    <p>安卓驱动与模拟组件下载管理器<br>推荐使用 Android App 获得完整体验</p>
+    <a href="https://github.com/mihsian77/EmuHub-CN/releases" class="app-btn" target="_blank">
+      ⬇ 下载 Android App
+    </a>
+  </div>
+
+  <!-- 加速设置 -->
+  <div class="accel-bar">
+    <label>⚡ 下载加速
+      <select id="proxySelect">
+        <option value="auto">自动（选最快）</option>
+        <option value="gh-proxy.com">gh-proxy 官方</option>
+        <option value="ghfast.top">ghfast 多线</option>
+        <option value="mirror.ghproxy.com">ghproxy 镜像</option>
+        <option value="github.moeyy.xyz">moeyy 公益</option>
+        <option value="gh.llkk.cc">llkk 公益</option>
+        <option value="">直连（不加速）</option>
+      </select>
+    </label>
+    <span class="accel-status" id="accelStatus">自动模式</span>
+  </div>
+
+  <!-- GPU 驱动 -->
+  <div class="section-title">GPU 驱动</div>
+  <div id="turnipSection" class="loading">正在获取 Turnip 驱动信息…</div>
+
+  <!-- Windows 兼容层 -->
+  <div class="section-title">Windows 兼容层</div>
+  <div class="card">
+    <div class="card-header"><h3>Wine</h3><span class="tag">基础运行时</span></div>
+    <p>Windows API 兼容层，通用运行时。在 ARM64 上需配合 Box64/FEX 等 CPU 转译层。</p>
+    <a href="https://github.com/Kron4ek/Wine-Builds/releases" class="dl-btn" target="_blank" data-accel>下载 Wine</a>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Proton</h3><span class="tag">游戏</span></div>
+    <p>Valve 面向游戏的 Wine 兼容栈，包含游戏专属补丁。适合游戏容器使用。</p>
+    <a href="https://github.com/Kron4ek/Wine-Proton-Builds/releases" class="dl-btn" target="_blank" data-accel>下载 Proton</a>
+  </div>
+
+  <!-- 图形转译 -->
+  <div class="section-title">图形转译</div>
+  <div class="card">
+    <div class="card-header"><h3>DXVK</h3><span class="tag">DX8–11</span></div>
+    <p>Direct3D 8/9/10/11 转 Vulkan。大多数 DirectX 游戏的首选图形转译层。</p>
+    <a href="https://github.com/doitsujin/dxvk/releases" class="dl-btn" target="_blank" data-accel>下载 DXVK</a>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>VKD3D-Proton</h3><span class="tag">DX12</span></div>
+    <p>Direct3D 12 转 Vulkan。DirectX 12 游戏的主要图形转译路径。</p>
+    <a href="https://github.com/HansKristian-Work/vkd3d-proton/releases" class="dl-btn" target="_blank" data-accel>下载 VKD3D</a>
+  </div>
+
+  <!-- CPU 转译 -->
+  <div class="section-title">CPU 转译</div>
+  <div class="card">
+    <div class="card-header"><h3>Box64</h3><span class="tag">常用默认</span></div>
+    <p>ARM64 上的 x86_64 用户态转译，使用动态重编译提升性能。大多数容器的基准选择。</p>
+    <a href="https://github.com/ptitSeb/box64/releases" class="dl-btn" target="_blank" data-accel>下载 Box64</a>
+  </div>
+
+  <footer>
+    <p>EmuHub 国内版 · 基于 NotZeetaa 原创、Rodrig02005 维护的 EmuHub (MIT)</p>
+    <p>中文汉化 by moon279 · <a href="https://github.com/mihsian77/EmuHub-CN" target="_blank">GitHub 仓库</a></p>
+    <p style="margin-top:8px;opacity:0.7;">本网页为 App 的次选方案，功能有限。完整功能请下载 Android App。</p>
+  </footer>
+</div>
+
+<script>
+// 加速代理
+const PROXIES = ['gh-proxy.com','ghfast.top','mirror.ghproxy.com','github.moeyy.xyz','gh.llkk.cc'];
+let currentProxy = localStorage.getItem('emuhub_proxy') || 'auto';
+const proxySelect = document.getElementById('proxySelect');
+const accelStatus = document.getElementById('accelStatus');
+proxySelect.value = currentProxy;
+
+function rewriteUrl(url) {
+  let proxy = currentProxy;
+  if (proxy === 'auto') proxy = PROXIES[0]; // 自动模式默认用第一个，实际App端会测速
+  if (!proxy) return url;
+  if (url.startsWith('https://github.com/') || url.startsWith('https://raw.githubusercontent.com/') || url.startsWith('https://api.github.com/')) {
+    return 'https://' + proxy + '/' + url;
+  }
+  return url;
+}
+
+function applyAccel() {
+  document.querySelectorAll('[data-accel]').forEach(a => {
+    const orig = a.getAttribute('data-orig') || a.href;
+    if (!a.getAttribute('data-orig')) a.setAttribute('data-orig', orig);
+    a.href = rewriteUrl(orig);
+  });
+}
+
+proxySelect.addEventListener('change', () => {
+  currentProxy = proxySelect.value;
+  localStorage.setItem('emuhub_proxy', currentProxy);
+  accelStatus.textContent = currentProxy === 'auto' ? '自动模式' : (currentProxy === '' ? '直连' : currentProxy);
+  applyAccel();
+});
+accelStatus.textContent = currentProxy === 'auto' ? '自动模式' : (currentProxy === '' ? '直连' : currentProxy);
+applyAccel();
+
+// 获取 Turnip 最新驱动
+async function loadTurnip() {
+  const section = document.getElementById('turnipSection');
+  try {
+    const apiUrl = rewriteUrl('https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases?per_page=3');
+    const res = await fetch(apiUrl);
+    if (!res.ok) throw new Error('API ' + res.status);
+    const releases = await res.json();
+    if (!releases.length) { section.innerHTML = '<div class="error">未找到驱动版本</div>'; return; }
+
+    section.innerHTML = releases.map(rel => {
+      const turnipAssets = rel.assets.filter(a =>
+        /turnip|mesa|adreno/i.test(a.name) && /\.zip$/.test(a.name)
+      );
+      if (!turnipAssets.length) return '';
+      const sizeMB = (turnipAssets[0].size / 1024 / 1024).toFixed(1);
+      return `<div class="card">
+        <div class="card-header"><h3>${rel.name || rel.tag_name}</h3><span class="tag">${sizeMB} MB</span></div>
+        <p>发布于 ${new Date(rel.published_at).toLocaleDateString('zh-CN')}</p>
+        ${turnipAssets.map(a => `<a href="${rewriteUrl(a.browser_download_url)}" class="dl-btn" style="margin-right:8px;margin-bottom:4px;" target="_blank">⬇ ${a.name}</a>`).join('')}
+      </div>`;
+    }).join('') || '<div class="error">未找到匹配的 Turnip 驱动</div>';
+  } catch (e) {
+    section.innerHTML = `<div class="error">获取驱动信息失败（${e.message}），请尝试切换加速节点或下载 App</div>`;
+  }
+}
+loadTurnip();
+</script>
+</body>
+</html>

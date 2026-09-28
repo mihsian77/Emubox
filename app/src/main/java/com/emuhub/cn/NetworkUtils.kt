@@ -19,8 +19,9 @@ data class Component(val type: String, val verName: String, val verCode: String,
 private val githubClient by lazy { OkHttpClient() }
 
 suspend fun fetchGithubReleasesFromUrl(apiUrl: String): List<GithubRelease> = withContext(Dispatchers.IO) {
+    val acceleratedUrl = Accelerator.rewriteUrl(apiUrl)
     val request = Request.Builder()
-        .url(apiUrl)
+        .url(acceleratedUrl)
         .header("Accept", "application/vnd.github+json")
         .header("X-GitHub-Api-Version", "2022-11-28")
         .build()
@@ -144,7 +145,8 @@ suspend fun loadQualcommDriver(): GithubRelease? {
 
 suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Component>> =
     withContext(Dispatchers.IO) {
-        val request = Request.Builder().url(manifestUrl).build()
+        val acceleratedUrl = Accelerator.rewriteUrl(manifestUrl)
+        val request = Request.Builder().url(acceleratedUrl).build()
 
         try {
             githubClient.newCall(request).execute().use { response ->

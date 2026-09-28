@@ -55,6 +55,22 @@ private val OrangeDark = darkColorScheme(
     tertiary = Color(0xFFC1CC99)
 )
 
+// 国内版专属配色：深蓝主色 + 朱红强调
+private val CnLight = lightColorScheme(
+    primary = Color(0xFF1A5FB4),
+    secondary = Color(0xFF545F70),
+    tertiary = Color(0xFFB3261E),
+    primaryContainer = Color(0xFFD6E3FF),
+    tertiaryContainer = Color(0xFFFFDAD6)
+)
+private val CnDark = darkColorScheme(
+    primary = Color(0xFFA9C7FF),
+    secondary = Color(0xFFBCC7DB),
+    tertiary = Color(0xFFFFB4AB),
+    primaryContainer = Color(0xFF004899),
+    tertiaryContainer = Color(0xFF8C1D18)
+)
+
 private val EmuHubShapes = Shapes(
     extraSmall = RoundedCornerShape(8.dp),
     small = RoundedCornerShape(12.dp),
@@ -84,6 +100,7 @@ fun EmuHubTheme(
         colorTheme == ColorTheme.BLUE -> if (darkTheme) BlueDark else BlueLight
         colorTheme == ColorTheme.PURPLE -> if (darkTheme) PurpleDark else PurpleLight
         colorTheme == ColorTheme.ORANGE -> if (darkTheme) OrangeDark else OrangeLight
+        colorTheme == ColorTheme.CN -> if (darkTheme) CnDark else CnLight
         else -> if (darkTheme) EmuHubDark else EmuHubLight
     }
 

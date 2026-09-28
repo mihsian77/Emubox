@@ -922,6 +922,30 @@ fun SettingsScreen(
                 }
             }
 
+            item {
+                SettingsSectionHeader(
+                    icon = Icons.Default.Bolt,
+                    title = appString(R.string.accelerator_title),
+                    subtitle = appString(R.string.accelerator_desc)
+                )
+            }
+
+            item {
+                AcceleratorSettingsCard()
+            }
+
+            item {
+                SettingsSectionHeader(
+                    icon = Icons.Default.Info,
+                    title = appString(R.string.about_section),
+                    subtitle = appString(R.string.about_upstream)
+                )
+            }
+
+            item {
+                AboutCard()
+            }
+
             item { Spacer(Modifier.height(16.dp)) }
         }
     }
@@ -971,6 +995,217 @@ private fun SettingsCard(
             Text(title, style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(6.dp))
             content()
+        }
+    }
+}
+
+// ── 国内下载加速设置 ────────────────────────────────────────────
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun AcceleratorSettingsCard() {
+    val scope = rememberCoroutineScope()
+    var mode by remember { mutableStateOf(Accelerator.getMode()) }
+    var manualNodeId by remember { mutableStateOf(Accelerator.getManualNode().id) }
+    var latencies by remember { mutableStateOf<Map<String, Long?>>(emptyMap()) }
+    var testing by remember { mutableStateOf(false) }
+    var autoResult by remember { mutableStateOf<String?>(null) }
+
+    fun refreshMode() { mode = Accelerator.getMode() }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Text(appString(R.string.accelerator_mode), style = MaterialTheme.typography.titleMedium)
+            Spacer(Modifier.height(10.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FilterChip(
+                    selected = mode == Accelerator.Mode.AUTO,
+                    onClick = { Accelerator.setMode(Accelerator.Mode.AUTO); refreshMode() },
+                    label = { Text(appString(R.string.accelerator_mode_auto)) }
+                )
+                FilterChip(
+                    selected = mode == Accelerator.Mode.MANUAL,
+                    onClick = { Accelerator.setMode(Accelerator.Mode.MANUAL); refreshMode() },
+                    label = { Text(appString(R.string.accelerator_mode_manual)) }
+                )
+                FilterChip(
+                    selected = mode == Accelerator.Mode.OFF,
+                    onClick = { Accelerator.setMode(Accelerator.Mode.OFF); refreshMode() },
+                    label = { Text(appString(R.string.accelerator_mode_off)) }
+                )
+            }
+
+            if (mode == Accelerator.Mode.MANUAL) {
+                Spacer(Modifier.height(16.dp))
+                var expanded by remember { mutableStateOf(false) }
+                ExposedDropdownMenuBox(
+                    expanded = expanded,
+                    onExpandedChange = { expanded = !expanded }
+                ) {
+                    OutlinedTextField(
+                        value = Accelerator.ALL_NODES.firstOrNull { it.id == manualNodeId }?.displayName ?: "",
+                        onValueChange = {},
+                        readOnly = true,
+                        modifier = Modifier.fillMaxWidth().menuAnchor(),
+                        label = { Text(appString(R.string.accelerator_node)) },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                        shape = RoundedCornerShape(18.dp)
+                    )
+                    ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                        Accelerator.ALL_NODES.forEach { node ->
+                            DropdownMenuItem(
+                                text = { Text(node.displayName) },
+                                onClick = {
+                                    manualNodeId = node.id
+                                    Accelerator.setManualNode(node)
+                                    expanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+
+            if (mode == Accelerator.Mode.AUTO && autoResult != null) {
+                Spacer(Modifier.height(12.dp))
+                Text(
+                    text = autoResult!!,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+
+            Spacer(Modifier.height(16.dp))
+            Button(
+                onClick = {
+                    testing = true
+                    autoResult = null
+                    scope.launch(Dispatchers.IO) {
+                        val results = Accelerator.testAllLatencies()
+                        latencies = results.associate { it.first.id to it.second }
+                        if (mode == Accelerator.Mode.AUTO) {
+                            val best = results.firstOrNull { it.second != null }
+                            if (best != null) {
+                                autoResult = appString(
+                                    R.string.accelerator_auto_result,
+                                    best.first.displayName,
+                                    Accelerator.formatLatency(best.second)
+                                )
+                            }
+                        }
+                        testing = false
+                    }
+                },
+                enabled = !testing,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                if (testing) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(18.dp),
+                        strokeWidth = 2.dp
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.accelerator_testing))
+                } else {
+                    Icon(Icons.Default.Speed, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.accelerator_test_latency))
+                }
+            }
+
+            if (latencies.isNotEmpty()) {
+                Spacer(Modifier.height(12.dp))
+                Accelerator.ALL_NODES.forEach { node ->
+                    val ms = latencies[node.id]
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = node.displayName,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            text = Accelerator.formatLatency(ms),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = when {
+                                ms == null -> MaterialTheme.colorScheme.error
+                                ms < 300 -> MaterialTheme.colorScheme.primary
+                                else -> MaterialTheme.colorScheme.onSurfaceVariant
+                            }
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ── 关于 / 汉化署名 ────────────────────────────────────────────
+
+@Composable
+private fun AboutCard() {
+    val context = LocalContext.current
+    val versionName = try {
+        context.packageManager.getPackageInfo(context.packageName, 0).versionName
+    } catch (_: Exception) { "1.0.0-cn" }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.primaryContainer
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Translate,
+                        contentDescription = null,
+                        modifier = Modifier.padding(12.dp),
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
+                Spacer(Modifier.width(12.dp))
+                Column {
+                    Text(
+                        text = appString(R.string.about_translation),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = appString(R.string.about_translation_by),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(16.dp))
+            Divider()
+            Spacer(Modifier.height(12.dp))
+
+            Text(
+                text = appString(R.string.about_version, versionName ?: "1.0.0-cn"),
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = appString(R.string.about_upstream),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = appString(R.string.about_license),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }
@@ -1029,6 +1264,7 @@ private fun languageLabel(language: AppLanguage): String = when (language) {
     AppLanguage.SPANISH -> appString(R.string.language_spanish)
     AppLanguage.FRENCH -> appString(R.string.language_french)
     AppLanguage.GERMAN -> appString(R.string.language_german)
+    AppLanguage.CHINESE -> appString(R.string.language_chinese)
 }
 
 @Composable
@@ -1079,7 +1315,8 @@ private fun ColorThemeSelector(
         ColorTheme.EMUHUB to "EmuHub",
         ColorTheme.BLUE to appString(R.string.theme_blue),
         ColorTheme.PURPLE to appString(R.string.theme_purple),
-        ColorTheme.ORANGE to appString(R.string.theme_orange)
+        ColorTheme.ORANGE to appString(R.string.theme_orange),
+        ColorTheme.CN to appString(R.string.theme_cn)
     )
 
     Row(
