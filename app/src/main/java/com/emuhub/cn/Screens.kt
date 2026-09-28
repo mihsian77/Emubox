@@ -1009,7 +1009,7 @@ private fun AcceleratorSettingsCard() {
     var manualNodeId by remember { mutableStateOf(Accelerator.getManualNode().id) }
     var latencies by remember { mutableStateOf<Map<String, Long?>>(emptyMap()) }
     var testing by remember { mutableStateOf(false) }
-    var autoResult by remember { mutableStateOf<String?>(null) }
+    var autoResult by remember { mutableStateOf<Pair<String, String>?>(null) }
 
     fun refreshMode() { mode = Accelerator.getMode() }
 
@@ -1073,7 +1073,7 @@ private fun AcceleratorSettingsCard() {
             if (mode == Accelerator.Mode.AUTO && autoResult != null) {
                 Spacer(Modifier.height(12.dp))
                 Text(
-                    text = autoResult!!,
+                    text = appString(R.string.accelerator_auto_result, autoResult!!.first, autoResult!!.second),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -1090,11 +1090,7 @@ private fun AcceleratorSettingsCard() {
                         if (mode == Accelerator.Mode.AUTO) {
                             val best = results.firstOrNull { it.second != null }
                             if (best != null) {
-                                autoResult = appString(
-                                    R.string.accelerator_auto_result,
-                                    best.first.displayName,
-                                    Accelerator.formatLatency(best.second)
-                                )
+                                autoResult = best.first.displayName to Accelerator.formatLatency(best.second)
                             }
                         }
                         testing = false
