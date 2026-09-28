@@ -40,14 +40,18 @@ data class ProxyNode(
 
 object Accelerator {
 
-    /** 内置加速节点列表（按推荐度排序） */
+    /** 内置加速节点列表（按推荐度排序，2026-09 验证可用） */
     val BUILTIN_NODES = listOf(
-        ProxyNode("gh-proxy", "gh-proxy 官方", "gh-proxy.com"),
+        ProxyNode("gh-proxy-org", "gh-proxy 官方", "gh-proxy.org"),
+        ProxyNode("gh-proxy-com", "gh-proxy 旧域", "gh-proxy.com"),
         ProxyNode("ghfast", "ghfast 多线", "ghfast.top"),
-        ProxyNode("ghproxy-mirror", "ghproxy 镜像", "mirror.ghproxy.com"),
-        ProxyNode("moeyy", "moeyy 公益", "github.moeyy.xyz"),
-        ProxyNode("llkk", "llkk 公益", "gh.llkk.cc")
+        ProxyNode("gh-con-sh", "con.sh 公益", "gh.con.sh"),
+        ProxyNode("gh-idayer", "idayer 公益", "gh.idayer.com")
     )
+
+    /** 延迟测试用的小文件（必须是实际存在的 GitHub Raw 文件，不能用根路径） */
+    private const val LATENCY_TEST_FILE =
+        "https://raw.githubusercontent.com/Rodrig02005/EmuHub-APP/main/sources.json"
 
     /** 直连（不加速） */
     val DIRECT_NODE = ProxyNode("direct", "直连 GitHub", "github.com")
@@ -56,9 +60,10 @@ object Accelerator {
     val ALL_NODES = listOf(DIRECT_NODE) + BUILTIN_NODES
 
     private val latencyClient = OkHttpClient.Builder()
-        .connectTimeout(5, TimeUnit.SECONDS)
-        .readTimeout(5, TimeUnit.SECONDS)
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(10, TimeUnit.SECONDS)
         .followRedirects(true)
+        .followSslRedirects(true)
         .build()
 
     /** 加速模式 */
@@ -122,16 +127,18 @@ object Accelerator {
 
     /**
      * 测试单个节点的延迟（毫秒）。失败返回 null。
-     * 通过对代理域名做 HEAD 请求测量连接时间。
+     * 通过 GET 请求一个实际存在的小文件测量总耗时。
+     * 注意：不能用代理根路径（如 https://proxy/https://github.com）测试，
+     * 因为多数代理根路径返回 404/403，必须用实际文件 URL。
      */
-    fun testLatency(node: ProxyNode, timeoutMs: Long = 5000): Long? {
+    fun testLatency(node: ProxyNode, timeoutMs: Long = 10000): Long? {
         return try {
             val url = if (node.id == DIRECT_NODE.id) {
-                "https://github.com"
+                LATENCY_TEST_FILE
             } else {
-                "https://${node.domain}/https://github.com"
+                "https://${node.domain}/$LATENCY_TEST_FILE"
             }
-            val request = Request.Builder().url(url).head().build()
+            val request = Request.Builder().url(url).get().build()
             val start = System.currentTimeMillis()
             latencyClient.newCall(request).execute().use { response ->
                 val elapsed = System.currentTimeMillis() - start

@@ -115,14 +115,14 @@ EmuHub-CN/
 
 App 内所有 GitHub 资源下载（驱动文件、组件、资源目录、API 请求）均会经过加速节点。
 
-内置节点：
+内置节点（2026-09 验证可用）：
 | 节点 | 域名 | 说明 |
 |------|------|------|
-| gh-proxy 官方 | gh-proxy.com | 主力节点，日调用量百万级 |
+| gh-proxy 官方 | gh-proxy.org | 主力节点，新域名 |
+| gh-proxy 旧域 | gh-proxy.com | 旧域名，仍可用 |
 | ghfast 多线 | ghfast.top | 多线 CDN |
-| ghproxy 镜像 | mirror.ghproxy.com | 老牌镜像 |
-| moeyy 公益 | github.moeyy.xyz | 国内公益 |
-| llkk 公益 | gh.llkk.cc | 国内公益 |
+| con.sh 公益 | gh.con.sh | 公益加速 |
+| idayer 公益 | gh.idayer.com | 公益加速 |
 | 直连 | github.com | 不加速 |
 
 加速模式：
