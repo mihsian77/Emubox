@@ -37,6 +37,13 @@ android {
     buildFeatures {
         compose = true
     }
+    lint {
+        // 本项目为多语言但不保证全覆盖的社区项目，MissingTranslation 由
+        // scripts/check-i18n.py 自定义脚本保证中英一致性，此处关闭 Lint 检查
+        disable += "MissingTranslation"
+        // 允许警告不阻断构建
+        abortOnError = true
+    }
 }
 
 dependencies {
