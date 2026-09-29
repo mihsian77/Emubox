@@ -355,7 +355,7 @@ private suspend fun transferExistingDownload(
     context: Context,
     state: DownloadsManager.ActiveDownload,
     resume: Boolean
-) = withContext(Dispatchers.IO) transfer@{
+): Boolean = withContext(Dispatchers.IO) transfer@{
     val fileName = state.fileName
     val outputUri = state.outputUri.takeIf { it.isNotBlank() }?.let(Uri::parse)
         ?: run {
@@ -442,12 +442,14 @@ private suspend fun transferExistingDownload(
                 DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten)
                 Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
             }
+            return@transfer true
         }
     } catch (_: DownloadPausedException) {
         // Keep the partial URI + byte count. It can be resumed after app/process recreation.
         withContext(NonCancellable + Dispatchers.Main) {
             DownloadsManager.pauseDownload(fileName)
         }
+        return@transfer false
     } catch (cancelled: CancellationException) {
         if (control.cancelled) {
             withContext(NonCancellable + Dispatchers.IO) {
@@ -457,6 +459,7 @@ private suspend fun transferExistingDownload(
                 DownloadsManager.failDownload(fileName)
                 Toast.makeText(context, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
             }
+            return@transfer false
         } else {
             // Activity/process lifecycle cancellation should preserve the partial download.
             withContext(NonCancellable + Dispatchers.Main) {
@@ -470,6 +473,7 @@ private suspend fun transferExistingDownload(
                 withContext(NonCancellable + Dispatchers.Main) {
                     DownloadsManager.pauseDownload(fileName)
                 }
+                return@transfer false
             }
 
             control.cancelled -> {
@@ -478,56 +482,24 @@ private suspend fun transferExistingDownload(
                     DownloadsManager.failDownload(fileName)
                     Toast.makeText(context, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
                 }
+                return@transfer false
             }
 
             else -> {
                 Log.e(TAG, "Download failed: ${state.url}", error)
-
-                // 自动回退：如果当前是加速 URL 且下载失败，自动切换到直连重试
-                val directUrl = extractOriginalUrlIfAccelerated(state.url)
-                if (directUrl != null && !state.url.equals(directUrl, ignoreCase = true)) {
-                    Log.i(TAG, "加速下载失败，自动回退到直连: $directUrl")
-                    deletePartialOutput(context, outputUri)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            context,
-                            "加速节点失败，已自动切换直连重试",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        // 更新下载状态为直连 URL，重新开始
-                        DownloadsManager.startDownload(
-                            fileName = fileName,
-                            url = directUrl,
-                            outputUri = outputUri.toString(),
-                            usesMediaStore = state.usesMediaStore
-                        )
-                    }
-                    val directState = withContext(Dispatchers.Main) {
-                        DownloadsManager.activeDownloads[fileName]
-                    }
-                    if (directState != null) {
-                        // 递归调用 transferExistingDownload 用直连 URL 重新下载
-                        transferExistingDownload(context, directState, resume = false)
-                        return@transfer
-                    }
-                }
-
-                // 回退失败或不是加速 URL，正常报错
                 deletePartialOutput(context, outputUri)
                 withContext(Dispatchers.Main) {
                     DownloadsManager.failDownload(fileName)
-                    Toast.makeText(
-                        context,
-                        "下载失败: ${error.message ?: "未知错误"}",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
+                return@transfer false
+            }
             }
         }
     } finally {
         control.call = null
         downloadControls.remove(fileName, control)
     }
+    return@transfer false
 }
 
 private suspend fun downloadFileWithProgress(
@@ -561,5 +533,53 @@ private suspend fun downloadFileWithProgress(
         DownloadsManager.activeDownloads[uniqueFileName]
     } ?: return@download
 
-    transferExistingDownload(context, state, resume = false)
+    val success = transferExistingDownload(context, state, resume = false)
+
+    // 自动回退：如果加速下载失败，自动切换到直连重试
+    if (!success) {
+        val directUrl = extractOriginalUrlIfAccelerated(url)
+        if (directUrl != null && !url.equals(directUrl, ignoreCase = true)) {
+            Log.i(TAG, "加速下载失败，自动回退到直连: $directUrl")
+
+            // 删除旧的部分文件
+            deletePartialOutput(context, outputUri)
+
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    context,
+                    "加速节点失败，已自动切换直连重试",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            // 重新创建输出文件
+            val newOutputUri = createOutputUri(context, folderUri, uniqueFileName)
+            if (newOutputUri != null) {
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.startDownload(
+                        fileName = uniqueFileName,
+                        url = directUrl,
+                        outputUri = newOutputUri.toString(),
+                        usesMediaStore = usesMediaStore
+                    )
+                }
+                val directState = withContext(Dispatchers.Main) {
+                    DownloadsManager.activeDownloads[uniqueFileName]
+                }
+                if (directState != null) {
+                    val directSuccess = transferExistingDownload(context, directState, resume = false)
+                    if (!directSuccess) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "下载失败: $uniqueFileName", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+        } else {
+            // 不是加速 URL，已经是直连失败
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "下载失败: $uniqueFileName", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 }
