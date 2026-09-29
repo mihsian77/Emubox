@@ -236,6 +236,10 @@ private suspend fun copyWithProgress(
     var totalRead = startingBytes.coerceAtLeast(0L)
     var lastUiUpdate = 0L
 
+    // 速度计算：滑动窗口记录最近的 (时间戳, 已下载字节)
+    val speedSamples = ArrayDeque<Pair<Long, Long>>()
+    val SPEED_WINDOW_MS = 3000L
+
     while (true) {
         currentCoroutineContext().ensureActive()
 
@@ -258,9 +262,30 @@ private suspend fun copyWithProgress(
 
         val now = SystemClock.elapsedRealtime()
         if (now - lastUiUpdate >= PROGRESS_UPDATE_INTERVAL_MS) {
+            // 计算滑动窗口平均速度
+            speedSamples.addLast(now to totalRead)
+            while (speedSamples.isNotEmpty() && speedSamples.first().first < now - SPEED_WINDOW_MS) {
+                speedSamples.removeFirst()
+            }
+            if (speedSamples.size >= 2) {
+                val first = speedSamples.first()
+                val last = speedSamples.last()
+                val elapsedSec = (last.first - first.first).coerceAtLeast(1L) / 1000.0
+                val deltaBytes = (last.second - first.second).coerceAtLeast(0L)
+                val speed = (deltaBytes / elapsedSec).toLong()
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.updateSpeed(fileName, speed)
+                }
+            }
+
             withContext(Dispatchers.Main) {
                 DownloadsManager.updateProgress(fileName, totalRead)
             }
+            // 慢下载检测：传入当前进度
+            val currentTotal = withContext(Dispatchers.Main) {
+                DownloadsManager.activeDownloads[fileName]?.totalBytes ?: 0L
+            }
+            SlowDownloadDetector.onProgress(fileName, totalRead, currentTotal)
             lastUiUpdate = now
         }
     }
@@ -268,6 +293,7 @@ private suspend fun copyWithProgress(
     output.flush()
     withContext(Dispatchers.Main) {
         DownloadsManager.updateProgress(fileName, totalRead)
+        DownloadsManager.updateSpeed(fileName, 0L)
     }
     return totalRead
 }
@@ -304,6 +330,25 @@ private fun outputPath(uri: Uri): String {
     } else {
         File(uri.path ?: throw IOException("Invalid output path")).absolutePath
     }
+}
+
+/**
+ * 从加速 URL 中还原原始 GitHub URL。
+ * 加速 URL 格式：https://proxy-domain/https://github.com/...
+ * 如果不是加速 URL（不包含代理域名），返回 null。
+ */
+private fun extractOriginalUrlIfAccelerated(acceleratedUrl: String): String? {
+    // 检查是否包含代理域名前缀（第二个 https:// 之前的部分是代理域名）
+    val httpsIndex = acceleratedUrl.indexOf("https://", 1)
+    val httpIndex = acceleratedUrl.indexOf("http://", 1)
+    val originalIndex = when {
+        httpsIndex > 0 -> httpsIndex
+        httpIndex > 0 -> httpIndex
+        else -> return null
+    }
+    val originalUrl = acceleratedUrl.substring(originalIndex)
+    // 验证还原后的 URL 确实是 GitHub 域名
+    return if (Accelerator.isGithubUrl(originalUrl)) originalUrl else null
 }
 
 private suspend fun transferExistingDownload(
@@ -437,12 +482,43 @@ private suspend fun transferExistingDownload(
 
             else -> {
                 Log.e(TAG, "Download failed: ${state.url}", error)
+
+                // 自动回退：如果当前是加速 URL 且下载失败，自动切换到直连重试
+                val directUrl = extractOriginalUrlIfAccelerated(state.url)
+                if (directUrl != null && !state.url.equals(directUrl, ignoreCase = true)) {
+                    Log.i(TAG, "加速下载失败，自动回退到直连: $directUrl")
+                    deletePartialOutput(context, outputUri)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "加速节点失败，已自动切换直连重试",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        // 更新下载状态为直连 URL，重新开始
+                        DownloadsManager.startDownload(
+                            fileName = fileName,
+                            url = directUrl,
+                            outputUri = outputUri.toString(),
+                            usesMediaStore = state.usesMediaStore
+                        )
+                    }
+                    val directState = withContext(Dispatchers.Main) {
+                        DownloadsManager.activeDownloads[fileName]
+                    }
+                    if (directState != null) {
+                        // 递归调用 transferExistingDownload 用直连 URL 重新下载
+                        transferExistingDownload(context, directState, resume = false)
+                        return@transfer
+                    }
+                }
+
+                // 回退失败或不是加速 URL，正常报错
                 deletePartialOutput(context, outputUri)
                 withContext(Dispatchers.Main) {
                     DownloadsManager.failDownload(fileName)
                     Toast.makeText(
                         context,
-                        "Download failed: ${error.message ?: "Unknown error"}",
+                        "下载失败: ${error.message ?: "未知错误"}",
                         Toast.LENGTH_LONG
                     ).show()
                 }

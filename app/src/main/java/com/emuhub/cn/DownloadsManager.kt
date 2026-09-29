@@ -30,7 +30,8 @@ object DownloadsManager {
         val status: DownloadStatus = DownloadStatus.CONNECTING,
         val url: String = "",
         val outputUri: String = "",
-        val usesMediaStore: Boolean = false
+        val usesMediaStore: Boolean = false,
+        val speedBytesPerSec: Long = 0L
     ) {
         fun toJson(): JSONObject = JSONObject().apply {
             put("fileName", fileName)
@@ -41,6 +42,7 @@ object DownloadsManager {
             put("url", url)
             put("outputUri", outputUri)
             put("usesMediaStore", usesMediaStore)
+            put("speedBytesPerSec", speedBytesPerSec)
         }
 
         companion object {
@@ -68,7 +70,8 @@ object DownloadsManager {
                     status = DownloadStatus.PAUSED,
                     url = url,
                     outputUri = outputUri,
-                    usesMediaStore = json.optBoolean("usesMediaStore", false)
+                    usesMediaStore = json.optBoolean("usesMediaStore", false),
+                    speedBytesPerSec = 0L
                 )
             }
         }
@@ -260,6 +263,13 @@ object DownloadsManager {
                 downloadedBytes = safeDownloaded
             )
             saveActiveDownloads()
+        }
+    }
+
+    /** 更新实时下载速度（字节/秒），不触发持久化（速度是临时值） */
+    fun updateSpeed(fileName: String, speedBytesPerSec: Long) {
+        _activeDownloads[fileName]?.let { current ->
+            _activeDownloads[fileName] = current.copy(speedBytesPerSec = speedBytesPerSec)
         }
     }
 
