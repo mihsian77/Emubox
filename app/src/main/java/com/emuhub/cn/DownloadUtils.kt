@@ -236,6 +236,10 @@ private suspend fun copyWithProgress(
     var totalRead = startingBytes.coerceAtLeast(0L)
     var lastUiUpdate = 0L
 
+    // 速度计算：滑动窗口记录最近的 (时间戳, 已下载字节)
+    val speedSamples = ArrayDeque<Pair<Long, Long>>()
+    val SPEED_WINDOW_MS = 3000L
+
     while (true) {
         currentCoroutineContext().ensureActive()
 
@@ -258,9 +262,30 @@ private suspend fun copyWithProgress(
 
         val now = SystemClock.elapsedRealtime()
         if (now - lastUiUpdate >= PROGRESS_UPDATE_INTERVAL_MS) {
+            // 计算滑动窗口平均速度
+            speedSamples.addLast(now to totalRead)
+            while (speedSamples.isNotEmpty() && speedSamples.first().first < now - SPEED_WINDOW_MS) {
+                speedSamples.removeFirst()
+            }
+            if (speedSamples.size >= 2) {
+                val first = speedSamples.first()
+                val last = speedSamples.last()
+                val elapsedSec = (last.first - first.first).coerceAtLeast(1L) / 1000.0
+                val deltaBytes = (last.second - first.second).coerceAtLeast(0L)
+                val speed = (deltaBytes / elapsedSec).toLong()
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.updateSpeed(fileName, speed)
+                }
+            }
+
             withContext(Dispatchers.Main) {
                 DownloadsManager.updateProgress(fileName, totalRead)
             }
+            // 慢下载检测：传入当前进度
+            val currentTotal = withContext(Dispatchers.Main) {
+                DownloadsManager.activeDownloads[fileName]?.totalBytes ?: 0L
+            }
+            SlowDownloadDetector.onProgress(fileName, totalRead, currentTotal)
             lastUiUpdate = now
         }
     }
@@ -268,6 +293,7 @@ private suspend fun copyWithProgress(
     output.flush()
     withContext(Dispatchers.Main) {
         DownloadsManager.updateProgress(fileName, totalRead)
+        DownloadsManager.updateSpeed(fileName, 0L)
     }
     return totalRead
 }
@@ -306,11 +332,30 @@ private fun outputPath(uri: Uri): String {
     }
 }
 
+/**
+ * 从加速 URL 中还原原始 GitHub URL。
+ * 加速 URL 格式：https://proxy-domain/https://github.com/...
+ * 如果不是加速 URL（不包含代理域名），返回 null。
+ */
+private fun extractOriginalUrlIfAccelerated(acceleratedUrl: String): String? {
+    // 检查是否包含代理域名前缀（第二个 https:// 之前的部分是代理域名）
+    val httpsIndex = acceleratedUrl.indexOf("https://", 1)
+    val httpIndex = acceleratedUrl.indexOf("http://", 1)
+    val originalIndex = when {
+        httpsIndex > 0 -> httpsIndex
+        httpIndex > 0 -> httpIndex
+        else -> return null
+    }
+    val originalUrl = acceleratedUrl.substring(originalIndex)
+    // 验证还原后的 URL 确实是 GitHub 域名
+    return if (Accelerator.isGithubUrl(originalUrl)) originalUrl else null
+}
+
 private suspend fun transferExistingDownload(
     context: Context,
     state: DownloadsManager.ActiveDownload,
     resume: Boolean
-) = withContext(Dispatchers.IO) transfer@{
+): Boolean = withContext(Dispatchers.IO) transfer@{
     val fileName = state.fileName
     val outputUri = state.outputUri.takeIf { it.isNotBlank() }?.let(Uri::parse)
         ?: run {
@@ -318,7 +363,7 @@ private suspend fun transferExistingDownload(
                 DownloadsManager.failDownload(fileName)
                 Toast.makeText(context, "Cannot resume $fileName: partial file is missing", Toast.LENGTH_LONG).show()
             }
-            return@transfer
+            return@transfer false
         }
 
     val control = DownloadControl()
@@ -397,12 +442,14 @@ private suspend fun transferExistingDownload(
                 DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten)
                 Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
             }
+            return@transfer true
         }
     } catch (_: DownloadPausedException) {
         // Keep the partial URI + byte count. It can be resumed after app/process recreation.
         withContext(NonCancellable + Dispatchers.Main) {
             DownloadsManager.pauseDownload(fileName)
         }
+        return@transfer false
     } catch (cancelled: CancellationException) {
         if (control.cancelled) {
             withContext(NonCancellable + Dispatchers.IO) {
@@ -412,6 +459,7 @@ private suspend fun transferExistingDownload(
                 DownloadsManager.failDownload(fileName)
                 Toast.makeText(context, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
             }
+            return@transfer false
         } else {
             // Activity/process lifecycle cancellation should preserve the partial download.
             withContext(NonCancellable + Dispatchers.Main) {
@@ -425,6 +473,7 @@ private suspend fun transferExistingDownload(
                 withContext(NonCancellable + Dispatchers.Main) {
                     DownloadsManager.pauseDownload(fileName)
                 }
+                return@transfer false
             }
 
             control.cancelled -> {
@@ -433,6 +482,7 @@ private suspend fun transferExistingDownload(
                     DownloadsManager.failDownload(fileName)
                     Toast.makeText(context, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
                 }
+                return@transfer false
             }
 
             else -> {
@@ -440,18 +490,15 @@ private suspend fun transferExistingDownload(
                 deletePartialOutput(context, outputUri)
                 withContext(Dispatchers.Main) {
                     DownloadsManager.failDownload(fileName)
-                    Toast.makeText(
-                        context,
-                        "Download failed: ${error.message ?: "Unknown error"}",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
+                return@transfer false
             }
         }
     } finally {
         control.call = null
         downloadControls.remove(fileName, control)
     }
+    return@transfer false
 }
 
 private suspend fun downloadFileWithProgress(
@@ -485,5 +532,53 @@ private suspend fun downloadFileWithProgress(
         DownloadsManager.activeDownloads[uniqueFileName]
     } ?: return@download
 
-    transferExistingDownload(context, state, resume = false)
+    val success = transferExistingDownload(context, state, resume = false)
+
+    // 自动回退：如果加速下载失败，自动切换到直连重试
+    if (!success) {
+        val directUrl = extractOriginalUrlIfAccelerated(url)
+        if (directUrl != null && !url.equals(directUrl, ignoreCase = true)) {
+            Log.i(TAG, "加速下载失败，自动回退到直连: $directUrl")
+
+            // 删除旧的部分文件
+            deletePartialOutput(context, outputUri)
+
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    context,
+                    "加速节点失败，已自动切换直连重试",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            // 重新创建输出文件
+            val newOutputUri = createOutputUri(context, folderUri, uniqueFileName)
+            if (newOutputUri != null) {
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.startDownload(
+                        fileName = uniqueFileName,
+                        url = directUrl,
+                        outputUri = newOutputUri.toString(),
+                        usesMediaStore = usesMediaStore
+                    )
+                }
+                val directState = withContext(Dispatchers.Main) {
+                    DownloadsManager.activeDownloads[uniqueFileName]
+                }
+                if (directState != null) {
+                    val directSuccess = transferExistingDownload(context, directState, resume = false)
+                    if (!directSuccess) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "下载失败: $uniqueFileName", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+        } else {
+            // 不是加速 URL，已经是直连失败
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "下载失败: $uniqueFileName", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 }

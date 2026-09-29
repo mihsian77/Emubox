@@ -9,12 +9,30 @@ import java.io.BufferedReader
 import java.io.FileReader
 import kotlin.math.abs
 
+/** GPU 厂商枚举 */
+enum class GpuVendor {
+    ADRENO,      // 高通 Adreno
+    MALI,        // ARM Mali（天玑/麒麟/Exynos）
+    POWERVR,     // Imagination PowerVR
+    XCLIPSE,     // 紫光展锐 Xclipse
+    UNKNOWN;
+
+    val displayName: String get() = when (this) {
+        ADRENO -> "高通 Adreno"
+        MALI -> "ARM Mali"
+        POWERVR -> "Imagination PowerVR"
+        XCLIPSE -> "紫光展锐 Xclipse"
+        UNKNOWN -> "未知"
+    }
+}
+
 data class DeviceInfo(
     val androidVersion: String,
     val ram: String,
     val gpuRenderer: String,
     val adrenoSeries: String,
-    val gpuModel: String
+    val gpuModel: String,
+    val gpuVendor: GpuVendor
 ) {
     companion object {
         suspend fun collect(context: Context): DeviceInfo = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
@@ -24,10 +42,21 @@ data class DeviceInfo(
                 getTotalRam(context),
                 renderer,
                 detectAdrenoSeries(renderer),
-                detectGpuModel(renderer)
+                detectGpuModel(renderer),
+                detectGpuVendor(renderer)
             )
         }
     }
+}
+
+/** 识别 GPU 厂商 */
+fun detectGpuVendor(gpuString: String): GpuVendor = when {
+    gpuString.contains("Adreno", ignoreCase = true) -> GpuVendor.ADRENO
+    gpuString.contains("Mali", ignoreCase = true) -> GpuVendor.MALI
+    gpuString.contains("PowerVR", ignoreCase = true) ||
+            gpuString.contains("IMG", ignoreCase = true) -> GpuVendor.POWERVR
+    gpuString.contains("Xclipse", ignoreCase = true) -> GpuVendor.XCLIPSE
+    else -> GpuVendor.UNKNOWN
 }
 
 fun detectAdrenoSeries(gpuString: String): String {
@@ -36,12 +65,19 @@ fun detectAdrenoSeries(gpuString: String): String {
 }
 
 /**
- * Extracts the specific Adreno GPU model number (e.g. "740", "810", "830").
- * Returns "unknown" if the GPU is not Adreno or the model cannot be parsed.
+ * Extracts the specific GPU model number.
+ * Adreno: "740", "810", "830"
+ * Mali: "G720", "G610", "G710" (提取 G 后面的数字)
+ * Returns "unknown" if the model cannot be parsed.
  */
 fun detectGpuModel(gpuString: String): String {
-    return Regex("Adreno.*?(\\d{3,4})", RegexOption.IGNORE_CASE)
-        .find(gpuString)?.groupValues?.get(1) ?: "unknown"
+    // Adreno: Adreno 740
+    Regex("Adreno.*?(\\d{3,4})", RegexOption.IGNORE_CASE)
+        .find(gpuString)?.groupValues?.get(1)?.let { return it }
+    // Mali: Mali-G720, Mali G610
+    Regex("Mali[\\s-]*G(\\d{3,4})", RegexOption.IGNORE_CASE)
+        .find(gpuString)?.groupValues?.get(1)?.let { return it }
+    return "unknown"
 }
 
 private fun getTotalRam(context: Context): String {

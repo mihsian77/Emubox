@@ -18,6 +18,11 @@ data class TurnipSource(
     val experimental: Boolean,
     val supportedSeries: Set<String>,
     val supportedModels: Set<String> = emptySet(),
+    /**
+     * 要求的 GPU 厂商（小写："adreno" / "mali"）。null 表示不限制。
+     * 用于 Mali 等非 Adreno GPU 的专用驱动源过滤。
+     */
+    val requiredVendor: String? = null,
     val filters: Map<String, List<String>>,
     val assetIncludes: Map<String, List<String>> = emptyMap(),
     val assetExcludes: Map<String, List<String>> = emptyMap()
@@ -48,15 +53,31 @@ data class SourceCatalog(
 ) {
     /**
      * Returns Turnip sources compatible with the detected GPU.
-     * Filters first by supportedSeries (6xx/7xx/8xx), then by supportedModels
-     * (specific model numbers like 830, 810, 710) when the source defines them.
+     * Filters first by requiredVendor (Mali/Adreno), then by supportedSeries (6xx/7xx/8xx),
+     * then by supportedModels (specific model numbers like 830, 810, 710).
      * Sources with empty supportedModels are treated as model-agnostic.
      */
-    fun compatibleTurnipSources(adrenoSeries: String?, gpuModel: String? = null): List<TurnipSource> {
-        if (adrenoSeries.isNullOrBlank()) return turnipSources
-        val seriesFiltered = turnipSources.filter { source ->
+    fun compatibleTurnipSources(
+        adrenoSeries: String?,
+        gpuModel: String? = null,
+        gpuVendor: String? = null
+    ): List<TurnipSource> {
+        // 第一步：按 GPU 厂商过滤
+        val vendorFiltered = if (gpuVendor.isNullOrBlank()) {
+            turnipSources
+        } else {
+            turnipSources.filter { source ->
+                source.requiredVendor == null || source.requiredVendor.equals(gpuVendor, ignoreCase = true)
+            }
+        }
+
+        // 第二步：按 Adreno series 过滤（非 Adreno GPU 的 series 为 unknown，跳过）
+        if (adrenoSeries.isNullOrBlank() || adrenoSeries == "unknown") return vendorFiltered
+        val seriesFiltered = vendorFiltered.filter { source ->
             source.supportedSeries.isEmpty() || adrenoSeries in source.supportedSeries
-        }.ifEmpty { turnipSources }
+        }.ifEmpty { vendorFiltered }
+
+        // 第三步：按具体型号过滤
         if (gpuModel.isNullOrBlank() || gpuModel == "unknown") return seriesFiltered
         return seriesFiltered.filter { source ->
             source.supportedModels.isEmpty() || gpuModel in source.supportedModels
@@ -113,6 +134,8 @@ object SourceCatalogRepository {
                     }
                 }
 
+                val requiredVendor = obj.optString("requiredVendor").takeIf { it.isNotBlank() }
+
                 val filtersObject = obj.optJSONObject("filters") ?: JSONObject()
                 val filters = parseStringListMap(filtersObject)
                 val assetIncludes = parseStringListMap(obj.optJSONObject("assetIncludes") ?: JSONObject())
@@ -127,6 +150,7 @@ object SourceCatalogRepository {
                         experimental = obj.optBoolean("experimental", false),
                         supportedSeries = supportedSeries,
                         supportedModels = supportedModels,
+                        requiredVendor = requiredVendor,
                         filters = filters,
                         assetIncludes = assetIncludes,
                         assetExcludes = assetExcludes
@@ -306,6 +330,17 @@ object SourceCatalogRepository {
                 supportedSeries = setOf("7xx"),
                 supportedModels = setOf("710", "720", "722"),
                 filters = mapOf("default" to listOf("Turnip", "710", "720"))
+            ),
+            TurnipSource(
+                id = "panvk-g720",
+                name = "PanVK (Mali-G720 实验性)",
+                apiUrl = "https://api.github.com/repos/wonderkast02/panvk-g720-kbase-csf/releases",
+                description = "PanVK Vulkan 驱动 for Mali-G720 (天玑 9300/9200+)。实验性，上游暂未官方支持 Mali。",
+                experimental = true,
+                supportedSeries = emptySet(),
+                supportedModels = setOf("720"),
+                requiredVendor = "mali",
+                filters = mapOf("default" to listOf("panvk", "vulkan"))
             )
         ),
         qualcommSources = listOf(

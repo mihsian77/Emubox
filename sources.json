@@ -195,6 +195,24 @@
           "720"
         ]
       }
+    },
+    {
+      "id": "panvk-g720",
+      "name": "PanVK (Mali-G720 实验性)",
+      "apiUrl": "https://api.github.com/repos/wonderkast02/panvk-g720-kbase-csf/releases",
+      "description": "PanVK Vulkan 驱动 for Mali-G720 (天玑 9300/9200+)。实验性，上游暂未官方支持 Mali。",
+      "experimental": true,
+      "supportedSeries": [],
+      "supportedModels": [
+        "720"
+      ],
+      "requiredVendor": "mali",
+      "filters": {
+        "default": [
+          "panvk",
+          "vulkan"
+        ]
+      }
     }
   ],
   "qualcommSources": [

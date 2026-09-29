@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gh-proxy-org",
+    "displayName": "gh-proxy 官方",
+    "domain": "gh-proxy.org",
+    "trafficKinds": []
+  },
+  {
+    "id": "gh-proxy-com",
+    "displayName": "gh-proxy 旧域",
+    "domain": "gh-proxy.com",
+    "trafficKinds": []
+  },
+  {
+    "id": "ghfast",
+    "displayName": "ghfast 多线",
+    "domain": "ghfast.top",
+    "trafficKinds": []
+  },
+  {
+    "id": "gh-con-sh",
+    "displayName": "con.sh 公益",
+    "domain": "gh.con.sh",
+    "trafficKinds": []
+  },
+  {
+    "id": "gh-idayer",
+    "displayName": "idayer 公益",
+    "domain": "gh.idayer.com",
+    "trafficKinds": []
+  },
+  {
+    "id": "gh-proxy-net",
+    "displayName": "gh-proxy 镜像",
+    "domain": "gh-proxy.net",
+    "trafficKinds": []
+  }
+]
