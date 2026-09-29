@@ -245,15 +245,34 @@ fun DownloadsScreen(onBack: () -> Unit) {
                                     modifier = Modifier.fillMaxWidth(),
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
-                                    Text(
-                                        formatBytes(download.downloadedBytes),
-                                        style = MaterialTheme.typography.labelMedium
-                                    )
-                                    Text(
-                                        if (download.totalBytes > 0L) formatBytes(download.totalBytes) else appString(R.string.size_pending),
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Column {
+                                        Text(
+                                            formatBytes(download.downloadedBytes),
+                                            style = MaterialTheme.typography.labelMedium
+                                        )
+                                        if (download.status == DownloadStatus.DOWNLOADING && download.speedBytesPerSec > 0) {
+                                            Text(
+                                                Accelerator.formatSpeed(download.speedBytesPerSec),
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
+                                    }
+                                    Column(horizontalAlignment = Alignment.End) {
+                                        Text(
+                                            if (download.totalBytes > 0L) formatBytes(download.totalBytes) else appString(R.string.size_pending),
+                                            style = MaterialTheme.typography.labelMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                        if (download.status == DownloadStatus.DOWNLOADING && download.speedBytesPerSec > 0 && download.totalBytes > 0) {
+                                            val remaining = download.totalBytes - download.downloadedBytes
+                                            Text(
+                                                "剩余 ${Accelerator.formatEta(remaining, download.speedBytesPerSec)}",
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                    }
                                 }
 
                                 Row(
@@ -1119,12 +1138,36 @@ private fun AcceleratorSettingsCard() {
                     val ms = latencies[node.id]
                     Row(
                         modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = node.displayName,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = if (ms != null) Icons.Default.CheckCircle else Icons.Default.Error,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = if (ms != null) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+                            )
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                text = node.displayName,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                            if (node.trafficKinds.isNotEmpty()) {
+                                Spacer(Modifier.width(6.dp))
+                                Surface(
+                                    shape = RoundedCornerShape(6.dp),
+                                    color = MaterialTheme.colorScheme.tertiaryContainer
+                                ) {
+                                    Text(
+                                        text = "Raw专用",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
+                                        color = MaterialTheme.colorScheme.onTertiaryContainer
+                                    )
+                                }
+                            }
+                        }
                         Text(
                             text = Accelerator.formatLatency(ms),
                             style = MaterialTheme.typography.bodyMedium,

@@ -82,6 +82,14 @@ class MainActivity : ComponentActivity() {
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
+                // 慢下载推荐弹窗
+                var showSlowDownloadDialog by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) {
+                    SlowDownloadDetector.suggestAccelerator.collect {
+                        showSlowDownloadDialog = true
+                    }
+                }
+
                 // The catalog itself is remote. Driver/component files stay on their upstream
                 // repositories; EmuHub only reads their APIs/manifests and therefore sees new
                 // releases without shipping a new APK.
@@ -91,7 +99,7 @@ class MainActivity : ComponentActivity() {
                     val result = withContext(Dispatchers.IO) {
                         val info = DeviceInfo.collect(this@MainActivity)
                         val catalog = SourceCatalogRepository.load()
-                        val compatibleSources = catalog.compatibleTurnipSources(info.adrenoSeries, info.gpuModel)
+                        val compatibleSources = catalog.compatibleTurnipSources(info.adrenoSeries, info.gpuModel, info.gpuVendor.name.lowercase())
 
                         val selectedSource = compatibleSources.firstOrNull { source ->
                             source.id.equals(turnipSourceId, ignoreCase = true) ||
@@ -282,7 +290,7 @@ class MainActivity : ComponentActivity() {
                                         deviceInfo = deviceInfo,
                                         isLoading = isLoading,
                                         turnipSourceId = turnipSourceId,
-                                        turnipSources = sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel),
+                                        turnipSources = sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase()),
                                         turnipReleases = turnipReleases,
                                         qualcommSourceId = qualcommSourceId,
                                         qualcommSources = sourceCatalog.qualcommSources,
@@ -321,6 +329,37 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         }
+                    }
+
+                    // 慢下载推荐弹窗
+                    if (showSlowDownloadDialog) {
+                        AlertDialog(
+                            onDismissRequest = {
+                                SlowDownloadDetector.snooze(30)
+                                showSlowDownloadDialog = false
+                            },
+                            icon = { Icon(Icons.Default.Speed, contentDescription = null) },
+                            title = { Text("下载速度较慢") },
+                            text = {
+                                Text("检测到当前下载速度持续偏低，开启国内加速可显著提升下载速度。是否前往设置开启？")
+                            },
+                            confirmButton = {
+                                TextButton(onClick = {
+                                    showSlowDownloadDialog = false
+                                    currentScreen = AppScreen.SETTINGS
+                                }) {
+                                    Text("前往开启")
+                                }
+                            },
+                            dismissButton = {
+                                TextButton(onClick = {
+                                    SlowDownloadDetector.dismissForever()
+                                    showSlowDownloadDialog = false
+                                }) {
+                                    Text("不再提示")
+                                }
+                            }
+                        )
                     }
                 }
             }
