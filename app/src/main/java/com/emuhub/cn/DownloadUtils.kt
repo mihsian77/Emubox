@@ -363,7 +363,7 @@ private suspend fun transferExistingDownload(
                 DownloadsManager.failDownload(fileName)
                 Toast.makeText(context, "Cannot resume $fileName: partial file is missing", Toast.LENGTH_LONG).show()
             }
-            return@transfer
+            return@transfer false
         }
 
     val control = DownloadControl()
@@ -492,7 +492,6 @@ private suspend fun transferExistingDownload(
                     DownloadsManager.failDownload(fileName)
                 }
                 return@transfer false
-            }
             }
         }
     } finally {
