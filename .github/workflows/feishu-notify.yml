@@ -11,6 +11,8 @@ on:
   fork:
   workflow_run:
     types: [completed]
+  release:
+    types: [published, created]
   push:
     branches: [main, master]
   dependabot_alert:
@@ -23,15 +25,24 @@ jobs:
       - name: Send to Feishu
         env:
           FEISHU_WEBHOOK: \${{ secrets.FEISHU_WEBHOOK }}
+          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 << 'PYEOF'
           import json, os, urllib.request
 
           webhook = os.environ.get("FEISHU_WEBHOOK", "")
+          gh_token = os.environ.get("GH_TOKEN", "")
           event_name = os.environ.get("GITHUB_EVENT_NAME", "")
           repo = os.environ.get("GITHUB_REPOSITORY", "")
           with open(os.environ["GITHUB_EVENT_PATH"]) as f:
               e = json.load(f)
+
+          def gh_api(url):
+              if not url or not gh_token: return None
+              try:
+                  req = urllib.request.Request(url, headers={"Authorization": f"token {gh_token}", "Accept": "application/vnd.github+json"})
+                  return json.loads(urllib.request.urlopen(req, timeout=10).read())
+              except: return None
 
           title = ""
           lines = []
@@ -43,8 +54,6 @@ jobs:
               title = f"[Issue] {repo} #{issue.get('number')} {action_map.get(action, action)}"
               lines.append(f"标题：{issue.get('title','')}")
               lines.append(f"作者：{issue.get('user',{}).get('login','')}")
-              body = (issue.get('body') or '')[:200]
-              if body: lines.append(f"内容：{body}")
               lines.append(f"链接：{issue.get('html_url','')}")
 
           elif event_name == "issue_comment":
@@ -53,8 +62,6 @@ jobs:
               title = f"[Issue评论] {repo} #{issue.get('number')}"
               lines.append(f"评论者：{comment.get('user',{}).get('login','')}")
               lines.append(f"Issue：{issue.get('title','')}")
-              body = (comment.get('body') or '')[:200]
-              if body: lines.append(f"评论：{body}")
               lines.append(f"链接：{comment.get('html_url','')}")
 
           elif event_name == "pull_request":
@@ -65,8 +72,6 @@ jobs:
               lines.append(f"标题：{pr.get('title','')}")
               lines.append(f"作者：{pr.get('user',{}).get('login','')}")
               lines.append(f"分支：{pr.get('head',{}).get('ref','')} → {pr.get('base',{}).get('ref','')}")
-              body = (pr.get('body') or '')[:150]
-              if body: lines.append(f"描述：{body}")
               lines.append(f"链接：{pr.get('html_url','')}")
 
           elif event_name == "pull_request_review_comment":
@@ -74,16 +79,23 @@ jobs:
               pr = e.get("pull_request", {})
               title = f"[PR评论] {repo} #{pr.get('number')}"
               lines.append(f"评论者：{comment.get('user',{}).get('login','')}")
-              body = (comment.get('body') or '')[:200]
-              if body: lines.append(f"评论：{body}")
               lines.append(f"链接：{comment.get('html_url','')}")
 
           elif event_name == "fork":
               forkee = e.get("forkee", {})
               title = f"[Fork] {repo} 被 Fork"
               lines.append(f"Fork者：{forkee.get('owner',{}).get('login','')}")
-              lines.append(f"新仓库：{forkee.get('full_name','')}")
               lines.append(f"链接：{forkee.get('html_url','')}")
+
+          elif event_name == "release":
+              action = e.get("action", "")
+              release = e.get("release", {})
+              action_map = {"published": "已发布", "created": "已创建"}
+              title = f"[Release] {repo} {action_map.get(action, action)}"
+              lines.append(f"版本：{release.get('tag_name','')}")
+              lines.append(f"名称：{release.get('name','')}")
+              lines.append(f"作者：{release.get('author',{}).get('login','')}")
+              lines.append(f"链接：{release.get('html_url','')}")
 
           elif event_name == "workflow_run":
               wr = e.get("workflow_run", {})
@@ -94,18 +106,31 @@ jobs:
               title = f"[构建失败] {repo}"
               lines.append(f"工作流：{wr.get('name','')}")
               lines.append(f"分支：{wr.get('head_branch','')}")
-              lines.append(f"提交：{(wr.get('head_commit',{}).get('message') or '')[:80]}")
+              lines.append(f"提交：{(wr.get('head_commit',{}).get('message') or '')[:60]}")
+              # 获取失败的具体 job 和 step
+              jobs_data = gh_api(wr.get("jobs_url", ""))
+              if jobs_data:
+                  failed = [j for j in jobs_data.get("jobs",[]) if j.get("conclusion")=="failure"]
+                  if failed:
+                      fj = failed[0]
+                      steps = [s for s in fj.get("steps",[]) if s.get("conclusion")=="failure"]
+                      lines.append(f"失败Job：{fj['name']}")
+                      if steps: lines.append(f"失败步骤：{steps[0]['name']}")
               lines.append(f"链接：{wr.get('html_url','')}")
 
           elif event_name == "push":
               ref = e.get("ref", "").replace("refs/heads/", "")
               pusher = e.get("pusher", {}).get("name", "")
               commits = e.get("commits", [])
+              # 跳过机器人推送
+              if pusher in ("github-actions[bot]", "dependabot[bot]"):
+                  print("机器人推送，跳过")
+                  exit(0)
               title = f"[Push] {repo} ({ref})"
               lines.append(f"推送者：{pusher}")
               lines.append(f"提交数：{len(commits)}")
               for c in commits[:3]:
-                  lines.append(f"  - {c.get('message','').split(chr(10))[0][:60]} ({c.get('author',{}).get('name','')})")
+                  lines.append(f"  - {c.get('message','').split(chr(10))[0][:50]}")
               lines.append(f"链接：{e.get('compare','')}")
 
           elif event_name == "dependabot_alert":
@@ -113,7 +138,6 @@ jobs:
               title = f"[安全警报] {repo}"
               lines.append(f"严重程度：{alert.get('security_vulnerability',{}).get('severity','')}")
               lines.append(f"包名：{alert.get('dependency',{}).get('package',{}).get('name','')}")
-              lines.append(f"描述：{(alert.get('security_advisory',{}).get('description') or '')[:150]}")
               lines.append(f"链接：{alert.get('html_url','')}")
 
           else:
