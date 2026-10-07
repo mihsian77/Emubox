@@ -16,15 +16,16 @@ data class DriverRegistryEntry(
     val gpuVendor: String,          // adreno / mali / xclipse
     val gpuArch: List<String>,      // 6xx,7xx,8xx / valhall-v9,valhall-v10,bifrost / rdna
     val gpuModels: List<String>,    // 具体型号，空=通用
-    val driverType: String,         // turnip / panvk / radv / qualcomm / companion
+    val driverType: String,         // turnip / panvk / radv / qualcomm / component
+    val componentType: String? = null, // 组件分类（DXVK/VKD3D…），仅 driver_type=component
     val frontend: String?,          // Mali: CSF / JM，其他 null
     val targetEmulator: String,     // generic / winlator / eden
-    val packageFormat: String,      // adpkg / zip / so / magisk
+    val packageFormat: String,      // adpkg / zip / so / magisk / wcp
     val maturity: String,           // stable / beta / alpha / ci / experimental
     val stars: Int,
     val description: String,
     val notes: String,
-    val companion: List<String>,    // 配套组件 id
+    val companion: List<String>,    // 配套组件 id（指向 component 类型条目）
     val filters: Map<String, List<String>>
 )
 
@@ -55,6 +56,9 @@ object DriverRegistryRepository {
     private val MATURITY_ORDER = mapOf(
         "stable" to 0, "beta" to 1, "ci" to 2, "alpha" to 3, "experimental" to 4
     )
+
+    /** 非驱动类型：这些条目归入组件专区，不参与驱动匹配 */
+    private val COMPONENT_TYPES = setOf("component", "companion")
 
     /** Mali 型号 → (架构, frontend) */
     private val MALI_ARCH_MAP = mapOf(
@@ -134,6 +138,8 @@ object DriverRegistryRepository {
                         (0 until ja.length()).map { ja.getString(it) }
                     },
                     driverType = o.getString("driver_type"),
+                    componentType = if (o.isNull("component_type")) null
+                        else o.optString("component_type").takeIf { it.isNotBlank() },
                     frontend = if (o.isNull("frontend")) null else o.getString("frontend"),
                     targetEmulator = o.optString("target_emulator", "generic"),
                     packageFormat = o.optString("package_format", "zip"),
@@ -179,7 +185,7 @@ object DriverRegistryRepository {
         val adrenoArch = deviceInfo.adrenoSeries.takeIf { it != "unknown" }
 
         return entries
-            .filter { it.gpuVendor == vendorKey && it.driverType != "companion" }
+            .filter { it.gpuVendor == vendorKey && it.driverType !in COMPONENT_TYPES }
             .mapNotNull { entry ->
                 var score = 0
                 val reasons = mutableListOf<String>()
@@ -254,6 +260,50 @@ object DriverRegistryRepository {
         return entries.filter { it.id in companionIds }
     }
 
+    /**
+     * 匹配设备专属的组件（归入组件专区对应分类）。
+     *
+     * 例如 Mali 设备返回 panDXVK（component_type=DXVK），调用方把它的
+     * GitHub release 转成 Component 后合并进 DXVK 分类列表。
+     * gpuModels/gpuArch 为空表示该 GPU 厂商通用；否则需型号/架构命中。
+     */
+    fun matchComponents(deviceInfo: DeviceInfo?, entries: List<DriverRegistryEntry>): List<DriverRegistryEntry> {
+        if (deviceInfo == null) return emptyList()
+        val vendorKey = when (deviceInfo.gpuVendor) {
+            GpuVendor.ADRENO -> "adreno"
+            GpuVendor.MALI -> "mali"
+            GpuVendor.XCLIPSE -> "xclipse"
+            else -> return emptyList()
+        }
+
+        val maliModel = if (vendorKey == "mali") normalizeMaliModel(deviceInfo.gpuModel) else null
+        val maliArchInfo = maliModel?.let { MALI_ARCH_MAP[it] }
+        val adrenoArch = deviceInfo.adrenoSeries.takeIf { it != "unknown" }
+
+        return entries.filter { it.driverType == "component" && it.gpuVendor == vendorKey }
+            .filter { entry ->
+                // 指定了型号则必须命中
+                if (entry.gpuModels.isNotEmpty()) {
+                    val modelHit = when (vendorKey) {
+                        "mali" -> maliModel != null && entry.gpuModels.contains(maliModel)
+                        else -> entry.gpuModels.contains(deviceInfo.gpuModel)
+                    }
+                    if (!modelHit) return@filter false
+                }
+                // 指定了架构则必须命中
+                if (entry.gpuArch.isNotEmpty()) {
+                    val archHit = when (vendorKey) {
+                        "mali" -> maliArchInfo != null && entry.gpuArch.contains(maliArchInfo.first)
+                        "adreno" -> adrenoArch != null && entry.gpuArch.contains(adrenoArch)
+                        else -> true
+                    }
+                    if (!archHit) return@filter false
+                }
+                true
+            }
+            .sortedBy { MATURITY_ORDER[it.maturity] ?: 4 }
+    }
+
     /** Mali 型号归一化：detectGpuModel 返回纯数字 "57"，注册表用 "G57" */
     private fun normalizeMaliModel(rawModel: String): String? {
         if (rawModel == "unknown") return null
@@ -300,8 +350,9 @@ object DriverRegistryRepository {
             owner = "isygold", repo = "panDXVK",
             apiUrl = "https://api.github.com/repos/isygold/panDXVK/releases",
             gpuVendor = "mali", gpuArch = emptyList(), gpuModels = emptyList(),
-            driverType = "companion", frontend = null, targetEmulator = "winlator",
-            packageFormat = "zip", maturity = "beta", stars = 12,
+            driverType = "component", componentType = "DXVK",
+            frontend = null, targetEmulator = "winlator",
+            packageFormat = "wcp", maturity = "beta", stars = 12,
             description = "PanVK 专用 DXVK，BC→ASTC 纹理转码", notes = "",
             companion = emptyList(), filters = mapOf("default" to listOf("wcp"))
         )
