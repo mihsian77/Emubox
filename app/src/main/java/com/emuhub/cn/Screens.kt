@@ -1030,6 +1030,7 @@ private fun AcceleratorSettingsCard() {
     var mode by remember { mutableStateOf(Accelerator.getMode()) }
     var manualNodeId by remember { mutableStateOf(Accelerator.getManualNode().id) }
     var latencies by remember { mutableStateOf<Map<String, Long?>>(emptyMap()) }
+    var speeds by remember { mutableStateOf<Map<String, Long?>>(emptyMap()) }
     var testing by remember { mutableStateOf(false) }
     var autoResult by remember { mutableStateOf<Pair<String, String>?>(null) }
 
@@ -1107,12 +1108,18 @@ private fun AcceleratorSettingsCard() {
                     testing = true
                     autoResult = null
                     scope.launch(Dispatchers.IO) {
-                        val results = Accelerator.testAllLatencies()
-                        latencies = results.associate { it.first.id to it.second }
+                        val (latMap, speedMap) = Accelerator.testAllLatenciesAndSpeeds()
+                        latencies = latMap
+                        speeds = speedMap
                         if (mode == Accelerator.Mode.AUTO) {
-                            val best = results.firstOrNull { it.second != null }
+                            val best = latMap.entries
+                                .filter { it.value != null }
+                                .minByOrNull { it.value!! }
                             if (best != null) {
-                                autoResult = best.first.displayName to Accelerator.formatLatency(best.second)
+                                val bestNode = Accelerator.ALL_NODES.firstOrNull { it.id == best.key }
+                                if (bestNode != null) {
+                                    autoResult = bestNode.displayName to Accelerator.formatLatency(best.value)
+                                }
                             }
                         }
                         testing = false
@@ -1171,15 +1178,35 @@ private fun AcceleratorSettingsCard() {
                                 }
                             }
                         }
-                        Text(
-                            text = Accelerator.formatLatency(ms),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = when {
-                                ms == null -> MaterialTheme.colorScheme.error
-                                ms < 300 -> MaterialTheme.colorScheme.primary
-                                else -> MaterialTheme.colorScheme.onSurfaceVariant
+                        Column(horizontalAlignment = Alignment.End) {
+                            Text(
+                                text = Accelerator.formatLatency(ms),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = when {
+                                    ms == null -> MaterialTheme.colorScheme.error
+                                    ms < 300 -> MaterialTheme.colorScheme.primary
+                                    else -> MaterialTheme.colorScheme.onSurfaceVariant
+                                }
+                            )
+                            val speed = speeds[node.id]
+                            if (speed != null) {
+                                Text(
+                                    text = Accelerator.formatSpeed(speed),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = when {
+                                        speed >= 5 * 1024 * 1024 -> MaterialTheme.colorScheme.primary
+                                        speed >= 1024 * 1024 -> MaterialTheme.colorScheme.onSurfaceVariant
+                                        else -> MaterialTheme.colorScheme.error
+                                    }
+                                )
+                            } else if (ms != null) {
+                                Text(
+                                    text = "—",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                                )
                             }
-                        )
+                        }
                     }
                 }
             }

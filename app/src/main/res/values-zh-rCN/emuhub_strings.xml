@@ -278,7 +278,7 @@
     <string name="accelerator_mode_manual">手动选择</string>
     <string name="accelerator_mode_off">关闭</string>
     <string name="accelerator_node">加速节点</string>
-    <string name="accelerator_test_latency">测试延迟</string>
+    <string name="accelerator_test_latency">测试延迟与速度</string>
     <string name="accelerator_testing">测试中…</string>
     <string name="accelerator_auto_selecting">正在选择最快节点…</string>
     <string name="accelerator_current">当前：%1$s</string>

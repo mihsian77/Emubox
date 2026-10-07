@@ -88,6 +88,19 @@ object Accelerator {
         "https://raw.githubusercontent.com/Rodrig02005/EmuHub-APP/main/sources.json"
 
     /**
+     * 下载测速用的固定大小文件（5MB 随机数据，避免代理压缩导致速度虚高）。
+     * 放在本仓库 main 分支，raw URL 稳定，所有代理节点均支持 Raw 流量。
+     */
+    private const val SPEEDTEST_FILE =
+        "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/speedtest.bin"
+
+    /** 下载测速超时（毫秒），超时则按已下载字节计算速度 */
+    private const val SPEEDTEST_TIMEOUT_MS = 15000L
+
+    /** 自动测速的节点数量上限（按延迟最低取前 N，控制流量消耗） */
+    private const val SPEEDTEST_AUTO_LIMIT = 5
+
+    /**
      * 远程节点列表 URL（MirrorHub 自动维护，每6小时测速更新）。
      * active-nodes.json 只包含在线节点，按延迟升序排列，最多20个。
      * 格式：{"source":"MirrorHub","license":"MIT","nodes":[{"id","name","domain","category","latency_ms"}]}
@@ -318,6 +331,41 @@ object Accelerator {
     }
 
     /**
+     * 测试单个节点的实际下载速度（bytes/s）。
+     * 下载 5MB 固定测速文件，测量总耗时与字节数；超时则按已下载量计算。
+     * 失败或数据过少返回 null。
+     */
+    fun testDownloadSpeed(node: ProxyNode, timeoutMs: Long = SPEEDTEST_TIMEOUT_MS): Long? {
+        return try {
+            val url = when {
+                node.id == DIRECT_NODE.id -> SPEEDTEST_FILE
+                node.id == JSDELIVR_NODE.id -> rewriteJsdelivr(SPEEDTEST_FILE)
+                else -> "https://${node.domain}/$SPEEDTEST_FILE"
+            }
+            val request = Request.Builder().url(url).get().build()
+            val start = System.currentTimeMillis()
+            var totalBytes = 0L
+            latencyClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return null
+                val input = response.body?.byteStream() ?: return null
+                val buffer = ByteArray(16 * 1024)
+                while (true) {
+                    val read = input.read(buffer)
+                    if (read == -1) break
+                    totalBytes += read
+                    if (System.currentTimeMillis() - start >= timeoutMs) break
+                }
+            }
+            val elapsed = System.currentTimeMillis() - start
+            if (elapsed <= 0 || totalBytes < 64 * 1024) return null
+            totalBytes * 1000 / elapsed
+        } catch (e: Exception) {
+            Log.w(TAG, "节点 ${node.displayName} 下载测速失败: ${e.message}")
+            null
+        }
+    }
+
+    /**
      * 并发测试所有内置节点的延迟，返回按延迟升序排列的结果。
      * 直连也会测试。
      */
@@ -326,6 +374,25 @@ object Accelerator {
             async { node to testLatency(node) }
         }.awaitAll().sortedBy { it.second ?: Long.MAX_VALUE }
     }
+
+    /**
+     * 先测所有节点延迟，再对延迟最低的前 [SPEEDTEST_AUTO_LIMIT] 个节点并发下载测速。
+     * 返回 (延迟Map, 速度Map)，速度 Map 只包含实际测速的节点。
+     * 控制总流量在 ~25MB 以内（5 节点 × 5MB）。
+     */
+    suspend fun testAllLatenciesAndSpeeds(): Pair<Map<String, Long?>, Map<String, Long?>> =
+        withContext(Dispatchers.IO) {
+            val latencyResults = testAllLatencies()
+            val latencyMap = latencyResults.associate { it.first.id to it.second }
+            val candidates = latencyResults
+                .filter { it.second != null }
+                .take(SPEEDTEST_AUTO_LIMIT)
+                .map { it.first }
+            val speedMap = candidates.map { node ->
+                async { node.id to testDownloadSpeed(node) }
+            }.awaitAll().toMap()
+            latencyMap to speedMap
+        }
 
     /**
      * 自动选择延迟最低的节点并缓存。
