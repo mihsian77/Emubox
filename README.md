@@ -15,7 +15,7 @@
 ### 📱 Android App（主力产品）
 
 - **完整中文界面** — 288 条词条全部汉化，专业国内用语，无 AI 翻译腔
-- **国内下载加速** — 内置 5 个公益加速节点，支持自动选最低延迟 / 手动切换 / 关闭，设置里实时测速显示延迟
+- **国内下载加速** — 接入 [MirrorHub](https://github.com/mihsian77/MirrorHub) 自动维护的节点库（每6小时测速更新），支持自动选最低延迟 / 手动切换 / 关闭，设置里实时测速显示延迟
 - **国内版专属配色** — 深蓝 + 朱红主题，区别于原版
 - **多语言支持** — 简体中文 / English / Português / Español / Français / Deutsch，可在设置内切换
 - **驱动与组件管理** — Turnip / 高通 GPU 驱动、Wine / Proton、DXVK / VKD3D / D7VK、Box64 / FEXCore 等
@@ -115,20 +115,14 @@ EmuHub-CN/
 
 App 内所有 GitHub 资源下载（驱动文件、组件、资源目录、API 请求）均会经过加速节点。
 
-内置节点（2026-09 验证可用）：
-| 节点 | 域名 | 说明 |
-|------|------|------|
-| gh-proxy 官方 | gh-proxy.org | 主力节点，新域名 |
-| gh-proxy 旧域 | gh-proxy.com | 旧域名，仍可用 |
-| ghfast 多线 | ghfast.top | 多线 CDN |
-| con.sh 公益 | gh.con.sh | 公益加速 |
-| idayer 公益 | gh.idayer.com | 公益加速 |
-| 直连 | github.com | 不加速 |
+**节点来源：[MirrorHub](https://github.com/mihsian77/MirrorHub)**（MIT 协议）— 自动维护的 GitHub 加速节点库，每 6 小时全量测速，自动清理失效节点，按延迟排序。App 启动时远程拉取最新在线节点列表，内置 6 个节点作为远程拉取失败时的 fallback。
 
 加速模式：
 - **自动**：测试所有节点延迟，自动选择最低延迟的节点
 - **手动**：用户自行选择节点
-- **关闭**：直连 GitHub
+- **关闭**：不加速（直连 GitHub）
+
+> 📌 二次分发声明：本应用加速节点数据由 MirrorHub 提供，遵守 MIT 协议。如二次分发或修改，请保留 MirrorHub 来源声明。
 
 ---
 
@@ -139,8 +133,11 @@ MIT License
 - 原作者：[NotZeetaa](https://github.com/NotZeetaa)
 - 维护者：[Rodrig02005](https://github.com/Rodrig02005)
 - 国内版修改：[moon279](https://github.com/mihsian77)
+- 加速节点数据：[MirrorHub](https://github.com/mihsian77/MirrorHub)（MIT 协议，自动维护节点库）
 
 所有驱动与软件版权归原作者所有。本项目仅提供下载管理与汉化加速功能。
+
+**二次分发要求**：如基于本项目二次分发或修改，请保留上述所有来源声明（含 MirrorHub 节点数据来源），遵守 MIT 协议。
 
 ---
 
@@ -148,5 +145,6 @@ MIT License
 
 - NotZeetaa — EmuHub 原创作者
 - Rodrig02005 — EmuHub-APP 维护者
+- [MirrorHub](https://github.com/mihsian77/MirrorHub) — 自动维护的 GitHub 加速节点库
 - 各公益 GitHub 加速节点运营者
 - Mesa / Turnip / DXVK / Wine / Box64 等开源项目开发者

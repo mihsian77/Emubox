@@ -1023,6 +1023,7 @@ private fun SettingsCard(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AcceleratorSettingsCard() {
+    val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var mode by remember { mutableStateOf(Accelerator.getMode()) }
     var manualNodeId by remember { mutableStateOf(Accelerator.getManualNode().id) }
@@ -1178,6 +1179,30 @@ private fun AcceleratorSettingsCard() {
                             }
                         )
                     }
+                }
+            }
+
+            // 节点来源声明（MirrorHub，MIT 协议）
+            Spacer(Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "节点来源：MirrorHub（MIT）",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                TextButton(onClick = {
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(Accelerator.MIRRORHUB_URL)
+                    }
+                    context.startActivity(intent)
+                }) {
+                    Text("查看", style = MaterialTheme.typography.bodySmall)
                 }
             }
         }
