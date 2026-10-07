@@ -108,7 +108,7 @@ class MainActivity : ComponentActivity() {
                         val matchedDriverSources = (if (matchByDevice) {
                             DriverRegistryRepository.match(info, registryEntries)
                         } else {
-                            driverEntries.map { DriverMatchResult(it, 0) }
+                            driverEntries.map { DriverMatchResult(it, 0, false, "") }
                         }).map { DriverRegistryRepository.toTurnipSource(it.entry) }
                         val existingDriverUrls = baseCatalog.turnipSources.map { it.apiUrl }.toSet()
                         val newDriverSources = matchedDriverSources.filter { it.apiUrl !in existingDriverUrls }
