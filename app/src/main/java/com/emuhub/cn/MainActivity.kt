@@ -97,8 +97,38 @@ class MainActivity : ComponentActivity() {
 
                     val result = withContext(Dispatchers.IO) {
                         val info = DeviceInfo.collect(this@MainActivity)
-                        val catalog = SourceCatalogRepository.load()
-                        val compatibleSources = catalog.compatibleTurnipSources(info.adrenoSeries, info.gpuModel, info.gpuVendor.name.lowercase())
+                        val baseCatalog = SourceCatalogRepository.load()
+
+                        // 驱动注册表：按设备 GPU 匹配（含 Mali PanVK 全系列），转换为
+                        // TurnipSource 后与内置源合并；注册表推荐源排前，按 apiUrl 去重。
+                        val registryEntries = DriverRegistryRepository.load()
+                        val matchedDriverSources = DriverRegistryRepository
+                            .match(info, registryEntries)
+                            .map { DriverRegistryRepository.toTurnipSource(it.entry) }
+                        val existingDriverUrls = baseCatalog.turnipSources.map { it.apiUrl }.toSet()
+                        val newDriverSources = matchedDriverSources.filter { it.apiUrl !in existingDriverUrls }
+
+                        // 设备专属组件（如 Mali 的 panDXVK）：GitHub release 直接分发 .wcp，
+                        // 不走 contents.json，单独拉取后并入对应组件分类。
+                        val deviceComponentEntries = DriverRegistryRepository.matchComponents(info, registryEntries)
+                        val registryComponentSources = deviceComponentEntries.map { entry ->
+                            ComponentSource(
+                                id = "registry-${entry.id}",
+                                name = entry.name,
+                                manifestUrl = entry.apiUrl,
+                                description = entry.description,
+                                experimental = entry.maturity in listOf("alpha", "experimental", "beta")
+                            )
+                        }
+
+                        val catalog = baseCatalog.copy(
+                            turnipSources = newDriverSources + baseCatalog.turnipSources,
+                            componentSources = baseCatalog.componentSources + registryComponentSources
+                        )
+
+                        val compatibleSources = catalog.compatibleTurnipSources(
+                            info.adrenoSeries, info.gpuModel, info.gpuVendor.name.lowercase()
+                        )
 
                         val selectedSource = compatibleSources.firstOrNull { source ->
                             source.id.equals(turnipSourceId, ignoreCase = true) ||
@@ -114,27 +144,15 @@ class MainActivity : ComponentActivity() {
                         } ?: catalog.qualcommSources.first()
                         val qualcomm = fetchQualcommReleases(selectedQualcommSource)
 
-                        val componentMaps = coroutineScope {
-                            catalog.componentSources.map { source ->
+                        // 内置清单组件
+                        val manifestComponentMaps = coroutineScope {
+                            baseCatalog.componentSources.map { source ->
                                 async {
                                     source.id to fetchComponentsFromUrl(source.manifestUrl)
                                 }
                             }.awaitAll().toMap()
                         }
-
-                        // 设备专属组件：从驱动注册表匹配（如 Mali 设备的 panDXVK），
-                        // 这类组件直接在 GitHub release 附件分发 .wcp，不走 contents.json。
-                        val registryEntries = DriverRegistryRepository.load()
-                        val deviceComponentEntries = DriverRegistryRepository.matchComponents(info, registryEntries)
-                        val registryComponentSources = deviceComponentEntries.map { entry ->
-                            ComponentSource(
-                                id = "registry-${entry.id}",
-                                name = entry.name,
-                                manifestUrl = entry.apiUrl,
-                                description = entry.description,
-                                experimental = entry.maturity in listOf("alpha", "experimental", "beta")
-                            )
-                        }
+                        // 注册表设备专属组件
                         val registryComponentMaps = coroutineScope {
                             deviceComponentEntries.map { entry ->
                                 async {
@@ -147,18 +165,15 @@ class MainActivity : ComponentActivity() {
                                 }
                             }.awaitAll().toMap()
                         }
-                        val mergedCatalog = catalog.copy(
-                            componentSources = catalog.componentSources + registryComponentSources
-                        )
 
                         AppLoadResult(
                             deviceInfo = info,
-                            catalog = mergedCatalog,
+                            catalog = catalog,
                             selectedTurnipSource = selectedSource,
                             selectedQualcommSource = selectedQualcommSource,
                             turnipReleases = releases,
                             qualcommReleases = qualcomm,
-                            componentCatalogs = componentMaps + registryComponentMaps
+                            componentCatalogs = manifestComponentMaps + registryComponentMaps
                         )
                     }
 
