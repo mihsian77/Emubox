@@ -36,6 +36,9 @@ private const val TAG = "EmuHubDownload"
 private const val DOWNLOAD_BUFFER_SIZE = 64 * 1024
 private const val PROGRESS_UPDATE_INTERVAL_MS = 120L
 
+/** 默认下载根目录名（在系统 Download 下创建），自定义路径时不套这一层 */
+private const val DEFAULT_ROOT_FOLDER = "EmuHub-CN"
+
 // Reuse the HTTP client instead of creating a new connection pool for every file.
 private val downloadClient = OkHttpClient.Builder()
     .connectTimeout(30, TimeUnit.SECONDS)
@@ -117,7 +120,7 @@ fun cancelActiveDownload(context: Context, fileName: String) {
 suspend fun downloadAsset(context: Context, release: GithubRelease, asset: GithubAsset) {
     val desiredName = sanitizeFileName("${release.tagName}_${asset.name}")
     val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, "Drivers")
 }
 
 suspend fun downloadComponent(context: Context, component: Component) {
@@ -125,17 +128,41 @@ suspend fun downloadComponent(context: Context, component: Component) {
         Uri.decode(component.remoteUrl.substringAfterLast("/"))
     )
     val acceleratedUrl = Accelerator.rewriteUrl(component.remoteUrl)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName)
+    val category = "Components/${component.type}"
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
 }
 
 private fun sanitizeFileName(name: String): String {
     return name.replace(Regex("[\\\\/:*?\"<>|]"), "_")
 }
 
+/** 在 DocumentFile 树中按相对路径查找子目录（不创建），不存在返回 null */
+private fun findSubDirectory(root: DocumentFile, subPath: String): DocumentFile? {
+    var current: DocumentFile = root
+    for (segment in subPath.split("/").filter { it.isNotBlank() }) {
+        current = current.findFile(segment) ?: return null
+        if (!current.isDirectory) return null
+    }
+    return current
+}
+
+/** 在 DocumentFile 树中按相对路径递归创建子目录并返回 */
+private fun getOrCreateSubDirectory(root: DocumentFile, subPath: String): DocumentFile? {
+    var current: DocumentFile = root
+    for (segment in subPath.split("/").filter { it.isNotBlank() }) {
+        current = current.findFile(segment)
+            ?.takeIf { it.isDirectory }
+            ?: current.createDirectory(segment)
+            ?: return null
+    }
+    return current
+}
+
 private suspend fun getUniqueFileName(
     context: Context,
     folderUri: Uri?,
-    desiredName: String
+    desiredName: String,
+    subPath: String
 ): String = withContext(Dispatchers.IO) {
     val lastDot = desiredName.lastIndexOf('.')
     val nameWithoutExt = if (lastDot > 0) desiredName.substring(0, lastDot) else desiredName
@@ -144,24 +171,31 @@ private suspend fun getUniqueFileName(
     var counter = 1
     var newName = desiredName
 
+    // 默认路径（MediaStore）下的完整相对路径，用于查重限定
+    val defaultRelativePath = "$DEFAULT_ROOT_FOLDER/$subPath"
+
     while (true) {
         val exists = if (folderUri != null && DocumentsContract.isTreeUri(folderUri)) {
-            DocumentFile.fromTreeUri(context, folderUri)?.findFile(newName) != null
+            val rootDoc = DocumentFile.fromTreeUri(context, folderUri)
+            val subDoc = if (subPath.isBlank()) rootDoc else rootDoc?.let { findSubDirectory(it, subPath) }
+            subDoc?.findFile(newName) != null
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val resolver = context.contentResolver
             val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
-            val selection = "${MediaStore.MediaColumns.DISPLAY_NAME} = ?"
+            val selection = "${MediaStore.MediaColumns.DISPLAY_NAME} = ? AND " +
+                "${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
             resolver.query(
                 MediaStore.Downloads.EXTERNAL_CONTENT_URI,
                 projection,
                 selection,
-                arrayOf(newName),
+                arrayOf(newName, "%$defaultRelativePath%"),
                 null
             )?.use { cursor -> cursor.count > 0 } ?: false
         } else {
             @Suppress("DEPRECATION")
             val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            File(downloadsDir, newName).exists()
+            val targetDir = File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath")
+            File(targetDir, newName).exists()
         }
 
         if (!exists) break
@@ -175,29 +209,39 @@ private suspend fun getUniqueFileName(
 private suspend fun createOutputUri(
     context: Context,
     folderUri: Uri?,
-    uniqueFileName: String
+    uniqueFileName: String,
+    subPath: String
 ): Uri? = withContext(Dispatchers.IO) {
     if (folderUri != null) {
+        // 自定义路径：用户选的文件夹即根，直接在其下建分类子目录
         val folderDoc = DocumentFile.fromTreeUri(context, folderUri)
         if (folderDoc != null && folderDoc.canWrite()) {
-            folderDoc.createFile("application/octet-stream", uniqueFileName)?.uri
+            val targetDoc = if (subPath.isBlank()) folderDoc else getOrCreateSubDirectory(folderDoc, subPath)
+            targetDoc?.createFile("application/octet-stream", uniqueFileName)?.uri
         } else {
             Log.e(TAG, "Cannot write to custom folder: $folderUri")
             null
         }
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        // 默认路径：Download/EmuHub-CN/<分类>/
+        val relativePath = if (subPath.isBlank()) {
+            "${Environment.DIRECTORY_DOWNLOADS}/$DEFAULT_ROOT_FOLDER"
+        } else {
+            "${Environment.DIRECTORY_DOWNLOADS}/$DEFAULT_ROOT_FOLDER/$subPath"
+        }
         val values = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, uniqueFileName)
             put(MediaStore.MediaColumns.MIME_TYPE, "application/octet-stream")
-            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+            put(MediaStore.MediaColumns.RELATIVE_PATH, relativePath)
             put(MediaStore.MediaColumns.IS_PENDING, 1)
         }
         context.contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values)
     } else {
         @Suppress("DEPRECATION")
         val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        if (!downloadsDir.exists() && !downloadsDir.mkdirs()) return@withContext null
-        Uri.fromFile(File(downloadsDir, uniqueFileName))
+        val targetDir = File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath")
+        if (!targetDir.exists() && !targetDir.mkdirs()) return@withContext null
+        Uri.fromFile(File(targetDir, uniqueFileName))
     }
 }
 
@@ -504,12 +548,13 @@ private suspend fun transferExistingDownload(
 private suspend fun downloadFileWithProgress(
     context: Context,
     url: String,
-    originalDesiredName: String
+    originalDesiredName: String,
+    subPath: String
 ) = withContext(Dispatchers.IO) download@{
     val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
-    val uniqueFileName = getUniqueFileName(context, folderUri, originalDesiredName)
+    val uniqueFileName = getUniqueFileName(context, folderUri, originalDesiredName, subPath)
     val usesMediaStore = folderUri == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-    val outputUri = createOutputUri(context, folderUri, uniqueFileName)
+    val outputUri = createOutputUri(context, folderUri, uniqueFileName, subPath)
 
     if (outputUri == null) {
         withContext(Dispatchers.Main) {
@@ -552,7 +597,7 @@ private suspend fun downloadFileWithProgress(
             }
 
             // 重新创建输出文件
-            val newOutputUri = createOutputUri(context, folderUri, uniqueFileName)
+            val newOutputUri = createOutputUri(context, folderUri, uniqueFileName, subPath)
             if (newOutputUri != null) {
                 withContext(Dispatchers.Main) {
                     DownloadsManager.startDownload(
