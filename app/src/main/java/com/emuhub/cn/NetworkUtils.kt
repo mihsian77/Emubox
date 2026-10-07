@@ -10,7 +10,8 @@ data class GithubRelease(
     val tagName: String,
     val name: String,
     val assets: List<GithubAsset>,
-    val publishedAt: String = ""
+    val publishedAt: String = "",
+    val body: String = ""
 )
 
 data class GithubAsset(val name: String, val downloadUrl: String, val sizeBytes: Long)
@@ -54,7 +55,8 @@ suspend fun fetchGithubReleasesFromUrl(apiUrl: String): List<GithubRelease> = wi
                     tagName = tagName,
                     name = name,
                     assets = assets,
-                    publishedAt = obj.optString("published_at", obj.optString("created_at", ""))
+                    publishedAt = obj.optString("published_at", obj.optString("created_at", "")),
+                    body = obj.optString("body", "")
                 )
             }.sortGithubReleasesNewestFirst()
         }
