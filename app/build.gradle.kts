@@ -19,6 +19,18 @@ android {
         versionName = "1.2.0-cn"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 仅 arm64-v8a：driverscope 原生库也只有 arm64，现代 Android 设备均为 64 位
+            abiFilters += "arm64-v8a"
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
 
     buildTypes {

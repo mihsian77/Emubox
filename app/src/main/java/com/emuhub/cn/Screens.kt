@@ -43,8 +43,10 @@ import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DownloadsScreen(onBack: () -> Unit) {
-    BackHandler { onBack() }
+fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
+    if (showBack) {
+        BackHandler { onBack() }
+    }
 
     val active = DownloadsManager.activeDownloads
     val completed = DownloadsManager.completedDownloads
@@ -68,8 +70,10 @@ fun DownloadsScreen(onBack: () -> Unit) {
                     }
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = appString(R.string.back))
+                    if (showBack) {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = appString(R.string.back))
+                        }
                     }
                 }
             )
@@ -713,9 +717,12 @@ fun SettingsScreen(
     onColorThemeChange: (ColorTheme) -> Unit,
     appLanguage: AppLanguage,
     onAppLanguageChange: (AppLanguage) -> Unit,
-    onSourceCatalogChanged: () -> Unit
+    onSourceCatalogChanged: () -> Unit,
+    showBack: Boolean = true
 ) {
-    BackHandler { onBack() }
+    if (showBack) {
+        BackHandler { onBack() }
+    }
 
     val context = LocalContext.current
     val downloadsDefaultLabel = appString(R.string.downloads_default)
@@ -756,8 +763,10 @@ fun SettingsScreen(
             TopAppBar(
                 title = { Text(appString(R.string.settings)) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = appString(R.string.back))
+                    if (showBack) {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = appString(R.string.back))
+                        }
                     }
                 }
             )
@@ -3089,6 +3098,490 @@ fun ComponentSection(
                 Spacer(Modifier.width(8.dp))
                 Text(appString(R.string.download_type, type))
             }
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 5 Tab 导航：设备 / 驱动 / 组件 / 下载 / 设置
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * 设备 Tab：展示设备摘要 + Vulkan 采集信息。
+ * Vulkan 信息通过 native 引擎（dlopen 系统 libvulkan）采集，
+ * 替换原先仅靠 GL_RENDERER 字符串解析的方案。
+ */
+@Composable
+fun DeviceScreen(
+    modifier: Modifier = Modifier,
+    deviceInfo: DeviceInfo?,
+    isLoading: Boolean
+) {
+    var vulkanPayload by remember { mutableStateOf<VulkanInfoPayload?>(null) }
+    var vulkanLoading by remember { mutableStateOf(true) }
+    var vulkanError by remember { mutableStateOf<String?>(null) }
+    var showDetails by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        vulkanLoading = true
+        vulkanError = null
+        try {
+            val payload = withContext(Dispatchers.IO) {
+                NativeVulkanBridge.collectSystemVulkanInfo()
+            }
+            vulkanPayload = payload
+            if (!payload.success) {
+                vulkanError = payload.errorMessage ?: payload.errorCode
+            }
+        } catch (e: Exception) {
+            vulkanError = e.message ?: "unknown error"
+        } finally {
+            vulkanLoading = false
+        }
+    }
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item(key = "device_summary") {
+            DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
+        }
+
+        item(key = "vulkan_header") {
+            RegionHeader(
+                title = "Vulkan 设备信息",
+                icon = Icons.Default.Memory,
+                remote = null
+            )
+        }
+
+        if (vulkanLoading) {
+            item(key = "vulkan_loading") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                        Spacer(Modifier.height(12.dp))
+                        Text("正在采集 Vulkan 设备信息…")
+                    }
+                }
+            }
+        } else if (vulkanError != null) {
+            item(key = "vulkan_error") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer
+                    )
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        Text(
+                            "Vulkan 采集失败",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            vulkanError ?: "",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
+                }
+            }
+        } else if (vulkanPayload != null && vulkanPayload!!.devices.isNotEmpty()) {
+            val device = vulkanPayload!!.devices[0]
+
+            item(key = "vulkan_overview") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        Text(
+                            device.deviceName,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            "类型: ${device.deviceType}  ·  Vendor: 0x${"%04X".format(device.vendorId)}  ·  Device: 0x${"%04X".format(device.deviceId)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Divider()
+                        Spacer(Modifier.height(12.dp))
+                        InfoRow("Vulkan API", device.apiVersion)
+                        InfoRow("驱动版本", device.driverVersion)
+                        if (device.driverName.isNotEmpty()) {
+                            InfoRow("驱动名称", device.driverName)
+                        }
+                        if (device.driverInfo.isNotEmpty()) {
+                            InfoRow("驱动信息", device.driverInfo)
+                        }
+                        InfoRow("扩展数量", device.extensions.size.toString())
+                        InfoRow("内存类型", device.memoryTypes.size.toString())
+                        InfoRow("内存堆", device.memoryHeaps.size.toString())
+                        InfoRow("队列族", device.queueFamilies.size.toString())
+                    }
+                }
+            }
+
+            item(key = "vulkan_toggle") {
+                OutlinedButton(
+                    onClick = { showDetails = !showDetails },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(
+                        if (showDetails) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                        contentDescription = null
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(if (showDetails) "收起详细信息" else "查看详细信息（特性/扩展/内存/限制）")
+                }
+            }
+
+            if (showDetails) {
+                item(key = "vulkan_features") {
+                    VulkanDetailCard(
+                        title = "支持的特性（${device.features.filter { it.value }.size}/${device.features.size}）",
+                        content = {
+                            device.features.filter { it.value }.keys.sorted().forEach { feature ->
+                                Text("• $feature", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    )
+                }
+
+                item(key = "vulkan_extensions") {
+                    VulkanDetailCard(
+                        title = "扩展列表（${device.extensions.size}）",
+                        content = {
+                            device.extensions.sortedBy { it.name }.forEach { ext ->
+                                Text("• ${ext.name} (v${ext.specVersion})", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    )
+                }
+
+                item(key = "vulkan_memory") {
+                    VulkanDetailCard(
+                        title = "内存堆（${device.memoryHeaps.size}）",
+                        content = {
+                            device.memoryHeaps.forEachIndexed { index, heap ->
+                                val sizeMB = heap.size / (1024 * 1024)
+                                Text("• 堆 $index: ${sizeMB}MB  [${heap.flags}]", style = MaterialTheme.typography.bodySmall)
+                            }
+                            Spacer(Modifier.height(8.dp))
+                            Text("内存类型（${device.memoryTypes.size}）：", style = MaterialTheme.typography.bodySmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                            device.memoryTypes.forEachIndexed { index, mt ->
+                                Text("• 类型 $index: 堆${mt.heapIndex}  [${mt.propertyFlags}]", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    )
+                }
+
+                item(key = "vulkan_queues") {
+                    VulkanDetailCard(
+                        title = "队列族（${device.queueFamilies.size}）",
+                        content = {
+                            device.queueFamilies.forEachIndexed { index, qf ->
+                                Text("• 族 $index: ${qf.queueCount}队列  [${qf.queueFlags}]", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    )
+                }
+
+                item(key = "vulkan_limits") {
+                    VulkanDetailCard(
+                        title = "关键限制",
+                        content = {
+                            val keyLimits = listOf(
+                                "maxImageDimension2D", "maxImageDimension3D", "maxImageDimensionCube",
+                                "maxImageArrayLayers", "maxUniformBufferRange", "maxStorageBufferRange",
+                                "maxMemoryAllocationCount", "maxBoundDescriptorSets",
+                                "maxVertexInputAttributes", "maxFragmentOutputAttachments",
+                                "maxComputeSharedMemorySize", "maxComputeWorkGroupInvocations",
+                                "maxViewports", "maxColorAttachments", "maxSamplerAnisotropy",
+                                "timestampPeriod", "maxClipDistances", "maxCullDistances"
+                            )
+                            keyLimits.forEach { key ->
+                                device.limits[key]?.let { value ->
+                                    InfoRow(key, value.toString())
+                                }
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun InfoRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            label,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Text(
+            value,
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+        )
+    }
+}
+
+@Composable
+private fun VulkanDetailCard(
+    title: String,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Text(
+                title,
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.height(10.dp))
+            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                content()
+            }
+        }
+    }
+}
+
+/**
+ * 驱动 Tab：仅展示驱动专区（Turnip + Qualcomm）。
+ * 从 DriverHubScreen 拆分而来，设备摘要移至设备 Tab。
+ */
+@Composable
+fun DriverScreen(
+    modifier: Modifier = Modifier,
+    deviceInfo: DeviceInfo?,
+    isLoading: Boolean,
+    turnipSourceId: String,
+    turnipSources: List<TurnipSource>,
+    turnipReleases: List<GithubRelease>,
+    qualcommSourceId: String,
+    qualcommSources: List<QualcommSource>,
+    qualcommReleases: List<GithubRelease>,
+    sourceCatalogRemote: Boolean,
+    onTurnipSourceChange: (String) -> Unit,
+    onQualcommSourceChange: (String) -> Unit,
+    onDownloadAsset: (GithubRelease, GithubAsset) -> Unit
+) {
+    val showQualcomm = qualcommReleases.isNotEmpty() &&
+        (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item(key = "driver_region_header") {
+            RegionHeader(
+                title = appString(R.string.driver_region),
+                icon = Icons.Default.Memory,
+                remote = sourceCatalogRemote
+            )
+        }
+
+        if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
+            item(key = "driver_loading") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                        Spacer(Modifier.height(12.dp))
+                        Text(appString(R.string.fetching_latest))
+                    }
+                }
+            }
+        }
+
+        if (turnipReleases.isNotEmpty()) {
+            item(key = "turnip_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = turnipSources,
+                    currentSourceId = turnipSourceId,
+                    onSourceChange = onTurnipSourceChange,
+                    releases = turnipReleases,
+                    selectionKey = "turnip:$turnipSourceId",
+                    onDownload = onDownloadAsset
+                )
+            }
+        }
+
+        if (showQualcomm && qualcommSources.isNotEmpty()) {
+            item(key = "qualcomm_section") {
+                DriverCardDynamic(
+                    title = appString(R.string.qualcomm_driver),
+                    description = appString(R.string.qualcomm_driver_desc),
+                    icon = Icons.Default.Memory,
+                    sources = qualcommSources,
+                    currentSourceId = qualcommSourceId,
+                    onSourceChange = onQualcommSourceChange,
+                    releases = qualcommReleases,
+                    selectionKey = "qualcomm:$qualcommSourceId",
+                    onDownload = onDownloadAsset
+                )
+            }
+        }
+
+        if (!isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
+            item(key = "driver_empty") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        Text(
+                            "暂无可用驱动",
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            "当前设备未匹配到可用驱动。可在设置中关闭\"按设备匹配驱动\"以查看全部驱动源。",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 组件 Tab：仅展示组件专区（每个类型一个独立区块）。
+ * 从 DriverHubScreen 拆分而来，内部管理组件源选择状态。
+ */
+@Composable
+fun ComponentScreen(
+    modifier: Modifier = Modifier,
+    componentSources: List<ComponentSource>,
+    componentCatalogs: Map<String, Map<String, List<Component>>>,
+    onDownloadComponent: (Component) -> Unit
+) {
+    val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
+    val discoveredComponentTypes = componentCatalogs.values
+        .flatMap { it.keys }
+        .distinct()
+        .filterNot { it in preferredComponentOrder }
+        .sorted()
+    val componentOrder = preferredComponentOrder + discoveredComponentTypes
+    val componentSourceSelections = remember { mutableStateMapOf<String, String>() }
+
+    LaunchedEffect(componentSources, componentCatalogs) {
+        componentOrder.forEach { type ->
+            val saved = SettingsManager.getComponentSource(type)
+            val resolved = componentSources.firstOrNull { source ->
+                source.id == saved && componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
+            } ?: componentSources.firstOrNull { source ->
+                componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
+            }
+
+            if (resolved != null) {
+                componentSourceSelections[type] = resolved.id
+                if (saved != resolved.id) SettingsManager.setComponentSource(type, resolved.id)
+            }
+        }
+    }
+
+    fun currentComponentSource(type: String): ComponentSource? {
+        val selectedId = componentSourceSelections[type] ?: SettingsManager.getComponentSource(type)
+        return componentSources.firstOrNull { source ->
+            source.id == selectedId && componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
+        } ?: componentSources.firstOrNull { source ->
+            componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
+        }
+    }
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item(key = "component_region_header") {
+            RegionHeader(
+                title = appString(R.string.component_region),
+                icon = Icons.Default.Extension,
+                remote = null
+            )
+        }
+
+        var hasAnyComponent = false
+        componentOrder.forEach { type ->
+            val source = currentComponentSource(type)
+            val list = source?.let { componentCatalogs[it.id]?.get(type).orEmpty() }.orEmpty()
+            if (list.isNotEmpty() && source != null) {
+                hasAnyComponent = true
+                item(key = "component:$type") {
+                    ComponentSection(
+                        type = type,
+                        sources = componentSources.filter { s ->
+                            componentCatalogs[s.id]?.get(type).orEmpty().isNotEmpty()
+                        },
+                        currentSource = source,
+                        components = list,
+                        selectionKey = "component:$type:${source.id}",
+                        onSourceChange = { sourceId ->
+                            componentSourceSelections[type] = sourceId
+                            SettingsManager.setComponentSource(type, sourceId)
+                        },
+                        onDownload = onDownloadComponent
+                    )
+                }
+            }
+        }
+
+        if (!hasAnyComponent) {
+            item(key = "component_empty") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        Text(
+                            "暂无可用组件",
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            "组件源正在加载中，请稍候或下拉刷新。",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+
+        item(key = "footer") {
+            Text(
+                text = appString(R.string.versions_footer),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.outline,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }

@@ -32,10 +32,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private enum class AppScreen {
-    HOME,
+    DEVICE,
+    DRIVERS,
+    COMPONENTS,
     DOWNLOADS,
-    GUIDE,
-    SETTINGS
+    SETTINGS,
+    GUIDE
 }
 
 class MainActivity : ComponentActivity() {
@@ -63,7 +65,8 @@ class MainActivity : ComponentActivity() {
                 val downloadScope = rememberCoroutineScope()
                 val appContext = applicationContext
 
-                var currentScreen by remember { mutableStateOf(AppScreen.HOME) }
+                var currentScreen by remember { mutableStateOf(AppScreen.DEVICE) }
+                var guideReturnTab by remember { mutableStateOf(AppScreen.DEVICE) }
                 var guideTopic by remember { mutableStateOf<String?>(null) }
                 var refreshTrigger by remember { mutableIntStateOf(0) }
                 var deviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }
@@ -213,176 +216,276 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AnimatedContent(
-                        targetState = currentScreen,
-                        modifier = Modifier.fillMaxSize(),
-                        label = "main-navigation",
-                        transitionSpec = {
-                            val enterSpec = tween<Float>(durationMillis = 240)
-                            val exitSpec = tween<Float>(durationMillis = 170)
-                            val slideSpec = tween<IntOffset>(durationMillis = 280)
+                    // 进入指南页：记录返回 Tab
+                    fun openGuide(topic: String?) {
+                        guideTopic = topic
+                        guideReturnTab = currentScreen
+                        currentScreen = AppScreen.GUIDE
+                    }
 
-                            if (targetState == AppScreen.HOME) {
-                                (slideInHorizontally(slideSpec) { -it / 10 } + fadeIn(enterSpec)) togetherWith
-                                    (slideOutHorizontally(slideSpec) { it / 14 } + fadeOut(exitSpec))
-                            } else {
-                                (slideInHorizontally(slideSpec) { it / 10 } + fadeIn(enterSpec)) togetherWith
-                                    (slideOutHorizontally(slideSpec) { -it / 14 } + fadeOut(exitSpec))
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        bottomBar = {
+                            NavigationBar {
+                                NavigationBarItem(
+                                    selected = currentScreen == AppScreen.DEVICE,
+                                    onClick = { currentScreen = AppScreen.DEVICE },
+                                    icon = { Icon(Icons.Default.PhoneAndroid, contentDescription = null) },
+                                    label = { Text("设备") }
+                                )
+                                NavigationBarItem(
+                                    selected = currentScreen == AppScreen.DRIVERS,
+                                    onClick = { currentScreen = AppScreen.DRIVERS },
+                                    icon = { Icon(Icons.Default.Memory, contentDescription = null) },
+                                    label = { Text("驱动") }
+                                )
+                                NavigationBarItem(
+                                    selected = currentScreen == AppScreen.COMPONENTS,
+                                    onClick = { currentScreen = AppScreen.COMPONENTS },
+                                    icon = { Icon(Icons.Default.Extension, contentDescription = null) },
+                                    label = { Text("组件") }
+                                )
+                                NavigationBarItem(
+                                    selected = currentScreen == AppScreen.DOWNLOADS,
+                                    onClick = { currentScreen = AppScreen.DOWNLOADS },
+                                    icon = {
+                                        BadgedBox(
+                                            badge = {
+                                                if (activeCount > 0) Badge { Text(activeCount.toString()) }
+                                            }
+                                        ) {
+                                            Icon(Icons.Default.Download, contentDescription = null)
+                                        }
+                                    },
+                                    label = { Text("下载") }
+                                )
+                                NavigationBarItem(
+                                    selected = currentScreen == AppScreen.SETTINGS,
+                                    onClick = { currentScreen = AppScreen.SETTINGS },
+                                    icon = { Icon(Icons.Default.Settings, contentDescription = null) },
+                                    label = { Text("设置") }
+                                )
                             }
                         }
-                    ) { screen ->
-                        when (screen) {
-                            AppScreen.DOWNLOADS -> DownloadsScreen(
-                                onBack = { currentScreen = AppScreen.HOME }
-                            )
-
-                            AppScreen.GUIDE -> ComponentGuideScreen(
-                                onBack = { currentScreen = AppScreen.HOME },
-                                adrenoSeries = deviceInfo?.adrenoSeries,
-                                initialTopicId = guideTopic
-                            )
-
-                            AppScreen.SETTINGS -> SettingsScreen(
-                                onBack = { currentScreen = AppScreen.HOME },
-                                themeMode = themeMode,
-                                colorTheme = colorTheme,
-                                onThemeModeChange = { mode ->
-                                    SettingsManager.setThemeMode(mode)
-                                    themeMode = mode
-                                },
-                                onColorThemeChange = { theme ->
-                                    SettingsManager.setColorTheme(theme)
-                                    colorTheme = theme
-                                },
-                                appLanguage = appLanguage,
-                                onAppLanguageChange = { language ->
-                                    SettingsManager.setAppLanguage(language)
-                                    appLanguage = language
-                                },
-                                onSourceCatalogChanged = { refreshTrigger++ }
-                            )
-
-                            AppScreen.HOME -> {
-                                Scaffold(
-                                    modifier = Modifier.fillMaxSize(),
-                                    topBar = {
-                                        TopAppBar(
-                                            title = {
-                                                Column {
-                                                    Text(appString(R.string.app_name))
-                                                    Text(
-                                                        text = appString(R.string.alpha_version, appVersion),
-                                                        style = MaterialTheme.typography.labelSmall,
-                                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                                    )
-                                                }
-                                            },
-                                            actions = {
-                                                var isRefreshingLocal by remember { mutableStateOf(false) }
-                                                val scope = rememberCoroutineScope()
-
-                                                IconButton(
-                                                    onClick = {
-                                                        if (!isRefreshingLocal) {
-                                                            scope.launch {
-                                                                isRefreshingLocal = true
-                                                                refreshTrigger++
-                                                                delay(600)
-                                                                isRefreshingLocal = false
+                    ) { innerPadding ->
+                        AnimatedContent(
+                            targetState = currentScreen,
+                            modifier = Modifier.fillMaxSize().padding(innerPadding),
+                            label = "main-navigation",
+                            transitionSpec = {
+                                val enterSpec = tween<Float>(durationMillis = 200)
+                                val exitSpec = tween<Float>(durationMillis = 150)
+                                fadeIn(enterSpec) togetherWith fadeOut(exitSpec)
+                            }
+                        ) { screen ->
+                            when (screen) {
+                                AppScreen.DEVICE -> {
+                                    Scaffold(
+                                        topBar = {
+                                            TopAppBar(
+                                                title = { Text("设备信息") },
+                                                actions = {
+                                                    var isRefreshingLocal by remember { mutableStateOf(false) }
+                                                    val scope = rememberCoroutineScope()
+                                                    IconButton(
+                                                        onClick = {
+                                                            if (!isRefreshingLocal) {
+                                                                scope.launch {
+                                                                    isRefreshingLocal = true
+                                                                    refreshTrigger++
+                                                                    delay(600)
+                                                                    isRefreshingLocal = false
+                                                                }
                                                             }
                                                         }
+                                                    ) {
+                                                        if (isRefreshingLocal) {
+                                                            CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp)
+                                                        } else {
+                                                            Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
+                                                        }
                                                     }
-                                                ) {
-                                                    if (isRefreshingLocal) {
-                                                        CircularProgressIndicator(
-                                                            modifier = Modifier.size(22.dp),
-                                                            strokeWidth = 2.dp
-                                                        )
-                                                    } else {
-                                                        Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
+                                                    IconButton(onClick = { openGuide(null) }) {
+                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
                                                     }
                                                 }
+                                            )
+                                        }
+                                    ) { padding ->
+                                        DeviceScreen(
+                                            modifier = Modifier.padding(padding),
+                                            deviceInfo = deviceInfo,
+                                            isLoading = isLoading
+                                        )
+                                    }
+                                }
 
-                                                IconButton(
-                                                    onClick = {
-                                                        startActivity(
-                                                            Intent(
-                                                                Intent.ACTION_VIEW,
-                                                                Uri.parse("https://notzeetaa.github.io/Donate-NotZeetaa/")
+                                AppScreen.DRIVERS -> {
+                                    Scaffold(
+                                        topBar = {
+                                            TopAppBar(
+                                                title = { Text(appString(R.string.driver_region)) },
+                                                actions = {
+                                                    var isRefreshingLocal by remember { mutableStateOf(false) }
+                                                    val scope = rememberCoroutineScope()
+                                                    IconButton(
+                                                        onClick = {
+                                                            if (!isRefreshingLocal) {
+                                                                scope.launch {
+                                                                    isRefreshingLocal = true
+                                                                    refreshTrigger++
+                                                                    delay(600)
+                                                                    isRefreshingLocal = false
+                                                                }
+                                                            }
+                                                        }
+                                                    ) {
+                                                        if (isRefreshingLocal) {
+                                                            CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp)
+                                                        } else {
+                                                            Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
+                                                        }
+                                                    }
+                                                    IconButton(
+                                                        onClick = {
+                                                            startActivity(
+                                                                Intent(
+                                                                    Intent.ACTION_VIEW,
+                                                                    Uri.parse("https://notzeetaa.github.io/Donate-NotZeetaa/")
+                                                                )
                                                             )
-                                                        )
+                                                        }
+                                                    ) {
+                                                        Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
                                                     }
-                                                ) {
-                                                    Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
-                                                }
-
-                                                IconButton(
-                                                    onClick = {
-                                                        guideTopic = null
-                                                        currentScreen = AppScreen.GUIDE
-                                                    }
-                                                ) {
-                                                    Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
-                                                }
-
-                                                BadgedBox(
-                                                    badge = {
-                                                        if (activeCount > 0) Badge { Text(activeCount.toString()) }
-                                                    }
-                                                ) {
-                                                    IconButton(onClick = { currentScreen = AppScreen.DOWNLOADS }) {
-                                                        Icon(Icons.Default.Download, contentDescription = appString(R.string.downloads))
+                                                    IconButton(onClick = { openGuide(null) }) {
+                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
                                                     }
                                                 }
-
-                                                IconButton(onClick = { currentScreen = AppScreen.SETTINGS }) {
-                                                    Icon(Icons.Default.Settings, contentDescription = appString(R.string.settings))
+                                            )
+                                        }
+                                    ) { padding ->
+                                        DriverScreen(
+                                            modifier = Modifier.padding(padding),
+                                            deviceInfo = deviceInfo,
+                                            isLoading = isLoading,
+                                            turnipSourceId = turnipSourceId,
+                                            turnipSources = if (SettingsManager.getMatchDriversByDevice()) {
+                                                sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
+                                            } else {
+                                                sourceCatalog.turnipSources
+                                            },
+                                            turnipReleases = turnipReleases,
+                                            qualcommSourceId = qualcommSourceId,
+                                            qualcommSources = sourceCatalog.qualcommSources,
+                                            qualcommReleases = qualcommReleases,
+                                            sourceCatalogRemote = sourceCatalog.isRemote,
+                                            onTurnipSourceChange = { sourceId ->
+                                                turnipSourceId = sourceId
+                                                SettingsManager.setTurnipSource(sourceId)
+                                            },
+                                            onQualcommSourceChange = { sourceId ->
+                                                qualcommSourceId = sourceId
+                                                SettingsManager.setQualcommSource(sourceId)
+                                            },
+                                            onDownloadAsset = { release, asset ->
+                                                downloadScope.launch {
+                                                    downloadAsset(appContext, release, asset)
                                                 }
                                             }
                                         )
                                     }
-                                ) { innerPadding ->
-                                    DriverHubScreen(
-                                        modifier = Modifier.padding(innerPadding),
-                                        deviceInfo = deviceInfo,
-                                        isLoading = isLoading,
-                                        turnipSourceId = turnipSourceId,
-                                        turnipSources = if (SettingsManager.getMatchDriversByDevice()) {
-                                            sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
-                                        } else {
-                                            sourceCatalog.turnipSources
-                                        },
-                                        turnipReleases = turnipReleases,
-                                        qualcommSourceId = qualcommSourceId,
-                                        qualcommSources = sourceCatalog.qualcommSources,
-                                        qualcommReleases = qualcommReleases,
-                                        componentSources = sourceCatalog.componentSources,
-                                        componentCatalogs = componentCatalogs,
-                                        sourceCatalogRemote = sourceCatalog.isRemote,
-                                        onTurnipSourceChange = { sourceId ->
-                                            turnipSourceId = sourceId
-                                            SettingsManager.setTurnipSource(sourceId)
-                                        },
-                                        onQualcommSourceChange = { sourceId ->
-                                            qualcommSourceId = sourceId
-                                            SettingsManager.setQualcommSource(sourceId)
-                                        },
-                                        onOpenGuide = { topicId ->
-                                            guideTopic = topicId
-                                            currentScreen = AppScreen.GUIDE
-                                        },
-                                        onDownloadAsset = { release, asset ->
-                                            downloadScope.launch {
-                                                downloadAsset(appContext, release, asset)
-                                            }
-                                        },
-                                        onDownloadComponent = { component ->
-                                            downloadScope.launch {
-                                                downloadComponent(appContext, component)
-                                            }
-                                        }
-                                    )
                                 }
+
+                                AppScreen.COMPONENTS -> {
+                                    Scaffold(
+                                        topBar = {
+                                            TopAppBar(
+                                                title = { Text(appString(R.string.component_region)) },
+                                                actions = {
+                                                    var isRefreshingLocal by remember { mutableStateOf(false) }
+                                                    val scope = rememberCoroutineScope()
+                                                    IconButton(
+                                                        onClick = {
+                                                            if (!isRefreshingLocal) {
+                                                                scope.launch {
+                                                                    isRefreshingLocal = true
+                                                                    refreshTrigger++
+                                                                    delay(600)
+                                                                    isRefreshingLocal = false
+                                                                }
+                                                            }
+                                                        }
+                                                    ) {
+                                                        if (isRefreshingLocal) {
+                                                            CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp)
+                                                        } else {
+                                                            Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
+                                                        }
+                                                    }
+                                                    IconButton(
+                                                        onClick = {
+                                                            startActivity(
+                                                                Intent(
+                                                                    Intent.ACTION_VIEW,
+                                                                    Uri.parse("https://notzeetaa.github.io/Donate-NotZeetaa/")
+                                                                )
+                                                            )
+                                                        }
+                                                    ) {
+                                                        Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
+                                                    }
+                                                    IconButton(onClick = { openGuide(null) }) {
+                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
+                                                    }
+                                                }
+                                            )
+                                        }
+                                    ) { padding ->
+                                        ComponentScreen(
+                                            modifier = Modifier.padding(padding),
+                                            componentSources = sourceCatalog.componentSources,
+                                            componentCatalogs = componentCatalogs,
+                                            onDownloadComponent = { component ->
+                                                downloadScope.launch {
+                                                    downloadComponent(appContext, component)
+                                                }
+                                            }
+                                        )
+                                    }
+                                }
+
+                                AppScreen.DOWNLOADS -> DownloadsScreen(
+                                    onBack = { },
+                                    showBack = false
+                                )
+
+                                AppScreen.SETTINGS -> SettingsScreen(
+                                    onBack = { },
+                                    showBack = false,
+                                    themeMode = themeMode,
+                                    colorTheme = colorTheme,
+                                    onThemeModeChange = { mode ->
+                                        SettingsManager.setThemeMode(mode)
+                                        themeMode = mode
+                                    },
+                                    onColorThemeChange = { theme ->
+                                        SettingsManager.setColorTheme(theme)
+                                        colorTheme = theme
+                                    },
+                                    appLanguage = appLanguage,
+                                    onAppLanguageChange = { language ->
+                                        SettingsManager.setAppLanguage(language)
+                                        appLanguage = language
+                                    },
+                                    onSourceCatalogChanged = { refreshTrigger++ }
+                                )
+
+                                AppScreen.GUIDE -> ComponentGuideScreen(
+                                    onBack = { currentScreen = guideReturnTab },
+                                    adrenoSeries = deviceInfo?.adrenoSeries,
+                                    initialTopicId = guideTopic
+                                )
                             }
                         }
                     }
