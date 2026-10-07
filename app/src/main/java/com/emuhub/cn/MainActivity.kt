@@ -122,14 +122,43 @@ class MainActivity : ComponentActivity() {
                             }.awaitAll().toMap()
                         }
 
+                        // 设备专属组件：从驱动注册表匹配（如 Mali 设备的 panDXVK），
+                        // 这类组件直接在 GitHub release 附件分发 .wcp，不走 contents.json。
+                        val registryEntries = DriverRegistryRepository.load()
+                        val deviceComponentEntries = DriverRegistryRepository.matchComponents(info, registryEntries)
+                        val registryComponentSources = deviceComponentEntries.map { entry ->
+                            ComponentSource(
+                                id = "registry-${entry.id}",
+                                name = entry.name,
+                                manifestUrl = entry.apiUrl,
+                                description = entry.description,
+                                experimental = entry.maturity in listOf("alpha", "experimental", "beta")
+                            )
+                        }
+                        val registryComponentMaps = coroutineScope {
+                            deviceComponentEntries.map { entry ->
+                                async {
+                                    val type = entry.componentType
+                                    if (type.isNullOrBlank()) {
+                                        "registry-${entry.id}" to emptyMap<String, List<Component>>()
+                                    } else {
+                                        "registry-${entry.id}" to mapOf(type to fetchGithubComponents(entry.apiUrl, type))
+                                    }
+                                }
+                            }.awaitAll().toMap()
+                        }
+                        val mergedCatalog = catalog.copy(
+                            componentSources = catalog.componentSources + registryComponentSources
+                        )
+
                         AppLoadResult(
                             deviceInfo = info,
-                            catalog = catalog,
+                            catalog = mergedCatalog,
                             selectedTurnipSource = selectedSource,
                             selectedQualcommSource = selectedQualcommSource,
                             turnipReleases = releases,
                             qualcommReleases = qualcomm,
-                            componentCatalogs = componentMaps
+                            componentCatalogs = componentMaps + registryComponentMaps
                         )
                     }
 
