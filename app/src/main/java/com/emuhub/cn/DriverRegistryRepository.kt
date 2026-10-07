@@ -58,7 +58,7 @@ object DriverRegistryRepository {
     )
 
     /** 非驱动类型：这些条目归入组件专区，不参与驱动匹配 */
-    private val COMPONENT_TYPES = setOf("component", "companion")
+    val COMPONENT_TYPES = setOf("component", "companion")
 
     /** Mali 型号 → (架构, frontend) */
     private val MALI_ARCH_MAP = mapOf(

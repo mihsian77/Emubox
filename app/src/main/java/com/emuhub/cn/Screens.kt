@@ -612,6 +612,23 @@ private fun getFullPath(filePath: String, context: android.content.Context): Str
 
     val uri = Uri.parse(filePath)
 
+    // MediaStore URI (default download path): query RELATIVE_PATH + DISPLAY_NAME
+    if (uri.authority?.startsWith("media") == true) {
+        runCatching {
+            val projection = arrayOf(
+                MediaStore.MediaColumns.RELATIVE_PATH,
+                MediaStore.MediaColumns.DISPLAY_NAME
+            )
+            context.contentResolver.query(uri, projection, null, null, null)?.use { cursor ->
+                if (cursor.moveToFirst()) {
+                    val rel = cursor.getString(0).orEmpty()
+                    val name = cursor.getString(1).orEmpty()
+                    if (name.isNotEmpty()) return "$rel$name"
+                }
+            }
+        }
+    }
+
     // Try to get folder using DocumentFile
     val docFile = DocumentFile.fromSingleUri(context, uri)
     if (docFile != null) {
@@ -707,6 +724,7 @@ fun SettingsScreen(
     var currentFolderUri by remember { mutableStateOf(SettingsManager.getDownloadFolderUri()) }
     var displayPath by remember { mutableStateOf<String?>(null) }
     var sourceCatalogUrl by remember { mutableStateOf(SettingsManager.getSourceCatalogUrl()) }
+    var matchDriversByDevice by remember { mutableStateOf(SettingsManager.getMatchDriversByDevice()) }
 
     val folderPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocumentTree(),
@@ -875,6 +893,31 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
+                }
+            }
+
+            item {
+                SettingsCard(title = appString(R.string.match_drivers_by_device)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = appString(R.string.match_drivers_by_device_desc),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.weight(1f)
+                        )
+                        Spacer(Modifier.width(12.dp))
+                        Switch(
+                            checked = matchDriversByDevice,
+                            onCheckedChange = { enabled ->
+                                matchDriversByDevice = enabled
+                                SettingsManager.setMatchDriversByDevice(enabled)
+                                onSourceCatalogChanged()
+                            }
+                        )
+                    }
                 }
             }
 

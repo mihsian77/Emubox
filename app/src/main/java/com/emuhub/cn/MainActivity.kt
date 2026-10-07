@@ -97,20 +97,30 @@ class MainActivity : ComponentActivity() {
 
                     val result = withContext(Dispatchers.IO) {
                         val info = DeviceInfo.collect(this@MainActivity)
+                        val matchByDevice = SettingsManager.getMatchDriversByDevice()
                         val baseCatalog = SourceCatalogRepository.load()
 
                         // 驱动注册表：按设备 GPU 匹配（含 Mali PanVK 全系列），转换为
                         // TurnipSource 后与内置源合并；注册表推荐源排前，按 apiUrl 去重。
+                        // 关闭"按设备匹配"时显示全部驱动源（不按 GPU 过滤）。
                         val registryEntries = DriverRegistryRepository.load()
-                        val matchedDriverSources = DriverRegistryRepository
-                            .match(info, registryEntries)
-                            .map { DriverRegistryRepository.toTurnipSource(it.entry) }
+                        val driverEntries = registryEntries.filter { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
+                        val matchedDriverSources = (if (matchByDevice) {
+                            DriverRegistryRepository.match(info, registryEntries)
+                        } else {
+                            driverEntries.map { DriverRegistryRepository.DriverMatchResult(it, 0) }
+                        }).map { DriverRegistryRepository.toTurnipSource(it.entry) }
                         val existingDriverUrls = baseCatalog.turnipSources.map { it.apiUrl }.toSet()
                         val newDriverSources = matchedDriverSources.filter { it.apiUrl !in existingDriverUrls }
 
                         // 设备专属组件（如 Mali 的 panDXVK）：GitHub release 直接分发 .wcp，
                         // 不走 contents.json，单独拉取后并入对应组件分类。
-                        val deviceComponentEntries = DriverRegistryRepository.matchComponents(info, registryEntries)
+                        // 关闭"按设备匹配"时显示全部注册表组件。
+                        val deviceComponentEntries = if (matchByDevice) {
+                            DriverRegistryRepository.matchComponents(info, registryEntries)
+                        } else {
+                            registryEntries.filter { it.componentType != null }
+                        }
                         val registryComponentSources = deviceComponentEntries.map { entry ->
                             ComponentSource(
                                 id = "registry-${entry.id}",
@@ -126,9 +136,13 @@ class MainActivity : ComponentActivity() {
                             componentSources = baseCatalog.componentSources + registryComponentSources
                         )
 
-                        val compatibleSources = catalog.compatibleTurnipSources(
-                            info.adrenoSeries, info.gpuModel, info.gpuVendor.name.lowercase()
-                        )
+                        val compatibleSources = if (matchByDevice) {
+                            catalog.compatibleTurnipSources(
+                                info.adrenoSeries, info.gpuModel, info.gpuVendor.name.lowercase()
+                            )
+                        } else {
+                            catalog.turnipSources
+                        }
 
                         val selectedSource = compatibleSources.firstOrNull { source ->
                             source.id.equals(turnipSourceId, ignoreCase = true) ||
@@ -333,7 +347,11 @@ class MainActivity : ComponentActivity() {
                                         deviceInfo = deviceInfo,
                                         isLoading = isLoading,
                                         turnipSourceId = turnipSourceId,
-                                        turnipSources = sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase()),
+                                        turnipSources = if (SettingsManager.getMatchDriversByDevice()) {
+                                            sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
+                                        } else {
+                                            sourceCatalog.turnipSources
+                                        },
                                         turnipReleases = turnipReleases,
                                         qualcommSourceId = qualcommSourceId,
                                         qualcommSources = sourceCatalog.qualcommSources,
