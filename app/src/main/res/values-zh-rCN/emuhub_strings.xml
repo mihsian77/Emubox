@@ -80,6 +80,7 @@
     <string name="downloads_settings_desc">选择下载组件的保存位置。</string>
     <string name="download_folder">下载文件夹</string>
     <string name="download_folder_desc">选择驱动和组件的下载文件夹。</string>
+    <string name="download_folder_hint">驱动 → Drivers/ · 组件 → Components/&lt;类型&gt;/</string>
     <string name="downloads_default">下载（默认）</string>
     <string name="choose_folder">选择文件夹</string>
     <string name="reset_to_default">恢复默认</string>
