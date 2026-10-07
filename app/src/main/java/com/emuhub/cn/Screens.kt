@@ -2125,8 +2125,6 @@ private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
 }
 
 @Composable
-
-@Composable
 private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth(),
