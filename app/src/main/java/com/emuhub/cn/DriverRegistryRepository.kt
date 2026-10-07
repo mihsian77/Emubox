@@ -315,7 +315,7 @@ object DriverRegistryRepository {
         val models = entry.gpuModels.map { it.removePrefix("G") }.toSet()
         val maturityLabel = when (entry.maturity) {
             "stable" -> ""
-            "ci" to "CI 构建"
+            "ci" -> "CI 构建"
             "beta" -> "Beta"
             "alpha" -> "Alpha"
             "experimental" -> "实验性"
