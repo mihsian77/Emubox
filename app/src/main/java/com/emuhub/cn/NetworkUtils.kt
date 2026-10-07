@@ -184,6 +184,33 @@ suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Compon
 suspend fun fetchComponentsFromUrl(): Map<String, List<Component>> =
     fetchComponentsFromUrl(SourceCatalogRepository.builtInCatalog().componentSources.first().manifestUrl)
 
+/**
+ * 从独立 GitHub release 仓库加载组件，用于 panDXVK 这类不走 contents.json
+ * 清单、直接在 release 附件里分发 .wcp/.zip 的组件。
+ *
+ * 每个 release 取一个首选资产（默认 .wcp 优先、其次 .zip），映射到指定
+ * 组件分类（如 DXVK）。返回列表已按 release 从新到旧排序。
+ */
+suspend fun fetchGithubComponents(
+    apiUrl: String,
+    componentType: String,
+    preferredExtensions: List<String> = listOf(".wcp", ".zip")
+): List<Component> {
+    val releases = fetchGithubReleasesFromUrl(apiUrl)
+    return releases.mapNotNull { release ->
+        val asset = release.assets.firstOrNull { a ->
+            preferredExtensions.any { a.name.lowercase().endsWith(it) }
+        } ?: release.assets.firstOrNull { it.downloadUrl.isNotBlank() }
+            ?: return@mapNotNull null
+        Component(
+            type = componentType,
+            verName = release.tagName,
+            verCode = "",
+            remoteUrl = asset.downloadUrl
+        )
+    }
+}
+
 private fun List<GithubRelease>.sortGithubReleasesNewestFirst(): List<GithubRelease> =
     sortedWith { a, b ->
         val dateResult = b.publishedAt.compareTo(a.publishedAt)
