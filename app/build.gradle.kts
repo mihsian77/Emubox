@@ -15,8 +15,8 @@ android {
         applicationId = "com.emuhub.cn"
         minSdk = 28
         targetSdk = 37
-        versionCode = 2
-        versionName = "1.0.0-cn"
+        versionCode = 4
+        versionName = "1.2.0-cn"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
