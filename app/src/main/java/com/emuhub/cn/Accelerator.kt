@@ -20,8 +20,13 @@ enum class TrafficKind { RELEASE_ASSET, RAW_FILE }
 
 /**
  * 国内下载加速节点。
+ * 节点来源：MirrorHub (https://github.com/mihsian77/MirrorHub)，MIT 协议。
+ * 远程拉取 MirrorHub 自动维护的在线节点列表（每6小时测速更新），内置节点作为 fallback。
  * 所有节点均为公益 GitHub 代理，格式为 https://<domain>/https://github.com/...
  * trafficKinds 为空表示支持所有类型。
+ *
+ * 二次分发声明：本应用加速节点由 MirrorHub 提供，遵守 MIT 协议。
+ * 如二次分发或修改，请保留此来源声明。
  */
 data class ProxyNode(
     val id: String,
@@ -52,7 +57,7 @@ data class ProxyNode(
 
 object Accelerator {
 
-    /** 内置加速节点列表（按推荐度排序，2026-09 验证可用） */
+    /** 内置加速节点列表（fallback，远程拉取失败时使用） */
     val BUILTIN_NODES = listOf(
         ProxyNode("gh-proxy-org", "gh-proxy 官方", "gh-proxy.org"),
         ProxyNode("gh-proxy-com", "gh-proxy 旧域", "gh-proxy.com"),
@@ -61,6 +66,11 @@ object Accelerator {
         ProxyNode("gh-idayer", "idayer 公益", "gh.idayer.com"),
         ProxyNode("gh-proxy-net", "gh-proxy 镜像", "gh-proxy.net")
     )
+
+    /** MirrorHub 来源信息（用于 UI 显示和日志声明） */
+    const val MIRRORHUB_SOURCE = "MirrorHub"
+    const val MIRRORHUB_URL = "https://github.com/mihsian77/MirrorHub"
+    const val MIRRORHUB_LICENSE = "MIT"
 
     /**
      * jsdelivr CDN（Raw 文件专用，不支持 Release 附件）。
@@ -77,12 +87,16 @@ object Accelerator {
     private const val LATENCY_TEST_FILE =
         "https://raw.githubusercontent.com/Rodrig02005/EmuHub-APP/main/sources.json"
 
-    /** 节点动态更新的远程列表 URL（GitHub Raw，可随时更新无需发版） */
+    /**
+     * 远程节点列表 URL（MirrorHub 自动维护，每6小时测速更新）。
+     * active-nodes.json 只包含在线节点，按延迟升序排列，最多20个。
+     * 格式：{"source":"MirrorHub","license":"MIT","nodes":[{"id","name","domain","category","latency_ms"}]}
+     */
     private const val REMOTE_NODES_URL =
-        "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/accelerator-nodes.json"
+        "https://raw.githubusercontent.com/mihsian77/MirrorHub/main/active-nodes.json"
 
-    /** 直连（不加速） */
-    val DIRECT_NODE = ProxyNode("direct", "直连 GitHub", "github.com")
+    /** 不加速（直连 GitHub），作为最后 fallback */
+    val DIRECT_NODE = ProxyNode("direct", "不加速（直连）", "github.com")
 
     /** 所有可选节点 = 直连 + 内置节点 + jsdelivr */
     val ALL_NODES: List<ProxyNode>
@@ -226,8 +240,12 @@ object Accelerator {
     }
 
     /**
-     * 从远程 GitHub Raw 拉取最新节点列表，实现节点动态更新。
-     * JSON 格式：[{"id":"...","displayName":"...","domain":"...","trafficKinds":["RAW_FILE"]}]
+     * 从 MirrorHub 拉取最新在线节点列表。
+     * active-nodes.json 只包含在线节点，按延迟升序排列。
+     * 根据 category 推断 trafficKinds：
+     *   - universal_proxy / web_mirror → 支持所有类型
+     *   - cdn_raw → 仅 RAW_FILE
+     *   - clone_specialized → 跳过（仅用于 git clone，不适合下载）
      * 失败时静默回退到内置列表。
      */
     suspend fun refreshRemoteNodes(): Boolean = withContext(Dispatchers.IO) {
@@ -236,27 +254,35 @@ object Accelerator {
             updateClient.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) return@withContext false
                 val json = response.body?.string() ?: return@withContext false
-                val array = JSONArray(json)
+                val obj = org.json.JSONObject(json)
+                // 验证来源
+                val source = obj.optString("source", "")
+                if (source != MIRRORHUB_SOURCE) {
+                    Log.w(TAG, "远程节点来源不匹配: $source，期望 $MIRRORHUB_SOURCE")
+                }
+                val license = obj.optString("license", "")
+                val updatedAt = obj.optString("updated_at", "未知")
+                val array = obj.optJSONArray("nodes") ?: return@withContext false
                 val nodes = buildList {
                     for (i in 0 until array.length()) {
-                        val obj = array.getJSONObject(i)
-                        val id = obj.optString("id").takeIf { it.isNotBlank() } ?: continue
-                        val displayName = obj.optString("displayName", id)
-                        val domain = obj.optString("domain").takeIf { it.isNotBlank() } ?: continue
-                        val kindsArray = obj.optJSONArray("trafficKinds")
-                        val kinds = buildSet {
-                            for (k in 0 until (kindsArray?.length() ?: 0)) {
-                                runCatching {
-                                    TrafficKind.valueOf(kindsArray!!.getString(k))
-                                }.getOrNull()?.let(::add)
-                            }
+                        val nodeObj = array.getJSONObject(i)
+                        val id = nodeObj.optString("id").takeIf { it.isNotBlank() } ?: continue
+                        val name = nodeObj.optString("name", id)
+                        val domain = nodeObj.optString("domain").takeIf { it.isNotBlank() } ?: continue
+                        val category = nodeObj.optString("category", "universal_proxy")
+                        // 根据分类推断支持的流量类型
+                        val kinds = when (category) {
+                            "cdn_raw" -> setOf(TrafficKind.RAW_FILE)
+                            "clone_specialized" -> continue  // 跳过，仅用于 clone
+                            else -> emptySet()  // universal_proxy / web_mirror 支持所有
                         }
-                        add(ProxyNode(id, displayName, domain, kinds))
+                        add(ProxyNode(id, name, domain, kinds))
                     }
                 }
                 if (nodes.isNotEmpty()) {
                     remoteNodes = nodes
-                    Log.i(TAG, "远程节点更新成功：${nodes.size} 个节点")
+                    Log.i(TAG, "远程节点更新成功：${nodes.size} 个在线节点 " +
+                            "(来源: $MIRRORHUB_SOURCE, 协议: $license, 更新于: $updatedAt)")
                     true
                 } else false
             }
