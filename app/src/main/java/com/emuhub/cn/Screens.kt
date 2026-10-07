@@ -917,6 +917,13 @@ fun SettingsScreen(
                         }
                     }
 
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        text = appString(R.string.download_folder_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
                     Spacer(Modifier.height(16.dp))
                     Button(
                         onClick = { folderPickerLauncher.launch(null) },
