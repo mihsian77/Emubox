@@ -72,7 +72,6 @@ class MainActivity : ComponentActivity() {
                 var sourceCatalog by remember { mutableStateOf(SourceCatalogRepository.builtInCatalog()) }
                 var turnipSourceId by remember { mutableStateOf(SettingsManager.getTurnipSource()) }
                 var qualcommSourceId by remember { mutableStateOf(SettingsManager.getQualcommSource()) }
-                var selectedSection by remember { mutableStateOf(SettingsManager.getSelectedDownloadSection()) }
 
                 var turnipReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var qualcommReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
@@ -298,11 +297,6 @@ class MainActivity : ComponentActivity() {
                                         componentSources = sourceCatalog.componentSources,
                                         componentCatalogs = componentCatalogs,
                                         sourceCatalogRemote = sourceCatalog.isRemote,
-                                        selectedSection = selectedSection,
-                                        onSelectedSectionChange = { section ->
-                                            selectedSection = section
-                                            SettingsManager.setSelectedDownloadSection(section)
-                                        },
                                         onTurnipSourceChange = { sourceId ->
                                             turnipSourceId = sourceId
                                             SettingsManager.setTurnipSource(sourceId)
