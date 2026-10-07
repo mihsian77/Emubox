@@ -97,7 +97,12 @@ object SourceCatalogRepository {
                     if (!response.isSuccessful) return@withContext builtInCatalog()
                     val body = response.body?.string().orEmpty()
                     if (body.isBlank()) return@withContext builtInCatalog()
-                    parseCatalog(body).copy(isRemote = true)
+                    // 远程 catalog 为主，内置中独有的组件源（按 id 去重）追加进去，
+                    // 避免远程 sources.json 覆盖我们新增的组件仓库。
+                    val remote = parseCatalog(body)
+                    val remoteIds = remote.componentSources.map { it.id }.toSet()
+                    val extra = builtInCatalog().componentSources.filter { it.id !in remoteIds }
+                    remote.copy(componentSources = remote.componentSources + extra, isRemote = true)
                 }
             } catch (_: Exception) {
                 builtInCatalog()
@@ -381,6 +386,20 @@ object SourceCatalogRepository {
                 name = "The412Banner",
                 manifestUrl = "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
                 description = "Nightly Winlator component catalog.",
+                experimental = true
+            ),
+            ComponentSource(
+                id = "ref4ik",
+                name = "REF4IK",
+                manifestUrl = "https://github.com/REF4IK/Components-Adrenotools-/releases/download/1/contents.json",
+                description = "Adrenotools-focused component builds.",
+                experimental = true
+            ),
+            ComponentSource(
+                id = "arihany",
+                name = "Arihany WCP Hub",
+                manifestUrl = "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
+                description = "WCP package collection (DXVK/FEXCore/VKD3D).",
                 experimental = true
             )
         )

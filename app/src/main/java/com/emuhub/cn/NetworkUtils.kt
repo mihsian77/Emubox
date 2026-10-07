@@ -5,6 +5,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
+import java.util.concurrent.ConcurrentHashMap
 
 data class GithubRelease(
     val tagName: String,
@@ -19,7 +20,22 @@ data class Component(val type: String, val verName: String, val verCode: String,
 
 private val githubClient by lazy { OkHttpClient() }
 
+// In-memory cache to avoid re-fetching the same GitHub releases / component
+// manifest on every source switch. TTL is 10 minutes; stale entries are
+// transparently re-fetched.
+private const val CACHE_TTL_MS = 10 * 60 * 1000L
+private data class CacheEntry<T>(val data: T, val timestamp: Long)
+private val releaseCache = ConcurrentHashMap<String, CacheEntry<List<GithubRelease>>>()
+private val componentCache = ConcurrentHashMap<String, CacheEntry<Map<String, List<Component>>>>()
+
+private fun <T> ConcurrentHashMap<String, CacheEntry<T>>.getValid(key: String): T? {
+    val entry = this[key] ?: return null
+    return if (System.currentTimeMillis() - entry.timestamp < CACHE_TTL_MS) entry.data else null
+}
+
 suspend fun fetchGithubReleasesFromUrl(apiUrl: String): List<GithubRelease> = withContext(Dispatchers.IO) {
+    releaseCache.getValid(apiUrl)?.let { return@withContext it }
+
     val acceleratedUrl = Accelerator.rewriteUrl(apiUrl)
     val request = Request.Builder()
         .url(acceleratedUrl)
@@ -33,7 +49,7 @@ suspend fun fetchGithubReleasesFromUrl(apiUrl: String): List<GithubRelease> = wi
             val json = response.body?.string() ?: return@withContext emptyList()
             val releasesArray = JSONArray(json)
 
-            (0 until releasesArray.length()).mapNotNull { idx ->
+            val releases = (0 until releasesArray.length()).mapNotNull { idx ->
                 val obj = releasesArray.getJSONObject(idx)
                 if (obj.optBoolean("draft", false)) return@mapNotNull null
 
@@ -59,6 +75,9 @@ suspend fun fetchGithubReleasesFromUrl(apiUrl: String): List<GithubRelease> = wi
                     body = obj.optString("body", "")
                 )
             }.sortGithubReleasesNewestFirst()
+
+            releaseCache[apiUrl] = CacheEntry(releases, System.currentTimeMillis())
+            releases
         }
     } catch (_: Exception) {
         emptyList()
@@ -147,6 +166,8 @@ suspend fun loadQualcommDriver(): GithubRelease? {
 
 suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Component>> =
     withContext(Dispatchers.IO) {
+        componentCache.getValid(manifestUrl)?.let { return@withContext it }
+
         val acceleratedUrl = Accelerator.rewriteUrl(manifestUrl)
         val request = Request.Builder().url(acceleratedUrl).build()
 
@@ -175,6 +196,7 @@ suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Compon
                 map.forEach { (_, list) ->
                     list.sortWith { a, b -> naturalVersionCompare(b.verName, a.verName) }
                 }
+                componentCache[manifestUrl] = CacheEntry(map, System.currentTimeMillis())
                 map
             }
         } catch (_: Exception) {

@@ -77,6 +77,8 @@
     <string name="default_label">Default</string>
     <string name="using_managed_catalog">Using EmuHub managed catalog</string>
     <string name="using_custom_catalog">Using custom catalog</string>
+    <string name="match_drivers_by_device">Match drivers by device</string>
+    <string name="match_drivers_by_device_desc">Only show GPU drivers compatible with this device. Turn off to list all available drivers.</string>
     <string name="downloads_settings_desc">Choose where downloaded components are saved.</string>
     <string name="download_folder">Download folder</string>
     <string name="download_folder_desc">Choose the folder used for downloaded drivers and components.</string>

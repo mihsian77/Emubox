@@ -30,6 +30,7 @@ private const val KEY_SOURCE_CATALOG_URL = "source_catalog_url"
 private const val KEY_APP_LANGUAGE = "app_language"
 private const val KEY_ACCELERATOR_MODE = "accelerator_mode"
 private const val KEY_ACCELERATOR_NODE = "accelerator_node"
+private const val KEY_MATCH_DRIVERS_BY_DEVICE = "match_drivers_by_device"
 
 object SettingsManager {
     private lateinit var prefs: SharedPreferences
@@ -79,6 +80,13 @@ object SettingsManager {
     fun setAcceleratorNodeId(nodeId: String) {
         prefs.edit().putString(KEY_ACCELERATOR_NODE, nodeId).apply()
         Accelerator.clearCache()
+    }
+
+    fun getMatchDriversByDevice(): Boolean =
+        prefs.getBoolean(KEY_MATCH_DRIVERS_BY_DEVICE, true)
+
+    fun setMatchDriversByDevice(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_MATCH_DRIVERS_BY_DEVICE, enabled).apply()
     }
 
     fun setColorTheme(theme: ColorTheme) {

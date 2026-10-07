@@ -77,6 +77,8 @@
     <string name="default_label">默认</string>
     <string name="using_managed_catalog">使用 EmuHub 托管目录</string>
     <string name="using_custom_catalog">使用自定义目录</string>
+    <string name="match_drivers_by_device">按设备匹配驱动</string>
+    <string name="match_drivers_by_device_desc">仅显示与本机 GPU 兼容的驱动。关闭后列出全部可用驱动。</string>
     <string name="downloads_settings_desc">选择下载组件的保存位置。</string>
     <string name="download_folder">下载文件夹</string>
     <string name="download_folder_desc">选择驱动和组件的下载文件夹。</string>
