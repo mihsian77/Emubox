@@ -80,6 +80,7 @@
     <string name="downloads_settings_desc">Choose where downloaded components are saved.</string>
     <string name="download_folder">Download folder</string>
     <string name="download_folder_desc">Choose the folder used for downloaded drivers and components.</string>
+    <string name="download_folder_hint">Drivers → Drivers/ · Components → Components/&lt;type&gt;/</string>
     <string name="downloads_default">Downloads (default)</string>
     <string name="choose_folder">Choose folder</string>
     <string name="reset_to_default">Reset to default</string>
