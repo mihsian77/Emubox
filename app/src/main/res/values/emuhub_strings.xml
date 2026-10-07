@@ -278,7 +278,7 @@
     <string name="accelerator_mode_manual">Manual</string>
     <string name="accelerator_mode_off">Off</string>
     <string name="accelerator_node">Accelerator node</string>
-    <string name="accelerator_test_latency">Test latency</string>
+    <string name="accelerator_test_latency">Test latency &amp; speed</string>
     <string name="accelerator_testing">Testing…</string>
     <string name="accelerator_auto_selecting">Selecting fastest node…</string>
     <string name="accelerator_current">Current: %1$s</string>
