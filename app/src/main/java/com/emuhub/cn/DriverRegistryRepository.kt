@@ -304,6 +304,41 @@ object DriverRegistryRepository {
             .sortedBy { MATURITY_ORDER[it.maturity] ?: 4 }
     }
 
+    /**
+     * 将注册表驱动条目转换为现有 TurnipSource，复用 release 拉取与资产过滤逻辑。
+     * Mali 型号在注册表中带 G 前缀（G57），detectGpuModel 返回纯数字（57），
+     * supportedModels 需去掉 G 前缀才能被 compatibleTurnipSources 命中。
+     */
+    fun toTurnipSource(entry: DriverRegistryEntry): TurnipSource {
+        val adrenoSeriesNames = setOf("6xx", "7xx", "8xx")
+        val series = entry.gpuArch.filter { it in adrenoSeriesNames }.toSet()
+        val models = entry.gpuModels.map { it.removePrefix("G") }.toSet()
+        val maturityLabel = when (entry.maturity) {
+            "stable" -> ""
+            "ci" to "CI 构建"
+            "beta" -> "Beta"
+            "alpha" -> "Alpha"
+            "experimental" -> "实验性"
+            else -> ""
+        }
+        return TurnipSource(
+            id = "reg-${entry.id}",
+            name = entry.name,
+            apiUrl = entry.apiUrl,
+            description = buildString {
+                append(entry.description)
+                if (maturityLabel.isNotEmpty()) append("（$maturityLabel）")
+            },
+            experimental = entry.maturity != "stable",
+            supportedSeries = series,
+            supportedModels = models,
+            requiredVendor = entry.gpuVendor,
+            filters = entry.filters.ifEmpty {
+                mapOf("default" to listOf("Turnip", "panvk", "Mesa", "vulkan"))
+            }
+        )
+    }
+
     /** Mali 型号归一化：detectGpuModel 返回纯数字 "57"，注册表用 "G57" */
     private fun normalizeMaliModel(rawModel: String): String? {
         if (rawModel == "unknown") return null
