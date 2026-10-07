@@ -12,9 +12,11 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -2623,6 +2625,78 @@ fun DriverCardDynamic(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+private fun ReleaseChangelog(release: GithubRelease?) {
+    val notes = remember(release?.tagName, release?.body) {
+        release?.body?.let { cleanReleaseNotes(it) }.orEmpty()
+    }
+    if (notes.isBlank()) return
+    var expanded by remember(release?.tagName) { mutableStateOf(false) }
+
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.45f)
+    ) {
+        Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { expanded = !expanded },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.Description,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    appString(R.string.changelog),
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.weight(1f)
+                )
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+            if (expanded) {
+                Spacer(Modifier.height(8.dp))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = notes,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 260.dp)
+                        .verticalScroll(rememberScrollState())
+                )
+            }
+        }
+    }
+}
+
+/**
+ * GitHub release 正文是 Markdown，这里不引入完整 Markdown 渲染库，
+ * 只剥离常见标记（标题/粗体/代码/链接/图片/引用/列表前缀），保留纯文本与换行。
+ */
+private fun cleanReleaseNotes(raw: String): String = raw
+    .replace(Regex("(?m)^\\s{0,3}#{1,6}\\s+"), "")
+    .replace(Regex("!\\[([^]]*)]\\(\\s*[^)]*\\)"), "$1")
+    .replace(Regex("\\[([^]]+)]\\(\\s*[^)]*\\)"), "$1")
+    .replace(Regex("(?s)(\\*\\*|__)(.+?)\\1"), "$2")
+    .replace(Regex("`([^`]+)`"), "$1")
+    .replace(Regex("(?m)^\\s*[-*+]\\s+"), "· ")
+    .replace(Regex("(?m)^\\s*>\\s?"), "")
+    .replace(Regex("[ \\t]+\n"), "\n")
+    .trim()
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
 private fun DriverReleasePicker(
     releases: List<GithubRelease>,
     selectionKey: String,
@@ -2735,6 +2809,8 @@ private fun DriverReleasePicker(
             }
         }
     }
+
+    ReleaseChangelog(selectedRelease)
 
     if ((selectedRelease?.assets?.size ?: 0) > 1) {
         ExposedDropdownMenuBox(
