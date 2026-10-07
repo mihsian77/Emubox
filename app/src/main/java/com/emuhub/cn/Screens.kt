@@ -1930,8 +1930,6 @@ fun DriverHubScreen(
     componentSources: List<ComponentSource>,
     componentCatalogs: Map<String, Map<String, List<Component>>>,
     sourceCatalogRemote: Boolean,
-    selectedSection: String,
-    onSelectedSectionChange: (String) -> Unit,
     onTurnipSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
     onOpenGuide: (String?) -> Unit,
@@ -1980,55 +1978,6 @@ fun DriverHubScreen(
     val currentQualcommSource = qualcommSources.firstOrNull { it.id == qualcommSourceId }
         ?: qualcommSources.firstOrNull()
 
-    val sections = buildList {
-        if (turnipReleases.isNotEmpty()) {
-            add(
-                HubSection(
-                    id = "turnip",
-                    title = "Turnip",
-                    subtitle = appString(R.string.mesa_gpu_driver),
-                    latest = turnipReleases.firstOrNull()?.tagName ?: "—",
-                    source = currentTurnipSource?.name ?: appString(R.string.unknown),
-                    icon = Icons.Default.Eco
-                )
-            )
-        }
-        if (showQualcomm) {
-            add(
-                HubSection(
-                    id = "qualcomm",
-                    title = "Qualcomm",
-                    subtitle = appString(R.string.official_gpu_driver),
-                    latest = qualcommReleases.firstOrNull()?.tagName ?: "—",
-                    source = currentQualcommSource?.name ?: appString(R.string.unknown),
-                    icon = Icons.Default.Memory
-                )
-            )
-        }
-        componentOrder.forEach { type ->
-            val source = currentComponentSource(type)
-            val list = source?.let { componentCatalogs[it.id]?.get(type).orEmpty() }.orEmpty()
-            if (list.isNotEmpty()) {
-                add(
-                    HubSection(
-                        id = "component:$type",
-                        title = type,
-                        subtitle = componentSubtitle(type),
-                        latest = list.firstOrNull()?.verName ?: "—",
-                        source = source?.name ?: appString(R.string.unknown),
-                        icon = componentIcon(type)
-                    )
-                )
-            }
-        }
-    }
-
-    LaunchedEffect(sections.map { it.id }) {
-        if (sections.isNotEmpty() && sections.none { it.id == selectedSection }) {
-            onSelectedSectionChange(sections.first().id)
-        }
-    }
-
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
@@ -2038,36 +1987,17 @@ fun DriverHubScreen(
             DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
         }
 
-        item(key = "downloads_title") {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(appString(R.string.download_hub), style = MaterialTheme.typography.headlineSmall)
-                    Text(
-                        appString(R.string.download_hub_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-                SuggestionChip(
-                    onClick = {},
-                    label = { Text(if (sourceCatalogRemote) appString(R.string.live_sources) else appString(R.string.fallback_sources)) },
-                    icon = {
-                        Icon(
-                            if (sourceCatalogRemote) Icons.Default.CloudDone else Icons.Default.CloudOff,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                    }
-                )
-            }
+        // ── 驱动专区：驱动区块直接平铺，不再通过索引卡片切换 ──
+        item(key = "driver_region_header") {
+            RegionHeader(
+                title = appString(R.string.driver_region),
+                icon = Icons.Default.Memory,
+                remote = sourceCatalogRemote
+            )
         }
 
-        if (isLoading && sections.isEmpty()) {
-            item(key = "loading") {
+        if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
+            item(key = "driver_loading") {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(28.dp)
@@ -2081,109 +2011,64 @@ fun DriverHubScreen(
             }
         }
 
-        sections.chunked(2).forEachIndexed { index, rowSections ->
-            item(key = "index_row_$index") {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    rowSections.forEach { section ->
-                        DownloadIndexCard(
-                            section = section,
-                            selected = section.id == selectedSection,
-                            onClick = { onSelectedSectionChange(section.id) },
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
-                    if (rowSections.size == 1) Spacer(Modifier.weight(1f))
-                }
+        if (turnipReleases.isNotEmpty()) {
+            item(key = "turnip_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = turnipSources,
+                    currentSourceId = turnipSourceId,
+                    onSourceChange = onTurnipSourceChange,
+                    releases = turnipReleases,
+                    selectionKey = "turnip:$turnipSourceId",
+                    onDownload = onDownloadAsset
+                )
             }
         }
 
-        if (sections.isNotEmpty()) {
-            val selectedInfo = sections.firstOrNull { it.id == selectedSection }
-            item(key = "selected_header") {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(appString(R.string.selected), style = MaterialTheme.typography.titleMedium)
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        selectedInfo?.let { info ->
-                            IconButton(
-                                onClick = { onOpenGuide(guideTopicIdForSection(info.id)) }
-                            ) {
-                                Icon(Icons.Default.Info, contentDescription = appString(R.string.about_component, info.title))
-                            }
-                            AssistChip(
-                                onClick = {},
-                                enabled = false,
-                                modifier = Modifier.widthIn(max = 150.dp),
-                                label = { Text(info.source, maxLines = 1) },
-                                leadingIcon = {
-                                    Icon(Icons.Default.Dns, contentDescription = null, modifier = Modifier.size(18.dp))
-                                }
-                            )
-                        }
-                    }
-                }
+        if (showQualcomm && currentQualcommSource != null) {
+            item(key = "qualcomm_section") {
+                DriverCardDynamic(
+                    title = appString(R.string.qualcomm_driver),
+                    description = appString(R.string.qualcomm_driver_desc),
+                    icon = Icons.Default.Memory,
+                    sources = qualcommSources,
+                    currentSourceId = qualcommSourceId,
+                    onSourceChange = onQualcommSourceChange,
+                    releases = qualcommReleases,
+                    selectionKey = "qualcomm:$qualcommSourceId",
+                    onDownload = onDownloadAsset
+                )
             }
+        }
 
-            item(key = "selected_$selectedSection") {
-                Crossfade(targetState = selectedSection, label = "download-section") { sectionId ->
-                    when {
-                        sectionId == "turnip" -> {
-                            TurnipDriverSection(
-                                adrenoSeries = deviceInfo?.adrenoSeries,
-                                sources = turnipSources,
-                                currentSourceId = turnipSourceId,
-                                onSourceChange = onTurnipSourceChange,
-                                releases = turnipReleases,
-                                selectionKey = "turnip:$turnipSourceId",
-                                onDownload = onDownloadAsset
-                            )
-                        }
+        // ── 组件专区：每个组件类型一个独立区块，直接展示来源+版本+下载 ──
+        item(key = "component_region_header") {
+            RegionHeader(
+                title = appString(R.string.component_region),
+                icon = Icons.Default.Extension,
+                remote = null
+            )
+        }
 
-                        sectionId == "qualcomm" && currentQualcommSource != null -> {
-                            DriverCardDynamic(
-                                title = appString(R.string.qualcomm_driver),
-                                description = appString(R.string.qualcomm_driver_desc),
-                                icon = Icons.Default.Memory,
-                                sources = qualcommSources,
-                                currentSourceId = qualcommSourceId,
-                                onSourceChange = onQualcommSourceChange,
-                                releases = qualcommReleases,
-                                selectionKey = "qualcomm:$qualcommSourceId",
-                                onDownload = onDownloadAsset
-                            )
-                        }
-
-                        sectionId.startsWith("component:") -> {
-                            val type = sectionId.substringAfter("component:")
-                            val currentSource = currentComponentSource(type)
-                            if (currentSource != null) {
-                                val sourcesForType = componentSources.filter { source ->
-                                    componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
-                                }
-                                ComponentSection(
-                                    type = type,
-                                    sources = sourcesForType,
-                                    currentSource = currentSource,
-                                    components = componentCatalogs[currentSource.id]?.get(type).orEmpty(),
-                                    selectionKey = "component:$type:${currentSource.id}",
-                                    onSourceChange = { sourceId ->
-                                        componentSourceSelections[type] = sourceId
-                                        SettingsManager.setComponentSource(type, sourceId)
-                                    },
-                                    onDownload = onDownloadComponent
-                                )
-                            }
-                        }
-                    }
+        componentOrder.forEach { type ->
+            val source = currentComponentSource(type)
+            val list = source?.let { componentCatalogs[it.id]?.get(type).orEmpty() }.orEmpty()
+            if (list.isNotEmpty() && source != null) {
+                item(key = "component:$type") {
+                    ComponentSection(
+                        type = type,
+                        sources = componentSources.filter { s ->
+                            componentCatalogs[s.id]?.get(type).orEmpty().isNotEmpty()
+                        },
+                        currentSource = source,
+                        components = list,
+                        selectionKey = "component:$type:${source.id}",
+                        onSourceChange = { sourceId ->
+                            componentSourceSelections[type] = sourceId
+                            SettingsManager.setComponentSource(type, sourceId)
+                        },
+                        onDownload = onDownloadComponent
+                    )
                 }
             }
         }
@@ -2198,6 +2083,48 @@ fun DriverHubScreen(
         }
     }
 }
+
+/** 专区大标题（驱动专区 / 组件专区） */
+@Composable
+private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                icon,
+                contentDescription = null,
+                modifier = Modifier.size(26.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.width(10.dp))
+            Text(
+                title,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
+        if (remote != null) {
+            SuggestionChip(
+                onClick = {},
+                label = {
+                    Text(if (remote) appString(R.string.live_sources) else appString(R.string.fallback_sources))
+                },
+                icon = {
+                    Icon(
+                        if (remote) Icons.Default.CloudDone else Icons.Default.CloudOff,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
+            )
+        }
+    }
+}
+
+@Composable
 
 @Composable
 private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {

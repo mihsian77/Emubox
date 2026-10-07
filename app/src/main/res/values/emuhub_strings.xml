@@ -111,6 +111,8 @@
     <string name="live_sources">Live sources</string>
     <string name="fallback_sources">Fallback sources</string>
     <string name="fetching_latest">Fetching the latest drivers, components and source catalog…</string>
+    <string name="driver_region">Drivers</string>
+    <string name="component_region">Components</string>
     <string name="selected">Selected</string>
     <string name="about_component">About %1$s</string>
     <string name="your_device">Your device</string>
