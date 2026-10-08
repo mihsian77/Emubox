@@ -31,7 +31,8 @@ object DownloadsManager {
         val url: String = "",
         val outputUri: String = "",
         val usesMediaStore: Boolean = false,
-        val speedBytesPerSec: Long = 0L
+        val speedBytesPerSec: Long = 0L,
+        val subPath: String = ""
     ) {
         fun toJson(): JSONObject = JSONObject().apply {
             put("fileName", fileName)
@@ -43,6 +44,7 @@ object DownloadsManager {
             put("outputUri", outputUri)
             put("usesMediaStore", usesMediaStore)
             put("speedBytesPerSec", speedBytesPerSec)
+            put("subPath", subPath)
         }
 
         companion object {
@@ -71,7 +73,8 @@ object DownloadsManager {
                     url = url,
                     outputUri = outputUri,
                     usesMediaStore = json.optBoolean("usesMediaStore", false),
-                    speedBytesPerSec = 0L
+                    speedBytesPerSec = 0L,
+                    subPath = json.optString("subPath", "")
                 )
             }
         }
@@ -184,7 +187,8 @@ object DownloadsManager {
         url: String,
         outputUri: String,
         usesMediaStore: Boolean,
-        totalBytes: Long = 0L
+        totalBytes: Long = 0L,
+        subPath: String = ""
     ) {
         _activeDownloads[fileName] = ActiveDownload(
             fileName = fileName,
@@ -194,7 +198,8 @@ object DownloadsManager {
             status = DownloadStatus.CONNECTING,
             url = url,
             outputUri = outputUri,
-            usesMediaStore = usesMediaStore
+            usesMediaStore = usesMediaStore,
+            subPath = subPath
         )
         saveActiveDownloads(force = true)
     }
