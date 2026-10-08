@@ -3471,6 +3471,7 @@ private fun DriverDetectionList(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val extractFailedMsg = appString(R.string.extract_failed)
     var detectionResults by remember { mutableStateOf<Map<String, VulkanInfoPayload>>(emptyMap()) }
     var detectingId by remember { mutableStateOf<String?>(null) }
 
@@ -3536,7 +3537,6 @@ private fun DriverDetectionList(
                             Button(
                                 onClick = {
                                     detectingId = download.id
-                                    val extractFailedMsg = context.getString(R.string.extract_failed)
                                     scope.launch(Dispatchers.IO) {
                                         try {
                                             val uri = Uri.parse(download.filePath)
