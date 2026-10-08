@@ -5,6 +5,9 @@
 #include <jni.h>
 #include <android/log.h>
 #include <dlfcn.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <poll.h>
 #include <vulkan/vulkan.h>
 #include <string>
 #include <vector>
@@ -389,82 +392,11 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     return j.str();
 }
 
-// ── 主采集流程 ──────────────────────────────────────────────────────────────
-static std::string collectVulkanInfo(const char* driverPath) {
-    VulkanDispatch vk;
-    std::string libName = (driverPath && driverPath[0]) ? driverPath : "libvulkan.so";
-
-    // dlopen 加载驱动库（RTLD_NOW | RTLD_LOCAL）
-    vk.libHandle = dlopen(libName.c_str(), RTLD_NOW | RTLD_LOCAL);
-    if (!vk.libHandle) {
-        std::string err = dlerror() ? dlerror() : "unknown";
-        LOGE("dlopen(%s) failed: %s", libName.c_str(), err.c_str());
-        return "{\"success\":false,\"errorCode\":\"DL_OPEN_FAILED\",\"errorMessage\":\""
-               + jsonEscape(err) + "\",\"deviceCount\":0,\"devices\":[]}";
+// ── 通用采集主体（解析 instance 级函数后枚举设备）──────────────────────────
+static std::string collectDevices(VulkanDispatch& vk, VkInstance instance) {
+    if (!vk.vkEnumeratePhysicalDevices) {
+        return "{\"success\":false,\"errorCode\":\"ENUM_DEVICES_MISSING\",\"errorMessage\":\"vkEnumeratePhysicalDevices not resolved\",\"deviceCount\":0,\"devices\":[]}";
     }
-
-    // 获取 vkGetInstanceProcAddr（这是 Vulkan loader 的入口，所有函数通过它解析）
-    auto getInstanceProcAddr = reinterpret_cast<GetInstanceProcAddrFn>(
-        dlsym(vk.libHandle, "vkGetInstanceProcAddr"));
-    if (!getInstanceProcAddr) {
-        dlclose(vk.libHandle);
-        return "{\"success\":false,\"errorCode\":\"NO_VK_ENTRY\",\"errorMessage\":\"vkGetInstanceProcAddr not found\",\"deviceCount\":0,\"devices\":[]}";
-    }
-
-    // 通过 vkGetInstanceProcAddr 解析全局函数（传 VK_NULL_HANDLE）
-    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(
-        getInstanceProcAddr(VK_NULL_HANDLE, "vkCreateInstance"));
-    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(
-        getInstanceProcAddr(VK_NULL_HANDLE, "vkDestroyInstance"));
-
-    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
-        dlclose(vk.libHandle);
-        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\"vkCreateInstance/vkDestroyInstance not resolved\",\"deviceCount\":0,\"devices\":[]}";
-    }
-
-    // 创建 Vulkan instance，启用 VK_KHR_get_physical_device_properties2 以获取 driverName
-    const char* enabledExtensions[] = { VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME };
-    VkApplicationInfo appInfo{};
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = "EmuHub-CN";
-    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "EmuHubVulkanCollector";
-    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_1;
-
-    VkInstanceCreateInfo createInfo{};
-    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    createInfo.pApplicationInfo = &appInfo;
-    createInfo.enabledExtensionCount = 1;
-    createInfo.ppEnabledExtensionNames = enabledExtensions;
-
-    VkInstance instance = VK_NULL_HANDLE;
-    VkResult result = vk.vkCreateInstance(&createInfo, nullptr, &instance);
-    if (result != VK_SUCCESS) {
-        dlclose(vk.libHandle);
-        char errMsg[64];
-        snprintf(errMsg, sizeof(errMsg), "vkCreateInstance failed: %d", result);
-        return std::string("{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\"")
-               + errMsg + "\",\"deviceCount\":0,\"devices\":[]}";
-    }
-
-    // 解析 instance 级函数
-    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
-        getInstanceProcAddr(instance, "vkEnumeratePhysicalDevices"));
-    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
-        getInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties"));
-    vk.vkGetPhysicalDeviceFeatures = reinterpret_cast<PFN_GetPhysicalDeviceFeatures>(
-        getInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures"));
-    vk.vkEnumerateDeviceExtensionProperties = reinterpret_cast<PFN_EnumerateDeviceExtensionProperties>(
-        getInstanceProcAddr(instance, "vkEnumerateDeviceExtensionProperties"));
-    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
-        getInstanceProcAddr(instance, "vkGetPhysicalDeviceMemoryProperties"));
-    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
-        getInstanceProcAddr(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
-    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
-        getInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties2"));
-
-    // 枚举物理设备
     uint32_t deviceCount = 0;
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
 
@@ -483,33 +415,225 @@ static std::string collectVulkanInfo(const char* driverPath) {
     }
 
     out << "]}";
+    return out.str();
+}
 
-    // 清理
+static VkInstance createVulkanInstance(PFN_CreateInstance createInstanceFn) {
+    const char* enabledExtensions[] = { VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME };
+    VkApplicationInfo appInfo{};
+    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    appInfo.pApplicationName = "EmuHub-CN";
+    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+    appInfo.pEngineName = "EmuHubVulkanCollector";
+    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+    appInfo.apiVersion = VK_API_VERSION_1_1;
+
+    VkInstanceCreateInfo createInfo{};
+    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    createInfo.pApplicationInfo = &appInfo;
+    createInfo.enabledExtensionCount = 1;
+    createInfo.ppEnabledExtensionNames = enabledExtensions;
+
+    VkInstance instance = VK_NULL_HANDLE;
+    VkResult result = createInstanceFn(&createInfo, nullptr, &instance);
+    if (result != VK_SUCCESS) {
+        char errMsg[64];
+        snprintf(errMsg, sizeof(errMsg), "vkCreateInstance failed: %d", result);
+        LOGE("%s", errMsg);
+        return VK_NULL_HANDLE;
+    }
+    return instance;
+}
+
+// ── 系统 Vulkan 采集（直接链接 libvulkan.so，用 loader 全局函数）───────────
+// Android 的 libvulkan.so 一定导出 vkCreateInstance/vkGetInstanceProcAddr。
+// 之前用 dlopen+dlsym 间接解析，部分 ROM 上 vkGetInstanceProcAddr 对
+// VK_NULL_HANDLE+"vkCreateInstance" 返回 null，导致采集失败，故改为直连。
+static std::string collectWithSystemVulkan() {
+    VulkanDispatch vk;
+
+    VkInstance instance = createVulkanInstance(vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\"vkCreateInstance failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    // 通过全局 vkGetInstanceProcAddr 解析 instance 级函数
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+        vkGetInstanceProcAddr(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceFeatures = reinterpret_cast<PFN_GetPhysicalDeviceFeatures>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures"));
+    vk.vkEnumerateDeviceExtensionProperties = reinterpret_cast<PFN_EnumerateDeviceExtensionProperties>(
+        vkGetInstanceProcAddr(instance, "vkEnumerateDeviceExtensionProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties2"));
+
+    std::string json = collectDevices(vk, instance);
+    vkDestroyInstance(instance, nullptr);
+    return json;
+}
+
+// ── 自定义驱动采集（dlopen 驱动 .so，turnip/panvk 导出 vkGetInstanceProcAddr）
+// 只在 fork 子进程中调用（见 JNI 入口），驱动崩溃不会带崩 App。
+static std::string collectWithDriver(const char* driverPath) {
+    VulkanDispatch vk;
+    vk.libHandle = dlopen(driverPath, RTLD_NOW | RTLD_LOCAL);
+    if (!vk.libHandle) {
+        std::string err = dlerror() ? dlerror() : "unknown";
+        LOGE("dlopen(%s) failed: %s", driverPath, err.c_str());
+        return "{\"success\":false,\"errorCode\":\"DL_OPEN_FAILED\",\"errorMessage\":\""
+               + jsonEscape(err) + "\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    auto getInstanceProcAddr = reinterpret_cast<GetInstanceProcAddrFn>(
+        dlsym(vk.libHandle, "vkGetInstanceProcAddr"));
+    if (!getInstanceProcAddr) {
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"NO_VK_ENTRY\",\"errorMessage\":\"vkGetInstanceProcAddr not found in driver\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(
+        getInstanceProcAddr(VK_NULL_HANDLE, "vkCreateInstance"));
+    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(
+        getInstanceProcAddr(VK_NULL_HANDLE, "vkDestroyInstance"));
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\"driver lacks vkCreateInstance/vkDestroyInstance\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\"driver vkCreateInstance failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+        getInstanceProcAddr(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceFeatures = reinterpret_cast<PFN_GetPhysicalDeviceFeatures>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures"));
+    vk.vkEnumerateDeviceExtensionProperties = reinterpret_cast<PFN_EnumerateDeviceExtensionProperties>(
+        getInstanceProcAddr(instance, "vkEnumerateDeviceExtensionProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties2"));
+
+    std::string json = collectDevices(vk, instance);
     vk.vkDestroyInstance(instance, nullptr);
     dlclose(vk.libHandle);
+    return json;
+}
 
-    return out.str();
+// ── fork 子进程采集驱动：崩溃只死子进程，父进程安全返回错误 JSON ─────────
+static std::string collectDriverIsolated(const char* driverPath) {
+    int pipefd[2];
+    if (pipe(pipefd) != 0) {
+        return "{\"success\":false,\"errorCode\":\"PIPE_FAILED\",\"errorMessage\":\"pipe() failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    pid_t pid = fork();
+    if (pid < 0) {
+        close(pipefd[0]);
+        close(pipefd[1]);
+        return "{\"success\":false,\"errorCode\":\"FORK_FAILED\",\"errorMessage\":\"fork() failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    if (pid == 0) {
+        // 子进程：执行采集，结果写入管道后退出。崩溃（SIGSEGV 等）只终止子进程。
+        close(pipefd[0]);
+        std::string json;
+        try {
+            json = collectWithDriver(driverPath);
+        } catch (const std::exception& e) {
+            json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
+                   + jsonEscape(e.what()) + "\",\"deviceCount\":0,\"devices\":[]}";
+        } catch (...) {
+            json = "{\"success\":false,\"errorCode\":\"UNKNOWN_NATIVE_ERROR\",\"errorMessage\":\"unknown native exception\",\"deviceCount\":0,\"devices\":[]}";
+        }
+        const char* data = json.c_str();
+        size_t len = json.size();
+        size_t written = 0;
+        while (written < len) {
+            ssize_t n = write(pipefd[1], data + written, len - written);
+            if (n <= 0) break;
+            written += static_cast<size_t>(n);
+        }
+        close(pipefd[1]);
+        _exit(0);
+    }
+
+    // 父进程：带超时读管道
+    close(pipefd[1]);
+    std::string result;
+    char buf[8192];
+    struct pollfd pfd;
+    pfd.fd = pipefd[0];
+    pfd.events = POLLIN;
+    const int timeoutMs = 15000;
+
+    while (true) {
+        int r = poll(&pfd, 1, timeoutMs);
+        if (r <= 0) break;  // 超时或错误
+        ssize_t n = read(pipefd[0], buf, sizeof(buf));
+        if (n <= 0) break;  // EOF（子进程已退出/崩溃）或错误
+        result.append(buf, static_cast<size_t>(n));
+        // 子进程可能已写完，检查是否可回收
+        int status = 0;
+        pid_t w = waitpid(pid, &status, WNOHANG);
+        if (w == pid) break;
+    }
+
+    // 回收子进程（若仍存活则杀掉，防止僵尸）
+    int status = 0;
+    pid_t w = waitpid(pid, &status, WNOHANG);
+    if (w == 0) {
+        kill(pid, SIGKILL);
+        waitpid(pid, &status, 0);
+    }
+    close(pipefd[0]);
+
+    if (result.empty()) {
+        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"驱动进程崩溃或超时（驱动可能不兼容当前系统）\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    // 校验 JSON 完整性：必须以 { 开头、} 结尾
+    if (result.front() != '{' || result.back() != '}') {
+        return "{\"success\":false,\"errorCode\":\"PARTIAL_JSON\",\"errorMessage\":\"驱动进程返回不完整数据\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    return result;
 }
 
 // ── JNI 入口 ────────────────────────────────────────────────────────────────
 // Kotlin: com.emuhub.cn.NativeVulkanBridge.collectVulkanInfo(String driverPath)
-// driverPath 为 null/空时使用系统 libvulkan.so；M2 将传入下载的驱动 .so 路径。
+// driverPath 为 null/空时采集系统 Vulkan（直连 loader，主进程安全）；
+// 传入驱动 .so 路径时 fork 子进程采集（防 native 崩溃带崩 App）。
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_emuhub_cn_NativeVulkanBridge_collectVulkanInfo(JNIEnv* env, jobject /* thiz */, jstring driverPath) {
     const char* path = nullptr;
-    std::string pathStorage;
     if (driverPath) {
         path = env->GetStringUTFChars(driverPath, nullptr);
     }
 
     std::string json;
-    try {
-        json = collectVulkanInfo(path);
-    } catch (const std::exception& e) {
-        json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
-               + jsonEscape(e.what()) + "\",\"deviceCount\":0,\"devices\":[]}";
-    } catch (...) {
-        json = "{\"success\":false,\"errorCode\":\"UNKNOWN_NATIVE_ERROR\",\"errorMessage\":\"unknown native exception\",\"deviceCount\":0,\"devices\":[]}";
+    if (path == nullptr || path[0] == '\0') {
+        try {
+            json = collectWithSystemVulkan();
+        } catch (const std::exception& e) {
+            json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
+                   + jsonEscape(e.what()) + "\",\"deviceCount\":0,\"devices\":[]}";
+        } catch (...) {
+            json = "{\"success\":false,\"errorCode\":\"UNKNOWN_NATIVE_ERROR\",\"errorMessage\":\"unknown native exception\",\"deviceCount\":0,\"devices\":[]}";
+        }
+    } else {
+        json = collectDriverIsolated(path);
     }
 
     if (driverPath && path) {
