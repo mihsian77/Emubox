@@ -684,33 +684,43 @@ static bool loadBenchmarkDispatch(VkInstance instance, VkDevice device, Benchmar
         reinterpret_cast<void*>(vkGetInstanceProcAddr));
     if (!getInst) return false;
 
-#define LOAD_INST(name) bk.name = reinterpret_cast<PFN_##name>(getInst(instance, #name))
-    LOAD_INST(vkCreateDevice);
-    LOAD_INST(vkDestroyDevice);
-    LOAD_INST(vkGetDeviceQueue);
-    LOAD_INST(vkCreateCommandPool);
-    LOAD_INST(vkDestroyCommandPool);
-    LOAD_INST(vkAllocateCommandBuffers);
-    LOAD_INST(vkFreeCommandBuffers);
-    LOAD_INST(vkBeginCommandBuffer);
-    LOAD_INST(vkEndCommandBuffer);
-    LOAD_INST(vkResetCommandBuffer);
-    LOAD_INST(vkCmdFillBuffer);
-    LOAD_INST(vkCmdCopyBuffer);
-    LOAD_INST(vkQueueSubmit);
-    LOAD_INST(vkQueueWaitIdle);
-    LOAD_INST(vkCreateBuffer);
-    LOAD_INST(vkDestroyBuffer);
-    LOAD_INST(vkGetBufferMemoryRequirements);
-    LOAD_INST(vkAllocateMemory);
-    LOAD_INST(vkFreeMemory);
-    LOAD_INST(vkBindBufferMemory);
-    LOAD_INST(vkCreateQueryPool);
-    LOAD_INST(vkDestroyQueryPool);
-    LOAD_INST(vkCmdResetQueryPool);
-    LOAD_INST(vkCmdWriteTimestamp);
-    LOAD_INST(vkGetQueryPoolResults);
-#undef LOAD_INST
+    // instance 级函数：vkCreateDevice 通过 instance proc addr 获取（instance 必须有效）
+    bk.vkCreateDevice = reinterpret_cast<PFN_vkCreateDevice>(
+        getInst(instance, "vkCreateDevice"));
+    if (!bk.vkCreateDevice) return false;
+
+    // device 级函数：必须通过 vkGetDeviceProcAddr 获取，
+    // vkGetInstanceProcAddr 对 device 级函数不保证返回（Android loader 会返回 NULL）。
+    auto getDev = reinterpret_cast<PFN_vkGetDeviceProcAddr>(
+        getInst(instance, "vkGetDeviceProcAddr"));
+    if (!getDev) return false;
+
+#define LOAD_DEV(name) bk.name = reinterpret_cast<PFN_##name>(getDev(device, #name))
+    LOAD_DEV(vkDestroyDevice);
+    LOAD_DEV(vkGetDeviceQueue);
+    LOAD_DEV(vkCreateCommandPool);
+    LOAD_DEV(vkDestroyCommandPool);
+    LOAD_DEV(vkAllocateCommandBuffers);
+    LOAD_DEV(vkFreeCommandBuffers);
+    LOAD_DEV(vkBeginCommandBuffer);
+    LOAD_DEV(vkEndCommandBuffer);
+    LOAD_DEV(vkResetCommandBuffer);
+    LOAD_DEV(vkCmdFillBuffer);
+    LOAD_DEV(vkCmdCopyBuffer);
+    LOAD_DEV(vkQueueSubmit);
+    LOAD_DEV(vkQueueWaitIdle);
+    LOAD_DEV(vkCreateBuffer);
+    LOAD_DEV(vkDestroyBuffer);
+    LOAD_DEV(vkGetBufferMemoryRequirements);
+    LOAD_DEV(vkAllocateMemory);
+    LOAD_DEV(vkFreeMemory);
+    LOAD_DEV(vkBindBufferMemory);
+    LOAD_DEV(vkCreateQueryPool);
+    LOAD_DEV(vkDestroyQueryPool);
+    LOAD_DEV(vkCmdResetQueryPool);
+    LOAD_DEV(vkCmdWriteTimestamp);
+    LOAD_DEV(vkGetQueryPoolResults);
+#undef LOAD_DEV
 
     return bk.vkCreateDevice && bk.vkDestroyDevice && bk.vkGetDeviceQueue &&
            bk.vkCreateCommandPool && bk.vkAllocateCommandBuffers &&
@@ -749,7 +759,7 @@ static int findDeviceLocalMemoryType(const VulkanDispatch& vk, VkPhysicalDevice 
     return -1;
 }
 
-static std::string runBenchmark(const VulkanDispatch& vk, VkPhysicalDevice device) {
+static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice device) {
     BenchmarkDispatch bk{};
     VkDevice logicalDevice = VK_NULL_HANDLE;
     VkQueue queue = VK_NULL_HANDLE;
@@ -760,14 +770,15 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkPhysicalDevice devic
     VkQueryPool queryPool = VK_NULL_HANDLE;
 
     auto cleanup = [&]() {
-        if (cmdBuf && cmdPool) bk.vkFreeCommandBuffers(logicalDevice, cmdPool, 1, &cmdBuf);
-        if (cmdPool) bk.vkDestroyCommandPool(logicalDevice, cmdPool, nullptr);
-        if (bufA) bk.vkDestroyBuffer(logicalDevice, bufA, nullptr);
-        if (bufB) bk.vkDestroyBuffer(logicalDevice, bufB, nullptr);
-        if (memA) bk.vkFreeMemory(logicalDevice, memA, nullptr);
-        if (memB) bk.vkFreeMemory(logicalDevice, memB, nullptr);
-        if (queryPool) bk.vkDestroyQueryPool(logicalDevice, queryPool, nullptr);
-        if (logicalDevice) bk.vkDestroyDevice(logicalDevice, nullptr);
+        // 函数指针可能未加载成功（loadBenchmarkDispatch 失败时），必须判空防崩溃
+        if (bk.vkFreeCommandBuffers && cmdBuf && cmdPool) bk.vkFreeCommandBuffers(logicalDevice, cmdPool, 1, &cmdBuf);
+        if (bk.vkDestroyCommandPool && cmdPool) bk.vkDestroyCommandPool(logicalDevice, cmdPool, nullptr);
+        if (bk.vkDestroyBuffer && bufA) bk.vkDestroyBuffer(logicalDevice, bufA, nullptr);
+        if (bk.vkDestroyBuffer && bufB) bk.vkDestroyBuffer(logicalDevice, bufB, nullptr);
+        if (bk.vkFreeMemory && memA) bk.vkFreeMemory(logicalDevice, memA, nullptr);
+        if (bk.vkFreeMemory && memB) bk.vkFreeMemory(logicalDevice, memB, nullptr);
+        if (bk.vkDestroyQueryPool && queryPool) bk.vkDestroyQueryPool(logicalDevice, queryPool, nullptr);
+        if (bk.vkDestroyDevice && logicalDevice) bk.vkDestroyDevice(logicalDevice, nullptr);
     };
 
     auto fail = [&](const char* code, const char* msg) -> std::string {
@@ -807,7 +818,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkPhysicalDevice devic
         return fail("CREATE_DEVICE_FAILED", "创建逻辑设备失败");
     }
 
-    if (!loadBenchmarkDispatch(VK_NULL_HANDLE, logicalDevice, bk)) {
+    if (!loadBenchmarkDispatch(instance, logicalDevice, bk)) {
         return fail("LOAD_DISPATCH_FAILED", "加载 benchmark 函数指针失败");
     }
 
@@ -972,7 +983,7 @@ static std::string benchmarkSystemVulkan() {
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
-    std::string result = runBenchmark(vk, devices[0]);
+    std::string result = runBenchmark(vk, instance, devices[0]);
 
     vkDestroyInstance(instance, nullptr);
     return result;

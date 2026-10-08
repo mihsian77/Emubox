@@ -395,14 +395,53 @@ object Accelerator {
         }
 
     /**
-     * 自动选择延迟最低的节点并缓存。
+     * 自动选择最优节点并缓存。
+     * 综合评分 = 延迟 40% + 下载速度 60%，避免"直连延迟低但网速慢"被误选。
      * 返回选中的节点。
      */
     suspend fun autoSelectBest(): ProxyNode = withContext(Dispatchers.IO) {
-        val results = testAllLatencies()
-        val best = results.firstOrNull { it.second != null }?.first ?: DIRECT_NODE
+        val (latencyMap, speedMap) = testAllLatenciesAndSpeeds()
+        val best = selectBestNode(latencyMap, speedMap)
         cachedBestNode = best
         best
+    }
+
+    /** 缓存自动选择结果（设置页手动测试后调用） */
+    fun cacheBestNode(node: ProxyNode) {
+        cachedBestNode = node
+    }
+
+    /**
+     * 综合评分选择最优节点。
+     * 延迟分：0-100（2000ms+ 为 0，0ms 为 100）；速度分：0-100（10MB/s+ 为 100）。
+     * 未测速节点速度视为 0（不占优），综合分 = 延迟×0.4 + 速度×0.6。
+     */
+    fun selectBestNode(
+        latencyMap: Map<String, Long?>,
+        speedMap: Map<String, Long?>
+    ): ProxyNode {
+        var best: ProxyNode = DIRECT_NODE
+        var bestScore = -1.0
+        for (node in ALL_NODES) {
+            val latency = latencyMap[node.id] ?: continue
+            val score = compositeScore(latency, speedMap[node.id])
+            if (score > bestScore) {
+                bestScore = score
+                best = node
+            }
+        }
+        return best
+    }
+
+    /** 综合评分：延迟分 40% + 速度分 60% */
+    fun compositeScore(latencyMs: Long, speedBps: Long?): Double {
+        val latencyScore = (100.0 - latencyMs / 20.0).coerceIn(0.0, 100.0)
+        val speedScore = if (speedBps == null || speedBps <= 0) {
+            0.0 // 未测速：速度不占优
+        } else {
+            (speedBps / (10.0 * 1024 * 1024) * 100.0).coerceIn(0.0, 100.0)
+        }
+        return latencyScore * 0.4 + speedScore * 0.6
     }
 
     /** 格式化延迟显示 */

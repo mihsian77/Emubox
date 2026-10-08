@@ -45,11 +45,6 @@
     <string name="app_language">App language</string>
     <string name="language_system">System default</string>
     <string name="language_english">English</string>
-    <string name="language_pt_pt">Português (Portugal)</string>
-    <string name="language_pt_br">Português (Brasil)</string>
-    <string name="language_spanish">Español</string>
-    <string name="language_french">Français</string>
-    <string name="language_german">Deutsch</string>
     <string name="language_italian">Italiano</string>
     <string name="language_dutch">Nederlands</string>
     <string name="language_polish">Polski</string>
@@ -422,7 +417,7 @@
     <string name="no_components_hint">Component sources are loading. Please wait or pull down to refresh.</string>
 
     <!-- 驱动检测错误友好提示 -->
-    <string name="detection_error_adrenotools">This driver may be in adrenotools/emulator-specific format and cannot be detected inside the app. Please load and verify it inside the emulator (e.g. Eden).</string>
+    <string name="detection_error_adrenotools">Detection failed: the driver may depend on the emulator runtime (e.g. glibc), which the app process cannot provide. The driver is not necessarily incompatible - please verify it inside the emulator (Winlator/Eden).</string>
     <string name="detection_error_extract">Driver package extraction failed or no .so found</string>
     <string name="detection_error_exception">Detection exception: %1$s</string>
 </resources>
