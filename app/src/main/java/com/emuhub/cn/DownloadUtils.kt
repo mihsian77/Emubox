@@ -483,7 +483,7 @@ private suspend fun transferExistingDownload(
 
             publishMediaStoreFile(context, outputUri, state.usesMediaStore)
             withContext(Dispatchers.Main) {
-                DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, subPath)
+                DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, state.subPath)
                 Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
             }
             return@transfer true
@@ -568,7 +568,8 @@ private suspend fun downloadFileWithProgress(
             fileName = uniqueFileName,
             url = url,
             outputUri = outputUri.toString(),
-            usesMediaStore = usesMediaStore
+            usesMediaStore = usesMediaStore,
+            subPath = subPath
         )
         Toast.makeText(context, "Download started: $uniqueFileName", Toast.LENGTH_SHORT).show()
     }
@@ -604,7 +605,8 @@ private suspend fun downloadFileWithProgress(
                         fileName = uniqueFileName,
                         url = directUrl,
                         outputUri = newOutputUri.toString(),
-                        usesMediaStore = usesMediaStore
+                        usesMediaStore = usesMediaStore,
+                        subPath = subPath
                     )
                 }
                 val directState = withContext(Dispatchers.Main) {
