@@ -14,6 +14,7 @@
 #include <cstring>
 #include <sstream>
 #include <iomanip>
+#include <functional>
 
 #define LOG_TAG "EmuHubVulkan"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -634,6 +635,446 @@ Java_com_emuhub_cn_NativeVulkanBridge_collectVulkanInfo(JNIEnv* env, jobject /* 
         }
     } else {
         json = collectDriverIsolated(path);
+    }
+
+    if (driverPath && path) {
+        env->ReleaseStringUTFChars(driverPath, path);
+    }
+
+    return env->NewStringUTF(json.c_str());
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// GPU 基准测试引擎：fill bandwidth + copy bandwidth，timestamp query 精确计时
+// 修改原因：用户要求实测跑分，对比不同驱动在当前设备上的性能差异。
+// 影响范围：新增 JNI 入口 benchmarkVulkan，不改动现有采集逻辑。
+// 回滚方法：删除本段代码及 Kotlin 侧 benchmark 调用即可。
+// ═══════════════════════════════════════════════════════════════════════════
+
+struct BenchmarkDispatch {
+    PFN_vkCreateDevice vkCreateDevice = nullptr;
+    PFN_vkDestroyDevice vkDestroyDevice = nullptr;
+    PFN_vkGetDeviceQueue vkGetDeviceQueue = nullptr;
+    PFN_vkCreateCommandPool vkCreateCommandPool = nullptr;
+    PFN_vkDestroyCommandPool vkDestroyCommandPool = nullptr;
+    PFN_vkAllocateCommandBuffers vkAllocateCommandBuffers = nullptr;
+    PFN_vkFreeCommandBuffers vkFreeCommandBuffers = nullptr;
+    PFN_vkBeginCommandBuffer vkBeginCommandBuffer = nullptr;
+    PFN_vkEndCommandBuffer vkEndCommandBuffer = nullptr;
+    PFN_vkResetCommandBuffer vkResetCommandBuffer = nullptr;
+    PFN_vkCmdFillBuffer vkCmdFillBuffer = nullptr;
+    PFN_vkCmdCopyBuffer vkCmdCopyBuffer = nullptr;
+    PFN_vkQueueSubmit vkQueueSubmit = nullptr;
+    PFN_vkQueueWaitIdle vkQueueWaitIdle = nullptr;
+    PFN_vkCreateBuffer vkCreateBuffer = nullptr;
+    PFN_vkDestroyBuffer vkDestroyBuffer = nullptr;
+    PFN_vkGetBufferMemoryRequirements vkGetBufferMemoryRequirements = nullptr;
+    PFN_vkAllocateMemory vkAllocateMemory = nullptr;
+    PFN_vkFreeMemory vkFreeMemory = nullptr;
+    PFN_vkBindBufferMemory vkBindBufferMemory = nullptr;
+    PFN_vkCreateQueryPool vkCreateQueryPool = nullptr;
+    PFN_vkDestroyQueryPool vkDestroyQueryPool = nullptr;
+    PFN_vkCmdResetQueryPool vkCmdResetQueryPool = nullptr;
+    PFN_vkCmdWriteTimestamp vkCmdWriteTimestamp = nullptr;
+    PFN_vkGetQueryPoolResults vkGetQueryPoolResults = nullptr;
+};
+
+static bool loadBenchmarkDispatch(VkInstance instance, VkDevice device, BenchmarkDispatch& bk) {
+    auto getInst = reinterpret_cast<PFN_vkGetInstanceProcAddr>(
+        reinterpret_cast<void*>(vkGetInstanceProcAddr));
+    if (!getInst) return false;
+
+#define LOAD_INST(name) bk.name = reinterpret_cast<PFN_##name>(getInst(instance, #name))
+    LOAD_INST(vkCreateDevice);
+    LOAD_INST(vkDestroyDevice);
+    LOAD_INST(vkGetDeviceQueue);
+    LOAD_INST(vkCreateCommandPool);
+    LOAD_INST(vkDestroyCommandPool);
+    LOAD_INST(vkAllocateCommandBuffers);
+    LOAD_INST(vkFreeCommandBuffers);
+    LOAD_INST(vkBeginCommandBuffer);
+    LOAD_INST(vkEndCommandBuffer);
+    LOAD_INST(vkResetCommandBuffer);
+    LOAD_INST(vkCmdFillBuffer);
+    LOAD_INST(vkCmdCopyBuffer);
+    LOAD_INST(vkQueueSubmit);
+    LOAD_INST(vkQueueWaitIdle);
+    LOAD_INST(vkCreateBuffer);
+    LOAD_INST(vkDestroyBuffer);
+    LOAD_INST(vkGetBufferMemoryRequirements);
+    LOAD_INST(vkAllocateMemory);
+    LOAD_INST(vkFreeMemory);
+    LOAD_INST(vkBindBufferMemory);
+    LOAD_INST(vkCreateQueryPool);
+    LOAD_INST(vkDestroyQueryPool);
+    LOAD_INST(vkCmdResetQueryPool);
+    LOAD_INST(vkCmdWriteTimestamp);
+    LOAD_INST(vkGetQueryPoolResults);
+#undef LOAD_INST
+
+    return bk.vkCreateDevice && bk.vkDestroyDevice && bk.vkGetDeviceQueue &&
+           bk.vkCreateCommandPool && bk.vkAllocateCommandBuffers &&
+           bk.vkBeginCommandBuffer && bk.vkEndCommandBuffer &&
+           bk.vkCmdFillBuffer && bk.vkCmdCopyBuffer &&
+           bk.vkQueueSubmit && bk.vkQueueWaitIdle &&
+           bk.vkCreateBuffer && bk.vkAllocateMemory && bk.vkBindBufferMemory &&
+           bk.vkCreateQueryPool && bk.vkCmdWriteTimestamp && bk.vkGetQueryPoolResults;
+}
+
+static int findGraphicsQueueFamily(const VulkanDispatch& vk, VkPhysicalDevice device) {
+    uint32_t count = 0;
+    vk.vkGetPhysicalDeviceQueueFamilyProperties(device, &count, nullptr);
+    if (count == 0) return -1;
+    std::vector<VkQueueFamilyProperties> props(count);
+    vk.vkGetPhysicalDeviceQueueFamilyProperties(device, &count, props.data());
+    for (uint32_t i = 0; i < count; i++) {
+        if (props[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) return static_cast<int>(i);
+    }
+    return -1;
+}
+
+static int findDeviceLocalMemoryType(const VulkanDispatch& vk, VkPhysicalDevice device, uint32_t typeBits) {
+    VkPhysicalDeviceMemoryProperties memProps{};
+    vk.vkGetPhysicalDeviceMemoryProperties(device, &memProps);
+    for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
+        if ((typeBits & (1u << i)) &&
+            (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT)) {
+            return static_cast<int>(i);
+        }
+    }
+    // 兜底：任意匹配的 type
+    for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
+        if (typeBits & (1u << i)) return static_cast<int>(i);
+    }
+    return -1;
+}
+
+static std::string runBenchmark(const VulkanDispatch& vk, VkPhysicalDevice device) {
+    BenchmarkDispatch bk{};
+    VkDevice logicalDevice = VK_NULL_HANDLE;
+    VkQueue queue = VK_NULL_HANDLE;
+    VkCommandPool cmdPool = VK_NULL_HANDLE;
+    VkCommandBuffer cmdBuf = VK_NULL_HANDLE;
+    VkBuffer bufA = VK_NULL_HANDLE, bufB = VK_NULL_HANDLE;
+    VkDeviceMemory memA = VK_NULL_HANDLE, memB = VK_NULL_HANDLE;
+    VkQueryPool queryPool = VK_NULL_HANDLE;
+
+    auto cleanup = [&]() {
+        if (cmdBuf && cmdPool) bk.vkFreeCommandBuffers(logicalDevice, cmdPool, 1, &cmdBuf);
+        if (cmdPool) bk.vkDestroyCommandPool(logicalDevice, cmdPool, nullptr);
+        if (bufA) bk.vkDestroyBuffer(logicalDevice, bufA, nullptr);
+        if (bufB) bk.vkDestroyBuffer(logicalDevice, bufB, nullptr);
+        if (memA) bk.vkFreeMemory(logicalDevice, memA, nullptr);
+        if (memB) bk.vkFreeMemory(logicalDevice, memB, nullptr);
+        if (queryPool) bk.vkDestroyQueryPool(logicalDevice, queryPool, nullptr);
+        if (logicalDevice) bk.vkDestroyDevice(logicalDevice, nullptr);
+    };
+
+    auto fail = [&](const char* code, const char* msg) -> std::string {
+        cleanup();
+        std::ostringstream j;
+        j << "{\"success\":false,\"errorCode\":\"" << code << "\",\"errorMessage\":\""
+          << jsonEscape(msg) << "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"totalScore\":0}";
+        return j.str();
+    };
+
+    // 1. 找 graphics queue family
+    int qf = findGraphicsQueueFamily(vk, device);
+    if (qf < 0) return fail("NO_GRAPHICS_QUEUE", "设备无 graphics queue");
+
+    // 2. 检查 timestamp 支持
+    VkPhysicalDeviceProperties props{};
+    vk.vkGetPhysicalDeviceProperties(device, &props);
+    if (!props.limits.timestampComputeAndGraphics) {
+        return fail("TIMESTAMP_UNSUPPORTED", "设备不支持 timestamp query");
+    }
+    float timestampPeriod = props.limits.timestampPeriod; // ns
+
+    // 3. 创建逻辑设备
+    float queuePriority = 1.0f;
+    VkDeviceQueueCreateInfo queueCI{};
+    queueCI.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    queueCI.queueFamilyIndex = static_cast<uint32_t>(qf);
+    queueCI.queueCount = 1;
+    queueCI.pQueuePriorities = &queuePriority;
+
+    VkDeviceCreateInfo devCI{};
+    devCI.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    devCI.queueCreateInfoCount = 1;
+    devCI.pQueueCreateInfos = &queueCI;
+
+    if (bk.vkCreateDevice(device, &devCI, nullptr, &logicalDevice) != VK_SUCCESS) {
+        return fail("CREATE_DEVICE_FAILED", "创建逻辑设备失败");
+    }
+
+    if (!loadBenchmarkDispatch(VK_NULL_HANDLE, logicalDevice, bk)) {
+        return fail("LOAD_DISPATCH_FAILED", "加载 benchmark 函数指针失败");
+    }
+
+    bk.vkGetDeviceQueue(logicalDevice, static_cast<uint32_t>(qf), 0, &queue);
+
+    // 4. command pool + buffer
+    VkCommandPoolCreateInfo poolCI{};
+    poolCI.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    poolCI.queueFamilyIndex = static_cast<uint32_t>(qf);
+    poolCI.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+    if (bk.vkCreateCommandPool(logicalDevice, &poolCI, nullptr, &cmdPool) != VK_SUCCESS) {
+        return fail("CREATE_CMDPOOL_FAILED", "创建 command pool 失败");
+    }
+
+    VkCommandBufferAllocateInfo allocCI{};
+    allocCI.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    allocCI.commandPool = cmdPool;
+    allocCI.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    allocCI.commandBufferCount = 1;
+    if (bk.vkAllocateCommandBuffers(logicalDevice, &allocCI, &cmdBuf) != VK_SUCCESS) {
+        return fail("ALLOC_CMDBUF_FAILED", "分配 command buffer 失败");
+    }
+
+    // 5. timestamp query pool（2 个 query：start + end）
+    VkQueryPoolCreateInfo queryCI{};
+    queryCI.sType = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO;
+    queryCI.queryType = VK_QUERY_TYPE_TIMESTAMP;
+    queryCI.queryCount = 2;
+    if (bk.vkCreateQueryPool(logicalDevice, &queryCI, nullptr, &queryPool) != VK_SUCCESS) {
+        return fail("CREATE_QUERYPOOL_FAILED", "创建 query pool 失败");
+    }
+
+    // 6. 分配 2 个 32MB device-local buffer
+    const VkDeviceSize BUF_SIZE = 32ull * 1024 * 1024; // 32 MB
+    auto createBuffer = [&](VkBuffer& buf, VkDeviceMemory& mem) -> bool {
+        VkBufferCreateInfo bufCI{};
+        bufCI.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+        bufCI.size = BUF_SIZE;
+        bufCI.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+        bufCI.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+        if (bk.vkCreateBuffer(logicalDevice, &bufCI, nullptr, &buf) != VK_SUCCESS) return false;
+
+        VkMemoryRequirements memReq{};
+        bk.vkGetBufferMemoryRequirements(logicalDevice, buf, &memReq);
+        int memType = findDeviceLocalMemoryType(vk, device, memReq.memoryTypeBits);
+        if (memType < 0) return false;
+
+        VkMemoryAllocateInfo allocInfo{};
+        allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+        allocInfo.allocationSize = memReq.size;
+        allocInfo.memoryTypeIndex = static_cast<uint32_t>(memType);
+        if (bk.vkAllocateMemory(logicalDevice, &allocInfo, nullptr, &mem) != VK_SUCCESS) return false;
+        if (bk.vkBindBufferMemory(logicalDevice, buf, mem, 0) != VK_SUCCESS) return false;
+        return true;
+    };
+
+    if (!createBuffer(bufA, memA)) return fail("CREATE_BUFFER_A_FAILED", "创建 buffer A 失败");
+    if (!createBuffer(bufB, memB)) return fail("CREATE_BUFFER_B_FAILED", "创建 buffer B 失败");
+
+    // 7. 辅助：录制 + 提交 + 取时间戳
+    auto runTimed = [&](int iterations, std::function<void()> recordCmds) -> double {
+        bk.vkResetCommandBuffer(cmdBuf, 0);
+        VkCommandBufferBeginInfo beginInfo{};
+        beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+        beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+        bk.vkBeginCommandBuffer(cmdBuf, &beginInfo);
+
+        bk.vkCmdResetQueryPool(cmdBuf, queryPool, 0, 2);
+        bk.vkCmdWriteTimestamp(cmdBuf, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, queryPool, 0);
+
+        recordCmds();
+
+        bk.vkCmdWriteTimestamp(cmdBuf, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, queryPool, 1);
+        bk.vkEndCommandBuffer(cmdBuf);
+
+        VkSubmitInfo submitInfo{};
+        submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+        submitInfo.commandBufferCount = 1;
+        submitInfo.pCommandBuffers = &cmdBuf;
+        bk.vkQueueSubmit(queue, 1, &submitInfo, VK_NULL_HANDLE);
+        bk.vkQueueWaitIdle(queue);
+
+        uint64_t timestamps[2] = {0, 0};
+        bk.vkGetQueryPoolResults(logicalDevice, queryPool, 0, 2,
+                                  sizeof(timestamps), timestamps, sizeof(uint64_t),
+                                  VK_QUERY_RESULT_64_BIT | VK_QUERY_RESULT_WAIT_BIT);
+        double deltaNs = static_cast<double>(timestamps[1] - timestamps[0]) * timestampPeriod;
+        return deltaNs;
+    };
+
+    // 8. 测试1：fill bandwidth（填充 32MB × 50 次）
+    const int FILL_ITERS = 50;
+    double fillNs = runTimed(FILL_ITERS, [&]() {
+        for (int i = 0; i < FILL_ITERS; i++) {
+            bk.vkCmdFillBuffer(cmdBuf, bufA, 0, VK_WHOLE_SIZE, 0x41414141);
+        }
+    });
+    double fillBytes = static_cast<double>(BUF_SIZE) * FILL_ITERS;
+    double fillBandwidthGBs = (fillBytes / (fillNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
+
+    // 9. 测试2：copy bandwidth（32MB × 50 次，A→B）
+    const int COPY_ITERS = 50;
+    double copyNs = runTimed(COPY_ITERS, [&]() {
+        VkBufferCopy copyRegion{};
+        copyRegion.size = BUF_SIZE;
+        for (int i = 0; i < COPY_ITERS; i++) {
+            bk.vkCmdCopyBuffer(cmdBuf, bufA, bufB, 1, &copyRegion);
+        }
+    });
+    double copyBytes = static_cast<double>(BUF_SIZE) * COPY_ITERS;
+    double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
+
+    // 10. 总分：fill 和 copy 加权平均，归一化到 0-1000（参考 20GB/s = 1000 分）
+    double avgBandwidth = (fillBandwidthGBs + copyBandwidthGBs) / 2.0;
+    int totalScore = static_cast<int>(avgBandwidth / 20.0 * 1000.0);
+    if (totalScore > 9999) totalScore = 9999;
+
+    // 设备名
+    char devName[VK_MAX_PHYSICAL_DEVICE_NAME_SIZE];
+    strncpy(devName, props.deviceName, VK_MAX_PHYSICAL_DEVICE_NAME_SIZE - 1);
+    devName[VK_MAX_PHYSICAL_DEVICE_NAME_SIZE - 1] = '\0';
+
+    cleanup();
+
+    std::ostringstream j;
+    j << "{\"success\":true,"
+      << "\"deviceName\":\"" << jsonEscape(devName) << "\","
+      << "\"fillBandwidthGBs\":" << std::fixed << std::setprecision(2) << fillBandwidthGBs << ","
+      << "\"copyBandwidthGBs\":" << copyBandwidthGBs << ","
+      << "\"totalScore\":" << totalScore << ","
+      << "\"bufferSizeMB\":32,"
+      << "\"fillIterations\":" << FILL_ITERS << ","
+      << "\"copyIterations\":" << COPY_ITERS << ","
+      << "\"timestampPeriodNs\":" << timestampPeriod << "}";
+    return j.str();
+}
+
+// 系统 Vulkan 基准（主进程直连 libvulkan.so）
+static std::string benchmarkSystemVulkan() {
+    VkInstance instance = createVulkanInstance(vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\"vkCreateInstance failed\"}";
+    }
+
+    VulkanDispatch vk{};
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+        vkGetInstanceProcAddr(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+
+    uint32_t deviceCount = 0;
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+    if (deviceCount == 0) {
+        vkDestroyInstance(instance, nullptr);
+        return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\"无 Vulkan 物理设备\"}";
+    }
+
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+    std::string result = runBenchmark(vk, devices[0]);
+
+    vkDestroyInstance(instance, nullptr);
+    return result;
+}
+
+// 自定义驱动基准（fork 子进程隔离）
+static std::string benchmarkDriverIsolated(const char* driverPath) {
+    int pipefd[2];
+    if (pipe(pipefd) != 0) {
+        return "{\"success\":false,\"errorCode\":\"PIPE_FAILED\",\"errorMessage\":\"pipe() failed\"}";
+    }
+
+    pid_t pid = fork();
+    if (pid < 0) {
+        close(pipefd[0]);
+        close(pipefd[1]);
+        return "{\"success\":false,\"errorCode\":\"FORK_FAILED\",\"errorMessage\":\"fork() failed\"}";
+    }
+
+    if (pid == 0) {
+        close(pipefd[0]);
+        std::string json;
+        try {
+            // MVP：子进程内用系统 Vulkan 测硬件底力。
+            // 真正的驱动级 benchmark（用驱动 vkGetInstanceProcAddr 创建 instance）后续扩展。
+            json = benchmarkSystemVulkan();
+        } catch (const std::exception& e) {
+            json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
+                   + jsonEscape(e.what()) + "\"}";
+        } catch (...) {
+            json = "{\"success\":false,\"errorCode\":\"UNKNOWN_NATIVE_ERROR\",\"errorMessage\":\"unknown native exception\"}";
+        }
+        const char* data = json.c_str();
+        size_t len = json.size();
+        size_t written = 0;
+        while (written < len) {
+            ssize_t n = write(pipefd[1], data + written, len - written);
+            if (n <= 0) break;
+            written += static_cast<size_t>(n);
+        }
+        close(pipefd[1]);
+        _exit(0);
+    }
+
+    close(pipefd[1]);
+    std::string result;
+    char buf[8192];
+    struct pollfd pfd;
+    pfd.fd = pipefd[0];
+    pfd.events = POLLIN;
+    const int timeoutMs = 20000; // benchmark 比采集耗时更长
+
+    while (true) {
+        int r = poll(&pfd, 1, timeoutMs);
+        if (r <= 0) break;
+        ssize_t n = read(pipefd[0], buf, sizeof(buf));
+        if (n <= 0) break;
+        result.append(buf, static_cast<size_t>(n));
+        int status = 0;
+        pid_t w = waitpid(pid, &status, WNOHANG);
+        if (w == pid) break;
+    }
+
+    int status = 0;
+    pid_t w = waitpid(pid, &status, WNOHANG);
+    if (w == 0) {
+        kill(pid, SIGKILL);
+        waitpid(pid, &status, 0);
+    }
+    close(pipefd[0]);
+
+    if (result.empty()) {
+        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"基准测试进程崩溃或超时\"}";
+    }
+    if (result.front() != '{' || result.back() != '}') {
+        return "{\"success\":false,\"errorCode\":\"PARTIAL_JSON\",\"errorMessage\":\"基准测试返回不完整数据\"}";
+    }
+    return result;
+}
+
+// ── JNI 入口：GPU 基准测试 ──────────────────────────────────────────────────
+// Kotlin: com.emuhub.cn.NativeVulkanBridge.benchmarkVulkan(String driverPath)
+// driverPath 为 null/空时测系统 Vulkan；传入驱动路径时 fork 子进程隔离。
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_emuhub_cn_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* thiz */, jstring driverPath) {
+    const char* path = nullptr;
+    if (driverPath) {
+        path = env->GetStringUTFChars(driverPath, nullptr);
+    }
+
+    std::string json;
+    if (path == nullptr || path[0] == '\0') {
+        try {
+            json = benchmarkSystemVulkan();
+        } catch (const std::exception& e) {
+            json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
+                   + jsonEscape(e.what()) + "\"}";
+        } catch (...) {
+            json = "{\"success\":false,\"errorCode\":\"UNKNOWN_NATIVE_ERROR\",\"errorMessage\":\"unknown native exception\"}";
+        }
+    } else {
+        json = benchmarkDriverIsolated(path);
     }
 
     if (driverPath && path) {

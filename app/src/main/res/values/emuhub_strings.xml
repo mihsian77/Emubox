@@ -384,6 +384,17 @@
     <string name="compare_system">Compare with system driver</string>
     <string name="api_version">API version</string>
 
+    <!-- GPU 性能跑分 -->
+    <string name="benchmark_title">GPU Performance Benchmark</string>
+    <string name="benchmark_start">Start Test</string>
+    <string name="benchmark_running">Running…</string>
+    <string name="benchmark_total_score">Total Score</string>
+    <string name="benchmark_fill_bandwidth">Fill Bandwidth</string>
+    <string name="benchmark_copy_bandwidth">Copy Bandwidth</string>
+    <string name="benchmark_device">Device</string>
+    <string name="benchmark_note">Tests GPU memory bandwidth (fill + copy) for comparing performance across drivers.</string>
+    <string name="benchmark_failed">Benchmark failed</string>
+
     <!-- 驱动检测 -->
     <string name="driver_detection_title">Downloaded driver detection</string>
     <string name="no_downloaded_drivers">No downloaded drivers</string>

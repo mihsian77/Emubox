@@ -29,6 +29,19 @@ object NativeVulkanBridge {
     fun collectSystemVulkanInfo(): VulkanInfoPayload {
         return VulkanInfoPayload.fromJson(collectVulkanInfo(null))
     }
+
+    /**
+     * GPU 基准测试：fill bandwidth + copy bandwidth，timestamp query 精确计时。
+     *
+     * @param driverPath 驱动库路径；null 或空时测系统 Vulkan 硬件底力。
+     * @return JSON 字符串，结构见 [BenchmarkResult.fromJson]。
+     */
+    external fun benchmarkVulkan(driverPath: String?): String
+
+    /** 便捷方法：测系统 Vulkan 硬件底力。 */
+    fun benchmarkSystemVulkan(): BenchmarkResult {
+        return BenchmarkResult.fromJson(benchmarkVulkan(null))
+    }
 }
 
 /** 顶层采集响应。 */
@@ -228,3 +241,53 @@ data class QueueFamilyInfo(
     val timestampValidBits: Int,
     val minImageTransferGranularity: List<Int>
 )
+
+/** GPU 基准测试结果。 */
+data class BenchmarkResult(
+    val success: Boolean,
+    val errorCode: String?,
+    val errorMessage: String?,
+    val deviceName: String,
+    val fillBandwidthGBs: Double,
+    val copyBandwidthGBs: Double,
+    val totalScore: Int,
+    val bufferSizeMB: Int,
+    val fillIterations: Int,
+    val copyIterations: Int,
+    val timestampPeriodNs: Double
+) {
+    companion object {
+        fun fromJson(json: String): BenchmarkResult {
+            return try {
+                val obj = JSONObject(json)
+                BenchmarkResult(
+                    success = obj.optBoolean("success", false),
+                    errorCode = obj.optString("errorCode", null).takeIf { it.isNotEmpty() },
+                    errorMessage = obj.optString("errorMessage", null).takeIf { it.isNotEmpty() },
+                    deviceName = obj.optString("deviceName", ""),
+                    fillBandwidthGBs = obj.optDouble("fillBandwidthGBs", 0.0),
+                    copyBandwidthGBs = obj.optDouble("copyBandwidthGBs", 0.0),
+                    totalScore = obj.optInt("totalScore", 0),
+                    bufferSizeMB = obj.optInt("bufferSizeMB", 0),
+                    fillIterations = obj.optInt("fillIterations", 0),
+                    copyIterations = obj.optInt("copyIterations", 0),
+                    timestampPeriodNs = obj.optDouble("timestampPeriodNs", 0.0)
+                )
+            } catch (e: Exception) {
+                BenchmarkResult(
+                    success = false,
+                    errorCode = "JSON_PARSE_ERROR",
+                    errorMessage = e.message ?: "unknown",
+                    deviceName = "",
+                    fillBandwidthGBs = 0.0,
+                    copyBandwidthGBs = 0.0,
+                    totalScore = 0,
+                    bufferSizeMB = 0,
+                    fillIterations = 0,
+                    copyIterations = 0,
+                    timestampPeriodNs = 0.0
+                )
+            }
+        }
+    }
+}

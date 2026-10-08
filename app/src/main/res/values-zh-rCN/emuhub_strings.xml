@@ -384,6 +384,17 @@
     <string name="compare_system">与系统驱动对比</string>
     <string name="api_version">API 版本</string>
 
+    <!-- GPU 性能跑分 -->
+    <string name="benchmark_title">GPU 性能跑分</string>
+    <string name="benchmark_start">开始测试</string>
+    <string name="benchmark_running">测试中…</string>
+    <string name="benchmark_total_score">总分</string>
+    <string name="benchmark_fill_bandwidth">填充带宽</string>
+    <string name="benchmark_copy_bandwidth">拷贝带宽</string>
+    <string name="benchmark_device">设备</string>
+    <string name="benchmark_note">测试 GPU 内存带宽（填充 + 拷贝），用于对比不同驱动的性能差异。</string>
+    <string name="benchmark_failed">跑分失败</string>
+
     <!-- 驱动检测 -->
     <string name="driver_detection_title">已下载驱动检测</string>
     <string name="no_downloaded_drivers">暂无已下载的驱动</string>
