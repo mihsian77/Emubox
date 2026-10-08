@@ -1249,15 +1249,11 @@ private fun AcceleratorSettingsCard() {
                         latencies = latMap
                         speeds = speedMap
                         if (mode == Accelerator.Mode.AUTO) {
-                            val best = latMap.entries
-                                .filter { it.value != null }
-                                .minByOrNull { it.value!! }
-                            if (best != null) {
-                                val bestNode = Accelerator.ALL_NODES.firstOrNull { it.id == best.key }
-                                if (bestNode != null) {
-                                    autoResult = bestNode.displayName to Accelerator.formatLatency(context, best.value)
-                                }
-                            }
+                            // 综合评分（延迟 40% + 速度 60%）选最优，避免"直连延迟低但网速慢"被误选
+                            val best = Accelerator.selectBestNode(latMap, speedMap)
+                            Accelerator.cacheBestNode(best)
+                            val lat = latMap[best.id]
+                            autoResult = best.displayName to Accelerator.formatLatency(context, lat)
                         }
                         testing = false
                     }
@@ -1489,11 +1485,6 @@ private fun LanguageSelector(
 private fun languageLabel(language: AppLanguage): String = when (language) {
     AppLanguage.SYSTEM -> appString(R.string.language_system)
     AppLanguage.ENGLISH -> appString(R.string.language_english)
-    AppLanguage.PORTUGUESE_PORTUGAL -> appString(R.string.language_pt_pt)
-    AppLanguage.PORTUGUESE_BRAZIL -> appString(R.string.language_pt_br)
-    AppLanguage.SPANISH -> appString(R.string.language_spanish)
-    AppLanguage.FRENCH -> appString(R.string.language_french)
-    AppLanguage.GERMAN -> appString(R.string.language_german)
     AppLanguage.CHINESE -> appString(R.string.language_chinese)
 }
 

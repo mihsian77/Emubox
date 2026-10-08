@@ -13,11 +13,6 @@ import java.util.Locale
 enum class AppLanguage(val languageTag: String?) {
     SYSTEM(null),
     ENGLISH("en"),
-    PORTUGUESE_PORTUGAL("pt-PT"),
-    PORTUGUESE_BRAZIL("pt-BR"),
-    SPANISH("es"),
-    FRENCH("fr"),
-    GERMAN("de"),
     CHINESE("zh-CN")
 }
 
