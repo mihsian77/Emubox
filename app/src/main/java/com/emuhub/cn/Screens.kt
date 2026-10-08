@@ -273,7 +273,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                         if (download.status == DownloadStatus.DOWNLOADING && download.speedBytesPerSec > 0 && download.totalBytes > 0) {
                                             val remaining = download.totalBytes - download.downloadedBytes
                                             Text(
-                                                "剩余 ${Accelerator.formatEta(remaining, download.speedBytesPerSec)}",
+                                                appString(R.string.remaining_eta, Accelerator.formatEta(context, remaining, download.speedBytesPerSec)),
                                                 style = MaterialTheme.typography.labelSmall,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                                             )
@@ -489,7 +489,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     ) {
                                         Icon(Icons.Default.Info, contentDescription = null)
                                         Spacer(Modifier.width(7.dp))
-                                        Text(if (metaLoading) "解析中…" else "查看包信息")
+                                        Text(if (metaLoading) appString(R.string.meta_loading) else appString(R.string.view_package_info))
                                     }
                                 }
                             }
@@ -530,19 +530,19 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                             AlertDialog(
                                 onDismissRequest = { showMetaDialog = false },
                                 icon = { Icon(Icons.Default.Info, contentDescription = null) },
-                                title = { Text("驱动包信息") },
+                                title = { Text(appString(R.string.driver_package_info)) },
                                 text = {
                                     if (metaInfo == null || metaInfo!!.isEmpty()) {
-                                        Text("未找到 meta.json，该包可能不是标准驱动包格式。")
+                                        Text(appString(R.string.meta_not_found))
                                     } else {
                                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                            MetaRow("名称", metaInfo!!.name)
-                                            MetaRow("驱动版本", metaInfo!!.driverVersion)
-                                            MetaRow("厂商", metaInfo!!.vendor)
-                                            MetaRow("作者", metaInfo!!.author)
-                                            MetaRow("包版本", metaInfo!!.packageVersion)
-                                            MetaRow("最低 API", metaInfo!!.minApi)
-                                            MetaRow("驱动库", metaInfo!!.libraryName)
+                                            MetaRow(appString(R.string.meta_name), metaInfo!!.name)
+                                            MetaRow(appString(R.string.meta_driver_version), metaInfo!!.driverVersion)
+                                            MetaRow(appString(R.string.meta_vendor), metaInfo!!.vendor)
+                                            MetaRow(appString(R.string.meta_author), metaInfo!!.author)
+                                            MetaRow(appString(R.string.meta_package_version), metaInfo!!.packageVersion)
+                                            MetaRow(appString(R.string.meta_min_api), metaInfo!!.minApi)
+                                            MetaRow(appString(R.string.meta_library), metaInfo!!.libraryName)
                                             if (metaInfo!!.description.isNotBlank()) {
                                                 Spacer(Modifier.height(4.dp))
                                                 Text(
@@ -555,7 +555,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     }
                                 },
                                 confirmButton = {
-                                    TextButton(onClick = { showMetaDialog = false }) { Text("关闭") }
+                                    TextButton(onClick = { showMetaDialog = false }) { Text(appString(R.string.close)) }
                                 }
                             )
                         }
@@ -1253,7 +1253,7 @@ private fun AcceleratorSettingsCard() {
                             if (best != null) {
                                 val bestNode = Accelerator.ALL_NODES.firstOrNull { it.id == best.key }
                                 if (bestNode != null) {
-                                    autoResult = bestNode.displayName to Accelerator.formatLatency(best.value)
+                                    autoResult = bestNode.displayName to Accelerator.formatLatency(context, best.value)
                                 }
                             }
                         }
@@ -1305,7 +1305,7 @@ private fun AcceleratorSettingsCard() {
                                     color = MaterialTheme.colorScheme.tertiaryContainer
                                 ) {
                                     Text(
-                                        text = "Raw专用",
+                                        text = appString(R.string.raw_only),
                                         style = MaterialTheme.typography.labelSmall,
                                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
                                         color = MaterialTheme.colorScheme.onTertiaryContainer
@@ -1315,7 +1315,7 @@ private fun AcceleratorSettingsCard() {
                         }
                         Column(horizontalAlignment = Alignment.End) {
                             Text(
-                                text = Accelerator.formatLatency(ms),
+                                text = Accelerator.formatLatency(context, ms),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = when {
                                     ms == null -> MaterialTheme.colorScheme.error
@@ -1356,7 +1356,7 @@ private fun AcceleratorSettingsCard() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "节点来源：MirrorHub（MIT）",
+                    text = appString(R.string.mirrorhub_source),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -1366,7 +1366,7 @@ private fun AcceleratorSettingsCard() {
                     }
                     context.startActivity(intent)
                 }) {
-                    Text("查看", style = MaterialTheme.typography.bodySmall)
+                    Text(appString(R.string.view), style = MaterialTheme.typography.bodySmall)
                 }
             }
         }
@@ -2542,9 +2542,9 @@ fun TurnipDriverSection(
                         val seriesHit = source.supportedSeries.contains(adrenoSeries)
                         val isRecommended = modelHit || (source.supportedModels.isEmpty() && seriesHit)
                         val category = when {
-                            isRecommended -> "推荐"
-                            source.supportedModels.isEmpty() -> "通用"
-                            else -> "专属"
+                            isRecommended -> appString(R.string.category_recommended)
+                            source.supportedModels.isEmpty() -> appString(R.string.category_general)
+                            else -> appString(R.string.category_exclusive)
                         }
                         SourcePickerOption(
                             id = source.id,
@@ -2662,7 +2662,7 @@ private fun SourcePickerCard(
                 Spacer(Modifier.height(4.dp))
 
                 val grouped = options.groupBy { it.category }
-                listOf("推荐", "通用", "专属").forEach { cat ->
+                listOf(appString(R.string.category_recommended), appString(R.string.category_general), appString(R.string.category_exclusive)).forEach { cat ->
                     val group = grouped[cat]
                     if (!group.isNullOrEmpty()) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -2670,8 +2670,8 @@ private fun SourcePickerCard(
                                 "$cat（${group.size}）",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = when (cat) {
-                                    "推荐" -> MaterialTheme.colorScheme.primary
-                                    "专属" -> MaterialTheme.colorScheme.tertiary
+                                    appString(R.string.category_recommended) -> MaterialTheme.colorScheme.primary
+                                    appString(R.string.category_exclusive) -> MaterialTheme.colorScheme.tertiary
                                     else -> MaterialTheme.colorScheme.onSurfaceVariant
                                 }
                             )
@@ -3278,7 +3278,7 @@ fun DeviceScreen(
 
         item(key = "vulkan_header") {
             RegionHeader(
-                title = "Vulkan 设备信息",
+                title = appString(R.string.vulkan_title),
                 icon = Icons.Default.Memory,
                 remote = null
             )
@@ -3293,7 +3293,7 @@ fun DeviceScreen(
                     Column(Modifier.padding(20.dp)) {
                         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                         Spacer(Modifier.height(12.dp))
-                        Text("正在采集 Vulkan 设备信息…")
+                        Text(appString(R.string.vulkan_collecting))
                     }
                 }
             }
@@ -3308,7 +3308,7 @@ fun DeviceScreen(
                 ) {
                     Column(Modifier.padding(20.dp)) {
                         Text(
-                            "Vulkan 采集失败",
+                            appString(R.string.vulkan_failed),
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.onErrorContainer
                         )
@@ -3344,17 +3344,17 @@ fun DeviceScreen(
                         Divider()
                         Spacer(Modifier.height(12.dp))
                         InfoRow("Vulkan API", device.apiVersion)
-                        InfoRow("驱动版本", device.driverVersion)
+                        InfoRow(appString(R.string.meta_driver_version), device.driverVersion)
                         if (device.driverName.isNotEmpty()) {
-                            InfoRow("驱动名称", device.driverName)
+                            InfoRow(appString(R.string.vulkan_driver_name), device.driverName)
                         }
                         if (device.driverInfo.isNotEmpty()) {
-                            InfoRow("驱动信息", device.driverInfo)
+                            InfoRow(appString(R.string.vulkan_driver_info), device.driverInfo)
                         }
-                        InfoRow("扩展数量", device.extensions.size.toString())
-                        InfoRow("内存类型", device.memoryTypes.size.toString())
-                        InfoRow("内存堆", device.memoryHeaps.size.toString())
-                        InfoRow("队列族", device.queueFamilies.size.toString())
+                        InfoRow(appString(R.string.vulkan_extensions), device.extensions.size.toString())
+                        InfoRow(appString(R.string.vulkan_memory_types), device.memoryTypes.size.toString())
+                        InfoRow(appString(R.string.vulkan_memory_heaps), device.memoryHeaps.size.toString())
+                        InfoRow(appString(R.string.vulkan_queue_families), device.queueFamilies.size.toString())
                     }
                 }
             }
@@ -3369,14 +3369,14 @@ fun DeviceScreen(
                         contentDescription = null
                     )
                     Spacer(Modifier.width(8.dp))
-                    Text(if (showDetails) "收起详细信息" else "查看详细信息（特性/扩展/内存/限制）")
+                    Text(if (showDetails) appString(R.string.vulkan_hide_details) else appString(R.string.vulkan_view_details))
                 }
             }
 
             if (showDetails) {
                 item(key = "vulkan_features") {
                     VulkanDetailCard(
-                        title = "支持的特性（${device.features.filter { it.value }.size}/${device.features.size}）",
+                        title = "${appString(R.string.vulkan_features)}（${device.features.filter { it.value }.size}/${device.features.size}）",
                         content = {
                             device.features.filter { it.value }.keys.sorted().forEach { feature ->
                                 Text("• $feature", style = MaterialTheme.typography.bodySmall)
@@ -3387,7 +3387,7 @@ fun DeviceScreen(
 
                 item(key = "vulkan_extensions") {
                     VulkanDetailCard(
-                        title = "扩展列表（${device.extensions.size}）",
+                        title = "${appString(R.string.vulkan_extension_list)}（${device.extensions.size}）",
                         content = {
                             device.extensions.sortedBy { it.name }.forEach { ext ->
                                 Text("• ${ext.name} (v${ext.specVersion})", style = MaterialTheme.typography.bodySmall)
@@ -3398,16 +3398,16 @@ fun DeviceScreen(
 
                 item(key = "vulkan_memory") {
                     VulkanDetailCard(
-                        title = "内存堆（${device.memoryHeaps.size}）",
+                        title = "${appString(R.string.vulkan_memory_heaps)}（${device.memoryHeaps.size}）",
                         content = {
                             device.memoryHeaps.forEachIndexed { index, heap ->
                                 val sizeMB = heap.size / (1024 * 1024)
-                                Text("• 堆 $index: ${sizeMB}MB  [${heap.flags}]", style = MaterialTheme.typography.bodySmall)
+                                Text("• ${appString(R.string.vulkan_heap, index)}: ${sizeMB}MB  [${heap.flags}]", style = MaterialTheme.typography.bodySmall)
                             }
                             Spacer(Modifier.height(8.dp))
-                            Text("内存类型（${device.memoryTypes.size}）：", style = MaterialTheme.typography.bodySmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                            Text("${appString(R.string.vulkan_memory_types)}（${device.memoryTypes.size}）：", style = MaterialTheme.typography.bodySmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
                             device.memoryTypes.forEachIndexed { index, mt ->
-                                Text("• 类型 $index: 堆${mt.heapIndex}  [${mt.propertyFlags}]", style = MaterialTheme.typography.bodySmall)
+                                Text("• ${appString(R.string.vulkan_memory_type, index)}: ${appString(R.string.vulkan_heap, mt.heapIndex)}  [${mt.propertyFlags}]", style = MaterialTheme.typography.bodySmall)
                             }
                         }
                     )
@@ -3415,10 +3415,10 @@ fun DeviceScreen(
 
                 item(key = "vulkan_queues") {
                     VulkanDetailCard(
-                        title = "队列族（${device.queueFamilies.size}）",
+                        title = "${appString(R.string.vulkan_queue_families)}（${device.queueFamilies.size}）",
                         content = {
                             device.queueFamilies.forEachIndexed { index, qf ->
-                                Text("• 族 $index: ${qf.queueCount}队列  [${qf.queueFlags}]", style = MaterialTheme.typography.bodySmall)
+                                Text("• ${appString(R.string.vulkan_queue_family, index)}: ${appString(R.string.vulkan_queues_count, qf.queueCount)}  [${qf.queueFlags}]", style = MaterialTheme.typography.bodySmall)
                             }
                         }
                     )
@@ -3426,7 +3426,7 @@ fun DeviceScreen(
 
                 item(key = "vulkan_limits") {
                     VulkanDetailCard(
-                        title = "关键限制",
+                        title = appString(R.string.vulkan_key_limits),
                         content = {
                             val keyLimits = listOf(
                                 "maxImageDimension2D", "maxImageDimension3D", "maxImageDimensionCube",
@@ -3451,7 +3451,7 @@ fun DeviceScreen(
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
         item(key = "driver_detect_header") {
             RegionHeader(
-                title = "已下载驱动检测",
+                title = appString(R.string.driver_detection_title),
                 icon = Icons.Default.Memory,
                 remote = null
             )
@@ -3487,13 +3487,13 @@ private fun DriverDetectionList(
         ) {
             Column(Modifier.padding(16.dp)) {
                 Text(
-                    "暂无已下载的驱动",
+                    appString(R.string.no_downloaded_drivers),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    "在「驱动」Tab 下载驱动后，可在此检测该驱动的 Vulkan 能力并与系统驱动对比。",
+                    appString(R.string.no_downloaded_drivers_hint),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -3552,7 +3552,7 @@ private fun DriverDetectionList(
                                                 val errPayload = VulkanInfoPayload(
                                                     success = false,
                                                     errorCode = "EXTRACT_FAILED",
-                                                    errorMessage = "驱动包解压失败或未找到 .so",
+                                                    errorMessage = appString(R.string.extract_failed),
                                                     deviceCount = 0,
                                                     devices = emptyList()
                                                 )
@@ -3576,7 +3576,7 @@ private fun DriverDetectionList(
                             ) {
                                 Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(16.dp))
                                 Spacer(Modifier.width(6.dp))
-                                Text(if (result != null) "重新检测" else "检测", style = MaterialTheme.typography.bodySmall)
+                                Text(if (result != null) appString(R.string.redetect) else appString(R.string.detect), style = MaterialTheme.typography.bodySmall)
                             }
                         }
                     }
@@ -3587,7 +3587,7 @@ private fun DriverDetectionList(
                         Spacer(Modifier.height(8.dp))
                         if (!result.success) {
                             Text(
-                                "检测失败：${result.errorMessage ?: result.errorCode}",
+                                appString(R.string.detection_failed, result.errorMessage ?: result.errorCode),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.error
                             )
@@ -3600,31 +3600,31 @@ private fun DriverDetectionList(
                             )
                             Spacer(Modifier.height(4.dp))
                             InfoRow("Vulkan API", d.apiVersion)
-                            InfoRow("驱动版本", d.driverVersion)
-                            if (d.driverName.isNotEmpty()) InfoRow("驱动名称", d.driverName)
-                            InfoRow("扩展数量", "${d.extensions.size}")
-                            InfoRow("内存类型", "${d.memoryTypes.size}")
-                            InfoRow("队列族", "${d.queueFamilies.size}")
+                            InfoRow(appString(R.string.meta_driver_version), d.driverVersion)
+                            if (d.driverName.isNotEmpty()) InfoRow(appString(R.string.vulkan_driver_name), d.driverName)
+                            InfoRow(appString(R.string.vulkan_extensions), "${d.extensions.size}")
+                            InfoRow(appString(R.string.vulkan_memory_types), "${d.memoryTypes.size}")
+                            InfoRow(appString(R.string.vulkan_queue_families), "${d.queueFamilies.size}")
 
                             if (systemDevice != null) {
                                 Spacer(Modifier.height(8.dp))
                                 Text(
-                                    "与系统驱动对比",
+                                    appString(R.string.compare_system),
                                     style = MaterialTheme.typography.bodySmall,
                                     fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.primary
                                 )
                                 Spacer(Modifier.height(4.dp))
                                 val extDiff = d.extensions.size - systemDevice.extensions.size
-                                InfoRow("API 版本", "${d.apiVersion}（系统 ${systemDevice.apiVersion}）")
+                                InfoRow(appString(R.string.api_version), "${d.apiVersion}（系统 ${systemDevice.apiVersion}）")
                                 InfoRow(
-                                    "扩展数量",
-                                    "${d.extensions.size}（系统 ${systemDevice.extensions.size}，${if (extDiff > 0) "+$extDiff" else if (extDiff < 0) extDiff.toString() else "相同"}）"
+                                    appString(R.string.vulkan_extensions),
+                                    "${d.extensions.size}（系统 ${systemDevice.extensions.size}，${if (extDiff > 0) "+$extDiff" else if (extDiff < 0) extDiff.toString() else appString(R.string.same)}）"
                                 )
                                 val compatible = d.deviceName == systemDevice.deviceName
                                 InfoRow(
-                                    "GPU 兼容性",
-                                    if (compatible) "✓ 设备名匹配，兼容当前 GPU" else "⚠ 设备名不同（${d.deviceName}）"
+                                    appString(R.string.gpu_compatibility),
+                                    if (compatible) appString(R.string.gpu_compatible) else appString(R.string.gpu_not_compatible, d.deviceName)
                                 )
                             }
                         }
@@ -3707,7 +3707,7 @@ private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    deviceInfo.gpuRenderer.ifBlank { "未知 GPU" },
+                    deviceInfo.gpuRenderer.ifBlank { appString(R.string.unknown_gpu) },
                     style = MaterialTheme.typography.titleSmall,
                     maxLines = 1
                 )
@@ -3715,9 +3715,9 @@ private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    DriverInfoChip(label = "架构", value = deviceInfo.adrenoSeries.ifBlank { "—" })
-                    DriverInfoChip(label = "内存", value = deviceInfo.ram)
-                    DriverInfoChip(label = "安卓", value = deviceInfo.androidVersion.takeWhile { it != ' ' })
+                    DriverInfoChip(label = appString(R.string.chip_arch), value = deviceInfo.adrenoSeries.ifBlank { "—" })
+                    DriverInfoChip(label = appString(R.string.chip_ram), value = deviceInfo.ram)
+                    DriverInfoChip(label = appString(R.string.chip_android), value = deviceInfo.androidVersion.takeWhile { it != ' ' })
                 }
             }
         }
@@ -3843,12 +3843,12 @@ fun DriverScreen(
                 ) {
                     Column(Modifier.padding(20.dp)) {
                         Text(
-                            "暂无可用驱动",
+                            appString(R.string.no_drivers),
                             style = MaterialTheme.typography.titleSmall
                         )
                         Spacer(Modifier.height(8.dp))
                         Text(
-                            "当前设备未匹配到可用驱动。可在设置中关闭\"按设备匹配驱动\"以查看全部驱动源。",
+                            appString(R.string.no_drivers_hint),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -3950,12 +3950,12 @@ fun ComponentScreen(
                 ) {
                     Column(Modifier.padding(20.dp)) {
                         Text(
-                            "暂无可用组件",
+                            appString(R.string.no_components),
                             style = MaterialTheme.typography.titleSmall
                         )
                         Spacer(Modifier.height(8.dp))
                         Text(
-                            "组件源正在加载中，请稍候或下拉刷新。",
+                            appString(R.string.no_components_hint),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

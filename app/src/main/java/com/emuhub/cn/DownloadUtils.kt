@@ -591,7 +591,7 @@ private suspend fun downloadFileWithProgress(
             withContext(Dispatchers.Main) {
                 Toast.makeText(
                     context,
-                    "加速节点失败，已自动切换直连重试",
+                    context.getString(R.string.toast_accelerator_fallback),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -614,7 +614,7 @@ private suspend fun downloadFileWithProgress(
                     val directSuccess = transferExistingDownload(context, directState, resume = false)
                     if (!directSuccess) {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "下载失败: $uniqueFileName", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, context.getString(R.string.toast_download_failed, uniqueFileName), Toast.LENGTH_LONG).show()
                         }
                     }
                 }

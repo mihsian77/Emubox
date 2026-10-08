@@ -296,4 +296,116 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">Based on EmuHub by NotZeetaa, maintained by Rodrig02005</string>
     <string name="about_license">MIT License</string>
+
+    <!-- 包信息查看 -->
+    <string name="meta_loading">Parsing…</string>
+    <string name="view_package_info">View package info</string>
+    <string name="driver_package_info">Driver package info</string>
+    <string name="meta_not_found">meta.json not found. This may not be a standard driver package.</string>
+    <string name="meta_name">Name</string>
+    <string name="meta_driver_version">Driver version</string>
+    <string name="meta_vendor">Vendor</string>
+    <string name="meta_author">Author</string>
+    <string name="meta_package_version">Package version</string>
+    <string name="meta_min_api">Min API</string>
+    <string name="meta_library">Driver library</string>
+    <string name="close">Close</string>
+
+    <!-- 源分类 -->
+    <string name="category_recommended">Recommended</string>
+    <string name="category_general">General</string>
+    <string name="category_exclusive">Exclusive</string>
+
+    <!-- Tab 标签 -->
+    <string name="tab_device">Device</string>
+    <string name="tab_driver">Drivers</string>
+    <string name="tab_component">Components</string>
+    <string name="tab_download">Downloads</string>
+    <string name="tab_settings">Settings</string>
+    <string name="device_info_title">Device Info</string>
+
+    <!-- 下载慢提示 -->
+    <string name="slow_download_title">Download speed is slow</string>
+    <string name="slow_download_message">Current download speed is consistently low. Enabling domestic acceleration can significantly improve download speed. Go to settings to enable?</string>
+    <string name="go_enable">Enable</string>
+    <string name="dont_remind">Don\'t remind again</string>
+
+    <!-- Toast -->
+    <string name="toast_accelerator_fallback">Acceleration node failed, switched to direct connection</string>
+    <string name="toast_download_failed">Download failed: %1$s</string>
+
+    <!-- 节点 -->
+    <string name="node_direct">Direct (no acceleration)</string>
+    <string name="raw_only">Raw only</string>
+    <string name="mirrorhub_source">Node source: MirrorHub (MIT)</string>
+    <string name="view">View</string>
+
+    <!-- 延迟描述 -->
+    <string name="latency_timeout">Timeout</string>
+    <string name="latency_very_fast">%1$dms very fast</string>
+    <string name="latency_fast">%1$dms fast</string>
+    <string name="latency_normal">%1$dms normal</string>
+    <string name="latency_slow">%1$dms slow</string>
+    <string name="latency_very_slow">%1$dms very slow</string>
+
+    <!-- ETA -->
+    <string name="eta_seconds">%1$ds</string>
+    <string name="eta_minutes">%1$dm%2$ds</string>
+    <string name="eta_hours">%1$dh%2$dm</string>
+    <string name="remaining_eta">Remaining %1$s</string>
+
+    <!-- GPU 厂商 -->
+    <string name="gpu_vendor_adreno">Qualcomm Adreno</string>
+    <string name="gpu_vendor_mali">ARM Mali</string>
+    <string name="gpu_vendor_xclipse">UNISOC Xclipse</string>
+    <string name="gpu_vendor_unknown">Unknown</string>
+
+    <!-- 成熟度 -->
+    <string name="maturity_ci">CI build</string>
+    <string name="maturity_experimental">Experimental</string>
+
+    <!-- Vulkan 设备信息 -->
+    <string name="vulkan_title">Vulkan Device Info</string>
+    <string name="vulkan_collecting">Collecting Vulkan device info…</string>
+    <string name="vulkan_failed">Vulkan collection failed</string>
+    <string name="vulkan_driver_name">Driver name</string>
+    <string name="vulkan_driver_info">Driver info</string>
+    <string name="vulkan_extensions">Extensions</string>
+    <string name="vulkan_memory_types">Memory types</string>
+    <string name="vulkan_memory_heaps">Memory heaps</string>
+    <string name="vulkan_queue_families">Queue families</string>
+    <string name="vulkan_view_details">View details (features/extensions/memory/limits)</string>
+    <string name="vulkan_hide_details">Hide details</string>
+    <string name="vulkan_features">Supported features</string>
+    <string name="vulkan_extension_list">Extension list</string>
+    <string name="vulkan_key_limits">Key limits</string>
+    <string name="detection_failed">Detection failed: %1$s</string>
+    <string name="compare_system">Compare with system driver</string>
+    <string name="api_version">API version</string>
+
+    <!-- 驱动检测 -->
+    <string name="driver_detection_title">Downloaded driver detection</string>
+    <string name="no_downloaded_drivers">No downloaded drivers</string>
+    <string name="no_downloaded_drivers_hint">Download a driver from the Drivers tab, then detect its Vulkan capabilities and compare with the system driver here.</string>
+    <string name="extract_failed">Driver package extraction failed or .so not found</string>
+    <string name="redetect">Redetect</string>
+    <string name="detect">Detect</string>
+    <string name="gpu_compatibility">GPU compatibility</string>
+    <string name="gpu_compatible">✓ Device name matches, compatible with current GPU</string>
+    <string name="gpu_not_compatible">⚠ Device name differs (%1$s)</string>
+    <string name="unknown_gpu">Unknown GPU</string>
+    <string name="chip_arch">Arch</string>
+    <string name="chip_ram">RAM</string>
+    <string name="chip_android">Android</string>
+    <string name="vulkan_heap">Heap %1$d</string>
+    <string name="vulkan_memory_type">Type %1$d</string>
+    <string name="vulkan_queue_family">Family %1$d</string>
+    <string name="vulkan_queues_count">%1$d queues</string>
+    <string name="same">same</string>
+
+    <!-- 空状态 -->
+    <string name="no_drivers">No available drivers</string>
+    <string name="no_drivers_hint">No drivers matched for this device. Disable \"Match drivers by device\" in Settings to view all driver sources.</string>
+    <string name="no_components">No available components</string>
+    <string name="no_components_hint">Component sources are loading. Please wait or pull down to refresh.</string>
 </resources>

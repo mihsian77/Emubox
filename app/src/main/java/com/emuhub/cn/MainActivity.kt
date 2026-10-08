@@ -252,19 +252,19 @@ class MainActivity : ComponentActivity() {
                                     selected = currentScreen == AppScreen.DEVICE,
                                     onClick = { currentScreen = AppScreen.DEVICE },
                                     icon = { Icon(Icons.Default.PhoneAndroid, contentDescription = null) },
-                                    label = { Text("设备") }
+                                    label = { Text(appString(R.string.tab_device)) }
                                 )
                                 NavigationBarItem(
                                     selected = currentScreen == AppScreen.DRIVERS,
                                     onClick = { currentScreen = AppScreen.DRIVERS },
                                     icon = { Icon(Icons.Default.Memory, contentDescription = null) },
-                                    label = { Text("驱动") }
+                                    label = { Text(appString(R.string.tab_driver)) }
                                 )
                                 NavigationBarItem(
                                     selected = currentScreen == AppScreen.COMPONENTS,
                                     onClick = { currentScreen = AppScreen.COMPONENTS },
                                     icon = { Icon(Icons.Default.Extension, contentDescription = null) },
-                                    label = { Text("组件") }
+                                    label = { Text(appString(R.string.tab_component)) }
                                 )
                                 NavigationBarItem(
                                     selected = currentScreen == AppScreen.DOWNLOADS,
@@ -278,13 +278,13 @@ class MainActivity : ComponentActivity() {
                                             Icon(Icons.Default.Download, contentDescription = null)
                                         }
                                     },
-                                    label = { Text("下载") }
+                                    label = { Text(appString(R.string.tab_download)) }
                                 )
                                 NavigationBarItem(
                                     selected = currentScreen == AppScreen.SETTINGS,
                                     onClick = { currentScreen = AppScreen.SETTINGS },
                                     icon = { Icon(Icons.Default.Settings, contentDescription = null) },
-                                    label = { Text("设置") }
+                                    label = { Text(appString(R.string.tab_settings)) }
                                 )
                             }
                         }
@@ -304,7 +304,7 @@ class MainActivity : ComponentActivity() {
                                     Scaffold(
                                         topBar = {
                                             TopAppBar(
-                                                title = { Text("设备信息") },
+                                                title = { Text(appString(R.string.device_info_title)) },
                                                 actions = {
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
@@ -519,16 +519,16 @@ class MainActivity : ComponentActivity() {
                                 showSlowDownloadDialog = false
                             },
                             icon = { Icon(Icons.Default.Speed, contentDescription = null) },
-                            title = { Text("下载速度较慢") },
+                            title = { Text(appString(R.string.slow_download_title)) },
                             text = {
-                                Text("检测到当前下载速度持续偏低，开启国内加速可显著提升下载速度。是否前往设置开启？")
+                                Text(appString(R.string.slow_download_message))
                             },
                             confirmButton = {
                                 TextButton(onClick = {
                                     showSlowDownloadDialog = false
                                     currentScreen = AppScreen.SETTINGS
                                 }) {
-                                    Text("前往开启")
+                                    Text(appString(R.string.go_enable))
                                 }
                             },
                             dismissButton = {
@@ -536,7 +536,7 @@ class MainActivity : ComponentActivity() {
                                     SlowDownloadDetector.dismissForever()
                                     showSlowDownloadDialog = false
                                 }) {
-                                    Text("不再提示")
+                                    Text(appString(R.string.dont_remind))
                                 }
                             }
                         )

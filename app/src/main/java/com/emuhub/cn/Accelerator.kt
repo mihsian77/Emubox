@@ -406,13 +406,13 @@ object Accelerator {
     }
 
     /** 格式化延迟显示 */
-    fun formatLatency(ms: Long?): String = when {
-        ms == null -> "超时"
-        ms < 100 -> "${ms}ms 极快"
-        ms < 300 -> "${ms}ms 快"
-        ms < 800 -> "${ms}ms 一般"
-        ms < 2000 -> "${ms}ms 较慢"
-        else -> "${ms}ms 很慢"
+    fun formatLatency(context: android.content.Context, ms: Long?): String = when {
+        ms == null -> context.getString(R.string.latency_timeout)
+        ms < 100 -> context.getString(R.string.latency_very_fast, ms)
+        ms < 300 -> context.getString(R.string.latency_fast, ms)
+        ms < 800 -> context.getString(R.string.latency_normal, ms)
+        ms < 2000 -> context.getString(R.string.latency_slow, ms)
+        else -> context.getString(R.string.latency_very_slow, ms)
     }
 
     /** 格式化下载速度显示 */
@@ -424,13 +424,13 @@ object Accelerator {
     }
 
     /** 估算剩余时间 */
-    fun formatEta(remainingBytes: Long, bytesPerSec: Long): String {
+    fun formatEta(context: android.content.Context, remainingBytes: Long, bytesPerSec: Long): String {
         if (bytesPerSec <= 0 || remainingBytes <= 0) return "—"
         val seconds = remainingBytes / bytesPerSec
         return when {
-            seconds < 60 -> "${seconds}秒"
-            seconds < 3600 -> "${seconds / 60}分${seconds % 60}秒"
-            else -> "${seconds / 3600}时${(seconds % 3600) / 60}分"
+            seconds < 60 -> context.getString(R.string.eta_seconds, seconds)
+            seconds < 3600 -> context.getString(R.string.eta_minutes, seconds / 60, seconds % 60)
+            else -> context.getString(R.string.eta_hours, seconds / 3600, (seconds % 3600) / 60)
         }
     }
 }
