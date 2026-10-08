@@ -296,4 +296,116 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">基于 NotZeetaa 原创、Rodrig02005 维护的 EmuHub</string>
     <string name="about_license">MIT 开源协议</string>
+
+    <!-- 包信息查看 -->
+    <string name="meta_loading">解析中…</string>
+    <string name="view_package_info">查看包信息</string>
+    <string name="driver_package_info">驱动包信息</string>
+    <string name="meta_not_found">未找到 meta.json，该包可能不是标准驱动包格式。</string>
+    <string name="meta_name">名称</string>
+    <string name="meta_driver_version">驱动版本</string>
+    <string name="meta_vendor">厂商</string>
+    <string name="meta_author">作者</string>
+    <string name="meta_package_version">包版本</string>
+    <string name="meta_min_api">最低 API</string>
+    <string name="meta_library">驱动库</string>
+    <string name="close">关闭</string>
+
+    <!-- 源分类 -->
+    <string name="category_recommended">推荐</string>
+    <string name="category_general">通用</string>
+    <string name="category_exclusive">专属</string>
+
+    <!-- Tab 标签 -->
+    <string name="tab_device">设备</string>
+    <string name="tab_driver">驱动</string>
+    <string name="tab_component">组件</string>
+    <string name="tab_download">下载</string>
+    <string name="tab_settings">设置</string>
+    <string name="device_info_title">设备信息</string>
+
+    <!-- 下载慢提示 -->
+    <string name="slow_download_title">下载速度较慢</string>
+    <string name="slow_download_message">检测到当前下载速度持续偏低，开启国内加速可显著提升下载速度。是否前往设置开启？</string>
+    <string name="go_enable">前往开启</string>
+    <string name="dont_remind">不再提示</string>
+
+    <!-- Toast -->
+    <string name="toast_accelerator_fallback">加速节点失败，已自动切换直连重试</string>
+    <string name="toast_download_failed">下载失败: %1$s</string>
+
+    <!-- 节点 -->
+    <string name="node_direct">不加速（直连）</string>
+    <string name="raw_only">Raw专用</string>
+    <string name="mirrorhub_source">节点来源：MirrorHub（MIT）</string>
+    <string name="view">查看</string>
+
+    <!-- 延迟描述 -->
+    <string name="latency_timeout">超时</string>
+    <string name="latency_very_fast">%1$dms 极快</string>
+    <string name="latency_fast">%1$dms 快</string>
+    <string name="latency_normal">%1$dms 一般</string>
+    <string name="latency_slow">%1$dms 较慢</string>
+    <string name="latency_very_slow">%1$dms 很慢</string>
+
+    <!-- ETA -->
+    <string name="eta_seconds">%1$d秒</string>
+    <string name="eta_minutes">%1$d分%2$d秒</string>
+    <string name="eta_hours">%1$d时%2$d分</string>
+    <string name="remaining_eta">剩余 %1$s</string>
+
+    <!-- GPU 厂商 -->
+    <string name="gpu_vendor_adreno">高通 Adreno</string>
+    <string name="gpu_vendor_mali">ARM Mali</string>
+    <string name="gpu_vendor_xclipse">紫光展锐 Xclipse</string>
+    <string name="gpu_vendor_unknown">未知</string>
+
+    <!-- 成熟度 -->
+    <string name="maturity_ci">CI 构建</string>
+    <string name="maturity_experimental">实验性</string>
+
+    <!-- Vulkan 设备信息 -->
+    <string name="vulkan_title">Vulkan 设备信息</string>
+    <string name="vulkan_collecting">正在采集 Vulkan 设备信息…</string>
+    <string name="vulkan_failed">Vulkan 采集失败</string>
+    <string name="vulkan_driver_name">驱动名称</string>
+    <string name="vulkan_driver_info">驱动信息</string>
+    <string name="vulkan_extensions">扩展数量</string>
+    <string name="vulkan_memory_types">内存类型</string>
+    <string name="vulkan_memory_heaps">内存堆</string>
+    <string name="vulkan_queue_families">队列族</string>
+    <string name="vulkan_view_details">查看详细信息（特性/扩展/内存/限制）</string>
+    <string name="vulkan_hide_details">收起详细信息</string>
+    <string name="vulkan_features">支持的特性</string>
+    <string name="vulkan_extension_list">扩展列表</string>
+    <string name="vulkan_key_limits">关键限制</string>
+    <string name="detection_failed">检测失败：%1$s</string>
+    <string name="compare_system">与系统驱动对比</string>
+    <string name="api_version">API 版本</string>
+
+    <!-- 驱动检测 -->
+    <string name="driver_detection_title">已下载驱动检测</string>
+    <string name="no_downloaded_drivers">暂无已下载的驱动</string>
+    <string name="no_downloaded_drivers_hint">在「驱动」Tab 下载驱动后，可在此检测该驱动的 Vulkan 能力并与系统驱动对比。</string>
+    <string name="extract_failed">驱动包解压失败或未找到 .so</string>
+    <string name="redetect">重新检测</string>
+    <string name="detect">检测</string>
+    <string name="gpu_compatibility">GPU 兼容性</string>
+    <string name="gpu_compatible">✓ 设备名匹配，兼容当前 GPU</string>
+    <string name="gpu_not_compatible">⚠ 设备名不同（%1$s）</string>
+    <string name="unknown_gpu">未知 GPU</string>
+    <string name="chip_arch">架构</string>
+    <string name="chip_ram">内存</string>
+    <string name="chip_android">安卓</string>
+    <string name="vulkan_heap">堆 %1$d</string>
+    <string name="vulkan_memory_type">类型 %1$d</string>
+    <string name="vulkan_queue_family">族 %1$d</string>
+    <string name="vulkan_queues_count">%1$d队列</string>
+    <string name="same">相同</string>
+
+    <!-- 空状态 -->
+    <string name="no_drivers">暂无可用驱动</string>
+    <string name="no_drivers_hint">当前设备未匹配到可用驱动。可在设置中关闭"按设备匹配驱动"以查看全部驱动源。</string>
+    <string name="no_components">暂无可用组件</string>
+    <string name="no_components_hint">组件源正在加载中，请稍候或下拉刷新。</string>
 </resources>
