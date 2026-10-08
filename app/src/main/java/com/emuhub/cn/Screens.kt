@@ -3418,7 +3418,8 @@ private fun DriverDetectionList(
                                                 soFile = DriverExtractor.extract(context, uri, driverId)
                                             }
                                             if (soFile != null) {
-                                                val payload = NativeVulkanBridge.collectVulkanInfo(soFile.absolutePath)
+                                                val json = NativeVulkanBridge.collectVulkanInfo(soFile.absolutePath)
+                                                val payload = VulkanInfoPayload.fromJson(json)
                                                 detectionResults = detectionResults + (download.id to payload)
                                             } else {
                                                 val errPayload = VulkanInfoPayload(
