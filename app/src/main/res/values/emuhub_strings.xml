@@ -375,6 +375,7 @@
     <string name="vulkan_memory_heaps">Memory heaps</string>
     <string name="vulkan_queue_families">Queue families</string>
     <string name="vulkan_view_details">View details (features/extensions/memory/limits)</string>
+    <string name="vulkan_basic_info">Basic info</string>
     <string name="vulkan_hide_details">Hide details</string>
     <string name="vulkan_features">Supported features</string>
     <string name="vulkan_extension_list">Extension list</string>
@@ -408,4 +409,9 @@
     <string name="no_drivers_hint">No drivers matched for this device. Disable \"Match drivers by device\" in Settings to view all driver sources.</string>
     <string name="no_components">No available components</string>
     <string name="no_components_hint">Component sources are loading. Please wait or pull down to refresh.</string>
+
+    <!-- 驱动检测错误友好提示 -->
+    <string name="detection_error_adrenotools">This driver may be in adrenotools/emulator-specific format and cannot be detected inside the app. Please load and verify it inside the emulator (e.g. Eden).</string>
+    <string name="detection_error_extract">Driver package extraction failed or no .so found</string>
+    <string name="detection_error_exception">Detection exception: %1$s</string>
 </resources>
