@@ -2214,6 +2214,8 @@ private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
 
 @Composable
 private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
+    val context = LocalContext.current
+    val socName = remember { SocNameMapper.getCurrentSocName(context) }
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
@@ -2244,6 +2246,14 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
                         maxLines = 2
                     )
+                    if (!isLoading) {
+                        Text(
+                            "SOC: $socName",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
+                            maxLines = 1
+                        )
+                    }
                 }
             }
 
