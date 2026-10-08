@@ -16,21 +16,20 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
-// ── 函数指针类型（通过 vkGetInstanceProcAddr 动态获取）────────────────────
-// vkGetInstanceProcAddr 的函数指针类型（明确指定 2 参数，避免 NDK 头文件 PFN_ 宏推导歧义）
+// ── 函数指针类型（vulkan.h 里 PFN_vk* 本身已是函数指针，直接用别名）──────
+// vkGetInstanceProcAddr 的函数指针类型（明确指定 2 参数）
 using GetInstanceProcAddrFn = PFN_vkVoidFunction (*)(VkInstance, const char*);
 
-typedef PFN_vkCreateInstance (*PFN_CreateInstance)(const VkInstanceCreateInfo*, const VkAllocationCallbacks*, VkInstance*);
-typedef PFN_vkDestroyInstance (*PFN_DestroyInstance)(VkInstance, const VkAllocationCallbacks*);
-typedef PFN_vkEnumeratePhysicalDevices (*PFN_EnumeratePhysicalDevices)(VkInstance, uint32_t*, VkPhysicalDevice*);
-typedef PFN_vkGetPhysicalDeviceProperties (*PFN_GetPhysicalDeviceProperties)(VkPhysicalDevice, VkPhysicalDeviceProperties*);
-typedef PFN_vkGetPhysicalDeviceFeatures (*PFN_GetPhysicalDeviceFeatures)(VkPhysicalDevice, VkPhysicalDeviceFeatures*);
-typedef PFN_vkEnumerateDeviceExtensionProperties (*PFN_EnumerateDeviceExtensionProperties)(VkPhysicalDevice, const char*, uint32_t*, VkExtensionProperties*);
-typedef PFN_vkGetPhysicalDeviceMemoryProperties (*PFN_GetPhysicalDeviceMemoryProperties)(VkPhysicalDevice, VkPhysicalDeviceMemoryProperties*);
-typedef PFN_vkGetPhysicalDeviceQueueFamilyProperties (*PFN_GetPhysicalDeviceQueueFamilyProperties)(VkPhysicalDevice, uint32_t*, VkQueueFamilyProperties*);
-
-// vkGetPhysicalDeviceProperties2（用于获取 driverName/driverInfo，VK_KHR_get_physical_device_properties2）
-typedef PFN_vkGetPhysicalDeviceProperties2 (*PFN_GetPhysicalDeviceProperties2)(VkPhysicalDevice, VkPhysicalDeviceProperties2*);
+// 以下均为 vulkan.h 原始 PFN_vk* 类型的别名，避免重复套指针层
+using PFN_CreateInstance = PFN_vkCreateInstance;
+using PFN_DestroyInstance = PFN_vkDestroyInstance;
+using PFN_EnumeratePhysicalDevices = PFN_vkEnumeratePhysicalDevices;
+using PFN_GetPhysicalDeviceProperties = PFN_vkGetPhysicalDeviceProperties;
+using PFN_GetPhysicalDeviceFeatures = PFN_vkGetPhysicalDeviceFeatures;
+using PFN_EnumerateDeviceExtensionProperties = PFN_vkEnumerateDeviceExtensionProperties;
+using PFN_GetPhysicalDeviceMemoryProperties = PFN_vkGetPhysicalDeviceMemoryProperties;
+using PFN_GetPhysicalDeviceQueueFamilyProperties = PFN_vkGetPhysicalDeviceQueueFamilyProperties;
+using PFN_GetPhysicalDeviceProperties2 = PFN_vkGetPhysicalDeviceProperties2;
 
 struct VulkanDispatch {
     void* libHandle = nullptr;
