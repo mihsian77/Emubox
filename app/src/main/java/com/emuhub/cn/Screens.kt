@@ -3552,7 +3552,7 @@ private fun DriverDetectionList(
                                                 val errPayload = VulkanInfoPayload(
                                                     success = false,
                                                     errorCode = "EXTRACT_FAILED",
-                                                    errorMessage = appString(R.string.extract_failed),
+                                                    errorMessage = context.getString(R.string.extract_failed),
                                                     deviceCount = 0,
                                                     devices = emptyList()
                                                 )
@@ -3587,7 +3587,7 @@ private fun DriverDetectionList(
                         Spacer(Modifier.height(8.dp))
                         if (!result.success) {
                             Text(
-                                appString(R.string.detection_failed, result.errorMessage ?: result.errorCode),
+                                appString(R.string.detection_failed, (result.errorMessage ?: result.errorCode) ?: ""),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.error
                             )
