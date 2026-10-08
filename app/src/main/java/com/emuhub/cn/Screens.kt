@@ -3536,6 +3536,7 @@ private fun DriverDetectionList(
                             Button(
                                 onClick = {
                                     detectingId = download.id
+                                    val extractFailedMsg = context.getString(R.string.extract_failed)
                                     scope.launch(Dispatchers.IO) {
                                         try {
                                             val uri = Uri.parse(download.filePath)
@@ -3552,7 +3553,7 @@ private fun DriverDetectionList(
                                                 val errPayload = VulkanInfoPayload(
                                                     success = false,
                                                     errorCode = "EXTRACT_FAILED",
-                                                    errorMessage = context.getString(R.string.extract_failed),
+                                                    errorMessage = extractFailedMsg,
                                                     deviceCount = 0,
                                                     devices = emptyList()
                                                 )
