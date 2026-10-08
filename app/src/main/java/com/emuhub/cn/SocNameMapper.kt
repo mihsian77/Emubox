@@ -44,11 +44,16 @@ object SocNameMapper {
 
     /**
      * 获取当前设备的 SOC 友好名称。
-     * 优先级：Build.SOC 映射 → Build.HARDWARE 映射 → Build.SOC 原值 → "未知"
+     * Build.SOC 仅 API 31+ 可用，用反射获取；失败回退 Build.HARDWARE。
+     * 优先级：SOC 映射 → HARDWARE 映射 → SOC 原值 → HARDWARE 原值 → "未知"
      */
     fun getCurrentSocName(context: Context): String {
         init(context)
-        val soc = Build.SOC
+        val soc = try {
+            Build::class.java.getField("SOC").get(null) as? String ?: ""
+        } catch (e: Exception) {
+            ""
+        }
         if (soc.isNotEmpty()) {
             lookup(soc)?.let { return it }
         }
@@ -56,6 +61,10 @@ object SocNameMapper {
         if (hardware.isNotEmpty()) {
             lookup(hardware)?.let { return it }
         }
-        return soc.ifEmpty { hardware.ifEmpty { "未知" } }
+        return when {
+            soc.isNotEmpty() -> soc
+            hardware.isNotEmpty() -> hardware
+            else -> "未知"
+        }
     }
 }
