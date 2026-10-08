@@ -3320,6 +3320,190 @@ fun DeviceScreen(
                 }
             }
         }
+
+        // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
+        item(key = "driver_detect_header") {
+            RegionHeader(
+                title = "已下载驱动检测",
+                icon = Icons.Default.Memory,
+                remote = null
+            )
+        }
+
+        item(key = "driver_detect_list") {
+            DriverDetectionList(
+                systemDevice = vulkanPayload?.devices?.firstOrNull()
+            )
+        }
+    }
+}
+
+@Composable
+private fun DriverDetectionList(
+    systemDevice: VulkanDeviceInfo?
+) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var detectionResults by remember { mutableStateOf<Map<String, VulkanInfoPayload>>(emptyMap()) }
+    var detectingId by remember { mutableStateOf<String?>(null) }
+
+    val downloadedDrivers = DownloadsManager.completedDownloads.filter { download ->
+        download.fileName.endsWith(".zip") && listOf(
+            "turnip", "qualcomm", "adreno", "mali", "panvk", "driver", "vulkan", "mesa"
+        ).any { download.fileName.contains(it, ignoreCase = true) }
+    }
+
+    if (downloadedDrivers.isEmpty()) {
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp)
+        ) {
+            Column(Modifier.padding(16.dp)) {
+                Text(
+                    "暂无已下载的驱动",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    "在「驱动」Tab 下载驱动后，可在此检测该驱动的 Vulkan 能力并与系统驱动对比。",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+        return
+    }
+
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        downloadedDrivers.forEach { download ->
+            val result = detectionResults[download.id]
+            val isDetecting = detectingId == download.id
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp)
+            ) {
+                Column(Modifier.padding(14.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                download.fileName,
+                                style = MaterialTheme.typography.bodyMedium,
+                                maxLines = 1,
+                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                            )
+                            Text(
+                                "${"%.1f".format(download.sizeBytes / 1024.0 / 1024.0)} MB",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        if (isDetecting) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
+                        } else {
+                            Button(
+                                onClick = {
+                                    detectingId = download.id
+                                    scope.launch(Dispatchers.IO) {
+                                        try {
+                                            val uri = Uri.parse(download.filePath)
+                                            val driverId = download.fileName.removeSuffix(".zip")
+                                            var soFile = DriverExtractor.getSoFile(context, driverId)
+                                            if (soFile == null || !soFile.exists()) {
+                                                soFile = DriverExtractor.extract(context, uri, driverId)
+                                            }
+                                            if (soFile != null) {
+                                                val payload = NativeVulkanBridge.collectVulkanInfo(soFile.absolutePath)
+                                                detectionResults = detectionResults + (download.id to payload)
+                                            } else {
+                                                val errPayload = VulkanInfoPayload(
+                                                    success = false,
+                                                    errorCode = "EXTRACT_FAILED",
+                                                    errorMessage = "驱动包解压失败或未找到 .so",
+                                                    deviceCount = 0,
+                                                    devices = emptyList()
+                                                )
+                                                detectionResults = detectionResults + (download.id to errPayload)
+                                            }
+                                        } catch (e: Exception) {
+                                            val errPayload = VulkanInfoPayload(
+                                                success = false,
+                                                errorCode = "DETECT_EXCEPTION",
+                                                errorMessage = e.message ?: "unknown",
+                                                deviceCount = 0,
+                                                devices = emptyList()
+                                            )
+                                            detectionResults = detectionResults + (download.id to errPayload)
+                                        } finally {
+                                            detectingId = null
+                                        }
+                                    }
+                                },
+                                contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
+                            ) {
+                                Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(16.dp))
+                                Spacer(Modifier.width(6.dp))
+                                Text(if (result != null) "重新检测" else "检测", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    }
+
+                    if (result != null) {
+                        Spacer(Modifier.height(10.dp))
+                        Divider()
+                        Spacer(Modifier.height(8.dp))
+                        if (!result.success) {
+                            Text(
+                                "检测失败：${result.errorMessage ?: result.errorCode}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        } else if (result.devices.isNotEmpty()) {
+                            val d = result.devices[0]
+                            Text(
+                                d.deviceName,
+                                style = MaterialTheme.typography.bodySmall,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+                            )
+                            Spacer(Modifier.height(4.dp))
+                            InfoRow("Vulkan API", d.apiVersion)
+                            InfoRow("驱动版本", d.driverVersion)
+                            if (d.driverName.isNotEmpty()) InfoRow("驱动名称", d.driverName)
+                            InfoRow("扩展数量", "${d.extensions.size}")
+                            InfoRow("内存类型", "${d.memoryTypes.size}")
+                            InfoRow("队列族", "${d.queueFamilies.size}")
+
+                            if (systemDevice != null) {
+                                Spacer(Modifier.height(8.dp))
+                                Text(
+                                    "与系统驱动对比",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(Modifier.height(4.dp))
+                                val extDiff = d.extensions.size - systemDevice.extensions.size
+                                InfoRow("API 版本", "${d.apiVersion}（系统 ${systemDevice.apiVersion}）")
+                                InfoRow(
+                                    "扩展数量",
+                                    "${d.extensions.size}（系统 ${systemDevice.extensions.size}，${if (extDiff > 0) "+$extDiff" else if (extDiff < 0) extDiff.toString() else "相同"}）"
+                                )
+                                val compatible = d.deviceName == systemDevice.deviceName
+                                InfoRow(
+                                    "GPU 兼容性",
+                                    if (compatible) "✓ 设备名匹配，兼容当前 GPU" else "⚠ 设备名不同（${d.deviceName}）"
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
