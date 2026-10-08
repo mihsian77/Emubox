@@ -50,7 +50,7 @@
       "maturity": "stable",
       "stars": 997,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
-      "notes": "Stable 和 Gen8 构建都有",
+      "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
       "filters": {
         "6xx": [
@@ -306,7 +306,7 @@
       "maturity": "beta",
       "stars": 0,
       "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
-      "notes": "830/840 用户在 eden 上首选",
+      "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
       "companion": [],
       "filters": {
         "default": [
@@ -693,7 +693,7 @@
       "maturity": "experimental",
       "stars": 7,
       "description": "MTK Mali PanVK kbase 驱动，Redmi Note 11T 测试",
-      "notes": "",
+      "notes": "源码构建型：仓库内 build-scripts/driver/patches，无 release 资产，需自行编译",
       "companion": [],
       "filters": {
         "default": [
@@ -796,17 +796,19 @@
       "api_url": "https://api.github.com/repos/Koadzba/PanVK-Droid/releases",
       "gpu_vendor": "mali",
       "gpu_arch": [
-        "bifrost"
+        "valhall-v9"
       ],
-      "gpu_models": [],
+      "gpu_models": [
+        "G77"
+      ],
       "driver_type": "panvk",
       "frontend": "JM",
       "target_emulator": "generic",
       "package_format": "zip",
-      "maturity": "experimental",
+      "maturity": "beta",
       "stars": 0,
-      "description": "Mali Bifrost 老架构 PanVK（Mesa 24.0.5）",
-      "notes": "G52 之前的老架构",
+      "description": "Mali-G77 MC9 PanVK（Mesa 26.2.0-dev）",
+      "notes": "实测 meta.json：PanVK-MaliG77 MC9，minApi 27，zip 含 meta.json 合规",
       "companion": [],
       "filters": {
         "default": [
@@ -970,12 +972,12 @@
       ],
       "driver_type": "panvk",
       "frontend": "kbase",
-      "target_emulator": "generic",
-      "package_format": "zip",
+      "target_emulator": "termux",
+      "package_format": "tar.gz",
       "maturity": "experimental",
       "stars": 0,
       "description": "面向 Mali-G615 MC6（天玑 8300/8350）的 PanVK kbase CSF 驱动，含 Zink",
-      "notes": "针对 Termux/Android 16 优化，宣称支持 Vulkan 1.4，仅单一机型验证",
+      "notes": "Termux 专用（Android 16，Mali-G615 MC6 / Dimensity 8300/8350，Vulkan 1.4+Zink）；资产为 tar.gz 安装树，无 meta.json，不走容器路径",
       "companion": [],
       "filters": {
         "default": [
