@@ -70,7 +70,9 @@ class MainActivity : ComponentActivity() {
                 var guideTopic by remember { mutableStateOf<String?>(null) }
                 var refreshTrigger by remember { mutableIntStateOf(0) }
                 var deviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }
+                var cachedDeviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }
                 var isLoading by remember { mutableStateOf(true) }
+                var fullyLoaded by remember { mutableStateOf(false) }
 
                 var sourceCatalog by remember { mutableStateOf(SourceCatalogRepository.builtInCatalog()) }
                 var turnipSourceId by remember { mutableStateOf(SettingsManager.getTurnipSource()) }
@@ -92,14 +94,14 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                // The catalog itself is remote. Driver/component files stay on their upstream
-                // repositories; EmuHub only reads their APIs/manifests and therefore sees new
-                // releases without shipping a new APK.
-                LaunchedEffect(refreshTrigger, turnipSourceId, qualcommSourceId) {
+                // 完整加载：仅刷新/首次触发。源列表 + 注册表匹配 + 组件目录 + 初始 releases。
+                // 切换驱动源只走下方快速路径（只重拉选中源 releases），避免重跑 EGL 采集和组件清单。
+                LaunchedEffect(refreshTrigger) {
                     isLoading = true
 
                     val result = withContext(Dispatchers.IO) {
-                        val info = DeviceInfo.collect(this@MainActivity)
+                        // EGL 采集较慢且结果不变，缓存；刷新时才重新采集
+                        val info = cachedDeviceInfo ?: DeviceInfo.collect(this@MainActivity).also { cachedDeviceInfo = it }
                         val matchByDevice = SettingsManager.getMatchDriversByDevice()
                         val baseCatalog = SourceCatalogRepository.load()
 
@@ -139,13 +141,9 @@ class MainActivity : ComponentActivity() {
                             componentSources = baseCatalog.componentSources + registryComponentSources
                         )
 
-                        val compatibleSources = if (matchByDevice) {
-                            catalog.compatibleTurnipSources(
-                                info.adrenoSeries, info.gpuModel, info.gpuVendor.name.lowercase()
-                            )
-                        } else {
-                            catalog.turnipSources
-                        }
+                        // 直接使用合并后的完整列表：注册表源已按设备匹配排序在前，
+                        // 内置源在后。不再二次过滤（避免已匹配源被 series 过滤排除）。
+                        val compatibleSources = catalog.turnipSources
 
                         val selectedSource = compatibleSources.firstOrNull { source ->
                             source.id.equals(turnipSourceId, ignoreCase = true) ||
@@ -210,6 +208,29 @@ class MainActivity : ComponentActivity() {
                     }
 
                     isLoading = false
+                    fullyLoaded = true
+                }
+
+                // 快速路径：切换驱动源 → 只重拉该源的 releases（不重跑 EGL/目录）
+                LaunchedEffect(turnipSourceId) {
+                    if (!fullyLoaded || sourceCatalog.turnipSources.isEmpty()) return@LaunchedEffect
+                    val selected = sourceCatalog.turnipSources.firstOrNull { source ->
+                        source.id == turnipSourceId || source.name == turnipSourceId
+                    } ?: sourceCatalog.turnipSources.first()
+                    turnipReleases = withContext(Dispatchers.IO) {
+                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries)
+                    }
+                }
+
+                // 快速路径：切换 Qualcomm 源 → 只重拉该源 releases
+                LaunchedEffect(qualcommSourceId) {
+                    if (!fullyLoaded || sourceCatalog.qualcommSources.isEmpty()) return@LaunchedEffect
+                    val selected = sourceCatalog.qualcommSources.firstOrNull { source ->
+                        source.id == qualcommSourceId || source.name == qualcommSourceId
+                    } ?: sourceCatalog.qualcommSources.first()
+                    qualcommReleases = withContext(Dispatchers.IO) {
+                        fetchQualcommReleases(selected)
+                    }
                 }
 
                 Surface(

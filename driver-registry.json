@@ -1019,9 +1019,9 @@
         "bifrost"
       ],
       "gpu_models": [
-        "76",
-        "72",
-        "52"
+        "G76",
+        "G72",
+        "G52"
       ],
       "driver_type": "panvk",
       "frontend": "kbase",
@@ -1049,7 +1049,7 @@
         "valhall-v10"
       ],
       "gpu_models": [
-        "615"
+        "G615"
       ],
       "driver_type": "panvk",
       "frontend": "kbase",
@@ -1077,7 +1077,7 @@
         "valhall-v9"
       ],
       "gpu_models": [
-        "57"
+        "G57"
       ],
       "driver_type": "panvk",
       "frontend": "kbase",

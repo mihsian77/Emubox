@@ -53,9 +53,8 @@ data class SourceCatalog(
 ) {
     /**
      * Returns Turnip sources compatible with the detected GPU.
-     * Filters first by requiredVendor (Mali/Adreno), then by supportedSeries (6xx/7xx/8xx),
-     * then by supportedModels (specific model numbers like 830, 810, 710).
-     * Sources with empty supportedModels are treated as model-agnostic.
+     * Filters by requiredVendor (Mali/Adreno) and supportedSeries (6xx/7xx/8xx).
+     * 具体型号不再过滤（型号差异由排序表达，避免二次过滤把已匹配源排除）。
      */
     fun compatibleTurnipSources(
         adrenoSeries: String?,
@@ -73,15 +72,9 @@ data class SourceCatalog(
 
         // 第二步：按 Adreno series 过滤（非 Adreno GPU 的 series 为 unknown，跳过）
         if (adrenoSeries.isNullOrBlank() || adrenoSeries == "unknown") return vendorFiltered
-        val seriesFiltered = vendorFiltered.filter { source ->
+        return vendorFiltered.filter { source ->
             source.supportedSeries.isEmpty() || adrenoSeries in source.supportedSeries
         }.ifEmpty { vendorFiltered }
-
-        // 第三步：按具体型号过滤
-        if (gpuModel.isNullOrBlank() || gpuModel == "unknown") return seriesFiltered
-        return seriesFiltered.filter { source ->
-            source.supportedModels.isEmpty() || gpuModel in source.supportedModels
-        }.ifEmpty { seriesFiltered }
     }
 }
 

@@ -161,12 +161,12 @@ object DriverRegistryRepository {
     /**
      * 根据设备 GPU 信息匹配驱动，返回按推荐度排序的结果。
      *
-     * 匹配优先级：
+     * 匹配优先级（修正：型号不命中不再排除，避免"整理的仓库不显示"）：
      * 1. GPU 厂商必须匹配
-     * 2. 具体型号精确匹配（+100）
-     * 3. 架构系列匹配（+50）
+     * 2. 具体型号精确匹配（+100），不匹配不排除（特定型号源仅降排序）
+     * 3. 架构系列匹配（+50）；架构不匹配仍显示但排序靠后（-50）
      * 4. 通用驱动（型号和架构都为空）（+20）
-     * 5. Mali frontend 匹配（+30），不匹配排除
+     * 5. Mali frontend 必须匹配（不匹配排除，架构差异真实不兼容）
      * 6. 成熟度权重 + star 数加权
      */
     fun match(deviceInfo: DeviceInfo?, entries: List<DriverRegistryEntry>): List<DriverMatchResult> {
@@ -190,18 +190,22 @@ object DriverRegistryRepository {
                 var score = 0
                 val reasons = mutableListOf<String>()
 
-                // 型号精确匹配
+                // 型号精确匹配：命中加分，不命中不排除（仅降排序）
                 if (entry.gpuModels.isNotEmpty()) {
                     val modelMatched = when (vendorKey) {
                         "mali" -> maliModel != null && entry.gpuModels.contains(maliModel)
                         else -> entry.gpuModels.contains(deviceInfo.gpuModel)
                     }
-                    if (!modelMatched) return@mapNotNull null
-                    score += 100
-                    reasons.add("精确匹配 ${entry.gpuModels.joinToString("/")}")
+                    if (modelMatched) {
+                        score += 100
+                        reasons.add("精确匹配 ${entry.gpuModels.joinToString("/")}")
+                    } else {
+                        score -= 20
+                        reasons.add("支持 ${entry.gpuModels.joinToString("/")}（非本机型号）")
+                    }
                 }
 
-                // 架构匹配
+                // 架构匹配：命中加分；不命中不排除，但降分放后面
                 if (entry.gpuArch.isNotEmpty()) {
                     val archMatched = when (vendorKey) {
                         "mali" -> maliArchInfo != null && entry.gpuArch.contains(maliArchInfo.first)
@@ -209,16 +213,20 @@ object DriverRegistryRepository {
                         "xclipse" -> entry.gpuArch.contains("rdna")
                         else -> false
                     }
-                    if (!archMatched) return@mapNotNull null
-                    score += 50
-                    reasons.add("兼容 ${entry.gpuArch.joinToString("/")}")
+                    if (archMatched) {
+                        score += 50
+                        reasons.add("兼容 ${entry.gpuArch.joinToString("/")}")
+                    } else {
+                        score -= 50
+                        reasons.add("架构 ${entry.gpuArch.joinToString("/")}（非本机系列）")
+                    }
                 } else if (entry.gpuModels.isEmpty()) {
                     // 通用驱动
                     score += 20
                     reasons.add("通用兼容")
                 }
 
-                // Mali frontend 必须匹配
+                // Mali frontend 必须匹配（架构差异真实不兼容，排除）
                 if (vendorKey == "mali" && entry.frontend != null) {
                     if (maliArchInfo == null || entry.frontend != maliArchInfo.second) {
                         return@mapNotNull null
@@ -308,6 +316,9 @@ object DriverRegistryRepository {
      * 将注册表驱动条目转换为现有 TurnipSource，复用 release 拉取与资产过滤逻辑。
      * Mali 型号在注册表中带 G 前缀（G57），detectGpuModel 返回纯数字（57），
      * supportedModels 需去掉 G 前缀才能被 compatibleTurnipSources 命中。
+     *
+     * filters 返回空：注册表源按类型归类，release 几乎都是驱动包，不过滤避免版本丢失
+     * （assetIncludes/assetExcludes 保持默认空，资产也不过滤）。
      */
     fun toTurnipSource(entry: DriverRegistryEntry): TurnipSource {
         val adrenoSeriesNames = setOf("6xx", "7xx", "8xx")
@@ -333,9 +344,7 @@ object DriverRegistryRepository {
             supportedSeries = series,
             supportedModels = models,
             requiredVendor = entry.gpuVendor,
-            filters = entry.filters.ifEmpty {
-                mapOf("default" to listOf("Turnip", "panvk", "Mesa", "vulkan"))
-            }
+            filters = emptyMap()
         )
     }
 
