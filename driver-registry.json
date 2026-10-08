@@ -84,7 +84,7 @@
       "maturity": "stable",
       "stars": 824,
       "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
-      "notes": "社区口碑好，adpkg 格式",
+      "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
       "filters": {
         "default": [
@@ -405,35 +405,6 @@
       }
     },
     {
-      "id": "gpt363-a810",
-      "name": "GPT363 Adreno810",
-      "owner": "GPT363",
-      "repo": "Adreno810",
-      "api_url": "https://api.github.com/repos/GPT363/Adreno810/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "810"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "alpha",
-      "stars": 0,
-      "description": "Adreno A810 专用 Turnip",
-      "notes": "",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "A81"
-        ]
-      }
-    },
-    {
       "id": "vauzi-710",
       "name": "Vauzi-17 (710/720/722)",
       "owner": "Vauzi-17",
@@ -600,11 +571,11 @@
       "driver_type": "panvk",
       "frontend": "JM",
       "target_emulator": "generic",
-      "package_format": "zip",
+      "package_format": "adpkg",
       "maturity": "experimental",
       "stars": 0,
       "description": "Mali-G57 Valhall kbase JM 实验性 PanVK",
-      "notes": "WIP，Termux/Adrenotools 环境",
+      "notes": "实测最新 release（panvk-test3 panvcake_vanilla_26.3.0.R2.zip）含 meta.json + libvulkan_panfrost.so，合规；旧 build release 为 Termux tar.gz 不适用",
       "companion": [
         "pandxvk"
       ],
@@ -1037,6 +1008,36 @@
       "filters": {
         "default": [
           "PanVK"
+        ]
+      }
+    },
+    {
+      "id": "msx-g615-eden",
+      "name": "msx94302 PanVK Mali-G615 (eden 专用)",
+      "owner": "msx94302-ops",
+      "repo": "Panvk-Mali-G615",
+      "api_url": "https://api.github.com/repos/msx94302-ops/Panvk-Mali-G615/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "valhall-v10"
+      ],
+      "gpu_models": [
+        "G615"
+      ],
+      "driver_type": "panvk",
+      "frontend": "CSF",
+      "target_emulator": "eden",
+      "package_format": "adpkg",
+      "maturity": "beta",
+      "stars": 2,
+      "description": "Mali-G615 eden 专用 PanVK（mesa 26.3.0-devel，含 kraid/adaptive-tiler/fast-submit 补丁）",
+      "notes": "实测 zip 含 meta.json + libvulkan_panfrost.so 合规；release 命名 EDEN-EMULATOR；活跃（2026-10-07）",
+      "companion": [],
+      "filters": {
+        "default": [
+          "PanVK",
+          "G615",
+          "EDEN"
         ]
       }
     }
