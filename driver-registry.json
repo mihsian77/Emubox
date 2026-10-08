@@ -955,60 +955,6 @@
       }
     },
     {
-      "id": "freedreno-turnip-ci",
-      "name": "Freedreno Turnip CI",
-      "owner": "Weab-chan",
-      "repo": "freedreno_turnip-CI",
-      "api_url": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx"
-      ],
-      "gpu_models": [],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "archived",
-      "stars": 0,
-      "description": "最早的 Turnip 自动构建脚本仓库，已停止更新",
-      "notes": "许多同类项目的源头，仅作存档参考",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      }
-    },
-    {
-      "id": "mesa-turnip-nihui",
-      "name": "Mesa Turnip (nihui)",
-      "owner": "nihui",
-      "repo": "mesa-turnip-android-driver",
-      "api_url": "https://api.github.com/repos/nihui/mesa-turnip-android-driver/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx"
-      ],
-      "gpu_models": [],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "so",
-      "maturity": "stable",
-      "stars": 0,
-      "description": "ncnn 作者 nihui 维护，面向应用内嵌的 Turnip 驱动库，MIT 许可",
-      "notes": "支持运行时热切换 Vulkan 驱动，面向开发者/AI 推理场景",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      }
-    },
-    {
       "id": "jimvulkan-panvk",
       "name": "JimVulkan Mali PanVK",
       "owner": "JimVulkan",
