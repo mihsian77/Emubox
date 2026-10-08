@@ -483,7 +483,7 @@ private suspend fun transferExistingDownload(
 
             publishMediaStoreFile(context, outputUri, state.usesMediaStore)
             withContext(Dispatchers.Main) {
-                DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten)
+                DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, subPath)
                 Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
             }
             return@transfer true

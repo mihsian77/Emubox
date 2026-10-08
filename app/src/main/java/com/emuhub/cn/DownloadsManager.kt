@@ -82,7 +82,8 @@ object DownloadsManager {
         val fileName: String,
         val filePath: String,
         val sizeBytes: Long,
-        val timestamp: Long
+        val timestamp: Long,
+        val subPath: String = ""
     ) {
         fun toJson(): JSONObject = JSONObject().apply {
             put("id", id)
@@ -90,6 +91,7 @@ object DownloadsManager {
             put("filePath", filePath)
             put("sizeBytes", sizeBytes)
             put("timestamp", timestamp)
+            put("subPath", subPath)
         }
 
         companion object {
@@ -99,12 +101,14 @@ object DownloadsManager {
                 val filePath = json.getString("filePath")
                 val sizeBytes = json.optLong("sizeBytes", 0L)
                 val timestamp = json.optLong("timestamp", System.currentTimeMillis())
+                val subPath = json.optString("subPath", "")
                 return CompletedDownload(
                     id = if (id.isNotEmpty()) id else UUID.randomUUID().toString(),
                     fileName = fileName,
                     filePath = filePath,
                     sizeBytes = sizeBytes,
-                    timestamp = timestamp
+                    timestamp = timestamp,
+                    subPath = subPath
                 )
             }
         }
@@ -273,7 +277,7 @@ object DownloadsManager {
         }
     }
 
-    fun completeDownload(fileName: String, filePath: String, sizeBytes: Long) {
+    fun completeDownload(fileName: String, filePath: String, sizeBytes: Long, subPath: String = "") {
         _activeDownloads.remove(fileName)
         saveActiveDownloads(force = true)
 
@@ -285,7 +289,8 @@ object DownloadsManager {
                 fileName,
                 filePath,
                 sizeBytes,
-                System.currentTimeMillis()
+                System.currentTimeMillis(),
+                subPath
             )
         )
         saveCompletedDownloads()
