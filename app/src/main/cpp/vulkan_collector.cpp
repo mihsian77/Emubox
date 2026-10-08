@@ -17,8 +17,9 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 // ── 函数指针类型（通过 vkGetInstanceProcAddr 动态获取）────────────────────
-// 注意：PFN_vkGetInstanceProcAddr 本身已是函数指针类型（接受 VkInstance+const char*，
-// 返回 PFN_vkVoidFunction），直接使用，不再 typedef 一层。
+// vkGetInstanceProcAddr 的函数指针类型（明确指定 2 参数，避免 NDK 头文件 PFN_ 宏推导歧义）
+using GetInstanceProcAddrFn = PFN_vkVoidFunction (*)(VkInstance, const char*);
+
 typedef PFN_vkCreateInstance (*PFN_CreateInstance)(const VkInstanceCreateInfo*, const VkAllocationCallbacks*, VkInstance*);
 typedef PFN_vkDestroyInstance (*PFN_DestroyInstance)(VkInstance, const VkAllocationCallbacks*);
 typedef PFN_vkEnumeratePhysicalDevices (*PFN_EnumeratePhysicalDevices)(VkInstance, uint32_t*, VkPhysicalDevice*);
@@ -404,7 +405,7 @@ static std::string collectVulkanInfo(const char* driverPath) {
     }
 
     // 获取 vkGetInstanceProcAddr（这是 Vulkan loader 的入口，所有函数通过它解析）
-    auto getInstanceProcAddr = reinterpret_cast<PFN_vkGetInstanceProcAddr>(
+    auto getInstanceProcAddr = reinterpret_cast<GetInstanceProcAddrFn>(
         dlsym(vk.libHandle, "vkGetInstanceProcAddr"));
     if (!getInstanceProcAddr) {
         dlclose(vk.libHandle);
