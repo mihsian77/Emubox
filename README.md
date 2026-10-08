@@ -115,7 +115,7 @@ EmuHub-CN/
 
 App 内所有 GitHub 资源下载（驱动文件、组件、资源目录、API 请求）均会经过加速节点。
 
-**节点来源：[MirrorHub](https://github.com/mihsian77/MirrorHub)**（MIT 协议）— 自动维护的 GitHub 加速节点库，每 6 小时全量测速，自动清理失效节点，按延迟排序。App 启动时远程拉取最新在线节点列表，内置 6 个节点作为远程拉取失败时的 fallback。
+**节点来源：[MirrorHub](https://github.com/mihsian77/MirrorHub)**（MIT 协议）— 自动维护的 GitHub 加速节点库，每 6 小时全量测速，自动清理失效节点，按延迟排序。App 启动时远程拉取最新在线节点列表，内置一批节点作为远程拉取失败时的兜底。
 
 加速模式：
 - **自动**：测试所有节点延迟，自动选择最低延迟的节点
