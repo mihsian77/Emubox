@@ -2649,6 +2649,7 @@ private fun SourcePickerCard(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
                     .padding(horizontal = 16.dp)
                     .padding(bottom = 28.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -3334,27 +3335,12 @@ fun DeviceScreen(
                             device.deviceName,
                             style = MaterialTheme.typography.titleMedium
                         )
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            "类型: ${device.deviceType}  ·  Vendor: 0x${"%04X".format(device.vendorId)}  ·  Device: 0x${"%04X".format(device.deviceId)}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Spacer(Modifier.height(12.dp))
-                        Divider()
                         Spacer(Modifier.height(12.dp))
                         InfoRow("Vulkan API", device.apiVersion)
                         InfoRow(appString(R.string.meta_driver_version), device.driverVersion)
                         if (device.driverName.isNotEmpty()) {
                             InfoRow(appString(R.string.vulkan_driver_name), device.driverName)
                         }
-                        if (device.driverInfo.isNotEmpty()) {
-                            InfoRow(appString(R.string.vulkan_driver_info), device.driverInfo)
-                        }
-                        InfoRow(appString(R.string.vulkan_extensions), device.extensions.size.toString())
-                        InfoRow(appString(R.string.vulkan_memory_types), device.memoryTypes.size.toString())
-                        InfoRow(appString(R.string.vulkan_memory_heaps), device.memoryHeaps.size.toString())
-                        InfoRow(appString(R.string.vulkan_queue_families), device.queueFamilies.size.toString())
                     }
                 }
             }
@@ -3374,6 +3360,23 @@ fun DeviceScreen(
             }
 
             if (showDetails) {
+                item(key = "vulkan_basic") {
+                    VulkanDetailCard(
+                        title = appString(R.string.vulkan_basic_info),
+                        content = {
+                            Text("类型: ${device.deviceType}  ·  Vendor: 0x${"%04X".format(device.vendorId)}  ·  Device: 0x${"%04X".format(device.deviceId)}", style = MaterialTheme.typography.bodySmall)
+                            Spacer(Modifier.height(6.dp))
+                            if (device.driverInfo.isNotEmpty()) {
+                                InfoRow(appString(R.string.vulkan_driver_info), device.driverInfo)
+                            }
+                            InfoRow(appString(R.string.vulkan_extensions), device.extensions.size.toString())
+                            InfoRow(appString(R.string.vulkan_memory_types), device.memoryTypes.size.toString())
+                            InfoRow(appString(R.string.vulkan_memory_heaps), device.memoryHeaps.size.toString())
+                            InfoRow(appString(R.string.vulkan_queue_families), device.queueFamilies.size.toString())
+                        }
+                    )
+                }
+
                 item(key = "vulkan_features") {
                     VulkanDetailCard(
                         title = "${appString(R.string.vulkan_features)}（${device.features.filter { it.value }.size}/${device.features.size}）",
@@ -3587,8 +3590,21 @@ private fun DriverDetectionList(
                         Divider()
                         Spacer(Modifier.height(8.dp))
                         if (!result.success) {
+                            val errMsg = when (result.errorCode) {
+                                "EXTRACT_FAILED" -> appString(R.string.detection_error_extract)
+                                "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
+                                "ENUM_DEVICES_MISSING" -> appString(R.string.detection_error_adrenotools)
+                                "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
+                                else -> {
+                                    val raw = result.errorMessage ?: ""
+                                    if (raw.contains("not resolved", ignoreCase = true) || raw.contains("dlopen", ignoreCase = true))
+                                        appString(R.string.detection_error_adrenotools)
+                                    else
+                                        appString(R.string.detection_failed, raw.ifEmpty { result.errorCode ?: "" })
+                                }
+                            }
                             Text(
-                                appString(R.string.detection_failed, (result.errorMessage ?: result.errorCode) ?: ""),
+                                errMsg,
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.error
                             )
