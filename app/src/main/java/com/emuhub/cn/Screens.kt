@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.clip
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.documentfile.provider.DocumentFile
@@ -3400,6 +3402,9 @@ fun DeviceScreen(
     var vulkanLoading by remember { mutableStateOf(true) }
     var vulkanError by remember { mutableStateOf<String?>(null) }
     var showDetails by remember { mutableStateOf(false) }
+    var benchmarkResult by remember { mutableStateOf<BenchmarkResult?>(null) }
+    var benchmarkLoading by remember { mutableStateOf(false) }
+    var benchmarkError by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         vulkanLoading = true
@@ -3608,6 +3613,48 @@ fun DeviceScreen(
             }
         }
 
+        // ── GPU 性能跑分：native Vulkan 带宽基准，对比不同驱动性能 ──
+        item(key = "benchmark_header") {
+            RegionHeader(
+                title = appString(R.string.benchmark_title),
+                icon = Icons.Default.Memory,
+                remote = null
+            )
+        }
+
+        item(key = "benchmark_card") {
+            GpuBenchmarkCard(
+                result = benchmarkResult,
+                isLoading = benchmarkLoading,
+                error = benchmarkError,
+                onRun = {
+                    benchmarkLoading = true
+                    benchmarkError = null
+                    benchmarkResult = null
+                    // native 跑分在 IO 线程执行，避免阻塞 UI
+                    kotlinx.coroutines.GlobalScope.launch(Dispatchers.IO) {
+                        try {
+                            val result = NativeVulkanBridge.benchmarkSystemVulkan()
+                            withContext(Dispatchers.Main) {
+                                benchmarkResult = result
+                                if (!result.success) {
+                                    benchmarkError = result.errorMessage ?: result.errorCode
+                                }
+                            }
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                benchmarkError = e.message ?: "unknown error"
+                            }
+                        } finally {
+                            withContext(Dispatchers.Main) {
+                                benchmarkLoading = false
+                            }
+                        }
+                    }
+                }
+            )
+        }
+
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
         item(key = "driver_detect_header") {
             RegionHeader(
@@ -3620,6 +3667,161 @@ fun DeviceScreen(
         item(key = "driver_detect_list") {
             DriverDetectionList(
                 systemDevice = vulkanPayload?.devices?.firstOrNull()
+            )
+        }
+    }
+}
+
+/**
+ * GPU 性能跑分卡片：触发 native Vulkan 带宽基准，展示总分 + fill/copy 带宽。
+ *
+ * 修改原因：用户要求实测跑分，对比不同驱动在当前设备上的性能差异。
+ * 影响范围：设备 Tab 新增卡片，不影响其他页面。
+ * 回滚方法：删除本函数及 DeviceScreen 中 benchmark 相关 item/状态即可。
+ */
+@Composable
+private fun GpuBenchmarkCard(
+    result: BenchmarkResult?,
+    isLoading: Boolean,
+    error: String?,
+    onRun: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(28.dp)
+    ) {
+        Column(Modifier.padding(20.dp)) {
+            // 说明文字
+            Text(
+                appString(R.string.benchmark_note),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(Modifier.height(16.dp))
+
+            when {
+                isLoading -> {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(Modifier.width(12.dp))
+                        Text(appString(R.string.benchmark_running))
+                    }
+                }
+
+                error != null -> {
+                    Text(
+                        appString(R.string.benchmark_failed),
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        error,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    Button(onClick = onRun) {
+                        Text(appString(R.string.benchmark_start))
+                    }
+                }
+
+                result != null && result.success -> {
+                    // 总分 + 设备名
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(
+                                appString(R.string.benchmark_total_score),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Text(
+                                result.totalScore.toString(),
+                                style = MaterialTheme.typography.displaySmall,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                        Column(horizontalAlignment = Alignment.End) {
+                            Text(
+                                appString(R.string.benchmark_device),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Text(
+                                result.deviceName,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(16.dp))
+
+                    // fill 带宽条
+                    BandwidthRow(
+                        label = appString(R.string.benchmark_fill_bandwidth),
+                        valueGBs = result.fillBandwidthGBs
+                    )
+                    Spacer(Modifier.height(10.dp))
+
+                    // copy 带宽条
+                    BandwidthRow(
+                        label = appString(R.string.benchmark_copy_bandwidth),
+                        valueGBs = result.copyBandwidthGBs
+                    )
+                    Spacer(Modifier.height(16.dp))
+
+                    Button(onClick = onRun) {
+                        Text(appString(R.string.benchmark_start))
+                    }
+                }
+
+                else -> {
+                    // 初始状态：只有按钮
+                    Button(onClick = onRun) {
+                        Text(appString(R.string.benchmark_start))
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 带宽数值 + 进度条（满格 20 GB/s）。 */
+@Composable
+private fun BandwidthRow(label: String, valueGBs: Double) {
+    val fraction = (valueGBs / 20.0).coerceIn(0.0, 1.0)
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(label, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                String.format("%.2f GB/s", valueGBs),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Spacer(Modifier.height(4.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(fraction.toFloat())
+                    .height(8.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(MaterialTheme.colorScheme.primary)
             )
         }
     }
