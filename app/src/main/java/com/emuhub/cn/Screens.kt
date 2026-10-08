@@ -2160,6 +2160,12 @@ fun DriverHubScreen(
             )
         }
 
+        if (deviceInfo != null) {
+            item(key = "driver_device_summary") {
+                DriverDeviceSummaryCard(deviceInfo = deviceInfo)
+            }
+        }
+
         if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
             item(key = "driver_loading") {
                 Card(
@@ -2530,11 +2536,22 @@ fun TurnipDriverSection(
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
                     options = sources.map { source ->
+                        val modelHit = adrenoSeries?.let { series ->
+                            source.supportedModels.any { m -> series.contains(m.take(1)) }
+                        } ?: false
+                        val seriesHit = source.supportedSeries.contains(adrenoSeries)
+                        val isRecommended = modelHit || (source.supportedModels.isEmpty() && seriesHit)
+                        val category = when {
+                            isRecommended -> "推荐"
+                            source.supportedModels.isEmpty() -> "通用"
+                            else -> "专属"
+                        }
                         SourcePickerOption(
                             id = source.id,
                             name = source.name,
                             description = source.description,
-                            experimental = source.experimental
+                            experimental = source.experimental,
+                            category = category
                         )
                     },
                     onSelected = { sourceId ->
@@ -2557,7 +2574,8 @@ private data class SourcePickerOption(
     val id: String,
     val name: String,
     val description: String,
-    val experimental: Boolean
+    val experimental: Boolean,
+    val category: String = "通用"
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -2643,68 +2661,91 @@ private fun SourcePickerCard(
                 )
                 Spacer(Modifier.height(4.dp))
 
-                options.forEach { option ->
-                    val selected = option.name == currentName
-                    Card(
-                        onClick = {
-                            onSelected(option.id)
-                            showSheet = false
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(22.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = if (selected) {
-                                MaterialTheme.colorScheme.primaryContainer
-                            } else {
-                                MaterialTheme.colorScheme.surfaceVariant
-                            }
-                        )
-                    ) {
-                        Row(
-                            modifier = Modifier.padding(16.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Surface(
-                                shape = CircleShape,
-                                color = if (selected) {
-                                    MaterialTheme.colorScheme.primary
-                                } else {
-                                    MaterialTheme.colorScheme.surface
+                val grouped = options.groupBy { it.category }
+                listOf("推荐", "通用", "专属").forEach { cat ->
+                    val group = grouped[cat]
+                    if (!group.isNullOrEmpty()) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                "$cat（${group.size}）",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = when (cat) {
+                                    "推荐" -> MaterialTheme.colorScheme.primary
+                                    "专属" -> MaterialTheme.colorScheme.tertiary
+                                    else -> MaterialTheme.colorScheme.onSurfaceVariant
                                 }
-                            ) {
-                                Icon(
-                                    if (selected) Icons.Default.Check else Icons.Default.CloudDownload,
-                                    contentDescription = null,
-                                    modifier = Modifier.padding(9.dp),
-                                    tint = if (selected) {
-                                        MaterialTheme.colorScheme.onPrimary
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Divider(modifier = Modifier.weight(1f))
+                        }
+                        Spacer(Modifier.height(2.dp))
+
+                        group.forEach { option ->
+                            val selected = option.name == currentName
+                            Card(
+                                onClick = {
+                                    onSelected(option.id)
+                                    showSheet = false
+                                },
+                                modifier = Modifier.fillMaxWidth(),
+                                shape = RoundedCornerShape(22.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = if (selected) {
+                                        MaterialTheme.colorScheme.primaryContainer
                                     } else {
-                                        MaterialTheme.colorScheme.primary
+                                        MaterialTheme.colorScheme.surfaceVariant
                                     }
                                 )
-                            }
-                            Spacer(Modifier.width(12.dp))
-                            Column(modifier = Modifier.weight(1f)) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(option.name, style = MaterialTheme.typography.titleMedium)
-                                    if (option.experimental) {
-                                        Spacer(Modifier.width(6.dp))
-                                        Text(
-                                            appString(R.string.experimental),
-                                            style = MaterialTheme.typography.labelSmall,
-                                            color = MaterialTheme.colorScheme.tertiary
+                            ) {
+                                Row(
+                                    modifier = Modifier.padding(16.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Surface(
+                                        shape = CircleShape,
+                                        color = if (selected) {
+                                            MaterialTheme.colorScheme.primary
+                                        } else {
+                                            MaterialTheme.colorScheme.surface
+                                        }
+                                    ) {
+                                        Icon(
+                                            if (selected) Icons.Default.Check else Icons.Default.CloudDownload,
+                                            contentDescription = null,
+                                            modifier = Modifier.padding(9.dp),
+                                            tint = if (selected) {
+                                                MaterialTheme.colorScheme.onPrimary
+                                            } else {
+                                                MaterialTheme.colorScheme.primary
+                                            }
                                         )
                                     }
-                                }
-                                if (option.description.isNotBlank()) {
-                                    Text(
-                                        option.description,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Spacer(Modifier.width(12.dp))
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Text(option.name, style = MaterialTheme.typography.titleMedium)
+                                            if (option.experimental) {
+                                                Spacer(Modifier.width(6.dp))
+                                                Text(
+                                                    appString(R.string.experimental),
+                                                    style = MaterialTheme.typography.labelSmall,
+                                                    color = MaterialTheme.colorScheme.tertiary
+                                                )
+                                            }
+                                        }
+                                        if (option.description.isNotBlank()) {
+                                            Text(
+                                                option.description,
+                                                style = MaterialTheme.typography.bodySmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                    }
                                 }
                             }
+                            Spacer(Modifier.height(8.dp))
                         }
+                        Spacer(Modifier.height(6.dp))
                     }
                 }
             }
@@ -3636,6 +3677,77 @@ private fun VulkanDetailCard(
     }
 }
 
+/** 驱动专区顶部紧凑设备信息卡 */
+@Composable
+private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f)
+        )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.primary
+            ) {
+                Icon(
+                    Icons.Default.PhoneAndroid,
+                    contentDescription = null,
+                    modifier = Modifier.padding(10.dp),
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+            Spacer(Modifier.width(12.dp))
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    deviceInfo.gpuRenderer.ifBlank { "未知 GPU" },
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1
+                )
+                Spacer(Modifier.height(2.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    DriverInfoChip(label = "架构", value = deviceInfo.adrenoSeries.ifBlank { "—" })
+                    DriverInfoChip(label = "内存", value = deviceInfo.ram)
+                    DriverInfoChip(label = "安卓", value = deviceInfo.androidVersion.takeWhile { it != ' ' })
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun DriverInfoChip(label: String, value: String) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.6f)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                "$label ",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(
+                value,
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+            )
+        }
+    }
+}
+
 /**
  * 驱动 Tab：仅展示驱动专区（Turnip + Qualcomm）。
  * 从 DriverHubScreen 拆分而来，设备摘要移至设备 Tab。
@@ -3670,6 +3782,12 @@ fun DriverScreen(
                 icon = Icons.Default.Memory,
                 remote = sourceCatalogRemote
             )
+        }
+
+        if (deviceInfo != null) {
+            item(key = "driver_device_summary") {
+                DriverDeviceSummaryCard(deviceInfo = deviceInfo)
+            }
         }
 
         if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
