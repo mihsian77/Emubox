@@ -239,6 +239,12 @@ object DriverRegistryRepository {
                 val maturityScore = 20 - (MATURITY_ORDER[entry.maturity] ?: 4) * 5
                 score += maturityScore.coerceAtLeast(0)
 
+                // Termux 专用源：不走容器路径，默认不推荐（降权），但不排除
+                if (entry.targetEmulator == "termux") {
+                    score -= 50
+                    reasons.add("Termux 专用（非容器路径）")
+                }
+
                 // star 加权（每 100 star +1，上限 20）
                 score += (entry.stars / 100).coerceAtMost(20)
 
@@ -337,6 +343,7 @@ object DriverRegistryRepository {
             name = entry.name,
             apiUrl = entry.apiUrl,
             description = buildString {
+                if (entry.targetEmulator == "termux") append("[Termux 专用] ")
                 append(entry.description)
                 if (maturityLabel.isNotEmpty()) append("（$maturityLabel）")
             },

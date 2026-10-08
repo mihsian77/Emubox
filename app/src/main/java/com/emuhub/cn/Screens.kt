@@ -341,6 +341,10 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                 completed.forEach { file ->
                     item(key = "completed_${file.id}") {
                         var showDeleteDialog by remember { mutableStateOf(false) }
+                        var showMetaDialog by remember { mutableStateOf(false) }
+                        var metaInfo by remember { mutableStateOf<DriverMetaParser.DriverMeta?>(null) }
+                        var metaLoading by remember { mutableStateOf(false) }
+                        val isDriverPkg = remember(file.fileName) { DriverMetaParser.isDriverPackage(file.fileName) }
                         val displayPath = remember(file.filePath) { getFullPath(file.filePath, context) }
 
                         Card(
@@ -468,6 +472,26 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                         Icon(Icons.Default.DeleteOutline, contentDescription = appString(R.string.delete))
                                     }
                                 }
+
+                                if (isDriverPkg) {
+                                    OutlinedButton(
+                                        onClick = {
+                                            metaLoading = true
+                                            scope.launch {
+                                                metaInfo = DriverMetaParser.parse(context, file.filePath)
+                                                metaLoading = false
+                                                showMetaDialog = true
+                                            }
+                                        },
+                                        modifier = Modifier.fillMaxWidth(),
+                                        shape = RoundedCornerShape(16.dp),
+                                        enabled = !metaLoading
+                                    ) {
+                                        Icon(Icons.Default.Info, contentDescription = null)
+                                        Spacer(Modifier.width(7.dp))
+                                        Text(if (metaLoading) "解析中…" else "查看包信息")
+                                    }
+                                }
                             }
                         }
 
@@ -498,6 +522,40 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     TextButton(onClick = { showDeleteDialog = false }) {
                                         Text(appString(R.string.cancel))
                                     }
+                                }
+                            )
+                        }
+
+                        if (showMetaDialog) {
+                            AlertDialog(
+                                onDismissRequest = { showMetaDialog = false },
+                                icon = { Icon(Icons.Default.Info, contentDescription = null) },
+                                title = { Text("驱动包信息") },
+                                text = {
+                                    if (metaInfo == null || metaInfo!!.isEmpty()) {
+                                        Text("未找到 meta.json，该包可能不是标准驱动包格式。")
+                                    } else {
+                                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                            MetaRow("名称", metaInfo!!.name)
+                                            MetaRow("驱动版本", metaInfo!!.driverVersion)
+                                            MetaRow("厂商", metaInfo!!.vendor)
+                                            MetaRow("作者", metaInfo!!.author)
+                                            MetaRow("包版本", metaInfo!!.packageVersion)
+                                            MetaRow("最低 API", metaInfo!!.minApi)
+                                            MetaRow("驱动库", metaInfo!!.libraryName)
+                                            if (metaInfo!!.description.isNotBlank()) {
+                                                Spacer(Modifier.height(4.dp))
+                                                Text(
+                                                    metaInfo!!.description,
+                                                    style = MaterialTheme.typography.bodySmall,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                )
+                                            }
+                                        }
+                                    }
+                                },
+                                confirmButton = {
+                                    TextButton(onClick = { showMetaDialog = false }) { Text("关闭") }
                                 }
                             )
                         }
@@ -545,6 +603,24 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun MetaRow(label: String, value: String) {
+    if (value.isBlank()) return
+    Row(verticalAlignment = Alignment.Top) {
+        Text(
+            "$label：",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.width(72.dp)
+        )
+        Text(
+            value,
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
