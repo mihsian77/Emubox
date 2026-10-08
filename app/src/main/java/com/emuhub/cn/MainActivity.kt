@@ -218,7 +218,7 @@ class MainActivity : ComponentActivity() {
                         source.id == turnipSourceId || source.name == turnipSourceId
                     } ?: sourceCatalog.turnipSources.first()
                     turnipReleases = withContext(Dispatchers.IO) {
-                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries)
+                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
                     }
                 }
 
