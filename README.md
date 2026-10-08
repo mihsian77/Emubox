@@ -17,7 +17,7 @@
 - **中文界面** — 界面和设置汉化
 - **国内下载加速** — 接入 [MirrorHub](https://github.com/mihsian77/MirrorHub) 自动维护的节点库（每6小时测速更新），支持自动选最低延迟 / 手动切换 / 关闭，设置里实时测速显示延迟
 - **国内版专属配色** — 深蓝 + 朱红主题，区别于原版
-- **多语言支持** — 简体中文 / English / Português / Español / Français / Deutsch，可在设置内切换
+- **中英双语** — 简体中文 / English，可在设置内切换
 - **驱动与组件管理** — Turnip / 高通 GPU 驱动、Wine / Proton、DXVK / VKD3D / D7VK、Box64 / FEXCore 等
 - **硬件检测** — 自动识别 GPU 型号、Adreno 代际、安卓版本、运行内存
 - **下载管理** — 暂停 / 继续 / 断点续传 / 下载库管理
