@@ -375,6 +375,7 @@
     <string name="vulkan_memory_heaps">内存堆</string>
     <string name="vulkan_queue_families">队列族</string>
     <string name="vulkan_view_details">查看详细信息（特性/扩展/内存/限制）</string>
+    <string name="vulkan_basic_info">基础信息</string>
     <string name="vulkan_hide_details">收起详细信息</string>
     <string name="vulkan_features">支持的特性</string>
     <string name="vulkan_extension_list">扩展列表</string>
@@ -408,4 +409,9 @@
     <string name="no_drivers_hint">当前设备未匹配到可用驱动。可在设置中关闭"按设备匹配驱动"以查看全部驱动源。</string>
     <string name="no_components">暂无可用组件</string>
     <string name="no_components_hint">组件源正在加载中，请稍候或下拉刷新。</string>
+
+    <!-- 驱动检测错误友好提示 -->
+    <string name="detection_error_adrenotools">此驱动可能为 adrenotools/模拟器专用格式，无法在 App 内检测。请在对应模拟器（如 Eden）内加载验证。</string>
+    <string name="detection_error_extract">驱动包解压失败或未找到 .so</string>
+    <string name="detection_error_exception">检测异常：%1$s</string>
 </resources>
