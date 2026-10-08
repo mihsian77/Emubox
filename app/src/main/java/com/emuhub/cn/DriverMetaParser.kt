@@ -25,6 +25,34 @@ object DriverMetaParser {
         val raw: String
     ) {
         fun isEmpty(): Boolean = name.isBlank() && driverVersion.isBlank()
+
+        /**
+         * 驱动类型分类，决定是否能在 App 内 dlopen 检测。
+         * - TURNIP: mesa/turnip 构建，库名通常为 libvulkan_driver.so / libvulkan.so，可尝试检测
+         * - VENDOR_SYSTEM: 厂商提取的系统驱动（如 vulkan.qualcomm.so），依赖系统环境，App 内无法检测
+         * - UNKNOWN: 无法判断
+         */
+        fun driverType(): DriverType {
+            val lib = libraryName.lowercase()
+            val ven = vendor.lowercase()
+            val nm = name.lowercase()
+            return when {
+                lib.contains("qualcomm") || ven.contains("qualcomm") ||
+                        lib.contains("adreno") || ven.contains("adreno") ->
+                    DriverType.VENDOR_SYSTEM
+                lib.contains("turnip") || ven.contains("mesa") || ven.contains("turnip") ||
+                        nm.contains("turnip") || lib.contains("vulkan_driver") ||
+                        lib == "libvulkan.so" ->
+                    DriverType.TURNIP
+                else -> DriverType.UNKNOWN
+            }
+        }
+    }
+
+    enum class DriverType {
+        TURNIP,       // mesa/turnip 构建，可尝试 App 内检测
+        VENDOR_SYSTEM, // 厂商系统提取驱动，App 内无法检测
+        UNKNOWN       // 无法判断
     }
 
     /** 判断文件是否可能是驱动包（zip/adpkg） */

@@ -2394,6 +2394,157 @@ private fun DeviceStat(
     }
 }
 
+/**
+ * 根据 GPU 信息给出 Winlator 驱动路线推荐。
+ * 参考 Winlator 官方文档：Turnip 仅 Adreno 6xx+，不支持型号用 VirGL，Mali 用 Zink/Gladio。
+ */
+private data class DriverRouteRecommendation(
+    val primaryRoute: String,        // 主推驱动路线
+    val secondaryRoute: String,       // 备选
+    val turnipSupport: TurnipSupport, // Turnip 支持状态
+    val note: String                  // 简短说明
+)
+
+private enum class TurnipSupport { FULL, PARTIAL, NONE }
+
+private fun recommendDriverRoute(deviceInfo: DeviceInfo): DriverRouteRecommendation {
+    val model = deviceInfo.gpuModel
+    val vendor = deviceInfo.gpuVendor
+    val series = deviceInfo.adrenoSeries
+
+    return when (vendor) {
+        GpuVendor.ADRENO -> {
+            // Turnip 官方弱支持的 Adreno 型号（735/732/720/710/613 等）
+            val weakModels = setOf("735", "732", "720", "710", "613", "612", "610")
+            when {
+                weakModels.contains(model) -> DriverRouteRecommendation(
+                    primaryRoute = "VirGL",
+                    secondaryRoute = "Turnip（可能不稳定）",
+                    turnipSupport = TurnipSupport.PARTIAL,
+                    note = "该 Adreno 型号 Turnip 支持有限，DX9 游戏用 VirGL 更稳，3D 游戏可尝试 Turnip"
+                )
+                series == "8xx" -> DriverRouteRecommendation(
+                    primaryRoute = "Turnip + Zink",
+                    secondaryRoute = "Eden 专用 Turnip（部分仓库）",
+                    turnipSupport = TurnipSupport.FULL,
+                    note = "Adreno 8xx 为最新架构，推荐最新 Turnip 构建，部分驱动针对 Eden 模拟器优化"
+                )
+                else -> DriverRouteRecommendation(
+                    primaryRoute = "Turnip + Zink",
+                    secondaryRoute = "VirGL（DX9 轻量游戏）",
+                    turnipSupport = TurnipSupport.FULL,
+                    note = "Adreno 6xx/7xx 主流型号，Turnip + Zink 是 Winlator 最佳性能组合，支持 DXVK/VKD3D"
+                )
+            }
+        }
+        GpuVendor.MALI -> DriverRouteRecommendation(
+            primaryRoute = "Zink / Gladio",
+            secondaryRoute = "PanVK（部分型号实验性）",
+            turnipSupport = TurnipSupport.NONE,
+            note = "Mali GPU 不支持 Turnip，Winlator 用 Zink 或 Gladio 翻译层，兼容性和性能弱于 Adreno+Turnip"
+        )
+        GpuVendor.XCLIPSE -> DriverRouteRecommendation(
+            primaryRoute = "VirGL",
+            secondaryRoute = "无成熟方案",
+            turnipSupport = TurnipSupport.NONE,
+            note = "Exynos Xclipse（AMD RDNA）在 Android 上无成熟 Vulkan 驱动，Winlator 兼容性差"
+        )
+        GpuVendor.POWERVR -> DriverRouteRecommendation(
+            primaryRoute = "VirGL",
+            secondaryRoute = "Zink（实验性）",
+            turnipSupport = TurnipSupport.NONE,
+            note = "PowerVR GPU 无 Turnip 支持，VirGL 是唯一较稳定的选择"
+        )
+        GpuVendor.UNKNOWN -> DriverRouteRecommendation(
+            primaryRoute = "VirGL",
+            secondaryRoute = "尝试 Zink",
+            turnipSupport = TurnipSupport.NONE,
+            note = "无法识别 GPU 厂商，建议先用 VirGL 兜底，再根据实际情况尝试其他驱动"
+        )
+    }
+}
+
+@Composable
+private fun DriverRouteCard(deviceInfo: DeviceInfo) {
+    val rec = remember(deviceInfo) { recommendDriverRoute(deviceInfo) }
+    val supportColor = when (rec.turnipSupport) {
+        TurnipSupport.FULL -> Color(0xFF2E7D32)
+        TurnipSupport.PARTIAL -> Color(0xFFE65100)
+        TurnipSupport.NONE -> Color(0xFFC62828)
+    }
+    val supportText = when (rec.turnipSupport) {
+        TurnipSupport.FULL -> "Turnip 完整支持"
+        TurnipSupport.PARTIAL -> "Turnip 部分支持"
+        TurnipSupport.NONE -> "不支持 Turnip"
+    }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+    ) {
+        Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.AutoAwesome,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    "Winlator 驱动路线推荐",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                )
+                Spacer(Modifier.weight(1f))
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = supportColor.copy(alpha = 0.15f)
+                ) {
+                    Text(
+                        supportText,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = supportColor,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                    )
+                }
+            }
+
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Surface(
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f),
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Column(Modifier.padding(12.dp)) {
+                        Text("主推", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Spacer(Modifier.height(2.dp))
+                        Text(rec.primaryRoute, style = MaterialTheme.typography.bodyMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Medium)
+                    }
+                }
+                Surface(
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f),
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Column(Modifier.padding(12.dp)) {
+                        Text("备选", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Spacer(Modifier.height(2.dp))
+                        Text(rec.secondaryRoute, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+            }
+
+            Text(
+                rec.note,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f)
+            )
+        }
+    }
+}
+
 @Composable
 private fun DownloadIndexCard(
     section: HubSection,
@@ -3277,6 +3428,12 @@ fun DeviceScreen(
             DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
         }
 
+        if (!isLoading && deviceInfo != null) {
+            item(key = "driver_route") {
+                DriverRouteCard(deviceInfo = deviceInfo)
+            }
+        }
+
         item(key = "vulkan_header") {
             RegionHeader(
                 title = appString(R.string.vulkan_title),
@@ -3479,9 +3636,17 @@ private fun DriverDetectionList(
     var detectingId by remember { mutableStateOf<String?>(null) }
 
     val downloadedDrivers = DownloadsManager.completedDownloads.filter { download ->
-        download.fileName.endsWith(".zip") && listOf(
-            "turnip", "qualcomm", "adreno", "mali", "panvk", "driver", "vulkan", "mesa"
-        ).any { download.fileName.contains(it, ignoreCase = true) }
+        val isDriverPackage = download.fileName.endsWith(".zip", ignoreCase = true) ||
+                download.fileName.endsWith(".adpkg", ignoreCase = true)
+        if (!isDriverPackage) return@filter false
+        // 优先按下载目录分类（Drivers/），旧记录无 subPath 时回退关键词匹配
+        if (download.subPath.isNotBlank()) {
+            download.subPath.startsWith("Drivers", ignoreCase = true)
+        } else {
+            listOf(
+                "turnip", "qualcomm", "adreno", "mali", "panvk", "driver", "vulkan", "mesa"
+            ).any { download.fileName.contains(it, ignoreCase = true) }
+        }
     }
 
     if (downloadedDrivers.isEmpty()) {
@@ -3543,15 +3708,31 @@ private fun DriverDetectionList(
                                     scope.launch(Dispatchers.IO) {
                                         try {
                                             val uri = Uri.parse(download.filePath)
-                                            val driverId = download.fileName.removeSuffix(".zip")
+                                            val driverId = download.fileName
+                                                .removeSuffix(".zip")
+                                                .removeSuffix(".adpkg")
                                             var soFile = DriverExtractor.getSoFile(context, driverId)
                                             if (soFile == null || !soFile.exists()) {
                                                 soFile = DriverExtractor.extract(context, uri, driverId)
                                             }
                                             if (soFile != null) {
-                                                val json = NativeVulkanBridge.collectVulkanInfo(soFile.absolutePath)
-                                                val payload = VulkanInfoPayload.fromJson(json)
-                                                detectionResults = detectionResults + (download.id to payload)
+                                                // 先读 meta.json 判断驱动类型，厂商系统驱动不发起 native 检测
+                                                val meta = DriverMetaParser.parse(context, download.filePath)
+                                                val driverType = meta?.driverType() ?: DriverMetaParser.DriverType.UNKNOWN
+                                                if (driverType == DriverMetaParser.DriverType.VENDOR_SYSTEM) {
+                                                    val errPayload = VulkanInfoPayload(
+                                                        success = false,
+                                                        errorCode = "VENDOR_SYSTEM_DRIVER",
+                                                        errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
+                                                        deviceCount = 0,
+                                                        devices = emptyList()
+                                                    )
+                                                    detectionResults = detectionResults + (download.id to errPayload)
+                                                } else {
+                                                    val json = NativeVulkanBridge.collectVulkanInfo(soFile.absolutePath)
+                                                    val payload = VulkanInfoPayload.fromJson(json)
+                                                    detectionResults = detectionResults + (download.id to payload)
+                                                }
                                             } else {
                                                 val errPayload = VulkanInfoPayload(
                                                     success = false,
@@ -3592,8 +3773,10 @@ private fun DriverDetectionList(
                         if (!result.success) {
                             val errMsg = when (result.errorCode) {
                                 "EXTRACT_FAILED" -> appString(R.string.detection_error_extract)
+                                "VENDOR_SYSTEM_DRIVER" -> (result.errorMessage
+                                    ?: "厂商系统提取驱动，无法在 App 内检测，请在模拟器内加载验证")
                                 "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
-                                "ENUM_DEVICES_MISSING" -> appString(R.string.detection_error_adrenotools)
+                                "ENUM_DEVICES_MISSING", "DRIVER_CRASHED" -> appString(R.string.detection_error_adrenotools)
                                 "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
                                 else -> {
                                     val raw = result.errorMessage ?: ""
