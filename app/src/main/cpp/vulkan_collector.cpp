@@ -1010,7 +1010,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     };
 
     // 8. 测试1：fill bandwidth（填充 32MB × 50 次）
-    const int FILL_ITERS = 50;
+    const int FILL_ITERS = 30;
     double fillNs = runTimed(FILL_ITERS, [&]() {
         for (int i = 0; i < FILL_ITERS; i++) {
             bk.vkCmdFillBuffer(cmdBuf, bufA, 0, VK_WHOLE_SIZE, 0x41414141);
@@ -1024,7 +1024,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     double fillBandwidthGBs = (fillBytes / (fillNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
 
     // 9. 测试2：copy bandwidth（32MB × 50 次，A→B）
-    const int COPY_ITERS = 50;
+    const int COPY_ITERS = 30;
     double copyNs = runTimed(COPY_ITERS, [&]() {
         VkBufferCopy copyRegion{};
         copyRegion.size = BUF_SIZE;
@@ -1040,9 +1040,14 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
 
     // ── 测试3：compute 吞吐（8M float × 2 flops × N dispatch，GFLOPS）────────
-    // 失败不影响带宽结果：computeError 非空但 success 仍为 true。
+    // v1.10.5 起默认停用：部分 Android GPU 驱动（含部分 Adreno 版本）在
+    // vkCreateComputePipelines/dispatch 阶段会触发驱动级崩溃，即使跑在 fork
+    // 子进程也会导致整个跑分失败。带宽测试（fill/copy）为最基础路径，
+    // 全驱动稳定，作为 v1.10.5 的默认跑分。compute 代码保留（#if 0），
+    // 后续以独立进程 + 预编译 GLSL 方式重新启用。
     std::string computeError;
     double computeGFLOPS = 0.0;
+#if 0
     {
         // shader module（字节数组本地构造并校验，见 kComputeShaderSpv）
         VkShaderModuleCreateInfo smCI{};
@@ -1149,6 +1154,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
             computeError = "CREATE_SHADER_MODULE_FAILED";
         }
     }
+#endif
 
     // 数值合法性兜底（防止 inf/NaN 进入 JSON）
     if (!std::isfinite(fillBandwidthGBs) || !std::isfinite(copyBandwidthGBs)) {
@@ -1156,12 +1162,11 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         return "{\"success\":false,\"errorCode\":\"BANDWIDTH_NONFINITE\",\"errorMessage\":\"computed bandwidth is not finite\"}";
     }
 
-    // 10. 总分：带宽 + 计算综合（带宽 20GB/s = 1000 分；计算 1000 GFLOPS = 1000 分）
-    //     带宽 40% + 计算 60%，更能反映真实驱动图形/计算能力差异。
+    // 10. 总分：带宽综合（fill+copy 平均，20GB/s = 1000 分）
+    //     v1.10.5 起 compute 停用，总分仅由带宽构成，避免 9xxx 分虚高。
     double avgBandwidth = (fillBandwidthGBs + copyBandwidthGBs) / 2.0;
     double scorePart1 = avgBandwidth / 20.0 * 1000.0;
-    double scorePart2 = computeGFLOPS / 1000.0 * 1000.0;
-    int totalScore = static_cast<int>(scorePart1 * 0.4 + scorePart2 * 0.6);
+    int totalScore = static_cast<int>(scorePart1);
     if (totalScore > 9999) totalScore = 9999;
 
     // 设备名

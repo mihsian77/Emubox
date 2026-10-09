@@ -479,4 +479,7 @@
     <string name="file_size">大小</string>
     <string name="file_time">下载时间</string>
     <string name="file_path">路径</string>
+    <string name="runtime_search_hint">搜索运行库（名称 / 用途）</string>
+    <string name="runtime_recommended">推荐下载</string>
+    <string name="file_purpose">文件用途</string>
 </resources>

@@ -479,4 +479,7 @@
     <string name="file_size">Size</string>
     <string name="file_time">Downloaded</string>
     <string name="file_path">Path</string>
+    <string name="runtime_search_hint">Search runtimes</string>
+    <string name="runtime_recommended">Recommended</string>
+    <string name="file_purpose">Purpose</string>
 </resources>

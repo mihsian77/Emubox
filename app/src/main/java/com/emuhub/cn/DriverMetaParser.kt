@@ -99,6 +99,7 @@ object DriverMetaParser {
                 var dynSymOff = 0L; var dynSymSize = 0L; var dynSymEnt = 0L; var dynSymLink = -1
                 for (i in 0 until shNum) {
                     raf.seek(shOff + i * shEntSize.toLong())
+                    raf.skipBytes(4) // sh_name（修正：此前把段名当段类型读，永远匹配不到 SHT_DYNSYM，所有驱动被误判未导出）
                     val type = readLeInt(raf)
                     if (type != 11) continue // SHT_DYNSYM
                     raf.skipBytes(if (is64) 16 else 8) // flags + addr

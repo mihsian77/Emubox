@@ -126,9 +126,12 @@ class MainActivity : ComponentActivity() {
 
                         // 设备专属组件（如 Mali 的 panDXVK）：GitHub release 直接分发 .wcp，
                         // 不走 contents.json，单独拉取后并入对应组件分类。
-                        // 关闭"按设备匹配"时显示全部注册表组件。
+                        // 修复：注册表组件对全部设备可见，本设备匹配的排前——之前按 GPU
+                        // 厂商过滤导致 Adreno 用户看不到 Mali 纹理转码 DXVK（panDXVK）。
                         val deviceComponentEntries = if (matchByDevice) {
-                            DriverRegistryRepository.matchComponents(info, registryEntries)
+                            val matched = DriverRegistryRepository.matchComponents(info, registryEntries)
+                            val matchedIds = matched.map { it.id }.toSet()
+                            matched + registryEntries.filter { it.componentType != null && it.id !in matchedIds }
                         } else {
                             registryEntries.filter { it.componentType != null }
                         }
