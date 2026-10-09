@@ -651,6 +651,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
 
 @Composable
 /** 文件信息行（下载库弹窗用，允许空值显示占位） */
+@Composable
 private fun FileInfoRow(label: String, value: String) {
     Row(verticalAlignment = Alignment.Top) {
         Text(
@@ -667,6 +668,7 @@ private fun FileInfoRow(label: String, value: String) {
     }
 }
 
+@Composable
 private fun MetaRow(label: String, value: String) {
     if (value.isBlank()) return
     Row(verticalAlignment = Alignment.Top) {
@@ -3829,6 +3831,7 @@ private fun componentBranch(verName: String): String {
 /** 组件"主线"分支的显示名 */
 private const val componentBranchMainlineLabel = "主线"
 
+@Composable
 fun ComponentSection(
     type: String,
     sources: List<ComponentSource>,
