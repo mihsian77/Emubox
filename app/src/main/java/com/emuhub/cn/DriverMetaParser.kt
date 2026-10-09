@@ -27,36 +27,38 @@ object DriverMetaParser {
         fun isEmpty(): Boolean = name.isBlank() && driverVersion.isBlank()
 
         /**
-         * 驱动类型分类，决定是否能在 App 内 dlopen 检测。
-         * - TURNIP: mesa/turnip/adrenotools 构建，库名通常为 libvulkan_driver.so /
-         *   libvulkan.so / vulkan.adreno.so，导出 vkGetInstanceProcAddr，可尝试检测
-         * - VENDOR_SYSTEM: 厂商 ROM 系统提取驱动（vulkan.qualcomm.so 等），
-         *   依赖 hwservicemanager 等系统服务，App 内无法检测
-         * - UNKNOWN: 无法判断
+         * 驱动类型分类，决定检测方式。
+         * 实测结论：通过 zip/adpkg 分发的 Mesa Turnip / PanVK 驱动全部是 adrenotools
+         * 打包格式（K11MCH1、MrPurple666、s1mptom 等），其 ICD 依赖模拟器（Eden/Winlator）
+         * 通过 adrenotools 注入的钩子与运行环境，App 进程直接 dlopen 必然失败
+         * （报 glibc / 符号缺失）。因此这类包不再尝试加载，只解析 meta.json 展示信息。
          */
         fun driverType(): DriverType {
             val lib = libraryName.lowercase()
             val ven = vendor.lowercase()
             val nm = name.lowercase()
+            val desc = description.lowercase()
+            val haystack = "$lib $ven $nm $desc"
             return when {
-                // 厂商 ROM 系统驱动：依赖系统服务，App 内无法 dlopen
+                // 厂商 ROM 系统驱动：依赖 hwservicemanager 等系统服务
                 lib.contains("qualcomm") || ven.contains("qualcomm") ->
                     DriverType.VENDOR_SYSTEM
-                // adrenotools/mesa/turnip 打包驱动：完整 Vulkan ICD，可在 App 内尝试检测
+                // adrenotools 打包的 Mesa 驱动（Turnip/PanVK），模拟器专用
                 lib.contains("adreno") || ven.contains("adreno") ||
                         lib.contains("turnip") || ven.contains("mesa") || ven.contains("turnip") ||
-                        nm.contains("turnip") || lib.contains("vulkan_driver") ||
-                        lib == "libvulkan.so" ->
-                    DriverType.TURNIP
+                        nm.contains("turnip") || nm.contains("panvk") || ven.contains("panvk") ||
+                        lib.contains("vulkan_driver") || lib.contains("panvk") ||
+                        lib == "libvulkan.so" || haystack.contains("adrenotools") ->
+                    DriverType.ADRENOTOOLS_PACKAGE
                 else -> DriverType.UNKNOWN
             }
         }
     }
 
     enum class DriverType {
-        TURNIP,       // mesa/turnip 构建，可尝试 App 内检测
-        VENDOR_SYSTEM, // 厂商系统提取驱动，App 内无法检测
-        UNKNOWN       // 无法判断
+        ADRENOTOOLS_PACKAGE, // adrenotools/mesa 打包（Turnip/PanVK），模拟器专用，仅解析 meta
+        VENDOR_SYSTEM,       // 厂商系统提取驱动，App 内无法检测
+        UNKNOWN              // 无法识别，不尝试加载
     }
 
     /** 判断文件是否可能是驱动包（zip/adpkg） */
