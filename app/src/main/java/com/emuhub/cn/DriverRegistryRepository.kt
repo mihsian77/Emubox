@@ -70,6 +70,7 @@ object DriverRegistryRepository {
         "G76" to ("bifrost" to "JM"),
         // Valhall v9, JM
         "G57" to ("valhall-v9" to "JM"),
+        "G68" to ("valhall-v9" to "JM"),
         "G77" to ("valhall-v9" to "JM"),
         "G78" to ("valhall-v9" to "JM"),
         // Valhall v10+, CSF
@@ -78,7 +79,9 @@ object DriverRegistryRepository {
         "G710" to ("valhall-v10" to "CSF"),
         "G715" to ("valhall-v10" to "CSF"),
         "G720" to ("valhall-v10" to "CSF"),
-        "G725" to ("valhall-v10" to "CSF")
+        "G725" to ("valhall-v10" to "CSF"),
+        "G920" to ("valhall-v10" to "CSF"),
+        "G925" to ("valhall-v10" to "CSF")
     )
 
     @Volatile
