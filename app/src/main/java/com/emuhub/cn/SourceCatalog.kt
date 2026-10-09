@@ -25,7 +25,11 @@ data class TurnipSource(
     val requiredVendor: String? = null,
     val filters: Map<String, List<String>>,
     val assetIncludes: Map<String, List<String>> = emptyMap(),
-    val assetExcludes: Map<String, List<String>> = emptyMap()
+    val assetExcludes: Map<String, List<String>> = emptyMap(),
+    /** 目标运行环境：eden / winlator / termux / 空=通用（来源选择预览用） */
+    val targetEmulator: String = "",
+    /** 仓库星标数，来源选择预览展示活跃度 */
+    val stars: Long = 0L
 )
 
 data class QualcommSource(
@@ -34,7 +38,9 @@ data class QualcommSource(
     val apiUrl: String,
     val description: String,
     val experimental: Boolean,
-    val filters: List<String>
+    val filters: List<String>,
+    /** 仓库星标数，来源选择预览展示活跃度 */
+    val stars: Long = 0L
 )
 
 data class ComponentSource(
@@ -151,7 +157,9 @@ object SourceCatalogRepository {
                         requiredVendor = requiredVendor,
                         filters = filters,
                         assetIncludes = assetIncludes,
-                        assetExcludes = assetExcludes
+                        assetExcludes = assetExcludes,
+                        targetEmulator = obj.optString("targetEmulator"),
+                        stars = obj.optLong("stars", 0L)
                     )
                 )
             }
@@ -181,7 +189,8 @@ object SourceCatalogRepository {
                         apiUrl = apiUrl,
                         description = obj.optString("description"),
                         experimental = obj.optBoolean("experimental", false),
-                        filters = filters
+                        filters = filters,
+                        stars = obj.optLong("stars", 0L)
                     )
                 )
             }
@@ -237,7 +246,7 @@ object SourceCatalogRepository {
                 id = "stevenmxz",
                 name = "StevenMXZ",
                 apiUrl = "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
-                description = "Stable and Gen8 Turnip builds, plus Qualcomm drivers.",
+                description = "稳定版 Turnip 构建，含 Gen8 系列与高通驱动",
                 experimental = false,
                 supportedSeries = setOf("6xx", "7xx", "8xx"),
                 filters = mapOf(
@@ -250,7 +259,7 @@ object SourceCatalogRepository {
                 id = "whitebelyash",
                 name = "whitebelyash",
                 apiUrl = "https://api.github.com/repos/whitebelyash/AdrenoToolsDrivers/releases",
-                description = "Mainline/Stable Turnip builds with broad Adreno support.",
+                description = "Mainline/稳定版 Turnip 构建，适配 Adreno 全系列",
                 experimental = true,
                 supportedSeries = setOf("6xx", "7xx", "8xx"),
                 filters = mapOf(
@@ -261,7 +270,7 @@ object SourceCatalogRepository {
                 id = "k11mch1",
                 name = "K11MCH1",
                 apiUrl = "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
-                description = "Long-running AdrenoTools Turnip driver repository.",
+                description = "老牌 AdrenoTools Turnip 驱动仓库，更新稳定",
                 experimental = false,
                 supportedSeries = setOf("6xx", "7xx"),
                 filters = mapOf("default" to listOf("Turnip"))
@@ -270,7 +279,7 @@ object SourceCatalogRepository {
                 id = "mrpurple",
                 name = "MrPurple",
                 apiUrl = "https://api.github.com/repos/MrPurple666/purple-turnip/releases",
-                description = "Unified custom Turnip builds for A6xx/A7xx/A8xx.",
+                description = "A6xx/A7xx/A8xx 定制 Turnip 构建合集",
                 experimental = true,
                 supportedSeries = setOf("6xx", "7xx", "8xx"),
                 filters = mapOf("default" to listOf("Turnip", "vturnip", "turnip_mrpurple"))
@@ -279,7 +288,7 @@ object SourceCatalogRepository {
                 id = "banner",
                 name = "The412Banner",
                 apiUrl = "https://api.github.com/repos/The412Banner/Banners-Turnip/releases",
-                description = "Automated bleeding-edge Mesa Turnip builds.",
+                description = "自动构建的 Mesa Turnip 前沿版本",
                 experimental = true,
                 supportedSeries = setOf("6xx", "7xx", "8xx"),
                 filters = mapOf("default" to listOf("Turnip", "Mesa", "Adreno")),
@@ -293,7 +302,7 @@ object SourceCatalogRepository {
                 id = "s1mptom",
                 name = "s1mptom (A830/A840 eden)",
                 apiUrl = "https://api.github.com/repos/s1mptom/freedreno_turnip-CI/releases",
-                description = "Upstream Mesa + GPU enablement hacks for Adreno A830/A840, patched for the eden emulator.",
+                description = "A830/A840 专用 Mesa 构建，为 Eden 模拟器适配优化",
                 experimental = true,
                 supportedSeries = setOf("8xx"),
                 supportedModels = setOf("830", "840"),
@@ -303,7 +312,7 @@ object SourceCatalogRepository {
                 id = "wintermist010-a810",
                 name = "WinterMist010 (A810/A812)",
                 apiUrl = "https://api.github.com/repos/WinterMist010/AdrenoToolsDriversA810/releases",
-                description = "Experimental Turnip builds for Adreno A810/A812.",
+                description = "Adreno A810/A812 实验性 Turnip 构建",
                 experimental = true,
                 supportedSeries = setOf("8xx"),
                 supportedModels = setOf("810", "812"),
@@ -313,7 +322,7 @@ object SourceCatalogRepository {
                 id = "diskdvd-a8xx",
                 name = "DiskDVD (A810/A829)",
                 apiUrl = "https://api.github.com/repos/DiskDVD/TurniptoolsA8XX/releases",
-                description = "whitebelyashx fork with extra patches for Adreno A810/A829, actively maintained.",
+                description = "whitebelyash 分支，针对 A810/A829 额外补丁，活跃维护",
                 experimental = true,
                 supportedSeries = setOf("8xx"),
                 supportedModels = setOf("810", "829"),
@@ -323,7 +332,7 @@ object SourceCatalogRepository {
                 id = "vauzi17-710",
                 name = "Vauzi-17 (710/720/722)",
                 apiUrl = "https://api.github.com/repos/Vauzi-17/710/releases",
-                description = "Mature Turnip builds for Adreno 710/720/722, includes dedicated Winlator glibc builds.",
+                description = "Adreno 710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
                 experimental = false,
                 supportedSeries = setOf("7xx"),
                 supportedModels = setOf("710", "720", "722"),
@@ -346,7 +355,7 @@ object SourceCatalogRepository {
                 id = "stevenmxz-qualcomm",
                 name = "StevenMXZ",
                 apiUrl = "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
-                description = "Qualcomm proprietary driver packages published by StevenMXZ.",
+                description = "高通闭源驱动包，由 StevenMXZ 发布",
                 experimental = false,
                 filters = listOf("Qualcomm")
             ),
@@ -354,7 +363,7 @@ object SourceCatalogRepository {
                 id = "k11mch1-qualcomm",
                 name = "K11MCH1",
                 apiUrl = "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
-                description = "Qualcomm driver packages extracted from Qualcomm-based devices.",
+                description = "高通设备提取的系统驱动包",
                 experimental = false,
                 filters = listOf("Qualcomm Driver", "Qualcomm")
             )
@@ -364,35 +373,35 @@ object SourceCatalogRepository {
                 id = "winnative",
                 name = "WinNative-Emu",
                 manifestUrl = "https://raw.githubusercontent.com/WinNative-Emu/Components/refs/heads/main/contents.json",
-                description = "EmuHub default component catalog.",
+                description = "EmuHub 默认组件清单",
                 experimental = false
             ),
             ComponentSource(
                 id = "xnick",
                 name = "Xnick Nightly",
                 manifestUrl = "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
-                description = "Automated WinNative/Winlator component builds.",
+                description = "WinNative/Winlator 自动构建组件",
                 experimental = true
             ),
             ComponentSource(
                 id = "banner-components",
                 name = "The412Banner",
                 manifestUrl = "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
-                description = "Nightly Winlator component catalog.",
+                description = "Winlator 夜间构建组件清单",
                 experimental = true
             ),
             ComponentSource(
                 id = "ref4ik",
                 name = "REF4IK",
                 manifestUrl = "https://github.com/REF4IK/Components-Adrenotools-/releases/download/1/contents.json",
-                description = "Adrenotools-focused component builds.",
+                description = "Adrenotools 专用组件构建",
                 experimental = true
             ),
             ComponentSource(
                 id = "arihany",
                 name = "Arihany WCP Hub",
                 manifestUrl = "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
-                description = "WCP package collection (DXVK/FEXCore/VKD3D).",
+                description = "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
                 experimental = true
             )
         )

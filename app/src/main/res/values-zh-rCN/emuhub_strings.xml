@@ -420,4 +420,12 @@
     <string name="detection_error_adrenotools">检测失败：驱动可能依赖模拟器运行环境（如 glibc），App 进程无法提供。不代表驱动不兼容——请在模拟器（Winlator/Eden）内验证。</string>
     <string name="detection_error_extract">驱动包解压失败或未找到 .so</string>
     <string name="detection_error_exception">检测异常：%1$s</string>
+    <string name="preview_supported">支持 %1$s</string>
+    <string name="preview_series">%1$s 系列</string>
+    <string name="preview_eden">Eden 模拟器</string>
+    <string name="preview_winlator">Winlator</string>
+    <string name="preview_termux">Termux 专用</string>
+    <string name="preview_gamehub">GameHub</string>
+    <string name="preview_qualcomm_system">高通系统提取驱动</string>
+    <string name="preview_stars">%1$s stars</string>
 </resources>
