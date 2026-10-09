@@ -4426,7 +4426,7 @@ private fun ComputeRow(label: String, gflops: Double) {
         ) {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(fraction)
+                    .fillMaxWidth(fraction.toFloat())
                     .height(8.dp)
                     .clip(RoundedCornerShape(4.dp))
                     .background(MaterialTheme.colorScheme.primary)
