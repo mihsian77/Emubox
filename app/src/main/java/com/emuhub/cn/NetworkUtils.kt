@@ -302,3 +302,37 @@ private fun naturalVersionCompare(v1: String, v2: String): Int {
 
     return v1.compareTo(v2, ignoreCase = true)
 }
+
+/** 更新日志在线翻译缓存：原文 → 译文（TTL 24h，避免重复请求） */
+private val translationCache = ConcurrentHashMap<String, CacheEntry<String>>()
+private const val TRANSLATION_TTL_MS = 24 * 60 * 60 * 1000L
+
+/**
+ * 调用 MyMemory 免费翻译 API（无需 key，按文本长度有每日限额）把英文日志译成中文。
+ * 失败或超时返回 null，调用方回退原文。
+ */
+suspend fun translateReleaseNotes(text: String): String? = withContext(Dispatchers.IO) {
+    if (text.isBlank() || text.length > 4500) return@withContext null
+    translationCache[text]?.let {
+        if (System.currentTimeMillis() - it.timestamp < TRANSLATION_TTL_MS) return@withContext it.data
+    }
+    try {
+        val encoded = java.net.URLEncoder.encode(text, "UTF-8")
+        val url = "https://api.mymemory.translated.net/get?q=$encoded&langpair=en|zh-CN"
+        val request = Request.Builder().url(url).build()
+        githubClient.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) return@withContext null
+            val body = response.body?.string().orEmpty()
+            val root = org.json.JSONObject(body)
+            val translated = root.optJSONObject("responseData")?.optString("translatedText")
+            if (translated.isNullOrBlank() || translated.equals("MYMEMORY WARNING", ignoreCase = true)) {
+                null
+            } else {
+                translationCache[text] = CacheEntry(translated, System.currentTimeMillis())
+                translated
+            }
+        }
+    } catch (_: Exception) {
+        null
+    }
+}
