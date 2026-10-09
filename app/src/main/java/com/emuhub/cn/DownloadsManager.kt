@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
 import java.util.UUID
 
 private const val PREFS_NAME = "emu_hub_prefs"
