@@ -449,4 +449,13 @@
     <string name="runtime_load_failed_hint">Check network connection and retry. The catalog is fetched from GitHub via MirrorHub acceleration.</string>
     <string name="retry">Retry</string>
     <string name="download">Download</string>
+    <string name="ok">OK</string>
+
+    <!-- 运行库使用说明 -->
+    <string name="runtime_guide_title">How to use</string>
+    <string name="runtime_guide_intro">Files are saved to Download/Runtime/&lt;category&gt;/. Install them inside Winlator (not the Android system).</string>
+    <string name="runtime_guide_exe">• EXE/MSI installers: open with Winlator File Manager and run, follow the setup wizard.</string>
+    <string name="runtime_guide_dll">• DLL packages: copy the .dll files to Winlator\'s drive_c/windows/system32/ directory.</string>
+    <string name="runtime_guide_font">• Fonts: install via Winlator Control Panel → Fonts, or copy to drive_c/windows/Fonts/.</string>
+    <string name="runtime_guide_recommend">Recommended basics: VC++ 2022, .NET 4.8, CJK Fonts, DirectX 9.0c.</string>
 </resources>
