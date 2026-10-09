@@ -309,27 +309,74 @@ private const val TRANSLATION_TTL_MS = 24 * 60 * 60 * 1000L
 
 /**
  * 调用 MyMemory 免费翻译 API（无需 key，按文本长度有每日限额）把英文日志译成中文。
- * 失败或超时返回 null，调用方回退原文。
+ * MyMemory 单请求 q 参数约 500 字符上限：长文本按行分块（每块 ≤450 字符）逐块翻译后合并，
+ * 单块失败回退原文，保证整段不丢内容。失败或超时返回 null，调用方回退原文。
  */
 suspend fun translateReleaseNotes(text: String): String? = withContext(Dispatchers.IO) {
-    if (text.isBlank() || text.length > 4500) return@withContext null
+    if (text.isBlank()) return@withContext null
     translationCache[text]?.let {
         if (System.currentTimeMillis() - it.timestamp < TRANSLATION_TTL_MS) return@withContext it.data
     }
     try {
-        val encoded = java.net.URLEncoder.encode(text, "UTF-8")
-        val url = "https://api.mymemory.translated.net/get?q=$encoded&langpair=en|zh-CN"
-        val request = Request.Builder().url(url).build()
-        githubClient.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return@withContext null
-            val body = response.body?.string().orEmpty()
-            val root = org.json.JSONObject(body)
-            val translated = root.optJSONObject("responseData")?.optString("translatedText")
-            if (translated.isNullOrBlank() || translated.equals("MYMEMORY WARNING", ignoreCase = true)) {
-                null
-            } else {
-                translationCache[text] = CacheEntry(translated, System.currentTimeMillis())
-                translated
+        // 按行边界分块，每块 ≤ 450 字符（留 50 字符余量给 URL 编码膨胀）
+        val chunks = mutableListOf<String>()
+        val buf = StringBuilder()
+        for (line in text.split("\n")) {
+            if (buf.isNotEmpty() && buf.length + line.length > 450) {
+                chunks += buf.toString()
+                buf.setLength(0)
+            }
+            buf.append(line).append('\n')
+        }
+        if (buf.isNotEmpty()) chunks += buf.toString()
+        if (chunks.size <= 1) {
+            // 短文本单次请求
+            val encoded = java.net.URLEncoder.encode(text, "UTF-8")
+            val url = "https://api.mymemory.translated.net/get?q=$encoded&langpair=en|zh-CN"
+            val request = Request.Builder().url(url).build()
+            githubClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return@withContext null
+                val root = org.json.JSONObject(response.body?.string().orEmpty())
+                val translated = root.optJSONObject("responseData")?.optString("translatedText")
+                if (translated.isNullOrBlank() || translated.equals("MYMEMORY WARNING", ignoreCase = true)) null
+                else {
+                    translationCache[text] = CacheEntry(translated, System.currentTimeMillis())
+                    translated
+                }
+            }
+        } else {
+            // 长文本分块翻译合并
+            val out = StringBuilder()
+            var anySuccess = false
+            for (chunk in chunks) {
+                val translatedChunk = try {
+                    val encoded = java.net.URLEncoder.encode(chunk, "UTF-8")
+                    val url = "https://api.mymemory.translated.net/get?q=$encoded&langpair=en|zh-CN"
+                    val request = Request.Builder().url(url).build()
+                    githubClient.newCall(request).execute().use { response ->
+                        if (!response.isSuccessful) null
+                        else {
+                            val root = org.json.JSONObject(response.body?.string().orEmpty())
+                            val t = root.optJSONObject("responseData")?.optString("translatedText")
+                            if (t.isNullOrBlank() || t.equals("MYMEMORY WARNING", ignoreCase = true)) null else t
+                        }
+                    }
+                } catch (_: Exception) {
+                    null
+                }
+                if (translatedChunk != null) {
+                    out.append(translatedChunk)
+                    anySuccess = true
+                } else {
+                    out.append(chunk)
+                }
+                out.append('\n')
+            }
+            if (!anySuccess) null
+            else {
+                val merged = out.toString().trim()
+                translationCache[text] = CacheEntry(merged, System.currentTimeMillis())
+                merged
             }
         }
     } catch (_: Exception) {

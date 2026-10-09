@@ -438,7 +438,16 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                                 setDataAndType(uri, "application/octet-stream")
                                                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                             }
-                                            context.startActivity(Intent.createChooser(intent, openWithLabel))
+                                            try {
+                                                context.startActivity(Intent.createChooser(intent, openWithLabel))
+                                            } catch (e: Exception) {
+                                                // 无可用打开程序（zip/so 等常见于文件管理器），提示而不是崩溃
+                                                Toast.makeText(
+                                                    context,
+                                                    appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
                                         },
                                         modifier = Modifier.weight(1f),
                                         shape = RoundedCornerShape(16.dp)
@@ -481,24 +490,31 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     }
                                 }
 
-                                if (isDriverPkg) {
-                                    OutlinedButton(
-                                        onClick = {
-                                            metaLoading = true
-                                            scope.launch {
-                                                metaInfo = DriverMetaParser.parse(context, file.filePath)
-                                                metaLoading = false
-                                                showMetaDialog = true
+                                // 所有文件类型都提供"查看信息"：驱动包解析 meta.json，其他文件展示基础信息
+                                OutlinedButton(
+                                    onClick = {
+                                        metaLoading = true
+                                        scope.launch {
+                                            metaInfo = if (isDriverPkg) {
+                                                DriverMetaParser.parse(context, file.filePath)
+                                            } else {
+                                                null
                                             }
-                                        },
-                                        modifier = Modifier.fillMaxWidth(),
-                                        shape = RoundedCornerShape(16.dp),
-                                        enabled = !metaLoading
-                                    ) {
-                                        Icon(Icons.Default.Info, contentDescription = null)
-                                        Spacer(Modifier.width(7.dp))
-                                        Text(if (metaLoading) appString(R.string.meta_loading) else appString(R.string.view_package_info))
-                                    }
+                                            metaLoading = false
+                                            showMetaDialog = true
+                                        }
+                                    },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    shape = RoundedCornerShape(16.dp),
+                                    enabled = !metaLoading
+                                ) {
+                                    Icon(Icons.Default.Info, contentDescription = null)
+                                    Spacer(Modifier.width(7.dp))
+                                    Text(
+                                        if (metaLoading) appString(R.string.meta_loading)
+                                        else if (isDriverPkg) appString(R.string.view_package_info)
+                                        else appString(R.string.view_file_info)
+                                    )
                                 }
                             }
                         }
@@ -538,10 +554,29 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                             AlertDialog(
                                 onDismissRequest = { showMetaDialog = false },
                                 icon = { Icon(Icons.Default.Info, contentDescription = null) },
-                                title = { Text(appString(R.string.driver_package_info)) },
+                                title = {
+                                    Text(
+                                        if (isDriverPkg) appString(R.string.driver_package_info)
+                                        else appString(R.string.file_info_title)
+                                    )
+                                },
                                 text = {
                                     if (metaInfo == null || metaInfo!!.isEmpty()) {
-                                        Text(appString(R.string.meta_not_found))
+                                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                            if (metaInfo == null) {
+                                                // 非驱动文件：展示基础信息
+                                                FileInfoRow(appString(R.string.file_name), file.fileName)
+                                                FileInfoRow(
+                                                    appString(R.string.file_type),
+                                                    file.fileName.substringAfterLast('.', "").uppercase().ifEmpty { "—" }
+                                                )
+                                                FileInfoRow(appString(R.string.file_size), formatBytes(file.sizeBytes))
+                                                FileInfoRow(appString(R.string.file_path), displayPath)
+                                                FileInfoRow(appString(R.string.file_time), formatDate(file.timestamp))
+                                            } else {
+                                                Text(appString(R.string.meta_not_found))
+                                            }
+                                        }
                                     } else {
                                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                             MetaRow(appString(R.string.meta_name), metaInfo!!.name)
@@ -2719,14 +2754,18 @@ private fun componentSubtitle(type: String): String = when (type) {
 
 /** 根据设备 Adreno 系列计算 Turnip 源优先级：匹配型号/系列 → 推荐，有白名单无匹配 → 专属，无白名单 → 通用 */
 private fun turnipCategoryOf(source: TurnipSource, adrenoSeries: String?): String {
-    val modelHit = adrenoSeries?.let { series ->
-        source.supportedModels.any { m -> series.contains(m.take(1)) }
-    } ?: false
     val seriesHit = source.supportedSeries.contains(adrenoSeries)
-    val isRecommended = modelHit || (source.supportedModels.isEmpty() && seriesHit)
+    // 通用多系列 turnip 构建（覆盖 ≥2 个系列且不限定具体型号）→ 适合绝大多数设备
+    val isUniversal = source.supportedModels.isEmpty() && source.supportedSeries.size >= 2
     return when {
-        isRecommended -> "recommended"
-        source.supportedModels.isEmpty() -> "general"
+        adrenoSeries == null ->
+            if (source.supportedModels.isEmpty() && source.supportedSeries.size >= 2) "general"
+            else "exclusive"
+        // 通用构建且适配当前系列 → 推荐
+        isUniversal && seriesHit -> "recommended"
+        // 系列匹配（含具体型号专用源，如 s1mptom 830/840）→ 专属
+        seriesHit -> "exclusive"
+        // 当前系列不适配（如 8xx 设备看 7xx 专用源）→ 专属，不隐藏但也不推荐
         else -> "exclusive"
     }
 }
@@ -3111,7 +3150,8 @@ private fun SourcePickerGridCard(
         )
     ) {
         Column(modifier = Modifier.padding(14.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            // 第一行：图标 + 名称（名称独占剩余空间，标签不挤占，避免被压成单字）
+            Row(verticalAlignment = Alignment.Top) {
                 Surface(
                     shape = CircleShape,
                     color = if (selected) {
@@ -3135,41 +3175,30 @@ private fun SourcePickerGridCard(
                 Text(
                     option.name,
                     style = MaterialTheme.typography.titleSmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
                 )
-                if (option.experimental) {
-                    Spacer(Modifier.width(4.dp))
-                    Text(
-                        appString(R.string.experimental),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
-                }
-                if (option.archived) {
-                    Spacer(Modifier.width(4.dp))
-                    Text(
-                        appString(R.string.source_archived),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-                    )
-                }
-                if (!option.archived && option.category == "recommended") {
-                    Spacer(Modifier.width(4.dp))
-                    Text(
-                        appString(R.string.category_recommended),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                }
-                if (!option.archived && option.category == "exclusive") {
-                    Spacer(Modifier.width(4.dp))
-                    Text(
-                        appString(R.string.category_exclusive),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
+            }
+            // 第二行：状态标签（实验版/已归档/推荐/专属），独立成行
+            val hasTag = option.experimental || option.archived ||
+                (!option.archived && (option.category == "recommended" || option.category == "exclusive"))
+            if (hasTag) {
+                Spacer(Modifier.height(6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    if (option.experimental) {
+                        TagChip(appString(R.string.experimental), MaterialTheme.colorScheme.tertiary)
+                    }
+                    if (option.archived) {
+                        TagChip(
+                            appString(R.string.source_archived),
+                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                        )
+                    }
+                    if (!option.archived && option.category == "recommended") {
+                        TagChip(appString(R.string.category_recommended), MaterialTheme.colorScheme.primary)
+                    }
+                    if (!option.archived && option.category == "exclusive") {
+                        TagChip(appString(R.string.category_exclusive), MaterialTheme.colorScheme.tertiary)
+                    }
                 }
             }
             if (option.description.isNotBlank()) {
@@ -3177,9 +3206,7 @@ private fun SourcePickerGridCard(
                 Text(
                     option.description,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             if (option.preview.isNotEmpty()) {
@@ -3205,9 +3232,7 @@ private fun SourcePickerGridCard(
                                 Text(
                                     item.text,
                                     style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                         }
@@ -3215,6 +3240,22 @@ private fun SourcePickerGridCard(
                 }
             }
         }
+    }
+}
+
+/** 来源卡片/列表用的小标签 chip */
+@Composable
+private fun TagChip(text: String, color: Color) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        color = color.copy(alpha = 0.14f)
+    ) {
+        Text(
+            text,
+            style = MaterialTheme.typography.labelSmall,
+            color = color,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+        )
     }
 }
 
