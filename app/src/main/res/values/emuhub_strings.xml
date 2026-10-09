@@ -428,4 +428,7 @@
     <string name="preview_gamehub">GameHub</string>
     <string name="preview_qualcomm_system">Qualcomm system driver</string>
     <string name="preview_stars">%1$s stars</string>
+    <string name="driver_recommend_title">Driver recommendations for this device</string>
+    <string name="driver_recommend_empty">No matching driver found. Open the driver section to browse all sources.</string>
+    <string name="goto_driver_region">Open driver section</string>
 </resources>

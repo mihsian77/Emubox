@@ -16,7 +16,7 @@ private const val TAG = "EmuHubAccelerator"
  * 流量类型：区分 Release 附件和 Raw 文件，
  * 因为 jsdelivr 等镜像只支持 Raw 文件，不支持 Release 附件。
  */
-enum class TrafficKind { RELEASE_ASSET, RAW_FILE }
+enum class TrafficKind { RELEASE_ASSET, RAW_FILE, API }
 
 /**
  * 国内下载加速节点。
@@ -175,9 +175,11 @@ object Accelerator {
      * 分类 GitHub URL 的流量类型。
      * Release 附件：objects.githubusercontent.com 或 github.com/.../releases/download/
      * Raw 文件：raw.githubusercontent.com 或 github.com/.../raw/、/blob/
+     * API：api.github.com（releases/contents 等接口）
      */
     fun classifyTraffic(url: String): TrafficKind? {
         return when {
+            url.contains("api.github.com/") -> TrafficKind.API
             url.contains("objects.githubusercontent.com") -> TrafficKind.RELEASE_ASSET
             url.contains("github.com/") && url.contains("/releases/download/") -> TrafficKind.RELEASE_ASSET
             url.contains("raw.githubusercontent.com") -> TrafficKind.RAW_FILE

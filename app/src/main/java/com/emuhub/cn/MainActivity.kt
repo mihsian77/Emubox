@@ -103,12 +103,17 @@ class MainActivity : ComponentActivity() {
                         // EGL 采集较慢且结果不变，缓存；刷新时才重新采集
                         val info = cachedDeviceInfo ?: DeviceInfo.collect(this@MainActivity).also { cachedDeviceInfo = it }
                         val matchByDevice = SettingsManager.getMatchDriversByDevice()
-                        val baseCatalog = SourceCatalogRepository.load()
+
+                        // 源目录与驱动注册表并行加载（互不依赖，串行会多等一个超时周期）
+                        val (baseCatalog, registryEntries) = coroutineScope {
+                            val c = async { SourceCatalogRepository.load() }
+                            val r = async { DriverRegistryRepository.load() }
+                            c.await() to r.await()
+                        }
 
                         // 驱动注册表：按设备 GPU 匹配（含 Mali PanVK 全系列），转换为
                         // TurnipSource 后与内置源合并；注册表推荐源排前，按 apiUrl 去重。
                         // 关闭"按设备匹配"时显示全部驱动源（不按 GPU 过滤）。
-                        val registryEntries = DriverRegistryRepository.load()
                         val driverEntries = registryEntries.filter { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
                         val matchedDriverSources = (if (matchByDevice) {
                             DriverRegistryRepository.match(info, registryEntries)
@@ -336,7 +341,8 @@ class MainActivity : ComponentActivity() {
                                         DeviceScreen(
                                             modifier = Modifier.padding(padding),
                                             deviceInfo = deviceInfo,
-                                            isLoading = isLoading
+                                            isLoading = isLoading,
+                                            onNavigateToDrivers = { currentScreen = AppScreen.DRIVERS }
                                         )
                                     }
                                 }
