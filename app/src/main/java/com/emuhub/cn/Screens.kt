@@ -651,7 +651,6 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
 
 @Composable
 /** 文件信息行（下载库弹窗用，允许空值显示占位） */
-@Composable
 private fun FileInfoRow(label: String, value: String) {
     Row(verticalAlignment = Alignment.Top) {
         Text(
@@ -3816,7 +3815,6 @@ private fun ComponentVersionCard(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
 /** 组件分支识别：从 verName 解析主线/Sarek/GPLAsync/ARM64EC 等变体 */
 private fun componentBranch(verName: String): String {
     val n = verName.lowercase()
