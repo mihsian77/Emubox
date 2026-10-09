@@ -132,6 +132,15 @@ suspend fun downloadComponent(context: Context, component: Component) {
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
 }
 
+/** 下载 Windows 运行库文件，按分类存入 Download/Runtime/<分类>/ */
+suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent) {
+    val file = component.primaryFile ?: return
+    val fileName = sanitizeFileName(file.rename.ifBlank { file.fileName })
+    val acceleratedUrl = Accelerator.rewriteUrl(file.url)
+    val category = "Runtime/${component.category.labelRes}"
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
+}
+
 private fun sanitizeFileName(name: String): String {
     return name.replace(Regex("[\\\\/:*?\"<>|]"), "_")
 }

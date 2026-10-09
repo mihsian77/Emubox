@@ -4679,3 +4679,254 @@ fun ComponentScreen(
     }
 }
 
+// ── 运行库 Tab：Windows 运行库在线下载（VC++/.NET/解码器/游戏依赖/字体）──
+
+@Composable
+fun RuntimeLibraryScreen(
+    onDownload: (RuntimeComponent) -> Unit
+) {
+    var components by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
+    var isLoading by remember { mutableStateOf(true) }
+    var loadError by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        isLoading = true
+        loadError = false
+        val result = withContext(Dispatchers.IO) { RuntimeLibraryRepository.load() }
+        components = result
+        isLoading = false
+        loadError = result.isEmpty()
+    }
+
+    val grouped = remember(components) { RuntimeLibraryRepository.groupByCategory(components) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(
+                text = appString(R.string.runtime_title),
+                style = MaterialTheme.typography.headlineSmall
+            )
+            Text(
+                text = appString(R.string.runtime_subtitle),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 48.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        } else if (loadError) {
+            RuntimeEmptyState(onRetry = {
+                isLoading = true
+                loadError = false
+            })
+        } else {
+            grouped.forEach { (category, list) ->
+                RuntimeCategorySection(
+                    category = category,
+                    components = list,
+                    onDownload = onDownload
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun RuntimeCategorySection(
+    category: RuntimeCategory,
+    components: List<RuntimeComponent>,
+    onDownload: (RuntimeComponent) -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = category.labelRes,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                text = "${components.size}",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(Modifier.weight(1f))
+            Divider(modifier = Modifier.weight(1f))
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { comp ->
+                    RuntimeComponentCard(component = comp, onDownload = onDownload)
+                }
+            }
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { comp ->
+                    RuntimeComponentCard(component = comp, onDownload = onDownload)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun RuntimeComponentCard(
+    component: RuntimeComponent,
+    onDownload: (RuntimeComponent) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = component.name,
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                if (!component.isReady) {
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        text = when (component.status) {
+                            "needs-upstream" -> appString(R.string.runtime_status_upstream)
+                            "pending-manual" -> appString(R.string.runtime_status_pending)
+                            else -> component.status
+                        },
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+            }
+
+            if (component.description.isNotBlank()) {
+                Text(
+                    text = component.description,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (component.provider.isNotBlank()) {
+                    Text(
+                        text = component.provider,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                } else {
+                    Spacer(Modifier.weight(1f))
+                }
+                if (component.fileSize > 0) {
+                    Text(
+                        text = formatFileSize(component.fileSize),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
+            }
+
+            if (component.downloadUrl.isNotBlank()) {
+                Spacer(Modifier.height(2.dp))
+                FilledTonalButton(
+                    onClick = { onDownload(component) },
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(vertical = 4.dp)
+                ) {
+                    Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(6.dp))
+                    Text(appString(R.string.download), style = MaterialTheme.typography.labelMedium)
+                }
+            } else {
+                Text(
+                    text = appString(R.string.runtime_no_download),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.outline
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun RuntimeEmptyState(onRetry: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Icon(
+                Icons.Default.ErrorOutline,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp),
+                tint = MaterialTheme.colorScheme.outline
+            )
+            Text(
+                text = appString(R.string.runtime_load_failed),
+                style = MaterialTheme.typography.titleSmall
+            )
+            Text(
+                text = appString(R.string.runtime_load_failed_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            FilledTonalButton(onClick = onRetry) {
+                Text(appString(R.string.retry))
+            }
+        }
+    }
+}
+
+private fun formatFileSize(bytes: Long): String = when {
+    bytes >= 1_000_000 -> String.format("%.1f MB", bytes / 1_000_000.0)
+    bytes >= 1_000 -> String.format("%.1f KB", bytes / 1_000.0)
+    else -> "$bytes B"
+}
+
