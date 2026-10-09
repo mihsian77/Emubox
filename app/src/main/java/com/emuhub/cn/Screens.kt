@@ -3451,6 +3451,7 @@ private fun ComponentSizeText(component: Component) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComponentSection(
     type: String,
