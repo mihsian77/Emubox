@@ -40,7 +40,9 @@ data class QualcommSource(
     val experimental: Boolean,
     val filters: List<String>,
     /** 仓库星标数，来源选择预览展示活跃度 */
-    val stars: Long = 0L
+    val stars: Long = 0L,
+    /** 已归档/停更：UI 显示"已停更"标签，不再默认置顶 */
+    val archived: Boolean = false
 )
 
 data class ComponentSource(
@@ -195,7 +197,8 @@ object SourceCatalogRepository {
                         description = obj.optString("description"),
                         experimental = obj.optBoolean("experimental", false),
                         filters = filters,
-                        stars = obj.optLong("stars", 0L)
+                        stars = obj.optLong("stars", 0L),
+                        archived = obj.optBoolean("archived", false)
                     )
                 )
             }
@@ -224,9 +227,13 @@ object SourceCatalogRepository {
         }
 
         val fallback = builtInCatalog()
+        // 远程 qualcomm 源为主，内置中独有的（按 id 去重）追加进去，
+        // 避免远程 sources.json 覆盖我们新增的高通驱动仓库。
+        val remoteQualcommIds = qualcommSources.map { it.id }.toSet()
+        val extraQualcomm = fallback.qualcommSources.filter { it.id !in remoteQualcommIds }
         return SourceCatalog(
             turnipSources = turnipSources.ifEmpty { fallback.turnipSources },
-            qualcommSources = qualcommSources.ifEmpty { fallback.qualcommSources },
+            qualcommSources = (qualcommSources + extraQualcomm).ifEmpty { fallback.qualcommSources },
             componentSources = componentSources.ifEmpty { fallback.componentSources }
         )
     }
@@ -362,7 +369,8 @@ object SourceCatalogRepository {
                 apiUrl = "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
                 description = "高通闭源驱动包，由 StevenMXZ 发布",
                 experimental = false,
-                filters = listOf("Qualcomm")
+                filters = listOf("Qualcomm"),
+                stars = 998
             ),
             QualcommSource(
                 id = "k11mch1-qualcomm",
@@ -370,7 +378,18 @@ object SourceCatalogRepository {
                 apiUrl = "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
                 description = "高通设备提取的系统驱动包",
                 experimental = false,
-                filters = listOf("Qualcomm Driver", "Qualcomm")
+                filters = listOf("Qualcomm Driver", "Qualcomm"),
+                stars = 5130
+            ),
+            QualcommSource(
+                id = "stevenmxz-collection",
+                name = "StevenMXZ 旧版收集",
+                apiUrl = "https://api.github.com/repos/StevenMXZ/Adrenotools-Drivers/releases",
+                description = "A8xx 旧版高通系统驱动集合（2026-01 停更），仅 Adreno 8xx 设备",
+                experimental = false,
+                filters = emptyList(),
+                stars = 19,
+                archived = true
             )
         ),
         componentSources = listOf(
