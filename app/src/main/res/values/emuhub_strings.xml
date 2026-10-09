@@ -316,6 +316,7 @@
     <string name="tab_device">Device</string>
     <string name="tab_driver">Drivers</string>
     <string name="tab_component">Components</string>
+    <string name="tab_runtime">Runtime</string>
     <string name="tab_download">Downloads</string>
     <string name="tab_settings">Settings</string>
     <string name="device_info_title">Device Info</string>
@@ -437,4 +438,15 @@
     <string name="adrenotools_format_title">adrenotools / emulator package</string>
     <string name="adrenotools_format_hint">This driver is packaged for adrenotools-based emulators (Eden, Winlator, GameHub). It cannot be loaded inside this app — load it in the emulator to verify compatibility and performance.</string>
     <string name="unknown_package_hint">Unrecognized driver package: no valid meta.json found.</string>
+
+    <!-- 运行库 Tab -->
+    <string name="runtime_title">Windows Runtime Libraries</string>
+    <string name="runtime_subtitle">VC++ / .NET / codecs / game dependencies — sourced from winlator-contents, accelerated via MirrorHub.</string>
+    <string name="runtime_status_upstream">Needs upstream</string>
+    <string name="runtime_status_pending">Pending manual</string>
+    <string name="runtime_no_download">No download available</string>
+    <string name="runtime_load_failed">Failed to load runtime catalog</string>
+    <string name="runtime_load_failed_hint">Check network connection and retry. The catalog is fetched from GitHub via MirrorHub acceleration.</string>
+    <string name="retry">Retry</string>
+    <string name="download">Download</string>
 </resources>

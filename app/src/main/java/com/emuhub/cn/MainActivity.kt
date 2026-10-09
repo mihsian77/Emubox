@@ -35,6 +35,7 @@ private enum class AppScreen {
     DEVICE,
     DRIVERS,
     COMPONENTS,
+    RUNTIME,
     DOWNLOADS,
     SETTINGS,
     GUIDE
@@ -272,6 +273,12 @@ class MainActivity : ComponentActivity() {
                                     label = { Text(appString(R.string.tab_component)) }
                                 )
                                 NavigationBarItem(
+                                    selected = currentScreen == AppScreen.RUNTIME,
+                                    onClick = { currentScreen = AppScreen.RUNTIME },
+                                    icon = { Icon(Icons.Default.Apps, contentDescription = null) },
+                                    label = { Text(appString(R.string.tab_runtime)) }
+                                )
+                                NavigationBarItem(
                                     selected = currentScreen == AppScreen.DOWNLOADS,
                                     onClick = { currentScreen = AppScreen.DOWNLOADS },
                                     icon = {
@@ -481,6 +488,12 @@ class MainActivity : ComponentActivity() {
                                         )
                                     }
                                 }
+
+                                AppScreen.RUNTIME -> RuntimeLibraryScreen(
+                                    onDownload = { component ->
+                                        downloadRuntimeLibrary(appContext, component)
+                                    }
+                                )
 
                                 AppScreen.DOWNLOADS -> DownloadsScreen(
                                     onBack = { },
