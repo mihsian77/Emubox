@@ -679,11 +679,30 @@ struct BenchmarkDispatch {
     PFN_vkCmdWriteTimestamp vkCmdWriteTimestamp = nullptr;
     PFN_vkGetQueryPoolResults vkGetQueryPoolResults = nullptr;
     PFN_vkGetDeviceProcAddr vkGetDeviceProcAddr = nullptr;
+    // ── compute 基准专用 ──
+    PFN_vkCreateShaderModule vkCreateShaderModule = nullptr;
+    PFN_vkDestroyShaderModule vkDestroyShaderModule = nullptr;
+    PFN_vkCreateDescriptorSetLayout vkCreateDescriptorSetLayout = nullptr;
+    PFN_vkDestroyDescriptorSetLayout vkDestroyDescriptorSetLayout = nullptr;
+    PFN_vkCreateDescriptorPool vkCreateDescriptorPool = nullptr;
+    PFN_vkDestroyDescriptorPool vkDestroyDescriptorPool = nullptr;
+    PFN_vkAllocateDescriptorSets vkAllocateDescriptorSets = nullptr;
+    PFN_vkUpdateDescriptorSets vkUpdateDescriptorSets = nullptr;
+    PFN_vkCreatePipelineLayout vkCreatePipelineLayout = nullptr;
+    PFN_vkDestroyPipelineLayout vkDestroyPipelineLayout = nullptr;
+    PFN_vkCreateComputePipelines vkCreateComputePipelines = nullptr;
+    PFN_vkDestroyPipeline vkDestroyPipeline = nullptr;
+    PFN_vkCmdBindPipeline vkCmdBindPipeline = nullptr;
+    PFN_vkCmdBindDescriptorSets vkCmdBindDescriptorSets = nullptr;
+    PFN_vkCmdDispatch vkCmdDispatch = nullptr;
 };
 
 // 阶段 1：加载 instance 级入口（创建逻辑设备前必须有 vkCreateDevice/vkGetDeviceProcAddr）
-static bool loadInstanceDispatch(VkInstance instance, BenchmarkDispatch& bk) {
-    auto getInst = reinterpret_cast<PFN_vkGetInstanceProcAddr>(
+// resolver：系统跑分传 nullptr（用全局 vkGetInstanceProcAddr）；驱动跑分传驱动导出的
+// vkGetInstanceProcAddr，否则驱动创建的 instance 无法解析 device 级入口。
+static bool loadInstanceDispatch(VkInstance instance, BenchmarkDispatch& bk,
+                                 PFN_vkGetInstanceProcAddr resolver) {
+    auto getInst = resolver ? resolver : reinterpret_cast<PFN_vkGetInstanceProcAddr>(
         reinterpret_cast<void*>(vkGetInstanceProcAddr));
     if (!getInst) return false;
 
@@ -726,6 +745,21 @@ static bool loadDeviceDispatch(VkDevice device, BenchmarkDispatch& bk) {
     LOAD_DEV(vkCmdResetQueryPool);
     LOAD_DEV(vkCmdWriteTimestamp);
     LOAD_DEV(vkGetQueryPoolResults);
+    LOAD_DEV(vkCreateShaderModule);
+    LOAD_DEV(vkDestroyShaderModule);
+    LOAD_DEV(vkCreateDescriptorSetLayout);
+    LOAD_DEV(vkDestroyDescriptorSetLayout);
+    LOAD_DEV(vkCreateDescriptorPool);
+    LOAD_DEV(vkDestroyDescriptorPool);
+    LOAD_DEV(vkAllocateDescriptorSets);
+    LOAD_DEV(vkUpdateDescriptorSets);
+    LOAD_DEV(vkCreatePipelineLayout);
+    LOAD_DEV(vkDestroyPipelineLayout);
+    LOAD_DEV(vkCreateComputePipelines);
+    LOAD_DEV(vkDestroyPipeline);
+    LOAD_DEV(vkCmdBindPipeline);
+    LOAD_DEV(vkCmdBindDescriptorSets);
+    LOAD_DEV(vkCmdDispatch);
 #undef LOAD_DEV
 
     return bk.vkCreateDevice && bk.vkDestroyDevice && bk.vkGetDeviceQueue &&
@@ -765,7 +799,8 @@ static int findDeviceLocalMemoryType(const VulkanDispatch& vk, VkPhysicalDevice 
     return -1;
 }
 
-static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice device) {
+static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice device,
+                                PFN_vkGetInstanceProcAddr resolver = nullptr) {
     BenchmarkDispatch bk{};
     VkDevice logicalDevice = VK_NULL_HANDLE;
     VkQueue queue = VK_NULL_HANDLE;
@@ -774,6 +809,13 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     VkBuffer bufA = VK_NULL_HANDLE, bufB = VK_NULL_HANDLE;
     VkDeviceMemory memA = VK_NULL_HANDLE, memB = VK_NULL_HANDLE;
     VkQueryPool queryPool = VK_NULL_HANDLE;
+    // compute 基准资源
+    VkShaderModule shaderModule = VK_NULL_HANDLE;
+    VkDescriptorSetLayout dsLayout = VK_NULL_HANDLE;
+    VkDescriptorPool dsPool = VK_NULL_HANDLE;
+    VkDescriptorSet ds = VK_NULL_HANDLE;
+    VkPipelineLayout pipeLayout = VK_NULL_HANDLE;
+    VkPipeline computePipeline = VK_NULL_HANDLE;
 
     auto cleanup = [&]() {
         // 函数指针可能未加载成功（loadBenchmarkDispatch 失败时），必须判空防崩溃
@@ -784,6 +826,11 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         if (bk.vkFreeMemory && memA) bk.vkFreeMemory(logicalDevice, memA, nullptr);
         if (bk.vkFreeMemory && memB) bk.vkFreeMemory(logicalDevice, memB, nullptr);
         if (bk.vkDestroyQueryPool && queryPool) bk.vkDestroyQueryPool(logicalDevice, queryPool, nullptr);
+        if (bk.vkDestroyPipeline && computePipeline) bk.vkDestroyPipeline(logicalDevice, computePipeline, nullptr);
+        if (bk.vkDestroyPipelineLayout && pipeLayout) bk.vkDestroyPipelineLayout(logicalDevice, pipeLayout, nullptr);
+        if (bk.vkDestroyDescriptorPool && dsPool) bk.vkDestroyDescriptorPool(logicalDevice, dsPool, nullptr);
+        if (bk.vkDestroyDescriptorSetLayout && dsLayout) bk.vkDestroyDescriptorSetLayout(logicalDevice, dsLayout, nullptr);
+        if (bk.vkDestroyShaderModule && shaderModule) bk.vkDestroyShaderModule(logicalDevice, shaderModule, nullptr);
         if (bk.vkDestroyDevice && logicalDevice) bk.vkDestroyDevice(logicalDevice, nullptr);
     };
 
@@ -791,7 +838,8 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         cleanup();
         std::ostringstream j;
         j << "{\"success\":false,\"errorCode\":\"" << code << "\",\"errorMessage\":\""
-          << jsonEscape(msg) << "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"totalScore\":0}";
+          << jsonEscape(msg) << "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,"
+          << "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
         return j.str();
     };
 
@@ -808,7 +856,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     float timestampPeriod = props.limits.timestampPeriod; // ns
 
     // 3. 创建逻辑设备（先加载 instance 级入口，再创建，再加载 device 级函数）
-    if (!loadInstanceDispatch(instance, bk)) {
+    if (!loadInstanceDispatch(instance, bk, resolver)) {
         return fail("LOAD_INSTANCE_DISPATCH_FAILED", "加载 instance 级函数失败");
     }
 
@@ -959,15 +1007,129 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     double copyBytes = static_cast<double>(BUF_SIZE) * COPY_ITERS;
     double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
 
+    // ── 测试3：compute 吞吐（8M float × 2 flops × N dispatch，GFLOPS）────────
+    // 失败不影响带宽结果：computeError 非空但 success 仍为 true。
+    std::string computeError;
+    double computeGFLOPS = 0.0;
+    {
+        // shader module（字节数组本地构造并校验，见 kComputeShaderSpv）
+        VkShaderModuleCreateInfo smCI{};
+        smCI.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+        smCI.codeSize = kComputeShaderSpvBytes;
+        smCI.pCode = kComputeShaderSpv;
+        if (bk.vkCreateShaderModule &&
+            bk.vkCreateShaderModule(logicalDevice, &smCI, nullptr, &shaderModule) == VK_SUCCESS) {
+            // descriptor set layout：set=0 binding=0 storage buffer（仅 float 数组）
+            VkDescriptorSetLayoutBinding binding{};
+            binding.binding = 0;
+            binding.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+            binding.stageFlags = VK_SHADER_STAGE_COMPUTE_BIT;
+            binding.descriptorCount = 1;
+            VkDescriptorSetLayoutCreateInfo dsLayoutCI{};
+            dsLayoutCI.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
+            dsLayoutCI.bindingCount = 1;
+            dsLayoutCI.pBindings = &binding;
+            if (bk.vkCreateDescriptorSetLayout &&
+                bk.vkCreateDescriptorSetLayout(logicalDevice, &dsLayoutCI, nullptr, &dsLayout) == VK_SUCCESS) {
+                // pipeline layout
+                VkPipelineLayoutCreateInfo plCI{};
+                plCI.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+                plCI.setLayoutCount = 1;
+                plCI.pSetLayouts = &dsLayout;
+                if (bk.vkCreatePipelineLayout &&
+                    bk.vkCreatePipelineLayout(logicalDevice, &plCI, nullptr, &pipeLayout) == VK_SUCCESS) {
+                    VkComputePipelineCreateInfo cpCI{};
+                    cpCI.sType = VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO;
+                    cpCI.stage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+                    cpCI.stage.stage = VK_SHADER_STAGE_COMPUTE_BIT;
+                    cpCI.stage.module = shaderModule;
+                    cpCI.stage.pName = "main";
+                    cpCI.layout = pipeLayout;
+                    if (bk.vkCreateComputePipelines &&
+                        bk.vkCreateComputePipelines(logicalDevice, VK_NULL_HANDLE, 1, &cpCI, nullptr,
+                                                    &computePipeline) == VK_SUCCESS) {
+                        // descriptor pool + set，绑定 bufA
+                        VkDescriptorPoolSize poolSize{};
+                        poolSize.type = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+                        poolSize.descriptorCount = 1;
+                        VkDescriptorPoolCreateInfo dpCI{};
+                        dpCI.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
+                        dpCI.maxSets = 1;
+                        dpCI.poolSizeCount = 1;
+                        dpCI.pPoolSizes = &poolSize;
+                        if (bk.vkCreateDescriptorPool &&
+                            bk.vkCreateDescriptorPool(logicalDevice, &dpCI, nullptr, &dsPool) == VK_SUCCESS) {
+                            VkDescriptorSetAllocateInfo dsAlloc{};
+                            dsAlloc.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
+                            dsAlloc.descriptorPool = dsPool;
+                            dsAlloc.descriptorSetCount = 1;
+                            dsAlloc.pSetLayouts = &dsLayout;
+                            if (bk.vkAllocateDescriptorSets &&
+                                bk.vkAllocateDescriptorSets(logicalDevice, &dsAlloc, &ds) == VK_SUCCESS) {
+                                VkDescriptorBufferInfo bufInfo{};
+                                bufInfo.buffer = bufA;
+                                bufInfo.offset = 0;
+                                bufInfo.range = BUF_SIZE;
+                                VkWriteDescriptorSet write{};
+                                write.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+                                write.dstSet = ds;
+                                write.dstBinding = 0;
+                                write.descriptorCount = 1;
+                                write.descriptorType = VK_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+                                write.pBufferInfo = &bufInfo;
+                                bk.vkUpdateDescriptorSets(logicalDevice, 1, &write, 0, nullptr);
+
+                                // 计时：单 command buffer 内连续 N 次 dispatch（避免提交开销）
+                                const uint32_t COMPUTE_DISPATCHES = 20000; // 8M×2 flops×2万 ≈ 3355 亿 flops
+                                double computeNs = runTimed(COMPUTE_DISPATCHES, [&]() {
+                                    bk.vkCmdBindPipeline(cmdBuf, VK_PIPELINE_BIND_POINT_COMPUTE, computePipeline);
+                                    bk.vkCmdBindDescriptorSets(cmdBuf, VK_PIPELINE_BIND_POINT_COMPUTE,
+                                                               pipeLayout, 0, 1, &ds, 0, nullptr);
+                                    // 8M floats / 256 threads = 32768 groups
+                                    for (uint32_t i = 0; i < COMPUTE_DISPATCHES; i++) {
+                                        bk.vkCmdDispatch(cmdBuf, 32768, 1, 1);
+                                    }
+                                });
+                                if (computeNs > 0.0) {
+                                    double flops = static_cast<double>(BUF_SIZE / sizeof(float)) * 2.0 *
+                                                   static_cast<double>(COMPUTE_DISPATCHES);
+                                    computeGFLOPS = flops / (computeNs / 1e9) / 1e9;
+                                    if (!std::isfinite(computeGFLOPS)) computeGFLOPS = 0.0;
+                                } else {
+                                    computeError = stageError.empty() ? "COMPUTE_TIMING_FAILED" : stageError;
+                                }
+                            } else {
+                                computeError = "ALLOC_DESCRIPTOR_SET_FAILED";
+                            }
+                        } else {
+                            computeError = "CREATE_DESCRIPTOR_POOL_FAILED";
+                        }
+                    } else {
+                        computeError = "CREATE_COMPUTE_PIPELINE_FAILED";
+                    }
+                } else {
+                    computeError = "CREATE_PIPELINE_LAYOUT_FAILED";
+                }
+            } else {
+                computeError = "CREATE_DS_LAYOUT_FAILED";
+            }
+        } else {
+            computeError = "CREATE_SHADER_MODULE_FAILED";
+        }
+    }
+
     // 数值合法性兜底（防止 inf/NaN 进入 JSON）
     if (!std::isfinite(fillBandwidthGBs) || !std::isfinite(copyBandwidthGBs)) {
         cleanup();
         return "{\"success\":false,\"errorCode\":\"BANDWIDTH_NONFINITE\",\"errorMessage\":\"computed bandwidth is not finite\"}";
     }
 
-    // 10. 总分：fill 和 copy 加权平均，归一化到 0-1000（参考 20GB/s = 1000 分）
+    // 10. 总分：带宽 + 计算综合（带宽 20GB/s = 1000 分；计算 1000 GFLOPS = 1000 分）
+    //     带宽 40% + 计算 60%，更能反映真实驱动图形/计算能力差异。
     double avgBandwidth = (fillBandwidthGBs + copyBandwidthGBs) / 2.0;
-    int totalScore = static_cast<int>(avgBandwidth / 20.0 * 1000.0);
+    double scorePart1 = avgBandwidth / 20.0 * 1000.0;
+    double scorePart2 = computeGFLOPS / 1000.0 * 1000.0;
+    int totalScore = static_cast<int>(scorePart1 * 0.4 + scorePart2 * 0.6);
     if (totalScore > 9999) totalScore = 9999;
 
     // 设备名
@@ -982,6 +1144,8 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
       << "\"deviceName\":\"" << jsonEscape(devName) << "\","
       << "\"fillBandwidthGBs\":" << std::fixed << std::setprecision(2) << fillBandwidthGBs << ","
       << "\"copyBandwidthGBs\":" << copyBandwidthGBs << ","
+      << "\"computeGFLOPS\":" << std::setprecision(2) << computeGFLOPS << ","
+      << "\"computeError\":\"" << jsonEscape(computeError) << "\","
       << "\"totalScore\":" << totalScore << ","
       << "\"bufferSizeMB\":32,"
       << "\"fillIterations\":" << FILL_ITERS << ","
@@ -1023,6 +1187,77 @@ static std::string benchmarkSystemVulkan() {
     return result;
 }
 
+// ── 驱动级基准：真正加载驱动 .so 跑分（不是系统 Vulkan）────────────────────
+// 与 collectWithDriver 同一加载范式：dlopen → dlsym(vkGetInstanceProcAddr) →
+// 用驱动创建 instance/device → 跑带宽 + compute 基准。
+// 必须在 fork 子进程内调用：驱动不兼容当前 GPU 时崩溃只死子进程。
+static std::string runBenchmarkWithDriver(const char* driverPath) {
+    VulkanDispatch vk;
+    vk.libHandle = dlopen(driverPath, RTLD_NOW | RTLD_LOCAL);
+    if (!vk.libHandle) {
+        std::string err = dlerror() ? dlerror() : "unknown";
+        return "{\"success\":false,\"errorCode\":\"DL_OPEN_FAILED\",\"errorMessage\":\""
+               + jsonEscape(err) + "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,"
+               + "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    auto getInst = reinterpret_cast<GetInstanceProcAddrFn>(
+        dlsym(vk.libHandle, "vkGetInstanceProcAddr"));
+    if (!getInst) {
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"NO_VK_ENTRY\",\"errorMessage\":\""
+               "vkGetInstanceProcAddr not found in driver\",\"fillBandwidthGBs\":0,"
+               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(
+        getInst(VK_NULL_HANDLE, "vkCreateInstance"));
+    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(
+        getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
+               "driver lacks vkCreateInstance/vkDestroyInstance\",\"fillBandwidthGBs\":0,"
+               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\""
+               "driver vkCreateInstance failed\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,"
+               "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+        getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+        getInst(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+        getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+        getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+
+    uint32_t deviceCount = 0;
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+    if (deviceCount == 0) {
+        vk.vkDestroyInstance(instance, nullptr);
+        dlclose(vk.libHandle);
+        return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\""
+               "driver reports no Vulkan physical device\",\"fillBandwidthGBs\":0,"
+               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+    // 跑基准：resolver 传驱动的 vkGetInstanceProcAddr，保证 device 级函数从驱动解析
+    std::string result = runBenchmark(vk, instance, devices[0], getInst);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(vk.libHandle);
+    return result;
+}
+
 // 自定义驱动基准（fork 子进程隔离）
 static std::string benchmarkDriverIsolated(const char* driverPath) {
     int pipefd[2];
@@ -1041,9 +1276,8 @@ static std::string benchmarkDriverIsolated(const char* driverPath) {
         close(pipefd[0]);
         std::string json;
         try {
-            // MVP：子进程内用系统 Vulkan 测硬件底力。
-            // 真正的驱动级 benchmark（用驱动 vkGetInstanceProcAddr 创建 instance）后续扩展。
-            json = benchmarkSystemVulkan();
+            // 真正加载驱动跑分（dlopen 驱动 → 驱动创建 instance/device → 跑基准）。
+            json = runBenchmarkWithDriver(driverPath);
         } catch (const std::exception& e) {
             json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
                    + jsonEscape(e.what()) + "\"}";
