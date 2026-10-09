@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.lifecycleScope
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -49,6 +50,12 @@ class MainActivity : ComponentActivity() {
 
         DownloadsManager.init(applicationContext)
         SettingsManager.init(applicationContext)
+
+        // 扫描下载目录中磁盘已有、但记录缺失的文件（卸载重装 / 外部放入），
+        // 并入下载库后旧文件可见可删，避免重复下载生成 (1)(2) 后缀
+        lifecycleScope.launch(Dispatchers.IO) {
+            DownloadsManager.scanExistingFiles(applicationContext)
+        }
 
         val appVersion = try {
             packageManager.getPackageInfo(packageName, 0).versionName ?: "unknown"

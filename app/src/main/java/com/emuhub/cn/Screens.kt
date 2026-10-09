@@ -497,10 +497,21 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     onClick = {
                                         metaLoading = true
                                         scope.launch {
-                                            metaInfo = if (isDriverPkg) {
-                                                DriverMetaParser.parse(context, file.filePath)
-                                            } else {
-                                                null
+                                            // 防御性包裹：个别异常文件（坏 zip / 特殊路径）解析失败时
+                                            // Toast 提示而不是让 App 闪退
+                                            runCatching {
+                                                metaInfo = if (isDriverPkg) {
+                                                    DriverMetaParser.parse(context, file.filePath)
+                                                } else {
+                                                    null
+                                                }
+                                            }.onFailure { e ->
+                                                android.util.Log.w("EmuHub", "parse file info failed", e)
+                                                Toast.makeText(
+                                                    context,
+                                                    appStringFor(context, SettingsManager.getAppLanguage(), R.string.file_info_error),
+                                                    Toast.LENGTH_LONG
+                                                ).show()
                                             }
                                             metaLoading = false
                                             showMetaDialog = true
@@ -866,6 +877,28 @@ private fun formatBytes(bytes: Long): String {
         bytes < 1024 * 1024 -> String.format("%.2f KB", bytes / 1024.0)
         bytes < 1024 * 1024 * 1024 -> String.format("%.2f MB", bytes / (1024.0 * 1024))
         else -> String.format("%.2f GB", bytes / (1024.0 * 1024 * 1024))
+    }
+}
+
+/** GitHub ISO 时间（如 2026-10-05T12:34:56Z）转相对时间：x 天前 / x 小时前 / 刚刚 */
+private fun formatRelativeTime(iso: String): String {
+    return try {
+        val parsed = java.time.Instant.parse(iso)
+        val now = java.time.Instant.now()
+        val diffMs = java.time.Duration.between(parsed, now).toMillis()
+        when {
+            diffMs < 0 -> "刚刚"
+            diffMs < 60_000 -> "刚刚"
+            diffMs < 3_600_000 -> "${diffMs / 60_000} 分钟前"
+            diffMs < 86_400_000 -> "${diffMs / 3_600_000} 小时前"
+            diffMs < 30L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
+            else -> {
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                sdf.format(Date(parsed.toEpochMilli()))
+            }
+        }
+    } catch (_: Exception) {
+        iso
     }
 }
 
@@ -2623,6 +2656,12 @@ private fun DriverRecommendationCard(
                 style = MaterialTheme.typography.bodySmall,
                 color = routeColor
             )
+            // 专业说明：解释翻译层组合，用户能看懂为什么这么推荐
+            Text(
+                route.note,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f)
+            )
 
             when {
                 loadFailed -> {
@@ -2663,6 +2702,16 @@ private fun DriverRecommendationCard(
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
                                 )
+                                // 来源简介（注册表中文描述）：说明维护者/构建类型，体现推荐理由
+                                if (entry.description.isNotBlank()) {
+                                    Text(
+                                        entry.description,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f),
+                                        maxLines = 2,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
                             }
                             if (match.recommended) {
                                 Surface(
@@ -3784,6 +3833,23 @@ private fun DriverVersionCard(
                     )
                 }
             }
+            // 发布时间：GitHub release 的 published_at 转为相对时间（x 天前）
+            if (release.publishedAt.isNotBlank()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        Icons.Default.DateRange,
+                        contentDescription = null,
+                        modifier = Modifier.size(12.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        text = formatRelativeTime(release.publishedAt),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
         }
     }
 }
@@ -4846,102 +4912,18 @@ private fun DriverDetectionList(
                             InfoRow(appString(R.string.meta_min_api), meta.minApi)
                     }
 
-                    // ── 实测跑分：解压 .so → 静态检查导出符号 → fork 子进程加载驱动跑分 ──
+                    // ── 实测边界说明：adrenotools 打包驱动无法在 App 进程内加载 ──
+                    // 所有 zip/adpkg 分发的 Turnip/PanVK 驱动均为 adrenotools 格式，
+                    // ICD 依赖模拟器（Eden/Winlator）的 dlsym 注入环境，App 内 dlopen 必然失败。
+                    // 这里不再提供"实测跑分"入口，避免误导；能力对比见上方 meta 字段。
                     Spacer(Modifier.height(10.dp))
                     Divider()
                     Spacer(Modifier.height(6.dp))
-                    when {
-                        benchmarkingId == download.id -> {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
-                                Spacer(Modifier.width(10.dp))
-                                Text(
-                                    appString(R.string.benchmark_loading_driver),
-                                    style = MaterialTheme.typography.bodySmall
-                                )
-                            }
-                        }
-                        benchmarkResults[download.id] != null -> {
-                            val br = benchmarkResults[download.id]!!
-                            if (br.success) {
-                                Text(
-                                    "实测跑分（${br.deviceName}）",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
-                                )
-                                Spacer(Modifier.height(4.dp))
-                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    Text(
-                                        "综合 ${br.totalScore}",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.primary,
-                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
-                                    )
-                                    Text(
-                                        "带宽 ${"%.1f".format(br.fillBandwidthGBs)} GB/s",
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                    Text(
-                                        "Compute ${"%.0f".format(br.computeGFLOPS)} GFLOPS",
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                }
-                                if (br.computeError.isNotEmpty()) {
-                                    Spacer(Modifier.height(2.dp))
-                                    Text(
-                                        "计算基准受限：${br.computeError}",
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.tertiary
-                                    )
-                                }
-                            } else {
-                                Text(
-                                    "实测跑分失败：${br.errorCode ?: "?"} ${br.errorMessage ?: ""}",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.error
-                                )
-                            }
-                            Spacer(Modifier.height(6.dp))
-                            OutlinedButton(
-                                onClick = { benchmarkDriver(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
-                            ) {
-                                Text(appString(R.string.benchmark_rerun), style = MaterialTheme.typography.bodySmall)
-                            }
-                        }
-                        exportFlags[download.id] == true -> {
-                            Button(
-                                onClick = { benchmarkDriver(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
-                            ) {
-                                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(Modifier.width(6.dp))
-                                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
-                            }
-                            Spacer(Modifier.height(4.dp))
-                            Text(
-                                appString(R.string.benchmark_isolated_hint),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                        exportFlags[download.id] == false -> {
-                            Text(
-                                appString(R.string.benchmark_not_exporting),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.tertiary
-                            )
-                        }
-                        else -> {
-                            // 未检查：提供"检查能否实测"按钮（懒触发，避免进页面即解压大 .so）
-                            TextButton(
-                                onClick = { checkExportable(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
-                            ) {
-                                Text(appString(R.string.benchmark_check_export), style = MaterialTheme.typography.bodySmall)
-                            }
-                        }
-                    }
+                    Text(
+                        appString(R.string.benchmark_adrenotools_boundary),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
 
                     if (result != null) {
                         Spacer(Modifier.height(10.dp))
