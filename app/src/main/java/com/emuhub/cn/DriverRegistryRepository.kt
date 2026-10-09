@@ -351,7 +351,9 @@ object DriverRegistryRepository {
             supportedSeries = series,
             supportedModels = models,
             requiredVendor = entry.gpuVendor,
-            filters = emptyMap()
+            filters = emptyMap(),
+            targetEmulator = entry.targetEmulator,
+            stars = entry.stars
         )
     }
 

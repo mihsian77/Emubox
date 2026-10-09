@@ -420,4 +420,12 @@
     <string name="detection_error_adrenotools">Detection failed: the driver may depend on the emulator runtime (e.g. glibc), which the app process cannot provide. The driver is not necessarily incompatible - please verify it inside the emulator (Winlator/Eden).</string>
     <string name="detection_error_extract">Driver package extraction failed or no .so found</string>
     <string name="detection_error_exception">Detection exception: %1$s</string>
+    <string name="preview_supported">Supports %1$s</string>
+    <string name="preview_series">%1$s series</string>
+    <string name="preview_eden">Eden emulator</string>
+    <string name="preview_winlator">Winlator</string>
+    <string name="preview_termux">Termux-specific</string>
+    <string name="preview_gamehub">GameHub</string>
+    <string name="preview_qualcomm_system">Qualcomm system driver</string>
+    <string name="preview_stars">%1$s stars</string>
 </resources>
