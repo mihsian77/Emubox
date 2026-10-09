@@ -18,6 +18,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +37,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.documentfile.provider.DocumentFile
@@ -2695,7 +2700,8 @@ fun TurnipDriverSection(
                             name = source.name,
                             description = source.description,
                             experimental = source.experimental,
-                            category = category
+                            category = category,
+                            preview = buildTurnipPreview(source)
                         )
                     },
                     onSelected = { sourceId ->
@@ -2714,12 +2720,17 @@ fun TurnipDriverSection(
     }
 }
 
+/** 来源预览窗格条目：图标 + 文本（支持型号 / 目标模拟器 / 活跃度等） */
+private data class PreviewItem(val icon: ImageVector, val text: String)
+
 private data class SourcePickerOption(
     val id: String,
     val name: String,
     val description: String,
     val experimental: Boolean,
-    val category: String = "通用"
+    val category: String = "通用",
+    /** 预览窗格：一行一条（图标 + 文本），如支持型号 / 目标模拟器 / stars */
+    val preview: List<PreviewItem> = emptyList()
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -2807,90 +2818,194 @@ private fun SourcePickerCard(
                 Spacer(Modifier.height(4.dp))
 
                 val grouped = options.groupBy { it.category }
-                listOf(appString(R.string.category_recommended), appString(R.string.category_general), appString(R.string.category_exclusive)).forEach { cat ->
-                    val group = grouped[cat]
-                    if (!group.isNullOrEmpty()) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                "$cat（${group.size}）",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = when (cat) {
-                                    appString(R.string.category_recommended) -> MaterialTheme.colorScheme.primary
-                                    appString(R.string.category_exclusive) -> MaterialTheme.colorScheme.tertiary
-                                    else -> MaterialTheme.colorScheme.onSurfaceVariant
-                                }
-                            )
-                            Spacer(Modifier.width(8.dp))
-                            Divider(modifier = Modifier.weight(1f))
+                val categoryOrder = listOf(
+                    appString(R.string.category_recommended),
+                    appString(R.string.category_general),
+                    appString(R.string.category_exclusive)
+                ).filter { grouped.containsKey(it) }
+                val flatItems = buildList {
+                    categoryOrder.forEach { cat ->
+                        val group = grouped[cat].orEmpty()
+                        if (group.isNotEmpty()) {
+                            add("__header__$cat")
+                            group.forEach { add(it) }
                         }
-                        Spacer(Modifier.height(2.dp))
+                    }
+                }
 
-                        group.forEach { option ->
-                            val selected = option.name == currentName
-                            Card(
-                                onClick = {
-                                    onSelected(option.id)
-                                    showSheet = false
-                                },
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    items(flatItems) { item ->
+                        if (item is String) {
+                            val cat = item.removePrefix("__header__")
+                            Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(22.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = if (selected) {
-                                        MaterialTheme.colorScheme.primaryContainer
-                                    } else {
-                                        MaterialTheme.colorScheme.surfaceVariant
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    "$cat（${grouped[cat].orEmpty().size}）",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = when (cat) {
+                                        appString(R.string.category_recommended) -> MaterialTheme.colorScheme.primary
+                                        appString(R.string.category_exclusive) -> MaterialTheme.colorScheme.tertiary
+                                        else -> MaterialTheme.colorScheme.onSurfaceVariant
                                     }
                                 )
-                            ) {
-                                Row(
-                                    modifier = Modifier.padding(16.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Surface(
-                                        shape = CircleShape,
-                                        color = if (selected) {
-                                            MaterialTheme.colorScheme.primary
-                                        } else {
-                                            MaterialTheme.colorScheme.surface
-                                        }
-                                    ) {
-                                        Icon(
-                                            if (selected) Icons.Default.Check else Icons.Default.CloudDownload,
-                                            contentDescription = null,
-                                            modifier = Modifier.padding(9.dp),
-                                            tint = if (selected) {
-                                                MaterialTheme.colorScheme.onPrimary
-                                            } else {
-                                                MaterialTheme.colorScheme.primary
-                                            }
-                                        )
-                                    }
-                                    Spacer(Modifier.width(12.dp))
-                                    Column(modifier = Modifier.weight(1f)) {
-                                        Row(verticalAlignment = Alignment.CenterVertically) {
-                                            Text(option.name, style = MaterialTheme.typography.titleMedium)
-                                            if (option.experimental) {
-                                                Spacer(Modifier.width(6.dp))
-                                                Text(
-                                                    appString(R.string.experimental),
-                                                    style = MaterialTheme.typography.labelSmall,
-                                                    color = MaterialTheme.colorScheme.tertiary
-                                                )
-                                            }
-                                        }
-                                        if (option.description.isNotBlank()) {
-                                            Text(
-                                                option.description,
-                                                style = MaterialTheme.typography.bodySmall,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                                            )
-                                        }
-                                    }
-                                }
+                                Spacer(Modifier.width(8.dp))
+                                Divider(modifier = Modifier.weight(1f))
                             }
-                            Spacer(Modifier.height(8.dp))
+                        } else {
+                            SourcePickerGridCard(
+                                option = item,
+                                selected = item.name == currentName,
+                                onSelected = {
+                                    onSelected(item.id)
+                                    showSheet = false
+                                }
+                            )
                         }
-                        Spacer(Modifier.height(6.dp))
+                    }
+                    item(span = { GridItemSpan(maxLineSpan) }) {
+                        Spacer(Modifier.height(8.dp))
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** Turnip 来源预览：支持型号 / 目标模拟器 / 活跃度，全部来自注册表静态元数据 */
+private fun buildTurnipPreview(source: TurnipSource): List<PreviewItem> {
+    val lines = mutableListOf<PreviewItem>()
+    val models = source.supportedModels.sorted()
+    val series = source.supportedSeries.sorted()
+    if (models.isNotEmpty()) {
+        lines += PreviewItem(Icons.Default.PhoneAndroid, appString(R.string.preview_supported, models.joinToString("/")))
+    } else if (series.isNotEmpty()) {
+        lines += PreviewItem(Icons.Default.PhoneAndroid, appString(R.string.preview_series, series.joinToString("/")))
+    }
+    when (source.targetEmulator) {
+        "eden" -> lines += PreviewItem(Icons.Default.PlayArrow, appString(R.string.preview_eden))
+        "winlator" -> lines += PreviewItem(Icons.Default.PlayArrow, appString(R.string.preview_winlator))
+        "termux" -> lines += PreviewItem(Icons.Default.PlayArrow, appString(R.string.preview_termux))
+        "gamehub" -> lines += PreviewItem(Icons.Default.PlayArrow, appString(R.string.preview_gamehub))
+    }
+    if (source.stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(source.stars)))
+    return lines
+}
+
+/** Qualcomm 来源预览：系统驱动说明 + 活跃度 */
+private fun buildQualcommPreview(source: QualcommSource): List<PreviewItem> {
+    val lines = mutableListOf<PreviewItem>()
+    lines += PreviewItem(Icons.Default.Memory, appString(R.string.preview_qualcomm_system))
+    if (source.stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(source.stars)))
+    return lines
+}
+
+private fun formatStars(stars: Long): String =
+    if (stars >= 1000) String.format("%.1fk", stars / 1000.0)
+    else stars.toString()
+
+/** 来源选择弹窗里的单个卡片：名称 + 成熟度 + 简介 + 预览窗格（双列网格单元） */
+@Composable
+private fun SourcePickerGridCard(
+    option: SourcePickerOption,
+    selected: Boolean,
+    onSelected: () -> Unit
+) {
+    Card(
+        onClick = onSelected,
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (selected) {
+                MaterialTheme.colorScheme.primaryContainer
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            }
+        )
+    ) {
+        Column(modifier = Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Surface(
+                    shape = CircleShape,
+                    color = if (selected) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surface
+                    }
+                ) {
+                    Icon(
+                        if (selected) Icons.Default.Check else Icons.Default.CloudDownload,
+                        contentDescription = null,
+                        modifier = Modifier.padding(6.dp),
+                        tint = if (selected) {
+                            MaterialTheme.colorScheme.onPrimary
+                        } else {
+                            MaterialTheme.colorScheme.primary
+                        }
+                    )
+                }
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    option.name,
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                if (option.experimental) {
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        appString(R.string.experimental),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+            }
+            if (option.description.isNotBlank()) {
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    option.description,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (option.preview.isNotEmpty()) {
+                Spacer(Modifier.height(8.dp))
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.55f),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        option.preview.forEach { item ->
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    item.icon,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(14.dp),
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Text(
+                                    item.text,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -2963,7 +3078,8 @@ fun DriverCardDynamic(
                             id = source.id,
                             name = source.name,
                             description = source.description,
-                            experimental = source.experimental
+                            experimental = source.experimental,
+                            preview = buildQualcommPreview(source)
                         )
                     },
                     onSelected = { sourceId ->
