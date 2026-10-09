@@ -41,8 +41,12 @@ data class RuntimeComponent(
         }
     }
 
+    /** 总包组件：无自身文件，由 dependencies 子组件拼装（如 DirectMusic/DirectShow 全家桶） */
+    val isBundle: Boolean get() = primaryFile == null && steps.isEmpty() && dependencies.isNotEmpty()
+
     /** 无下载文件时的原因说明 */
     val noDownloadReason: String get() = when {
+        isBundle -> "总包：由 ${dependencies.size} 个子组件组成"
         status == "pending-manual" -> "需手动安装，暂无自动下载"
         status == "needs-upstream" -> "依赖上游提供，暂未打包"
         primaryFile == null && steps.isEmpty() -> "清单未提供安装步骤"

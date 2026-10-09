@@ -5053,6 +5053,24 @@ fun RuntimeLibraryScreen(
     var loadError by remember { mutableStateOf(false) }
     var showGuide by remember { mutableStateOf(false) }
 
+    val context = LocalContext.current
+    // 总包组件：递归下载其全部子组件；普通组件直接下载
+    val handleDownload: (RuntimeComponent) -> Unit = { comp ->
+        if (comp.isBundle) {
+            val children = comp.dependencies.mapNotNull { dep ->
+                components.firstOrNull { it.name.equals(dep, ignoreCase = true) }
+            }.filter { it.primaryFile != null }
+            children.forEach { onDownload(it) }
+            Toast.makeText(
+                context,
+                "${comp.name}：正在下载 ${children.size} 个子组件",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            onDownload(comp)
+        }
+    }
+
     if (showGuide) {
         AlertDialog(
             onDismissRequest = { showGuide = false },
@@ -5171,7 +5189,7 @@ private fun RuntimeCategorySection(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { comp ->
-                    RuntimeComponentCard(component = comp, onDownload = onDownload)
+                    RuntimeComponentCard(component = comp, onDownload = handleDownload)
                 }
             }
             Column(
@@ -5179,7 +5197,7 @@ private fun RuntimeCategorySection(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { comp ->
-                    RuntimeComponentCard(component = comp, onDownload = onDownload)
+                    RuntimeComponentCard(component = comp, onDownload = handleDownload)
                 }
             }
         }
@@ -5274,7 +5292,23 @@ private fun RuntimeComponentCard(
                 }
             }
 
-            if (component.downloadUrl.isNotBlank()) {
+            // 总包徽章（仅总包组件）
+            if (component.isBundle) {
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.7f)
+                ) {
+                    Text(
+                        text = "${component.dependencies.size} 个子组件",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+                Spacer(Modifier.height(2.dp))
+            }
+
+            if (component.downloadUrl.isNotBlank() || component.isBundle) {
                 Spacer(Modifier.height(2.dp))
                 FilledTonalButton(
                     onClick = { onDownload(component) },
@@ -5283,7 +5317,16 @@ private fun RuntimeComponentCard(
                 ) {
                     Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(Modifier.width(6.dp))
-                    Text(appString(R.string.download), style = MaterialTheme.typography.labelMedium)
+                    Text(
+                        if (component.isBundle) {
+                            "${appString(R.string.download)} ${component.dependencies.size} ${appString(R.string.runtime_bundle_children)}"
+                        } else {
+                            appString(R.string.download)
+                        },
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             } else {
                 Text(

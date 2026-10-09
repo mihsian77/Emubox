@@ -459,8 +459,9 @@
     <string name="runtime_guide_dll">• DLL packages: copy the .dll files to Winlator\'s drive_c/windows/system32/ directory.</string>
     <string name="runtime_guide_font">• Fonts: install via Winlator Control Panel → Fonts, or copy to drive_c/windows/Fonts/.</string>
     <string name="runtime_guide_recommend">Recommended basics: VC++ 2022, .NET 4.8, CJK Fonts, DirectX 9.0c.</string>
-    <string name="component_log_loading">Loading changelog…</string>
     <string name="translate_changelog">翻译</string>
     <string name="show_original">原文</string>
     <string name="translate_failed">翻译失败，已显示原文</string>
+    <string name="runtime_bundle_children">sub-packages</string>
+    <string name="component_log_loading">Loading changelog…</string>
 </resources>
