@@ -650,6 +650,23 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
 }
 
 @Composable
+/** 文件信息行（下载库弹窗用，允许空值显示占位） */
+private fun FileInfoRow(label: String, value: String) {
+    Row(verticalAlignment = Alignment.Top) {
+        Text(
+            "$label：",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.width(72.dp)
+        )
+        Text(
+            value,
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
 private fun MetaRow(label: String, value: String) {
     if (value.isBlank()) return
     Row(verticalAlignment = Alignment.Top) {
