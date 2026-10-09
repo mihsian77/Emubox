@@ -144,6 +144,7 @@
     <string name="source_type">%1$s source</string>
     <string name="emuhub_downloads_upstream">EmuHub downloads directly from the selected upstream provider.</string>
     <string name="experimental">Experimental</string>
+    <string name="source_archived">Archived</string>
     <string name="change_source">Change source</string>
     <string name="only_source_available">Only source available</string>
     <string name="choose_source">Choose source</string>
@@ -427,6 +428,7 @@
     <string name="preview_termux">Termux-specific</string>
     <string name="preview_gamehub">GameHub</string>
     <string name="preview_qualcomm_system">Qualcomm system driver</string>
+    <string name="preview_archived">No longer maintained</string>
     <string name="preview_stars">%1$s stars</string>
     <string name="driver_recommend_title">Driver recommendations for this device</string>
     <string name="driver_recommend_empty">No matching driver found. Open the driver section to browse all sources.</string>

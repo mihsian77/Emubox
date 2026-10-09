@@ -2799,6 +2799,8 @@ private data class SourcePickerOption(
     val description: String,
     val experimental: Boolean,
     val category: String = "通用",
+    /** 已归档/停更源，UI 显示"已停更"标签 */
+    val archived: Boolean = false,
     /** 预览窗格：一行一条（图标 + 文本），如支持型号 / 目标模拟器 / stars */
     val preview: List<PreviewItem> = emptyList()
 )
@@ -2811,7 +2813,8 @@ private fun SourcePickerCard(
     currentDescription: String,
     currentExperimental: Boolean,
     options: List<SourcePickerOption>,
-    onSelected: (String) -> Unit
+    onSelected: (String) -> Unit,
+    currentArchived: Boolean = false
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
@@ -2843,6 +2846,13 @@ private fun SourcePickerCard(
                             SuggestionChip(
                                 onClick = {},
                                 label = { Text(appString(R.string.experimental)) }
+                            )
+                        }
+                        if (currentArchived) {
+                            Spacer(Modifier.width(6.dp))
+                            SuggestionChip(
+                                onClick = {},
+                                label = { Text(appString(R.string.source_archived)) }
                             )
                         }
                     }
@@ -2973,11 +2983,12 @@ private fun buildTurnipPreview(source: TurnipSource): List<PreviewItem> {
     return lines
 }
 
-/** Qualcomm 来源预览：系统驱动说明 + 活跃度 */
+/** Qualcomm 来源预览：系统驱动说明 + 活跃度 + 停更状态 */
 @Composable
 private fun buildQualcommPreview(source: QualcommSource): List<PreviewItem> {
     val lines = mutableListOf<PreviewItem>()
     lines += PreviewItem(Icons.Default.Memory, appString(R.string.preview_qualcomm_system))
+    if (source.archived) lines += PreviewItem(Icons.Default.Warning, appString(R.string.preview_archived))
     if (source.stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(source.stars)))
     return lines
 }
@@ -3040,6 +3051,14 @@ private fun SourcePickerGridCard(
                         appString(R.string.experimental),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+                if (option.archived) {
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        appString(R.string.source_archived),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                     )
                 }
             }
@@ -3149,12 +3168,14 @@ fun DriverCardDynamic(
                     currentName = currentSource.name,
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
+                    currentArchived = currentSource.archived,
                     options = sources.map { source ->
                         SourcePickerOption(
                             id = source.id,
                             name = source.name,
                             description = source.description,
                             experimental = source.experimental,
+                            archived = source.archived,
                             preview = buildQualcommPreview(source)
                         )
                     },
