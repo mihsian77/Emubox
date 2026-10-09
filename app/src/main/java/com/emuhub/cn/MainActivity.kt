@@ -491,7 +491,9 @@ class MainActivity : ComponentActivity() {
 
                                 AppScreen.RUNTIME -> RuntimeLibraryScreen(
                                     onDownload = { component ->
-                                        downloadRuntimeLibrary(appContext, component)
+                                        downloadScope.launch {
+                                            downloadRuntimeLibrary(appContext, component)
+                                        }
                                     }
                                 )
 
