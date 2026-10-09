@@ -2859,11 +2859,12 @@ private fun SourcePickerCard(
                                 Divider(modifier = Modifier.weight(1f))
                             }
                         } else {
+                            val option = item as SourcePickerOption
                             SourcePickerGridCard(
-                                option = item,
-                                selected = item.name == currentName,
+                                option = option,
+                                selected = option.name == currentName,
                                 onSelected = {
-                                    onSelected(item.id)
+                                    onSelected(option.id)
                                     showSheet = false
                                 }
                             )
@@ -2879,6 +2880,7 @@ private fun SourcePickerCard(
 }
 
 /** Turnip 来源预览：支持型号 / 目标模拟器 / 活跃度，全部来自注册表静态元数据 */
+@Composable
 private fun buildTurnipPreview(source: TurnipSource): List<PreviewItem> {
     val lines = mutableListOf<PreviewItem>()
     val models = source.supportedModels.sorted()
@@ -2899,6 +2901,7 @@ private fun buildTurnipPreview(source: TurnipSource): List<PreviewItem> {
 }
 
 /** Qualcomm 来源预览：系统驱动说明 + 活跃度 */
+@Composable
 private fun buildQualcommPreview(source: QualcommSource): List<PreviewItem> {
     val lines = mutableListOf<PreviewItem>()
     lines += PreviewItem(Icons.Default.Memory, appString(R.string.preview_qualcomm_system))

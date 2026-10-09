@@ -353,7 +353,7 @@ object DriverRegistryRepository {
             requiredVendor = entry.gpuVendor,
             filters = emptyMap(),
             targetEmulator = entry.targetEmulator,
-            stars = entry.stars
+            stars = entry.stars.toLong()
         )
     }
 
