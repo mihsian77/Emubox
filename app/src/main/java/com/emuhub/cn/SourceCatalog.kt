@@ -8,7 +8,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 const val DEFAULT_SOURCE_CATALOG_URL =
-    "https://raw.githubusercontent.com/Rodrig02005/EmuHub-APP/main/sources.json"
+    "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/catalog/catalog.json"
 
 data class TurnipSource(
     val id: String,

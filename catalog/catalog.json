@@ -1,0 +1,207 @@
+{
+  "catalogVersion": 2,
+  "catalogInfo": "EmuHub-CN 官方源目录（mihsian77）。含 Adreno/Mali turnip 与厂商闭源驱动、Winlator 组件清单。描述已本地化。",
+  "turnipSources": [
+    {
+      "id": "stevenmxz",
+      "name": "StevenMXZ",
+      "apiUrl": "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
+      "description": "稳定版 Turnip 构建，含 Gen8 系列与高通驱动（活跃维护）",
+      "experimental": false,
+      "supportedSeries": ["6xx", "7xx", "8xx"],
+      "filters": {
+        "6xx": ["Turnip v26"],
+        "7xx": ["Turnip v26"],
+        "8xx": ["Turnip Gen8"]
+      }
+    },
+    {
+      "id": "whitebelyash",
+      "name": "whitebelyash",
+      "apiUrl": "https://api.github.com/repos/whitebelyash/AdrenoToolsDrivers/releases",
+      "description": "Mainline/稳定版 Turnip 构建，适配 Adreno 全系列",
+      "experimental": true,
+      "supportedSeries": ["6xx", "7xx", "8xx"],
+      "filters": {
+        "default": ["A8XX", "Mainline Turnip", "Stable Turnip", "tu_", "stu_"]
+      }
+    },
+    {
+      "id": "k11mch1",
+      "name": "K11MCH1",
+      "apiUrl": "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
+      "description": "老牌 AdrenoTools Turnip 驱动仓库，更新稳定",
+      "experimental": false,
+      "supportedSeries": ["6xx", "7xx"],
+      "filters": {
+        "default": ["Turnip"]
+      }
+    },
+    {
+      "id": "mrpurple",
+      "name": "MrPurple",
+      "apiUrl": "https://api.github.com/repos/MrPurple666/purple-turnip/releases",
+      "description": "A6xx/A7xx/A8xx 定制 Turnip 构建合集",
+      "experimental": true,
+      "supportedSeries": ["6xx", "7xx", "8xx"],
+      "filters": {
+        "default": ["Turnip", "vturnip", "turnip_mrpurple"]
+      }
+    },
+    {
+      "id": "banner",
+      "name": "The412Banner",
+      "apiUrl": "https://api.github.com/repos/The412Banner/Banners-Turnip/releases",
+      "description": "自动构建的 Mesa Turnip 前沿版本（CI 每日构建）",
+      "experimental": true,
+      "supportedSeries": ["6xx", "7xx", "8xx"],
+      "filters": {
+        "default": ["Turnip", "Mesa", "Adreno"]
+      },
+      "assetIncludes": { "8xx": ["A8xx"] },
+      "assetExcludes": {
+        "6xx": ["A8xx", "710-720-Test"],
+        "7xx": ["A8xx", "710-720-Test"]
+      }
+    },
+    {
+      "id": "s1mptom",
+      "name": "s1mptom (A830/A840 eden)",
+      "apiUrl": "https://api.github.com/repos/s1mptom/freedreno_turnip-CI/releases",
+      "description": "A830/A840 专用 Mesa 构建，为 Eden 模拟器适配优化",
+      "experimental": true,
+      "supportedSeries": ["8xx"],
+      "supportedModels": ["830", "840"],
+      "filters": {
+        "default": ["Turnip", "Mesa"]
+      }
+    },
+    {
+      "id": "wintermist010-a810",
+      "name": "WinterMist010 (A810/A812)",
+      "apiUrl": "https://api.github.com/repos/WinterMist010/AdrenoToolsDriversA810/releases",
+      "description": "Adreno A810/A812 实验性 Turnip 构建",
+      "experimental": true,
+      "supportedSeries": ["8xx"],
+      "supportedModels": ["810", "812"],
+      "filters": {
+        "default": ["Turnip", "A81"]
+      }
+    },
+    {
+      "id": "diskdvd-a8xx",
+      "name": "DiskDVD (A810/A829)",
+      "apiUrl": "https://api.github.com/repos/DiskDVD/TurniptoolsA8XX/releases",
+      "description": "whitebelyash 分支，针对 A810/A829 额外补丁，活跃维护",
+      "experimental": true,
+      "supportedSeries": ["8xx"],
+      "supportedModels": ["810", "829"],
+      "filters": {
+        "default": ["A8XX", "Turnip"]
+      }
+    },
+    {
+      "id": "vauzi17-710",
+      "name": "Vauzi-17 (710/720/722)",
+      "apiUrl": "https://api.github.com/repos/Vauzi-17/710/releases",
+      "description": "Adreno 710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
+      "experimental": false,
+      "supportedSeries": ["7xx"],
+      "supportedModels": ["710", "720", "722"],
+      "filters": {
+        "default": ["Turnip", "710", "720"]
+      }
+    },
+    {
+      "id": "panvk-g720",
+      "name": "PanVK (Mali-G720 实验性)",
+      "apiUrl": "https://api.github.com/repos/wonderkast02/panvk-g720-kbase-csf/releases",
+      "description": "PanVK Vulkan 驱动 for Mali-G720（天玑 9300/9200+）。实验性，上游暂未官方支持 Mali",
+      "experimental": true,
+      "supportedSeries": [],
+      "supportedModels": ["720"],
+      "requiredVendor": "mali",
+      "filters": {
+        "default": ["panvk", "vulkan"]
+      }
+    },
+    {
+      "id": "gpt363-a810",
+      "name": "GPT363 (A8xx7 同源)",
+      "apiUrl": "https://api.github.com/repos/GPT363/Adreno810/releases",
+      "description": "Adreno 8xx 实验性 Turnip 构建（原 Adreno810 仓库，与 a8xx7 同源维护）",
+      "experimental": true,
+      "supportedSeries": ["8xx"],
+      "filters": {
+        "default": ["Turnip", "A8xx"]
+      }
+    }
+  ],
+  "qualcommSources": [
+    {
+      "id": "stevenmxz-qualcomm",
+      "name": "StevenMXZ",
+      "apiUrl": "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
+      "description": "高通闭源驱动包，由 StevenMXZ 发布",
+      "experimental": false,
+      "filters": ["Qualcomm"],
+      "stars": 998
+    },
+    {
+      "id": "k11mch1-qualcomm",
+      "name": "K11MCH1",
+      "apiUrl": "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
+      "description": "高通设备提取的系统驱动包",
+      "experimental": false,
+      "filters": ["Qualcomm Driver", "Qualcomm"],
+      "stars": 5130
+    },
+    {
+      "id": "stevenmxz-collection",
+      "name": "StevenMXZ 旧版收集",
+      "apiUrl": "https://api.github.com/repos/StevenMXZ/Adrenotools-Drivers/releases",
+      "description": "A8xx 旧版高通系统驱动集合（2026-01 停更），仅 Adreno 8xx 设备",
+      "experimental": false,
+      "filters": [],
+      "stars": 19,
+      "archived": true
+    }
+  ],
+  "componentSources": [
+    {
+      "id": "winnative",
+      "name": "WinNative-Emu",
+      "manifestUrl": "https://raw.githubusercontent.com/WinNative-Emu/Components/refs/heads/main/contents.json",
+      "description": "EmuHub 默认组件清单（Winlator 核心组件）",
+      "experimental": false
+    },
+    {
+      "id": "xnick",
+      "name": "Xnick Nightly",
+      "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
+      "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支）",
+      "experimental": true
+    },
+    {
+      "id": "banner-components",
+      "name": "The412Banner",
+      "manifestUrl": "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
+      "description": "Winlator 夜间构建组件清单",
+      "experimental": true
+    },
+    {
+      "id": "ref4ik",
+      "name": "REF4IK",
+      "manifestUrl": "https://github.com/REF4IK/Components-Adrenotools-/releases/download/1/contents.json",
+      "description": "Adrenotools 专用组件构建",
+      "experimental": true
+    },
+    {
+      "id": "arihany",
+      "name": "Arihany WCP Hub",
+      "manifestUrl": "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
+      "description": "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
+      "experimental": true
+    }
+  ]
+}
