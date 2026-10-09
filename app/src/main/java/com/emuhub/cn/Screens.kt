@@ -32,6 +32,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -2761,9 +2762,9 @@ fun TurnipDriverSection(
                         val seriesHit = source.supportedSeries.contains(adrenoSeries)
                         val isRecommended = modelHit || (source.supportedModels.isEmpty() && seriesHit)
                         val category = when {
-                            isRecommended -> appString(R.string.category_recommended)
-                            source.supportedModels.isEmpty() -> appString(R.string.category_general)
-                            else -> appString(R.string.category_exclusive)
+                            isRecommended -> "recommended"
+                            source.supportedModels.isEmpty() -> "general"
+                            else -> "exclusive"
                         }
                         SourcePickerOption(
                             id = source.id,
@@ -2798,7 +2799,8 @@ private data class SourcePickerOption(
     val name: String,
     val description: String,
     val experimental: Boolean,
-    val category: String = "通用",
+    /** 英文 key：recommended / general / exclusive，UI 层映射为本地化文案 */
+    val category: String = "general",
     /** 已归档/停更源，UI 显示"已停更"标签 */
     val archived: Boolean = false,
     /** 预览窗格：一行一条（图标 + 文本），如支持型号 / 目标模拟器 / stars */
@@ -2880,81 +2882,131 @@ private fun SourcePickerCard(
     }
 
     if (showSheet) {
-        ModalBottomSheet(onDismissRequest = { showSheet = false }) {
-            // 注意：内部 LazyVerticalGrid 自身可滚动，外层不能再套 verticalScroll，
-            // 否则 Lazy 网格在无限高度约束下测量崩溃（切换来源闪退根因）。
-            Column(
+        // 近全屏 Dialog：替代 ModalBottomSheet，避免固定高度导致的底部大空白
+        Dialog(onDismissRequest = { showSheet = false }) {
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 28.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                    .fillMaxHeight(0.92f),
+                shape = RoundedCornerShape(28.dp),
+                color = MaterialTheme.colorScheme.surface
             ) {
-                Text(appString(R.string.choose_source), style = MaterialTheme.typography.headlineSmall)
-                Text(
-                    appString(R.string.emuhub_downloads_upstream),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(Modifier.height(4.dp))
-
-                val grouped = options.groupBy { it.category }
-                val categoryOrder = listOf(
-                    appString(R.string.category_recommended),
-                    appString(R.string.category_general),
-                    appString(R.string.category_exclusive)
-                ).filter { grouped.containsKey(it) }
-                val flatItems = buildList {
-                    categoryOrder.forEach { cat ->
-                        val group = grouped[cat].orEmpty()
-                        if (group.isNotEmpty()) {
-                            add("__header__$cat")
-                            group.forEach { add(it) }
-                        }
-                    }
-                }
-
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(2),
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .heightIn(max = 460.dp),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        .fillMaxSize()
+                        .padding(horizontal = 16.dp, vertical = 14.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    items(flatItems) { item ->
-                        if (item is String) {
-                            val cat = item.removePrefix("__header__")
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    "$cat（${grouped[cat].orEmpty().size}）",
-                                    style = MaterialTheme.typography.labelMedium,
-                                    color = when (cat) {
-                                        appString(R.string.category_recommended) -> MaterialTheme.colorScheme.primary
-                                        appString(R.string.category_exclusive) -> MaterialTheme.colorScheme.tertiary
-                                        else -> MaterialTheme.colorScheme.onSurfaceVariant
-                                    }
-                                )
-                                Spacer(Modifier.width(8.dp))
-                                Divider(modifier = Modifier.weight(1f))
-                            }
-                        } else {
-                            val option = item as SourcePickerOption
-                            SourcePickerGridCard(
-                                option = option,
-                                selected = option.name == currentName,
-                                onSelected = {
-                                    onSelected(option.id)
-                                    showSheet = false
-                                }
+                    // 顶部：标题 + 说明 + 关闭
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.SwapHoriz,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            appString(R.string.choose_source),
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.weight(1f)
+                        )
+                        IconButton(onClick = { showSheet = false }) {
+                            Icon(Icons.Default.Close, contentDescription = appString(R.string.cancel))
+                        }
+                    }
+                    Text(
+                        appString(R.string.emuhub_downloads_upstream),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    // 当前选中提示
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Default.CheckCircle,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                currentName,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         }
                     }
-                    item(span = { GridItemSpan(maxLineSpan) }) {
-                        Spacer(Modifier.height(8.dp))
+                    HorizontalDivider()
+
+                    // 分组：推荐 / 通用 / 专属 / 已停更
+                    val categoryLabel = mapOf(
+                        "recommended" to appString(R.string.category_recommended),
+                        "general" to appString(R.string.category_general),
+                        "exclusive" to appString(R.string.category_exclusive),
+                        "archived" to appString(R.string.source_archived)
+                    )
+                    val grouped = options.groupBy { opt ->
+                        if (opt.archived) "archived" else opt.category
+                    }
+                    val categoryOrder = listOf("recommended", "general", "exclusive", "archived")
+                        .filter { grouped.containsKey(it) }
+                    val flatItems = buildList {
+                        categoryOrder.forEach { cat ->
+                            val group = grouped[cat].orEmpty()
+                            if (group.isNotEmpty()) {
+                                add("__header__$cat")
+                                group.forEach { add(it) }
+                            }
+                        }
+                    }
+
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(2),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                        contentPadding = PaddingValues(bottom = 16.dp)
+                    ) {
+                        items(flatItems) { item ->
+                            if (item is String) {
+                                val cat = item.removePrefix("__header__")
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        "${categoryLabel[cat].orEmpty()}（${grouped[cat].orEmpty().size}）",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = when (cat) {
+                                            "recommended" -> MaterialTheme.colorScheme.primary
+                                            "exclusive" -> MaterialTheme.colorScheme.tertiary
+                                            else -> MaterialTheme.colorScheme.onSurfaceVariant
+                                        }
+                                    )
+                                    Spacer(Modifier.width(8.dp))
+                                    Divider(modifier = Modifier.weight(1f))
+                                }
+                            } else {
+                                val option = item as SourcePickerOption
+                                SourcePickerGridCard(
+                                    option = option,
+                                    selected = option.name == currentName,
+                                    onSelected = {
+                                        onSelected(option.id)
+                                        showSheet = false
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -3059,6 +3111,22 @@ private fun SourcePickerGridCard(
                         appString(R.string.source_archived),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    )
+                }
+                if (!option.archived && option.category == "recommended") {
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        appString(R.string.category_recommended),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                if (!option.archived && option.category == "exclusive") {
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        appString(R.string.category_exclusive),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                 }
             }
@@ -3202,6 +3270,10 @@ private fun ReleaseChangelog(release: GithubRelease?) {
     }
     if (notes.isBlank()) return
     var expanded by remember(release?.tagName) { mutableStateOf(false) }
+    var showTranslated by remember(release?.tagName) { mutableStateOf(false) }
+    var translated by remember(release?.tagName) { mutableStateOf<String?>(null) }
+    var translating by remember(release?.tagName) { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -3227,6 +3299,40 @@ private fun ReleaseChangelog(release: GithubRelease?) {
                     style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier.weight(1f)
                 )
+                if (expanded) {
+                    // 中/英切换按钮（在线翻译，失败回退原文）
+                    TextButton(
+                        onClick = {
+                            if (showTranslated && translated != null) {
+                                showTranslated = false
+                            } else if (translated != null) {
+                                showTranslated = true
+                            } else if (!translating) {
+                                translating = true
+                                scope.launch {
+                                    val result = translateReleaseNotes(notes)
+                                    translated = result
+                                    showTranslated = result != null
+                                    translating = false
+                                }
+                            }
+                        },
+                        enabled = !translating
+                    ) {
+                        if (translating) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(14.dp),
+                                strokeWidth = 2.dp
+                            )
+                        } else {
+                            Text(
+                                text = if (showTranslated) appString(R.string.show_original)
+                                else appString(R.string.translate_changelog),
+                                style = MaterialTheme.typography.labelSmall
+                            )
+                        }
+                    }
+                }
                 Icon(
                     if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
                     contentDescription = null,
@@ -3237,8 +3343,9 @@ private fun ReleaseChangelog(release: GithubRelease?) {
                 Spacer(Modifier.height(8.dp))
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 Spacer(Modifier.height(8.dp))
+                val displayText = if (showTranslated) translated ?: notes else notes
                 Text(
-                    text = notes,
+                    text = displayText,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier
@@ -3634,107 +3741,156 @@ fun ComponentSection(
         }
     }
 
+    // 折叠状态：默认收起，一屏可浏览全部类型
+    var expanded by rememberSaveable(type) { mutableStateOf(false) }
+
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            DownloadPanelHeader(
-                icon = componentIcon(type),
-                title = type,
-                description = componentSubtitle(type)
-            )
-
-            SourcePickerCard(
-                title = appString(R.string.source_type, type),
-                currentName = currentSource.name,
-                currentDescription = currentSource.description,
-                currentExperimental = currentSource.experimental,
-                options = sources.map { source ->
-                    SourcePickerOption(
-                        id = source.id,
-                        name = source.name,
-                        description = source.description,
-                        experimental = source.experimental
-                    )
-                },
-                onSelected = onSourceChange
-            )
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = appString(R.string.version),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    text = "${components.size}",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(Modifier.weight(1f))
-                Divider(modifier = Modifier.weight(1f))
-            }
-
-            // 组件版本双列网格
+        Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
+            // 折叠头：图标 + 类型名 + 版本数 + 当前版本 + 来源 + 展开箭头
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { expanded = !expanded }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { component ->
-                        ComponentVersionCard(
-                            component = component,
-                            sourceName = currentSource.name,
-                            isSelected = component.verName == selected?.verName,
-                            isLatest = component.verName == latestComponent?.verName,
-                            onClick = {
-                                selectedVersion = component.verName
-                                SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
-                            }
-                        )
-                    }
+                Icon(
+                    componentIcon(type),
+                    contentDescription = null,
+                    modifier = Modifier.size(22.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(Modifier.width(12.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(type, style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        "${components.size} ${appString(R.string.version)} · ${currentSource.name}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { component ->
-                        ComponentVersionCard(
-                            component = component,
-                            sourceName = currentSource.name,
-                            isSelected = component.verName == selected?.verName,
-                            isLatest = component.verName == latestComponent?.verName,
-                            onClick = {
-                                selectedVersion = component.verName
-                                SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
-                            }
-                        )
-                    }
+                if (!expanded) {
+                    Text(
+                        text = selected?.verName ?: "",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        maxLines = 1
+                    )
+                    Spacer(Modifier.width(8.dp))
                 }
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
+            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
 
-            Button(
-                onClick = {
-                    selected?.let {
-                        SettingsManager.setSelectedComponentVersion(selectionKey, it.verName)
-                        onDownload(it)
-                    } ?: Toast.makeText(context, selectVersionMessage, Toast.LENGTH_SHORT).show()
-                },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
-                shape = RoundedCornerShape(18.dp)
-            ) {
-                Icon(Icons.Default.Download, contentDescription = null)
-                Spacer(Modifier.width(8.dp))
-                Text(appString(R.string.download_type, type))
+            AnimatedVisibility(visible = expanded) {
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
+                ) {
+                    DownloadPanelHeader(
+                        icon = componentIcon(type),
+                        title = type,
+                        description = componentSubtitle(type)
+                    )
+
+                    SourcePickerCard(
+                        title = appString(R.string.source_type, type),
+                        currentName = currentSource.name,
+                        currentDescription = currentSource.description,
+                        currentExperimental = currentSource.experimental,
+                        options = sources.map { source ->
+                            SourcePickerOption(
+                                id = source.id,
+                                name = source.name,
+                                description = source.description,
+                                experimental = source.experimental
+                            )
+                        },
+                        onSelected = onSourceChange
+                    )
+
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = appString(R.string.version),
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            text = "${components.size}",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Divider(modifier = Modifier.weight(1f))
+                    }
+
+                    // 组件版本双列网格
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { component ->
+                                ComponentVersionCard(
+                                    component = component,
+                                    sourceName = currentSource.name,
+                                    isSelected = component.verName == selected?.verName,
+                                    isLatest = component.verName == latestComponent?.verName,
+                                    onClick = {
+                                        selectedVersion = component.verName
+                                        SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
+                                    }
+                                )
+                            }
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { component ->
+                                ComponentVersionCard(
+                                    component = component,
+                                    sourceName = currentSource.name,
+                                    isSelected = component.verName == selected?.verName,
+                                    isLatest = component.verName == latestComponent?.verName,
+                                    onClick = {
+                                        selectedVersion = component.verName
+                                        SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
+                                    }
+                                )
+                            }
+                        }
+                    }
+
+                    Button(
+                        onClick = {
+                            selected?.let {
+                                SettingsManager.setSelectedComponentVersion(selectionKey, it.verName)
+                                onDownload(it)
+                            } ?: Toast.makeText(context, selectVersionMessage, Toast.LENGTH_SHORT).show()
+                        },
+                        modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
+                        shape = RoundedCornerShape(18.dp)
+                    ) {
+                        Icon(Icons.Default.Download, contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text(appString(R.string.download_type, type))
+                    }
+                }
             }
         }
     }
@@ -4999,19 +5155,36 @@ private fun RuntimeComponentCard(
                 )
             }
 
+            // 安装方式子标签 + 来源 + 大小
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (component.provider.isNotBlank()) {
-                    Text(
-                        text = component.provider,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.outline
-                    )
-                } else {
-                    Spacer(Modifier.weight(1f))
+                Row(modifier = Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
+                    if (component.installTag.isNotBlank()) {
+                        Surface(
+                            shape = RoundedCornerShape(6.dp),
+                            color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
+                        ) {
+                            Text(
+                                text = component.installTag,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                            )
+                        }
+                        Spacer(Modifier.width(6.dp))
+                    }
+                    if (component.provider.isNotBlank()) {
+                        Text(
+                            text = component.provider,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.outline,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
                 if (component.fileSize > 0) {
                     Text(
@@ -5035,9 +5208,10 @@ private fun RuntimeComponentCard(
                 }
             } else {
                 Text(
-                    text = appString(R.string.runtime_no_download),
+                    text = component.noDownloadReason.ifBlank { appString(R.string.runtime_no_download) },
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.outline
+                    color = MaterialTheme.colorScheme.tertiary,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
