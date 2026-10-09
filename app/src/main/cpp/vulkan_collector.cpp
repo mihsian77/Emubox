@@ -1018,7 +1018,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     });
     if (fillNs <= 0.0) {
         cleanup();
-        return "{\"success\":false,\"errorCode\":\"" + stageError + "\",\"errorMessage\":\"fill stage failed: " + stageError + "\"}";
+        return fail(stageError.empty() ? "FILL_STAGE_FAILED" : stageError.c_str(), "fill stage failed");
     }
     double fillBytes = static_cast<double>(BUF_SIZE) * FILL_ITERS;
     double fillBandwidthGBs = (fillBytes / (fillNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
@@ -1034,7 +1034,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     });
     if (copyNs <= 0.0) {
         cleanup();
-        return "{\"success\":false,\"errorCode\":\"" + stageError + "\",\"errorMessage\":\"copy stage failed: " + stageError + "\"}";
+        return fail(stageError.empty() ? "COPY_STAGE_FAILED" : stageError.c_str(), "copy stage failed");
     }
     double copyBytes = static_cast<double>(BUF_SIZE) * COPY_ITERS;
     double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
@@ -1290,8 +1290,10 @@ static std::string runBenchmarkWithDriver(const char* driverPath) {
     return result;
 }
 
-// 自定义驱动基准（fork 子进程隔离）
-static std::string benchmarkDriverIsolated(const char* driverPath) {
+// 通用隔离执行器：fork 子进程跑 fn()，崩溃/超时只死子进程，父进程拿结果。
+// 系统跑分与驱动跑分统一走这里——GPU 驱动对非法 shader/不兼容实例的
+// native 崩溃（段错误、abort）不会带崩 App 进程。
+static std::string runBenchmarkIsolated(const std::function<std::string()>& fn) {
     int pipefd[2];
     if (pipe(pipefd) != 0) {
         return "{\"success\":false,\"errorCode\":\"PIPE_FAILED\",\"errorMessage\":\"pipe() failed\"}";
@@ -1308,8 +1310,7 @@ static std::string benchmarkDriverIsolated(const char* driverPath) {
         close(pipefd[0]);
         std::string json;
         try {
-            // 真正加载驱动跑分（dlopen 驱动 → 驱动创建 instance/device → 跑基准）。
-            json = runBenchmarkWithDriver(driverPath);
+            json = fn();
         } catch (const std::exception& e) {
             json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
                    + jsonEscape(e.what()) + "\"}";
@@ -1334,7 +1335,7 @@ static std::string benchmarkDriverIsolated(const char* driverPath) {
     struct pollfd pfd;
     pfd.fd = pipefd[0];
     pfd.events = POLLIN;
-    const int timeoutMs = 20000; // benchmark 比采集耗时更长
+    const int timeoutMs = 25000; // compute 2 万 dispatch 比带宽基准更耗时
 
     while (true) {
         int r = poll(&pfd, 1, timeoutMs);
@@ -1356,12 +1357,19 @@ static std::string benchmarkDriverIsolated(const char* driverPath) {
     close(pipefd[0]);
 
     if (result.empty()) {
-        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"基准测试进程崩溃或超时\"}";
+        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"基准进程崩溃或超时（驱动可能不兼容当前系统）\",\"deviceName\":\"\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
     }
     if (result.front() != '{' || result.back() != '}') {
-        return "{\"success\":false,\"errorCode\":\"PARTIAL_JSON\",\"errorMessage\":\"基准测试返回不完整数据\"}";
+        return "{\"success\":false,\"errorCode\":\"PARTIAL_JSON\",\"errorMessage\":\"基准进程返回不完整数据\",\"deviceName\":\"\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
     }
     return result;
+}
+
+// 自定义驱动基准（fork 子进程隔离）
+static std::string benchmarkDriverIsolated(const char* driverPath) {
+    return runBenchmarkIsolated([&]() {
+        return runBenchmarkWithDriver(driverPath);
+    });
 }
 
 // ── JNI 入口：GPU 基准测试 ──────────────────────────────────────────────────
@@ -1376,14 +1384,11 @@ Java_com_emuhub_cn_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* th
 
     std::string json;
     if (path == nullptr || path[0] == '\0') {
-        try {
-            json = benchmarkSystemVulkan();
-        } catch (const std::exception& e) {
-            json = std::string("{\"success\":false,\"errorCode\":\"NATIVE_EXCEPTION\",\"errorMessage\":\"")
-                   + jsonEscape(e.what()) + "\"}";
-        } catch (...) {
-            json = "{\"success\":false,\"errorCode\":\"UNKNOWN_NATIVE_ERROR\",\"errorMessage\":\"unknown native exception\"}";
-        }
+        // 系统跑分同样在 fork 子进程内执行：GPU 驱动的任何 native 崩溃
+        // 都不会带崩 App（此前直接在主进程跑，shader/驱动异常即闪退）。
+        json = runBenchmarkIsolated([&]() {
+            return benchmarkSystemVulkan();
+        });
     } else {
         json = benchmarkDriverIsolated(path);
     }

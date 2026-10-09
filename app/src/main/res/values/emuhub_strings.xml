@@ -471,4 +471,12 @@
     <string name="benchmark_isolated_hint">在隔离子进程中真实加载此驱动跑分，崩溃不影响 App</string>
     <string name="benchmark_not_exporting">该驱动未导出 vkGetInstanceProcAddr（ICD 入口），无法在 App 内实测，请在对应模拟器内加载验证</string>
     <string name="benchmark_check_export">检查能否实测</string>
+    <string name="no_app_to_open">No app can open this file type</string>
+    <string name="view_file_info">View file info</string>
+    <string name="file_info_title">File info</string>
+    <string name="file_name">File name</string>
+    <string name="file_type">File type</string>
+    <string name="file_size">Size</string>
+    <string name="file_time">Downloaded</string>
+    <string name="file_path">Path</string>
 </resources>
