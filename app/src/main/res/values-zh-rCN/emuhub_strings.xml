@@ -459,8 +459,9 @@
     <string name="runtime_guide_dll">• DLL 纯文件包：将 .dll 复制到 Winlator 的 drive_c/windows/system32/ 目录。</string>
     <string name="runtime_guide_font">• 字体：通过 Winlator 控制面板 → 字体安装，或复制到 drive_c/windows/Fonts/。</string>
     <string name="runtime_guide_recommend">推荐基础套装：VC++ 2022、.NET 4.8、CJK 中文字体、DirectX 9.0c。</string>
-    <string name="component_log_loading">加载更新日志…</string>
     <string name="translate_changelog">翻译</string>
     <string name="show_original">原文</string>
     <string name="translate_failed">翻译失败，已显示原文</string>
+    <string name="runtime_bundle_children">个子组件</string>
+    <string name="component_log_loading">加载更新日志…</string>
 </resources>
