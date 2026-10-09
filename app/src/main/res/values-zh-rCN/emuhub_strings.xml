@@ -316,6 +316,7 @@
     <string name="tab_device">设备</string>
     <string name="tab_driver">驱动</string>
     <string name="tab_component">组件</string>
+    <string name="tab_runtime">运行库</string>
     <string name="tab_download">下载</string>
     <string name="tab_settings">设置</string>
     <string name="device_info_title">设备信息</string>
@@ -437,4 +438,15 @@
     <string name="adrenotools_format_title">adrenotools / 模拟器专用格式</string>
     <string name="adrenotools_format_hint">该驱动为 adrenotools 系模拟器（Eden、Winlator、GameHub）打包，App 内无法加载。请在模拟器中加载以验证兼容性与性能。</string>
     <string name="unknown_package_hint">无法识别的驱动包：未找到有效的 meta.json。</string>
+
+    <!-- 运行库 Tab -->
+    <string name="runtime_title">Windows 运行库</string>
+    <string name="runtime_subtitle">VC++ / .NET / 解码器 / 游戏依赖，来源 winlator-contents，走 MirrorHub 加速下载。</string>
+    <string name="runtime_status_upstream">需上游</string>
+    <string name="runtime_status_pending">待手动</string>
+    <string name="runtime_no_download">无可下载文件</string>
+    <string name="runtime_load_failed">运行库清单加载失败</string>
+    <string name="runtime_load_failed_hint">检查网络后重试。清单通过 MirrorHub 加速从 GitHub 拉取。</string>
+    <string name="retry">重试</string>
+    <string name="download">下载</string>
 </resources>
