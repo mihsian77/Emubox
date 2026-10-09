@@ -45,7 +45,9 @@ data class RuntimeComponent(
     val noDownloadReason: String get() = when {
         status == "pending-manual" -> "需手动安装，暂无自动下载"
         status == "needs-upstream" -> "依赖上游提供，暂未打包"
-        primaryFile == null && (steps.isEmpty()) -> "清单未提供安装步骤"
+        primaryFile == null && steps.isEmpty() -> "清单未提供安装步骤"
+        primaryFile == null && steps.all { it.action.startsWith("set_") || it.action == "override_dll" } ->
+            "环境设置包，随模拟器切换系统版本生效，无需下载"
         primaryFile == null -> "通过模拟器内官方安装器获取（如 .NET 官方直链）"
         else -> ""
     }
@@ -149,13 +151,21 @@ object RuntimeLibraryParser {
         val result = mutableListOf<RuntimeStep>()
         for (i in 0 until arr.length()) {
             val obj = arr.optJSONObject(i) ?: continue
+            // url/校验和/大小可能放在 environment 子对象里（如 .NET 官方直链），优先读顶层、回退读 environment
+            val env = obj.optJSONObject("environment")
+            val url = obj.optString("url").ifBlank { env?.optString("url").orEmpty() }
+            val fileName = obj.optString("file_name").ifBlank { env?.optString("file_name").orEmpty() }
+            val arguments = obj.optString("arguments").ifBlank { env?.optString("arguments").orEmpty() }
+            val checksum = obj.optString("file_checksum").ifBlank { env?.optString("file_checksum").orEmpty() }
+            val size = obj.optString("file_size").toLongOrNull()
+                ?: env?.optString("file_size")?.toLongOrNull() ?: 0L
             result += RuntimeStep(
                 action = obj.optString("action"),
-                fileName = obj.optString("file_name"),
-                url = obj.optString("url"),
-                arguments = obj.optString("arguments"),
-                checksum = obj.optString("file_checksum"),
-                size = obj.optString("file_size").toLongOrNull() ?: 0L,
+                fileName = fileName,
+                url = url,
+                arguments = arguments,
+                checksum = checksum,
+                size = size,
                 rename = obj.optString("rename"),
                 dll = obj.optString("dll"),
                 forArch = obj.optString("for")
