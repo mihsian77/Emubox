@@ -2717,6 +2717,20 @@ private fun componentSubtitle(type: String): String = when (type) {
     else -> appString(R.string.runtime_component)
 }
 
+/** 根据设备 Adreno 系列计算 Turnip 源优先级：匹配型号/系列 → 推荐，有白名单无匹配 → 专属，无白名单 → 通用 */
+private fun turnipCategoryOf(source: TurnipSource, adrenoSeries: String?): String {
+    val modelHit = adrenoSeries?.let { series ->
+        source.supportedModels.any { m -> series.contains(m.take(1)) }
+    } ?: false
+    val seriesHit = source.supportedSeries.contains(adrenoSeries)
+    val isRecommended = modelHit || (source.supportedModels.isEmpty() && seriesHit)
+    return when {
+        isRecommended -> "recommended"
+        source.supportedModels.isEmpty() -> "general"
+        else -> "exclusive"
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TurnipDriverSection(
@@ -2750,28 +2764,20 @@ fun TurnipDriverSection(
             )
 
             if (currentSource != null) {
+                val currentCategory = turnipCategoryOf(currentSource, adrenoSeries)
                 SourcePickerCard(
                     title = appString(R.string.driver_source),
                     currentName = currentSource.name,
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
+                    currentCategory = currentCategory,
                     options = sources.map { source ->
-                        val modelHit = adrenoSeries?.let { series ->
-                            source.supportedModels.any { m -> series.contains(m.take(1)) }
-                        } ?: false
-                        val seriesHit = source.supportedSeries.contains(adrenoSeries)
-                        val isRecommended = modelHit || (source.supportedModels.isEmpty() && seriesHit)
-                        val category = when {
-                            isRecommended -> "recommended"
-                            source.supportedModels.isEmpty() -> "general"
-                            else -> "exclusive"
-                        }
                         SourcePickerOption(
                             id = source.id,
                             name = source.name,
                             description = source.description,
                             experimental = source.experimental,
-                            category = category,
+                            category = turnipCategoryOf(source, adrenoSeries),
                             preview = buildTurnipPreview(source)
                         )
                     },
@@ -2816,7 +2822,9 @@ private fun SourcePickerCard(
     currentExperimental: Boolean,
     options: List<SourcePickerOption>,
     onSelected: (String) -> Unit,
-    currentArchived: Boolean = false
+    currentArchived: Boolean = false,
+    /** 当前源的优先级分类（英文 key），用于顶部标签显示 */
+    currentCategory: String = "general"
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
@@ -2843,6 +2851,40 @@ private fun SourcePickerCard(
                     Text(title, style = MaterialTheme.typography.labelMedium)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(currentName, style = MaterialTheme.typography.titleMedium)
+                        // 优先级标签（推荐 / 专属 / 通用），停更优先显示停更
+                        if (!currentArchived && currentCategory == "recommended") {
+                            Spacer(Modifier.width(6.dp))
+                            SuggestionChip(
+                                onClick = {},
+                                label = { Text(appString(R.string.category_recommended)) },
+                                colors = SuggestionChipDefaults.suggestionChipColors(
+                                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                    labelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                )
+                            )
+                        }
+                        if (!currentArchived && currentCategory == "exclusive") {
+                            Spacer(Modifier.width(6.dp))
+                            SuggestionChip(
+                                onClick = {},
+                                label = { Text(appString(R.string.category_exclusive)) },
+                                colors = SuggestionChipDefaults.suggestionChipColors(
+                                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                                    labelColor = MaterialTheme.colorScheme.onTertiaryContainer
+                                )
+                            )
+                        }
+                        if (!currentArchived && currentCategory == "general") {
+                            Spacer(Modifier.width(6.dp))
+                            SuggestionChip(
+                                onClick = {},
+                                label = { Text(appString(R.string.category_general)) },
+                                colors = SuggestionChipDefaults.suggestionChipColors(
+                                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            )
+                        }
                         if (currentExperimental) {
                             Spacer(Modifier.width(6.dp))
                             SuggestionChip(
@@ -3237,6 +3279,7 @@ fun DriverCardDynamic(
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
                     currentArchived = currentSource.archived,
+                    currentCategory = "general",
                     options = sources.map { source ->
                         SourcePickerOption(
                             id = source.id,
@@ -3244,6 +3287,7 @@ fun DriverCardDynamic(
                             description = source.description,
                             experimental = source.experimental,
                             archived = source.archived,
+                            category = "general",
                             preview = buildQualcommPreview(source)
                         )
                     },
@@ -3874,6 +3918,41 @@ fun ComponentSection(
                                 )
                             }
                         }
+                    }
+
+                    // 组件官方更新日志：从选中版本的 release 地址反查正文，支持在线翻译
+                    var compLog by remember(selectionKey, selected?.verName) { mutableStateOf<String?>(null) }
+                    var compLogLoading by remember(selectionKey, selected?.verName) { mutableStateOf(false) }
+                    LaunchedEffect(selectionKey, selected?.verName) {
+                        compLog = null
+                        if (selected != null) {
+                            compLogLoading = true
+                            compLog = fetchComponentReleaseNotes(selected.remoteUrl)
+                            compLogLoading = false
+                        }
+                    }
+                    if (compLogLoading) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(14.dp),
+                                strokeWidth = 2.dp
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                appString(R.string.component_log_loading),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    } else if (compLog != null) {
+                        ReleaseChangelog(
+                            GithubRelease(
+                                tagName = selected?.verName.orEmpty(),
+                                name = selected?.verName.orEmpty(),
+                                assets = emptyList(),
+                                body = compLog.orEmpty()
+                            )
+                        )
                     }
 
                     Button(

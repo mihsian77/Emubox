@@ -336,3 +336,40 @@ suspend fun translateReleaseNotes(text: String): String? = withContext(Dispatche
         null
     }
 }
+
+private val componentLogCache = ConcurrentHashMap<String, CacheEntry<String>>()
+private const val COMPONENT_LOG_TTL_MS = 30 * 60 * 1000L
+
+/**
+ * 从组件文件 URL 反查 GitHub release 正文（组件官方更新日志）。
+ * 仅支持 github.com/{owner}/{repo}/releases/download/{tag}/... 形式；
+ * raw/manifest 等非 release 地址返回 null。
+ */
+suspend fun fetchComponentReleaseNotes(remoteUrl: String): String? = withContext(Dispatchers.IO) {
+    val m = Regex("github\\.com/([^/]+)/([^/]+)/releases/download/([^/]+)/")
+        .find(remoteUrl)
+        ?: return@withContext null
+    val owner = m.groupValues[1]
+    val repo = m.groupValues[2]
+    val tag = m.groupValues[3]
+    val cacheKey = "$owner/$repo/$tag"
+    componentLogCache[cacheKey]?.let {
+        if (System.currentTimeMillis() - it.timestamp < COMPONENT_LOG_TTL_MS) return@withContext it.data
+    }
+    try {
+        val api = "https://api.github.com/repos/$owner/$repo/releases/tags/${java.net.URLEncoder.encode(tag, "UTF-8")}"
+        val request = Request.Builder().url(api).build()
+        githubClient.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) return@withContext null
+            val body = response.body?.string().orEmpty()
+            val json = org.json.JSONObject(body)
+            val notes = json.optString("body").orEmpty()
+            if (notes.isNotBlank()) {
+                componentLogCache[cacheKey] = CacheEntry(notes, System.currentTimeMillis())
+                notes
+            } else null
+        }
+    } catch (_: Exception) {
+        null
+    }
+}
