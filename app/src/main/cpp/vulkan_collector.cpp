@@ -15,6 +15,7 @@
 #include <sstream>
 #include <iomanip>
 #include <functional>
+#include <cmath>
 
 #define LOG_TAG "EmuHubVulkan"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -887,7 +888,8 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     if (!createBuffer(bufA, memA)) return fail("CREATE_BUFFER_A_FAILED", "创建 buffer A 失败");
     if (!createBuffer(bufB, memB)) return fail("CREATE_BUFFER_B_FAILED", "创建 buffer B 失败");
 
-    // 7. 辅助：录制 + 提交 + 取时间戳
+    // 7. 辅助：录制 + 提交 + 取时间戳（失败时设置 stageError 并返回负值）
+    std::string stageError;
     auto runTimed = [&](int iterations, std::function<void()> recordCmds) -> double {
         bk.vkResetCommandBuffer(cmdBuf, 0);
         VkCommandBufferBeginInfo beginInfo{};
@@ -907,13 +909,22 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
         submitInfo.commandBufferCount = 1;
         submitInfo.pCommandBuffers = &cmdBuf;
-        bk.vkQueueSubmit(queue, 1, &submitInfo, VK_NULL_HANDLE);
+        VkResult submitRes = bk.vkQueueSubmit(queue, 1, &submitInfo, VK_NULL_HANDLE);
+        if (submitRes != VK_SUCCESS) {
+            stageError = "QUEUE_SUBMIT_FAILED_" + std::to_string(submitRes);
+            return -1.0;
+        }
         bk.vkQueueWaitIdle(queue);
 
         uint64_t timestamps[2] = {0, 0};
-        bk.vkGetQueryPoolResults(logicalDevice, queryPool, 0, 2,
+        VkResult qRes = bk.vkGetQueryPoolResults(logicalDevice, queryPool, 0, 2,
                                   sizeof(timestamps), timestamps, sizeof(uint64_t),
                                   VK_QUERY_RESULT_64_BIT | VK_QUERY_RESULT_WAIT_BIT);
+        if (qRes != VK_SUCCESS || timestamps[1] <= timestamps[0]) {
+            // 时间戳查询失败或差值为 0：继续算带宽会产生 inf/NaN，导致输出非法 JSON
+            stageError = "TIMESTAMP_QUERY_FAILED_" + std::to_string(qRes);
+            return -1.0;
+        }
         double deltaNs = static_cast<double>(timestamps[1] - timestamps[0]) * timestampPeriod;
         return deltaNs;
     };
@@ -925,6 +936,10 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
             bk.vkCmdFillBuffer(cmdBuf, bufA, 0, VK_WHOLE_SIZE, 0x41414141);
         }
     });
+    if (fillNs <= 0.0) {
+        cleanup();
+        return "{\"success\":false,\"errorCode\":\"" + stageError + "\",\"errorMessage\":\"fill stage failed: " + stageError + "\"}";
+    }
     double fillBytes = static_cast<double>(BUF_SIZE) * FILL_ITERS;
     double fillBandwidthGBs = (fillBytes / (fillNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
 
@@ -937,8 +952,18 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
             bk.vkCmdCopyBuffer(cmdBuf, bufA, bufB, 1, &copyRegion);
         }
     });
+    if (copyNs <= 0.0) {
+        cleanup();
+        return "{\"success\":false,\"errorCode\":\"" + stageError + "\",\"errorMessage\":\"copy stage failed: " + stageError + "\"}";
+    }
     double copyBytes = static_cast<double>(BUF_SIZE) * COPY_ITERS;
     double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
+
+    // 数值合法性兜底（防止 inf/NaN 进入 JSON）
+    if (!std::isfinite(fillBandwidthGBs) || !std::isfinite(copyBandwidthGBs)) {
+        cleanup();
+        return "{\"success\":false,\"errorCode\":\"BANDWIDTH_NONFINITE\",\"errorMessage\":\"computed bandwidth is not finite\"}";
+    }
 
     // 10. 总分：fill 和 copy 加权平均，归一化到 0-1000（参考 20GB/s = 1000 分）
     double avgBandwidth = (fillBandwidthGBs + copyBandwidthGBs) / 2.0;

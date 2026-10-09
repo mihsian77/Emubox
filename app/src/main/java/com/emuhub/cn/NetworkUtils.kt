@@ -16,7 +16,46 @@ data class GithubRelease(
 )
 
 data class GithubAsset(val name: String, val downloadUrl: String, val sizeBytes: Long)
-data class Component(val type: String, val verName: String, val verCode: String, val remoteUrl: String)
+
+/**
+ * 组件文件大小（字节）缓存：url -> size。
+ * contents.json 清单不含大小，通过 HEAD 请求跟随 GitHub 重定向取 Content-Length。
+ * 只在版本列表可见时按需查询，结果缓存避免重复请求。
+ */
+private val componentSizeCache = ConcurrentHashMap<String, Long>()
+
+/** 查询远程文件大小（字节），失败或不可得返回 null。结果按 URL 缓存。 */
+suspend fun fetchRemoteSizeBytes(remoteUrl: String): Long? = withContext(Dispatchers.IO) {
+    componentSizeCache[remoteUrl]?.let { return@withContext it }
+    try {
+        // GitHub release 直链会 302 到 release-assets CDN，HEAD 跟随重定向后才有 Content-Length
+        val headClient = githubClient.newBuilder()
+            .followRedirects(true)
+            .followSslRedirects(true)
+            .build()
+        val request = Request.Builder()
+            .url(Accelerator.rewriteUrl(remoteUrl))
+            .head()
+            .build()
+        headClient.newCall(request).execute().use { resp ->
+            val len = resp.header("Content-Length")?.toLongOrNull()
+            if (resp.isSuccessful && len != null && len > 0) {
+                componentSizeCache[remoteUrl] = len
+                len
+            } else null
+        }
+    } catch (_: Exception) {
+        null
+    }
+}
+data class Component(
+    val type: String,
+    val verName: String,
+    val verCode: String,
+    val remoteUrl: String,
+    /** 文件字节数；contents.json 清单不含大小，需要时通过 HEAD 懒加载获取 */
+    val sizeBytes: Long? = null
+)
 
 private val githubClient by lazy {
     OkHttpClient.Builder()
@@ -235,7 +274,8 @@ suspend fun fetchGithubComponents(
             type = componentType,
             verName = release.tagName,
             verCode = "",
-            remoteUrl = asset.downloadUrl
+            remoteUrl = asset.downloadUrl,
+            sizeBytes = asset.sizeBytes.takeIf { it > 0 }
         )
     }
 }
