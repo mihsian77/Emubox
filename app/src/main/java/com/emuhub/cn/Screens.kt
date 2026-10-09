@@ -5053,24 +5053,6 @@ fun RuntimeLibraryScreen(
     var loadError by remember { mutableStateOf(false) }
     var showGuide by remember { mutableStateOf(false) }
 
-    val context = LocalContext.current
-    // 总包组件：递归下载其全部子组件；普通组件直接下载
-    val handleDownload: (RuntimeComponent) -> Unit = { comp ->
-        if (comp.isBundle) {
-            val children = comp.dependencies.mapNotNull { dep ->
-                components.firstOrNull { it.name.equals(dep, ignoreCase = true) }
-            }.filter { it.primaryFile != null }
-            children.forEach { onDownload(it) }
-            Toast.makeText(
-                context,
-                "${comp.name}：正在下载 ${children.size} 个子组件",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            onDownload(comp)
-        }
-    }
-
     if (showGuide) {
         AlertDialog(
             onDismissRequest = { showGuide = false },
@@ -5160,6 +5142,24 @@ private fun RuntimeCategorySection(
     components: List<RuntimeComponent>,
     onDownload: (RuntimeComponent) -> Unit
 ) {
+    val context = LocalContext.current
+    // 总包组件：递归下载其全部子组件；普通组件直接下载
+    val handleDownload: (RuntimeComponent) -> Unit = { comp ->
+        if (comp.isBundle) {
+            val children = comp.dependencies.mapNotNull { dep ->
+                components.firstOrNull { it.name.equals(dep, ignoreCase = true) }
+            }.filter { it.primaryFile != null }
+            children.forEach { onDownload(it) }
+            Toast.makeText(
+                context,
+                "${comp.name}：正在下载 ${children.size} 个子组件",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            onDownload(comp)
+        }
+    }
+
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
