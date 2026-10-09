@@ -274,10 +274,12 @@ data class BenchmarkResult(
                     timestampPeriodNs = obj.optDouble("timestampPeriodNs", 0.0)
                 )
             } catch (e: Exception) {
+                // 带上 native 原始返回片段，避免错误被吞成无信息的 "unknown"
+                val snippet = json.take(120).replace("\n", " ")
                 BenchmarkResult(
                     success = false,
                     errorCode = "JSON_PARSE_ERROR",
-                    errorMessage = e.message ?: "unknown",
+                    errorMessage = if (snippet.isBlank()) "native 返回为空" else "解析失败: $snippet",
                     deviceName = "",
                     fillBandwidthGBs = 0.0,
                     copyBandwidthGBs = 0.0,

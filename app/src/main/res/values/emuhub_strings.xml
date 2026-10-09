@@ -431,4 +431,8 @@
     <string name="driver_recommend_title">Driver recommendations for this device</string>
     <string name="driver_recommend_empty">No matching driver found. Open the driver section to browse all sources.</string>
     <string name="goto_driver_region">Open driver section</string>
+    <string name="view_driver_info">Driver info</string>
+    <string name="adrenotools_format_title">adrenotools / emulator package</string>
+    <string name="adrenotools_format_hint">This driver is packaged for adrenotools-based emulators (Eden, Winlator, GameHub). It cannot be loaded inside this app — load it in the emulator to verify compatibility and performance.</string>
+    <string name="unknown_package_hint">Unrecognized driver package: no valid meta.json found.</string>
 </resources>

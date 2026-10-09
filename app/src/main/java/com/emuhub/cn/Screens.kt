@@ -2110,14 +2110,27 @@ fun DriverHubScreen(
     val componentOrder = preferredComponentOrder + discoveredComponentTypes
     val componentSourceSelections = remember { mutableStateMapOf<String, String>() }
 
+    // 来源"综合最新最全"评分：类型覆盖数主导（×1000），版本总数次之。
+    // 默认首推覆盖类型最全、版本最多的源；用户手动选择仍优先尊重。
+    val sourceRichness = remember(componentSources, componentCatalogs) {
+        componentSources.associate { s ->
+            val catalog = componentCatalogs[s.id]
+            val typeCount = catalog?.keys?.size ?: 0
+            val versionCount = catalog?.values?.sumOf { it.size } ?: 0
+            s.id to (typeCount * 1000 + versionCount)
+        }
+    }
+    val sourcesByRichness = remember(componentSources, sourceRichness) {
+        componentSources.sortedByDescending { sourceRichness[it.id] ?: 0 }
+    }
+
     LaunchedEffect(componentSources, componentCatalogs) {
         componentOrder.forEach { type ->
             val saved = SettingsManager.getComponentSource(type)
-            val resolved = componentSources.firstOrNull { source ->
-                source.id == saved && componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
-            } ?: componentSources.firstOrNull { source ->
+            val candidates = sourcesByRichness.filter { source ->
                 componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
             }
+            val resolved = candidates.firstOrNull { it.id == saved } ?: candidates.firstOrNull()
 
             if (resolved != null) {
                 componentSourceSelections[type] = resolved.id
@@ -2128,11 +2141,10 @@ fun DriverHubScreen(
 
     fun currentComponentSource(type: String): ComponentSource? {
         val selectedId = componentSourceSelections[type] ?: SettingsManager.getComponentSource(type)
-        return componentSources.firstOrNull { source ->
-            source.id == selectedId && componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
-        } ?: componentSources.firstOrNull { source ->
+        val candidates = sourcesByRichness.filter { source ->
             componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
         }
+        return candidates.firstOrNull { it.id == selectedId } ?: candidates.firstOrNull()
     }
 
     val currentTurnipSource = turnipSources.firstOrNull { it.id == turnipSourceId }
@@ -2227,7 +2239,7 @@ fun DriverHubScreen(
                 item(key = "component:$type") {
                     ComponentSection(
                         type = type,
-                        sources = componentSources.filter { s ->
+                        sources = sourcesByRichness.filter { s ->
                             componentCatalogs[s.id]?.get(type).orEmpty().isNotEmpty()
                         },
                         currentSource = source,
@@ -2859,10 +2871,11 @@ private fun SourcePickerCard(
 
     if (showSheet) {
         ModalBottomSheet(onDismissRequest = { showSheet = false }) {
+            // 注意：内部 LazyVerticalGrid 自身可滚动，外层不能再套 verticalScroll，
+            // 否则 Lazy 网格在无限高度约束下测量崩溃（切换来源闪退根因）。
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
                     .padding(horizontal = 16.dp)
                     .padding(bottom = 28.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -2893,7 +2906,9 @@ private fun SourcePickerCard(
 
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 460.dp),
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
@@ -3415,6 +3430,27 @@ private fun DriverReleasePicker(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+/** 组件版本文件大小：清单不含 size，展开版本列表时 HEAD 懒加载（结果全局缓存） */
+@Composable
+private fun ComponentSizeText(component: Component) {
+    var sizeBytes by remember(component.remoteUrl) { mutableStateOf(component.sizeBytes) }
+    LaunchedEffect(component.remoteUrl) {
+        if (sizeBytes == null) {
+            sizeBytes = fetchRemoteSizeBytes(component.remoteUrl)
+        }
+    }
+    val bytes = sizeBytes
+    if (bytes != null && bytes > 0) {
+        val text = if (bytes >= 1024 * 1024) "%.1f MB".format(bytes / 1024.0 / 1024.0)
+        else "%.0f KB".format(bytes / 1024.0)
+        Text(
+            " · $text",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+    }
+}
+
 @Composable
 fun ComponentSection(
     type: String,
@@ -3516,11 +3552,14 @@ fun ComponentSection(
                                     Text(
                                         if (index == 0) appString(R.string.version_latest_format, component.verName) else component.verName
                                     )
-                                    Text(
-                                        currentSource.name,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            currentSource.name,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                        ComponentSizeText(component)
+                                    }
                                 }
                             },
                             onClick = {
@@ -4007,7 +4046,10 @@ private fun DriverDetectionList(
     val scope = rememberCoroutineScope()
     val extractFailedMsg = appString(R.string.extract_failed)
     var detectionResults by remember { mutableStateOf<Map<String, VulkanInfoPayload>>(emptyMap()) }
-    var detectingId by remember { mutableStateOf<String?>(null) }
+    var detectingId by remember { mutableStateOf<String?>(null)
+    }
+    // 驱动包 meta.json 解析结果（进页面自动解析，无需用户点击）
+    var driverMetas by remember { mutableStateOf<Map<String, DriverMetaParser.DriverMeta?>>(emptyMap()) }
 
     val downloadedDrivers = DownloadsManager.completedDownloads.filter { download ->
         val isDriverPackage = download.fileName.endsWith(".zip", ignoreCase = true) ||
@@ -4045,10 +4087,23 @@ private fun DriverDetectionList(
         return
     }
 
+    // 自动解析所有已下载驱动包的 meta.json（轻量，只读 zip 内小文件，不解压 .so）
+    LaunchedEffect(downloadedDrivers.map { it.id }.toSet()) {
+        val pending = downloadedDrivers.filter { !driverMetas.containsKey(it.id) }
+        if (pending.isEmpty()) return@LaunchedEffect
+        val parsed = withContext(Dispatchers.IO) {
+            pending.associate { dl ->
+                dl.id to runCatching { DriverMetaParser.parse(context, dl.filePath) }.getOrNull()
+            }
+        }
+        driverMetas = driverMetas + parsed
+    }
+
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         downloadedDrivers.forEach { download ->
             val result = detectionResults[download.id]
             val isDetecting = detectingId == download.id
+            val meta = driverMetas[download.id]
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
@@ -4081,42 +4136,38 @@ private fun DriverDetectionList(
                                     detectingId = download.id
                                     scope.launch(Dispatchers.IO) {
                                         try {
-                                            val uri = Uri.parse(download.filePath)
-                                            val driverId = download.fileName
-                                                .removeSuffix(".zip")
-                                                .removeSuffix(".adpkg")
-                                            var soFile = DriverExtractor.getSoFile(context, driverId)
-                                            if (soFile == null || !soFile.exists()) {
-                                                soFile = DriverExtractor.extract(context, uri, driverId)
-                                            }
-                                            if (soFile != null) {
-                                                // 先读 meta.json 判断驱动类型，厂商系统驱动不发起 native 检测
-                                                val meta = DriverMetaParser.parse(context, download.filePath)
-                                                val driverType = meta?.driverType() ?: DriverMetaParser.DriverType.UNKNOWN
-                                                if (driverType == DriverMetaParser.DriverType.VENDOR_SYSTEM) {
-                                                    val errPayload = VulkanInfoPayload(
-                                                        success = false,
-                                                        errorCode = "VENDOR_SYSTEM_DRIVER",
-                                                        errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
-                                                        deviceCount = 0,
-                                                        devices = emptyList()
-                                                    )
-                                                    detectionResults = detectionResults + (download.id to errPayload)
-                                                } else {
-                                                    val json = NativeVulkanBridge.collectVulkanInfo(soFile.absolutePath)
-                                                    val payload = VulkanInfoPayload.fromJson(json)
-                                                    detectionResults = detectionResults + (download.id to payload)
-                                                }
-                                            } else {
-                                                val errPayload = VulkanInfoPayload(
+                                            // 只读 meta.json 判定打包格式，不再解压 .so / dlopen：
+                                            // zip 分发的 Turnip/PanVK 均为 adrenotools 模拟器专用包，
+                                            // App 进程加载必然失败，无意义的检测只会误导用户。
+                                            val parsed = meta
+                                                ?: runCatching { DriverMetaParser.parse(context, download.filePath) }.getOrNull()
+                                            driverMetas = driverMetas + (download.id to parsed)
+                                            val type = parsed?.driverType()
+                                                ?: DriverMetaParser.DriverType.UNKNOWN
+                                            val payload = when (type) {
+                                                DriverMetaParser.DriverType.VENDOR_SYSTEM -> VulkanInfoPayload(
                                                     success = false,
-                                                    errorCode = "EXTRACT_FAILED",
-                                                    errorMessage = extractFailedMsg,
+                                                    errorCode = "VENDOR_SYSTEM_DRIVER",
+                                                    errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
                                                     deviceCount = 0,
                                                     devices = emptyList()
                                                 )
-                                                detectionResults = detectionResults + (download.id to errPayload)
+                                                DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> VulkanInfoPayload(
+                                                    success = false,
+                                                    errorCode = "ADRENOTOOLS_PACKAGE",
+                                                    errorMessage = "adrenotools",
+                                                    deviceCount = 0,
+                                                    devices = emptyList()
+                                                )
+                                                else -> VulkanInfoPayload(
+                                                    success = false,
+                                                    errorCode = "UNKNOWN_PACKAGE",
+                                                    errorMessage = "无法识别的驱动包格式，未发现有效的 meta.json",
+                                                    deviceCount = 0,
+                                                    devices = emptyList()
+                                                )
                                             }
+                                            detectionResults = detectionResults + (download.id to payload)
                                         } catch (e: Exception) {
                                             val errPayload = VulkanInfoPayload(
                                                 success = false,
@@ -4133,22 +4184,65 @@ private fun DriverDetectionList(
                                 },
                                 contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
                             ) {
-                                Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(16.dp))
+                                Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(16.dp))
                                 Spacer(Modifier.width(6.dp))
-                                Text(if (result != null) appString(R.string.redetect) else appString(R.string.detect), style = MaterialTheme.typography.bodySmall)
+                                Text(
+                                    if (result != null) appString(R.string.redetect) else appString(R.string.view_driver_info),
+                                    style = MaterialTheme.typography.bodySmall
+                                )
                             }
                         }
                     }
 
-                    if (result != null) {
+                    // meta.json 驱动信息（自动解析后直接展示，这是该驱动包的真实身份信息）
+                    if (meta != null && !meta.isEmpty()) {
                         Spacer(Modifier.height(10.dp))
                         Divider()
                         Spacer(Modifier.height(8.dp))
-                        if (!result.success) {
+                        if (meta.name.isNotBlank())
+                            InfoRow(appString(R.string.meta_name), meta.name)
+                        if (meta.packageVersion.isNotBlank())
+                            InfoRow(appString(R.string.meta_package_version), meta.packageVersion)
+                        if (meta.driverVersion.isNotBlank())
+                            InfoRow(appString(R.string.meta_driver_version), meta.driverVersion)
+                        if (meta.vendor.isNotBlank())
+                            InfoRow(appString(R.string.meta_vendor), meta.vendor)
+                        if (meta.author.isNotBlank())
+                            InfoRow(appString(R.string.meta_author), meta.author)
+                        if (meta.minApi.isNotBlank())
+                            InfoRow(appString(R.string.meta_min_api), meta.minApi)
+                    }
+
+                    if (result != null) {
+                        Spacer(Modifier.height(10.dp))
+                        if (result.errorCode == "ADRENOTOOLS_PACKAGE") {
+                            // 模拟器专用格式：这是正常的格式说明，不是错误，用中性信息色
+                            Surface(
+                                shape = RoundedCornerShape(12.dp),
+                                color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f)
+                            ) {
+                                Column(Modifier.padding(10.dp)) {
+                                    Text(
+                                        appString(R.string.adrenotools_format_title),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                                    )
+                                    Spacer(Modifier.height(3.dp))
+                                    Text(
+                                        appString(R.string.adrenotools_format_hint),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.85f)
+                                    )
+                                }
+                            }
+                        } else if (!result.success) {
                             val errMsg = when (result.errorCode) {
                                 "EXTRACT_FAILED" -> appString(R.string.detection_error_extract)
                                 "VENDOR_SYSTEM_DRIVER" -> (result.errorMessage
                                     ?: "厂商系统提取驱动，无法在 App 内检测，请在模拟器内加载验证")
+                                "UNKNOWN_PACKAGE" -> (result.errorMessage
+                                    ?: appString(R.string.unknown_package_hint))
                                 "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
                                 "ENUM_DEVICES_MISSING", "DRIVER_CRASHED" -> appString(R.string.detection_error_adrenotools)
                                 "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
@@ -4455,14 +4549,27 @@ fun ComponentScreen(
     val componentOrder = preferredComponentOrder + discoveredComponentTypes
     val componentSourceSelections = remember { mutableStateMapOf<String, String>() }
 
+    // 来源"综合最新最全"评分：类型覆盖数主导（×1000），版本总数次之。
+    // 默认首推覆盖类型最全、版本最多的源；用户手动选择仍优先尊重。
+    val sourceRichness = remember(componentSources, componentCatalogs) {
+        componentSources.associate { s ->
+            val catalog = componentCatalogs[s.id]
+            val typeCount = catalog?.keys?.size ?: 0
+            val versionCount = catalog?.values?.sumOf { it.size } ?: 0
+            s.id to (typeCount * 1000 + versionCount)
+        }
+    }
+    val sourcesByRichness = remember(componentSources, sourceRichness) {
+        componentSources.sortedByDescending { sourceRichness[it.id] ?: 0 }
+    }
+
     LaunchedEffect(componentSources, componentCatalogs) {
         componentOrder.forEach { type ->
             val saved = SettingsManager.getComponentSource(type)
-            val resolved = componentSources.firstOrNull { source ->
-                source.id == saved && componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
-            } ?: componentSources.firstOrNull { source ->
+            val candidates = sourcesByRichness.filter { source ->
                 componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
             }
+            val resolved = candidates.firstOrNull { it.id == saved } ?: candidates.firstOrNull()
 
             if (resolved != null) {
                 componentSourceSelections[type] = resolved.id
@@ -4473,11 +4580,10 @@ fun ComponentScreen(
 
     fun currentComponentSource(type: String): ComponentSource? {
         val selectedId = componentSourceSelections[type] ?: SettingsManager.getComponentSource(type)
-        return componentSources.firstOrNull { source ->
-            source.id == selectedId && componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
-        } ?: componentSources.firstOrNull { source ->
+        val candidates = sourcesByRichness.filter { source ->
             componentCatalogs[source.id]?.get(type).orEmpty().isNotEmpty()
         }
+        return candidates.firstOrNull { it.id == selectedId } ?: candidates.firstOrNull()
     }
 
     LazyColumn(
@@ -4502,7 +4608,7 @@ fun ComponentScreen(
                 item(key = "component:$type") {
                     ComponentSection(
                         type = type,
-                        sources = componentSources.filter { s ->
+                        sources = sourcesByRichness.filter { s ->
                             componentCatalogs[s.id]?.get(type).orEmpty().isNotEmpty()
                         },
                         currentSource = source,
