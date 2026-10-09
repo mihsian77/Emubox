@@ -19,6 +19,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -3106,40 +3107,42 @@ private fun SourcePickerCard(
                     ) {
                         // 分组头用 GridItemSpan 跨满两列：此前 header 只占一格，
                         // 导致后续卡片左右列错位（用户反馈的"排列问题"根因）。
-                        items(flatItems.size, key = { i ->
-                            val it = flatItems[i]
-                            if (it is String) "__header_${it}" else (it as SourcePickerOption).id
-                        }) { i ->
-                            val item = flatItems[i]
+                        flatItems.forEach { item ->
                             if (item is String) {
                                 val cat = item.removePrefix("__header__")
-                                GridItemSpan(maxLineSpan)
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    verticalAlignment = Alignment.CenterVertically
+                                item(
+                                    key = "__header_$cat",
+                                    span = { GridItemSpan(maxLineSpan) }
                                 ) {
-                                    Text(
-                                        "${categoryLabel[cat].orEmpty()}（${grouped[cat].orEmpty().size}）",
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = when (cat) {
-                                            "recommended" -> MaterialTheme.colorScheme.primary
-                                            "exclusive" -> MaterialTheme.colorScheme.tertiary
-                                            else -> MaterialTheme.colorScheme.onSurfaceVariant
-                                        }
-                                    )
-                                    Spacer(Modifier.width(8.dp))
-                                    Divider(modifier = Modifier.weight(1f))
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            "${categoryLabel[cat].orEmpty()}（${grouped[cat].orEmpty().size}）",
+                                            style = MaterialTheme.typography.labelMedium,
+                                            color = when (cat) {
+                                                "recommended" -> MaterialTheme.colorScheme.primary
+                                                "exclusive" -> MaterialTheme.colorScheme.tertiary
+                                                else -> MaterialTheme.colorScheme.onSurfaceVariant
+                                            }
+                                        )
+                                        Spacer(Modifier.width(8.dp))
+                                        Divider(modifier = Modifier.weight(1f))
+                                    }
                                 }
                             } else {
                                 val option = item as SourcePickerOption
-                                SourcePickerGridCard(
-                                    option = option,
-                                    selected = option.name == currentName,
-                                    onSelected = {
-                                        onSelected(option.id)
-                                        showSheet = false
-                                    }
-                                )
+                                item(key = option.id) {
+                                    SourcePickerGridCard(
+                                        option = option,
+                                        selected = option.name == currentName,
+                                        onSelected = {
+                                            onSelected(option.id)
+                                            showSheet = false
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
