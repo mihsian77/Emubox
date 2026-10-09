@@ -3815,6 +3815,20 @@ private fun ComponentVersionCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+/** 组件分支识别：从 verName 解析主线/Sarek/GPLAsync/ARM64EC 等变体 */
+private fun componentBranch(verName: String): String {
+    val n = verName.lowercase()
+    return when {
+        n.contains("sarek") -> "Sarek"
+        n.contains("gplasync") || n.contains("async") -> "GPLAsync"
+        n.contains("arm64ec") -> "ARM64EC"
+        else -> componentBranchMainlineLabel
+    }
+}
+
+/** 组件"主线"分支的显示名 */
+private const val componentBranchMainlineLabel = "主线"
+
 fun ComponentSection(
     type: String,
     sources: List<ComponentSource>,
@@ -3937,44 +3951,70 @@ fun ComponentSection(
                         Divider(modifier = Modifier.weight(1f))
                     }
 
-                    // 组件版本双列网格
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.weight(1f),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                    // 组件版本双列网格：按分支分组（主线 / Sarek / GPLAsync / ARM64EC）
+                    // 修改原因：原版把 sarek/gplasync 等分支混在 DXVK 大类里，用户无法区分构建来源。
+                    // 影响范围：组件区块展开后的版本区，不影响下载逻辑。
+                    // 回滚方法：删除 componentBranch 与分组循环，恢复原双列逻辑。
+                    val branchGroups = components.groupBy { componentBranch(it.verName) }
+                    val branchOrder = listOf(
+                        componentBranchMainlineLabel,
+                        "Sarek", "GPLAsync", "ARM64EC"
+                    )
+                    val orderedBranches = branchOrder.filter { branchGroups.containsKey(it) } +
+                        (branchGroups.keys - branchOrder.toSet()).toList()
+                    orderedBranches.forEach { branch ->
+                        val branchItems = branchGroups[branch].orEmpty()
+                        // 分支标题（单个分支时无需标注）
+                        if (orderedBranches.size > 1) {
+                            Text(
+                                branch,
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(Modifier.height(4.dp))
+                        }
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { component ->
-                                ComponentVersionCard(
-                                    component = component,
-                                    sourceName = currentSource.name,
-                                    isSelected = component.verName == selected?.verName,
-                                    isLatest = component.verName == latestComponent?.verName,
-                                    onClick = {
-                                        selectedVersion = component.verName
-                                        SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
-                                    }
-                                )
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                branchItems.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { component ->
+                                    ComponentVersionCard(
+                                        component = component,
+                                        sourceName = currentSource.name,
+                                        isSelected = component.verName == selected?.verName,
+                                        isLatest = component.verName == latestComponent?.verName,
+                                        onClick = {
+                                            selectedVersion = component.verName
+                                            SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
+                                        }
+                                    )
+                                }
+                            }
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                branchItems.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { component ->
+                                    ComponentVersionCard(
+                                        component = component,
+                                        sourceName = currentSource.name,
+                                        isSelected = component.verName == selected?.verName,
+                                        isLatest = component.verName == latestComponent?.verName,
+                                        onClick = {
+                                            selectedVersion = component.verName
+                                            SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
+                                        }
+                                    )
+                                }
                             }
                         }
-                        Column(
-                            modifier = Modifier.weight(1f),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { component ->
-                                ComponentVersionCard(
-                                    component = component,
-                                    sourceName = currentSource.name,
-                                    isSelected = component.verName == selected?.verName,
-                                    isLatest = component.verName == latestComponent?.verName,
-                                    onClick = {
-                                        selectedVersion = component.verName
-                                        SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
-                                    }
-                                )
-                            }
+                        if (branchItems.isNotEmpty() && branch != orderedBranches.last()) {
+                            Spacer(Modifier.height(10.dp))
                         }
                     }
 
