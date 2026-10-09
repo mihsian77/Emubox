@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -564,12 +565,13 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     if (metaInfo == null || metaInfo!!.isEmpty()) {
                                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                             if (metaInfo == null) {
-                                                // 非驱动文件：展示基础信息
+                                                // 非驱动文件：基础信息 + 用途说明（按文件名/扩展名推断）
                                                 FileInfoRow(appString(R.string.file_name), file.fileName)
                                                 FileInfoRow(
                                                     appString(R.string.file_type),
                                                     file.fileName.substringAfterLast('.', "").uppercase().ifEmpty { "—" }
                                                 )
+                                                FileInfoRow(appString(R.string.file_purpose), filePurposeHint(file.fileName))
                                                 FileInfoRow(appString(R.string.file_size), formatBytes(file.sizeBytes))
                                                 FileInfoRow(appString(R.string.file_path), displayPath)
                                                 FileInfoRow(appString(R.string.file_time), formatDate(file.timestamp))
@@ -664,6 +666,33 @@ private fun FileInfoRow(label: String, value: String) {
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.weight(1f)
         )
+    }
+}
+
+/** 非驱动文件的用途推断：按文件名/扩展名匹配常见组件类型，未命中给通用说明 */
+private fun filePurposeHint(fileName: String): String {
+    val n = fileName.lowercase()
+    val base = fileName.substringBeforeLast('.').trim()
+    // 先按运行库中文映射匹配（vc2022 / dxvk / lavfilters 等）
+    RuntimeChineseHints.lookup(base)?.let { return it }
+    return when {
+        n.endsWith(".wcp") -> "Winlator 组件包（DXVK/FEXCore/VKD3D 等，供模拟器加载）"
+        n.contains("dxvk") || n.contains("d7vk") -> "DXVK 组件：DirectX 9/10/11 转 Vulkan"
+        n.contains("vkd3d") -> "VKD3D 组件：DirectX 12 转 Vulkan"
+        n.contains("fex") -> "FEXCore 组件：x86 指令模拟核心"
+        n.contains("proton") -> "Proton 组件：Windows 兼容层（含 CachyOS 等发行版构建）"
+        n.contains("wine") -> "Wine 组件：Windows API 兼容层"
+        n.contains("box64") -> "Box64 组件：x86_64 指令转译"
+        n.contains("turnip") || n.contains("freedreno") || (n.contains("mesa") && n.endsWith(".zip")) ->
+            "Turnip 驱动（Mesa 开源 Adreno 驱动，模拟器内加载）"
+        n.contains("adreno") || n.contains("qualcomm") -> "高通 Adreno 驱动包（系统提取闭源驱动）"
+        n.contains("panvk") || n.contains("panv") -> "PanVK 驱动（Mesa 开源 Mali 驱动）"
+        n.endsWith(".dll") -> "DLL 动态链接库（Windows 运行库组件，放入模拟器系统目录）"
+        n.endsWith(".exe") || n.endsWith(".msi") -> "Windows 安装程序（在模拟器内运行安装）"
+        n.endsWith(".ttf") || n.endsWith(".otf") || n.contains("font") || n.contains("cjk") ->
+            "字体文件（CJK 中文字体，解决模拟器内乱码）"
+        n.endsWith(".zip") || n.endsWith(".adpkg") -> "驱动/组件压缩包（含驱动本体与 meta.json）"
+        else -> "已下载文件（${fileName.substringAfterLast('.', "").uppercase().ifEmpty { "未知" }} 格式）"
     }
 }
 
@@ -3075,9 +3104,16 @@ private fun SourcePickerCard(
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                         contentPadding = PaddingValues(bottom = 16.dp)
                     ) {
-                        items(flatItems) { item ->
+                        // 分组头用 GridItemSpan 跨满两列：此前 header 只占一格，
+                        // 导致后续卡片左右列错位（用户反馈的"排列问题"根因）。
+                        items(flatItems.size, key = { i ->
+                            val it = flatItems[i]
+                            if (it is String) "__header_${it}" else (it as SourcePickerOption).id
+                        }) { i ->
+                            val item = flatItems[i]
                             if (item is String) {
                                 val cat = item.removePrefix("__header__")
+                                GridItemSpan(maxLineSpan)
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
                                     verticalAlignment = Alignment.CenterVertically
@@ -3780,8 +3816,8 @@ private fun ComponentVersionCard(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = component.verName,
-                    style = MaterialTheme.typography.labelLarge,
-                    maxLines = 1,
+                    style = MaterialTheme.typography.labelMedium,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
                 )
@@ -3888,16 +3924,19 @@ fun ComponentSection(
                         "${components.size} ${appString(R.string.version)} · ${currentSource.name}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
                 if (!expanded) {
                     Text(
                         text = selected?.verName ?: "",
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
-                        maxLines = 1
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.End,
+                        modifier = Modifier.weight(0.55f)
                     )
                     Spacer(Modifier.width(8.dp))
                 }
@@ -5384,7 +5423,33 @@ fun RuntimeLibraryScreen(
         loadError = result.isEmpty()
     }
 
-    val grouped = remember(components) { RuntimeLibraryRepository.groupByCategory(components) }
+    // 搜索过滤：匹配名称 / 中文用途 / 英文描述
+    var searchQuery by remember { mutableStateOf("") }
+    val filtered = remember(components, searchQuery) {
+        if (searchQuery.isBlank()) components
+        else components.filter {
+            it.name.contains(searchQuery, ignoreCase = true) ||
+                it.chineseHint.contains(searchQuery, ignoreCase = true) ||
+                it.description.contains(searchQuery, ignoreCase = true)
+        }
+    }
+
+    // 推荐置顶：Winlator 高频必备组件（按名称前缀匹配，不存在则跳过）
+    val recommendedNames = listOf(
+        "vcredist2022", "vc2022", "vcredist2019", "dotnet48", "dotnet46",
+        "dxvk", "vkd3d", "lavfilters", "cjkfonts", "sourcehan",
+        "directx9", "d3dx943", "physx", "xinput", "vc2019"
+    )
+    val recommended = remember(components) {
+        recommendedNames.mapNotNull { id ->
+            components.firstOrNull {
+                it.name.equals(id, ignoreCase = true) ||
+                    it.name.lowercase().startsWith(id.lowercase())
+            }
+        }.distinctBy { it.name }
+    }
+
+    val grouped = remember(filtered) { RuntimeLibraryRepository.groupByCategory(filtered) }
 
     Column(
         modifier = Modifier
@@ -5413,6 +5478,18 @@ fun RuntimeLibraryScreen(
             }
         }
 
+        // 搜索框
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = { searchQuery = it },
+            modifier = Modifier.fillMaxWidth(),
+            placeholder = { Text(appString(R.string.runtime_search_hint)) },
+            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+            singleLine = true,
+            shape = RoundedCornerShape(14.dp),
+            textStyle = MaterialTheme.typography.bodyMedium
+        )
+
         if (isLoading) {
             Box(
                 modifier = Modifier
@@ -5428,12 +5505,74 @@ fun RuntimeLibraryScreen(
                 loadError = false
             })
         } else {
+            // 推荐下载置顶区块（搜索时隐藏，聚焦搜索结果）
+            if (searchQuery.isBlank() && recommended.isNotEmpty()) {
+                Text(
+                    text = appString(R.string.runtime_recommended),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                RuntimeRecommendedStrip(
+                    components = recommended,
+                    onDownload = onDownload
+                )
+            }
             grouped.forEach { (category, list) ->
                 RuntimeCategorySection(
                     category = category,
                     components = list,
                     onDownload = onDownload
                 )
+            }
+        }
+    }
+}
+
+/** 运行库推荐条：横向滑动小卡，高频必备组件一键下载 */
+@Composable
+private fun RuntimeRecommendedStrip(
+    components: List<RuntimeComponent>,
+    onDownload: (RuntimeComponent) -> Unit
+) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(components, key = { it.name }) { comp ->
+            Card(
+                modifier = Modifier
+                    .width(150.dp)
+                    .clickable {
+                        if (comp.isReady && comp.downloadUrl.isNotBlank()) onDownload(comp)
+                    },
+                shape = RoundedCornerShape(14.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f)
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text(
+                        comp.name,
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        comp.chineseHint,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        if (comp.isReady && comp.downloadUrl.isNotBlank())
+                            "${formatFileSize(comp.fileSize)} · ${comp.installTag}"
+                        else comp.noDownloadReason,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
             }
         }
     }

@@ -411,6 +411,17 @@ object DriverRegistryRepository {
             packageFormat = "wcp", maturity = "beta", stars = 12,
             description = "PanVK 专用 DXVK，BC→ASTC 纹理转码", notes = "",
             companion = emptyList(), filters = mapOf("default" to listOf("wcp"))
+        ),
+        DriverRegistryEntry(
+            id = "pandxvk-lloyd262", name = "panDXVK-lloyd262 (PDXVK GPLASYNC)",
+            owner = "isygold", repo = "panDXVK-lloyd262",
+            apiUrl = "https://api.github.com/repos/isygold/panDXVK-lloyd262/releases",
+            gpuVendor = "mali", gpuArch = emptyList(), gpuModels = emptyList(),
+            driverType = "component", componentType = "DXVK",
+            frontend = null, targetEmulator = "winlator",
+            packageFormat = "wcp", maturity = "beta", stars = 0,
+            description = "PDXVK 2.4.1 GPLASYNC（Mali 纹理转码，Sarek 变体分支）", notes = "",
+            companion = emptyList(), filters = mapOf("default" to listOf("wcp", "pdvxk", "gplasync"))
         )
     )
 }
