@@ -399,15 +399,16 @@ object DownloadsManager {
             } else if (f.isFile) {
                 val name = f.name ?: return@forEach
                 val path = f.uri.toString()
-                if (path in knownPaths) return@forEach
-                out += CompletedDownload(
-                    id = "disk-${path.hashCode()}",
-                    fileName = name,
-                    filePath = path,
-                    sizeBytes = f.length().coerceAtLeast(0L),
-                    timestamp = f.lastModified(),
-                    subPath = rel
-                )
+                if (path !in knownPaths) {
+                    out += CompletedDownload(
+                        id = "disk-${path.hashCode()}",
+                        fileName = name,
+                        filePath = path,
+                        sizeBytes = f.length().coerceAtLeast(0L),
+                        timestamp = f.lastModified(),
+                        subPath = rel
+                    )
+                }
             }
         }
     }
@@ -422,15 +423,16 @@ object DownloadsManager {
             if (f.isDirectory) {
                 collectPlainFiles(f, if (rel.isBlank()) f.name else "$rel/${f.name}", knownPaths, out)
             } else if (f.isFile) {
-                if (f.absolutePath in knownPaths) return@forEach
-                out += CompletedDownload(
-                    id = "disk-${f.absolutePath.hashCode()}",
-                    fileName = f.name,
-                    filePath = f.absolutePath,
-                    sizeBytes = f.length().coerceAtLeast(0L),
-                    timestamp = f.lastModified(),
-                    subPath = rel
-                )
+                if (f.absolutePath !in knownPaths) {
+                    out += CompletedDownload(
+                        id = "disk-${f.absolutePath.hashCode()}",
+                        fileName = f.name,
+                        filePath = f.absolutePath,
+                        sizeBytes = f.length().coerceAtLeast(0L),
+                        timestamp = f.lastModified(),
+                        subPath = rel
+                    )
+                }
             }
         }
     }
