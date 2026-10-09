@@ -2179,7 +2179,9 @@ fun DriverHubScreen(
             }
         }
 
-        if (turnipReleases.isNotEmpty()) {
+        // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
+        // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
+        if (turnipSources.isNotEmpty()) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -2462,20 +2464,35 @@ private fun recommendDriverRoute(deviceInfo: DeviceInfo): DriverRouteRecommendat
     }
 }
 
+/**
+ * 驱动适配推荐卡片：基于注册表匹配结果给出本机可用驱动源，
+ * 直接告诉用户"该下哪个"，点击一键跳转驱动专区。
+ * 取代旧版纯科普文本的"路线推荐"（内容人人都知道，无实操价值）。
+ */
 @Composable
-private fun DriverRouteCard(deviceInfo: DeviceInfo) {
-    val rec = remember(deviceInfo) { recommendDriverRoute(deviceInfo) }
-    val supportColor = when (rec.turnipSupport) {
-        TurnipSupport.FULL -> Color(0xFF2E7D32)
-        TurnipSupport.PARTIAL -> Color(0xFFE65100)
-        TurnipSupport.NONE -> Color(0xFFC62828)
-    }
-    val supportText = when (rec.turnipSupport) {
-        TurnipSupport.FULL -> "Turnip 完整支持"
-        TurnipSupport.PARTIAL -> "Turnip 部分支持"
-        TurnipSupport.NONE -> "不支持 Turnip"
+private fun DriverRecommendationCard(
+    deviceInfo: DeviceInfo,
+    onNavigateToDrivers: (() -> Unit)?
+) {
+    var recommendations by remember(deviceInfo) { mutableStateOf<List<DriverMatchResult>?>(null) }
+    var loadFailed by remember(deviceInfo) { mutableStateOf(false) }
+
+    LaunchedEffect(deviceInfo) {
+        loadFailed = false
+        try {
+            val result = withContext(Dispatchers.IO) {
+                val entries = DriverRegistryRepository.load()
+                DriverRegistryRepository.match(deviceInfo, entries)
+                    .filter { it.recommended || it.score >= 80 }
+                    .take(3)
+            }
+            if (result.isEmpty()) loadFailed = true else recommendations = result
+        } catch (e: Exception) {
+            loadFailed = true
+        }
     }
 
+    val matches = recommendations
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
@@ -2491,54 +2508,95 @@ private fun DriverRouteCard(deviceInfo: DeviceInfo) {
                 )
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    "Winlator 驱动路线推荐",
+                    appString(R.string.driver_recommend_title),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSecondaryContainer
                 )
                 Spacer(Modifier.weight(1f))
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = supportColor.copy(alpha = 0.15f)
-                ) {
+            }
+
+            // 技术路线一行（保留专业信息，但压缩为说明而非主体）
+            val route = recommendDriverRoute(deviceInfo)
+            val routeColor = when (route.turnipSupport) {
+                TurnipSupport.FULL -> Color(0xFF2E7D32)
+                TurnipSupport.PARTIAL -> Color(0xFFE65100)
+                TurnipSupport.NONE -> Color(0xFFC62828)
+            }
+            Text(
+                "主推 ${route.primaryRoute} · 备选 ${route.secondaryRoute}",
+                style = MaterialTheme.typography.bodySmall,
+                color = routeColor
+            )
+
+            when {
+                loadFailed -> {
                     Text(
-                        supportText,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = supportColor,
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                        appString(R.string.driver_recommend_empty),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
                 }
-            }
-
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                Surface(
-                    shape = RoundedCornerShape(16.dp),
-                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Column(Modifier.padding(12.dp)) {
-                        Text("主推", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        Spacer(Modifier.height(2.dp))
-                        Text(rec.primaryRoute, style = MaterialTheme.typography.bodyMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Medium)
+                matches == null -> {
+                    // 匹配计算中
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                }
+                else -> {
+                    matches.forEach { match ->
+                        val entry = match.entry
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(Modifier.weight(1f)) {
+                                Text(
+                                    entry.name,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                                )
+                                Text(
+                                    buildString {
+                                        append(match.matchReason)
+                                        entry.targetEmulator.takeIf { it.isNotBlank() && it != "generic" }?.let {
+                                            append(" · 适配 $it")
+                                        }
+                                        entry.maturity.takeIf { it.isNotBlank() }?.let {
+                                            append(" · ${it.uppercase()}")
+                                        }
+                                    },
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
+                                )
+                            }
+                            if (match.recommended) {
+                                Surface(
+                                    shape = RoundedCornerShape(8.dp),
+                                    color = MaterialTheme.colorScheme.primary
+                                ) {
+                                    Text(
+                                        appString(R.string.category_recommended),
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onPrimary
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
-                Surface(
-                    shape = RoundedCornerShape(16.dp),
-                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Column(Modifier.padding(12.dp)) {
-                        Text("备选", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        Spacer(Modifier.height(2.dp))
-                        Text(rec.secondaryRoute, style = MaterialTheme.typography.bodyMedium)
-                    }
-                }
             }
 
-            Text(
-                rec.note,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f)
-            )
+            if (onNavigateToDrivers != null) {
+                Button(
+                    onClick = onNavigateToDrivers,
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 44.dp),
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    Icon(Icons.Default.Memory, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.goto_driver_region))
+                }
+            }
         }
     }
 }
@@ -3506,7 +3564,8 @@ fun ComponentSection(
 fun DeviceScreen(
     modifier: Modifier = Modifier,
     deviceInfo: DeviceInfo?,
-    isLoading: Boolean
+    isLoading: Boolean,
+    onNavigateToDrivers: (() -> Unit)? = null
 ) {
     var vulkanPayload by remember { mutableStateOf<VulkanInfoPayload?>(null) }
     var vulkanLoading by remember { mutableStateOf(true) }
@@ -3545,7 +3604,10 @@ fun DeviceScreen(
 
         if (!isLoading && deviceInfo != null) {
             item(key = "driver_route") {
-                DriverRouteCard(deviceInfo = deviceInfo)
+                DriverRecommendationCard(
+                    deviceInfo = deviceInfo,
+                    onNavigateToDrivers = onNavigateToDrivers
+                )
             }
         }
 
@@ -4317,7 +4379,9 @@ fun DriverScreen(
             }
         }
 
-        if (turnipReleases.isNotEmpty()) {
+        // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
+        // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
+        if (turnipSources.isNotEmpty()) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
