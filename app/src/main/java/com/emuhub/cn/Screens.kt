@@ -4688,6 +4688,26 @@ fun RuntimeLibraryScreen(
     var components by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var loadError by remember { mutableStateOf(false) }
+    var showGuide by remember { mutableStateOf(false) }
+
+    if (showGuide) {
+        AlertDialog(
+            onDismissRequest = { showGuide = false },
+            title = { Text(appString(R.string.runtime_guide_title)) },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(appString(R.string.runtime_guide_intro), style = MaterialTheme.typography.bodySmall)
+                    Text(appString(R.string.runtime_guide_exe), style = MaterialTheme.typography.bodySmall)
+                    Text(appString(R.string.runtime_guide_dll), style = MaterialTheme.typography.bodySmall)
+                    Text(appString(R.string.runtime_guide_font), style = MaterialTheme.typography.bodySmall)
+                    Text(appString(R.string.runtime_guide_recommend), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showGuide = false }) { Text(appString(R.string.ok)) }
+            }
+        )
+    }
 
     LaunchedEffect(Unit) {
         isLoading = true
@@ -4707,16 +4727,24 @@ fun RuntimeLibraryScreen(
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(
-                text = appString(R.string.runtime_title),
-                style = MaterialTheme.typography.headlineSmall
-            )
-            Text(
-                text = appString(R.string.runtime_subtitle),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Top
+        ) {
+            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(
+                    text = appString(R.string.runtime_title),
+                    style = MaterialTheme.typography.headlineSmall
+                )
+                Text(
+                    text = appString(R.string.runtime_subtitle),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            IconButton(onClick = { showGuide = true }) {
+                Icon(Icons.Default.Info, contentDescription = appString(R.string.runtime_guide_title))
+            }
         }
 
         if (isLoading) {
@@ -4833,9 +4861,9 @@ private fun RuntimeComponentCard(
                 }
             }
 
-            if (component.description.isNotBlank()) {
+            if (component.chineseHint.isNotBlank()) {
                 Text(
-                    text = component.description,
+                    text = component.chineseHint,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 3,

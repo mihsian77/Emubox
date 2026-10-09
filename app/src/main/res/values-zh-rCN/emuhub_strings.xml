@@ -449,4 +449,13 @@
     <string name="runtime_load_failed_hint">检查网络后重试。清单通过 MirrorHub 加速从 GitHub 拉取。</string>
     <string name="retry">重试</string>
     <string name="download">下载</string>
+    <string name="ok">确定</string>
+
+    <!-- 运行库使用说明 -->
+    <string name="runtime_guide_title">使用说明</string>
+    <string name="runtime_guide_intro">文件下载到 Download/Runtime/&lt;分类&gt;/ 目录。请在 Winlator 内安装，不要安装到安卓系统。</string>
+    <string name="runtime_guide_exe">• EXE/MSI 安装包：用 Winlator 文件管理器打开并运行，按向导完成安装。</string>
+    <string name="runtime_guide_dll">• DLL 纯文件包：将 .dll 复制到 Winlator 的 drive_c/windows/system32/ 目录。</string>
+    <string name="runtime_guide_font">• 字体：通过 Winlator 控制面板 → 字体安装，或复制到 drive_c/windows/Fonts/。</string>
+    <string name="runtime_guide_recommend">推荐基础套装：VC++ 2022、.NET 4.8、CJK 中文字体、DirectX 9.0c。</string>
 </resources>
