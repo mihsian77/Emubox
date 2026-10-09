@@ -102,8 +102,8 @@ object DriverRegistryRepository {
     private fun fetchFromUrl(urlStr: String): List<DriverRegistryEntry>? {
         return try {
             val conn = (URL(urlStr).openConnection() as HttpURLConnection).apply {
-                connectTimeout = 10000
-                readTimeout = 10000
+                connectTimeout = 6000
+                readTimeout = 6000
                 setRequestProperty("User-Agent", "EmuHub-CN")
             }
             if (conn.responseCode != 200) return null

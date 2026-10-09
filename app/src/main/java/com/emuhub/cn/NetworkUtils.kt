@@ -18,7 +18,12 @@ data class GithubRelease(
 data class GithubAsset(val name: String, val downloadUrl: String, val sizeBytes: Long)
 data class Component(val type: String, val verName: String, val verCode: String, val remoteUrl: String)
 
-private val githubClient by lazy { OkHttpClient() }
+private val githubClient by lazy {
+    OkHttpClient.Builder()
+        .connectTimeout(6, java.util.concurrent.TimeUnit.SECONDS)
+        .readTimeout(6, java.util.concurrent.TimeUnit.SECONDS)
+        .build()
+}
 
 // In-memory cache to avoid re-fetching the same GitHub releases / component
 // manifest on every source switch. TTL is 10 minutes; stale entries are

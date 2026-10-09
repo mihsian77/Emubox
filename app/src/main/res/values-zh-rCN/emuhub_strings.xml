@@ -428,4 +428,7 @@
     <string name="preview_gamehub">GameHub</string>
     <string name="preview_qualcomm_system">高通系统提取驱动</string>
     <string name="preview_stars">%1$s stars</string>
+    <string name="driver_recommend_title">本机驱动适配推荐</string>
+    <string name="driver_recommend_empty">未匹配到适配驱动，可前往驱动专区浏览全部来源。</string>
+    <string name="goto_driver_region">前往驱动专区</string>
 </resources>

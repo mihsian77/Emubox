@@ -677,22 +677,27 @@ struct BenchmarkDispatch {
     PFN_vkCmdResetQueryPool vkCmdResetQueryPool = nullptr;
     PFN_vkCmdWriteTimestamp vkCmdWriteTimestamp = nullptr;
     PFN_vkGetQueryPoolResults vkGetQueryPoolResults = nullptr;
+    PFN_vkGetDeviceProcAddr vkGetDeviceProcAddr = nullptr;
 };
 
-static bool loadBenchmarkDispatch(VkInstance instance, VkDevice device, BenchmarkDispatch& bk) {
+// 阶段 1：加载 instance 级入口（创建逻辑设备前必须有 vkCreateDevice/vkGetDeviceProcAddr）
+static bool loadInstanceDispatch(VkInstance instance, BenchmarkDispatch& bk) {
     auto getInst = reinterpret_cast<PFN_vkGetInstanceProcAddr>(
         reinterpret_cast<void*>(vkGetInstanceProcAddr));
     if (!getInst) return false;
 
-    // instance 级函数：vkCreateDevice 通过 instance proc addr 获取（instance 必须有效）
     bk.vkCreateDevice = reinterpret_cast<PFN_vkCreateDevice>(
         getInst(instance, "vkCreateDevice"));
-    if (!bk.vkCreateDevice) return false;
-
-    // device 级函数：必须通过 vkGetDeviceProcAddr 获取，
-    // vkGetInstanceProcAddr 对 device 级函数不保证返回（Android loader 会返回 NULL）。
-    auto getDev = reinterpret_cast<PFN_vkGetDeviceProcAddr>(
+    bk.vkGetDeviceProcAddr = reinterpret_cast<PFN_vkGetDeviceProcAddr>(
         getInst(instance, "vkGetDeviceProcAddr"));
+    return bk.vkCreateDevice != nullptr && bk.vkGetDeviceProcAddr != nullptr;
+}
+
+// 阶段 2：device 创建后加载 device 级函数
+// device 级函数必须通过 vkGetDeviceProcAddr 获取，
+// vkGetInstanceProcAddr 对 device 级函数不保证返回（Android loader 会返回 NULL）。
+static bool loadDeviceDispatch(VkDevice device, BenchmarkDispatch& bk) {
+    auto getDev = bk.vkGetDeviceProcAddr;
     if (!getDev) return false;
 
 #define LOAD_DEV(name) bk.name = reinterpret_cast<PFN_##name>(getDev(device, #name))
@@ -801,7 +806,11 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     }
     float timestampPeriod = props.limits.timestampPeriod; // ns
 
-    // 3. 创建逻辑设备
+    // 3. 创建逻辑设备（先加载 instance 级入口，再创建，再加载 device 级函数）
+    if (!loadInstanceDispatch(instance, bk)) {
+        return fail("LOAD_INSTANCE_DISPATCH_FAILED", "加载 instance 级函数失败");
+    }
+
     float queuePriority = 1.0f;
     VkDeviceQueueCreateInfo queueCI{};
     queueCI.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
@@ -818,8 +827,8 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         return fail("CREATE_DEVICE_FAILED", "创建逻辑设备失败");
     }
 
-    if (!loadBenchmarkDispatch(instance, logicalDevice, bk)) {
-        return fail("LOAD_DISPATCH_FAILED", "加载 benchmark 函数指针失败");
+    if (!loadDeviceDispatch(logicalDevice, bk)) {
+        return fail("LOAD_DEVICE_DISPATCH_FAILED", "加载 device 级函数失败");
     }
 
     bk.vkGetDeviceQueue(logicalDevice, static_cast<uint32_t>(qf), 0, &queue);

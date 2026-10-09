@@ -84,7 +84,12 @@ data class SourceCatalog(
     }
 }
 
-private val sourceCatalogClient by lazy { OkHttpClient() }
+private val sourceCatalogClient by lazy {
+    OkHttpClient.Builder()
+        .connectTimeout(6, java.util.concurrent.TimeUnit.SECONDS)
+        .readTimeout(6, java.util.concurrent.TimeUnit.SECONDS)
+        .build()
+}
 
 object SourceCatalogRepository {
     suspend fun load(url: String = SettingsManager.getSourceCatalogUrl()): SourceCatalog =
