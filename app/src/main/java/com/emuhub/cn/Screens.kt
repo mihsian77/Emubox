@@ -4370,6 +4370,18 @@ private fun GpuBenchmarkCard(
                         label = appString(R.string.benchmark_copy_bandwidth),
                         valueGBs = result.copyBandwidthGBs
                     )
+                    Spacer(Modifier.height(10.dp))
+
+                    // compute 吞吐条（计算着色器实测 GFLOPS）
+                    ComputeRow(label = appString(R.string.benchmark_compute_throughput), gflops = result.computeGFLOPS)
+                    if (result.computeError.isNotEmpty()) {
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            "计算基准受限：${result.computeError}（带宽结果仍有效）",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.tertiary
+                        )
+                    }
                     Spacer(Modifier.height(16.dp))
 
                     Button(onClick = onRun) {
@@ -4384,6 +4396,41 @@ private fun GpuBenchmarkCard(
                     }
                 }
             }
+        }
+    }
+}
+
+/** 计算吞吐数值 + 进度条（满格 1500 GFLOPS，对应 Adreno 8 系 compute 上限）。 */
+@Composable
+private fun ComputeRow(label: String, gflops: Double) {
+    val fraction = (gflops / 1500.0).coerceIn(0.0, 1.0)
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(label, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                if (gflops > 0) String.format("%.1f GFLOPS", gflops) else "不可用",
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Spacer(Modifier.height(4.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(fraction)
+                    .height(8.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(MaterialTheme.colorScheme.primary)
+            )
         }
     }
 }
@@ -4435,6 +4482,11 @@ private fun DriverDetectionList(
     }
     // 驱动包 meta.json 解析结果（进页面自动解析，无需用户点击）
     var driverMetas by remember { mutableStateOf<Map<String, DriverMetaParser.DriverMeta?>>(emptyMap()) }
+    // .so 是否导出 vkGetInstanceProcAddr（静态 ELF 检查，决定能否实测跑分）
+    var exportFlags by remember { mutableStateOf<Map<String, Boolean?>>(emptyMap()) }
+    // 实测跑分结果（fork 子进程加载驱动，崩溃隔离）
+    var benchmarkResults by remember { mutableStateOf<Map<String, BenchmarkResult>>(emptyMap()) }
+    var benchmarkingId by remember { mutableStateOf<String?>(null) }
 
     val downloadedDrivers = DownloadsManager.completedDownloads.filter { download ->
         val isDriverPackage = download.fileName.endsWith(".zip", ignoreCase = true) ||
@@ -4482,6 +4534,61 @@ private fun DriverDetectionList(
             }
         }
         driverMetas = driverMetas + parsed
+    }
+
+    // 解压驱动包拿 .so（本地路径或 content:// 均支持；已提取则直接复用）
+    val extractSoFor: (String, String) -> File? = { id, filePath ->
+        runCatching {
+            val existing = DriverExtractor.getSoFile(context, id)
+            if (existing != null && existing.exists()) existing
+            else {
+                val uri = if (filePath.startsWith("content://")) Uri.parse(filePath)
+                          else Uri.fromFile(File(filePath))
+                DriverExtractor.extract(context, uri, id)
+            }
+        }.getOrNull()
+    }
+
+    // 静态检查 .so 是否导出 vkGetInstanceProcAddr（懒触发，IO 线程，缓存结果）
+    val checkExportable: (String, String) -> Unit = { id, filePath ->
+        scope.launch(Dispatchers.IO) {
+            val flag = DriverMetaParser.soExportsVkGetInstanceProcAddr(extractSoFor(id, filePath))
+            exportFlags = exportFlags + (id to flag)
+        }
+    }
+
+    // 实测跑分：确保 .so 已解压 → fork 子进程加载驱动跑分（崩溃只死子进程）
+    val benchmarkDriver: (String, String) -> Unit = { id, filePath ->
+        benchmarkingId = id
+        scope.launch(Dispatchers.IO) {
+            try {
+                val soFile = extractSoFor(id, filePath)
+                val flag = DriverMetaParser.soExportsVkGetInstanceProcAddr(soFile)
+                exportFlags = exportFlags + (id to flag)
+                if (flag != true || soFile == null) {
+                    benchmarkResults = benchmarkResults + (id to BenchmarkResult(
+                        success = false, errorCode = "NOT_EXPORTING",
+                        errorMessage = "驱动 .so 未导出 vkGetInstanceProcAddr，无法在 App 内实测（VkDriverLab 同样需要该符号）",
+                        deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
+                        computeGFLOPS = 0.0, computeError = "", totalScore = 0,
+                        bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                    ))
+                } else {
+                    val raw = NativeVulkanBridge.benchmarkVulkan(soFile.absolutePath)
+                    benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(raw))
+                }
+            } catch (e: Exception) {
+                benchmarkResults = benchmarkResults + (id to BenchmarkResult(
+                    success = false, errorCode = "BENCHMARK_EXCEPTION",
+                    errorMessage = e.message ?: "unknown",
+                    deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
+                    computeGFLOPS = 0.0, computeError = "", totalScore = 0,
+                    bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                ))
+            } finally {
+                benchmarkingId = null
+            }
+        }
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -4596,6 +4703,103 @@ private fun DriverDetectionList(
                             InfoRow(appString(R.string.meta_author), meta.author)
                         if (meta.minApi.isNotBlank())
                             InfoRow(appString(R.string.meta_min_api), meta.minApi)
+                    }
+
+                    // ── 实测跑分：解压 .so → 静态检查导出符号 → fork 子进程加载驱动跑分 ──
+                    Spacer(Modifier.height(10.dp))
+                    Divider()
+                    Spacer(Modifier.height(6.dp))
+                    when {
+                        benchmarkingId == download.id -> {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                                Spacer(Modifier.width(10.dp))
+                                Text(
+                                    appString(R.string.benchmark_loading_driver),
+                                    style = MaterialTheme.typography.bodySmall
+                                )
+                            }
+                        }
+                        benchmarkResults[download.id] != null -> {
+                            val br = benchmarkResults[download.id]!!
+                            if (br.success) {
+                                Text(
+                                    "实测跑分（${br.deviceName}）",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                                )
+                                Spacer(Modifier.height(4.dp))
+                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    Text(
+                                        "综合 ${br.totalScore}",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                                    )
+                                    Text(
+                                        "带宽 ${"%.1f".format(br.fillBandwidthGBs)} GB/s",
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                    Text(
+                                        "Compute ${"%.0f".format(br.computeGFLOPS)} GFLOPS",
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
+                                if (br.computeError.isNotEmpty()) {
+                                    Spacer(Modifier.height(2.dp))
+                                    Text(
+                                        "计算基准受限：${br.computeError}",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.tertiary
+                                    )
+                                }
+                            } else {
+                                Text(
+                                    "实测跑分失败：${br.errorCode ?: "?"} ${br.errorMessage ?: ""}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.error
+                                )
+                            }
+                            Spacer(Modifier.height(6.dp))
+                            OutlinedButton(
+                                onClick = { benchmarkDriver(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                            ) {
+                                Text(appString(R.string.benchmark_rerun), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                        exportFlags[download.id] == true -> {
+                            Button(
+                                onClick = { benchmarkDriver(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                            ) {
+                                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
+                                Spacer(Modifier.width(6.dp))
+                                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
+                            }
+                            Spacer(Modifier.height(4.dp))
+                            Text(
+                                appString(R.string.benchmark_isolated_hint),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        exportFlags[download.id] == false -> {
+                            Text(
+                                appString(R.string.benchmark_not_exporting),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
+                        else -> {
+                            // 未检查：提供"检查能否实测"按钮（懒触发，避免进页面即解压大 .so）
+                            TextButton(
+                                onClick = { checkExportable(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+                            ) {
+                                Text(appString(R.string.benchmark_check_export), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
                     }
 
                     if (result != null) {

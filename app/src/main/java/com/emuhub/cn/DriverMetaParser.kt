@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import org.json.JSONObject
 import java.io.File
+import java.io.RandomAccessFile
 import java.util.zip.ZipFile
 import java.util.zip.ZipInputStream
 
@@ -67,6 +68,108 @@ object DriverMetaParser {
         return lower.endsWith(".zip") || lower.endsWith(".adpkg") ||
             lower.contains("turnip") || lower.contains("panvk") ||
             lower.contains("vulkan") || lower.contains("driver")
+    }
+
+    /**
+     * 静态检查驱动 .so 是否导出 vkGetInstanceProcAddr（ICD 入口符号）。
+     * 纯文件解析，不加载执行，主进程安全；结果决定该驱动能否被
+     * fork 子进程 dlopen 实测跑分（VkDriverLab 同款判定：驱动必须导出该符号）。
+     * 返回 true/false；so 文件不存在或解析失败返回 null。
+     */
+    fun soExportsVkGetInstanceProcAddr(soFile: File?): Boolean? {
+        if (soFile == null || !soFile.exists()) return null
+        return try {
+            RandomAccessFile(soFile, "r").use { raf ->
+                if (raf.length() < 0x40) return@use null
+                raf.seek(0)
+                val magic = ByteArray(4)
+                raf.readFully(magic)
+                if (!(magic[0] == 0x7f.toByte() && magic[1] == 'E'.toByte() &&
+                        magic[2] == 'L'.toByte() && magic[3] == 'F'.toByte())) return@use null
+                val is64 = raf.readByte().toInt() == 2
+                // ELF section header table 定位（ELF32/64 偏移固定）
+                val shOff = if (is64) { raf.seek(0x28); readLeLong(raf) } else { raf.seek(0x20); readLeInt(raf).toLong() }
+                val shEntSize = if (is64) { raf.seek(0x3A); readLeShort(raf).toInt() } else { raf.seek(0x2E); readLeShort(raf).toInt() }
+                val shNum = if (is64) { raf.seek(0x3C); readLeShort(raf).toInt() } else { raf.seek(0x30); readLeShort(raf).toInt() }
+                val shSize = if (is64) 64 else 40
+                if (shOff <= 0 || shEntSize < shSize || shNum <= 0) return@use null
+
+                // 第一遍：记录 dynsym 段位置
+                // shdr 布局：name(4) type(4) | flags(64:8/32:4) addr(64:8/32:4) | offset size | link info | align | entsize
+                var dynSymOff = 0L; var dynSymSize = 0L; var dynSymEnt = 0L; var dynSymLink = -1
+                for (i in 0 until shNum) {
+                    raf.seek(shOff + i * shEntSize.toLong())
+                    val type = readLeInt(raf)
+                    if (type != 11) continue // SHT_DYNSYM
+                    raf.skipBytes(if (is64) 16 else 8) // flags + addr
+                    dynSymOff = if (is64) readLeLong(raf) else readLeInt(raf).toLong()
+                    dynSymSize = if (is64) readLeLong(raf) else readLeInt(raf).toLong()
+                    dynSymLink = readLeInt(raf)         // link → strtab 段索引
+                    readLeInt(raf)                       // info
+                    raf.skipBytes(if (is64) 8 else 4)    // align
+                    dynSymEnt = if (is64) readLeLong(raf) else readLeInt(raf).toLong()
+                    break
+                }
+                if (dynSymOff <= 0 || dynSymLink < 0) return@use false
+
+                // 第二遍：读 dynsym 链接的 strtab 段
+                var strOff = 0L; var strSize = 0L
+                for (i in 0 until shNum) {
+                    if (i != dynSymLink) continue
+                    raf.seek(shOff + i * shEntSize.toLong())
+                    val type = readLeInt(raf)
+                    if (type != 3) return@use false // SHT_STRTAB
+                    raf.skipBytes(if (is64) 16 else 8) // flags + addr
+                    strOff = if (is64) readLeLong(raf) else readLeInt(raf).toLong()
+                    strSize = if (is64) readLeLong(raf) else readLeInt(raf).toLong()
+                    break
+                }
+                if (strSize <= 0 || strSize > 8 * 1024 * 1024) return@use false
+                val strTab = ByteArray(strSize.toInt())
+                raf.seek(strOff); raf.readFully(strTab)
+
+                // 遍历 dynsym：全局/弱符号中查找 vkGetInstanceProcAddr
+                val symEnt = if (dynSymEnt > 0) dynSymEnt else if (is64) 24 else 16
+                val symCount = (dynSymSize / symEnt).toInt()
+                for (i in 0 until symCount) {
+                    raf.seek(dynSymOff + i * symEnt)
+                    val stName = readLeInt(raf)
+                    val stInfo = raf.readByte().toInt() and 0xff
+                    val bind = stInfo and 0x0f // STB_LOCAL=0, STB_GLOBAL=1, STB_WEAK=2
+                    if (bind == 0) continue
+                    if (stName <= 0 || stName >= strTab.size) continue
+                    val name = readCString(strTab, stName) ?: continue
+                    if (name == "vkGetInstanceProcAddr") return@use true
+                }
+                false
+            }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun readCString(buf: ByteArray, start: Int): String? {
+        var end = start
+        while (end < buf.size && buf[end] != 0.toByte()) end++
+        if (end == start) return null
+        return String(buf, start, end - start, Charsets.UTF_8)
+    }
+
+    private fun readLeInt(raf: RandomAccessFile): Int {
+        val b = ByteArray(4); raf.readFully(b)
+        return (b[0].toInt() and 0xff) or ((b[1].toInt() and 0xff) shl 8) or
+            ((b[2].toInt() and 0xff) shl 16) or ((b[3].toInt() and 0xff) shl 24)
+    }
+
+    private fun readLeShort(raf: RandomAccessFile): Short {
+        val b = ByteArray(2); raf.readFully(b)
+        return ((b[0].toInt() and 0xff) or ((b[1].toInt() and 0xff) shl 8)).toShort()
+    }
+
+    private fun readLeLong(raf: RandomAccessFile): Long {
+        val lo = readLeInt(raf).toLong() and 0xffffffffL
+        val hi = readLeInt(raf).toLong() and 0xffffffffL
+        return lo or (hi shl 32)
     }
 
     /** 解析驱动包 meta.json，失败返回 null */
