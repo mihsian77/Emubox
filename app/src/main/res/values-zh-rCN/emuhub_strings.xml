@@ -153,6 +153,7 @@
     <string name="latest">最新</string>
     <string name="version">版本</string>
     <string name="file">文件</string>
+    <string name="files">个文件</string>
     <string name="changelog">更新日志</string>
     <string name="no_compatible_releases">未找到兼容的版本。</string>
     <string name="select_version_file">选择版本和文件</string>

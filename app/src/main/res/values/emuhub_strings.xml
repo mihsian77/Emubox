@@ -153,6 +153,7 @@
     <string name="latest">Latest</string>
     <string name="version">Version</string>
     <string name="file">File</string>
+    <string name="files">files</string>
     <string name="changelog">Changelog</string>
     <string name="no_compatible_releases">No compatible releases found.</string>
     <string name="select_version_file">Select a version and file</string>
