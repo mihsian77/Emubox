@@ -3276,7 +3276,6 @@ private fun DriverReleasePicker(
 ) {
     val context = LocalContext.current
     val selectVersionFileMessage = appString(R.string.select_version_file)
-    var expandedRelease by remember { mutableStateOf(false) }
     var expandedAsset by remember { mutableStateOf(false) }
     var selectedTag by rememberSaveable(selectionKey) {
         mutableStateOf(SettingsManager.getSelectedReleaseTag(selectionKey))
@@ -3328,53 +3327,53 @@ private fun DriverReleasePicker(
 
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
-            text = selectedRelease?.tagName ?: "",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.weight(1f)
+            text = appString(R.string.version),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary
         )
-        if (selectedRelease?.tagName == latestRelease?.tagName) {
-            SuggestionChip(
-                onClick = {},
-                label = { Text(appString(R.string.latest)) },
-                icon = { Icon(Icons.Default.NewReleases, contentDescription = null, modifier = Modifier.size(18.dp)) }
-            )
-        }
+        Spacer(Modifier.width(8.dp))
+        Text(
+            text = "${releases.size}",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(Modifier.weight(1f))
+        Divider(modifier = Modifier.weight(1f))
     }
 
-    ExposedDropdownMenuBox(
-        expanded = expandedRelease,
-        onExpandedChange = { expandedRelease = !expandedRelease }
+    // 版本双列网格：每个版本一张卡片，点击选中，选中高亮
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        OutlinedTextField(
-            value = selectedRelease?.let { "${it.tagName} — ${it.name}" } ?: "",
-            onValueChange = {},
-            readOnly = true,
-            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedRelease) },
-            modifier = Modifier.fillMaxWidth().menuAnchor(),
-            label = { Text(appString(R.string.version)) },
-            shape = RoundedCornerShape(18.dp),
-            maxLines = 1
-        )
-        ExposedDropdownMenu(
-            expanded = expandedRelease,
-            onDismissRequest = { expandedRelease = false }
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            releases.forEachIndexed { index, release ->
-                DropdownMenuItem(
-                    text = {
-                        Column {
-                            Text(release.tagName)
-                            Text(
-                                if (index == 0) "${release.name} • Latest" else release.name,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    },
+            releases.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { release ->
+                DriverVersionCard(
+                    release = release,
+                    isSelected = release.tagName == selectedRelease?.tagName,
+                    isLatest = release.tagName == latestRelease?.tagName,
                     onClick = {
                         selectedTag = release.tagName
                         SettingsManager.setSelectedReleaseTag(selectionKey, release.tagName)
-                        expandedRelease = false
+                    }
+                )
+            }
+        }
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            releases.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { release ->
+                DriverVersionCard(
+                    release = release,
+                    isSelected = release.tagName == selectedRelease?.tagName,
+                    isLatest = release.tagName == latestRelease?.tagName,
+                    onClick = {
+                        selectedTag = release.tagName
+                        SettingsManager.setSelectedReleaseTag(selectionKey, release.tagName)
                     }
                 )
             }
@@ -3472,6 +3471,139 @@ private fun ComponentSizeText(component: Component) {
     }
 }
 
+/** 驱动版本双列网格卡片：版本号 + 日期 + 文件数 + 大小 + latest 标签 */
+@Composable
+private fun DriverVersionCard(
+    release: GithubRelease,
+    isSelected: Boolean,
+    isLatest: Boolean,
+    onClick: () -> Unit
+) {
+    val totalSize = release.assets.sumOf { it.sizeBytes }
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (isSelected)
+                MaterialTheme.colorScheme.primaryContainer
+            else
+                MaterialTheme.colorScheme.surfaceVariant
+        ),
+        border = if (isSelected)
+            androidx.compose.foundation.BorderStroke(1.5.dp, MaterialTheme.colorScheme.primary)
+        else null
+    ) {
+        Column(
+            modifier = Modifier.padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = release.tagName,
+                    style = MaterialTheme.typography.labelLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                if (isLatest) {
+                    Spacer(Modifier.width(4.dp))
+                    Icon(
+                        Icons.Default.NewReleases,
+                        contentDescription = null,
+                        modifier = Modifier.size(14.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "${release.assets.size} ${appString(R.string.files)}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                if (totalSize > 0) {
+                    Text(
+                        text = formatBytes(totalSize),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+    }
+}
+
+/** 组件版本双列网格卡片：版本号 + 来源 + 大小 + latest 标签 */
+@Composable
+private fun ComponentVersionCard(
+    component: Component,
+    sourceName: String,
+    isSelected: Boolean,
+    isLatest: Boolean,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (isSelected)
+                MaterialTheme.colorScheme.primaryContainer
+            else
+                MaterialTheme.colorScheme.surfaceVariant
+        ),
+        border = if (isSelected)
+            androidx.compose.foundation.BorderStroke(1.5.dp, MaterialTheme.colorScheme.primary)
+        else null
+    ) {
+        Column(
+            modifier = Modifier.padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = component.verName,
+                    style = MaterialTheme.typography.labelLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                if (isLatest) {
+                    Spacer(Modifier.width(4.dp))
+                    Icon(
+                        Icons.Default.NewReleases,
+                        contentDescription = null,
+                        modifier = Modifier.size(14.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = sourceName,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                ComponentSizeText(component)
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComponentSection(
@@ -3483,7 +3615,6 @@ fun ComponentSection(
     onSourceChange: (String) -> Unit,
     onDownload: (Component) -> Unit
 ) {
-    var expanded by remember { mutableStateOf(false) }
     var selectedVersion by rememberSaveable(selectionKey) {
         mutableStateOf(SettingsManager.getSelectedComponentVersion(selectionKey))
     }
@@ -3536,58 +3667,55 @@ fun ComponentSection(
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    selected?.verName ?: appString(R.string.no_version),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.weight(1f)
+                    text = appString(R.string.version),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.primary
                 )
-                if (selected?.verName == latestComponent?.verName && selected != null) {
-                    SuggestionChip(
-                        onClick = {},
-                        label = { Text(appString(R.string.latest)) },
-                        icon = { Icon(Icons.Default.NewReleases, contentDescription = null, modifier = Modifier.size(18.dp)) }
-                    )
-                }
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    text = "${components.size}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.weight(1f))
+                Divider(modifier = Modifier.weight(1f))
             }
 
-            ExposedDropdownMenuBox(
-                expanded = expanded,
-                onExpandedChange = { expanded = !expanded }
+            // 组件版本双列网格
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                OutlinedTextField(
-                    value = selected?.verName ?: "",
-                    onValueChange = {},
-                    readOnly = true,
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                    modifier = Modifier.fillMaxWidth().menuAnchor(),
-                    label = { Text(appString(R.string.version)) },
-                    supportingText = { Text(appString(R.string.from_source, currentSource.name)) },
-                    shape = RoundedCornerShape(18.dp)
-                )
-                ExposedDropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false }
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    components.forEachIndexed { index, component ->
-                        DropdownMenuItem(
-                            text = {
-                                Column {
-                                    Text(
-                                        if (index == 0) appString(R.string.version_latest_format, component.verName) else component.verName
-                                    )
-                                    Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Text(
-                                            currentSource.name,
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                        ComponentSizeText(component)
-                                    }
-                                }
-                            },
+                    components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { component ->
+                        ComponentVersionCard(
+                            component = component,
+                            sourceName = currentSource.name,
+                            isSelected = component.verName == selected?.verName,
+                            isLatest = component.verName == latestComponent?.verName,
                             onClick = {
                                 selectedVersion = component.verName
                                 SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
-                                expanded = false
+                            }
+                        )
+                    }
+                }
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { component ->
+                        ComponentVersionCard(
+                            component = component,
+                            sourceName = currentSource.name,
+                            isSelected = component.verName == selected?.verName,
+                            isLatest = component.verName == latestComponent?.verName,
+                            onClick = {
+                                selectedVersion = component.verName
+                                SettingsManager.setSelectedComponentVersion(selectionKey, component.verName)
                             }
                         )
                     }
