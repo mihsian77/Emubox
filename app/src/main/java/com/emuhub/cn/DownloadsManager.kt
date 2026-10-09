@@ -2,6 +2,9 @@ package com.emuhub.cn
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
+import android.os.Build
+import android.os.Environment
 import android.os.SystemClock
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
@@ -314,5 +317,121 @@ object DownloadsManager {
     fun clearCompleted() {
         _completedDownloads.clear()
         saveCompletedDownloads()
+    }
+
+    /** 下载目录中是否已存在同名文件（completed 记录或磁盘扫描结果） */
+    fun existsCompleted(fileName: String, subPath: String): Boolean =
+        _completedDownloads.any { it.fileName.equals(fileName, ignoreCase = true) && it.subPath == subPath }
+
+    /**
+     * 扫描下载目录中磁盘已有、但未记录在 completed 列表里的文件（卸载重装 / 外部放入）。
+     * 并入列表后旧文件可在下载库中直接查看和删除，避免重复下载生成 (1)(2) 后缀。
+     */
+    fun scanExistingFiles(context: Context) {
+        val existing = mutableListOf<CompletedDownload>()
+        val knownPaths = _completedDownloads.map { it.filePath }.toHashSet()
+
+        runCatching {
+            val folderUri = SettingsManager.getDownloadFolderUri()
+            if (folderUri != null) {
+                val root = androidx.documentfile.provider.DocumentFile.fromTreeUri(context, Uri.parse(folderUri))
+                if (root != null && root.canRead()) {
+                    collectDocumentFiles(root, "", knownPaths, existing)
+                }
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val resolver = context.contentResolver
+                val projection = arrayOf(
+                    android.provider.MediaStore.MediaColumns.DISPLAY_NAME,
+                    android.provider.MediaStore.MediaColumns.RELATIVE_PATH,
+                    android.provider.MediaStore.MediaColumns.SIZE,
+                    android.provider.MediaStore.MediaColumns.DATE_MODIFIED
+                )
+                val selection = "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
+                resolver.query(
+                    android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+                    projection,
+                    selection,
+                    arrayOf("%EmuHub-CN%"),
+                    null
+                )?.use { cursor ->
+                    val nameIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DISPLAY_NAME)
+                    val relIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.RELATIVE_PATH)
+                    val sizeIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.SIZE)
+                    val dateIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DATE_MODIFIED)
+                    while (cursor.moveToNext()) {
+                        val name = cursor.getString(nameIdx) ?: continue
+                        val rel = cursor.getString(relIdx) ?: continue
+                        val sub = rel.removePrefix("Download/EmuHub-CN/").trim('/')
+                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/EmuHub-CN/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        if (path in knownPaths) continue
+                        existing += CompletedDownload(
+                            id = "disk-${path.hashCode()}",
+                            fileName = name,
+                            filePath = path,
+                            sizeBytes = cursor.getLong(sizeIdx).coerceAtLeast(0L),
+                            timestamp = cursor.getLong(dateIdx) * 1000L,
+                            subPath = sub
+                        )
+                    }
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                val root = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "EmuHub-CN")
+                collectPlainFiles(root, "", knownPaths, existing)
+            }
+        }.onFailure { android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it) }
+
+        if (existing.isEmpty()) return
+        val knownFiles = _completedDownloads.map { it.filePath }.toHashSet()
+        existing.filter { it.filePath !in knownFiles }.forEach(_completedDownloads::add)
+        saveCompletedDownloads()
+    }
+
+    private fun collectDocumentFiles(
+        dir: androidx.documentfile.provider.DocumentFile,
+        rel: String,
+        knownPaths: Set<String>,
+        out: MutableList<CompletedDownload>
+    ) {
+        dir.listFiles().forEach { f ->
+            if (f.isDirectory) {
+                collectDocumentFiles(f, if (rel.isBlank()) f.name.orEmpty() else "$rel/${f.name}", knownPaths, out)
+            } else if (f.isFile) {
+                val name = f.name ?: return@forEach
+                val path = f.uri.toString()
+                if (path in knownPaths) return@forEach
+                out += CompletedDownload(
+                    id = "disk-${path.hashCode()}",
+                    fileName = name,
+                    filePath = path,
+                    sizeBytes = f.length().coerceAtLeast(0L),
+                    timestamp = f.lastModified(),
+                    subPath = rel
+                )
+            }
+        }
+    }
+
+    private fun collectPlainFiles(
+        dir: File,
+        rel: String,
+        knownPaths: Set<String>,
+        out: MutableList<CompletedDownload>
+    ) {
+        dir.listFiles()?.forEach { f ->
+            if (f.isDirectory) {
+                collectPlainFiles(f, if (rel.isBlank()) f.name else "$rel/${f.name}", knownPaths, out)
+            } else if (f.isFile) {
+                if (f.absolutePath in knownPaths) return@forEach
+                out += CompletedDownload(
+                    id = "disk-${f.absolutePath.hashCode()}",
+                    fileName = f.name,
+                    filePath = f.absolutePath,
+                    sizeBytes = f.length().coerceAtLeast(0L),
+                    timestamp = f.lastModified(),
+                    subPath = rel
+                )
+            }
+        }
     }
 }

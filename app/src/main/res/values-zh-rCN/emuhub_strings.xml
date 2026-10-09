@@ -482,4 +482,6 @@
     <string name="runtime_search_hint">搜索运行库（名称 / 用途）</string>
     <string name="runtime_recommended">推荐下载</string>
     <string name="file_purpose">文件用途</string>
+    <string name="file_info_error">无法读取该文件信息（文件可能已损坏）</string>
+    <string name="benchmark_adrenotools_boundary">分发的驱动包均为 adrenotools 格式（模拟器专用 ICD），无法在 App 内加载实测，请在对应模拟器（Eden/Winlator）内验证。上方能力对比来自包内 meta.json。</string>
 </resources>

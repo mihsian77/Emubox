@@ -119,6 +119,7 @@ fun cancelActiveDownload(context: Context, fileName: String) {
 
 suspend fun downloadAsset(context: Context, release: GithubRelease, asset: GithubAsset) {
     val desiredName = sanitizeFileName("${release.tagName}_${asset.name}")
+    if (ensureFileNotExists(context, desiredName, "Drivers")) return
     val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, "Drivers")
 }
@@ -127,8 +128,9 @@ suspend fun downloadComponent(context: Context, component: Component) {
     val fileName = sanitizeFileName(
         Uri.decode(component.remoteUrl.substringAfterLast("/"))
     )
-    val acceleratedUrl = Accelerator.rewriteUrl(component.remoteUrl)
     val category = "Components/${component.type}"
+    if (ensureFileNotExists(context, fileName, category)) return
+    val acceleratedUrl = Accelerator.rewriteUrl(component.remoteUrl)
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
 }
 
@@ -136,9 +138,60 @@ suspend fun downloadComponent(context: Context, component: Component) {
 suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent) {
     val file = component.primaryFile ?: return
     val fileName = sanitizeFileName(file.rename.ifBlank { file.fileName })
-    val acceleratedUrl = Accelerator.rewriteUrl(file.url)
     val category = "Runtime/${component.category.labelRes}"
+    if (ensureFileNotExists(context, fileName, category)) return
+    val acceleratedUrl = Accelerator.rewriteUrl(file.url)
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
+}
+
+/**
+ * 下载前查重：completed 记录或磁盘已存在同名文件时提示，不静默生成 (1)(2) 后缀。
+ * 返回 true 表示文件已存在、应终止本次下载。
+ */
+private suspend fun ensureFileNotExists(context: Context, desiredName: String, subPath: String): Boolean {
+    val existed = withContext(Dispatchers.IO) {
+        if (DownloadsManager.existsCompleted(desiredName, subPath)) {
+            true
+        } else {
+            fileExistsOnDisk(context, desiredName, subPath)
+        }
+    }
+    if (existed) {
+        withContext(Dispatchers.Main) {
+            Toast.makeText(
+                context,
+                "文件已存在：$desiredName（如需重新下载请先删除旧文件）",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+    return existed
+}
+
+private fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Boolean {
+    val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
+    val defaultRelativePath = "$DEFAULT_ROOT_FOLDER/$subPath"
+    return if (folderUri != null && DocumentsContract.isTreeUri(folderUri)) {
+        val rootDoc = DocumentFile.fromTreeUri(context, folderUri)
+        val subDoc = if (subPath.isBlank()) rootDoc else rootDoc?.let { findSubDirectory(it, subPath) }
+        subDoc?.findFile(desiredName) != null
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        val resolver = context.contentResolver
+        val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
+        val selection = "${MediaStore.MediaColumns.DISPLAY_NAME} = ? AND " +
+            "${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
+        resolver.query(
+            MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+            projection,
+            selection,
+            arrayOf(desiredName, "%$defaultRelativePath%"),
+            null
+        )?.use { cursor -> cursor.count > 0 } ?: false
+    } else {
+        @Suppress("DEPRECATION")
+        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), desiredName).exists()
+    }
 }
 
 private fun sanitizeFileName(name: String): String {

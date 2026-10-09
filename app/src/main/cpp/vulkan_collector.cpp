@@ -1389,13 +1389,19 @@ Java_com_emuhub_cn_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* th
 
     std::string json;
     if (path == nullptr || path[0] == '\0') {
-        // 系统跑分同样在 fork 子进程内执行：GPU 驱动的任何 native 崩溃
-        // 都不会带崩 App（此前直接在主进程跑，shader/驱动异常即闪退）。
-        json = runBenchmarkIsolated([&]() {
-            return benchmarkSystemVulkan();
-        });
+        // 系统跑分必须在主进程执行：Android 的 GPU 驱动（尤其 Adreno）明确不支持
+        // fork 后使用（gralloc/BLAST 队列状态在 fork 后失效），fork 子进程调用
+        // Vulkan API 必崩。此前"fork 隔离"思路反而导致系统跑分 100% 失败。
+        // v1.10.5 已停用 compute 段，默认仅 fill/copy（驱动最稳定路径），主进程
+        // 执行风险可控；buffer 分配失败等异常仍会以错误 JSON 返回，不闪退。
+        json = benchmarkSystemVulkan();
     } else {
-        json = benchmarkDriverIsolated(path);
+        // 自定义驱动：所有 zip/adpkg 分发的 Turnip/PanVK 均为 adrenotools 打包格式，
+        // ICD 依赖模拟器（Eden/Winlator）的 dlsym 注入环境，App 进程 dlopen 必然失败，
+        // fork 子进程加载更是直接崩溃。不再尝试加载，返回明确说明。
+        std::string escaped = jsonEscape(path);
+        json = "{\"success\":false,\"errorCode\":\"ADRENOTOOLS_ONLY\",\"errorMessage\":\"adrenotools 专用驱动包无法在 App 内加载，请在对应模拟器（如 Eden/Winlator）内验证\",\"driverPath\":\""
+               + escaped + "\"}";
     }
 
     if (driverPath && path) {
