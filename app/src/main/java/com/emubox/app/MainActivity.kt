@@ -413,7 +413,7 @@ class MainActivity : ComponentActivity() {
                                                             startActivity(
                                                                 Intent(
                                                                     Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://afdian.com/a/moon279")
+                                                                    Uri.parse("https://mihsian77.github.io/EmuHub-CN/sponsor.html")
                                                                 )
                                                             )
                                                         }
@@ -490,7 +490,7 @@ class MainActivity : ComponentActivity() {
                                                             startActivity(
                                                                 Intent(
                                                                     Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://afdian.com/a/moon279")
+                                                                    Uri.parse("https://mihsian77.github.io/EmuHub-CN/sponsor.html")
                                                                 )
                                                             )
                                                         }

@@ -1,5 +1,14 @@
 # EmuBox
 
+<div align="center">
+
+[![赞助支持 · 进入主页选择平台](https://img.shields.io/badge/赞助支持-进入主页选择平台-e85d5d?style=for-the-badge&logo=heart&logoColor=white)](https://mihsian77.github.io/EmuHub-CN/sponsor.html)
+
+</div>
+
+[![许可](https://img.shields.io/badge/许可-MIT-blue.svg)](LICENSE)
+[![平台](https://img.shields.io/badge/平台-Android-green.svg)](https://github.com/mihsian77/EmuHub-CN/releases)
+
 > 安卓 Windows 模拟环境的驱动、组件与运行库下载管理器。完整中文界面、国内下载加速、按设备自动匹配。
 
 EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)（MIT 协议，作者 Rodrigo Castro），在其基础上重做了界面、资源目录与下载链路，面向国内 Winlator / Eden / GameHub 等模拟环境用户。
@@ -98,7 +107,7 @@ MIT License。
 
 ## 赞助
 
-项目建立在上游开源成果之上。如果它帮到了你，可在[爱发电](https://afdian.com/a/moon279)支持维护，所得用于测试设备与维护投入。
+项目建立在上游开源成果之上。如果它帮到了你，可在[赞助主页](https://mihsian77.github.io/EmuHub-CN/sponsor.html)选择平台支持维护，所得用于测试设备与维护投入。
 
 ## 致谢
 
