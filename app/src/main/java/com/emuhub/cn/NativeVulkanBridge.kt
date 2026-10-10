@@ -65,8 +65,8 @@ data class VulkanInfoPayload(
                 }
                 VulkanInfoPayload(
                     success = obj.optBoolean("success", false),
-                    errorCode = obj.optString("errorCode", null).takeIf { it.isNotEmpty() },
-                    errorMessage = obj.optString("errorMessage", null).takeIf { it.isNotEmpty() },
+                    errorCode = obj.optString("errorCode", "").takeIf { it.isNotEmpty() },
+                    errorMessage = obj.optString("errorMessage", "").takeIf { it.isNotEmpty() },
                     deviceCount = obj.optInt("deviceCount", 0),
                     devices = devices
                 )
@@ -264,8 +264,8 @@ data class BenchmarkResult(
                 val obj = JSONObject(json)
                 BenchmarkResult(
                     success = obj.optBoolean("success", false),
-                    errorCode = obj.optString("errorCode", null).takeIf { it.isNotEmpty() },
-                    errorMessage = obj.optString("errorMessage", null).takeIf { it.isNotEmpty() },
+                    errorCode = obj.optString("errorCode", "").takeIf { it.isNotEmpty() },
+                    errorMessage = obj.optString("errorMessage", "").takeIf { it.isNotEmpty() },
                     deviceName = obj.optString("deviceName", ""),
                     fillBandwidthGBs = obj.optDouble("fillBandwidthGBs", 0.0),
                     copyBandwidthGBs = obj.optDouble("copyBandwidthGBs", 0.0),
