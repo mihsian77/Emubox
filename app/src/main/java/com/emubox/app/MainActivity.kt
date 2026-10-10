@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -23,7 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.emuhub.cn.ui.theme.EmuHubTheme
+import com.emubox.app.ui.theme.EmuBoxTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
             var appLanguage by remember { mutableStateOf(SettingsManager.getAppLanguage()) }
 
             ProvideAppLanguage(appLanguage) {
-                EmuHubTheme(themeMode = themeMode, colorTheme = colorTheme) {
+                EmuBoxTheme(themeMode = themeMode, colorTheme = colorTheme) {
                 val downloadScope = rememberCoroutineScope()
                 val appContext = applicationContext
 

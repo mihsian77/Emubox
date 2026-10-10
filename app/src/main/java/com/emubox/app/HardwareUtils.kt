@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import android.app.ActivityManager
 import android.content.Context

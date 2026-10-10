@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -352,7 +352,7 @@ object DownloadsManager {
                     android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
                     projection,
                     selection,
-                    arrayOf("%EmuHub-CN%"),
+                    arrayOf("%EmuBox%"),
                     null
                 )?.use { cursor ->
                     val nameIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DISPLAY_NAME)
@@ -362,8 +362,8 @@ object DownloadsManager {
                     while (cursor.moveToNext()) {
                         val name = cursor.getString(nameIdx) ?: continue
                         val rel = cursor.getString(relIdx) ?: continue
-                        val sub = rel.removePrefix("Download/EmuHub-CN/").trim('/')
-                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/EmuHub-CN/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        val sub = rel.removePrefix("Download/EmuBox/").trim('/')
+                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/EmuBox/${if (sub.isBlank()) "" else "$sub/"}$name"
                         if (path in knownPaths) continue
                         existing += CompletedDownload(
                             id = "disk-${path.hashCode()}",
@@ -377,7 +377,7 @@ object DownloadsManager {
                 }
             } else {
                 @Suppress("DEPRECATION")
-                val root = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "EmuHub-CN")
+                val root = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "EmuBox")
                 collectPlainFiles(root, "", knownPaths, existing)
             }
         }.onFailure { android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it) }

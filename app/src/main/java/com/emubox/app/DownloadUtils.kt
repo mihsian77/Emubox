@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import android.content.ContentValues
 import android.content.Context
@@ -32,12 +32,13 @@ import java.io.OutputStream
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
-private const val TAG = "EmuHubDownload"
+private const val TAG = "EmuBoxDownload"
 private const val DOWNLOAD_BUFFER_SIZE = 64 * 1024
 private const val PROGRESS_UPDATE_INTERVAL_MS = 120L
 
 /** 默认下载根目录名（在系统 Download 下创建），自定义路径时不套这一层 */
-private const val DEFAULT_ROOT_FOLDER = "EmuHub-CN"
+private const val DEFAULT_ROOT_FOLDER = "EmuBox"
+    private const val LEGACY_ROOT_FOLDER = "EmuHub-CN"
 
 // Reuse the HTTP client instead of creating a new connection pool for every file.
 private val downloadClient = OkHttpClient.Builder()
@@ -287,7 +288,7 @@ private suspend fun createOutputUri(
             null
         }
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        // 默认路径：Download/EmuHub-CN/<分类>/
+        // 默认路径：Download/EmuBox/<分类>/（兼容扫描旧 EmuHub-CN 目录）
         val relativePath = if (subPath.isBlank()) {
             "${Environment.DIRECTORY_DOWNLOADS}/$DEFAULT_ROOT_FOLDER"
         } else {
@@ -481,7 +482,7 @@ private suspend fun transferExistingDownload(
         var requestedOffset = if (resume) state.downloadedBytes.coerceAtLeast(0L) else 0L
         val requestBuilder = Request.Builder()
             .url(state.url)
-            .header("User-Agent", "EmuHub-Android/1.0")
+            .header("User-Agent", "EmuBox-Android/1.0")
             .header("Accept-Encoding", "identity")
 
         if (requestedOffset > 0L) {

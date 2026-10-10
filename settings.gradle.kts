@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "EmuHub"
+rootProject.name = "EmuBox"
 include(":app")
  
