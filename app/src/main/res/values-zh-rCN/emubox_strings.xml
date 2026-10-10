@@ -8,7 +8,7 @@
     <string name="component_guide">组件指南</string>
     <string name="your_download_library">你的下载库</string>
     <string name="download_library">下载库</string>
-    <string name="download_library_desc">从 EmuHub 下载的所有文件都在这里。</string>
+    <string name="download_library_desc">从 EmuBox 下载的所有文件都在这里。</string>
     <string name="active">进行中</string>
     <string name="saved">已保存</string>
     <string name="stored">已存储</string>
@@ -39,9 +39,9 @@
     <string name="no_downloads_yet">暂无下载</string>
     <string name="downloads_started_here">从资源中心开始的下载会显示在这里。</string>
     <string name="appearance">外观</string>
-    <string name="appearance_desc">使用 Material 3 主题个性化 EmuHub。</string>
+    <string name="appearance_desc">使用 Material 3 主题个性化 EmuBox。</string>
     <string name="language">语言</string>
-    <string name="language_desc">选择 EmuHub 使用的语言。跟随系统将使用你的安卓系统语言。</string>
+    <string name="language_desc">选择 EmuBox 使用的语言。跟随系统将使用你的安卓系统语言。</string>
     <string name="app_language">应用语言</string>
     <string name="language_system">跟随系统</string>
     <string name="language_english">English</string>
@@ -62,15 +62,15 @@
     <string name="theme_orange">橙色</string>
     <string name="theme_cn">国内版</string>
     <string name="sources">资源来源</string>
-    <string name="sources_desc">管理告诉 EmuHub 从哪里获取版本的远程目录。</string>
+    <string name="sources_desc">管理告诉 EmuBox 从哪里获取版本的远程目录。</string>
     <string name="source_catalog">资源目录</string>
-    <string name="source_catalog_desc">EmuHub 会自动刷新此 JSON。驱动文件仍保留在原始上游仓库中，因此新版本无需重新编译应用即可出现。</string>
+    <string name="source_catalog_desc">EmuBox 会自动刷新此 JSON。驱动文件仍保留在原始上游仓库中，因此新版本无需重新编译应用即可出现。</string>
     <string name="catalog_url">目录 URL</string>
     <string name="source_catalog_saved">资源目录已保存</string>
     <string name="invalid_catalog_url">请输入有效的 http(s) URL</string>
     <string name="save">保存</string>
     <string name="default_label">默认</string>
-    <string name="using_managed_catalog">使用 EmuHub 托管目录</string>
+    <string name="using_managed_catalog">使用 EmuBox 托管目录</string>
     <string name="using_custom_catalog">使用自定义目录</string>
     <string name="match_drivers_by_device">按设备匹配驱动</string>
     <string name="match_drivers_by_device_desc">仅显示与本机 GPU 兼容的驱动。关闭后列出全部可用驱动。</string>
@@ -84,7 +84,7 @@
     <string name="what_each_download_does">每个下载的作用</string>
     <string name="choose_components_confidence">放心选择组件</string>
     <string name="guide_intro_desc">点击卡片查看它的作用、优先尝试什么，以及何时另一个组件可能效果更好。</string>
-    <string name="guide_notice">没有适用于所有游戏的「最佳」组合。设备、安卓版本、容器/分支、游戏引擎和具体构建版本都会产生影响。EmuHub 的软件包可能来自第三方目录，因此请始终将组件与将使用它的环境相匹配。</string>
+    <string name="guide_notice">没有适用于所有游戏的「最佳」组合。设备、安卓版本、容器/分支、游戏引擎和具体构建版本都会产生影响。EmuBox 的软件包可能来自第三方目录，因此请始终将组件与将使用它的环境相匹配。</string>
     <string name="quick_pick">快速选择</string>
     <string name="starting_points_adreno">Adreno %1$s 的入门选择</string>
     <string name="good_starting_points">推荐的入门选择</string>
@@ -122,7 +122,7 @@
     <string name="source_format">来源：%1$s</string>
     <string name="latest_format">最新：%1$s</string>
     <string name="unknown">未知</string>
-    <string name="versions_footer">版本直接从所选上游来源获取。可随时更改来源；EmuHub 会为每个类别记住一个来源。</string>
+    <string name="versions_footer">版本直接从所选上游来源获取。可随时更改来源；EmuBox 会为每个类别记住一个来源。</string>
     <string name="component_wine_subtitle">Windows 兼容层</string>
     <string name="component_proton_subtitle">游戏兼容层</string>
     <string name="component_box64_subtitle">x86_64 转译</string>
@@ -142,13 +142,13 @@
     <string name="qualcomm_driver_desc">高通专有图形驱动包。当游戏在厂商驱动下表现更好时尝试这些。</string>
     <string name="download_type">下载 %1$s</string>
     <string name="source_type">%1$s 来源</string>
-    <string name="emuhub_downloads_upstream">EmuHub 直接从所选上游提供商下载。</string>
+    <string name="downloads_upstream">EmuBox 直接从所选上游提供商下载。</string>
     <string name="experimental">实验版</string>
     <string name="source_archived">已停更</string>
     <string name="change_source">更换来源</string>
     <string name="only_source_available">仅有可用来源</string>
     <string name="choose_source">选择来源</string>
-    <string name="choose_source_desc">选择 EmuHub 在此类别中使用的提供商。你的选择会被记住。</string>
+    <string name="choose_source_desc">选择 EmuBox 在此类别中使用的提供商。你的选择会被记住。</string>
     <string name="from_source">来自 %1$s</string>
     <string name="latest">最新</string>
     <string name="version">版本</string>
@@ -291,7 +291,7 @@
     <string name="about_version">版本 %1$s</string>
     <string name="about_translation">中文汉化</string>
     <string name="about_translation_by">by moon279</string>
-    <string name="about_upstream">基于 NotZeetaa 原创、Rodrig02005 维护的 EmuHub</string>
+    <string name="about_upstream">基于 Rodrig02005 的开源项目 EmuHub-APP（MIT 协议）</string>
     <string name="about_license">MIT 开源协议</string>
 
     <!-- 包信息查看 -->
@@ -355,7 +355,7 @@
     <!-- GPU 厂商 -->
     <string name="gpu_vendor_adreno">高通 Adreno</string>
     <string name="gpu_vendor_mali">ARM Mali</string>
-    <string name="gpu_vendor_xclipse">紫光展锐 Xclipse</string>
+    <string name="gpu_vendor_xclipse">三星 Xclipse</string>
     <string name="gpu_vendor_unknown">未知</string>
 
     <!-- 成熟度 -->
