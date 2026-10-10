@@ -947,7 +947,8 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         VkBufferCreateInfo bufCI{};
         bufCI.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
         bufCI.size = BUF_SIZE;
-        bufCI.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+        bufCI.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+                      VK_BUFFER_USAGE_STORAGE_BUFFER_BIT; // compute 基准需要 storage buffer
         bufCI.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
         if (bk.vkCreateBuffer(logicalDevice, &bufCI, nullptr, &buf) != VK_SUCCESS) return false;
 
@@ -1040,14 +1041,12 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
 
     // ── 测试3：compute 吞吐（8M float × 2 flops × N dispatch，GFLOPS）────────
-    // v1.10.5 起默认停用：部分 Android GPU 驱动（含部分 Adreno 版本）在
-    // vkCreateComputePipelines/dispatch 阶段会触发驱动级崩溃，即使跑在 fork
-    // 子进程也会导致整个跑分失败。带宽测试（fill/copy）为最基础路径，
-    // 全驱动稳定，作为 v1.10.5 的默认跑分。compute 代码保留（#if 0），
-    // 后续以独立进程 + 预编译 GLSL 方式重新启用。
+    // 跑在 fork 子进程隔离内：驱动在 compute pipeline/dispatch 崩溃只影响本次
+    // 跑分，App 主进程不受影响。dispatch 次数取 4000（约 671 亿 flops）降低
+    // 崩溃窗口与卡死风险；compute 失败仅降级该指标，不使整个跑分失败。
     std::string computeError;
     double computeGFLOPS = 0.0;
-#if 0
+#if 1
     {
         // shader module（字节数组本地构造并校验，见 kComputeShaderSpv）
         VkShaderModuleCreateInfo smCI{};
@@ -1117,7 +1116,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
                                 bk.vkUpdateDescriptorSets(logicalDevice, 1, &write, 0, nullptr);
 
                                 // 计时：单 command buffer 内连续 N 次 dispatch（避免提交开销）
-                                const uint32_t COMPUTE_DISPATCHES = 20000; // 8M×2 flops×2万 ≈ 3355 亿 flops
+                                const uint32_t COMPUTE_DISPATCHES = 4000; // 8M×2 flops×4千 ≈ 671 亿 flops
                                 double computeNs = runTimed(COMPUTE_DISPATCHES, [&]() {
                                     bk.vkCmdBindPipeline(cmdBuf, VK_PIPELINE_BIND_POINT_COMPUTE, computePipeline);
                                     bk.vkCmdBindDescriptorSets(cmdBuf, VK_PIPELINE_BIND_POINT_COMPUTE,
