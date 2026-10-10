@@ -54,5 +54,5 @@ jobs:
       - name: 上传 APK 产物
         uses: actions/upload-artifact@v4
         with:
-          name: emuhub-cn-debug-apk
+          name: emubox-debug-apk
           path: app/build/outputs/apk/debug/*.apk
