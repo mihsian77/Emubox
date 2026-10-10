@@ -94,6 +94,9 @@ class MainActivity : ComponentActivity() {
                 var componentSourceUpdatedAt by remember {
                     mutableStateOf<Map<String, Long>>(emptyMap())
                 }
+                var driverSourceUpdatedAt by remember {
+                    mutableStateOf<Map<String, Long>>(emptyMap())
+                }
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
@@ -212,11 +215,23 @@ class MainActivity : ComponentActivity() {
                                 async { source.id to fetchRepositoryPushedAt(source.manifestUrl) }
                             }.awaitAll().mapNotNull { (id, ts) -> ts?.let { id to it } }.toMap()
                         }
+                        // 驱动源更新时间：turnip/qualcomm 源 apiUrl 同为 api.github.com/repos/... 形态，
+                        // 复用一个查询逻辑，来源弹窗选项与当前源均显示"更新于 X 天前"
+                        val driverSourceUpdatedAt = coroutineScope {
+                            val turnip = catalog.turnipSources.map { source ->
+                                async { source.id to fetchRepositoryPushedAt(source.apiUrl) }
+                            }.awaitAll()
+                            val qualcomm = catalog.qualcommSources.map { source ->
+                                async { source.id to fetchRepositoryPushedAt(source.apiUrl) }
+                            }.awaitAll()
+                            (turnip + qualcomm).mapNotNull { (id, ts) -> ts?.let { id to it } }.toMap()
+                        }
 
                         AppLoadResult(
                             deviceInfo = info,
                             catalog = catalog,
                             componentSourceUpdatedAt = componentSourceUpdatedAt,
+                            driverSourceUpdatedAt = driverSourceUpdatedAt,
                             selectedTurnipSource = selectedSource,
                             selectedQualcommSource = selectedQualcommSource,
                             turnipReleases = releases,
@@ -231,6 +246,7 @@ class MainActivity : ComponentActivity() {
                     qualcommReleases = result.qualcommReleases
                     componentCatalogs = result.componentCatalogs
                     componentSourceUpdatedAt = result.componentSourceUpdatedAt
+                    driverSourceUpdatedAt = result.driverSourceUpdatedAt
 
                     if (turnipSourceId != result.selectedTurnipSource.id) {
                         turnipSourceId = result.selectedTurnipSource.id
@@ -454,7 +470,8 @@ class MainActivity : ComponentActivity() {
                                                 downloadScope.launch {
                                                     downloadAsset(appContext, release, asset)
                                                 }
-                                            }
+                                            },
+                                            driverSourceUpdatedAt = driverSourceUpdatedAt
                                         )
                                     }
                                 }
@@ -606,5 +623,6 @@ private data class AppLoadResult(
     val turnipReleases: List<GithubRelease>,
     val qualcommReleases: List<GithubRelease>,
     val componentCatalogs: Map<String, Map<String, List<Component>>>,
-    val componentSourceUpdatedAt: Map<String, Long> = emptyMap()
+    val componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
+    val driverSourceUpdatedAt: Map<String, Long> = emptyMap()
 )

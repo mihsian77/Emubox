@@ -748,7 +748,7 @@ private fun DownloadStatCard(
                 modifier = Modifier.size(19.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
-            Text(value, style = MaterialTheme.typography.titleMedium, maxLines = 1)
+            Text(value, style = MaterialTheme.typography.titleMedium, maxLines = 2)
             Text(
                 label,
                 style = MaterialTheme.typography.labelSmall,
@@ -2215,7 +2215,8 @@ fun DriverHubScreen(
     onQualcommSourceChange: (String) -> Unit,
     onOpenGuide: (String?) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
-    onDownloadComponent: (Component) -> Unit
+    onDownloadComponent: (Component) -> Unit,
+    driverSourceUpdatedAt: Map<String, Long> = emptyMap()
 ) {
     val showQualcomm = qualcommReleases.isNotEmpty() &&
         (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
@@ -2321,7 +2322,8 @@ fun DriverHubScreen(
                     onSourceChange = onTurnipSourceChange,
                     releases = turnipReleases,
                     selectionKey = "turnip:$turnipSourceId",
-                    onDownload = onDownloadAsset
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt
                 )
             }
         }
@@ -2337,7 +2339,8 @@ fun DriverHubScreen(
                     onSourceChange = onQualcommSourceChange,
                     releases = qualcommReleases,
                     selectionKey = "qualcomm:$qualcommSourceId",
-                    onDownload = onDownloadAsset
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt
                 )
             }
         }
@@ -2520,7 +2523,7 @@ private fun DeviceStat(
             Icon(icon, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(Modifier.height(4.dp))
             Text(label, style = MaterialTheme.typography.labelSmall)
-            Text(value, style = MaterialTheme.typography.bodySmall, maxLines = 1)
+            Text(value, style = MaterialTheme.typography.bodySmall, maxLines = 2)
         }
     }
 }
@@ -2808,13 +2811,13 @@ private fun DownloadIndexCard(
                 section.subtitle,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 1
+                maxLines = 2
             )
             Text(
                 appString(R.string.source_format, section.source),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 1
+                maxLines = 2
             )
             Text(
                 appString(R.string.latest_format, section.latest),
@@ -2878,7 +2881,8 @@ fun TurnipDriverSection(
     onSourceChange: (String) -> Unit,
     releases: List<GithubRelease>,
     selectionKey: String,
-    onDownload: (GithubRelease, GithubAsset) -> Unit
+    onDownload: (GithubRelease, GithubAsset) -> Unit,
+    updatedAtMap: Map<String, Long> = emptyMap()
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
 
@@ -2909,6 +2913,7 @@ fun TurnipDriverSection(
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
                     currentCategory = currentCategory,
+                    currentUpdatedHint = updatedAtMap[currentSource.id]?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
                         SourcePickerOption(
                             id = source.id,
@@ -2916,6 +2921,7 @@ fun TurnipDriverSection(
                             description = source.description,
                             experimental = source.experimental,
                             category = turnipCategoryOf(source, adrenoSeries),
+                            updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) },
                             preview = buildTurnipPreview(source)
                         )
                     },
@@ -3135,7 +3141,7 @@ private fun SourcePickerCard(
                             )
                         }
                     }
-                    HorizontalDivider()
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f))
 
                     // 分组：推荐 / 通用 / 专属 / 已停更
                     val categoryLabel = mapOf(
@@ -3145,7 +3151,7 @@ private fun SourcePickerCard(
                         "archived" to appString(R.string.source_archived)
                     )
                     val grouped = options.groupBy { opt ->
-                        if (opt.archived) "archived" else opt.category
+                        if (opt.archived) "archived" else opt.category.ifBlank { "general" }
                     }
                     val categoryOrder = listOf("recommended", "general", "exclusive", "archived")
                         .filter { grouped.containsKey(it) }
@@ -3191,7 +3197,10 @@ private fun SourcePickerCard(
                                             }
                                         )
                                         Spacer(Modifier.width(8.dp))
-                                        Divider(modifier = Modifier.weight(1f))
+                                        HorizontalDivider(
+                                            modifier = Modifier.weight(1f),
+                                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                                        )
                                     }
                                 }
                             } else {
@@ -3428,7 +3437,8 @@ fun DriverCardDynamic(
     onSourceChange: (String) -> Unit,
     releases: List<GithubRelease>,
     selectionKey: String,
-    onDownload: (GithubRelease, GithubAsset) -> Unit
+    onDownload: (GithubRelease, GithubAsset) -> Unit,
+    updatedAtMap: Map<String, Long> = emptyMap()
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
     Card(
@@ -3449,6 +3459,7 @@ fun DriverCardDynamic(
                     currentExperimental = currentSource.experimental,
                     currentArchived = currentSource.archived,
                     currentCategory = "general",
+                    currentUpdatedHint = updatedAtMap[currentSource.id]?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
                         SourcePickerOption(
                             id = source.id,
@@ -3457,6 +3468,7 @@ fun DriverCardDynamic(
                             experimental = source.experimental,
                             archived = source.archived,
                             category = "general",
+                            updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) },
                             preview = buildQualcommPreview(source)
                         )
                     },
@@ -3735,7 +3747,11 @@ private fun DriverReleasePicker(
                     DropdownMenuItem(
                         text = {
                             Column {
-                                Text(asset.name)
+                                Text(
+                                    asset.name,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis
+                                )
                                 Text(
                                     formatBytes(asset.sizeBytes),
                                     style = MaterialTheme.typography.bodySmall,
@@ -4875,7 +4891,7 @@ private fun DriverDetectionList(
                             Text(
                                 download.fileName,
                                 style = MaterialTheme.typography.bodyMedium,
-                                maxLines = 1,
+                                maxLines = 2,
                                 overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                             )
                             Text(
@@ -5220,7 +5236,7 @@ private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
                 Text(
                     deviceInfo.gpuRenderer.ifBlank { appString(R.string.unknown_gpu) },
                     style = MaterialTheme.typography.titleSmall,
-                    maxLines = 1
+                    maxLines = 2
                 )
                 Spacer(Modifier.height(2.dp))
                 Row(
@@ -5277,7 +5293,8 @@ fun DriverScreen(
     sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
-    onDownloadAsset: (GithubRelease, GithubAsset) -> Unit
+    onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
+    driverSourceUpdatedAt: Map<String, Long> = emptyMap()
 ) {
     val showQualcomm = qualcommReleases.isNotEmpty() &&
         (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
@@ -5327,7 +5344,8 @@ fun DriverScreen(
                     onSourceChange = onTurnipSourceChange,
                     releases = turnipReleases,
                     selectionKey = "turnip:$turnipSourceId",
-                    onDownload = onDownloadAsset
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt
                 )
             }
         }
@@ -5343,7 +5361,8 @@ fun DriverScreen(
                     onSourceChange = onQualcommSourceChange,
                     releases = qualcommReleases,
                     selectionKey = "qualcomm:$qualcommSourceId",
-                    onDownload = onDownloadAsset
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt
                 )
             }
         }
