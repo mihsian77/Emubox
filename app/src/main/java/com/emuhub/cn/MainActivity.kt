@@ -413,7 +413,7 @@ class MainActivity : ComponentActivity() {
                                                             startActivity(
                                                                 Intent(
                                                                     Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://notzeetaa.github.io/Donate-NotZeetaa/")
+                                                                    Uri.parse("https://afdian.com/a/moon279")
                                                                 )
                                                             )
                                                         }
@@ -490,7 +490,7 @@ class MainActivity : ComponentActivity() {
                                                             startActivity(
                                                                 Intent(
                                                                     Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://notzeetaa.github.io/Donate-NotZeetaa/")
+                                                                    Uri.parse("https://afdian.com/a/moon279")
                                                                 )
                                                             )
                                                         }
