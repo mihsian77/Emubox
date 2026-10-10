@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import org.junit.Test
 

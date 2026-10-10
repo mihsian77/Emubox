@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +10,7 @@ import okhttp3.Request
 import org.json.JSONArray
 import java.util.concurrent.TimeUnit
 
-private const val TAG = "EmuHubAccelerator"
+private const val TAG = "EmuBoxAccelerator"
 
 /**
  * 流量类型：区分 Release 附件和 Raw 文件，

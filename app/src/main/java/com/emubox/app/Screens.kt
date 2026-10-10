@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import android.content.Intent
 import android.net.Uri
@@ -506,7 +506,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                                     null
                                                 }
                                             }.onFailure { e ->
-                                                android.util.Log.w("EmuHub", "parse file info failed", e)
+                                                android.util.Log.w("EmuBox", "parse file info failed", e)
                                                 Toast.makeText(
                                                     context,
                                                     appStringFor(context, SettingsManager.getAppLanguage(), R.string.file_info_error),
@@ -1657,7 +1657,7 @@ private fun ColorThemeSelector(
 ) {
     val choices = listOf(
         ColorTheme.DYNAMIC to appString(R.string.theme_dynamic),
-        ColorTheme.EMUHUB to "EmuHub",
+        ColorTheme.EMUHUB to "EmuBox",
         ColorTheme.BLUE to appString(R.string.theme_blue),
         ColorTheme.PURPLE to appString(R.string.theme_purple),
         ColorTheme.ORANGE to appString(R.string.theme_orange),
@@ -3107,7 +3107,7 @@ private fun SourcePickerCard(
                         }
                     }
                     Text(
-                        appString(R.string.emuhub_downloads_upstream),
+                        appString(R.string.downloads_upstream),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
