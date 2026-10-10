@@ -5,6 +5,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
+import org.json.JSONObject
 import java.util.concurrent.ConcurrentHashMap
 
 data class GithubRelease(
@@ -71,6 +72,7 @@ private const val CACHE_TTL_MS = 10 * 60 * 1000L
 private data class CacheEntry<T>(val data: T, val timestamp: Long)
 private val releaseCache = ConcurrentHashMap<String, CacheEntry<List<GithubRelease>>>()
 private val componentCache = ConcurrentHashMap<String, CacheEntry<Map<String, List<Component>>>>()
+private val repoMetaCache = ConcurrentHashMap<String, CacheEntry<Long>>()
 
 private fun <T> ConcurrentHashMap<String, CacheEntry<T>>.getValid(key: String): T? {
     val entry = this[key] ?: return null
@@ -277,6 +279,58 @@ suspend fun fetchGithubComponents(
             remoteUrl = asset.downloadUrl,
             sizeBytes = asset.sizeBytes.takeIf { it > 0 }
         )
+    }
+}
+
+/**
+ * 拉取组件源仓库的最后推送时间（pushed_at，epoch 毫秒）。
+ * 组件清单（contents.json）本身没有时间字段，用源仓库活跃度作为"哪个最新"的参考。
+ * 支持三种 URL 形态：raw.githubusercontent.com/{owner}/{repo}/...、
+ * github.com/{owner}/{repo}/releases/...、api.github.com/repos/{owner}/{repo}/...
+ * 带 6 小时缓存，失败返回 null（UI 不显示更新时间，不阻塞加载）。
+ */
+suspend fun fetchRepositoryPushedAt(manifestUrl: String): Long? =
+    withContext(Dispatchers.IO) {
+        repoMetaCache.getValid(manifestUrl)?.let { return@withContext it }
+
+        val ownerRepo = extractOwnerRepo(manifestUrl) ?: return@withContext null
+        val apiUrl = "https://api.github.com/repos/${ownerRepo.first}/${ownerRepo.second}"
+        val request = Request.Builder()
+            .url(apiUrl)
+            .header("Accept", "application/vnd.github+json")
+            .build()
+        try {
+            githubClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return@withContext null
+                val obj = JSONObject(response.body?.string() ?: return@withContext null)
+                val pushed = obj.optString("pushed_at")
+                if (pushed.isBlank()) return@withContext null
+                val ts = java.time.Instant.parse(pushed).toEpochMilli()
+                repoMetaCache[manifestUrl] = CacheEntry(ts, System.currentTimeMillis())
+                ts
+            }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+/** 从清单/发布 URL 提取 owner/repo（小写化），识别不出返回 null */
+private fun extractOwnerRepo(url: String): Pair<String, String>? {
+    return try {
+        val u = java.net.URI(url)
+        val host = u.host ?: return null
+        val path = u.path.trim('/').split('/')
+        when {
+            host.endsWith("raw.githubusercontent.com") && path.size >= 2 ->
+                path[0] to path[1]
+            host.endsWith("github.com") && path.size >= 2 ->
+                path[0] to path[1]
+            host.endsWith("api.github.com") && path.size >= 3 && path[0] == "repos" ->
+                path[1] to path[2]
+            else -> null
+        }
+    } catch (_: Exception) {
+        null
     }
 }
 
