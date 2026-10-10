@@ -272,7 +272,7 @@
       "id": "winnative",
       "name": "WinNative-Emu",
       "manifestUrl": "https://raw.githubusercontent.com/WinNative-Emu/Components/refs/heads/main/contents.json",
-      "description": "与 WinNative-Components 高度同源（81/117 重叠），保留备用",
+      "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true
     },
@@ -280,7 +280,7 @@
       "id": "xnick",
       "name": "Xnick Nightly",
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
-      "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支）",
+      "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true
     },
     {
@@ -294,9 +294,9 @@
       "id": "ref4ik",
       "name": "REF4IK",
       "manifestUrl": "https://github.com/REF4IK/Components-Adrenotools-/releases/download/1/contents.json",
-      "description": "Adrenotools 专用组件构建（2026-01 起停更，旧版本参考）",
+      "description": "Adrenotools 组件合集（清单活跃：contents.json 于 2026-08 更新，含 Wine/Box64/DXVK 等 203 项，其中 100 项直连 The412Banner Nightlies）",
       "experimental": true,
-      "archived": true
+      "archived": false
     },
     {
       "id": "arihany",

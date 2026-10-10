@@ -91,6 +91,9 @@ class MainActivity : ComponentActivity() {
                 var componentCatalogs by remember {
                     mutableStateOf<Map<String, Map<String, List<Component>>>>(emptyMap())
                 }
+                var componentSourceUpdatedAt by remember {
+                    mutableStateOf<Map<String, Long>>(emptyMap())
+                }
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
@@ -201,10 +204,19 @@ class MainActivity : ComponentActivity() {
                                 }
                             }.awaitAll().toMap()
                         }
+                        // 组件源更新时间（仓库 pushed_at）：清单无时间字段，用源仓库活跃度
+                        // 作为"哪个最新/最稳定"的参考，UI 在来源卡片显示"更新于 X 天前"
+                        val allComponentSources = catalog.componentSources
+                        val componentSourceUpdatedAt = coroutineScope {
+                            allComponentSources.map { source ->
+                                async { source.id to fetchRepositoryPushedAt(source.manifestUrl) }
+                            }.awaitAll().mapNotNull { (id, ts) -> ts?.let { id to it } }.toMap()
+                        }
 
                         AppLoadResult(
                             deviceInfo = info,
                             catalog = catalog,
+                            componentSourceUpdatedAt = componentSourceUpdatedAt,
                             selectedTurnipSource = selectedSource,
                             selectedQualcommSource = selectedQualcommSource,
                             turnipReleases = releases,
@@ -218,6 +230,7 @@ class MainActivity : ComponentActivity() {
                     turnipReleases = result.turnipReleases
                     qualcommReleases = result.qualcommReleases
                     componentCatalogs = result.componentCatalogs
+                    componentSourceUpdatedAt = result.componentSourceUpdatedAt
 
                     if (turnipSourceId != result.selectedTurnipSource.id) {
                         turnipSourceId = result.selectedTurnipSource.id
@@ -495,6 +508,7 @@ class MainActivity : ComponentActivity() {
                                             modifier = Modifier.padding(padding),
                                             componentSources = sourceCatalog.componentSources,
                                             componentCatalogs = componentCatalogs,
+                                            componentSourceUpdatedAt = componentSourceUpdatedAt,
                                             onDownloadComponent = { component ->
                                                 downloadScope.launch {
                                                     downloadComponent(appContext, component)
@@ -591,5 +605,6 @@ private data class AppLoadResult(
     val selectedQualcommSource: QualcommSource,
     val turnipReleases: List<GithubRelease>,
     val qualcommReleases: List<GithubRelease>,
-    val componentCatalogs: Map<String, Map<String, List<Component>>>
+    val componentCatalogs: Map<String, Map<String, List<Component>>>,
+    val componentSourceUpdatedAt: Map<String, Long> = emptyMap()
 )

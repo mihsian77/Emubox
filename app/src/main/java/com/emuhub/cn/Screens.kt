@@ -902,6 +902,22 @@ private fun formatRelativeTime(iso: String): String {
     }
 }
 
+/** 基于 epoch 毫秒的相对时间（组件源仓库更新时间用） */
+private fun formatRelativeTimeMs(epochMs: Long): String {
+    val diffMs = System.currentTimeMillis() - epochMs
+    return when {
+        diffMs < 0 -> "刚刚"
+        diffMs < 60_000 -> "刚刚"
+        diffMs < 3_600_000 -> "${diffMs / 60_000} 分钟前"
+        diffMs < 86_400_000 -> "${diffMs / 3_600_000} 小时前"
+        diffMs < 30L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
+        else -> {
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            sdf.format(Date(epochMs))
+        }
+    }
+}
+
 private fun formatDate(timestamp: Long): String {
     val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
     return sdf.format(Date(timestamp))
@@ -2931,6 +2947,8 @@ private data class SourcePickerOption(
     val category: String = "general",
     /** 已归档/停更源，UI 显示"已停更"标签 */
     val archived: Boolean = false,
+    /** 源仓库更新时间提示（组件侧传入，如"更新于 3 天前"） */
+    val updatedHint: String? = null,
     /** 预览窗格：一行一条（图标 + 文本），如支持型号 / 目标模拟器 / stars */
     val preview: List<PreviewItem> = emptyList()
 )
@@ -2946,7 +2964,9 @@ private fun SourcePickerCard(
     onSelected: (String) -> Unit,
     currentArchived: Boolean = false,
     /** 当前源的优先级分类（英文 key），用于顶部标签显示 */
-    currentCategory: String = "general"
+    currentCategory: String = "general",
+    /** 源仓库更新时间提示（如"更新于 3 天前"），组件侧传入 */
+    currentUpdatedHint: String? = null
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
@@ -3028,6 +3048,14 @@ private fun SourcePickerCard(
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.78f),
                             maxLines = 2
+                        )
+                    }
+                    // 源仓库更新时间（组件清单无时间字段，用仓库活跃度参考）
+                    if (currentUpdatedHint != null) {
+                        Text(
+                            currentUpdatedHint,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.85f)
                         )
                     }
                 }
@@ -3299,6 +3327,14 @@ private fun SourcePickerGridCard(
                     option.description,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            if (option.updatedHint != null) {
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    option.updatedHint,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.85f)
                 )
             }
             if (option.preview.isNotEmpty()) {
@@ -3944,6 +3980,7 @@ fun ComponentSection(
     currentSource: ComponentSource,
     components: List<Component>,
     selectionKey: String,
+    updatedAtMap: Map<String, Long> = emptyMap(),
     onSourceChange: (String) -> Unit,
     onDownload: (Component) -> Unit
 ) {
@@ -4044,12 +4081,14 @@ fun ComponentSection(
                         currentName = currentSource.name,
                         currentDescription = currentSource.description,
                         currentExperimental = currentSource.experimental,
+                        currentUpdatedHint = updatedAtMap[currentSource.id]?.let { formatRelativeTimeMs(it) },
                         options = sources.map { source ->
                             SourcePickerOption(
                                 id = source.id,
                                 name = source.name,
                                 description = source.description,
-                                experimental = source.experimental
+                                experimental = source.experimental,
+                                updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) }
                             )
                         },
                         onSelected = onSourceChange
@@ -5342,6 +5381,7 @@ fun ComponentScreen(
     modifier: Modifier = Modifier,
     componentSources: List<ComponentSource>,
     componentCatalogs: Map<String, Map<String, List<Component>>>,
+    componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
     onDownloadComponent: (Component) -> Unit
 ) {
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
@@ -5418,6 +5458,7 @@ fun ComponentScreen(
                         currentSource = source,
                         components = list,
                         selectionKey = "component:$type:${source.id}",
+                        updatedAtMap = componentSourceUpdatedAt,
                         onSourceChange = { sourceId ->
                             componentSourceSelections[type] = sourceId
                             SettingsManager.setComponentSource(type, sourceId)
