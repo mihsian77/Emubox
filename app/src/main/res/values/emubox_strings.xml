@@ -8,7 +8,7 @@
     <string name="component_guide">Component guide</string>
     <string name="your_download_library">Your download library</string>
     <string name="download_library">Download library</string>
-    <string name="download_library_desc">Everything you download from EmuHub in one place.</string>
+    <string name="download_library_desc">Everything you download from EmuBox in one place.</string>
     <string name="active">Active</string>
     <string name="saved">Saved</string>
     <string name="stored">Stored</string>
@@ -39,9 +39,9 @@
     <string name="no_downloads_yet">No downloads yet</string>
     <string name="downloads_started_here">Downloads started from the hub will appear here.</string>
     <string name="appearance">Appearance</string>
-    <string name="appearance_desc">Personalize EmuHub with Material 3 themes.</string>
+    <string name="appearance_desc">Personalize EmuBox with Material 3 themes.</string>
     <string name="language">Language</string>
-    <string name="language_desc">Choose the language used by EmuHub. System default follows your Android language.</string>
+    <string name="language_desc">Choose the language used by EmuBox. System default follows your Android language.</string>
     <string name="app_language">App language</string>
     <string name="language_system">System default</string>
     <string name="language_english">English</string>
@@ -62,15 +62,15 @@
     <string name="theme_orange">Orange</string>
     <string name="theme_cn">CN Edition</string>
     <string name="sources">Sources</string>
-    <string name="sources_desc">Manage the remote catalog that tells EmuHub where to fetch releases.</string>
+    <string name="sources_desc">Manage the remote catalog that tells EmuBox where to fetch releases.</string>
     <string name="source_catalog">Source catalog</string>
-    <string name="source_catalog_desc">EmuHub refreshes this JSON automatically. Driver files stay on the original upstream repositories, so new releases appear without rebuilding the app.</string>
+    <string name="source_catalog_desc">EmuBox refreshes this JSON automatically. Driver files stay on the original upstream repositories, so new releases appear without rebuilding the app.</string>
     <string name="catalog_url">Catalog URL</string>
     <string name="source_catalog_saved">Source catalog saved</string>
     <string name="invalid_catalog_url">Enter a valid http(s) URL</string>
     <string name="save">Save</string>
     <string name="default_label">Default</string>
-    <string name="using_managed_catalog">Using EmuHub managed catalog</string>
+    <string name="using_managed_catalog">Using EmuBox managed catalog</string>
     <string name="using_custom_catalog">Using custom catalog</string>
     <string name="match_drivers_by_device">Match drivers by device</string>
     <string name="match_drivers_by_device_desc">Only show GPU drivers compatible with this device. Turn off to list all available drivers.</string>
@@ -84,7 +84,7 @@
     <string name="what_each_download_does">What each download does</string>
     <string name="choose_components_confidence">Choose components with confidence</string>
     <string name="guide_intro_desc">Tap a card for what it does, what to try first, and when another component may work better.</string>
-    <string name="guide_notice">There is no single \'best\' stack for every game. Device, Android version, container/fork, game engine and the exact build all matter. EmuHub packages can come from third-party catalogs, so always match the component to the environment that will use it.</string>
+    <string name="guide_notice">There is no single \'best\' stack for every game. Device, Android version, container/fork, game engine and the exact build all matter. EmuBox packages can come from third-party catalogs, so always match the component to the environment that will use it.</string>
     <string name="quick_pick">Quick pick</string>
     <string name="starting_points_adreno">Starting points for Adreno %1$s</string>
     <string name="good_starting_points">Good starting points</string>
@@ -122,7 +122,7 @@
     <string name="source_format">Source: %1$s</string>
     <string name="latest_format">Latest: %1$s</string>
     <string name="unknown">Unknown</string>
-    <string name="versions_footer">Versions are fetched directly from the selected upstream source. Change sources at any time; EmuHub remembers one source per category.</string>
+    <string name="versions_footer">Versions are fetched directly from the selected upstream source. Change sources at any time; EmuBox remembers one source per category.</string>
     <string name="component_wine_subtitle">Windows compatibility layer</string>
     <string name="component_proton_subtitle">Gaming compatibility layer</string>
     <string name="component_box64_subtitle">x86_64 translation</string>
@@ -142,13 +142,13 @@
     <string name="qualcomm_driver_desc">Qualcomm proprietary graphics-driver packages. Try these when a game behaves better with the vendor driver.</string>
     <string name="download_type">Download %1$s</string>
     <string name="source_type">%1$s source</string>
-    <string name="emuhub_downloads_upstream">EmuHub downloads directly from the selected upstream provider.</string>
+    <string name="downloads_upstream">EmuBox downloads directly from the selected upstream provider.</string>
     <string name="experimental">Experimental</string>
     <string name="source_archived">Archived</string>
     <string name="change_source">Change source</string>
     <string name="only_source_available">Only source available</string>
     <string name="choose_source">Choose source</string>
-    <string name="choose_source_desc">Pick the provider EmuHub should use for this category. Your choice is remembered.</string>
+    <string name="choose_source_desc">Pick the provider EmuBox should use for this category. Your choice is remembered.</string>
     <string name="from_source">From %1$s</string>
     <string name="latest">Latest</string>
     <string name="version">Version</string>
@@ -291,7 +291,7 @@
     <string name="about_version">Version %1$s</string>
     <string name="about_translation">Chinese localization</string>
     <string name="about_translation_by">by moon279</string>
-    <string name="about_upstream">Based on EmuHub by NotZeetaa, maintained by Rodrig02005</string>
+    <string name="about_upstream">Based on EmuHub-APP (MIT) by Rodrig02005</string>
     <string name="about_license">MIT License</string>
 
     <!-- 包信息查看 -->
@@ -355,7 +355,7 @@
     <!-- GPU 厂商 -->
     <string name="gpu_vendor_adreno">Qualcomm Adreno</string>
     <string name="gpu_vendor_mali">ARM Mali</string>
-    <string name="gpu_vendor_xclipse">UNISOC Xclipse</string>
+    <string name="gpu_vendor_xclipse">Samsung Xclipse</string>
     <string name="gpu_vendor_unknown">Unknown</string>
 
     <!-- 成熟度 -->
