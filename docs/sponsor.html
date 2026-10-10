@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EmuHub-CN — 支持 moon279</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101522'/%3E%3Cpath d='M9 10l3 6-3 6h3l3-6-3-6zM17 10l3 6-3 6h3l3-6-3-6z' fill='%234CC9F0'/%3E%3C/svg%3E">
+<title>moon279 — EmuHub-CN 维护者</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232E2B26'/%3E%3Cpath d='M9 10l3 6-3 6h3l3-6-3-6zM17 10l3 6-3 6h3l3-6-3-6z' fill='%23C98A3D'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
   :root {
-    --bg: #101522;
-    --panel: #171e30;
-    --panel-border: #232c44;
-    --ink: #e8ecf6;
-    --ink-dim: #9aa5c0;
-    --accent: #4cc9f0;
-    --accent-deep: #3aa8cc;
+    --bg: #fbf8f2;
+    --ink: #2e2b26;
+    --ink-dim: #6f6a5e;
+    --line: #e8e2d4;
+    --card: #ffffff;
+    --accent: #b56a2e;
+    --accent-soft: #f3e4d3;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -21,90 +22,120 @@
     background: var(--bg);
     color: var(--ink);
     font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-    line-height: 1.7;
+    line-height: 1.85;
     min-height: 100vh;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
-  header { text-align: center; margin-bottom: 40px; }
-  .logo {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-size: 15px; letter-spacing: .08em;
-    color: var(--ink-dim);
+  .wrap { max-width: 680px; margin: 0 auto; padding: 56px 20px 72px; }
+
+  /* 名片区 */
+  .profile { text-align: center; }
+  .avatar {
+    width: 108px; height: 108px; border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--card);
+    box-shadow: 0 0 0 1px var(--line), 0 10px 30px rgba(46,43,38,.10);
   }
-  .logo svg { width: 30px; height: 30px; }
-  h1 { font-size: 30px; font-weight: 700; margin: 18px 0 10px; letter-spacing: .01em; }
-  .sub { color: var(--ink-dim); font-size: 15px; max-width: 520px; margin: 0 auto; }
+  .name { font-size: 24px; font-weight: 700; margin: 18px 0 4px; letter-spacing: .02em; }
+  .tagline { font-size: 14px; color: var(--ink-dim); }
+
+  /* 独白 */
+  .monologue {
+    margin: 36px 0 8px;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .monologue p { margin-bottom: 14px; }
+  .monologue em { font-style: normal; color: var(--accent); font-weight: 500; }
+
+  /* 卡片 */
   .card {
-    background: var(--panel);
-    border: 1px solid var(--panel-border);
+    background: var(--card);
+    border: 1px solid var(--line);
     border-radius: 14px;
-    padding: 22px 22px;
+    padding: 22px 24px;
     margin: 18px 0;
   }
-  .card h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+  .card h2 {
+    font-size: 14px; font-weight: 700; letter-spacing: .12em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
   .card p, .card li { font-size: 14px; color: var(--ink-dim); }
   .card ul { list-style: none; }
-  .card li { padding: 6px 0 6px 20px; position: relative; }
+  .card li { padding: 5px 0 5px 18px; position: relative; }
   .card li::before {
-    content: ""; position: absolute; left: 2px; top: 14px;
-    width: 7px; height: 7px; border-radius: 2px; background: var(--accent);
+    content: ""; position: absolute; left: 0; top: 13px;
+    width: 8px; height: 8px; border-radius: 3px;
+    background: var(--accent-soft); border: 1px solid var(--accent);
   }
-  .cta { text-align: center; margin: 30px 0 8px; }
+
+  /* CTA */
+  .cta { text-align: center; margin: 34px 0 6px; }
   .cta a {
     display: inline-block; text-decoration: none;
-    background: var(--accent); color: #0b1424;
-    font-weight: 600; font-size: 16px;
-    padding: 14px 34px; border-radius: 10px;
-    transition: background .15s;
+    background: var(--accent); color: #fffaf3;
+    font-weight: 700; font-size: 16px; letter-spacing: .04em;
+    padding: 15px 40px; border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(181,106,46,.28);
+    transition: background .15s, transform .15s;
   }
-  .cta a:hover { background: #6fdcff; }
-  .cta-note { font-size: 12.5px; color: var(--ink-dim); margin-top: 10px; }
-  .credits { font-size: 12.5px; color: var(--ink-dim); text-align: center; margin-top: 34px; }
-  .credits a { color: var(--ink-dim); }
+  .cta a:hover { background: #964f1f; transform: translateY(-1px); }
+  .cta-note { font-size: 14px; color: var(--ink-dim); margin-top: 12px; }
+
+  .footer {
+    text-align: center; margin-top: 42px;
+    font-size: 14px; color: var(--ink-dim);
+  }
+  .footer a { color: var(--ink-dim); text-decoration: underline; text-underline-offset: 3px; }
+
   @media (max-width: 520px) {
-    .wrap { padding: 32px 16px 48px; }
-    h1 { font-size: 24px; }
-    .card { padding: 18px; }
+    .wrap { padding: 40px 16px 56px; }
+    .avatar { width: 92px; height: 92px; }
+    .name { font-size: 21px; }
+    .card { padding: 18px 18px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div class="logo">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#171e30"/><path d="M9 10l3 6-3 6h3l3-6-3-6zM17 10l3 6-3 6h3l3-6-3-6z" fill="#4CC9F0"/></svg>
-      EmuHub-CN
-    </div>
-    <h1>支持 moon279 的开发工作</h1>
-    <p class="sub">EmuHub-CN 是 EmuHub-APP 的中文适配版：界面汉化、国内加速下载、驱动与组件仓库持续整理维护。项目免费使用，如果它帮到了你，欢迎支持。</p>
-  </header>
+
+  <div class="profile">
+    <img class="avatar" src="assets/avatar.png" alt="moon279 头像">
+    <div class="name">moon279</div>
+    <div class="tagline">EmuHub-CN 维护者 · 业余时间做点有用的东西</div>
+  </div>
+
+  <div class="monologue">
+    <p>EmuHub-CN 是 EmuHub-APP 的中文适配版。做它的起因很简单：自己下载驱动太慢、界面全是英文，就想做个顺手的东西。没想到用的人越来越多，也就一路<em>折腾</em>到了现在。</p>
+    <p>我是第一次认真维护开源项目，代码和界面都还有很多不成熟的地方，每次发版都提心吊胆，怕搞坏什么。感谢每一个下载、反馈问题、帮我校对翻译的人——是你们让这件事有了继续下去的意义。</p>
+    <p>如果你觉得它有用，欢迎<em>请我喝杯咖啡</em>。这不是交易，只是一份鼓励；它会变成服务器账单、测试设备，和下个版本里的新功能。</p>
+  </div>
 
   <div class="cta">
-    <a href="https://afdian.com/a/moon279" target="_blank" rel="noopener">通过爱发电赞助</a>
-    <p class="cta-note">金额随意，按月或一次性都可以。国内支付宝 / 微信直接支付。</p>
+    <a href="https://afdian.com/a/moon279" target="_blank" rel="noopener">去爱发电支持我</a>
+    <p class="cta-note">按月或一次性都可以，国内支付宝 / 微信直接支付</p>
   </div>
 
   <div class="card">
-    <h2>日常在做的事</h2>
+    <h2>在做的几件事</h2>
     <ul>
-      <li>中文界面与专业术语翻译，去掉生硬的机翻</li>
-      <li>组件与驱动下载走国内加速，避免 GitHub 限速</li>
-      <li>驱动 / 组件 / 运行库仓库的整合、分类与推荐</li>
-      <li>设备信息识别与驱动匹配，新驱动跟进测试</li>
+      <li>中文界面，把术语翻得像人话</li>
+      <li>国内加速下载，绕开 GitHub 限速</li>
+      <li>驱动、组件、运行库的整理、分类与推荐</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>赞助花在哪里</h2>
-    <p>服务器与 API 成本、测试设备、以及维护和排错的时间投入。每一笔都会直接回到项目本身。</p>
+    <h2>赞助花在哪</h2>
+    <p>服务器与 API 成本、测试设备（驱动适配离不开真机）、以及大量写代码和修 bug 的时间。</p>
   </div>
 
   <div class="card">
     <h2>致谢</h2>
-    <p>项目基于 Rodrig02005/EmuHub-APP（MIT License）与 NotZeetaa/EmuHub 的开源成果构建，保留上游版权声明，向原作者致敬。</p>
+    <p>项目基于 Rodrig02005/EmuHub-APP（MIT License）与 NotZeetaa/EmuHub 的开源成果构建，保留上游版权声明，向两位作者致敬。</p>
   </div>
 
-  <p class="credits">EmuHub-CN · maintained by <a href="https://github.com/mihsian77" target="_blank" rel="noopener">moon279</a></p>
+  <p class="footer">EmuHub-CN · <a href="https://github.com/mihsian77/EmuHub-CN" target="_blank" rel="noopener">GitHub 仓库</a></p>
 </div>
 </body>
 </html>
