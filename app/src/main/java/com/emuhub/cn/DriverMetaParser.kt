@@ -140,7 +140,9 @@ object DriverMetaParser {
                     if (bind == 0) continue
                     if (stName <= 0 || stName >= strTab.size) continue
                     val name = readCString(strTab, stName) ?: continue
-                    if (name == "vkGetInstanceProcAddr") return@use true
+                    // ICD 规范入口 vk_icdGetInstanceProcAddr（mesa turnip/panvk 标准导出），
+                    // 兼容老式 vkGetInstanceProcAddr；任一存在即可被 App 加载实测
+                    if (name == "vk_icdGetInstanceProcAddr" || name == "vkGetInstanceProcAddr") return@use true
                 }
                 false
             }

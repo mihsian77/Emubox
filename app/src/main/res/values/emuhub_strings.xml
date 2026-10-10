@@ -484,4 +484,5 @@
     <string name="file_purpose">Purpose</string>
     <string name="file_info_error">Failed to read file info</string>
     <string name="benchmark_adrenotools_boundary">All distributed driver packages are adrenotools format (simulator-specific ICD). They cannot be loaded inside this app - verify them inside Eden/Winlator. Spec comparison above is from the package meta.json.</string>
+    <string name="already_downloaded">Already downloaded</string>
 </resources>

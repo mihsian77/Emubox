@@ -142,13 +142,17 @@ class MainActivity : ComponentActivity() {
                         } else {
                             registryEntries.filter { it.componentType != null }
                         }
-                        val registryComponentSources = deviceComponentEntries.map { entry ->
+                        // 同一 componentType 的注册表仓库合并为一个源：pandxvk 与
+                        // pandxvk-lloyd262 都是 DXVK 组件源，分开会导致组件 Tab 里
+                        // 每个类型只显示当前选中源（用户只看到其中一个）。
+                        val registryByType = deviceComponentEntries.groupBy { it.componentType ?: "registry-${it.id}" }
+                        val registryComponentSources = registryByType.map { (type, entries) ->
                             ComponentSource(
-                                id = "registry-${entry.id}",
-                                name = entry.name,
-                                manifestUrl = entry.apiUrl,
-                                description = entry.description,
-                                experimental = entry.maturity in listOf("alpha", "experimental", "beta")
+                                id = "registry-${type}-${entries.first().id}",
+                                name = entries.joinToString(" / ") { it.name },
+                                manifestUrl = entries.first().apiUrl,
+                                description = entries.joinToString("；") { it.description },
+                                experimental = entries.any { it.maturity in listOf("alpha", "experimental", "beta") }
                             )
                         }
 
@@ -183,16 +187,17 @@ class MainActivity : ComponentActivity() {
                                 }
                             }.awaitAll().toMap()
                         }
-                        // 注册表设备专属组件
+                        // 注册表设备专属组件（同类型多仓库已合并为一个源，组件列表 flatMap 合并）
                         val registryComponentMaps = coroutineScope {
-                            deviceComponentEntries.map { entry ->
+                            registryByType.map { (type, entries) ->
                                 async {
-                                    val type = entry.componentType
-                                    if (type.isNullOrBlank()) {
-                                        "registry-${entry.id}" to emptyMap<String, List<Component>>()
-                                    } else {
-                                        "registry-${entry.id}" to mapOf(type to fetchGithubComponents(entry.apiUrl, type))
-                                    }
+                                    val srcId = "registry-${type}-${entries.first().id}"
+                                    srcId to mapOf(
+                                        type to entries.flatMap { e ->
+                                            runCatching { fetchGithubComponents(e.apiUrl, type) }
+                                                .getOrDefault(emptyList())
+                                        }
+                                    )
                                 }
                             }.awaitAll().toMap()
                         }
