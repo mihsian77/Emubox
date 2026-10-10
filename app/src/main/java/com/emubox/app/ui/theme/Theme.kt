@@ -1,4 +1,4 @@
-package com.emuhub.cn.ui.theme
+package com.emubox.app.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -8,15 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.emuhub.cn.ColorTheme
-import com.emuhub.cn.ThemeMode
+import com.emubox.app.ColorTheme
+import com.emubox.app.ThemeMode
 
-private val EmuHubLight = lightColorScheme(
+private val EmuBoxLight = lightColorScheme(
     primary = Color(0xFF006C4C),
     secondary = Color(0xFF4D6358),
     tertiary = Color(0xFF3E6374)
 )
-private val EmuHubDark = darkColorScheme(
+private val EmuBoxDark = darkColorScheme(
     primary = Color(0xFF56DBA5),
     secondary = Color(0xFFB4CCBF),
     tertiary = Color(0xFFA5CDDF)
@@ -71,7 +71,7 @@ private val CnDark = darkColorScheme(
     tertiaryContainer = Color(0xFF8C1D18)
 )
 
-private val EmuHubShapes = Shapes(
+private val EmuBoxShapes = Shapes(
     extraSmall = RoundedCornerShape(8.dp),
     small = RoundedCornerShape(12.dp),
     medium = RoundedCornerShape(20.dp),
@@ -80,7 +80,7 @@ private val EmuHubShapes = Shapes(
 )
 
 @Composable
-fun EmuHubTheme(
+fun EmuBoxTheme(
     themeMode: ThemeMode = ThemeMode.SYSTEM,
     colorTheme: ColorTheme = ColorTheme.DYNAMIC,
     content: @Composable () -> Unit
@@ -101,7 +101,7 @@ fun EmuHubTheme(
         colorTheme == ColorTheme.PURPLE -> if (darkTheme) PurpleDark else PurpleLight
         colorTheme == ColorTheme.ORANGE -> if (darkTheme) OrangeDark else OrangeLight
         colorTheme == ColorTheme.CN -> if (darkTheme) CnDark else CnLight
-        else -> if (darkTheme) EmuHubDark else EmuHubLight
+        else -> if (darkTheme) EmuBoxDark else EmuBoxLight
     }
 
     val colorScheme = if (themeMode == ThemeMode.AMOLED) {
@@ -117,7 +117,7 @@ fun EmuHubTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        shapes = EmuHubShapes,
+        shapes = EmuBoxShapes,
         content = content
     )
 }

@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -397,7 +397,7 @@ object SourceCatalogRepository {
                 id = "winnative",
                 name = "WinNative-Emu",
                 manifestUrl = "https://raw.githubusercontent.com/WinNative-Emu/Components/refs/heads/main/contents.json",
-                description = "EmuHub 默认组件清单",
+                description = "EmuBox 默认组件清单",
                 experimental = false
             ),
             ComponentSource(

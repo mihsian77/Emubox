@@ -17,7 +17,7 @@
 #include <functional>
 #include <cmath>
 
-#define LOG_TAG "EmuHubVulkan"
+#define LOG_TAG "EmuBoxVulkan"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
@@ -426,7 +426,7 @@ static VkInstance createVulkanInstance(PFN_CreateInstance createInstanceFn) {
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.pApplicationName = "EmuHub-CN";
     appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "EmuHubVulkanCollector";
+    appInfo.pEngineName = "EmuBoxVulkanCollector";
     appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
     appInfo.apiVersion = VK_API_VERSION_1_1;
 
@@ -614,11 +614,11 @@ static std::string collectDriverIsolated(const char* driverPath) {
 }
 
 // ── JNI 入口 ────────────────────────────────────────────────────────────────
-// Kotlin: com.emuhub.cn.NativeVulkanBridge.collectVulkanInfo(String driverPath)
+// Kotlin: com.emubox.app.NativeVulkanBridge.collectVulkanInfo(String driverPath)
 // driverPath 为 null/空时采集系统 Vulkan（直连 loader，主进程安全）；
 // 传入驱动 .so 路径时 fork 子进程采集（防 native 崩溃带崩 App）。
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_emuhub_cn_NativeVulkanBridge_collectVulkanInfo(JNIEnv* env, jobject /* thiz */, jstring driverPath) {
+Java_com_emubox_app_NativeVulkanBridge_collectVulkanInfo(JNIEnv* env, jobject /* thiz */, jstring driverPath) {
     const char* path = nullptr;
     if (driverPath) {
         path = env->GetStringUTFChars(driverPath, nullptr);
@@ -1386,10 +1386,10 @@ static std::string benchmarkDriverIsolated(const char* driverPath) {
 }
 
 // ── JNI 入口：GPU 基准测试 ──────────────────────────────────────────────────
-// Kotlin: com.emuhub.cn.NativeVulkanBridge.benchmarkVulkan(String driverPath)
+// Kotlin: com.emubox.app.NativeVulkanBridge.benchmarkVulkan(String driverPath)
 // driverPath 为 null/空时测系统 Vulkan；传入驱动路径时 fork 子进程隔离。
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_emuhub_cn_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* thiz */, jstring driverPath) {
+Java_com_emubox_app_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* thiz */, jstring driverPath) {
     const char* path = nullptr;
     if (driverPath) {
         path = env->GetStringUTFChars(driverPath, nullptr);

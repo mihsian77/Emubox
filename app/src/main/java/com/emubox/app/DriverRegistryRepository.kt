@@ -1,4 +1,4 @@
-package com.emuhub.cn
+package com.emubox.app
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -104,7 +104,7 @@ object DriverRegistryRepository {
             val conn = (URL(urlStr).openConnection() as HttpURLConnection).apply {
                 connectTimeout = 6000
                 readTimeout = 6000
-                setRequestProperty("User-Agent", "EmuHub-CN")
+                setRequestProperty("User-Agent", "EmuBox")
             }
             if (conn.responseCode != 200) return null
             val body = conn.inputStream.bufferedReader().readText()
