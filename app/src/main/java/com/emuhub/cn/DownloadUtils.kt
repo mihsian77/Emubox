@@ -168,7 +168,8 @@ private suspend fun ensureFileNotExists(context: Context, desiredName: String, s
     return existed
 }
 
-private fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Boolean {
+/** 下载目录中是否已存在同名文件（SAF 树 / MediaStore / 普通目录三种路径）。UI 下载按钮据此显示"已下载" */
+fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Boolean {
     val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
     val defaultRelativePath = "$DEFAULT_ROOT_FOLDER/$subPath"
     return if (folderUri != null && DocumentsContract.isTreeUri(folderUri)) {
@@ -194,7 +195,8 @@ private fun fileExistsOnDisk(context: Context, desiredName: String, subPath: Str
     }
 }
 
-private fun sanitizeFileName(name: String): String {
+/** 文件名清洗：替换路径分隔符/通配符等非法字符。下载与"已下载"判断共用同一规则 */
+fun sanitizeFileName(name: String): String {
     return name.replace(Regex("[\\\\/:*?\"<>|]"), "_")
 }
 

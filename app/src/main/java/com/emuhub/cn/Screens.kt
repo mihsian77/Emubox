@@ -1466,29 +1466,15 @@ private fun AcceleratorSettingsCard() {
                 }
             }
 
-            // 节点来源声明（MirrorHub，MIT 协议）
+            // 节点来源声明（MirrorHub，MIT 协议；不提供跳转入口，避免节点仓库被滥用）
             Spacer(Modifier.height(12.dp))
             HorizontalDivider()
             Spacer(Modifier.height(8.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = appString(R.string.mirrorhub_source),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                TextButton(onClick = {
-                    val intent = Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse(Accelerator.MIRRORHUB_URL)
-                    }
-                    context.startActivity(intent)
-                }) {
-                    Text(appString(R.string.view), style = MaterialTheme.typography.bodySmall)
-                }
-            }
+            Text(
+                text = appString(R.string.mirrorhub_source),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }
@@ -3608,6 +3594,16 @@ private fun DriverReleasePicker(
             ?: selectedRelease?.assets?.firstOrNull()
     }
 
+    // 已下载态：文件存在则按钮置灰显示"已下载"（下载路径 Driver/<subPath>）
+    val downloaded = remember(selectedRelease, selectedAsset) {
+        val release = selectedRelease
+        val asset = selectedAsset
+        if (release != null && asset != null) {
+            val desired = sanitizeFileName("${release.tagName}_${asset.name}")
+            fileExistsOnDisk(context, desired, "Drivers")
+        } else false
+    }
+
     if (releases.isEmpty()) {
         Surface(
             modifier = Modifier.fillMaxWidth(),
@@ -3739,11 +3735,18 @@ private fun DriverReleasePicker(
             }
         },
         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
-        shape = RoundedCornerShape(18.dp)
+        shape = RoundedCornerShape(18.dp),
+        enabled = !downloaded
     ) {
-        Icon(Icons.Default.Download, contentDescription = null)
-        Spacer(Modifier.width(8.dp))
-        Text(buttonLabel)
+        if (downloaded) {
+            Icon(Icons.Default.CheckCircle, contentDescription = null)
+            Spacer(Modifier.width(8.dp))
+            Text(appString(R.string.already_downloaded))
+        } else {
+            Icon(Icons.Default.Download, contentDescription = null)
+            Spacer(Modifier.width(8.dp))
+            Text(buttonLabel)
+        }
     }
 }
 
@@ -3952,6 +3955,14 @@ fun ComponentSection(
     val latestComponent = components.firstOrNull()
     val selected = remember(components, selectedVersion) {
         components.firstOrNull { it.verName == selectedVersion } ?: components.firstOrNull()
+    }
+
+    // 已下载态：与 downloadComponent 相同命名/路径规则（Components/<type>/）
+    val downloaded = remember(selected) {
+        if (selected != null) {
+            val fileName = sanitizeFileName(Uri.decode(selected.remoteUrl.substringAfterLast("/")))
+            fileExistsOnDisk(context, fileName, "Components/$type")
+        } else false
     }
 
     LaunchedEffect(selectionKey, components) {
@@ -4170,11 +4181,18 @@ fun ComponentSection(
                             } ?: Toast.makeText(context, selectVersionMessage, Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
-                        shape = RoundedCornerShape(18.dp)
+                        shape = RoundedCornerShape(18.dp),
+                        enabled = !downloaded
                     ) {
-                        Icon(Icons.Default.Download, contentDescription = null)
-                        Spacer(Modifier.width(8.dp))
-                        Text(appString(R.string.download_type, type))
+                        if (downloaded) {
+                            Icon(Icons.Default.CheckCircle, contentDescription = null)
+                            Spacer(Modifier.width(8.dp))
+                            Text(appString(R.string.already_downloaded))
+                        } else {
+                            Icon(Icons.Default.Download, contentDescription = null)
+                            Spacer(Modifier.width(8.dp))
+                            Text(appString(R.string.download_type, type))
+                        }
                     }
                 }
             }
@@ -4775,7 +4793,7 @@ private fun DriverDetectionList(
                 if (flag != true || soFile == null) {
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult(
                         success = false, errorCode = "NOT_EXPORTING",
-                        errorMessage = "驱动 .so 未导出 vkGetInstanceProcAddr，无法在 App 内实测（VkDriverLab 同样需要该符号）",
+                        errorMessage = "驱动 .so 未导出 ICD 入口（vk_icdGetInstanceProcAddr/vkGetInstanceProcAddr），无法加载",
                         deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
                         computeGFLOPS = 0.0, computeError = "", totalScore = 0,
                         bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
@@ -4912,18 +4930,92 @@ private fun DriverDetectionList(
                             InfoRow(appString(R.string.meta_min_api), meta.minApi)
                     }
 
-                    // ── 实测边界说明：adrenotools 打包驱动无法在 App 进程内加载 ──
-                    // 所有 zip/adpkg 分发的 Turnip/PanVK 驱动均为 adrenotools 格式，
-                    // ICD 依赖模拟器（Eden/Winlator）的 dlsym 注入环境，App 内 dlopen 必然失败。
-                    // 这里不再提供"实测跑分"入口，避免误导；能力对比见上方 meta 字段。
+                    // ── 实测：App 内加载驱动（fork 子进程隔离，崩溃只死子进程）──
+                    // 驱动需导出 vk_icdGetInstanceProcAddr / vkGetInstanceProcAddr（ICD 入口）；
+                    // 能否真正初始化 GPU 取决于设备 SELinux 是否允许 App 访问 GPU 节点。
                     Spacer(Modifier.height(10.dp))
                     Divider()
                     Spacer(Modifier.height(6.dp))
-                    Text(
-                        appString(R.string.benchmark_adrenotools_boundary),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    when {
+                        benchmarkingId == download.id -> {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                                Spacer(Modifier.width(10.dp))
+                                Text(
+                                    appString(R.string.benchmark_loading_driver),
+                                    style = MaterialTheme.typography.bodySmall
+                                )
+                            }
+                        }
+                        benchmarkResults[download.id] != null -> {
+                            val br = benchmarkResults[download.id]!!
+                            if (br.success) {
+                                Text(
+                                    "实测跑分（${br.deviceName}）",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                                )
+                                Spacer(Modifier.height(4.dp))
+                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    Text(
+                                        "综合 ${br.totalScore}",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                                    )
+                                    Text(
+                                        "带宽 ${"%.1f".format(br.fillBandwidthGBs)} GB/s",
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
+                            } else {
+                                Text(
+                                    "实测失败：${br.errorCode ?: "?"} ${br.errorMessage ?: ""}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.error
+                                )
+                            }
+                            Spacer(Modifier.height(6.dp))
+                            OutlinedButton(
+                                onClick = { benchmarkDriver(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                            ) {
+                                Text(appString(R.string.benchmark_rerun), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                        exportFlags[download.id] == true -> {
+                            Button(
+                                onClick = { benchmarkDriver(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                            ) {
+                                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
+                                Spacer(Modifier.width(6.dp))
+                                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
+                            }
+                            Spacer(Modifier.height(4.dp))
+                            Text(
+                                appString(R.string.benchmark_isolated_hint),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        exportFlags[download.id] == false -> {
+                            Text(
+                                appString(R.string.benchmark_not_exporting),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
+                        else -> {
+                            // 懒检查：进页面不解压大 .so，点按钮才检查 ICD 入口并实测
+                            TextButton(
+                                onClick = { checkExportable(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+                            ) {
+                                Text(appString(R.string.benchmark_check_export), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    }
 
                     if (result != null) {
                         Spacer(Modifier.height(10.dp))
@@ -5636,6 +5728,15 @@ private fun RuntimeComponentCard(
     component: RuntimeComponent,
     onDownload: (RuntimeComponent) -> Unit
 ) {
+    val context = LocalContext.current
+    // 已下载态：与 downloadRuntimeLibrary 相同命名/路径规则
+    val downloaded = remember(component) {
+        val f = component.primaryFile
+        if (f != null) {
+            val name = sanitizeFileName(f.rename.ifBlank { f.fileName })
+            fileExistsOnDisk(context, name, "Runtime/${component.category.labelRes}")
+        } else false
+    }
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
@@ -5740,20 +5841,32 @@ private fun RuntimeComponentCard(
                 FilledTonalButton(
                     onClick = { onDownload(component) },
                     modifier = Modifier.fillMaxWidth(),
-                    contentPadding = PaddingValues(vertical = 4.dp)
+                    contentPadding = PaddingValues(vertical = 4.dp),
+                    enabled = !downloaded
                 ) {
-                    Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
-                    Spacer(Modifier.width(6.dp))
-                    Text(
-                        if (component.isBundle) {
-                            "${appString(R.string.download)} ${component.dependencies.size} ${appString(R.string.runtime_bundle_children)}"
-                        } else {
-                            appString(R.string.download)
-                        },
-                        style = MaterialTheme.typography.labelMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                    if (downloaded) {
+                        Icon(Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(6.dp))
+                        Text(
+                            appString(R.string.already_downloaded),
+                            style = MaterialTheme.typography.labelMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    } else {
+                        Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(6.dp))
+                        Text(
+                            if (component.isBundle) {
+                                "${appString(R.string.download)} ${component.dependencies.size} ${appString(R.string.runtime_bundle_children)}"
+                            } else {
+                                appString(R.string.download)
+                            },
+                            style = MaterialTheme.typography.labelMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             } else {
                 Text(

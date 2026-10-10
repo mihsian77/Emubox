@@ -1238,13 +1238,21 @@ static std::string runBenchmarkWithDriver(const char* driverPath) {
                + "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
     }
 
+    // ICD 规范入口：mesa turnip/panvk 导出的标准符号是 vk_icdGetInstanceProcAddr
+    // （ICD loader 契约），vkGetInstanceProcAddr 只由 loader 导出、驱动不一定有。
+    // 之前只查 vkGetInstanceProcAddr 导致所有 turnip 驱动误报"未导出"，这是误判。
     auto getInst = reinterpret_cast<GetInstanceProcAddrFn>(
-        dlsym(vk.libHandle, "vkGetInstanceProcAddr"));
+        dlsym(vk.libHandle, "vk_icdGetInstanceProcAddr"));
+    if (!getInst) {
+        getInst = reinterpret_cast<GetInstanceProcAddrFn>(
+            dlsym(vk.libHandle, "vkGetInstanceProcAddr"));
+    }
     if (!getInst) {
         dlclose(vk.libHandle);
         return "{\"success\":false,\"errorCode\":\"NO_VK_ENTRY\",\"errorMessage\":\""
-               "vkGetInstanceProcAddr not found in driver\",\"fillBandwidthGBs\":0,"
-               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+               "driver lacks vk_icdGetInstanceProcAddr/vkGetInstanceProcAddr\","
+               "\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,"
+               "\"computeError\":\"\",\"totalScore\":0}";
     }
 
     vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(
@@ -1396,12 +1404,11 @@ Java_com_emuhub_cn_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* th
         // 执行风险可控；buffer 分配失败等异常仍会以错误 JSON 返回，不闪退。
         json = benchmarkSystemVulkan();
     } else {
-        // 自定义驱动：所有 zip/adpkg 分发的 Turnip/PanVK 均为 adrenotools 打包格式，
-        // ICD 依赖模拟器（Eden/Winlator）的 dlsym 注入环境，App 进程 dlopen 必然失败，
-        // fork 子进程加载更是直接崩溃。不再尝试加载，返回明确说明。
-        std::string escaped = jsonEscape(path);
-        json = "{\"success\":false,\"errorCode\":\"ADRENOTOOLS_ONLY\",\"errorMessage\":\"adrenotools 专用驱动包无法在 App 内加载，请在对应模拟器（如 Eden/Winlator）内验证\",\"driverPath\":\""
-               + escaped + "\"}";
+        // 自定义驱动实测：dlopen 驱动 .so 后通过 ICD 入口（vk_icdGetInstanceProcAddr）
+        // 创建 instance/device 跑带宽基准，与系统 Vulkan 驱动完全解耦（驱动自管
+        // GPU 访问，不依赖 zygote 预加载的 GPU 状态），因此 fork 子进程隔离可用，
+        // 驱动崩溃只死子进程。创建失败返回具体原因（SELinux 权限/符号缺失等）。
+        json = benchmarkDriverIsolated(path);
     }
 
     if (driverPath && path) {
