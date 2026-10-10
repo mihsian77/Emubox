@@ -1,10 +1,12 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.emuhub.cn"
+    namespace = "com.emubox.app"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,11 +14,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.emuhub.cn"
+        applicationId = "com.emubox.app"
         minSdk = 28
         targetSdk = 37
-        versionCode = 4
-        versionName = "1.2.0-cn"
+        versionCode = 1
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -36,6 +38,24 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            // 有 keystore.properties 时用正式签名，否则回退 debug 签名
+            signingConfig = run {
+                val props = Properties()
+                val f = rootProject.file("keystore.properties")
+                if (f.exists()) {
+                    f.inputStream().use { props.load(it) }
+                }
+                if (props.containsKey("storeFile")) {
+                    signingConfigs.create("release").apply {
+                        storeFile = rootProject.file(props.getProperty("storeFile"))
+                        storePassword = props.getProperty("storePassword")
+                        keyAlias = props.getProperty("keyAlias")
+                        keyPassword = props.getProperty("keyPassword")
+                    }
+                } else {
+                    signingConfigs.getByName("debug")
+                }
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

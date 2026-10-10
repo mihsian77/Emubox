@@ -1,174 +1,108 @@
-# EmuHub 国内版
+# EmuBox
 
-> 安卓驱动与模拟组件下载管理器 — 完整中文界面 + 国内下载加速 + UI 重做
+> 安卓 Windows 模拟环境的驱动、组件与运行库下载管理器。完整中文界面、国内下载加速、按设备自动匹配。
 
-基于 [NotZeetaa](https://github.com/NotZeetaa) 原创、[Rodrig02005](https://github.com/Rodrig02005) 维护的 [EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)（MIT 协议）修改而来的国内增强版。
-
----
-
-> 🌐 **GitHub 下载 APK 限速？不想装 App？** [点这里使用网页版备选](https://mihsian77.github.io/EmuHub/) — 浏览器直接下载驱动与组件，内置国内加速。
+EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)（MIT 协议，作者 Rodrigo Castro），在其基础上重做了界面、资源目录与下载链路，面向国内 Winlator / Eden / GameHub 等模拟环境用户。
 
 ---
 
-## ✨ 特性
-
-### 📱 Android App（主力产品）
-
-- **中文界面** — 界面和设置汉化
-- **国内下载加速** — 接入 [MirrorHub](https://github.com/mihsian77/MirrorHub) 自动维护的节点库（每6小时测速更新），支持自动选最低延迟 / 手动切换 / 关闭，设置里实时测速显示延迟
-- **国内版专属配色** — 深蓝 + 朱红主题，区别于原版
-- **中英双语** — 简体中文 / English，可在设置内切换
-- **驱动与组件管理** — Turnip / 高通 GPU 驱动、Wine / Proton、DXVK / VKD3D / D7VK、Box64 / FEXCore 等
-- **硬件检测** — 自动识别 GPU 型号、Adreno 代际、安卓版本、运行内存
-- **下载管理** — 暂停 / 继续 / 断点续传 / 下载库管理
-- **组件指南** — 每个组件的作用、优先尝试、适用场景、切换时机
-
-### 🌐 网页版（次选）
-
-独立网页版作为无法安装 App 时的备用方案：
-- 在线地址：**https://mihsian77.github.io/EmuHub/**
-- 仓库：[mihsian77/EmuHub](https://github.com/mihsian77/EmuHub)（已归档，稳定备选）
-- 中文界面，移动端适配，内置国内加速节点
-- 可直接在浏览器下载 Turnip 驱动、Wine、DXVK 等常用组件
-
-> ⚠️ 网页版功能有限，**推荐使用 Android App 获得完整体验**。
+> GitHub 下载 APK 限速，或暂时不想安装 App？可使用[网页版备选](https://mihsian77.github.io/EmuHub/)，在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
 
 ---
 
-## 🚀 下载
+## 功能
 
-从 [Releases](https://github.com/mihsian77/EmuHub-CN/releases) 页面下载最新 APK。
+- **驱动专区** — Turnip（高通 Adreno）、PanVK（ARM Mali）、三星 Xclipse 三类 GPU 驱动，内置 35 个驱动源，按 GPU 架构、型号、目标平台、成熟度分类
+- **组件专区** — Wine / Proton、Box64 / FEXCore / WOWBox64、DXVK / VKD3D-Proton / D7VK 等图形与转译组件，聚合多个上游目录
+- **运行库专区** — VC++ 运行库、.NET、解码器、字体、DirectX 等 Winlator 常用依赖，附中文用途说明与安装指引
+- **按设备匹配** — 自动识别 GPU 型号、Adreno / Mali 代际、安卓版本与运行内存，驱动按匹配度排序推荐；可在设置关闭以查看全部
+- **国内下载加速** — 接入 [MirrorHub](https://github.com/mihsian77/MirrorHub) 维护的加速节点，自动测速选优，也可手动切换或关闭
+- **下载管理** — 暂停 / 继续 / 断点续传，按类型分目录存放，下载库可扫描本地已有文件、查看包内 `meta.json` 信息
+- **组件指南** — 说明每个组件的作用、优先选择、适用场景与切换时机
+- **中英双语** — 简体中文 / English，设置内切换
 
-最低系统要求：Android 9.0（API 28）
+## 下载
 
----
+从 [Releases](https://github.com/mihsian77/EmuHub-CN/releases) 获取最新 APK。最低系统要求 Android 9.0（API 28）。
 
-## 🛠 构建
+## 构建
 
-### 环境要求
-- JDK 17
-- Android Studio Hedgehog 或更高版本
-- Android SDK（compileSdk 36, targetSdk 37）
+环境：JDK 17、Android SDK（compileSdk 37、NDK 用于 native Vulkan 采集）。
 
-### 编译步骤
 ```bash
 git clone https://github.com/mihsian77/EmuHub-CN.git
 cd EmuHub-CN
 ./gradlew assembleDebug
 ```
-APK 输出路径：`app/build/outputs/apk/debug/`
 
-### 运行 i18n 校验
+APK 输出于 `app/build/outputs/apk/debug/`。
+
+翻译完整性检查：
+
 ```bash
 python3 scripts/check-i18n.py
 ```
-检查内容：翻译完整性（漏译/多译）、占位符一致性、空翻译、Kotlin 硬编码扫描。
 
----
+检查漏译 / 多译、占位符一致性、空翻译与 Kotlin 硬编码。
 
-## ⚙️ CI/CD
+## CI
 
-| Workflow | 触发 | 功能 |
-|----------|------|------|
-| `ci.yml` | push / PR 到 main | i18n 校验 → Android Lint → 编译 Debug APK |
+push / PR 到 main 时，`ci.yml` 依次执行 i18n 校验、Android Lint、Debug 编译，并上传 Lint 报告与 APK。
 
-CI 会自动：
-1. 运行 `scripts/check-i18n.py` 检查翻译完整性
-2. 运行 `./gradlew lint` 检查代码质量（含 MissingTranslation / ExtraTranslation）
-3. 运行 `./gradlew assembleDebug` 验证编译通过
-4. 上传 Lint 报告和 Debug APK 作为构建产物
-
----
-
-## 📁 项目结构
+## 项目结构
 
 ```
-EmuHub-CN/
-├── app/
-│   └── src/main/
-│       ├── java/com/emuhub/cn/
-│       │   ├── Accelerator.kt        # 国内加速核心（节点管理 + 延迟测速 + URL重写）
-│       │   ├── Screens.kt            # UI 界面（含加速设置 + 汉化署名）
-│       │   ├── DownloadUtils.kt      # 下载逻辑（加速注入）
-│       │   ├── Localization.kt       # 多语言框架
-│       │   ├── SettingsManager.kt    # 设置存储
-│       │   ├── NetworkUtils.kt       # 网络请求（加速注入）
-│       │   ├── SourceCatalog.kt      # 资源目录（加速注入）
-│       │   └── ui/theme/             # 主题（含国内版配色）
-│       └── res/
-│           ├── values/                # 英文（默认）
-│           ├── values-zh-rCN/        # 简体中文
-│           ├── values-de/             # 德语
-│           ├── values-es/             # 西班牙语
-│           ├── values-fr/             # 法语
-│           └── values-pt*/           # 葡萄牙语
-├── scripts/
-│   └── check-i18n.py                 # i18n 校验脚本
-├── .github/workflows/
-│   └── ci.yml                         # CI 构建与校验
-└── README.md
+app/src/main/
+├── java/com/emubox/app/
+│   ├── Accelerator.kt        # 加速节点管理、延迟与带宽测速、URL 重写
+│   ├── Screens.kt            # 各专区与设置界面
+│   ├── SourceCatalog.kt      # 驱动与组件资源目录
+│   ├── RuntimeLibrary.kt     # 运行库目录与中文说明
+│   ├── DownloadUtils.kt      # 下载逻辑与文件命名
+│   ├── NativeVulkanBridge.kt # Vulkan 采集 / 跑分 JNI 桥
+│   ├── HardwareUtils.kt      # 设备硬件识别
+│   └── ui/theme/             # 主题与配色
+├── cpp/vulkan_collector.cpp  # native Vulkan 信息采集与基准
+└── res/
+    ├── values/               # 英文（默认）
+    └── values-zh-rCN/        # 简体中文
 ```
 
----
+## 驱动来源
 
-## 📦 驱动来源说明
+内置驱动注册表维护 35 个源：
 
-App 内置驱动注册表，维护 35 个驱动源，覆盖三类 GPU：
+- **高通 Adreno（17）**：Turnip 构建，覆盖 6xx / 7xx 通用系列与 8xx（含 810 / 812 / 829 / 830 / 840）专属构建
+- **ARM Mali（17）**：PanVK 构建，覆盖 Bifrost（G52 / G72）、Valhall v9 / JM（G57 / G77 / G99）、Valhall v10 / CSF（G610 / G615 / G710 / G720）
+- **三星 Xclipse（1）**：基于 AMD RDNA 的 Xclipse GPU 驱动
 
-- **高通 Adreno Turnip**（18 个）：通用系列（6xx/7xx/8xx）+ 8xx 专属（810/812/829/830/840）+ 7xx 专属
-- **ARM Mali PanVK**（16 个）：Bifrost（G52/G72/G76）、Valhall v9/JM（G57/G77/G99）、Valhall v10/CSF（G610/G615/G710/G720）
-- **紫光展锐 Xclipse RADV**（1 个）
+驱动包标准格式为 zip（adpkg），内含 `meta.json`（名称、版本、厂商、最低 API、驱动库名）与驱动本体 `.so`。注册表随 App 版本更新，来源均为公开开源社区；为避免驱动源被收集滥用，此处不列具体仓库地址。
 
-**分类维度**：按 GPU 厂商、架构系列、具体型号、目标平台（通用 / winlator / eden / termux）、驱动类型（Mesa 上游构建 / 定制补丁 / 厂商固件提取）、成熟度（stable / beta / ci / alpha / experimental）。
+## 加速说明
 
-**包格式**：所有驱动包标准为 zip（adpkg），内含 `meta.json`（名称/版本/厂商/最低 API/驱动库名）+ 驱动本体 `.so`。下载管理页可对已下载驱动包执行"查看包信息"，直接解析 meta.json 展示详情。
+App 内所有 GitHub 资源（驱动、组件、运行库、资源目录）的下载均可经加速节点转发。节点数据由 [MirrorHub](https://github.com/mihsian77/MirrorHub)（MIT）维护，定时测速、清理失效节点并按延迟排序；App 启动时拉取最新列表，并内置一批节点作为兜底。
 
-**推荐逻辑**：启动时自动识别设备 GPU 型号与架构，按匹配度排序推荐（型号精确匹配优先，架构兼容次之，非本机型号降权不排除）；Mali 驱动强制匹配 frontend（JM/CSF）；Termux 专用源默认不推荐。可在设置中关闭"按设备匹配"查看全部驱动。
+加速模式：**自动**（测速后选最优节点）、**手动**（自行指定节点）、**关闭**（直连）。
 
-> 为防止驱动源被滥用，此处不列出具体仓库链接。驱动注册表数据随 App 版本更新，来源均为公开开源社区。
+二次分发或修改本项目时，请保留 MirrorHub 来源声明。加速节点仅做下载转发，节点本身不作为本项目的收费卖点。
 
----
+## 开源协议
 
-## ⚡ 国内加速说明
+MIT License。
 
-App 内所有 GitHub 资源下载（驱动文件、组件、资源目录、API 请求）均会经过加速节点。
+- 上游 [EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)：Rodrigo Castro（Rodrig02005）
+- 本项目修改与维护：moon279（mihsian77）
+- 加速节点数据：[MirrorHub](https://github.com/mihsian77/MirrorHub)（MIT）
 
-**节点来源：[MirrorHub](https://github.com/mihsian77/MirrorHub)**（MIT 协议）— 自动维护的 GitHub 加速节点库，每 6 小时全量测速，自动清理失效节点，按延迟排序。App 启动时远程拉取最新在线节点列表，内置一批节点作为远程拉取失败时的兜底。
+所有驱动、组件与软件的版权归各自作者所有，本项目仅提供下载管理、匹配与加速。二次分发请保留上述来源声明，遵守 MIT 协议。
 
-加速模式：
-- **自动**：测试所有节点延迟，自动选择最低延迟的节点
-- **手动**：用户自行选择节点
-- **关闭**：不加速（直连 GitHub）
+## 赞助
 
-> 📌 二次分发声明：本应用加速节点数据由 MirrorHub 提供，遵守 MIT 协议。如二次分发或修改，请保留 MirrorHub 来源声明。
+项目建立在上游开源成果之上。如果它帮到了你，可在[爱发电](https://afdian.com/a/moon279)支持维护，所得用于测试设备与维护投入。
 
----
+## 致谢
 
-## 📜 开源协议
-
-MIT License
-
-- 原作者：[NotZeetaa](https://github.com/NotZeetaa)
-- 维护者：[Rodrig02005](https://github.com/Rodrig02005)
-- 国内版修改：[moon279](https://github.com/mihsian77)
-- 加速节点数据：[MirrorHub](https://github.com/mihsian77/MirrorHub)（MIT 协议，自动维护节点库）
-
-所有驱动与软件版权归原作者所有。本项目仅提供下载管理与汉化加速功能。
-
-**二次分发要求**：如基于本项目二次分发或修改，请保留上述所有来源声明（含 MirrorHub 节点数据来源），遵守 MIT 协议。
-
----
-
-## 💜 赞助
-
-如果本项目帮到了你，欢迎通过[爱发电](https://afdian.com/a/moon279)支持 moon279 的维护工作。项目基于上游开源成果构建，赞助仅用于服务器成本、测试设备与维护时间投入。
-
----
-
-## 🙏 致谢
-
+- Rodrigo Castro（Rodrig02005）— EmuHub-APP 作者
 - NotZeetaa — EmuHub 原创作者
-- Rodrig02005 — EmuHub-APP 维护者
-- [MirrorHub](https://github.com/mihsian77/MirrorHub) — 自动维护的 GitHub 加速节点库
-- 各公益 GitHub 加速节点运营者
-- Mesa / Turnip / DXVK / Wine / Box64 等开源项目开发者
+- MirrorHub 与各公益加速节点运营者
+- Mesa / Turnip / PanVK / DXVK / Wine / Box64 等开源项目开发者
