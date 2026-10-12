@@ -541,10 +541,15 @@
     <string name="version_diff_from">From</string>
     <string name="version_diff_to">To</string>
     <string name="version_diff_pick">Pick two different versions to diff their changelogs.</string>
+    <string name="version_diff_loading">Loading commits…</string>
+    <string name="version_diff_commits">%1$d commits from %2$s to %3$s</string>
+    <string name="version_diff_translate">Translate commit summary</string>
+    <string name="version_diff_api_failed">Compare API unavailable (tag not found or rate limited). Showing both changelogs in full instead.</string>
     <string name="version_diff_empty">No line-level differences found (same or empty changelogs).</string>
     <string name="version_diff_added">Added (%1$d)</string>
     <string name="version_diff_removed">Removed (%1$d)</string>
     <string name="global_search_hint">Search all sections (emulators, drivers, components, runtimes)</string>
     <string name="global_search_prompt">Type to search across emulators, drivers, components and runtimes.</string>
+    <string name="search_empty">No matches found.</string>
     <string name="global_search_empty">No results found.</string>
 </resources>
