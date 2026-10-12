@@ -125,6 +125,15 @@
     <string name="versions_footer">版本直接从所选上游来源获取。可随时更改来源；EmuBox 会为每个类别记住一个来源。</string>
     <string name="emulator_region">模拟器专区</string>
     <string name="emulator_desc">常用安卓模拟器汇总，官方来源与最新版本。</string>
+    <string name="emulator_cat_all">全部</string>
+    <string name="emulator_sort_popular">热门下载</string>
+    <string name="emulator_sort_stars">最多 Star</string>
+    <string name="emulator_sort_recent">最近更新</string>
+    <string name="emulator_downloads">次下载</string>
+    <string name="emulator_changelog">更新日志</string>
+    <string name="emulator_release_url">打开 GitHub Release</string>
+    <string name="emulator_community_rank">社区排行数据（每日自动更新）</string>
+
     <string name="emulator_latest">最新版本</string>
     <string name="emulator_tag_continuous">Continuous 构建</string>
     <string name="emulator_tag_preview">Preview 构建</string>
@@ -142,6 +151,8 @@
     <string name="soc_process">工艺</string>
     <string name="soc_cpu">CPU</string>
     <string name="soc_gpu">GPU</string>
+    <string name="soc_score_label">性能跑分（安兔兔 V10）</string>
+    <string name="soc_source_note">数据来源：公开跑分平台综合整理，仅供参考。</string>
     <string name="soc_devices">常见机型</string>
     <string name="component_wine_subtitle">Windows 兼容层</string>
     <string name="component_proton_subtitle">游戏兼容层</string>

@@ -6073,17 +6073,28 @@ fun EmulatorScreen(
     onDownload: (EmulatorEntry) -> Unit
 ) {
     val context = LocalContext.current
-    val grouped = remember(entries) {
-        entries.groupBy { it.category }
-    }
-    val categoryOrder = listOf("windows", "console", "multi", "terminal")
-        .filter { grouped.containsKey(it) }
+    var filterCat by remember { mutableStateOf("all") }
+    var sortMode by remember { mutableStateOf("popular") }
+
     val categoryLabel = mapOf(
         "windows" to appString(R.string.emulator_cat_windows),
         "console" to appString(R.string.emulator_cat_console),
         "multi" to appString(R.string.emulator_cat_multi),
         "terminal" to appString(R.string.emulator_cat_terminal)
     )
+    val categoryOrder = listOf("windows", "console", "multi", "terminal")
+
+    val filtered = remember(entries, filterCat, sortMode) {
+        val base = if (filterCat == "all") entries
+        else entries.filter { it.category == filterCat }
+        when (sortMode) {
+            "stars" -> base.sortedByDescending { it.stars }
+            "recent" -> base.sortedByDescending { it.pushedAt }
+            else -> base.sortedByDescending { it.downloads + it.stars * 10L }
+        }
+    }
+    val grouped = remember(filtered) { filtered.groupBy { it.category } }
+
     val flatItems = buildList {
         categoryOrder.forEach { cat ->
             val group = grouped[cat].orEmpty()
@@ -6109,6 +6120,64 @@ fun EmulatorScreen(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 4.dp)
             )
+        }
+        item(key = "emulator_filter") {
+            Column {
+                Row(
+                    modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf("all", "windows", "console", "multi", "terminal").forEach { c ->
+                        FilterChip(
+                            selected = filterCat == c,
+                            onClick = { filterCat = c },
+                            label = {
+                                Text(
+                                    if (c == "all") appString(R.string.emulator_cat_all)
+                                    else categoryLabel[c].orEmpty(),
+                                    maxLines = 1
+                                )
+                            }
+                        )
+                    }
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        when (sortMode) {
+                            "stars" -> appString(R.string.emulator_sort_stars)
+                            "recent" -> appString(R.string.emulator_sort_recent)
+                            else -> appString(R.string.emulator_sort_popular)
+                        },
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        listOf("popular", "stars", "recent").forEach { s ->
+                            TextButton(onClick = { sortMode = s }) {
+                                Text(
+                                    when (s) {
+                                        "stars" -> "★"
+                                        "recent" -> "🕒"
+                                        else -> "🔥"
+                                    },
+                                    style = MaterialTheme.typography.labelLarge
+                                )
+                            }
+                        }
+                    }
+                }
+                Text(
+                    appString(R.string.emulator_community_rank),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                    modifier = Modifier.padding(top = 2.dp)
+                )
+            }
         }
         if (flatItems.isEmpty()) {
             item(key = "emulator_loading") {
@@ -6161,6 +6230,7 @@ private fun EmulatorCard(
     onDownload: (EmulatorEntry) -> Unit
 ) {
     val context = LocalContext.current
+    var showChangelog by remember { mutableStateOf(false) }
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp)
@@ -6206,6 +6276,21 @@ private fun EmulatorCard(
                                 Spacer(Modifier.width(3.dp))
                                 Text(
                                     formatStars(entry.stars),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            if (entry.downloads > 0L) {
+                                Spacer(Modifier.width(8.dp))
+                                Icon(
+                                    Icons.Default.Download,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(13.dp),
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                Spacer(Modifier.width(3.dp))
+                                Text(
+                                    formatStars(entry.downloads),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -6269,8 +6354,17 @@ private fun EmulatorCard(
                         tagLabel,
                         style = MaterialTheme.typography.labelMedium,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
                     )
+                    if (entry.latestDate.isNotBlank()) {
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            entry.latestDate,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
             }
             Spacer(Modifier.height(10.dp))
@@ -6308,6 +6402,62 @@ private fun EmulatorCard(
                         Icon(Icons.Default.Star, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(Modifier.width(4.dp))
                         Text(appString(R.string.emulator_repo), maxLines = 1)
+                    }
+                }
+                if (entry.latestBody.isNotBlank() && entry.githubUrl.isNotBlank()) {
+                    OutlinedButton(
+                        onClick = { showChangelog = true },
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(4.dp))
+                        Text(appString(R.string.emulator_changelog), maxLines = 1)
+                    }
+                }
+            }
+        }
+    }
+    if (showChangelog && entry.latestBody.isNotBlank()) {
+        Dialog(onDismissRequest = { showChangelog = false }) {
+            Card(
+                shape = RoundedCornerShape(24.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        entry.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        "${entry.latestTag} · ${entry.latestDate}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    HorizontalDivider()
+                    Text(
+                        entry.latestBody,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    HorizontalDivider()
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        TextButton(
+                            onClick = {
+                                runCatching {
+                                    val releaseUrl = entry.githubUrl + "/releases/tag/" + entry.latestTag
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(releaseUrl)))
+                                }
+                            }
+                        ) {
+                            Text(appString(R.string.emulator_release_url), maxLines = 1)
+                        }
+                        TextButton(onClick = { showChangelog = false }) {
+                            Text(appString(R.string.close))
+                        }
                     }
                 }
             }
@@ -6378,10 +6528,18 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                         }
                     }
                     Spacer(Modifier.height(10.dp))
+                    InfoRow(label = appString(R.string.soc_score_label), value = knowledge.score)
                     InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
                     InfoRow(label = appString(R.string.soc_cpu), value = knowledge.cpu)
                     InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)
                     InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        appString(R.string.soc_source_note),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                        maxLines = 2
+                    )
                 }
             }
         }

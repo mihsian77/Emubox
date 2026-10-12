@@ -125,6 +125,15 @@
     <string name="versions_footer">Versions are fetched directly from the selected upstream source. Change sources at any time; EmuBox remembers one source per category.</string>
     <string name="emulator_region">Emulators</string>
     <string name="emulator_desc">Common Android emulators with official sources and latest releases.</string>
+    <string name="emulator_cat_all">All</string>
+    <string name="emulator_sort_popular">Popular</string>
+    <string name="emulator_sort_stars">Most starred</string>
+    <string name="emulator_sort_recent">Recently updated</string>
+    <string name="emulator_downloads">downloads</string>
+    <string name="emulator_changelog">Changelog</string>
+    <string name="emulator_release_url">Open GitHub Release</string>
+    <string name="emulator_community_rank">Community rankings data (auto-updated)</string>
+
     <string name="emulator_latest">Latest</string>
     <string name="emulator_tag_continuous">Continuous build</string>
     <string name="emulator_tag_preview">Preview build</string>
@@ -142,7 +151,9 @@
     <string name="soc_process">Process</string>
     <string name="soc_cpu">CPU</string>
     <string name="soc_gpu">GPU</string>
-    <string name="soc_devices">常见机型</string>
+    <string name="soc_score_label">Benchmark (Antutu V10)</string>
+    <string name="soc_source_note">Data compiled from public benchmark platforms; for reference only.</string>
+    <string name="soc_devices">Common devices</string>
     <string name="component_wine_subtitle">Windows compatibility layer</string>
     <string name="component_proton_subtitle">Gaming compatibility layer</string>
     <string name="component_box64_subtitle">x86_64 translation</string>
