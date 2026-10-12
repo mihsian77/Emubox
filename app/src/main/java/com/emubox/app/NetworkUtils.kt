@@ -72,7 +72,14 @@ private const val CACHE_TTL_MS = 10 * 60 * 1000L
 private data class CacheEntry<T>(val data: T, val timestamp: Long)
 private val releaseCache = ConcurrentHashMap<String, CacheEntry<List<GithubRelease>>>()
 private val componentCache = ConcurrentHashMap<String, CacheEntry<Map<String, List<Component>>>>()
-private val repoMetaCache = ConcurrentHashMap<String, CacheEntry<Long>>()
+private val repoMetaCache = ConcurrentHashMap<String, CacheEntry<RepoMeta>>()
+
+/** 仓库元数据：最近推送时间 + 星标数（一次 /repos 请求带回，来源卡片共用） */
+data class RepoMeta(val pushedAt: Long?, val stars: Long?)
+
+// GitHub 未认证 API 限额 60 次/小时：驱动源 35+ 个并发拉元数据会瞬间打爆限额，
+// 全部返回 null 导致更新时间不显示。用信号量限制并发为 4，配合 6h 缓存分摊配额。
+private val repoMetaSemaphore = java.util.concurrent.Semaphore(4, true)
 
 private fun <T> ConcurrentHashMap<String, CacheEntry<T>>.getValid(key: String): T? {
     val entry = this[key] ?: return null
@@ -289,30 +296,50 @@ suspend fun fetchGithubComponents(
  * github.com/{owner}/{repo}/releases/...、api.github.com/repos/{owner}/{repo}/...
  * 带 6 小时缓存，失败返回 null（UI 不显示更新时间，不阻塞加载）。
  */
-suspend fun fetchRepositoryPushedAt(manifestUrl: String): Long? =
+/**
+ * 拉取仓库元数据（pushed_at + stargazers_count），带 6h 缓存 + 4 并发信号量。
+ * 失败返回 null（UI 不显示更新时间/星标，不阻塞加载）。
+ * 支持三种 URL 形态：raw.githubusercontent.com/{owner}/{repo}/...、
+ * github.com/{owner}/{repo}/releases/...、api.github.com/repos/{owner}/{repo}/...
+ */
+suspend fun fetchRepoMeta(url: String): RepoMeta? =
     withContext(Dispatchers.IO) {
-        repoMetaCache.getValid(manifestUrl)?.let { return@withContext it }
+        repoMetaCache.getValid(url)?.let { return@withContext it }
 
-        val ownerRepo = extractOwnerRepo(manifestUrl) ?: return@withContext null
+        val ownerRepo = extractOwnerRepo(url) ?: return@withContext null
         val apiUrl = "https://api.github.com/repos/${ownerRepo.first}/${ownerRepo.second}"
         val request = Request.Builder()
             .url(apiUrl)
             .header("Accept", "application/vnd.github+json")
             .build()
+        repoMetaSemaphore.acquire()
         try {
             githubClient.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) return@withContext null
                 val obj = JSONObject(response.body?.string() ?: return@withContext null)
                 val pushed = obj.optString("pushed_at")
-                if (pushed.isBlank()) return@withContext null
-                val ts = java.time.Instant.parse(pushed).toEpochMilli()
-                repoMetaCache[manifestUrl] = CacheEntry(ts, System.currentTimeMillis())
-                ts
+                val pushedTs = if (pushed.isNotBlank()) {
+                    runCatching { java.time.Instant.parse(pushed).toEpochMilli() }.getOrNull()
+                } else null
+                val stars = obj.optLong("stargazers_count", -1L).takeIf { it >= 0 }
+                val meta = RepoMeta(pushedAt = pushedTs, stars = stars)
+                repoMetaCache[url] = CacheEntry(meta, System.currentTimeMillis())
+                meta
             }
         } catch (_: Exception) {
             null
+        } finally {
+            repoMetaSemaphore.release()
         }
     }
+
+/** 兼容旧调用：只取仓库最近推送时间 */
+suspend fun fetchRepositoryPushedAt(manifestUrl: String): Long? =
+    fetchRepoMeta(manifestUrl)?.pushedAt
+
+/** 仓库星标数（远程权威值），无数据返回 null */
+suspend fun fetchRepositoryStars(url: String): Long? =
+    fetchRepoMeta(url)?.stars
 
 /** 从清单/发布 URL 提取 owner/repo（小写化），识别不出返回 null */
 private fun extractOwnerRepo(url: String): Pair<String, String>? {
