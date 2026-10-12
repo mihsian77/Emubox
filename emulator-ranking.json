@@ -15,7 +15,8 @@
       "homepage": "https://winlator.org",
       "latest_tag": "v11.2.0",
       "latest_date": "2026-08-19",
-      "latest_body": "**v11.2 (Latest)**\r\n\r\n- Added an option to save memory on run games from Steam\r\n- Improved the presentation of rendered images\r\n- Implemented XInput extension for raw input\r\n- Implemented an option to run Winlator as foreground service (by @Juan-Antonio-Doe)\r\n- Updated Mesa Turnip (v26.2.0 from @whitebelyash branch)\r\n\r\n**v11.2 (Beta)**\r\n- Fixed gamepad input lag\r\n- Added Box64 v0.4.4 (release)\r\n- Improved Vortek:\r\n\t└─ Improved texture decoding (it was not handling mipmaps correctly)\r\n\t└─ Some improvements were added for the Xclipse GPU\r\n- Improved Gladio:\r\n\t└─ Added a better way to handle active textures\r\n\t└─ Improved the OpenGL 1.X emulation (Half-Life is now rendering correctly)\r\n\t└─ Improved ARB vertex/fragment programs (Digimon Story Cyber ​​Sleuth makes heavy use of them and is now rendering correctly)\r\n\t└─ Added fixes for shader compilation on the Xclipse GPU"
+      "latest_apk_url": "https://github.com/brunodev85/winlator/releases/download/v11.2.0/Winlator_11.2.apk",
+      "latest_body": "**v11.2 (Latest)**\n\n- Added an option to save memory on run games from Steam\n- Improved the presentation of rendered images\n- Implemented XInput extension for raw input\n- Implemented an option to run Winlator as foreground service (by @Juan-Antonio-Doe)\n- Updated Mesa Turnip (v26.2.0 from @whitebelyash branch)\n\n**v11.2 (Beta)**\n- Fixed gamepad input lag\n- Added Box64 v0.4.4 (release)\n- Improved Vortek:\n\t└─ Improved texture decoding (it was not handling mipmaps correctly)\n\t└─ Some improvements were added for the Xclipse GPU\n- Improved Gladio:\n\t└─ Added a better way to handle active textures\n\t└─ Improved the OpenGL 1.X emulation (Half-Life is now rendering correctly)\n\t└─ Improved ARB vertex/fragment programs (Digimon Story Cyber ​​Sleuth makes heavy use of them and is now rendering correctly)\n\t└─ Added fixes for shader compilation on the Xclipse GPU"
     },
     {
       "id": "azahar-emu-azahar",
@@ -29,8 +30,9 @@
       "pushed_at": "2026-10-10T13:45:51Z",
       "homepage": "https://azahar-emu.org/",
       "latest_tag": "2127.0-alpha1",
-      "latest_date": "2026-10-10",
-      "latest_body": "<h3>⚠️Important Alpha Information⚠️</h3>\r\n\r\nAs an alpha release, this build is not yet considered stable.\r\n\r\nThis prerelease is intended for users to test upcoming features, allowing the community to provide feedback before they are distributed in a stable release.\r\nUsers interested in testing bleeding-edge software are encouraged to test out this build to help us catch any issues we may have missed during development.\r\n\r\nIf you are unwilling to tolerate potential issues, it may be better to wait for the next stable release.\r\n\r\n---\r\n\r\n> [!NOTE] \r\n> To allow public testing of the new interpreter, which allows fantastic performance on iPhones all the way back to the iPhone XS with no JIT, **we plan to distribute all of our 2127.0 prereleases on RetroArch with 2-3 days of delay** as a one-off exception to our typical release scheduling.\r\n> We hope our iOS users look forward to testing out the new version and experiencing the improved performance it brings.\r\n\r\n> [!NOTE] \r\n> This release invalidates any existing generated shader cache, so performance may temporarily be impared after updating.\r\n> Performance will improve again after playing for a while.\r\n\r\n---\r\n\r\n# Azahar 2127.0-alpha1 C"
+      "latest_date": "2026-10-08",
+      "latest_apk_url": "https://github.com/azahar-emu/azahar/releases/download/2126.2/azahar-android-googleplay-2126.2.apk",
+      "latest_body": "<h3>⚠️Important Alpha Information⚠️</h3>\n\nAs an alpha release, this build is not yet considered stable.\n\nThis prerelease is intended for users to test upcoming features, allowing the community to provide feedback before they are distributed in a stable release.\nUsers interested in testing bleeding-edge software are encouraged to test out this build to help us catch any issues we may have missed during development.\n\nIf you are unwilling to tolerate potential issues, it may be better to wait for the next stable release.\n\n---\n\n> [!NOTE] \n> To allow public testing of the new interpreter, which allows fantastic performance on iPhones all the way back to the iPhone XS with no JIT, **we plan to distribute all of our 2127.0 prereleases on RetroArch with 2-3 days of delay** as a one-off exception to our typical release scheduling.\n> We hope our iOS users look forward to testing out the new version and experiencing the improved performance it brings.\n\n> [!NOTE] \n> This release invalidates any existing generated shader cache, so performance may temporarily be impared after updating.\n> Performance will improve again after playing for a while.\n\n---\n\n# Azahar 2127.0-alpha1 Changelog\n\n# License\n\n"
     },
     {
       "id": "weihuoya-citra",
@@ -45,7 +47,8 @@
       "homepage": "https://citra-emu.org",
       "latest_tag": "20251112",
       "latest_date": "2025-11-12",
-      "latest_body": "**Before:**\r\nemulator directory: \"citra-emu\"\r\n\r\n**Antutu**:\r\npackage name: com.antutu.ABenchMark\r\nThis is tricking the os thinks it's running a benchmark app, and will boost performance on some device.\r\n\r\n**Storage Access:**\r\nemulator directory: \"Android/data/org.citra.emu/files/citra-emu\"\r\nWARNING uninstall citra will remove directory, include games, dlcs, save datas.\r\n\r\ndirectory: \"citra-emu\\nand\\data\\00000000000000000000000000000000\\sysdata\\00010026\\00000000\\CEC\"\r\nDelete this directory if game could not works as before.\r\n\r\n**Try reset settings** if game does not work properly."
+      "latest_apk_url": "https://github.com/weihuoya/citra/releases/download/20251112/Citra_MMJ_20251112.apk",
+      "latest_body": "**Before:**\nemulator directory: \"citra-emu\"\n\n**Antutu**:\npackage name: com.antutu.ABenchMark\nThis is tricking the os thinks it's running a benchmark app, and will boost performance on some device.\n\n**Storage Access:**\nemulator directory: \"Android/data/org.citra.emu/files/citra-emu\"\nWARNING uninstall citra will remove directory, include games, dlcs, save datas.\n\ndirectory: \"citra-emu\\nand\\data\\00000000000000000000000000000000\\sysdata\\00010026\\00000000\\CEC\"\nDelete this directory if game could not works as before.\n\n**Try reset settings** if game does not work properly."
     },
     {
       "id": "Vita3K-Vita3K-Android",
@@ -60,7 +63,8 @@
       "homepage": null,
       "latest_tag": "v12",
       "latest_date": "2024-06-06",
-      "latest_body": "Vita3K Android release 12 Changelog (non exhaustive list):\r\n- SD card support: Allow any folder to be specified as the OS/game data folder (inspired by the PR from nurunuruslime)\r\n- Allow the overlay to be used at the same time as the touchscreen\r\n- Fix black bands appearing sometimes at the top and bottom of the application on some devices\r\n- Fix bug causing game installation to be 10x slower than expected\r\n- Fix accelerometer and gyroscope on android game consoles\r\n- Some crash fixes\r\n- Add controller opacity (dima)\r\n\r\n\r\n\r\nRebase on PC version:\r\n- Fix audio regression (bookmist)\r\n- Code cleanup, refractoring and small optimisations (bookmist, Nishinji and GermanAizek)\r\n- Improved error messages (croden)\r\n- GUI improvements (Zangetsu)\r\n- Improve depth-stencil retrieval, fix Ratchet and Clank (Macdu)\r\n- Add support for module unloading/reloading, allows FFX to be playable (Macdu)\r\n- Improve ffmpeg dependency (KhoraLee)\r\n- Improve Transfer downscale/copy, fix graphical issues in Phantasy Star Nova (Macdu)\r\n- Improve Polish localization (mavethee)"
+      "latest_apk_url": "https://github.com/Vita3K/Vita3K-Android/releases/download/v12/vita3k-android-release-12.apk",
+      "latest_body": "Vita3K Android release 12 Changelog (non exhaustive list):\n- SD card support: Allow any folder to be specified as the OS/game data folder (inspired by the PR from nurunuruslime)\n- Allow the overlay to be used at the same time as the touchscreen\n- Fix black bands appearing sometimes at the top and bottom of the application on some devices\n- Fix bug causing game installation to be 10x slower than expected\n- Fix accelerometer and gyroscope on android game consoles\n- Some crash fixes\n- Add controller opacity (dima)\n\n\n\nRebase on PC version:\n- Fix audio regression (bookmist)\n- Code cleanup, refractoring and small optimisations (bookmist, Nishinji and GermanAizek)\n- Improved error messages (croden)\n- GUI improvements (Zangetsu)\n- Improve depth-stencil retrieval, fix Ratchet and Clank (Macdu)\n- Add support for module unloading/reloading, allows FFX to be playable (Macdu)\n- Improve ffmpeg dependency (KhoraLee)\n- Improve Transfer downscale/copy, fix graphical issues in Phantasy Star Nova (Macdu)\n- Improve Polish localization (mavethee)"
     },
     {
       "id": "Trixarian-NetherSX2-patch",
@@ -75,7 +79,8 @@
       "homepage": "https://discord.gg/xRh3NnYyMa",
       "latest_tag": "2.2n",
       "latest_date": "2025-12-25",
-      "latest_body": "Merry Christmas, Happy Holidays and a Happy New Year everyone!\r\n\r\nThis update adds experimental Online Multiplayer to NetherSX2 along with the usual updates!\r\nThanks to [IamLupo](https://github.com/IamLupo) for adding it to ARMSX2, and [zakilj3](https://www.youtube.com/user/zakilj3) for discovering the same settings work with NetherSX2!\r\n\r\n[VirusTotal Scan Report](https://www.virustotal.com/gui/file/2029e30dcc1ba1ecb8d73313f18b429b40e6044c7785c52af08b948ef94b3ddf)\r\n\r\n## How to use Online Multiplayer\r\n1. Go to your App Settings --> Settings and toggle on Enable DEV9 Ethernet\r\n2. Set API to Sockets, and Device to how you want to connect online with the default being WiFi. Set this to VPN if your phone uses a VPN, and to one of the two SIM DATA options if you want to use your Mobile Data Plan instead\r\n3. That should be enough to get you online using a guide like [this](https://youtu.be/dcOnZzzcbSc?si=WOf01r0Ln5ZVQkpf&t=278) by LogicalMacrochip\r\n\r\nYou can use the [Official List of PlayStation 2 Online Games (2024)](https://docs.google.com/spreadsheets/d/15pfhL36qmC-iKr8MNjNXNLwgacG4VOmkfvwVxV5vGzo/edit?gid=0#gid=0) to figure out what games work, get their DNAS bypass codes if needed an"
+      "latest_apk_url": "https://github.com/Trixarian/NetherSX2-patch/releases/download/2.2n/NetherSX2-v2.2n-4248.apk",
+      "latest_body": "Merry Christmas, Happy Holidays and a Happy New Year everyone!\n\nThis update adds experimental Online Multiplayer to NetherSX2 along with the usual updates!\nThanks to [IamLupo](https://github.com/IamLupo) for adding it to ARMSX2, and [zakilj3](https://www.youtube.com/user/zakilj3) for discovering the same settings work with NetherSX2!\n\n[VirusTotal Scan Report](https://www.virustotal.com/gui/file/2029e30dcc1ba1ecb8d73313f18b429b40e6044c7785c52af08b948ef94b3ddf)\n\n## How to use Online Multiplayer\n1. Go to your App Settings --> Settings and toggle on Enable DEV9 Ethernet\n2. Set API to Sockets, and Device to how you want to connect online with the default being WiFi. Set this to VPN if your phone uses a VPN, and to one of the two SIM DATA options if you want to use your Mobile Data Plan instead\n3. That should be enough to get you online using a guide like [this](https://youtu.be/dcOnZzzcbSc?si=WOf01r0Ln5ZVQkpf&t=278) by LogicalMacrochip\n\nYou can use the [Official List of PlayStation 2 Online Games (2024)](https://docs.google.com/spreadsheets/d/15pfhL36qmC-iKr8MNjNXNLwgacG4VOmkfvwVxV5vGzo/edit?gid=0#gid=0) to figure out what games work, get their DNAS bypass codes if needed and which priv"
     },
     {
       "id": "SSimco-Cemu",
@@ -90,7 +95,8 @@
       "homepage": null,
       "latest_tag": "0.5",
       "latest_date": "2026-04-25",
-      "latest_body": "Experimental release 0.5\r\n\r\n- Implemented options to enable emulated USB devices & configure them"
+      "latest_apk_url": "https://github.com/SSimco/Cemu/releases/download/0.5/Cemu-0.5.apk",
+      "latest_body": "Experimental release 0.5\n\n- Implemented options to enable emulated USB devices & configure them"
     },
     {
       "id": "StevenMXZ-Winlator-Ludashi",
@@ -105,7 +111,8 @@
       "homepage": "https://winlator.org",
       "latest_tag": "v4.1",
       "latest_date": "2026-09-13",
-      "latest_body": "What's new:\r\n\r\n\\- Fixed some games showing a black screen due to incorrect surface format. (like RDR2)\r\n\\- Updated DisplayX.\r\n\\- Now works in container mode.\r\n\\- Added two new options: submit every buffer and precise presentation.\r\n\\- added D7VK\r\n\\- Fixed X11 bypass not working on DX12.\r\n\\- improved Freedreno compatibility \r\n\\- Various bug fixes, improved stability, and some UI changes based on feedback.\r\n\r\n📌 update requires reinstallation"
+      "latest_apk_url": "https://github.com/StevenMXZ/Winlator-Ludashi/releases/download/v4.1/ludashi-build.apk",
+      "latest_body": "What's new:\n\n\\- Fixed some games showing a black screen due to incorrect surface format. (like RDR2)\n\\- Updated DisplayX.\n\\- Now works in container mode.\n\\- Added two new options: submit every buffer and precise presentation.\n\\- added D7VK\n\\- Fixed X11 bypass not working on DX12.\n\\- improved Freedreno compatibility \n\\- Various bug fixes, improved stability, and some UI changes based on feedback.\n\n📌 update requires reinstallation"
     },
     {
       "id": "Trixarian-NetherSX2-classic",
@@ -120,7 +127,8 @@
       "homepage": "https://discord.gg/xRh3NnYyMa",
       "latest_tag": "2.2n",
       "latest_date": "2025-12-25",
-      "latest_body": "Merry Christmas, Happy Holidays and a Happy New Year everyone!\r\n\r\nThis update adds experimental Online Multiplayer to NetherSX2 along with the usual updates!\r\nThanks to [IamLupo](https://github.com/IamLupo) for adding it to ARMSX2, and [zakilj3](https://www.youtube.com/user/zakilj3) for discovering the same settings work with NetherSX2!\r\n\r\n[VirusTotal Scan Report](https://www.virustotal.com/gui/file/8b502b31ce797d5a162bc6b9300b5f02351b0b6b290b8dc1390b8dfb826673ab)\r\n\r\n## How to use Online Multiplayer\r\n1. Go to your App Settings --> Settings and toggle on Enable DEV9 Ethernet\r\n2. Set API to Sockets, and Device to how you want to connect online with the default being WiFi. Set this to VPN if your phone uses a VPN, and to one of the two SIM DATA options if you want to use your Mobile Data Plan instead\r\n3. That should be enough to get you online using a guide like [this](https://youtu.be/dcOnZzzcbSc?si=WOf01r0Ln5ZVQkpf&t=278) by LogicalMacrochip\r\n\r\nYou can use the [Official List of PlayStation 2 Online Games (2024)](https://docs.google.com/spreadsheets/d/15pfhL36qmC-iKr8MNjNXNLwgacG4VOmkfvwVxV5vGzo/edit?gid=0#gid=0) to figure out what games work, get their DNAS bypass codes if needed an"
+      "latest_apk_url": "https://github.com/Trixarian/NetherSX2-classic/releases/download/2.2n/NetherSX2-v2.2n-3668.apk",
+      "latest_body": "Merry Christmas, Happy Holidays and a Happy New Year everyone!\n\nThis update adds experimental Online Multiplayer to NetherSX2 along with the usual updates!\nThanks to [IamLupo](https://github.com/IamLupo) for adding it to ARMSX2, and [zakilj3](https://www.youtube.com/user/zakilj3) for discovering the same settings work with NetherSX2!\n\n[VirusTotal Scan Report](https://www.virustotal.com/gui/file/8b502b31ce797d5a162bc6b9300b5f02351b0b6b290b8dc1390b8dfb826673ab)\n\n## How to use Online Multiplayer\n1. Go to your App Settings --> Settings and toggle on Enable DEV9 Ethernet\n2. Set API to Sockets, and Device to how you want to connect online with the default being WiFi. Set this to VPN if your phone uses a VPN, and to one of the two SIM DATA options if you want to use your Mobile Data Plan instead\n3. That should be enough to get you online using a guide like [this](https://youtu.be/dcOnZzzcbSc?si=WOf01r0Ln5ZVQkpf&t=278) by LogicalMacrochip\n\nYou can use the [Official List of PlayStation 2 Online Games (2024)](https://docs.google.com/spreadsheets/d/15pfhL36qmC-iKr8MNjNXNLwgacG4VOmkfvwVxV5vGzo/edit?gid=0#gid=0) to figure out what games work, get their DNAS bypass codes if needed and which priv"
     },
     {
       "id": "Producdevity-gamehub-lite",
@@ -135,7 +143,8 @@
       "homepage": "https://www.emuready.com/",
       "latest_tag": "v5.1.8",
       "latest_date": "2026-07-02",
-      "latest_body": "## Security: Steam token redaction in logs\r\n\r\nGameHub Lite 5.1.8 fixes a logging issue where Steam authentication-related values could appear in diagnostic logs. \r\nIn some cases, logs could include fields such as `steamToken`, `refreshToken`, or `accessToken` from Steam login/launch flows.\r\n\r\n**Publicly posted logs containing these fields should be deleted or redacted.**\r\n\r\n### IMPORTANT\r\n\r\nThis should go without saying but If you find any security issues, please reach out **PRIVATELY**. \r\nI have not checked if this issue is still present in recent GameHub versions, already ruined my one day off I was spending with my family by the person who reported this publicly and I do not plan on spending any more time on this.\r\n\r\n### Changelog\r\n\r\nThe fix adds centralized log redaction for Steam/auth token fields, Steam QR login URLs, JWT-like token strings, and launch command token arguments before logs are written. This covers the app loggers, JavaSteam logging, and the PC launch-log file writer.\r\n\r\nThis release also pins local patch builds to `apktool 2.12.1`\r\n\r\n**Full Changelog**: https://github.com/Producdevity/gamehub-lite/compare/v5.1.7...v5.1.8"
+      "latest_apk_url": "https://github.com/Producdevity/gamehub-lite/releases/download/v5.1.8/GameHub-Lite-v5.1.8-alt-antutu.apk",
+      "latest_body": "## Security: Steam token redaction in logs\n\nGameHub Lite 5.1.8 fixes a logging issue where Steam authentication-related values could appear in diagnostic logs. \nIn some cases, logs could include fields such as `steamToken`, `refreshToken`, or `accessToken` from Steam login/launch flows.\n\n**Publicly posted logs containing these fields should be deleted or redacted.**\n\n### IMPORTANT\n\nThis should go without saying but If you find any security issues, please reach out **PRIVATELY**. \nI have not checked if this issue is still present in recent GameHub versions, already ruined my one day off I was spending with my family by the person who reported this publicly and I do not plan on spending any more time on this.\n\n### Changelog\n\nThe fix adds centralized log redaction for Steam/auth token fields, Steam QR login URLs, JWT-like token strings, and launch command token arguments before logs are written. This covers the app loggers, JavaSteam logging, and the PC launch-log file writer.\n\nThis release also pins local patch builds to `apktool 2.12.1`\n\n**Full Changelog**: https://github.com/Producdevity/gamehub-lite/compare/v5.1.7...v5.1.8"
     },
     {
       "id": "longjunyu2-winlator",
@@ -149,8 +158,9 @@
       "pushed_at": "2026-01-05T23:43:15Z",
       "homepage": "https://winlator.org",
       "latest_tag": "v7.1.5",
-      "latest_date": "2025-01-25",
-      "latest_body": "## Warning! This APK is signed by a different key. This means you will have to uninstall the 7.1.3 version first (which will delete all your data!)\r\n\r\n## What's New\r\n#### Added\r\n- Alsa sound driver updated #183\r\n- Multikey touch button binding #197\r\n- Touch haptic when virtual keyboard or controller is enabled #62\r\n  \r\n#### Fixed\r\n- Invisible mouse cursor in some games #192\r\n- Some 32 bit games not working properly #173\r\n  \r\n####  What's new about OpenXR Support?\r\n- Fullscreen is forced only in immersive VR mode\r\n- Set Alsa as default audio driver"
+      "latest_date": "2024-08-29",
+      "latest_apk_url": "https://github.com/longjunyu2/winlator/releases/download/v7.1.3/app-release.apk",
+      "latest_body": "## Warning! This APK is signed by a different key. This means you will have to uninstall the 7.1.3 version first (which will delete all your data!)\n\n## What's New\n#### Added\n- Alsa sound driver updated #183\n- Multikey touch button binding #197\n- Touch haptic when virtual keyboard or controller is enabled #62\n  \n#### Fixed\n- Invisible mouse cursor in some games #192\n- Some 32 bit games not working properly #173\n  \n####  What's new about OpenXR Support?\n- Fullscreen is forced only in immersive VR mode\n- Set Alsa as default audio driver"
     },
     {
       "id": "ARMSX2-ARMSX2",
@@ -165,7 +175,8 @@
       "homepage": "https://armsx2.net/",
       "latest_tag": "2.8.3",
       "latest_date": "2026-10-11",
-      "latest_body": "# ARMSX2 2.8.3\r\n\r\nWhat's new: \r\n\r\n## MaliSX2 for Mali GPUs\r\n\r\nMaliSX2 is a Vulkan driver for Mali GPUs that @bmdhacks built for ARMSX2. In 2.8.2 it was offered only on the Mali-G615 and G715, under its old name, libmali. Now it also covers the Mali-G57, G68, G77 and G78 (including the G78AE), which a lot of handhelds use, the Anbernic RG 476H among them.\r\n\r\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/884734d3-d2b8-4651-a87c-1149d34c2c9b\" />\r\n\r\nWhat it does for a game: on @DIB1998 Mali G57, Ace Combat 4 and Ace Combat 5 were unplayable on the stock driver. With ARMSX2's driver MaliSX2 0.1.4 both run at full speed, as well as many other games that previously did not.\r\n\r\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/80fd3194-a831-4603-890f-e7e5fa296d0d\" />\r\n\r\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/543d4a85-83ec-4a17-b71c-7287369441b0\" />\r\n\r\nOn those GPUs:\r\n- The GPU driver list (Renderer settings, or the in-game menu) offers MaliSX2 to download.\r\n- Auto now picks Vulkan.\r\n- If Vulkan ends up on Arm's driver instead, a notice tells you to ge"
+      "latest_apk_url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.8.3/ARMSX2-2.8.3-a11-armv8.2-sdk30.apk",
+      "latest_body": "# ARMSX2 2.8.3\n\nWhat's new: \n\n## MaliSX2 for Mali GPUs\n\nMaliSX2 is a Vulkan driver for Mali GPUs that @bmdhacks built for ARMSX2. In 2.8.2 it was offered only on the Mali-G615 and G715, under its old name, libmali. Now it also covers the Mali-G57, G68, G77 and G78 (including the G78AE), which a lot of handhelds use, the Anbernic RG 476H among them.\n\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/884734d3-d2b8-4651-a87c-1149d34c2c9b\" />\n\nWhat it does for a game: on @DIB1998 Mali G57, Ace Combat 4 and Ace Combat 5 were unplayable on the stock driver. With ARMSX2's driver MaliSX2 0.1.4 both run at full speed, as well as many other games that previously did not.\n\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/80fd3194-a831-4603-890f-e7e5fa296d0d\" />\n\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/543d4a85-83ec-4a17-b71c-7287369441b0\" />\n\nOn those GPUs:\n- The GPU driver list (Renderer settings, or the in-game menu) offers MaliSX2 to download.\n- Auto now picks Vulkan.\n- If Vulkan ends up on Arm's driver instead, a notice tells you to get MaliSX2.\n- With M"
     },
     {
       "id": "flyinghead-flycast",
@@ -180,7 +191,8 @@
       "homepage": null,
       "latest_tag": "v2.7",
       "latest_date": "2026-08-19",
-      "latest_body": "## New features\r\n* Frame rate detection and pacing\r\n* Localization (fr, hu, jp, pt_BR, sv)\r\n* Multiscreen support for Airline Pilot, Sega Strike Fighter and Derby Owners Club\r\n* Improved modem emulation\r\n* improved DreamPicoPort and DreamPotato support by @RikkiGibson, @Tails86 and @nexus382\r\n* Android: Google Auto Backup support for VMU saves and non-volatile memory\r\n\r\n## Fixed Games\r\n* Airline Pilot (Naomi, multiscreen)\r\n* Cyber Troopers Virtual-On: Oratorio Tangram (JP, online features)\r\n* Derby Owners Club (new)\r\n* Dinosaur King (ZH, new)\r\n* DreamParaPara by @dakrk (new)\r\n* F355 Challenge (JP, online features)\r\n* Fish Life (new)\r\n* Love & Berry 3 (ZH, new)\r\n* NFL 2K1, NFL 2K2, NBA 2K1, NBA 2K2 (freeze)\r\n* Power Smash (online lag)\r\n* Rune Jade (online features)\r\n* Samba de Amigo (Naomi, inputs)\r\n* Sega Strike Fighter (Naomi, multiscreen)\r\n\r\n## New Contributors\r\n* @Windsurf7 made their first contribution in https://github.com/flyinghead/flycast/pull/2229\r\n* @Kyuyrii made their first contribution in https://github.com/flyinghead/flycast/pull/2236\r\n* @eadmaster made their first contribution in https://github.com/flyinghead/flycast/pull/2252\r\n* @PLCodingStuff made their first contri"
+      "latest_apk_url": "https://github.com/flyinghead/flycast/releases/download/v2.7/flycast-2.7.apk",
+      "latest_body": "## New features\n* Frame rate detection and pacing\n* Localization (fr, hu, jp, pt_BR, sv)\n* Multiscreen support for Airline Pilot, Sega Strike Fighter and Derby Owners Club\n* Improved modem emulation\n* improved DreamPicoPort and DreamPotato support by @RikkiGibson, @Tails86 and @nexus382\n* Android: Google Auto Backup support for VMU saves and non-volatile memory\n\n## Fixed Games\n* Airline Pilot (Naomi, multiscreen)\n* Cyber Troopers Virtual-On: Oratorio Tangram (JP, online features)\n* Derby Owners Club (new)\n* Dinosaur King (ZH, new)\n* DreamParaPara by @dakrk (new)\n* F355 Challenge (JP, online features)\n* Fish Life (new)\n* Love & Berry 3 (ZH, new)\n* NFL 2K1, NFL 2K2, NBA 2K1, NBA 2K2 (freeze)\n* Power Smash (online lag)\n* Rune Jade (online features)\n* Samba de Amigo (Naomi, inputs)\n* Sega Strike Fighter (Naomi, multiscreen)\n\n## New Contributors\n* @Windsurf7 made their first contribution in https://github.com/flyinghead/flycast/pull/2229\n* @Kyuyrii made their first contribution in https://github.com/flyinghead/flycast/pull/2236\n* @eadmaster made their first contribution in https://github.com/flyinghead/flycast/pull/2252\n* @PLCodingStuff made their first contribution in https://github.co"
     },
     {
       "id": "RPCSX-rpcsx-ui-android",
@@ -195,6 +207,7 @@
       "homepage": null,
       "latest_tag": "v20250425",
       "latest_date": "2025-04-25",
+      "latest_apk_url": "https://github.com/RPCSX/rpcsx-ui-android/releases/download/v20250425/rpcsx-release.apk",
       "latest_body": "**Full Changelog**: https://github.com/RPCSX/rpcsx-ui-android/compare/v20250417...v20250425"
     },
     {
@@ -210,7 +223,8 @@
       "homepage": "https://winlator.org",
       "latest_tag": "cmod_v13.1",
       "latest_date": "2025-08-07",
-      "latest_body": "_Minor update v13.1.1 fixed custom icons, default renderer, and warning prompt handling on new installs_ \r\n\r\n------------------------------\r\n\r\n-   **`evshim` Rewrite:** The entire controller shim (`libevshim.so`) has been rewritten, **completely eliminating the use of shared memory (`mmap`)**, resulting in a massive reduction in CPU overhead and a significant performance boost, especially on lower-end devices. Box64 3.2 and 3.6 are now compatible, and have been restored.\r\n\r\n-   **ALSA-Reflector Improved** The pacer's ring buffer and reconnection logic have been refined, expect better performance and reliability.\r\n\r\n-   **Universal CPU Overhead Reduction:** I've gone through the code to find and eliminate performance bottlenecks, once again, big thanks to @Pipetto-crypto as always for the guidance and his improvements to the Graphics Wrapper. \r\n\r\n### ✨ New Feature: VkBasalt Integration\r\n\r\n-   **Per-Shortcut Sharpening & Effects:** Thanks to @Pipetto-crypto You can now enable VkBasalt on a per-shortcut basis to apply CAS and DLS to your games.\r\n\r\n### 🐞 Stability & Bug Fixes:\r\n\r\nThis update includes a huge number of fixes for a smoother experience.\r\n\r\n-   **Corrupted Shortcut Crash Fi"
+      "latest_apk_url": "https://github.com/coffincolors/winlator/releases/download/cmod_v13.1/Winlator-Cmod-v13.1.1.apk",
+      "latest_body": "_Minor update v13.1.1 fixed custom icons, default renderer, and warning prompt handling on new installs_ \n\n------------------------------\n\n-   **`evshim` Rewrite:** The entire controller shim (`libevshim.so`) has been rewritten, **completely eliminating the use of shared memory (`mmap`)**, resulting in a massive reduction in CPU overhead and a significant performance boost, especially on lower-end devices. Box64 3.2 and 3.6 are now compatible, and have been restored.\n\n-   **ALSA-Reflector Improved** The pacer's ring buffer and reconnection logic have been refined, expect better performance and reliability.\n\n-   **Universal CPU Overhead Reduction:** I've gone through the code to find and eliminate performance bottlenecks, once again, big thanks to @Pipetto-crypto as always for the guidance and his improvements to the Graphics Wrapper. \n\n### ✨ New Feature: VkBasalt Integration\n\n-   **Per-Shortcut Sharpening & Effects:** Thanks to @Pipetto-crypto You can now enable VkBasalt on a per-shortcut basis to apply CAS and DLS to your games.\n\n### 🐞 Stability & Bug Fixes:\n\nThis update includes a huge number of fixes for a smoother experience.\n\n-   **Corrupted Shortcut Crash Fixed:** Implemented"
     },
     {
       "id": "afeimod-winlator-mod",
@@ -225,7 +239,8 @@
       "homepage": "https://winlator.org",
       "latest_tag": "10.1hotfix-Amod3fix2",
       "latest_date": "2025-12-02",
-      "latest_body": "1-修复部分游戏mod失效，比如死或生5，上古卷轴五等\r\n2-提供wine-10.15.whp可以在额外内容里安装，这个wine可以播放一些视频白屏有声音的游戏\r\n3-其他更新见fix1\r\n"
+      "latest_apk_url": "https://github.com/afeimod/winlator-mod/releases/download/10.1hotfix-Amod3fix2/Winlator10.1-Amod3fix2.apk",
+      "latest_body": "1-修复部分游戏mod失效，比如死或生5，上古卷轴五等\n2-提供wine-10.15.whp可以在额外内容里安装，这个wine可以播放一些视频白屏有声音的游戏\n3-其他更新见fix1\n"
     },
     {
       "id": "Medard22-Dolphin-MMJR2-VBI",
@@ -240,7 +255,8 @@
       "homepage": null,
       "latest_tag": "U24.07.02-2407",
       "latest_date": "2025-07-20",
-      "latest_body": "Notable changes from U24.03.22-21259\r\n\r\n- Code refactoring and minor fixes\r\n- Fixed a panic alert for Def Jam: Fight for New York and Fifa Street\r\n- Numerous small optimizations to JitARM64\r\n- Small optimizations to DSP HLE audio decoding\r\n- Fixed stuttering from JIT Cache clear - mostly notable in Shadow the Hedgehog\r\n- Set OSD message color to yellow in default AMOLED theme\r\n- Updated Vulkan Memory Allocator and Vulkan Headers\r\n- Updated and optimized app icons\r\n\r\nMissing features - these features from Dolphin Official are not implemented\r\n\r\n- Android Input Overhaul and subsequent changes to Input and TAS handling\r\n- Custom GPU driver support\r\n- Skylanders portal and Infinity base support\r\n- Gamma correction\r\n\r\nThis codebase is based on the Official Dolphin dev build 2407-1 (Jul 2, 2024). For more information about what has changed check the PR history. \r\n\r\n**General information**\r\n- When I started this project, my only goal was to add the VBI Skip hack to MMJR2. At the time, I had little to no coding experience and knew nothing about Git, GitHub, or Android Studio. Looking back to 2023, I never imagined I’d come this far.\r\n- Fast forward almost a year and a half later—with over "
+      "latest_apk_url": "https://github.com/Medard22/Dolphin-MMJR2-VBI/releases/download/U24.07.02-2407/Dolphin.MMJR2-VBI-U24.07.02-2407.apk",
+      "latest_body": "Notable changes from U24.03.22-21259\n\n- Code refactoring and minor fixes\n- Fixed a panic alert for Def Jam: Fight for New York and Fifa Street\n- Numerous small optimizations to JitARM64\n- Small optimizations to DSP HLE audio decoding\n- Fixed stuttering from JIT Cache clear - mostly notable in Shadow the Hedgehog\n- Set OSD message color to yellow in default AMOLED theme\n- Updated Vulkan Memory Allocator and Vulkan Headers\n- Updated and optimized app icons\n\nMissing features - these features from Dolphin Official are not implemented\n\n- Android Input Overhaul and subsequent changes to Input and TAS handling\n- Custom GPU driver support\n- Skylanders portal and Infinity base support\n- Gamma correction\n\nThis codebase is based on the Official Dolphin dev build 2407-1 (Jul 2, 2024). For more information about what has changed check the PR history. \n\n**General information**\n- When I started this project, my only goal was to add the VBI Skip hack to MMJR2. At the time, I had little to no coding experience and knew nothing about Git, GitHub, or Android Studio. Looking back to 2023, I never imagined I’d come this far.\n- Fast forward almost a year and a half later—with over 1,100 pull requests—I’"
     },
     {
       "id": "xodiosx-XoDos",
@@ -254,8 +270,9 @@
       "pushed_at": "2026-05-04T03:29:50Z",
       "homepage": null,
       "latest_tag": "v6.0.0+c050ebd",
-      "latest_date": "2025-11-09",
-      "latest_body": "**XoDos-6.0.0.r4 APKs**\r\n💝 Install over the old APK to UPDATE \r\n\r\n🎆Happy holidays 🎊\r\nThis going to be the last update for the development would be paused until further notice thanks for everyone support this project was a blessing, because All those who Loved and support it till today,, and maybe if google Changed it's 2026 policy against developers we can see more and more awesome projects from GitHub and other development places to improve android community and make it great again,,,♥️\r\n \r\n✅Fixed shortcuts manger to delete shortcuts\r\n✅ Removed PIP mode (picture in picture) it's crashing for some android systems\r\n✅Changed xodos system installing as optional \r\n✅Fixed gamepad support and key bindings\r\n\r\n## Note :⚠️\r\nTo use shortcuts manger with other emulators like mobox\r\nInstall the necessary packages for it to work probably,,\r\n```\r\npkg install icoutils imagemagick -y\r\n```\r\n\r\n\r\n**Full Changelog**: https://github.com/xodiosx/XoDos/compare/v6.0.0+391a1a5...v6.0.0+c050ebd"
+      "latest_date": "2025-10-28",
+      "latest_apk_url": "https://github.com/xodiosx/XoDos/releases/download/v6.0.0/XoDos-6.0.0-full_arm64-v8a.apk",
+      "latest_body": "**XoDos-6.0.0.r4 APKs**\n💝 Install over the old APK to UPDATE \n\n🎆Happy holidays 🎊\nThis going to be the last update for the development would be paused until further notice thanks for everyone support this project was a blessing, because All those who Loved and support it till today,, and maybe if google Changed it's 2026 policy against developers we can see more and more awesome projects from GitHub and other development places to improve android community and make it great again,,,♥️\n \n✅Fixed shortcuts manger to delete shortcuts\n✅ Removed PIP mode (picture in picture) it's crashing for some android systems\n✅Changed xodos system installing as optional \n✅Fixed gamepad support and key bindings\n\n## Note :⚠️\nTo use shortcuts manger with other emulators like mobox\nInstall the necessary packages for it to work probably,,\n```\npkg install icoutils imagemagick -y\n```\n\n\n**Full Changelog**: https://github.com/xodiosx/XoDos/compare/v6.0.0+391a1a5...v6.0.0+c050ebd"
     },
     {
       "id": "aenu1-aps3e",
@@ -270,6 +287,7 @@
       "homepage": "https://aenu.cc/aps3e",
       "latest_tag": "2.43",
       "latest_date": "2026-10-05",
+      "latest_apk_url": "https://github.com/aenu1/aps3e/releases/download/2.43/2.43.apk",
       "latest_body": ""
     },
     {
@@ -285,7 +303,8 @@
       "homepage": "https://winlator.org",
       "latest_tag": "bionic-mali-1.1",
       "latest_date": "2026-07-09",
-      "latest_body": "Winlator Mali Bionic v1.1\r\n\r\n🚀 New Features\r\n\r\n- Added Fake HDR.\r\n- Added a Universal FPS Limiter.\r\n- Added a Sharpness option.\r\n- Added GTA V Optimization toggle in Shortcut Settings.\r\n- Added DXVK Config toggle with built-in pre-made configuration presets.\r\n- Automatically generates a dxvk.conf file for each container based on the selected preset.\r\n- Added new DXVK versions.\r\n- Added the new GameNative Vulkan Wrapper.\r\n- Added new Box64 and FEX presets.\r\n\r\n---\r\n\r\n🎮 Unreal Engine 3 Preset\r\n\r\n- Added a dedicated Unreal Engine 3 preset.\r\n- Tested with X-Men Origins: Wolverine for improved compatibility and performance.\r\n\r\n---\r\n\r\n⚙️ Hybrid x86 FEXCore\r\n\r\n- Added a custom Hybrid x86 FEXCore.\r\n\r\nWhat does it do?\r\n\r\n- Improves compatibility while maintaining high performance.\r\n- Fixes physics issues in supported games that normally require x86 Reduced Precision to be completely disabled.\r\n\r\nWhy is it better?\r\n\r\nNormally, disabling x86 Reduced Precision forces software emulation for all x86 code, which can significantly reduce performance.\r\n\r\nHybrid x86 only uses software emulation where it is actually needed (such as physics calculations), while allowing the rest of the game to run nati"
+      "latest_apk_url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.1/Winlator-Mali-1.1-Antutu.apk",
+      "latest_body": "Winlator Mali Bionic v1.1\n\n🚀 New Features\n\n- Added Fake HDR.\n- Added a Universal FPS Limiter.\n- Added a Sharpness option.\n- Added GTA V Optimization toggle in Shortcut Settings.\n- Added DXVK Config toggle with built-in pre-made configuration presets.\n- Automatically generates a dxvk.conf file for each container based on the selected preset.\n- Added new DXVK versions.\n- Added the new GameNative Vulkan Wrapper.\n- Added new Box64 and FEX presets.\n\n---\n\n🎮 Unreal Engine 3 Preset\n\n- Added a dedicated Unreal Engine 3 preset.\n- Tested with X-Men Origins: Wolverine for improved compatibility and performance.\n\n---\n\n⚙️ Hybrid x86 FEXCore\n\n- Added a custom Hybrid x86 FEXCore.\n\nWhat does it do?\n\n- Improves compatibility while maintaining high performance.\n- Fixes physics issues in supported games that normally require x86 Reduced Precision to be completely disabled.\n\nWhy is it better?\n\nNormally, disabling x86 Reduced Precision forces software emulation for all x86 code, which can significantly reduce performance.\n\nHybrid x86 only uses software emulation where it is actually needed (such as physics calculations), while allowing the rest of the game to run natively for much better performance.\n\nT"
     },
     {
       "id": "HorizonEmuTeam-Horizon-Emu",
@@ -300,6 +319,7 @@
       "homepage": null,
       "latest_tag": "v4",
       "latest_date": "2025-02-28",
+      "latest_apk_url": "https://github.com/HorizonEmuTeam/Horizon-Emu/releases/download/v4/HorizonEmu4.NotConnectedFix.apk",
       "latest_body": "After minor changes like Box64, Wine (all have almost the same performance), DXVK and Turnip and me not having time to do anything with this project, it's finally getting a \"Not Connected\" fix related to the usage of /tmp directory on some devices by the termux-x11 library in the app. Should work on Android 15 with this fix as well, people already reported it working"
     },
     {
@@ -315,6 +335,7 @@
       "homepage": null,
       "latest_tag": "v3.8.1",
       "latest_date": "2026-09-12",
+      "latest_apk_url": "https://github.com/The412Banner/BannerHub/releases/download/v3.8.1/BannerHub-v3.8.1-alt-AnTuTu.apk",
       "latest_body": "> [!WARNING]\n> **Only install official stable releases** (like this one). Do NOT install pre-releases or raw CI artifacts — pre-release builds use a different package name (`com.tencent.ig`) and cannot be upgraded to stable without uninstalling first.\n\n> [!IMPORTANT]\n> **Microphone permission required for Voice Chat.** When you activate voice chat (dashboard → Game Configs → Voice Chat), BannerHub will prompt for the **Microphone** permission. You must allow it for in-game calls to work — without it the call falls back to opening in your browser.\n\n> [!IMPORTANT]\n> **Notification permission required.** BannerHub will prompt for the **Post Notifications** permission when you start your first Epic, GOG, or Amazon download. You must allow it to receive download progress and completion notifications.\n\n> [!IMPORTANT]\n> **Files access required for SD card storage.** To save games to your SD card, BannerHub must be granted the **Files and Media** permission (Android Settings → Apps → BannerHub → Permissions → Files and media → Allow management of all files). Without it the SD card toggle has no effect.\n\n## 🛠️ Games work on the new GameHub firmware (1.4.8 / 1.4.9)\n\nWith the **GameHub** API "
     },
     {
@@ -330,7 +351,8 @@
       "homepage": "https://winlator.org",
       "latest_tag": "v10.2",
       "latest_date": "2025-03-03",
-      "latest_body": "[![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)](https://github.com/winebox64/winlator/releases)\r\n\r\n\r\n<p align=\"left\">\r\n<img  src=\"https://img.shields.io/badge/Winlator%2010.2-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" /> \r\n</p>\r\n\r\n# Released for personal use\r\n\r\n### Winlator 10.2 (beta)\r\n- Now smaller, lighter, and faster! Save storage with optimized app packaged in 130MB and installed in just 1.3GB.\r\n- Updated latest DXVK Async (v2.6.1), and **DXVK ULL (v2.5.3.94)** focus on ultra low latency ~8ms at 60 FPS, ~4ms at 120 FPS, with slightly lower fps (small performance impact), Improves input responsiveness on NFS: Most Wanted 2012.\r\n![lv_0_20250323083625](https://github.com/user-attachments/assets/a0aab4ec-0637-4cd2-a171-8ad5a76d91cb)\r\n**Definition:**\r\n*What is ULL? Ultra-low latency refers to an extremely short delay or lag between a user's input and the system's response. It's measured in milliseconds (ms) or even nanoseconds (ns).*\r\n\r\n| *Input Latency* | *Gaming Experience* | *Suitability* |\r\n| --- | --- | --- |\r\n| 0-30 ms | Excellent | Competitive Gaming |\r\n| 30-50 ms | Good | Casual Gaming |\r\n| 50-100 ms | Fair |"
+      "latest_apk_url": "https://github.com/winebox64/winlator/releases/download/v10.2/winlator.apk",
+      "latest_body": "[![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)](https://github.com/winebox64/winlator/releases)\n\n\n<p align=\"left\">\n<img  src=\"https://img.shields.io/badge/Winlator%2010.2-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" /> \n</p>\n\n# Released for personal use\n\n### Winlator 10.2 (beta)\n- Now smaller, lighter, and faster! Save storage with optimized app packaged in 130MB and installed in just 1.3GB.\n- Updated latest DXVK Async (v2.6.1), and **DXVK ULL (v2.5.3.94)** focus on ultra low latency ~8ms at 60 FPS, ~4ms at 120 FPS, with slightly lower fps (small performance impact), Improves input responsiveness on NFS: Most Wanted 2012.\n![lv_0_20250323083625](https://github.com/user-attachments/assets/a0aab4ec-0637-4cd2-a171-8ad5a76d91cb)\n**Definition:**\n*What is ULL? Ultra-low latency refers to an extremely short delay or lag between a user's input and the system's response. It's measured in milliseconds (ms) or even nanoseconds (ns).*\n\n| *Input Latency* | *Gaming Experience* | *Suitability* |\n| --- | --- | --- |\n| 0-30 ms | Excellent | Competitive Gaming |\n| 30-50 ms | Good | Casual Gaming |\n| 50-100 ms | Fair | Non-Competitive Pla"
     },
     {
       "id": "Droid-Deck-DroidDeck",
@@ -345,6 +367,7 @@
       "homepage": null,
       "latest_tag": "0.3.2",
       "latest_date": "2026-10-08",
+      "latest_apk_url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-antutu.apk",
       "latest_body": "\n### Features\n\n- Added **Keep downloads running** toggle, so Steam downloads can continue when Android sleeps. (@jmarti326, @xXJSONDeruloXx, [#335](https://github.com/Droid-Deck/DroidDeck/pull/335))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.2/docs/releases/media/0.3.2/keep-downloads-running.gif\" width=\"50%\" alt=\"Closing the handheld mid-download and opening it again: Steam's download keeps going while asleep and finishes with the lid shut\">\n\n- Added **Native Steam sleep** with dynamic cloud save and wake movie support. (@xXJSONDeruloXx, [#291](https://github.com/Droid-Deck/DroidDeck/pull/291))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.2/docs/releases/media/0.3.2/native-steam-sleep.gif\" width=\"50%\" alt=\"Octopath Traveler II on the title screen, the device going to sleep, then waking to Steam's wake movie and landing back in the game\">\n\n- Added **Adreno 6xx support**, including Adreno 650 (eg: Retroid Pocket 5). (@unbelievableflavour, @jmarti326, [#320](https://github.com/Droid-Deck/DroidDeck/pull/320), [#326](https://github.com/Droid-Deck/DroidDeck/pull/326))\n- SD cards and external drives can now be used as full **Steam li"
     },
     {
@@ -360,6 +383,7 @@
       "homepage": null,
       "latest_tag": "v1.0.2-631",
       "latest_date": "2026-09-27",
+      "latest_apk_url": "https://github.com/The412Banner/bannerhub-revanced/releases/download/v1.0.2-631/BannerHub-V6-1.0.2-631-Patched-alt-AnTuTu.apk",
       "latest_body": "## BannerHub v6 1.0.2-631\n\n> ⚠️ **Read before installing — USE AT YOUR OWN RISK.** BannerHub v6 is a **separate project** from BannerHub 3.7.x and BannerHub Lite (own package names, keystore, and backend) — they do **not** update over one another, and v6 is a **work in progress, barely tested**, with different game compatibility. Full details below. ⤵\n\n<details>\n<summary><strong>⚠️ Important — separate projects &amp; compatibility (click to expand)</strong></summary>\n\n**BannerHub v6 does NOT replace BannerHub 3.7.x or BannerHub Lite — they are SEPARATE projects.**\n\n- **BannerHub** 3.7.x — built from the GameHub 5.3.5 ReVanced project by **PlayDay**.\n- **BannerHub Lite** — built from GameHub Lite 5.1.4 by **Producdevity**.\n- **BannerHub v6** *(this repo)* — built from XiaoJi GameHub 6.0.x on a brand-new pipeline.\n\n**None of the three are to be updated over by any of the others.** Each ships with its own package names, its own keystore, and its own component / Steam-client backend — Android won't accept an in-place update between them, and forcing one will leave you with a broken install. Uninstall first, then install the new project if you want to switch.\n\nKeep in mind **BannerHub v"
     }
   ]

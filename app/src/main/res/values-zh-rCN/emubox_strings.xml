@@ -134,6 +134,7 @@
     <string name="emulator_release_url">打开 GitHub Release</string>
     <string name="emulator_community_rank">社区排行数据（每日自动更新）</string>
 
+    <string name="emulator_summary">共 %1$d 个模拟器（官方 %2$d · 社区 %3$d），%4$d 个可直接下载</string>
     <string name="emulator_latest">最新版本</string>
     <string name="emulator_tag_continuous">Continuous 构建</string>
     <string name="emulator_tag_preview">Preview 构建</string>

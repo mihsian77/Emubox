@@ -47,11 +47,33 @@ GROUP_MAP = {
 # 保留条目上限（下载量排序，控制内置体积）
 LIMIT = 24
 
+# GitHub API 未认证限额 60/h；CI 内用 GITHUB_TOKEN 提高配额
+GH_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+
 
 def fetch(url: str, timeout: int = 30):
     req = urllib.request.Request(url, headers={"User-Agent": "emubox-ci/1.0"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.load(r)
+
+
+def latest_apk(repo: str):
+    """取仓库最新 release 中第一个 .apk 资产的直链（无则返回空）。"""
+    if not repo or "/" not in repo:
+        return "", ""
+    api = f"https://api.github.com/repos/{repo}/releases/latest"
+    req = urllib.request.Request(api, headers={"User-Agent": "emubox-ci/1.0"})
+    if GH_TOKEN:
+        req.add_header("Authorization", f"Bearer {GH_TOKEN}")
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            d = json.load(r)
+        for a in d.get("assets") or []:
+            if a.get("name", "").endswith(".apk"):
+                return a["browser_download_url"], (d.get("published_at") or "")[:10]
+    except Exception:
+        pass
+    return "", ""
 
 
 def main():
@@ -67,7 +89,8 @@ def main():
         latest = rel[0] if rel else {}
         tag = latest.get("tag") or ""
         date = (latest.get("date") or "")[:10]
-        body = latest.get("body") or ""
+        body = (latest.get("body") or "").replace("\r", "")
+        apk_url, rel_date = latest_apk(r.get("repo", ""))
         entry = {
             "id": (r.get("repo") or r.get("name", "")).replace("/", "-"),
             "name": r.get("name", ""),
@@ -80,13 +103,15 @@ def main():
             "pushed_at": stats.get("pushedAt", ""),
             "homepage": stats.get("homepage", ""),
             "latest_tag": tag,
-            "latest_date": date,
+            "latest_date": rel_date or date,
+            "latest_apk_url": apk_url,
             "latest_body": body[:1200],
         }
         out.append(entry)
 
     out.sort(key=lambda e: e["downloads"], reverse=True)
     out = out[:LIMIT]
+    with_apk = sum(1 for e in out if e["latest_apk_url"])
     doc = {
         "updated_at": data.get("updatedAt", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())),
         "source": "https://the412banner.github.io/emulator-ranking/",
@@ -95,7 +120,7 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    print(f"emulator-ranking.json 已更新：{len(out)} 条（分类 {sorted(set(e['group'] for e in out))}）")
+    print(f"emulator-ranking.json 已更新：{len(out)} 条（含 APK 直链 {with_apk} 条）")
 
 
 if __name__ == "__main__":
