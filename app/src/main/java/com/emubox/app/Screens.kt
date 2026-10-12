@@ -6121,6 +6121,16 @@ fun EmulatorScreen(
                 modifier = Modifier.padding(horizontal = 4.dp)
             )
         }
+        item(key = "emulator_summary") {
+            val official = entries.count { it.latestApkUrl.isNotBlank() && it.downloads == 0L }
+            val direct = entries.count { it.latestApkUrl.isNotBlank() }
+            Text(
+                appString(R.string.emulator_summary, entries.size, official, entries.size - official, direct),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(horizontal = 4.dp)
+            )
+        }
         item(key = "emulator_filter") {
             Column {
                 Row(
