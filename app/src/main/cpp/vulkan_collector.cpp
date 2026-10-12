@@ -832,7 +832,7 @@ static int findDeviceLocalMemoryType(const VulkanDispatch& vk, VkPhysicalDevice 
 }
 
 static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice device,
-                                PFN_vkGetInstanceProcAddr resolver = nullptr) {
+                                PFN_vkGetInstanceProcAddr resolver = nullptr, bool enableCompute = false) {
     BenchmarkDispatch bk{};
     VkDevice logicalDevice = VK_NULL_HANDLE;
     VkQueue queue = VK_NULL_HANDLE;
@@ -1041,12 +1041,14 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     double copyBandwidthGBs = (copyBytes / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
 
     // ── 测试3：compute 吞吐（8M float × 2 flops × N dispatch，GFLOPS）────────
-    // 跑在 fork 子进程隔离内：驱动在 compute pipeline/dispatch 崩溃只影响本次
-    // 跑分，App 主进程不受影响。dispatch 次数取 4000（约 671 亿 flops）降低
-    // 崩溃窗口与卡死风险；compute 失败仅降级该指标，不使整个跑分失败。
+    // 运行时开关：系统跑分在主进程执行，部分 Android GPU 驱动（尤其 Adreno）
+    // 在 vkCreateComputePipelines/dispatch 阶段会触发驱动级崩溃，直接带崩 App，
+    // 因此系统跑分默认关闭 compute（只测 fill/copy 带宽）。驱动实测跑分跑在
+    // fork 子进程隔离内（驱动自管 GPU 访问），compute 崩溃只死子进程，可开启。
+    // compute 失败仅降级该指标，不使整个跑分失败。
     std::string computeError;
     double computeGFLOPS = 0.0;
-#if 1
+    if (enableCompute) {
     {
         // shader module（字节数组本地构造并校验，见 kComputeShaderSpv）
         VkShaderModuleCreateInfo smCI{};
@@ -1153,7 +1155,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
             computeError = "CREATE_SHADER_MODULE_FAILED";
         }
     }
-#endif
+    } // enableCompute
 
     // 数值合法性兜底（防止 inf/NaN 进入 JSON）
     if (!std::isfinite(fillBandwidthGBs) || !std::isfinite(copyBandwidthGBs)) {
@@ -1217,7 +1219,7 @@ static std::string benchmarkSystemVulkan() {
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
-    std::string result = runBenchmark(vk, instance, devices[0]);
+    std::string result = runBenchmark(vk, instance, devices[0], nullptr, false);
 
     vkDestroyInstance(instance, nullptr);
     return result;
@@ -1296,7 +1298,7 @@ static std::string runBenchmarkWithDriver(const char* driverPath) {
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
     // 跑基准：resolver 传驱动的 vkGetInstanceProcAddr，保证 device 级函数从驱动解析
-    std::string result = runBenchmark(vk, instance, devices[0], getInst);
+    std::string result = runBenchmark(vk, instance, devices[0], getInst, true);
     vk.vkDestroyInstance(instance, nullptr);
     dlclose(vk.libHandle);
     return result;
