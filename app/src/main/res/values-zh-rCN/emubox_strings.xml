@@ -184,6 +184,8 @@
     <string name="from_source">来自 %1$s</string>
     <string name="latest">最新</string>
     <string name="version">版本</string>
+    <string name="file_format_standard">%1$s 标准驱动包</string>
+    <string name="file_format_special">%1$s 特殊格式</string>
     <string name="file">文件</string>
     <string name="files">个文件</string>
     <string name="changelog">更新日志</string>

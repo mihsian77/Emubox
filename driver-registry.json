@@ -1334,35 +1334,6 @@
       "updated_at": "2026-09-27T20:57:19Z"
     },
     {
-      "id": "nzrnsyaa-panvk",
-      "name": "nzrnsyaa PanVK Custom",
-      "owner": "nzrnsyaa",
-      "repo": "panvk-custom-driver",
-      "api_url": "https://api.github.com/repos/nzrnsyaa/panvk-custom-driver/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G615"
-      ],
-      "driver_type": "panvk",
-      "frontend": "kbase",
-      "target_emulator": "termux",
-      "package_format": "tar.gz",
-      "maturity": "experimental",
-      "stars": 1,
-      "description": "面向 Mali-G615 MC6（天玑 8300/8350）的 PanVK kbase CSF 驱动，含 Zink",
-      "notes": "Termux 专用（Android 16，Mali-G615 MC6 / Dimensity 8300/8350，Vulkan 1.4+Zink）；资产为 tar.gz 安装树，无 meta.json，不走容器路径",
-      "companion": [],
-      "filters": {
-        "default": [
-          "PanVK"
-        ]
-      },
-      "updated_at": "2026-09-17T11:09:42Z"
-    },
-    {
       "id": "apexspan-panvk-g57",
       "name": "ApexSpan Mesa PanVK G57",
       "owner": "apexspan-svg",
