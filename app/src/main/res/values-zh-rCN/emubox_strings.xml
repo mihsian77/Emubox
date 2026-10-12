@@ -526,4 +526,25 @@
     <string name="file_info_error">无法读取该文件信息（文件可能已损坏）</string>
     <string name="benchmark_adrenotools_boundary">分发的驱动包均为 adrenotools 格式（模拟器专用 ICD），无法在 App 内加载实测，请在对应模拟器（Eden/Winlator）内验证。上方能力对比来自包内 meta.json。</string>
     <string name="already_downloaded">已下载</string>
+    <string name="compare_title">项目对比</string>
+    <string name="compare_selected">已选 %1$d/3</string>
+    <string name="compare_open">对比</string>
+    <string name="compare_clear">清空</string>
+    <string name="compare_note">高亮列为该维度领先者（数据来自社区排行源）。</string>
+    <string name="compare_dim_downloads">总下载</string>
+    <string name="compare_dim_avg">平均下载</string>
+    <string name="compare_dim_releases">发布数</string>
+    <string name="compare_dim_stars">星标</string>
+    <string name="compare_dim_update">距更新(天)</string>
+    <string name="compare_dim_latest">最新版本</string>
+    <string name="version_diff_title">版本更新对比</string>
+    <string name="version_diff_from">旧版</string>
+    <string name="version_diff_to">新版</string>
+    <string name="version_diff_pick">请选择两个不同版本进行日志对比。</string>
+    <string name="version_diff_empty">未发现行级差异（两版本日志相同或为空）。</string>
+    <string name="version_diff_added">新增 (%1$d)</string>
+    <string name="version_diff_removed">移除 (%1$d)</string>
+    <string name="global_search_hint">搜索全部专区（模拟器/驱动/组件/运行库）</string>
+    <string name="global_search_prompt">输入关键词，跨模拟器、驱动、组件、运行库四个专区搜索。</string>
+    <string name="global_search_empty">未找到相关内容。</string>
 </resources>

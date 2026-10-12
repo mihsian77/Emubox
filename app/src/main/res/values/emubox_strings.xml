@@ -526,4 +526,25 @@
     <string name="file_info_error">Failed to read file info</string>
     <string name="benchmark_adrenotools_boundary">All distributed driver packages are adrenotools format (simulator-specific ICD). They cannot be loaded inside this app - verify them inside Eden/Winlator. Spec comparison above is from the package meta.json.</string>
     <string name="already_downloaded">Already downloaded</string>
+    <string name="compare_title">Compare projects</string>
+    <string name="compare_selected">Selected %1$d/3</string>
+    <string name="compare_open">Compare</string>
+    <string name="compare_clear">Clear</string>
+    <string name="compare_note">Highlighted column leads in that dimension (from source rankings).</string>
+    <string name="compare_dim_downloads">Total downloads</string>
+    <string name="compare_dim_avg">Avg per release</string>
+    <string name="compare_dim_releases">Releases</string>
+    <string name="compare_dim_stars">Stars</string>
+    <string name="compare_dim_update">Days since update</string>
+    <string name="compare_dim_latest">Latest version</string>
+    <string name="version_diff_title">Version changelog diff</string>
+    <string name="version_diff_from">From</string>
+    <string name="version_diff_to">To</string>
+    <string name="version_diff_pick">Pick two different versions to diff their changelogs.</string>
+    <string name="version_diff_empty">No line-level differences found (same or empty changelogs).</string>
+    <string name="version_diff_added">Added (%1$d)</string>
+    <string name="version_diff_removed">Removed (%1$d)</string>
+    <string name="global_search_hint">Search all sections (emulators, drivers, components, runtimes)</string>
+    <string name="global_search_prompt">Type to search across emulators, drivers, components and runtimes.</string>
+    <string name="global_search_empty">No results found.</string>
 </resources>
