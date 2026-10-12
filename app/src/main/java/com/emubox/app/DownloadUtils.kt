@@ -134,8 +134,10 @@ suspend fun downloadAsset(context: Context, release: GithubRelease, asset: Githu
 }
 
 suspend fun downloadComponent(context: Context, component: Component) {
+    // 组件清单 remoteUrl 指向固定版本文件（如 releases/download/vX/xxx.zip），
+    // 文件名从 URL 末尾提取；剥离 query（?raw=1 等）防止污染文件名
     val fileName = sanitizeFileName(
-        Uri.decode(component.remoteUrl.substringAfterLast("/"))
+        Uri.decode(component.remoteUrl.substringAfterLast("/").substringBefore("?"))
     )
     val category = "Components/${component.type}"
     if (ensureFileNotExists(context, fileName, category)) return

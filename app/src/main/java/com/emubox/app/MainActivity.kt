@@ -97,6 +97,9 @@ class MainActivity : ComponentActivity() {
                 var driverSourceUpdatedAt by remember {
                     mutableStateOf<Map<String, Long>>(emptyMap())
                 }
+                var driverSourceStars by remember {
+                    mutableStateOf<Map<String, Long>>(emptyMap())
+                }
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
@@ -216,22 +219,28 @@ class MainActivity : ComponentActivity() {
                             }.awaitAll().mapNotNull { (id, ts) -> ts?.let { id to it } }.toMap()
                         }
                         // 驱动源更新时间：turnip/qualcomm 源 apiUrl 同为 api.github.com/repos/... 形态，
-                        // 复用一个查询逻辑，来源弹窗选项与当前源均显示"更新于 X 天前"
-                        val driverSourceUpdatedAt = coroutineScope {
+                        // 复用一个查询逻辑，来源弹窗选项与当前源均显示"更新于 X 天前"；
+                        // 同一请求带回远程 stars，覆盖内置静态星标（防止内置数据缺失/过期导致显示不一致）
+                        val driverRepoMeta = coroutineScope {
                             val turnip = catalog.turnipSources.map { source ->
-                                async { source.id to fetchRepositoryPushedAt(source.apiUrl) }
+                                async { source.id to fetchRepoMeta(source.apiUrl) }
                             }.awaitAll()
                             val qualcomm = catalog.qualcommSources.map { source ->
-                                async { source.id to fetchRepositoryPushedAt(source.apiUrl) }
+                                async { source.id to fetchRepoMeta(source.apiUrl) }
                             }.awaitAll()
-                            (turnip + qualcomm).mapNotNull { (id, ts) -> ts?.let { id to it } }.toMap()
+                            (turnip + qualcomm).mapNotNull { (id, meta) -> meta?.let { id to it } }.toMap()
                         }
+                        val driverSourceUpdatedAt = driverRepoMeta
+                            .mapNotNull { (id, meta) -> meta.pushedAt?.let { id to it } }.toMap()
+                        val driverSourceStars = driverRepoMeta
+                            .mapNotNull { (id, meta) -> meta.stars?.let { id to it } }.toMap()
 
                         AppLoadResult(
                             deviceInfo = info,
                             catalog = catalog,
                             componentSourceUpdatedAt = componentSourceUpdatedAt,
                             driverSourceUpdatedAt = driverSourceUpdatedAt,
+                            driverSourceStars = driverSourceStars,
                             selectedTurnipSource = selectedSource,
                             selectedQualcommSource = selectedQualcommSource,
                             turnipReleases = releases,
@@ -247,6 +256,7 @@ class MainActivity : ComponentActivity() {
                     componentCatalogs = result.componentCatalogs
                     componentSourceUpdatedAt = result.componentSourceUpdatedAt
                     driverSourceUpdatedAt = result.driverSourceUpdatedAt
+                    driverSourceStars = result.driverSourceStars
 
                     if (turnipSourceId != result.selectedTurnipSource.id) {
                         turnipSourceId = result.selectedTurnipSource.id
@@ -471,7 +481,8 @@ class MainActivity : ComponentActivity() {
                                                     downloadAsset(appContext, release, asset)
                                                 }
                                             },
-                                            driverSourceUpdatedAt = driverSourceUpdatedAt
+                                            driverSourceUpdatedAt = driverSourceUpdatedAt,
+                                            driverSourceStars = driverSourceStars
                                         )
                                     }
                                 }
@@ -624,5 +635,6 @@ private data class AppLoadResult(
     val qualcommReleases: List<GithubRelease>,
     val componentCatalogs: Map<String, Map<String, List<Component>>>,
     val componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
-    val driverSourceUpdatedAt: Map<String, Long> = emptyMap()
+    val driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
+    val driverSourceStars: Map<String, Long> = emptyMap()
 )

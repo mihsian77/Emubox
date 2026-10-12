@@ -2216,7 +2216,8 @@ fun DriverHubScreen(
     onOpenGuide: (String?) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     onDownloadComponent: (Component) -> Unit,
-    driverSourceUpdatedAt: Map<String, Long> = emptyMap()
+    driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
+    driverSourceStars: Map<String, Long> = emptyMap()
 ) {
     val showQualcomm = qualcommReleases.isNotEmpty() &&
         (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
@@ -2323,7 +2324,8 @@ fun DriverHubScreen(
                     releases = turnipReleases,
                     selectionKey = "turnip:$turnipSourceId",
                     onDownload = onDownloadAsset,
-                    updatedAtMap = driverSourceUpdatedAt
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars
                 )
             }
         }
@@ -2340,7 +2342,8 @@ fun DriverHubScreen(
                     releases = qualcommReleases,
                     selectionKey = "qualcomm:$qualcommSourceId",
                     onDownload = onDownloadAsset,
-                    updatedAtMap = driverSourceUpdatedAt
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars
                 )
             }
         }
@@ -2882,7 +2885,8 @@ fun TurnipDriverSection(
     releases: List<GithubRelease>,
     selectionKey: String,
     onDownload: (GithubRelease, GithubAsset) -> Unit,
-    updatedAtMap: Map<String, Long> = emptyMap()
+    updatedAtMap: Map<String, Long> = emptyMap(),
+    remoteStars: Map<String, Long> = emptyMap()
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
 
@@ -2922,7 +2926,7 @@ fun TurnipDriverSection(
                             experimental = source.experimental,
                             category = turnipCategoryOf(source, adrenoSeries),
                             updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) },
-                            preview = buildTurnipPreview(source)
+                            preview = buildTurnipPreview(source, remoteStars)
                         )
                     },
                     onSelected = { sourceId ->
@@ -3224,9 +3228,9 @@ private fun SourcePickerCard(
     }
 }
 
-/** Turnip 来源预览：支持型号 / 目标模拟器 / 活跃度，全部来自注册表静态元数据 */
+/** Turnip 来源预览：支持型号 / 目标模拟器 / 活跃度，star 优先用远程元数据覆盖 */
 @Composable
-private fun buildTurnipPreview(source: TurnipSource): List<PreviewItem> {
+private fun buildTurnipPreview(source: TurnipSource, remoteStars: Map<String, Long> = emptyMap()): List<PreviewItem> {
     val lines = mutableListOf<PreviewItem>()
     val models = source.supportedModels.sorted()
     val series = source.supportedSeries.sorted()
@@ -3241,17 +3245,19 @@ private fun buildTurnipPreview(source: TurnipSource): List<PreviewItem> {
         "termux" -> lines += PreviewItem(Icons.Default.PlayArrow, appString(R.string.preview_termux))
         "gamehub" -> lines += PreviewItem(Icons.Default.PlayArrow, appString(R.string.preview_gamehub))
     }
-    if (source.stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(source.stars)))
+    val stars = remoteStars[source.id] ?: source.stars
+    if (stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(stars)))
     return lines
 }
 
-/** Qualcomm 来源预览：系统驱动说明 + 活跃度 + 停更状态 */
+/** Qualcomm 来源预览：系统驱动说明 + 活跃度 + 停更状态，star 优先用远程元数据覆盖 */
 @Composable
-private fun buildQualcommPreview(source: QualcommSource): List<PreviewItem> {
+private fun buildQualcommPreview(source: QualcommSource, remoteStars: Map<String, Long> = emptyMap()): List<PreviewItem> {
     val lines = mutableListOf<PreviewItem>()
     lines += PreviewItem(Icons.Default.Memory, appString(R.string.preview_qualcomm_system))
     if (source.archived) lines += PreviewItem(Icons.Default.Warning, appString(R.string.preview_archived))
-    if (source.stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(source.stars)))
+    val stars = remoteStars[source.id] ?: source.stars
+    if (stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(stars)))
     return lines
 }
 
@@ -3438,7 +3444,8 @@ fun DriverCardDynamic(
     releases: List<GithubRelease>,
     selectionKey: String,
     onDownload: (GithubRelease, GithubAsset) -> Unit,
-    updatedAtMap: Map<String, Long> = emptyMap()
+    updatedAtMap: Map<String, Long> = emptyMap(),
+    remoteStars: Map<String, Long> = emptyMap()
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
     Card(
@@ -3469,7 +3476,7 @@ fun DriverCardDynamic(
                             archived = source.archived,
                             category = "general",
                             updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) },
-                            preview = buildQualcommPreview(source)
+                            preview = buildQualcommPreview(source, remoteStars)
                         )
                     },
                     onSelected = { sourceId ->
@@ -5294,7 +5301,8 @@ fun DriverScreen(
     onTurnipSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
-    driverSourceUpdatedAt: Map<String, Long> = emptyMap()
+    driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
+    driverSourceStars: Map<String, Long> = emptyMap()
 ) {
     val showQualcomm = qualcommReleases.isNotEmpty() &&
         (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
@@ -5345,7 +5353,8 @@ fun DriverScreen(
                     releases = turnipReleases,
                     selectionKey = "turnip:$turnipSourceId",
                     onDownload = onDownloadAsset,
-                    updatedAtMap = driverSourceUpdatedAt
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars
                 )
             }
         }
@@ -5362,7 +5371,8 @@ fun DriverScreen(
                     releases = qualcommReleases,
                     selectionKey = "qualcomm:$qualcommSourceId",
                     onDownload = onDownloadAsset,
-                    updatedAtMap = driverSourceUpdatedAt
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars
                 )
             }
         }
