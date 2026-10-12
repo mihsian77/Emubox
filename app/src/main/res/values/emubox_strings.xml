@@ -134,6 +134,7 @@
     <string name="emulator_release_url">Open GitHub Release</string>
     <string name="emulator_community_rank">Community rankings data (auto-updated)</string>
 
+    <string name="emulator_badge_official">官方</string>
     <string name="emulator_summary">%1$d emulators (official %2$d + community %3$d), %4$d with direct APK</string>
     <string name="emulator_latest">Latest</string>
     <string name="emulator_tag_continuous">Continuous build</string>
