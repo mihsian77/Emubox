@@ -31,6 +31,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import coil.compose.AsyncImage
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -2919,25 +2921,54 @@ fun TurnipDriverSection(
     description: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
+    // 区块默认折叠：与组件专区一致，一屏可浏览全部驱动大区
+    var expanded by rememberSaveable(selectionKey) { mutableStateOf(false) }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            DownloadPanelHeader(
-                icon = Icons.Default.Eco,
-                title = title ?: appString(R.string.turnip_driver),
-                description = description ?: when (adrenoSeries) {
-                    "8xx" -> appString(R.string.turnip_desc_8xx)
-                    "6xx", "7xx" -> appString(R.string.turnip_desc_6_7)
-                    else -> appString(R.string.turnip_desc_generic)
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { expanded = !expanded }
+                    .padding(horizontal = 20.dp, vertical = 14.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    DownloadPanelHeader(
+                        icon = Icons.Default.Eco,
+                        title = title ?: appString(R.string.turnip_driver),
+                        description = description ?: when (adrenoSeries) {
+                            "8xx" -> appString(R.string.turnip_desc_8xx)
+                            "6xx", "7xx" -> appString(R.string.turnip_desc_6_7)
+                            else -> appString(R.string.turnip_desc_generic)
+                        }
+                    )
                 }
-            )
+                if (!expanded && currentSource != null) {
+                    Text(
+                        currentSource.name,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(end = 6.dp)
+                    )
+                }
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            if (expanded) {
+            Column(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
 
             if (currentSource != null) {
                 val currentCategory = turnipCategoryOf(currentSource, adrenoSeries)
@@ -2973,6 +3004,8 @@ fun TurnipDriverSection(
                 onDownload = onDownload,
                 buttonLabel = appString(R.string.download_turnip)
             )
+            }
+            }
         }
     }
 }
@@ -6145,13 +6178,15 @@ fun EmulatorScreen(
     var filterCat by remember { mutableStateOf("all") }
     var sortMode by remember { mutableStateOf("popular") }
     var detailEntry by remember { mutableStateOf<EmulatorEntry?>(null) }
-
+    // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
     val categoryOrder = remember(entries) {
         val seen = LinkedHashSet<String>()
         entries.forEach { seen.add(it.category) }
         seen.toList()
     }
     val categoryLabel = categoryOrder.associateWith { emulatorCategoryLabel(it) }
+    // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
+    var collapsedCats by remember(entries) { mutableStateOf(categoryOrder.toSet()) }
 
     val filtered = remember(entries, filterCat, sortMode) {
         val base = if (filterCat == "all") entries
@@ -6169,7 +6204,7 @@ fun EmulatorScreen(
             val group = grouped[cat].orEmpty()
             if (group.isNotEmpty()) {
                 add("__header__$cat")
-                group.forEach { add(it) }
+                if (cat !in collapsedCats) group.forEach { add(it) }
             }
         }
     }
@@ -6281,7 +6316,15 @@ fun EmulatorScreen(
             if (item is String) {
                 val cat = item.removePrefix("__header__")
                 item(key = "__header_$cat", span = { GridItemSpan(maxLineSpan) }) {
-                    EmulatorSectionHeader(label = categoryLabel[cat].orEmpty(), count = grouped[cat].orEmpty().size)
+                    EmulatorSectionHeader(
+                        label = categoryLabel[cat].orEmpty(),
+                        count = grouped[cat].orEmpty().size,
+                        expanded = cat !in collapsedCats,
+                        onClick = {
+                            collapsedCats = if (cat in collapsedCats) collapsedCats - cat
+                            else collapsedCats + cat
+                        }
+                    )
                 }
             } else {
                 val entry = item as EmulatorEntry
@@ -6307,20 +6350,38 @@ fun EmulatorScreen(
 }
 
 @Composable
-private fun EmulatorSectionHeader(label: String, count: Int) {
+private fun EmulatorSectionHeader(
+    label: String,
+    count: Int,
+    expanded: Boolean,
+    onClick: () -> Unit
+) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 10.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             "$label（$count）",
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.primary
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.primary,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
-        Spacer(Modifier.width(8.dp))
+        Spacer(Modifier.width(6.dp))
         HorizontalDivider(
             modifier = Modifier.weight(1f),
             color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+        )
+        Spacer(Modifier.width(6.dp))
+        Icon(
+            if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+            contentDescription = null,
+            modifier = Modifier.size(20.dp),
+            tint = MaterialTheme.colorScheme.primary
         )
     }
 }
@@ -6334,7 +6395,8 @@ private fun EmulatorCard(
 ) {
     val context = LocalContext.current
     val canDownload = entry.latestApkUrl.isNotBlank()
-    val websiteUrl = entry.homepage.ifBlank { "" }
+    // 官网优先 homepage，无则回退 GitHub 仓库（保证按钮始终有链接）
+    val websiteUrl = entry.homepage.ifBlank { entry.githubUrl }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -6343,6 +6405,15 @@ private fun EmulatorCard(
     ) {
         Column(Modifier.padding(12.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
+                if (entry.logoUrl.isNotBlank()) {
+                    AsyncImage(
+                        model = entry.logoUrl,
+                        contentDescription = null,
+                        modifier = Modifier.size(28.dp).clip(RoundedCornerShape(8.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(Modifier.width(6.dp))
+                }
                 Text(
                     entry.name,
                     style = MaterialTheme.typography.titleSmall,

@@ -97,5 +97,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.4.0")
     implementation("org.json:json:20260522")
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation(libs.coil.compose)
     implementation("androidx.documentfile:documentfile:1.1.0")
 }
