@@ -6113,6 +6113,29 @@ private fun formatFileSize(bytes: Long): String = when {
 
 /** 模拟器专区：双列网格，卡片含分类徽章/最新版本/下载/仓库入口 */
 @Composable
+
+/** 原站分类 -> 中文分区名（t3st31 / the412banner 分类体系） */
+private fun emulatorCategoryLabel(category: String): String = when (category) {
+    "Winlator" -> "Winlator 专区"
+    "GameHub" -> "GameHub 专区"
+    "PC Emulator" -> "PC 模拟器"
+    "GameNative" -> "GameNative 专区"
+    "All In One" -> "聚合前端"
+    "Nintendo 3DS" -> "任天堂 3DS"
+    "PSVITA" -> "PS Vita"
+    "Emulator PS2" -> "PS2 模拟"
+    "Emulator PS3" -> "PS3 模拟"
+    "Emulator PS5" -> "PS5 模拟"
+    "Wii U Emulator" -> "Wii U 模拟"
+    "Sega Dreamcast" -> "Dreamcast 模拟"
+    "Nintendo GameCube / Wii" -> "NGC / Wii 模拟"
+    "Xbox" -> "Xbox 模拟"
+    "Nintendo Switch Emulator" -> "Switch 模拟"
+    "GAME" -> "游戏"
+    else -> category
+}
+
+@Composable
 fun EmulatorScreen(
     modifier: Modifier = Modifier,
     entries: List<EmulatorEntry>,
@@ -6122,13 +6145,13 @@ fun EmulatorScreen(
     var filterCat by remember { mutableStateOf("all") }
     var sortMode by remember { mutableStateOf("popular") }
 
-    val categoryLabel = mapOf(
-        "windows" to appString(R.string.emulator_cat_windows),
-        "console" to appString(R.string.emulator_cat_console),
-        "multi" to appString(R.string.emulator_cat_multi),
-        "terminal" to appString(R.string.emulator_cat_terminal)
-    )
-    val categoryOrder = listOf("windows", "console", "multi", "terminal")
+    // 原站分类体系（t3st31 / the412banner 排行站），映射为中文分区
+    val categoryOrder = remember(entries) {
+        val seen = LinkedHashSet<String>()
+        entries.forEach { seen.add(it.category) }
+        seen.toList()
+    }
+    val categoryLabel = categoryOrder.associateWith { emulatorCategoryLabel(it) }
 
     val filtered = remember(entries, filterCat, sortMode) {
         val base = if (filterCat == "all") entries
@@ -6168,10 +6191,10 @@ fun EmulatorScreen(
             )
         }
         item(key = "emulator_summary") {
-            val official = entries.count { it.latestApkUrl.isNotBlank() && it.downloads == 0L }
+            val officialCount = entries.count { it.official }
             val direct = entries.count { it.latestApkUrl.isNotBlank() }
             Text(
-                appString(R.string.emulator_summary, entries.size, official, entries.size - official, direct),
+                appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(horizontal = 4.dp)
@@ -6183,7 +6206,9 @@ fun EmulatorScreen(
                     modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    listOf("all", "windows", "console", "multi", "terminal").forEach { c ->
+                    val chips = mutableListOf("all")
+                    chips += categoryOrder
+                    chips.forEach { c ->
                         FilterChip(
                             selected = filterCat == c,
                             onClick = { filterCat = c },
@@ -6313,12 +6338,43 @@ private fun EmulatorCard(
                 }
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        entry.name,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            entry.name,
+                            style = MaterialTheme.typography.titleMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f, fill = false)
+                        )
+                        if (entry.official) {
+                            Spacer(Modifier.width(6.dp))
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = MaterialTheme.colorScheme.primary
+                            ) {
+                                Text(
+                                    appString(R.string.emulator_badge_official),
+                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onPrimary
+                                )
+                            }
+                        }
+                        if (entry.channel.isNotBlank() && entry.channel != "stable") {
+                            Spacer(Modifier.width(6.dp))
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = MaterialTheme.colorScheme.tertiaryContainer
+                            ) {
+                                Text(
+                                    entry.channel,
+                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                                )
+                            }
+                        }
+                    }
                     if (entry.stars > 0 || entry.pushedAt.isNotBlank()) {
                         Spacer(Modifier.height(2.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
