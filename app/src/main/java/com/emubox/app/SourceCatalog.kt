@@ -29,7 +29,9 @@ data class TurnipSource(
     /** 目标运行环境：eden / winlator / termux / 空=通用（来源选择预览用） */
     val targetEmulator: String = "",
     /** 仓库星标数，来源选择预览展示活跃度 */
-    val stars: Long = 0L
+    val stars: Long = 0L,
+    /** 仓库最近推送时间（epoch ms，由 catalog 内置，CI 每日刷新） */
+    val updatedAt: Long = 0L
 )
 
 data class QualcommSource(
@@ -41,6 +43,8 @@ data class QualcommSource(
     val filters: List<String>,
     /** 仓库星标数，来源选择预览展示活跃度 */
     val stars: Long = 0L,
+    /** 仓库最近推送时间（epoch ms，由 catalog 内置，CI 每日刷新） */
+    val updatedAt: Long = 0L,
     /** 已归档/停更：UI 显示"已停更"标签，不再默认置顶 */
     val archived: Boolean = false
 )
@@ -50,7 +54,9 @@ data class ComponentSource(
     val name: String,
     val manifestUrl: String,
     val description: String,
-    val experimental: Boolean
+    val experimental: Boolean,
+    /** 源仓库最近推送时间（epoch ms，由 catalog 内置，CI 每日刷新） */
+    val updatedAt: Long = 0L
 )
 
 data class SourceCatalog(
@@ -166,7 +172,8 @@ object SourceCatalogRepository {
                         assetIncludes = assetIncludes,
                         assetExcludes = assetExcludes,
                         targetEmulator = obj.optString("targetEmulator"),
-                        stars = obj.optLong("stars", 0L)
+                        stars = obj.optLong("stars", 0L),
+                        updatedAt = obj.optLong("updatedAt", 0L)
                     )
                 )
             }
@@ -198,6 +205,7 @@ object SourceCatalogRepository {
                         experimental = obj.optBoolean("experimental", false),
                         filters = filters,
                         stars = obj.optLong("stars", 0L),
+                        updatedAt = obj.optLong("updatedAt", 0L),
                         archived = obj.optBoolean("archived", false)
                     )
                 )
@@ -220,7 +228,8 @@ object SourceCatalogRepository {
                         name = name,
                         manifestUrl = manifestUrl,
                         description = obj.optString("description"),
-                        experimental = obj.optBoolean("experimental", false)
+                        experimental = obj.optBoolean("experimental", false),
+                        updatedAt = obj.optLong("updatedAt", 0L)
                     )
                 )
             }

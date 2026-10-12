@@ -23,6 +23,8 @@ data class DriverRegistryEntry(
     val packageFormat: String,      // adpkg / zip / so / magisk / wcp
     val maturity: String,           // stable / beta / alpha / ci / experimental
     val stars: Int,
+    /** 仓库最近推送时间（epoch ms，由 driver-registry.json 内置，CI 每日刷新） */
+    val updatedAt: Long = 0L,
     val description: String,
     val notes: String,
     val companion: List<String>,    // 配套组件 id（指向 component 类型条目）
@@ -148,6 +150,7 @@ object DriverRegistryRepository {
                     packageFormat = o.optString("package_format", "zip"),
                     maturity = o.optString("maturity", "experimental"),
                     stars = o.optInt("stars", 0),
+                    updatedAt = parseIsoEpoch(o.optString("updated_at", "")),
                     description = o.optString("description", ""),
                     notes = o.optString("notes", ""),
                     companion = o.getJSONArray("companion").let { ja ->
@@ -356,8 +359,17 @@ object DriverRegistryRepository {
             requiredVendor = entry.gpuVendor,
             filters = emptyMap(),
             targetEmulator = entry.targetEmulator,
-            stars = entry.stars.toLong()
+            stars = entry.stars.toLong(),
+            updatedAt = entry.updatedAt
         )
+    }
+
+    /** ISO 8601（如 2026-10-06T14:44:00Z）→ epoch ms；空/非法返回 0 */
+    private fun parseIsoEpoch(iso: String): Long {
+        if (iso.isBlank()) return 0L
+        return runCatching {
+            java.time.Instant.parse(iso).toEpochMilli()
+        }.getOrDefault(0L)
     }
 
     /** Mali 型号归一化：detectGpuModel 返回纯数字 "57"，注册表用 "G57" */
