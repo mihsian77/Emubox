@@ -909,7 +909,8 @@ private fun formatRelativeTimeMs(epochMs: Long): String {
         diffMs < 0 -> "刚刚"
         diffMs < 60_000 -> "刚刚"
         diffMs < 3_600_000 -> "${diffMs / 60_000} 分钟前"
-        diffMs < 86_400_000 -> "${diffMs / 3_600_000} 小时前"
+        // 48 小时内精确到小时：25h 显示"25 小时前"而非"1 天前"，驱动/组件源统一
+        diffMs < 48L * 3_600_000 -> "${diffMs / 3_600_000} 小时前"
         diffMs < 30L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
         else -> {
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -2205,6 +2206,9 @@ fun DriverHubScreen(
     turnipSourceId: String,
     turnipSources: List<TurnipSource>,
     turnipReleases: List<GithubRelease>,
+    panvkSourceId: String,
+    panvkSources: List<TurnipSource>,
+    panvkReleases: List<GithubRelease>,
     qualcommSourceId: String,
     qualcommSources: List<QualcommSource>,
     qualcommReleases: List<GithubRelease>,
@@ -2212,6 +2216,7 @@ fun DriverHubScreen(
     componentCatalogs: Map<String, Map<String, List<Component>>>,
     sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
+    onPanvkSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
     onOpenGuide: (String?) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
@@ -2326,6 +2331,25 @@ fun DriverHubScreen(
                     onDownload = onDownloadAsset,
                     updatedAtMap = driverSourceUpdatedAt,
                     remoteStars = driverSourceStars
+                )
+            }
+        }
+
+        // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
+        if (panvkSources.isNotEmpty()) {
+            item(key = "panvk_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = panvkSources,
+                    currentSourceId = panvkSourceId,
+                    onSourceChange = onPanvkSourceChange,
+                    releases = panvkReleases,
+                    selectionKey = "panvk:$panvkSourceId",
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars,
+                    title = "PanVK 驱动专区",
+                    description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持"
                 )
             }
         }
@@ -2889,7 +2913,9 @@ fun TurnipDriverSection(
     selectionKey: String,
     onDownload: (GithubRelease, GithubAsset) -> Unit,
     updatedAtMap: Map<String, Long> = emptyMap(),
-    remoteStars: Map<String, Long> = emptyMap()
+    remoteStars: Map<String, Long> = emptyMap(),
+    title: String? = null,
+    description: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
 
@@ -2904,8 +2930,8 @@ fun TurnipDriverSection(
         ) {
             DownloadPanelHeader(
                 icon = Icons.Default.Eco,
-                title = appString(R.string.turnip_driver),
-                description = when (adrenoSeries) {
+                title = title ?: appString(R.string.turnip_driver),
+                description = description ?: when (adrenoSeries) {
                     "8xx" -> appString(R.string.turnip_desc_8xx)
                     "6xx", "7xx" -> appString(R.string.turnip_desc_6_7)
                     else -> appString(R.string.turnip_desc_generic)
@@ -2920,7 +2946,8 @@ fun TurnipDriverSection(
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
                     currentCategory = currentCategory,
-                    currentUpdatedHint = updatedAtMap[currentSource.id]?.let { formatRelativeTimeMs(it) },
+                    currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
+                        .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
                         SourcePickerOption(
                             id = source.id,
@@ -3473,7 +3500,8 @@ fun DriverCardDynamic(
                     currentExperimental = currentSource.experimental,
                     currentArchived = currentSource.archived,
                     currentCategory = "general",
-                    currentUpdatedHint = updatedAtMap[currentSource.id]?.let { formatRelativeTimeMs(it) },
+                    currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
+                        .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
                         SourcePickerOption(
                             id = source.id,
@@ -5309,11 +5337,15 @@ fun DriverScreen(
     turnipSourceId: String,
     turnipSources: List<TurnipSource>,
     turnipReleases: List<GithubRelease>,
+    panvkSourceId: String,
+    panvkSources: List<TurnipSource>,
+    panvkReleases: List<GithubRelease>,
     qualcommSourceId: String,
     qualcommSources: List<QualcommSource>,
     qualcommReleases: List<GithubRelease>,
     sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
+    onPanvkSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
@@ -5370,6 +5402,25 @@ fun DriverScreen(
                     onDownload = onDownloadAsset,
                     updatedAtMap = driverSourceUpdatedAt,
                     remoteStars = driverSourceStars
+                )
+            }
+        }
+
+        // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
+        if (panvkSources.isNotEmpty()) {
+            item(key = "panvk_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = panvkSources,
+                    currentSourceId = panvkSourceId,
+                    onSourceChange = onPanvkSourceChange,
+                    releases = panvkReleases,
+                    selectionKey = "panvk:$panvkSourceId",
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars,
+                    title = "PanVK 驱动专区",
+                    description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持"
                 )
             }
         }
