@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-10-12T00:00:00Z",
+  "updated_at": "2026-10-12T07:51:14Z",
   "emulators": [
     {
       "id": "winlator",
@@ -9,10 +9,10 @@
       "description": "安卓端 Windows x86 转译运行环境，通过 Wine/Box64 运行 Windows 游戏与软件，EmuBox 驱动/组件的主要使用场景",
       "owner": "brunodev85",
       "repo": "winlator",
-      "latest_tag": "",
-      "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "latest_tag": "v11.2.0",
+      "latest_apk_url": "https://github.com/brunodev85/winlator/releases/download/v11.2.0/Winlator_11.2.apk",
+      "pushed_at": "2026-09-22T18:36:59Z",
+      "stars": 19419
     },
     {
       "id": "gamehub",
@@ -46,10 +46,10 @@
       "description": "安卓终端模拟器与 Linux 环境，可安装 Box64 等转译层，是驱动/组件的进阶使用场景",
       "owner": "termux",
       "repo": "termux-app",
-      "latest_tag": "",
-      "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "latest_tag": "v0.119.0-beta.3",
+      "latest_apk_url": "https://github.com/termux/termux-app/releases/download/v0.119.0-beta.3/termux-app_v0.119.0-beta.3%2Bapt-android-5-github-debug_arm64-v8a.apk",
+      "pushed_at": "2026-09-26T05:11:44Z",
+      "stars": 62426
     },
     {
       "id": "ppsspp",
@@ -58,10 +58,10 @@
       "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
       "owner": "hrydgard",
       "repo": "ppsspp",
-      "latest_tag": "",
+      "latest_tag": "v1.20.4",
       "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "pushed_at": "2026-10-12T07:50:54Z",
+      "stars": 14643
     },
     {
       "id": "retroarch",
@@ -70,10 +70,10 @@
       "description": "多机种聚合模拟器前端，内置大量核心（核心通过在线下载），支持 Vulkan 渲染",
       "owner": "libretro",
       "repo": "RetroArch",
-      "latest_tag": "",
+      "latest_tag": "v1.22.2",
       "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "pushed_at": "2026-10-12T00:31:36Z",
+      "stars": 14300
     },
     {
       "id": "dolphin",
@@ -82,10 +82,10 @@
       "description": "GameCube/Wii 模拟器，安卓端 Vulkan 支持成熟",
       "owner": "dolphin-emu",
       "repo": "dolphin",
-      "latest_tag": "",
+      "latest_tag": "nJoy",
       "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "pushed_at": "2026-10-12T04:41:55Z",
+      "stars": 15649
     },
     {
       "id": "duckstation",
@@ -94,10 +94,10 @@
       "description": "PS1 模拟器，兼容性与画质增强优秀，支持 Vulkan",
       "owner": "stenzek",
       "repo": "duckstation",
-      "latest_tag": "",
+      "latest_tag": "preview",
       "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "pushed_at": "2026-10-12T02:11:06Z",
+      "stars": 10824
     },
     {
       "id": "vita3k",
@@ -106,10 +106,10 @@
       "description": "PSVita 模拟器，安卓端实验性支持 Vulkan",
       "owner": "Vita3K",
       "repo": "Vita3K",
-      "latest_tag": "",
-      "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
+      "latest_tag": "continuous",
+      "latest_apk_url": "https://github.com/Vita3K/Vita3K/releases/download/continuous/android-latest.apk",
+      "pushed_at": "2026-10-11T13:42:17Z",
+      "stars": 5818
     }
   ]
 }
