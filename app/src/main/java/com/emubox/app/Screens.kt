@@ -6333,27 +6333,9 @@ fun EmulatorScreen(
         item(key = "emulator_region_header", span = { GridItemSpan(maxLineSpan) }) {
             RegionHeader(title = appString(R.string.emulator_region), icon = Icons.Default.Android, remote = true)
         }
-        item(key = "emulator_search", span = { GridItemSpan(maxLineSpan) }) {
+        item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    placeholder = { Text(appString(R.string.search_hint)) },
-                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                    trailingIcon = {
-                        if (searchQuery.isNotBlank()) {
-                            Icon(
-                                Icons.Default.Close,
-                                contentDescription = null,
-                                modifier = Modifier.clickable { searchQuery = "" }
-                            )
-                        }
-                    },
-                    singleLine = true,
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(16.dp)
-                )
-                Spacer(Modifier.width(6.dp))
+                Spacer(Modifier.weight(1f))
                 IconToggleButton(
                     checked = onlyFav,
                     onCheckedChange = { onlyFav = it },
@@ -6864,7 +6846,7 @@ private fun EmulatorCard(
                 Text(
                     entry.name,
                     style = MaterialTheme.typography.titleSmall,
-                    maxLines = 2,
+                    maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f, fill = false)
                 )
@@ -7044,39 +7026,42 @@ private fun EmulatorCompareDialog(
                             Modifier.weight(1f),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Box {
-                                if (p.logoUrl.isNotBlank()) {
-                                    AsyncImage(
-                                        model = p.logoUrl,
-                                        contentDescription = null,
-                                        modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp)),
-                                        contentScale = ContentScale.Crop
-                                    )
-                                } else {
-                                    Box(
-                                        modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
-                                            .background(MaterialTheme.colorScheme.primaryContainer),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(p.name.firstOrNull()?.uppercase() ?: "?", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onPrimaryContainer)
-                                    }
+                            if (p.logoUrl.isNotBlank()) {
+                                AsyncImage(
+                                    model = p.logoUrl,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp)),
+                                    contentScale = ContentScale.Crop
+                                )
+                            } else {
+                                Box(
+                                    modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
+                                        .background(MaterialTheme.colorScheme.primaryContainer),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(p.name.firstOrNull()?.uppercase() ?: "?", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onPrimaryContainer)
                                 }
+                            }
+                            Spacer(Modifier.height(4.dp))
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Text(
+                                    p.name,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.weight(1f, fill = false)
+                                )
                                 IconButton(
                                     onClick = { onRemove(p.id) },
-                                    modifier = Modifier.size(18.dp).align(Alignment.TopEnd)
-                                        .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(9.dp))
+                                    modifier = Modifier.size(16.dp)
                                 ) {
                                     Icon(Icons.Default.Close, contentDescription = null, modifier = Modifier.size(11.dp))
                                 }
                             }
-                            Spacer(Modifier.height(4.dp))
-                            Text(
-                                p.name,
-                                style = MaterialTheme.typography.labelSmall,
-                                maxLines = 2,
-                                overflow = TextOverflow.Ellipsis,
-                                textAlign = TextAlign.Center
-                            )
                         }
                     }
                 }

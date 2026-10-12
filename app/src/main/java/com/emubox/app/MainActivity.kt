@@ -493,9 +493,6 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.driver_region)) },
                                                 actions = {
-                                                    IconButton(onClick = { globalSearchOpen = true }) {
-                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
-                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
@@ -515,18 +512,6 @@ class MainActivity : ComponentActivity() {
                                                         } else {
                                                             Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
                                                         }
-                                                    }
-                                                    IconButton(
-                                                        onClick = {
-                                                            startActivity(
-                                                                Intent(
-                                                                    Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://mihsian77.github.io/EmuHub-CN/sponsor.html")
-                                                                )
-                                                            )
-                                                        }
-                                                    ) {
-                                                        Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
                                                     }
                                                     IconButton(onClick = { openGuide(null) }) {
                                                         Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
@@ -588,9 +573,6 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.component_region)) },
                                                 actions = {
-                                                    IconButton(onClick = { globalSearchOpen = true }) {
-                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
-                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
@@ -610,18 +592,6 @@ class MainActivity : ComponentActivity() {
                                                         } else {
                                                             Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
                                                         }
-                                                    }
-                                                    IconButton(
-                                                        onClick = {
-                                                            startActivity(
-                                                                Intent(
-                                                                    Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://mihsian77.github.io/EmuHub-CN/sponsor.html")
-                                                                )
-                                                            )
-                                                        }
-                                                    ) {
-                                                        Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
                                                     }
                                                     IconButton(onClick = { openGuide(null) }) {
                                                         Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
@@ -650,9 +620,6 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.emulator_region)) },
                                                 actions = {
-                                                    IconButton(onClick = { globalSearchOpen = true }) {
-                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
-                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
@@ -687,18 +654,6 @@ class MainActivity : ComponentActivity() {
                                                         } else {
                                                             Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
                                                         }
-                                                    }
-                                                    IconButton(
-                                                        onClick = {
-                                                            startActivity(
-                                                                Intent(
-                                                                    Intent.ACTION_VIEW,
-                                                                    Uri.parse("https://mihsian77.github.io/EmuHub-CN/sponsor.html")
-                                                                )
-                                                            )
-                                                        }
-                                                    ) {
-                                                        Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
                                                     }
                                                 }
                                             )
