@@ -471,6 +471,7 @@ class MainActivity : ComponentActivity() {
                                                 sourceCatalog.qualcommSources.forEach { add(it.name) }
                                                 sourceCatalog.componentSources.forEach { add(it.name) }
                                             },
+                                            downloads = DownloadsManager.completedDownloads,
                                             onNavigate = { target ->
                                                 globalSearchOpen = false
                                                 when (target) {
@@ -478,6 +479,7 @@ class MainActivity : ComponentActivity() {
                                                     "drivers" -> currentScreen = AppScreen.DRIVERS
                                                     "components" -> currentScreen = AppScreen.COMPONENTS
                                                     "runtime" -> currentScreen = AppScreen.RUNTIME
+                                                    "downloads" -> currentScreen = AppScreen.DOWNLOADS
                                                 }
                                             },
                                             onDismiss = { globalSearchOpen = false }

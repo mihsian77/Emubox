@@ -541,10 +541,15 @@
     <string name="version_diff_from">旧版</string>
     <string name="version_diff_to">新版</string>
     <string name="version_diff_pick">请选择两个不同版本进行日志对比。</string>
+    <string name="version_diff_loading">正在获取提交记录…</string>
+    <string name="version_diff_commits">从 %2$s 到 %3$s 共 %1$d 个提交</string>
+    <string name="version_diff_translate">翻译提交摘要</string>
+    <string name="version_diff_api_failed">提交对比接口不可用（标签不存在或触发限流），已改为完整展示两个版本的更新日志。</string>
     <string name="version_diff_empty">未发现行级差异（两版本日志相同或为空）。</string>
     <string name="version_diff_added">新增 (%1$d)</string>
     <string name="version_diff_removed">移除 (%1$d)</string>
     <string name="global_search_hint">搜索全部专区（模拟器/驱动/组件/运行库）</string>
     <string name="global_search_prompt">输入关键词，跨模拟器、驱动、组件、运行库四个专区搜索。</string>
+    <string name="search_empty">未找到匹配项。</string>
     <string name="global_search_empty">未找到相关内容。</string>
 </resources>

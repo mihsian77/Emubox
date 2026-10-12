@@ -516,3 +516,43 @@ suspend fun fetchComponentReleaseNotes(remoteUrl: String): String? = withContext
         null
     }
 }
+
+/** GitHub compare API 提交对比结果 */
+data class CompareCommit(val message: String, val author: String, val date: String)
+
+/**
+ * GitHub Compare API：取两个版本标签之间的提交列表（匿名 60 次/时，够低频对比用）。
+ * 返回 null 表示 API 失败（标签不存在 / 网络 / 限流），调用方回退展示两版本日志全文。
+ */
+suspend fun fetchCompareCommits(owner: String, repo: String, from: String, to: String): List<CompareCommit>? =
+    withContext(Dispatchers.IO) {
+        if (owner.isBlank() || repo.isBlank() || from.isBlank() || to.isBlank()) return@withContext null
+        runCatching {
+            val url = "https://api.github.com/repos/$owner/$repo/compare/" +
+                java.net.URLEncoder.encode(from, "UTF-8") + "..." + java.net.URLEncoder.encode(to, "UTF-8")
+            val request = Request.Builder().url(url)
+                .header("Accept", "application/vnd.github+json")
+                .header("User-Agent", "EmuBox")
+                .build()
+            githubClient.newCall(request).execute().use { resp ->
+                if (!resp.isSuccessful) return@withContext null
+                val root = org.json.JSONObject(resp.body?.string().orEmpty())
+                val arr = root.optJSONArray("commits") ?: org.json.JSONArray()
+                buildList {
+                    for (i in 0 until arr.length()) {
+                        val c = arr.getJSONObject(i)
+                        val cm = c.optJSONObject("commit")
+                        val authorObj = cm?.optJSONObject("author")
+                        add(
+                            CompareCommit(
+                                message = (cm?.optString("message") ?: "").split("\n").first(),
+                                author = c.optJSONObject("author")?.optString("login")
+                                    ?: authorObj?.optString("name") ?: "",
+                                date = (authorObj?.optString("date") ?: "").take(10)
+                            )
+                        )
+                    }
+                }
+            }
+        }.getOrNull()
+    }

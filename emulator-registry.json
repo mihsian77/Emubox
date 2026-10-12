@@ -5,74 +5,91 @@
     {
       "id": "termux",
       "name": "Termux",
-      "category": "terminal",
+      "category": "PC Emulator",
       "description": "安卓终端模拟器与 Linux 环境，可安装 Box64 等转译层，是驱动/组件的进阶使用场景",
       "owner": "termux",
-      "repo": "termux-app",
+      "repo": "termux/termux-app",
       "latest_tag": "v0.119.0-beta.3",
       "latest_apk_url": "https://github.com/termux/termux-app/releases/download/v0.119.0-beta.3/termux-app_v0.119.0-beta.3%2Bapt-android-5-github-debug_arm64-v8a.apk",
       "pushed_at": "2026-09-26T05:11:44Z",
-      "stars": 62426
+      "stars": 62426,
+      "homepage": "https://github.com/termux/termux-app",
+      "repo_url": "https://github.com/termux/termux-app"
     },
     {
       "id": "ppsspp",
       "name": "PPSSPP",
-      "category": "console",
+      "category": "Emulator PS2",
       "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
       "owner": "hrydgard",
-      "repo": "ppsspp",
+      "repo": "hrydgard/ppsspp",
       "latest_tag": "v1.20.4",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T07:50:54Z",
-      "stars": 14643
+      "stars": 14643,
+      "homepage": "https://www.ppsspp.org",
+      "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/ppsspp.png",
+      "repo_url": "https://github.com/hrydgard/ppsspp"
     },
     {
       "id": "retroarch",
       "name": "RetroArch",
-      "category": "multi",
+      "category": "All In One",
       "description": "多机种聚合模拟器前端，内置大量核心（核心通过在线下载），支持 Vulkan 渲染",
       "owner": "libretro",
-      "repo": "RetroArch",
+      "repo": "libretro/RetroArch",
       "latest_tag": "v1.22.2",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T00:31:36Z",
-      "stars": 14300
+      "stars": 14300,
+      "homepage": "https://www.retroarch.com",
+      "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/retroarch.png",
+      "repo_url": "https://github.com/libretro/RetroArch"
     },
     {
       "id": "dolphin",
       "name": "Dolphin",
-      "category": "console",
+      "category": "Nintendo GameCube / Wii",
       "description": "GameCube/Wii 模拟器，安卓端 Vulkan 支持成熟",
       "owner": "dolphin-emu",
-      "repo": "dolphin",
+      "repo": "dolphin-emu/dolphin",
       "latest_tag": "nJoy",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T04:41:55Z",
-      "stars": 15649
+      "stars": 15649,
+      "homepage": "https://dolphin-emu.org",
+      "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/dolphin.png",
+      "repo_url": "https://github.com/dolphin-emu/dolphin"
     },
     {
       "id": "duckstation",
       "name": "DuckStation",
-      "category": "console",
+      "category": "Emulator PS2",
       "description": "PS1 模拟器，兼容性与画质增强优秀，支持 Vulkan",
       "owner": "stenzek",
-      "repo": "duckstation",
+      "repo": "stenzek/duckstation",
       "latest_tag": "preview",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T02:11:06Z",
-      "stars": 10824
+      "stars": 10824,
+      "homepage": "https://www.duckstation.org",
+      "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/duckstation.png",
+      "repo_url": "https://github.com/stenzek/duckstation"
     },
     {
       "id": "vita3k",
       "name": "Vita3K",
-      "category": "console",
+      "category": "PSVITA",
       "description": "PSVita 模拟器，安卓端实验性支持 Vulkan",
       "owner": "Vita3K",
       "repo": "Vita3K/Vita3K-Android",
       "latest_tag": "continuous",
       "latest_apk_url": "https://github.com/Vita3K/Vita3K/releases/download/continuous/android-latest.apk",
       "pushed_at": "2026-10-11T13:42:17Z",
-      "stars": 5818
+      "stars": 5818,
+      "homepage": "https://vita3k.org",
+      "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/vita3k.png",
+      "repo_url": "https://github.com/Vita3K/Vita3K/Vita3K-Android"
     }
   ]
 }

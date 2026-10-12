@@ -5476,6 +5476,22 @@ fun DriverScreen(
     val showQualcomm = qualcommReleases.isNotEmpty() &&
         (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
 
+    // 驱动局部搜索：按源名称/简介过滤三个区块
+    var driverQuery by remember { mutableStateOf("") }
+    val q = driverQuery.trim()
+    val filteredTurnip = remember(turnipSources, q) {
+        if (q.isBlank()) turnipSources
+        else turnipSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
+    }
+    val filteredPanvk = remember(panvkSources, q) {
+        if (q.isBlank()) panvkSources
+        else panvkSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
+    }
+    val filteredQualcomm = remember(qualcommSources, q) {
+        if (q.isBlank()) qualcommSources
+        else qualcommSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
+    }
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
@@ -5486,6 +5502,27 @@ fun DriverScreen(
                 title = appString(R.string.driver_region),
                 icon = Icons.Default.Memory,
                 remote = sourceCatalogRemote
+            )
+        }
+
+        item(key = "driver_search") {
+            OutlinedTextField(
+                value = driverQuery,
+                onValueChange = { driverQuery = it },
+                placeholder = { Text(appString(R.string.search_hint)) },
+                leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                trailingIcon = {
+                    if (driverQuery.isNotBlank()) {
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = null,
+                            modifier = Modifier.clickable { driverQuery = "" }
+                        )
+                    }
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp)
             )
         }
 
@@ -5512,11 +5549,11 @@ fun DriverScreen(
 
         // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
         // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
-        if (turnipSources.isNotEmpty()) {
+        if (filteredTurnip.isNotEmpty()) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
-                    sources = turnipSources,
+                    sources = filteredTurnip,
                     currentSourceId = turnipSourceId,
                     onSourceChange = onTurnipSourceChange,
                     releases = turnipReleases,
@@ -5529,11 +5566,11 @@ fun DriverScreen(
         }
 
         // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
-        if (panvkSources.isNotEmpty()) {
+        if (filteredPanvk.isNotEmpty()) {
             item(key = "panvk_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
-                    sources = panvkSources,
+                    sources = filteredPanvk,
                     currentSourceId = panvkSourceId,
                     onSourceChange = onPanvkSourceChange,
                     releases = panvkReleases,
@@ -5547,13 +5584,13 @@ fun DriverScreen(
             }
         }
 
-        if (showQualcomm && qualcommSources.isNotEmpty()) {
+        if (showQualcomm && filteredQualcomm.isNotEmpty()) {
             item(key = "qualcomm_section") {
                 DriverCardDynamic(
                     title = appString(R.string.qualcomm_driver),
                     description = appString(R.string.qualcomm_driver_desc),
                     icon = Icons.Default.Memory,
-                    sources = qualcommSources,
+                    sources = filteredQualcomm,
                     currentSourceId = qualcommSourceId,
                     onSourceChange = onQualcommSourceChange,
                     releases = qualcommReleases,
@@ -5561,6 +5598,18 @@ fun DriverScreen(
                     onDownload = onDownloadAsset,
                     updatedAtMap = driverSourceUpdatedAt,
                     remoteStars = driverSourceStars
+                )
+            }
+        }
+
+        if (q.isNotBlank() && filteredTurnip.isEmpty() && filteredPanvk.isEmpty() && filteredQualcomm.isEmpty()) {
+            item(key = "driver_search_empty") {
+                Text(
+                    appString(R.string.search_empty),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 24.dp).fillMaxWidth(),
+                    textAlign = TextAlign.Center
                 )
             }
         }
@@ -6324,6 +6373,18 @@ fun EmulatorScreen(
                 }
             }
         }
+        if (compareIds.isNotEmpty()) {
+            val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
+            if (compareEntries.isNotEmpty()) {
+                item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
+                    CompareBar(
+                        projects = compareEntries,
+                        onOpen = { showCompare = true },
+                        onClear = { compareIds = emptyList() }
+                    )
+                }
+            }
+        }
         item(key = "emulator_desc", span = { GridItemSpan(maxLineSpan) }) {
             Text(
                 appString(R.string.emulator_desc),
@@ -6434,33 +6495,39 @@ fun EmulatorScreen(
             } else {
                 val entry = item as EmulatorEntry
                 item(key = entry.id, span = { GridItemSpan(if (viewMode == "list") maxLineSpan else 1) }) {
-                    EmulatorCard(
-                        entry = entry,
-                        isFavorite = entry.id in favorites,
-                        onToggleFavorite = {
-                            favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
-                            saveEmulatorFavs(context, favorites)
-                        },
-                        inCompare = entry.id in compareIds,
-                        onToggleCompare = {
-                            compareIds = if (entry.id in compareIds) compareIds - entry.id
-                            else if (compareIds.size < 3) compareIds + entry.id else compareIds
-                        },
-                        onClickDetail = { detailEntry = entry },
-                        onDownload = onDownload
-                    )
-                }
-            }
-        }
-        if (compareIds.isNotEmpty()) {
-            val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
-            if (compareEntries.isNotEmpty()) {
-                item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
-                    CompareBar(
-                        projects = compareEntries,
-                        onOpen = { showCompare = true },
-                        onClear = { compareIds = emptyList() }
-                    )
+                    if (viewMode == "list") {
+                        EmulatorListRow(
+                            entry = entry,
+                            isFavorite = entry.id in favorites,
+                            onToggleFavorite = {
+                                favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
+                                saveEmulatorFavs(context, favorites)
+                            },
+                            inCompare = entry.id in compareIds,
+                            onToggleCompare = {
+                                compareIds = if (entry.id in compareIds) compareIds - entry.id
+                                else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                            },
+                            onClickDetail = { detailEntry = entry },
+                            onDownload = onDownload
+                        )
+                    } else {
+                        EmulatorCard(
+                            entry = entry,
+                            isFavorite = entry.id in favorites,
+                            onToggleFavorite = {
+                                favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
+                                saveEmulatorFavs(context, favorites)
+                            },
+                            inCompare = entry.id in compareIds,
+                            onToggleCompare = {
+                                compareIds = if (entry.id in compareIds) compareIds - entry.id
+                                else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                            },
+                            onClickDetail = { detailEntry = entry },
+                            onDownload = onDownload
+                        )
+                    }
                 }
             }
         }
@@ -6481,6 +6548,7 @@ fun EmulatorScreen(
         if (compareEntries.size >= 2) {
             EmulatorCompareDialog(
                 projects = compareEntries,
+                onRemove = { id -> compareIds = compareIds - id },
                 onDismiss = { showCompare = false }
             )
         } else {
@@ -6500,10 +6568,25 @@ private fun VersionDiffDialog(
     var toIdx by remember { mutableStateOf(0) }
     val from = rels.getOrNull(fromIdx)
     val to = rels.getOrNull(toIdx)
-    val (added, removed) = remember(from, to) {
-        if (from == null || to == null || fromIdx == toIdx) emptyList<String>() to emptyList()
-        else diffChangelog(from.body, to.body)
+
+    // GitHub compare API 提交对比（标签可能不存在 → fallback 全文）
+    var commits by remember(from?.tag, to?.tag) { mutableStateOf<List<CompareCommit>?>(null) }
+    var loading by remember(from?.tag, to?.tag) { mutableStateOf(false) }
+    var apiFailed by remember(from?.tag, to?.tag) { mutableStateOf(false) }
+    var translated by remember(from?.tag, to?.tag) { mutableStateOf<String?>(null) }
+    var translating by remember { mutableStateOf(false) }
+
+    LaunchedEffect(from?.tag, to?.tag) {
+        if (from == null || to == null || fromIdx == toIdx) {
+            commits = null; loading = false; apiFailed = false; translated = null
+            return@LaunchedEffect
+        }
+        loading = true; apiFailed = false; translated = null
+        commits = fetchCompareCommits(entry.owner, entry.repo, from.tag, to.tag)
+        loading = false
+        if (commits == null) apiFailed = true
     }
+
     Dialog(onDismissRequest = onDismiss) {
         Card(
             shape = RoundedCornerShape(24.dp),
@@ -6540,47 +6623,101 @@ private fun VersionDiffDialog(
                     )
                 }
                 HorizontalDivider()
-                if (fromIdx == toIdx || from == null || to == null) {
-                    Text(
-                        appString(R.string.version_diff_pick),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                } else if (added.isEmpty() && removed.isEmpty()) {
-                    Text(
-                        appString(R.string.version_diff_empty),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                } else {
-                    if (added.isNotEmpty()) {
+                when {
+                    fromIdx == toIdx || from == null || to == null -> {
                         Text(
-                            appString(R.string.version_diff_added, added.size),
+                            appString(R.string.version_diff_pick),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    loading -> {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                            Spacer(Modifier.width(10.dp))
+                            Text(appString(R.string.version_diff_loading), style = MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                    commits != null && commits!!.isNotEmpty() -> {
+                        // 摘要行
+                        Text(
+                            appString(R.string.version_diff_commits, commits!!.size, from.tag, to.tag),
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.primary
                         )
-                        added.forEach { line ->
-                            Text(
-                                line,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
+                        // 翻译按钮
+                        val scope = rememberCoroutineScope()
+                        if (translated == null) {
+                            OutlinedButton(
+                                onClick = {
+                                    scope.launch {
+                                        translating = true
+                                        val joined = commits!!.joinToString("\n") { it.message }
+                                        translated = translateReleaseNotes(joined) ?: joined
+                                        translating = false
+                                    }
+                                },
+                                enabled = !translating,
+                                shape = RoundedCornerShape(10.dp)
+                            ) {
+                                if (translating) {
+                                    CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
+                                    Spacer(Modifier.width(6.dp))
+                                }
+                                Text(appString(R.string.version_diff_translate), style = MaterialTheme.typography.labelMedium)
+                            }
+                        }
+                        // 提交列表（译文优先）
+                        val shown = translated ?: commits!!.joinToString("\n") { it.message }
+                        if (translated != null) {
+                            Text(shown, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface)
+                        } else {
+                            commits!!.forEach { c ->
+                                Column {
+                                    Text(c.message, style = MaterialTheme.typography.bodySmall, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                                    Text(
+                                        buildString {
+                                            append(c.author.ifBlank { "—" })
+                                            if (c.date.isNotBlank()) append(" · ${c.date}")
+                                        },
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
                         }
                     }
-                    if (removed.isNotEmpty()) {
-                        Spacer(Modifier.height(6.dp))
+                    apiFailed -> {
                         Text(
-                            appString(R.string.version_diff_removed, removed.size),
-                            style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.error
+                            appString(R.string.version_diff_api_failed),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-                        removed.forEach { line ->
-                            Text(
-                                line,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
+                        // fallback：两版本日志各自全文（不做文本 diff，各自独立）
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            listOf(
+                                from to appString(R.string.version_diff_from),
+                                to to appString(R.string.version_diff_to)
+                            ).forEach { (rel, label) ->
+                                Text(
+                                    "$label ${rel!!.tag}",
+                                    style = MaterialTheme.typography.titleSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Text(
+                                    rel.body.ifBlank { appString(R.string.version_diff_empty) },
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
                         }
+                    }
+                    else -> {
+                        Text(
+                            appString(R.string.version_diff_empty),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     }
                 }
             }
@@ -6694,7 +6831,7 @@ private fun EmulatorCard(
     val context = LocalContext.current
     val canDownload = entry.latestApkUrl.isNotBlank()
     // 官网优先 homepage，无则回退 GitHub 仓库（保证按钮始终有链接）
-    val websiteUrl = entry.homepage.ifBlank { entry.githubUrl }
+    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -6710,12 +6847,24 @@ private fun EmulatorCard(
                         modifier = Modifier.size(28.dp).clip(RoundedCornerShape(8.dp)),
                         contentScale = ContentScale.Crop
                     )
-                    Spacer(Modifier.width(6.dp))
+                } else {
+                    Box(
+                        modifier = Modifier.size(28.dp).clip(RoundedCornerShape(8.dp))
+                            .background(MaterialTheme.colorScheme.primaryContainer),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            entry.name.firstOrNull()?.uppercase() ?: "?",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
                 }
+                Spacer(Modifier.width(6.dp))
                 Text(
                     entry.name,
                     style = MaterialTheme.typography.titleSmall,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f, fill = false)
                 )
@@ -6866,6 +7015,7 @@ private fun CompareBar(
 @Composable
 private fun EmulatorCompareDialog(
     projects: List<EmulatorEntry>,
+    onRemove: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
     val stats = remember(projects) { projects.map { emuCompareStats(it) } }
@@ -6886,7 +7036,7 @@ private fun EmulatorCompareDialog(
                     )
                     IconButton(onClick = onDismiss) { Icon(Icons.Default.Close, contentDescription = null) }
                 }
-                // 项目头行
+                // 项目头行（可单独移除）
                 Row(verticalAlignment = Alignment.Top) {
                     Spacer(Modifier.width(100.dp))
                     projects.forEach { p ->
@@ -6894,13 +7044,30 @@ private fun EmulatorCompareDialog(
                             Modifier.weight(1f),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            if (p.logoUrl.isNotBlank()) {
-                                AsyncImage(
-                                    model = p.logoUrl,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp)),
-                                    contentScale = ContentScale.Crop
-                                )
+                            Box {
+                                if (p.logoUrl.isNotBlank()) {
+                                    AsyncImage(
+                                        model = p.logoUrl,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp)),
+                                        contentScale = ContentScale.Crop
+                                    )
+                                } else {
+                                    Box(
+                                        modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
+                                            .background(MaterialTheme.colorScheme.primaryContainer),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(p.name.firstOrNull()?.uppercase() ?: "?", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                                    }
+                                }
+                                IconButton(
+                                    onClick = { onRemove(p.id) },
+                                    modifier = Modifier.size(18.dp).align(Alignment.TopEnd)
+                                        .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(9.dp))
+                                ) {
+                                    Icon(Icons.Default.Close, contentDescription = null, modifier = Modifier.size(11.dp))
+                                }
                             }
                             Spacer(Modifier.height(4.dp))
                             Text(
@@ -7047,6 +7214,132 @@ private fun daysSinceIso(iso: String): Long {
         val parsed = java.time.Instant.parse(iso)
         java.time.Duration.between(parsed, java.time.Instant.now()).toDays().coerceAtLeast(0L)
     }.getOrDefault(-1L)
+}
+
+/** 列表视图紧凑行：图标+名称+版本摘要+操作按钮横排，一行一条 */
+@Composable
+private fun EmulatorListRow(
+    entry: EmulatorEntry,
+    isFavorite: Boolean,
+    onToggleFavorite: () -> Unit,
+    inCompare: Boolean,
+    onToggleCompare: () -> Unit,
+    onClickDetail: () -> Unit,
+    onDownload: (EmulatorEntry) -> Unit
+) {
+    val context = LocalContext.current
+    val canDownload = entry.latestApkUrl.isNotBlank()
+    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
+    Card(
+        modifier = Modifier.fillMaxWidth().clickable(onClick = onClickDetail),
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (entry.logoUrl.isNotBlank()) {
+                AsyncImage(
+                    model = entry.logoUrl,
+                    contentDescription = null,
+                    modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Crop
+                )
+            } else {
+                Box(
+                    modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp))
+                        .background(MaterialTheme.colorScheme.primaryContainer),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        entry.name.firstOrNull()?.uppercase() ?: "?",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
+            }
+            Spacer(Modifier.width(10.dp))
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        entry.name,
+                        style = MaterialTheme.typography.titleSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    if (entry.official) {
+                        Spacer(Modifier.width(4.dp))
+                        Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.primary) {
+                            Text(
+                                appString(R.string.emulator_badge_official),
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
+                    }
+                    if (entry.channel.isNotBlank() && entry.channel != "stable") {
+                        Spacer(Modifier.width(4.dp))
+                        Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.tertiaryContainer) {
+                            Text(
+                                entry.channel,
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer
+                            )
+                        }
+                    }
+                }
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    buildString {
+                        append(entry.latestTag.ifBlank { "暂无版本" })
+                        if (entry.latestDate.isNotBlank()) append(" · ${entry.latestDate.take(10)}")
+                        append(" · 下载 ${emulatorDownloadCount(entry.downloads)}")
+                    },
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            IconButton(onClick = onToggleFavorite, modifier = Modifier.size(30.dp)) {
+                Icon(
+                    if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
+                    tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            IconButton(onClick = onToggleCompare, modifier = Modifier.size(30.dp)) {
+                Icon(
+                    Icons.Default.CompareArrows,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
+                    tint = if (inCompare) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Button(
+                onClick = {
+                    if (canDownload) onDownload(entry)
+                    else if (websiteUrl.isNotBlank()) {
+                        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl))) }
+                    }
+                },
+                enabled = canDownload || websiteUrl.isNotBlank(),
+                modifier = Modifier.height(32.dp),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text(
+                    if (canDownload) appString(R.string.emulator_download) else appString(R.string.emulator_website),
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+        }
+    }
 }
 
 private fun emulatorDownloadCount(d: Long): String = when {
@@ -7486,6 +7779,7 @@ fun GlobalSearchSheet(
     emulators: List<EmulatorEntry>,
     drivers: List<DriverRegistryEntry>,
     componentNames: List<String>,
+    downloads: List<DownloadsManager.CompletedDownload>,
     onNavigate: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
@@ -7545,7 +7839,10 @@ fun GlobalSearchSheet(
                         it.name.lowercase().contains(q) || it.description.lowercase().contains(q) ||
                             it.category.name.lowercase().contains(q)
                     }
-                    if (emuHits.isEmpty() && drvHits.isEmpty() && compHits.isEmpty() && rtHits.isEmpty()) {
+                    val dlHits = downloads.filter {
+                        it.fileName.lowercase().contains(q) || it.subPath.lowercase().contains(q)
+                    }
+                    if (emuHits.isEmpty() && drvHits.isEmpty() && compHits.isEmpty() && rtHits.isEmpty() && dlHits.isEmpty()) {
                         Text(
                             appString(R.string.global_search_empty),
                             style = MaterialTheme.typography.bodySmall,
@@ -7592,6 +7889,17 @@ fun GlobalSearchSheet(
                                         name = r.name,
                                         subtitle = r.description,
                                         onClick = { onNavigate("runtime"); onDismiss() }
+                                    )
+                                }
+                            }
+                        }
+                        if (dlHits.isNotEmpty()) {
+                            GlobalSearchGroup(appString(R.string.tab_download)) {
+                                dlHits.take(8).forEach { d ->
+                                    GlobalSearchRow(
+                                        name = d.fileName,
+                                        subtitle = d.subPath.ifBlank { appString(R.string.tab_download) },
+                                        onClick = { onNavigate("downloads"); onDismiss() }
                                     )
                                 }
                             }
