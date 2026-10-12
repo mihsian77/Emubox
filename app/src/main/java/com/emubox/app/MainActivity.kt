@@ -75,6 +75,7 @@ class MainActivity : ComponentActivity() {
                 val appContext = applicationContext
 
                 var currentScreen by remember { mutableStateOf(AppScreen.DEVICE) }
+                var globalSearchOpen by remember { mutableStateOf(false) }
                 var guideReturnTab by remember { mutableStateOf(AppScreen.DEVICE) }
                 var guideTopic by remember { mutableStateOf<String?>(null) }
                 var refreshTrigger by remember { mutableIntStateOf(0) }
@@ -424,6 +425,9 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.device_info_title)) },
                                                 actions = {
+                                                    IconButton(onClick = { globalSearchOpen = true }) {
+                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
+                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
@@ -458,6 +462,27 @@ class MainActivity : ComponentActivity() {
                                             onNavigateToDrivers = { currentScreen = AppScreen.DRIVERS }
                                         )
                                     }
+                                    if (globalSearchOpen) {
+                                        GlobalSearchSheet(
+                                            emulators = emulatorEntries,
+                                            drivers = DriverRegistryRepository.builtinEntries(),
+                                            componentNames = buildList {
+                                                sourceCatalog.turnipSources.forEach { add(it.name) }
+                                                sourceCatalog.qualcommSources.forEach { add(it.name) }
+                                                sourceCatalog.componentSources.forEach { add(it.name) }
+                                            },
+                                            onNavigate = { target ->
+                                                globalSearchOpen = false
+                                                when (target) {
+                                                    "emulators" -> currentScreen = AppScreen.EMULATORS
+                                                    "drivers" -> currentScreen = AppScreen.DRIVERS
+                                                    "components" -> currentScreen = AppScreen.COMPONENTS
+                                                    "runtime" -> currentScreen = AppScreen.RUNTIME
+                                                }
+                                            },
+                                            onDismiss = { globalSearchOpen = false }
+                                        )
+                                    }
                                 }
 
                                 AppScreen.DRIVERS -> {
@@ -466,6 +491,9 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.driver_region)) },
                                                 actions = {
+                                                    IconButton(onClick = { globalSearchOpen = true }) {
+                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
+                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
@@ -558,6 +586,9 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.component_region)) },
                                                 actions = {
+                                                    IconButton(onClick = { globalSearchOpen = true }) {
+                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
+                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
@@ -617,6 +648,9 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.emulator_region)) },
                                                 actions = {
+                                                    IconButton(onClick = { globalSearchOpen = true }) {
+                                                        Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
+                                                    }
                                                     var isRefreshingLocal by remember { mutableStateOf(false) }
                                                     val scope = rememberCoroutineScope()
                                                     IconButton(
