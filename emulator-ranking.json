@@ -85,6 +85,22 @@
  ],
  "emulators": [
   {
+   "id": "official-gamehub",
+   "name": "GameHub (盖世游戏)",
+   "repo": "",
+   "repo_url": "",
+   "category": "GameHub",
+   "official": true,
+   "channel": "stable",
+   "downloads": 0,
+   "stars": 0,
+   "description": "盖世游戏 — 你的全能游戏宇宙。支持 Android 畅玩 PC 大作、Steam/EPIC 接入、云游戏串流。",
+   "pushed_at": "",
+   "homepage": "https://gamehub.xiaoji.com",
+   "logoUrl": "https://gamehub.xiaoji.com/guanwang_v2/assets/logo_new.png",
+   "releases": []
+  },
+  {
    "id": "brunodev85-winlator",
    "name": "Winlator BrunoDev",
    "repo": "brunodev85/winlator",
@@ -352,7 +368,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v11.2.0",
+   "latestDate": "2026-08-19T11:06:47Z"
   },
   {
    "id": "azahar-emu-azahar",
@@ -7223,7 +7241,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "2127.0-alpha1",
+   "latestDate": "2026-10-10T16:09:24Z"
   },
   {
    "id": "weihuoya-citra",
@@ -9134,7 +9154,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "20251112",
+   "latestDate": "2025-11-12T02:51:02Z"
   },
   {
    "id": "vita3k-vita3k-android",
@@ -9319,7 +9341,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v12",
+   "latestDate": "2024-06-06T20:36:09Z"
   },
   {
    "id": "trixarian-nethersx2-patch",
@@ -9617,7 +9641,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "2.2n",
+   "latestDate": "2025-12-25T12:22:12Z"
   },
   {
    "id": "ssimco-cemu",
@@ -9760,7 +9786,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "0.5",
+   "latestDate": "2026-04-25T21:55:25Z"
   },
   {
    "id": "stevenmxz-winlator-ludashi",
@@ -10233,7 +10261,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v4.1",
+   "latestDate": "2026-09-13T13:26:18Z"
   },
   {
    "id": "trixarian-nethersx2-classic",
@@ -10386,7 +10416,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "2.2n",
+   "latestDate": "2025-12-25T12:22:14Z"
   },
   {
    "id": "producdevity-gamehub-lite",
@@ -10799,7 +10831,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v5.1.8",
+   "latestDate": "2026-07-02T19:43:40Z"
   },
   {
    "id": "utkarshdalal-gamenative",
@@ -11969,7 +12003,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v1.3.0-prerelease",
+   "latestDate": "2026-10-04T15:49:59Z"
   },
   {
    "id": "longjunyu2-winlator",
@@ -12130,7 +12166,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v7.1.5",
+   "latestDate": "2025-01-25T09:40:50Z"
   },
   {
    "id": "armsx2-armsx2",
@@ -14247,7 +14285,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "2.8.3",
+   "latestDate": "2026-10-11T17:16:38Z"
   },
   {
    "id": "flyinghead-flycast",
@@ -14682,7 +14722,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v2.7",
+   "latestDate": "2026-08-19T11:47:09Z"
   },
   {
    "id": "rpcsx-rpcsx-ui-android",
@@ -14741,7 +14783,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v20250425",
+   "latestDate": "2025-04-25T16:02:13Z"
   },
   {
    "id": "coffincolors-winlator",
@@ -15011,7 +15055,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "cmod_v13.1",
+   "latestDate": "2025-08-07T07:49:41Z"
   },
   {
    "id": "afeimod-winlator-mod",
@@ -16167,7 +16213,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "10.1hotfix-Amod3fix2",
+   "latestDate": "2025-12-02T08:21:17Z"
   },
   {
    "id": "medard22-dolphin-mmjr2-vbi",
@@ -16352,7 +16400,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "U24.07.02-2407",
+   "latestDate": "2025-07-20T08:56:45Z"
   },
   {
    "id": "xodiosx-xodos",
@@ -16689,7 +16739,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v6.0.0+c050ebd",
+   "latestDate": "2025-11-09T15:21:38Z"
   },
   {
    "id": "aenu1-aps3e",
@@ -17042,7 +17094,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "2.43",
+   "latestDate": "2026-10-05T09:08:05Z"
   },
   {
    "id": "fcharan-winlatormali",
@@ -17145,7 +17199,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "bionic-mali-1.1",
+   "latestDate": "2026-07-09T19:05:29Z"
   },
   {
    "id": "ashnar2602-x360-mobile---official",
@@ -17307,7 +17363,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v0.6.3",
+   "latestDate": "2026-08-17T19:30:11Z"
   },
   {
    "id": "armsx2-armsx3",
@@ -18522,7 +18580,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "1.1.1",
+   "latestDate": "2026-10-11T15:57:23Z"
   },
   {
    "id": "horizonemuteam-horizon-emu",
@@ -18567,7 +18627,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v4",
+   "latestDate": "2025-02-28T07:48:56Z"
   },
   {
    "id": "the412banner-bannerhub",
@@ -19707,7 +19769,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v3.8.1",
+   "latestDate": "2026-09-12T01:44:41Z"
   },
   {
    "id": "winebox64-winlator",
@@ -19780,7 +19844,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v10.2",
+   "latestDate": "2025-03-03T03:01:09Z"
   },
   {
    "id": "droid-deck-droiddeck",
@@ -19967,7 +20033,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "0.4.0",
+   "latestDate": "2026-10-12T15:07:49Z"
   },
   {
    "id": "the412banner-bannerhub-revanced",
@@ -22297,7 +22365,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v1.0.2-631",
+   "latestDate": "2026-09-27T20:19:24Z"
   },
   {
    "id": "rfandango-xendroid",
@@ -22496,7 +22566,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "XenDroid-c4f6863",
+   "latestDate": "2026-08-14T11:11:00Z"
   },
   {
    "id": "the412banner-bannerlator",
@@ -24444,7 +24516,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "3.1.7-pre1",
+   "latestDate": "2026-10-12T13:35:14Z"
   },
   {
    "id": "xhyn-ph-exagear-302",
@@ -24489,7 +24563,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v3.0.2.2-egw",
+   "latestDate": "2024-01-12T16:20:17Z"
   },
   {
    "id": "stredohori-winlator-cmod",
@@ -25034,7 +25110,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "e120cf1",
+   "latestDate": "2026-02-02T12:47:23Z"
   },
   {
    "id": "winnative-emu-winnative",
@@ -25408,7 +25486,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v0.8.0-beta",
+   "latestDate": "2026-10-12T11:19:55Z"
   },
   {
    "id": "winlatorbrasil-gamehub-brasil",
@@ -25562,7 +25642,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "GameHub_Brasil_V3",
+   "latestDate": "2026-08-10T03:32:02Z"
   },
   {
    "id": "jacojayy-star",
@@ -25851,7 +25933,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "ignore",
+   "latestDate": "2026-09-27T10:58:30Z"
   },
   {
    "id": "kreitinnsoftware-micewine-application",
@@ -27231,7 +27315,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "ba4b91b",
+   "latestDate": "2026-04-09T16:39:54Z"
   },
   {
    "id": "oxters168-pluvia",
@@ -27332,7 +27418,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v1.3.2",
+   "latestDate": "2025-03-02T00:58:48Z"
   },
   {
    "id": "ajay9634-winlator-ajay",
@@ -27438,7 +27526,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v11.1-hotfix2",
+   "latestDate": "2026-06-15T05:01:20Z"
   },
   {
    "id": "swordfish90-lemuroid",
@@ -27832,7 +27922,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "1.17.0",
+   "latestDate": "2026-04-21T08:52:05Z"
   },
   {
    "id": "ref4ik-winlator-ref4ik-",
@@ -28107,7 +28199,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "V2",
+   "latestDate": "2026-09-11T14:45:41Z"
   },
   {
    "id": "juris-x-winlator_x",
@@ -28209,7 +28303,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v3.0.1-beta",
+   "latestDate": "2025-04-22T14:19:23Z"
   },
   {
    "id": "slaker222-steamlator",
@@ -28282,7 +28378,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "1.7",
+   "latestDate": "2026-04-29T11:14:37Z"
   },
   {
    "id": "jhinzuo-winlator",
@@ -28486,7 +28584,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "dev8",
+   "latestDate": "2025-08-24T22:41:56Z"
   },
   {
    "id": "honkonx-winlator-honkon",
@@ -28744,7 +28844,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "V11.1",
+   "latestDate": "2025-10-19T16:44:57Z"
   },
   {
    "id": "the412banner-bannerhub-lite",
@@ -29287,7 +29389,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "v1.0.2",
+   "latestDate": "2026-05-12T01:24:49Z"
   },
   {
    "id": "winlatorbrasil-winlator-brasil",
@@ -29352,7 +29456,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "Winlator_Brasil_10.1",
+   "latestDate": "2025-05-24T01:26:43Z"
   },
   {
    "id": "jaycore-mobox-patched",
@@ -29439,7 +29545,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "Mobox_Patched_3.0",
+   "latestDate": "2025-06-26T21:09:19Z"
   },
   {
    "id": "itzdfplayer-gamehub-lite",
@@ -29489,7 +29597,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "5.3.5-v2",
+   "latestDate": "2026-01-06T21:01:46Z"
   },
   {
    "id": "winlatorxr-winlatorxr",
@@ -29562,7 +29672,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "winlatorxr_dawn42",
+   "latestDate": "2026-10-09T17:41:05Z"
   },
   {
    "id": "windroidemulation-winnative",
@@ -30275,7 +30387,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "build-2026-06-20",
+   "latestDate": "2026-06-20T00:47:20Z"
   },
   {
    "id": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
@@ -30334,7 +30448,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "X1Box",
+   "latestDate": "2026-03-08T18:10:12Z"
   },
   {
    "id": "edeegg-sharpemu-arm64",
@@ -30379,7 +30495,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "android-v0.0.2_poc",
+   "latestDate": "2026-08-05T07:38:15Z"
   },
   {
    "id": "alexoqool-winlator-bionic-build",
@@ -30844,7 +30962,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "2026-05-03",
+   "latestDate": "2026-05-03T01:49:34Z"
   },
   {
    "id": "duckyduckg-winlator",
@@ -31338,7 +31458,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "8de79b1",
+   "latestDate": "2026-04-05T07:31:59Z"
   },
   {
    "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
@@ -31383,7 +31505,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "Exiled-Kingdoms-Multiplayer-2.0",
+   "latestDate": "2026-04-24T23:48:07Z"
   },
   {
    "id": "j4mcu-builds-gamehub-lite-redmagic",
@@ -31414,7 +31538,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "V5.1.3",
+   "latestDate": "2026-02-18T00:49:34Z"
   },
   {
    "id": "deivid22srk-winlator-xmod",
@@ -31473,7 +31599,9 @@
       }
      ]
     }
-   ]
+   ],
+   "latestTag": "Winlator_xmox_1.1.0",
+   "latestDate": "2025-09-20T16:27:49Z"
   },
   {
    "id": "maxjivi05-gamenative-performance",

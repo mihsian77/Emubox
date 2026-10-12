@@ -154,6 +154,11 @@ def main():
         e["homepage"] = s.get("homepage") or ""
 
     emus = [by_repo[k] for k in order]
+    # 补充最新版本信息：latestTag/latestDate 从最新 release 取（releases 已按时间倒序）
+    for e in emus:
+        rel0 = (e.get("releases") or [{}])[0]
+        e["latestTag"] = rel0.get("tag", "")
+        e["latestDate"] = rel0.get("date", "")
     emus.sort(key=lambda e: (-(1 if e["official"] else 0), -(e.get("downloads") or 0)))
     cats = {}
     for e in emus:

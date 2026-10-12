@@ -16,6 +16,8 @@
 #include <iomanip>
 #include <functional>
 #include <cmath>
+#include <thread>
+#include <atomic>
 
 #define LOG_TAG "EmuBoxVulkan"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -1163,6 +1165,72 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         return "{\"success\":false,\"errorCode\":\"BANDWIDTH_NONFINITE\",\"errorMessage\":\"computed bandwidth is not finite\"}";
     }
 
+    // ── CPU 基准（纯计算，无 GPU 依赖，主进程安全）────────────
+    // 整数：64 位混合运算（mul/add/xor/shift），每线程 4M 次迭代；
+    // 浮点：double 乘加混合，每线程 4M 次迭代；
+    // 多线程分片（最多 8 线程），聚合计时换算 MIPS / MFLOPS。
+    struct CpuResult { double intMIPS = 0.0; double floatMFLOPS = 0.0; int threads = 1; };
+    auto runCpuBenchmark = []() -> CpuResult {
+        const unsigned hw = std::thread::hardware_concurrency();
+        const int threads = std::max(1u, std::min(hw, 8u));
+        const long long ITERS = 4 * 1000 * 1000; // 每线程迭代数
+        std::atomic<long long> intOps{0}, floatOps{0};
+        std::atomic<bool> startFlag{false};
+        std::atomic<int> ready{0};
+        auto worker = [&](int tid) {
+            // 等统一开始信号（避免错峰启动拉长总时长）
+            while (!startFlag.load()) { std::this_thread::yield(); }
+            // 每线程独立种子，避免共享变量竞争
+            unsigned long long a = 0x9E3779B97F4A7C15ull + tid * 7919u;
+            unsigned long long b = a * 31ull + 17ull;
+            long long oi = 0;
+            // 整数混合运算：6 条指令/迭代（mul, add, xor, shift, xor, add）
+            for (long long i = 0; i < ITERS; i++) {
+                a = a * 2862933555777941757ull + 3037000493ull;
+                b = (b << 13) | (b >> 51);
+                a ^= b;
+                b += a;
+                a = (a >> 7) ^ (a << 57);
+                b ^= a;
+                a += b;
+                oi += 6;
+            }
+            intOps.fetch_add(oi, std::memory_order_relaxed);
+            // 浮点：4 条 FP 运算/迭代（add, mul, fma 近似用 add+mul）
+            volatile double x = 1.0000001 + tid * 1e-9, y = 0.9999999 + tid * 1e-9;
+            double sum = 0.0;
+            long long of = 0;
+            for (long long i = 0; i < ITERS; i++) {
+                x = x * y + 0.0000001;
+                y = y * 0.99999999 + 0.0000001;
+                sum += x * y;
+                x += y;
+                of += 4;
+            }
+            if (sum == -1.2345) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, "cpu bench sum guard");
+            floatOps.fetch_add(of, std::memory_order_relaxed);
+            ready.fetch_add(1);
+        };
+        std::vector<std::thread> pool;
+        pool.reserve(threads);
+        for (int t = 0; t < threads; t++) pool.emplace_back(worker, t);
+        // 等所有 worker 就绪后统一开始（尽量减少错峰对总时长的影响）
+        while (ready.load() < threads) { std::this_thread::yield(); }
+        auto t0 = std::chrono::steady_clock::now();
+        startFlag.store(true);
+        for (auto& th : pool) th.join();
+        auto t1 = std::chrono::steady_clock::now();
+        double secs = std::chrono::duration<double>(t1 - t0).count();
+        CpuResult r;
+        r.threads = threads;
+        if (secs > 0.0) {
+            r.intMIPS = (double)intOps.load() / secs / 1e6;
+            r.floatMFLOPS = (double)floatOps.load() / secs / 1e6;
+        }
+        return r;
+    };
+    CpuResult cpu = runCpuBenchmark();
+
     // 10. 总分：带宽综合（fill+copy 平均，20GB/s = 1000 分）
     //     v1.10.5 起 compute 停用，总分仅由带宽构成，避免 9xxx 分虚高。
     double avgBandwidth = (fillBandwidthGBs + copyBandwidthGBs) / 2.0;
@@ -1184,6 +1252,9 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
       << "\"copyBandwidthGBs\":" << copyBandwidthGBs << ","
       << "\"computeGFLOPS\":" << std::setprecision(2) << computeGFLOPS << ","
       << "\"computeError\":\"" << jsonEscape(computeError) << "\","
+      << "\"cpuIntMIPS\":" << std::setprecision(0) << cpu.intMIPS << ","
+      << "\"cpuFloatMFLOPS\":" << std::setprecision(0) << cpu.floatMFLOPS << ","
+      << "\"cpuThreads\":" << cpu.threads << ","
       << "\"totalScore\":" << totalScore << ","
       << "\"bufferSizeMB\":32,"
       << "\"fillIterations\":" << FILL_ITERS << ","

@@ -1482,6 +1482,21 @@
         ]
       },
       "updated_at": "2026-10-12T06:55:13Z"
+    },
+    {
+      "id": "weab-turnip-ci",
+      "name": "Weab-chan Turnip CI",
+      "owner": "Weab-chan",
+      "repo": "freedreno_turnip-CI",
+      "label": "Weab-chan Turnip CI",
+      "description": "Weab-chan Turnip 驱动 CI 构建（高通 Adreno）",
+      "vendor": "qualcomm",
+      "target": "turnip",
+      "chipset": [
+        "a6xx",
+        "a7xx"
+      ],
+      "priority": 4
     }
   ]
 }
