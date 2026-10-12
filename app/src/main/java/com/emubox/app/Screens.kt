@@ -2859,6 +2859,9 @@ private fun componentSubtitle(type: String): String = when (type) {
 
 /** 根据设备 Adreno 系列计算 Turnip 源优先级：匹配型号/系列 → 推荐，有白名单无匹配 → 专属，无白名单 → 通用 */
 private fun turnipCategoryOf(source: TurnipSource, adrenoSeries: String?): String {
+    // PanVK（Mali）驱动独立分区：与 Turnip（Adreno）/ 高通提取驱动完全不同的
+    // 技术路线（Mesa Panfrost 前端），混在推荐区会让用户误以为不兼容。
+    if (source.requiredVendor == "mali") return "panvk"
     val seriesHit = source.supportedSeries.contains(adrenoSeries)
     // 通用多系列 turnip 构建（覆盖 ≥2 个系列且不限定具体型号）→ 适合绝大多数设备
     val isUniversal = source.supportedModels.isEmpty() && source.supportedSeries.size >= 2
@@ -3151,6 +3154,7 @@ private fun SourcePickerCard(
                     // 分组：推荐 / 通用 / 专属 / 已停更
                     val categoryLabel = mapOf(
                         "recommended" to appString(R.string.category_recommended),
+                        "panvk" to "PanVK（Mali）",
                         "general" to appString(R.string.category_general),
                         "exclusive" to appString(R.string.category_exclusive),
                         "archived" to appString(R.string.source_archived)
@@ -3158,7 +3162,7 @@ private fun SourcePickerCard(
                     val grouped = options.groupBy { opt ->
                         if (opt.archived) "archived" else opt.category.ifBlank { "general" }
                     }
-                    val categoryOrder = listOf("recommended", "general", "exclusive", "archived")
+                    val categoryOrder = listOf("recommended", "panvk", "general", "exclusive", "archived")
                         .filter { grouped.containsKey(it) }
                     val flatItems = buildList {
                         categoryOrder.forEach { cat ->
@@ -4065,7 +4069,12 @@ fun ComponentSection(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(type, style = MaterialTheme.typography.titleMedium)
                     Text(
-                        "${components.size} ${appString(R.string.version)} · ${currentSource.name}",
+                        buildString {
+                            append("${components.size} ${appString(R.string.version)} · ${currentSource.name}")
+                            val hint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
+                                .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) }
+                            if (hint != null) append(" · ").append(hint)
+                        },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 2,
