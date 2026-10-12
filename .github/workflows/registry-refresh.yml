@@ -22,17 +22,19 @@ jobs:
       - name: 拉取全部源仓库活跃度并回写
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/refresh-registry.py
+        run: |
+          python3 scripts/refresh-registry.py
+          python3 scripts/refresh-emulators.py
 
       - name: 有变化则提交
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! git diff --quiet -- driver-registry.json catalog/catalog.json; then
+          if ! git diff --quiet -- driver-registry.json catalog/catalog.json emulator-registry.json; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add driver-registry.json catalog/catalog.json
-            git commit -m "chore: 刷新驱动源活跃度（更新时间/星标）"
+            git add driver-registry.json catalog/catalog.json emulator-registry.json
+            git commit -m "chore: 刷新驱动/模拟器源活跃度（更新时间/星标/最新版本）"
             # checkout 默认无推送权限，显式带 token 推送
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             git push origin HEAD:main

@@ -1,0 +1,115 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-10-12T00:00:00Z",
+  "emulators": [
+    {
+      "id": "winlator",
+      "name": "Winlator",
+      "category": "windows",
+      "description": "安卓端 Windows x86 转译运行环境，通过 Wine/Box64 运行 Windows 游戏与软件，EmuBox 驱动/组件的主要使用场景",
+      "owner": "brunodev85",
+      "repo": "winlator",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "gamehub",
+      "name": "GameHub",
+      "category": "windows",
+      "description": "面向安卓的 Windows 游戏整合平台，内置 Wine/Box64 兼容层，可安装 DXVK、Turnip 等组件",
+      "owner": "",
+      "repo": "",
+      "homepage": "https://gamehub.com",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "eden",
+      "name": "Eden",
+      "category": "windows",
+      "description": "Winlator 衍生分支，部分驱动仓库（如 s1mptom）专门针对其在 Adreno 830/840 上的运行适配",
+      "owner": "",
+      "repo": "",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "termux",
+      "name": "Termux",
+      "category": "terminal",
+      "description": "安卓终端模拟器与 Linux 环境，可安装 Box64 等转译层，是驱动/组件的进阶使用场景",
+      "owner": "termux",
+      "repo": "termux-app",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "ppsspp",
+      "name": "PPSSPP",
+      "category": "console",
+      "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
+      "owner": "hrydgard",
+      "repo": "ppsspp",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "retroarch",
+      "name": "RetroArch",
+      "category": "multi",
+      "description": "多机种聚合模拟器前端，内置大量核心（核心通过在线下载），支持 Vulkan 渲染",
+      "owner": "libretro",
+      "repo": "RetroArch",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "dolphin",
+      "name": "Dolphin",
+      "category": "console",
+      "description": "GameCube/Wii 模拟器，安卓端 Vulkan 支持成熟",
+      "owner": "dolphin-emu",
+      "repo": "dolphin",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "duckstation",
+      "name": "DuckStation",
+      "category": "console",
+      "description": "PS1 模拟器，兼容性与画质增强优秀，支持 Vulkan",
+      "owner": "stenzek",
+      "repo": "duckstation",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    },
+    {
+      "id": "vita3k",
+      "name": "Vita3K",
+      "category": "console",
+      "description": "PSVita 模拟器，安卓端实验性支持 Vulkan",
+      "owner": "Vita3K",
+      "repo": "Vita3K",
+      "latest_tag": "",
+      "latest_apk_url": "",
+      "pushed_at": "",
+      "stars": 0
+    }
+  ]
+}
