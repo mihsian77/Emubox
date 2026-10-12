@@ -181,11 +181,17 @@ suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): Lis
 
     return (filtered.ifEmpty { fallback }.ifEmpty { allReleases })
         .map { release ->
+            // 驱动包约定为 zip/adpkg（含驱动本体与 meta.json）：
+            // 先按源 include/exclude 规则匹配，再硬性只保留压缩驱动包，
+            // 源码 tar.gz / txt / json 等非驱动文件不进入版本卡与下载。
             val compatibleAssets = release.assets.filter { asset ->
                 val included = includeAssetPatterns.isEmpty() ||
                     includeAssetPatterns.any { asset.name.contains(it, ignoreCase = true) }
                 val excluded = excludeAssetPatterns.any { asset.name.contains(it, ignoreCase = true) }
                 included && !excluded
+            }.filter { asset ->
+                asset.name.endsWith(".zip", ignoreCase = true) ||
+                    asset.name.endsWith(".adpkg", ignoreCase = true)
             }
             release.copy(assets = compatibleAssets)
         }
@@ -195,9 +201,18 @@ suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): Lis
 
 suspend fun fetchQualcommReleases(source: QualcommSource): List<GithubRelease> {
     val releases = fetchGithubReleasesFromUrl(source.apiUrl)
-    if (source.filters.isEmpty()) return releases
+    // 与 Turnip 一致：只保留 zip/adpkg 驱动包资产，其余文件不进入下载
+    val zipOnly = releases
+        .map { release ->
+            release.copy(assets = release.assets.filter { asset ->
+                asset.name.endsWith(".zip", ignoreCase = true) ||
+                    asset.name.endsWith(".adpkg", ignoreCase = true)
+            })
+        }
+        .filter { it.assets.isNotEmpty() }
+    if (source.filters.isEmpty()) return zipOnly.sortGithubReleasesNewestFirst()
 
-    return releases.filter { release ->
+    return zipOnly.filter { release ->
         val searchable = buildString {
             append(release.name)
             append(' ')
