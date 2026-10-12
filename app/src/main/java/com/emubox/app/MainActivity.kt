@@ -84,9 +84,11 @@ class MainActivity : ComponentActivity() {
 
                 var sourceCatalog by remember { mutableStateOf(SourceCatalogRepository.builtInCatalog()) }
                 var turnipSourceId by remember { mutableStateOf(SettingsManager.getTurnipSource()) }
+                var panvkSourceId by remember { mutableStateOf(SettingsManager.getPanvkSource()) }
                 var qualcommSourceId by remember { mutableStateOf(SettingsManager.getQualcommSource()) }
 
                 var turnipReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
+                var panvkReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var qualcommReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var componentCatalogs by remember {
                     mutableStateOf<Map<String, Map<String, List<Component>>>>(emptyMap())
@@ -180,14 +182,24 @@ class MainActivity : ComponentActivity() {
                         // 直接使用合并后的完整列表：注册表源已按设备匹配排序在前，
                         // 内置源在后。不再二次过滤（避免已匹配源被 series 过滤排除）。
                         val compatibleSources = catalog.turnipSources
+                        // PanVK（Mali）独立专区：按 requiredVendor 拆出，不再混在 Turnip 区
+                        val panvkSources = compatibleSources.filter { it.requiredVendor == "mali" }
+                        val turnipOnlySources = compatibleSources.filterNot { it.requiredVendor == "mali" }
 
-                        val selectedSource = compatibleSources.firstOrNull { source ->
+                        val selectedSource = turnipOnlySources.firstOrNull { source ->
                             source.id.equals(turnipSourceId, ignoreCase = true) ||
                                 source.name.equals(turnipSourceId, ignoreCase = true)
-                        } ?: compatibleSources.firstOrNull()
+                        } ?: turnipOnlySources.firstOrNull()
                             ?: catalog.turnipSources.first()
 
                         val releases = fetchTurnipReleases(selectedSource, info.adrenoSeries)
+
+                        val selectedPanvkSource = panvkSources.firstOrNull { source ->
+                            source.id.equals(panvkSourceId, ignoreCase = true) ||
+                                source.name.equals(panvkSourceId, ignoreCase = true)
+                        } ?: panvkSources.firstOrNull()
+                        val panvk = selectedPanvkSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
+                            ?: emptyList()
 
                         val selectedQualcommSource = catalog.qualcommSources.firstOrNull { source ->
                             source.id.equals(qualcommSourceId, ignoreCase = true) ||
@@ -231,8 +243,10 @@ class MainActivity : ComponentActivity() {
                             driverSourceUpdatedAt = driverSourceUpdatedAt,
                             driverSourceStars = driverSourceStars,
                             selectedTurnipSource = selectedSource,
+                            selectedPanvkSource = selectedPanvkSource,
                             selectedQualcommSource = selectedQualcommSource,
                             turnipReleases = releases,
+                            panvkReleases = panvk,
                             qualcommReleases = qualcomm,
                             componentCatalogs = manifestComponentMaps + registryComponentMaps
                         )
@@ -241,6 +255,7 @@ class MainActivity : ComponentActivity() {
                     deviceInfo = result.deviceInfo
                     sourceCatalog = result.catalog
                     turnipReleases = result.turnipReleases
+                    panvkReleases = result.panvkReleases
                     qualcommReleases = result.qualcommReleases
                     componentCatalogs = result.componentCatalogs
                     componentSourceUpdatedAt = result.componentSourceUpdatedAt
@@ -250,6 +265,10 @@ class MainActivity : ComponentActivity() {
                     if (turnipSourceId != result.selectedTurnipSource.id) {
                         turnipSourceId = result.selectedTurnipSource.id
                         SettingsManager.setTurnipSource(result.selectedTurnipSource.id)
+                    }
+                    if (result.selectedPanvkSource != null && panvkSourceId != result.selectedPanvkSource.id) {
+                        panvkSourceId = result.selectedPanvkSource.id
+                        SettingsManager.setPanvkSource(result.selectedPanvkSource.id)
                     }
                     if (qualcommSourceId != result.selectedQualcommSource.id) {
                         qualcommSourceId = result.selectedQualcommSource.id
@@ -267,6 +286,19 @@ class MainActivity : ComponentActivity() {
                         source.id == turnipSourceId || source.name == turnipSourceId
                     } ?: sourceCatalog.turnipSources.first()
                     turnipReleases = withContext(Dispatchers.IO) {
+                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
+                    }
+                }
+
+                // 快速路径：切换 PanVK 源 → 只重拉该源 releases
+                LaunchedEffect(panvkSourceId) {
+                    if (!fullyLoaded) return@LaunchedEffect
+                    val panvkSources = sourceCatalog.turnipSources.filter { it.requiredVendor == "mali" }
+                    if (panvkSources.isEmpty()) return@LaunchedEffect
+                    val selected = panvkSources.firstOrNull { source ->
+                        source.id == panvkSourceId || source.name == panvkSourceId
+                    } ?: panvkSources.first()
+                    panvkReleases = withContext(Dispatchers.IO) {
                         fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
                     }
                 }
@@ -449,10 +481,19 @@ class MainActivity : ComponentActivity() {
                                             turnipSourceId = turnipSourceId,
                                             turnipSources = if (SettingsManager.getMatchDriversByDevice()) {
                                                 sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
+                                                    .filterNot { it.requiredVendor == "mali" }
                                             } else {
-                                                sourceCatalog.turnipSources
+                                                sourceCatalog.turnipSources.filterNot { it.requiredVendor == "mali" }
                                             },
                                             turnipReleases = turnipReleases,
+                                            panvkSourceId = panvkSourceId,
+                                            panvkSources = if (SettingsManager.getMatchDriversByDevice()) {
+                                                sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
+                                                    .filter { it.requiredVendor == "mali" }
+                                            } else {
+                                                sourceCatalog.turnipSources.filter { it.requiredVendor == "mali" }
+                                            },
+                                            panvkReleases = panvkReleases,
                                             qualcommSourceId = qualcommSourceId,
                                             qualcommSources = sourceCatalog.qualcommSources,
                                             qualcommReleases = qualcommReleases,
@@ -460,6 +501,10 @@ class MainActivity : ComponentActivity() {
                                             onTurnipSourceChange = { sourceId ->
                                                 turnipSourceId = sourceId
                                                 SettingsManager.setTurnipSource(sourceId)
+                                            },
+                                            onPanvkSourceChange = { sourceId ->
+                                                panvkSourceId = sourceId
+                                                SettingsManager.setPanvkSource(sourceId)
                                             },
                                             onQualcommSourceChange = { sourceId ->
                                                 qualcommSourceId = sourceId
@@ -619,8 +664,10 @@ private data class AppLoadResult(
     val deviceInfo: DeviceInfo,
     val catalog: SourceCatalog,
     val selectedTurnipSource: TurnipSource,
+    val selectedPanvkSource: TurnipSource? = null,
     val selectedQualcommSource: QualcommSource,
     val turnipReleases: List<GithubRelease>,
+    val panvkReleases: List<GithubRelease> = emptyList(),
     val qualcommReleases: List<GithubRelease>,
     val componentCatalogs: Map<String, Map<String, List<Component>>>,
     val componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
