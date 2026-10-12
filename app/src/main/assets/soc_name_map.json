@@ -347,5 +347,18 @@
   "KIRIN9010": "HiSilicon Kirin 9010",
   "KIRIN9020": "HiSilicon Kirin 9020",
   "MALEOON910": "HiSilicon Maleoon 910 (自研GPU)",
-  "MALEOON920": "HiSilicon Maleoon 920 (自研GPU)"
+  "MALEOON920": "HiSilicon Maleoon 920 (自研GPU)",
+  "kalama": "Qualcomm Snapdragon 8 Gen 2",
+  "taro": "Qualcomm Snapdragon 8 Gen 1",
+  "lahaina": "Qualcomm Snapdragon 888",
+  "kona": "Qualcomm Snapdragon 865",
+  "pineapple": "Qualcomm Snapdragon 8 Gen 3",
+  "sun": "Qualcomm Snapdragon 8 Elite",
+  "mt6983": "MediaTek Dimensity 9000",
+  "mt6985": "MediaTek Dimensity 9200",
+  "mt6989": "MediaTek Dimensity 9300",
+  "mt6895": "MediaTek Dimensity 8100",
+  "mt6897": "MediaTek Dimensity 8300",
+  "mt6886": "MediaTek Dimensity 7200",
+  "mt6835": "MediaTek Dimensity 6100"
 }

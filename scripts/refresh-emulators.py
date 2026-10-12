@@ -66,7 +66,9 @@ def main():
         rel = api_get(API_RELEASES.format(owner=owner, repo=repo))
         if rel:
             for r in rel:
-                if r.get("draft") or r.get("prerelease"):
+                # 只跳过草稿；prerelease（夜版/连续构建）也算最新版本，否则
+                # Dolphin 这类只发 nightly 的仓库永远拿不到版本号
+                if r.get("draft"):
                     continue
                 assets = r.get("assets", [])
                 apk = next((a for a in assets if a["name"].lower().endswith(".apk")), None)
@@ -77,6 +79,15 @@ def main():
                     emu["latest_apk_url"] = url
                     changed = True
                 break
+        elif owner and repo:
+            # Releases 为空（部分仓库只用 Git tag 发布，如 Dolphin），回退查 tags
+            tags = api_get(API.format(owner=owner, repo=repo) + "/tags?per_page=1")
+            if tags and isinstance(tags, list) and tags:
+                tag = tags[0].get("name", "")
+                if tag != emu.get("latest_tag"):
+                    emu["latest_tag"] = tag
+                    emu["latest_apk_url"] = ""
+                    changed = True
         time.sleep(0.2)
 
     if changed:
