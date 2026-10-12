@@ -3770,7 +3770,7 @@ private fun DriverReleasePicker(
 
     ReleaseChangelog(selectedRelease)
 
-    if ((selectedRelease?.assets?.size ?: 0) > 1) {
+    if ((selectedRelease?.assets?.size ?: 0) >= 1) {
         ExposedDropdownMenuBox(
             expanded = expandedAsset,
             onExpandedChange = { expandedAsset = !expandedAsset }
@@ -3779,43 +3779,73 @@ private fun DriverReleasePicker(
                 value = selectedAsset?.name ?: "",
                 onValueChange = {},
                 readOnly = true,
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedAsset) },
+                trailingIcon = {
+                    if ((selectedRelease?.assets?.size ?: 0) > 1) {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedAsset)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth().menuAnchor(),
                 label = { Text(appString(R.string.file)) },
                 shape = RoundedCornerShape(18.dp),
                 maxLines = 1
             )
-            ExposedDropdownMenu(
-                expanded = expandedAsset,
-                onDismissRequest = { expandedAsset = false }
-            ) {
-                selectedRelease?.assets?.forEach { asset ->
-                    DropdownMenuItem(
-                        text = {
-                            Column {
-                                Text(
-                                    asset.name,
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                                Text(
-                                    formatBytes(asset.sizeBytes),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
+            if ((selectedRelease?.assets?.size ?: 0) > 1) {
+                ExposedDropdownMenu(
+                    expanded = expandedAsset,
+                    onDismissRequest = { expandedAsset = false }
+                ) {
+                    selectedRelease?.assets?.forEach { asset ->
+                        DropdownMenuItem(
+                            text = {
+                                Column {
+                                    Text(
+                                        asset.name,
+                                        maxLines = 2,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                    Text(
+                                        formatBytes(asset.sizeBytes),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            },
+                            onClick = {
+                                selectedAssetName = asset.name
+                                selectedRelease.tagName.let { tag ->
+                                    SettingsManager.setSelectedAssetName(selectionKey, tag, asset.name)
+                                }
+                                expandedAsset = false
                             }
-                        },
-                        onClick = {
-                            selectedAssetName = asset.name
-                            selectedRelease.tagName.let { tag ->
-                                SettingsManager.setSelectedAssetName(selectionKey, tag, asset.name)
-                            }
-                            expandedAsset = false
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
+    }
+
+    // 文件格式提示：按扩展名判断是否为模拟器标准驱动包（zip/adpkg）
+    val assetName = selectedAsset?.name.orEmpty()
+    val assetExt = assetName.substringAfterLast('.', "").lowercase()
+    val standardPkg = assetExt == "zip" || assetExt == "adpkg"
+    if (assetName.isNotBlank()) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = if (standardPkg) MaterialTheme.colorScheme.primaryContainer
+                else MaterialTheme.colorScheme.tertiaryContainer
+            ) {
+                Text(
+                    if (standardPkg) appString(R.string.file_format_standard, assetExt.uppercase())
+                    else appString(R.string.file_format_special, assetExt.uppercase()),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = if (standardPkg) MaterialTheme.colorScheme.onPrimaryContainer
+                    else MaterialTheme.colorScheme.onTertiaryContainer
+                )
+            }
+        }
+        Spacer(Modifier.height(8.dp))
     }
 
     Button(
@@ -3868,6 +3898,22 @@ private fun ComponentSizeText(component: Component) {
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
+}
+
+/** 模拟器 APK 大小：HEAD 懒加载，格式化为可读文本后回调 */
+@Composable
+private fun EmulatorApkSize(apkUrl: String, content: @Composable (String) -> Unit) {
+    var sizeText by remember(apkUrl) { mutableStateOf("") }
+    LaunchedEffect(apkUrl) {
+        if (sizeText.isBlank()) {
+            val bytes = fetchRemoteSizeBytes(apkUrl)
+            if (bytes != null && bytes > 0) {
+                sizeText = if (bytes >= 1024 * 1024) "%.1f MB".format(bytes / 1024.0 / 1024.0)
+                else "%.0f KB".format(bytes / 1024.0)
+            }
+        }
+    }
+    content(sizeText)
 }
 
 /** 驱动版本双列网格卡片：版本号 + 日期 + 文件数 + 大小 + latest 标签 */
@@ -6378,14 +6424,53 @@ private fun EmulatorCard(
                 }
             }
             Spacer(Modifier.height(10.dp))
+            if (entry.latestApkUrl.isNotBlank()) {
+                val apkName = entry.latestApkUrl.substringAfterLast('/')
+                EmulatorApkSize(entry.latestApkUrl) { sizeText ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.Download,
+                            contentDescription = null,
+                            modifier = Modifier.size(13.dp),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(
+                            apkName,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f, fill = false)
+                        )
+                        if (sizeText.isNotBlank()) {
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                sizeText,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
+                }
+                Spacer(Modifier.height(10.dp))
+            }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 val canDownload = entry.latestApkUrl.isNotBlank()
+                val websiteUrl = entry.homepage.ifBlank { entry.githubUrl }
                 Button(
-                    onClick = { onDownload(entry) },
-                    enabled = canDownload,
+                    onClick = {
+                        if (canDownload) onDownload(entry)
+                        else if (websiteUrl.isNotBlank()) {
+                            runCatching {
+                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl)))
+                            }
+                        }
+                    },
+                    enabled = canDownload || websiteUrl.isNotBlank(),
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(14.dp)
                 ) {
