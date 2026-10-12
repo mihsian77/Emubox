@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-10-12T21:59:06Z",
+  "updated_at": "2026-10-12T22:03:51Z",
   "emulators": [
     {
       "id": "termux",
@@ -6734,13 +6734,414 @@
       "homepage": "https://github.com/hanxinhao000/ZeroTermux",
       "logoUrl": "https://avatars.githubusercontent.com/u/23556571?v=4",
       "description": "Termux 知名 fork（3k+ star）：集成增强功能，独立版本线持续发布 APK",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 3052,
+      "pushed_at": "2026-08-10T15:45:31Z",
+      "latest_tag": "ZeroTermux-0.118.3.64",
+      "latest_date": "2026-08-08T14:13:25Z",
+      "latest_apk_name": "ZeroTermux-0.118.3.64-debug_arm64-v8a.apk",
+      "latest_apk_url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.64/ZeroTermux-0.118.3.64-debug_arm64-v8a.apk",
+      "releases": [
+        {
+          "tag": "ZeroTermux-0.118.3.64",
+          "name": "ZeroTermux-0.118.3.64",
+          "date": "2026-08-08T14:13:25Z",
+          "body": "1.优化定时任务，稳定性修复\n2.移动AI智能体到右侧栏，优化AI智能体功能，移除旧的AI智能体\n3.优化设置排版\n4.新增 JAVA C PY LSP功能，优化代码写作能力\n5.智能体加入skills功能\n6.优化翻译\n7.新增维修模式\n8.优化打断提示功能\n9.优化左侧栏目排版\n\n----------------------\n\n1. Optimized scheduled tasks and improved stability.\n2. Moved the AI ​​agent to the right sidebar, enhanced AI agent functionality, and removed the legacy AI agent.\n3. Optimized the settings layout.\n4. Added support for Java, C, Python, and LSP; improved code generation capabilities.\n5. Added \"skills\" functionality to the AI ​​agent.\n6. Optimized translation features.\n7. Added a maintenance mode.\n8. Optimized the interruption prompt feature.\n9. Optimized the left sidebar layout.\n\n<img width=\"1716\" height=\"1920\" alt=\"image\" src=\"https://github.com/user-attachments/assets/6512f55e-7c6c-4f0e-96b1-d630a63527bf\" />\n\n<img width=\"1716\" height=\"1920\" alt=\"image\" src=\"https://github.com/user-attachments/assets/8016de21-4871-41c8-9392-81bd8840127a\" />\n\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.64-debug_arm64-v8a.apk",
+              "size": 94363667,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.64/ZeroTermux-0.118.3.64-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.64-release_arm64-v8a.apk",
+              "size": 83385540,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.64/ZeroTermux-0.118.3.64-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.63",
+          "name": "ZeroTermux-0.118.3.63",
+          "date": "2026-07-05T13:46:39Z",
+          "body": "ZeroTermux-0.118.3.63\n1.新增AI智能体，全面升级AI能力\n1.1 可操控终端、读取终端、下发命令、全程自动化操作，无需手动操作\n1.2 智能体可操控 ZeroTermux 大多数功能，如 更改左侧栏、切换容器、切换源、更改字体颜色、背景颜色、终端模糊等\n2.代码编辑加入AI功能\n2.1 AI可以一键写代码编译运行结果，可以调试gui应用(测试阶段)\n3. 其他功能 加入AI调试ZT功能，AI可在电脑通过局域网调试ZT部分功能\n4.升级基础OS到2026.06.28\n\n注意：全程测试的只有deepseek能力，其他能力无法测试，如果有问题，请反馈\n\n---------------------------------\nZeroTermux-0.118.3.63\n1. Added an AI agent with comprehensively upgraded AI capabilities\n1.1 Capable of controlling the terminal, reading terminal output, issuing commands, and executing fully automated operations without manual intervention\n1.2 The AI ​​agent can control most ZeroTermux functions, such as modifying the sidebar, switching containers, changing software sources, adjusting font and background colors, and toggling terminal blur effects\n2. Added AI features to code editing\n2.1 AI can write, compile, and execute code with a single click, and debug GUI applications (beta phase)\n3. Other features: Added AI-based debugging for ZeroTermux; AI can debug specific ZeroTermux functions from a PC via a local network (LAN)\n4. Upgraded the base OS to 2026.06.28\nNote: Only DeepSeek's capabilities were tested throughout this process; other capabilities could not be e",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.63-debug_arm64-v8a.apk",
+              "size": 93870170,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.63/ZeroTermux-0.118.3.63-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.63-release_arm64-v8a.apk",
+              "size": 83016849,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.63/ZeroTermux-0.118.3.63-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.62",
+          "name": "ZeroTermux-0.118.3.62",
+          "date": "2026-06-14T11:04:57Z",
+          "body": "1.修复编辑框底部终端无法复制\n2.修复不给内存卡权限直接闪退问题\n3.升级OS版本到 2026.06.07\n\n---------------------------------------------\n\n1. Fixed the issue of not being able to copy at the bottom of the editing box.\n\n2. Fixed the issue of crashing without granting memory card permissions.\n\n3. Upgraded the OS version to 2026.06.07.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.62-debug_arm64-v8a.apk",
+              "size": 93171099,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.62/ZeroTermux-0.118.3.62-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.62-release_arm64-v8a.apk",
+              "size": 82480608,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.62/ZeroTermux-0.118.3.62-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.61",
+          "name": "ZeroTermux-0.118.3.61",
+          "date": "2026-06-07T12:07:54Z",
+          "body": "注意如果闪退报错 MainActivity无法找到，请重新下载release页面APK\n\nZeroTermux-0.118.61\n1.修复X11全屏闪退\n2.新增语言编辑功能\n2.1 可创建C、JAVA、PHP、NPM、PYTHON语言编程项目\n2.2 编辑框加入LSP提示功能\n2.3 编译可点击左上角运行按钮，点击之后底部终端可实时查看编译结果\n3.优化定时任务(解决功耗问题，加入脚本执行日志)\n4.优化左侧菜单栏目，现在可以使用多种自定义菜单目录\n5.完善Android 内部存储切换\n6.修改字体模糊逻辑，加入字体对比度开关\n-------------------------------------------------------------------------------\n\nNote that if the app crashes and displays an error message indicating that MainActivity cannot be found, please re-download the APK from the release page.\n\nZeroTermux-0.118.61\n1. Fixed X11 fullscreen crash\n2. Added language editing feature\n2.1 Can create programming projects in C, JAVA, PHP, NPM, PYTHON\n2.2 Added LSP hint feature to the editor\n2.3 Compiling can be done by clicking the run button in the top left corner, and the compilation results can be viewed in real-time in the bottom terminal\n3. Optimized scheduled tasks (solved power consumption issues, added script execution logs)\n4. Optimized the left menu section, now supports multiple custom menu directories\n5. Improved Android internal storage switching\n6. Modified font blur logic and added font contrast toggle",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.61-release_arm64-v8a.apk",
+              "size": 88076527,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.61/ZeroTermux-0.118.3.61-release_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.61-debug_arm64-v8a.apk",
+              "size": 99123109,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.61/ZeroTermux-0.118.61-debug_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.60",
+          "name": "ZeroTermux-0.118.3.60",
+          "date": "2026-06-03T14:17:57Z",
+          "body": "ZeroTermux-0.118.3.60\n紧急修复内部通道 输入闪退问题\n\nZeroTermux-0.118.3.60\nEmergency fix for internal channel input crash issue",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.60-debug_arm64-v8a.apk",
+              "size": 98898129,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.60/ZeroTermux-0.118.60-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.60-release_arm64-v8a.apk",
+              "size": 87899331,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.60/ZeroTermux-0.118.60-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.59",
+          "name": "ZeroTermux-0.118.3.59",
+          "date": "2026-05-31T11:33:44Z",
+          "body": "日志：\n\nZeroTermux-0.118.3.59\n1.同步升级OS到 2026-05-24\n2.新增对比终端字体，以及高斯模糊效果 (琪初QiTry.🏳️‍🌈 贡献)\n2.1 功能：左侧栏 -> 美化设置\n<img width=\"1080\" height=\"901\" alt=\"BC087C09330C7E37195809039DE72886\" src=\"https://github.com/user-attachments/assets/b3805e55-0f7c-49f5-8330-f14fff9f491f\" />\n3.新增文件夹存储路径 (Android/data) 目前还是测试功能，如有后续问题请在GITHUB上及时反馈\n4.优化容器切换页面 (完善翻译)，以及界面UI\n5.优化编辑页面文本编辑器功能  (琪初QiTry.🏳️‍🌈 贡献)\n6.重构工作流程 (欣享试乘贡献)\n\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.59_debug_arm64-v8a.apk",
+              "size": 94352821,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.59/ZeroTermux-0.118.3.59_debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.59_release_arm64-v8a.apk",
+              "size": 83647529,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.59/ZeroTermux-0.118.3.59_release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.58",
+          "name": "ZeroTermux-0.118.3.58",
+          "date": "2026-05-19T09:50:01Z",
+          "body": "ZeroTermux-0.118.3.58\n1.重构X11内部通道代码 (xiaotong666)\n2.编辑器新增查找和替换\n3.[修复内部通道终端距离顶部显示异常边距](https://github.com/hanxinhao000/ZeroTermux/commit/9f37885e2c951424e89a860512b2d94c8ea0e1b9)\n\n-----------------------------------------------\n\nZeroTermux-0.118.3.58\n1. Refactored X11 internal channel code (xiaotong666)\n2. Added find and replace function to the editor\n3. [Fixed abnormal margin display between the internal channel terminal and the top](https://github.com/hanxinhao000/ZeroTermux/commit/9f37885e2c951424e89a860512b2d94c8ea0e1b9)",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_debug_arm64-v8a.apk",
+              "size": 94122133,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_debug_armeabi-v7a.apk",
+              "size": 89700371,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_debug_universal.apk",
+              "size": 193552231,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_debug_universal.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_debug_x86.apk",
+              "size": 92893473,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_debug_x86.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_debug_x86_64.apk",
+              "size": 93386216,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_debug_x86_64.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_release_arm64-v8a.apk",
+              "size": 83486010,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_release_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_release_armeabi-v7a.apk",
+              "size": 79251182,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_release_armeabi-v7a.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_release_universal.apk",
+              "size": 181922707,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_release_universal.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_release_x86.apk",
+              "size": 82213143,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_release_x86.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.58_release_x86_64.apk",
+              "size": 82753005,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.58/ZeroTermux-ZeroTermux-0.118.3.58_release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.57",
+          "name": "ZeroTermux-0.118.3.57",
+          "date": "2026-05-15T12:11:26Z",
+          "body": "ZeroTermux-0.118.3.57\n1.同步OS到2026-05-11\n2.优化新手引导页面(规范存储未完成,需后续版本验证功能)\n3.由:后天盼蕾贡献核心功能\n    3.1.新增自定义AI接口，不限于DeepSeek (已知问题，过多对话可能会导致窗口抽搐)\n4.左右菜单栏目的图片可以手动控制是否显示\n5.优化设置页面\n6.现在可以自定义双击事件\n\n------------------------------------------------------------\n\nZeroTermux-0.118.3.57\n1. Synchronized OS to 2026-05-11\n2. Optimized the onboarding page (standardized storage is incomplete and requires verification in future versions)\n3. Core functionality contributed by: Houtian Panlei\n3.1. Added a custom AI interface, not limited to DeepSeek (known issue: excessive dialogue may cause window twitching)\n4. Images in the left and right menu bars can now be manually controlled for display\n5. Optimized the settings page\n6. Double-click events can now be customized",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.57_debug_arm64-v8a.apk",
+              "size": 92575572,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.57/ZeroTermux-ZeroTermux-0.118.3.57_debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-ZeroTermux-0.118.3.57_release_arm64-v8a.apk",
+              "size": 82040185,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.57/ZeroTermux-ZeroTermux-0.118.3.57_release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.56",
+          "name": "ZeroTermux-0.118.3.56",
+          "date": "2026-04-14T10:14:39Z",
+          "body": "ZeroTermux-0.118.3.56\n1.更新 基础 X11 内部通道和外部通道组件\n2.修复X11外部组件设置闪退问题\n3.新增左右菜单栏目背景功能\n\n----------------------------------\n\n1. Updated the basic X11 internal and external channel components\n2. Fixed the crash issue in X11 external component settings\n3. Added background functionality to the left and right menu bars",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.56-debug_arm64-v8a.apk",
+              "size": 91947055,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.56/ZeroTermux-0.118.56-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.56-release_arm64-v8a.apk",
+              "size": 81346394,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.56/ZeroTermux-0.118.56-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.55",
+          "name": "ZeroTermux-0.118.3.55",
+          "date": "2026-04-13T09:20:07Z",
+          "body": "ZeroTermux-0.118.3.55\n1.更新基础OS 到 2026-04-12\n2.新增基础边栏引导模式\n3.新增DeepSeek报错提示\n4.修复自定义命令出现闪退问题(暂时规避闪退)\n5.新增右侧栏使用习惯(加入键盘入口)\n6.以下为XiaoTong6666更新\n    6.1：同步上游更新\n    6.2：修复bug,以及使用习惯\n    6.3：其它细节更新\n\n------------------------------------------------------------\n\nZeroTermux-0.118.3.55\n1. Updated base OS to 2026-04-12\n2. Added basic sidebar guide mode\n3. Added DeepSeek error message\n4. Fixed crash issue with custom commands (temporarily avoided crash)\n5. Added right sidebar usage habits (added keyboard entry)\n6. The following are updates from XiaoTong6666:\n6.1: Synchronized with upstream updates\n6.2: Bug fixes and usage habit adjustments\n6.3: Other minor updates\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.55-debug_arm64-v8a.apk",
+              "size": 91856878,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.55/ZeroTermux-0.118.55-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.55-release_arm64-v8a.apk",
+              "size": 81277562,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.55/ZeroTermux-0.118.55-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.54",
+          "name": "ZeroTermux-0.118.3.54",
+          "date": "2026-02-27T12:59:07Z",
+          "body": "1.修复左侧栏空白问题\n2.修复特殊情况下闪退问题\n\n-------------------------------\n\n1. Fixed the issue of a blank left sidebar\n\n2. Fixed a crash issue under certain circumstances",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.54-debug_arm64-v8a.apk",
+              "size": 91637789,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.54/ZeroTermux-0.118.54-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.54-release_arm64-v8a.apk",
+              "size": 81096201,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.54/ZeroTermux-0.118.54-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.53",
+          "name": "ZeroTermux-0.118.3.53",
+          "date": "2026-01-27T13:18:19Z",
+          "body": "1.更新基础OS到 2026年1月25号\n2.更新基础代码编辑器\n3.重大更新左侧栏，左侧栏菜单栏现在可以完全自定义\n3.1  左侧栏加入XML 解析,现在你可以自定义很多种点击操作\n3.2 左侧栏将使用XML 可自定义排序，自定义名称\n4.XiaoTong6666 修复SHH配色问题\n5.修复报错页面群组问题\n6.修复release 非空判断闪退问题\n7.加入折叠菜单\n\n---------------------------------------\n\n1. Updated the base OS to January 25, 2026\n2. Updated the base code editor\n3. Major update to the left sidebar; the left sidebar menu is now fully customizable\n3.1 Added XML parsing to the left sidebar; you can now customize many click actions\n3.2 The left sidebar will use XML for custom sorting and custom names.\n4. XiaoTong6666 fixed the SHH color scheme issue.\n5. Fixed the error page group issue.\n6. Fixed the crash issue related to non-empty checks in the release version.\n7. Added a collapsed menu.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.53-debug_arm64-v8a.apk",
+              "size": 91637792,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.53/ZeroTermux-0.118.53-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.53-release_arm64-v8a.apk",
+              "size": 81096115,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.53/ZeroTermux-0.118.53-release_arm64-v8a.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.52",
+          "name": "ZeroTermux-0.118.3.52",
+          "date": "2026-01-22T04:39:32Z",
+          "body": "1.同步官方升级\n2.修复右侧栏文件获取权限之后重复获取的BUG\n3.新增加 adb shell 运行 termux 提示\n4.工具箱下的功能全部整合到了左侧栏\n5.优化部分代码结构\n\n1. Synchronize with official updates\n2. Fix the bug where files in the right sidebar were repeatedly accessed after obtaining permissions\n3. Add a new adb shell prompt for running Termux\n4. All toolbox functions have been integrated into the left sidebar\n5. Optimize part of the code structure",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.52-debug.apk",
+              "size": 89514547,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.52/ZeroTermux-0.118.3.52-debug.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.52-release.apk",
+              "size": 79166086,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.52/ZeroTermux-0.118.3.52-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.51",
+          "name": "ZeroTermux-0.118.3.51",
+          "date": "2026-01-18T11:35:38Z",
+          "body": " ZeroTermux-0.118.3.51 (AI-DeepSeek)\n1.升级基础OS到 2026.01.11\n2.双击会话窗口新增自定义ssh一键连接 (贡献者: XiaoTong6666)\n3.修复翻译错误  (贡献者: Xieansecn)\n4.zt命令新增 创建dialog、修改终端背景\n5.右侧状态栏 新增 AI问答，现在有什么问题可在右侧栏目直接问询AI （DeepSeek）\n6.修复开机命令 关闭打开会有终端报错问题\n\n--------------------------------------------------------------\n\nZeroTermux-0.118.3.51 (AI-DeepSeek)\n\n1. Upgraded the base OS to 2026.01.11\n\n2. Added custom SSH one-click connection by double-clicking the session window (Contributor: XiaoTong6666)\n\n3. Fixed translation errors (Contributor: Xieansecn)\n\n4. Added dialog creation and terminal background modification to the zt command\n\n5. Added AI Q&A to the right-hand status bar; you can now directly ask AI (DeepSeek) questions in the right-hand column.\n\n6. Fixed the issue of terminal errors when closing and opening the boot command.\n\n-------------------------------------------------------------\n<img src=\"https://github.com/user-attachments/assets/3bc4ff70-4b9a-45cf-bc1a-4ae24ff7641d\" height=\"720\" width=\"360\">\n<img src=\"https://github.com/user-attachments/assets/caf81079-c053-41d4-b4c5-5d3612139128\" height=\"720\" width=\"360\">\n\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.51-debug.apk",
+              "size": 85300601,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.51/ZeroTermux-0.118.3.51-debug.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.51-release.apk",
+              "size": 77122322,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.51/ZeroTermux-0.118.3.51-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.50",
+          "name": "ZeroTermux-0.118.3.50",
+          "date": "2025-12-04T01:26:18Z",
+          "body": "ZeroTermux-0.118.3.50\n1.更新基础OS到 2025.11.23\n2.新增SSH一键连接(入口是双击终端弹窗)\n3.修复内部通道termux-x11-preference 失效问题\n4.更新termux-api、termux-x11插件\n5.新增 zt 命令，详情使用 zt 命令来查看帮助\n现在你可以使用zt命令来控制ZeroTermux 的部分功能，具体功能：\n\n        help - 显示帮助 \n        openleft(ol) - 打开左侧面板 \n        openright(or) - 打开右侧面板 \n        reboot(rb) - 重启termux \n        toast - 底部弹出信息，显示自定义消息 \n        toast[ \n        示例：zt toast hello \n        ] \n        version(v) - 查看当前版本信息 \n        \n        \n        图形连接相关:\n        \n        vnc - 连接vnc(zt vnc 地址_端口_用户名_密码) \n        vnc[ \n        示例: zt vnc 127.0.0.1_5900_admin_admin \n        用户名或密码为空则输入none \n        示例(密码为空)：zt vnc 127.0.0.1_5900_admin_none \n        示例(用户名为空)：zt vnc 127.0.0.1_5900_none_admin \n        示例(或都为空)：zt vnc 127.0.0.1_5900_none_none \n        注意 地址和端口不能为空！\n        ] \n        x11commandshow(x11xs) - 显示终端(x11需打开) \n        x11commandhide(x11xh) - 隐藏终端(x11需打开) \n        x11keyboardshow(x11kbs) -显示x11键盘 \n        x11keyboardhide(x11kbh) -隐藏x11键盘 \n        \n        \n        创建软连接 \n        ln - 创建软连接 \n        ln[ \n        说明：当前目录 内部存储路径 \n        注意：两个路径都必须是全路径 \n        示例：ln /data/data/com.termux/files/home/自定义名称 /sdcard/ \n        示例(或指定一个目录)：ln /data/data/com.termux/files/home/自定义名称 /s",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.50-app-arm64-v8a-debug.apk",
+              "size": 84360790,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.50/ZeroTermux-0.118.3.50-app-arm64-v8a-debug.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.50-arm64-v8a-release.apk",
+              "size": 76537611,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.50/ZeroTermux-0.118.3.50-arm64-v8a-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.49",
+          "name": "ZeroTermux-0.118.3.49",
+          "date": "2025-08-25T13:12:31Z",
+          "body": "更新基础OS 到 2025-08-24\n\n联系方式：\n潜水群248022558（推荐先加）\n①群1062337587\n②群885832352",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.49-arm64-v8a-debug.apk",
+              "size": 80458595,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.49/ZeroTermux-0.118.3.49-arm64-v8a-debug.apk"
+            },
+            {
+              "name": "ZeroTermux-0.118.3.49-arm64-v8a-release.apk",
+              "size": 72882870,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.49/ZeroTermux-0.118.3.49-arm64-v8a-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.48",
+          "name": "ZeroTermux-0.118.3.48",
+          "date": "2025-08-09T09:44:25Z",
+          "body": "ZeroTermux-0.118.3.48\n1.更新隐藏X11键盘\n2.修复规避 打开开机脚本 出现没权限\n3.强制打开可调式状态，现在可以使用 \n 1.adb shell\n 2.run-as com.termux\n 3.  PATH=/data/data/com.termux/files/usr/bin LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so HOME=/data/user/0/com.termux/files/home bash -li\n在adb 当中使用 termux 环境了\n\n注意：\n\n 此APK当中强制打开了 \n\n  android:debuggable=\"true\"\n\n如果有需要关闭的自行删除编译，或者提供反馈，在下个版本当中就会提供两个版本，打开 debuggable状态(可在adb 使用 termux环境)，或者关闭 debuggable 状态 (在adb 不可使用termux 环境)\n\n\n-------------------------\n\n\n1. Updated to hide the X11 keyboard.\n2. Fixed a workaround for a permission denied error when opening startup scripts.\n3. Forced debuggable mode enabled. Now works.\n1. adb shell\n2. run-as com.termux\n3.   PATH=/data/data/com.termux/files/usr/bin LD_PRELOAD=/data/data/com.termux/files/usr/lib/libtermux-exec.so HOME=/data/user/0/com.termux/files/home bash -li\nUse the termux environment in adb.\n\nNote:\n\nThis APK has the debuggable setting forced on.\n\nandroid:debuggable=\"true\"\n\nIf you need to disable this, please remove the build or provide feedback. The next release will include two versions: one with debuggable mode enabled (using the termux environment in adb) and one with debuggable mode disabled (disabling the",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.48-arm64-v8a-release.apk",
+              "size": 72882873,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.48/ZeroTermux-0.118.3.48-arm64-v8a-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.3.46",
+          "name": "ZeroTermux-0.118.3.46",
+          "date": "2025-07-08T13:24:39Z",
+          "body": "ZeroTermux-0.118.3.46-bate \n1.同步官方升级\n2.紧急修复谷歌art闪退恶性BUG\n\n1. Synchronize with official upgrades\n2. Urgently fix the Google art crash bug",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.3.46-arm64-v8a-release.apk",
+              "size": 72947041,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.46/ZeroTermux-0.118.3.46-arm64-v8a-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "ZeroTermux-0.118.1.45",
+          "name": "ZeroTermux-0.118.1.45",
+          "date": "2025-07-06T09:46:21Z",
+          "body": "ZeroTermux-0.118.1.45-bate **（测试版本 X11内部通道某些功能可能不稳定）**\n1.更新X11 apk文件\n2.增加X11通道，可在ZeroTermux当中背景显示X11内容，或者外部通道，在外部APK文件当中显示\n3.取消掉X11的签名验证\n4.优化包大小，只提供基础的arm64文件\n5.修复X11包点击设置闪退\n6.修复ZeroTermux本身的一些问题\n7.修复X11设置打开 全屏模式出现恶性闪退 (不建议使用原生的全屏模式，会导致无法使用输入法，需要重新启动APP并且关闭掉 此开关才能恢复)\n\n内部通道是用的都是官方的 X11 基础改进的，因为窗口是贴合到ZeroTermux当中的，X11原生设置内的有些选项是不适用的，除基本项目之外，不建议使用其它设置功能\n\n  已知未开发功能：\n    **内部通道 目前还无法隐藏掉 底部键盘，后续正式版本会修复这一问题**\n  已知问题：\n  **开启原生全屏模式 无法调出输入法**\n  **内部通道 在终止显示之后，音量上下 ( + -) 键 调出左右控制面板会失效，退出当前终端到桌面，再次进入才能恢复**\n\n\n\n**English**\n\nZeroTermux-0.118.1.45-beta **(Test version – Some X11 features may be unstable in internal channel)**\n1.Updated X11 APK file\n2.Added X11 channel – Allows background X11 display within ZeroTermux or external display via a separate APK\n3.Removed X11 signature verification\n4.Optimized package size – Now only provides basic arm64 binaries\n5.Fixed crash when clicking settings in X11 package\n6.Fixed several issues in ZeroTermux itself\n7.Fixed critical crash when enabling full-screen mode in X11 settings (Note: Native full-screen mode is not recommended, as it may break 8.keyboard input. Restart the app and disable this option to recover.)\n\nNative Full-Screen Mode: \n    **The input",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.1.45-arm64-v8a-release.apk",
+              "size": 73360717,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.1.45/ZeroTermux-0.118.1.45-arm64-v8a-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release",
+          "name": "0.118.1.43",
+          "date": "2023-04-17T12:05:32Z",
+          "body": "ZeroTermux 0.118.1.43\n1.同步升级官方OS\n2.修复侧边栏文件夹闪退问题\n3.修复某些机器上出现  [Process completed (code 1)  - press Enter]",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ZeroTermux-0.118.1.43.apk",
+              "size": 153104129,
+              "url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/release/ZeroTermux-0.118.1.43.apk"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "termux-kotlin",
@@ -6750,13 +7151,1034 @@
       "homepage": "https://github.com/reapercanuk39/termux-kotlin-app",
       "logoUrl": "https://avatars.githubusercontent.com/u/728003?v=4",
       "description": "Termux Kotlin 重写版：全 Kotlin 实现，独立发布 APK",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 64,
+      "pushed_at": "2026-03-27T09:17:34Z",
+      "latest_tag": "v2.0.14",
+      "latest_date": "2026-01-27T12:27:30Z",
+      "latest_apk_name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+      "latest_apk_url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_arm64-v8a.apk",
+      "releases": [
+        {
+          "tag": "v2.0.14",
+          "name": "🚀 Termux Kotlin v2.0.14",
+          "date": "2026-01-27T12:27:30Z",
+          "body": "## What's Changed\n\n- Merge pull request #21 from reapercanuk39/dependabot/github_actions/lewagon/wait-on-check-action-1.5.0\n- Changed: Bump lewagon/wait-on-check-action from 1.4.1 to 1.5.0\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.13...v2.0.14\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55570023,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52455073,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141335134,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54753725,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55445068,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.13",
+          "name": "🚀 Termux Kotlin v2.0.13",
+          "date": "2026-01-22T20:31:16Z",
+          "body": "## What's Changed\n\n- docs: Add v2.0.8 changelog for BusyBoxSkill enhancements\n- Enhance BusyBoxSkill with comprehensive root detection\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.12...v2.0.13\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55570023,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.13/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52455073,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.13/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141335134,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.13/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54753725,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.13/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55445068,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.13/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.12",
+          "name": "🚀 Termux Kotlin v2.0.12",
+          "date": "2026-01-22T19:48:09Z",
+          "body": "## What's Changed\n\n- fix: Built-in plugins (API, Boot, Styling, Widget) now work correctly\n- fix: Use built-in StylingActivity instead of external com.termux.styling\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.11...v2.0.12\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55566939,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.12/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52451989,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.12/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141332050,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.12/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54750637,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.12/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55441984,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.12/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.11",
+          "name": "🚀 Termux Kotlin v2.0.11",
+          "date": "2026-01-22T18:49:29Z",
+          "body": "## What's Changed\n\n- feat(agents): add system utility skills and enhanced reasoning pipeline\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.10...v2.0.11\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55567359,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.11/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52452409,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.11/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141332470,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.11/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54751057,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.11/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55442404,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.11/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.10",
+          "name": "🚀 Termux Kotlin v2.0.10",
+          "date": "2026-01-22T00:11:31Z",
+          "body": "## What's Changed\n\n- Merge pull request #20 from reapercanuk39/alert-autofix-48\n- Potential fix for code scanning alert no. 48: Uncontrolled data used in path expression\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.9...v2.0.10\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55189431,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.10/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52074481,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.10/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140954542,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.10/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54373129,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.10/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55064476,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.10/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.9",
+          "name": "🚀 Termux Kotlin v2.0.9",
+          "date": "2026-01-20T23:16:55Z",
+          "body": "## What's Changed\n\n- docs: Update AI.md - Termux:API built-in, version v2.0.6\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.8...v2.0.9\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55189075,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.9/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52074129,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.9/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140954186,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.9/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54372777,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.9/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55064124,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.9/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.8",
+          "name": "🚀 Termux Kotlin v2.0.8",
+          "date": "2026-01-20T22:58:34Z",
+          "body": "## What's Changed\n\n- docs: Fix README - Termux:API is already built-in\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.7...v2.0.8\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55189075,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.8/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52074129,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.8/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140954186,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.8/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54372777,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.8/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55064124,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.8/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.7",
+          "name": "🚀 Termux Kotlin v2.0.7",
+          "date": "2026-01-20T22:28:47Z",
+          "body": "## What's Changed\n\n- docs: Update ROADMAP - Termux:API is already integrated\n- fix: Sync agent swarm between Kotlin and Python systems\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.6...v2.0.7\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55189075,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.7/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52074129,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.7/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140954186,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.7/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54372777,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.7/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55064124,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.7/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.6",
+          "name": "🚀 Termux Kotlin v2.0.6",
+          "date": "2026-01-20T19:09:32Z",
+          "body": "## What's Changed\n\n- Fix crash on startup: Capability.kt static initialization order bug\n- docs: Update documentation for v2.0.5 features [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.5...v2.0.6\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55187411,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.6/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52072461,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.6/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140952522,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.6/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54371109,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.6/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55062456,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.6/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.5",
+          "name": "🚀 Termux Kotlin v2.0.5",
+          "date": "2026-01-20T18:06:50Z",
+          "body": "## What's Changed\n\n- feat: Kotlin-native Agent Daemon + Termux:Boot/Styling/Widget integration\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.4...v2.0.5\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 55187187,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.5/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 52072237,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.5/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140952298,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.5/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54370889,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.5/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 55062232,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.5/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.4",
+          "name": "🚀 Termux Kotlin v2.0.4",
+          "date": "2026-01-20T08:30:52Z",
+          "body": "## What's Changed\n\n- Update documentation for Swarm Intelligence v2.0.3\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.3...v2.0.4\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54815710,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.4/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51700764,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.4/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140580821,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.4/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 53999412,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.4/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54690759,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.4/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.3",
+          "name": "🚀 Termux Kotlin v2.0.3",
+          "date": "2026-01-20T08:20:36Z",
+          "body": "## What's Changed\n\n- Add Swarm Intelligence for emergent multi-agent coordination\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.2...v2.0.3\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54815710,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.3/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51700764,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.3/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140580821,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.3/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 53999412,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.3/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54690759,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.3/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.2",
+          "name": "🚀 Termux Kotlin v2.0.2",
+          "date": "2026-01-20T07:52:39Z",
+          "body": "## What's Changed\n\n- Fix autonomous.py get_agent() bug and skill_learner.py path issue\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.1...v2.0.2\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54811762,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.2/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51696816,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.2/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140576873,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.2/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 53995464,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.2/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54686811,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.2/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.1",
+          "name": "🚀 Termux Kotlin v2.0.1",
+          "date": "2026-01-20T07:43:30Z",
+          "body": "## What's Changed\n\n- Fix /tmp/termux-agents permission denied error\n- Fix agent module not found error\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.0...v2.0.1\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54811270,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.1/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51696320,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.1/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140576381,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.1/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 53994972,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.1/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54686315,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.1/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.0",
+          "name": "🚀 Termux Kotlin v2.0.0",
+          "date": "2026-01-20T05:44:00Z",
+          "body": "## 🚀 Termux Kotlin v2.0.0\n\n### 📚 Documentation\n-  Update for v2.0.0 - com.termux package name, Python works!\n-  Update build documentation [skip ci]\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit c3eaff08df4fb14b828202751e9d28e079dea95d*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33747160,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.0/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30647046,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.0/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119327251,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.0/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32930006,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.0/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33620285,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.0/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.2.5",
+          "name": "🚀 Termux Kotlin v1.2.5",
+          "date": "2026-01-20T05:19:11Z",
+          "body": "## What's Changed\n\n- Fix CI: Update validation for com.termux package name\n- docs: Update build documentation [skip ci]\n- BREAKING: Switch to com.termux package name for upstream compatibility\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v1.2.4...v1.2.5\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54811730,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.5/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51696784,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.5/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 140576841,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.5/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 53995432,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.5/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54686779,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.5/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.2.4",
+          "name": "🚀 Termux Kotlin v1.2.4",
+          "date": "2026-01-20T04:55:18Z",
+          "body": "## What's Changed\n\n- Fixed: Add for-loop pattern exception to prefix validation\n- docs: Update build documentation [skip ci]\n- Merge remote-tracking branch 'origin/main' - resolve CHANGELOG conflict\n- v1.2.3: Fix dpkg wrapper regression - restore comprehensive path rewriting\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v1.2.3...v1.2.4\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54977282,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.4/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51860064,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.4/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141179049,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.4/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54150760,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.4/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54806203,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.4/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.2.3",
+          "name": "🚀 Termux Kotlin v1.2.3",
+          "date": "2026-01-20T03:49:13Z",
+          "body": "## What's Changed\n\n- docs: Update AI.md with Session 28, add v1.2.2 to CHANGELOG\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v1.2.2...v1.2.3\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54976746,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.3/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51859528,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.3/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141178509,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.3/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54150220,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.3/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54805663,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.3/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.2.2",
+          "name": "🚀 Termux Kotlin v1.2.2",
+          "date": "2026-01-20T03:25:11Z",
+          "body": "## What's Changed\n\n- Auto-release: Build APK and create GitHub release directly\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v1.2.1...v1.2.2\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 54976746,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.2/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 51859528,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.2/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 141178509,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.2/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 54150220,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.2/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 54805663,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.2/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.2.0",
+          "name": "🚀 Termux Kotlin v1.2.0",
+          "date": "2026-01-20T02:08:28Z",
+          "body": "## What's New\n\n### Hybrid Compatibility Layer v3.0\nA two-tier approach for full upstream Termux package compatibility:\n\n#### Install-time (dpkg-wrapper v3.0)\n- Rewrites directory structure in packages\n- Fixes DEBIAN control scripts (postinst, prerm, etc.)\n- Fixes shebang lines in executables\n- Much faster than v2.0 (no full text file scanning)\n\n#### Runtime (LD_PRELOAD shim)\n- New `libtermux_compat.so` intercepts filesystem syscalls\n- Redirects /data/data/com.termux/ → /data/data/com.termux.kotlin/\n- Handles binaries with hardcoded paths at runtime\n- Zero overhead when not accessing old paths\n\n### 🆕 Auto-Compile Feature\n**The shim now compiles automaticallyecho ___BEGIN___COMMAND_OUTPUT_MARKER___ ; PS1= ; PS2= ; unset HISTFILE ; EC=0 ; echo ___BEGIN___COMMAND_DONE_MARKER___0 ; }* No manual steps needed.\n\nWhen you run `pkg install clang`:\n```\n[termux-compat] Clang detected, auto-compiling compatibility shim...\n[termux-compat] Success! Restart your shell to enable LD_PRELOAD.\n```\n\nOn next shell startup, LD_PRELOAD is automatically set.\n\n### Technical Details\n- Source: $PREFIX/lib/libtermux_compat.c\n- Library: $PREFIX/lib/libtermux_compat.so\n- Auto-triggers: profile hook + dpkg-wrappe",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33874108,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.0/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30771890,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.0/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119898675,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.0/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 33045426,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.0/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33702069,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.2.0/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.11",
+          "name": "🚀 Termux Kotlin v1.1.11",
+          "date": "2026-01-20T01:02:12Z",
+          "body": "## 🚀 Termux Kotlin v1.1.11\n\n### 📚 Documentation\n-  Update AI.md with dpkg wrapper optimization session\n-  Update CHANGELOG for v1.1.10 [skip ci]\n\n### 📝 Other Changes\n- Bundle agent framework in APK assets\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit 5d63c4acbfbe6fcb6baf57731fb2d60c879969ae*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33872493,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.11/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30770279,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.11/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119897060,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.11/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 33043811,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.11/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33700454,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.11/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.10",
+          "name": "🚀 Termux Kotlin v1.1.10",
+          "date": "2026-01-20T00:19:44Z",
+          "body": "## 🚀 Termux Kotlin v1.1.10\n\n### 🐛 Bug Fixes\n- **dpkg:** Comprehensive path rewriting for all text files\n\n### 📚 Documentation\n-  Update build documentation [skip ci]\n-  Update CHANGELOG for v1.1.9 [skip ci]\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit c885ad3131170369c9a7e6cc778db97d1e9660d8*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33788702,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.10/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30686488,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.10/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119813269,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.10/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32960020,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.10/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33616663,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.10/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.9",
+          "name": "🚀 Termux Kotlin v1.1.9",
+          "date": "2026-01-19T23:53:32Z",
+          "body": "## 🚀 Termux Kotlin v1.1.9\n\n### 🐛 Bug Fixes\n- **dpkg:** Add shebang fixing for installed scripts\n\n### 📚 Documentation\n-  Update build documentation [skip ci]\n-  Update CHANGELOG for v1.1.8 [skip ci]\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit 060a8e42599b0a82a48cef972708579a47e07e74*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33788438,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.9/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30686224,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.9/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119813005,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.9/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32959760,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.9/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33616399,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.9/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.8",
+          "name": "🚀 Termux Kotlin v1.1.8",
+          "date": "2026-01-19T23:35:18Z",
+          "body": "## 🚀 Termux Kotlin v1.1.8\n\n### ⚡ Performance\n- **dpkg:** Completely rewrite wrapper v2.0 for speed\n\n### 📚 Documentation\n-  Update build documentation [skip ci]\n-  Update CHANGELOG for v1.1.7 [skip ci]\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit e75efd9368e3600a5baf06659f26ce3dc260226a*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33788006,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.8/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30685788,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.8/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119812573,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.8/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32959324,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.8/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33615967,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.8/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.7",
+          "name": "🚀 Termux Kotlin v1.1.7",
+          "date": "2026-01-19T23:19:33Z",
+          "body": "## 🚀 Termux Kotlin v1.1.7\n\n### 🐛 Bug Fixes\n- **ci:** checkout main branch for workflow_dispatch releases\n\n### 📚 Documentation\n-  Update CHANGELOG for v1.1.6 [skip ci]\n\n### 📝 Other Changes\n- Optimize dpkg wrapper: skip packages without hardcoded paths\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit 0ac0f98329cccde81e66a470485326c5fb5bfc36*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33787942,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.7/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30685728,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.7/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119812509,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.7/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32959260,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.7/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33615903,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.7/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.6",
+          "name": "🚀 Termux Kotlin v1.1.6",
+          "date": "2026-01-19T22:42:21Z",
+          "body": "## 🚀 Termux Kotlin v1.1.6\n\n### ✨ Features\n- **agents:** Enable autonomous background agents with full network\n\n### 📚 Documentation\n-  Update build documentation [skip ci]\n-  Update CHANGELOG for v1.1.5 [skip ci]\n-  Update build documentation [skip ci]\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit c4a87f70651b3effd68dd3a25a21da90b34a653e*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33787554,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.6/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30685340,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.6/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119812121,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.6/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32958872,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.6/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33615515,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.6/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.5",
+          "name": "🚀 Termux Kotlin v1.1.5",
+          "date": "2026-01-19T21:36:33Z",
+          "body": "## 🚀 Termux Kotlin v1.1.5\n\n### ✨ Features\n- **agents:** Complete offline Python agent framework\n-  Add offline Python agent framework\n\n### 🐛 Bug Fixes\n- **installer:** Create etc/agents in staging directory\n\n### 📚 Documentation\n-  Update CHANGELOG for v1.1.4 [skip ci]\n-  Update build documentation [skip ci]\n-  Update build documentation [skip ci]\n-  Add Agent Framework section to ROADMAP as completed\n-  Add Agent Framework v1.0.0 to README and CHANGELOG\n-  Update build documentation [skip ci]\n-  Update build documentation [skip ci]\n-  Update build documentation [skip ci]\n-  Add APK analysis and fix strings.xml path\n-  Update build documentation [skip ci]\n\n### 📝 Other Changes\n- v1.0.64: Autonomous Agent Runtime\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33783510,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.5/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30681292,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.5/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119808077,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.5/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32954828,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.5/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33611471,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.5/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.4",
+          "name": "🚀 Termux Kotlin v1.1.4",
+          "date": "2026-01-19T21:07:48Z",
+          "body": "## 🚀 Termux Kotlin v1.1.4\n\n### 📝 Other Changes\n- Changed: Bump actions/download-artifact from 6 to 7\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit 97bb54855052f84022d6cafedca0d0b6c4189b66*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33782306,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.4/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30680092,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.4/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119806873,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.4/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32953624,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.4/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33610267,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.4/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.64",
+          "name": "🚀 Termux Kotlin v1.0.64",
+          "date": "2026-01-19T20:45:33Z",
+          "body": "## 🚀 Termux Kotlin v1.0.64\n\n### ✨ Features\n- **agents:** Complete offline Python agent framework\n-  Add offline Python agent framework\n\n### 📚 Documentation\n-  Add Agent Framework section to ROADMAP as completed\n-  Add Agent Framework v1.0.0 to README and CHANGELOG\n-  Update build documentation [skip ci]\n-  Update build documentation [skip ci]\n-  Update build documentation [skip ci]\n-  Add APK analysis and fix strings.xml path\n-  Update build documentation [skip ci]\n\n### 📝 Other Changes\n- v1.0.64: Autonomous Agent Runtime\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit a59b055b79aca41513db7e0b492fa84acbce1304*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33783366,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.0.64/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30681152,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.0.64/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119807933,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.0.64/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32954688,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.0.64/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33611327,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.0.64/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.3",
+          "name": "🚀 Termux Kotlin v1.1.3",
+          "date": "2026-01-18T18:59:13Z",
+          "body": "## 🚀 Termux Kotlin v1.1.3\n\n### 🐛 Bug Fixes\n-  Optimize dpkg wrapper to avoid freeze on large packages\n-  actually apply MOTD fix to bootstrap zips\n\n### 📚 Documentation\n-  Update build documentation [skip ci]\n-  Document v1.1.3 dpkg wrapper performance fix\n-  Update build documentation [skip ci]\n-  Update build documentation [skip ci]\n-  Document v1.1.2 MOTD welcome message fix\n-  Update build documentation [skip ci]\n-  Update CHANGELOG for v1.1.1 [skip ci]\n-  Update build documentation [skip ci]\n\n\n### 📦 Downloads\n\n| Architecture | Recommended For |\n|-------------|-----------------|\n| `arm64-v8a` | **Most Android devices** (2017+) |\n| `armeabi-v7a` | Older 32-bit phones |\n| `x86_64` | Emulators, ChromeOS |\n| `x86` | Older emulators |\n| `universal` | All devices (larger file) |\n\n### 📲 Installation\n1. Download the APK for your architecture\n2. Enable \"Install from unknown sources\" if prompted\n3. Install and run Termux!\n\n### ⚠️ Note\nIf you have Termux from F-Droid or Play Store, uninstall it first (different signature).\n\n---\n*100% Kotlin • Built from commit 4533f54c0b487ade75ced9334b606d52f4cce9c0*\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33782306,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.3/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30680092,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.3/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_universal.apk",
+              "size": 119806873,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.3/termux-app_apt-android-7-release_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32953624,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.3/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33610267,
+              "url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v1.1.3/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
