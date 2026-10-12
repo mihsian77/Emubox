@@ -36,6 +36,7 @@ private enum class AppScreen {
     DEVICE,
     DRIVERS,
     COMPONENTS,
+    EMULATORS,
     RUNTIME,
     DOWNLOADS,
     SETTINGS,
@@ -102,8 +103,16 @@ class MainActivity : ComponentActivity() {
                 var driverSourceStars by remember {
                     mutableStateOf<Map<String, Long>>(emptyMap())
                 }
+                var emulatorEntries by remember {
+                    mutableStateOf(EmulatorRegistryRepository.builtInRegistry())
+                }
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
+
+                // 模拟器清单远程刷新（失败保留内置）
+                LaunchedEffect(Unit) {
+                    emulatorEntries = EmulatorRegistryRepository.fetchRemoteRegistry()
+                }
 
                 // 慢下载推荐弹窗
                 var showSlowDownloadDialog by remember { mutableStateOf(false) }
@@ -348,6 +357,12 @@ class MainActivity : ComponentActivity() {
                                     label = { Text(appString(R.string.tab_component)) }
                                 )
                                 NavigationBarItem(
+                                    selected = currentScreen == AppScreen.EMULATORS,
+                                    onClick = { currentScreen = AppScreen.EMULATORS },
+                                    icon = { Icon(Icons.Default.Android, contentDescription = null) },
+                                    label = { Text(appString(R.string.tab_emulator)) }
+                                )
+                                NavigationBarItem(
                                     selected = currentScreen == AppScreen.RUNTIME,
                                     onClick = { currentScreen = AppScreen.RUNTIME },
                                     icon = { Icon(Icons.Default.Apps, contentDescription = null) },
@@ -574,6 +589,60 @@ class MainActivity : ComponentActivity() {
                                             onDownloadComponent = { component ->
                                                 downloadScope.launch {
                                                     downloadComponent(appContext, component)
+                                                }
+                                            }
+                                        )
+                                    }
+                                }
+
+                                AppScreen.EMULATORS -> {
+                                    Scaffold(
+                                        topBar = {
+                                            TopAppBar(
+                                                title = { Text(appString(R.string.emulator_region)) },
+                                                actions = {
+                                                    var isRefreshingLocal by remember { mutableStateOf(false) }
+                                                    val scope = rememberCoroutineScope()
+                                                    IconButton(
+                                                        onClick = {
+                                                            if (!isRefreshingLocal) {
+                                                                scope.launch {
+                                                                    isRefreshingLocal = true
+                                                                    emulatorEntries = EmulatorRegistryRepository.fetchRemoteRegistry()
+                                                                    delay(600)
+                                                                    isRefreshingLocal = false
+                                                                }
+                                                            }
+                                                        }
+                                                    ) {
+                                                        if (isRefreshingLocal) {
+                                                            CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp)
+                                                        } else {
+                                                            Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
+                                                        }
+                                                    }
+                                                    IconButton(
+                                                        onClick = {
+                                                            startActivity(
+                                                                Intent(
+                                                                    Intent.ACTION_VIEW,
+                                                                    Uri.parse("https://mihsian77.github.io/EmuHub-CN/sponsor.html")
+                                                                )
+                                                            )
+                                                        }
+                                                    ) {
+                                                        Icon(Icons.Default.Favorite, contentDescription = appString(R.string.donate))
+                                                    }
+                                                }
+                                            )
+                                        }
+                                    ) { padding ->
+                                        EmulatorScreen(
+                                            modifier = Modifier.padding(padding),
+                                            entries = emulatorEntries,
+                                            onDownload = { entry ->
+                                                downloadScope.launch {
+                                                    downloadEmulator(appContext, entry)
                                                 }
                                             }
                                         )

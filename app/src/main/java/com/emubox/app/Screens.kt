@@ -1,5 +1,6 @@
 package com.emubox.app
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Environment
@@ -4365,6 +4366,9 @@ fun DeviceScreen(
                     onNavigateToDrivers = onNavigateToDrivers
                 )
             }
+            item(key = "soc_knowledge") {
+                SocKnowledgeCard(context = LocalContext.current)
+            }
         }
 
         item(key = "vulkan_header") {
@@ -6060,3 +6064,276 @@ private fun formatFileSize(bytes: Long): String = when {
     else -> "$bytes B"
 }
 
+
+/** 模拟器专区：双列网格，卡片含分类徽章/最新版本/下载/仓库入口 */
+@Composable
+fun EmulatorScreen(
+    modifier: Modifier = Modifier,
+    entries: List<EmulatorEntry>,
+    onDownload: (EmulatorEntry) -> Unit
+) {
+    val context = LocalContext.current
+    val grouped = remember(entries) {
+        entries.groupBy { it.category }
+    }
+    val categoryOrder = listOf("windows", "console", "multi", "terminal")
+        .filter { grouped.containsKey(it) }
+    val categoryLabel = mapOf(
+        "windows" to appString(R.string.emulator_cat_windows),
+        "console" to appString(R.string.emulator_cat_console),
+        "multi" to appString(R.string.emulator_cat_multi),
+        "terminal" to appString(R.string.emulator_cat_terminal)
+    )
+    val flatItems = buildList {
+        categoryOrder.forEach { cat ->
+            val group = grouped[cat].orEmpty()
+            if (group.isNotEmpty()) {
+                add("__header__$cat")
+                group.forEach { add(it) }
+            }
+        }
+    }
+
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        item(key = "emulator_region_header") {
+            RegionHeader(title = appString(R.string.emulator_region), icon = Icons.Default.Android, remote = true)
+        }
+        item(key = "emulator_desc") {
+            Text(
+                appString(R.string.emulator_desc),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 4.dp)
+            )
+        }
+        if (flatItems.isEmpty()) {
+            item(key = "emulator_loading") {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(20.dp)) {
+                        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                        Spacer(Modifier.height(12.dp))
+                        Text(appString(R.string.emulator_loading))
+                    }
+                }
+            }
+        }
+        flatItems.forEach { item ->
+            if (item is String) {
+                val cat = item.removePrefix("__header__")
+                item(key = "__header_$cat") {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            "${categoryLabel[cat].orEmpty()}（${grouped[cat].orEmpty().size}）",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        HorizontalDivider(
+                            modifier = Modifier.weight(1f),
+                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                        )
+                    }
+                }
+            } else {
+                val entry = item as EmulatorEntry
+                item(key = entry.id) {
+                    EmulatorCard(entry = entry, onDownload = onDownload)
+                }
+            }
+        }
+    }
+}
+
+/** 单个模拟器卡片：名称/分类/描述/最新版本/下载或官网/仓库 */
+@Composable
+private fun EmulatorCard(
+    entry: EmulatorEntry,
+    onDownload: (EmulatorEntry) -> Unit
+) {
+    val context = LocalContext.current
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(24.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    entry.name,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                if (entry.category.isNotBlank()) {
+                    Spacer(Modifier.width(8.dp))
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.secondaryContainer
+                    ) {
+                        Text(
+                            when (entry.category) {
+                                "windows" -> appString(R.string.emulator_cat_windows)
+                                "console" -> appString(R.string.emulator_cat_console)
+                                "multi" -> appString(R.string.emulator_cat_multi)
+                                else -> appString(R.string.emulator_cat_terminal)
+                            },
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                            maxLines = 1
+                        )
+                    }
+                }
+            }
+            Spacer(Modifier.height(6.dp))
+            Text(
+                entry.description,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(Modifier.height(10.dp))
+            if (entry.latestTag.isNotBlank()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        appString(R.string.emulator_latest),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.width(6.dp))
+                    Text(
+                        entry.latestTag,
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+            Spacer(Modifier.height(10.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                val canDownload = entry.latestApkUrl.isNotBlank()
+                Button(
+                    onClick = { onDownload(entry) },
+                    enabled = canDownload,
+                    modifier = Modifier.weight(1f),
+                    shape = RoundedCornerShape(14.dp)
+                ) {
+                    Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        if (canDownload) appString(R.string.emulator_download)
+                        else appString(R.string.emulator_website),
+                        maxLines = 1
+                    )
+                }
+                if (entry.githubUrl.isNotBlank()) {
+                    OutlinedButton(
+                        onClick = {
+                            runCatching {
+                                context.startActivity(
+                                    Intent(Intent.ACTION_VIEW, Uri.parse(entry.githubUrl))
+                                )
+                            }
+                        },
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        Icon(Icons.Default.Star, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(4.dp))
+                        Text(appString(R.string.emulator_repo), maxLines = 1)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 芯片知识卡：识别当前 SoC，展示工艺/CPU/GPU/参考跑分/常见机型 */
+@Composable
+private fun SocKnowledgeCard(context: Context) {
+    val socName = remember { SocNameMapper.getCurrentSocName(context) }
+    val knowledge = remember(socName) { SocKnowledgeStore.find(socName, context) }
+
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        RegionHeader(
+            title = appString(R.string.soc_knowledge_title),
+            icon = Icons.Default.Memory,
+            remote = null
+        )
+        if (knowledge == null) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                )
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        socName.ifBlank { "SOC: unknown" },
+                        style = MaterialTheme.typography.titleSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        appString(R.string.soc_knowledge_not_found),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        } else {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp)
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            knowledge.name,
+                            style = MaterialTheme.typography.titleMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f)
+                        )
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = MaterialTheme.colorScheme.primaryContainer
+                        ) {
+                            Text(
+                                knowledge.score,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                                maxLines = 1
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(10.dp))
+                    InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
+                    InfoRow(label = appString(R.string.soc_cpu), value = knowledge.cpu)
+                    InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)
+                    InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)
+                }
+            }
+        }
+    }
+}
