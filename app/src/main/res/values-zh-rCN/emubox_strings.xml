@@ -126,6 +126,9 @@
     <string name="emulator_region">模拟器专区</string>
     <string name="emulator_desc">常用安卓模拟器汇总，官方来源与最新版本。</string>
     <string name="emulator_latest">最新版本</string>
+    <string name="emulator_tag_continuous">Continuous 构建</string>
+    <string name="emulator_tag_preview">Preview 构建</string>
+    <string name="emulator_tag_nightly">Nightly 构建</string>
     <string name="emulator_download">下载</string>
     <string name="emulator_website">官网获取</string>
     <string name="emulator_repo">仓库</string>

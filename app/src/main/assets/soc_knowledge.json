@@ -7,7 +7,8 @@
         "snapdragon 8 elite",
         "8 elite",
         "sm8750",
-        "sun"
+        "sun",
+        "adreno830"
       ],
       "name": "骁龙 8 Elite",
       "process": "3nm",
@@ -22,7 +23,8 @@
         "snapdragon 8 gen 3",
         "8 gen 3",
         "sm8650",
-        "pineapple"
+        "pineapple",
+        "adreno750"
       ],
       "name": "骁龙 8 Gen 3",
       "process": "4nm",
@@ -37,7 +39,8 @@
         "snapdragon 8 gen 2",
         "8 gen 2",
         "sm8550",
-        "kalama"
+        "kalama",
+        "adreno740"
       ],
       "name": "骁龙 8 Gen 2",
       "process": "4nm",
@@ -51,7 +54,8 @@
       "keys": [
         "snapdragon 8s gen 3",
         "8s gen 3",
-        "sm8635"
+        "sm8635",
+        "adreno735"
       ],
       "name": "骁龙 8s Gen 3",
       "process": "4nm",
@@ -66,7 +70,8 @@
         "snapdragon 8 gen 1",
         "8 gen 1",
         "sm8450",
-        "taro"
+        "taro",
+        "adreno730"
       ],
       "name": "骁龙 8 Gen 1",
       "process": "4nm",
@@ -81,7 +86,8 @@
         "snapdragon 888",
         "888",
         "sm8350",
-        "lahaina"
+        "lahaina",
+        "adreno660"
       ],
       "name": "骁龙 888",
       "process": "5nm",
@@ -95,7 +101,8 @@
       "keys": [
         "snapdragon 870",
         "870",
-        "sm8250"
+        "sm8250",
+        "adreno650"
       ],
       "name": "骁龙 870",
       "process": "7nm",
@@ -110,7 +117,8 @@
         "snapdragon 865",
         "865",
         "sm8250",
-        "kona"
+        "kona",
+        "adreno650"
       ],
       "name": "骁龙 865",
       "process": "7nm",
@@ -124,7 +132,8 @@
       "keys": [
         "snapdragon 7+ gen 2",
         "7+ gen 2",
-        "sm7475"
+        "sm7475",
+        "adreno725"
       ],
       "name": "骁龙 7+ Gen 2",
       "process": "4nm",
@@ -138,7 +147,8 @@
       "keys": [
         "snapdragon 7 gen 3",
         "7 gen 3",
-        "sm7550"
+        "sm7550",
+        "adreno720"
       ],
       "name": "骁龙 7 Gen 3",
       "process": "4nm",
@@ -152,7 +162,8 @@
       "keys": [
         "snapdragon 6 gen 1",
         "6 gen 1",
-        "sm6450"
+        "sm6450",
+        "adreno710"
       ],
       "name": "骁龙 6 Gen 1",
       "process": "4nm",
@@ -166,7 +177,8 @@
       "keys": [
         "snapdragon 778g",
         "778g",
-        "sm7325"
+        "sm7325",
+        "adreno642l"
       ],
       "name": "骁龙 778G",
       "process": "6nm",
@@ -180,7 +192,8 @@
       "keys": [
         "snapdragon 695",
         "695",
-        "sm6375"
+        "sm6375",
+        "adreno619"
       ],
       "name": "骁龙 695",
       "process": "6nm",
@@ -194,7 +207,8 @@
       "keys": [
         "dimensity 9300",
         "9300",
-        "mt6989"
+        "mt6989",
+        "malig720"
       ],
       "name": "天玑 9300",
       "process": "4nm",
@@ -208,7 +222,8 @@
       "keys": [
         "dimensity 9200",
         "9200",
-        "mt6985"
+        "mt6985",
+        "malig715"
       ],
       "name": "天玑 9200",
       "process": "4nm",
@@ -222,7 +237,8 @@
       "keys": [
         "dimensity 9000",
         "9000",
-        "mt6983"
+        "mt6983",
+        "malig710"
       ],
       "name": "天玑 9000",
       "process": "4nm",
@@ -236,7 +252,8 @@
       "keys": [
         "dimensity 8300",
         "8300",
-        "mt6897"
+        "mt6897",
+        "malig615"
       ],
       "name": "天玑 8300",
       "process": "4nm",
@@ -250,7 +267,8 @@
       "keys": [
         "dimensity 8100",
         "8100",
-        "mt6895"
+        "mt6895",
+        "malig610"
       ],
       "name": "天玑 8100",
       "process": "5nm",
@@ -264,7 +282,8 @@
       "keys": [
         "dimensity 7200",
         "7200",
-        "mt6886"
+        "mt6886",
+        "malig610"
       ],
       "name": "天玑 7200",
       "process": "4nm",
@@ -278,7 +297,8 @@
       "keys": [
         "dimensity 6100",
         "6100",
-        "mt6835"
+        "mt6835",
+        "malig57"
       ],
       "name": "天玑 6100",
       "process": "6nm",
@@ -372,7 +392,8 @@
     {
       "keys": [
         "tensor g5",
-        "tensor g5"
+        "tensor g5",
+        "malig953"
       ],
       "name": "Tensor G5",
       "process": "3nm",
@@ -385,7 +406,8 @@
     {
       "keys": [
         "tensor g4",
-        "tensor g4"
+        "tensor g4",
+        "malig715"
       ],
       "name": "Tensor G4",
       "process": "4nm",
@@ -398,7 +420,8 @@
     {
       "keys": [
         "tensor g3",
-        "tensor g3"
+        "tensor g3",
+        "malig715"
       ],
       "name": "Tensor G3",
       "process": "4nm",
@@ -411,7 +434,8 @@
     {
       "keys": [
         "helio g99",
-        "g99"
+        "g99",
+        "malig57"
       ],
       "name": "Helio G99",
       "process": "6nm",
@@ -424,7 +448,8 @@
     {
       "keys": [
         "helio g96",
-        "g96"
+        "g96",
+        "malig57"
       ],
       "name": "Helio G96",
       "process": "12nm",
@@ -437,7 +462,8 @@
     {
       "keys": [
         "helio g85",
-        "g85"
+        "g85",
+        "malig52"
       ],
       "name": "Helio G85",
       "process": "12nm",
