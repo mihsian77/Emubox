@@ -24,7 +24,10 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(REPO_ROOT, "driver-registry.json")
 CATALOG = os.path.join(REPO_ROOT, "catalog", "catalog.json")
 
-OWNER_REPO_RE = re.compile(r"github\.com/(?:repos/)?([^/]+)/([^/]+?)(?:/|$)", re.I)
+OWNER_REPO_RE = re.compile(
+    r"(?:github\.com|raw\.githubusercontent\.com)/(?:repos/)?([^/]+)/([^/]+?)(?:/|$)",
+    re.I,
+)
 
 
 def extract_owner_repo(url: str):
