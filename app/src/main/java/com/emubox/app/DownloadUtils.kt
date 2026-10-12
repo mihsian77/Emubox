@@ -499,7 +499,8 @@ private fun extractOriginalUrlIfAccelerated(acceleratedUrl: String): String? {
 private suspend fun transferExistingDownload(
     context: Context,
     state: DownloadsManager.ActiveDownload,
-    resume: Boolean
+    resume: Boolean,
+    urlOverride: String? = null
 ): Boolean = withContext(Dispatchers.IO) transfer@{
     val fileName = state.fileName
     val outputUri = state.outputUri.takeIf { it.isNotBlank() }?.let(Uri::parse)
@@ -517,7 +518,7 @@ private suspend fun transferExistingDownload(
     try {
         var requestedOffset = if (resume) state.downloadedBytes.coerceAtLeast(0L) else 0L
         val requestBuilder = Request.Builder()
-            .url(state.url)
+            .url(urlOverride ?: state.url)
             .header("User-Agent", "EmuBox-Android/1.0")
             .header("Accept-Encoding", "identity")
 
@@ -631,11 +632,9 @@ private suspend fun transferExistingDownload(
             }
 
             else -> {
+                // 网络/服务器错误：保留已下载的部分文件，交由调用方决定重试续传或放弃
+                // （不要在这里删除 partial，否则断点续传与自动重试失去意义）
                 Log.e(TAG, "Download failed: ${state.url}", error)
-                deletePartialOutput(context, outputUri)
-                withContext(Dispatchers.Main) {
-                    DownloadsManager.failDownload(fileName)
-                }
                 return@transfer false
             }
         }
@@ -679,54 +678,67 @@ private suspend fun downloadFileWithProgress(
         DownloadsManager.activeDownloads[uniqueFileName]
     } ?: return@download
 
-    val success = transferExistingDownload(context, state, resume = false)
+    // ── 自动重试 + 加速/直连自动切换（配合断点续传）────────────
+    // 网络抖动（移动网络/代理不稳定）时自动续传重试，最多 MAX_ATTEMPTS 次；
+    // 加速源连续失败后自动切换到直连，直连失败再换回加速，直至用尽次数。
+    val directUrl = extractOriginalUrlIfAccelerated(url)
+    val hasFallback = directUrl != null && !url.equals(directUrl, ignoreCase = true)
+    val MAX_ATTEMPTS = 4
+    var success = false
+    var lastErrorUrl: String? = null
 
-    // 自动回退：如果加速下载失败，自动切换到直连重试
+    for (attempt in 1..MAX_ATTEMPTS) {
+        // 每轮从 DownloadsManager 取最新状态（保留已下载字节，支持续传）
+        val current = withContext(Dispatchers.Main) {
+            DownloadsManager.activeDownloads[uniqueFileName]
+        } ?: return@download
+
+        // 本轮使用的 URL：首次用原 URL；有直连可回退时，偶数轮切直连、奇数轮回加速
+        val useDirect = hasFallback && (attempt % 2 == 0)
+        val targetUrl = when {
+            useDirect -> directUrl
+            else -> url
+        }
+
+        if (targetUrl != lastErrorUrl) {
+            Log.i(TAG, "下载重试第 $attempt/$MAX_ATTEMPTS 次，来源: ${if (useDirect) "直连" else "加速"}: $targetUrl")
+            withContext(Dispatchers.Main) {
+                DownloadsManager.updateUrl(uniqueFileName, targetUrl)
+            }
+            lastErrorUrl = targetUrl
+        }
+
+        // 第 1 次全新下载；失败后保留 partial，后续轮次续传
+        success = transferExistingDownload(
+            context,
+            current,
+            resume = attempt > 1,
+            urlOverride = targetUrl
+        )
+        if (success) break
+
+        // 主动暂停/取消时不自动重试（transfer 内部已处理状态）
+        val control = downloadControls[uniqueFileName]
+        if (control?.paused == true || control?.cancelled == true) break
+
+        if (attempt < MAX_ATTEMPTS) {
+            // 指数退避：1s → 2s → 4s，给网络恢复时间
+            val backoffMs = (1L shl (attempt - 1)) * 1000L
+            Log.i(TAG, "下载失败，${backoffMs / 1000}s 后重试（第 ${attempt + 1}/$MAX_ATTEMPTS 次）")
+            delay(backoffMs)
+        }
+    }
+
     if (!success) {
-        val directUrl = extractOriginalUrlIfAccelerated(url)
-        if (directUrl != null && !url.equals(directUrl, ignoreCase = true)) {
-            Log.i(TAG, "加速下载失败，自动回退到直连: $directUrl")
-
-            // 删除旧的部分文件
-            deletePartialOutput(context, outputUri)
-
-            withContext(Dispatchers.Main) {
-                Toast.makeText(
-                    context,
-                    context.getString(R.string.toast_accelerator_fallback),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            // 重新创建输出文件
-            val newOutputUri = createOutputUri(context, folderUri, uniqueFileName, subPath)
-            if (newOutputUri != null) {
-                withContext(Dispatchers.Main) {
-                    DownloadsManager.startDownload(
-                        fileName = uniqueFileName,
-                        url = directUrl,
-                        outputUri = newOutputUri.toString(),
-                        usesMediaStore = usesMediaStore,
-                        subPath = subPath
-                    )
-                }
-                val directState = withContext(Dispatchers.Main) {
-                    DownloadsManager.activeDownloads[uniqueFileName]
-                }
-                if (directState != null) {
-                    val directSuccess = transferExistingDownload(context, directState, resume = false)
-                    if (!directSuccess) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(context, context.getString(R.string.toast_download_failed, uniqueFileName), Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
-            }
-        } else {
-            // 不是加速 URL，已经是直连失败
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "下载失败: $uniqueFileName", Toast.LENGTH_LONG).show()
-            }
+        // 重试全部用尽：清理 partial 并标记失败
+        deletePartialOutput(context, outputUri)
+        withContext(Dispatchers.Main) {
+            DownloadsManager.failDownload(uniqueFileName)
+            Toast.makeText(
+                context,
+                context.getString(R.string.toast_download_failed, uniqueFileName),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }
