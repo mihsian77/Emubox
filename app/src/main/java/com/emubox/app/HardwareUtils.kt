@@ -74,8 +74,8 @@ fun detectGpuModel(gpuString: String): String {
     // Adreno: Adreno 740
     Regex("Adreno.*?(\\d{3,4})", RegexOption.IGNORE_CASE)
         .find(gpuString)?.groupValues?.get(1)?.let { return it }
-    // Mali: Mali-G720, Mali G610
-    Regex("Mali[\\s-]*G(\\d{3,4})", RegexOption.IGNORE_CASE)
+    // Mali: Mali-G720, Mali G610, Immortalis-G720
+    Regex("(?:Mali|Immortalis)[\\s-]*G(\\d{3,4})", RegexOption.IGNORE_CASE)
         .find(gpuString)?.groupValues?.get(1)?.let { return it }
     return "unknown"
 }

@@ -49,11 +49,23 @@ object SocKnowledgeStore {
         return entries
     }
 
-    /** 按 SoC 显示名匹配知识条目（忽略大小写，包含式匹配） */
-    fun find(socName: String, context: Context): SocKnowledge? {
-        val hay = socName.lowercase()
+    /**
+     * 按 SoC 显示名 + GPU 型号匹配知识条目。
+     * GPU 型号兜底：SOC 识别链路（Build.SOC → 映射 → 匹配）任一环断裂时，
+     * 用渲染器解析出的 GPU 型号（如 "740" → "adreno740"）直接命中，保证
+     * Adreno/Mali 常见芯片一定能显示知识卡。
+     */
+    fun find(socName: String, gpuModel: String, context: Context): SocKnowledge? {
+        val haystacks = buildList {
+            if (socName.isNotBlank()) add(socName.lowercase())
+            if (gpuModel.isNotBlank() && gpuModel != "unknown") {
+                add("adreno$gpuModel")
+                add("mali$gpuModel")
+            }
+        }
+        if (haystacks.isEmpty()) return null
         return load(context).firstOrNull { (keys, _) ->
-            keys.any { hay.contains(it) }
+            keys.any { k -> haystacks.any { h -> h.contains(k) } }
         }?.second
     }
 }

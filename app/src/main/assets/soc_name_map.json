@@ -360,5 +360,11 @@
   "mt6895": "MediaTek Dimensity 8100",
   "mt6897": "MediaTek Dimensity 8300",
   "mt6886": "MediaTek Dimensity 7200",
-  "mt6835": "MediaTek Dimensity 6100"
+  "mt6835": "MediaTek Dimensity 6100",
+  "SM6225": "Qualcomm Snapdragon 6s Gen 3",
+  "SM6150": "Qualcomm Snapdragon 675",
+  "SM7320": "Qualcomm Snapdragon 778G+ 5G",
+  "SM4350": "Qualcomm Snapdragon 480 5G",
+  "SM4250": "Qualcomm Snapdragon 460",
+  "SM6220": "Qualcomm Snapdragon 4 Gen 1"
 }
