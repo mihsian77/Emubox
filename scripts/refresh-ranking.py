@@ -107,10 +107,7 @@ def main():
         repo = e.get("repo") or ""
         if not repo or e.get("category") == "Drivers":
             return
-        # 工具/聚合类条目排除：BannerHub/Bannerlator/WinNative（非模拟器本体）
-        _n = (e.get("name") or "").lower()
-        if any(k in _n for k in ("banner", "bannerlator", "winnative")):
-            return
+
         key = repo.lower()
         if key in by_repo:
             return

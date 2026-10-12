@@ -3,43 +3,6 @@
   "updated_at": "2026-10-12T07:51:14Z",
   "emulators": [
     {
-      "id": "winlator",
-      "name": "Winlator",
-      "category": "windows",
-      "description": "安卓端 Windows x86 转译运行环境，通过 Wine/Box64 运行 Windows 游戏与软件，EmuBox 驱动/组件的主要使用场景",
-      "owner": "brunodev85",
-      "repo": "winlator",
-      "latest_tag": "v11.2.0",
-      "latest_apk_url": "https://github.com/brunodev85/winlator/releases/download/v11.2.0/Winlator_11.2.apk",
-      "pushed_at": "2026-09-22T18:36:59Z",
-      "stars": 19419
-    },
-    {
-      "id": "gamehub",
-      "name": "GameHub",
-      "category": "windows",
-      "description": "面向安卓的 Windows 游戏整合平台，内置 Wine/Box64 兼容层，可安装 DXVK、Turnip 等组件",
-      "owner": "",
-      "repo": "",
-      "homepage": "https://gamehub.com",
-      "latest_tag": "",
-      "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
-    },
-    {
-      "id": "eden",
-      "name": "Eden",
-      "category": "windows",
-      "description": "Winlator 衍生分支，部分驱动仓库（如 s1mptom）专门针对其在 Adreno 830/840 上的运行适配",
-      "owner": "",
-      "repo": "",
-      "latest_tag": "",
-      "latest_apk_url": "",
-      "pushed_at": "",
-      "stars": 0
-    },
-    {
       "id": "termux",
       "name": "Termux",
       "category": "terminal",
@@ -105,7 +68,7 @@
       "category": "console",
       "description": "PSVita 模拟器，安卓端实验性支持 Vulkan",
       "owner": "Vita3K",
-      "repo": "Vita3K",
+      "repo": "Vita3K/Vita3K-Android",
       "latest_tag": "continuous",
       "latest_apk_url": "https://github.com/Vita3K/Vita3K/releases/download/continuous/android-latest.apk",
       "pushed_at": "2026-10-11T13:42:17Z",

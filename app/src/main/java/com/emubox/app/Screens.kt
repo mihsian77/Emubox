@@ -6179,6 +6179,16 @@ private fun formatFileSize(bytes: Long): String = when {
     else -> "$bytes B"
 }
 
+/** 模拟器收藏：本地持久化（id 集合） */
+private fun loadEmulatorFavs(context: Context): Set<String> =
+    context.getSharedPreferences("emubox_favs", Context.MODE_PRIVATE)
+        .getStringSet("emulator_favs", emptySet()) ?: emptySet()
+
+private fun saveEmulatorFavs(context: Context, favs: Set<String>) {
+    context.getSharedPreferences("emubox_favs", Context.MODE_PRIVATE)
+        .edit().putStringSet("emulator_favs", favs).apply()
+}
+
 
 /** 模拟器专区：双列网格，卡片含分类徽章/最新版本/下载/仓库入口 */
 
@@ -6200,6 +6210,9 @@ private fun emulatorCategoryLabel(category: String): String = when (category) {
     "Xbox" -> "Xbox 模拟"
     "Nintendo Switch Emulator" -> "Switch 模拟"
     "GAME" -> "游戏"
+    "terminal" -> "终端模拟"
+    "console" -> "主机模拟"
+    "multi" -> "多平台聚合"
     else -> category
 }
 @Composable
@@ -6214,6 +6227,10 @@ fun EmulatorScreen(
     var sortMode by remember { mutableStateOf("popular") }
     var detailEntry by remember { mutableStateOf<EmulatorEntry?>(null) }
     var searchQuery by remember { mutableStateOf("") }
+    // 本地收藏（持久化）与视图模式
+    var favorites by remember { mutableStateOf(loadEmulatorFavs(context)) }
+    var viewMode by rememberSaveable { mutableStateOf("grid") }
+    var onlyFav by remember { mutableStateOf(false) }
     // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
     val categoryOrder = remember(entries) {
         val seen = LinkedHashSet<String>()
@@ -6224,11 +6241,12 @@ fun EmulatorScreen(
     // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
     var collapsedCats by remember(entries) { mutableStateOf(categoryOrder.toSet()) }
 
-    val filtered = remember(entries, filterCat, sortMode, searchQuery) {
+    val filtered = remember(entries, filterCat, sortMode, searchQuery, onlyFav, favorites) {
         val base = if (filterCat == "all") entries
         else entries.filter { it.category == filterCat }
-        val searched = if (searchQuery.isBlank()) base
-        else base.filter {
+        val favFiltered = if (onlyFav) base.filter { it.id in favorites } else base
+        val searched = if (searchQuery.isBlank()) favFiltered
+        else favFiltered.filter {
             it.name.contains(searchQuery, ignoreCase = true) ||
                 it.description.contains(searchQuery, ignoreCase = true) ||
                 it.category.contains(searchQuery, ignoreCase = true) ||
@@ -6263,24 +6281,44 @@ fun EmulatorScreen(
             RegionHeader(title = appString(R.string.emulator_region), icon = Icons.Default.Android, remote = true)
         }
         item(key = "emulator_search", span = { GridItemSpan(maxLineSpan) }) {
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                placeholder = { Text(appString(R.string.search_hint)) },
-                leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                trailingIcon = {
-                    if (searchQuery.isNotBlank()) {
-                        Icon(
-                            Icons.Default.Close,
-                            contentDescription = null,
-                            modifier = Modifier.clickable { searchQuery = "" }
-                        )
-                    }
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp)
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                OutlinedTextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    placeholder = { Text(appString(R.string.search_hint)) },
+                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                    trailingIcon = {
+                        if (searchQuery.isNotBlank()) {
+                            Icon(
+                                Icons.Default.Close,
+                                contentDescription = null,
+                                modifier = Modifier.clickable { searchQuery = "" }
+                            )
+                        }
+                    },
+                    singleLine = true,
+                    modifier = Modifier.weight(1f),
+                    shape = RoundedCornerShape(16.dp)
+                )
+                Spacer(Modifier.width(6.dp))
+                IconToggleButton(
+                    checked = onlyFav,
+                    onCheckedChange = { onlyFav = it },
+                    modifier = Modifier.clip(RoundedCornerShape(14.dp))
+                ) {
+                    Icon(
+                        if (onlyFav) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = null,
+                        tint = if (onlyFav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                IconButton(onClick = { viewMode = if (viewMode == "grid") "list" else "grid" }) {
+                    Icon(
+                        if (viewMode == "grid") Icons.Default.List else Icons.Default.GridView,
+                        contentDescription = null
+                    )
+                }
+            }
         }
         item(key = "emulator_desc", span = { GridItemSpan(maxLineSpan) }) {
             Text(
@@ -6391,9 +6429,14 @@ fun EmulatorScreen(
                 }
             } else {
                 val entry = item as EmulatorEntry
-                item(key = entry.id) {
+                item(key = entry.id, span = { GridItemSpan(if (viewMode == "list") maxLineSpan else 1) }) {
                     EmulatorCard(
                         entry = entry,
+                        isFavorite = entry.id in favorites,
+                        onToggleFavorite = {
+                            favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
+                            saveEmulatorFavs(context, favorites)
+                        },
                         onClickDetail = { detailEntry = entry },
                         onDownload = onDownload
                     )
@@ -6453,6 +6496,8 @@ private fun EmulatorSectionHeader(
 @Composable
 private fun EmulatorCard(
     entry: EmulatorEntry,
+    isFavorite: Boolean,
+    onToggleFavorite: () -> Unit,
     onClickDetail: () -> Unit,
     onDownload: (EmulatorEntry) -> Unit
 ) {
@@ -6498,6 +6543,14 @@ private fun EmulatorCard(
                         )
                     }
                 }
+                IconButton(onClick = onToggleFavorite, modifier = Modifier.size(26.dp)) {
+                    Icon(
+                        if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp),
+                        tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
             if (entry.channel.isNotBlank() && entry.channel != "stable") {
                 Spacer(Modifier.height(2.dp))
@@ -6515,6 +6568,15 @@ private fun EmulatorCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (entry.pushedAt.isNotBlank()) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    appString(R.string.emulator_updated_prefix) + formatRelativeTime(entry.pushedAt),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.tertiary,
+                    maxLines = 1
                 )
             }
             if (entry.latestApkName.isNotBlank()) {
