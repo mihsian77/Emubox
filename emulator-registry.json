@@ -6725,6 +6725,38 @@
           ]
         }
       ]
+    },
+    {
+      "id": "termux-zero",
+      "name": "ZeroTermux",
+      "repo": "hanxinhao000/ZeroTermux",
+      "category": "terminal",
+      "homepage": "https://github.com/hanxinhao000/ZeroTermux",
+      "logoUrl": "https://avatars.githubusercontent.com/u/23556571?v=4",
+      "description": "Termux 知名 fork（3k+ star）：集成增强功能，独立版本线持续发布 APK",
+      "stars": 0,
+      "pushed_at": "",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "releases": []
+    },
+    {
+      "id": "termux-kotlin",
+      "name": "Termux Kotlin",
+      "repo": "reapercanuk39/termux-kotlin-app",
+      "category": "terminal",
+      "homepage": "https://github.com/reapercanuk39/termux-kotlin-app",
+      "logoUrl": "https://avatars.githubusercontent.com/u/728003?v=4",
+      "description": "Termux Kotlin 重写版：全 Kotlin 实现，独立发布 APK",
+      "stars": 0,
+      "pushed_at": "",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "releases": []
     }
   ]
 }
