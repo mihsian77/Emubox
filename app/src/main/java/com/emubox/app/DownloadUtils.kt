@@ -146,6 +146,19 @@ suspend fun downloadComponent(context: Context, component: Component) {
 }
 
 /** 下载模拟器 APK（emulator-registry 最新版本直链），存入 Download/Emulators/ */
+/** 下载模拟器指定资产文件（补丁/zip/apk 等，作者同发的所有文件都可下） */
+suspend fun downloadEmulatorAsset(context: Context, emulatorName: String, url: String, fileName: String) {
+    if (url.isBlank()) return
+    val safe = sanitizeFileName(
+        Uri.decode(fileName.substringAfterLast("/").substringBefore("?"))
+            .ifBlank { "${emulatorName}_asset" }
+    )
+    val category = "Emulators"
+    if (ensureFileNotExists(context, safe, category)) return
+    val acceleratedUrl = Accelerator.rewriteUrl(url)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, safe, category)
+}
+
 suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
     val url = entry.latestApkUrl.ifBlank { return }
     val fileName = sanitizeFileName(

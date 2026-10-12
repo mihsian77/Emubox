@@ -135,6 +135,9 @@
     <string name="emulator_community_rank">Community rankings data (auto-updated)</string>
 
     <string name="emulator_badge_official">官方</string>
+    <string name="emulator_all_versions">全部版本与文件（%d）</string>
+    <string name="emulator_no_releases">暂无发布版本，可在仓库查看</string>
+    <string name="emulator_no_assets">该版本未附带可下载文件</string>
     <string name="emulator_summary">%1$d emulators (official %2$d + community %3$d), %4$d with direct APK</string>
     <string name="emulator_latest">Latest</string>
     <string name="emulator_tag_continuous">Continuous build</string>
