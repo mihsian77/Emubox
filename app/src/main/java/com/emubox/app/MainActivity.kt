@@ -132,8 +132,14 @@ class MainActivity : ComponentActivity() {
                         // TurnipSource 后与内置源合并；注册表推荐源排前，按 apiUrl 去重。
                         // 关闭"按设备匹配"时显示全部驱动源（不按 GPU 过滤）。
                         val driverEntries = registryEntries.filter { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
+                        // 全部注册表驱动源始终可见（本设备匹配的排前），不再按 GPU 厂商
+                        // 硬排除——Adreno 设备也能看到 Mali PanVK 源，只是排在推荐之后。
+                        // 修复：MineGraph PanVK（Mali）等新源此前被 match 厂商过滤掉。
                         val matchedDriverSources = (if (matchByDevice) {
-                            DriverRegistryRepository.match(info, registryEntries)
+                            val matched = DriverRegistryRepository.match(info, registryEntries)
+                            val matchedIds = matched.map { it.entry.id }.toSet()
+                            matched + driverEntries.filter { it.id !in matchedIds }
+                                .map { DriverMatchResult(it, 0, false, "") }
                         } else {
                             driverEntries.map { DriverMatchResult(it, 0, false, "") }
                         }).map { DriverRegistryRepository.toTurnipSource(it.entry) }
@@ -161,7 +167,8 @@ class MainActivity : ComponentActivity() {
                                 name = entries.joinToString(" / ") { it.name },
                                 manifestUrl = entries.first().apiUrl,
                                 description = entries.joinToString("；") { it.description },
-                                experimental = entries.any { it.maturity in listOf("alpha", "experimental", "beta") }
+                                experimental = entries.any { it.maturity in listOf("alpha", "experimental", "beta") },
+                                updatedAt = entries.maxOf { it.updatedAt }
                             )
                         }
 
