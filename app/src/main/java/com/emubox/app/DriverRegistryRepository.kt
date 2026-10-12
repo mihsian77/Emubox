@@ -382,6 +382,9 @@ object DriverRegistryRepository {
     }
 
     /** 内置精简兜底表，远程不可用时保证基础功能 */
+    /** 内置驱动注册表（离线可用，全局搜索用） */
+    fun builtinEntries(): List<DriverRegistryEntry> = builtinFallback()
+
     private fun builtinFallback(): List<DriverRegistryEntry> = listOf(
         DriverRegistryEntry(
             id = "k11mch1", name = "K11MCH1 AdrenoTools",

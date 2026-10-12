@@ -43,6 +43,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -6231,6 +6232,9 @@ fun EmulatorScreen(
     var favorites by remember { mutableStateOf(loadEmulatorFavs(context)) }
     var viewMode by rememberSaveable { mutableStateOf("grid") }
     var onlyFav by remember { mutableStateOf(false) }
+    // 对比槽（t3st31 compareSlots 移植）：最多 3 个项目
+    var compareIds by remember { mutableStateOf(listOf<String>()) }
+    var showCompare by remember { mutableStateOf(false) }
     // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
     val categoryOrder = remember(entries) {
         val seen = LinkedHashSet<String>()
@@ -6437,13 +6441,31 @@ fun EmulatorScreen(
                             favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
                             saveEmulatorFavs(context, favorites)
                         },
+                        inCompare = entry.id in compareIds,
+                        onToggleCompare = {
+                            compareIds = if (entry.id in compareIds) compareIds - entry.id
+                            else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                        },
                         onClickDetail = { detailEntry = entry },
                         onDownload = onDownload
                     )
                 }
             }
         }
+        if (compareIds.isNotEmpty()) {
+            val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
+            if (compareEntries.isNotEmpty()) {
+                item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
+                    CompareBar(
+                        projects = compareEntries,
+                        onOpen = { showCompare = true },
+                        onClear = { compareIds = emptyList() }
+                    )
+                }
+            }
+        }
     }
+
     detailEntry?.let { entry ->
         EmulatorDetailDialog(
             entry = entry,
@@ -6453,6 +6475,172 @@ fun EmulatorScreen(
             }
         )
     }
+
+    if (showCompare) {
+        val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
+        if (compareEntries.size >= 2) {
+            EmulatorCompareDialog(
+                projects = compareEntries,
+                onDismiss = { showCompare = false }
+            )
+        } else {
+            showCompare = false
+        }
+    }
+}
+
+/** 版本更新对比（t3st31 renderReleaseComparison 移植）：选两个版本，diff 更新日志 added/removed */
+@Composable
+private fun VersionDiffDialog(
+    entry: EmulatorEntry,
+    onDismiss: () -> Unit
+) {
+    val rels = remember(entry) { entry.releases }
+    var fromIdx by remember { mutableStateOf(if (rels.size > 1) 1 else 0) }
+    var toIdx by remember { mutableStateOf(0) }
+    val from = rels.getOrNull(fromIdx)
+    val to = rels.getOrNull(toIdx)
+    val (added, removed) = remember(from, to) {
+        if (from == null || to == null || fromIdx == toIdx) emptyList<String>() to emptyList()
+        else diffChangelog(from.body, to.body)
+    }
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 720.dp)
+        ) {
+            Column(
+                Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        appString(R.string.version_diff_title),
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+                    IconButton(onClick = onDismiss) { Icon(Icons.Default.Close, contentDescription = null) }
+                }
+                // 版本选择：from -> to
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(appString(R.string.version_diff_from), style = MaterialTheme.typography.labelSmall, modifier = Modifier.width(56.dp))
+                    VersionPicker(
+                        tag = from?.tag ?: "—",
+                        options = rels.map { it.tag },
+                        onSelect = { fromIdx = it }
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Icon(Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.version_diff_to), style = MaterialTheme.typography.labelSmall, modifier = Modifier.width(56.dp))
+                    VersionPicker(
+                        tag = to?.tag ?: "—",
+                        options = rels.map { it.tag },
+                        onSelect = { toIdx = it }
+                    )
+                }
+                HorizontalDivider()
+                if (fromIdx == toIdx || from == null || to == null) {
+                    Text(
+                        appString(R.string.version_diff_pick),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                } else if (added.isEmpty() && removed.isEmpty()) {
+                    Text(
+                        appString(R.string.version_diff_empty),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                } else {
+                    if (added.isNotEmpty()) {
+                        Text(
+                            appString(R.string.version_diff_added, added.size),
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        added.forEach { line ->
+                            Text(
+                                line,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                    }
+                    if (removed.isNotEmpty()) {
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            appString(R.string.version_diff_removed, removed.size),
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                        removed.forEach { line ->
+                            Text(
+                                line,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun VersionPicker(
+    tag: String,
+    options: List<String>,
+    onSelect: (Int) -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    Box {
+        OutlinedButton(
+            onClick = { expanded = true },
+            modifier = Modifier.width(140.dp),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            Text(tag, style = MaterialTheme.typography.labelSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            options.forEachIndexed { i, t ->
+                DropdownMenuItem(
+                    text = { Text(t, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                    onClick = {
+                        onSelect(i)
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
+
+/** 更新日志按行拆分，过滤标题/链接/分隔线（同 t3st31 changelogLines） */
+private fun changelogLines(body: String): List<String> =
+    body.split('\n')
+        .map { it.trim() }
+        .filter {
+            it.isNotBlank() &&
+                !it.startsWith("#") &&
+                !it.startsWith("**") &&
+                !it.startsWith("![") &&
+                !it.startsWith("---") &&
+                !it.contains("Full Changelog") &&
+                !it.startsWith(">")
+        }
+        .map { it.removePrefix("- ").removePrefix("* ").removePrefix("+ ") }
+
+/** diff：新版新增行 added、旧版移除行 removed，各最多 14 条 */
+private fun diffChangelog(fromBody: String, toBody: String): Pair<List<String>, List<String>> {
+    val fromLines = changelogLines(fromBody)
+    val toLines = changelogLines(toBody)
+    val fromSet = fromLines.map { it.lowercase() }.toSet()
+    val toSet = toLines.map { it.lowercase() }.toSet()
+    val added = toLines.filter { it.lowercase() !in fromSet }.take(14)
+    val removed = fromLines.filter { it.lowercase() !in toSet }.take(14)
+    return added to removed
 }
 
 @Composable
@@ -6498,6 +6686,8 @@ private fun EmulatorCard(
     entry: EmulatorEntry,
     isFavorite: Boolean,
     onToggleFavorite: () -> Unit,
+    inCompare: Boolean,
+    onToggleCompare: () -> Unit,
     onClickDetail: () -> Unit,
     onDownload: (EmulatorEntry) -> Unit
 ) {
@@ -6549,6 +6739,14 @@ private fun EmulatorCard(
                         contentDescription = null,
                         modifier = Modifier.size(18.dp),
                         tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                IconButton(onClick = onToggleCompare, modifier = Modifier.size(26.dp)) {
+                    Icon(
+                        Icons.Default.CompareArrows,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp),
+                        tint = if (inCompare) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -6627,6 +6825,230 @@ private fun EmulatorCard(
     }
 }
 
+/** 对比底部栏（t3st31 compareSlots 移植）：已选 N/3，可打开对比矩阵或清空 */
+@Composable
+private fun CompareBar(
+    projects: List<EmulatorEntry>,
+    onOpen: () -> Unit,
+    onClear: () -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.primaryContainer,
+        tonalElevation = 3.dp,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.Default.CompareArrows, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(18.dp))
+            Spacer(Modifier.width(8.dp))
+            Text(
+                appString(R.string.compare_selected, projects.size),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f)
+            )
+            TextButton(onClick = onOpen) {
+                Text(appString(R.string.compare_open), color = MaterialTheme.colorScheme.onPrimaryContainer)
+            }
+            IconButton(onClick = onClear, modifier = Modifier.size(30.dp)) {
+                Icon(Icons.Default.Close, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(16.dp))
+            }
+        }
+    }
+}
+
+/** 对比矩阵弹窗：每维度一行（各项目并排 + 归一化打分条），胜者列高亮 */
+@Composable
+private fun EmulatorCompareDialog(
+    projects: List<EmulatorEntry>,
+    onDismiss: () -> Unit
+) {
+    val stats = remember(projects) { projects.map { emuCompareStats(it) } }
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 720.dp)
+        ) {
+            Column(
+                Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        appString(R.string.compare_title),
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+                    IconButton(onClick = onDismiss) { Icon(Icons.Default.Close, contentDescription = null) }
+                }
+                // 项目头行
+                Row(verticalAlignment = Alignment.Top) {
+                    Spacer(Modifier.width(100.dp))
+                    projects.forEach { p ->
+                        Column(
+                            Modifier.weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            if (p.logoUrl.isNotBlank()) {
+                                AsyncImage(
+                                    model = p.logoUrl,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp)),
+                                    contentScale = ContentScale.Crop
+                                )
+                            }
+                            Spacer(Modifier.height(4.dp))
+                            Text(
+                                p.name,
+                                style = MaterialTheme.typography.labelSmall,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
+                }
+                HorizontalDivider()
+                // 数值维度
+                CompareDimensionRow(
+                    label = appString(R.string.compare_dim_downloads),
+                    values = stats.map { it.downloads.toString() },
+                    scores = stats.map { it.downloads.toFloat() }
+                )
+                CompareDimensionRow(
+                    label = appString(R.string.compare_dim_avg),
+                    values = stats.map { it.avgDownloads.toString() },
+                    scores = stats.map { it.avgDownloads.toFloat() }
+                )
+                CompareDimensionRow(
+                    label = appString(R.string.compare_dim_releases),
+                    values = stats.map { it.releaseCount.toString() },
+                    scores = stats.map { it.releaseCount.toFloat() }
+                )
+                CompareDimensionRow(
+                    label = appString(R.string.compare_dim_stars),
+                    values = stats.map { it.stars.toString() },
+                    scores = stats.map { it.stars.toFloat() }
+                )
+                CompareDimensionRow(
+                    label = appString(R.string.compare_dim_update),
+                    values = stats.map { s -> if (s.daysSinceUpdate >= 0) "${s.daysSinceUpdate} 天" else "—" },
+                    scores = stats.map { s -> if (s.daysSinceUpdate >= 0) (365 - s.daysSinceUpdate).toFloat() else 0f }
+                )
+                // 版本维度（文本行）
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        appString(R.string.compare_dim_latest),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.width(100.dp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    stats.forEachIndexed { i, s ->
+                        Text(
+                            s.latestTag.ifBlank { "—" },
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Medium,
+                            color = if (stats.maxByOrNull { it.daysSinceUpdate }?.daysSinceUpdate == s.daysSinceUpdate && s.daysSinceUpdate >= 0)
+                                MaterialTheme.colorScheme.primary
+                            else MaterialTheme.colorScheme.onSurface,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                }
+                Text(
+                    appString(R.string.compare_note),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+    }
+}
+
+/** 单维度对比行：标签 + 各项目值 + 归一化打分条，胜者列高亮 */
+@Composable
+private fun CompareDimensionRow(
+    label: String,
+    values: List<String>,
+    scores: List<Float>
+) {
+    val maxScore = scores.maxOrNull()?.takeIf { it > 0f } ?: 1f
+    val maxVal = scores.maxOrNull()
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.width(100.dp),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+        values.forEachIndexed { i, v ->
+            val isWinner = maxVal != null && maxVal > 0f && scores[i] == maxVal
+            Column(
+                Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    v,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = if (isWinner) FontWeight.Bold else FontWeight.Normal,
+                    color = if (isWinner) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(Modifier.height(2.dp))
+                LinearProgressIndicator(
+                    progress = (scores[i] / maxScore).coerceIn(0f, 1f),
+                    color = if (isWinner) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    modifier = Modifier.fillMaxWidth(0.82f).height(4.dp)
+                )
+            }
+        }
+    }
+}
+
+private data class EmuCompareStats(
+    val downloads: Long,
+    val releaseCount: Int,
+    val stars: Long,
+    val latestTag: String,
+    val daysSinceUpdate: Long,
+    val avgDownloads: Long
+)
+
+/** t3st31 getCompareStats 移植：对比维度计算 */
+private fun emuCompareStats(e: EmulatorEntry): EmuCompareStats {
+    val rc = e.releases.size
+    return EmuCompareStats(
+        downloads = e.downloads,
+        releaseCount = rc,
+        stars = e.stars,
+        latestTag = e.latestTag,
+        daysSinceUpdate = daysSinceIso(e.pushedAt),
+        avgDownloads = if (rc > 0) e.downloads / rc else e.downloads
+    )
+}
+
+private fun daysSinceIso(iso: String): Long {
+    if (iso.isBlank()) return -1L
+    return runCatching {
+        val parsed = java.time.Instant.parse(iso)
+        java.time.Duration.between(parsed, java.time.Instant.now()).toDays().coerceAtLeast(0L)
+    }.getOrDefault(-1L)
+}
+
 private fun emulatorDownloadCount(d: Long): String = when {
     d >= 1_000_000 -> "%.1fM".format(d / 1_000_000.0)
     d >= 1_000 -> "%.1fK".format(d / 1_000.0)
@@ -6661,6 +7083,14 @@ private fun EmulatorDetailDialog(
     var expandedTag by remember { mutableStateOf(entry.releases.firstOrNull()?.tag) }
     var translatedMap by remember { mutableStateOf<Map<String, String?>>(emptyMap()) }
     var translatingTag by remember { mutableStateOf<String?>(null) }
+    var showVersionDiff by remember { mutableStateOf(false) }
+
+    if (showVersionDiff) {
+        VersionDiffDialog(
+            entry = entry,
+            onDismiss = { showVersionDiff = false }
+        )
+    }
 
     Dialog(onDismissRequest = onDismiss) {
         Card(
@@ -6761,6 +7191,16 @@ private fun EmulatorDetailDialog(
                                 }
                             }
                         }
+                    }
+                }
+                if (entry.releases.size >= 2) {
+                    TextButton(
+                        onClick = { showVersionDiff = true },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(4.dp))
+                        Text(appString(R.string.version_diff_title), style = MaterialTheme.typography.labelMedium)
                     }
                 }
                 entry.releases.forEach { rel ->
@@ -7034,6 +7474,171 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                         maxLines = 2
                     )
                 }
+            }
+        }
+    }
+}
+
+
+/** 全局搜索（Quick Search 移动端移植）：跨模拟器/驱动/组件/运行库，结果分组，点击跳转对应专区 */
+@Composable
+fun GlobalSearchSheet(
+    emulators: List<EmulatorEntry>,
+    drivers: List<DriverRegistryEntry>,
+    componentNames: List<String>,
+    onNavigate: (String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var query by remember { mutableStateOf("") }
+    var runtimes by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
+    LaunchedEffect(Unit) {
+        runtimes = RuntimeLibraryRepository.load()
+    }
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 720.dp)
+        ) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedTextField(
+                        value = query,
+                        onValueChange = { query = it },
+                        placeholder = { Text(appString(R.string.global_search_hint)) },
+                        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                        trailingIcon = {
+                            if (query.isNotBlank()) {
+                                Icon(
+                                    Icons.Default.Close,
+                                    contentDescription = null,
+                                    modifier = Modifier.clickable { query = "" }
+                                )
+                            }
+                        },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    Spacer(Modifier.width(6.dp))
+                    TextButton(onClick = onDismiss) { Text(appString(R.string.cancel)) }
+                }
+                HorizontalDivider()
+                if (query.isBlank()) {
+                    Text(
+                        appString(R.string.global_search_prompt),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                } else {
+                    val q = query.trim().lowercase()
+                    val emuHits = emulators.filter {
+                        it.name.lowercase().contains(q) || it.category.lowercase().contains(q) ||
+                            it.description.lowercase().contains(q)
+                    }
+                    val drvHits = drivers.filter {
+                        it.name.lowercase().contains(q) || it.description.lowercase().contains(q) ||
+                            it.notes.lowercase().contains(q) || it.gpuVendor.lowercase().contains(q)
+                    }
+                    val compHits = componentNames.filter { it.lowercase().contains(q) }
+                    val rtHits = runtimes.filter {
+                        it.name.lowercase().contains(q) || it.description.lowercase().contains(q) ||
+                            it.category.name.lowercase().contains(q)
+                    }
+                    if (emuHits.isEmpty() && drvHits.isEmpty() && compHits.isEmpty() && rtHits.isEmpty()) {
+                        Text(
+                            appString(R.string.global_search_empty),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else {
+                        if (emuHits.isNotEmpty()) {
+                            GlobalSearchGroup(appString(R.string.tab_emulator)) {
+                                emuHits.take(8).forEach { e ->
+                                    GlobalSearchRow(
+                                        name = e.name,
+                                        subtitle = emulatorCategoryLabel(e.category),
+                                        onClick = { onNavigate("emulators"); onDismiss() }
+                                    )
+                                }
+                            }
+                        }
+                        if (drvHits.isNotEmpty()) {
+                            GlobalSearchGroup(appString(R.string.tab_driver)) {
+                                drvHits.take(8).forEach { d ->
+                                    GlobalSearchRow(
+                                        name = d.name,
+                                        subtitle = d.description,
+                                        onClick = { onNavigate("drivers"); onDismiss() }
+                                    )
+                                }
+                            }
+                        }
+                        if (compHits.isNotEmpty()) {
+                            GlobalSearchGroup(appString(R.string.tab_component)) {
+                                compHits.take(8).forEach { c ->
+                                    GlobalSearchRow(
+                                        name = c,
+                                        subtitle = appString(R.string.tab_component),
+                                        onClick = { onNavigate("components"); onDismiss() }
+                                    )
+                                }
+                            }
+                        }
+                        if (rtHits.isNotEmpty()) {
+                            GlobalSearchGroup(appString(R.string.tab_runtime)) {
+                                rtHits.take(8).forEach { r ->
+                                    GlobalSearchRow(
+                                        name = r.name,
+                                        subtitle = r.description,
+                                        onClick = { onNavigate("runtime"); onDismiss() }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun GlobalSearchGroup(
+    title: String,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    Column {
+        Text(
+            title,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+        content()
+        Spacer(Modifier.height(4.dp))
+    }
+}
+
+@Composable
+private fun GlobalSearchRow(
+    name: String,
+    subtitle: String,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(10.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 8.dp, vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(14.dp))
+        Spacer(Modifier.width(6.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            if (subtitle.isNotBlank()) {
+                Text(subtitle, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
         }
     }
