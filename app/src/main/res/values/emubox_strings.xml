@@ -126,6 +126,9 @@
     <string name="emulator_region">Emulators</string>
     <string name="emulator_desc">Common Android emulators with official sources and latest releases.</string>
     <string name="emulator_latest">Latest</string>
+    <string name="emulator_tag_continuous">Continuous build</string>
+    <string name="emulator_tag_preview">Preview build</string>
+    <string name="emulator_tag_nightly">Nightly build</string>
     <string name="emulator_download">Download</string>
     <string name="emulator_website">Official site</string>
     <string name="emulator_repo">Repo</string>

@@ -4367,7 +4367,7 @@ fun DeviceScreen(
                 )
             }
             item(key = "soc_knowledge") {
-                SocKnowledgeCard(context = LocalContext.current)
+                SocKnowledgeCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
             }
         }
 
@@ -6252,6 +6252,12 @@ private fun EmulatorCard(
             )
             Spacer(Modifier.height(10.dp))
             if (entry.latestTag.isNotBlank()) {
+                val tagLabel = when (entry.latestTag.lowercase()) {
+                    "continuous" -> appString(R.string.emulator_tag_continuous)
+                    "preview" -> appString(R.string.emulator_tag_preview)
+                    "nightly" -> appString(R.string.emulator_tag_nightly)
+                    else -> entry.latestTag
+                }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         appString(R.string.emulator_latest),
@@ -6260,7 +6266,7 @@ private fun EmulatorCard(
                     )
                     Spacer(Modifier.width(6.dp))
                     Text(
-                        entry.latestTag,
+                        tagLabel,
                         style = MaterialTheme.typography.labelMedium,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
@@ -6311,9 +6317,9 @@ private fun EmulatorCard(
 
 /** 芯片知识卡：识别当前 SoC，展示工艺/CPU/GPU/参考跑分/常见机型 */
 @Composable
-private fun SocKnowledgeCard(context: Context) {
+private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
     val socName = remember { SocNameMapper.getCurrentSocName(context) }
-    val knowledge = remember(socName) { SocKnowledgeStore.find(socName, context) }
+    val knowledge = remember(socName, gpuModel) { SocKnowledgeStore.find(socName, gpuModel, context) }
 
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         RegionHeader(
