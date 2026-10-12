@@ -1894,16 +1894,24 @@ private fun guideTopicIdForSection(sectionId: String): String = when {
 fun ComponentGuideScreen(
     onBack: () -> Unit,
     adrenoSeries: String?,
-    initialTopicId: String? = null
+    initialTopicId: String? = null,
+    driverMode: Boolean = false
 ) {
     BackHandler { onBack() }
 
     val listState = rememberLazyListState()
     var expandedId by rememberSaveable { mutableStateOf(initialTopicId) }
 
+    // 驱动指南只保留驱动相关主题（Turnip/AdrenoTools/PanVK/厂商驱动），
+    // 组件指南只保留 Wine/Proton/DXVK 等运行环境与图形组件主题。
+    val driverTopicIds = setOf("turnip", "qualcomm", "adrenotools", "panvk")
+    val visibleTopics = componentGuideTopics.filter {
+        if (driverMode) it.id in driverTopicIds else it.id !in driverTopicIds
+    }
+
     LaunchedEffect(initialTopicId) {
         if (initialTopicId != null) {
-            val index = componentGuideTopics.indexOfFirst { it.id == initialTopicId }
+            val index = visibleTopics.indexOfFirst { it.id == initialTopicId }
             if (index >= 0) {
                 expandedId = initialTopicId
                 listState.animateScrollToItem(index + 3)
@@ -1916,9 +1924,9 @@ fun ComponentGuideScreen(
             TopAppBar(
                 title = {
                     Column {
-                        Text(appString(R.string.component_guide))
+                        Text(if (driverMode) appString(R.string.driver_guide) else appString(R.string.component_guide))
                         Text(
-                            appString(R.string.what_each_download_does),
+                            if (driverMode) appString(R.string.driver_guide_subtitle) else appString(R.string.what_each_download_does),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -2003,7 +2011,7 @@ fun ComponentGuideScreen(
                 }
             }
 
-            componentGuideTopics.forEach { topic ->
+            visibleTopics.forEach { topic ->
                 item(key = "guide_topic_${topic.id}") {
                     GuideTopicCard(
                         topic = topic,
@@ -4824,16 +4832,22 @@ private fun GpuBenchmarkCard(
                     )
                     Spacer(Modifier.height(10.dp))
 
-                    // compute 吞吐条（计算着色器实测 GFLOPS）
-                    ComputeRow(label = appString(R.string.benchmark_compute_throughput), gflops = result.computeGFLOPS)
-                    if (result.computeError.isNotEmpty()) {
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            "计算基准受限：${result.computeError}（带宽结果仍有效）",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.tertiary
-                        )
-                    }
+                    // CPU 整数吞吐（多线程 MIPS）
+                    CpuRow(
+                        label = appString(R.string.benchmark_cpu_int),
+                        value = result.cpuIntMIPS,
+                        unit = "MIPS",
+                        threads = result.cpuThreads
+                    )
+                    Spacer(Modifier.height(10.dp))
+
+                    // CPU 浮点吞吐（多线程 MFLOPS）
+                    CpuRow(
+                        label = appString(R.string.benchmark_cpu_float),
+                        value = result.cpuFloatMFLOPS,
+                        unit = "MFLOPS",
+                        threads = result.cpuThreads
+                    )
                     Spacer(Modifier.height(16.dp))
 
                     Button(onClick = onRun) {
@@ -4864,6 +4878,42 @@ private fun ComputeRow(label: String, gflops: Double) {
             Text(label, style = MaterialTheme.typography.bodyMedium)
             Text(
                 if (gflops > 0) String.format("%.1f GFLOPS", gflops) else "不可用",
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Spacer(Modifier.height(4.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(fraction.toFloat())
+                    .height(8.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(MaterialTheme.colorScheme.primary)
+            )
+        }
+    }
+}
+
+/** CPU 基准数值 + 进度条（整数满格 20000 MIPS / 浮点满格 8000 MFLOPS，对应 8 核旗舰）。 */
+@Composable
+private fun CpuRow(label: String, value: Double, unit: String, threads: Int) {
+    val maxVal = if (unit == "MIPS") 20000.0 else 8000.0
+    val fraction = (value / maxVal).coerceIn(0.0, 1.0)
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(label, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                if (value > 0) String.format("%.0f %s × %d 线程", value, unit, threads) else "不可用",
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -5022,8 +5072,8 @@ private fun DriverDetectionList(
                         success = false, errorCode = "NOT_EXPORTING",
                         errorMessage = "驱动 .so 未导出 ICD 入口（vk_icdGetInstanceProcAddr/vkGetInstanceProcAddr），无法加载",
                         deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
-                        computeGFLOPS = 0.0, computeError = "", totalScore = 0,
-                        bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                        computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
+                        totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                     ))
                 } else {
                     val raw = NativeVulkanBridge.benchmarkVulkan(soFile.absolutePath)
@@ -5034,8 +5084,8 @@ private fun DriverDetectionList(
                     success = false, errorCode = "BENCHMARK_EXCEPTION",
                     errorMessage = e.message ?: "unknown",
                     deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
-                    computeGFLOPS = 0.0, computeError = "", totalScore = 0,
-                    bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                    computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
+                    totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                 ))
             } finally {
                 benchmarkingId = null

@@ -6,7 +6,9 @@
     <string name="downloads">Downloads</string>
     <string name="settings">Settings</string>
     <string name="component_guide">Component guide</string>
-    <string name="your_download_library">Your download library</string>
+
+    <string name="driver_guide_subtitle">Turnip / AdrenoTools / PanVK installation and usage</string>
+    <string name="driver_guide">Driver Guide</string>    <string name="your_download_library">Your download library</string>
     <string name="download_library">Download library</string>
     <string name="download_library_desc">Everything you download from EmuBox in one place.</string>
     <string name="active">Active</string>
@@ -428,7 +430,9 @@
     <string name="benchmark_total_score">Total Score</string>
     <string name="benchmark_fill_bandwidth">Fill Bandwidth</string>
     <string name="benchmark_copy_bandwidth">Copy Bandwidth</string>
-    <string name="benchmark_device">Device</string>
+
+    <string name="benchmark_cpu_float">CPU Float (multi-thread)</string>
+    <string name="benchmark_cpu_int">CPU Integer (multi-thread)</string>    <string name="benchmark_device">Device</string>
     <string name="benchmark_note">Tests GPU memory bandwidth (fill + copy) for comparing performance across drivers.</string>
     <string name="benchmark_failed">Benchmark failed</string>
 

@@ -78,6 +78,7 @@ class MainActivity : ComponentActivity() {
                 var globalSearchOpen by remember { mutableStateOf(false) }
                 var guideReturnTab by remember { mutableStateOf(AppScreen.DEVICE) }
                 var guideTopic by remember { mutableStateOf<String?>(null) }
+                var guideDriverMode by remember { mutableStateOf(false) }
                 var refreshTrigger by remember { mutableIntStateOf(0) }
                 var deviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }
                 var cachedDeviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }
@@ -344,9 +345,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // 进入指南页：记录返回 Tab
-                    fun openGuide(topic: String?) {
+                    // 进入指南页：记录返回 Tab（驱动专区按钮进驱动指南，其余进组件指南）
+                    fun openGuide(topic: String?, driverMode: Boolean = false) {
                         guideTopic = topic
+                        guideDriverMode = driverMode
                         guideReturnTab = currentScreen
                         currentScreen = AppScreen.GUIDE
                     }
@@ -513,8 +515,8 @@ class MainActivity : ComponentActivity() {
                                                             Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
                                                         }
                                                     }
-                                                    IconButton(onClick = { openGuide(null) }) {
-                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
+                                                    IconButton(onClick = { openGuide(null, driverMode = true) }) {
+                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.driver_guide))
                                                     }
                                                 }
                                             )
@@ -708,7 +710,8 @@ class MainActivity : ComponentActivity() {
                                 AppScreen.GUIDE -> ComponentGuideScreen(
                                     onBack = { currentScreen = guideReturnTab },
                                     adrenoSeries = deviceInfo?.adrenoSeries,
-                                    initialTopicId = guideTopic
+                                    initialTopicId = guideTopic,
+                                    driverMode = guideDriverMode
                                 )
                             }
                         }

@@ -6,7 +6,9 @@
     <string name="downloads">下载</string>
     <string name="settings">设置</string>
     <string name="component_guide">组件指南</string>
-    <string name="your_download_library">你的下载库</string>
+
+    <string name="driver_guide_subtitle">Turnip / AdrenoTools / PanVK 安装与使用教程</string>
+    <string name="driver_guide">驱动指南</string>    <string name="your_download_library">你的下载库</string>
     <string name="download_library">下载库</string>
     <string name="download_library_desc">从 EmuBox 下载的所有文件都在这里。</string>
     <string name="active">进行中</string>
@@ -428,7 +430,9 @@
     <string name="benchmark_total_score">总分</string>
     <string name="benchmark_fill_bandwidth">填充带宽</string>
     <string name="benchmark_copy_bandwidth">拷贝带宽</string>
-    <string name="benchmark_device">设备</string>
+
+    <string name="benchmark_cpu_float">CPU 浮点吞吐（多线程）</string>
+    <string name="benchmark_cpu_int">CPU 整数吞吐（多线程）</string>    <string name="benchmark_device">设备</string>
     <string name="benchmark_note">测试 GPU 内存带宽（填充 + 拷贝），用于对比不同驱动的性能差异。</string>
     <string name="benchmark_failed">跑分失败</string>
 

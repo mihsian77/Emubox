@@ -279,6 +279,16 @@ object DownloadsManager {
         }
     }
 
+    /** 自动重试切换来源时更新 URL（不重置已下载字节）。 */
+    fun updateUrl(fileName: String, newUrl: String) {
+        _activeDownloads[fileName]?.let { current ->
+            if (current.url != newUrl) {
+                _activeDownloads[fileName] = current.copy(url = newUrl)
+                saveActiveDownloads(force = true)
+            }
+        }
+    }
+
     /** 更新实时下载速度（字节/秒），不触发持久化（速度是临时值） */
     fun updateSpeed(fileName: String, speedBytesPerSec: Long) {
         _activeDownloads[fileName]?.let { current ->
