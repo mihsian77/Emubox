@@ -24,8 +24,8 @@
           "Turnip Gen8"
         ]
       },
-      "updatedAt": 1791200988000,
-      "stars": 1005
+      "updatedAt": 1791229788000,
+      "stars": 1004
     },
     {
       "id": "whitebelyash",
@@ -47,8 +47,8 @@
           "stu_"
         ]
       },
-      "updatedAt": 1789796263000,
-      "stars": 465
+      "updatedAt": 1789825063000,
+      "stars": 464
     },
     {
       "id": "k11mch1",
@@ -65,7 +65,7 @@
           "Turnip"
         ]
       },
-      "updatedAt": 1771915251000,
+      "updatedAt": 1771944051000,
       "stars": 5131
     },
     {
@@ -86,7 +86,7 @@
           "turnip_mrpurple"
         ]
       },
-      "updatedAt": 1786941481000,
+      "updatedAt": 1786970281000,
       "stars": 832
     },
     {
@@ -122,7 +122,7 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1791705908000,
+      "updatedAt": 1791834238000,
       "stars": 180
     },
     {
@@ -144,7 +144,7 @@
           "Mesa"
         ]
       },
-      "updatedAt": 1779190837000,
+      "updatedAt": 1779219637000,
       "stars": 50
     },
     {
@@ -166,7 +166,7 @@
           "A81"
         ]
       },
-      "updatedAt": 1791402472000,
+      "updatedAt": 1791431272000,
       "stars": 2
     },
     {
@@ -188,7 +188,7 @@
           "Turnip"
         ]
       },
-      "updatedAt": 1790482957000,
+      "updatedAt": 1790511757000,
       "stars": 44
     },
     {
@@ -212,7 +212,7 @@
           "720"
         ]
       },
-      "updatedAt": 1791739702000,
+      "updatedAt": 1791768502000,
       "stars": 65
     },
     {
@@ -232,7 +232,7 @@
           "vulkan"
         ]
       },
-      "updatedAt": 1791576640000,
+      "updatedAt": 1791605440000,
       "stars": 36
     }
   ],
@@ -246,8 +246,8 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1005,
-      "updatedAt": 1791200988000
+      "stars": 1004,
+      "updatedAt": 1791229788000
     },
     {
       "id": "k11mch1-qualcomm",
@@ -260,7 +260,7 @@
         "Qualcomm"
       ],
       "stars": 5131,
-      "updatedAt": 1771915251000
+      "updatedAt": 1771944051000
     },
     {
       "id": "stevenmxz-collection",
@@ -271,7 +271,7 @@
       "filters": [],
       "stars": 19,
       "archived": true,
-      "updatedAt": 1767580565000
+      "updatedAt": 1767609365000
     }
   ],
   "componentSources": [
@@ -282,7 +282,7 @@
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1791684727000
+      "updatedAt": 1791802810000
     },
     {
       "id": "xnick",
@@ -290,7 +290,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1791691847000
+      "updatedAt": 1791815543000
     },
     {
       "id": "banner-components",
@@ -298,7 +298,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
       "description": "Winlator 夜间构建组件清单",
       "experimental": true,
-      "updatedAt": 1791677984000
+      "updatedAt": 1791706784000
     },
     {
       "id": "ref4ik",
@@ -307,7 +307,7 @@
       "description": "Adrenotools 组件合集（清单活跃：contents.json 于 2026-08 更新，含 Wine/Box64/DXVK 等 203 项，其中 100 项直连 The412Banner Nightlies）",
       "experimental": true,
       "archived": false,
-      "updatedAt": 1769666196000
+      "updatedAt": 1769694996000
     },
     {
       "id": "arihany",
@@ -315,7 +315,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
       "description": "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
       "experimental": true,
-      "updatedAt": 1791467939000
+      "updatedAt": 1791496739000
     }
   ]
 }
