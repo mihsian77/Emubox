@@ -24,17 +24,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 scripts/refresh-registry.py
-          python3 scripts/refresh-emulators.py
+          python3 scripts/refresh-ranking.py
 
       - name: 有变化则提交
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! git diff --quiet -- driver-registry.json catalog/catalog.json emulator-registry.json; then
+          if ! git diff --quiet -- driver-registry.json catalog/catalog.json emulator-ranking.json; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add driver-registry.json catalog/catalog.json emulator-registry.json
-            git commit -m "chore: 刷新驱动/模拟器源活跃度（更新时间/星标/最新版本）"
+            git add driver-registry.json catalog/catalog.json emulator-ranking.json
+            git commit -m "chore: 每日刷新驱动/模拟器/排行数据（更新时间/星标/全量 releases）"
             # checkout 默认无推送权限，显式带 token 推送
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             git push origin HEAD:main

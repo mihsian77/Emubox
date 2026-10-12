@@ -6134,7 +6134,6 @@ private fun emulatorCategoryLabel(category: String): String = when (category) {
     "GAME" -> "游戏"
     else -> category
 }
-
 @Composable
 fun EmulatorScreen(
     modifier: Modifier = Modifier,
@@ -6142,10 +6141,11 @@ fun EmulatorScreen(
     onDownload: (EmulatorEntry) -> Unit
 ) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     var filterCat by remember { mutableStateOf("all") }
     var sortMode by remember { mutableStateOf("popular") }
+    var detailEntry by remember { mutableStateOf<EmulatorEntry?>(null) }
 
-    // 原站分类体系（t3st31 / the412banner 排行站），映射为中文分区
     val categoryOrder = remember(entries) {
         val seen = LinkedHashSet<String>()
         entries.forEach { seen.add(it.category) }
@@ -6174,15 +6174,17 @@ fun EmulatorScreen(
         }
     }
 
-    LazyColumn(
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        item(key = "emulator_region_header") {
+        item(key = "emulator_region_header", span = { GridItemSpan(maxLineSpan) }) {
             RegionHeader(title = appString(R.string.emulator_region), icon = Icons.Default.Android, remote = true)
         }
-        item(key = "emulator_desc") {
+        item(key = "emulator_desc", span = { GridItemSpan(maxLineSpan) }) {
             Text(
                 appString(R.string.emulator_desc),
                 style = MaterialTheme.typography.bodySmall,
@@ -6190,7 +6192,7 @@ fun EmulatorScreen(
                 modifier = Modifier.padding(horizontal = 4.dp)
             )
         }
-        item(key = "emulator_summary") {
+        item(key = "emulator_summary", span = { GridItemSpan(maxLineSpan) }) {
             val officialCount = entries.count { it.official }
             val direct = entries.count { it.latestApkUrl.isNotBlank() }
             Text(
@@ -6200,7 +6202,7 @@ fun EmulatorScreen(
                 modifier = Modifier.padding(horizontal = 4.dp)
             )
         }
-        item(key = "emulator_filter") {
+        item(key = "emulator_filter", span = { GridItemSpan(maxLineSpan) }) {
             Column {
                 Row(
                     modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
@@ -6216,7 +6218,8 @@ fun EmulatorScreen(
                                 Text(
                                     if (c == "all") appString(R.string.emulator_cat_all)
                                     else categoryLabel[c].orEmpty(),
-                                    maxLines = 1
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
                                 )
                             }
                         )
@@ -6261,7 +6264,7 @@ fun EmulatorScreen(
             }
         }
         if (flatItems.isEmpty()) {
-            item(key = "emulator_loading") {
+            item(key = "emulator_loading", span = { GridItemSpan(maxLineSpan) }) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(28.dp)
@@ -6277,338 +6280,481 @@ fun EmulatorScreen(
         flatItems.forEach { item ->
             if (item is String) {
                 val cat = item.removePrefix("__header__")
-                item(key = "__header_$cat") {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            "${categoryLabel[cat].orEmpty()}（${grouped[cat].orEmpty().size}）",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        HorizontalDivider(
-                            modifier = Modifier.weight(1f),
-                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
-                        )
-                    }
+                item(key = "__header_$cat", span = { GridItemSpan(maxLineSpan) }) {
+                    EmulatorSectionHeader(label = categoryLabel[cat].orEmpty(), count = grouped[cat].orEmpty().size)
                 }
             } else {
                 val entry = item as EmulatorEntry
                 item(key = entry.id) {
-                    EmulatorCard(entry = entry, onDownload = onDownload)
+                    EmulatorCard(
+                        entry = entry,
+                        onClickDetail = { detailEntry = entry },
+                        onDownload = onDownload
+                    )
                 }
+            }
+        }
+    }
+    detailEntry?.let { entry ->
+        EmulatorDetailDialog(
+            entry = entry,
+            onDismiss = { detailEntry = null },
+            onDownloadAsset = { url, name ->
+                scope.launch { downloadEmulatorAsset(context, entry.name, url, name) }
+            }
+        )
+    }
+}
+
+@Composable
+private fun EmulatorSectionHeader(label: String, count: Int) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            "$label（$count）",
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Spacer(Modifier.width(8.dp))
+        HorizontalDivider(
+            modifier = Modifier.weight(1f),
+            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+        )
+    }
+}
+
+/** 模拟器双列紧凑卡：名称/官方徽章/最新版本/APK 文件名/统计 + 下载按钮，点击进详情 */
+@Composable
+private fun EmulatorCard(
+    entry: EmulatorEntry,
+    onClickDetail: () -> Unit,
+    onDownload: (EmulatorEntry) -> Unit
+) {
+    val context = LocalContext.current
+    val canDownload = entry.latestApkUrl.isNotBlank()
+    val websiteUrl = entry.homepage.ifBlank { "" }
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClickDetail),
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        Column(Modifier.padding(12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    entry.name,
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f, fill = false)
+                )
+                if (entry.official) {
+                    Spacer(Modifier.width(4.dp))
+                    Surface(
+                        shape = RoundedCornerShape(6.dp),
+                        color = MaterialTheme.colorScheme.primary
+                    ) {
+                        Text(
+                            appString(R.string.emulator_badge_official),
+                            modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                }
+            }
+            if (entry.channel.isNotBlank() && entry.channel != "stable") {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    entry.channel,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+            }
+            if (entry.latestTag.isNotBlank()) {
+                Spacer(Modifier.height(3.dp))
+                Text(
+                    "${entry.latestTag} · ${entry.latestDate}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (entry.latestApkName.isNotBlank()) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    entry.latestApkName,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (entry.stars > 0 || entry.downloads > 0) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    buildString {
+                        if (entry.stars > 0) append("★${entry.stars}")
+                        if (entry.stars > 0 && entry.downloads > 0) append(" · ")
+                        if (entry.downloads > 0) append(emulatorDownloadCount(entry.downloads))
+                    },
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Spacer(Modifier.height(8.dp))
+            Button(
+                onClick = {
+                    if (canDownload) onDownload(entry)
+                    else if (websiteUrl.isNotBlank()) {
+                        runCatching {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl)))
+                        }
+                    }
+                },
+                enabled = canDownload || websiteUrl.isNotBlank(),
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    if (canDownload) appString(R.string.emulator_download)
+                    else appString(R.string.emulator_website),
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
         }
     }
 }
 
-/** 单个模拟器卡片：名称/分类/描述/最新版本/下载或官网/仓库 */
+private fun emulatorDownloadCount(d: Long): String = when {
+    d >= 1_000_000 -> "%.1fM".format(d / 1_000_000.0)
+    d >= 1_000 -> "%.1fK".format(d / 1_000.0)
+    else -> "$d"
+}
+
+private fun assetSizeText(size: Long): String = when {
+    size >= 1024 * 1024 -> "%.1f MB".format(size / 1024.0 / 1024.0)
+    size >= 1024 -> "%.0f KB".format(size / 1024.0)
+    else -> "$size B"
+}
+
+private fun assetTypeLabel(name: String): String = when {
+    name.endsWith(".apk", true) -> "APK"
+    name.endsWith(".zip", true) || name.endsWith(".7z", true) || name.endsWith(".tar.gz", true) ||
+        name.endsWith(".tgz", true) || name.endsWith(".tar", true) -> "压缩包"
+    name.endsWith(".patch", true) || name.endsWith(".diff", true) -> "补丁"
+    name.endsWith(".so", true) -> "库文件"
+    name.endsWith(".exe", true) -> "安装程序"
+    else -> "文件"
+}
+
+/** 模拟器详情：全部 releases 全部文件，每个文件可下载，日志可翻译 */
 @Composable
-private fun EmulatorCard(
+private fun EmulatorDetailDialog(
     entry: EmulatorEntry,
-    onDownload: (EmulatorEntry) -> Unit
+    onDismiss: () -> Unit,
+    onDownloadAsset: (url: String, name: String) -> Unit
 ) {
     val context = LocalContext.current
-    var showChangelog by remember { mutableStateOf(false) }
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp)
-    ) {
-        Column(Modifier.padding(16.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+    val scope = rememberCoroutineScope()
+    var expandedTag by remember { mutableStateOf(entry.releases.firstOrNull()?.tag) }
+    var translatedMap by remember { mutableStateOf<Map<String, String?>>(emptyMap()) }
+    var translatingTag by remember { mutableStateOf<String?>(null) }
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 780.dp)
+        ) {
+            Column(
+                Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer
-                ) {
-                    Box(
-                        modifier = Modifier.size(40.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            entry.name.take(1).uppercase(),
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    }
-                }
-                Spacer(Modifier.width(10.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(
-                            entry.name,
-                            style = MaterialTheme.typography.titleMedium,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.weight(1f, fill = false)
-                        )
-                        if (entry.official) {
-                            Spacer(Modifier.width(6.dp))
-                            Surface(
-                                shape = RoundedCornerShape(8.dp),
-                                color = MaterialTheme.colorScheme.primary
-                            ) {
-                                Text(
-                                    appString(R.string.emulator_badge_official),
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onPrimary
-                                )
-                            }
-                        }
-                        if (entry.channel.isNotBlank() && entry.channel != "stable") {
-                            Spacer(Modifier.width(6.dp))
-                            Surface(
-                                shape = RoundedCornerShape(8.dp),
-                                color = MaterialTheme.colorScheme.tertiaryContainer
-                            ) {
-                                Text(
-                                    entry.channel,
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onTertiaryContainer
-                                )
-                            }
-                        }
-                    }
-                    if (entry.stars > 0 || entry.pushedAt.isNotBlank()) {
-                        Spacer(Modifier.height(2.dp))
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            if (entry.stars > 0) {
-                                Icon(
-                                    Icons.Default.Star,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(13.dp),
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                                Spacer(Modifier.width(3.dp))
-                                Text(
-                                    formatStars(entry.stars),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                            if (entry.downloads > 0L) {
-                                Spacer(Modifier.width(8.dp))
-                                Icon(
-                                    Icons.Default.Download,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(13.dp),
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                                Spacer(Modifier.width(3.dp))
-                                Text(
-                                    formatStars(entry.downloads),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                            if (entry.pushedAt.isNotBlank()) {
-                                Spacer(Modifier.width(8.dp))
-                                Text(
-                                    formatRelativeTime(entry.pushedAt),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-                }
-                if (entry.category.isNotBlank()) {
-                    Spacer(Modifier.width(8.dp))
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.secondaryContainer
-                    ) {
-                        Text(
-                            when (entry.category) {
-                                "windows" -> appString(R.string.emulator_cat_windows)
-                                "console" -> appString(R.string.emulator_cat_console)
-                                "multi" -> appString(R.string.emulator_cat_multi)
-                                else -> appString(R.string.emulator_cat_terminal)
-                            },
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                            maxLines = 1
-                        )
-                    }
-                }
-            }
-            Spacer(Modifier.height(8.dp))
-            Text(
-                entry.description,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(Modifier.height(10.dp))
-            if (entry.latestTag.isNotBlank()) {
-                val tagLabel = when (entry.latestTag.lowercase()) {
-                    "continuous" -> appString(R.string.emulator_tag_continuous)
-                    "preview" -> appString(R.string.emulator_tag_preview)
-                    "nightly" -> appString(R.string.emulator_tag_nightly)
-                    else -> entry.latestTag
-                }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        appString(R.string.emulator_latest),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(Modifier.width(6.dp))
-                    Text(
-                        tagLabel,
-                        style = MaterialTheme.typography.labelMedium,
+                        entry.name,
+                        style = MaterialTheme.typography.titleLarge,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f, fill = false)
                     )
-                    if (entry.latestDate.isNotBlank()) {
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            entry.latestDate,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                }
-            }
-            Spacer(Modifier.height(10.dp))
-            if (entry.latestApkUrl.isNotBlank()) {
-                val apkName = entry.latestApkUrl.substringAfterLast('/')
-                EmulatorApkSize(entry.latestApkUrl) { sizeText ->
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            Icons.Default.Download,
-                            contentDescription = null,
-                            modifier = Modifier.size(13.dp),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text(
-                            apkName,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.weight(1f, fill = false)
-                        )
-                        if (sizeText.isNotBlank()) {
-                            Spacer(Modifier.width(6.dp))
+                    if (entry.official) {
+                        Spacer(Modifier.width(6.dp))
+                        Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primary) {
                             Text(
-                                sizeText,
+                                appString(R.string.emulator_badge_official),
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                                 style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.primary
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
+                    }
+                    if (entry.channel.isNotBlank() && entry.channel != "stable") {
+                        Spacer(Modifier.width(6.dp))
+                        Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.tertiaryContainer) {
+                            Text(
+                                entry.channel,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer
                             )
                         }
                     }
                 }
-                Spacer(Modifier.height(10.dp))
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                val canDownload = entry.latestApkUrl.isNotBlank()
-                val websiteUrl = entry.homepage.ifBlank { entry.githubUrl }
-                Button(
-                    onClick = {
-                        if (canDownload) onDownload(entry)
-                        else if (websiteUrl.isNotBlank()) {
-                            runCatching {
-                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl)))
-                            }
-                        }
-                    },
-                    enabled = canDownload || websiteUrl.isNotBlank(),
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(14.dp)
-                ) {
-                    Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
-                    Spacer(Modifier.width(4.dp))
+                if (entry.description.isNotBlank()) {
                     Text(
-                        if (canDownload) appString(R.string.emulator_download)
-                        else appString(R.string.emulator_website),
-                        maxLines = 1
-                    )
-                }
-                if (entry.githubUrl.isNotBlank()) {
-                    OutlinedButton(
-                        onClick = {
-                            runCatching {
-                                context.startActivity(
-                                    Intent(Intent.ACTION_VIEW, Uri.parse(entry.githubUrl))
-                                )
-                            }
-                        },
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(14.dp)
-                    ) {
-                        Icon(Icons.Default.Star, contentDescription = null, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text(appString(R.string.emulator_repo), maxLines = 1)
-                    }
-                }
-                if (entry.latestBody.isNotBlank() && entry.githubUrl.isNotBlank()) {
-                    OutlinedButton(
-                        onClick = { showChangelog = true },
-                        shape = RoundedCornerShape(14.dp)
-                    ) {
-                        Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text(appString(R.string.emulator_changelog), maxLines = 1)
-                    }
-                }
-            }
-        }
-    }
-    if (showChangelog && entry.latestBody.isNotBlank()) {
-        Dialog(onDismissRequest = { showChangelog = false }) {
-            Card(
-                shape = RoundedCornerShape(24.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Column(
-                    Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        entry.name,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Text(
-                        "${entry.latestTag} · ${entry.latestDate}",
-                        style = MaterialTheme.typography.labelSmall,
+                        entry.description,
+                        style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    HorizontalDivider()
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(
-                        entry.latestBody,
-                        style = MaterialTheme.typography.bodySmall
+                        emulatorCategoryLabel(entry.category),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary
                     )
-                    HorizontalDivider()
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        TextButton(
-                            onClick = {
-                                runCatching {
-                                    val releaseUrl = entry.githubUrl + "/releases/tag/" + entry.latestTag
-                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(releaseUrl)))
+                    if (entry.stars > 0) {
+                        Text(
+                            "★${entry.stars}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    if (entry.downloads > 0) {
+                        Text(
+                            "⬇ ${emulatorDownloadCount(entry.downloads)}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+                HorizontalDivider()
+                Text(
+                    appString(R.string.emulator_all_versions, entry.releases.size),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                if (entry.releases.isEmpty()) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Column(Modifier.padding(14.dp)) {
+                            Text(
+                                appString(R.string.emulator_no_releases),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            if (entry.githubUrl.isNotBlank()) {
+                                Spacer(Modifier.height(8.dp))
+                                OutlinedButton(
+                                    onClick = {
+                                        runCatching {
+                                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.githubUrl)))
+                                        }
+                                    },
+                                    shape = RoundedCornerShape(12.dp)
+                                ) {
+                                    Text(appString(R.string.emulator_repo), maxLines = 1)
                                 }
                             }
+                        }
+                    }
+                }
+                entry.releases.forEach { rel ->
+                    val totalSize = rel.assets.sumOf { it.size }
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Column(Modifier.padding(12.dp)) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().clickable {
+                                    expandedTag = if (expandedTag == rel.tag) null else rel.tag
+                                },
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        rel.tag,
+                                        style = MaterialTheme.typography.titleSmall,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                    Spacer(Modifier.height(2.dp))
+                                    Text(
+                                        buildString {
+                                            append(rel.date)
+                                            if (rel.assets.isNotEmpty()) {
+                                                append(" · ${rel.assets.size} 个文件")
+                                                append(" · ${assetSizeText(totalSize)}")
+                                            }
+                                        },
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                                Icon(
+                                    if (expandedTag == rel.tag) Icons.Default.ExpandLess
+                                    else Icons.Default.ExpandMore,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                            if (expandedTag == rel.tag) {
+                                Spacer(Modifier.height(6.dp))
+                                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                                Spacer(Modifier.height(6.dp))
+                                if (rel.body.isNotBlank()) {
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            appString(R.string.changelog),
+                                            style = MaterialTheme.typography.labelMedium,
+                                            modifier = Modifier.weight(1f)
+                                        )
+                                        TextButton(
+                                            onClick = {
+                                                val cur = translatedMap[rel.tag]
+                                                if (cur != null) {
+                                                    translatedMap = translatedMap + (rel.tag to null)
+                                                } else if (translatingTag != rel.tag) {
+                                                    translatingTag = rel.tag
+                                                    scope.launch {
+                                                        val result = translateReleaseNotes(rel.body)
+                                                        translatedMap = translatedMap + (rel.tag to result)
+                                                        translatingTag = null
+                                                    }
+                                                }
+                                            },
+                                            enabled = translatingTag != rel.tag
+                                        ) {
+                                            if (translatingTag == rel.tag) {
+                                                CircularProgressIndicator(
+                                                    modifier = Modifier.size(14.dp),
+                                                    strokeWidth = 2.dp
+                                                )
+                                            } else {
+                                                Text(
+                                                    if (translatedMap[rel.tag] == null) appString(R.string.translate_changelog)
+                                                    else appString(R.string.show_original),
+                                                    style = MaterialTheme.typography.labelSmall
+                                                )
+                                            }
+                                        }
+                                    }
+                                    Text(
+                                        translatedMap[rel.tag] ?: rel.body,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .heightIn(max = 200.dp)
+                                            .verticalScroll(rememberScrollState())
+                                    )
+                                    Spacer(Modifier.height(6.dp))
+                                }
+                                if (rel.assets.isEmpty()) {
+                                    Text(
+                                        appString(R.string.emulator_no_assets),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                                rel.assets.forEach { asset ->
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Icon(
+                                            Icons.Default.InsertDriveFile,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(16.dp),
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                        Spacer(Modifier.width(6.dp))
+                                        Column(modifier = Modifier.weight(1f)) {
+                                            Text(
+                                                asset.name,
+                                                style = MaterialTheme.typography.bodySmall,
+                                                maxLines = 1,
+                                                overflow = TextOverflow.Ellipsis
+                                            )
+                                            Text(
+                                                assetSizeText(asset.size),
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                        Spacer(Modifier.width(6.dp))
+                                        Surface(
+                                            shape = RoundedCornerShape(6.dp),
+                                            color = MaterialTheme.colorScheme.surfaceVariant
+                                        ) {
+                                            Text(
+                                                assetTypeLabel(asset.name),
+                                                modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp),
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                        Spacer(Modifier.width(6.dp))
+                                        IconButton(
+                                            onClick = { onDownloadAsset(asset.url, asset.name) },
+                                            enabled = asset.url.isNotBlank()
+                                        ) {
+                                            Icon(
+                                                Icons.Default.Download,
+                                                contentDescription = null,
+                                                modifier = Modifier.size(18.dp),
+                                                tint = if (asset.url.isNotBlank())
+                                                    MaterialTheme.colorScheme.primary
+                                                else MaterialTheme.colorScheme.outline
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                HorizontalDivider()
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (entry.githubUrl.isNotBlank()) {
+                        OutlinedButton(
+                            onClick = {
+                                runCatching {
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.githubUrl)))
+                                }
+                            },
+                            shape = RoundedCornerShape(12.dp)
                         ) {
-                            Text(appString(R.string.emulator_release_url), maxLines = 1)
+                            Text(appString(R.string.emulator_repo), maxLines = 1)
                         }
-                        TextButton(onClick = { showChangelog = false }) {
-                            Text(appString(R.string.close))
+                    }
+                    if (entry.homepage.isNotBlank()) {
+                        OutlinedButton(
+                            onClick = {
+                                runCatching {
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.homepage)))
+                                }
+                            },
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Text(appString(R.string.emulator_website), maxLines = 1)
                         }
+                    }
+                    Spacer(Modifier.weight(1f))
+                    TextButton(onClick = onDismiss) {
+                        Text(appString(R.string.close))
                     }
                 }
             }

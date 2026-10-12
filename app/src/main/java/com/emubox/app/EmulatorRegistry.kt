@@ -15,6 +15,19 @@ const val DEFAULT_EMULATOR_RANKING_URL =
     "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/emulator-ranking.json"
 
 /** 模拟器条目：官方 registry（版本/APK 直链）+ 社区排行（下载量/更新日志）合并 */
+data class EmulatorAsset(
+    val name: String = "",
+    val size: Long = 0L,
+    val url: String = ""
+)
+
+data class EmulatorRelease(
+    val tag: String = "",
+    val date: String = "",
+    val body: String = "",
+    val assets: List<EmulatorAsset> = emptyList()
+)
+
 data class EmulatorEntry(
     val id: String,
     val name: String,
@@ -34,7 +47,8 @@ data class EmulatorEntry(
     val stars: Long = 0L,
     val downloads: Long = 0L,
     val latestDate: String = "",
-    val latestBody: String = ""
+    val latestBody: String = "",
+    val releases: List<EmulatorRelease> = emptyList()
 ) {
     val githubUrl: String
         get() = if (owner.isNotBlank() && repo.isNotBlank()) "https://github.com/$owner/$repo" else ""
@@ -58,17 +72,17 @@ object EmulatorRegistryRepository {
             repo = "winlator",
             homepage = "", repoUrl = "https://github.com/brunodev85/winlator",
             official = true, channel = "stable",
-            downloads = 16076175, stars = 19417, pushedAt = "2026-09-22T18:36:59Z",
+            downloads = 16076175, stars = 19429, pushedAt = "2026-09-22T18:36:59Z",
             latestTag = "v11.2.0", latestDate = "2026-08-19T11:06",
             latestApkUrl = "https://github.com/brunodev85/winlator/releases/download/v11.2.0/Winlator_11.2.apk", latestApkName = "Winlator_11.2.apk",
             latestApkSize = 157549075, latestBody = "**v11.2 (Latest)**\n\n- Added an option to save memory on run games from Steam\n- Improved the presentation of rendered images\n- Implemented XInput extension for raw input\n- Implemented an option to run Winlator as foreground service (by @Juan-Antonio-Doe)\n- Updated Mesa Turnip (v26.2.0 from @whitebelyash branch)\n\n**v11.2 (Beta)**\n- Fixed gamepad input lag\n- Added Box64 v0.4.4 (release)\n- Improved Vortek:\n	└─ Improved texture decoding (it was not handling mipmaps correctly)\n	└─ Some im"
         ),
         EmulatorEntry(
-            id = "gamehub", name = "GameHub", category = "Winlator",
+            id = "eden-emulator-Releases", name = "Eden Emulator", category = "Nintendo Switch Emulator",
             description = "",
-            owner = "",
-            repo = "",
-            homepage = "https://gamehub.com", repoUrl = "",
+            owner = "eden-emulator",
+            repo = "Releases",
+            homepage = "", repoUrl = "https://github.com/eden-emulator/Releases",
             official = true, channel = "stable",
             downloads = 0, stars = 0, pushedAt = "",
             latestTag = "", latestDate = "",
@@ -76,11 +90,11 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "eden", name = "Eden", category = "Winlator",
+            id = "gamehub", name = "GameHub", category = "GameHub",
             description = "",
             owner = "",
             repo = "",
-            homepage = "", repoUrl = "",
+            homepage = "https://gamehub.com", repoUrl = "",
             official = true, channel = "stable",
             downloads = 0, stars = 0, pushedAt = "",
             latestTag = "", latestDate = "",
@@ -100,7 +114,7 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "ppsspp", name = "PPSSPP", category = "PC Emulator",
+            id = "ppsspp", name = "PPSSPP", category = "Emulator PS2",
             description = "",
             owner = "hrydgard",
             repo = "ppsspp",
@@ -112,7 +126,7 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "retroarch", name = "RetroArch", category = "PC Emulator",
+            id = "retroarch", name = "RetroArch", category = "All In One",
             description = "",
             owner = "libretro",
             repo = "RetroArch",
@@ -124,7 +138,7 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "dolphin", name = "Dolphin Emulator", category = "PC Emulator",
+            id = "dolphin", name = "Dolphin Emulator", category = "Nintendo GameCube / Wii",
             description = "",
             owner = "dolphin-emu",
             repo = "dolphin",
@@ -136,7 +150,7 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "duckstation", name = "DuckStation", category = "PC Emulator",
+            id = "duckstation", name = "DuckStation", category = "Emulator PS2",
             description = "",
             owner = "stenzek",
             repo = "duckstation",
@@ -148,7 +162,7 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "vita3k", name = "Vita3K", category = "PC Emulator",
+            id = "vita3k", name = "Vita3K", category = "PSVITA",
             description = "",
             owner = "Vita3K",
             repo = "Vita3K",
@@ -166,7 +180,7 @@ object EmulatorRegistryRepository {
             repo = "citra",
             homepage = "", repoUrl = "https://github.com/weihuoya/citra",
             official = false, channel = "nightly",
-            downloads = 9835742, stars = 2762, pushedAt = "2025-11-14T11:04:59Z",
+            downloads = 9835742, stars = 2761, pushedAt = "2025-11-14T11:04:59Z",
             latestTag = "20251112", latestDate = "2025-11-12T02:51",
             latestApkUrl = "https://github.com/weihuoya/citra/releases/download/20251112/Citra_MMJ_20251112.apk", latestApkName = "Citra_MMJ_20251112.apk",
             latestApkSize = 12166311, latestBody = "**Before:**\nemulator directory: \"citra-emu\"\n\n**Antutu**:\npackage name: com.antutu.ABenchMark\nThis is tricking the os thinks it's running a benchmark app, and will boost performance on some device.\n\n**Storage Access:**\nemulator directory: \"Android/data/org.citra.emu/files/citra-emu\"\nWARNING uninstall citra will remove directory, include games, dlcs, save datas.\n\ndirectory: \"citra-emu\\nand\\data\\00000000000000000000000000000000\\sysdata\\00010026\\00000000\\CEC\"\nDelete this dir"
@@ -178,7 +192,7 @@ object EmulatorRegistryRepository {
             repo = "azahar",
             homepage = "", repoUrl = "https://github.com/azahar-emu/azahar",
             official = false, channel = "stable",
-            downloads = 8614676, stars = 8324, pushedAt = "2026-10-10T13:45:51Z",
+            downloads = 8614676, stars = 8328, pushedAt = "2026-10-12T11:59:55Z",
             latestTag = "2127.0-alpha1", latestDate = "2026-10-10T16:09",
             latestApkUrl = "https://github.com/azahar-emu/azahar/releases/download/2127.0-alpha1/azahar-android-googleplay-2127.0-alpha1.aab", latestApkName = "azahar-android-googleplay-2127.0-alpha1.aab",
             latestApkSize = 81268438, latestBody = "<h3>⚠️Important Alpha Information⚠️</h3>\n\nAs an alpha release, this build is not yet considered stable.\n\nThis prerelease is intended for users to test upcoming features, allowing the community to provide feedback before they are distributed in a stable release.\nUsers interested in testing bleeding-edge software are encouraged to test out this build to help us catch any issues we may have missed during development.\n\nIf you are unwilling to tolerate potential issues, it may be better to wai"
@@ -202,7 +216,7 @@ object EmulatorRegistryRepository {
             repo = "NetherSX2-patch",
             homepage = "", repoUrl = "https://github.com/Trixarian/NetherSX2-patch",
             official = false, channel = "stable",
-            downloads = 3502151, stars = 2679, pushedAt = "2026-09-22T04:21:34Z",
+            downloads = 3502151, stars = 2682, pushedAt = "2026-09-22T04:21:34Z",
             latestTag = "2.2n", latestDate = "2025-12-25T12:22",
             latestApkUrl = "https://github.com/Trixarian/NetherSX2-patch/releases/download/2.2n/NetherSX2-v2.2n-4248.apk", latestApkName = "NetherSX2-v2.2n-4248.apk",
             latestApkSize = 21621788, latestBody = "Merry Christmas, Happy Holidays and a Happy New Year everyone!\n\nThis update adds experimental Online Multiplayer to NetherSX2 along with the usual updates!\nThanks to [IamLupo](https://github.com/IamLupo) for adding it to ARMSX2, and [zakilj3](https://www.youtube.com/user/zakilj3) for discovering the same settings work with NetherSX2!\n\n[VirusTotal Scan Report](https://www.virustotal.com/gui/file/2029e30dcc1ba1ecb8d73313f18b429b40e6044c7785c52af08b948ef94b3ddf)\n\n## How to use Online Multipl"
@@ -226,7 +240,7 @@ object EmulatorRegistryRepository {
             repo = "Winlator-Ludashi",
             homepage = "", repoUrl = "https://github.com/StevenMXZ/Winlator-Ludashi",
             official = false, channel = "stable",
-            downloads = 1529547, stars = 1225, pushedAt = "2026-10-07T21:29:08Z",
+            downloads = 1529547, stars = 1227, pushedAt = "2026-10-07T21:29:08Z",
             latestTag = "v4.1", latestDate = "2026-09-13T13:26",
             latestApkUrl = "https://github.com/StevenMXZ/Winlator-Ludashi/releases/download/v4.1/ludashi-build.apk", latestApkName = "ludashi-build.apk",
             latestApkSize = 551444161, latestBody = "What's new:\n\n\\- Fixed some games showing a black screen due to incorrect surface format. (like RDR2)\n\\- Updated DisplayX.\n\\- Now works in container mode.\n\\- Added two new options: submit every buffer and precise presentation.\n\\- added D7VK\n\\- Fixed X11 bypass not working on DX12.\n\\- improved Freedreno compatibility \n\\- Various bug fixes, improved stability, and some UI changes based on feedback.\n\n📌 update requires reinstallation"
@@ -238,7 +252,7 @@ object EmulatorRegistryRepository {
             repo = "NetherSX2-classic",
             homepage = "", repoUrl = "https://github.com/Trixarian/NetherSX2-classic",
             official = false, channel = "stable",
-            downloads = 1507242, stars = 1200, pushedAt = "2026-06-29T12:01:14Z",
+            downloads = 1507242, stars = 1199, pushedAt = "2026-06-29T12:01:14Z",
             latestTag = "2.2n", latestDate = "2025-12-25T12:22",
             latestApkUrl = "https://github.com/Trixarian/NetherSX2-classic/releases/download/2.2n/NetherSX2-v2.2n-3668.apk", latestApkName = "NetherSX2-v2.2n-3668.apk",
             latestApkSize = 19544036, latestBody = "Merry Christmas, Happy Holidays and a Happy New Year everyone!\n\nThis update adds experimental Online Multiplayer to NetherSX2 along with the usual updates!\nThanks to [IamLupo](https://github.com/IamLupo) for adding it to ARMSX2, and [zakilj3](https://www.youtube.com/user/zakilj3) for discovering the same settings work with NetherSX2!\n\n[VirusTotal Scan Report](https://www.virustotal.com/gui/file/8b502b31ce797d5a162bc6b9300b5f02351b0b6b290b8dc1390b8dfb826673ab)\n\n## How to use Online Multipl"
@@ -250,7 +264,7 @@ object EmulatorRegistryRepository {
             repo = "gamehub-lite",
             homepage = "", repoUrl = "https://github.com/Producdevity/gamehub-lite",
             official = false, channel = "stable",
-            downloads = 1479161, stars = 2041, pushedAt = "2026-07-03T18:28:52Z",
+            downloads = 1479161, stars = 2043, pushedAt = "2026-07-03T18:28:52Z",
             latestTag = "v5.1.8", latestDate = "2026-07-02T19:43",
             latestApkUrl = "https://github.com/Producdevity/gamehub-lite/releases/download/v5.1.8/GameHub-Lite-v5.1.8-alt-antutu.apk", latestApkName = "GameHub-Lite-v5.1.8-alt-antutu.apk",
             latestApkSize = 51993473, latestBody = "## Security: Steam token redaction in logs\n\nGameHub Lite 5.1.8 fixes a logging issue where Steam authentication-related values could appear in diagnostic logs. \nIn some cases, logs could include fields such as `steamToken`, `refreshToken`, or `accessToken` from Steam login/launch flows.\n\n**Publicly posted logs containing these fields should be deleted or redacted.**\n\n### IMPORTANT\n\nThis should go without saying but If you find any security issues, please reach out **PRIVATELY**. \nI hav"
@@ -262,7 +276,7 @@ object EmulatorRegistryRepository {
             repo = "Bannerlator",
             homepage = "", repoUrl = "https://github.com/The412Banner/Bannerlator",
             official = false, channel = "stable",
-            downloads = 1315528, stars = 405, pushedAt = "2026-10-12T00:50:21Z",
+            downloads = 1315528, stars = 407, pushedAt = "2026-10-12T14:51:18Z",
             latestTag = "3.1.6", latestDate = "2026-10-11T06:35",
             latestApkUrl = "https://github.com/The412Banner/Bannerlator/releases/download/3.1.6/Bannerlator-3.1.6-antutu.apk", latestApkName = "Bannerlator-3.1.6-antutu.apk",
             latestApkSize = 551082295, latestBody = "<p align=\"center\">\n<img src=\"https://github.com/The412Banner/Bannerlator/blob/main/logo.jpg?raw=true\" width=\"1500\" height=\"500\" alt=\"Bannerlator\" />\n</p>\n\n<p align=\"center\">\n<img src=\"https://img.shields.io/badge/release-3.1.6-ff3d8b?style=for-the-badge\" alt=\"3.1.6\" />\n&nbsp;<img src=\"https://img.shields.io/badge/update-app--side%20%C2%B7%20no%20ImageFS%20reinstall-2dd4bf?style=for-the-badge\" alt=\"app-side update\" />\n&nbsp;<img src=\"https://img.shields.io/badge/Steam-"
@@ -274,7 +288,7 @@ object EmulatorRegistryRepository {
             repo = "GameNative",
             homepage = "", repoUrl = "https://github.com/utkarshdalal/GameNative",
             official = false, channel = "stable",
-            downloads = 1314445, stars = 11163, pushedAt = "2026-10-10T18:19:19Z",
+            downloads = 1314445, stars = 11183, pushedAt = "2026-10-10T18:19:19Z",
             latestTag = "v1.3.0-prerelease", latestDate = "2026-10-04T15:49",
             latestApkUrl = "https://github.com/utkarshdalal/GameNative/releases/download/v1.3.0-prerelease/gamenative-v1.3.0-prerelease-legacy-xr.apk", latestApkName = "gamenative-v1.3.0-prerelease-legacy-xr.apk",
             latestApkSize = 573779844, latestBody = "## Downloads\n- **`gamenative-v1.3.0-prerelease.apk`** — Standard build. Recommended for most users.\n- **`gamenative-v1.3.0-prerelease-legacy-xr.apk`** — XR build for Quest headsets.\n\n\n## What's Changed\n* Added new Steam client in headless mode, fixing online multiplayer in several games (eg AoE II, CS), input in various games (eg No Man's Sky) and fixes DRM for games that were not working in https://github.com/utkarshdalal/GameNative/pull/1937\n* Added EA games support (tested with NFS: MW"
@@ -286,7 +300,7 @@ object EmulatorRegistryRepository {
             repo = "ARMSX2",
             homepage = "", repoUrl = "https://github.com/ARMSX2/ARMSX2",
             official = false, channel = "stable",
-            downloads = 1232724, stars = 2159, pushedAt = "2026-10-11T21:12:33Z",
+            downloads = 1232724, stars = 2163, pushedAt = "2026-10-11T21:12:33Z",
             latestTag = "2.8.3", latestDate = "2026-10-11T17:16",
             latestApkUrl = "https://github.com/ARMSX2/ARMSX2/releases/download/2.8.3/ARMSX2-2.8.3-a11-armv8.2-sdk30.apk", latestApkName = "ARMSX2-2.8.3-a11-armv8.2-sdk30.apk",
             latestApkSize = 68849731, latestBody = "# ARMSX2 2.8.3\n\nWhat's new: \n\n## MaliSX2 for Mali GPUs\n\nMaliSX2 is a Vulkan driver for Mali GPUs that @bmdhacks built for ARMSX2. In 2.8.2 it was offered only on the Mali-G615 and G715, under its old name, libmali. Now it also covers the Mali-G57, G68, G77 and G78 (including the G78AE), which a lot of handhelds use, the Anbernic RG 476H among them.\n\n<img width=\"2340\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/884734d3-d2b8-4651-a87c-1149d34c2c9b\" />"
@@ -310,7 +324,7 @@ object EmulatorRegistryRepository {
             repo = "flycast",
             homepage = "", repoUrl = "https://github.com/flyinghead/flycast",
             official = false, channel = "stable",
-            downloads = 880773, stars = 2587, pushedAt = "2026-10-10T01:44:52Z",
+            downloads = 880773, stars = 2590, pushedAt = "2026-10-12T07:57:20Z",
             latestTag = "v2.7", latestDate = "2026-08-19T11:47",
             latestApkUrl = "https://github.com/flyinghead/flycast/releases/download/v2.7/flycast-2.7.apk", latestApkName = "flycast-2.7.apk",
             latestApkSize = 36280670, latestBody = "## New features\n* Frame rate detection and pacing\n* Localization (fr, hu, jp, pt_BR, sv)\n* Multiscreen support for Airline Pilot, Sega Strike Fighter and Derby Owners Club\n* Improved modem emulation\n* improved DreamPicoPort and DreamPotato support by @RikkiGibson, @Tails86 and @nexus382\n* Android: Google Auto Backup support for VMU saves and non-volatile memory\n\n## Fixed Games\n* Airline Pilot (Naomi, multiscreen)\n* Cyber Troopers Virtual-On: Oratorio Tangram (JP, online features)\n* De"
@@ -322,7 +336,7 @@ object EmulatorRegistryRepository {
             repo = "rpcsx-ui-android",
             homepage = "", repoUrl = "https://github.com/RPCSX/rpcsx-ui-android",
             official = false, channel = "stable",
-            downloads = 851292, stars = 1330, pushedAt = "2026-08-29T13:27:19Z",
+            downloads = 851292, stars = 1331, pushedAt = "2026-08-29T13:27:19Z",
             latestTag = "v20250425", latestDate = "2025-04-25T16:02",
             latestApkUrl = "https://github.com/RPCSX/rpcsx-ui-android/releases/download/v20250425/rpcsx-release.apk", latestApkName = "rpcsx-release.apk",
             latestApkSize = 11134143, latestBody = "**Full Changelog**: https://github.com/RPCSX/rpcsx-ui-android/compare/v20250417...v20250425"
@@ -382,7 +396,7 @@ object EmulatorRegistryRepository {
             repo = "aps3e",
             homepage = "", repoUrl = "https://github.com/aenu1/aps3e",
             official = false, channel = "stable",
-            downloads = 735432, stars = 738, pushedAt = "2026-10-05T09:08:05Z",
+            downloads = 735432, stars = 739, pushedAt = "2026-10-05T09:08:05Z",
             latestTag = "2.43", latestDate = "2026-10-05T09:08",
             latestApkUrl = "https://github.com/aenu1/aps3e/releases/download/2.43/2.43.apk", latestApkName = "2.43.apk",
             latestApkSize = 40122859, latestBody = ""
@@ -430,7 +444,7 @@ object EmulatorRegistryRepository {
             repo = "Horizon-Emu",
             homepage = "", repoUrl = "https://github.com/HorizonEmuTeam/Horizon-Emu",
             official = false, channel = "stable",
-            downloads = 486786, stars = 717, pushedAt = "2025-02-28T07:48:56Z",
+            downloads = 486786, stars = 716, pushedAt = "2025-02-28T07:48:56Z",
             latestTag = "v4", latestDate = "2025-02-28T07:48",
             latestApkUrl = "https://github.com/HorizonEmuTeam/Horizon-Emu/releases/download/v4/HorizonEmu4.NotConnectedFix.apk", latestApkName = "HorizonEmu4.NotConnectedFix.apk",
             latestApkSize = 36803150, latestBody = "After minor changes like Box64, Wine (all have almost the same performance), DXVK and Turnip and me not having time to do anything with this project, it's finally getting a \"Not Connected\" fix related to the usage of /tmp directory on some devices by the termux-x11 library in the app. Should work on Android 15 with this fix as well, people already reported it working"
@@ -514,7 +528,7 @@ object EmulatorRegistryRepository {
             repo = "WinNative",
             homepage = "", repoUrl = "https://github.com/WinNative-Emu/WinNative",
             official = false, channel = "stable",
-            downloads = 138946, stars = 681, pushedAt = "2026-10-11T17:39:03Z",
+            downloads = 138946, stars = 682, pushedAt = "2026-10-12T11:19:55Z",
             latestTag = "v0.7.1-beta", latestDate = "2026-09-28T14:06",
             latestApkUrl = "https://github.com/WinNative-Emu/WinNative/releases/download/v0.7.1-beta/WinNative-v0.7.1-beta-Antutu-signed.apk", latestApkName = "WinNative-v0.7.1-beta-Antutu-signed.apk",
             latestApkSize = 607432054, latestBody = "## What's Changed\n* DIS: warp-based interpolation with source-point flow lookup by @qwertypower in https://github.com/WinNative-Emu/WinNative/pull/775\n* Linux Steam client: download to the chosen folder and follow moved games by @maxjivi05 in https://github.com/WinNative-Emu/WinNative/pull/777\n* DIS: optimize OF, interpolation calculations  by @qwertypower in https://github.com/WinNative-Emu/WinNative/pull/776\n* Fix/performance and vac by @maxjivi05 in https://github.com/WinNative-Emu/WinNat"
@@ -574,7 +588,7 @@ object EmulatorRegistryRepository {
             repo = "Lemuroid",
             homepage = "", repoUrl = "https://github.com/Swordfish90/Lemuroid",
             official = false, channel = "stable",
-            downloads = 97070, stars = 4398, pushedAt = "2026-10-05T22:15:29Z",
+            downloads = 97070, stars = 4399, pushedAt = "2026-10-05T22:15:29Z",
             latestTag = "1.17.0", latestDate = "2026-04-21T08:52",
             latestApkUrl = "https://github.com/Swordfish90/Lemuroid/releases/download/1.17.0/lemuroid-app-free-dynamic-release.apk", latestApkName = "lemuroid-app-free-dynamic-release.apk",
             latestApkSize = 11985230, latestBody = "* Added microphone support for Nintendo DS\n* Brand new touch controls\n* Add immersive mode (dynamic background color)\n* Slightly improved HD mode\n* Added quicksave/quickload gamepad shortcuts\n* Added support for 16Kb pages\n* Added best-effort saves when transitioning to background\n* Updated all cores and databases\n* Various UI/UX improvements"
@@ -682,7 +696,7 @@ object EmulatorRegistryRepository {
             repo = "WinlatorXR",
             homepage = "", repoUrl = "https://github.com/WinlatorXR/WinlatorXR",
             official = false, channel = "stable",
-            downloads = 7146, stars = 193, pushedAt = "2026-10-09T17:41:04Z",
+            downloads = 7146, stars = 200, pushedAt = "2026-10-09T17:41:04Z",
             latestTag = "winlatorxr_dawn42", latestDate = "2026-10-09T17:41",
             latestApkUrl = "https://github.com/WinlatorXR/WinlatorXR/releases/download/winlatorxr_dawn42/WinlatorXR-dawn-42.apk", latestApkName = "WinlatorXR-dawn-42.apk",
             latestApkSize = 971495156, latestBody = "# Shortened changelog\n\nThe project license has been changed to **GPLv3**.\n\n### Emulation Core\n* Add D7VK 2.3 as a DirectX 1-7 emulation option\n* Autoclose container changed to 5 seconds\n* Faster first-time installation\n* General emulation performance optimizations\n* Improved game compatibility in the default container\n* Improved handling of games stored on USB drives\n* Launch report from shortcut menu\n* Limited Turnip support for Quest 3/3S and Pico 3/4\n* Option to copy game files t"
@@ -808,18 +822,6 @@ object EmulatorRegistryRepository {
             latestApkSize = 0, latestBody = ""
         ),
         EmulatorEntry(
-            id = "eden-emulator-Releases", name = "Eden Emulator", category = "Nintendo Switch Emulator",
-            description = "",
-            owner = "eden-emulator",
-            repo = "Releases",
-            homepage = "", repoUrl = "https://github.com/eden-emulator/Releases",
-            official = false, channel = "stable",
-            downloads = 0, stars = 0, pushedAt = "",
-            latestTag = "", latestDate = "",
-            latestApkUrl = "", latestApkName = "",
-            latestApkSize = 0, latestBody = ""
-        ),
-        EmulatorEntry(
             id = "Eden-CI-Nightly", name = "Eden Emulator Nightly", category = "Nintendo Switch Emulator",
             description = "",
             owner = "Eden-CI",
@@ -927,10 +929,39 @@ object EmulatorRegistryRepository {
                         latestApkSize = firstAsset?.optLong("size", 0L) ?: 0L,
                         pushedAt = obj.optString("pushed_at"),
                         stars = obj.optLong("stars", 0L),
-                        downloads = obj.optLong("downloads", 0L)
+                        downloads = obj.optLong("downloads", 0L),
+                        releases = parseReleases(obj)
                     )
                 )
             }
         }.filter { it.id.isNotBlank() }
+    }
+
+    private fun parseReleases(obj: JSONObject): List<EmulatorRelease> {
+        val arr = obj.optJSONArray("releases") ?: return emptyList()
+        return buildList {
+            for (i in 0 until arr.length()) {
+                val rel = arr.getJSONObject(i)
+                val assetsArr = rel.optJSONArray("assets")
+                val assets = buildList {
+                    if (assetsArr != null) {
+                        for (j in 0 until assetsArr.length()) {
+                            val a = assetsArr.getJSONObject(j)
+                            add(EmulatorAsset(
+                                name = a.optString("name"),
+                                size = a.optLong("size", 0L),
+                                url = a.optString("url")
+                            ))
+                        }
+                    }
+                }
+                add(EmulatorRelease(
+                    tag = rel.optString("tag"),
+                    date = rel.optString("date"),
+                    body = rel.optString("body"),
+                    assets = assets
+                ))
+            }
+        }
     }
 }
