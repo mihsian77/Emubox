@@ -145,6 +145,19 @@ suspend fun downloadComponent(context: Context, component: Component) {
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
 }
 
+/** 下载模拟器 APK（emulator-registry 最新版本直链），存入 Download/Emulators/ */
+suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
+    val url = entry.latestApkUrl.ifBlank { return }
+    val fileName = sanitizeFileName(
+        Uri.decode(url.substringAfterLast("/").substringBefore("?"))
+            .ifBlank { "${entry.name}.apk" }
+    )
+    val category = "Emulators"
+    if (ensureFileNotExists(context, fileName, category)) return
+    val acceleratedUrl = Accelerator.rewriteUrl(url)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
+}
+
 /** 下载 Windows 运行库文件，按分类存入 Download/Runtime/<分类>/ */
 suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent) {
     val file = component.primaryFile ?: return

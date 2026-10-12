@@ -1,0 +1,326 @@
+{
+  "version": "1.0.0",
+  "note": "参考跑分为安兔兔 v10 大致区间，仅作性能量级参考；工艺/架构为公开规格。",
+  "socs": [
+    {
+      "keys": ["snapdragon 8 elite", "8 elite", "sm8750"],
+      "name": "骁龙 8 Elite",
+      "process": "3nm",
+      "cpu": "2×Oryon L + 6×Oryon M",
+      "gpu": "Adreno 830",
+      "gpu_arch": "adreno",
+      "score": "约 280 万+",
+      "devices": "小米 15、iQOO 13、一加 13、荣耀 Magic7"
+    },
+    {
+      "keys": ["snapdragon 8 gen 3", "8 gen 3", "sm8650"],
+      "name": "骁龙 8 Gen 3",
+      "process": "4nm",
+      "cpu": "1×X4 + 5×A720 + 2×A520",
+      "gpu": "Adreno 750",
+      "gpu_arch": "adreno",
+      "score": "约 210 万",
+      "devices": "小米 14、iQOO 12、一加 12、三星 S24"
+    },
+    {
+      "keys": ["snapdragon 8 gen 2", "8 gen 2", "sm8550"],
+      "name": "骁龙 8 Gen 2",
+      "process": "4nm",
+      "cpu": "1×X3 + 4×A715 + 3×A510",
+      "gpu": "Adreno 740",
+      "gpu_arch": "adreno",
+      "score": "约 160 万",
+      "devices": "小米 13、iQOO Neo9、一加 11、红魔 8"
+    },
+    {
+      "keys": ["snapdragon 8s gen 3", "8s gen 3", "sm8635"],
+      "name": "骁龙 8s Gen 3",
+      "process": "4nm",
+      "cpu": "1×X4 + 4×A720 + 3×A520",
+      "gpu": "Adreno 735",
+      "gpu_arch": "adreno",
+      "score": "约 170 万",
+      "devices": "红米 K70 Ultra、iQOO Z9 Turbo+"
+    },
+    {
+      "keys": ["snapdragon 8 gen 1", "8 gen 1", "sm8450"],
+      "name": "骁龙 8 Gen 1",
+      "process": "4nm",
+      "cpu": "1×X2 + 3×A710 + 4×A510",
+      "gpu": "Adreno 730",
+      "gpu_arch": "adreno",
+      "score": "约 100 万",
+      "devices": "小米 12、一加 10 Pro、iQOO 9"
+    },
+    {
+      "keys": ["snapdragon 888", "888", "sm8350"],
+      "name": "骁龙 888",
+      "process": "5nm",
+      "cpu": "1×X1 + 3×A78 + 4×A55",
+      "gpu": "Adreno 660",
+      "gpu_arch": "adreno",
+      "score": "约 80 万",
+      "devices": "小米 11、一加 9、iQOO 7"
+    },
+    {
+      "keys": ["snapdragon 870", "870", "sm8250"],
+      "name": "骁龙 870",
+      "process": "7nm",
+      "cpu": "1×A77 3.2GHz + 3×A77 + 4×A55",
+      "gpu": "Adreno 650",
+      "gpu_arch": "adreno",
+      "score": "约 72 万",
+      "devices": "红米 K40、iQOO Neo5、小米 10S"
+    },
+    {
+      "keys": ["snapdragon 865", "865", "sm8250"],
+      "name": "骁龙 865",
+      "process": "7nm",
+      "cpu": "1×A77 + 3×A77 + 4×A55",
+      "gpu": "Adreno 650",
+      "gpu_arch": "adreno",
+      "score": "约 68 万",
+      "devices": "小米 10、一加 8、三星 S20"
+    },
+    {
+      "keys": ["snapdragon 7+ gen 2", "7+ gen 2", "sm7475"],
+      "name": "骁龙 7+ Gen 2",
+      "process": "4nm",
+      "cpu": "1×X2 + 3×A710 + 4×A510",
+      "gpu": "Adreno 725",
+      "gpu_arch": "adreno",
+      "score": "约 100 万",
+      "devices": "红米 Note 12 Turbo、真我 GT Neo5 SE"
+    },
+    {
+      "keys": ["snapdragon 7 gen 3", "7 gen 3", "sm7550"],
+      "name": "骁龙 7 Gen 3",
+      "process": "4nm",
+      "cpu": "1×A715 + 3×A715 + 4×A510",
+      "gpu": "Adreno 720",
+      "gpu_arch": "adreno",
+      "score": "约 90 万",
+      "devices": "小米 Civi 4 Pro、荣耀 200"
+    },
+    {
+      "keys": ["snapdragon 6 gen 1", "6 gen 1", "sm6450"],
+      "name": "骁龙 6 Gen 1",
+      "process": "4nm",
+      "cpu": "4×A78 + 4×A55",
+      "gpu": "Adreno 710",
+      "gpu_arch": "adreno",
+      "score": "约 60 万",
+      "devices": "红米 Note 13 Pro、荣耀 X50"
+    },
+    {
+      "keys": ["snapdragon 778g", "778g", "sm7325"],
+      "name": "骁龙 778G",
+      "process": "6nm",
+      "cpu": "1×A78 + 3×A78 + 4×A55",
+      "gpu": "Adreno 642L",
+      "gpu_arch": "adreno",
+      "score": "约 60 万",
+      "devices": "荣耀 60、小米 Civi 2"
+    },
+    {
+      "keys": ["snapdragon 695", "695", "sm6375"],
+      "name": "骁龙 695",
+      "process": "6nm",
+      "cpu": "2×A78 + 6×A55",
+      "gpu": "Adreno 619",
+      "gpu_arch": "adreno",
+      "score": "约 40 万",
+      "devices": "红米 Note 12、iQOO Z7"
+    },
+    {
+      "keys": ["dimensity 9300", "9300", "mt6989"],
+      "name": "天玑 9300",
+      "process": "4nm",
+      "cpu": "1×X4 + 3×X4 + 4×A720",
+      "gpu": "Immortalis-G720",
+      "gpu_arch": "mali",
+      "score": "约 220 万",
+      "devices": "vivo X100、OPPO Find X7"
+    },
+    {
+      "keys": ["dimensity 9200", "9200", "mt6985"],
+      "name": "天玑 9200",
+      "process": "4nm",
+      "cpu": "1×X3 + 3×A715 + 4×A510",
+      "gpu": "Immortalis-G715",
+      "gpu_arch": "mali",
+      "score": "约 130 万",
+      "devices": "vivo X90、OPPO Find X6"
+    },
+    {
+      "keys": ["dimensity 9000", "9000", "mt6983"],
+      "name": "天玑 9000",
+      "process": "4nm",
+      "cpu": "1×X2 + 3×A710 + 4×A510",
+      "gpu": "Mali-G710 MC10",
+      "gpu_arch": "mali",
+      "score": "约 100 万",
+      "devices": "红米 K50 Pro、vivo X80"
+    },
+    {
+      "keys": ["dimensity 8300", "8300", "mt6897"],
+      "name": "天玑 8300",
+      "process": "4nm",
+      "cpu": "1×A715 + 3×A715 + 4×A510",
+      "gpu": "Mali-G615 MC6",
+      "gpu_arch": "mali",
+      "score": "约 140 万",
+      "devices": "红米 K70E、iQOO Z8"
+    },
+    {
+      "keys": ["dimensity 8100", "8100", "mt6895"],
+      "name": "天玑 8100",
+      "process": "5nm",
+      "cpu": "4×A78 + 4×A55",
+      "gpu": "Mali-G610 MC6",
+      "gpu_arch": "mali",
+      "score": "约 82 万",
+      "devices": "红米 K50、一加 Ace"
+    },
+    {
+      "keys": ["dimensity 7200", "7200", "mt6886"],
+      "name": "天玑 7200",
+      "process": "4nm",
+      "cpu": "2×A715 + 6×A510",
+      "gpu": "Mali-G610 MC4",
+      "gpu_arch": "mali",
+      "score": "约 70 万",
+      "devices": "红米 Note 13 Pro+"
+    },
+    {
+      "keys": ["dimensity 6100", "6100", "mt6835"],
+      "name": "天玑 6100",
+      "process": "6nm",
+      "cpu": "2×A76 + 6×A55",
+      "gpu": "Mali-G57 MC2",
+      "gpu_arch": "mali",
+      "score": "约 40 万",
+      "devices": "红米 Note 13、荣耀 Play50"
+    },
+    {
+      "keys": ["kirin 9100", "9100", "kirin9100"],
+      "name": "麒麟 9100",
+      "process": "5nm",
+      "cpu": "1×X4 + 3×A720 + 4×A520",
+      "gpu": "Maleoon 920",
+      "gpu_arch": "mali",
+      "score": "约 180 万",
+      "devices": "Mate 70 系列"
+    },
+    {
+      "keys": ["kirin 9010", "9010"],
+      "name": "麒麟 9010",
+      "process": "7nm",
+      "cpu": "1×X3 + 3×A720 + 4×A520",
+      "gpu": "Maleoon 910",
+      "gpu_arch": "mali",
+      "score": "约 130 万",
+      "devices": "Pura 70 系列"
+    },
+    {
+      "keys": ["kirin 9000", "9000", "kirin9000"],
+      "name": "麒麟 9000",
+      "process": "5nm",
+      "cpu": "1×A77 + 3×A77 + 4×A55",
+      "gpu": "Mali-G78 MP24",
+      "gpu_arch": "mali",
+      "score": "约 70 万",
+      "devices": "Mate 40 Pro、P50 Pro"
+    },
+    {
+      "keys": ["kirin 990", "990", "kirin990"],
+      "name": "麒麟 990",
+      "process": "7nm",
+      "cpu": "2×A76 + 2×A76 + 4×A55",
+      "gpu": "Mali-G76 MP16",
+      "gpu_arch": "mali",
+      "score": "约 50 万",
+      "devices": "Mate 30 Pro、P40 Pro、nova 6"
+    },
+    {
+      "keys": ["exynos 2400", "2400"],
+      "name": "Exynos 2400",
+      "process": "4nm",
+      "cpu": "1×X4 + 2×A720 + 3×A720 + 4×A520",
+      "gpu": "Xclipse 940 (RDNA3)",
+      "gpu_arch": "other",
+      "score": "约 160 万",
+      "devices": "三星 S24 系列"
+    },
+    {
+      "keys": ["exynos 2200", "2200"],
+      "name": "Exynos 2200",
+      "process": "4nm",
+      "cpu": "1×X2 + 3×A710 + 4×A510",
+      "gpu": "Xclipse 920 (RDNA2)",
+      "gpu_arch": "other",
+      "score": "约 95 万",
+      "devices": "三星 S22 系列"
+    },
+    {
+      "keys": ["tensor g5", "tensor g5"],
+      "name": "Tensor G5",
+      "process": "3nm",
+      "cpu": "2×X4 + 2×A720 + 4×A520",
+      "gpu": "Mali-G953",
+      "gpu_arch": "mali",
+      "score": "约 130 万",
+      "devices": "Pixel 10 系列"
+    },
+    {
+      "keys": ["tensor g4", "tensor g4"],
+      "name": "Tensor G4",
+      "process": "4nm",
+      "cpu": "1×X4 + 3×A720 + 4×A520",
+      "gpu": "Mali-G715 MC7",
+      "gpu_arch": "mali",
+      "score": "约 110 万",
+      "devices": "Pixel 9 系列"
+    },
+    {
+      "keys": ["tensor g3", "tensor g3"],
+      "name": "Tensor G3",
+      "process": "4nm",
+      "cpu": "1×X3 + 4×A715 + 4×A510",
+      "gpu": "Mali-G715 MC10",
+      "gpu_arch": "mali",
+      "score": "约 100 万",
+      "devices": "Pixel 8 系列"
+    },
+    {
+      "keys": ["helio g99", "g99"],
+      "name": "Helio G99",
+      "process": "6nm",
+      "cpu": "2×A76 + 6×A55",
+      "gpu": "Mali-G57 MC2",
+      "gpu_arch": "mali",
+      "score": "约 40 万",
+      "devices": "红米 Note 13、真我 11"
+    },
+    {
+      "keys": ["helio g96", "g96"],
+      "name": "Helio G96",
+      "process": "12nm",
+      "cpu": "2×A76 + 6×A55",
+      "gpu": "Mali-G57 MC2",
+      "gpu_arch": "mali",
+      "score": "约 38 万",
+      "devices": "红米 Note 11S、真我 9i"
+    },
+    {
+      "keys": ["helio g85", "g85"],
+      "name": "Helio G85",
+      "process": "12nm",
+      "cpu": "2×A75 + 6×A55",
+      "gpu": "Mali-G52 MC2",
+      "gpu_arch": "mali",
+      "score": "约 22 万",
+      "devices": "红米 12C、Note 11"
+    }
+  ]
+}
