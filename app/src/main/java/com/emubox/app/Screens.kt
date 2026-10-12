@@ -2937,16 +2937,23 @@ fun TurnipDriverSection(
                     .padding(horizontal = 20.dp, vertical = 14.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Icon(Icons.Default.Eco, contentDescription = null, modifier = Modifier.size(22.dp), tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    DownloadPanelHeader(
-                        icon = Icons.Default.Eco,
-                        title = title ?: appString(R.string.turnip_driver),
-                        description = description ?: when (adrenoSeries) {
-                            "8xx" -> appString(R.string.turnip_desc_8xx)
-                            "6xx", "7xx" -> appString(R.string.turnip_desc_6_7)
-                            else -> appString(R.string.turnip_desc_generic)
-                        }
-                    )
+                    Text(title ?: appString(R.string.turnip_driver), style = MaterialTheme.typography.titleSmall)
+                    if (expanded) {
+                        Text(
+                            description ?: when (adrenoSeries) {
+                                "8xx" -> appString(R.string.turnip_desc_8xx)
+                                "6xx", "7xx" -> appString(R.string.turnip_desc_6_7)
+                                else -> appString(R.string.turnip_desc_generic)
+                            },
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
                 if (!expanded && currentSource != null) {
                     Text(
@@ -3518,16 +3525,43 @@ fun DriverCardDynamic(
     remoteStars: Map<String, Long> = emptyMap()
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
+    // 高通区块默认折叠：与 Turnip/PanVK 大区一致
+    var expanded by rememberSaveable(selectionKey) { mutableStateOf(false) }
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            DownloadPanelHeader(icon = icon, title = title, description = description)
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { expanded = !expanded }
+                    .padding(horizontal = 20.dp, vertical = 14.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(icon, contentDescription = null, modifier = Modifier.size(22.dp), tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(10.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(title, style = MaterialTheme.typography.titleSmall)
+                    if (expanded) {
+                        Text(description, style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                }
+                if (!expanded && currentSource != null) {
+                    Text(currentSource.name, style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary, maxLines = 1, overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(end = 6.dp))
+                }
+                Icon(if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+            if (expanded) {
+            Column(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
             if (currentSource != null) {
                 SourcePickerCard(
                     title = appString(R.string.driver_source),
@@ -3562,6 +3596,8 @@ fun DriverCardDynamic(
                 onDownload = onDownload,
                 buttonLabel = appString(R.string.download_type, title)
             )
+            }
+            }
         }
     }
 }
@@ -6145,7 +6181,6 @@ private fun formatFileSize(bytes: Long): String = when {
 
 
 /** 模拟器专区：双列网格，卡片含分类徽章/最新版本/下载/仓库入口 */
-@Composable
 
 /** 原站分类 -> 中文分区名（t3st31 / the412banner 分类体系） */
 private fun emulatorCategoryLabel(category: String): String = when (category) {
@@ -6178,6 +6213,7 @@ fun EmulatorScreen(
     var filterCat by remember { mutableStateOf("all") }
     var sortMode by remember { mutableStateOf("popular") }
     var detailEntry by remember { mutableStateOf<EmulatorEntry?>(null) }
+    var searchQuery by remember { mutableStateOf("") }
     // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
     val categoryOrder = remember(entries) {
         val seen = LinkedHashSet<String>()
@@ -6188,13 +6224,20 @@ fun EmulatorScreen(
     // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
     var collapsedCats by remember(entries) { mutableStateOf(categoryOrder.toSet()) }
 
-    val filtered = remember(entries, filterCat, sortMode) {
+    val filtered = remember(entries, filterCat, sortMode, searchQuery) {
         val base = if (filterCat == "all") entries
         else entries.filter { it.category == filterCat }
+        val searched = if (searchQuery.isBlank()) base
+        else base.filter {
+            it.name.contains(searchQuery, ignoreCase = true) ||
+                it.description.contains(searchQuery, ignoreCase = true) ||
+                it.category.contains(searchQuery, ignoreCase = true) ||
+                emulatorCategoryLabel(it.category).contains(searchQuery, ignoreCase = true)
+        }
         when (sortMode) {
-            "stars" -> base.sortedByDescending { it.stars }
-            "recent" -> base.sortedByDescending { it.pushedAt }
-            else -> base.sortedByDescending { it.downloads + it.stars * 10L }
+            "stars" -> searched.sortedByDescending { it.stars }
+            "recent" -> searched.sortedByDescending { it.pushedAt }
+            else -> searched.sortedByDescending { it.downloads + it.stars * 10L }
         }
     }
     val grouped = remember(filtered) { filtered.groupBy { it.category } }
@@ -6218,6 +6261,26 @@ fun EmulatorScreen(
     ) {
         item(key = "emulator_region_header", span = { GridItemSpan(maxLineSpan) }) {
             RegionHeader(title = appString(R.string.emulator_region), icon = Icons.Default.Android, remote = true)
+        }
+        item(key = "emulator_search", span = { GridItemSpan(maxLineSpan) }) {
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                placeholder = { Text(appString(R.string.search_hint)) },
+                leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                trailingIcon = {
+                    if (searchQuery.isNotBlank()) {
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = null,
+                            modifier = Modifier.clickable { searchQuery = "" }
+                        )
+                    }
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp)
+            )
         }
         item(key = "emulator_desc", span = { GridItemSpan(maxLineSpan) }) {
             Text(
