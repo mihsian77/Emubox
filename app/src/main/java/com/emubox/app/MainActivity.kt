@@ -109,9 +109,25 @@ class MainActivity : ComponentActivity() {
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
-                // 模拟器清单远程刷新（失败保留内置）
+                // 模拟器清单远程刷新：官方 registry（版本/APK）+ 社区排行（下载量/日志），失败保留内置
                 LaunchedEffect(Unit) {
-                    emulatorEntries = EmulatorRegistryRepository.fetchRemoteRegistry()
+                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry()
+                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking()
+                    // 合并：registry 数据优先（官方 APK 直链），ranking 补充下载量/日志
+                    val merged = registry.map { base ->
+                        val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
+                        if (r != null) {
+                            base.copy(
+                                downloads = if (base.downloads == 0L) r.downloads else base.downloads,
+                                latestDate = if (base.latestDate.isBlank()) r.latestDate else base.latestDate,
+                                latestBody = if (base.latestBody.isBlank()) r.latestBody else base.latestBody,
+                                stars = if (base.stars == 0L) r.stars else base.stars
+                            )
+                        } else base
+                    } + ranking.filter { r ->
+                        registry.none { it.id == r.id || it.repo == r.repo }
+                    }
+                    emulatorEntries = merged
                 }
 
                 // 慢下载推荐弹窗
@@ -608,7 +624,22 @@ class MainActivity : ComponentActivity() {
                                                             if (!isRefreshingLocal) {
                                                                 scope.launch {
                                                                     isRefreshingLocal = true
-                                                                    emulatorEntries = EmulatorRegistryRepository.fetchRemoteRegistry()
+                                                                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry()
+                                                                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking()
+                                                                    val merged = registry.map { base ->
+                                                                        val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
+                                                                        if (r != null) {
+                                                                            base.copy(
+                                                                                downloads = if (base.downloads == 0L) r.downloads else base.downloads,
+                                                                                latestDate = if (base.latestDate.isBlank()) r.latestDate else base.latestDate,
+                                                                                latestBody = if (base.latestBody.isBlank()) r.latestBody else base.latestBody,
+                                                                                stars = if (base.stars == 0L) r.stars else base.stars
+                                                                            )
+                                                                        } else base
+                                                                    } + ranking.filter { r ->
+                                                                        registry.none { it.id == r.id || it.repo == r.repo }
+                                                                    }
+                                                                    emulatorEntries = merged
                                                                     delay(600)
                                                                     isRefreshingLocal = false
                                                                 }
