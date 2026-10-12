@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
-  "updated_at": "2026-10-12T04:49:14Z",
+  "updated_at": "2026-10-13",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -118,6 +118,33 @@
         ]
       },
       "updated_at": "2026-10-05T19:49:48Z"
+    },
+    {
+      "id": "stevenmxz-adrenotools",
+      "name": "StevenMXZ Adrenotools",
+      "owner": "StevenMXZ",
+      "repo": "Adrenotools-Drivers",
+      "api_url": "https://api.github.com/repos/StevenMXZ/Adrenotools-Drivers/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "8xx"
+      ],
+      "gpu_models": [
+        "825",
+        "830",
+        "840",
+        "842",
+        "845",
+        "849",
+        "8elite"
+      ],
+      "driver_type": "qualcomm",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "stable",
+      "stars": 19,
+      "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）"
     },
     {
       "id": "mrpurple",
