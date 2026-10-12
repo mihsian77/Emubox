@@ -2925,7 +2925,8 @@ fun TurnipDriverSection(
                             description = source.description,
                             experimental = source.experimental,
                             category = turnipCategoryOf(source, adrenoSeries),
-                            updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) },
+                            updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
+                                .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                             preview = buildTurnipPreview(source, remoteStars)
                         )
                     },
@@ -3310,6 +3311,8 @@ private fun SourcePickerGridCard(
                 Text(
                     option.name,
                     style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -3475,7 +3478,8 @@ fun DriverCardDynamic(
                             experimental = source.experimental,
                             archived = source.archived,
                             category = "general",
-                            updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) },
+                            updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
+                                .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                             preview = buildQualcommPreview(source, remoteStars)
                         )
                     },
@@ -4104,14 +4108,16 @@ fun ComponentSection(
                         currentName = currentSource.name,
                         currentDescription = currentSource.description,
                         currentExperimental = currentSource.experimental,
-                        currentUpdatedHint = updatedAtMap[currentSource.id]?.let { formatRelativeTimeMs(it) },
+                        currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
+                            .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                         options = sources.map { source ->
                             SourcePickerOption(
                                 id = source.id,
                                 name = source.name,
                                 description = source.description,
                                 experimental = source.experimental,
-                                updatedHint = updatedAtMap[source.id]?.let { formatRelativeTimeMs(it) }
+                                updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
+                                    .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) }
                             )
                         },
                         onSelected = onSourceChange

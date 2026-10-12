@@ -23,7 +23,9 @@
         "8xx": [
           "Turnip Gen8"
         ]
-      }
+      },
+      "updatedAt": 1791229788000,
+      "stars": 1005
     },
     {
       "id": "whitebelyash",
@@ -44,7 +46,9 @@
           "tu_",
           "stu_"
         ]
-      }
+      },
+      "updatedAt": 1789825063000,
+      "stars": 465
     },
     {
       "id": "k11mch1",
@@ -60,7 +64,9 @@
         "default": [
           "Turnip"
         ]
-      }
+      },
+      "updatedAt": 1771944051000,
+      "stars": 5131
     },
     {
       "id": "mrpurple",
@@ -79,7 +85,9 @@
           "vturnip",
           "turnip_mrpurple"
         ]
-      }
+      },
+      "updatedAt": 1786970281000,
+      "stars": 832
     },
     {
       "id": "banner",
@@ -113,7 +121,9 @@
           "A8xx",
           "710-720-Test"
         ]
-      }
+      },
+      "updatedAt": 1791734708000,
+      "stars": 180
     },
     {
       "id": "s1mptom",
@@ -133,7 +143,9 @@
           "Turnip",
           "Mesa"
         ]
-      }
+      },
+      "updatedAt": 1779219637000,
+      "stars": 50
     },
     {
       "id": "wintermist010-a810",
@@ -153,7 +165,9 @@
           "Turnip",
           "A81"
         ]
-      }
+      },
+      "updatedAt": 1791431272000,
+      "stars": 2
     },
     {
       "id": "diskdvd-a8xx",
@@ -173,7 +187,9 @@
           "A8XX",
           "Turnip"
         ]
-      }
+      },
+      "updatedAt": 1790511757000,
+      "stars": 44
     },
     {
       "id": "vauzi17-710",
@@ -195,7 +211,9 @@
           "710",
           "720"
         ]
-      }
+      },
+      "updatedAt": 1791768502000,
+      "stars": 65
     },
     {
       "id": "panvk-g720",
@@ -213,23 +231,9 @@
           "panvk",
           "vulkan"
         ]
-      }
-    },
-    {
-      "id": "gpt363-a810",
-      "name": "GPT363 (A8xx7 同源)",
-      "apiUrl": "https://api.github.com/repos/GPT363/Adreno810/releases",
-      "description": "Adreno 8xx 实验性 Turnip 构建（原 Adreno810 仓库，与 a8xx7 同源维护）",
-      "experimental": true,
-      "supportedSeries": [
-        "8xx"
-      ],
-      "filters": {
-        "default": [
-          "Turnip",
-          "A8xx"
-        ]
-      }
+      },
+      "updatedAt": 1791605440000,
+      "stars": 36
     }
   ],
   "qualcommSources": [
@@ -242,7 +246,8 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 998
+      "stars": 1005,
+      "updatedAt": 1791229788000
     },
     {
       "id": "k11mch1-qualcomm",
@@ -254,7 +259,8 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5130
+      "stars": 5131,
+      "updatedAt": 1771944051000
     },
     {
       "id": "stevenmxz-collection",
@@ -264,7 +270,8 @@
       "experimental": false,
       "filters": [],
       "stars": 19,
-      "archived": true
+      "archived": true,
+      "updatedAt": 1767609365000
     }
   ],
   "componentSources": [
@@ -274,21 +281,24 @@
       "manifestUrl": "https://raw.githubusercontent.com/WinNative-Emu/Components/refs/heads/main/contents.json",
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
-      "archived": true
+      "archived": true,
+      "updatedAt": 0
     },
     {
       "id": "xnick",
       "name": "Xnick Nightly",
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
-      "experimental": true
+      "experimental": true,
+      "updatedAt": 0
     },
     {
       "id": "banner-components",
       "name": "The412Banner",
       "manifestUrl": "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
       "description": "Winlator 夜间构建组件清单",
-      "experimental": true
+      "experimental": true,
+      "updatedAt": 0
     },
     {
       "id": "ref4ik",
@@ -296,14 +306,16 @@
       "manifestUrl": "https://github.com/REF4IK/Components-Adrenotools-/releases/download/1/contents.json",
       "description": "Adrenotools 组件合集（清单活跃：contents.json 于 2026-08 更新，含 Wine/Box64/DXVK 等 203 项，其中 100 项直连 The412Banner Nightlies）",
       "experimental": true,
-      "archived": false
+      "archived": false,
+      "updatedAt": 1769694996000
     },
     {
       "id": "arihany",
       "name": "Arihany WCP Hub",
       "manifestUrl": "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
       "description": "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
-      "experimental": true
+      "experimental": true,
+      "updatedAt": 0
     }
   ]
 }

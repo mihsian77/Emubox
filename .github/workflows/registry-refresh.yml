@@ -1,0 +1,41 @@
+name: 每日刷新驱动源元数据
+
+on:
+  schedule:
+    # UTC 02:00 ≈ 北京时间 10:00
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 拉取全部源仓库活跃度并回写
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/refresh-registry.py
+
+      - name: 有变化则提交
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! git diff --quiet -- driver-registry.json catalog/catalog.json; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add driver-registry.json catalog/catalog.json
+            git commit -m "chore: 刷新驱动源活跃度（更新时间/星标）"
+            # checkout 默认无推送权限，显式带 token 推送
+            git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+            git push origin HEAD:main
+          else
+            echo "无变化，跳过提交"
+          fi

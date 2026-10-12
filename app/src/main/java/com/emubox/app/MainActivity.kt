@@ -210,35 +210,17 @@ class MainActivity : ComponentActivity() {
                                 }
                             }.awaitAll().toMap()
                         }
-                        // 组件源更新时间（仓库 pushed_at）：清单无时间字段，用源仓库活跃度
-                        // 作为"哪个最新/最稳定"的参考，UI 在来源卡片显示"更新于 X 天前"
-                        val allComponentSources = catalog.componentSources
-                        val componentSourceUpdatedAt = coroutineScope {
-                            allComponentSources.map { source ->
-                                async { source.id to fetchRepositoryPushedAt(source.manifestUrl) }
-                            }.awaitAll().mapNotNull { (id, ts) -> ts?.let { id to it } }.toMap()
-                        }
-                        // 驱动源更新时间：turnip/qualcomm 源 apiUrl 同为 api.github.com/repos/... 形态，
-                        // 复用一个查询逻辑，来源弹窗选项与当前源均显示"更新于 X 天前"；
-                        // 同一请求带回远程 stars，覆盖内置静态星标（防止内置数据缺失/过期导致显示不一致）
-                        val driverRepoMeta = coroutineScope {
-                            val turnip = catalog.turnipSources.map { source ->
-                                async { source.id to fetchRepoMeta(source.apiUrl) }
-                            }.awaitAll()
-                            val qualcomm = catalog.qualcommSources.map { source ->
-                                async { source.id to fetchRepoMeta(source.apiUrl) }
-                            }.awaitAll()
-                            (turnip + qualcomm).mapNotNull { (id, meta) -> meta?.let { id to it } }.toMap()
-                        }
-                        val driverSourceUpdatedAt = driverRepoMeta
-                            .mapNotNull { (id, meta) -> meta.pushedAt?.let { id to it } }.toMap()
-                        val driverSourceStars = driverRepoMeta
-                            .mapNotNull { (id, meta) -> meta.stars?.let { id to it } }.toMap()
+                        // 驱动/组件源更新时间与星标：全部改用 catalog/registry 内置值
+                        // （updatedAt/stars 由 CI 每日刷新，raw 拉取不消耗 GitHub API 配额）。
+                        // 不再运行时直连 api.github.com 拉 repo 元数据——国内网络直连 API
+                        // 易超时/限流，是来源弹窗"更新于 X 天前"不显示的根因。
+                        val driverSourceUpdatedAt = emptyMap<String, Long>()
+                        val driverSourceStars = emptyMap<String, Long>()
 
                         AppLoadResult(
                             deviceInfo = info,
                             catalog = catalog,
-                            componentSourceUpdatedAt = componentSourceUpdatedAt,
+                            componentSourceUpdatedAt = emptyMap(),
                             driverSourceUpdatedAt = driverSourceUpdatedAt,
                             driverSourceStars = driverSourceStars,
                             selectedTurnipSource = selectedSource,
