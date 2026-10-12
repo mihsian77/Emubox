@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-10-12T21:48:53Z",
+  "updated_at": "2026-10-12T21:59:06Z",
   "emulators": [
     {
       "id": "termux",
@@ -1432,7 +1432,7 @@
       "latest_tag": "v1.22.2",
       "latest_apk_url": "https://github.com/libretro/RetroArch/releases/download/v1.22.2/retroarch-sourceonly-1.22.2.tar.xz",
       "pushed_at": "2026-10-12T21:38:33Z",
-      "stars": 14300,
+      "stars": 14301,
       "homepage": "https://www.retroarch.com",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/retroarch.png",
       "repo_url": "https://github.com/libretro/RetroArch",
@@ -3875,13 +3875,646 @@
       "homepage": "https://f-droid.org/en/packages/com.termux",
       "logoUrl": "https://avatars.githubusercontent.com/u/103731829?v=4",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 69,
+      "pushed_at": "2026-10-12T11:09:50Z",
+      "latest_tag": "1.0.8",
+      "latest_date": "2026-06-05T11:27:23Z",
+      "latest_apk_name": "box64-android-glibc-v11.tar.xz",
+      "latest_apk_url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-android-glibc-v11.tar.xz",
+      "releases": [
+        {
+          "tag": "1.0.8",
+          "name": "v1.0.8",
+          "date": "2026-06-05T11:27:23Z",
+          "body": "Refactor the app, changing the X11 display service from an Activity to a reusable view component. Optimize the user experience. Fix the virtual button scaling misalignment issue in portrait mode. Optimize the floating ball experience.\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "box64-android-glibc-v11.tar.xz",
+              "size": 6567740,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-android-glibc-v11.tar.xz"
+            },
+            {
+              "name": "box64-android_0.4.5+20260908T103809.4e5f180-1_arm64.deb",
+              "size": 7136296,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-android_0.4.5%2B20260908T103809.4e5f180-1_arm64.deb"
+            },
+            {
+              "name": "box64-generic-arm_0.4.5+20260908T103425.4e5f180-1_arm64.deb",
+              "size": 7122192,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-generic-arm_0.4.5%2B20260908T103425.4e5f180-1_arm64.deb"
+            },
+            {
+              "name": "CHECKSUMS-md5.txt",
+              "size": 926,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/CHECKSUMS-md5.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha256.txt",
+              "size": 1246,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/CHECKSUMS-sha256.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha512.txt",
+              "size": 1886,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/CHECKSUMS-sha512.txt"
+            },
+            {
+              "name": "fex-emu-armv8.4_2609-1.n_arm64.deb",
+              "size": 3281500,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/fex-emu-armv8.4_2609-1.n_arm64.deb"
+            },
+            {
+              "name": "kwin_6.6.0_aarch64.deb",
+              "size": 8792328,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/kwin_6.6.0_aarch64.deb"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-5_arm64-v8a.apk",
+              "size": 33863327,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-5_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-5_armeabi-v7a.apk",
+              "size": 32069037,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-5_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-5_universal.apk",
+              "size": 101519544,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-5_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-5_x86.apk",
+              "size": 34305327,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-5_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-5_x86_64.apk",
+              "size": 35276686,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-5_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-7_arm64-v8a.apk",
+              "size": 43218594,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-7_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-7_armeabi-v7a.apk",
+              "size": 39966115,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-7_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-7_universal.apk",
+              "size": 136646845,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-7_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-7_x86.apk",
+              "size": 42906922,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-7_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+apt-android-7_x86_64.apk",
+              "size": 44550016,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-7_x86_64.apk"
+            },
+            {
+              "name": "termux-display-client_0.1.0-1_aarch64.deb",
+              "size": 3521900,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-display-client_0.1.0-1_aarch64.deb"
+            },
+            {
+              "name": "wlroots_0.18.2-1_aarch64.deb",
+              "size": 305428,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/wlroots_0.18.2-1_aarch64.deb"
+            },
+            {
+              "name": "xorg-server_21.1.16-3_aarch64.deb",
+              "size": 1297100,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/xorg-server_21.1.16-3_aarch64.deb"
+            }
+          ]
+        },
+        {
+          "tag": "rootfs-emergency-snapshot-v1",
+          "name": "RootFS emergency prebuilt snapshot v1",
+          "date": "2026-10-12T11:09:50Z",
+          "body": "Emergency fallback snapshot of the shared RootFS base image + both wineprefix templates (hangover, box64), for use via the app's existing Restore flow if upstream (Debian snapshot archive / Hangover / Wine releases) ever breaks the live build pipeline. Produced by the app's own Backup feature from a known-good, end-to-end-verified build. SHA-256: 11b79779730ba9d9a9c942f0c425bbc53370c11df516d2a607052860bade97cd\n",
+          "prerelease": false,
+          "assets": []
+        },
+        {
+          "tag": "box64-wine-11.19-patch-v1",
+          "name": "box64-wine Wine 11.19 ROUND_SIZE patch v1",
+          "date": "2026-10-12T08:08:00Z",
+          "body": "Self-hosted patched build of upstream Wine 11.19 (Kron4ek/Wine-Builds WoW64 layout), fixing anon_mmap_alloc's page-alignment assertion that SIGABRTs box64-translated wineboot. One-line fix: wraps virtual_init()'s pages_vprot allocation size in ROUND_SIZE(0, size, host_page_mask). Not yet submitted upstream.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "wine-11.19-custom-amd64-wow64.tar.xz",
+              "size": 96485588,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/box64-wine-11.19-patch-v1/wine-11.19-custom-amd64-wow64.tar.xz"
+            }
+          ]
+        },
+        {
+          "tag": "box64-mprotect-patch-v1",
+          "name": "box64 0.4.5 with Android W^X mprotect fix",
+          "date": "2026-10-07T06:19:07Z",
+          "body": "Patched build of box64 v0.4.5 (upstream main @8f6ab59) that unconditionally strips PROT_EXEC in my_mprotect() when box64_pagesize == X86_PAGE_SIZE, working around Android's targetSdkVersion>=29 W^X SELinux policy (untrusted_app denies mprotect(PROT_EXEC) on app-private-storage-backed memory). Same root cause and fix shape as termux-pacman/glibc-packages issue #49 / PR #50's libc mprotect fix. box64 never executes guest pages natively (it JITs to host ARM64), so the host mapping never needs to be genuinely executable. Not yet submitted upstream to ptitSeb/box64. See box64-wine-39bit-pitfalls writeup for the full investigation.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "box64-android-mprotect-patch-arm64",
+              "size": 25587264,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/box64-mprotect-patch-v1/box64-android-mprotect-patch-arm64"
+            }
+          ]
+        },
+        {
+          "tag": "1.0.7",
+          "name": "v1.0.7-beta",
+          "date": "2025-08-19T12:59:40Z",
+          "body": "adapt for android16\nfloat ball menu optimization\nother experience optimization",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "CHECKSUMS-md5.txt",
+              "size": 1146,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/CHECKSUMS-md5.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha256.txt",
+              "size": 1466,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/CHECKSUMS-sha256.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha512.txt",
+              "size": 2106,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/CHECKSUMS-sha512.txt"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-5-github-debug_arm64-v8a.apk",
+              "size": 33795424,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-5-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-5-github-debug_armeabi-v7a.apk",
+              "size": 32001125,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-5-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-5-github-debug_universal.apk",
+              "size": 101271460,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-5-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-5-github-debug_x86.apk",
+              "size": 34221044,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-5-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-5-github-debug_x86_64.apk",
+              "size": 35192398,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-5-github-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-7-github-debug_arm64-v8a.apk",
+              "size": 43150695,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-7-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-7-github-debug_armeabi-v7a.apk",
+              "size": 39898203,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-7-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-7-github-debug_universal.apk",
+              "size": 136398748,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-7-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-7-github-debug_x86.apk",
+              "size": 42822635,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-7-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+e4c8f66+apt-android-7-github-debug_x86_64.apk",
+              "size": 44465729,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Be4c8f66%2Bapt-android-7-github-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-5-github-debug_arm64-v8a.apk",
+              "size": 33795421,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-5-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-5-github-debug_armeabi-v7a.apk",
+              "size": 32001129,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-5-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-5-github-debug_universal.apk",
+              "size": 101271465,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-5-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-5-github-debug_x86.apk",
+              "size": 34221041,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-5-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-5-github-debug_x86_64.apk",
+              "size": 35192391,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-5-github-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-7-github-debug_arm64-v8a.apk",
+              "size": 43150687,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-7-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-7-github-debug_armeabi-v7a.apk",
+              "size": 39898212,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-7-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-7-github-debug_universal.apk",
+              "size": 136398761,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-7-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-7-github-debug_x86.apk",
+              "size": 42822642,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-7-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+f53af15+apt-android-7-github-debug_x86_64.apk",
+              "size": 44465732,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.7/termux-app_v0.118.0%2Bf53af15%2Bapt-android-7-github-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "1.0.6",
+          "name": "v1.0.6",
+          "date": "2025-07-06T15:28:43Z",
+          "body": "sync latest termux-x11 code\nsupport tooggle software keyboard by float ball menu\nfix dark theme\nfix termux-x11 addition keyboard click issue\nfix input controller click issue\nremap hardware mouse right button to click instead of back\nfix button position coordinate issue\nfix terminal not response on touch event issue\nexperience optimization",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "CHECKSUMS-md5.txt",
+              "size": 1146,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/CHECKSUMS-md5.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha256.txt",
+              "size": 1466,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/CHECKSUMS-sha256.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha512.txt",
+              "size": 2106,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/CHECKSUMS-sha512.txt"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-5-github-debug_arm64-v8a.apk",
+              "size": 33779034,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-5-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-5-github-debug_armeabi-v7a.apk",
+              "size": 31984734,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-5-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-5-github-debug_universal.apk",
+              "size": 101255068,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-5-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-5-github-debug_x86.apk",
+              "size": 34204647,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-5-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-5-github-debug_x86_64.apk",
+              "size": 35176004,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-5-github-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-7-github-debug_arm64-v8a.apk",
+              "size": 43134299,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-7-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-7-github-debug_armeabi-v7a.apk",
+              "size": 39881821,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-7-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-7-github-debug_universal.apk",
+              "size": 136382362,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-7-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-7-github-debug_x86.apk",
+              "size": 42806250,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-7-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+9c68102+apt-android-7-github-debug_x86_64.apk",
+              "size": 44449335,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.6/termux-app_v0.118.0%2B9c68102%2Bapt-android-7-github-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "1.0.5",
+          "name": "v1.0.5",
+          "date": "2025-05-22T03:20:42Z",
+          "body": "fix dark mode color issue by  @Waim908",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "CHECKSUMS-md5.txt",
+              "size": 1146,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/CHECKSUMS-md5.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha256.txt",
+              "size": 1466,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/CHECKSUMS-sha256.txt"
+            },
+            {
+              "name": "CHECKSUMS-sha512.txt",
+              "size": 2106,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/CHECKSUMS-sha512.txt"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-5-github-debug_arm64-v8a.apk",
+              "size": 34089734,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-5-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-5-github-debug_armeabi-v7a.apk",
+              "size": 31541449,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-5-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-5-github-debug_universal.apk",
+              "size": 101369183,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-5-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-5-github-debug_x86.apk",
+              "size": 33728598,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-5-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-5-github-debug_x86_64.apk",
+              "size": 34716335,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-5-github-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-7-github-debug_arm64-v8a.apk",
+              "size": 43445003,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-7-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-7-github-debug_armeabi-v7a.apk",
+              "size": 39438540,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-7-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-7-github-debug_universal.apk",
+              "size": 136496476,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-7-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-7-github-debug_x86.apk",
+              "size": 42330206,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-7-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.118.0+a63cb3b+apt-android-7-github-debug_x86_64.apk",
+              "size": 43989678,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.5/termux-app_v0.118.0%2Ba63cb3b%2Bapt-android-7-github-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.4",
+          "name": "",
+          "date": "2024-07-04T16:26:40Z",
+          "body": "touch input optimization\nprepare to adapt for game stick \nrewrite touch control logical\ninput controller editor bug fix\nwinhandler import\ngame pad supported\nmouse button controller fix\nsimulate touch fixed\ncursor locked supported\nhide cutout white edge bug fix\nlocalization(chiness)\nrecover file provider\ncompitible with termux:x11\nexperience opti",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "default.txt",
+              "size": 1682,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/default.txt"
+            },
+            {
+              "name": "gamepad_deiver_wine-9.16.zip",
+              "size": 269701,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/gamepad_deiver_wine-9.16.zip"
+            },
+            {
+              "name": "README.txt",
+              "size": 4164,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/README.txt"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 42988163,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 38997591,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 136105914,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 41862385,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 43542827,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/termux-app_apt-android-7-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-backup.tar.1.gz",
+              "size": 1125899282,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.4/termux-backup.tar.1.gz"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.3",
+          "name": "inputcontroller transplant from winlator",
+          "date": "2024-05-23T15:42:37Z",
+          "body": "inputcontroller transplant from winlator\nexperience optimization",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 43107265,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.3/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 39855013,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.3/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 136088652,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.3/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 42738159,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.3/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 44406157,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.3/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.2",
+          "name": "fix animation freeze bug in high version android system",
+          "date": "2024-04-21T09:56:09Z",
+          "body": "fix animation freeze bug in high version android system",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "README.txt",
+              "size": 2124,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.2/README.txt"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 41055628,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.2/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 37930240,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.2/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 132263149,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.2/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 40652994,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.2/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 42249584,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.2/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.1",
+          "name": "v1.0.1",
+          "date": "2024-04-19T16:36:49Z",
+          "body": "**Full Changelog**: https://github.com/jiaxinchen-max/termux-app/compare/v1.0.0...v1.0.1",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "README.txt",
+              "size": 2124,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.1/README.txt"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 41051541,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.1/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 37930114,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.1/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 132259059,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.1/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 40655198,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.1/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 42251362,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.1/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.0",
+          "name": "termux",
+          "date": "2024-04-05T07:16:12Z",
+          "body": "termux termux-x11 merged",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "README.txt",
+              "size": 133,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/README.txt"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 41016310,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 37896670,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 40615848,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 42210126,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/termux-app_apt-android-7-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-backup.tar.gz",
+              "size": 386172595,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/termux-backup.tar.gz"
+            },
+            {
+              "name": "termux-display-nightly-1-0-all.deb",
+              "size": 4872,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/v1.0.0/termux-display-nightly-1-0-all.deb"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "termux-ghostty",
@@ -3891,13 +4524,1326 @@
       "homepage": "",
       "logoUrl": "https://avatars.githubusercontent.com/u/181800731?v=4",
       "description": "Termux + Ghostty 实验性集成：现代终端渲染，APK 分发活跃",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 35,
+      "pushed_at": "2026-10-11T20:00:27Z",
+      "latest_tag": "v4.13.1",
+      "latest_date": "2026-10-07T00:08:46Z",
+      "latest_apk_name": "ecto_4.13.1-arm64-v8a.apk",
+      "latest_apk_url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/ecto_4.13.1-arm64-v8a.apk",
+      "releases": [
+        {
+          "tag": "v4.13.1",
+          "name": "Release v4.13.1",
+          "date": "2026-10-07T00:08:46Z",
+          "body": "# Changelog\n\n**Release: v4.13.1**\n\n## Fixes\n- **terminal**: stale view after session switch from dropped replay rebuild ([886c2581](https://github.com/mrndstvndv/termux-ghostty/commit/886c2581257017bd1a38c325b4a006a056a4acc4))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.13.1-arm64-v8a.apk",
+              "size": 7205699,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/ecto_4.13.1-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.13.1-universal.apk",
+              "size": 12970341,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/ecto_4.13.1-universal.apk"
+            },
+            {
+              "name": "termux_4.13.1_arm64-v8a.apk",
+              "size": 34276301,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/termux_4.13.1_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.13.1_armeabi-v7a.apk",
+              "size": 31183191,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/termux_4.13.1_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.13.1_universal.apk",
+              "size": 123327742,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/termux_4.13.1_universal.apk"
+            },
+            {
+              "name": "termux_4.13.1_x86.apk",
+              "size": 33437319,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/termux_4.13.1_x86.apk"
+            },
+            {
+              "name": "termux_4.13.1_x86_64.apk",
+              "size": 34171762,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.1/termux_4.13.1_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.13.0",
+          "name": "Release v4.13.0",
+          "date": "2026-10-05T13:00:46Z",
+          "body": "# Changelog\n\n**Release: v4.13.0**\n\n## Features\n- **sftp**: render markdown files with tables, code blocks and mermaid diagrams ([d1e17a24](https://github.com/mrndstvndv/termux-ghostty/commit/d1e17a2429ea91c34667b4d880ddb541d924ef4d))\n\n## Fixes\n- **terminal**: flash on session switch from default-configured controller resize ([e45ea91f](https://github.com/mrndstvndv/termux-ghostty/commit/e45ea91f5c0a27193193045e31ec24e944f12862))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.13.0-arm64-v8a.apk",
+              "size": 7205703,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/ecto_4.13.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.13.0-universal.apk",
+              "size": 12970345,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/ecto_4.13.0-universal.apk"
+            },
+            {
+              "name": "termux_4.13.0_arm64-v8a.apk",
+              "size": 34276349,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/termux_4.13.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.13.0_armeabi-v7a.apk",
+              "size": 31183239,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/termux_4.13.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.13.0_universal.apk",
+              "size": 123327790,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/termux_4.13.0_universal.apk"
+            },
+            {
+              "name": "termux_4.13.0_x86.apk",
+              "size": 33437367,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/termux_4.13.0_x86.apk"
+            },
+            {
+              "name": "termux_4.13.0_x86_64.apk",
+              "size": 34171810,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.13.0/termux_4.13.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.12.0",
+          "name": "Release v4.12.0",
+          "date": "2026-10-03T09:22:14Z",
+          "body": "# Changelog\n\n**Release: v4.12.0**\n\n## Features\n- **sftp**: add tree view toggle with inline folder expansion ([b79e3cee](https://github.com/mrndstvndv/termux-ghostty/commit/b79e3cee38b72ef9804fe16be8ba06800a1b238c))\n- **review**: add commit graph to history ([43bfb9c7](https://github.com/mrndstvndv/termux-ghostty/commit/43bfb9c7a702eadf153c0e6cc308f56cc3143054))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.12.0-arm64-v8a.apk",
+              "size": 6094968,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.12.0/ecto_4.12.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.12.0-universal.apk",
+              "size": 6144993,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.12.0/ecto_4.12.0-universal.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.11.0",
+          "name": "Release v4.11.0",
+          "date": "2026-10-03T00:30:33Z",
+          "body": "# Changelog\n\n**Release: v4.11.0**\n\n## Features\n- **review**: add floating action pill with branch switcher, sync and commit ([55623ac7](https://github.com/mrndstvndv/termux-ghostty/commit/55623ac70de9813e39034d9796bd4d4392baee2d))\n- **sftp**: add floating action pill with search and upload ([93560053](https://github.com/mrndstvndv/termux-ghostty/commit/93560053c0baae0192146ef9a148b1b8ddc7034d))\n- **settings**: add animations toggle and animate tab switches on back ([fdbe633f](https://github.com/mrndstvndv/termux-ghostty/commit/fdbe633f740497408bc7b1ab01f06891ffb44902))\n\n## Fixes\n- **navigation**: slide the workspace in and out so leaving it is immediate ([312fda0d](https://github.com/mrndstvndv/termux-ghostty/commit/312fda0dd83429ca2723041c3ab959631bb364aa))\n- **navigation**: enable predictive back and clear terminal selection on back gestures ([52d4bcc0](https://github.com/mrndstvndv/termux-ghostty/commit/52d4bcc07e53923ca470fd59fa22d29142690dd5))\n- **sftp**: keep manual breadcrumb scroll instead of snapping back to the current folder ([93a41e3e](https://github.com/mrndstvndv/termux-ghostty/commit/93a41e3e2561a5bc20173c23f81f5512fb5f0334))\n- **ime**: keep the keyboard open when ta",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.11.0-arm64-v8a.apk",
+              "size": 6078584,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/ecto_4.11.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.11.0-universal.apk",
+              "size": 11843226,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/ecto_4.11.0-universal.apk"
+            },
+            {
+              "name": "termux_4.11.0_arm64-v8a.apk",
+              "size": 34275609,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/termux_4.11.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.11.0_armeabi-v7a.apk",
+              "size": 31182503,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/termux_4.11.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.11.0_universal.apk",
+              "size": 123327050,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/termux_4.11.0_universal.apk"
+            },
+            {
+              "name": "termux_4.11.0_x86.apk",
+              "size": 33436631,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/termux_4.11.0_x86.apk"
+            },
+            {
+              "name": "termux_4.11.0_x86_64.apk",
+              "size": 34171074,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.11.0/termux_4.11.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.10.1",
+          "name": "Release v4.10.1",
+          "date": "2026-09-29T13:01:17Z",
+          "body": "# Changelog\n\n**Release: v4.10.1**\n\n## Fixes\n- **keyboard**: bound the pre-applied keyboard height to one inset dispatch ([500f8e4b](https://github.com/mrndstvndv/termux-ghostty/commit/500f8e4b476095f4bd490a7f75d57499994f9160))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux_4.10.1_arm64-v8a.apk",
+              "size": 34275111,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.1/termux_4.10.1_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.10.1_armeabi-v7a.apk",
+              "size": 31182001,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.1/termux_4.10.1_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.10.1_universal.apk",
+              "size": 123326552,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.1/termux_4.10.1_universal.apk"
+            },
+            {
+              "name": "termux_4.10.1_x86.apk",
+              "size": 33436129,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.1/termux_4.10.1_x86.apk"
+            },
+            {
+              "name": "termux_4.10.1_x86_64.apk",
+              "size": 34170572,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.1/termux_4.10.1_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.10.0",
+          "name": "Release v4.10.0",
+          "date": "2026-09-29T12:29:17Z",
+          "body": "# Changelog\n\n**Release: v4.10.0**\n\n## Features\n- **review**: add horizontal scroll handoff from diff view to tab pager ([40ece466](https://github.com/mrndstvndv/termux-ghostty/commit/40ece466e1b56a1e568eecb65aeaadfa303c8b37))\n- **diff-viewer**: respect custom app font setting ([3e4f68a5](https://github.com/mrndstvndv/termux-ghostty/commit/3e4f68a5acdb17e6a1f02f4f902dd5fd11a52b1a))\n\n## Fixes\n- **terminal**: make the viewport a per-host concern instead of session state ([05f69330](https://github.com/mrndstvndv/termux-ghostty/commit/05f693305004052cfcbe5ef8227fc1be08d6ce01))\n- **terminal**: only read the frame transport inside the publication window ([2a90670c](https://github.com/mrndstvndv/termux-ghostty/commit/2a90670cae39ba064b4f37df6547141415d2c32e))\n- **terminal**: make session removal unconditional and drop dead text-changed path ([b116df3e](https://github.com/mrndstvndv/termux-ghostty/commit/b116df3e43371f916b1a18325498110e07d7ec27))\n- **terminal**: restore session readiness signal and correct session removal ([eaaa0873](https://github.com/mrndstvndv/termux-ghostty/commit/eaaa0873e2a61d38b65feb4815cce710df283ddd))\n- **review**: clear webview focus on back navigation and coalesc",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.10.0-arm64-v8a.apk",
+              "size": 6001070,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/ecto_4.10.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.10.0-universal.apk",
+              "size": 11765712,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/ecto_4.10.0-universal.apk"
+            },
+            {
+              "name": "termux_4.10.0_arm64-v8a.apk",
+              "size": 34274967,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/termux_4.10.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.10.0_armeabi-v7a.apk",
+              "size": 31181857,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/termux_4.10.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.10.0_universal.apk",
+              "size": 123326408,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/termux_4.10.0_universal.apk"
+            },
+            {
+              "name": "termux_4.10.0_x86.apk",
+              "size": 33435989,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/termux_4.10.0_x86.apk"
+            },
+            {
+              "name": "termux_4.10.0_x86_64.apk",
+              "size": 34170428,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.10.0/termux_4.10.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.9.0",
+          "name": "Release v4.9.0",
+          "date": "2026-09-27T09:43:27Z",
+          "body": "# Changelog\n\n**Release: v4.9.0**\n\n## Features\n- **diff-viewer**: add collapsible file sections ([c0bd6437](https://github.com/mrndstvndv/termux-ghostty/commit/c0bd643777c7f6255132a7ec3be4bdd1152292a3))\n- **herdr**: add PiG icon for agents bottom sheet ([6d1e8d65](https://github.com/mrndstvndv/termux-ghostty/commit/6d1e8d6522c2006850fc008a7d792df9e9054ab9))\n- **review**: embed local Pierre diff viewer via WebView ([239a41c0](https://github.com/mrndstvndv/termux-ghostty/commit/239a41c025cb4c3311bf689940011b115b27eb50))\n- **terminal**: add wallpaper support with settings and picker ([5d96f3d0](https://github.com/mrndstvndv/termux-ghostty/commit/5d96f3d0dec6725a0e1ee29411d289538c12d349))\n\n## Fixes\n- **compose-app**: prefer explicit bun installs over PATH lookup ([1f45a545](https://github.com/mrndstvndv/termux-ghostty/commit/1f45a545fc49f6d1466ede64989e9f237da16b11))\n- **workspace**: stabilize pager layout against mid-swipe node replacement ([9ff58b13](https://github.com/mrndstvndv/termux-ghostty/commit/9ff58b136b5d2620e6f1f56bb57fcefd70fc64d8))\n- **compose-app**: replace removed Project.exec with install task for Gradle 9 ([cfc24427](https://github.com/mrndstvndv/termux-ghostty/commit/",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.9.0-arm64-v8a.apk",
+              "size": 5999118,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/ecto_4.9.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.9.0-universal.apk",
+              "size": 11763760,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/ecto_4.9.0-universal.apk"
+            },
+            {
+              "name": "termux_4.9.0_arm64-v8a.apk",
+              "size": 34272911,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/termux_4.9.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.9.0_armeabi-v7a.apk",
+              "size": 31179801,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/termux_4.9.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.9.0_universal.apk",
+              "size": 123324352,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/termux_4.9.0_universal.apk"
+            },
+            {
+              "name": "termux_4.9.0_x86.apk",
+              "size": 33433929,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/termux_4.9.0_x86.apk"
+            },
+            {
+              "name": "termux_4.9.0_x86_64.apk",
+              "size": 34168372,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.9.0/termux_4.9.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.8.3",
+          "name": "Release v4.8.3",
+          "date": "2026-09-21T06:39:23Z",
+          "body": "# Changelog\n\n**Release: v4.8.3**\n\n## Fixes\n- **ci**: gate release builds on shared terminal module changes ([6cd06c69](https://github.com/mrndstvndv/termux-ghostty/commit/6cd06c699c2d531af939feeb35cac1d1517b57d8))\n- **kitty**: isolate direct pixel buffers and harden bounds checks ([6e55e990](https://github.com/mrndstvndv/termux-ghostty/commit/6e55e99068a3df1a569ecc3cc9f560f7f4e0e756))\n- **settings**: truncate terminal font name to prevent button overlap ([2631f76f](https://github.com/mrndstvndv/termux-ghostty/commit/2631f76f5aff09773e798ac6eff8c0e47a48e88b))\n- **kitty**: eliminate JVM heap image allocations and harden buffer bounds ([0e7e53cc](https://github.com/mrndstvndv/termux-ghostty/commit/0e7e53cc10bc2ddda034ba0c1a6c294776ec2d12))\n- **kitty**: deduplicate snapshot pixel buffers and preserve texture dimensions ([e8be2f06](https://github.com/mrndstvndv/termux-ghostty/commit/e8be2f068de43ba7fe01dec7fa8531fe542bd38b))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.8.3-arm64-v8a.apk",
+              "size": 5095348,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/ecto_4.8.3-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.8.3-universal.apk",
+              "size": 10859990,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/ecto_4.8.3-universal.apk"
+            },
+            {
+              "name": "termux_4.8.3_arm64-v8a.apk",
+              "size": 34270779,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/termux_4.8.3_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.8.3_armeabi-v7a.apk",
+              "size": 31177673,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/termux_4.8.3_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.8.3_universal.apk",
+              "size": 123322220,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/termux_4.8.3_universal.apk"
+            },
+            {
+              "name": "termux_4.8.3_x86.apk",
+              "size": 33431801,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/termux_4.8.3_x86.apk"
+            },
+            {
+              "name": "termux_4.8.3_x86_64.apk",
+              "size": 34166244,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.3/termux_4.8.3_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.8.2",
+          "name": "Release v4.8.2",
+          "date": "2026-09-10T12:10:45Z",
+          "body": "# Changelog\n\n**Release: v4.8.2**\n\n## Fixes\n- **ime**: support image paste from IME ([c7570325](https://github.com/mrndstvndv/termux-ghostty/commit/c7570325b5f8c095600df66fabe0bec9d54a90ce))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.8.2-arm64-v8a.apk",
+              "size": 5078964,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.2/ecto_4.8.2-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.8.2-universal.apk",
+              "size": 5128989,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.2/ecto_4.8.2-universal.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.8.1",
+          "name": "Release v4.8.1",
+          "date": "2026-09-10T01:11:17Z",
+          "body": "# Changelog\n\n**Release: v4.8.1**\n\n## Fixes\n- **herdr**: restore pane focus controls ([08257ae8](https://github.com/mrndstvndv/termux-ghostty/commit/08257ae8c96aba2371a6d1fda0261ee0836f3dca))\n- **clipboard**: support Windows remote uploads ([c2241305](https://github.com/mrndstvndv/termux-ghostty/commit/c22413050e78244209193a68a908df43d3ad5da4))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.8.1-arm64-v8a.apk",
+              "size": 5078964,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.1/ecto_4.8.1-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.8.1-universal.apk",
+              "size": 5128989,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.1/ecto_4.8.1-universal.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.8.0",
+          "name": "Release v4.8.0",
+          "date": "2026-09-06T23:03:24Z",
+          "body": "# Changelog\n\n**Release: v4.8.0**\n\n## Features\n- **compose-app**: add media and file upload actions ([956172a1](https://github.com/mrndstvndv/termux-ghostty/commit/956172a1c1a933a923d9a0da81b4ad44b2c9cb37))\n- **keyboard**: centralize IME control in terminal-compose-view ([eaa4d464](https://github.com/mrndstvndv/termux-ghostty/commit/eaa4d46438a44698697176f9c8029f19e64559b0))\n- **keyboard**: remember soft keyboard state ([b69fcf71](https://github.com/mrndstvndv/termux-ghostty/commit/b69fcf712e4e022cc7cb69843c168acc03550867))\n- **keyboard**: add tap auto-show toggle, two-finger swipe-up, and KEYBOARD extra key ([c4e614ab](https://github.com/mrndstvndv/termux-ghostty/commit/c4e614ab6c024de316e4374947125f92eb69d2fc))\n\n## Fixes\n- **compose-app**: remove duplicate paste action ([ece1ffa6](https://github.com/mrndstvndv/termux-ghostty/commit/ece1ffa6ec62dad20ec7ec8c4e73157eb66148c8))\n\n## Updates\n- **context-menu**: finalize terminal actions ([07c9f811](https://github.com/mrndstvndv/termux-ghostty/commit/07c9f811d6b2b673ad6b9681474993cd00db59ba))\n- **context-menu**: refine terminal actions ([d600db0f](https://github.com/mrndstvndv/termux-ghostty/commit/d600db0fa30493195dcd87313d594d17116a2ab",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.8.0-arm64-v8a.apk",
+              "size": 5078964,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/ecto_4.8.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.8.0-universal.apk",
+              "size": 10841638,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/ecto_4.8.0-universal.apk"
+            },
+            {
+              "name": "termux_4.8.0_arm64-v8a.apk",
+              "size": 34269243,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/termux_4.8.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.8.0_armeabi-v7a.apk",
+              "size": 31176017,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/termux_4.8.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.8.0_universal.apk",
+              "size": 123317544,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/termux_4.8.0_universal.apk"
+            },
+            {
+              "name": "termux_4.8.0_x86.apk",
+              "size": 33430577,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/termux_4.8.0_x86.apk"
+            },
+            {
+              "name": "termux_4.8.0_x86_64.apk",
+              "size": 34164788,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.8.0/termux_4.8.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.7.0",
+          "name": "Release v4.7.0",
+          "date": "2026-09-06T03:53:37Z",
+          "body": "# Changelog\n\n**Release: v4.7.0**\n\n## Features\n- **workspace**: add image upload action and restore terminal gestures ([7014331d](https://github.com/mrndstvndv/termux-ghostty/commit/7014331dae2e441118f9a7b82d3e7944782eb4a8))\n- **clipboard**: add image paste upload support ([f0b427a1](https://github.com/mrndstvndv/termux-ghostty/commit/f0b427a1c2de339024d280649bc5cde6e180cab2))\n- **review**: add fetch, pull and push actions to branch header ([e282acec](https://github.com/mrndstvndv/termux-ghostty/commit/e282acec2d03f1f7677b6e0ff71176f1922d7c30))\n\n## Fixes\n- **session**: clean up individual SSH disconnects ([dffb26fe](https://github.com/mrndstvndv/termux-ghostty/commit/dffb26fe9f0c08d1275a449b73f70f81d2866ddc))\n- **session**: emit finish events on disconnect-all so workspace returns to server list ([78ed965d](https://github.com/mrndstvndv/termux-ghostty/commit/78ed965d57153a99e90d1eb4f8a91e64325e4bf0))\n- **sftp**: scope breadcrumb bringIntoView to active tab ([3b00b4ff](https://github.com/mrndstvndv/termux-ghostty/commit/3b00b4ff4933a895859b06793eccb834d91d1f91))\n- **workspace**: clamp pager fling to one page ([122d2f0e](https://github.com/mrndstvndv/termux-ghostty/commit/122d2f0e0f40",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.7.0-arm64-v8a.apk",
+              "size": 5062632,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/ecto_4.7.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.7.0-universal.apk",
+              "size": 10825306,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/ecto_4.7.0-universal.apk"
+            },
+            {
+              "name": "termux_4.7.0_arm64-v8a.apk",
+              "size": 34265179,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/termux_4.7.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.7.0_armeabi-v7a.apk",
+              "size": 31171957,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/termux_4.7.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.7.0_universal.apk",
+              "size": 123313484,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/termux_4.7.0_universal.apk"
+            },
+            {
+              "name": "termux_4.7.0_x86.apk",
+              "size": 33426517,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/termux_4.7.0_x86.apk"
+            },
+            {
+              "name": "termux_4.7.0_x86_64.apk",
+              "size": 34160728,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.7.0/termux_4.7.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.6.1",
+          "name": "Release v4.6.1",
+          "date": "2026-09-02T06:25:26Z",
+          "body": "# Changelog\n\n**Release: v4.6.1**\n\n## Fixes\n- **gles**: trim image shader sources for Mali compilation ([276aab95](https://github.com/mrndstvndv/termux-ghostty/commit/276aab959b95e6441dd9c2fbcdb254e3fca14e25))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.6.1-arm64-v8a.apk",
+              "size": 5029812,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/ecto_4.6.1-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.6.1-universal.apk",
+              "size": 10792534,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/ecto_4.6.1-universal.apk"
+            },
+            {
+              "name": "termux_4.6.1_arm64-v8a.apk",
+              "size": 34265287,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/termux_4.6.1_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.6.1_armeabi-v7a.apk",
+              "size": 31172061,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/termux_4.6.1_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.6.1_universal.apk",
+              "size": 123313620,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/termux_4.6.1_universal.apk"
+            },
+            {
+              "name": "termux_4.6.1_x86.apk",
+              "size": 33426621,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/termux_4.6.1_x86.apk"
+            },
+            {
+              "name": "termux_4.6.1_x86_64.apk",
+              "size": 34160864,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.1/termux_4.6.1_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.6.0",
+          "name": "Release v4.6.0",
+          "date": "2026-09-01T22:33:44Z",
+          "body": "# Changelog\n\n**Release: v4.6.0**\n\n## Features\n- **sftp**: preserve breadcrumb trail on parent navigation ([8400eca3](https://github.com/mrndstvndv/termux-ghostty/commit/8400eca35b683739de70b773cd5b8044c29fb370))\n- **notification**: navigate to target session and focus pane on tap ([aa3b5752](https://github.com/mrndstvndv/termux-ghostty/commit/aa3b5752e30599616b1bb5caecb8426ad4cfdd75))\n- **herdr**: improve remote commands and add Cargo support ([4e5ef5aa](https://github.com/mrndstvndv/termux-ghostty/commit/4e5ef5aa1f6eb3dc1865a363028bc9e7d5acc0ea))\n- **herdr**: add git icon for bottom sheet ([f627cd18](https://github.com/mrndstvndv/termux-ghostty/commit/f627cd186da2a4840aae77c21e92201712aa2668))\n\n## Fixes\n- **terminal**: allow soft keyboard enter to dismiss finished sessions ([511ae1e2](https://github.com/mrndstvndv/termux-ghostty/commit/511ae1e2f6477412c4895c1403e734edb83a3056))\n- **terminal**: separate process exit from session disposal and restore completed prompt ([6f90b859](https://github.com/mrndstvndv/termux-ghostty/commit/6f90b859138bacb0bd1d50d7feca4b2884d14e19))\n- **ci**: export release artifact verification variables ([9b634e21](https://github.com/mrndstvndv/termux-ghostt",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.6.0-arm64-v8a.apk",
+              "size": 5029812,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/ecto_4.6.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.6.0-universal.apk",
+              "size": 10792486,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/ecto_4.6.0-universal.apk"
+            },
+            {
+              "name": "termux_4.6.0_arm64-v8a.apk",
+              "size": 34265291,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/termux_4.6.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.6.0_armeabi-v7a.apk",
+              "size": 31172065,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/termux_4.6.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.6.0_universal.apk",
+              "size": 123313592,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/termux_4.6.0_universal.apk"
+            },
+            {
+              "name": "termux_4.6.0_x86.apk",
+              "size": 33426625,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/termux_4.6.0_x86.apk"
+            },
+            {
+              "name": "termux_4.6.0_x86_64.apk",
+              "size": 34160836,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.6.0/termux_4.6.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.5.0",
+          "name": "Release v4.5.0",
+          "date": "2026-08-26T14:35:52Z",
+          "body": "# Changelog\n\n**Release: v4.5.0**\n\n## Features\n- **terminal**: add customizable Jetpack Compose scrollbar ([378fad54](https://github.com/mrndstvndv/termux-ghostty/commit/378fad5454f1eff89414a88f76e80d7f90bd43a1))\n- **terminal**: add GLES smooth scrolling and inertial fling ([2dec6bab](https://github.com/mrndstvndv/termux-ghostty/commit/2dec6bab802cd2be7075ec3f4d463596319ab725))\n- **terminal**: add kitty unicode virtual placement support ([db1cc49d](https://github.com/mrndstvndv/termux-ghostty/commit/db1cc49d519d5d127196dce6bfb81bf8be113266))\n- **terminal**: add native Kitty graphics protocol support ([305d82c5](https://github.com/mrndstvndv/termux-ghostty/commit/305d82c5f0d9d73693ffe8218f662d0eb1ec1f24))\n\n## Fixes\n- **terminal**: resolve black screen drift on external viewport jumps ([e9f7e41d](https://github.com/mrndstvndv/termux-ghostty/commit/e9f7e41d8c57d4b2638d8bad10d753201f2208d1))\n- **terminal**: resolve blank screen on session switch and startup ([4b356bea](https://github.com/mrndstvndv/termux-ghostty/commit/4b356beadbd5c3fef5185ac35903eb1e0de99f94))\n- **terminal**: scale Kitty graphics with font resize and pinch zoom ([21d43ce6](https://github.com/mrndstvndv/termux-ghostty/",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.5.0-arm64-v8a.apk",
+              "size": 5028660,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/ecto_4.5.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.5.0-universal.apk",
+              "size": 10790246,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/ecto_4.5.0-universal.apk"
+            },
+            {
+              "name": "termux_4.5.0_arm64-v8a.apk",
+              "size": 34263887,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/termux_4.5.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.5.0_armeabi-v7a.apk",
+              "size": 31170661,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/termux_4.5.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.5.0_universal.apk",
+              "size": 123310392,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/termux_4.5.0_universal.apk"
+            },
+            {
+              "name": "termux_4.5.0_x86.apk",
+              "size": 33425241,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/termux_4.5.0_x86.apk"
+            },
+            {
+              "name": "termux_4.5.0_x86_64.apk",
+              "size": 34159404,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.5.0/termux_4.5.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.4.0",
+          "name": "Release v4.4.0",
+          "date": "2026-08-24T23:20:23Z",
+          "body": "# Changelog\n\n**Release: v4.4.0**\n\n## Features\n- **terminal**: add scrollback compression and state snapshots ([96b3fda3](https://github.com/mrndstvndv/termux-ghostty/commit/96b3fda3417ca92cf3ac65dff6468cdd18e513af))\n- **terminal**: add optional OpenGL ES renderer ([58816437](https://github.com/mrndstvndv/termux-ghostty/commit/58816437eef11e3dff2dcfdac025f38476832b19))\n- **sftp**: add item menu with rename and delete ([4b030e28](https://github.com/mrndstvndv/termux-ghostty/commit/4b030e28232c4961c7eef46b0426d93162a12525))\n- **sftp**: add background transfer manager ([756a1f97](https://github.com/mrndstvndv/termux-ghostty/commit/756a1f97c30df6e57e99b6ca9e17c13ef7df3f06))\n\n## Fixes\n- **terminal**: enable continuous relative pinch zoom ([04a06210](https://github.com/mrndstvndv/termux-ghostty/commit/04a062106354fdcbae50add374cfa131cf05d412))\n- **terminal**: remove artificial font size cap on zoom ([f47b53d3](https://github.com/mrndstvndv/termux-ghostty/commit/f47b53d324725b7a38dab57fa7874c16f6b7daa8))\n- **terminal**: Restore GPU cursor effects ([879032c8](https://github.com/mrndstvndv/termux-ghostty/commit/879032c840da08900767146e3f2f35555cbc0a60))\n- **selection**: align handles with vi",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.4.0-arm64-v8a.apk",
+              "size": 4586240,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/ecto_4.4.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.4.0-universal.apk",
+              "size": 8930114,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/ecto_4.4.0-universal.apk"
+            },
+            {
+              "name": "termux_4.4.0_arm64-v8a.apk",
+              "size": 33985691,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/termux_4.4.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.4.0_armeabi-v7a.apk",
+              "size": 30890805,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/termux_4.4.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.4.0_universal.apk",
+              "size": 122273064,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/termux_4.4.0_universal.apk"
+            },
+            {
+              "name": "termux_4.4.0_x86.apk",
+              "size": 33134481,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/termux_4.4.0_x86.apk"
+            },
+            {
+              "name": "termux_4.4.0_x86_64.apk",
+              "size": 33872164,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.4.0/termux_4.4.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.3.0",
+          "name": "Release v4.3.0",
+          "date": "2026-08-21T09:27:45Z",
+          "body": "# Changelog\n\n**Release: v4.3.0**\n\n## Features\n- **debug-hud**: enable HUD by default ([19f65f4d](https://github.com/mrndstvndv/termux-ghostty/commit/19f65f4d2030c92c5e2475d0c83e6faf0eeb7f0b))\n- **herdr**: add fx icon to agents bottom sheet ([01366bef](https://github.com/mrndstvndv/termux-ghostty/commit/01366bef772ca1c1565cde8aed190c5d5506b6e6))\n- **review**: add diff search ([891e2a02](https://github.com/mrndstvndv/termux-ghostty/commit/891e2a028c771c251b99eadea9bdbf5103720a4a))\n- **compose-app**: add CPU usage to debug HUD ([fb435b95](https://github.com/mrndstvndv/termux-ghostty/commit/fb435b9506323b24be3d975443e07ebe4d280897))\n- **keyboard**: add tmux extra-key preset ([2ff3522e](https://github.com/mrndstvndv/termux-ghostty/commit/2ff3522e3a2590fe50975fe3d0de76be0b9590e3))\n- **server-list**: add safe server actions menu ([7471be81](https://github.com/mrndstvndv/termux-ghostty/commit/7471be817c0035da323d8a6288d97ad5cfe7bbfc))\n\n## Fixes\n- **ci**: resolve apksigner from build tools ([0f94614e](https://github.com/mrndstvndv/termux-ghostty/commit/0f94614ecf89a3042344f77e99d3d94115d4e069))\n- **ci**: verify release APK signatures with apksigner ([6dcd2163](https://github.com/mrndstvndv/",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.3.0-arm64-v8a.apk",
+              "size": 4488984,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/ecto_4.3.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.3.0-universal.apk",
+              "size": 8663930,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/ecto_4.3.0-universal.apk"
+            },
+            {
+              "name": "termux_4.3.0_arm64-v8a.apk",
+              "size": 33317391,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/termux_4.3.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.3.0_armeabi-v7a.apk",
+              "size": 30231159,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/termux_4.3.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.3.0_universal.apk",
+              "size": 121492331,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/termux_4.3.0_universal.apk"
+            },
+            {
+              "name": "termux_4.3.0_x86.apk",
+              "size": 32467143,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/termux_4.3.0_x86.apk"
+            },
+            {
+              "name": "termux_4.3.0_x86_64.apk",
+              "size": 33206103,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.3.0/termux_4.3.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.2.0",
+          "name": "Release v4.2.0",
+          "date": "2026-08-09T12:31:50Z",
+          "body": "# Changelog\n\n**Release: v4.2.0**\n\n## Features\n- **terminal**: add tmux extra keys layout ([f8f664c1](https://github.com/mrndstvndv/termux-ghostty/commit/f8f664c167ad986aa4445014a06b9af1605237ef))\n- **herdr**: Resolve agent session titles ([cb0cfef7](https://github.com/mrndstvndv/termux-ghostty/commit/cb0cfef77299923bd61180094de571aa130bdf74))\n- **agents**: add omp icon for herdr workspace sheet ([52ce6d1d](https://github.com/mrndstvndv/termux-ghostty/commit/52ce6d1d0b6a7523dead9929c8a88b39936f450e))\n- **agents**: add bun icon for idle bun panes ([94d34d8e](https://github.com/mrndstvndv/termux-ghostty/commit/94d34d8ef3ec0b5d5c5763fc36d804d5ce5ba887))\n- **terminal**: report focus changes to herdr ([7e60d1ec](https://github.com/mrndstvndv/termux-ghostty/commit/7e60d1ec5955450cd4b1f6fcfdc7e73adf5a9497))\n\n## Fixes\n- **ssh**: Drain buffered shell output before poll ([c066c31e](https://github.com/mrndstvndv/termux-ghostty/commit/c066c31e813848bd47c34a2afba0cd251665c1df))\n- **ssh**: Include greeting in initial frame ([01f82d1d](https://github.com/mrndstvndv/termux-ghostty/commit/01f82d1d9eaa1c04bb914515966967a9f63368b3))\n- **ssh**: Preserve shell greeting before attach ([865168a2](https://",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.2.0-arm64-v8a.apk",
+              "size": 4459048,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/ecto_4.2.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.2.0-universal.apk",
+              "size": 8633930,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/ecto_4.2.0-universal.apk"
+            },
+            {
+              "name": "termux_4.2.0_arm64-v8a.apk",
+              "size": 33309039,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/termux_4.2.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.2.0_armeabi-v7a.apk",
+              "size": 30222783,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/termux_4.2.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.2.0_universal.apk",
+              "size": 121483815,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/termux_4.2.0_universal.apk"
+            },
+            {
+              "name": "termux_4.2.0_x86.apk",
+              "size": 32458811,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/termux_4.2.0_x86.apk"
+            },
+            {
+              "name": "termux_4.2.0_x86_64.apk",
+              "size": 33197723,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.2.0/termux_4.2.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.1.0",
+          "name": "Release v4.1.0",
+          "date": "2026-08-08T06:27:14Z",
+          "body": "# Changelog\n\n**Release: v4.1.0**\n\n## Features\n- **review**: show ahead/behind counts in branch header ([6c655a3b](https://github.com/mrndstvndv/termux-ghostty/commit/6c655a3b5376675f49d43625aa05fd2c3c17e2ca))\n- **agents**: close herdr panes from the UI ([43a54b5c](https://github.com/mrndstvndv/termux-ghostty/commit/43a54b5cce5d6ae35043d73643565d17021958f2))\n- **agents**: show fish and java process icons for idle panes ([57164c36](https://github.com/mrndstvndv/termux-ghostty/commit/57164c362430fbbf2365d024618e519fe26a270c))\n- **agents**: show process-name titles and nvim icon for idle panes ([ceb5bf72](https://github.com/mrndstvndv/termux-ghostty/commit/ceb5bf721ffcf05df07b5f92f935087951b52b40))\n- **sftp**: add FAB for file uploads ([5f06bc88](https://github.com/mrndstvndv/termux-ghostty/commit/5f06bc889601e9e7071c103f849d885364ff0313))\n- **agents**: add workspace and pane tree ([947a9894](https://github.com/mrndstvndv/termux-ghostty/commit/947a9894933c18f7c4b5b34aee5ddf449b529321))\n\n## Fixes\n- **keyboard**: restore immediate escape handling ([e44cb6a4](https://github.com/mrndstvndv/termux-ghostty/commit/e44cb6a4a9755b191bf39d099fb4ef0ee9050db9))\n- **terminal**: resize grid after fo",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.1.0-arm64-v8a.apk",
+              "size": 4440944,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/ecto_4.1.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.1.0-universal.apk",
+              "size": 10979054,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/ecto_4.1.0-universal.apk"
+            },
+            {
+              "name": "termux_4.1.0_arm64-v8a.apk",
+              "size": 33307151,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/termux_4.1.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.1.0_armeabi-v7a.apk",
+              "size": 30220943,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/termux_4.1.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.1.0_universal.apk",
+              "size": 121478015,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/termux_4.1.0_universal.apk"
+            },
+            {
+              "name": "termux_4.1.0_x86.apk",
+              "size": 32456919,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/termux_4.1.0_x86.apk"
+            },
+            {
+              "name": "termux_4.1.0_x86_64.apk",
+              "size": 33195815,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.1.0/termux_4.1.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v4.0.0",
+          "name": "Release v4.0.0",
+          "date": "2026-08-07T07:03:13Z",
+          "body": "# Changelog\n\n**Release: v4.0.0**\n\n## Features\n- **agents**: add cline icon and working status highlight ([91132fd9](https://github.com/mrndstvndv/termux-ghostty/commit/91132fd92c892ccb72fde07e98598486757e10b8))\n\n## Fixes\n- **release**: download APK artifact by exact name ([cba7d171](https://github.com/mrndstvndv/termux-ghostty/commit/cba7d1714a52afb9e3f87136953bf94419096a6d))\n- **terminal**: publish an initial idle frame ([09bdba22](https://github.com/mrndstvndv/termux-ghostty/commit/09bdba22e7524eedd48d9ae47e8390cd5e04db75))\n- **compose**: refresh terminal frames across lifecycle ([eb7a8d01](https://github.com/mrndstvndv/termux-ghostty/commit/eb7a8d0184895d32ba0f90410afbc9b7fc19fac8))\n- **herdr**: keep agent sheet above soft keyboard ([efec7a04](https://github.com/mrndstvndv/termux-ghostty/commit/efec7a04ed9b0f6f464d6c74b7c91649e81b27a9))\n\n## Updates\n- **terminal**: port ghostty pin to ec58fbc and migrate build to zig 0.16.0 ([235f7e78](https://github.com/mrndstvndv/termux-ghostty/commit/235f7e78f2a0d3c6127463556b52c330cd02a5ff))\n\n## UI Changes\n- **agents**: add spacing below agents heading ([c94d46bc](https://github.com/mrndstvndv/termux-ghostty/commit/c94d46bc92782bfa1acfa4492d6",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_4.0.0-arm64-v8a.apk",
+              "size": 4436788,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/ecto_4.0.0-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_4.0.0-universal.apk",
+              "size": 10974898,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/ecto_4.0.0-universal.apk"
+            },
+            {
+              "name": "termux_4.0.0_arm64-v8a.apk",
+              "size": 33306731,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/termux_4.0.0_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_4.0.0_armeabi-v7a.apk",
+              "size": 30220523,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/termux_4.0.0_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_4.0.0_universal.apk",
+              "size": 121477595,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/termux_4.0.0_universal.apk"
+            },
+            {
+              "name": "termux_4.0.0_x86.apk",
+              "size": 32456499,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/termux_4.0.0_x86.apk"
+            },
+            {
+              "name": "termux_4.0.0_x86_64.apk",
+              "size": 33195395,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v4.0.0/termux_4.0.0_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v3.5.0",
+          "name": "Release v3.5.0",
+          "date": "2026-08-06T06:43:17Z",
+          "body": "# Changelog\n\n**Release: v3.5.0**\n\n## Features\n- **herdr**: add agent list controls ([10523202](https://github.com/mrndstvndv/termux-ghostty/commit/1052320237966bafb90c5bad35d026daec9f950e))\n- **compose**: add selection handle magnifier ([5ccf5ca6](https://github.com/mrndstvndv/termux-ghostty/commit/5ccf5ca677ee2f502d4efc28bae92d74ca5d55f1))\n- **terminal**: restore compose text selection ([c24c3b22](https://github.com/mrndstvndv/termux-ghostty/commit/c24c3b224d0d468a58e291e02d711133171ec74f))\n- **terminal**: integrate reusable compose terminal view ([04a61730](https://github.com/mrndstvndv/termux-ghostty/commit/04a617303f7d94bd9e675b76aad3198af16303a0))\n- **terminal**: add reusable Compose terminal view library ([c024f571](https://github.com/mrndstvndv/termux-ghostty/commit/c024f57133817110e680444e2a5a93233c837c76))\n\n## Fixes\n- **selection**: keep floating toolbar above multiline selections ([a316b6df](https://github.com/mrndstvndv/termux-ghostty/commit/a316b6df2a326d4aad6e820a1e8752686076acad))\n- **compose**: dismiss selection magnifier on touch up ([a5dcab96](https://github.com/mrndstvndv/termux-ghostty/commit/a5dcab965ff98712cc7483dd394adde8734f2448))\n- **selection**: keep offscr",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_3.5.0-android-5-arm64-v8a.apk",
+              "size": 4255068,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/ecto_3.5.0-android-5-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_3.5.0-android-5-universal.apk",
+              "size": 10186970,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/ecto_3.5.0-android-5-universal.apk"
+            },
+            {
+              "name": "ecto_3.5.0-android-7-arm64-v8a.apk",
+              "size": 4255068,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/ecto_3.5.0-android-7-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_3.5.0-android-7-universal.apk",
+              "size": 10186970,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/ecto_3.5.0-android-7-universal.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-5_arm64-v8a.apk",
+              "size": 20594379,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-5_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-5_armeabi-v7a.apk",
+              "size": 20244331,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-5_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-5_universal.apk",
+              "size": 75520275,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-5_universal.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-5_x86.apk",
+              "size": 20639559,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-5_x86.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-5_x86_64.apk",
+              "size": 21744039,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-5_x86_64.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-7_arm64-v8a.apk",
+              "size": 33222411,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-7_arm64-v8a.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-7_armeabi-v7a.apk",
+              "size": 30134751,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-7_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-7_universal.apk",
+              "size": 121147647,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-7_universal.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-7_x86.apk",
+              "size": 32375987,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-7_x86.apk"
+            },
+            {
+              "name": "termux_3.5.0-android-7_x86_64.apk",
+              "size": 33116539,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.5.0/termux_3.5.0-android-7_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v3.4.0",
+          "name": "Release v3.4.0",
+          "date": "2026-08-04T23:44:23Z",
+          "body": "# Changelog\n\n**Release: v3.4.0**\n\n## Features\n- **build**: add arm64 and universal APK variants ([3ffb470c](https://github.com/mrndstvndv/termux-ghostty/commit/3ffb470c4527aff6177e73bd093542f5dd4171d0))\n- **notification**: focus herdr workspace on notification tap ([08cea2d2](https://github.com/mrndstvndv/termux-ghostty/commit/08cea2d2a601b413c4ec92ea8d87ad66e58009db))\n- **ui**: add option to hide workspace tabs ([dd2502e4](https://github.com/mrndstvndv/termux-ghostty/commit/dd2502e4dee790311218119961cc115fdc37745c))\n- **compose-app**: extend terminal shaders and review controls ([989a501d](https://github.com/mrndstvndv/termux-ghostty/commit/989a501d2de7d0df753e2579e87e8938bb289db7))\n- **git tab**: word level diff ([0ac13066](https://github.com/mrndstvndv/termux-ghostty/commit/0ac13066de83a4e9ae95867a7b1b5131f79ce245))\n\n## Fixes\n- **terminal**: synchronize scroll position with Ghostty ([7d895447](https://github.com/mrndstvndv/termux-ghostty/commit/7d895447449f5ae1f3022bc29be3c41fecf3783c))\n- **ssh**: handle disconnected sessions cleanly ([73c90b84](https://github.com/mrndstvndv/termux-ghostty/commit/73c90b845e34823f98317b9e44de4bb9c5309af7))\n- **compose-app**: restore terminal link",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_3.4.0-apt-android-5-github-release-arm64-v8a.apk",
+              "size": 4101927,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/ecto_3.4.0-apt-android-5-github-release-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_3.4.0-apt-android-5-github-release.apk",
+              "size": 10033829,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/ecto_3.4.0-apt-android-5-github-release.apk"
+            },
+            {
+              "name": "ecto_3.4.0-apt-android-7-github-release-arm64-v8a.apk",
+              "size": 4101927,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/ecto_3.4.0-apt-android-7-github-release-arm64-v8a.apk"
+            },
+            {
+              "name": "ecto_3.4.0-apt-android-7-github-release.apk",
+              "size": 10033829,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/ecto_3.4.0-apt-android-7-github-release.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-5-github-release_arm64-v8a.apk",
+              "size": 20594383,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-5-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-5-github-release_armeabi-v7a.apk",
+              "size": 20244335,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-5-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-5-github-release_universal.apk",
+              "size": 75520275,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-5-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-5-github-release_x86.apk",
+              "size": 20639559,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-5-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-5-github-release_x86_64.apk",
+              "size": 21744043,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-5-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-7-github-release_arm64-v8a.apk",
+              "size": 33222415,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-7-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-7-github-release_armeabi-v7a.apk",
+              "size": 30134751,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-7-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-7-github-release_universal.apk",
+              "size": 121147647,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-7-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-7-github-release_x86.apk",
+              "size": 32375987,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-7-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.4.0-apt-android-7-github-release_x86_64.apk",
+              "size": 33116539,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.4.0/termux-app_3.4.0-apt-android-7-github-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v3.3.0",
+          "name": "Release v3.3.0",
+          "date": "2026-08-01T07:30:37Z",
+          "body": "# Changelog\n\n**Release: v3.3.0**\n\n## Features\n- **compose-app**: rename app to Ecto ([530ae5bf](https://github.com/mrndstvndv/termux-ghostty/commit/530ae5bfca80e8cc3bdcdcf644c761ae9cba5162))\n\n## Fixes\n- **cursor-trail**: animate trails when no terminal shader is active ([efb221a3](https://github.com/mrndstvndv/termux-ghostty/commit/efb221a3e65c68b126dfe13e42da6b57c74edbd6))\n- **ui**: cursor trails not working when shaders or off ([6189968a](https://github.com/mrndstvndv/termux-ghostty/commit/6189968a575073c345af0cf88386a429d170d847))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ecto_3.3.0-apt-android-5-github-release.apk",
+              "size": 26180418,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.3.0/ecto_3.3.0-apt-android-5-github-release.apk"
+            },
+            {
+              "name": "ecto_3.3.0-apt-android-7-github-release.apk",
+              "size": 26180418,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.3.0/ecto_3.3.0-apt-android-7-github-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v3.2.0",
+          "name": "Release v3.2.0",
+          "date": "2026-08-01T05:45:57Z",
+          "body": "# Changelog\n\n**Release: v3.2.0**\n\n## Features\n- **shader**: add cursor trail effects ([e4202565](https://github.com/mrndstvndv/termux-ghostty/commit/e42025654cc6af388e9c5b1f196e900686771f1b))\n- **shader**: add terminal effects ([a23c5db9](https://github.com/mrndstvndv/termux-ghostty/commit/a23c5db9d8aafa006e5884a766cc52946ac3cc32))\n- **review**: add soft and hard reset options to commit menu ([f0206bb6](https://github.com/mrndstvndv/termux-ghostty/commit/f0206bb676fb300e4c6e44672a2326bf29cff513))\n- **ui**: add regex-based syntax highlighting utility ([0645c8bc](https://github.com/mrndstvndv/termux-ghostty/commit/0645c8bc48cac314cdea9b3694c4e7712d4e798e))\n- **review**: add line numbers toggle chip to diff header ([680b87c5](https://github.com/mrndstvndv/termux-ghostty/commit/680b87c5345f9bb96db5fbc08ee3254fbac83d51))\n- **workspace**: support horizontal tab swiping on terminal tab ([803e475c](https://github.com/mrndstvndv/termux-ghostty/commit/803e475c1166a9c245a99832fa1d867c365aad9c))\n- add branch switching in git tab ([bf1c82d3](https://github.com/mrndstvndv/termux-ghostty/commit/bf1c82d37248fb33a0b626320153eae780dc444b))\n- **workspace**: enable left/right swipe gesture navigation ",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_3.2.0-apt-android-5-github-release_arm64-v8a.apk",
+              "size": 20593879,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-5-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-5-github-release_armeabi-v7a.apk",
+              "size": 20243871,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-5-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-5-github-release_universal.apk",
+              "size": 75518839,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-5-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-5-github-release_x86.apk",
+              "size": 20639175,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-5-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-5-github-release_x86_64.apk",
+              "size": 21743635,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-5-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-7-github-release_arm64-v8a.apk",
+              "size": 33221911,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-7-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-7-github-release_armeabi-v7a.apk",
+              "size": 30134287,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-7-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-7-github-release_universal.apk",
+              "size": 121146211,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-7-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-7-github-release_x86.apk",
+              "size": 32375603,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-7-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.2.0-apt-android-7-github-release_x86_64.apk",
+              "size": 33116135,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-app_3.2.0-apt-android-7-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-compose-app_3.2.0-apt-android-5-github-release.apk",
+              "size": 26180442,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-compose-app_3.2.0-apt-android-5-github-release.apk"
+            },
+            {
+              "name": "termux-compose-app_3.2.0-apt-android-7-github-release.apk",
+              "size": 26180442,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.2.0/termux-compose-app_3.2.0-apt-android-7-github-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v3.1.0",
+          "name": "Release v3.1.0",
+          "date": "2026-07-23T02:47:50Z",
+          "body": "# Changelog\n\n**Release: v3.1.0**\n\n## Features\n- **ci**: add release signing config and asset naming to compose-app ([00755126](https://github.com/mrndstvndv/termux-ghostty/commit/00755126faba89a0b47238305928f1be90c82eb5))\n\n## Fixes\n- **ci**: refine breaking change regex match in changelog generator ([ab67eba5](https://github.com/mrndstvndv/termux-ghostty/commit/ab67eba5d18c2b58f98d8edbe6e7821ed40c99aa))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_3.1.0-apt-android-5-github-release_arm64-v8a.apk",
+              "size": 20593267,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-5-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-5-github-release_armeabi-v7a.apk",
+              "size": 20243335,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-5-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-5-github-release_universal.apk",
+              "size": 75516599,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-5-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-5-github-release_x86.apk",
+              "size": 20638471,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-5-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-5-github-release_x86_64.apk",
+              "size": 21742839,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-5-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-7-github-release_arm64-v8a.apk",
+              "size": 33221303,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-7-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-7-github-release_armeabi-v7a.apk",
+              "size": 30133755,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-7-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-7-github-release_universal.apk",
+              "size": 121143975,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-7-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-7-github-release_x86.apk",
+              "size": 32374903,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-7-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.1.0-apt-android-7-github-release_x86_64.apk",
+              "size": 33115339,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-app_3.1.0-apt-android-7-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-compose-app_3.1.0-apt-android-5-github-release.apk",
+              "size": 26500297,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-compose-app_3.1.0-apt-android-5-github-release.apk"
+            },
+            {
+              "name": "termux-compose-app_3.1.0-apt-android-7-github-release.apk",
+              "size": 26500297,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.1.0/termux-compose-app_3.1.0-apt-android-7-github-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v3.0.0",
+          "name": "Release v3.0.0",
+          "date": "2026-07-23T02:01:40Z",
+          "body": "# Changelog\n\n**Release: v3.0.0**\n\n## Features\n- **review**: add full file view and font size scaling ([ef7d71a2](https://github.com/mrndstvndv/termux-ghostty/commit/ef7d71a2097e62faa2ba55a1c19d3e90554f48d8))\n- **ci**: add compose-app release builds and module change detection ([37aef5e9](https://github.com/mrndstvndv/termux-ghostty/commit/37aef5e9ece5b530dc68326a335bd1267092dca2))\n- **compose-app**: update foreground session service and notification handling ([925180ef](https://github.com/mrndstvndv/termux-ghostty/commit/925180efad5e0f14fe9f518ab39f547016f1f655))\n- **extrakeys**: port shift support and macro improvements to app ([b9199a45](https://github.com/mrndstvndv/termux-ghostty/commit/b9199a45bec1ff3af78cae8fad2b854c028eadf6))\n- **keyboard**: add unconditional soft keyboard toggle on tap ([0261e68e](https://github.com/mrndstvndv/termux-ghostty/commit/0261e68eba18e3a320c014ff9d6921e387b82b19))\n- **terminal**: Add IME composition delta tracking and remove resize debounce ([e362764b](https://github.com/mrndstvndv/termux-ghostty/commit/e362764b9bb025b812c4657d5d30e58a9593093b))\n- **local**: add startup command support for local terminal ([355906bc](https://github.com/mrndstvndv/t",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "compose-app-release-unsigned.apk",
+              "size": 26500289,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/compose-app-release-unsigned.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-5-github-release_arm64-v8a.apk",
+              "size": 20593263,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-5-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-5-github-release_armeabi-v7a.apk",
+              "size": 20243327,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-5-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-5-github-release_universal.apk",
+              "size": 75516595,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-5-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-5-github-release_x86.apk",
+              "size": 20638467,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-5-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-5-github-release_x86_64.apk",
+              "size": 21742831,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-5-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-7-github-release_arm64-v8a.apk",
+              "size": 33221299,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-7-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-7-github-release_armeabi-v7a.apk",
+              "size": 30133747,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-7-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-7-github-release_universal.apk",
+              "size": 121143971,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-7-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-7-github-release_x86.apk",
+              "size": 32374895,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-7-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_3.0.0-apt-android-7-github-release_x86_64.apk",
+              "size": 33115335,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v3.0.0/termux-app_3.0.0-apt-android-7-github-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v2.0.0",
+          "name": "Release v2.0.0",
+          "date": "2026-07-16T12:40:50Z",
+          "body": "# Changelog\n\n**Release: v2.0.0**\n\n## Features\n- **compose-app**: implement copy, paste, and context menu support ([5b5bdeaf](https://github.com/mrndstvndv/termux-ghostty/commit/5b5bdeaf65dd1e2dbd6e6961ae200b5a0cc316e6))\n- **compose-app**: Add custom fonts support ([d5bc588a](https://github.com/mrndstvndv/termux-ghostty/commit/d5bc588ab3bf8afa321c2b07ca7967f245f5f93b))\n- remove jvm ssh library and sftp explorer ([974c78d8](https://github.com/mrndstvndv/termux-ghostty/commit/974c78d80c4cf471774244fea0d3a435279ecb48))\n- **compose-app**: add clickable link support to terminal view ([c3e28167](https://github.com/mrndstvndv/termux-ghostty/commit/c3e2816755f6613778372adfec49801a0be9e00a))\n- **terminal**: add native SPSC ring buffer and SSH wakeup drain ([dd007b73](https://github.com/mrndstvndv/termux-ghostty/commit/dd007b735b76aa26782d6eaa4d7e7d68882f7c6e))\n- **terminal**: Sync terminal palette with Material You theme colors ([745e5101](https://github.com/mrndstvndv/termux-ghostty/commit/745e5101bc4bf32f8b34b047cfa23b218e3d85cc))\n- **theme**: Add theme chooser and Material You dynamic color support ([205ac557](https://github.com/mrndstvndv/termux-ghostty/commit/205ac5575da8595794bcd25b051",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_2.0.0-apt-android-5-github-release_arm64-v8a.apk",
+              "size": 21297190,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-5-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-5-github-release_armeabi-v7a.apk",
+              "size": 20944490,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-5-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-5-github-release_sha256sums",
+              "size": 623,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-5-github-release_sha256sums"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-5-github-release_universal.apk",
+              "size": 76142002,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-5-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-5-github-release_x86.apk",
+              "size": 21339546,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-5-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-5-github-release_x86_64.apk",
+              "size": 22446578,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-5-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-7-github-release_arm64-v8a.apk",
+              "size": 33925194,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-7-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-7-github-release_armeabi-v7a.apk",
+              "size": 30834922,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-7-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-7-github-release_sha256sums",
+              "size": 623,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-7-github-release_sha256sums"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-7-github-release_universal.apk",
+              "size": 121769322,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-7-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-7-github-release_x86.apk",
+              "size": 33075918,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-7-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_2.0.0-apt-android-7-github-release_x86_64.apk",
+              "size": 33819094,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v2.0.0/termux-app_2.0.0-apt-android-7-github-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.0",
+          "name": "Release v1.0.0",
+          "date": "2026-04-02T12:28:19Z",
+          "body": "# Changelog\n\n**Release: v1.0.0**\n\n## Features\n- session tabs ([6ab3c8de](https://github.com/mrndstvndv/termux-ghostty/commit/6ab3c8deddfa6381b2b7ddcac53c3786163144f1))\n- **KeyHandler**: respect modifiers with PgUp and PgDn ([c8a74dc5](https://github.com/mrndstvndv/termux-ghostty/commit/c8a74dc58898ffee1d1207a125f2b4000d20b39b))\n\n## Fixes\n- **ci**: enable split APKs for GitHub release builds ([803ea51a](https://github.com/mrndstvndv/termux-ghostty/commit/803ea51a72dc4df8337bdce034822537865f0cad))\n- **theme**: black theme preserves wallpaper-derived colors ([9ad8e963](https://github.com/mrndstvndv/termux-ghostty/commit/9ad8e963244a0fd55423cd9a393916f41cba679c))\n- **build**: ensure bootstrap download runs before native build in release ([01ea9da6](https://github.com/mrndstvndv/termux-ghostty/commit/01ea9da6de7eebbe107dc33323f28c8af8f7dbd8))\n\n## Updates\n- **Material You**: runtime reloading ([95238070](https://github.com/mrndstvndv/termux-ghostty/commit/9523807031d4afbc39f7fb69cbd7e2695c430f5a))\n\n## UI Changes\n- material you themeing support ([53f7d907](https://github.com/mrndstvndv/termux-ghostty/commit/53f7d9073219bcad92f06d1bbd33327e5dc8e615))",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_1.0.0-apt-android-5-github-release_arm64-v8a.apk",
+              "size": 21001419,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-5-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-5-github-release_armeabi-v7a.apk",
+              "size": 20661395,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-5-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-5-github-release_sha256sums",
+              "size": 623,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-5-github-release_sha256sums"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-5-github-release_universal.apk",
+              "size": 74948919,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-5-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-5-github-release_x86.apk",
+              "size": 21034779,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-5-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-5-github-release_x86_64.apk",
+              "size": 22145515,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-5-github-release_x86_64.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-7-github-release_arm64-v8a.apk",
+              "size": 33629423,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-7-github-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-7-github-release_armeabi-v7a.apk",
+              "size": 30551823,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-7-github-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-7-github-release_sha256sums",
+              "size": 623,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-7-github-release_sha256sums"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-7-github-release_universal.apk",
+              "size": 120576235,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-7-github-release_universal.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-7-github-release_x86.apk",
+              "size": 32771147,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-7-github-release_x86.apk"
+            },
+            {
+              "name": "termux-app_1.0.0-apt-android-7-github-release_x86_64.apk",
+              "size": 33518023,
+              "url": "https://github.com/mrndstvndv/termux-ghostty/releases/download/v1.0.0/termux-app_1.0.0-apt-android-7-github-release_x86_64.apk"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "termux-plus",
@@ -3907,13 +5853,28 @@
       "homepage": "https://f-droid.org/en/packages/com.termux",
       "logoUrl": "https://avatars.githubusercontent.com/u/10579902?v=4",
       "description": "Termux fork：基于 0.118 主线独立维护并发布 APK",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 18,
+      "pushed_at": "2026-04-13T20:26:08Z",
+      "latest_tag": "v0.118.0",
+      "latest_date": "2026-04-13T20:26:17Z",
+      "latest_apk_name": "termux-plus-release-0.118.0.apk",
+      "latest_apk_url": "https://github.com/thejaustin/TermuxPlus/releases/download/v0.118.0/termux-plus-release-0.118.0.apk",
+      "releases": [
+        {
+          "tag": "v0.118.0",
+          "name": "TermuxPlus 0.118.0",
+          "date": "2026-04-13T20:26:17Z",
+          "body": "Release version 0.118.0",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-plus-release-0.118.0.apk",
+              "size": 119829092,
+              "url": "https://github.com/thejaustin/TermuxPlus/releases/download/v0.118.0/termux-plus-release-0.118.0.apk"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "termux-enhanced",
@@ -3923,13 +5884,707 @@
       "homepage": "https://f-droid.org/en/packages/com.termux",
       "logoUrl": "https://avatars.githubusercontent.com/u/44705381?v=4",
       "description": "Termux fork：持续发布增强版 Release，APK 与官方并行",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 17,
+      "pushed_at": "2026-10-01T08:40:20Z",
+      "latest_tag": "Release21",
+      "latest_date": "2026-09-29T14:13:09Z",
+      "latest_apk_name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+      "latest_apk_url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release21/termux-app_apt-android-7-release_arm64-v8a.apk",
+      "releases": [
+        {
+          "tag": "Release21",
+          "name": "Release21",
+          "date": "2026-09-29T14:13:09Z",
+          "body": "1. Added support for terminal application notifications via the kitty OSC 99 protocol (used in opencode 2.0.  However, its current notification implementation is buggy, and a notification sent from one session is duplicated by every other running opencode session. To address this, the app includes a \"Notification deduplication\" workaround, though it cannot guarantee accurate identification of the source session.)\n2. Added the option to enable the input bar above the terminal. \n3. Fixed various issues when using the bubble window. \n4. Fixed terminal rendering issues in certain scenarios (fixed color fill bugs in Vim when resizing the terminal window, and eliminated garbled output when displaying Hindi characters).\n5. Improved handling of display cutouts, and added an option to extend the window into the cutout area.\n\nHotfix: fixed input panel and extra button panel hide behaviour in some cases",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4599900,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release21/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4553602,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release21/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4612150,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release21/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4610074,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release21/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release20",
+          "name": "Release20",
+          "date": "2026-09-22T19:35:39Z",
+          "body": "1. Ability to open the app in a bubble window to use the terminal on top of other apps (button in the notification, a settings option to automatically show the bubble when the app is minimized) (Android 11+)\n2. Option to display the extra keys panel compactly in landscape orientation (enabled by default on smartphones)\n3. Input panel height is limited to a quarter of the app window height\n4. Fixed translation strings",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4567449,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release20/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4521142,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release20/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4579704,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release20/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4577644,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release20/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release19",
+          "name": "Release19",
+          "date": "2026-09-19T17:11:00Z",
+          "body": "1. Added the ability to assign additional buttons to open the username/password autofill menu.  \n2. Various minor fixes:  \n   - Fixed the keyboard reopening when switching between session tabs where it should be open, when opening and quickly hiding the input panel.  \n   - Fixed the terminal screen not switching away from a closed tab in some cases.  \n   - When closing tabs, selection priority is now given to the tab to the right of the closed one.  \n   - Fixed truncation of switch labels in Settings.  \n   - Added units of measurement for slider values in Settings.  \n   - Fixed string translations.\n\nHotfix: \n   - Fixed keyboard issues when switching between terminal session tabs by tapping a tab that is one or more tabs away from the currently selected tab.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4699425,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release19/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4653093,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release19/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4711936,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release19/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4709953,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release19/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "termux-related-packages",
+          "name": "Termux-related packages",
+          "date": "2026-09-02T07:44:47Z",
+          "body": "Signed with the fork's signature for compatibility",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-api-app_v0.53.0+release.apk",
+              "size": 3956194,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/termux-related-packages/termux-api-app_v0.53.0%2Brelease.apk"
+            },
+            {
+              "name": "termux-boot-release.apk",
+              "size": 25694,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/termux-related-packages/termux-boot-release.apk"
+            },
+            {
+              "name": "termux-styling-release.apk",
+              "size": 32930419,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/termux-related-packages/termux-styling-release.apk"
+            },
+            {
+              "name": "termux-tasker-app_v0.9.0+release.apk",
+              "size": 2896977,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/termux-related-packages/termux-tasker-app_v0.9.0%2Brelease.apk"
+            },
+            {
+              "name": "termux-widget-app_v0.15.0+release.apk",
+              "size": 5873116,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/termux-related-packages/termux-widget-app_v0.15.0%2Brelease.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release18",
+          "name": "Release18",
+          "date": "2026-09-15T05:54:20Z",
+          "body": "1. Added the ability to create a session in a working directory from history when opening a new session by swiping right from the rightmost screen. During the gesture, slide finger upward and release it next to the desired directory. By default, a session is created in the default working directory (configured in settings).  \n2. Restructured settings  \n3. Preview of color schemes and fonts in dialogs  \n4. Updated translations (LLM-based; may contain inaccuracies)  \n5. App performance optimization and bug fixes",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4685359,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release18/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4639014,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release18/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4697866,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release18/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4695885,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release18/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release17",
+          "name": "Release17",
+          "date": "2026-09-10T09:52:54Z",
+          "body": "1. Monet color schemes for the terminal (Android 12+)\n2. Option to set a transparent terminal background showing the device wallpaper\n3. Option to configure terminal background blur (Android 12+)\n4. Overscroll animation for terminal output\n5. Existing entries in the input panel text history move to the top only when they are sent again (previously, they also moved to the top when simply selected in the context menu or when the input panel was cleared)\n6. Option to disable saving cleared input panel text to history\n7. More reliable persistence of keyboard state and input panel open/closed state (no longer reset when the app is minimized or restored)\n8. App optimizations",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4664361,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release17/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4618009,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release17/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4676857,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release17/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4674877,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release17/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release16",
+          "name": "Release16",
+          "date": "2026-09-02T06:46:01Z",
+          "body": "1. More responsive terminal scrolling (experience similar to scrolling lists in Android apps)\n2. Ability to assign text to a button action binding\n3. Minor animation fixes",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4572792,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release16/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4526488,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release16/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4585335,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release16/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4583351,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release16/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release15",
+          "name": "Release15",
+          "date": "2026-08-19T01:03:55Z",
+          "body": "Minor fixes:\n1. Terminal window is horizontally centered; padding can be adjusted for each side separately.\n2. Fixed scroll animation in the tab bar when selecting a tab by tapping.\n3. Fixed app freezes caused by frequent tab label updates (e.g., when a loading animation is shown in the tab label).\n4. Optimized terminal rendering.\n5. Fixed scroll handle drift relative to the finger during terminal output when scrolling with it.\n6. Option to hide the keyboard when sending text from the input panel.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4569699,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release15/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4523382,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release15/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4582228,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release15/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4580237,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release15/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release14",
+          "name": "Release14",
+          "date": "2026-08-15T11:39:41Z",
+          "body": "1. Extra buttons panel profiles with auto-switching based on session prefix — the ability to set own button layout for individual processes\n2. Ability to set custom labels for buttons (by long-pressing in the extra buttons editor)\n3. Pasting from the clipboard into the input panel by swiping down on the input panel toggle button\n4. Fixed status bar and navigation bar dimming for AOSP-based roms\n5. Fixed application of terminal padding\n\nExample extra button panel profile for opencode attached.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4554804,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release14/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4508514,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release14/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4567394,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release14/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4565347,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release14/termux-app_apt-android-7-release_x86_64.apk"
+            },
+            {
+              "name": "termux-extra-keys-opencode.json",
+              "size": 1254,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release14/termux-extra-keys-opencode.json"
+            }
+          ]
+        },
+        {
+          "tag": "Release13",
+          "name": "Release13",
+          "date": "2026-08-08T13:02:45Z",
+          "body": "Minor fixes:\n1. Fixed the autocomplete list not expanding when deleting characters one by one in the input panel\n2. Fixed the auto-scroll-to-bottom behavior when new output appears while scrolling with the slider\n3. Fixed the notification updating too frequently during container backup",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4520880,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release13/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4474599,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release13/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4533473,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release13/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4531425,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release13/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release12",
+          "name": "Release12",
+          "date": "2026-08-02T05:48:53Z",
+          "body": "1. Fixed scroll view drift when the terminal buffer is truncated\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 4521339,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release12/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 4475056,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release12/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 4533936,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release12/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 4531895,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release12/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release11",
+          "name": "Release11",
+          "date": "2026-07-28T09:02:18Z",
+          "body": "1. The Bootstrap package has been extracted from the app, 8x reducing the APK size. It is downloaded on first launch or can be specified as a local file (download https://github.com/termux/termux-packages/releases/tag/bootstrap-2026.07.26-r1%2Bapt.android-7)\n2. Fixes for the extra buttons panel editor\n3. Ability to backup and restore app settings",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_0.118.0+enhanced.11_release_arm64-v8a.apk",
+              "size": 4492336,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release11/termux-app_0.118.0%2Benhanced.11_release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_0.118.0+enhanced.11_release_armeabi-v7a.apk",
+              "size": 4446449,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release11/termux-app_0.118.0%2Benhanced.11_release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_0.118.0+enhanced.11_release_x86.apk",
+              "size": 4505648,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release11/termux-app_0.118.0%2Benhanced.11_release_x86.apk"
+            },
+            {
+              "name": "termux-app_0.118.0+enhanced.11_release_x86_64.apk",
+              "size": 4502214,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release11/termux-app_0.118.0%2Benhanced.11_release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release10",
+          "name": "Release10",
+          "date": "2026-07-23T01:28:04Z",
+          "body": "1. Extra buttons panel editor, with the ability to assign actions to button gestures and key combinations to actions\n2. Moving settings from the termux.properties file into the settings interface",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 34146512,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release10/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 31065284,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release10/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 33286280,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release10/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 34031832,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release10/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release9",
+          "name": "Release9",
+          "date": "2026-07-20T07:59:12Z",
+          "body": "1. Settings restructuring\n2. Horizontal swipe gestures on autocomplete suggestions in the input panel to restore only a few words from the hint\n3. Tab bar animations when adding or closing tabs",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33929647,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release9/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30848422,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release9/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 33069405,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release9/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33814960,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release9/termux-app_apt-android-7-release_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release8",
+          "name": "Release8",
+          "date": "2026-07-16T12:12:53Z",
+          "body": "1. Swiping through and adding terminal tabs with horizontal gestures\n2. A terminal vertical scroll slider indicator that lets you quickly navigate through history\n3. Autocomplete for the input panel by typing the beginning of a message saved in history\n4. Translation of the app into the following languages: Arabic, German, Spanish, French, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Turkish, Chinese. Based on an LLM. If you are a native speaker of one of these languages and encounter translation inaccuracies, please edit the inaccurate strings in https://github.com/NIK2703/termux-enhanced/tree/master/app/src/main/res/ and submit a pull request\n5. Various user experience improvements\n\nAttached a backup of the Termux container with fish and opencode installed for a quick start. To restore, open the context menu by long-tapping on the terminal, then More... > Settings > Termux Settings > Restore Termux Data.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33864208,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release8/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30782982,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release8/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 33003966,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release8/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33749514,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release8/termux-app_apt-android-7-release_x86_64.apk"
+            },
+            {
+              "name": "termux-opencode-backup-armv8a.tar.gz",
+              "size": 148298279,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release8/termux-opencode-backup-armv8a.tar.gz"
+            }
+          ]
+        },
+        {
+          "tag": "Release7",
+          "name": "Release7",
+          "date": "2026-07-12T14:49:00Z",
+          "body": "1. Added context menus for directory history and messages by swiping up from the add tab and open input panel buttons, for quickly opening a session tab in the desired directory and restoring a recent message, respectively.\n2. Screen orientation setting in the app.\n3. Setting to remember tabs when exiting the app, so they are restored on the next launch.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app-release-arm64-v8a.apk",
+              "size": 33494988,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release7/termux-app-release-arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app-release-armeabi-v7a.apk",
+              "size": 30413761,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release7/termux-app-release-armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app-release-x86.apk",
+              "size": 32634748,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release7/termux-app-release-x86.apk"
+            },
+            {
+              "name": "termux-app-release-x86_64.apk",
+              "size": 33380300,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release7/termux-app-release-x86_64.apk"
+            },
+            {
+              "name": "termux-boot-release.apk",
+              "size": 25694,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release7/termux-boot-release.apk"
+            },
+            {
+              "name": "termux-styling-release.apk",
+              "size": 32930419,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release7/termux-styling-release.apk"
+            }
+          ]
+        },
+        {
+          "tag": "Release6",
+          "name": "Release6",
+          "date": "2026-07-11T18:45:32Z",
+          "body": "1. Improved user experience with the input panel\n2. More reliable backup creation and restoration process that is not interrupted when the app is minimized",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_20260712_arm64-v8a.apk",
+              "size": 33482113,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release6/termux-app_20260712_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_20260712_armeabi-v7a.apk",
+              "size": 30400878,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release6/termux-app_20260712_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_20260712_x86.apk",
+              "size": 32621867,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release6/termux-app_20260712_x86.apk"
+            },
+            {
+              "name": "termux-app_20260712_x86_64.apk",
+              "size": 33367422,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release6/termux-app_20260712_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release5",
+          "name": "release5",
+          "date": "2026-07-11T03:54:56Z",
+          "body": "1. Added the ability to switch between light and dark app themes, auto-switch theme according to the system theme, and assign Termux Style color schemes separately for light and dark themes.\n2. Added the ability to backup/restore the Termux container to/from a tar.gz file.\n3. User interface fixes.\n4. Fixed the issue of not requesting permissions during termux-setup-storage. \n\nBuilt Termux Boot and Termux Style with my own signature so they are compatible with the app.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-release_arm64-v8a.apk",
+              "size": 33473525,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release5/termux-app_apt-android-7-release_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_armeabi-v7a.apk",
+              "size": 30389157,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release5/termux-app_apt-android-7-release_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86.apk",
+              "size": 32627055,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release5/termux-app_apt-android-7-release_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-release_x86_64.apk",
+              "size": 33358647,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release5/termux-app_apt-android-7-release_x86_64.apk"
+            },
+            {
+              "name": "termux-boot-app_v0.8.1+release.apk",
+              "size": 25591,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release5/termux-boot-app_v0.8.1%2Brelease.apk"
+            },
+            {
+              "name": "termux-styling-app_v0.32.1+release.apk",
+              "size": 32930559,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release5/termux-styling-app_v0.32.1%2Brelease.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release4",
+          "name": "",
+          "date": "2026-03-04T06:56:52Z",
+          "body": "- fixed a bug that caused the additional buttons panel to disappear in some cases (for example, when changing the system theme)",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 38558356,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release4/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 35455588,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release4/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 125190911,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release4/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 37720713,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release4/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 38448272,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release4/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release3",
+          "name": "add background for extra buttons",
+          "date": "2026-02-15T15:18:55Z",
+          "body": "",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 38465447,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release3/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 35362677,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release3/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 125097635,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release3/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 37627795,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release3/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 38355362,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release3/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release2",
+          "name": "add input field toogler on tab panel",
+          "date": "2026-02-15T02:54:22Z",
+          "body": "",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 39654552,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release2/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 36551782,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release2/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 126286731,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release2/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 38816886,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release2/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 39544459,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release2/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "release",
+          "name": "",
+          "date": "2026-02-14T15:34:51Z",
+          "body": "",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
+              "size": 38462047,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release/termux-app_apt-android-7-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_armeabi-v7a.apk",
+              "size": 35359278,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release/termux-app_apt-android-7-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_universal.apk",
+              "size": 125094228,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release/termux-app_apt-android-7-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86.apk",
+              "size": 37624382,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release/termux-app_apt-android-7-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_apt-android-7-debug_x86_64.apk",
+              "size": 38351955,
+              "url": "https://github.com/NIK2703/termux-enhanced/releases/download/release/termux-app_apt-android-7-debug_x86_64.apk"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "termux-aether",
@@ -3939,13 +6594,137 @@
       "homepage": "https://github.com/wallentx/termux-aether-app",
       "logoUrl": "https://avatars.githubusercontent.com/u/8990544?v=4",
       "description": "现代终端分支：Pacman 包管理 + 原生 glibc 兼容，独立版本线",
-      "stars": 0,
-      "pushed_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "releases": []
+      "stars": 8,
+      "pushed_at": "2026-10-10T22:32:03Z",
+      "latest_tag": "v1000.0.0",
+      "latest_date": "2026-09-20T17:38:48Z",
+      "latest_apk_name": "aether-install.py",
+      "latest_apk_url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/aether-install.py",
+      "releases": [
+        {
+          "tag": "v1000.0.0",
+          "name": "Termux-Aether 1000.0.0",
+          "date": "2026-09-20T17:38:48Z",
+          "body": "## Pacman suite (packaging revision 2)\n\nDownload **`termux-aether-suite-aarch64.pkg.tar.xz`** and its `.sha256` file. This is a real Pacman package:\n\n```sh\nsha256sum -c termux-aether-suite-aarch64.pkg.tar.xz.sha256\npacman -U ./termux-aether-suite-aarch64.pkg.tar.xz\n```\n\nIt directly owns the native runtime and API commands and stages both APKs under `$PREFIX/share/termux-aether-suite`. Update Android apps using `aether-apks api`, then `aether-apks app`; Android confirms these updates. Existing app IDs, signatures and data paths are preserved. Shizuku and Arch images remain optional.\n\nIf you previously installed Aether commands manually, download `aether-install.py` and its checksum too:\n\n```sh\nsha256sum -c aether-install.py.sha256\npython aether-install.py --adopt-legacy ./termux-aether-suite-aarch64.pkg.tar.xz\n```\n\nThis backs up only the nine known unowned legacy commands and transfers ownership to Pacman. Unrelated files/packages are refused. No wildcard overwrite or editing of checksum-protected scripts is needed. Use `aether-update` for later protected upgrades, or install new suite packages with `pacman -U` directly.\n\nThe older **`termux-aether-suite-aarch64.tar.xz`** is an arch",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "aether-install.py",
+              "size": 6784,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/aether-install.py"
+            },
+            {
+              "name": "aether-install.py.sha256",
+              "size": 84,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/aether-install.py.sha256"
+            },
+            {
+              "name": "aether-source-v1000.0.0-821b4f3f6526.tar.gz",
+              "size": 23797649,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/aether-source-v1000.0.0-821b4f3f6526.tar.gz"
+            },
+            {
+              "name": "termux-aether-app_v1000.0.0+pacman-android-7-github-debug_arm64-v8a.apk",
+              "size": 61707628,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/termux-aether-app_v1000.0.0%2Bpacman-android-7-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-aether-app_v1000.0.0+pacman-android-7-github-debug_sha256sums",
+              "size": 138,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/termux-aether-app_v1000.0.0%2Bpacman-android-7-github-debug_sha256sums"
+            },
+            {
+              "name": "termux-aether-suite-aarch64.pkg.tar.xz",
+              "size": 92525528,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/termux-aether-suite-aarch64.pkg.tar.xz"
+            },
+            {
+              "name": "termux-aether-suite-aarch64.pkg.tar.xz.sha256",
+              "size": 105,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/termux-aether-suite-aarch64.pkg.tar.xz.sha256"
+            },
+            {
+              "name": "termux-aether-suite-aarch64.tar.xz",
+              "size": 93297776,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/termux-aether-suite-aarch64.tar.xz"
+            },
+            {
+              "name": "termux-aether-suite-aarch64.tar.xz.sha256",
+              "size": 101,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.0/termux-aether-suite-aarch64.tar.xz.sha256"
+            }
+          ]
+        },
+        {
+          "tag": "v0.119.0-beta.3.1",
+          "name": "v0.119.0-beta.3.1",
+          "date": "2026-02-07T04:17:03Z",
+          "body": "## What's Changed\n* feat: Add sixel and iTerm image support by @wallentx in https://github.com/wallentx/termux-app/pull/5\n* Replace `hub` with `gh` CLI in release workflow by @Copilot in https://github.com/wallentx/termux-app/pull/6\n* Add repository-wide Copilot instructions by @Copilot in https://github.com/wallentx/termux-app/pull/8\n\n## New Contributors\n* @wallentx made their first contribution in https://github.com/wallentx/termux-app/pull/5\n* @Copilot made their first contribution in https://github.com/wallentx/termux-app/pull/6\n\n**Full Changelog**: https://github.com/wallentx/termux-app/commits/v0.119.0-beta.3.1",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_arm64-v8a.apk",
+              "size": 25811420,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-5-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_armeabi-v7a.apk",
+              "size": 25451542,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-5-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_sha256sums",
+              "size": 673,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-5-github-debug_sha256sums"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_universal.apk",
+              "size": 79322322,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-5-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_x86.apk",
+              "size": 25843309,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-5-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_x86_64.apk",
+              "size": 26952808,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-5-github-debug_x86_64.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_arm64-v8a.apk",
+              "size": 35010377,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-7-github-debug_arm64-v8a.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_armeabi-v7a.apk",
+              "size": 33170529,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-7-github-debug_armeabi-v7a.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_sha256sums",
+              "size": 673,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-7-github-debug_sha256sums"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_universal.apk",
+              "size": 113745162,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-7-github-debug_universal.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_x86.apk",
+              "size": 34253952,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-7-github-debug_x86.apk"
+            },
+            {
+              "name": "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_x86_64.apk",
+              "size": 36047101,
+              "url": "https://github.com/wallentx/termux-aether-app/releases/download/v0.119.0-beta.3.1/termux-app_v0.119.0-beta.3.1%2Bapt-android-7-github-debug_x86_64.apk"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
