@@ -610,7 +610,7 @@ static std::string collectDriverIsolated(const char* driverPath) {
     close(pipefd[0]);
 
     if (result.empty()) {
-        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"驱动进程崩溃或超时（驱动可能不兼容当前系统）\",\"deviceCount\":0,\"devices\":[]}";
+        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"驱动加载后进程崩溃或超时——App 进程提交 GPU 负载受环境限制（SELinux/容器），不代表驱动不兼容；采集到的设备/扩展/属性已可判断可用性，性能请在模拟器内验证\",\"deviceCount\":0,\"devices\":[]}";
     }
     // 校验 JSON 完整性：必须以 { 开头、} 结尾
     if (result.front() != '{' || result.back() != '}') {
@@ -1448,7 +1448,7 @@ static std::string runBenchmarkIsolated(const std::function<std::string()>& fn) 
     close(pipefd[0]);
 
     if (result.empty()) {
-        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"基准进程崩溃或超时（驱动可能不兼容当前系统）\",\"deviceName\":\"\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+        return "{\"success\":false,\"errorCode\":\"DRIVER_CRASHED\",\"errorMessage\":\"跑分进程崩溃或超时——App 进程提交 GPU 负载受环境限制（SELinux/容器），不代表驱动不兼容；驱动可用性已由实测采集判断，性能请在模拟器内验证\",\"deviceName\":\"\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
     }
     if (result.front() != '{' || result.back() != '}') {
         return "{\"success\":false,\"errorCode\":\"PARTIAL_JSON\",\"errorMessage\":\"基准进程返回不完整数据\",\"deviceName\":\"\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
