@@ -359,6 +359,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                         var showMetaDialog by remember { mutableStateOf(false) }
                         var metaInfo by remember { mutableStateOf<DriverMetaParser.DriverMeta?>(null) }
                         var metaLoading by remember { mutableStateOf(false) }
+                        var archiveScan by remember { mutableStateOf<ArchiveScan?>(null) }
                         val isDriverPkg = remember(file.fileName) { DriverMetaParser.isDriverPackage(file.fileName) }
                         val displayPath = remember(file.filePath) { getFullPath(file.filePath, context) }
 
@@ -510,6 +511,12 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                                 } else {
                                                     null
                                                 }
+                                                // 非驱动压缩包：轻量扫描内部文件，推断组件类型
+                                                archiveScan = if (!isDriverPkg && (file.fileName.endsWith(".zip", true) || file.fileName.endsWith(".adpkg", true))) {
+                                                    scanArchiveEntries(file.filePath)
+                                                } else {
+                                                    null
+                                                }
                                             }.onFailure { e ->
                                                 android.util.Log.w("EmuBox", "parse file info failed", e)
                                                 Toast.makeText(
@@ -589,6 +596,25 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                                     file.fileName.substringAfterLast('.', "").uppercase().ifEmpty { "—" }
                                                 )
                                                 FileInfoRow(appString(R.string.file_purpose), filePurposeHint(file.fileName))
+                                                val scan = archiveScan
+                                                if (scan != null && scan.keyFiles.isNotEmpty()) {
+                                                    FileInfoRow(appString(R.string.archive_kind), scan.kind)
+                                                    Text(
+                                                        appString(R.string.archive_contains, scan.totalEntries),
+                                                        style = MaterialTheme.typography.bodySmall,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                    )
+                                                    Spacer(Modifier.height(4.dp))
+                                                    scan.keyFiles.forEach { so ->
+                                                        Text(
+                                                            "• $so",
+                                                            style = MaterialTheme.typography.labelSmall,
+                                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                            maxLines = 1,
+                                                            overflow = TextOverflow.Ellipsis
+                                                        )
+                                                    }
+                                                }
                                                 FileInfoRow(appString(R.string.file_size), formatBytes(file.sizeBytes))
                                                 FileInfoRow(appString(R.string.file_path), displayPath)
                                                 FileInfoRow(appString(R.string.file_time), formatDate(file.timestamp))
@@ -711,6 +737,44 @@ private fun filePurposeHint(fileName: String): String {
         n.endsWith(".zip") || n.endsWith(".adpkg") -> "驱动/组件压缩包（含驱动本体与 meta.json）"
         else -> "已下载文件（${fileName.substringAfterLast('.', "").uppercase().ifEmpty { "未知" }} 格式）"
     }
+}
+
+/** 压缩包扫描结果：条目总数 + 关键 .so / 可执行文件 + 组件类型推断 */
+private data class ArchiveScan(
+    val totalEntries: Int,
+    val keyFiles: List<String>,
+    val kind: String
+)
+
+/** 轻量扫描 zip/adpkg：只读条目名（不解压 .so），推断组件/驱动类型 */
+private fun scanArchiveEntries(path: String): ArchiveScan? {
+    return runCatching {
+        java.util.zip.ZipFile(path).use { zip ->
+            val names = zip.entries().asSequence().map { it.name }.toList()
+            if (names.isEmpty()) return@use null
+            val libs = names.filter { it.contains(".so", ignoreCase = true) }
+            val keyFiles = libs.filterNot {
+                it.endsWith("/") || it.contains("meta.json")
+            }.map { it.substringAfterLast('/') }
+                .filter { it.startsWith("lib") || it.endsWith(".so") }
+                .distinct()
+            val kind = when {
+                names.any { it.contains("meta.json", ignoreCase = true) } &&
+                    keyFiles.any { it.contains("vulkan", ignoreCase = true) } -> "驱动包 (Vulkan ICD)"
+                keyFiles.any { it.contains("turnip", ignoreCase = true) } -> "Turnip 驱动 (Mesa Adreno)"
+                keyFiles.any { it.contains("panvk", ignoreCase = true) } -> "PanVK 驱动 (Mesa Mali)"
+                keyFiles.any { it.contains("dxvk", ignoreCase = true) } -> "DXVK 组件 (DX9-11→Vulkan)"
+                keyFiles.any { it.contains("vkd3d", ignoreCase = true) } -> "VKD3D 组件 (DX12→Vulkan)"
+                keyFiles.any { it.contains("box64", ignoreCase = true) } -> "Box64 组件 (x86_64 转译)"
+                keyFiles.any { it.contains("fex", ignoreCase = true) } -> "FEXCore 组件 (x86 模拟)"
+                keyFiles.any { it.contains("glibc", ignoreCase = true) } -> "glibc 运行库组件"
+                keyFiles.any { it.contains("wine", ignoreCase = true) } -> "Wine 兼容层组件"
+                names.any { it.endsWith(".ttf") || it.endsWith(".otf") } -> "字体包 (CJK 等)"
+                else -> "组件/资源压缩包"
+            }
+            ArchiveScan(totalEntries = names.size, keyFiles = keyFiles.take(10), kind = kind)
+        }
+    }.getOrNull()
 }
 
 @Composable
@@ -2427,6 +2491,8 @@ fun DriverHubScreen(
     val currentQualcommSource = qualcommSources.firstOrNull { it.id == qualcommSourceId }
         ?: qualcommSources.firstOrNull()
 
+    var showDriverCompare by remember { mutableStateOf(false) }
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
@@ -2442,6 +2508,13 @@ fun DriverHubScreen(
                 title = appString(R.string.driver_region),
                 icon = Icons.Default.Memory,
                 remote = sourceCatalogRemote
+            )
+        }
+
+        item(key = "driver_compare_entry") {
+            DriverCompareEntryCard(
+                driverCount = turnipSources.size + panvkSources.size + qualcommSources.size,
+                onClick = { showDriverCompare = true }
             )
         }
 
@@ -2561,6 +2634,16 @@ fun DriverHubScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
+    }
+
+    if (showDriverCompare) {
+        DriverCompareDialog(
+            turnipSources = turnipSources,
+            panvkSources = panvkSources,
+            qualcommSources = qualcommSources,
+            adrenoSeries = deviceInfo?.adrenoSeries ?: "default",
+            onDismiss = { showDriverCompare = false }
+        )
     }
 }
 
@@ -5645,6 +5728,283 @@ private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
                     DriverInfoChip(label = appString(R.string.chip_ram), value = deviceInfo.ram)
                     DriverInfoChip(label = appString(R.string.chip_android), value = deviceInfo.androidVersion.takeWhile { it != ' ' })
                 }
+            }
+        }
+    }
+}
+
+/** 驱动对比入口卡：汇总可用驱动来源数，进入双选对比弹窗 */
+@Composable
+private fun DriverCompareEntryCard(driverCount: Int, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.55f)
+        ),
+        onClick = onClick
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 18.dp, vertical = 14.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.Default.CompareArrows, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            Spacer(Modifier.width(12.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    appString(R.string.driver_compare_title),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                )
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    appString(R.string.driver_compare_subtitle, driverCount),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+private data class DriverCompareCandidate(
+    val sourceId: String,
+    val name: String,
+    val type: String,
+    val description: String,
+    val experimental: Boolean,
+    val supportedSeries: String,
+    val targetRuntime: String,
+    val stars: String
+)
+
+/** 驱动对比弹窗：候选双选 → 类型/版本/时间/支持 GPU/平台矩阵对比 */
+@Composable
+private fun DriverCompareDialog(
+    turnipSources: List<TurnipSource>,
+    panvkSources: List<TurnipSource>,
+    qualcommSources: List<QualcommSource>,
+    adrenoSeries: String,
+    onDismiss: () -> Unit
+) {
+    val candidates = remember(turnipSources, panvkSources, qualcommSources) {
+        buildList {
+            turnipSources.forEach { s ->
+                add(
+                    DriverCompareCandidate(
+                        sourceId = s.id, name = s.name, type = "Turnip",
+                        description = s.description, experimental = s.experimental,
+                        supportedSeries = s.supportedSeries.joinToString("、").ifBlank { "Adreno 全系" },
+                        targetRuntime = s.targetEmulator.ifBlank { "通用" }, stars = ""
+                    )
+                )
+            }
+            panvkSources.forEach { s ->
+                add(
+                    DriverCompareCandidate(
+                        sourceId = s.id, name = s.name, type = "PanVK",
+                        description = s.description, experimental = s.experimental,
+                        supportedSeries = s.supportedSeries.joinToString("、").ifBlank { "Mali 全系" },
+                        targetRuntime = s.targetEmulator.ifBlank { "通用 (Mali)" }, stars = ""
+                    )
+                )
+            }
+            qualcommSources.forEach { s ->
+                add(
+                    DriverCompareCandidate(
+                        sourceId = s.id, name = s.name, type = "Qualcomm",
+                        description = s.description, experimental = s.experimental,
+                        supportedSeries = s.filters.joinToString("、").ifBlank { "高通全系" },
+                        targetRuntime = "系统级 / root", stars = if (s.stars > 0) "$s.stars ⭐" else ""
+                    )
+                )
+            }
+        }.sortedBy { it.name }
+    }
+
+    // 各源最新 release 的 tag + 发布时间（fetchXxxReleases 有缓存，打开时拉一次）
+    val latestBySource = remember { mutableStateMapOf<String, Pair<String, String>>() }
+    LaunchedEffect(candidates) {
+        candidates.forEach { c ->
+            val rel = when (c.type) {
+                "Qualcomm" -> qualcommSources.firstOrNull { it.id == c.sourceId }
+                    ?.let { runCatching { fetchQualcommReleases(it) }.getOrNull() }
+                "PanVK" -> panvkSources.firstOrNull { it.id == c.sourceId }
+                    ?.let { runCatching { fetchTurnipReleases(it, "default") }.getOrNull() }
+                else -> turnipSources.firstOrNull { it.id == c.sourceId }
+                    ?.let { runCatching { fetchTurnipReleases(it, adrenoSeries) }.getOrNull() }
+            }
+            val first = rel?.firstOrNull()
+            latestBySource[c.sourceId] = if (first != null) {
+                first.tagName to formatRelativeTime(first.publishedAt)
+            } else {
+                "" to ""
+            }
+        }
+    }
+
+    val selectedIds = remember { mutableStateListOf<String>() }
+    val selected = selectedIds.mapNotNull { id -> candidates.firstOrNull { it.sourceId == id } }
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 660.dp)
+        ) {
+            Column(Modifier.padding(20.dp).verticalScroll(rememberScrollState())) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Default.CompareArrows, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    Spacer(Modifier.width(10.dp))
+                    Text(appString(R.string.driver_compare_title), style = MaterialTheme.typography.titleLarge)
+                }
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    appString(R.string.driver_compare_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(14.dp))
+
+                if (selected.size == 2) {
+                    // ── 对比矩阵 ──
+                    val a = selected[0]
+                    val b = selected[1]
+                    val latestA = latestBySource[a.sourceId] ?: ("" to "")
+                    val latestB = latestBySource[b.sourceId] ?: ("" to "")
+                    CompareRow(appString(R.string.driver_cmp_name), a.name, b.name)
+                    CompareRow(appString(R.string.driver_cmp_type), a.type, b.type)
+                    CompareRow(appString(R.string.driver_cmp_latest), latestA.first.ifBlank { "—" }, latestB.first.ifBlank { "—" })
+                    CompareRow(appString(R.string.driver_cmp_updated), latestA.second.ifBlank { "—" }, latestB.second.ifBlank { "—" })
+                    CompareRow(appString(R.string.driver_cmp_gpu), a.supportedSeries, b.supportedSeries)
+                    CompareRow(appString(R.string.driver_cmp_platform), a.targetRuntime, b.targetRuntime)
+                    CompareRow(
+                        appString(R.string.driver_cmp_flag),
+                        if (a.experimental) appString(R.string.experimental_tag) else appString(R.string.recommended_tag),
+                        if (b.experimental) appString(R.string.experimental_tag) else appString(R.string.recommended_tag)
+                    )
+                    CompareRow(appString(R.string.driver_cmp_desc), a.description, b.description)
+                    Spacer(Modifier.height(10.dp))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                        TextButton(onClick = { selectedIds.clear() }) {
+                            Text(appString(R.string.driver_cmp_reselect))
+                        }
+                        TextButton(onClick = onDismiss) {
+                            Text(appString(R.string.close))
+                        }
+                    }
+                } else {
+                    // ── 候选选择（最多两个）──
+                    candidates.forEach { c ->
+                        val latest = latestBySource[c.sourceId] ?: ("" to "")
+                        val checked = c.sourceId in selectedIds
+                        Card(
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+                            shape = RoundedCornerShape(16.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = if (checked) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
+                                else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
+                            ),
+                            onClick = {
+                                when {
+                                    checked -> selectedIds.remove(c.sourceId)
+                                    selectedIds.size < 2 -> selectedIds.add(c.sourceId)
+                                }
+                            }
+                        ) {
+                            Row(
+                                Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Checkbox(
+                                    checked = checked,
+                                    onCheckedChange = { on ->
+                                        when {
+                                            !on -> selectedIds.remove(c.sourceId)
+                                            selectedIds.size < 2 -> selectedIds.add(c.sourceId)
+                                        }
+                                    }
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Column(Modifier.weight(1f)) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            c.name,
+                                            style = MaterialTheme.typography.titleSmall,
+                                            maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis
+                                        )
+                                        Spacer(Modifier.width(8.dp))
+                                        Surface(
+                                            shape = RoundedCornerShape(6.dp),
+                                            color = MaterialTheme.colorScheme.secondaryContainer
+                                        ) {
+                                            Text(
+                                                c.type,
+                                                style = MaterialTheme.typography.labelSmall,
+                                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                            )
+                                        }
+                                    }
+                                    Spacer(Modifier.height(2.dp))
+                                    Text(
+                                        buildString {
+                                            if (latest.first.isNotBlank()) append("${latest.first} · ")
+                                            if (latest.second.isNotBlank()) append(latest.second)
+                                            if (c.stars.isNotBlank()) append(" · ${c.stars}")
+                                        }.ifBlank { c.targetRuntime },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    Spacer(Modifier.height(6.dp))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                        TextButton(onClick = onDismiss) {
+                            Text(appString(R.string.close))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun CompareRow(label: String, a: String, b: String) {
+    Column(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+        Text(
+            label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Spacer(Modifier.height(3.dp))
+        Row(Modifier.fillMaxWidth()) {
+            Card(
+                modifier = Modifier.weight(1f).padding(end = 4.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+            ) {
+                Text(
+                    a,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(10.dp)
+                )
+            }
+            Card(
+                modifier = Modifier.weight(1f).padding(start = 4.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
+            ) {
+                Text(
+                    b,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(10.dp)
+                )
             }
         }
     }
