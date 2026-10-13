@@ -1,5 +1,6 @@
 package com.emubox.app
 
+import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -53,6 +54,7 @@ object DriverRegistryRepository {
         "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/driver-registry.json"
     private const val REGISTRY_URL_JSDELIVR =
         "https://cdn.jsdelivr.net/gh/mihsian77/EmuHub-CN@main/driver-registry.json"
+    private const val ASSETS_REGISTRY = "driver-registry.json"
 
     /** 成熟度排序权重，越小越优先 */
     private val MATURITY_ORDER = mapOf(
@@ -86,15 +88,30 @@ object DriverRegistryRepository {
         "G925" to ("valhall-v10" to "CSF")
     )
 
+    /** 网络不可用时的全量兜底：读 App 内置 driver-registry.json（39 源），
+     *  避免远程拉取失败后只剩几个硬编码源（用户实测"驱动仓库大量丢失"根因）。 */
+    private var cachedAssets: List<DriverRegistryEntry>? = null
+    fun loadFromAssets(context: Context?): List<DriverRegistryEntry>? {
+        if (context == null) return null
+        cachedAssets?.let { return it }
+        return try {
+            val body = context.assets.open(ASSETS_REGISTRY).bufferedReader().readText()
+            parseRegistry(body)?.also { cachedAssets = it }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
     @Volatile
     private var cachedEntries: List<DriverRegistryEntry>? = null
 
-    /** 加载注册表，优先 GitHub Raw，失败走 jsDelivr，再失败用内置精简表 */
-    suspend fun load(forceRefresh: Boolean = false): List<DriverRegistryEntry> {
+    /** 加载注册表：GitHub Raw → jsDelivr → 内置 assets 全量（39 源） */
+    suspend fun load(forceRefresh: Boolean = false, context: Context? = null): List<DriverRegistryEntry> {
         cachedEntries?.let { if (!forceRefresh) return it }
         return withContext(Dispatchers.IO) {
             val entries = fetchFromUrl(REGISTRY_URL_PRIMARY)
                 ?: fetchFromUrl(REGISTRY_URL_JSDELIVR)
+                ?: loadFromAssets(context)
                 ?: builtinFallback()
             cachedEntries = entries
             entries

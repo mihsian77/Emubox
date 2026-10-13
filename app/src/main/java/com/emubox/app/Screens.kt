@@ -2440,8 +2440,9 @@ fun DriverHubScreen(
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
     driverSourceStars: Map<String, Long> = emptyMap()
 ) {
-    val showQualcomm = qualcommReleases.isNotEmpty() &&
-        (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
+    // 高通提取驱动分区：有数据即展示（不因 8xx 等系列隐藏——高通官方提取
+    // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
+    val showQualcomm = qualcommReleases.isNotEmpty()
 
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
     val discoveredComponentTypes = componentCatalogs.values
@@ -2987,12 +2988,13 @@ private fun DriverRecommendationCard(
 ) {
     var recommendations by remember(deviceInfo) { mutableStateOf<List<DriverMatchResult>?>(null) }
     var loadFailed by remember(deviceInfo) { mutableStateOf(false) }
+    val context = LocalContext.current
 
     LaunchedEffect(deviceInfo) {
         loadFailed = false
         try {
             val result = withContext(Dispatchers.IO) {
-                val entries = DriverRegistryRepository.load()
+                val entries = DriverRegistryRepository.load(context = context)
                 DriverRegistryRepository.match(deviceInfo, entries)
                     .filter { it.recommended || it.score >= 80 }
                     .take(3)
@@ -5674,10 +5676,16 @@ private fun DriverDetectionList(
                                 )
                             }
                         } else {
+                            // 实测不可用：驱动加载失败多为驱动与当前 GPU 不匹配或系统限制
+                            // （SELinux/kgsl），并非包损坏——包信息已展示，可到模拟器内验证。
+                            val adtErr = adtCollect.errorCode ?: "?"
                             Text(
-                                "AdrenoTools 实测失败：${adtCollect.errorCode ?: "?"} ${adtCollect.errorMessage ?: ""}",
+                                if (adtErr == "ADRENOTOOLS_OPEN_FAILED")
+                                    "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
+                                else
+                                    "AdrenoTools 实测失败：$adtErr ${adtCollect.errorMessage ?: ""}",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.error
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     }
@@ -5801,6 +5809,7 @@ private fun DriverDetectionList(
                                     ?: appString(R.string.unknown_package_hint))
                                 "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
                                 "ENUM_DEVICES_MISSING", "DRIVER_CRASHED" -> appString(R.string.detection_error_adrenotools)
+                                "ADRENOTOOLS_OPEN_FAILED" -> "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
                                 "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
                                 else -> {
                                     val raw = result.errorMessage ?: ""
@@ -6540,8 +6549,9 @@ fun DriverScreen(
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
     driverSourceStars: Map<String, Long> = emptyMap()
 ) {
-    val showQualcomm = qualcommReleases.isNotEmpty() &&
-        (deviceInfo?.adrenoSeries == "6xx" || deviceInfo?.adrenoSeries == "7xx")
+    // 高通提取驱动分区：有数据即展示（不因 8xx 等系列隐藏——高通官方提取
+    // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
+    val showQualcomm = qualcommReleases.isNotEmpty()
 
     // 驱动局部搜索：按源名称/简介过滤三个区块
     var driverQuery by remember { mutableStateOf("") }
