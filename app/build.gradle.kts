@@ -35,6 +35,13 @@ android {
         }
     }
 
+    // AdrenoTools 硬性要求：hook .so 必须解压进 nativeLibraryDir 才能被 dlopen。
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

@@ -42,6 +42,36 @@ object NativeVulkanBridge {
     fun benchmarkSystemVulkan(): BenchmarkResult {
         return BenchmarkResult.fromJson(benchmarkVulkan(null))
     }
+
+    // ── AdrenoTools 实测（M4）──────────────────────────────────────────────
+    // 以 Winlator/GameHub/Eden 同款加载路径（linker namespace 绕过 + GPU 映射
+    // 导入）加载自定义 turnip/panvk 驱动，采集实例扩展/设备属性并跑分。
+    // 全部在 fork 子进程中执行，驱动崩溃不会带崩 App。
+    //
+    // @param driverDir    驱动 .so 所在目录（App 私有目录，不能是 sdcard）
+    // @param driverName   驱动 .so 文件名（如 vulkan.turnip.so）
+    // @param tmpDir       可写临时目录（memfd 不可用时的 patched lib 落地）
+    // @param hookLibDir   getApplicationInfo().nativeLibraryDir
+    external fun collectDriverAdrenotools(
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+    ): String
+
+    external fun benchmarkDriverAdrenotools(
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+    ): String
+
+    /** 便捷方法：AdrenoTools 路径实测一个驱动（采集+跑分一起返回）。 */
+    fun testDriverAdrenotools(
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+    ): Pair<VulkanInfoPayload, BenchmarkResult> {
+        val collect = VulkanInfoPayload.fromJson(
+            collectDriverAdrenotools(driverDir, driverName, tmpDir, hookLibDir)
+        )
+        val bench = BenchmarkResult.fromJson(
+            benchmarkDriverAdrenotools(driverDir, driverName, tmpDir, hookLibDir)
+        )
+        return collect to bench
+    }
 }
 
 /** 顶层采集响应。 */
@@ -49,6 +79,9 @@ data class VulkanInfoPayload(
     val success: Boolean,
     val errorCode: String?,
     val errorMessage: String?,
+    val loader: String,
+    val instanceExtCount: Int,
+    val instanceExtensions: List<ExtensionInfo>,
     val deviceCount: Int,
     val devices: List<VulkanDeviceInfo>
 ) {
@@ -63,10 +96,26 @@ data class VulkanInfoPayload(
                         devices.add(VulkanDeviceInfo.fromJson(devicesArray.getJSONObject(i)))
                     }
                 }
+                val instExtArray = obj.optJSONArray("instanceExtensions")
+                val instExts = mutableListOf<ExtensionInfo>()
+                if (instExtArray != null) {
+                    for (i in 0 until instExtArray.length()) {
+                        val ext = instExtArray.getJSONObject(i)
+                        instExts.add(
+                            ExtensionInfo(
+                                name = ext.optString("name", ""),
+                                specVersion = ext.optInt("specVersion", 0)
+                            )
+                        )
+                    }
+                }
                 VulkanInfoPayload(
                     success = obj.optBoolean("success", false),
                     errorCode = obj.optString("errorCode", "").takeIf { it.isNotEmpty() },
                     errorMessage = obj.optString("errorMessage", "").takeIf { it.isNotEmpty() },
+                    loader = obj.optString("loader", ""),
+                    instanceExtCount = obj.optInt("instanceExtCount", 0),
+                    instanceExtensions = instExts,
                     deviceCount = obj.optInt("deviceCount", 0),
                     devices = devices
                 )
@@ -75,6 +124,9 @@ data class VulkanInfoPayload(
                     success = false,
                     errorCode = "JSON_PARSE_ERROR",
                     errorMessage = e.message ?: "unknown",
+                    loader = "",
+                    instanceExtCount = 0,
+                    instanceExtensions = emptyList(),
                     deviceCount = 0,
                     devices = emptyList()
                 )

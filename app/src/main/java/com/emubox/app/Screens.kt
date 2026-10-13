@@ -5367,6 +5367,10 @@ private fun DriverDetectionList(
     // 实测跑分结果（fork 子进程加载驱动，崩溃隔离）
     var benchmarkResults by remember { mutableStateOf<Map<String, BenchmarkResult>>(emptyMap()) }
     var benchmarkingId by remember { mutableStateOf<String?>(null) }
+    // AdrenoTools 实测（M4）：以模拟器同款加载路径（namespace 绕过+GPU 映射导入）
+    // 加载 turnip/panvk，采集实例/设备扩展并跑分——替代裸 dlopen（App 内必然失败）。
+    var adrenotoolsResults by remember { mutableStateOf<Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>>(emptyMap()) }
+    var adrenotoolsTestingId by remember { mutableStateOf<String?>(null) }
 
     val downloadedDrivers = DownloadsManager.completedDownloads.filter { download ->
         val isDriverPackage = download.fileName.endsWith(".zip", ignoreCase = true) ||
@@ -5429,6 +5433,52 @@ private fun DriverDetectionList(
         }.getOrNull()
     }
 
+    // AdrenoTools 实测目录：tmpLibDir（memfd 不可用时 patched lib 落地，App 私有可写）
+    // + hookLibDir（必须 = nativeLibraryDir，hook .so 随 APK 解压于此）。
+    val adrenotoolsDirs = run {
+        val tmp = File(context.filesDir, "adrenotools_tmp").apply { mkdirs() }
+        tmp.absolutePath to context.applicationInfo.nativeLibraryDir
+    }
+
+    // AdrenoTools 实测：采集（实例扩展+设备属性+设备扩展）+ 跑分，一次跑完
+    val testWithAdrenoTools: (String, String) -> Unit = { id, filePath ->
+        adrenotoolsTestingId = id
+        scope.launch(Dispatchers.IO) {
+            try {
+                val soFile = extractSoFor(id, filePath)
+                if (soFile == null) {
+                    val fail = VulkanInfoPayload(
+                        success = false, errorCode = "EXTRACT_FAILED",
+                        errorMessage = "驱动包解压失败，未找到 .so", loader = "",
+                        instanceExtCount = 0, instanceExtensions = emptyList(),
+                        deviceCount = 0, devices = emptyList()
+                    )
+                    detectionResults = detectionResults + (id to fail)
+                } else {
+                    val (tmpDir, hookLibDir) = adrenotoolsDirs
+                    val dir = soFile.parent ?: soFile.absolutePath
+                    val payload = VulkanInfoPayload.fromJson(
+                        NativeVulkanBridge.collectDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
+                    )
+                    val br = BenchmarkResult.fromJson(
+                        NativeVulkanBridge.benchmarkDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
+                    )
+                    adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
+                    detectionResults = detectionResults + (id to payload)
+                }
+            } catch (e: Exception) {
+                detectionResults = detectionResults + (id to VulkanInfoPayload(
+                    success = false, errorCode = "ADT_EXCEPTION",
+                    errorMessage = e.message ?: "unknown", loader = "",
+                    instanceExtCount = 0, instanceExtensions = emptyList(),
+                    deviceCount = 0, devices = emptyList()
+                ))
+            } finally {
+                adrenotoolsTestingId = null
+            }
+        }
+    }
+
     // 静态检查 .so 是否导出 vkGetInstanceProcAddr（懒触发，IO 线程，缓存结果）
     val checkExportable: (String, String) -> Unit = { id, filePath ->
         scope.launch(Dispatchers.IO) {
@@ -5454,7 +5504,10 @@ private fun DriverDetectionList(
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                     ))
                 } else {
-                    val raw = NativeVulkanBridge.benchmarkVulkan(soFile.absolutePath)
+                    // AdrenoTools 加载路径（Winlator/GameHub/Eden 同款），替代裸 dlopen
+                    val (tmpDir, hookLibDir) = adrenotoolsDirs
+                    val dir = soFile.parent ?: soFile.absolutePath
+                    val raw = NativeVulkanBridge.benchmarkDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(raw))
                 }
             } catch (e: Exception) {
@@ -5500,58 +5553,34 @@ private fun DriverDetectionList(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        if (isDetecting) {
+                        if (isDetecting || adrenotoolsTestingId == download.id) {
                             CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
                         } else {
                             Button(
                                 onClick = {
-                                    detectingId = download.id
-                                    scope.launch(Dispatchers.IO) {
-                                        try {
-                                            // 只读 meta.json 判定打包格式，不再解压 .so / dlopen：
-                                            // zip 分发的 Turnip/PanVK 均为 adrenotools 模拟器专用包，
-                                            // App 进程加载必然失败，无意义的检测只会误导用户。
-                                            val parsed = meta
-                                                ?: runCatching { DriverMetaParser.parse(context, download.filePath) }.getOrNull()
-                                            driverMetas = driverMetas + (download.id to parsed)
-                                            val type = parsed?.driverType()
-                                                ?: DriverMetaParser.DriverType.UNKNOWN
-                                            val payload = when (type) {
-                                                DriverMetaParser.DriverType.VENDOR_SYSTEM -> VulkanInfoPayload(
-                                                    success = false,
-                                                    errorCode = "VENDOR_SYSTEM_DRIVER",
-                                                    errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
-                                                    deviceCount = 0,
-                                                    devices = emptyList()
-                                                )
-                                                DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> VulkanInfoPayload(
-                                                    success = false,
-                                                    errorCode = "ADRENOTOOLS_PACKAGE",
-                                                    errorMessage = "adrenotools",
-                                                    deviceCount = 0,
-                                                    devices = emptyList()
-                                                )
-                                                else -> VulkanInfoPayload(
-                                                    success = false,
-                                                    errorCode = "UNKNOWN_PACKAGE",
-                                                    errorMessage = "无法识别的驱动包格式，未发现有效的 meta.json",
-                                                    deviceCount = 0,
-                                                    devices = emptyList()
-                                                )
-                                            }
-                                            detectionResults = detectionResults + (download.id to payload)
-                                        } catch (e: Exception) {
-                                            val errPayload = VulkanInfoPayload(
-                                                success = false,
-                                                errorCode = "DETECT_EXCEPTION",
-                                                errorMessage = e.message ?: "unknown",
-                                                deviceCount = 0,
-                                                devices = emptyList()
-                                            )
-                                            detectionResults = detectionResults + (download.id to errPayload)
-                                        } finally {
-                                            detectingId = null
-                                        }
+                                    // 只读 meta.json 判定打包格式：
+                                    // - VENDOR_SYSTEM：厂商系统提取驱动（需 root/系统级安装），
+                                    //   AdrenoTools 也无法加载，保留说明提示。
+                                    // - ADRENOTOOLS_PACKAGE / 其他：AdrenoTools 实测——
+                                    //   以模拟器同款路径在 App 内加载 turnip/panvk 驱动，
+                                    //   采集实例/设备扩展 + 跑分（崩溃隔离在 fork 子进程）。
+                                    val parsed = meta
+                                        ?: runCatching { DriverMetaParser.parse(context, download.filePath) }.getOrNull()
+                                    driverMetas = driverMetas + (download.id to parsed)
+                                    val type = parsed?.driverType()
+                                        ?: DriverMetaParser.DriverType.UNKNOWN
+                                    if (type == DriverMetaParser.DriverType.VENDOR_SYSTEM) {
+                                        val payload = VulkanInfoPayload(
+                                            success = false,
+                                            errorCode = "VENDOR_SYSTEM_DRIVER",
+                                            errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
+                                            loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
+                                            deviceCount = 0,
+                                            devices = emptyList()
+                                        )
+                                        detectionResults = detectionResults + (download.id to payload)
+                                    } else {
+                                        testWithAdrenoTools(download.id, download.filePath)
                                     }
                                 },
                                 contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
@@ -5583,6 +5612,72 @@ private fun DriverDetectionList(
                             InfoRow(appString(R.string.meta_author), meta.author)
                         if (meta.minApi.isNotBlank())
                             InfoRow(appString(R.string.meta_min_api), meta.minApi)
+                    }
+
+                    // ── AdrenoTools 实测结果（M4）：实例/设备扩展、设备属性、兼容、跑分 ──
+                    // 加载路径与 Winlator/GameHub/Eden 一致，是当前最接近模拟器内真实
+                    // 行为的 App 内驱动验证方式。
+                    val adtTest = adrenotoolsResults[download.id]
+                    if (adtTest != null) {
+                        Spacer(Modifier.height(10.dp))
+                        Divider()
+                        Spacer(Modifier.height(6.dp))
+                        val (adtCollect, adtBench) = adtTest
+                        if (adtCollect.success) {
+                            Text(
+                                "AdrenoTools 实测",
+                                style = MaterialTheme.typography.bodySmall,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(Modifier.height(4.dp))
+                            InfoRow("实例扩展", "${adtCollect.instanceExtCount} 个")
+                            val dev = adtCollect.devices.firstOrNull()
+                            if (dev != null) {
+                                InfoRow("设备", dev.deviceName)
+                                InfoRow("API 版本", dev.apiVersion)
+                                InfoRow("驱动版本", dev.driverVersion)
+                                InfoRow("设备扩展", "${dev.extensions.size} 个")
+                                // 兼容徽章：驱动面向 GPU 厂商 vs 当前设备 GPU 厂商
+                                val sysVendor = systemDevice?.vendorId
+                                val compat = when (dev.vendorId) {
+                                    sysVendor -> "与当前设备 GPU 同厂商（预计可加载）"
+                                    else -> "驱动面向 ${vendorName(dev.vendorId)}，本机为 ${vendorName(sysVendor)}，加载结果以实测为准"
+                                }
+                                InfoRow("GPU 兼容", compat)
+                            }
+                            if (adtBench.success) {
+                                Spacer(Modifier.height(6.dp))
+                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                    Text(
+                                        "综合 ${adtBench.totalScore}",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                                    )
+                                    Text(
+                                        "带宽 ${"%.1f".format(adtBench.fillBandwidthGBs)} GB/s",
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                    Text(
+                                        "拷贝 ${"%.1f".format(adtBench.copyBandwidthGBs)} GB/s",
+                                        style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
+                            } else {
+                                Text(
+                                    "跑分失败：${adtBench.errorCode ?: "?"} ${adtBench.errorMessage ?: ""}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.error
+                                )
+                            }
+                        } else {
+                            Text(
+                                "AdrenoTools 实测失败：${adtCollect.errorCode ?: "?"} ${adtCollect.errorMessage ?: ""}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
                     }
 
                     // ── 实测：App 内加载驱动（fork 子进程隔离，崩溃只死子进程）──
@@ -5778,6 +5873,20 @@ private fun InfoRow(label: String, value: String) {
             style = MaterialTheme.typography.bodySmall,
             fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
         )
+    }
+}
+
+/** Vulkan 厂商 ID → 名称（用于驱动与设备兼容性对比）。 */
+private fun vendorName(vendorId: Int?): String {
+    return when (vendorId) {
+        0x5143 -> "Qualcomm Adreno"
+        0x13B5 -> "ARM Mali"
+        0x1002 -> "AMD"
+        0x10DE -> "NVIDIA"
+        0x8086 -> "Intel"
+        0x106B -> "Apple"
+        0x1AE0 -> "Google"
+        else -> "未知 (0x${vendorId?.toString(16) ?: "?"})"
     }
 }
 

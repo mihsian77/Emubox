@@ -18,6 +18,9 @@
 #include <cmath>
 #include <thread>
 #include <atomic>
+// AdrenoTools（BSD-2-Clause © 2021 Billy Laws）：Winlator/GameHub/Eden 同款
+// 驱动加载路径（linker namespace 绕过 + GPU 映射导入），见 adrenotools/driver.h。
+#include <adrenotools/driver.h>
 
 #define LOG_TAG "EmuBoxVulkan"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
@@ -1489,5 +1492,235 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* t
         env->ReleaseStringUTFChars(driverPath, path);
     }
 
+    return env->NewStringUTF(json.c_str());
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// AdrenoTools 实测：以 Winlator/GameHub/Eden 同款加载路径（linker namespace
+// 绕过 + GPU 映射导入 ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT，turnip GSL 分配
+// 必需）加载自定义 turnip/panvk 驱动，枚举实例/设备扩展、设备属性并跑分。
+// 裸 dlopen 在普通 App 进程会因符号解析/namespace 限制失败，本路径与模拟器
+// 环境一致，兼容面最广。驱动崩溃仍只死 fork 子进程。
+// 修改原因：用户要求集成 adrenotools 实测驱动性能/设备兼容/支持扩展数。
+// 影响范围：新增两个 JNI 入口（collectDriverAdrenotools / benchmarkDriverAdrenotools），
+//           不改动现有 dlopen 采集与系统跑分路径。
+// 回滚方法：删除本段代码与 Kotlin 侧两个 external 声明即可。
+// ═══════════════════════════════════════════════════════════════════════════
+
+// 加载驱动并解析 ICD 入口；成功返回空串并写出句柄，失败返回错误 JSON。
+static std::string loadDriverAdrenoTools(const char* driverDir, const char* driverName,
+                                         const char* tmpDir, const char* hookLibDir,
+                                         void** libHandleOut, GetInstanceProcAddrFn* getInstOut) {
+    void* mappingHandle = nullptr;
+    void* lib = adrenotools_open_libvulkan(
+            RTLD_NOW,
+            ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
+            tmpDir, hookLibDir, driverDir, driverName, nullptr, &mappingHandle);
+    if (!lib) {
+        std::string err = dlerror() ? dlerror() : "unknown";
+        return "{\"success\":false,\"errorCode\":\"ADRENOTOOLS_OPEN_FAILED\",\"errorMessage\":\""
+               + jsonEscape(err) + "\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    // ICD 规范入口：mesa turnip/panvk 导出 vk_icdGetInstanceProcAddr
+    auto getInst = reinterpret_cast<GetInstanceProcAddrFn>(
+            dlsym(lib, "vk_icdGetInstanceProcAddr"));
+    if (!getInst) {
+        getInst = reinterpret_cast<GetInstanceProcAddrFn>(
+                dlsym(lib, "vkGetInstanceProcAddr"));
+    }
+    if (!getInst) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"NO_VK_ENTRY\",\"errorMessage\":\""
+               "driver lacks vk_icdGetInstanceProcAddr/vkGetInstanceProcAddr\","
+               "\"deviceCount\":0,\"devices\":[]}";
+    }
+    *libHandleOut = lib;
+    *getInstOut = getInst;
+    return "";
+}
+
+// AdrenoTools 路径采集：实例扩展 + 物理设备属性/特性/设备扩展/队列/内存
+static std::string collectDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
+                                                const char* tmpDir, const char* hookLibDir) {
+    void* lib = nullptr;
+    GetInstanceProcAddrFn getInst = nullptr;
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, &lib, &getInst);
+    if (!err.empty()) return err;
+
+    VulkanDispatch vk;
+    vk.libHandle = lib;
+    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"));
+    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
+               "driver lacks vkCreateInstance/vkDestroyInstance\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\""
+               "driver vkCreateInstance failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+            getInst(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceFeatures = reinterpret_cast<PFN_GetPhysicalDeviceFeatures>(
+            getInst(instance, "vkGetPhysicalDeviceFeatures"));
+    vk.vkEnumerateDeviceExtensionProperties = reinterpret_cast<PFN_EnumerateDeviceExtensionProperties>(
+            getInst(instance, "vkEnumerateDeviceExtensionProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+            getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+            getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
+            getInst(instance, "vkGetPhysicalDeviceProperties2"));
+
+    // 实例扩展（ICD/loader 层能力，vkEnumerateInstanceExtensionProperties 无需实例）
+    int instExtCount = 0;
+    std::string instExts = "[]";
+    auto enumInstExt = reinterpret_cast<PFN_vkEnumerateInstanceExtensionProperties>(
+            getInst(VK_NULL_HANDLE, "vkEnumerateInstanceExtensionProperties"));
+    if (enumInstExt) {
+        uint32_t n = 0;
+        if (enumInstExt(nullptr, &n, nullptr) == VK_SUCCESS && n > 0) {
+            std::vector<VkExtensionProperties> exts(n);
+            if (enumInstExt(nullptr, &n, exts.data()) == VK_SUCCESS) {
+                instExtCount = static_cast<int>(n);
+                std::ostringstream s;
+                s << "[";
+                for (uint32_t i = 0; i < n; i++) {
+                    if (i) s << ",";
+                    s << "{\"name\":\"" << jsonEscape(exts[i].extensionName)
+                      << "\",\"specVersion\":" << exts[i].specVersion << "}";
+                }
+                s << "]";
+                instExts = s.str();
+            }
+        }
+    }
+
+    std::string dev = collectDevices(vk, instance);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(lib);
+
+    // 把 loader/实例扩展字段插入设备 JSON（collectDevices 固定输出结构）
+    std::string insert = "\"loader\":\"adrenotools\",\"instanceExtCount\":"
+                         + std::to_string(instExtCount) + ",\"instanceExtensions\":" + instExts + ",";
+    auto pos = dev.find("\"deviceCount\"");
+    if (pos == std::string::npos) return dev;
+    dev.insert(pos, insert);
+    return dev;
+}
+
+// AdrenoTools 路径跑分：fill/copy 带宽 + 计算吞吐（复用 runBenchmark）
+static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
+                                                  const char* tmpDir, const char* hookLibDir) {
+    void* lib = nullptr;
+    GetInstanceProcAddrFn getInst = nullptr;
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, &lib, &getInst);
+    if (!err.empty()) return err;
+
+    VulkanDispatch vk;
+    vk.libHandle = lib;
+    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"));
+    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
+               "driver lacks vkCreateInstance/vkDestroyInstance\",\"fillBandwidthGBs\":0,"
+               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\""
+               "driver vkCreateInstance failed\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,"
+               "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+            getInst(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+            getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+            getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+
+    uint32_t deviceCount = 0;
+    if (!vk.vkEnumeratePhysicalDevices || vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr) != VK_SUCCESS
+            || deviceCount == 0) {
+        vk.vkDestroyInstance(instance, nullptr);
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\""
+               "driver reports no Vulkan physical device\",\"fillBandwidthGBs\":0,"
+               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+    std::string result = runBenchmark(vk, instance, devices[0], getInst, true);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(lib);
+    return result;
+}
+
+// ── JNI 入口：AdrenoTools 实测采集 ────────────────────────────────────────
+// Kotlin: com.emubox.app.NativeVulkanBridge.collectDriverAdrenotools(...)
+// 参数均为 JNI 字符串：driverDir/driverName/tmpDir/hookLibDir
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_emubox_app_NativeVulkanBridge_collectDriverAdrenotools(
+        JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
+        jstring tmpDir, jstring hookLibDir) {
+    const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
+    const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
+    const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
+    const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    if (!dd || !dn || !td || !hl) {
+        if (dd) env->ReleaseStringUTFChars(driverDir, dd);
+        if (dn) env->ReleaseStringUTFChars(driverName, dn);
+        if (td) env->ReleaseStringUTFChars(tmpDir, td);
+        if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"deviceCount\":0,\"devices\":[]}");
+    }
+    std::string json = runBenchmarkIsolated([&]() {
+        return collectDriverAdrenotoolsJson(dd, dn, td, hl);
+    });
+    env->ReleaseStringUTFChars(driverDir, dd);
+    env->ReleaseStringUTFChars(driverName, dn);
+    env->ReleaseStringUTFChars(tmpDir, td);
+    env->ReleaseStringUTFChars(hookLibDir, hl);
+    return env->NewStringUTF(json.c_str());
+}
+
+// ── JNI 入口：AdrenoTools 实测跑分 ─────────────────────────────────────────
+// Kotlin: com.emubox.app.NativeVulkanBridge.benchmarkDriverAdrenotools(...)
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotools(
+        JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
+        jstring tmpDir, jstring hookLibDir) {
+    const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
+    const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
+    const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
+    const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    if (!dd || !dn || !td || !hl) {
+        if (dd) env->ReleaseStringUTFChars(driverDir, dd);
+        if (dn) env->ReleaseStringUTFChars(driverName, dn);
+        if (td) env->ReleaseStringUTFChars(tmpDir, td);
+        if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}");
+    }
+    std::string json = runBenchmarkIsolated([&]() {
+        return benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
+    });
+    env->ReleaseStringUTFChars(driverDir, dd);
+    env->ReleaseStringUTFChars(driverName, dn);
+    env->ReleaseStringUTFChars(tmpDir, td);
+    env->ReleaseStringUTFChars(hookLibDir, hl);
     return env->NewStringUTF(json.c_str());
 }
