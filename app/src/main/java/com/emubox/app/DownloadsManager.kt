@@ -357,15 +357,21 @@ object DownloadsManager {
                     android.provider.MediaStore.MediaColumns.SIZE,
                     android.provider.MediaStore.MediaColumns.DATE_MODIFIED
                 )
-                // 同时扫描 EmuBox 与旧版 EmuHub-CN 下载目录：改名前的已下载文件
-                // 也要读回下载库，否则升级后旧文件"消失"且会重复下载生成 (1) 后缀
-                val selection = "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? OR " +
-                    "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
+                // 扫描 EmuBox 与旧版 EmuHub-CN 下载目录，同时覆盖 Download 根目录
+                // 下用户手动放入的驱动/组件 zip、apk：覆盖安装新版后 MediaStore
+                // 索引/子目录位置变化也会漏扫，放宽范围保证旧文件在下载库可见。
+                val selection =
+                    "(${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? OR " +
+                    "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?) OR " +
+                    "(${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? AND (" +
+                    "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} LIKE '%.zip' OR " +
+                    "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} LIKE '%.apk' OR " +
+                    "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} LIKE '%.7z'))"
                 resolver.query(
                     android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
                     projection,
                     selection,
-                    arrayOf("%EmuBox%", "%EmuHub-CN%"),
+                    arrayOf("%EmuBox%", "%EmuHub-CN%", "Download/%"),
                     null
                 )?.use { cursor ->
                     val nameIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DISPLAY_NAME)
@@ -378,9 +384,18 @@ object DownloadsManager {
                         val sub = rel
                             .removePrefix("Download/EmuBox/")
                             .removePrefix("Download/EmuHub-CN/")
+                            .removePrefix("Download/")
                             .trim('/')
-                        val rootDir = if (rel.contains("EmuHub-CN", ignoreCase = true)) "EmuHub-CN" else "EmuBox"
-                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$rootDir/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        val rootDir = when {
+                            rel.contains("EmuHub-CN", ignoreCase = true) -> "EmuHub-CN"
+                            rel.contains("EmuBox", ignoreCase = true) -> "EmuBox"
+                            else -> ""
+                        }
+                        val path = if (rootDir.isEmpty()) {
+                            "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        } else {
+                            "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$rootDir/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        }
                         if (path in knownPaths) continue
                         existing += CompletedDownload(
                             id = "disk-${path.hashCode()}",
@@ -388,7 +403,7 @@ object DownloadsManager {
                             filePath = path,
                             sizeBytes = cursor.getLong(sizeIdx).coerceAtLeast(0L),
                             timestamp = cursor.getLong(dateIdx) * 1000L,
-                            subPath = sub
+                            subPath = if (rootDir.isEmpty()) sub else sub
                         )
                     }
                 }
