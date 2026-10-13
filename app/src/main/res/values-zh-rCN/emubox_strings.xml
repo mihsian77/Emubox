@@ -162,10 +162,22 @@
     <string name="emulator_sort_popular">热门下载</string>
     <string name="emulator_sort_stars">最多 Star</string>
     <string name="emulator_sort_recent">最近更新</string>
+    <string name="emulator_sort_forks">最多 Fork</string>
     <string name="emulator_downloads">次下载</string>
     <string name="emulator_changelog">更新日志</string>
     <string name="emulator_release_url">打开 GitHub Release</string>
     <string name="emulator_community_rank">社区排行数据（每日自动更新）</string>
+    <string name="emulator_insights_title">社区数据总览</string>
+    <string name="emulator_insights_projects">收录项目</string>
+    <string name="emulator_insights_downloads">累计下载</string>
+    <string name="emulator_insights_stars">累计 Star</string>
+    <string name="emulator_insights_trend">近 14 天新增下载 %1$s（%2$s → %3$s）</string>
+    <string name="emulator_news_title">模拟器更新动态</string>
+    <string name="emulator_news_no_body">该版本无更新日志。</string>
+    <string name="emulator_trending_title">趋势榜（14 天下载增长）</string>
+    <string name="emulator_trending_period">%1$s → %2$s</string>
+    <string name="emulator_cat_share_title">分类下载占比</string>
+    <string name="emulator_recipes_title">硬件配置食谱</string>
 
     <string name="emulator_badge_official">官方</string>
     <string name="emulator_all_versions">全部版本与文件（%d）</string>

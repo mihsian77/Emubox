@@ -6883,6 +6883,7 @@ private fun emulatorCategoryLabel(category: String): String = when (category) {
 fun EmulatorScreen(
     modifier: Modifier = Modifier,
     entries: List<EmulatorEntry>,
+    insights: EmulatorInsights = EmulatorInsights(),
     onDownload: (EmulatorEntry) -> Unit
 ) {
     val context = LocalContext.current
@@ -6922,10 +6923,19 @@ fun EmulatorScreen(
         when (sortMode) {
             "stars" -> searched.sortedByDescending { it.stars }
             "recent" -> searched.sortedByDescending { it.pushedAt }
+            "forks" -> searched.sortedByDescending { it.forks }
             else -> searched.sortedByDescending { it.downloads + it.stars * 10L }
         }
     }
     val grouped = remember(filtered) { filtered.groupBy { it.category } }
+
+    // 更新动态：全部条目最新版本按时间倒序
+    val newsList = remember(entries) {
+        entries
+            .filter { it.latestDate.isNotBlank() && it.latestTag.isNotBlank() }
+            .sortedByDescending { it.latestDate }
+            .take(10)
+    }
 
     val flatItems = buildList {
         categoryOrder.forEach { cat ->
@@ -6999,6 +7009,38 @@ fun EmulatorScreen(
                 modifier = Modifier.padding(horizontal = 4.dp)
             )
         }
+        if (insights.totalProjects > 0) {
+            item(key = "emulator_insights", span = { GridItemSpan(maxLineSpan) }) {
+                EmulatorInsightsCard(insights = insights)
+            }
+            val news = newsList
+            if (news.isNotEmpty()) {
+                item(key = "emulator_news", span = { GridItemSpan(maxLineSpan) }) {
+                    EmulatorNewsCard(news = news, onOpen = { detailEntry = it })
+                }
+            }
+            if (insights.trending14.isNotEmpty()) {
+                item(key = "emulator_trending", span = { GridItemSpan(maxLineSpan) }) {
+                    EmulatorTrendingCard(
+                        trending = insights.trending14,
+                        baseDate = insights.trendBaseDate,
+                        latestDate = insights.trendLatestDate,
+                        entries = entries,
+                        onOpen = { detailEntry = it }
+                    )
+                }
+            }
+            if (insights.categoryDownloads.size > 1) {
+                item(key = "emulator_cat_share", span = { GridItemSpan(maxLineSpan) }) {
+                    EmulatorCategoryShareCard(categories = insights.categoryDownloads)
+                }
+            }
+            if (insights.recipes.isNotEmpty()) {
+                item(key = "emulator_recipes", span = { GridItemSpan(maxLineSpan) }) {
+                    EmulatorRecipesCard(recipes = insights.recipes)
+                }
+            }
+        }
         item(key = "emulator_filter", span = { GridItemSpan(maxLineSpan) }) {
             Column {
                 Row(
@@ -7032,18 +7074,20 @@ fun EmulatorScreen(
                         when (sortMode) {
                             "stars" -> appString(R.string.emulator_sort_stars)
                             "recent" -> appString(R.string.emulator_sort_recent)
+                            "forks" -> appString(R.string.emulator_sort_forks)
                             else -> appString(R.string.emulator_sort_popular)
                         },
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        listOf("popular", "stars", "recent").forEach { s ->
+                        listOf("popular", "stars", "forks", "recent").forEach { s ->
                             TextButton(onClick = { sortMode = s }) {
                                 Text(
                                     when (s) {
                                         "stars" -> "★"
                                         "recent" -> "🕒"
+                                        "forks" -> "⑂"
                                         else -> "🔥"
                                     },
                                     style = MaterialTheme.typography.labelLarge
@@ -7414,6 +7458,287 @@ private fun EmulatorSectionHeader(
 }
 
 /** 模拟器双列紧凑卡：名称/官方徽章/最新版本/APK 文件名/统计 + 下载按钮，点击进详情 */
+@Composable
+private fun EmulatorInsightsCard(insights: EmulatorInsights) {
+    val fmt = { v: Long ->
+        when {
+            v >= 1_000_000_000 -> String.format("%.1f亿", v / 1_000_000_000.0)
+            v >= 10_000_000 -> String.format("%.0f万", v / 1_000_000.0)
+            v >= 1_000_000 -> String.format("%.1f万", v / 1_000_000.0)
+            v >= 1000 -> String.format("%.1fk", v / 1000.0)
+            else -> "$v"
+        }
+    }
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.BarChart, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.emulator_insights_title), style = MaterialTheme.typography.titleSmall)
+            }
+            Spacer(Modifier.height(10.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf(
+                    Triple(appString(R.string.emulator_insights_projects), fmt(insights.totalProjects.toLong()), null),
+                    Triple(appString(R.string.emulator_insights_downloads), fmt(insights.totalDownloads), null),
+                    Triple(appString(R.string.emulator_insights_stars), fmt(insights.totalStars), null)
+                ).forEach { (label, value, _) ->
+                    Card(
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
+                        )
+                    ) {
+                        Column(Modifier.padding(vertical = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(value, style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.primary)
+                            Spacer(Modifier.height(2.dp))
+                            Text(label, style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        }
+                    }
+                }
+            }
+            val delta = insights.trending14.sumOf { it.delta }
+            Spacer(Modifier.height(8.dp))
+            Text(
+                appString(R.string.emulator_insights_trend, fmt(delta), insights.trendBaseDate, insights.trendLatestDate),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun EmulatorNewsCard(
+    news: List<EmulatorEntry>,
+    onOpen: (EmulatorEntry) -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded }) {
+                Icon(Icons.Default.Notifications, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.emulator_news_title), style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                )
+            }
+            if (expanded) {
+                Spacer(Modifier.height(8.dp))
+                news.forEach { e ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth().clickable { onOpen(e) }.padding(vertical = 6.dp),
+                        verticalAlignment = Alignment.Top
+                    ) {
+                        Column(Modifier.weight(1f)) {
+                            Text("${e.name} · ${e.latestTag}", style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1, overflow = TextOverflow.Ellipsis)
+                            Spacer(Modifier.height(2.dp))
+                            Text(
+                                e.latestBody.trim().lines().firstOrNull()?.take(90) ?: appString(R.string.emulator_news_no_body),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 2, overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            formatRelativeTime(e.latestDate),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    if (e != news.last()) HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EmulatorTrendingCard(
+    trending: List<TrendingRepo>,
+    baseDate: String,
+    latestDate: String,
+    entries: List<EmulatorEntry>,
+    onOpen: (EmulatorEntry) -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded }) {
+                Icon(Icons.Default.TrendingUp, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.emulator_trending_title), style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                )
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(
+                appString(R.string.emulator_trending_period, baseDate, latestDate),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            if (expanded) {
+                Spacer(Modifier.height(6.dp))
+                trending.take(8).forEachIndexed { idx, t ->
+                    val entry = entries.firstOrNull { it.repo.equals(t.repo, ignoreCase = true) || it.githubUrl.contains(t.repo, ignoreCase = true) }
+                    val name = entry?.name ?: t.repo.substringAfter('/')
+                    Row(
+                        modifier = Modifier.fillMaxWidth().clickable(enabled = entry != null) { entry?.let(onOpen) }.padding(vertical = 5.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            "${idx + 1}",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.width(22.dp)
+                        )
+                        Text(name, style = MaterialTheme.typography.labelMedium,
+                            maxLines = 1, overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f))
+                        Text(
+                            "+${formatStars(t.delta)}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EmulatorCategoryShareCard(categories: List<CategoryDownloads>) {
+    var expanded by remember { mutableStateOf(false) }
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded }) {
+                Icon(Icons.Default.PieChart, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.emulator_cat_share_title), style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                )
+            }
+            if (expanded) {
+                Spacer(Modifier.height(10.dp))
+                val total = categories.maxOf { it.downloads }.toDouble()
+                categories.take(10).forEach { c ->
+                    Column(Modifier.padding(vertical = 4.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(c.label, style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1, overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.weight(1f))
+                            Text(formatStars(c.downloads), style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Spacer(Modifier.height(3.dp))
+                        val frac = if (total > 0) (c.downloads / total).coerceIn(0.02, 1.0) else 0.02
+                        Box(
+                            modifier = Modifier.fillMaxWidth().height(6.dp)
+                                .clip(RoundedCornerShape(3.dp))
+                                .background(MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxWidth(frac.toFloat()).fillMaxHeight()
+                                    .clip(RoundedCornerShape(3.dp))
+                                    .background(MaterialTheme.colorScheme.primary)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EmulatorRecipesCard(recipes: List<EmulatorRecipe>) {
+    var expanded by remember { mutableStateOf(false) }
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = !expanded }) {
+                Icon(Icons.Default.MenuBook, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.emulator_recipes_title), style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                Icon(
+                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                )
+            }
+            if (expanded) {
+                Spacer(Modifier.height(8.dp))
+                recipes.forEach { r ->
+                    Card(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
+                        )
+                    ) {
+                        Column(Modifier.padding(12.dp)) {
+                            Text(r.title, style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.primary)
+                            if (r.summary.isNotBlank()) {
+                                Spacer(Modifier.height(3.dp))
+                                Text(r.summary, style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                            if (r.settings.isNotEmpty()) {
+                                Spacer(Modifier.height(6.dp))
+                                r.settings.forEach { (k, v) ->
+                                    Row(Modifier.padding(vertical = 2.dp)) {
+                                        Text("· $k", style = MaterialTheme.typography.bodySmall,
+                                            modifier = Modifier.width(110.dp), maxLines = 2, overflow = TextOverflow.Ellipsis)
+                                        Text(v, style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            modifier = Modifier.weight(1f))
+                                    }
+                                }
+                            }
+                            if (r.checks.isNotEmpty()) {
+                                Spacer(Modifier.height(4.dp))
+                                r.checks.forEach { c ->
+                                    Text("✓ $c", style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @Composable
 private fun EmulatorCard(
     entry: EmulatorEntry,

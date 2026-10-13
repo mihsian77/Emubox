@@ -162,10 +162,22 @@
     <string name="emulator_sort_popular">Popular</string>
     <string name="emulator_sort_stars">Most starred</string>
     <string name="emulator_sort_recent">Recently updated</string>
+    <string name="emulator_sort_forks">Most forked</string>
     <string name="emulator_downloads">downloads</string>
     <string name="emulator_changelog">Changelog</string>
     <string name="emulator_release_url">Open GitHub Release</string>
     <string name="emulator_community_rank">Community rankings data (auto-updated)</string>
+    <string name="emulator_insights_title">Community overview</string>
+    <string name="emulator_insights_projects">Projects</string>
+    <string name="emulator_insights_downloads">Total downloads</string>
+    <string name="emulator_insights_stars">Total stars</string>
+    <string name="emulator_insights_trend">+%1$s downloads in 14 days (%2$s → %3$s)</string>
+    <string name="emulator_news_title">Latest updates</string>
+    <string name="emulator_news_no_body">No changelog for this release.</string>
+    <string name="emulator_trending_title">Trending (14-day growth)</string>
+    <string name="emulator_trending_period">%1$s → %2$s</string>
+    <string name="emulator_cat_share_title">Downloads by category</string>
+    <string name="emulator_recipes_title">Hardware recipes</string>
 
     <string name="emulator_badge_official">官方</string>
     <string name="emulator_all_versions">全部版本与文件（%d）</string>
