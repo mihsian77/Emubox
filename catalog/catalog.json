@@ -25,7 +25,7 @@
         ]
       },
       "updatedAt": 1791229788000,
-      "stars": 1004
+      "stars": 1007
     },
     {
       "id": "whitebelyash",
@@ -48,7 +48,7 @@
         ]
       },
       "updatedAt": 1789825063000,
-      "stars": 464
+      "stars": 466
     },
     {
       "id": "k11mch1",
@@ -66,7 +66,7 @@
         ]
       },
       "updatedAt": 1771944051000,
-      "stars": 5131
+      "stars": 5132
     },
     {
       "id": "mrpurple",
@@ -87,7 +87,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 832
+      "stars": 833
     },
     {
       "id": "banner",
@@ -122,7 +122,7 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1791834238000,
+      "updatedAt": 1791856064000,
       "stars": 180
     },
     {
@@ -233,7 +233,7 @@
         ]
       },
       "updatedAt": 1791605440000,
-      "stars": 36
+      "stars": 37
     }
   ],
   "qualcommSources": [
@@ -246,7 +246,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1004,
+      "stars": 1007,
       "updatedAt": 1791229788000
     },
     {
@@ -259,7 +259,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5131,
+      "stars": 5132,
       "updatedAt": 1771944051000
     },
     {
@@ -298,7 +298,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
       "description": "Winlator 夜间构建组件清单",
       "experimental": true,
-      "updatedAt": 1791706784000
+      "updatedAt": 1791862431000
     },
     {
       "id": "ref4ik",
@@ -315,7 +315,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
       "description": "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
       "experimental": true,
-      "updatedAt": 1791496739000
+      "updatedAt": 1791848348000
     }
   ]
 }

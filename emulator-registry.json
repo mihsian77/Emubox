@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-10-12T22:03:51Z",
+  "updated_at": "2026-10-13T08:34:56Z",
   "emulators": [
     {
       "id": "termux",
@@ -12,7 +12,7 @@
       "latest_tag": "v0.119.0-beta.3",
       "latest_apk_url": "https://github.com/termux/termux-app/releases/download/v0.119.0-beta.3/termux-app_v0.119.0-beta.3%2Bapt-android-5-github-debug_arm64-v8a.apk",
       "pushed_at": "2026-09-26T05:11:44Z",
-      "stars": 62463,
+      "stars": 62503,
       "homepage": "https://termux.dev/cn/",
       "repo_url": "https://github.com/termux/termux-app",
       "releases": [
@@ -577,8 +577,8 @@
       "repo": "hrydgard/ppsspp",
       "latest_tag": "v1.20.4",
       "latest_apk_url": "https://github.com/hrydgard/ppsspp/releases/download/v1.20.4/org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb",
-      "pushed_at": "2026-10-12T19:59:05Z",
-      "stars": 14645,
+      "pushed_at": "2026-10-13T08:05:37Z",
+      "stars": 14646,
       "homepage": "https://www.ppsspp.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/ppsspp.png",
       "repo_url": "https://github.com/hrydgard/ppsspp",
@@ -1431,8 +1431,8 @@
       "repo": "libretro/RetroArch",
       "latest_tag": "v1.22.2",
       "latest_apk_url": "https://github.com/libretro/RetroArch/releases/download/v1.22.2/retroarch-sourceonly-1.22.2.tar.xz",
-      "pushed_at": "2026-10-12T21:38:33Z",
-      "stars": 14301,
+      "pushed_at": "2026-10-13T08:27:14Z",
+      "stars": 14313,
       "homepage": "https://www.retroarch.com",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/retroarch.png",
       "repo_url": "https://github.com/libretro/RetroArch",
@@ -1721,7 +1721,7 @@
       "latest_tag": "nJoy",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T04:41:55Z",
-      "stars": 15649,
+      "stars": 15648,
       "homepage": "https://dolphin-emu.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/dolphin.png",
       "repo_url": "https://github.com/dolphin-emu/dolphin",
@@ -1734,158 +1734,79 @@
       "description": "PS1 模拟器，兼容性与画质增强优秀，支持 Vulkan",
       "owner": "stenzek",
       "repo": "stenzek/duckstation",
-      "latest_tag": "preview",
-      "latest_apk_url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage",
-      "pushed_at": "2026-10-12T02:11:06Z",
-      "stars": 10828,
+      "latest_tag": "latest",
+      "latest_apk_url": "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-arm64.AppImage",
+      "pushed_at": "2026-10-13T05:33:05Z",
+      "stars": 10832,
       "homepage": "https://www.duckstation.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/duckstation.png",
       "repo_url": "https://github.com/stenzek/duckstation",
       "releases": [
         {
-          "tag": "preview",
-          "name": "Latest Preview Build",
-          "date": "2026-10-12T02:11:08Z",
-          "body": "## Commits\n- Relax Assert to DebugAssert ([Stenzek](https://github.com/stenzek/duckstation/commit/414fe72a2f736c66939dd1eede898ea469a6bc1f))\n- Fix deadlock opening game properties ([Stenzek](https://github.com/stenzek/duckstation/commit/74ed7b60c6eed189af3c38ba5f78e93cc7fd715f))\n- Fix window icon/title desynchronizing ([Stenzek](https://github.com/stenzek/duckstation/commit/d4e5a09d97429a3513c53fec375221af2f6b1ce7))",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "DuckStation-arm64.AppImage",
-              "size": 86941952,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage"
-            },
-            {
-              "name": "DuckStation-armhf.AppImage",
-              "size": 83697308,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-armhf.AppImage"
-            },
-            {
-              "name": "duckstation-mac-release.zip",
-              "size": 95297716,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-mac-release.zip"
-            },
-            {
-              "name": "duckstation-windows-arm64-installer.exe",
-              "size": 43030584,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-installer.exe"
-            },
-            {
-              "name": "duckstation-windows-arm64-release-symbols.7z",
-              "size": 12051629,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release-symbols.7z"
-            },
-            {
-              "name": "duckstation-windows-arm64-release.zip",
-              "size": 71899986,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release.zip"
-            },
-            {
-              "name": "duckstation-windows-x64-installer.exe",
-              "size": 45709239,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-installer.exe"
-            },
-            {
-              "name": "duckstation-windows-x64-release-symbols.7z",
-              "size": 12340869,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release-symbols.7z"
-            },
-            {
-              "name": "duckstation-windows-x64-release.zip",
-              "size": 73014442,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip"
-            },
-            {
-              "name": "duckstation-windows-x64-sse2-installer.exe",
-              "size": 45709941,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-installer.exe"
-            },
-            {
-              "name": "duckstation-windows-x64-sse2-release-symbols.7z",
-              "size": 12341741,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release-symbols.7z"
-            },
-            {
-              "name": "duckstation-windows-x64-sse2-release.zip",
-              "size": 73020425,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release.zip"
-            },
-            {
-              "name": "DuckStation-x64-SSE2.AppImage",
-              "size": 93495584,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64-SSE2.AppImage"
-            },
-            {
-              "name": "DuckStation-x64.AppImage",
-              "size": 93466912,
-              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64.AppImage"
-            }
-          ]
-        },
-        {
           "tag": "latest",
           "name": "Latest Rolling Release",
-          "date": "2026-10-11T02:59:12Z",
+          "date": "2026-10-13T05:31:37Z",
           "body": "## Commits\n- 2781502e0 SPU: Streamline per-voice flag processing\n- 690ead7ee SPU: Vectorize Gaussian interpolation\n- 5a7a301a7 SPU: Consolidate capture buffer writes\n- a24350c47 SPU: Decode ADPCM nibbles in pairs\n- a4904189c VulkanDevice: Use timeline semaphores when available\n- ed6720bbf Tests: Fix core-tests building on Windows\n- 025ea24fc GPU/HW: Fix typo in CompilePipelines()\n- 88ccab2a2 Achievements: Fix some options potentially not live-updating\n- 16452a048 Achievements: Check for login request in LoadStateFromBuffer()\n- 3c141418a FullscreenUI: Fix extra uneven height in achievement notifications\n- 0910d4edc FullscreenUI: Reduce text size of small-mode category badges\n- 96268ab66 Qt: Remove empty widget text\n- 390c878f7 GameDB: Persona localizedName\n- e26fa6091 Update Italian translation (#3798)\n- 563c35513 TaskQueue: Add GetOutstandingTasks() and ExecuteOneTask()\n- efecb78db Threading: Add GetProcessorCount()\n- 0d2e66235 Core: Make TaskQueue thread count dynamic\n- 60b06c0e2 ObjectArchive: Use binary keys instead of strings\n- 3151c5256 ObjectArchive: Synchronize access internally\n- 79371c47a HTTPCache: Use object archive synchronization\n- 5420d699e GPUDevice: Use ObjectArchiv",
           "prerelease": false,
           "assets": [
             {
               "name": "DuckStation-arm64.AppImage",
-              "size": 86479104,
+              "size": 86483200,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-arm64.AppImage"
             },
             {
               "name": "DuckStation-armhf.AppImage",
-              "size": 83271324,
+              "size": 83279516,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-armhf.AppImage"
             },
             {
               "name": "duckstation-mac-release.zip",
-              "size": 95158117,
+              "size": 95159712,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-mac-release.zip"
             },
             {
               "name": "duckstation-windows-arm64-installer.exe",
-              "size": 43224554,
+              "size": 43229576,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-arm64-installer.exe"
             },
             {
               "name": "duckstation-windows-arm64-release-symbols.7z",
-              "size": 11926385,
+              "size": 11924013,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-arm64-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-arm64-release.zip",
-              "size": 72168429,
+              "size": 72170285,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-arm64-release.zip"
             },
             {
               "name": "duckstation-windows-x64-installer.exe",
-              "size": 45886701,
+              "size": 45895439,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-installer.exe"
             },
             {
               "name": "duckstation-windows-x64-release-symbols.7z",
-              "size": 12228714,
+              "size": 12228836,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-x64-release.zip",
-              "size": 73264992,
+              "size": 73266939,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-release.zip"
             },
             {
               "name": "duckstation-windows-x64-sse2-installer.exe",
-              "size": 45895741,
+              "size": 45889136,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-sse2-installer.exe"
             },
             {
               "name": "duckstation-windows-x64-sse2-release-symbols.7z",
-              "size": 12228387,
+              "size": 12228901,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-sse2-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-x64-sse2-release.zip",
-              "size": 73271146,
+              "size": 73273155,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/duckstation-windows-x64-sse2-release.zip"
             },
             {
@@ -1895,8 +1816,87 @@
             },
             {
               "name": "DuckStation-x64.AppImage",
-              "size": 93315360,
+              "size": 93323552,
               "url": "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-x64.AppImage"
+            }
+          ]
+        },
+        {
+          "tag": "preview",
+          "name": "Latest Preview Build",
+          "date": "2026-10-13T05:33:08Z",
+          "body": "## Commits\n- Fix race when creating pipelines from worker threads ([Stenzek](https://github.com/stenzek/duckstation/commit/cf71020c0d3d010c52e9574ed77d6559fe364734))\n- Pad push constant range to 16 bytes ([Stenzek](https://github.com/stenzek/duckstation/commit/b3ab3221243cba7b5652bb1ac80a5227b601c3be))\n- Request coherent persistent buffer mappings ([Stenzek](https://github.com/stenzek/duckstation/commit/00e2997958d62de79d352cd680ec0c1ad95d491c))\n- Update to 20261010 ([Stenzek](https://github.com/stenzek/duckstation/commit/1b79c8b44808ed00b0186d3ff77b322e5ba8b5d1))\n- Extract bucket names out of FullscreenUI ([Stenzek](https://github.com/stenzek/duckstation/commit/6a9c296044f34c423d10633239ab533c83ee7896))\n- Separate login and credential saving steps ([Stenzek](https://github.com/stenzek/duckstation/commit/e468c8084d3f0d3ea37c9c610e8913c88cc521f0))\n- Guard against copying to self ([Stenzek](https://github.com/stenzek/duckstation/commit/3856bf0c3ac1d91743b2317047fa09a0644698be))\n- Add WaitFor() to ConditionVariable ([Stenzek](https://github.com/stenzek/duckstation/commit/8af1da4fcda50cd963796728277eb4a29a63300b))\n- Sort disc sets by save title ([Stenzek](https://github.com/stenzek/duc",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "DuckStation-arm64.AppImage",
+              "size": 86954240,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage"
+            },
+            {
+              "name": "DuckStation-armhf.AppImage",
+              "size": 83705500,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-armhf.AppImage"
+            },
+            {
+              "name": "duckstation-mac-release.zip",
+              "size": 95297944,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-mac-release.zip"
+            },
+            {
+              "name": "duckstation-windows-arm64-installer.exe",
+              "size": 43048420,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-installer.exe"
+            },
+            {
+              "name": "duckstation-windows-arm64-release-symbols.7z",
+              "size": 12050169,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release-symbols.7z"
+            },
+            {
+              "name": "duckstation-windows-arm64-release.zip",
+              "size": 71900757,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release.zip"
+            },
+            {
+              "name": "duckstation-windows-x64-installer.exe",
+              "size": 45718036,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-installer.exe"
+            },
+            {
+              "name": "duckstation-windows-x64-release-symbols.7z",
+              "size": 12340462,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release-symbols.7z"
+            },
+            {
+              "name": "duckstation-windows-x64-release.zip",
+              "size": 73015379,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip"
+            },
+            {
+              "name": "duckstation-windows-x64-sse2-installer.exe",
+              "size": 45704799,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-installer.exe"
+            },
+            {
+              "name": "duckstation-windows-x64-sse2-release-symbols.7z",
+              "size": 12339936,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release-symbols.7z"
+            },
+            {
+              "name": "duckstation-windows-x64-sse2-release.zip",
+              "size": 73021530,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release.zip"
+            },
+            {
+              "name": "DuckStation-x64-SSE2.AppImage",
+              "size": 93487392,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64-SSE2.AppImage"
+            },
+            {
+              "name": "DuckStation-x64.AppImage",
+              "size": 93479200,
+              "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64.AppImage"
             }
           ]
         },
@@ -3677,7 +3677,7 @@
           ]
         }
       ],
-      "latest_date": "2026-10-12T02:11:08Z",
+      "latest_date": "2026-10-13T05:31:37Z",
       "latest_apk_name": "DuckStation-arm64.AppImage"
     },
     {
@@ -3690,7 +3690,7 @@
       "latest_tag": "v12",
       "latest_apk_url": "https://github.com/Vita3K/Vita3K-Android/releases/download/v12/vita3k-android-release-12.apk",
       "pushed_at": "2025-02-22T16:30:58Z",
-      "stars": 1665,
+      "stars": 1664,
       "homepage": "https://vita3k.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/vita3k.png",
       "repo_url": "https://github.com/Vita3K/Vita3K/Vita3K-Android",
@@ -3895,6 +3895,11 @@
               "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-android-glibc-v11.tar.xz"
             },
             {
+              "name": "box64-android-mprotect-patch-v11.tar.xz",
+              "size": 3207116,
+              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-android-mprotect-patch-v11.tar.xz"
+            },
+            {
               "name": "box64-android_0.4.5+20260908T103809.4e5f180-1_arm64.deb",
               "size": 7136296,
               "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/box64-android_0.4.5%2B20260908T103809.4e5f180-1_arm64.deb"
@@ -3993,42 +3998,6 @@
               "name": "xorg-server_21.1.16-3_aarch64.deb",
               "size": 1297100,
               "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/xorg-server_21.1.16-3_aarch64.deb"
-            }
-          ]
-        },
-        {
-          "tag": "rootfs-emergency-snapshot-v1",
-          "name": "RootFS emergency prebuilt snapshot v1",
-          "date": "2026-10-12T11:09:50Z",
-          "body": "Emergency fallback snapshot of the shared RootFS base image + both wineprefix templates (hangover, box64), for use via the app's existing Restore flow if upstream (Debian snapshot archive / Hangover / Wine releases) ever breaks the live build pipeline. Produced by the app's own Backup feature from a known-good, end-to-end-verified build. SHA-256: 11b79779730ba9d9a9c942f0c425bbc53370c11df516d2a607052860bade97cd\n",
-          "prerelease": false,
-          "assets": []
-        },
-        {
-          "tag": "box64-wine-11.19-patch-v1",
-          "name": "box64-wine Wine 11.19 ROUND_SIZE patch v1",
-          "date": "2026-10-12T08:08:00Z",
-          "body": "Self-hosted patched build of upstream Wine 11.19 (Kron4ek/Wine-Builds WoW64 layout), fixing anon_mmap_alloc's page-alignment assertion that SIGABRTs box64-translated wineboot. One-line fix: wraps virtual_init()'s pages_vprot allocation size in ROUND_SIZE(0, size, host_page_mask). Not yet submitted upstream.",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "wine-11.19-custom-amd64-wow64.tar.xz",
-              "size": 96485588,
-              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/box64-wine-11.19-patch-v1/wine-11.19-custom-amd64-wow64.tar.xz"
-            }
-          ]
-        },
-        {
-          "tag": "box64-mprotect-patch-v1",
-          "name": "box64 0.4.5 with Android W^X mprotect fix",
-          "date": "2026-10-07T06:19:07Z",
-          "body": "Patched build of box64 v0.4.5 (upstream main @8f6ab59) that unconditionally strips PROT_EXEC in my_mprotect() when box64_pagesize == X86_PAGE_SIZE, working around Android's targetSdkVersion>=29 W^X SELinux policy (untrusted_app denies mprotect(PROT_EXEC) on app-private-storage-backed memory). Same root cause and fix shape as termux-pacman/glibc-packages issue #49 / PR #50's libc mprotect fix. box64 never executes guest pages natively (it JITs to host ARM64), so the host mapping never needs to be genuinely executable. Not yet submitted upstream to ptitSeb/box64. See box64-wine-39bit-pitfalls writeup for the full investigation.",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "box64-android-mprotect-patch-arm64",
-              "size": 25587264,
-              "url": "https://github.com/jiaxinchen-max/termux-app/releases/download/box64-mprotect-patch-v1/box64-android-mprotect-patch-arm64"
             }
           ]
         },
@@ -4525,7 +4494,7 @@
       "logoUrl": "https://avatars.githubusercontent.com/u/181800731?v=4",
       "description": "Termux + Ghostty 实验性集成：现代终端渲染，APK 分发活跃",
       "stars": 35,
-      "pushed_at": "2026-10-11T20:00:27Z",
+      "pushed_at": "2026-10-13T02:01:27Z",
       "latest_tag": "v4.13.1",
       "latest_date": "2026-10-07T00:08:46Z",
       "latest_apk_name": "ecto_4.13.1-arm64-v8a.apk",
@@ -6734,7 +6703,7 @@
       "homepage": "https://github.com/hanxinhao000/ZeroTermux",
       "logoUrl": "https://avatars.githubusercontent.com/u/23556571?v=4",
       "description": "Termux 知名 fork（3k+ star）：集成增强功能，独立版本线持续发布 APK",
-      "stars": 3052,
+      "stars": 3051,
       "pushed_at": "2026-08-10T15:45:31Z",
       "latest_tag": "ZeroTermux-0.118.3.64",
       "latest_date": "2026-08-08T14:13:25Z",
