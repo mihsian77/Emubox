@@ -7,6 +7,14 @@ on:
     branches: [main]
 
 jobs:
+  registry-check:
+    name: 驱动注册表 schema 校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 校验 registry schema 完整性
+        run: python3 scripts/validate-registry.py
+
   i18n-check:
     name: i18n 翻译校验
     runs-on: ubuntu-latest

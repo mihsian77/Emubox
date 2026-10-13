@@ -3,6 +3,7 @@ package com.emubox.app
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
@@ -157,45 +158,53 @@ object DriverRegistryRepository {
     private fun parseRegistry(body: String): List<DriverRegistryEntry>? {
         return try {
             val json = JSONObject(body)
-            val arr = json.getJSONArray("repositories")
-            (0 until arr.length()).map { i ->
-                val o = arr.getJSONObject(i)
-                val filtersObj = o.optJSONObject("filters")
-                val filters = mutableMapOf<String, List<String>>()
-                filtersObj?.keys()?.forEach { key ->
-                    filters[key] = filtersObj.getJSONArray(key).let { ja ->
-                        (0 until ja.length()).map { ja.getString(it) }
-                    }
+            val arr = json.optJSONArray("repositories") ?: JSONArray()
+            // 容错解析：单个条目缺字段/类型异常时跳过该条目，不再让整个注册表
+            // 加载失败（此前 StevenMXZ 缺 companion、Weab-chan 混入排行榜格式
+            // 导致全量 null → 跌到硬编码兜底 3 源，是"源少了一大截"的根因）。
+            buildList {
+                for (i in 0 until arr.length()) {
+                    val o = arr.optJSONObject(i) ?: continue
+                    val entry = runCatching {
+                        val filtersObj = o.optJSONObject("filters")
+                        val filters = mutableMapOf<String, List<String>>()
+                        filtersObj?.keys()?.forEach { key ->
+                            filters[key] = filtersObj.optJSONArray(key)?.let { ja ->
+                                (0 until ja.length()).map { ja.getString(it) }
+                            } ?: emptyList()
+                        }
+                        DriverRegistryEntry(
+                            id = o.optString("id"),
+                            name = o.optString("name"),
+                            owner = o.optString("owner"),
+                            repo = o.optString("repo"),
+                            apiUrl = o.optString("api_url"),
+                            gpuVendor = o.optString("gpu_vendor"),
+                            gpuArch = o.optJSONArray("gpu_arch")?.let { ja ->
+                                (0 until ja.length()).map { ja.getString(it) }
+                            } ?: emptyList(),
+                            gpuModels = o.optJSONArray("gpu_models")?.let { ja ->
+                                (0 until ja.length()).map { ja.getString(it) }
+                            } ?: emptyList(),
+                            driverType = o.optString("driver_type"),
+                            componentType = if (o.isNull("component_type")) null
+                                else o.optString("component_type").takeIf { it.isNotBlank() },
+                            frontend = if (o.isNull("frontend")) null else o.optString("frontend"),
+                            targetEmulator = o.optString("target_emulator", "generic"),
+                            packageFormat = o.optString("package_format", "zip"),
+                            maturity = o.optString("maturity", "experimental"),
+                            stars = o.optInt("stars", 0),
+                            updatedAt = parseIsoEpoch(o.optString("updated_at", "")),
+                            description = o.optString("description", ""),
+                            notes = o.optString("notes", ""),
+                            companion = o.optJSONArray("companion")?.let { ja ->
+                                (0 until ja.length()).map { ja.getString(it) }
+                            } ?: emptyList(),
+                            filters = filters
+                        )
+                    }.getOrNull()
+                    if (entry != null) add(entry)
                 }
-                DriverRegistryEntry(
-                    id = o.getString("id"),
-                    name = o.getString("name"),
-                    owner = o.getString("owner"),
-                    repo = o.getString("repo"),
-                    apiUrl = o.getString("api_url"),
-                    gpuVendor = o.getString("gpu_vendor"),
-                    gpuArch = o.getJSONArray("gpu_arch").let { ja ->
-                        (0 until ja.length()).map { ja.getString(it) }
-                    },
-                    gpuModels = o.getJSONArray("gpu_models").let { ja ->
-                        (0 until ja.length()).map { ja.getString(it) }
-                    },
-                    driverType = o.getString("driver_type"),
-                    componentType = if (o.isNull("component_type")) null
-                        else o.optString("component_type").takeIf { it.isNotBlank() },
-                    frontend = if (o.isNull("frontend")) null else o.getString("frontend"),
-                    targetEmulator = o.optString("target_emulator", "generic"),
-                    packageFormat = o.optString("package_format", "zip"),
-                    maturity = o.optString("maturity", "experimental"),
-                    stars = o.optInt("stars", 0),
-                    updatedAt = parseIsoEpoch(o.optString("updated_at", "")),
-                    description = o.optString("description", ""),
-                    notes = o.optString("notes", ""),
-                    companion = o.getJSONArray("companion").let { ja ->
-                        (0 until ja.length()).map { ja.getString(it) }
-                    },
-                    filters = filters
-                )
             }
         } catch (_: Exception) {
             null
