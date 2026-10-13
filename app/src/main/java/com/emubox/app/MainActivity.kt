@@ -86,6 +86,9 @@ class MainActivity : ComponentActivity() {
                 var fullyLoaded by remember { mutableStateOf(false) }
 
                 var sourceCatalog by remember { mutableStateOf(SourceCatalogRepository.builtInCatalog()) }
+                var registryEntries by remember {
+                    mutableStateOf<List<DriverRegistryEntry>>(emptyList())
+                }
                 var turnipSourceId by remember { mutableStateOf(SettingsManager.getTurnipSource()) }
                 var panvkSourceId by remember { mutableStateOf(SettingsManager.getPanvkSource()) }
                 var qualcommSourceId by remember { mutableStateOf(SettingsManager.getQualcommSource()) }
@@ -157,21 +160,22 @@ class MainActivity : ComponentActivity() {
                         val matchByDevice = SettingsManager.getMatchDriversByDevice()
 
                         // 源目录与驱动注册表并行加载（互不依赖，串行会多等一个超时周期）
-                        val (baseCatalog, registryEntries) = coroutineScope {
+                        val (baseCatalog, loadedRegistry) = coroutineScope {
                             val c = async { SourceCatalogRepository.load() }
                             val r = async { DriverRegistryRepository.load(context = this@MainActivity) }
                             c.await() to r.await()
                         }
+                        registryEntries = loadedRegistry
 
                         // 驱动注册表：按设备 GPU 匹配（含 Mali PanVK 全系列），转换为
                         // TurnipSource 后与内置源合并；注册表推荐源排前，按 apiUrl 去重。
                         // 关闭"按设备匹配"时显示全部驱动源（不按 GPU 过滤）。
-                        val driverEntries = registryEntries.filter { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
+                        val driverEntries = loadedRegistry.filter { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
                         // 全部注册表驱动源始终可见（本设备匹配的排前），不再按 GPU 厂商
                         // 硬排除——Adreno 设备也能看到 Mali PanVK 源，只是排在推荐之后。
                         // 修复：MineGraph PanVK（Mali）等新源此前被 match 厂商过滤掉。
                         val matchedDriverSources = (if (matchByDevice) {
-                            val matched = DriverRegistryRepository.match(info, registryEntries)
+                            val matched = DriverRegistryRepository.match(info, loadedRegistry)
                             val matchedIds = matched.map { it.entry.id }.toSet()
                             matched + driverEntries.filter { it.id !in matchedIds }
                                 .map { DriverMatchResult(it, 0, false, "") }
@@ -186,11 +190,11 @@ class MainActivity : ComponentActivity() {
                         // 修复：注册表组件对全部设备可见，本设备匹配的排前——之前按 GPU
                         // 厂商过滤导致 Adreno 用户看不到 Mali 纹理转码 DXVK（panDXVK）。
                         val deviceComponentEntries = if (matchByDevice) {
-                            val matched = DriverRegistryRepository.matchComponents(info, registryEntries)
+                            val matched = DriverRegistryRepository.matchComponents(info, loadedRegistry)
                             val matchedIds = matched.map { it.id }.toSet()
-                            matched + registryEntries.filter { it.componentType != null && it.id !in matchedIds }
+                            matched + loadedRegistry.filter { it.componentType != null && it.id !in matchedIds }
                         } else {
-                            registryEntries.filter { it.componentType != null }
+                            loadedRegistry.filter { it.componentType != null }
                         }
                         // 同一 componentType 的注册表仓库合并为一个源：pandxvk 与
                         // pandxvk-lloyd262 都是 DXVK 组件源，分开会导致组件 Tab 里
@@ -569,7 +573,11 @@ class MainActivity : ComponentActivity() {
                                                 }
                                             },
                                             driverSourceUpdatedAt = driverSourceUpdatedAt,
-                                            driverSourceStars = driverSourceStars
+                                            driverSourceStars = driverSourceStars,
+                                            registryStatus = buildRegistryStatus(
+                                                registryEntries,
+                                                sourceCatalog.turnipSources.size
+                                            )
                                         )
                                     }
                                 }
@@ -800,3 +808,16 @@ private data class AppLoadResult(
     val driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
     val driverSourceStars: Map<String, Long> = emptyMap()
 )
+
+/** 驱动源状态条文案：注册表加载来源 + 实际合并后 turnipSources 总数 */
+private fun buildRegistryStatus(registryEntries: List<DriverRegistryEntry>, mergedTurnipCount: Int): String {
+    val sourceLabel = when (DriverRegistryRepository.lastLoadSource) {
+        "remote" -> "远程 GitHub"
+        "jsdelivr" -> "远程 jsDelivr"
+        "assets" -> "内置 APK"
+        "fallback" -> "硬编码兜底"
+        else -> "未知"
+    }
+    val driverCount = registryEntries.count { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
+    return "驱动源状态：注册表 ${driverCount} 个驱动源（来源：$sourceLabel）＋精选 ${mergedTurnipCount} 个已并入"
+}
