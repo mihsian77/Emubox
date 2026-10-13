@@ -25,6 +25,7 @@
 #define LOG_TAG "EmuBoxVulkan"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 
 // ── 函数指针类型（vulkan.h 里 PFN_vk* 本身已是函数指针，直接用别名）──────
 // vkGetInstanceProcAddr 的函数指针类型（明确指定 2 参数）
@@ -1563,6 +1564,9 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
                "driver lacks vk_icdGetInstanceProcAddr/vkGetInstanceProcAddr\","
                "\"deviceCount\":0,\"devices\":[]}";
     }
+    LOGI("AdrenoTools driver loaded: %s/%s via %s", driverDir, driverName,
+         getInst == reinterpret_cast<GetInstanceProcAddrFn>(dlsym(lib, "vk_icdGetInstanceProcAddr"))
+             ? "icd" : "classic");
     *libHandleOut = lib;
     *getInstOut = getInst;
     return "";
@@ -1581,9 +1585,18 @@ static std::string collectDriverAdrenotoolsJson(const char* driverDir, const cha
     vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"));
     vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
     if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        // 诊断：驱动 .so 内部分别是否存在这些符号，区分"符号缺失"与
+        // "函数存在但调用返回空（驱动内部初始化/环境失败）"。
+        const char* symCreate = dlsym(lib, "vkCreateInstance") ? "1" : "0";
+        const char* symIcd = dlsym(lib, "vk_icdGetInstanceProcAddr") ? "1" : "0";
+        const char* symClassic = dlsym(lib, "vkGetInstanceProcAddr") ? "1" : "0";
+        LOGI("AdrenoTools INSTANCE_FUNCS_MISSING: sym_create=%s icd=%s classic=%s",
+             symCreate, symIcd, symClassic);
         dlclose(lib);
         return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
-               "driver lacks vkCreateInstance/vkDestroyInstance\",\"deviceCount\":0,\"devices\":[]}";
+               "driver lacks vkCreateInstance/vkDestroyInstance [diag: sym_create=" + std::string(symCreate)
+               + " icd=" + std::string(symIcd) + " classic=" + std::string(symClassic)
+               + "]\",\"deviceCount\":0,\"devices\":[]}";
     }
 
     VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
@@ -1658,9 +1671,16 @@ static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const c
     vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"));
     vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
     if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        const char* symCreate = dlsym(lib, "vkCreateInstance") ? "1" : "0";
+        const char* symIcd = dlsym(lib, "vk_icdGetInstanceProcAddr") ? "1" : "0";
+        const char* symClassic = dlsym(lib, "vkGetInstanceProcAddr") ? "1" : "0";
+        LOGI("AdrenoTools benchmark INSTANCE_FUNCS_MISSING: sym_create=%s icd=%s classic=%s",
+             symCreate, symIcd, symClassic);
         dlclose(lib);
         return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
-               "driver lacks vkCreateInstance/vkDestroyInstance\",\"fillBandwidthGBs\":0,"
+               "driver lacks vkCreateInstance/vkDestroyInstance [diag: sym_create=" + std::string(symCreate)
+               + " icd=" + std::string(symIcd) + " classic=" + std::string(symClassic)
+               + "]\",\"fillBandwidthGBs\":0,"
                "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
     }
 
