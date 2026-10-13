@@ -49,6 +49,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
@@ -2492,6 +2495,61 @@ fun DriverHubScreen(
         ?: qualcommSources.firstOrNull()
 
     var showDriverCompare by remember { mutableStateOf(false) }
+    val driverNewsScope = rememberCoroutineScope()
+
+    // ── 驱动更新动态：全源最新 release 汇总（并发拉取，10min 缓存兜底）──
+    var driverNews by remember { mutableStateOf<List<DriverNewsItem>>(emptyList()) }
+    var driverNewsLoading by remember { mutableStateOf(false) }
+    LaunchedEffect(turnipSources, panvkSources, qualcommSources, deviceInfo?.adrenoSeries) {
+        if (driverNews.isNotEmpty()) return@LaunchedEffect
+        driverNewsLoading = true
+        val series = deviceInfo?.adrenoSeries ?: "default"
+        val jobs = buildList {
+            turnipSources.forEach { add(Triple(it.name, "turnip", it.apiUrl)) }
+            panvkSources.forEach { add(Triple(it.name, "panvk", it.apiUrl)) }
+            qualcommSources.forEach { add(Triple(it.name, "qualcomm", it.apiUrl)) }
+        }
+        driverNews = withContext(Dispatchers.IO) {
+            val sem = java.util.concurrent.Semaphore(4, true)
+            coroutineScope {
+                jobs.map { (name, family, apiUrl) ->
+                    async {
+                        sem.acquire()
+                        try {
+                            withTimeout(8000) {
+                                val rel = if (family == "qualcomm") {
+                                    fetchGithubReleasesFromUrl(apiUrl)
+                                } else {
+                                    fetchTurnipReleases(
+                                        turnipSources.firstOrNull { it.apiUrl == apiUrl }
+                                            ?: panvkSources.firstOrNull { it.apiUrl == apiUrl }
+                                            ?: return@withTimeout null,
+                                        series
+                                    )
+                                }
+                                rel.firstOrNull()?.let { r ->
+                                    DriverNewsItem(
+                                        sourceName = name,
+                                        family = family,
+                                        tag = r.tagName,
+                                        date = r.publishedAt,
+                                        body = r.body.take(140),
+                                        zipName = r.assets.firstOrNull()?.name ?: "",
+                                        apiUrl = apiUrl
+                                    )
+                                }
+                            }
+                        } catch (_: Exception) {
+                            null
+                        } finally {
+                            sem.release()
+                        }
+                    }
+                }.awaitAll().filterNotNull().sortedByDescending { it.date }
+            }
+        }
+        driverNewsLoading = false
+    }
 
     LazyColumn(
         modifier = modifier.fillMaxSize(),
@@ -2508,6 +2566,66 @@ fun DriverHubScreen(
                 title = appString(R.string.driver_region),
                 icon = Icons.Default.Memory,
                 remote = sourceCatalogRemote
+            )
+        }
+
+        item(key = "driver_news") {
+            DriverNewsCard(
+                items = driverNews,
+                loading = driverNewsLoading,
+                onRefresh = {
+                    driverNews = emptyList()
+                    driverNewsLoading = true
+                    val series = deviceInfo?.adrenoSeries ?: "default"
+                    val jobs = buildList {
+                        turnipSources.forEach { add(Triple(it.name, "turnip", it.apiUrl)) }
+                        panvkSources.forEach { add(Triple(it.name, "panvk", it.apiUrl)) }
+                        qualcommSources.forEach { add(Triple(it.name, "qualcomm", it.apiUrl)) }
+                    }
+                    // 全源并发（信号量限 4），走 releaseCache 的 10min TTL
+                    driverNewsScope.launch {
+                        driverNews = withContext(Dispatchers.IO) {
+                            val sem = java.util.concurrent.Semaphore(4, true)
+                            coroutineScope {
+                                jobs.map { (name, family, apiUrl) ->
+                                    async {
+                                        sem.acquire()
+                                        try {
+                                            withTimeout(8000) {
+                                                val rel = if (family == "qualcomm") {
+                                                    fetchGithubReleasesFromUrl(apiUrl)
+                                                } else {
+                                                    fetchTurnipReleases(
+                                                        turnipSources.firstOrNull { it.apiUrl == apiUrl }
+                                                            ?: panvkSources.firstOrNull { it.apiUrl == apiUrl }
+                                                            ?: return@withTimeout null,
+                                                        series
+                                                    )
+                                                }
+                                                rel.firstOrNull()?.let { r ->
+                                                    DriverNewsItem(
+                                                        sourceName = name,
+                                                        family = family,
+                                                        tag = r.tagName,
+                                                        date = r.publishedAt,
+                                                        body = r.body.take(140),
+                                                        zipName = r.assets.firstOrNull()?.name ?: "",
+                                                        apiUrl = apiUrl
+                                                    )
+                                                }
+                                            }
+                                        } catch (_: Exception) {
+                                            null
+                                        } finally {
+                                            sem.release()
+                                        }
+                                    }
+                                }.awaitAll().filterNotNull().sortedByDescending { it.date }
+                            }
+                        }
+                        driverNewsLoading = false
+                    }
+                }
             )
         }
 
@@ -5727,6 +5845,130 @@ private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
                     DriverInfoChip(label = appString(R.string.chip_arch), value = deviceInfo.adrenoSeries.ifBlank { "—" })
                     DriverInfoChip(label = appString(R.string.chip_ram), value = deviceInfo.ram)
                     DriverInfoChip(label = appString(R.string.chip_android), value = deviceInfo.androidVersion.takeWhile { it != ' ' })
+                }
+            }
+        }
+    }
+}
+
+/** 驱动更新动态条目：源名 + 家族 + 最新 tag + 时间 + 摘要 + zip 文件名 */
+private data class DriverNewsItem(
+    val sourceName: String,
+    val family: String,
+    val tag: String,
+    val date: String,
+    val body: String,
+    val zipName: String,
+    val apiUrl: String
+)
+
+/** 驱动更新动态卡：全源最新 release 汇总（折叠，默认展示最近 6 条） */
+@Composable
+private fun DriverNewsCard(
+    items: List<DriverNewsItem>,
+    loading: Boolean,
+    onRefresh: () -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Notifications, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.driver_news_title), style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                IconButton(onClick = onRefresh, modifier = Modifier.size(28.dp)) {
+                    Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh),
+                        modifier = Modifier.size(16.dp))
+                }
+                IconButton(onClick = { expanded = !expanded }, modifier = Modifier.size(28.dp)) {
+                    Icon(
+                        if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                        contentDescription = null, modifier = Modifier.size(18.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+            if (loading) {
+                Spacer(Modifier.height(8.dp))
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                Spacer(Modifier.height(8.dp))
+            } else if (items.isEmpty()) {
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    appString(R.string.driver_news_empty),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            } else {
+                val shown = if (expanded) items else items.take(6)
+                Spacer(Modifier.height(4.dp))
+                shown.forEach { item ->
+                    val context = LocalContext.current
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(
+                                    when (item.family) {
+                                        "panvk" -> Color(0xFF1E88E5).copy(alpha = 0.15f)
+                                        "qualcomm" -> Color(0xFFF4511E).copy(alpha = 0.15f)
+                                        else -> Color(0xFF43A047).copy(alpha = 0.15f)
+                                    }
+                                )
+                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                        ) {
+                            Text(
+                                when (item.family) {
+                                    "panvk" -> appString(R.string.driver_family_panvk)
+                                    "qualcomm" -> appString(R.string.driver_family_qualcomm)
+                                    else -> appString(R.string.driver_family_turnip)
+                                },
+                                style = MaterialTheme.typography.labelSmall,
+                                color = when (item.family) {
+                                    "panvk" -> Color(0xFF1E88E5)
+                                    "qualcomm" -> Color(0xFFF4511E)
+                                    else -> Color(0xFF43A047)
+                                }
+                            )
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                "${item.sourceName} · ${item.tag}",
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1, overflow = TextOverflow.Ellipsis
+                            )
+                            if (item.zipName.isNotBlank()) {
+                                Text(
+                                    item.zipName,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 1, overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            formatRelativeTime(item.date),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    if (item != shown.last()) HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                }
+                if (!expanded && items.size > 6) {
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        appString(R.string.driver_news_more, items.size - 6),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.clickable { expanded = true }
+                    )
                 }
             }
         }
