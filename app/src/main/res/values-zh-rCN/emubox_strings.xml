@@ -172,6 +172,9 @@
     <string name="emulator_insights_downloads">累计下载</string>
     <string name="emulator_insights_stars">累计 Star</string>
     <string name="emulator_insights_trend">近 14 天新增下载 %1$s（%2$s → %3$s）</string>
+    <string name="emulator_insights_weekly">本周发布 %1$d 个版本</string>
+    <string name="emulator_insights_visits">累计访问 %1$s</string>
+    <string name="emulator_insights_online">当前在线 %1$d</string>
     <string name="emulator_news_title">模拟器更新动态</string>
     <string name="emulator_news_no_body">该版本无更新日志。</string>
     <string name="emulator_trending_title">趋势榜（14 天下载增长）</string>

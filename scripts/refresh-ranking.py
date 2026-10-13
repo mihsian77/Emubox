@@ -18,6 +18,8 @@ T331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/rankings.json"
 HIST331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/history.json"
 RECIPES331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/recipes.json"
 DRIVERSRC331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/driver-sources.json"
+VISITORS412 = "https://the412banner.github.io/emulator-ranking/data/visitors.json"
+COMPAT331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/compatibility.json"
 LOGO_T412 = "https://the412banner.github.io/emulator-ranking/logos/"
 LOGO_T331 = "https://t3st31.github.io/Ranking-Emulators-Download/logos/"
 
@@ -43,10 +45,19 @@ OFFICIAL = {  # 官方/主渠道条目（真分类，避免乱分）
 }
 
 
-def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 emubox-refresh"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.load(r)
+def fetch(url, retries=3):
+    """拉取 JSON；4xx/5xx/网络失败返回 None（条件接入数据源未产出时容忍失败）。
+    网络抖动（IncompleteRead/超时）自动重试 3 次。"""
+    for attempt in range(retries):
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 emubox-refresh"})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.load(r)
+        except Exception as e:
+            print(f"  fetch 失败 {url}（第 {attempt + 1}/3 次）: {e}")
+            if attempt < retries - 1:
+                time.sleep(2 + attempt * 2)
+    return None
 
 
 def norm_releases(rels):
@@ -100,11 +111,19 @@ def gh_releases(repo):
 def main():
     t412 = fetch(T412)
     t331 = fetch(T331)
+    # 两个主源任一失败则中止，避免以空/残缺数据覆盖现有产物
+    if not t412 or not t331:
+        print("主数据源拉取失败，跳过本轮刷新，保留现有产物")
+        return
     t412r = t412.get("results") or []
     t331r = t331.get("results") or []
     hist = fetch(HIST331) or {}
     recipes_raw = (fetch(RECIPES331) or {}).get("recipes") or []
     driver_src = (fetch(DRIVERSRC331) or {}).get("sources") or []
+    # 条件接入：412 站点访问统计（GoatCounter 每小时写 data/visitors.json，当前可能未产出）
+    visitors_raw = fetch(VISITORS412)
+    # 条件接入：t3st31 兼容性测试报告（schema 存在但 reports 由上游逐步填充）
+    compat_raw = fetch(COMPAT331) or {}
 
     # ── 14 天下载增量（t3st31 history 每日快照）──
     snaps = hist.get("projectSnapshots") or []
@@ -281,6 +300,20 @@ def main():
             "category_downloads": sorted(
                 [{"category": k, "label": CAT_ZH.get(k, k), "downloads": v} for k, v in cat_dl.items()],
                 key=lambda x: -x["downloads"]),
+            # 本周发布数：按 release date 近 7 天统计（412 首页 Releases this week 等价物）
+            "weekly_releases": sum(
+                1 for e in emus for r in (e.get("releases") or [])
+                if (r.get("date") or "")[:10] >= (time.strftime("%Y-%m-%d", time.gmtime(time.time() - 7 * 86400)))),
+            # 条件接入：412 站点访问统计（visitors.json 未产出时省略，App 端无值不显示）
+            **({"total_visits": int(visitors_raw.get("totalVisits") or 0),
+                "online_now": int(visitors_raw.get("onlineNow") or 0),
+                "visits": visitors_raw.get("visits") or []} if visitors_raw and isinstance(visitors_raw, dict) else {}),
+            # 条件接入：t3st31 兼容性测试报告（空壳时省略，上游填充后自动显示）
+            **({"compat_reports": [
+                {"project": (c.get("project") or c.get("repo") or ""), "status": (c.get("status") or c.get("level") or ""),
+                 "game": (c.get("game") or ""), "note": (c.get("note") or c.get("details") or "")[:200]}
+                for c in (compat_raw.get("reports") or []) if isinstance(c, dict) and c.get("project")]
+               } if (compat_raw.get("reports") or []) else {}),
         },
         "recipes": recipes,
         "driver_sources": driver_sources_out,

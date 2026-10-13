@@ -172,6 +172,9 @@
     <string name="emulator_insights_downloads">Total downloads</string>
     <string name="emulator_insights_stars">Total stars</string>
     <string name="emulator_insights_trend">+%1$s downloads in 14 days (%2$s → %3$s)</string>
+    <string name="emulator_insights_weekly">%1$d releases this week</string>
+    <string name="emulator_insights_visits">%1$s total visits</string>
+    <string name="emulator_insights_online">%1$d online now</string>
     <string name="emulator_news_title">Latest updates</string>
     <string name="emulator_news_no_body">No changelog for this release.</string>
     <string name="emulator_trending_title">Trending (14-day growth)</string>

@@ -7751,6 +7751,32 @@ private fun EmulatorInsightsCard(insights: EmulatorInsights) {
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            if (insights.weeklyReleases > 0 || insights.totalVisits > 0 || insights.onlineNow > 0) {
+                Spacer(Modifier.height(6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (insights.weeklyReleases > 0) {
+                        Text(
+                            appString(R.string.emulator_insights_weekly, insights.weeklyReleases),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    if (insights.totalVisits > 0) {
+                        Text(
+                            appString(R.string.emulator_insights_visits, fmt(insights.totalVisits)),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    if (insights.onlineNow > 0) {
+                        Text(
+                            appString(R.string.emulator_insights_online, insights.onlineNow),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
+            }
         }
     }
 }
