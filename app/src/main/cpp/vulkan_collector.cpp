@@ -1509,8 +1509,12 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* t
 // ═══════════════════════════════════════════════════════════════════════════
 
 // 加载驱动并解析 ICD 入口；成功返回空串并写出句柄，失败返回错误 JSON。
+// useMappingImport=false 时强制仅 CUSTOM（不启用 GPU_MAPPING_IMPORT）：
+// 跑分在 fork 子进程中提交实际 GPU 负载，GSL 映射句柄跨 fork 可能失效
+// 导致崩溃（DRIVER_CRASHED），故跑分路径不申请映射，保留 fork 安全隔离。
 static std::string loadDriverAdrenoTools(const char* driverDir, const char* driverName,
                                          const char* tmpDir, const char* hookLibDir,
+                                         bool useMappingImport,
                                          void** libHandleOut, GetInstanceProcAddrFn* getInstOut) {
     // adrenotools 内部按 "dir + 文件名" 直接拼接 stat/dlopen，目录必须以 "/" 结尾。
     // 此前 Kotlin 侧传 File.parent（无结尾斜杠）导致拼接路径非法、加载必失败
@@ -1524,22 +1528,31 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
     const char* td = tmpDirNorm.empty() ? nullptr : tmpDirNorm.c_str();
 
     void* mappingHandle = nullptr;
-    // 首次尝试完整功能：自定义驱动 + GPU 映射导入（turnip GSL 分配通常需要）。
+    // 默认首次尝试完整功能：自定义驱动 + GPU 映射导入（turnip GSL 分配通常需要）。
     // 部分驱动/设备不支持映射导入时该组合会失败，降级为仅自定义驱动重试，
     // 与 Winlator 低端 fallback 策略一致，扩大实测成功率。映射句柄由 fork
     // 子进程退出即释放，无需手动 close。
-    void* lib = adrenotools_open_libvulkan(
-            RTLD_NOW,
-            ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
-            td, hookLibDir, dd, driverName, nullptr, &mappingHandle);
+    void* lib = nullptr;
     std::string firstErr;
-    if (!lib) {
-        firstErr = dlerror() ? dlerror() : "unknown";
-        void* retryMapping = nullptr;
+    if (useMappingImport) {
+        lib = adrenotools_open_libvulkan(
+                RTLD_NOW,
+                ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
+                td, hookLibDir, dd, driverName, nullptr, &mappingHandle);
+        if (!lib) {
+            firstErr = dlerror() ? dlerror() : "unknown";
+            void* retryMapping = nullptr;
+            lib = adrenotools_open_libvulkan(
+                    RTLD_NOW,
+                    ADRENOTOOLS_DRIVER_CUSTOM,
+                    td, hookLibDir, dd, driverName, nullptr, &retryMapping);
+        }
+    } else {
+        // 跑分路径：强制仅 CUSTOM，不申请 GPU 映射，规避映射句柄跨 fork 失效。
         lib = adrenotools_open_libvulkan(
                 RTLD_NOW,
                 ADRENOTOOLS_DRIVER_CUSTOM,
-                td, hookLibDir, dd, driverName, nullptr, &retryMapping);
+                td, hookLibDir, dd, driverName, nullptr, nullptr);
     }
     if (!lib) {
         std::string err = dlerror() ? dlerror() : firstErr;
@@ -1577,7 +1590,7 @@ static std::string collectDriverAdrenotoolsJson(const char* driverDir, const cha
                                                 const char* tmpDir, const char* hookLibDir) {
     void* lib = nullptr;
     GetInstanceProcAddrFn getInst = nullptr;
-    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, &lib, &getInst);
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, true, &lib, &getInst);
     if (!err.empty()) return err;
 
     VulkanDispatch vk;
@@ -1677,7 +1690,7 @@ static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const c
                                                   const char* tmpDir, const char* hookLibDir) {
     void* lib = nullptr;
     GetInstanceProcAddrFn getInst = nullptr;
-    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, &lib, &getInst);
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, false, &lib, &getInst);
     if (!err.empty()) return err;
 
     VulkanDispatch vk;
