@@ -1,6 +1,7 @@
 <resources>
     <string name="alpha_version">Alpha v%1$s</string>
     <string name="back">返回</string>
+    <string name="rescan_local">重新扫描本地文件</string>
     <string name="refresh">刷新</string>
     <string name="donate">捐赠</string>
     <string name="downloads">下载</string>
