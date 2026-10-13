@@ -347,6 +347,11 @@ object RuntimeChineseHints {
         "xlive" to "Games for Windows Live，部分老游戏（如 GTA4、生化危机5）需要",
         "xna31" to "XNA Framework 3.1，老 XNA 游戏必需",
         "xna40" to "XNA Framework 4.0，XNA 游戏（如 Stardew Valley）必需",
+        "dotnet9" to ".NET 9.0 桌面运行库（LTS），微软官方直链",
+        "vcredist2026" to "VC++ 2026 运行库 x64，微软官方直链（兼容 2015~2026 编译程序）",
+        "vcredist2026_x86" to "VC++ 2026 运行库 x86，微软官方直链（32 位程序必需）",
+        "dotnet481" to ".NET Framework 4.8.1，微软官方直链（最新版，兼容 4.0~4.8）",
+        "wmv9vcm" to "WMV9 解码器，解决游戏过场动画/媒体 WMV 无法播放问题，微软官方直链",
         "zink" to "Zink：OpenGL 转 Vulkan",
     )
 
