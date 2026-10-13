@@ -74,6 +74,15 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
     val openWithLabel = appString(R.string.open_with)
     val shareChooserLabel = appString(R.string.share_chooser)
 
+    // 进入下载 Tab 即触发一次扫描：覆盖安装新版后，之前下载未删除的本地文件
+    // 默认仅 App 启动扫一次，MediaStore 索引延迟/权限会导致漏扫；此处打开即
+    // 主动重扫，保证旧文件在下载库可见可删，避免重复下载生成 (1)(2) 后缀。
+    LaunchedEffect(Unit) {
+        withContext(Dispatchers.IO) {
+            DownloadsManager.scanExistingFiles(context)
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
