@@ -1511,6 +1511,17 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* t
 static std::string loadDriverAdrenoTools(const char* driverDir, const char* driverName,
                                          const char* tmpDir, const char* hookLibDir,
                                          void** libHandleOut, GetInstanceProcAddrFn* getInstOut) {
+    // adrenotools 内部按 "dir + 文件名" 直接拼接 stat/dlopen，目录必须以 "/" 结尾。
+    // 此前 Kotlin 侧传 File.parent（无结尾斜杠）导致拼接路径非法、加载必失败
+    // （ADRENOTOOLS_OPEN_FAILED，从 m24 集成至今）。这里归一化兜底，任何调用
+    // 方漏传斜杠都不再影响加载。
+    std::string driverDirNorm = driverDir ? driverDir : "";
+    if (!driverDirNorm.empty() && driverDirNorm.back() != '/') driverDirNorm += "/";
+    std::string tmpDirNorm = tmpDir ? tmpDir : "";
+    if (!tmpDirNorm.empty() && tmpDirNorm.back() != '/') tmpDirNorm += "/";
+    const char* dd = driverDirNorm.c_str();
+    const char* td = tmpDirNorm.empty() ? nullptr : tmpDirNorm.c_str();
+
     void* mappingHandle = nullptr;
     // 首次尝试完整功能：自定义驱动 + GPU 映射导入（turnip GSL 分配通常需要）。
     // 部分驱动/设备不支持映射导入时该组合会失败，降级为仅自定义驱动重试，
@@ -1519,7 +1530,7 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
     void* lib = adrenotools_open_libvulkan(
             RTLD_NOW,
             ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
-            tmpDir, hookLibDir, driverDir, driverName, nullptr, &mappingHandle);
+            td, hookLibDir, dd, driverName, nullptr, &mappingHandle);
     std::string firstErr;
     if (!lib) {
         firstErr = dlerror() ? dlerror() : "unknown";
@@ -1527,12 +1538,17 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
         lib = adrenotools_open_libvulkan(
                 RTLD_NOW,
                 ADRENOTOOLS_DRIVER_CUSTOM,
-                tmpDir, hookLibDir, driverDir, driverName, nullptr, &retryMapping);
+                td, hookLibDir, dd, driverName, nullptr, &retryMapping);
     }
     if (!lib) {
         std::string err = dlerror() ? dlerror() : firstErr;
+        // 附加前置诊断：驱动文件是否存在/hook 库是否在 nativeLibraryDir，
+        // 帮助区分"路径/文件问题"与"系统级权限问题"。
+        std::string driverPath = driverDirNorm + driverName;
+        bool driverExists = !driverPath.empty() && access(driverPath.c_str(), F_OK) == 0;
+        std::string diag = "driver_exists=" + std::string(driverExists ? "1" : "0");
         return "{\"success\":false,\"errorCode\":\"ADRENOTOOLS_OPEN_FAILED\",\"errorMessage\":\""
-               + jsonEscape(err) + "\",\"deviceCount\":0,\"devices\":[]}";
+               + jsonEscape(err) + "\",\"diag\":\"" + diag + "\",\"deviceCount\":0,\"devices\":[]}";
     }
     // ICD 规范入口：mesa turnip/panvk 导出 vk_icdGetInstanceProcAddr
     auto getInst = reinterpret_cast<GetInstanceProcAddrFn>(

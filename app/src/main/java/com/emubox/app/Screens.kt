@@ -3233,6 +3233,10 @@ private fun componentSubtitle(type: String): String = when (type) {
     else -> appString(R.string.runtime_component)
 }
 
+/** 目录路径以 "/" 结尾（adrenotools 内部按 "dir + 文件名" 拼接，缺斜杠必加载失败） */
+private fun String.ensureTrailingSlash(): String =
+    if (endsWith("/")) this else "$this/"
+
 /** 根据设备 Adreno 系列计算 Turnip 源优先级：匹配型号/系列 → 推荐，有白名单无匹配 → 专属，无白名单 → 通用 */
 private fun turnipCategoryOf(source: TurnipSource, adrenoSeries: String?): String {
     // PanVK（Mali）驱动独立分区：与 Turnip（Adreno）/ 高通提取驱动完全不同的
@@ -5439,9 +5443,11 @@ private fun DriverDetectionList(
 
     // AdrenoTools 实测目录：tmpLibDir（memfd 不可用时 patched lib 落地，App 私有可写）
     // + hookLibDir（必须 = nativeLibraryDir，hook .so 随 APK 解压于此）。
+    // 注意：adrenotools_open_libvulkan 内部按 "dir + 文件名" 直接拼接 stat，
+    // 目录必须以 "/" 结尾，否则拼接出非法路径，加载必失败（ADRENOTOOLS_OPEN_FAILED）。
     val adrenotoolsDirs = run {
         val tmp = File(context.filesDir, "adrenotools_tmp").apply { mkdirs() }
-        tmp.absolutePath to context.applicationInfo.nativeLibraryDir
+        (tmp.absolutePath.ensureTrailingSlash()) to context.applicationInfo.nativeLibraryDir
     }
 
     // AdrenoTools 实测：采集（实例扩展+设备属性+设备扩展）+ 跑分，一次跑完
@@ -5460,7 +5466,7 @@ private fun DriverDetectionList(
                     detectionResults = detectionResults + (id to fail)
                 } else {
                     val (tmpDir, hookLibDir) = adrenotoolsDirs
-                    val dir = soFile.parent ?: soFile.absolutePath
+                    val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
                     val payload = VulkanInfoPayload.fromJson(
                         NativeVulkanBridge.collectDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
                     )
@@ -5513,7 +5519,7 @@ private fun DriverDetectionList(
                 } else {
                     // AdrenoTools 加载路径（Winlator/GameHub/Eden 同款），替代裸 dlopen
                     val (tmpDir, hookLibDir) = adrenotoolsDirs
-                    val dir = soFile.parent ?: soFile.absolutePath
+                    val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
                     val raw = NativeVulkanBridge.benchmarkDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(raw))
                 }
