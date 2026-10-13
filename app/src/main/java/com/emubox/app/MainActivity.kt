@@ -159,7 +159,7 @@ class MainActivity : ComponentActivity() {
                         // 源目录与驱动注册表并行加载（互不依赖，串行会多等一个超时周期）
                         val (baseCatalog, registryEntries) = coroutineScope {
                             val c = async { SourceCatalogRepository.load() }
-                            val r = async { DriverRegistryRepository.load() }
+                            val r = async { DriverRegistryRepository.load(context = this@MainActivity) }
                             c.await() to r.await()
                         }
 
