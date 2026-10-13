@@ -377,6 +377,12 @@
     <string name="about_upstream">基于 Rodrig02005 的开源项目 EmuHub-APP（MIT 协议）</string>
     <string name="about_license">MIT 开源协议</string>
     <string name="driver_compare_title">驱动对比</string>
+    <string name="driver_news_title">驱动更新动态</string>
+    <string name="driver_news_empty">暂无更新记录，点击刷新获取各仓库最新版本。</string>
+    <string name="driver_news_more">展开其余 %1$d 条</string>
+    <string name="driver_family_turnip">Turnip</string>
+    <string name="driver_family_panvk">PanVK</string>
+    <string name="driver_family_qualcomm">高通</string>
     <string name="driver_compare_subtitle">共 %1$d 个驱动来源，选两个对比类型、版本、GPU 支持与平台</string>
     <string name="driver_compare_hint">最多选 2 个驱动来源进行对比，最新版本与更新时间实时拉取。</string>
     <string name="driver_cmp_name">来源</string>

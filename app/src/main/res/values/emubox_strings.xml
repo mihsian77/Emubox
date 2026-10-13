@@ -377,6 +377,12 @@
     <string name="about_upstream">Based on EmuHub-APP (MIT) by Rodrig02005</string>
     <string name="about_license">MIT License</string>
     <string name="driver_compare_title">Compare Drivers</string>
+    <string name="driver_news_title">Driver updates</string>
+    <string name="driver_news_empty">No update records yet. Tap refresh to fetch the latest releases.</string>
+    <string name="driver_news_more">Show %1$d more</string>
+    <string name="driver_family_turnip">Turnip</string>
+    <string name="driver_family_panvk">PanVK</string>
+    <string name="driver_family_qualcomm">Qualcomm</string>
     <string name="driver_compare_subtitle">%1$d driver sources available — pick two to compare type, version, GPU support and platform</string>
     <string name="driver_compare_hint">Select up to 2 driver sources to compare. Latest version and update time are fetched live.</string>
     <string name="driver_cmp_name">Source</string>
