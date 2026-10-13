@@ -364,6 +364,20 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">Based on EmuHub-APP (MIT) by Rodrig02005</string>
     <string name="about_license">MIT License</string>
+    <string name="driver_compare_title">Compare Drivers</string>
+    <string name="driver_compare_subtitle">%1$d driver sources available — pick two to compare type, version, GPU support and platform</string>
+    <string name="driver_compare_hint">Select up to 2 driver sources to compare. Latest version and update time are fetched live.</string>
+    <string name="driver_cmp_name">Source</string>
+    <string name="driver_cmp_type">Type</string>
+    <string name="driver_cmp_latest">Latest version</string>
+    <string name="driver_cmp_updated">Updated</string>
+    <string name="driver_cmp_gpu">GPU support</string>
+    <string name="driver_cmp_platform">Target platform</string>
+    <string name="driver_cmp_flag">Status</string>
+    <string name="driver_cmp_desc">Description</string>
+    <string name="driver_cmp_reselect">Reselect</string>
+    <string name="experimental_tag">Experimental</string>
+    <string name="recommended_tag">Recommended</string>
     <string name="app_disclaimer">EmuBox is an open-source integration tool: it only manages downloads and does not bundle or modify any drivers/components/runtimes. All data is aggregated from open-source community sources; copyrights belong to their respective authors. Dead links are auto-replaced with official mirrors. For personal study only. Sponsorship is voluntary support for integration work only, with no revenue relationship to upstream authors.</string>
     <string name="about_disclaimer">All drivers, components and runtimes are aggregated from open-source community projects; rights belong to their respective authors. This app only manages downloads and does not bundle or modify any files. Dead third-party links are replaced with official mirrors automatically. For personal study only.</string>
 
@@ -565,6 +579,8 @@
     <string name="driver_disclaimer">Drivers are aggregated from open-source community projects; all rights belong to their authors. This app only manages downloads and does not bundle or modify any driver files. Verify compatibility inside your emulator. For personal study only.</string>
     <string name="runtime_recommended">Recommended</string>
     <string name="file_purpose">Purpose</string>
+    <string name="archive_kind">Package type</string>
+    <string name="archive_contains">Contains %1$d entries (key libraries below)</string>
     <string name="file_info_error">Failed to read file info</string>
     <string name="benchmark_adrenotools_boundary">All distributed driver packages are adrenotools format (simulator-specific ICD). They cannot be loaded inside this app - verify them inside Eden/Winlator. Spec comparison above is from the package meta.json.</string>
     <string name="already_downloaded">Already downloaded</string>
