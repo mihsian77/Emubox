@@ -15,6 +15,9 @@ BUILTIN = os.path.join(ROOT, "scripts", "emu_builtin_block.txt")
 
 T412 = "https://the412banner.github.io/emulator-ranking/data/rankings.json"
 T331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/rankings.json"
+HIST331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/history.json"
+RECIPES331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/recipes.json"
+DRIVERSRC331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/driver-sources.json"
 LOGO_T412 = "https://the412banner.github.io/emulator-ranking/logos/"
 LOGO_T331 = "https://t3st31.github.io/Ranking-Emulators-Download/logos/"
 
@@ -99,6 +102,25 @@ def main():
     t331 = fetch(T331)
     t412r = t412.get("results") or []
     t331r = t331.get("results") or []
+    hist = fetch(HIST331) or {}
+    recipes_raw = (fetch(RECIPES331) or {}).get("recipes") or []
+    driver_src = (fetch(DRIVERSRC331) or {}).get("sources") or []
+
+    # ── 14 天下载增量（t3st31 history 每日快照）──
+    snaps = hist.get("projectSnapshots") or []
+    trend14 = []
+    if len(snaps) >= 2:
+        latest = snaps[-1]
+        base = snaps[0]
+        if len(snaps) > 14:
+            base = snaps[-14]
+        latest_dl = {p.get("repo", "").lower(): int(p.get("downloads") or 0) for p in latest.get("projects") or []}
+        base_dl = {p.get("repo", "").lower(): int(p.get("downloads") or 0) for p in base.get("projects") or []}
+        for repo, dl in latest_dl.items():
+            delta = dl - base_dl.get(repo, 0)
+            if delta > 0:
+                trend14.append({"repo": repo, "delta": delta, "date": latest.get("date", "")})
+        trend14.sort(key=lambda x: -x["delta"])
 
     by_repo = {}
     order = []
@@ -143,15 +165,21 @@ def main():
         if repo.lower() in by_repo:
             continue
         add(e, LOGO_T331)
-    # 合并后补 t412 元数据（stars/description/pushed_at/homepage）
+    # 合并后补 t412 元数据（stars/description/pushed_at/homepage/forks/watchers/topics/license/createdAt）
     stats = {e["repo"].lower(): (e.get("repoStats") or {}) for e in t412r}
     for key in order:
         s = stats.get(key, {})
         e = by_repo[key]
         e["stars"] = int(s.get("stars") or 0)
+        e["forks"] = int(s.get("forks") or 0)
+        e["watchers"] = int(s.get("watchers") or 0)
         e["description"] = s.get("description") or ""
         e["pushed_at"] = s.get("pushedAt") or ""
+        e["created_at"] = s.get("createdAt") or ""
         e["homepage"] = s.get("homepage") or ""
+        e["license"] = s.get("license") or ""
+        e["topics"] = s.get("topics") or []
+        e["archived"] = bool(s.get("archived"))
 
     emus = [by_repo[k] for k in order]
     # 补充最新版本信息：latestTag/latestDate 从最新 release 取（releases 已按时间倒序）
@@ -161,11 +189,101 @@ def main():
         e["latestDate"] = rel0.get("date", "")
     emus.sort(key=lambda e: (-(1 if e["official"] else 0), -(e.get("downloads") or 0)))
     cats = {}
+    cat_dl = {}
     for e in emus:
         cats[e["category"]] = cats.get(e["category"], 0) + 1
+        cat_dl[e["category"]] = cat_dl.get(e["category"], 0) + (e.get("downloads") or 0)
+
+    total_dl = sum(e.get("downloads") or 0 for e in emus)
+    total_stars = sum(e.get("stars") or 0 for e in emus)
+
+    # 食谱（t3st31 recipes，葡萄牙语 → 中文翻译）
+    PT = {
+        "perfil inicial": "入门配置", "Ponto de partida para aparelhos Qualcomm": "高通设备的起点配置",
+        "Ajuste por jogo e confirme os relatos da comunidade": "按游戏微调，并以社区反馈为准",
+        "Ponto de partida para aparelhos com GPU Mali": "Mali GPU 设备的起点配置",
+        "Driver gráfico": "图形驱动", "Turnip / AdrenoTools quando compatível": "兼容时使用 Turnip / AdrenoTools",
+        "Renderer": "渲染器", "Wrapper": "Wrapper", "Começar com DXVK; testar VKD3D apenas para DirectX 12":
+        "先用 DXVK；仅 DirectX 12 游戏再试 VKD3D", "Resolução": "分辨率", "1280×720 ou nativa reduzida": "1280×720 或降低原生分辨率",
+        "Box64": "Box64", "Preset padrão do projeto antes de ajustar manualmente": "先保持项目默认预设，再手动微调",
+        "Áudio": "音频", "ALSA como primeira tentativa": "首选 ALSA",
+        "Vortek / driver do sistema": "Vortek / 系统驱动", "Vortek / driver de sistema": "Vortek / 系统驱动",
+        "Vulkan com fallback OpenGL": "Vulkan，必要时回退 OpenGL",
+        "Confirmar se o driver corresponde à GPU e à versão do Android.": "确认驱动匹配 GPU 与 Android 版本。",
+        "Testar primeiro sem modificar várias opções ao mesmo tempo.": "先单点修改，避免同时改多个选项。",
+        "Comparar FPS entre as duas APIs antes de escolher a definitiva.": "最终确定前对比两种 API 的 FPS。",
+        "Confirmar se o driver corresponde à GPU e à versão do Android": "确认驱动匹配 GPU 与 Android 版本",
+        "Testar primeiro sem modificar várias opções ao mesmo tempo": "先单点修改，避免同时改多个选项",
+        "Comparar FPS entre as duas APIs antes de escolher a definitiva": "最终确定前对比两种 API 的 FPS",
+        "Driver gráfico (Adreno)": "图形驱动（Adreno）", "Driver gráfico (Mali)": "图形驱动（Mali）",
+        "Registrar versão, driver, wrapper e resultado ao relatar compatibilidade.":
+        "反馈兼容性时记录版本、驱动、wrapper 与结果。",
+        "Ponto de partida experimental para Mali. O resultado varia muito por geração, driver e jogo.":
+        "Mali 的试验性起点配置，效果随 GPU 代际、驱动与游戏差异很大。",
+        "Vortek ou driver do sistema, conforme suporte": "Vortek 或系统驱动（视支持情况）",
+        "Vulkan quando disponível; testar OpenGL como fallback": "优先 Vulkan；OpenGL 作为回退测试",
+        "Começar com DXVK e reduzir a complexidade se houver artefatos":
+        "先用 DXVK；出现画面错误再降低配置复杂度",
+        "Confirmar o renderer realmente usado pelo container.": "确认容器实际使用的渲染器。",
+        "Testar um jogo conhecido antes de concluir que o emulador é incompatível.":
+        "下结论前先用已知可玩的游戏验证。",
+        "Registrar artefatos gráficos, travamentos e temperatura observada.":
+        "记录图形错误、崩溃与设备温度。",
+    }
+
+    def tr(s):
+        s = s or ""
+        for k, v in PT.items():
+            s = s.replace(k, v)
+        return s
+
+    def fmt_recipe(r):
+        sets = []
+        for it in r.get("settings") or []:
+            if isinstance(it, dict):
+                k = it.get("label") or it.get("key") or it.get("name") or ""
+                v = it.get("value")
+                sets.append({"key": tr(k), "value": tr(v) if v else ""})
+            else:
+                sets.append({"key": tr(str(it)), "value": ""})
+        checks = []
+        for it in r.get("checks") or []:
+            if isinstance(it, dict):
+                checks.append({"title": tr(it.get("title") or it.get("name") or ""), "detail": tr(it.get("detail") or "")})
+            else:
+                checks.append({"title": tr(str(it)), "detail": ""})
+        return {
+            "id": r.get("id") or r.get("name") or "",
+            "title": tr(r.get("title") or r.get("name") or ""),
+            "summary": tr(r.get("summary") or r.get("description") or ""),
+            "settings": sets,
+            "checks": checks,
+            "sources": r.get("sources") or [],
+        }
+
+    recipes = [fmt_recipe(r) for r in recipes_raw if isinstance(r, dict)]
+    driver_sources_out = [
+        {"repo": d.get("repo") or "", "family": d.get("family") or "", "apiUrl": d.get("apiUrl") or "",
+         "extensions": d.get("extensions") or [], "notes": d.get("notes") or ""}
+        for d in driver_src if isinstance(d, dict)
+    ]
+
     doc = {
         "updated_at": t412.get("updatedAt", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())),
         "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
+        "insights": {
+            "total_projects": len(emus),
+            "total_downloads": total_dl,
+            "total_stars": total_stars,
+            "trending14": trend14[:15],
+            "trend_base_date": (snaps[-14].get("date") if len(snaps) > 14 else (snaps[0].get("date") if snaps else "")),
+            "trend_latest_date": (snaps[-1].get("date") if snaps else ""),
+            "category_downloads": sorted(
+                [{"category": k, "label": CAT_ZH.get(k, k), "downloads": v} for k, v in cat_dl.items()],
+                key=lambda x: -x["downloads"]),
+        },
+        "recipes": recipes,
+        "driver_sources": driver_sources_out,
         "categories": [{"key": c, "label": CAT_ZH.get(c, c), "count": n}
                        for c, n in sorted(cats.items(), key=lambda x: -x[1])],
         "emulators": emus,

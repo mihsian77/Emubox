@@ -1,6 +1,355 @@
 {
- "updated_at": "2026-10-13",
+ "updated_at": "2026-10-13T05:32:47.955Z",
  "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
+ "insights": {
+  "total_projects": 63,
+  "total_downloads": 62302030,
+  "total_stars": 80132,
+  "trending14": [
+   {
+    "repo": "brunodev85/winlator",
+    "delta": 300402,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "azahar-emu/azahar",
+    "delta": 281314,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "the412banner/banners-turnip",
+    "delta": 274806,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "the412banner/bannerlator",
+    "delta": 166044,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "k11mch1/adrenotoolsdrivers",
+    "delta": 151444,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "armsx2/armsx2",
+    "delta": 120869,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "armsx2/armsx3",
+    "delta": 104930,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "stevenmxz/freedreno_turnip-ci",
+    "delta": 89548,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "stevenmxz/winlator-ludashi",
+    "delta": 72143,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "trixarian/nethersx2-patch",
+    "delta": 59460,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "utkarshdalal/gamenative",
+    "delta": 58072,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "producdevity/gamehub-lite",
+    "delta": 55638,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "ashnar2602/x360-mobile---official",
+    "delta": 41595,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "aenu1/aps3e",
+    "delta": 38235,
+    "date": "2026-10-13"
+   },
+   {
+    "repo": "whitebelyash/adrenotoolsdrivers",
+    "delta": 35736,
+    "date": "2026-10-13"
+   }
+  ],
+  "trend_base_date": "2026-09-30",
+  "trend_latest_date": "2026-10-13",
+  "category_downloads": [
+   {
+    "category": "Winlator",
+    "label": "Winlator 专区",
+    "downloads": 22147396
+   },
+   {
+    "category": "Nintendo 3DS",
+    "label": "任天堂 3DS",
+    "downloads": 16697496
+   },
+   {
+    "category": "Emulator PS2",
+    "label": "PS2 模拟",
+    "downloads": 5953094
+   },
+   {
+    "category": "PSVITA",
+    "label": "PS Vita",
+    "downloads": 4327951
+   },
+   {
+    "category": "Wii U Emulator",
+    "label": "Wii U 模拟",
+    "downloads": 2876693
+   },
+   {
+    "category": "GameHub",
+    "label": "GameHub 专区",
+    "downloads": 2427549
+   },
+   {
+    "category": "Emulator PS3",
+    "label": "PS3 模拟",
+    "downloads": 2096380
+   },
+   {
+    "category": "PC Emulator",
+    "label": "PC 模拟器",
+    "downloads": 1966481
+   },
+   {
+    "category": "GameNative",
+    "label": "GameNative 专区",
+    "downloads": 1318016
+   },
+   {
+    "category": "Sega Dreamcast",
+    "label": "Dreamcast 模拟",
+    "downloads": 882280
+   },
+   {
+    "category": "Nintendo GameCube / Wii",
+    "label": "NGC-Wii 模拟",
+    "downloads": 774492
+   },
+   {
+    "category": "Xbox",
+    "label": "Xbox 模拟",
+    "downloads": 732783
+   },
+   {
+    "category": "All In One",
+    "label": "聚合前端",
+    "downloads": 97249
+   },
+   {
+    "category": "Emulator PS5",
+    "label": "PS5 模拟",
+    "downloads": 2573
+   },
+   {
+    "category": "GAME",
+    "label": "游戏",
+    "downloads": 1597
+   },
+   {
+    "category": "Nintendo Switch Emulator",
+    "label": "Switch 模拟",
+    "downloads": 0
+   }
+  ]
+ },
+ "recipes": [
+  {
+   "id": "winlator-adreno-starter",
+   "title": "Winlator + Adreno · 入门配置",
+   "summary": "高通设备的起点配置. 按游戏微调，并以社区反馈为准.",
+   "settings": [
+    {
+     "key": "图形驱动",
+     "value": "兼容时使用 Turnip / AdrenoTools"
+    },
+    {
+     "key": "渲染器",
+     "value": "Vulkan"
+    },
+    {
+     "key": "Wrapper",
+     "value": "先用 DXVK；仅 DirectX 12 游戏再试 VKD3D"
+    },
+    {
+     "key": "分辨率",
+     "value": "1280×720 或降低原生分辨率"
+    },
+    {
+     "key": "Box64",
+     "value": "先保持项目默认预设，再手动微调"
+    },
+    {
+     "key": "音频",
+     "value": "首选 ALSA"
+    }
+   ],
+   "checks": [
+    {
+     "title": "确认驱动匹配 GPU 与 Android 版本。",
+     "detail": ""
+    },
+    {
+     "title": "先单点修改，避免同时改多个选项。",
+     "detail": ""
+    },
+    {
+     "title": "反馈兼容性时记录版本、驱动、wrapper 与结果。",
+     "detail": ""
+    }
+   ],
+   "sources": [
+    "https://github.com/brunodev85/winlator/releases",
+    "https://github.com/K11MCH1/AdrenoToolsDrivers"
+   ]
+  },
+  {
+   "id": "winlator-mali-starter",
+   "title": "Winlator + Mali · 入门配置",
+   "summary": "Mali 的试验性起点配置，效果随 GPU 代际、驱动与游戏差异很大。",
+   "settings": [
+    {
+     "key": "图形驱动",
+     "value": "Vortek 或系统驱动（视支持情况）"
+    },
+    {
+     "key": "渲染器",
+     "value": "优先 Vulkan；OpenGL 作为回退测试"
+    },
+    {
+     "key": "Wrapper",
+     "value": "先用 DXVK；出现画面错误再降低配置复杂度"
+    },
+    {
+     "key": "分辨率",
+     "value": "1280×720 para o primeiro teste"
+    },
+    {
+     "key": "Box64",
+     "value": "Preset padrão do projeto"
+    },
+    {
+     "key": "音频",
+     "value": "首选 ALSA"
+    }
+   ],
+   "checks": [
+    {
+     "title": "确认容器实际使用的渲染器。",
+     "detail": ""
+    },
+    {
+     "title": "下结论前先用已知可玩的游戏验证。",
+     "detail": ""
+    },
+    {
+     "title": "记录图形错误、崩溃与设备温度。",
+     "detail": ""
+    }
+   ],
+   "sources": [
+    "https://github.com/brunodev85/winlator/releases"
+   ]
+  }
+ ],
+ "driver_sources": [
+  {
+   "repo": "K11MCH1/AdrenoToolsDrivers",
+   "family": "Adreno / Turnip",
+   "apiUrl": "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "The412Banner/Banners-Turnip",
+   "family": "Adreno / Turnip",
+   "apiUrl": "https://api.github.com/repos/The412Banner/Banners-Turnip/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "whitebelyash/AdrenoToolsDrivers",
+   "family": "Adreno / Turnip",
+   "apiUrl": "https://api.github.com/repos/whitebelyash/AdrenoToolsDrivers/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "StevenMXZ/Adrenotools-Drivers",
+   "family": "Adreno / Turnip",
+   "apiUrl": "https://api.github.com/repos/StevenMXZ/Adrenotools-Drivers/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "Weab-chan/freedreno_turnip-CI",
+   "family": "Adreno / Turnip",
+   "apiUrl": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "StevenMXZ/freedreno_turnip-CI",
+   "family": "Adreno / Turnip",
+   "apiUrl": "https://api.github.com/repos/StevenMXZ/freedreno_turnip-CI/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "whitebelyash/freedreno_turnip-CI",
+   "family": "Adreno A8XX / Turnip",
+   "apiUrl": "https://api.github.com/repos/whitebelyash/freedreno_turnip-CI/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "jhinzuo/upload_grave",
+   "family": "Xclipse / Turnip",
+   "apiUrl": "https://api.github.com/repos/jhinzuo/upload_grave/releases",
+   "extensions": [
+    ".zip"
+   ],
+   "notes": ""
+  },
+  {
+   "repo": "winlatorbrasil/wrappers",
+   "family": "Mali / Wrappers",
+   "apiUrl": "https://api.github.com/repos/winlatorbrasil/wrappers/releases",
+   "extensions": [
+    ".wcp",
+    ".zip"
+   ],
+   "notes": ""
+  }
+ ],
  "categories": [
   {
    "key": "Winlator",
@@ -85,27 +434,6 @@
  ],
  "emulators": [
   {
-   "id": "official-gamehub",
-   "name": "GameHub (盖世游戏)",
-   "repo": "",
-   "repo_url": "",
-   "category": "GameHub",
-   "official": true,
-   "channel": "stable",
-   "downloads": 0,
-   "stars": 0,
-   "description": "盖世游戏 — 你的全能游戏宇宙。支持 Android 畅玩 PC 大作、Steam/EPIC 接入、云游戏串流。",
-   "pushed_at": "2026-09-23T15:49:16Z",
-   "homepage": "https://gamehub.xiaoji.com",
-   "logoUrl": "https://gamehub.xiaoji.com/guanwang_v2/assets/logo_new.png",
-   "releases": [],
-   "latest_apk_url": "https://wwwdl.mx520.com/ux-landscape/app-apk/85e6/14/cf/GameHub_6.3.1_85e614cf4bfc485c765f952af85b0558.apk",
-   "latest_apk_name": "GameHub_6.3.1.apk",
-   "latest_apk_size": 69600000,
-   "latest_tag": "6.3.1",
-   "latest_date": "2026-09-23T15:49:16Z"
-  },
-  {
    "id": "brunodev85-winlator",
    "name": "Winlator BrunoDev",
    "repo": "brunodev85/winlator",
@@ -113,8 +441,8 @@
    "category": "Winlator",
    "official": true,
    "channel": "stable",
-   "downloads": 16091821,
-   "stars": 19434,
+   "downloads": 16098846,
+   "stars": 19438,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-09-22T18:36:59Z",
    "homepage": "https://winlator.org",
@@ -374,6 +702,12 @@
      ]
     }
    ],
+   "forks": 1837,
+   "watchers": 359,
+   "created_at": "2023-07-26T13:02:11Z",
+   "license": "LGPL-2.1",
+   "topics": [],
+   "archived": false,
    "latestTag": "v11.2.0",
    "latestDate": "2026-08-19T11:06:47Z"
   },
@@ -385,8 +719,8 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8628770,
-   "stars": 8327,
+   "downloads": 8636606,
+   "stars": 8329,
    "description": "An open-source 3DS emulator project based on Citra.",
    "pushed_at": "2026-10-12T21:57:08Z",
    "homepage": "https://azahar-emu.org/",
@@ -7247,6 +7581,12 @@
      ]
     }
    ],
+   "forks": 724,
+   "watchers": 147,
+   "created_at": "2024-03-04T21:08:59Z",
+   "license": "GPL-3.0",
+   "topics": [],
+   "archived": false,
    "latestTag": "2127.0-alpha1",
    "latestDate": "2026-10-10T16:09:24Z"
   },
@@ -7258,7 +7598,7 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8060183,
+   "downloads": 8060890,
    "stars": 2761,
    "description": "A Nintendo 3DS Emulator",
    "pushed_at": "2025-11-14T11:04:59Z",
@@ -9160,6 +9500,17 @@
      ]
     }
    ],
+   "forks": 246,
+   "watchers": 162,
+   "created_at": "2019-07-15T02:57:43Z",
+   "license": "GPL-2.0",
+   "topics": [
+    "3ds",
+    "android",
+    "emulator",
+    "new3ds"
+   ],
+   "archived": false,
    "latestTag": "20251112",
    "latestDate": "2025-11-12T02:51:02Z"
   },
@@ -9171,7 +9522,7 @@
    "category": "PSVITA",
    "official": false,
    "channel": "stable",
-   "downloads": 4327745,
+   "downloads": 4327951,
    "stars": 1665,
    "description": "Public releases and CI for the Vita3K Android app",
    "pushed_at": "2025-02-22T16:30:58Z",
@@ -9347,6 +9698,12 @@
      ]
     }
    ],
+   "forks": 88,
+   "watchers": 73,
+   "created_at": "2023-02-12T09:13:56Z",
+   "license": "GPL-2.0",
+   "topics": [],
+   "archived": false,
    "latestTag": "v12",
    "latestDate": "2024-06-06T20:36:09Z"
   },
@@ -9358,7 +9715,7 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 3505136,
+   "downloads": 3506751,
    "stars": 2682,
    "description": "Continuation of NetherSX2 based on AetherSX2 4248",
    "pushed_at": "2026-09-22T04:21:34Z",
@@ -9647,6 +10004,19 @@
      ]
     }
    ],
+   "forks": 97,
+   "watchers": 76,
+   "created_at": "2023-08-22T20:28:33Z",
+   "license": "Unlicense",
+   "topics": [
+    "aethersx2",
+    "android",
+    "arm64",
+    "emulator",
+    "nethersx2",
+    "pcsx2"
+   ],
+   "archived": false,
    "latestTag": "2.2n",
    "latestDate": "2025-12-25T12:22:12Z"
   },
@@ -9658,7 +10028,7 @@
    "category": "Wii U Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 2875778,
+   "downloads": 2876693,
    "stars": 1206,
    "description": "Android port for the cemu emulator",
    "pushed_at": "2026-09-12T17:30:42Z",
@@ -9792,6 +10162,18 @@
      ]
     }
    ],
+   "forks": 90,
+   "watchers": 89,
+   "created_at": "2022-11-19T20:04:09Z",
+   "license": "MPL-2.0",
+   "topics": [
+    "android",
+    "cemu",
+    "cemu-emulator",
+    "emulator",
+    "wiiu"
+   ],
+   "archived": false,
    "latestTag": "0.5",
    "latestDate": "2026-04-25T21:55:25Z"
   },
@@ -9803,8 +10185,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1533135,
-   "stars": 1228,
+   "downloads": 1535033,
+   "stars": 1229,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-07T21:29:08Z",
    "homepage": "https://winlator.org",
@@ -10267,6 +10649,12 @@
      ]
     }
    ],
+   "forks": 101,
+   "watchers": 45,
+   "created_at": "2025-08-21T16:37:04Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "v4.1",
    "latestDate": "2026-09-13T13:26:18Z"
   },
@@ -10278,8 +10666,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1509068,
-   "stars": 1199,
+   "downloads": 1510041,
+   "stars": 1200,
    "description": "Continuation of NetherSX2 based on AetherSX2 3668",
    "pushed_at": "2026-06-29T12:01:14Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -10422,6 +10810,19 @@
      ]
     }
    ],
+   "forks": 38,
+   "watchers": 44,
+   "created_at": "2023-10-21T12:45:55Z",
+   "license": "Unlicense",
+   "topics": [
+    "aethersx2",
+    "android",
+    "arm64",
+    "emulator",
+    "nethersx2",
+    "pcsx2"
+   ],
+   "archived": false,
    "latestTag": "2.2n",
    "latestDate": "2025-12-25T12:22:14Z"
   },
@@ -10433,8 +10834,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 1482011,
-   "stars": 2044,
+   "downloads": 1483446,
+   "stars": 2045,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-07-03T18:28:52Z",
    "homepage": "https://www.emuready.com/",
@@ -10837,6 +11238,19 @@
      ]
     }
    ],
+   "forks": 64,
+   "watchers": 39,
+   "created_at": "2025-11-10T17:41:06Z",
+   "license": "",
+   "topics": [
+    "android-emulator-pc",
+    "emulation",
+    "emuready",
+    "gamehub",
+    "gamehub-lite",
+    "steam-games"
+   ],
+   "archived": false,
    "latestTag": "v5.1.8",
    "latestDate": "2026-07-02T19:43:40Z"
   },
@@ -10848,8 +11262,8 @@
    "category": "GameNative",
    "official": false,
    "channel": "stable",
-   "downloads": 1316695,
-   "stars": 11201,
+   "downloads": 1318016,
+   "stars": 11227,
    "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
    "pushed_at": "2026-10-10T18:19:19Z",
    "homepage": "https://gamenative.app",
@@ -12009,6 +12423,17 @@
      ]
     }
    ],
+   "forks": 455,
+   "watchers": 71,
+   "created_at": "2025-04-21T11:25:27Z",
+   "license": "GPL-3.0",
+   "topics": [
+    "gaming",
+    "mobile-gaming",
+    "pc-gaming",
+    "steam"
+   ],
+   "archived": false,
    "latestTag": "v1.3.0-prerelease",
    "latestDate": "2026-10-04T15:49:59Z"
   },
@@ -12020,7 +12445,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1023561,
+   "downloads": 1023599,
    "stars": 551,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-01-05T23:43:15Z",
@@ -12172,6 +12597,12 @@
      ]
     }
    ],
+   "forks": 213,
+   "watchers": 23,
+   "created_at": "2024-07-13T16:12:07Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "v7.1.5",
    "latestDate": "2025-01-25T09:40:50Z"
   },
@@ -12183,8 +12614,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 932896,
-   "stars": 2166,
+   "downloads": 936302,
+   "stars": 2170,
    "description": "ARMSX2 - The Playstation 2 Emulator for ARM64 Platforms",
    "pushed_at": "2026-10-12T21:18:46Z",
    "homepage": "https://armsx2.net/",
@@ -14291,6 +14722,12 @@
      ]
     }
    ],
+   "forks": 170,
+   "watchers": 44,
+   "created_at": "2025-08-11T19:27:45Z",
+   "license": "GPL-3.0",
+   "topics": [],
+   "archived": false,
    "latestTag": "2.8.3",
    "latestDate": "2026-10-11T17:16:38Z"
   },
@@ -14302,8 +14739,8 @@
    "category": "Sega Dreamcast",
    "official": false,
    "channel": "stable",
-   "downloads": 881713,
-   "stars": 2590,
+   "downloads": 882280,
+   "stars": 2592,
    "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
    "pushed_at": "2026-10-12T07:57:20Z",
    "homepage": "",
@@ -14728,6 +15165,17 @@
      ]
     }
    ],
+   "forks": 369,
+   "watchers": 72,
+   "created_at": "2018-04-27T11:14:36Z",
+   "license": "GPL-2.0",
+   "topics": [
+    "emulation",
+    "emulator",
+    "sega-dreamcast",
+    "sega-naomi"
+   ],
+   "archived": false,
    "latestTag": "v2.7",
    "latestDate": "2026-08-19T11:47:09Z"
   },
@@ -14739,8 +15187,8 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 851665,
-   "stars": 1333,
+   "downloads": 851849,
+   "stars": 1334,
    "description": "",
    "pushed_at": "2026-08-29T13:27:19Z",
    "homepage": "",
@@ -14789,6 +15237,12 @@
      ]
     }
    ],
+   "forks": 210,
+   "watchers": 76,
+   "created_at": "2025-04-01T14:44:07Z",
+   "license": "GPL-2.0",
+   "topics": [],
+   "archived": false,
    "latestTag": "v20250425",
    "latestDate": "2025-04-25T16:02:13Z"
   },
@@ -14800,7 +15254,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 844963,
+   "downloads": 845162,
    "stars": 1115,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-12-09T22:36:49Z",
@@ -15061,6 +15515,12 @@
      ]
     }
    ],
+   "forks": 72,
+   "watchers": 42,
+   "created_at": "2024-09-08T06:33:44Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "cmod_v13.1",
    "latestDate": "2025-08-07T07:49:41Z"
   },
@@ -15072,7 +15532,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 820685,
+   "downloads": 820776,
    "stars": 698,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-04-19T02:53:06Z",
@@ -16219,6 +16679,12 @@
      ]
     }
    ],
+   "forks": 18,
+   "watchers": 20,
+   "created_at": "2024-03-31T04:03:07Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "10.1hotfix-Amod3fix2",
    "latestDate": "2025-12-02T08:21:17Z"
   },
@@ -16230,7 +16696,7 @@
    "category": "Nintendo GameCube / Wii",
    "official": false,
    "channel": "stable",
-   "downloads": 774259,
+   "downloads": 774492,
    "stars": 278,
    "description": "A fork of Dolphin MMJR2 - with added VBI Skip hack and further fixes ported over from Dolphin Official.",
    "pushed_at": "2025-08-03T09:27:46Z",
@@ -16406,6 +16872,12 @@
      ]
     }
    ],
+   "forks": 11,
+   "watchers": 12,
+   "created_at": "2023-04-13T13:50:44Z",
+   "license": "NOASSERTION",
+   "topics": [],
+   "archived": false,
    "latestTag": "U24.07.02-2407",
    "latestDate": "2025-07-20T08:56:45Z"
   },
@@ -16417,7 +16889,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 756195,
+   "downloads": 756371,
    "stars": 740,
    "description": "",
    "pushed_at": "2026-05-04T03:29:50Z",
@@ -16745,6 +17217,12 @@
      ]
     }
    ],
+   "forks": 71,
+   "watchers": 31,
+   "created_at": "2025-01-31T22:08:17Z",
+   "license": "NOASSERTION",
+   "topics": [],
+   "archived": false,
    "latestTag": "v6.0.0+c050ebd",
    "latestDate": "2025-11-09T15:21:38Z"
   },
@@ -16756,7 +17234,7 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 736963,
+   "downloads": 737756,
    "stars": 739,
    "description": "An experimental Android PS3 emulator, ported and optimized based on RPCS3. ",
    "pushed_at": "2026-10-05T09:08:05Z",
@@ -17100,6 +17578,12 @@
      ]
     }
    ],
+   "forks": 71,
+   "watchers": 24,
+   "created_at": "2025-06-03T03:43:05Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "2.43",
    "latestDate": "2026-10-05T09:08:05Z"
   },
@@ -17111,8 +17595,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 641697,
-   "stars": 440,
+   "downloads": 642307,
+   "stars": 441,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-04T12:44:25Z",
    "homepage": "https://winlator.org",
@@ -17205,6 +17689,12 @@
      ]
     }
    ],
+   "forks": 36,
+   "watchers": 36,
+   "created_at": "2024-07-19T14:24:18Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "bionic-mali-1.1",
    "latestDate": "2026-07-09T19:05:29Z"
   },
@@ -17216,7 +17706,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "nightly",
-   "downloads": 525842,
+   "downloads": 526915,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -17369,6 +17859,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "v0.6.3",
    "latestDate": "2026-08-17T19:30:11Z"
   },
@@ -17380,13 +17876,42 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 503672,
+   "downloads": 506775,
    "stars": 0,
    "description": "",
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/armsx3.png",
    "releases": [
+    {
+     "tag": "1.1.2",
+     "name": "ARMSX3 1.1.2 ",
+     "date": "2026-10-12T19:33:33Z",
+     "body": "# ARMSX3 1.1.2\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/df1c54a1-45e9-4cdf-88dc-d469e795f602\" />\n\n## Games\n\n- **Grand Theft Auto IV:** no longer falls through the world on SPU XFloat Accuracy: Approximate, so the game now uses the faster Approximate by default (less CPU usage). The fix is a built-in patch, on automatically for BLUS30682 v1.02 (Complete Edition, both episodes included) and BLUS30127 / NPUB30702 v1.08. Older versions without the update may still need Accurate (and the base 1.0 version doesn't even work on RPCS3).\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/91e5fe98-18ff-48b4-b494-d6221e5c10ab\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/1ab47b91-7d06-4fa8-8de3-4b9e4272355a\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/67df8147-d2ab-4407-b03b-bbe8649c8800\" />\n\n- **Grand Theft Auto IV:** the grey see-through rectangle graphical bug in daytime is gone. Other games that left stale blocks on screen the same way get the fix too.\n\n<img width=\"1920\" height=\"1080\" alt=\"image\"",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "ARMSX3-1.1.2-a11-armv8.2-sdk30.apk",
+       "size": 85855944,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.1.2/ARMSX3-1.1.2-a11-armv8.2-sdk30.apk"
+      },
+      {
+       "name": "ARMSX3-1.1.2-a13-armv8.2-sdk33.apk",
+       "size": 85585456,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.1.2/ARMSX3-1.1.2-a13-armv8.2-sdk33.apk"
+      },
+      {
+       "name": "ARMSX3-1.1.2-a15-armv8.2-sdk35.apk",
+       "size": 85545772,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.1.2/ARMSX3-1.1.2-a15-armv8.2-sdk35.apk"
+      },
+      {
+       "name": "ARMSX3-1.1.2-legacy-armv8.1-sdk30.apk",
+       "size": 85855916,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.1.2/ARMSX3-1.1.2-legacy-armv8.1-sdk30.apk"
+      }
+     ]
+    },
     {
      "tag": "1.1.1",
      "name": "ARMSX3 1.1.1 ",
@@ -18586,8 +19111,14 @@
      ]
     }
    ],
-   "latestTag": "1.1.1",
-   "latestDate": "2026-10-11T15:57:23Z"
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "1.1.2",
+   "latestDate": "2026-10-12T19:33:33Z"
   },
   {
    "id": "horizonemuteam-horizon-emu",
@@ -18597,8 +19128,8 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 486957,
-   "stars": 716,
+   "downloads": 487040,
+   "stars": 717,
    "description": "",
    "pushed_at": "2025-02-28T07:48:56Z",
    "homepage": "",
@@ -18633,6 +19164,12 @@
      ]
     }
    ],
+   "forks": 94,
+   "watchers": 43,
+   "created_at": "2024-05-09T17:49:00Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "v4",
    "latestDate": "2025-02-28T07:48:56Z"
   },
@@ -18644,7 +19181,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 364457,
+   "downloads": 364863,
    "stars": 529,
    "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool smali patching.",
    "pushed_at": "2026-09-28T21:24:36Z",
@@ -19775,83 +20312,14 @@
      ]
     }
    ],
+   "forks": 28,
+   "watchers": 10,
+   "created_at": "2026-03-12T11:14:26Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "v3.8.1",
    "latestDate": "2026-09-12T01:44:41Z"
-  },
-  {
-   "id": "winebox64-winlator",
-   "name": "Wb64dev",
-   "repo": "winebox64/winlator",
-   "repo_url": "https://github.com/winebox64/winlator",
-   "category": "Winlator",
-   "official": false,
-   "channel": "stable",
-   "downloads": 296945,
-   "stars": 535,
-   "description": "Android application for running Windows applications with Wine and Box86/Box64",
-   "pushed_at": "2025-03-18T01:28:27Z",
-   "homepage": "https://winlator.org",
-   "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
-   "releases": [
-    {
-     "tag": "v10.2",
-     "name": "Winlator 10.2 (Revision 2 Beta) Glibc unstable - Early Access",
-     "date": "2025-03-03T03:01:09Z",
-     "body": "[![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)](https://github.com/winebox64/winlator/releases)\n\n\n<p align=\"left\">\n<img  src=\"https://img.shields.io/badge/Winlator%2010.2-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" /> \n</p>\n\n# Released for personal use\n\n### Winlator 10.2 (beta)\n- Now smaller, lighter, and faster! Save storage with optimized app packaged in 130MB and installed in just 1.3GB.\n- Updated latest DXVK Async (v2.6.1), and **DXVK ULL (v2.5.3.94)** focus on ultra low latency ~8ms at 60 FPS, ~4ms at 120 FPS, with slightly lower fps (small performance impact), Improves input responsiveness on NFS: Most Wanted 2012.\n![lv_0_20250323083625](https://github.com/user-attachments/assets/a0aab4ec-0637-4cd2-a171-8ad5a76d91cb)\n**Definition:**\n*What is ULL? Ultra-low latency refers to an extremely short delay or lag between a user's input and the system's response. It's measured in milliseconds (ms) or even nanoseconds (ns).*\n\n| *Input Latency* | *Gaming Experience* | *Suitability* |\n| --- | --- | --- |\n| 0-30 ms | Excellent | Competitive Gaming |\n| 30-50 ms | Good | Casual Gaming |\n| 50-100 ms | Fair | Non-Competitive Pla",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "winlator.apk",
-       "size": 137000935,
-       "url": "https://github.com/winebox64/winlator/releases/download/v10.2/winlator.apk"
-      }
-     ]
-    },
-    {
-     "tag": "v9.1.1",
-     "name": "Winlator 9.1.1 Early Access",
-     "date": "2025-01-13T11:02:12Z",
-     "body": "[![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)](https://github.com/winebox64/winlator/releases)\n\n\n\n<p align=\"left\">\n<img  src=\"https://img.shields.io/badge/Winlator%209.1.1-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" />\n</p>\n\n## (Early Access)\n\n- Updated WINE (Custom) improved compatibility.\n- Updated Box64 0.3.3 (Custom) 📥 downloadable.\n- Updated Turnip Devel version 📥 downloadable.\n- Updated DXVK Async version 📥 downloadable.\n- Updated Vortek (Experimental) is for processors that are incompatible with the Turnip driver, such as Snapdragon 8 Elite, 860, 735, 7 Gen 3, 7s Gen 3, 7s Gen 2, 6 Gen 3, 6 Gen 1.\n- Updated Vulkan WSI environment.\n- Updated DXVK_HUD opacity & scale variable.\n- Updated ZINK_DEBUG added more options `fast_texture` `fast_path` `fast_shader` etc.\n- Updated TU_DEBUG added more options `render_fast` `memory_align` `memory_leak` etc.\n- Updated FSync for smoother.\n- Updated Zink Descriptors `db` Descriptor Buffer option to Reduced descriptors update overhead. \n- Updated WINE GST options. \n- Reduced system temperature and improved stability.\n----\n**How to download and change the Box64, DXVK, Turnip ver",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator_9.1.1.apk",
-       "size": 190265418,
-       "url": "https://github.com/winebox64/winlator/releases/download/v9.1.1/Winlator_9.1.1.apk"
-      }
-     ]
-    },
-    {
-     "tag": "v8.5.5",
-     "name": "Winlator 8.5.5",
-     "date": "2024-12-02T19:13:27Z",
-     "body": "![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)\n\n\n<p align=\"left\">\n<img src=\"https://img.shields.io/badge/Winlator%208.5.5-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" />\n</p>\n\n# (Early Access)\n\n- Updated Wine Environment.\n- Updated Dynarec Forward & Fast Rounding.\n- Updated Mesa Turnip drivers 2.5.0.0-xx.\n- Updated DXVK 2.5.1.2-xx-xxx.\n- Updated HDR supported.\n- Updated Async environment variable.\n- Updated State cache environment variable. \n- Updated Caches pipeline state, which can reduce stuttering.\n- Updated GPL can be used together with state cache that is not possible on upstream, state cache should work properly with async and gpl if using Async cache option.\n- Updated Screen Size Aspect Ratio.\n- Updated Device Memory Limit, fixed crash.\n- Updated FrameRate variable.\n- Updated opcodes, workarounds for A6xx.\n- Fixed audio in some application.\n- Reduce RAM usage up to ~11.5% and performance optimization.\n\n### ⚠️ NOTE !!:\n**Results can vary based on the device used, environmental conditions, and other factors, such as simultaneous processing, and different processor capabilities.**\n\n**Note: If you experience crashes",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator_8.5.5.apk",
-       "size": 227333672,
-       "url": "https://github.com/winebox64/winlator/releases/download/v8.5.5/Winlator_8.5.5.apk"
-      }
-     ]
-    },
-    {
-     "tag": "v8.4.5",
-     "name": "Winlator 8.4.5",
-     "date": "2024-11-16T01:45:23Z",
-     "body": "![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)\n\n\n\n<p align=\"left\">\n<img src=\"https://img.shields.io/badge/Winlator%208.4.5-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" />\n</p>\n\n# (Early Access)\n\n- Updated Wine **(Wine Is Not an Emulator)**\n- Updated Box64 (0.3.1 release)\n- Updated DXVK (2.5 release)\n- Updated Mesa Turnip (24.3.0)\n- Updated Screen Size Aspect Ratio\n- Updated Default Screen Resolution\n- Updated Max Device Memory\n- Updated FrameRate (FPS variable)\n- Updated Box64 Preset Desc.\n- Updated Environment Variables `DXVK_HUD=opacity`\n- Other bug fixes and improvements (A6xx)\n\n### ⚠️ NOTE !!:\n**Results can vary based on the device used, environmental conditions, and other factors, such as simultaneous processing, and different processor capabilities.**\n\n**Note: If you experience crashes, try changing another Graphics driver that suits your device.*\n",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator_8.4.5.WB64.apk",
-       "size": 235370294,
-       "url": "https://github.com/winebox64/winlator/releases/download/v8.4.5/Winlator_8.4.5.WB64.apk"
-      }
-     ]
-    }
-   ],
-   "latestTag": "v10.2",
-   "latestDate": "2025-03-03T03:01:09Z"
   },
   {
    "id": "droid-deck-droiddeck",
@@ -19861,10 +20329,10 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 291825,
-   "stars": 6013,
+   "downloads": 313366,
+   "stars": 6449,
    "description": "DroidDeck brings the SteamOS experience to Android",
-   "pushed_at": "2026-10-12T21:13:07Z",
+   "pushed_at": "2026-10-13T05:28:10Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
    "releases": [
@@ -20039,8 +20507,102 @@
      ]
     }
    ],
+   "forks": 281,
+   "watchers": 60,
+   "created_at": "2026-09-24T15:14:13Z",
+   "license": "GPL-3.0",
+   "topics": [],
+   "archived": false,
    "latestTag": "0.4.0",
    "latestDate": "2026-10-12T15:07:49Z"
+  },
+  {
+   "id": "winebox64-winlator",
+   "name": "Wb64dev",
+   "repo": "winebox64/winlator",
+   "repo_url": "https://github.com/winebox64/winlator",
+   "category": "Winlator",
+   "official": false,
+   "channel": "stable",
+   "downloads": 296997,
+   "stars": 535,
+   "description": "Android application for running Windows applications with Wine and Box86/Box64",
+   "pushed_at": "2025-03-18T01:28:27Z",
+   "homepage": "https://winlator.org",
+   "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
+   "releases": [
+    {
+     "tag": "v10.2",
+     "name": "Winlator 10.2 (Revision 2 Beta) Glibc unstable - Early Access",
+     "date": "2025-03-03T03:01:09Z",
+     "body": "[![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)](https://github.com/winebox64/winlator/releases)\n\n\n<p align=\"left\">\n<img  src=\"https://img.shields.io/badge/Winlator%2010.2-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" /> \n</p>\n\n# Released for personal use\n\n### Winlator 10.2 (beta)\n- Now smaller, lighter, and faster! Save storage with optimized app packaged in 130MB and installed in just 1.3GB.\n- Updated latest DXVK Async (v2.6.1), and **DXVK ULL (v2.5.3.94)** focus on ultra low latency ~8ms at 60 FPS, ~4ms at 120 FPS, with slightly lower fps (small performance impact), Improves input responsiveness on NFS: Most Wanted 2012.\n![lv_0_20250323083625](https://github.com/user-attachments/assets/a0aab4ec-0637-4cd2-a171-8ad5a76d91cb)\n**Definition:**\n*What is ULL? Ultra-low latency refers to an extremely short delay or lag between a user's input and the system's response. It's measured in milliseconds (ms) or even nanoseconds (ns).*\n\n| *Input Latency* | *Gaming Experience* | *Suitability* |\n| --- | --- | --- |\n| 0-30 ms | Excellent | Competitive Gaming |\n| 30-50 ms | Good | Casual Gaming |\n| 50-100 ms | Fair | Non-Competitive Pla",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "winlator.apk",
+       "size": 137000935,
+       "url": "https://github.com/winebox64/winlator/releases/download/v10.2/winlator.apk"
+      }
+     ]
+    },
+    {
+     "tag": "v9.1.1",
+     "name": "Winlator 9.1.1 Early Access",
+     "date": "2025-01-13T11:02:12Z",
+     "body": "[![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)](https://github.com/winebox64/winlator/releases)\n\n\n\n<p align=\"left\">\n<img  src=\"https://img.shields.io/badge/Winlator%209.1.1-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" />\n</p>\n\n## (Early Access)\n\n- Updated WINE (Custom) improved compatibility.\n- Updated Box64 0.3.3 (Custom) 📥 downloadable.\n- Updated Turnip Devel version 📥 downloadable.\n- Updated DXVK Async version 📥 downloadable.\n- Updated Vortek (Experimental) is for processors that are incompatible with the Turnip driver, such as Snapdragon 8 Elite, 860, 735, 7 Gen 3, 7s Gen 3, 7s Gen 2, 6 Gen 3, 6 Gen 1.\n- Updated Vulkan WSI environment.\n- Updated DXVK_HUD opacity & scale variable.\n- Updated ZINK_DEBUG added more options `fast_texture` `fast_path` `fast_shader` etc.\n- Updated TU_DEBUG added more options `render_fast` `memory_align` `memory_leak` etc.\n- Updated FSync for smoother.\n- Updated Zink Descriptors `db` Descriptor Buffer option to Reduced descriptors update overhead. \n- Updated WINE GST options. \n- Reduced system temperature and improved stability.\n----\n**How to download and change the Box64, DXVK, Turnip ver",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_9.1.1.apk",
+       "size": 190265418,
+       "url": "https://github.com/winebox64/winlator/releases/download/v9.1.1/Winlator_9.1.1.apk"
+      }
+     ]
+    },
+    {
+     "tag": "v8.5.5",
+     "name": "Winlator 8.5.5",
+     "date": "2024-12-02T19:13:27Z",
+     "body": "![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)\n\n\n<p align=\"left\">\n<img src=\"https://img.shields.io/badge/Winlator%208.5.5-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" />\n</p>\n\n# (Early Access)\n\n- Updated Wine Environment.\n- Updated Dynarec Forward & Fast Rounding.\n- Updated Mesa Turnip drivers 2.5.0.0-xx.\n- Updated DXVK 2.5.1.2-xx-xxx.\n- Updated HDR supported.\n- Updated Async environment variable.\n- Updated State cache environment variable. \n- Updated Caches pipeline state, which can reduce stuttering.\n- Updated GPL can be used together with state cache that is not possible on upstream, state cache should work properly with async and gpl if using Async cache option.\n- Updated Screen Size Aspect Ratio.\n- Updated Device Memory Limit, fixed crash.\n- Updated FrameRate variable.\n- Updated opcodes, workarounds for A6xx.\n- Fixed audio in some application.\n- Reduce RAM usage up to ~11.5% and performance optimization.\n\n### ⚠️ NOTE !!:\n**Results can vary based on the device used, environmental conditions, and other factors, such as simultaneous processing, and different processor capabilities.**\n\n**Note: If you experience crashes",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_8.5.5.apk",
+       "size": 227333672,
+       "url": "https://github.com/winebox64/winlator/releases/download/v8.5.5/Winlator_8.5.5.apk"
+      }
+     ]
+    },
+    {
+     "tag": "v8.4.5",
+     "name": "Winlator 8.4.5",
+     "date": "2024-11-16T01:45:23Z",
+     "body": "![logo](https://github.com/user-attachments/assets/bd81f1a1-2391-4c39-abbd-a42b1f5ef65f)\n\n\n\n<p align=\"left\">\n<img src=\"https://img.shields.io/badge/Winlator%208.4.5-white?style=plastic&logo=snapdragon&logoColor=C00000\" width=\"140\" />\n</p>\n\n# (Early Access)\n\n- Updated Wine **(Wine Is Not an Emulator)**\n- Updated Box64 (0.3.1 release)\n- Updated DXVK (2.5 release)\n- Updated Mesa Turnip (24.3.0)\n- Updated Screen Size Aspect Ratio\n- Updated Default Screen Resolution\n- Updated Max Device Memory\n- Updated FrameRate (FPS variable)\n- Updated Box64 Preset Desc.\n- Updated Environment Variables `DXVK_HUD=opacity`\n- Other bug fixes and improvements (A6xx)\n\n### ⚠️ NOTE !!:\n**Results can vary based on the device used, environmental conditions, and other factors, such as simultaneous processing, and different processor capabilities.**\n\n**Note: If you experience crashes, try changing another Graphics driver that suits your device.*\n",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_8.4.5.WB64.apk",
+       "size": 235370294,
+       "url": "https://github.com/winebox64/winlator/releases/download/v8.4.5/Winlator_8.4.5.WB64.apk"
+      }
+     ]
+    }
+   ],
+   "forks": 28,
+   "watchers": 22,
+   "created_at": "2024-11-16T00:17:14Z",
+   "license": "Apache-2.0",
+   "topics": [
+    "android-app",
+    "dxvk-linux-native",
+    "dxvk-nvapi",
+    "dxvk-state-cache",
+    "environment",
+    "game-developement"
+   ],
+   "archived": false,
+   "latestTag": "v10.2",
+   "latestDate": "2025-03-03T03:01:09Z"
   },
   {
    "id": "the412banner-bannerhub-revanced",
@@ -20050,10 +20612,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 214561,
+   "downloads": 214965,
    "stars": 176,
    "description": "ReVanced patches for GameHub — BannerHub features as true ReVanced patches",
-   "pushed_at": "2026-10-12T07:29:09Z",
+   "pushed_at": "2026-10-13T00:51:23Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerhub-v6.png",
    "releases": [
@@ -22371,6 +22933,12 @@
      ]
     }
    ],
+   "forks": 9,
+   "watchers": 9,
+   "created_at": "2026-04-25T14:30:13Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "v1.0.2-631",
    "latestDate": "2026-09-27T20:19:24Z"
   },
@@ -22382,7 +22950,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 202247,
+   "downloads": 202720,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -22572,6 +23140,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "XenDroid-c4f6863",
    "latestDate": "2026-08-14T11:11:00Z"
   },
@@ -22583,13 +23157,42 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 186691,
-   "stars": 407,
+   "downloads": 187203,
+   "stars": 409,
    "description": "Bannerlator — run Windows PC games and apps on Android (Wine + Box64/86). A personal, community-driven continuation of the discontinued Winlator Star Bionic project. GitHub Actions builds + releases.",
-   "pushed_at": "2026-10-12T18:33:00Z",
+   "pushed_at": "2026-10-13T03:29:18Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerlator.png",
    "releases": [
+    {
+     "tag": "3.1.7-pre2",
+     "name": "Bannerlator 3.1.7-pre2",
+     "date": "2026-10-13T00:46:56Z",
+     "body": "<p align=\"center\">\n<img src=\"https://github.com/The412Banner/Bannerlator/blob/main/logo.jpg?raw=true\" width=\"1500\" height=\"500\" alt=\"Bannerlator\" />\n</p>\n\n<p align=\"center\">\n<img src=\"https://img.shields.io/badge/release-3.1.7--pre2-ff3d8b?style=for-the-badge\" alt=\"3.1.7-pre2\" />\n&nbsp;<img src=\"https://img.shields.io/badge/update-app--side%20%C2%B7%20no%20ImageFS%20reinstall-2dd4bf?style=for-the-badge\" alt=\"app-side update\" />\n&nbsp;<img src=\"https://img.shields.io/badge/UI-Deck%20style-22c55e?style=for-the-badge\" alt=\"Deck style\" />\n&nbsp;<img src=\"https://img.shields.io/badge/update%20size-~21%20MB-22c55e?style=for-the-badge\" alt=\"about 21 MB update\" />\n&nbsp;<img src=\"https://img.shields.io/badge/pre--release-beta-f59e0b?style=for-the-badge\" alt=\"pre-release\" />\n</p>\n\n# Bannerlator 3.1.7-pre2\n\nRun Windows apps and games on Android — no PC and no root required.\n\n**3.1.7-pre2 finishes moving every setting into the Deck style — nothing opens a Classic screen any more — and brings the XMB back full screen.** It also adds **Open with → Bannerlator** for any .exe in a file manager, and Wayland games no longer make Android show *pasted from your clipboard* every time they start.\n\n- **",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "Bannerlator-3.1.7-pre2-antutu.apk",
+       "size": 552405861,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7-pre2/Bannerlator-3.1.7-pre2-antutu.apk"
+      },
+      {
+       "name": "Bannerlator-3.1.7-pre2-ludashi.apk",
+       "size": 552405949,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7-pre2/Bannerlator-3.1.7-pre2-ludashi.apk"
+      },
+      {
+       "name": "Bannerlator-3.1.7-pre2-pubg.apk",
+       "size": 552405917,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7-pre2/Bannerlator-3.1.7-pre2-pubg.apk"
+      },
+      {
+       "name": "Bannerlator-3.1.7-pre2-standard.apk",
+       "size": 552405967,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7-pre2/Bannerlator-3.1.7-pre2-standard.apk"
+      }
+     ]
+    },
     {
      "tag": "3.1.7-pre1",
      "name": "Bannerlator 3.1.7-pre1",
@@ -24522,8 +25125,14 @@
      ]
     }
    ],
-   "latestTag": "3.1.7-pre1",
-   "latestDate": "2026-10-12T13:35:14Z"
+   "forks": 55,
+   "watchers": 14,
+   "created_at": "2026-06-18T23:19:14Z",
+   "license": "GPL-3.0",
+   "topics": [],
+   "archived": false,
+   "latestTag": "3.1.7-pre2",
+   "latestDate": "2026-10-13T00:46:56Z"
   },
   {
    "id": "xhyn-ph-exagear-302",
@@ -24533,7 +25142,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 172746,
+   "downloads": 172827,
    "stars": 330,
    "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
    "pushed_at": "2025-02-25T11:41:52Z",
@@ -24569,6 +25178,15 @@
      ]
     }
    ],
+   "forks": 17,
+   "watchers": 14,
+   "created_at": "2023-06-11T05:58:23Z",
+   "license": "",
+   "topics": [
+    "exagear",
+    "windows-emulator"
+   ],
+   "archived": false,
    "latestTag": "v3.0.2.2-egw",
    "latestDate": "2024-01-12T16:20:17Z"
   },
@@ -24580,7 +25198,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 145847,
+   "downloads": 145911,
    "stars": 218,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-12T18:19:19Z",
@@ -25116,6 +25734,12 @@
      ]
     }
    ],
+   "forks": 25,
+   "watchers": 10,
+   "created_at": "2025-06-02T00:56:37Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": true,
    "latestTag": "e120cf1",
    "latestDate": "2026-02-02T12:47:23Z"
   },
@@ -25127,8 +25751,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 140392,
-   "stars": 683,
+   "downloads": 140952,
+   "stars": 684,
    "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
    "pushed_at": "2026-10-12T11:19:55Z",
    "homepage": "",
@@ -25492,6 +26116,19 @@
      ]
     }
    ],
+   "forks": 89,
+   "watchers": 18,
+   "created_at": "2026-03-07T00:42:19Z",
+   "license": "GPL-3.0",
+   "topics": [
+    "android",
+    "emulation",
+    "epicgames",
+    "gaming",
+    "gog",
+    "steam"
+   ],
+   "archived": false,
    "latestTag": "v0.8.0-beta",
    "latestDate": "2026-10-12T11:19:55Z"
   },
@@ -25648,6 +26285,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "GameHub_Brasil_V3",
    "latestDate": "2026-08-10T03:32:02Z"
   },
@@ -25659,7 +26302,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 121329,
+   "downloads": 121380,
    "stars": 435,
    "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
    "pushed_at": "2026-10-06T19:44:52Z",
@@ -25939,6 +26582,12 @@
      ]
     }
    ],
+   "forks": 23,
+   "watchers": 23,
+   "created_at": "2025-05-01T18:07:27Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "ignore",
    "latestDate": "2026-09-27T10:58:30Z"
   },
@@ -27321,6 +27970,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "ba4b91b",
    "latestDate": "2026-04-09T16:39:54Z"
   },
@@ -27332,7 +27987,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 99981,
+   "downloads": 99983,
    "stars": 1724,
    "description": "Lightweight unofficial Steam client for Android",
    "pushed_at": "2026-02-23T19:23:53Z",
@@ -27424,6 +28079,16 @@
      ]
     }
    ],
+   "forks": 52,
+   "watchers": 40,
+   "created_at": "2024-10-06T00:09:06Z",
+   "license": "GPL-3.0",
+   "topics": [
+    "android",
+    "steam",
+    "winlator"
+   ],
+   "archived": false,
    "latestTag": "v1.3.2",
    "latestDate": "2025-03-02T00:58:48Z"
   },
@@ -27435,7 +28100,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 97570,
+   "downloads": 97615,
    "stars": 141,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-06-28T11:07:57Z",
@@ -27532,6 +28197,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 10,
+   "created_at": "2024-06-07T06:07:38Z",
+   "license": "LGPL-2.1",
+   "topics": [],
+   "archived": true,
    "latestTag": "v11.1-hotfix2",
    "latestDate": "2026-06-15T05:01:20Z"
   },
@@ -27543,8 +28214,8 @@
    "category": "All In One",
    "official": false,
    "channel": "stable",
-   "downloads": 97190,
-   "stars": 4398,
+   "downloads": 97249,
+   "stars": 4400,
    "description": "All in one emulator on Android!",
    "pushed_at": "2026-10-05T22:15:29Z",
    "homepage": "",
@@ -27928,6 +28599,19 @@
      ]
     }
    ],
+   "forks": 371,
+   "watchers": 54,
+   "created_at": "2019-12-09T13:55:34Z",
+   "license": "GPL-3.0",
+   "topics": [
+    "android",
+    "android-app",
+    "emulator",
+    "game-boy",
+    "genesis",
+    "hacktoberfest"
+   ],
+   "archived": false,
    "latestTag": "1.17.0",
    "latestDate": "2026-04-21T08:52:05Z"
   },
@@ -27939,7 +28623,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 89066,
+   "downloads": 89116,
    "stars": 129,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-09-11T15:09:20Z",
@@ -28205,6 +28889,12 @@
      ]
     }
    ],
+   "forks": 2,
+   "watchers": 0,
+   "created_at": "2026-01-29T16:21:34Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": true,
    "latestTag": "V2",
    "latestDate": "2026-09-11T14:45:41Z"
   },
@@ -28216,7 +28906,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 83164,
+   "downloads": 83189,
    "stars": 31,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-05-26T11:10:39Z",
@@ -28309,6 +28999,12 @@
      ]
     }
    ],
+   "forks": 5,
+   "watchers": 4,
+   "created_at": "2025-04-21T07:19:03Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "v3.0.1-beta",
    "latestDate": "2025-04-22T14:19:23Z"
   },
@@ -28320,7 +29016,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 68932,
+   "downloads": 68968,
    "stars": 137,
    "description": "Android application for running Steam games with Proton/Wine and Box86/Box64",
    "pushed_at": "2026-04-29T14:09:07Z",
@@ -28384,6 +29080,12 @@
      ]
     }
    ],
+   "forks": 3,
+   "watchers": 9,
+   "created_at": "2025-07-31T19:38:41Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "1.7",
    "latestDate": "2026-04-29T11:14:37Z"
   },
@@ -28395,7 +29097,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 63995,
+   "downloads": 64008,
    "stars": 156,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-08-24T22:41:56Z",
@@ -28590,6 +29292,12 @@
      ]
     }
    ],
+   "forks": 6,
+   "watchers": 6,
+   "created_at": "2025-04-23T17:26:22Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "dev8",
    "latestDate": "2025-08-24T22:41:56Z"
   },
@@ -28601,7 +29309,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 30454,
+   "downloads": 30458,
    "stars": 28,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-03-22T01:01:37Z",
@@ -28850,6 +29558,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 2,
+   "created_at": "2024-10-07T19:44:02Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "V11.1",
    "latestDate": "2025-10-19T16:44:57Z"
   },
@@ -28861,7 +29575,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 28539,
+   "downloads": 28580,
    "stars": 65,
    "description": "BannerHub Lite — BannerHub features patched into GameHub Lite 5.1.4",
    "pushed_at": "2026-05-21T21:17:38Z",
@@ -29395,6 +30109,12 @@
      ]
     }
    ],
+   "forks": 1,
+   "watchers": 3,
+   "created_at": "2026-03-19T10:29:54Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "v1.0.2",
    "latestDate": "2026-05-12T01:24:49Z"
   },
@@ -29462,6 +30182,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "Winlator_Brasil_10.1",
    "latestDate": "2025-05-24T01:26:43Z"
   },
@@ -29473,7 +30199,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 21275,
+   "downloads": 21280,
    "stars": 77,
    "description": "",
    "pushed_at": "2025-06-26T21:09:18Z",
@@ -29551,6 +30277,12 @@
      ]
     }
    ],
+   "forks": 5,
+   "watchers": 2,
+   "created_at": "2024-11-07T02:57:09Z",
+   "license": "Apache-2.0",
+   "topics": [],
+   "archived": false,
    "latestTag": "Mobox_Patched_3.0",
    "latestDate": "2025-06-26T21:09:19Z"
   },
@@ -29562,7 +30294,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 8284,
+   "downloads": 8287,
    "stars": 48,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-01-06T21:01:46Z",
@@ -29603,6 +30335,12 @@
      ]
     }
    ],
+   "forks": 1,
+   "watchers": 2,
+   "created_at": "2025-12-05T07:36:46Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "5.3.5-v2",
    "latestDate": "2026-01-06T21:01:46Z"
   },
@@ -29614,8 +30352,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 7280,
-   "stars": 202,
+   "downloads": 7340,
+   "stars": 204,
    "description": "Windows apps/games emulator for standalone OpenXR headsets.",
    "pushed_at": "2026-10-09T17:41:04Z",
    "homepage": "https://winlatorxr.github.io/",
@@ -29678,6 +30416,19 @@
      ]
     }
    ],
+   "forks": 15,
+   "watchers": 8,
+   "created_at": "2025-08-03T05:40:49Z",
+   "license": "NOASSERTION",
+   "topics": [
+    "alsa",
+    "android",
+    "bionic",
+    "box64",
+    "dxvk",
+    "fex"
+   ],
+   "archived": false,
    "latestTag": "winlatorxr_dawn42",
    "latestDate": "2026-10-09T17:41:05Z"
   },
@@ -30393,6 +31144,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "build-2026-06-20",
    "latestDate": "2026-06-20T00:47:20Z"
   },
@@ -30404,7 +31161,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable",
-   "downloads": 3139,
+   "downloads": 3148,
    "stars": 16,
    "description": "",
    "pushed_at": "2026-03-08T18:10:12Z",
@@ -30454,6 +31211,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "2026-03-05T14:55:29Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "X1Box",
    "latestDate": "2026-03-08T18:10:12Z"
   },
@@ -30465,7 +31228,7 @@
    "category": "Emulator PS5",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 2571,
+   "downloads": 2573,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -30501,6 +31264,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "android-v0.0.2_poc",
    "latestDate": "2026-08-05T07:38:15Z"
   },
@@ -30968,6 +31737,12 @@
      ]
     }
    ],
+   "forks": 1,
+   "watchers": 1,
+   "created_at": "2025-11-16T23:20:10Z",
+   "license": "",
+   "topics": [],
+   "archived": true,
    "latestTag": "2026-05-03",
    "latestDate": "2026-05-03T01:49:34Z"
   },
@@ -30979,7 +31754,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1761,
+   "downloads": 1762,
    "stars": 10,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-17T23:18:19Z",
@@ -31464,6 +32239,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "2025-06-14T13:03:14Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
    "latestTag": "8de79b1",
    "latestDate": "2026-04-05T07:31:59Z"
   },
@@ -31475,7 +32256,7 @@
    "category": "GAME",
    "official": false,
    "channel": "stable",
-   "downloads": 1596,
+   "downloads": 1597,
    "stars": 10,
    "description": "Multiplayer",
    "pushed_at": "2026-04-24T23:48:07Z",
@@ -31511,6 +32292,12 @@
      ]
     }
    ],
+   "forks": 1,
+   "watchers": 1,
+   "created_at": "2026-04-18T09:42:39Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "Exiled-Kingdoms-Multiplayer-2.0",
    "latestDate": "2026-04-24T23:48:07Z"
   },
@@ -31544,6 +32331,12 @@
      ]
     }
    ],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "2026-02-18T00:10:32Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "V5.1.3",
    "latestDate": "2026-02-18T00:49:34Z"
   },
@@ -31605,6 +32398,12 @@
      ]
     }
    ],
+   "forks": 1,
+   "watchers": 0,
+   "created_at": "2025-09-02T10:19:18Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
    "latestTag": "Winlator_xmox_1.1.0",
    "latestDate": "2025-09-20T16:27:49Z"
   },
@@ -31622,7 +32421,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/gamenative.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   },
   {
    "id": "winlator-releases",
@@ -31638,7 +32445,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/winlator.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   },
   {
    "id": "eden-emulator-releases",
@@ -31654,7 +32469,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/eden.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   },
   {
    "id": "eden-ci-nightly",
@@ -31670,7 +32493,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/eden.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   },
   {
    "id": "citron-emulator",
@@ -31686,7 +32517,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/citron.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   },
   {
    "id": "ovsky-sumi-emu",
@@ -31702,7 +32541,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sumi.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   },
   {
    "id": "kenji-nx-android-releases",
@@ -31718,7 +32565,15 @@
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/kenjinx.png",
-   "releases": []
+   "releases": [],
+   "forks": 0,
+   "watchers": 0,
+   "created_at": "",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latestTag": "",
+   "latestDate": ""
   }
  ]
 }

@@ -108,6 +108,9 @@ class MainActivity : ComponentActivity() {
                 var emulatorEntries by remember {
                     mutableStateOf(EmulatorRegistryRepository.builtInRegistry())
                 }
+                var emulatorInsights by remember {
+                    mutableStateOf(EmulatorInsights())
+                }
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
@@ -115,6 +118,7 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(Unit) {
                     val registry = EmulatorRegistryRepository.fetchRemoteRegistry()
                     val ranking = EmulatorRegistryRepository.fetchRemoteRanking()
+                    emulatorInsights = EmulatorInsightsRepository.fetchRemoteInsights()
                     // 合并：registry 数据优先（官方 APK 直链），ranking 补充下载量/日志
                     val merged = registry.map { base ->
                         val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
@@ -123,7 +127,9 @@ class MainActivity : ComponentActivity() {
                                 downloads = if (base.downloads == 0L) r.downloads else base.downloads,
                                 latestDate = if (base.latestDate.isBlank()) r.latestDate else base.latestDate,
                                 latestBody = if (base.latestBody.isBlank()) r.latestBody else base.latestBody,
-                                stars = if (base.stars == 0L) r.stars else base.stars
+                                stars = if (base.stars == 0L) r.stars else base.stars,
+                                forks = if (base.forks == 0L) r.forks else base.forks,
+                                watchers = if (base.watchers == 0L) r.watchers else base.watchers
                             )
                         } else base
                     } + ranking.filter { r ->
@@ -637,6 +643,7 @@ class MainActivity : ComponentActivity() {
                                                                     isRefreshingLocal = true
                                                                     val registry = EmulatorRegistryRepository.fetchRemoteRegistry()
                                                                     val ranking = EmulatorRegistryRepository.fetchRemoteRanking()
+                                                                    emulatorInsights = EmulatorInsightsRepository.fetchRemoteInsights()
                                                                     val merged = registry.map { base ->
                                                                         val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
                                                                         if (r != null) {
@@ -644,7 +651,9 @@ class MainActivity : ComponentActivity() {
                                                                                 downloads = if (base.downloads == 0L) r.downloads else base.downloads,
                                                                                 latestDate = if (base.latestDate.isBlank()) r.latestDate else base.latestDate,
                                                                                 latestBody = if (base.latestBody.isBlank()) r.latestBody else base.latestBody,
-                                                                                stars = if (base.stars == 0L) r.stars else base.stars
+                                                                                stars = if (base.stars == 0L) r.stars else base.stars,
+                                                                                forks = if (base.forks == 0L) r.forks else base.forks,
+                                                                                watchers = if (base.watchers == 0L) r.watchers else base.watchers
                                                                             )
                                                                         } else base
                                                                     } + ranking.filter { r ->
@@ -670,6 +679,7 @@ class MainActivity : ComponentActivity() {
                                         EmulatorScreen(
                                             modifier = Modifier.padding(padding),
                                             entries = emulatorEntries,
+                                            insights = emulatorInsights,
                                             onDownload = { entry ->
                                                 downloadScope.launch {
                                                     downloadEmulator(appContext, entry)
