@@ -234,11 +234,14 @@ class MainActivity : ComponentActivity() {
                         } ?: catalog.qualcommSources.first()
                         val qualcomm = fetchQualcommReleases(selectedQualcommSource)
 
-                        // 内置清单组件
+                        // 内置清单组件（cmod-historical 为本地内置源，不走网络）
                         val manifestComponentMaps = coroutineScope {
                             baseCatalog.componentSources.map { source ->
                                 async {
-                                    source.id to fetchComponentsFromUrl(source.manifestUrl)
+                                    when (source.id) {
+                                        "cmod-historical" -> source.id to cmodHistoricalComponents()
+                                        else -> source.id to fetchComponentsFromUrl(source.manifestUrl)
+                                    }
                                 }
                             }.awaitAll().toMap()
                         }
@@ -752,6 +755,26 @@ class MainActivity : ComponentActivity() {
         }
         }
     }
+}
+
+/** Cmod 历史稳定版组件（dxvk-2.0 / 2.1，本地内置，不走网络拉取） */
+private fun cmodHistoricalComponents(): Map<String, List<Component>> {
+    val type = "DXVK"
+    val dxvk = listOf(
+        Component(
+            type = type,
+            verName = "dxvk-2.1",
+            verCode = "",
+            remoteUrl = "https://github.com/StevenMXZ/Contents-Cmod/releases/download/1.1.0/dxvk-2.1.wcp"
+        ),
+        Component(
+            type = type,
+            verName = "dxvk-2.0",
+            verCode = "",
+            remoteUrl = "https://github.com/StevenMXZ/Contents-Cmod/releases/download/1.1.0/dxvk-2.0.wcp"
+        )
+    )
+    return mapOf(type to dxvk)
 }
 
 private data class AppLoadResult(

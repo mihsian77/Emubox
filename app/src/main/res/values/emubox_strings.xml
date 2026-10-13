@@ -556,6 +556,8 @@
     <string name="emulator_updated_prefix">Updated </string>
     <string name="search_hint">Search emulators</string>
     <string name="runtime_search_hint">Search runtimes</string>
+
+    <string name="runtime_disclaimer">Runtimes are aggregated from open-source community data and official Microsoft channels; all rights belong to their respective owners. This app only manages downloads and does not bundle or modify any runtime files. Dead third-party links are automatically replaced with official mirrors. For personal study only.</string>
     <string name="runtime_recommended">Recommended</string>
     <string name="file_purpose">Purpose</string>
     <string name="file_info_error">Failed to read file info</string>
