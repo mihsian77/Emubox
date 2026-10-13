@@ -364,6 +364,8 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">Based on EmuHub-APP (MIT) by Rodrig02005</string>
     <string name="about_license">MIT License</string>
+    <string name="app_disclaimer">EmuBox is an open-source integration tool: it only manages downloads and does not bundle or modify any drivers/components/runtimes. All data is aggregated from open-source community sources; copyrights belong to their respective authors. Dead links are auto-replaced with official mirrors. For personal study only. Sponsorship is voluntary support for integration work only, with no revenue relationship to upstream authors.</string>
+    <string name="about_disclaimer">All drivers, components and runtimes are aggregated from open-source community projects; rights belong to their respective authors. This app only manages downloads and does not bundle or modify any files. Dead third-party links are replaced with official mirrors automatically. For personal study only.</string>
 
     <!-- 包信息查看 -->
     <string name="meta_loading">Parsing…</string>

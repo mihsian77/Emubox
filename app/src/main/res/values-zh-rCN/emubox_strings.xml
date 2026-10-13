@@ -364,6 +364,8 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">基于 Rodrig02005 的开源项目 EmuHub-APP（MIT 协议）</string>
     <string name="about_license">MIT 开源协议</string>
+    <string name="app_disclaimer">EmuBox 为开源整合工具：仅提供下载管理，不捆绑、不修改任何驱动/组件/运行库。所有数据整理自开源社区，版权归各自原作者所有；失效链接自动替换为官方直链。请仅用于个人学习研究。赞助仅为自愿支持整合工作，与上游作者无收益关系。</string>
+    <string name="about_disclaimer">驱动、组件与运行库数据均整理自开源社区项目，版权归各自原作者所有；本应用仅提供下载管理，不捆绑、不修改任何文件。失效的第三方链接会自动替换为官方直链。请仅用于个人学习研究。</string>
 
     <!-- 包信息查看 -->
     <string name="meta_loading">解析中…</string>
