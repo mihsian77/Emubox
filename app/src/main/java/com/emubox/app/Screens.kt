@@ -5497,12 +5497,15 @@ private fun DriverDetectionList(
         scope.launch(Dispatchers.IO) {
             try {
                 val soFile = extractSoFor(id, filePath)
-                val flag = DriverMetaParser.soExportsVkGetInstanceProcAddr(soFile)
-                exportFlags = exportFlags + (id to flag)
-                if (flag != true || soFile == null) {
+                // 静态检查结果仅记录为提示：自写 ELF 解析器曾多次误判 turnip ICD 入口
+                // （turnip 标准导出 vk_icdGetInstanceProcAddr），不得作为加载门禁。
+                // 统一走 native AdrenoTools 实测：加载失败由 native 返回明确错误码，
+                // ICD 入口也在 native 侧校验（loadDriverAdrenoTools 双符号查找）。
+                exportFlags = exportFlags + (id to DriverMetaParser.soExportsVkGetInstanceProcAddr(soFile))
+                if (soFile == null) {
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult(
-                        success = false, errorCode = "NOT_EXPORTING",
-                        errorMessage = "驱动 .so 未导出 ICD 入口（vk_icdGetInstanceProcAddr/vkGetInstanceProcAddr），无法加载",
+                        success = false, errorCode = "EXTRACT_FAILED",
+                        errorMessage = "驱动包解压失败，未找到 .so",
                         deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
                         computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
@@ -5760,10 +5763,21 @@ private fun DriverDetectionList(
                             )
                         }
                         exportFlags[download.id] == false -> {
+                            // 静态检查未确认 ICD 入口（自写解析器对 turnip 有误判史），
+                            // 不拦截实测——native AdrenoTools 加载才是权威判断。
+                            Button(
+                                onClick = { benchmarkDriver(download.id, download.filePath) },
+                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                            ) {
+                                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
+                                Spacer(Modifier.width(6.dp))
+                                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
+                            }
+                            Spacer(Modifier.height(4.dp))
                             Text(
-                                appString(R.string.benchmark_not_exporting),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.tertiary
+                                appString(R.string.benchmark_static_hint),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                         else -> {
