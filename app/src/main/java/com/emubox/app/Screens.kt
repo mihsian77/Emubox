@@ -5371,6 +5371,8 @@ private fun DriverDetectionList(
     // 加载 turnip/panvk，采集实例/设备扩展并跑分——替代裸 dlopen（App 内必然失败）。
     var adrenotoolsResults by remember { mutableStateOf<Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>>(emptyMap()) }
     var adrenotoolsTestingId by remember { mutableStateOf<String?>(null) }
+    // 双选实测对比：勾选两个已下载驱动，AdrenoTools 并排实测（扩展/设备/跑分）
+    val compareSelection = remember { mutableStateListOf<String>() }
 
     val downloadedDrivers = DownloadsManager.completedDownloads.filter { download ->
         val isDriverPackage = download.fileName.endsWith(".zip", ignoreCase = true) ||
@@ -5849,6 +5851,133 @@ private fun DriverDetectionList(
                                     if (compatible) appString(R.string.gpu_compatible) else appString(R.string.gpu_not_compatible, d.deviceName)
                                 )
                             }
+                        }
+                    }
+
+                    // ── 双选实测对比（M4）：勾选本驱动参与 AdrenoTools 并排实测 ──
+                    Spacer(Modifier.height(8.dp))
+                    val inCompare = download.id in compareSelection
+                    OutlinedButton(
+                        onClick = {
+                            if (inCompare) {
+                                compareSelection.remove(download.id)
+                            } else {
+                                if (compareSelection.size >= 2) compareSelection.removeAt(0)
+                                compareSelection.add(download.id)
+                            }
+                        },
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+                        colors = if (inCompare) ButtonDefaults.outlinedButtonColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
+                        ) else ButtonDefaults.outlinedButtonColors()
+                    ) {
+                        Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(15.dp))
+                        Spacer(Modifier.width(6.dp))
+                        Text(
+                            if (inCompare) "已选对比（点击取消）" else "加入对比",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+            }
+        }
+
+        // ── AdrenoTools 双选实测对比（M4）：同机同条件并排比跑分/扩展 ──
+        if (compareSelection.size == 2) {
+            val idA = compareSelection[0]
+            val idB = compareSelection[1]
+            val dlA = downloadedDrivers.firstOrNull { it.id == idA }
+            val dlB = downloadedDrivers.firstOrNull { it.id == idB }
+            if (dlA != null && dlB != null) {
+                val resA = adrenotoolsResults[idA]
+                val resB = adrenotoolsResults[idB]
+                val shortName: (String) -> String = { s ->
+                    if (s.length > 22) s.take(22) + "…" else s
+                }
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Column(Modifier.padding(14.dp)) {
+                        Text(
+                            "AdrenoTools 实测对比",
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            "同机同条件（fork 隔离），与 Winlator/GameHub/Eden 同款加载路径",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Spacer(Modifier.height(10.dp))
+                        if (resA != null && resB != null) {
+                            val (cA, bA) = resA
+                            val (cB, bB) = resB
+                            val dA = cA.devices.firstOrNull()
+                            val dB = cB.devices.firstOrNull()
+                            CompareRow("驱动", shortName(dlA.fileName), shortName(dlB.fileName))
+                            if (bA.success && bB.success) {
+                                CompareRow("综合跑分", "${bA.totalScore}", "${bB.totalScore}")
+                                CompareRow("填充带宽 GB/s", "%.1f".format(bA.fillBandwidthGBs), "%.1f".format(bB.fillBandwidthGBs))
+                                CompareRow("拷贝带宽 GB/s", "%.1f".format(bA.copyBandwidthGBs), "%.1f".format(bB.copyBandwidthGBs))
+                            } else {
+                                CompareRow(
+                                    "跑分",
+                                    if (bA.success) "OK" else (bA.errorCode ?: "失败"),
+                                    if (bB.success) "OK" else (bB.errorCode ?: "失败")
+                                )
+                            }
+                            CompareRow("实例扩展", "${cA.instanceExtCount}", "${cB.instanceExtCount}")
+                            CompareRow("设备扩展", "${dA?.extensions?.size ?: 0}", "${dB?.extensions?.size ?: 0}")
+                            CompareRow("API 版本", dA?.apiVersion ?: "—", dB?.apiVersion ?: "—")
+                            CompareRow("GPU", dA?.deviceName ?: "—", dB?.deviceName ?: "—")
+                            val scoreA = bA.totalScore
+                            val scoreB = bB.totalScore
+                            if (scoreA > 0 || scoreB > 0) {
+                                Spacer(Modifier.height(6.dp))
+                                val winner = when {
+                                    scoreA > scoreB -> shortName(dlA.fileName)
+                                    scoreB > scoreA -> shortName(dlB.fileName)
+                                    else -> "持平"
+                                }
+                                Text(
+                                    "综合跑分更高：$winner",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                                    color = MaterialTheme.colorScheme.tertiary
+                                )
+                            }
+                        } else {
+                            val running = adrenotoolsTestingId != null
+                            Button(
+                                onClick = {
+                                    testWithAdrenoTools(idA, dlA.filePath)
+                                    testWithAdrenoTools(idB, dlB.filePath)
+                                },
+                                enabled = !running
+                            ) {
+                                if (running) {
+                                    CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+                                    Spacer(Modifier.width(8.dp))
+                                    Text("实测中…", style = MaterialTheme.typography.bodySmall)
+                                } else {
+                                    Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(16.dp))
+                                    Spacer(Modifier.width(6.dp))
+                                    Text("开始实测对比", style = MaterialTheme.typography.bodySmall)
+                                }
+                            }
+                            Spacer(Modifier.height(4.dp))
+                            Text(
+                                "对比前无需先单测：按钮会依次对两个驱动执行采集+跑分",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        Spacer(Modifier.height(6.dp))
+                        TextButton(onClick = { compareSelection.clear() }) {
+                            Text("清除选择", style = MaterialTheme.typography.bodySmall)
                         }
                     }
                 }
