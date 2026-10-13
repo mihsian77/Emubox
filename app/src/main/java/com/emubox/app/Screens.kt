@@ -6561,7 +6561,8 @@ fun DriverScreen(
     onQualcommSourceChange: (String) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
-    driverSourceStars: Map<String, Long> = emptyMap()
+    driverSourceStars: Map<String, Long> = emptyMap(),
+    registryStatus: String? = null
 ) {
     // 高通提取驱动分区：有数据即展示（不因 8xx 等系列隐藏——高通官方提取
     // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
@@ -6594,6 +6595,25 @@ fun DriverScreen(
                 icon = Icons.Default.Memory,
                 remote = sourceCatalogRemote
             )
+        }
+
+        // 驱动源状态条：显示注册表实际加载来源与源总数，便于用户核对
+        // "全量 39 源"是否生效（此前多次出现"源少了一大堆"且来源不明）。
+        if (!registryStatus.isNullOrBlank()) {
+            item(key = "driver_registry_status") {
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        registryStatus,
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
         }
 
         item(key = "driver_search") {

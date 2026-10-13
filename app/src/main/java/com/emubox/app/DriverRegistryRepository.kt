@@ -105,16 +105,37 @@ object DriverRegistryRepository {
     @Volatile
     private var cachedEntries: List<DriverRegistryEntry>? = null
 
+    /** 最近一次注册表加载来源：remote / jsdelivr / assets / fallback（供 UI 诊断） */
+    @Volatile
+    var lastLoadSource: String = "unknown"
+        private set
+
     /** 加载注册表：GitHub Raw → jsDelivr → 内置 assets 全量（39 源） */
     suspend fun load(forceRefresh: Boolean = false, context: Context? = null): List<DriverRegistryEntry> {
         cachedEntries?.let { if (!forceRefresh) return it }
         return withContext(Dispatchers.IO) {
-            val entries = fetchFromUrl(REGISTRY_URL_PRIMARY)
-                ?: fetchFromUrl(REGISTRY_URL_JSDELIVR)
-                ?: loadFromAssets(context)
-                ?: builtinFallback()
-            cachedEntries = entries
-            entries
+            val fromPrimary = fetchFromUrl(REGISTRY_URL_PRIMARY)
+            if (fromPrimary != null) {
+                lastLoadSource = "remote"
+                cachedEntries = fromPrimary
+                return@withContext fromPrimary
+            }
+            val fromJsDelivr = fetchFromUrl(REGISTRY_URL_JSDELIVR)
+            if (fromJsDelivr != null) {
+                lastLoadSource = "jsdelivr"
+                cachedEntries = fromJsDelivr
+                return@withContext fromJsDelivr
+            }
+            val fromAssets = loadFromAssets(context)
+            if (fromAssets != null) {
+                lastLoadSource = "assets"
+                cachedEntries = fromAssets
+                return@withContext fromAssets
+            }
+            lastLoadSource = "fallback"
+            val fb = builtinFallback()
+            cachedEntries = fb
+            fb
         }
     }
 
