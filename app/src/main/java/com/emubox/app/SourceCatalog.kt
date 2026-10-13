@@ -438,10 +438,10 @@ object SourceCatalogRepository {
                 experimental = true
             ),
             ComponentSource(
-                id = "cmod-historical",
-                name = "历史稳定版",
-                manifestUrl = "",
-                description = "DXVK 历史稳定版补充（2.0 / 2.1），本地内置，兼容老游戏回退",
+                id = "stevenmxz-wcp",
+                name = "StevenMXZ WCP",
+                manifestUrl = "https://raw.githubusercontent.com/StevenMXZ/Winlator-Contents/main/contents.json",
+                description = "Winlator 组件构建（DXVK/FEXCore/Box64/VKD3D/WOWBox64/Wine/Proton），并合并 Contents-Cmod 历史稳定版",
                 experimental = false
             )
         )

@@ -234,12 +234,15 @@ class MainActivity : ComponentActivity() {
                         } ?: catalog.qualcommSources.first()
                         val qualcomm = fetchQualcommReleases(selectedQualcommSource)
 
-                        // 内置清单组件（cmod-historical 为本地内置源，不走网络）
+                        // 内置清单组件（stevenmxz-wcp 拉取全量清单后合并 Contents-Cmod 历史稳定版）
                         val manifestComponentMaps = coroutineScope {
                             baseCatalog.componentSources.map { source ->
                                 async {
                                     when (source.id) {
-                                        "cmod-historical" -> source.id to cmodHistoricalComponents()
+                                        "stevenmxz-wcp" -> {
+                                            val base = fetchComponentsFromUrl(source.manifestUrl)
+                                            source.id to mergeCmodHistorical(base)
+                                        }
                                         else -> source.id to fetchComponentsFromUrl(source.manifestUrl)
                                     }
                                 }
@@ -757,24 +760,27 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/** Cmod 历史稳定版组件（dxvk-2.0 / 2.1，本地内置，不走网络拉取） */
-private fun cmodHistoricalComponents(): Map<String, List<Component>> {
+/** 把 Contents-Cmod 独有 dxvk 组件（其他源缺失的历史稳定版）合并进 StevenMXZ/Winlator-Contents 清单，按版本名去重 */
+private fun mergeCmodHistorical(base: Map<String, List<Component>>): Map<String, List<Component>> {
     val type = "DXVK"
-    val dxvk = listOf(
-        Component(
-            type = type,
-            verName = "dxvk-2.1",
-            verCode = "",
-            remoteUrl = "https://github.com/StevenMXZ/Contents-Cmod/releases/download/1.1.0/dxvk-2.1.wcp"
-        ),
-        Component(
-            type = type,
-            verName = "dxvk-2.0",
-            verCode = "",
-            remoteUrl = "https://github.com/StevenMXZ/Contents-Cmod/releases/download/1.1.0/dxvk-2.0.wcp"
-        )
+    val baseUrl = "https://github.com/StevenMXZ/Contents-Cmod/releases/download/1.1.0/"
+    val cmodVersions = listOf(
+        "dxvk-2.7-8" to "dxvk_2.7-8.wcp",
+        "dxvk-2.4.1-PreRegression" to "dxvk-2.4.1-PreRegression.wcp",
+        "dxvk-2.4.1-fix" to "dxvk-2.4.1-fix.wcp",
+        "dxvk-2.6-2-gplasync" to "dxvk-2.6-2-gplasync.wcp",
+        "dxvk-2.1" to "dxvk-2.1.wcp",
+        "dxvk-2.0" to "dxvk-2.0.wcp",
+        "dxvk-gplasync-v2.3.1-1" to "dxvk-gplasync-v2.3.1-1.wcp",
+        "dxvk-1.9.4" to "dxvk-1.9.4.wcp"
     )
-    return mapOf(type to dxvk)
+    val existing = base[type].orEmpty()
+    val existingNames = existing.mapTo(HashSet()) { it.verName.lowercase() }
+    val extra = cmodVersions
+        .filter { (ver, _) -> ver.lowercase() !in existingNames }
+        .map { (ver, file) -> Component(type, ver, "", baseUrl + file) }
+    return if (extra.isEmpty()) base
+    else base + (type to (existing + extra))
 }
 
 private data class AppLoadResult(
