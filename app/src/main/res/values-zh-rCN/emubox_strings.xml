@@ -85,7 +85,10 @@
     <string name="reset_to_default">恢复默认</string>
     <string name="what_each_download_does">每个下载的作用</string>
     <string name="choose_components_confidence">放心选择组件</string>
-    <string name="guide_intro_desc">点击卡片查看它的作用、优先尝试什么，以及何时另一个组件可能效果更好。</string>
+
+    <string name="quick_pick_driver_subtitle">根据你的 GPU 推荐的驱动起点</string>
+    <string name="guide_intro_desc_driver">了解每种驱动类型的用途、哪些 Turnip/PanVK 构建适合你的设备，以及如何在模拟器中安装。</string>
+    <string name="choose_drivers_confidence">放心选择你的 GPU 驱动</string>    <string name="guide_intro_desc">点击卡片查看它的作用、优先尝试什么，以及何时另一个组件可能效果更好。</string>
     <string name="guide_notice">没有适用于所有游戏的「最佳」组合。设备、安卓版本、容器/分支、游戏引擎和具体构建版本都会产生影响。EmuBox 的软件包可能来自第三方目录，因此请始终将组件与将使用它的环境相匹配。</string>
     <string name="quick_pick">快速选择</string>
     <string name="starting_points_adreno">Adreno %1$s 的入门选择</string>
@@ -106,6 +109,34 @@
     <string name="best_for">最适合</string>
     <string name="when_to_switch">何时切换</string>
     <string name="useful_notes">实用提示</string>
+
+    <string name="useful_steps">实用教程</string>
+
+    <string name="device_guide_title">设备指南</string>
+    <string name="device_guide_subtitle">读懂每个字段的含义、跑分口径，以及驱动路线推荐的依据。</string>
+    <string name="device_guide_intro">本指南解释设备 Tab 展示的信息，帮你判断硬件情况并放心选择驱动。</string>
+    <string name="device_guide_vulkan">Vulkan 设备信息</string>
+    <string name="device_guide_vulkan_desc">GPU 型号决定适配哪个 Turnip/高通/PanVK 构建家族；驱动版本和 Vulkan 版本决定特性支持；扩展/特性/限制展示 ICD 实际暴露的能力，适合对比系统驱动与自定义驱动。</string>
+    <string name="device_guide_bench">跑分字段</string>
+    <string name="device_guide_bench_desc">Fill/Copy 带宽（GB/s）衡量 GPU 原始传输速度，总分为带宽口径（20 GB/s = 1000 分）；CPU MIPS/MFLOPS 衡量多线程整数/浮点吞吐。对比驱动时请保持相同设置与场景。</string>
+    <string name="device_guide_soc">SoC 知识库</string>
+    <string name="device_guide_soc_desc">工艺、CPU 核心、GPU 型号、参考跑分与常见机型帮你快速了解芯片。参考跑分为社区数据而非官方成绩，仅作粗略参考。</string>
+    <string name="device_guide_route">驱动路线推荐</string>
+    <string name="device_guide_route_desc">推荐依据 GPU 代际：Adreno 6xx/7xx/8xx 对应 Turnip 或高通构建，Mali 等 GPU 在可用时对应 PanVK。推荐只是起点，请用真实游戏验证。</string>
+    <string name="guide_step_turnip_1">在驱动专区选择与你 Adreno 代际匹配的 Turnip 构建（如 8 Gen 3 → Adreno 750），下载 zip。</string>
+    <string name="guide_step_turnip_2">打开模拟器（Winlator/Eden）的驱动管理，导入本地 zip；首次加载会自动解包并注册。</string>
+    <string name="guide_step_turnip_3">在容器设置中把驱动切换为 Turnip，重启容器生效。</string>
+    <string name="guide_step_turnip_4">游戏闪退或花屏时，回退到已知稳定版，或改用高通驱动对比。</string>
+    <string name="guide_step_qualcomm_1">在驱动专区下载与你的 SoC 代际匹配的高通驱动 zip（如 8 Gen 2 → Adreno 740）。</string>
+    <string name="guide_step_qualcomm_2">在模拟器驱动管理导入 zip，类型选择“高通/系统驱动”。</string>
+    <string name="guide_step_qualcomm_3">部分模拟器需要关闭“Vulkan 兼容模式”才能启用厂商驱动。</string>
+    <string name="guide_step_qualcomm_4">厂商驱动能修复 Turnip 的部分兼容问题，但更新频率较低；用已知游戏验证效果。</string>
+    <string name="guide_step_wine_1">在组件专区下载 Wine 组件（.wcp 或 zip），放入模拟器的 Components 目录。</string>
+    <string name="guide_step_wine_2">在容器设置中把 Wine 版本切换为刚安装的组件。</string>
+    <string name="guide_step_wine_3">游戏提示缺 DLL 时，在运行库专区补装对应的 VC++/DirectX 运行库。</string>
+    <string name="guide_step_proton_1">在组件专区下载 Proton 组件，放入 Components 目录。</string>
+    <string name="guide_step_proton_2">在容器设置中把 Wine 版本切换为 Proton。</string>
+    <string name="guide_step_proton_3">Proton 对 Steam 游戏兼容性更好，其捆绑的 DXVK 版本随组件一起变化。</string>
     <string name="download_hub">下载中心</string>
     <string name="download_hub_desc">选择一个类别以打开其下载。</string>
     <string name="live_sources">实时来源</string>

@@ -51,6 +51,7 @@ import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -1706,7 +1707,8 @@ private data class GuideTopic(
     @StringRes val tryFirstRes: Int,
     @StringRes val bestForRes: Int,
     @StringRes val switchWhenRes: Int,
-    val tipRes: List<Int>
+    val tipRes: List<Int>,
+    val stepsRes: List<Int> = emptyList()
 )
 
 private val componentGuideTopics = listOf(
@@ -1725,6 +1727,12 @@ private val componentGuideTopics = listOf(
             R.string.guide_turnip_tip1,
             R.string.guide_turnip_tip2,
             R.string.guide_turnip_tip3
+        ),
+        stepsRes = listOf(
+            R.string.guide_step_turnip_1,
+            R.string.guide_step_turnip_2,
+            R.string.guide_step_turnip_3,
+            R.string.guide_step_turnip_4
         )
     ),
     GuideTopic(
@@ -1742,6 +1750,12 @@ private val componentGuideTopics = listOf(
             R.string.guide_qualcomm_tip1,
             R.string.guide_qualcomm_tip2,
             R.string.guide_qualcomm_tip3
+        ),
+        stepsRes = listOf(
+            R.string.guide_step_qualcomm_1,
+            R.string.guide_step_qualcomm_2,
+            R.string.guide_step_qualcomm_3,
+            R.string.guide_step_qualcomm_4
         )
     ),
     GuideTopic(
@@ -1759,6 +1773,11 @@ private val componentGuideTopics = listOf(
             R.string.guide_wine_tip1,
             R.string.guide_wine_tip2,
             R.string.guide_wine_tip3
+        ),
+        stepsRes = listOf(
+            R.string.guide_step_wine_1,
+            R.string.guide_step_wine_2,
+            R.string.guide_step_wine_3
         )
     ),
     GuideTopic(
@@ -1776,6 +1795,11 @@ private val componentGuideTopics = listOf(
             R.string.guide_proton_tip1,
             R.string.guide_proton_tip2,
             R.string.guide_proton_tip3
+        ),
+        stepsRes = listOf(
+            R.string.guide_step_proton_1,
+            R.string.guide_step_proton_2,
+            R.string.guide_step_proton_3
         )
     ),
     GuideTopic(
@@ -1971,9 +1995,9 @@ fun ComponentGuideScreen(
                         }
                         Spacer(Modifier.width(14.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(appString(R.string.choose_components_confidence), style = MaterialTheme.typography.titleLarge)
+                            Text(if (driverMode) appString(R.string.choose_drivers_confidence) else appString(R.string.choose_components_confidence), style = MaterialTheme.typography.titleLarge)
                             Text(
-                                appString(R.string.guide_intro_desc),
+                                if (driverMode) appString(R.string.guide_intro_desc_driver) else appString(R.string.guide_intro_desc),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
@@ -1983,7 +2007,7 @@ fun ComponentGuideScreen(
             }
 
             item(key = "guide_quick_pick") {
-                QuickPickGuideCard(adrenoSeries)
+                QuickPickGuideCard(adrenoSeries, driverMode)
             }
 
             item(key = "guide_notice") {
@@ -2027,7 +2051,7 @@ fun ComponentGuideScreen(
 }
 
 @Composable
-private fun QuickPickGuideCard(adrenoSeries: String?) {
+private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(26.dp),
@@ -2043,19 +2067,24 @@ private fun QuickPickGuideCard(adrenoSeries: String?) {
                 Column {
                     Text(appString(R.string.quick_pick), style = MaterialTheme.typography.titleMedium)
                     Text(
-                        if (adrenoSeries != null) appString(R.string.starting_points_adreno, adrenoSeries) else appString(R.string.good_starting_points),
+                        if (driverMode) appString(R.string.quick_pick_driver_subtitle)
+                        else if (adrenoSeries != null) appString(R.string.starting_points_adreno, adrenoSeries)
+                        else appString(R.string.good_starting_points),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
                 }
             }
 
+            // 驱动指南只列驱动相关快速选择，避免与组件指南内容重复
             QuickPickRow(appString(R.string.gpu_driver), appString(R.string.quick_gpu))
-            QuickPickRow("DirectX 8–11", appString(R.string.quick_dx8_11))
-            QuickPickRow("DirectX 12", appString(R.string.quick_dx12))
-            QuickPickRow("Direct3D 3–7", appString(R.string.quick_d3d3_7))
-            QuickPickRow(appString(R.string.windows_runtime), appString(R.string.quick_windows))
-            QuickPickRow(appString(R.string.x86_64_arm64), appString(R.string.quick_cpu))
+            if (!driverMode) {
+                QuickPickRow("DirectX 8–11", appString(R.string.quick_dx8_11))
+                QuickPickRow("DirectX 12", appString(R.string.quick_dx12))
+                QuickPickRow("Direct3D 3–7", appString(R.string.quick_d3d3_7))
+                QuickPickRow(appString(R.string.windows_runtime), appString(R.string.quick_windows))
+                QuickPickRow(appString(R.string.x86_64_arm64), appString(R.string.quick_cpu))
+            }
         }
     }
 }
@@ -2165,6 +2194,37 @@ private fun GuideTopicCard(
                             }
                         }
                     }
+
+                    if (topic.stepsRes.isNotEmpty()) {
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text(
+                                appString(R.string.useful_steps),
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            topic.stepsRes.forEachIndexed { index, stepRes ->
+                                Row(verticalAlignment = Alignment.Top) {
+                                    Surface(
+                                        shape = RoundedCornerShape(8.dp),
+                                        color = MaterialTheme.colorScheme.primaryContainer
+                                    ) {
+                                        Text(
+                                            "${index + 1}",
+                                            modifier = Modifier.padding(horizontal = 7.dp, vertical = 3.dp),
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                                        )
+                                    }
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(
+                                        appString(stepRes),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -2195,6 +2255,57 @@ private fun GuideDetailBlock(label: String, text: String, icon: ImageVector) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+        }
+    }
+}
+
+/** 设备指南：解释设备信息字段、跑分口径、SoC 知识库与驱动路线推荐 */
+@Composable
+private fun DeviceGuideDialog(onDismiss: () -> Unit) {
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 640.dp)
+        ) {
+            Column(
+                modifier = Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Default.School, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    Spacer(Modifier.width(10.dp))
+                    Text(appString(R.string.device_guide_title), style = MaterialTheme.typography.titleLarge)
+                }
+                Text(
+                    appString(R.string.device_guide_intro),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                HorizontalDivider()
+                GuideDetailBlock(
+                    appString(R.string.device_guide_vulkan),
+                    appString(R.string.device_guide_vulkan_desc),
+                    Icons.Default.Info
+                )
+                GuideDetailBlock(
+                    appString(R.string.device_guide_bench),
+                    appString(R.string.device_guide_bench_desc),
+                    Icons.Default.Speed
+                )
+                GuideDetailBlock(
+                    appString(R.string.device_guide_soc),
+                    appString(R.string.device_guide_soc_desc),
+                    Icons.Default.Memory
+                )
+                GuideDetailBlock(
+                    appString(R.string.device_guide_route),
+                    appString(R.string.device_guide_route_desc),
+                    Icons.Default.Navigation
+                )
+                TextButton(onClick = onDismiss, modifier = Modifier.align(Alignment.End)) {
+                    Text(appString(R.string.ok))
+                }
+            }
         }
     }
 }
@@ -4455,6 +4566,11 @@ fun DeviceScreen(
     var benchmarkResult by remember { mutableStateOf<BenchmarkResult?>(null) }
     var benchmarkLoading by remember { mutableStateOf(false) }
     var benchmarkError by remember { mutableStateOf<String?>(null) }
+    var showDeviceGuide by remember { mutableStateOf(false) }
+
+    if (showDeviceGuide) {
+        DeviceGuideDialog(onDismiss = { showDeviceGuide = false })
+    }
 
     LaunchedEffect(Unit) {
         vulkanLoading = true
@@ -4481,6 +4597,34 @@ fun DeviceScreen(
     ) {
         item(key = "device_summary") {
             DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
+        }
+
+        item(key = "device_guide_entry") {
+            Card(
+                onClick = { showDeviceGuide = true },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.School, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                    Spacer(Modifier.width(10.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(appString(R.string.device_guide_title), style = MaterialTheme.typography.titleSmall)
+                        Text(
+                            appString(R.string.device_guide_subtitle),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                    Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
         }
 
         if (!isLoading && deviceInfo != null) {
@@ -4687,15 +4831,22 @@ fun DeviceScreen(
                     benchmarkLoading = true
                     benchmarkError = null
                     benchmarkResult = null
-                    // native 跑分在 IO 线程执行，避免阻塞 UI
+                    // native 跑分在 IO 线程执行，避免阻塞 UI；加 60s 超时兜底，
+                    // 防止 native 卡死（如驱动异常）时界面永远停在 loading
                     kotlinx.coroutines.GlobalScope.launch(Dispatchers.IO) {
                         try {
-                            val result = NativeVulkanBridge.benchmarkSystemVulkan()
+                            val result = withTimeout(60_000) {
+                                NativeVulkanBridge.benchmarkSystemVulkan()
+                            }
                             withContext(Dispatchers.Main) {
                                 benchmarkResult = result
                                 if (!result.success) {
                                     benchmarkError = result.errorMessage ?: result.errorCode
                                 }
+                            }
+                        } catch (e: kotlinx.coroutines.TimeoutCancellationException) {
+                            withContext(Dispatchers.Main) {
+                                benchmarkError = "跑分超时（60s），可能是驱动异常或设备过慢"
                             }
                         } catch (e: Exception) {
                             withContext(Dispatchers.Main) {
@@ -6893,12 +7044,13 @@ private fun EmulatorCard(
                     }
                 }
                 Spacer(Modifier.width(6.dp))
+                // 名称独占主行宽度（maxLines=2），避免被徽章+按钮挤压成逐字截断
                 Text(
                     entry.name,
                     style = MaterialTheme.typography.titleSmall,
-                    maxLines = 3,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(1f, fill = false)
+                    modifier = Modifier.weight(1f)
                 )
                 if (entry.official) {
                     Spacer(Modifier.width(4.dp))
@@ -6908,27 +7060,11 @@ private fun EmulatorCard(
                     ) {
                         Text(
                             appString(R.string.emulator_badge_official),
-                            modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                            modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onPrimary
                         )
                     }
-                }
-                IconButton(onClick = onToggleFavorite, modifier = Modifier.size(26.dp)) {
-                    Icon(
-                        if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp),
-                        tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-                IconButton(onClick = onToggleCompare, modifier = Modifier.size(26.dp)) {
-                    Icon(
-                        Icons.Default.CompareArrows,
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp),
-                        tint = if (inCompare) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-                    )
                 }
             }
             if (entry.channel.isNotBlank() && entry.channel != "stable") {
@@ -6981,26 +7117,44 @@ private fun EmulatorCard(
                 )
             }
             Spacer(Modifier.height(8.dp))
-            Button(
-                onClick = {
-                    if (canDownload) onDownload(entry)
-                    else if (websiteUrl.isNotBlank()) {
-                        runCatching {
-                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl)))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Button(
+                    onClick = {
+                        if (canDownload) onDownload(entry)
+                        else if (websiteUrl.isNotBlank()) {
+                            runCatching {
+                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl)))
+                            }
                         }
-                    }
-                },
-                enabled = canDownload || websiteUrl.isNotBlank(),
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Text(
-                    if (canDownload) appString(R.string.emulator_download)
-                    else appString(R.string.emulator_website),
-                    style = MaterialTheme.typography.labelSmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+                    },
+                    enabled = canDownload || websiteUrl.isNotBlank(),
+                    modifier = Modifier.weight(1f),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        if (canDownload) appString(R.string.emulator_download)
+                        else appString(R.string.emulator_website),
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                IconButton(onClick = onToggleFavorite, modifier = Modifier.size(32.dp)) {
+                    Icon(
+                        if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp),
+                        tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                IconButton(onClick = onToggleCompare, modifier = Modifier.size(32.dp)) {
+                    Icon(
+                        Icons.Default.CompareArrows,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp),
+                        tint = if (inCompare) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
     }

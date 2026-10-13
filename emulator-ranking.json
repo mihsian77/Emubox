@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-12T22:01:37.515Z",
+ "updated_at": "2026-10-13",
  "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
  "categories": [
   {
@@ -95,10 +95,15 @@
    "downloads": 0,
    "stars": 0,
    "description": "盖世游戏 — 你的全能游戏宇宙。支持 Android 畅玩 PC 大作、Steam/EPIC 接入、云游戏串流。",
-   "pushed_at": "",
+   "pushed_at": "2026-09-23T15:49:16Z",
    "homepage": "https://gamehub.xiaoji.com",
    "logoUrl": "https://gamehub.xiaoji.com/guanwang_v2/assets/logo_new.png",
-   "releases": []
+   "releases": [],
+   "latest_apk_url": "https://wwwdl.mx520.com/ux-landscape/app-apk/85e6/14/cf/GameHub_6.3.1_85e614cf4bfc485c765f952af85b0558.apk",
+   "latest_apk_name": "GameHub_6.3.1.apk",
+   "latest_apk_size": 69600000,
+   "latest_tag": "6.3.1",
+   "latest_date": "2026-09-23T15:49:16Z"
   },
   {
    "id": "brunodev85-winlator",

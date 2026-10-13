@@ -85,7 +85,10 @@
     <string name="reset_to_default">Reset to default</string>
     <string name="what_each_download_does">What each download does</string>
     <string name="choose_components_confidence">Choose components with confidence</string>
-    <string name="guide_intro_desc">Tap a card for what it does, what to try first, and when another component may work better.</string>
+
+    <string name="quick_pick_driver_subtitle">Driver starting points based on your GPU</string>
+    <string name="guide_intro_desc_driver">Learn what each driver type does, which Adreno/PanVK builds fit your device, and how to install them in emulators.</string>
+    <string name="choose_drivers_confidence">Choose your GPU driver with confidence</string>    <string name="guide_intro_desc">Tap a card for what it does, what to try first, and when another component may work better.</string>
     <string name="guide_notice">There is no single \'best\' stack for every game. Device, Android version, container/fork, game engine and the exact build all matter. EmuBox packages can come from third-party catalogs, so always match the component to the environment that will use it.</string>
     <string name="quick_pick">Quick pick</string>
     <string name="starting_points_adreno">Starting points for Adreno %1$s</string>
@@ -106,6 +109,34 @@
     <string name="best_for">Best for</string>
     <string name="when_to_switch">When to switch</string>
     <string name="useful_notes">Useful notes</string>
+
+    <string name="useful_steps">Practical steps</string>
+
+    <string name="device_guide_title">Device Guide</string>
+    <string name="device_guide_subtitle">Learn what each field means, how the benchmark works, and why a driver route is recommended.</string>
+    <string name="device_guide_intro">This guide explains the information shown in the Device tab, so you can judge your hardware and pick drivers with confidence.</string>
+    <string name="device_guide_vulkan">Vulkan device info</string>
+    <string name="device_guide_vulkan_desc">GPU model tells you which Adreno/Mali/PanVK build family fits. Driver version and Vulkan version determine feature support. Extensions/features/limits show what the ICD exposes; useful when comparing system vs custom drivers.</string>
+    <string name="device_guide_bench">Benchmark fields</string>
+    <string name="device_guide_bench_desc">Fill and Copy bandwidth (GB/s) measure raw GPU transfer speed; total score is bandwidth-based (20 GB/s = 1000). CPU MIPS/MFLOPS measure integer/float throughput across N threads. Use the same settings and workload when comparing drivers.</string>
+    <string name="device_guide_soc">SoC knowledge</string>
+    <string name="device_guide_soc_desc">Process node, CPU cores, GPU model, reference scores and common devices give a quick overview of your chip. Reference scores are community data, not official benchmarks; treat them as rough guidance.</string>
+    <string name="device_guide_route">Driver route</string>
+    <string name="device_guide_route_desc">Recommendations follow the GPU generation: Adreno 6xx/7xx/8xx map to Turnip or Qualcomm builds, and Mali/other GPUs map to PanVK where available. The recommendation is a starting point; verify with real games.</string>
+    <string name="guide_step_turnip_1">Pick a Turnip build that matches your Adreno generation (e.g. Adreno 750 for 8 Gen 3) in the Drivers tab, then download the zip.</string>
+    <string name="guide_step_turnip_2">Open the emulator’s driver manager (Winlator/Eden), import the local zip; first load unpacks and registers it automatically.</string>
+    <string name="guide_step_turnip_3">Switch the emulator container to the Turnip driver and restart the container for it to take effect.</string>
+    <string name="guide_step_turnip_4">If games crash or show artifacts, roll back to a known stable build or try the Qualcomm driver instead.</string>
+    <string name="guide_step_qualcomm_1">Download a Qualcomm driver zip matching your SoC generation (e.g. Adreno 740 for 8 Gen 2) from the Drivers tab.</string>
+    <string name="guide_step_qualcomm_2">Import the zip in the emulator driver manager and select the “Qualcomm/system driver” type.</string>
+    <string name="guide_step_qualcomm_3">Some emulators require disabling “Vulkan compatibility mode” for the vendor driver to activate.</string>
+    <string name="guide_step_qualcomm_4">Vendor drivers fix some compatibility issues Turnip has, but update less frequently; verify with a known game.</string>
+    <string name="guide_step_wine_1">Download the Wine component (.wcp or zip) in the Components tab and place it into the emulator’s Components directory.</string>
+    <string name="guide_step_wine_2">In the container settings, switch the Wine version to the component you installed.</string>
+    <string name="guide_step_wine_3">If a game complains about missing DLLs, install the matching VC++/DirectX runtimes from the Runtime tab.</string>
+    <string name="guide_step_proton_1">Download the Proton component in the Components tab and place it into the Components directory.</string>
+    <string name="guide_step_proton_2">Switch the container’s Wine version to Proton.</string>
+    <string name="guide_step_proton_3">Proton generally handles Steam games better; its bundled DXVK version changes together with the component.</string>
     <string name="download_hub">Download hub</string>
     <string name="download_hub_desc">Choose a category to open its downloads.</string>
     <string name="live_sources">Live sources</string>

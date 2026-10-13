@@ -1178,7 +1178,10 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         std::atomic<bool> startFlag{false};
         std::atomic<int> ready{0};
         auto worker = [&](int tid) {
-            // 等统一开始信号（避免错峰启动拉长总时长）
+            // 先报告就绪，再等统一开始信号
+            // （顺序必须如此：主线程等所有 worker 就绪后才发 startFlag，
+            //   若先等信号再报告就绪会互相等待造成死锁）
+            ready.fetch_add(1);
             while (!startFlag.load()) { std::this_thread::yield(); }
             // 每线程独立种子，避免共享变量竞争
             unsigned long long a = 0x9E3779B97F4A7C15ull + tid * 7919u;
@@ -1209,7 +1212,6 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
             }
             if (sum == -1.2345) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, "cpu bench sum guard");
             floatOps.fetch_add(of, std::memory_order_relaxed);
-            ready.fetch_add(1);
         };
         std::vector<std::thread> pool;
         pool.reserve(threads);
