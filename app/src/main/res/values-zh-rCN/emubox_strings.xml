@@ -556,6 +556,8 @@
     <string name="emulator_updated_prefix">更新于 </string>
     <string name="search_hint">搜索模拟器（名称 / 描述）</string>
     <string name="runtime_search_hint">搜索运行库（名称 / 用途）</string>
+
+    <string name="runtime_disclaimer">运行库清单整理自开源社区数据与微软官方渠道，版权归原权利人所有；本应用仅提供下载管理，不附带、不修改任何运行库文件。失效的第三方链接会自动替换为官方直链。请仅用于个人学习研究。</string>
     <string name="runtime_recommended">推荐下载</string>
     <string name="file_purpose">文件用途</string>
     <string name="file_info_error">无法读取该文件信息（文件可能已损坏）</string>

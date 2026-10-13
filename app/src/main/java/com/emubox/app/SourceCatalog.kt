@@ -436,6 +436,13 @@ object SourceCatalogRepository {
                 manifestUrl = "https://raw.githubusercontent.com/Arihany/WinlatorWCPHub/refs/heads/main/pack.json",
                 description = "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
                 experimental = true
+            ),
+            ComponentSource(
+                id = "cmod-historical",
+                name = "历史稳定版",
+                manifestUrl = "",
+                description = "DXVK 历史稳定版补充（2.0 / 2.1），本地内置，兼容老游戏回退",
+                experimental = false
             )
         )
     )
