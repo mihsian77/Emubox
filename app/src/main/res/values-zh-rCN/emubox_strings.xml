@@ -364,6 +364,20 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">基于 Rodrig02005 的开源项目 EmuHub-APP（MIT 协议）</string>
     <string name="about_license">MIT 开源协议</string>
+    <string name="driver_compare_title">驱动对比</string>
+    <string name="driver_compare_subtitle">共 %1$d 个驱动来源，选两个对比类型、版本、GPU 支持与平台</string>
+    <string name="driver_compare_hint">最多选 2 个驱动来源进行对比，最新版本与更新时间实时拉取。</string>
+    <string name="driver_cmp_name">来源</string>
+    <string name="driver_cmp_type">类型</string>
+    <string name="driver_cmp_latest">最新版本</string>
+    <string name="driver_cmp_updated">更新时间</string>
+    <string name="driver_cmp_gpu">支持 GPU</string>
+    <string name="driver_cmp_platform">目标平台</string>
+    <string name="driver_cmp_flag">状态</string>
+    <string name="driver_cmp_desc">简介</string>
+    <string name="driver_cmp_reselect">重新选择</string>
+    <string name="experimental_tag">实验版</string>
+    <string name="recommended_tag">推荐</string>
     <string name="app_disclaimer">EmuBox 为开源整合工具：仅提供下载管理，不捆绑、不修改任何驱动/组件/运行库。所有数据整理自开源社区，版权归各自原作者所有；失效链接自动替换为官方直链。请仅用于个人学习研究。赞助仅为自愿支持整合工作，与上游作者无收益关系。</string>
     <string name="about_disclaimer">驱动、组件与运行库数据均整理自开源社区项目，版权归各自原作者所有；本应用仅提供下载管理，不捆绑、不修改任何文件。失效的第三方链接会自动替换为官方直链。请仅用于个人学习研究。</string>
 
@@ -565,6 +579,8 @@
     <string name="driver_disclaimer">驱动数据整理自开源社区驱动项目，版权归原作者所有；本应用仅提供下载管理，不捆绑、不修改任何驱动文件，请在对应模拟器内自行验证兼容性。请仅用于个人学习研究。</string>
     <string name="runtime_recommended">推荐下载</string>
     <string name="file_purpose">文件用途</string>
+    <string name="archive_kind">包类型</string>
+    <string name="archive_contains">共 %1$d 项，关键库文件如下</string>
     <string name="file_info_error">无法读取该文件信息（文件可能已损坏）</string>
     <string name="benchmark_adrenotools_boundary">分发的驱动包均为 adrenotools 格式（模拟器专用 ICD），无法在 App 内加载实测，请在对应模拟器（Eden/Winlator）内验证。上方能力对比来自包内 meta.json。</string>
     <string name="already_downloaded">已下载</string>
