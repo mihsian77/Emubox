@@ -145,7 +145,8 @@
       "maturity": "stable",
       "stars": 19,
       "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）",
-      "updated_at": "2026-01-05T10:36:05Z"
+      "updated_at": "2026-01-05T10:36:05Z",
+      "companion": []
     },
     {
       "id": "mrpurple",
@@ -1516,15 +1517,27 @@
       "name": "Weab-chan Turnip CI",
       "owner": "Weab-chan",
       "repo": "freedreno_turnip-CI",
-      "label": "Weab-chan Turnip CI",
-      "description": "Weab-chan Turnip 驱动 CI 构建（高通 Adreno）",
-      "vendor": "qualcomm",
-      "target": "turnip",
-      "chipset": [
-        "a6xx",
-        "a7xx"
+      "description": "Weab-chan Turnip 驱动 CI 构建（每两周 GitHub Actions 自动构建 adrenotool 包）",
+      "api_url": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "6xx",
+        "7xx"
       ],
-      "priority": 4
+      "gpu_models": [],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "adpkg",
+      "maturity": "ci",
+      "stars": 0,
+      "notes": "",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip"
+        ]
+      }
     }
   ]
 }

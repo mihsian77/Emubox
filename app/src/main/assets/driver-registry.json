@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5131,
+      "stars": 5132,
       "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -102,7 +102,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1004,
+      "stars": 1007,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -144,7 +144,9 @@
       "package_format": "zip",
       "maturity": "stable",
       "stars": 19,
-      "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）"
+      "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）",
+      "updated_at": "2026-01-05T10:36:05Z",
+      "companion": []
     },
     {
       "id": "mrpurple",
@@ -194,7 +196,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 832,
+      "stars": 833,
       "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -341,7 +343,7 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-10-12T19:43:58Z"
+      "updated_at": "2026-10-13T01:47:44Z"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -451,7 +453,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 464,
+      "stars": 466,
       "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
       "notes": "",
       "companion": [],
@@ -763,7 +765,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 13,
+      "stars": 14,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -792,7 +794,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 43,
+      "stars": 45,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -920,7 +922,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 36,
+      "stars": 37,
       "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
       "notes": "CSF 架构，native Vulkan",
       "companion": [],
@@ -953,7 +955,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 32,
+      "stars": 36,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -963,7 +965,7 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-12T17:57:45Z"
+      "updated_at": "2026-10-13T06:22:30Z"
     },
     {
       "id": "martuniy-panvk",
@@ -1179,7 +1181,7 @@
           "merged"
         ]
       },
-      "updated_at": "2026-10-08T14:41:19Z"
+      "updated_at": "2026-10-13T07:52:13Z"
     },
     {
       "id": "xclipse940-radv",
@@ -1318,7 +1320,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 214,
+      "stars": 216,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1468,7 +1470,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 14,
+      "stars": 16,
       "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
       "companion": [],
@@ -1508,22 +1510,34 @@
           "SD865"
         ]
       },
-      "updated_at": "2026-10-12T06:55:13Z"
+      "updated_at": "2026-10-13T07:23:29Z"
     },
     {
       "id": "weab-turnip-ci",
       "name": "Weab-chan Turnip CI",
       "owner": "Weab-chan",
       "repo": "freedreno_turnip-CI",
-      "label": "Weab-chan Turnip CI",
-      "description": "Weab-chan Turnip 驱动 CI 构建（高通 Adreno）",
-      "vendor": "qualcomm",
-      "target": "turnip",
-      "chipset": [
-        "a6xx",
-        "a7xx"
+      "description": "Weab-chan Turnip 驱动 CI 构建（每两周 GitHub Actions 自动构建 adrenotool 包）",
+      "api_url": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "6xx",
+        "7xx"
       ],
-      "priority": 4
+      "gpu_models": [],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "adpkg",
+      "maturity": "ci",
+      "stars": 0,
+      "notes": "",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip"
+        ]
+      }
     }
   ]
 }
