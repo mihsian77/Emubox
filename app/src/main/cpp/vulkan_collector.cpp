@@ -1582,11 +1582,25 @@ static std::string collectDriverAdrenotoolsJson(const char* driverDir, const cha
 
     VulkanDispatch vk;
     vk.libHandle = lib;
-    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"));
-    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
+    // 优先经 getInst（Mesa ICD 规范 vk_icdGetInstanceProcAddr / classic
+    // vkGetInstanceProcAddr）取全局函数。实测发现部分驱动（如 KIMCHI/
+    // The412Banner 的 turnip 包）仅导出 classic 入口，其 vkGetInstanceProcAddr
+    // 对 VK_NULL_HANDLE+"vkCreateInstance" 返回空（与本项目系统采集遇到的
+    // ROM 行为一致），但 .so 直接导出 vkCreateInstance 符号——此时 fallback
+    // 用 dlsym 直取符号，跳过查询。
+    vk.vkCreateInstance = getInst
+            ? reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"))
+            : nullptr;
+    if (!vk.vkCreateInstance) {
+        vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(dlsym(lib, "vkCreateInstance"));
+    }
+    vk.vkDestroyInstance = getInst
+            ? reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"))
+            : nullptr;
+    if (!vk.vkDestroyInstance) {
+        vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(dlsym(lib, "vkDestroyInstance"));
+    }
     if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
-        // 诊断：驱动 .so 内部分别是否存在这些符号，区分"符号缺失"与
-        // "函数存在但调用返回空（驱动内部初始化/环境失败）"。
         const char* symCreate = dlsym(lib, "vkCreateInstance") ? "1" : "0";
         const char* symIcd = dlsym(lib, "vk_icdGetInstanceProcAddr") ? "1" : "0";
         const char* symClassic = dlsym(lib, "vkGetInstanceProcAddr") ? "1" : "0";
@@ -1668,8 +1682,19 @@ static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const c
 
     VulkanDispatch vk;
     vk.libHandle = lib;
-    vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"));
-    vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"));
+    // 同 collect 路径：classic 入口对 NULL 实例查询返回空时，dlsym 直取符号。
+    vk.vkCreateInstance = getInst
+            ? reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"))
+            : nullptr;
+    if (!vk.vkCreateInstance) {
+        vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(dlsym(lib, "vkCreateInstance"));
+    }
+    vk.vkDestroyInstance = getInst
+            ? reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"))
+            : nullptr;
+    if (!vk.vkDestroyInstance) {
+        vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(dlsym(lib, "vkDestroyInstance"));
+    }
     if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
         const char* symCreate = dlsym(lib, "vkCreateInstance") ? "1" : "0";
         const char* symIcd = dlsym(lib, "vk_icdGetInstanceProcAddr") ? "1" : "0";
