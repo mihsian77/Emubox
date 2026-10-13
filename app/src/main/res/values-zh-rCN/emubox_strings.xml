@@ -558,6 +558,9 @@
     <string name="runtime_search_hint">搜索运行库（名称 / 用途）</string>
 
     <string name="runtime_disclaimer">运行库清单整理自开源社区数据与微软官方渠道，版权归原权利人所有；本应用仅提供下载管理，不附带、不修改任何运行库文件。失效的第三方链接会自动替换为官方直链。请仅用于个人学习研究。</string>
+    <string name="emulator_disclaimer">模拟器信息整理自社区公开数据源，版权归各项目原作者所有；本应用仅提供下载入口，不提供任何仓库链接。请仅用于个人学习研究。</string>
+    <string name="component_disclaimer">组件数据整理自开源社区组件仓库，版权归原作者所有；本应用仅提供下载管理，不捆绑、不修改任何组件文件。请仅用于个人学习研究。</string>
+    <string name="driver_disclaimer">驱动数据整理自开源社区驱动项目，版权归原作者所有；本应用仅提供下载管理，不捆绑、不修改任何驱动文件，请在对应模拟器内自行验证兼容性。请仅用于个人学习研究。</string>
     <string name="runtime_recommended">推荐下载</string>
     <string name="file_purpose">文件用途</string>
     <string name="file_info_error">无法读取该文件信息（文件可能已损坏）</string>

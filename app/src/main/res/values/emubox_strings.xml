@@ -558,6 +558,9 @@
     <string name="runtime_search_hint">Search runtimes</string>
 
     <string name="runtime_disclaimer">Runtimes are aggregated from open-source community data and official Microsoft channels; all rights belong to their respective owners. This app only manages downloads and does not bundle or modify any runtime files. Dead third-party links are automatically replaced with official mirrors. For personal study only.</string>
+    <string name="emulator_disclaimer">Emulator info is aggregated from public community sources; all rights belong to each project. This app only provides download entry and does not expose repository links. For personal study only.</string>
+    <string name="component_disclaimer">Components are aggregated from open-source community repositories; all rights belong to their authors. This app only manages downloads and does not bundle or modify any component files. For personal study only.</string>
+    <string name="driver_disclaimer">Drivers are aggregated from open-source community projects; all rights belong to their authors. This app only manages downloads and does not bundle or modify any driver files. Verify compatibility inside your emulator. For personal study only.</string>
     <string name="runtime_recommended">Recommended</string>
     <string name="file_purpose">Purpose</string>
     <string name="file_info_error">Failed to read file info</string>
