@@ -17,8 +17,8 @@ android {
         applicationId = "com.emubox.app"
         minSdk = 28
         targetSdk = 37
-        versionCode = 2
-        versionName = "1.1.0-m29"
+        versionCode = 3
+        versionName = "1.1.0-m30"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
