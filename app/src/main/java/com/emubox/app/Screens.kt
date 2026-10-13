@@ -93,6 +93,19 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                             Icon(Icons.Default.ArrowBack, contentDescription = appString(R.string.back))
                         }
                     }
+                },
+                actions = {
+                    // 手动重新扫描本地下载目录（默认仅 App 启动时扫一次，
+                    // 下载完成/外部放入的新文件需手动触发才能在下载库显示）。
+                    IconButton(
+                        onClick = {
+                            scope.launch(Dispatchers.IO) {
+                                DownloadsManager.scanExistingFiles(context)
+                            }
+                        }
+                    ) {
+                        Icon(Icons.Default.Refresh, contentDescription = appString(R.string.rescan_local))
+                    }
                 }
             )
         }

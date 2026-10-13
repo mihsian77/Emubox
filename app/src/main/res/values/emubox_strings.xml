@@ -1,6 +1,7 @@
 <resources>
     <string name="alpha_version">Alpha v%1$s</string>
     <string name="back">Back</string>
+    <string name="rescan_local">Rescan local files</string>
     <string name="refresh">Refresh</string>
     <string name="donate">Donate</string>
     <string name="downloads">Downloads</string>
