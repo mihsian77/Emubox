@@ -1512,12 +1512,25 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
                                          const char* tmpDir, const char* hookLibDir,
                                          void** libHandleOut, GetInstanceProcAddrFn* getInstOut) {
     void* mappingHandle = nullptr;
+    // 首次尝试完整功能：自定义驱动 + GPU 映射导入（turnip GSL 分配通常需要）。
+    // 部分驱动/设备不支持映射导入时该组合会失败，降级为仅自定义驱动重试，
+    // 与 Winlator 低端 fallback 策略一致，扩大实测成功率。映射句柄由 fork
+    // 子进程退出即释放，无需手动 close。
     void* lib = adrenotools_open_libvulkan(
             RTLD_NOW,
             ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
             tmpDir, hookLibDir, driverDir, driverName, nullptr, &mappingHandle);
+    std::string firstErr;
     if (!lib) {
-        std::string err = dlerror() ? dlerror() : "unknown";
+        firstErr = dlerror() ? dlerror() : "unknown";
+        void* retryMapping = nullptr;
+        lib = adrenotools_open_libvulkan(
+                RTLD_NOW,
+                ADRENOTOOLS_DRIVER_CUSTOM,
+                tmpDir, hookLibDir, driverDir, driverName, nullptr, &retryMapping);
+    }
+    if (!lib) {
+        std::string err = dlerror() ? dlerror() : firstErr;
         return "{\"success\":false,\"errorCode\":\"ADRENOTOOLS_OPEN_FAILED\",\"errorMessage\":\""
                + jsonEscape(err) + "\",\"deviceCount\":0,\"devices\":[]}";
     }
