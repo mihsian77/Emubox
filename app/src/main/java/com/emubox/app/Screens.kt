@@ -7040,7 +7040,7 @@ private fun EmulatorCard(
 ) {
     val context = LocalContext.current
     val canDownload = entry.latestApkUrl.isNotBlank()
-    // 官网优先 homepage，无则回退 GitHub 仓库（保证按钮始终有链接）
+    // 官网优先 homepage，无则回退仓库（模拟器专区为社区排行榜，保留仓库跳转）
     val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
     Card(
         modifier = Modifier
@@ -7445,6 +7445,7 @@ private fun EmulatorListRow(
 ) {
     val context = LocalContext.current
     val canDownload = entry.latestApkUrl.isNotBlank()
+    // 官网优先 homepage，无则回退仓库（模拟器专区为社区排行榜，保留仓库跳转）
     val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
     Card(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onClickDetail),
