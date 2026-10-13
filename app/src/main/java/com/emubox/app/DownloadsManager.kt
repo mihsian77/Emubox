@@ -357,12 +357,15 @@ object DownloadsManager {
                     android.provider.MediaStore.MediaColumns.SIZE,
                     android.provider.MediaStore.MediaColumns.DATE_MODIFIED
                 )
-                val selection = "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
+                // 同时扫描 EmuBox 与旧版 EmuHub-CN 下载目录：改名前的已下载文件
+                // 也要读回下载库，否则升级后旧文件"消失"且会重复下载生成 (1) 后缀
+                val selection = "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? OR " +
+                    "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
                 resolver.query(
                     android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
                     projection,
                     selection,
-                    arrayOf("%EmuBox%"),
+                    arrayOf("%EmuBox%", "%EmuHub-CN%"),
                     null
                 )?.use { cursor ->
                     val nameIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DISPLAY_NAME)
@@ -372,8 +375,12 @@ object DownloadsManager {
                     while (cursor.moveToNext()) {
                         val name = cursor.getString(nameIdx) ?: continue
                         val rel = cursor.getString(relIdx) ?: continue
-                        val sub = rel.removePrefix("Download/EmuBox/").trim('/')
-                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/EmuBox/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        val sub = rel
+                            .removePrefix("Download/EmuBox/")
+                            .removePrefix("Download/EmuHub-CN/")
+                            .trim('/')
+                        val rootDir = if (rel.contains("EmuHub-CN", ignoreCase = true)) "EmuHub-CN" else "EmuBox"
+                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$rootDir/${if (sub.isBlank()) "" else "$sub/"}$name"
                         if (path in knownPaths) continue
                         existing += CompletedDownload(
                             id = "disk-${path.hashCode()}",
@@ -387,8 +394,9 @@ object DownloadsManager {
                 }
             } else {
                 @Suppress("DEPRECATION")
-                val root = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "EmuBox")
-                collectPlainFiles(root, "", knownPaths, existing)
+                val base = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                collectPlainFiles(File(base, "EmuBox"), "", knownPaths, existing)
+                collectPlainFiles(File(base, "EmuHub-CN"), "", knownPaths, existing)
             }
         }.onFailure { android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it) }
 

@@ -539,20 +539,13 @@ class MainActivity : ComponentActivity() {
                                             deviceInfo = deviceInfo,
                                             isLoading = isLoading,
                                             turnipSourceId = turnipSourceId,
-                                            turnipSources = if (SettingsManager.getMatchDriversByDevice()) {
-                                                sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
-                                                    .filterNot { it.requiredVendor == "mali" }
-                                            } else {
-                                                sourceCatalog.turnipSources.filterNot { it.requiredVendor == "mali" }
-                                            },
+                                            // 全量展示：注册表 39 源合并后不再二次过滤（厂商/系列过滤会
+                                            // 把不匹配源隐藏，导致 8xx 设备 turnip 只剩 7 个、PanVK 被过滤空）。
+                                            // 设备匹配只影响加载时的排序与推荐标签，不减少可见源数量。
+                                            turnipSources = sourceCatalog.turnipSources.filterNot { it.requiredVendor == "mali" },
                                             turnipReleases = turnipReleases,
                                             panvkSourceId = panvkSourceId,
-                                            panvkSources = if (SettingsManager.getMatchDriversByDevice()) {
-                                                sourceCatalog.compatibleTurnipSources(deviceInfo?.adrenoSeries, deviceInfo?.gpuModel, deviceInfo?.gpuVendor?.name?.lowercase())
-                                                    .filter { it.requiredVendor == "mali" }
-                                            } else {
-                                                sourceCatalog.turnipSources.filter { it.requiredVendor == "mali" }
-                                            },
+                                            panvkSources = sourceCatalog.turnipSources.filter { it.requiredVendor == "mali" },
                                             panvkReleases = panvkReleases,
                                             qualcommSourceId = qualcommSourceId,
                                             qualcommSources = sourceCatalog.qualcommSources,
