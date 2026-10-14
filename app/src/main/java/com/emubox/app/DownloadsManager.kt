@@ -6,8 +6,11 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.os.SystemClock
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -125,6 +128,10 @@ object DownloadsManager {
     private val _completedDownloads = mutableStateListOf<CompletedDownload>()
     private lateinit var prefs: SharedPreferences
     private var lastActivePersistAt = 0L
+
+    /** 最近一次本地扫描的诊断摘要：显示在下载 Tab，便于定位"扫不出"根因 */
+    var lastScanNote by mutableStateOf("")
+        private set
 
     val activeDownloads: Map<String, ActiveDownload> get() = _activeDownloads
     val completedDownloads: List<CompletedDownload> get() = _completedDownloads
@@ -348,6 +355,8 @@ object DownloadsManager {
         // 的 filePath 是 content:// URI，而扫描构造的是绝对路径，两者格式永不
         // 一致，导致每次扫描都把已下载文件重复加入（下载库显示两个同名）。
         val knownKeys = _completedDownloads.map { it.fileName.lowercase() to it.subPath }.toHashSet()
+        var diagnostic = "扫描完成：查询到 ${existing.size} 个文件，并入 0 个"
+        var queryRows = 0
 
         runCatching {
             val folderUri = SettingsManager.getDownloadFolderUri()
@@ -355,6 +364,9 @@ object DownloadsManager {
                 val root = androidx.documentfile.provider.DocumentFile.fromTreeUri(context, Uri.parse(folderUri))
                 if (root != null && root.canRead()) {
                     collectDocumentFiles(root, "", knownKeys, existing)
+                    diagnostic = "自定义目录扫描：发现 ${existing.size} 个文件"
+                } else {
+                    diagnostic = "自定义目录不可读（SAF 权限失效？）：$folderUri"
                 }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 val resolver = context.contentResolver
@@ -375,6 +387,7 @@ object DownloadsManager {
                     arrayOf("%EmuBox%", "%EmuHub-CN%"),
                     null
                 )?.use { cursor ->
+                    queryRows = cursor.count
                     val nameIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DISPLAY_NAME)
                     val relIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.RELATIVE_PATH)
                     val sizeIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.SIZE)
@@ -399,18 +412,30 @@ object DownloadsManager {
                         )
                     }
                 }
+                diagnostic = "MediaStore 查询到 $queryRows 行（EmuBox/EmuHub-CN），并入 ${existing.size} 个"
             } else {
                 @Suppress("DEPRECATION")
                 val base = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 collectPlainFiles(File(base, "EmuBox"), "", knownKeys, existing)
                 collectPlainFiles(File(base, "EmuHub-CN"), "", knownKeys, existing)
+                diagnostic = "文件目录扫描：发现 ${existing.size} 个"
             }
-        }.onFailure { android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it) }
+        }.onFailure {
+            android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it)
+            diagnostic = "扫描失败：${it.message ?: it.javaClass.simpleName}"
+        }
 
-        if (existing.isEmpty()) return
-        val knownFiles = _completedDownloads.map { it.fileName.lowercase() to it.subPath }.toHashSet()
-        existing.filter { (it.fileName.lowercase() to it.subPath) !in knownFiles }.forEach(_completedDownloads::add)
-        saveCompletedDownloads()
+        val added = existing.count { d ->
+            val key = d.fileName.lowercase() to d.subPath
+            key !in knownKeys
+        }
+        if (existing.isNotEmpty()) {
+            val knownFiles = _completedDownloads.map { it.fileName.lowercase() to it.subPath }.toHashSet()
+            existing.filter { (it.fileName.lowercase() to it.subPath) !in knownFiles }.forEach(_completedDownloads::add)
+            saveCompletedDownloads()
+        }
+        lastScanNote = "$diagnostic；新增 $added 个"
+        android.util.Log.i("DownloadsManager", lastScanNote)
     }
 
     private fun collectDocumentFiles(

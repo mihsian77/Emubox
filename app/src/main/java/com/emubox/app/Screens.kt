@@ -184,6 +184,16 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                 modifier = Modifier.weight(1f)
                             )
                         }
+
+                        // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位"扫不出"根因
+                        val scanNote = DownloadsManager.lastScanNote
+                        if (scanNote.isNotBlank()) {
+                            Text(
+                                scanNote,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                            )
+                        }
                     }
                 }
             }
