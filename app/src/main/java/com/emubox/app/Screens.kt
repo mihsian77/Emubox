@@ -7838,15 +7838,6 @@ private fun RuntimeComponentCard(
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                if (avatarUrl != null) {
-                    AsyncImage(
-                        model = avatarUrl,
-                        contentDescription = null,
-                        modifier = Modifier.size(20.dp).clip(CircleShape),
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(Modifier.width(8.dp))
-                }
                 Text(
                     text = component.name,
                     style = MaterialTheme.typography.titleSmall,
