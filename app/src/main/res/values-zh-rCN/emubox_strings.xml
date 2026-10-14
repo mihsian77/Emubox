@@ -2,6 +2,9 @@
     <string name="alpha_version">Alpha v%1$s</string>
     <string name="back">返回</string>
     <string name="rescan_local">重新扫描本地文件</string>
+    <string name="scan_folder_prompt_title">未授权扫描下载目录</string>
+    <string name="scan_folder_prompt_desc">授权 EmuBox 下载目录后，下载库可直接读取磁盘文件（覆盖旧版本文件、升级后 MediaStore 索引失效的情况）。</string>
+    <string name="scan_folder_authorize">授权下载目录</string>
     <string name="refresh">刷新</string>
     <string name="donate">捐赠</string>
     <string name="downloads">下载</string>
