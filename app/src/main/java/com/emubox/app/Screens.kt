@@ -3055,40 +3055,6 @@ fun DriverHubScreen(
             }
         }
 
-        // ── 驱动测试工具区：社区驱动探测/图形测试/跑分参考工具 ──
-        item(key = "driver_tools_section") {
-            val appContext = LocalContext.current
-            DriverToolsSection(
-                onDownloadPanplay = {
-                    onDownloadAsset(
-                        GithubRelease(
-                            tagName = "panplay-v1.2.7",
-                            name = "PanPlay v1.2.7",
-                            assets = listOf(
-                                GithubAsset(
-                                    name = "PanPlay-v1.2.7.apk",
-                                    downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
-                                    sizeBytes = 0
-                                )
-                            ),
-                            publishedAt = "2026-10-12",
-                            body = ""
-                        ),
-                        GithubAsset(
-                            name = "PanPlay-v1.2.7.apk",
-                            downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
-                            sizeBytes = 0
-                        )
-                    )
-                },
-                onOpenUrl = { url ->
-                    runCatching {
-                        appContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-                    }
-                }
-            )
-        }
-
         // ── 组件专区：每个组件类型一个独立区块，直接展示来源+版本+下载 ──
         item(key = "component_region_header") {
             RegionHeader(
@@ -3283,101 +3249,6 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun DriverToolsSection(
-    onDownloadPanplay: () -> Unit,
-    onOpenUrl: (String) -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp)
-    ) {
-        Column(Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    Icons.Default.Science,
-                    contentDescription = null,
-                    modifier = Modifier.size(20.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    appString(R.string.driver_tools_title),
-                    style = MaterialTheme.typography.titleSmall
-                )
-                Spacer(Modifier.weight(1f))
-                Text(
-                    "社区工具参考",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-            Spacer(Modifier.height(12.dp))
-            DriverToolRow(
-                icon = "https://cdn.simpleicons.org/github/333333",
-                name = "PanPlay",
-                desc = "图形压力测试 App（zenithblue-oss，验证 PanVK/Turnip 渲染稳定性）",
-                actionLabel = "下载 APK",
-                onClick = onDownloadPanplay
-            )
-            Spacer(Modifier.height(8.dp))
-            DriverToolRow(
-                icon = "https://cdn.simpleicons.org/github/333333",
-                name = "PanProbe",
-                desc = "Vulkan 驱动探测（实例/扩展/队列族，驱动加载自检参考）",
-                actionLabel = "Release 页",
-                onClick = { onOpenUrl("https://github.com/zenithblue-oss/panprobe/releases") }
-            )
-            Spacer(Modifier.height(8.dp))
-            DriverToolRow(
-                icon = "https://cdn.simpleicons.org/googleplay/414141",
-                name = "VkTest",
-                desc = "faux123 Vulkan 功能测试（Google Play：com.faux.vktest）",
-                actionLabel = "Play 页",
-                onClick = { onOpenUrl("https://play.google.com/store/apps/details?id=com.faux.vktest") }
-            )
-        }
-    }
-}
-
-@Composable
-private fun DriverToolRow(
-    icon: String,
-    name: String,
-    desc: String,
-    actionLabel: String,
-    onClick: () -> Unit
-) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        AsyncImage(
-            model = icon,
-            contentDescription = null,
-            modifier = Modifier.size(26.dp),
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
-        )
-        Spacer(Modifier.width(10.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(name, style = MaterialTheme.typography.labelLarge)
-            Spacer(Modifier.height(2.dp))
-            Text(
-                desc,
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-        Spacer(Modifier.width(8.dp))
-        FilledTonalButton(
-            onClick = onClick,
-            shape = RoundedCornerShape(10.dp),
-            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
-        ) {
-            Text(actionLabel, style = MaterialTheme.typography.labelSmall, softWrap = false, maxLines = 1)
         }
     }
 }
@@ -3901,7 +3772,8 @@ fun TurnipDriverSection(
                             category = turnipCategoryOf(source, adrenoSeries),
                             updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
                                 .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
-                            preview = buildTurnipPreview(source, remoteStars)
+                            preview = buildTurnipPreview(source, remoteStars),
+                            avatarUrl = source.apiUrl?.let { githubOwnerAvatar(it) }
                         )
                     },
                     onSelected = { sourceId ->
@@ -3938,7 +3810,9 @@ private data class SourcePickerOption(
     /** 源仓库更新时间提示（组件侧传入，如"更新于 3 天前"） */
     val updatedHint: String? = null,
     /** 预览窗格：一行一条（图标 + 文本），如支持型号 / 目标模拟器 / stars */
-    val preview: List<PreviewItem> = emptyList()
+    val preview: List<PreviewItem> = emptyList(),
+    /** 仓库作者头像 URL（GitHub 作者头像），弹窗条目区分仓库用；无则回退状态图标 */
+    val avatarUrl: String? = null
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -4277,24 +4151,44 @@ private fun SourcePickerGridCard(
         Column(modifier = Modifier.padding(14.dp)) {
             // 第一行：图标 + 名称（名称独占剩余空间，标签不挤占，避免被压成单字）
             Row(verticalAlignment = Alignment.Top) {
-                Surface(
-                    shape = CircleShape,
-                    color = if (selected) {
-                        MaterialTheme.colorScheme.primary
-                    } else {
-                        MaterialTheme.colorScheme.surface
+                if (option.avatarUrl != null) {
+                    Box(
+                        Modifier
+                            .size(28.dp)
+                            .clip(CircleShape)
+                            .background(
+                                if (selected) MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.surfaceVariant
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        AsyncImage(
+                            model = option.avatarUrl,
+                            contentDescription = null,
+                            modifier = Modifier.size(26.dp).clip(CircleShape),
+                            contentScale = ContentScale.Crop
+                        )
                     }
-                ) {
-                    Icon(
-                        if (selected) Icons.Default.Check else Icons.Default.CloudDownload,
-                        contentDescription = null,
-                        modifier = Modifier.padding(6.dp),
-                        tint = if (selected) {
-                            MaterialTheme.colorScheme.onPrimary
-                        } else {
+                } else {
+                    Surface(
+                        shape = CircleShape,
+                        color = if (selected) {
                             MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.surface
                         }
-                    )
+                    ) {
+                        Icon(
+                            if (selected) Icons.Default.Check else Icons.Default.CloudDownload,
+                            contentDescription = null,
+                            modifier = Modifier.padding(6.dp),
+                            tint = if (selected) {
+                                MaterialTheme.colorScheme.onPrimary
+                            } else {
+                                MaterialTheme.colorScheme.primary
+                            }
+                        )
+                    }
                 }
                 Spacer(Modifier.width(8.dp))
                 Text(
@@ -4555,7 +4449,8 @@ fun DriverCardDynamic(
                             category = "general",
                             updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
                                 .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
-                            preview = buildQualcommPreview(source, remoteStars)
+                            preview = buildQualcommPreview(source, remoteStars),
+                            avatarUrl = source.apiUrl?.let { githubOwnerAvatar(it) }
                         )
                     },
                     onSelected = { sourceId ->
@@ -5270,7 +5165,8 @@ fun ComponentSection(
                                 description = source.description,
                                 experimental = source.experimental,
                                 updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
-                                    .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) }
+                                    .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
+                                avatarUrl = githubOwnerAvatar(source.manifestUrl)
                             )
                         },
                         onSelected = onSourceChange
@@ -6339,7 +6235,6 @@ private fun DriverDetectionList(
                                     else -> "驱动面向 ${vendorName(dev.vendorId)}，本机为 ${vendorName(sysVendor)}，加载结果以实测为准"
                                 }
                                 InfoRow("GPU 兼容", compat)
-                            }
                             if (adtBench.success) {
                                 Spacer(Modifier.height(6.dp))
                                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -6358,44 +6253,6 @@ private fun DriverDetectionList(
                                         style = MaterialTheme.typography.bodySmall
                                     )
                                 }
-                                // 游戏支持评估：按驱动类型 + 设备 GPU + 实测扩展给出转译分级
-                                Spacer(Modifier.height(8.dp))
-                                // 驱动类型按实测 vendor 推导：0x5143=Adreno→Turnip、0x13B5=Mali→PanVK
-                                val evalDriverType = when (dev?.vendorId) {
-                                    0x5143 -> "turnip"
-                                    0x13B5 -> "panvk"
-                                    else -> "system"
-                                }
-                                val evals = assessGameSupport(
-                                    driverType = evalDriverType,
-                                    isAdrenoDevice = (systemDevice?.vendorId ?: 0) == 0x5143,
-                                    isMaliDevice = (systemDevice?.vendorId ?: 0) == 0x13B5,
-                                    extCount = dev?.extensions?.size ?: 0,
-                                    apiVersion = dev?.apiVersion.orEmpty()
-                                )
-                                Column(Modifier.padding(top = 4.dp)) {
-                                    Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-                                    evals.forEach { e ->
-                                        Row(Modifier.padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
-                                            val color = when (e.level) {
-                                                "基本能跑" -> Color(0xFF2E7D32)
-                                                "可能能跑" -> Color(0xFFF9A825)
-                                                else -> Color(0xFFC62828)
-                                            }
-                                            Box(Modifier.size(8.dp).clip(CircleShape).background(color))
-                                            Spacer(Modifier.width(6.dp))
-                                            Text(e.title, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                            Spacer(Modifier.weight(1f))
-                                            Text(e.level, style = MaterialTheme.typography.bodySmall, color = color, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
-                                        }
-                                    }
-                                    Text(
-                                        evals.firstOrNull()?.note ?: "",
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        maxLines = 2
-                                    )
-                                }
                             } else {
                                 Text(
                                     "跑分失败：${adtBench.errorCode ?: "?"} ${adtBench.errorMessage ?: ""}",
@@ -6403,6 +6260,44 @@ private fun DriverDetectionList(
                                     color = MaterialTheme.colorScheme.error
                                 )
                             }
+                            Spacer(Modifier.height(8.dp))
+                            // 游戏支持评估：按实测驱动类型分级（独立于跑分，实测成功即显示）
+                            val evalDriverType = when (dev.vendorId) {
+                                0x5143 -> "turnip"
+                                0x13B5 -> "panvk"
+                                else -> "system"
+                            }
+                            val evals = assessGameSupport(
+                                driverType = evalDriverType,
+                                isAdrenoDevice = (systemDevice?.vendorId ?: 0) == 0x5143,
+                                isMaliDevice = (systemDevice?.vendorId ?: 0) == 0x13B5,
+                                extCount = dev.extensions.size,
+                                apiVersion = dev.apiVersion
+                            )
+                            Column(Modifier.padding(top = 4.dp)) {
+                                Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                                evals.forEach { e ->
+                                    Row(Modifier.padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
+                                        val color = when (e.level) {
+                                            "基本能跑" -> Color(0xFF2E7D32)
+                                            "可能能跑" -> Color(0xFFF9A825)
+                                            else -> Color(0xFFC62828)
+                                        }
+                                        Box(Modifier.size(8.dp).clip(CircleShape).background(color))
+                                        Spacer(Modifier.width(6.dp))
+                                        Text(e.title, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                        Spacer(Modifier.weight(1f))
+                                        Text(e.level, style = MaterialTheme.typography.bodySmall, color = color, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
+                                    }
+                                }
+                                Text(
+                                    evals.firstOrNull()?.note ?: "",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 2
+                                )
+                            }
+                        }
                         } else {
                             // 实测不可用：驱动加载失败多为驱动与当前 GPU 不匹配或系统限制
                             // （SELinux/kgsl），并非包损坏——包信息已展示，可到模拟器内验证。
@@ -7458,40 +7353,6 @@ fun DriverScreen(
                     remoteStars = driverSourceStars
                 )
             }
-        }
-
-        // ── 驱动测试工具区：社区驱动探测/图形测试/跑分参考工具 ──
-        item(key = "driver_tools_section") {
-            val appContext = LocalContext.current
-            DriverToolsSection(
-                onDownloadPanplay = {
-                    onDownloadAsset(
-                        GithubRelease(
-                            tagName = "panplay-v1.2.7",
-                            name = "PanPlay v1.2.7",
-                            assets = listOf(
-                                GithubAsset(
-                                    name = "PanPlay-v1.2.7.apk",
-                                    downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
-                                    sizeBytes = 0
-                                )
-                            ),
-                            publishedAt = "2026-10-12",
-                            body = ""
-                        ),
-                        GithubAsset(
-                            name = "PanPlay-v1.2.7.apk",
-                            downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
-                            sizeBytes = 0
-                        )
-                    )
-                },
-                onOpenUrl = { url ->
-                    runCatching {
-                        appContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-                    }
-                }
-            )
         }
 
         if (q.isNotBlank() && filteredTurnip.isEmpty() && filteredPanvk.isEmpty() && filteredQualcomm.isEmpty()) {
