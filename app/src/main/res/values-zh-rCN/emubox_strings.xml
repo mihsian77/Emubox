@@ -80,7 +80,6 @@
     <string name="using_custom_catalog">使用自定义目录</string>
     <string name="winlator_config_recs_title">配置推荐（社区热度）</string>
     <string name="winlator_config_recs_desc">整合 bannerlator-game-configs 与 Winlator-Mali-Community-Configs 全部社区配置，按 GPU 出现频率自动排行</string>
-    <string name="driver_tools_title">驱动测试工具</string>
     <string name="match_drivers_by_device">按设备匹配驱动</string>
     <string name="match_drivers_by_device_desc">仅显示与本机 GPU 兼容的驱动。关闭后列出全部可用驱动。</string>
     <string name="downloads_settings_desc">选择下载组件的保存位置。</string>
@@ -384,7 +383,7 @@
     <string name="about_version">版本 %1$s</string>
     <string name="about_translation">中文汉化</string>
     <string name="about_translation_by">by moon279</string>
-    <string name="about_upstream">基于 Rodrig02005 的开源项目 EmuHub-APP（MIT 协议）</string>
+    <string name="about_upstream">EmuBox 延续自 Rodrig02005 的开源项目（MIT 协议），项目已独立更名并持续扩展</string>
     <string name="about_license">MIT 开源协议</string>
     <string name="driver_compare_title">驱动对比</string>
     <string name="driver_news_title">驱动更新动态</string>
