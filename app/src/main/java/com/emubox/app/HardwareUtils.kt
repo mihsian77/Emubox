@@ -146,6 +146,20 @@ fun detectSocBrand(socName: String): SocBrand = when {
     else -> SocBrand("SoC", 0xFF546E7A, socName.take(12))
 }
 
+/**
+ * SoC/GPU 品牌 → Simple Icons 图形图标（免费开源图标库，社区/资讯站常用风格）。
+ * 返回 null 的品牌回退为文字徽章。颜色与 SocBrand.color 一致。
+ */
+fun socBrandIconUrl(brandName: String): String? = when (brandName) {
+    "Qualcomm" -> "https://cdn.simpleicons.org/qualcomm/0A6ED1"
+    "MediaTek" -> "https://cdn.simpleicons.org/mediatek/1B6AC7"
+    "Samsung" -> "https://cdn.simpleicons.org/samsung/1428A0"
+    "Huawei" -> "https://cdn.simpleicons.org/huawei/C7000B"
+    "Google" -> "https://cdn.simpleicons.org/google/4285F4"
+    "ARM" -> "https://cdn.simpleicons.org/arm/1B6AC7"
+    else -> null
+}
+
 /** GPU 型号 → SoC 品牌名（设备页徽章用） */
 fun detectGpuSocBrand(gpuModel: String, gpuVendor: GpuVendor): SocBrand = when (gpuVendor) {
     GpuVendor.ADRENO -> SocBrand("Qualcomm", 0xFF0A6ED1, "骁龙")

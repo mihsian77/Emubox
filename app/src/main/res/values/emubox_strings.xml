@@ -78,6 +78,7 @@
     <string name="default_label">Default</string>
     <string name="using_managed_catalog">Using EmuBox managed catalog</string>
     <string name="using_custom_catalog">Using custom catalog</string>
+    <string name="driver_tools_title">Driver Test Tools</string>
     <string name="match_drivers_by_device">Match drivers by device</string>
     <string name="match_drivers_by_device_desc">Only show GPU drivers compatible with this device. Turn off to list all available drivers.</string>
     <string name="downloads_settings_desc">Choose where downloaded components are saved.</string>

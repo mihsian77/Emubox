@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
-  "updated_at": "2026-10-13",
+  "updated_at": "2026-10-14T00:00:00Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -1185,10 +1185,10 @@
     },
     {
       "id": "xclipse940-radv",
-      "name": "Xclipse 940 RADV",
-      "owner": "Matheus-TestUser1",
-      "repo": "Xclipse940-RADV",
-      "api_url": "https://api.github.com/repos/Matheus-TestUser1/Xclipse940-RADV/releases",
+      "name": "JimVulkan RADV Xclipse",
+      "owner": "JimVulkan",
+      "repo": "radv-xclipse",
+      "api_url": "https://api.github.com/repos/JimVulkan/radv-xclipse/releases",
       "gpu_vendor": "xclipse",
       "gpu_arch": [
         "rdna"
@@ -1201,9 +1201,9 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 0,
-      "description": "Samsung Xclipse 940 实验性 Mesa RADV/ACO Vulkan 驱动移植",
-      "notes": "三星 RDNA GPU 专用，实验性",
+      "stars": 8,
+      "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
+      "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
       "filters": {
         "default": [
@@ -1211,7 +1211,7 @@
           "Xclipse"
         ]
       },
-      "updated_at": "2026-10-07T23:32:17Z"
+      "updated_at": "2026-10-13T00:00:00Z"
     },
     {
       "id": "winnative-drivers",
@@ -1530,14 +1530,193 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 0,
-      "notes": "",
+      "stars": 251,
+      "notes": "每两周 GitHub Actions 自动构建 adrenotool 包；最后一次 push 2025-12-25（CI 周期运行）",
       "companion": [],
       "filters": {
         "default": [
           "Turnip"
         ]
-      }
+      },
+      "updated_at": "2025-12-25T00:00:00Z"
+    },
+    {
+      "id": "faux123-pixel7",
+      "name": "faux123 PanVK (Mali-G710 Pixel7)",
+      "owner": "faux123",
+      "repo": "panvk-faux123-driver-pixel7",
+      "description": "Pixel 7 系列 Mali-G710 PanVK 驱动（faux123 系列，adpkg 格式）",
+      "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-pixel7/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "G710",
+        "G715"
+      ],
+      "gpu_models": [
+        "g710",
+        "g715"
+      ],
+      "driver_type": "panvk",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "adpkg",
+      "maturity": "stable",
+      "stars": 1,
+      "notes": "faux123 全家桶之一：Ace/RG556/RP4Pro/Pixel7 按 GPU 型号分发；活跃（2026-10-13 v0.10.0）",
+      "companion": [
+        "faux123-ace",
+        "faux123-rg556",
+        "faux123-rp4pro"
+      ],
+      "filters": {
+        "default": []
+      },
+      "updated_at": "2026-10-13T00:00:00Z"
+    },
+    {
+      "id": "faux123-rp4pro",
+      "name": "faux123 PanVK (Mali-G77 RP4Pro)",
+      "owner": "faux123",
+      "repo": "panvk-faux123-driver-rp4pro",
+      "description": "Retroid Pocket 4 Pro Mali-G77 PanVK 驱动（faux123 系列）",
+      "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-rp4pro/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "G77"
+      ],
+      "gpu_models": [
+        "g77"
+      ],
+      "driver_type": "panvk",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "adpkg",
+      "maturity": "stable",
+      "stars": 5,
+      "notes": "按 GPU 型号分发；活跃（2026-10-10 v0.15.0）",
+      "companion": [
+        "faux123-ace",
+        "faux123-rg556",
+        "faux123-pixel7"
+      ],
+      "filters": {
+        "default": []
+      },
+      "updated_at": "2026-10-10T00:00:00Z"
+    },
+    {
+      "id": "lukevalen-kbase",
+      "name": "LukeValen PanVK kbase (通用)",
+      "owner": "LukeValen",
+      "repo": "panvk-kbase-android",
+      "description": "LukeValen 通用 kbase PanVK（Switch 模拟安全版：Eden/Lemon 双包）",
+      "api_url": "https://api.github.com/repos/LukeValen/panvk-kbase-android/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "G52",
+        "G57",
+        "G610",
+        "G615",
+        "G710",
+        "G720"
+      ],
+      "gpu_models": [
+        "g52",
+        "g57",
+        "g610",
+        "g615",
+        "g710",
+        "g720"
+      ],
+      "driver_type": "panvk",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "experimental",
+      "stars": 7,
+      "notes": "panvk-rc3-switch-safety2 2026-10-12，Eden/Lemon 模拟器专用安全构建",
+      "companion": [
+        "lukevalen-g52"
+      ],
+      "filters": {
+        "default": []
+      },
+      "updated_at": "2026-10-12T00:00:00Z"
+    },
+    {
+      "id": "guna-panvk-kbase",
+      "name": "GunaCharanTeja PanVK kbase (CI)",
+      "owner": "GunaCharanTeja",
+      "repo": "panvk-kbase-android",
+      "description": "GunaCharanTeja PanVK kbase CI 构建（配合 WinlatorMali，Actions 每夜构建）",
+      "api_url": "https://api.github.com/repos/GunaCharanTeja/panvk-kbase-android/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "G52",
+        "G57",
+        "G610",
+        "G615",
+        "G710",
+        "G720"
+      ],
+      "gpu_models": [
+        "g52",
+        "g57",
+        "g610",
+        "g615",
+        "g710",
+        "g720"
+      ],
+      "driver_type": "panvk",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "ci",
+      "stars": 21,
+      "notes": "活跃（2026-10-14）；无 Release，APK/zip 从 Actions 产物获取",
+      "companion": [
+        "guna-winlatormali"
+      ],
+      "filters": {
+        "default": []
+      },
+      "updated_at": "2026-10-14T00:00:00Z"
+    },
+    {
+      "id": "ghaelv-turnip-lemon-ade",
+      "name": "Ghael-V Turnip Lemon-Ade",
+      "owner": "Ghael-V",
+      "repo": "Turnip-Lemon-Ade",
+      "description": "Ghael-V Turnip 分支（Lemon 模拟器专用优化，含 Ade 修复）",
+      "api_url": "https://api.github.com/repos/Ghael-V/Turnip-Lemon-Ade/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "6xx",
+        "7xx",
+        "8xx"
+      ],
+      "gpu_models": [
+        "660",
+        "690",
+        "740",
+        "750",
+        "830",
+        "840"
+      ],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "experimental",
+      "stars": 4,
+      "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
+      "companion": [
+        "ghaelv-lemon-project"
+      ],
+      "filters": {
+        "default": []
+      },
+      "updated_at": "2026-10-13T00:00:00Z"
     }
   ]
 }
