@@ -497,6 +497,9 @@
 
     <!-- GPU 性能跑分 -->
     <string name="benchmark_title">GPU Performance Benchmark</string>
+    <string name="confirm_ok">OK</string>
+    <string name="detection_coverage_title">Detection coverage</string>
+    <string name="detection_coverage_desc">Real-device detection supports standard AdrenoTools packages (meta.json + Turnip/PanVK .so). Vendor system-extracted drivers (VENDOR_SYSTEM) need root install and cannot be tested here; emulator-specific builds (XR / GameHub custom) are out of scope — verify inside the matching emulator.</string>
     <string name="benchmark_start">Start Test</string>
     <string name="benchmark_running">Running…</string>
     <string name="benchmark_total_score">Total Score</string>
@@ -507,6 +510,16 @@
     <string name="benchmark_cpu_int">CPU Integer (multi-thread)</string>    <string name="benchmark_device">Device</string>
     <string name="benchmark_note">Tests GPU memory bandwidth (fill + copy) for comparing performance across drivers.</string>
     <string name="benchmark_failed">Benchmark failed</string>
+    <string name="benchmark_guide_btn">How to verify in emulator</string>
+    <string name="benchmark_env_guide">This app runs inside a restricted Android process (SELinux/container). GPU benchmark workloads cannot be submitted reliably here.
+
+Driver loading, device detection and extension comparison DO work — performance numbers must be verified inside the emulator environment (Winlator / Eden).
+
+How to verify in emulator:
+1. Install the driver package in Winlator/Eden as usual.
+2. Enable the custom driver in the emulator settings.
+3. Run a game or a GPU test app inside the emulator.
+4. Compare FPS/stable frame times between drivers.</string>
 
     <!-- 驱动检测 -->
     <string name="driver_detection_title">Downloaded driver detection</string>
@@ -521,6 +534,10 @@
     <string name="unknown_gpu">Unknown GPU</string>
     <string name="chip_arch">Arch</string>
     <string name="chip_ram">RAM</string>
+    <string name="device_label">Device</string>
+    <string name="device_brand_label">Brand</string>
+    <string name="soc_label">SoC</string>
+    <string name="soc_badge">%1$s</string>
     <string name="chip_android">Android</string>
     <string name="vulkan_heap">Heap %1$d</string>
     <string name="vulkan_memory_type">Type %1$d</string>

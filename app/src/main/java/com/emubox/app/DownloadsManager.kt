@@ -311,6 +311,10 @@ object DownloadsManager {
         _activeDownloads.remove(fileName)
         saveActiveDownloads(force = true)
 
+        // 覆盖下载：若已有同名同路径记录则移除旧记录，避免下载库出现两个同名
+        // （同包名覆盖安装 + 重复下载场景实测会出现双条，此处根除）
+        _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) && it.subPath == subPath }
+
         val uniqueId = UUID.randomUUID().toString()
         _completedDownloads.add(
             0,

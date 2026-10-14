@@ -32,7 +32,10 @@ data class DeviceInfo(
     val gpuRenderer: String,
     val adrenoSeries: String,
     val gpuModel: String,
-    val gpuVendor: GpuVendor
+    val gpuVendor: GpuVendor,
+    val deviceBrand: String = "",
+    val deviceModel: String = "",
+    val socName: String = ""
 ) {
     companion object {
         suspend fun collect(context: Context): DeviceInfo = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
@@ -43,7 +46,10 @@ data class DeviceInfo(
                 renderer,
                 detectAdrenoSeries(renderer),
                 detectGpuModel(renderer),
-                detectGpuVendor(renderer)
+                detectGpuVendor(renderer),
+                deviceBrand = Build.MANUFACTURER.ifBlank { Build.BRAND },
+                deviceModel = Build.MODEL.ifBlank { Build.DEVICE },
+                socName = SocNameMapper.getCurrentSocName(context)
             )
         }
     }
@@ -118,6 +124,35 @@ private fun readMemTotalFromProc(): Long {
             if (parts.size >= 2) parts[1].toLong() else 0L
         } else 0L
     } catch (e: Exception) { 0L }
+}
+
+/** SoC 品牌识别（用于设备页品牌色徽章）。返回 (品牌名, 品牌色, 徽章文案) */
+data class SocBrand(val name: String, val color: Long, val label: String)
+
+fun detectSocBrand(socName: String): SocBrand = when {
+    socName.contains("Snapdragon", ignoreCase = true) ->
+        SocBrand("Qualcomm", 0xFF0A6ED1, "骁龙")
+    socName.contains("Dimensity", ignoreCase = true) || socName.contains("天玑", ignoreCase = true) ->
+        SocBrand("MediaTek", 0xFF1B6AC7, "天玑")
+    socName.contains("Exynos", ignoreCase = true) ->
+        SocBrand("Samsung", 0xFF1428A0, "Exynos")
+    socName.contains("Kirin", ignoreCase = true) || socName.contains("麒麟", ignoreCase = true) ->
+        SocBrand("Huawei", 0xFFC7000B, "麒麟")
+    socName.contains("Tensor", ignoreCase = true) ->
+        SocBrand("Google", 0xFF4285F4, "Tensor")
+    socName.contains("Unisoc", ignoreCase = true) || socName.contains("展锐", ignoreCase = true) ||
+    socName.contains("Xclipse", ignoreCase = true) ->
+        SocBrand("Unisoc", 0xFF00A0E9, "展锐")
+    else -> SocBrand("SoC", 0xFF546E7A, socName.take(12))
+}
+
+/** GPU 型号 → SoC 品牌名（设备页徽章用） */
+fun detectGpuSocBrand(gpuModel: String, gpuVendor: GpuVendor): SocBrand = when (gpuVendor) {
+    GpuVendor.ADRENO -> SocBrand("Qualcomm", 0xFF0A6ED1, "骁龙")
+    GpuVendor.MALI -> SocBrand("ARM", 0xFF1B6AC7, "Mali")
+    GpuVendor.POWERVR -> SocBrand("Imagination", 0xFF546E7A, "PowerVR")
+    GpuVendor.XCLIPSE -> SocBrand("Unisoc", 0xFF00A0E9, "展锐")
+    GpuVendor.UNKNOWN -> SocBrand("SoC", 0xFF546E7A, gpuModel.take(12))
 }
 
 private fun getGpuRenderer(): String {
