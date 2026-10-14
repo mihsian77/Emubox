@@ -17,8 +17,8 @@ android {
         applicationId = "com.emubox.app"
         minSdk = 28
         targetSdk = 37
-        versionCode = 16
-        versionName = "1.1.0-m43"
+        versionCode = 17
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -48,7 +48,7 @@ android {
             // 有 keystore.properties 时用正式签名，否则回退 debug 签名
             signingConfig = run {
                 val props = Properties()
-                val f = rootProject.file("keystore.properties")
+                val f = file(System.getProperty("user.home") + "/.emubox/keystore/keystore.properties")
                 if (f.exists()) {
                     f.inputStream().use { props.load(it) }
                 }

@@ -14,6 +14,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -33,6 +34,7 @@ import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import coil.compose.AsyncImage
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -2233,6 +2235,12 @@ fun ComponentGuideScreen(
                 QuickPickGuideCard(adrenoSeries, driverMode, deviceInfo)
             }
 
+            // 配置推荐：整合两个 Winlator 社区配置仓库（bannerlator-game-configs +
+            // Winlator-Mali-Community-Configs），按 GPU 型号的热度排行给出最常用组件组合
+            item(key = "guide_config_recs") {
+                WinlatorConfigRecsCard(deviceInfo = deviceInfo)
+            }
+
             item(key = "guide_notice") {
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
@@ -2273,6 +2281,114 @@ fun ComponentGuideScreen(
     }
 }
 
+// ── 配置推荐（Winlator 社区热度聚合）─────────────────────────────
+data class ComboRec(val combo: List<Pair<String, String>>, val count: Int, val share: Double)
+
+fun loadWinlatorRecipes(context: Context): Pair<Map<String, List<ComboRec>>, Map<String, List<ComboRec>>> {
+    return try {
+        val text = context.assets.open("winlator-recipes.json").bufferedReader().use { it.readText() }
+        val j = org.json.JSONObject(text)
+        fun parse(obj: org.json.JSONObject): Map<String, List<ComboRec>> {
+            val out = mutableMapOf<String, List<ComboRec>>()
+            val names = obj.names() ?: return out
+            for (i in 0 until names.length()) {
+                val gpu = names.getString(i)
+                val top = obj.getJSONObject(gpu).getJSONArray("top")
+                val list = mutableListOf<ComboRec>()
+                for (k in 0 until top.length()) {
+                    val t = top.getJSONObject(k)
+                    val comboArr = t.getJSONArray("combo")
+                    val combo = mutableListOf<Pair<String, String>>()
+                    for (m in 0 until comboArr.length()) {
+                        val item = comboArr.getJSONArray(m)
+                        combo.add(item.getString(0) to item.getString(1))
+                    }
+                    list.add(ComboRec(combo, t.getInt("count"), t.optDouble("share", 0.0)))
+                }
+                out[gpu] = list
+            }
+            return out
+        }
+        parse(j.getJSONObject("gpu_combos")) to parse(j.getJSONObject("mali_combos"))
+    } catch (e: Exception) {
+        emptyMap<String, List<ComboRec>>() to emptyMap<String, List<ComboRec>>()
+    }
+}
+
+private fun comboText(combo: List<Pair<String, String>>): String =
+    combo.joinToString(" · ") { (k, v) -> "$k $v" }
+
+@Composable
+private fun WinlatorConfigRecsCard(deviceInfo: DeviceInfo?) {
+    val context = LocalContext.current
+    val recipes = remember { loadWinlatorRecipes(context) }
+    val (adrenoMap, maliMap) = recipes
+    val gpuModel = deviceInfo?.gpuModel.orEmpty()
+    val isMali = deviceInfo?.gpuVendor == GpuVendor.MALI
+    val matched = if (isMali) maliMap[gpuModel] else adrenoMap[gpuModel]
+    val fallback = if (isMali) maliMap.values.maxByOrNull { it.sumOf { c -> c.count } } ?: emptyList()
+        else adrenoMap.values.maxByOrNull { it.sumOf { c -> c.count } } ?: emptyList()
+    val recs = matched ?: fallback
+    if (recs.isEmpty()) return
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(24.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.List, contentDescription = null, modifier = Modifier.size(20.dp), tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(8.dp))
+                Text(appString(R.string.winlator_config_recs_title), style = MaterialTheme.typography.titleSmall)
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(
+                appString(R.string.winlator_config_recs_desc),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(Modifier.height(12.dp))
+            val gpuLabel = gpuModel.ifBlank { if (isMali) "Mali" else "Adreno" }
+            Text("当前 GPU：$gpuLabel", style = MaterialTheme.typography.labelLarge)
+            Spacer(Modifier.height(8.dp))
+            recs.take(3).forEachIndexed { idx, rec ->
+                Surface(
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp),
+                    shape = RoundedCornerShape(14.dp),
+                    color = if (idx == 0) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
+                        else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
+                ) {
+                    Column(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("TOP${idx + 1}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                comboText(rec.combo),
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Spacer(Modifier.weight(1f))
+                        }
+                        Spacer(Modifier.height(2.dp))
+                        Text(
+                            "社区配置 ${rec.count} 次 · 占比 ${rec.share}%",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(
+                if (matched == null) "当前 GPU 无独立统计，显示全库最热组合" else "数据来源：bannerlator-game-configs + Winlator-Mali-Community-Configs（自动聚合）",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
 @Composable
 private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean, deviceInfo: DeviceInfo? = null) {
     Card(
@@ -2305,7 +2421,7 @@ private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean, devic
                 val brand = if (socName.isNotBlank()) detectSocBrand(socName)
                     else detectGpuSocBrand(deviceInfo.gpuModel, deviceInfo.gpuVendor)
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    SocBrandBadge(brand = brand, text = brand.label)
+                    SocBrandBadge(brand = brand, text = brand.name)
                     Spacer(Modifier.width(8.dp))
                     Text(
                         listOf(deviceInfo.deviceBrand, deviceInfo.deviceModel)
@@ -3163,7 +3279,7 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                     SocBrandBadge(
                         brand = socBrand,
                         text = if (socBrand.name == "SoC") deviceInfo.socName
-                            else "${socBrand.label} · ${deviceInfo.socName}"
+                            else "${socBrand.name} · ${deviceInfo.socName}"
                     )
                 }
             }
@@ -3268,7 +3384,16 @@ private fun DriverToolRow(
 
 @Composable
 private fun SocBrandBadge(brand: SocBrand, text: String, modifier: Modifier = Modifier) {
-    val iconUrl = remember(brand.name) { socBrandIconUrl(brand.name) }
+    // 本地内置 PNG 图标（Simple Icons 转制），显示厂商全名；未收录厂商回退纯文字徽章
+    val iconRes = when (brand.name) {
+        "Qualcomm" -> R.drawable.ic_soc_qualcomm
+        "MediaTek" -> R.drawable.ic_soc_mediatek
+        "Samsung" -> R.drawable.ic_soc_samsung
+        "Huawei" -> R.drawable.ic_soc_huawei
+        "Google" -> R.drawable.ic_soc_google
+        "ARM" -> R.drawable.ic_soc_arm
+        else -> null
+    }
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
@@ -3276,12 +3401,11 @@ private fun SocBrandBadge(brand: SocBrand, text: String, modifier: Modifier = Mo
             .padding(horizontal = 10.dp, vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (iconUrl != null) {
-            AsyncImage(
-                model = iconUrl,
+        if (iconRes != null) {
+            Image(
+                painter = painterResource(iconRes),
                 contentDescription = null,
-                modifier = Modifier.size(14.dp),
-                colorFilter = ColorFilter.tint(Color(brand.color))
+                modifier = Modifier.size(14.dp)
             )
             Spacer(Modifier.width(6.dp))
         }
@@ -5999,11 +6123,10 @@ private fun DriverDetectionList(
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                     ))
                 } else {
-                    // AdrenoTools 加载路径（Winlator/GameHub/Eden 同款），替代裸 dlopen
-                    val (tmpDir, hookLibDir) = adrenotoolsDirs
-                    val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
-                    val raw = NativeVulkanBridge.benchmarkDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
-                    benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(raw))
+                    // 性能跑分改用系统 Vulkan 驱动（vktest 同款思路：系统驱动可在 App 进程稳定跑负载，
+                    // 不加载自定义驱动，避免 SELinux/容器边界导致的 DRIVER_CRASHED）。
+                    // 自定义驱动性能请在 Winlator/Eden 内用 PanPlay/PanProbe 验证。
+                    benchmarkResults = benchmarkResults + (id to NativeVulkanBridge.benchmarkSystemVulkan())
                 }
             } catch (e: Exception) {
                 benchmarkResults = benchmarkResults + (id to BenchmarkResult(
@@ -7119,6 +7242,7 @@ fun DriverScreen(
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+
         item(key = "driver_region_header") {
             RegionHeader(
                 title = appString(R.string.driver_region),
@@ -7190,7 +7314,7 @@ fun DriverScreen(
 
         // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
         // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
-        if (filteredTurnip.isNotEmpty()) {
+        if (filteredTurnip.isNotEmpty() && showTurnipSection) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -7207,7 +7331,7 @@ fun DriverScreen(
         }
 
         // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
-        if (filteredPanvk.isNotEmpty()) {
+        if (filteredPanvk.isNotEmpty() && showPanvkSection) {
             item(key = "panvk_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -7225,7 +7349,7 @@ fun DriverScreen(
             }
         }
 
-        if (showQualcomm && filteredQualcomm.isNotEmpty()) {
+        if (showQualcomm && showQualcommSection && filteredQualcomm.isNotEmpty()) {
             item(key = "qualcomm_section") {
                 DriverCardDynamic(
                     title = appString(R.string.qualcomm_driver),
@@ -7241,6 +7365,40 @@ fun DriverScreen(
                     remoteStars = driverSourceStars
                 )
             }
+        }
+
+        // ── 驱动测试工具区：社区驱动探测/图形测试/跑分参考工具 ──
+        item(key = "driver_tools_section") {
+            val appContext = LocalContext.current
+            DriverToolsSection(
+                onDownloadPanplay = {
+                    onDownloadAsset(
+                        GithubRelease(
+                            tagName = "panplay-v1.2.7",
+                            name = "PanPlay v1.2.7",
+                            assets = listOf(
+                                GithubAsset(
+                                    name = "PanPlay-v1.2.7.apk",
+                                    downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
+                                    sizeBytes = 0
+                                )
+                            ),
+                            publishedAt = "2026-10-12",
+                            body = ""
+                        ),
+                        GithubAsset(
+                            name = "PanPlay-v1.2.7.apk",
+                            downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
+                            sizeBytes = 0
+                        )
+                    )
+                },
+                onOpenUrl = { url ->
+                    runCatching {
+                        appContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    }
+                }
+            )
         }
 
         if (q.isNotBlank() && filteredTurnip.isEmpty() && filteredPanvk.isEmpty() && filteredQualcomm.isEmpty()) {
