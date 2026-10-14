@@ -146,10 +146,14 @@ object DownloadsManager {
         val jsonString = prefs.getString(KEY_COMPLETED_DOWNLOADS, "[]") ?: "[]"
         val jsonArray = runCatching { JSONArray(jsonString) }.getOrElse { JSONArray() }
         _completedDownloads.clear()
+        // 加载时按 fileName+subPath 去重：历史上 scan 曾用 filePath 去重但
+        // MediaStore 记录是 content://、扫描是绝对路径，格式不一致导致重复加入，
+        // 加载后清理同名重复，避免下载库显示两个同名文件。
+        val seen = HashSet<Pair<String, String>>()
         for (i in 0 until jsonArray.length()) {
-            runCatching { CompletedDownload.fromJson(jsonArray.getJSONObject(i)) }
-                .getOrNull()
-                ?.let(_completedDownloads::add)
+            val d = runCatching { CompletedDownload.fromJson(jsonArray.getJSONObject(i)) }.getOrNull() ?: continue
+            val key = d.fileName.lowercase() to d.subPath
+            if (seen.add(key)) _completedDownloads.add(d)
         }
     }
 
@@ -340,14 +344,17 @@ object DownloadsManager {
      */
     fun scanExistingFiles(context: Context) {
         val existing = mutableListOf<CompletedDownload>()
-        val knownPaths = _completedDownloads.map { it.filePath }.toHashSet()
+        // 去重键：fileName + subPath。不能用 filePath——MediaStore 下载完成记录
+        // 的 filePath 是 content:// URI，而扫描构造的是绝对路径，两者格式永不
+        // 一致，导致每次扫描都把已下载文件重复加入（下载库显示两个同名）。
+        val knownKeys = _completedDownloads.map { it.fileName.lowercase() to it.subPath }.toHashSet()
 
         runCatching {
             val folderUri = SettingsManager.getDownloadFolderUri()
             if (folderUri != null) {
                 val root = androidx.documentfile.provider.DocumentFile.fromTreeUri(context, Uri.parse(folderUri))
                 if (root != null && root.canRead()) {
-                    collectDocumentFiles(root, "", knownPaths, existing)
+                    collectDocumentFiles(root, "", knownKeys, existing)
                 }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 val resolver = context.contentResolver
@@ -357,21 +364,15 @@ object DownloadsManager {
                     android.provider.MediaStore.MediaColumns.SIZE,
                     android.provider.MediaStore.MediaColumns.DATE_MODIFIED
                 )
-                // 扫描 EmuBox 与旧版 EmuHub-CN 下载目录，同时覆盖 Download 根目录
-                // 下用户手动放入的驱动/组件 zip、apk：覆盖安装新版后 MediaStore
-                // 索引/子目录位置变化也会漏扫，放宽范围保证旧文件在下载库可见。
-                val selection =
-                    "(${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? OR " +
-                    "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?) OR " +
-                    "(${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? AND (" +
-                    "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} LIKE '%.zip' OR " +
-                    "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} LIKE '%.apk' OR " +
-                    "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} LIKE '%.7z'))"
+                // 只扫描 App 自己的下载目录（EmuBox + 旧版 EmuHub-CN），
+                // 不扫描 Download 根目录：避免把用户其他 App 的文件误入下载库。
+                val selection = "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? OR " +
+                    "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
                 resolver.query(
                     android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
                     projection,
                     selection,
-                    arrayOf("%EmuBox%", "%EmuHub-CN%", "Download/%"),
+                    arrayOf("%EmuBox%", "%EmuHub-CN%"),
                     null
                 )?.use { cursor ->
                     val nameIdx = cursor.getColumnIndexOrThrow(android.provider.MediaStore.MediaColumns.DISPLAY_NAME)
@@ -384,56 +385,47 @@ object DownloadsManager {
                         val sub = rel
                             .removePrefix("Download/EmuBox/")
                             .removePrefix("Download/EmuHub-CN/")
-                            .removePrefix("Download/")
                             .trim('/')
-                        val rootDir = when {
-                            rel.contains("EmuHub-CN", ignoreCase = true) -> "EmuHub-CN"
-                            rel.contains("EmuBox", ignoreCase = true) -> "EmuBox"
-                            else -> ""
-                        }
-                        val path = if (rootDir.isEmpty()) {
-                            "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/${if (sub.isBlank()) "" else "$sub/"}$name"
-                        } else {
-                            "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$rootDir/${if (sub.isBlank()) "" else "$sub/"}$name"
-                        }
-                        if (path in knownPaths) continue
+                        val rootDir = if (rel.contains("EmuHub-CN", ignoreCase = true)) "EmuHub-CN" else "EmuBox"
+                        val path = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$rootDir/${if (sub.isBlank()) "" else "$sub/"}$name"
+                        if ((name.lowercase() to sub) in knownKeys) continue
                         existing += CompletedDownload(
                             id = "disk-${path.hashCode()}",
                             fileName = name,
                             filePath = path,
                             sizeBytes = cursor.getLong(sizeIdx).coerceAtLeast(0L),
                             timestamp = cursor.getLong(dateIdx) * 1000L,
-                            subPath = if (rootDir.isEmpty()) sub else sub
+                            subPath = sub
                         )
                     }
                 }
             } else {
                 @Suppress("DEPRECATION")
                 val base = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                collectPlainFiles(File(base, "EmuBox"), "", knownPaths, existing)
-                collectPlainFiles(File(base, "EmuHub-CN"), "", knownPaths, existing)
+                collectPlainFiles(File(base, "EmuBox"), "", knownKeys, existing)
+                collectPlainFiles(File(base, "EmuHub-CN"), "", knownKeys, existing)
             }
         }.onFailure { android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it) }
 
         if (existing.isEmpty()) return
-        val knownFiles = _completedDownloads.map { it.filePath }.toHashSet()
-        existing.filter { it.filePath !in knownFiles }.forEach(_completedDownloads::add)
+        val knownFiles = _completedDownloads.map { it.fileName.lowercase() to it.subPath }.toHashSet()
+        existing.filter { (it.fileName.lowercase() to it.subPath) !in knownFiles }.forEach(_completedDownloads::add)
         saveCompletedDownloads()
     }
 
     private fun collectDocumentFiles(
         dir: androidx.documentfile.provider.DocumentFile,
         rel: String,
-        knownPaths: Set<String>,
+        knownKeys: Set<Pair<String, String>>,
         out: MutableList<CompletedDownload>
     ) {
         dir.listFiles().forEach { f ->
             if (f.isDirectory) {
-                collectDocumentFiles(f, if (rel.isBlank()) f.name.orEmpty() else "$rel/${f.name}", knownPaths, out)
+                collectDocumentFiles(f, if (rel.isBlank()) f.name.orEmpty() else "$rel/${f.name}", knownKeys, out)
             } else if (f.isFile) {
                 val name = f.name ?: return@forEach
                 val path = f.uri.toString()
-                if (path !in knownPaths) {
+                if ((name.lowercase() to rel) !in knownKeys) {
                     out += CompletedDownload(
                         id = "disk-${path.hashCode()}",
                         fileName = name,
@@ -450,14 +442,14 @@ object DownloadsManager {
     private fun collectPlainFiles(
         dir: File,
         rel: String,
-        knownPaths: Set<String>,
+        knownKeys: Set<Pair<String, String>>,
         out: MutableList<CompletedDownload>
     ) {
         dir.listFiles()?.forEach { f ->
             if (f.isDirectory) {
-                collectPlainFiles(f, if (rel.isBlank()) f.name else "$rel/${f.name}", knownPaths, out)
+                collectPlainFiles(f, if (rel.isBlank()) f.name else "$rel/${f.name}", knownKeys, out)
             } else if (f.isFile) {
-                if (f.absolutePath !in knownPaths) {
+                if ((f.name.lowercase() to rel) !in knownKeys) {
                     out += CompletedDownload(
                         id = "disk-${f.absolutePath.hashCode()}",
                         fileName = f.name,
