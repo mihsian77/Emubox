@@ -74,6 +74,29 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
     val openWithLabel = appString(R.string.open_with)
     val shareChooserLabel = appString(R.string.share_chooser)
 
+    // 授权扫描：默认（未设自定义目录）时下载走 MediaStore 写入，但扫描同样依赖
+    // MediaStore 索引，部分 ROM/场景下查询不到磁盘文件（实测"扫不出"）。SAF 授权
+    // Download 目录后，下载与扫描都走 DocumentFile 直读文件系统，可靠命中所有文件。
+    var folderAuthorized by remember { mutableStateOf(SettingsManager.getDownloadFolderUri() != null) }
+    val scanFolderLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocumentTree(),
+        onResult = { uri ->
+            if (uri != null) {
+                runCatching {
+                    context.contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    )
+                }
+                SettingsManager.setDownloadFolderUri(uri.toString())
+                folderAuthorized = true
+                scope.launch(Dispatchers.IO) {
+                    DownloadsManager.scanExistingFiles(context)
+                }
+            }
+        }
+    )
+
     // 进入下载 Tab 即触发一次扫描：覆盖安装新版后，之前下载未删除的本地文件
     // 默认仅 App 启动扫一次，MediaStore 索引延迟/权限会导致漏扫；此处打开即
     // 主动重扫，保证旧文件在下载库可见可删，避免重复下载生成 (1)(2) 后缀。
@@ -126,6 +149,39 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
             contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
+            // 未授权扫描下载目录时提示：授权后下载与扫描走 DocumentFile 直读
+            // 文件系统，覆盖安装/MediaStore 索引失效时也能扫出全部旧文件
+            if (!folderAuthorized) {
+                item(key = "scan_authorize_prompt") {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(24.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            Text(
+                                appString(R.string.scan_folder_prompt_title),
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                            Text(
+                                appString(R.string.scan_folder_prompt_desc),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
+                            OutlinedButton(onClick = { scanFolderLauncher.launch(null) }) {
+                                Icon(Icons.Default.FolderOpen, contentDescription = null)
+                                Spacer(Modifier.width(8.dp))
+                                Text(appString(R.string.scan_folder_authorize))
+                            }
+                        }
+                    }
+                }
+            }
             item(key = "download_summary") {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -3349,6 +3405,20 @@ fun TurnipDriverSection(
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.padding(end = 6.dp)
                     )
+                    // 更新通知：折叠状态也显示"距上次更新 N 天"，有新版发布一眼可见
+                    val latestPub = releases.firstOrNull()?.publishedAt
+                    if (latestPub != null) {
+                        Spacer(Modifier.width(2.dp))
+                        val relTime = formatRelativeTime(latestPub)
+                        val fresh = relTime.endsWith("前") && !relTime.contains("天") || relTime == "刚刚"
+                        Text(
+                            "· $relTime",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = if (fresh) MaterialTheme.colorScheme.tertiary
+                                    else MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1
+                        )
+                    }
                 }
                 Icon(
                     if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
