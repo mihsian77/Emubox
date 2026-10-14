@@ -4457,7 +4457,17 @@ fun DriverCardDynamic(
                     .padding(horizontal = 20.dp, vertical = 14.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(icon, contentDescription = null, modifier = Modifier.size(22.dp), tint = MaterialTheme.colorScheme.primary)
+                val srcAvatar = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
+                if (srcAvatar != null) {
+                    AsyncImage(
+                        model = srcAvatar,
+                        contentDescription = null,
+                        modifier = Modifier.size(26.dp).clip(CircleShape),
+                        error = painterResource(android.R.drawable.ic_menu_gallery)
+                    )
+                } else {
+                    Icon(icon, contentDescription = null, modifier = Modifier.size(22.dp), tint = MaterialTheme.colorScheme.primary)
+                }
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title, style = MaterialTheme.typography.titleSmall)
