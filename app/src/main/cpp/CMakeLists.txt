@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project("emuhub_vulkan")
+project("emubox_vulkan")
 
 # ── AdrenoTools（BSD-2-Clause © 2021 Billy Laws，ptitSeb/AdrenoTools → xodiosx/Adrenotools）
 # 用途：在普通 App 进程内以 linker namespace 绕过方式加载自定义 Vulkan 驱动

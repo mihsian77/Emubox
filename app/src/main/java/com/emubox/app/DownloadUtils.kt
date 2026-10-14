@@ -324,7 +324,7 @@ private suspend fun createOutputUri(
             null
         }
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        // 默认路径：Download/EmuBox/<分类>/（兼容扫描旧 EmuHub-CN 目录）
+        // 默认路径：Download/EmuBox/<分类>/（保留旧版 EmuHub-CN 目录扫描兼容，防止老用户下载文件失联）
         val relativePath = if (subPath.isBlank()) {
             "${Environment.DIRECTORY_DOWNLOADS}/$DEFAULT_ROOT_FOLDER"
         } else {

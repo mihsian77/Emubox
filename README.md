@@ -15,7 +15,7 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ---
 
-> GitHub 下载 APK 限速，或暂时不想安装 App？可使用[网页版备选](https://mihsian77.github.io/EmuHub-CN/)，在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
+> GitHub 下载 APK 限速，或暂时不想安装 App？可使用[网页版备选](https://mihsian77.github.io/EmuHub-CN/)（仓库 Pages，旧名保留），在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
 
 ---
 
@@ -40,7 +40,7 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ```bash
 git clone https://github.com/mihsian77/EmuHub-CN.git
-cd EmuHub-CN
+cd emubox
 ./gradlew assembleDebug
 ```
 
