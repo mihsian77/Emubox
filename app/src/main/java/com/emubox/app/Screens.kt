@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
@@ -2304,18 +2305,7 @@ private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean, devic
                 val brand = if (socName.isNotBlank()) detectSocBrand(socName)
                     else detectGpuSocBrand(deviceInfo.gpuModel, deviceInfo.gpuVendor)
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color(brand.color).copy(alpha = 0.14f))
-                            .padding(horizontal = 10.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            brand.label,
-                            style = MaterialTheme.typography.labelMedium,
-                            color = Color(brand.color)
-                        )
-                    }
+                    SocBrandBadge(brand = brand, text = brand.label)
                     Spacer(Modifier.width(8.dp))
                     Text(
                         listOf(deviceInfo.deviceBrand, deviceInfo.deviceModel)
@@ -2669,6 +2659,17 @@ fun DriverHubScreen(
     // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
     val showQualcomm = qualcommReleases.isNotEmpty()
 
+    // 按设备匹配驱动：开启时只显示与当前 GPU 厂商兼容的分区
+    // （骁龙用户默认不显示 PanVK Mali 分区；Mali 用户默认不显示 Turnip/高通分区），
+    // 关闭该功能后展示全部分区。防止无关分区干扰推荐，符合"按设备检测推荐"。
+    val matchByDevice = remember { SettingsManager.getMatchDriversByDevice() }
+    val gpuVendor = deviceInfo?.gpuVendor
+    val isAdreno = gpuVendor == GpuVendor.ADRENO
+    val isMali = gpuVendor == GpuVendor.MALI
+    val showTurnipSection = !matchByDevice || !isMali
+    val showPanvkSection = !matchByDevice || isMali
+    val showQualcommSection = !matchByDevice || !isMali
+
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
     val discoveredComponentTypes = componentCatalogs.values
         .flatMap { it.keys }
@@ -2885,7 +2886,7 @@ fun DriverHubScreen(
 
         // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
         // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
-        if (turnipSources.isNotEmpty()) {
+        if (turnipSources.isNotEmpty() && showTurnipSection) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -2902,7 +2903,7 @@ fun DriverHubScreen(
         }
 
         // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
-        if (panvkSources.isNotEmpty()) {
+        if (panvkSources.isNotEmpty() && showPanvkSection) {
             item(key = "panvk_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -2920,7 +2921,7 @@ fun DriverHubScreen(
             }
         }
 
-        if (showQualcomm && currentQualcommSource != null) {
+        if (showQualcomm && showQualcommSection && currentQualcommSource != null) {
             item(key = "qualcomm_section") {
                 DriverCardDynamic(
                     title = appString(R.string.qualcomm_driver),
@@ -2936,6 +2937,40 @@ fun DriverHubScreen(
                     remoteStars = driverSourceStars
                 )
             }
+        }
+
+        // ── 驱动测试工具区：社区驱动探测/图形测试/跑分参考工具 ──
+        item(key = "driver_tools_section") {
+            val appContext = LocalContext.current
+            DriverToolsSection(
+                onDownloadPanplay = {
+                    onDownloadAsset(
+                        GithubRelease(
+                            tagName = "panplay-v1.2.7",
+                            name = "PanPlay v1.2.7",
+                            assets = listOf(
+                                GithubAsset(
+                                    name = "PanPlay-v1.2.7.apk",
+                                    downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
+                                    sizeBytes = 0
+                                )
+                            ),
+                            publishedAt = "2026-10-12",
+                            body = ""
+                        ),
+                        GithubAsset(
+                            name = "PanPlay-v1.2.7.apk",
+                            downloadUrl = "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
+                            sizeBytes = 0
+                        )
+                    )
+                },
+                onOpenUrl = { url ->
+                    runCatching {
+                        appContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    }
+                }
+            )
         }
 
         // ── 组件专区：每个组件类型一个独立区块，直接展示来源+版本+下载 ──
@@ -3125,23 +3160,138 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                 Spacer(Modifier.height(8.dp))
                 val socBrand = detectSocBrand(deviceInfo.socName)
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color(socBrand.color).copy(alpha = 0.12f))
-                            .padding(horizontal = 10.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            "${socBrand.label} · ${deviceInfo.socName}",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = Color(socBrand.color),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
+                    SocBrandBadge(
+                        brand = socBrand,
+                        text = if (socBrand.name == "SoC") deviceInfo.socName
+                            else "${socBrand.label} · ${deviceInfo.socName}"
+                    )
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun DriverToolsSection(
+    onDownloadPanplay: () -> Unit,
+    onOpenUrl: (String) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(24.dp)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.Science,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    appString(R.string.driver_tools_title),
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(Modifier.weight(1f))
+                Text(
+                    "社区工具参考",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Spacer(Modifier.height(12.dp))
+            DriverToolRow(
+                icon = "https://cdn.simpleicons.org/github/333333",
+                name = "PanPlay",
+                desc = "图形压力测试 App（zenithblue-oss，验证 PanVK/Turnip 渲染稳定性）",
+                actionLabel = "下载 APK",
+                onClick = onDownloadPanplay
+            )
+            Spacer(Modifier.height(8.dp))
+            DriverToolRow(
+                icon = "https://cdn.simpleicons.org/github/333333",
+                name = "PanProbe",
+                desc = "Vulkan 驱动探测（实例/扩展/队列族，驱动加载自检参考）",
+                actionLabel = "Release 页",
+                onClick = { onOpenUrl("https://github.com/zenithblue-oss/panprobe/releases") }
+            )
+            Spacer(Modifier.height(8.dp))
+            DriverToolRow(
+                icon = "https://cdn.simpleicons.org/googleplay/414141",
+                name = "VkTest",
+                desc = "faux123 Vulkan 功能测试（Google Play：com.faux.vktest）",
+                actionLabel = "Play 页",
+                onClick = { onOpenUrl("https://play.google.com/store/apps/details?id=com.faux.vktest") }
+            )
+        }
+    }
+}
+
+@Composable
+private fun DriverToolRow(
+    icon: String,
+    name: String,
+    desc: String,
+    actionLabel: String,
+    onClick: () -> Unit
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        AsyncImage(
+            model = icon,
+            contentDescription = null,
+            modifier = Modifier.size(26.dp),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
+        )
+        Spacer(Modifier.width(10.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(name, style = MaterialTheme.typography.labelLarge)
+            Spacer(Modifier.height(2.dp))
+            Text(
+                desc,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        FilledTonalButton(
+            onClick = onClick,
+            shape = RoundedCornerShape(10.dp),
+            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+        ) {
+            Text(actionLabel, style = MaterialTheme.typography.labelSmall, softWrap = false, maxLines = 1)
+        }
+    }
+}
+
+@Composable
+private fun SocBrandBadge(brand: SocBrand, text: String, modifier: Modifier = Modifier) {
+    val iconUrl = remember(brand.name) { socBrandIconUrl(brand.name) }
+    Row(
+        modifier = modifier
+            .clip(RoundedCornerShape(8.dp))
+            .background(Color(brand.color).copy(alpha = 0.14f))
+            .padding(horizontal = 10.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (iconUrl != null) {
+            AsyncImage(
+                model = iconUrl,
+                contentDescription = null,
+                modifier = Modifier.size(14.dp),
+                colorFilter = ColorFilter.tint(Color(brand.color))
+            )
+            Spacer(Modifier.width(6.dp))
+        }
+        Text(
+            text,
+            style = MaterialTheme.typography.labelMedium,
+            color = Color(brand.color),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 }
 
@@ -6937,6 +7087,17 @@ fun DriverScreen(
     // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
     val showQualcomm = qualcommReleases.isNotEmpty()
 
+    // 按设备匹配驱动：开启时只显示与当前 GPU 厂商兼容的分区
+    // （骁龙用户默认不显示 PanVK Mali 分区；Mali 用户默认不显示 Turnip/高通分区），
+    // 关闭该功能后展示全部分区。防止无关分区干扰推荐，符合"按设备检测推荐"。
+    val matchByDevice = remember { SettingsManager.getMatchDriversByDevice() }
+    val gpuVendor = deviceInfo?.gpuVendor
+    val isAdreno = gpuVendor == GpuVendor.ADRENO
+    val isMali = gpuVendor == GpuVendor.MALI
+    val showTurnipSection = !matchByDevice || !isMali
+    val showPanvkSection = !matchByDevice || isMali
+    val showQualcommSection = !matchByDevice || !isMali
+
     // 驱动局部搜索：按源名称/简介过滤三个区块
     var driverQuery by remember { mutableStateOf("") }
     val q = driverQuery.trim()
@@ -8825,8 +8986,8 @@ private fun EmulatorCard(
                         if (canDownload) appString(R.string.emulator_download)
                         else appString(R.string.emulator_website),
                         style = MaterialTheme.typography.labelSmall,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        softWrap = false,
+                        maxLines = 1
                     )
                 }
                 IconButton(onClick = onToggleFavorite, modifier = Modifier.size(32.dp)) {
@@ -9184,19 +9345,19 @@ private fun EmulatorListRow(
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            IconButton(onClick = onToggleFavorite, modifier = Modifier.size(30.dp)) {
+            IconButton(onClick = onToggleFavorite, modifier = Modifier.size(24.dp)) {
                 Icon(
                     if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                     contentDescription = null,
-                    modifier = Modifier.size(18.dp),
+                    modifier = Modifier.size(15.dp),
                     tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-            IconButton(onClick = onToggleCompare, modifier = Modifier.size(30.dp)) {
+            IconButton(onClick = onToggleCompare, modifier = Modifier.size(24.dp)) {
                 Icon(
                     Icons.Default.CompareArrows,
                     contentDescription = null,
-                    modifier = Modifier.size(18.dp),
+                    modifier = Modifier.size(15.dp),
                     tint = if (inCompare) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
@@ -9208,14 +9369,15 @@ private fun EmulatorListRow(
                     }
                 },
                 enabled = canDownload || websiteUrl.isNotBlank(),
-                modifier = Modifier.height(32.dp),
-                shape = RoundedCornerShape(10.dp)
+                modifier = Modifier.height(30.dp),
+                shape = RoundedCornerShape(10.dp),
+                contentPadding = PaddingValues(horizontal = 10.dp)
             ) {
                 Text(
                     if (canDownload) appString(R.string.emulator_download) else appString(R.string.emulator_website),
                     style = MaterialTheme.typography.labelSmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    softWrap = false,
+                    maxLines = 1
                 )
             }
         }
