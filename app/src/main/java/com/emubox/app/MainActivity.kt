@@ -486,9 +486,6 @@ class MainActivity : ComponentActivity() {
                                                             Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
                                                         }
                                                     }
-                                                    IconButton(onClick = { openGuide(null) }) {
-                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
-                                                    }
                                                 }
                                             )
                                         }
@@ -628,9 +625,6 @@ class MainActivity : ComponentActivity() {
                                                             Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh))
                                                         }
                                                     }
-                                                    IconButton(onClick = { openGuide(null) }) {
-                                                        Icon(Icons.Default.Info, contentDescription = appString(R.string.component_guide))
-                                                    }
                                                 }
                                             )
                                         }
@@ -748,7 +742,8 @@ class MainActivity : ComponentActivity() {
                                     onBack = { currentScreen = guideReturnTab },
                                     adrenoSeries = deviceInfo?.adrenoSeries,
                                     initialTopicId = guideTopic,
-                                    driverMode = guideDriverMode
+                                    driverMode = guideDriverMode,
+                                    deviceInfo = deviceInfo
                                 )
                             }
                         }
