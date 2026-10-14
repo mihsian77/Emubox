@@ -25,7 +25,7 @@
         ]
       },
       "updatedAt": 1791229788000,
-      "stars": 1007
+      "stars": 1008
     },
     {
       "id": "whitebelyash",
@@ -48,7 +48,7 @@
         ]
       },
       "updatedAt": 1789825063000,
-      "stars": 466
+      "stars": 468
     },
     {
       "id": "k11mch1",
@@ -65,8 +65,8 @@
           "Turnip"
         ]
       },
-      "updatedAt": 1771944051000,
-      "stars": 5132
+      "updatedAt": 1791904173000,
+      "stars": 5134
     },
     {
       "id": "mrpurple",
@@ -87,7 +87,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 833
+      "stars": 836
     },
     {
       "id": "banner",
@@ -122,8 +122,8 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1791856064000,
-      "stars": 180
+      "updatedAt": 1791956392000,
+      "stars": 181
     },
     {
       "id": "s1mptom",
@@ -213,7 +213,7 @@
         ]
       },
       "updatedAt": 1791768502000,
-      "stars": 65
+      "stars": 66
     },
     {
       "id": "panvk-g720",
@@ -246,7 +246,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1007,
+      "stars": 1008,
       "updatedAt": 1791229788000
     },
     {
@@ -259,8 +259,8 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5132,
-      "updatedAt": 1771944051000
+      "stars": 5134,
+      "updatedAt": 1791904173000
     },
     {
       "id": "stevenmxz-collection",
@@ -282,7 +282,7 @@
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1791802810000
+      "updatedAt": 1791888393000
     },
     {
       "id": "xnick",
@@ -290,7 +290,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1791815543000
+      "updatedAt": 1791898725000
     },
     {
       "id": "banner-components",

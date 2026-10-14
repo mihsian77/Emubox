@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-10-13T08:34:56Z",
+  "updated_at": "2026-10-14T06:49:18Z",
   "emulators": [
     {
       "id": "termux",
@@ -12,7 +12,7 @@
       "latest_tag": "v0.119.0-beta.3",
       "latest_apk_url": "https://github.com/termux/termux-app/releases/download/v0.119.0-beta.3/termux-app_v0.119.0-beta.3%2Bapt-android-5-github-debug_arm64-v8a.apk",
       "pushed_at": "2026-09-26T05:11:44Z",
-      "stars": 62503,
+      "stars": 62569,
       "homepage": "https://termux.dev/cn/",
       "repo_url": "https://github.com/termux/termux-app",
       "releases": [
@@ -577,8 +577,8 @@
       "repo": "hrydgard/ppsspp",
       "latest_tag": "v1.20.4",
       "latest_apk_url": "https://github.com/hrydgard/ppsspp/releases/download/v1.20.4/org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb",
-      "pushed_at": "2026-10-13T08:05:37Z",
-      "stars": 14646,
+      "pushed_at": "2026-10-14T06:19:52Z",
+      "stars": 14654,
       "homepage": "https://www.ppsspp.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/ppsspp.png",
       "repo_url": "https://github.com/hrydgard/ppsspp",
@@ -1431,8 +1431,8 @@
       "repo": "libretro/RetroArch",
       "latest_tag": "v1.22.2",
       "latest_apk_url": "https://github.com/libretro/RetroArch/releases/download/v1.22.2/retroarch-sourceonly-1.22.2.tar.xz",
-      "pushed_at": "2026-10-13T08:27:14Z",
-      "stars": 14313,
+      "pushed_at": "2026-10-14T01:32:36Z",
+      "stars": 14325,
       "homepage": "https://www.retroarch.com",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/retroarch.png",
       "repo_url": "https://github.com/libretro/RetroArch",
@@ -1721,7 +1721,7 @@
       "latest_tag": "nJoy",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T04:41:55Z",
-      "stars": 15648,
+      "stars": 15653,
       "homepage": "https://dolphin-emu.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/dolphin.png",
       "repo_url": "https://github.com/dolphin-emu/dolphin",
@@ -1736,8 +1736,8 @@
       "repo": "stenzek/duckstation",
       "latest_tag": "latest",
       "latest_apk_url": "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-arm64.AppImage",
-      "pushed_at": "2026-10-13T05:33:05Z",
-      "stars": 10832,
+      "pushed_at": "2026-10-13T13:05:54Z",
+      "stars": 10834,
       "homepage": "https://www.duckstation.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/duckstation.png",
       "repo_url": "https://github.com/stenzek/duckstation",
@@ -1824,8 +1824,8 @@
         {
           "tag": "preview",
           "name": "Latest Preview Build",
-          "date": "2026-10-13T05:33:08Z",
-          "body": "## Commits\n- Fix race when creating pipelines from worker threads ([Stenzek](https://github.com/stenzek/duckstation/commit/cf71020c0d3d010c52e9574ed77d6559fe364734))\n- Pad push constant range to 16 bytes ([Stenzek](https://github.com/stenzek/duckstation/commit/b3ab3221243cba7b5652bb1ac80a5227b601c3be))\n- Request coherent persistent buffer mappings ([Stenzek](https://github.com/stenzek/duckstation/commit/00e2997958d62de79d352cd680ec0c1ad95d491c))\n- Update to 20261010 ([Stenzek](https://github.com/stenzek/duckstation/commit/1b79c8b44808ed00b0186d3ff77b322e5ba8b5d1))\n- Extract bucket names out of FullscreenUI ([Stenzek](https://github.com/stenzek/duckstation/commit/6a9c296044f34c423d10633239ab533c83ee7896))\n- Separate login and credential saving steps ([Stenzek](https://github.com/stenzek/duckstation/commit/e468c8084d3f0d3ea37c9c610e8913c88cc521f0))\n- Guard against copying to self ([Stenzek](https://github.com/stenzek/duckstation/commit/3856bf0c3ac1d91743b2317047fa09a0644698be))\n- Add WaitFor() to ConditionVariable ([Stenzek](https://github.com/stenzek/duckstation/commit/8af1da4fcda50cd963796728277eb4a29a63300b))\n- Sort disc sets by save title ([Stenzek](https://github.com/stenzek/duc",
+          "date": "2026-10-13T13:05:56Z",
+          "body": "## Commits\n- Fix word alignment of DMA writes ([Stenzek](https://github.com/stenzek/duckstation/commit/390686a5d1e1d63cff365b8e0bdc08d99986455c))\n- Fix signed monochrome output ([Stenzek](https://github.com/stenzek/duckstation/commit/86c5befd0451fdb1d289994afe45aee0ff6e0948))\n- Use 32-bit add for red/blue chroma rounding ([Stenzek](https://github.com/stenzek/duckstation/commit/f52eb120d5c28d54172d2518e96d0c501166c89c))\n- Add MDEC decode tests ([Stenzek](https://github.com/stenzek/duckstation/commit/1f3c4a5c4cb4aa9b452a19ad20cb153b71354220))\n- Vectorize IDCT across matrix rows ([Stenzek](https://github.com/stenzek/duckstation/commit/8fb99071032d78022d86ce2b294c9d4a0d864b7d))\n- Convert whole macroblock in YUVToRGB_New() ([Stenzek](https://github.com/stenzek/duckstation/commit/d5bfad7d71f218df17ab89d2f9920cc2f5d4beef))\n- Simplify 15-bit output conversion ([Stenzek](https://github.com/stenzek/duckstation/commit/60d54981a76cf1225242bd0d82f47b05c0b72f9a))\n- Add IDCT fast path for low frequency blocks ([Stenzek](https://github.com/stenzek/duckstation/commit/16dc60f97db92a60de2cd05124f03bcc714153dc))\n- Preserve source address for staged GPU transfers ([Stenzek](https://github.com/stenzek/d",
           "prerelease": true,
           "assets": [
             {
@@ -1835,67 +1835,67 @@
             },
             {
               "name": "DuckStation-armhf.AppImage",
-              "size": 83705500,
+              "size": 83709596,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-armhf.AppImage"
             },
             {
               "name": "duckstation-mac-release.zip",
-              "size": 95297944,
+              "size": 95299140,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-mac-release.zip"
             },
             {
               "name": "duckstation-windows-arm64-installer.exe",
-              "size": 43048420,
+              "size": 43070255,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-installer.exe"
             },
             {
               "name": "duckstation-windows-arm64-release-symbols.7z",
-              "size": 12050169,
+              "size": 12054830,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-arm64-release.zip",
-              "size": 71900757,
+              "size": 71902694,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release.zip"
             },
             {
               "name": "duckstation-windows-x64-installer.exe",
-              "size": 45718036,
+              "size": 45720080,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-installer.exe"
             },
             {
               "name": "duckstation-windows-x64-release-symbols.7z",
-              "size": 12340462,
+              "size": 12350776,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-x64-release.zip",
-              "size": 73015379,
+              "size": 73019691,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip"
             },
             {
               "name": "duckstation-windows-x64-sse2-installer.exe",
-              "size": 45704799,
+              "size": 45717553,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-installer.exe"
             },
             {
               "name": "duckstation-windows-x64-sse2-release-symbols.7z",
-              "size": 12339936,
+              "size": 12351550,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-x64-sse2-release.zip",
-              "size": 73021530,
+              "size": 73025102,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release.zip"
             },
             {
               "name": "DuckStation-x64-SSE2.AppImage",
-              "size": 93487392,
+              "size": 93511968,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64-SSE2.AppImage"
             },
             {
               "name": "DuckStation-x64.AppImage",
-              "size": 93479200,
+              "size": 93487392,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64.AppImage"
             }
           ]
@@ -3690,7 +3690,7 @@
       "latest_tag": "v12",
       "latest_apk_url": "https://github.com/Vita3K/Vita3K-Android/releases/download/v12/vita3k-android-release-12.apk",
       "pushed_at": "2025-02-22T16:30:58Z",
-      "stars": 1664,
+      "stars": 1665,
       "homepage": "https://vita3k.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/vita3k.png",
       "repo_url": "https://github.com/Vita3K/Vita3K/Vita3K-Android",
@@ -3876,7 +3876,7 @@
       "logoUrl": "https://avatars.githubusercontent.com/u/103731829?v=4",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
       "stars": 69,
-      "pushed_at": "2026-10-12T11:09:50Z",
+      "pushed_at": "2026-10-14T03:58:53Z",
       "latest_tag": "1.0.8",
       "latest_date": "2026-06-05T11:27:23Z",
       "latest_apk_name": "box64-android-glibc-v11.tar.xz",
@@ -4493,7 +4493,7 @@
       "homepage": "",
       "logoUrl": "https://avatars.githubusercontent.com/u/181800731?v=4",
       "description": "Termux + Ghostty 实验性集成：现代终端渲染，APK 分发活跃",
-      "stars": 35,
+      "stars": 34,
       "pushed_at": "2026-10-13T02:01:27Z",
       "latest_tag": "v4.13.1",
       "latest_date": "2026-10-07T00:08:46Z",
@@ -6703,7 +6703,7 @@
       "homepage": "https://github.com/hanxinhao000/ZeroTermux",
       "logoUrl": "https://avatars.githubusercontent.com/u/23556571?v=4",
       "description": "Termux 知名 fork（3k+ star）：集成增强功能，独立版本线持续发布 APK",
-      "stars": 3051,
+      "stars": 3058,
       "pushed_at": "2026-08-10T15:45:31Z",
       "latest_tag": "ZeroTermux-0.118.3.64",
       "latest_date": "2026-08-08T14:13:25Z",
