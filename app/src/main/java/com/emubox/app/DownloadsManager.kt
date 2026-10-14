@@ -368,6 +368,16 @@ object DownloadsManager {
                 } else {
                     diagnostic = "自定义目录不可读（SAF 权限失效？）：$folderUri"
                 }
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                Environment.isExternalStorageManager()
+            ) {
+                // 文件管理权限已授予：直接 File 直读下载目录，不依赖 MediaStore
+                // 索引（部分 ROM 查询不到磁盘文件，实测"扫不出"的根治路径）。
+                @Suppress("DEPRECATION")
+                val base = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                collectPlainFiles(File(base, "EmuBox"), "", knownKeys, existing)
+                collectPlainFiles(File(base, "EmuHub-CN"), "", knownKeys, existing)
+                diagnostic = "文件权限直读：发现 ${existing.size} 个"
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 val resolver = context.contentResolver
                 val projection = arrayOf(

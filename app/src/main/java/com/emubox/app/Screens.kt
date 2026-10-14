@@ -3,6 +3,7 @@ package com.emubox.app
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
@@ -1020,7 +1021,36 @@ private suspend fun deleteFile(context: android.content.Context, file: Downloads
                 }
             } else {
                 val f = File(file.filePath)
-                f.exists() && f.delete()
+                val direct = if (f.exists()) f.delete() else false
+                if (direct) {
+                    true
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    // File 直删失败（无文件权限/路径失效）→ fallback 按文件名+子目录
+                    // 查 MediaStore 删除（Downloads 集合 Android 10+ 才有），保证删除真正落盘
+                    runCatching {
+                        val sub = file.subPath
+                        val rel = if (sub.isBlank()) "%Download/EmuBox%" else "%Download/EmuBox/$sub%"
+                        var uri: Uri? = null
+                        context.contentResolver.query(
+                            android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+                            arrayOf(android.provider.MediaStore.MediaColumns._ID),
+                            "${android.provider.MediaStore.MediaColumns.DISPLAY_NAME} = ? AND " +
+                                "${android.provider.MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?",
+                            arrayOf(file.fileName, rel),
+                            null
+                        )?.use { c ->
+                            if (c.moveToFirst()) {
+                                uri = Uri.withAppendedPath(
+                                    android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+                                    c.getString(0)
+                                )
+                            }
+                        }
+                        uri != null && context.contentResolver.delete(uri, null, null) > 0
+                    }.getOrDefault(false)
+                } else {
+                    false
+                }
             }
         } catch (e: Exception) {
             withContext(Dispatchers.Main) {
@@ -1041,6 +1071,13 @@ private fun formatBytes(bytes: Long): String {
 }
 
 /** GitHub ISO 时间（如 2026-10-05T12:34:56Z）转相对时间：x 天前 / x 小时前 / 刚刚 */
+/** 从 GitHub apiUrl/manifestUrl 提取 owner 并返回作者头像 URL（驱动/组件源卡用） */
+private fun githubOwnerAvatar(url: String): String? {
+    val m = Regex("github\\.com/([^/]+)").find(url) ?: return null
+    val owner = m.groupValues[1].trim('/').ifBlank { return null }
+    return "https://github.com/$owner.png?size=64"
+}
+
 private fun formatRelativeTime(iso: String): String {
     return try {
         val parsed = java.time.Instant.parse(iso)
@@ -3440,6 +3477,7 @@ fun TurnipDriverSection(
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
                     currentCategory = currentCategory,
+                    avatarUrl = githubOwnerAvatar(currentSource.apiUrl),
                     currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
                         .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
@@ -3503,7 +3541,9 @@ private fun SourcePickerCard(
     /** 当前源的优先级分类（英文 key），用于顶部标签显示 */
     currentCategory: String = "general",
     /** 源仓库更新时间提示（如"更新于 3 天前"），组件侧传入 */
-    currentUpdatedHint: String? = null
+    currentUpdatedHint: String? = null,
+    /** 源作者头像 URL（GitHub 作者头像），无则显示默认源图标 */
+    avatarUrl: String? = null
 ) {
     var showSheet by remember { mutableStateOf(false) }
 
@@ -3520,11 +3560,20 @@ private fun SourcePickerCard(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    Icons.Default.Dns,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSecondaryContainer
-                )
+                if (avatarUrl != null) {
+                    AsyncImage(
+                        model = avatarUrl,
+                        contentDescription = null,
+                        modifier = Modifier.size(26.dp).clip(CircleShape),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Icon(
+                        Icons.Default.Dns,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+                }
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title, style = MaterialTheme.typography.labelMedium)
@@ -4025,6 +4074,7 @@ fun DriverCardDynamic(
                     currentExperimental = currentSource.experimental,
                     currentArchived = currentSource.archived,
                     currentCategory = "general",
+                    avatarUrl = githubOwnerAvatar(currentSource.apiUrl),
                     currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
                         .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
@@ -4718,6 +4768,7 @@ fun ComponentSection(
                         currentName = currentSource.name,
                         currentDescription = currentSource.description,
                         currentExperimental = currentSource.experimental,
+                        avatarUrl = githubOwnerAvatar(currentSource.manifestUrl),
                         currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
                             .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                         options = sources.map { source ->
@@ -8197,8 +8248,19 @@ private fun EmulatorNewsCard(
                 news.forEach { e ->
                     Row(
                         modifier = Modifier.fillMaxWidth().clickable { onOpen(e) }.padding(vertical = 6.dp),
-                        verticalAlignment = Alignment.Top
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
+                        // 项目图标：数据源 logoUrl（缺失时 fallback 作者头像）
+                        val logo = e.logoUrl.ifBlank { if (e.owner.isNotBlank()) "https://github.com/${e.owner}.png?size=64" else "" }
+                        if (logo.isNotBlank()) {
+                            AsyncImage(
+                                model = logo,
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp).clip(RoundedCornerShape(8.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+                            Spacer(Modifier.width(10.dp))
+                        }
                         Column(Modifier.weight(1f)) {
                             Text("${e.name} · ${e.latestTag}", style = MaterialTheme.typography.labelMedium,
                                 maxLines = 1, overflow = TextOverflow.Ellipsis)
@@ -8269,6 +8331,17 @@ private fun EmulatorTrendingCard(
                             color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.width(22.dp)
                         )
+                        // 项目图标：数据源 logoUrl（缺失时 fallback 作者头像）
+                        val logo = entry?.logoUrl?.ifBlank { null } ?: entry?.owner?.takeIf { it.isNotBlank() }?.let { "https://github.com/$it.png?size=64" }
+                        if (logo != null) {
+                            AsyncImage(
+                                model = logo,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp).clip(RoundedCornerShape(6.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+                            Spacer(Modifier.width(8.dp))
+                        }
                         Text(name, style = MaterialTheme.typography.labelMedium,
                             maxLines = 1, overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f))
