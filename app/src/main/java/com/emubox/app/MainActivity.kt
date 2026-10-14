@@ -3,7 +3,10 @@ package com.emubox.app
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -51,6 +54,23 @@ class MainActivity : ComponentActivity() {
 
         DownloadsManager.init(applicationContext)
         SettingsManager.init(applicationContext)
+
+        // 首次启动请求文件管理权限（Android 11+ 跳系统授权页）：授权后下载库
+        // 可直读/直删 Download/EmuBox 目录，根治 MediaStore 索引扫不出与删除无效。
+        // 仅首次引导，用户拒绝不影响下载（MediaStore 写入无需权限）。
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+            !Environment.isExternalStorageManager() &&
+            !SettingsManager.isStoragePermissionAsked()
+        ) {
+            SettingsManager.setStoragePermissionAsked()
+            runCatching {
+                val intent = Intent(
+                    Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                    Uri.parse("package:$packageName")
+                )
+                startActivity(intent)
+            }
+        }
 
         // 扫描下载目录中磁盘已有、但记录缺失的文件（卸载重装 / 外部放入），
         // 并入下载库后旧文件可见可删，避免重复下载生成 (1)(2) 后缀
