@@ -1,1722 +1,1822 @@
 {
-  "version": "1.0.1",
-  "updated_at": "2026-10-14T00:00:00Z",
-  "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
-  "repositories": [
-    {
-      "id": "k11mch1",
-      "name": "K11MCH1 AdrenoTools",
-      "owner": "K11MCH1",
-      "repo": "AdrenoToolsDrivers",
-      "api_url": "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 5132,
-      "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
-      "notes": "长期维护，兼容性最好",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      },
-      "updated_at": "2026-02-24T14:40:51Z"
-    },
-    {
-      "id": "stevenmxz",
-      "name": "StevenMXZ",
-      "owner": "StevenMXZ",
-      "repo": "Adreno-Tools-Drivers",
-      "api_url": "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 1007,
-      "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
-      "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
-      "companion": [],
-      "filters": {
-        "6xx": [
-          "Turnip v26"
-        ],
-        "7xx": [
-          "Turnip v26"
-        ],
-        "8xx": [
-          "Turnip Gen8"
-        ]
-      },
-      "updated_at": "2026-10-05T19:49:48Z"
-    },
-    {
-      "id": "stevenmxz-adrenotools",
-      "name": "StevenMXZ Adrenotools",
-      "owner": "StevenMXZ",
-      "repo": "Adrenotools-Drivers",
-      "api_url": "https://api.github.com/repos/StevenMXZ/Adrenotools-Drivers/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "825",
-        "830",
-        "840",
-        "842",
-        "845",
-        "849",
-        "8elite"
-      ],
-      "driver_type": "qualcomm",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "stable",
-      "stars": 19,
-      "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）",
-      "updated_at": "2026-01-05T10:36:05Z",
-      "companion": []
-    },
-    {
-      "id": "mrpurple",
-      "name": "MrPurple666 Purple-Turnip",
-      "owner": "MrPurple666",
-      "repo": "purple-turnip",
-      "api_url": "https://api.github.com/repos/MrPurple666/purple-turnip/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 833,
-      "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
-      "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "vturnip",
-          "turnip_mrpurple"
-        ]
-      },
-      "updated_at": "2026-08-17T12:38:01Z"
-    },
-    {
-      "id": "v3kt0r-builder",
-      "name": "Mesa-Turnip-Builder",
-      "owner": "v3kt0r-87",
-      "repo": "Mesa-Turnip-Builder",
-      "api_url": "https://api.github.com/repos/v3kt0r-87/Mesa-Turnip-Builder/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "magisk",
-      "maturity": "stable",
-      "stars": 213,
-      "description": "Turnip Magisk 模块构建脚本，适合有 root 的用户",
-      "notes": "Magisk 模块格式，需要 root",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "Mesa"
-        ]
-      },
-      "updated_at": "2026-09-18T20:22:21Z"
-    },
-    {
-      "id": "banner",
-      "name": "The412Banner Banners-Turnip",
-      "owner": "The412Banner",
-      "repo": "Banners-Turnip",
-      "api_url": "https://api.github.com/repos/The412Banner/Banners-Turnip/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "ci",
-      "stars": 180,
-      "description": "自动构建最新 Mesa Turnip，bleeding-edge",
-      "notes": "CI 自动构建，最新但可能不稳定",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "Mesa",
-          "Adreno"
-        ]
-      },
-      "asset_includes": {
-        "8xx": [
-          "A8xx"
-        ]
-      },
-      "asset_excludes": {
-        "6xx": [
-          "A8xx",
-          "710-720-Test"
-        ],
-        "7xx": [
-          "A8xx",
-          "710-720-Test"
-        ]
-      },
-      "updated_at": "2026-10-13T01:47:44Z"
-    },
-    {
-      "id": "ilhan-athn7-ci",
-      "name": "ilhan-athn7 freedreno_turnip-CI",
-      "owner": "ilhan-athn7",
-      "repo": "freedreno_turnip-CI",
-      "api_url": "https://api.github.com/repos/ilhan-athn7/freedreno_turnip-CI/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "magisk",
-      "maturity": "stable",
-      "stars": 165,
-      "description": "Turnip Magisk 模块 CI 构建",
-      "notes": "Magisk 模块格式，需要 root",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "Mesa"
-        ]
-      },
-      "updated_at": "2026-05-21T21:55:53Z"
-    },
-    {
-      "id": "whitebelyash",
-      "name": "whitebelyash",
-      "owner": "whitebelyash",
-      "repo": "AdrenoToolsDrivers",
-      "api_url": "https://api.github.com/repos/whitebelyash/AdrenoToolsDrivers/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "beta",
-      "stars": 466,
-      "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
-      "notes": "",
-      "companion": [],
-      "filters": {
-        "default": [
-          "A8XX",
-          "Mainline Turnip",
-          "Stable Turnip",
-          "tu_",
-          "stu_"
-        ]
-      },
-      "updated_at": "2026-09-19T13:37:43Z"
-    },
-    {
-      "id": "jade-mesa",
-      "name": "JustCallMeJade Drivers_Android_Mesa",
-      "owner": "JustCallMeJade",
-      "repo": "Drivers_Android_Mesa",
-      "api_url": "https://api.github.com/repos/JustCallMeJade/Drivers_Android_Mesa/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "winlator",
-      "package_format": "zip",
-      "maturity": "ci",
-      "stars": 18,
-      "description": "GitHub Actions 每日从源码编译 Turnip，Winlator 可用",
-      "notes": "每日更新，注意 DXVK 2.4.1+ 有性能回退",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      },
-      "updated_at": "2026-09-20T08:07:04Z"
-    },
-    {
-      "id": "tiagosouza",
-      "name": "tiagosouzacandido AdrenoToolsTurnipDrivers",
-      "owner": "tiagosouzacandido",
-      "repo": "AdrenoToolsTurnipDrivers",
-      "api_url": "https://api.github.com/repos/tiagosouzacandido/AdrenoToolsTurnipDrivers/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 25,
-      "description": "Adrenotools Turnip 驱动集合",
-      "notes": "",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      },
-      "updated_at": "2026-08-25T12:40:44Z"
-    },
-    {
-      "id": "s1mptom-eden",
-      "name": "s1mptom (A830/A840 eden 专用)",
-      "owner": "s1mptom",
-      "repo": "freedreno_turnip-CI",
-      "api_url": "https://api.github.com/repos/s1mptom/freedreno_turnip-CI/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "eden",
-      "package_format": "adpkg",
-      "maturity": "beta",
-      "stars": 50,
-      "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
-      "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "Mesa"
-        ]
-      },
-      "updated_at": "2026-05-19T19:40:37Z"
-    },
-    {
-      "id": "wintermist-a810",
-      "name": "WinterMist010 (A810/A812)",
-      "owner": "WinterMist010",
-      "repo": "AdrenoToolsDriversA810",
-      "api_url": "https://api.github.com/repos/WinterMist010/AdrenoToolsDriversA810/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "810",
-        "812"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "beta",
-      "stars": 2,
-      "description": "Adreno A810/A812 实验性 Turnip 构建",
-      "notes": "",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "A81"
-        ]
-      },
-      "updated_at": "2026-10-08T03:47:52Z"
-    },
-    {
-      "id": "diskdvd-a8xx",
-      "name": "DiskDVD (A810/A829)",
-      "owner": "DiskDVD",
-      "repo": "TurniptoolsA8XX",
-      "api_url": "https://api.github.com/repos/DiskDVD/TurniptoolsA8XX/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "810",
-        "829"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "beta",
-      "stars": 44,
-      "description": "whitebelyash fork，A810/A829 额外补丁，积极维护",
-      "notes": "",
-      "companion": [],
-      "filters": {
-        "default": [
-          "A8XX",
-          "Turnip"
-        ]
-      },
-      "updated_at": "2026-09-27T12:22:37Z"
-    },
-    {
-      "id": "frane-a810",
-      "name": "Frane12 Testturnip (A810)",
-      "owner": "Frane12",
-      "repo": "Testturnip",
-      "api_url": "https://api.github.com/repos/Frane12/Testturnip/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "810"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "alpha",
-      "stars": 4,
-      "description": "A810 专用 Turnip，含 autotuner 自动调优版本",
-      "notes": "有 autotuner 和 S2 两个版本",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "A810"
-        ]
-      },
-      "updated_at": "2026-10-11T18:15:06Z"
-    },
-    {
-      "id": "vauzi-710",
-      "name": "Vauzi-17 (710/720/722)",
-      "owner": "Vauzi-17",
-      "repo": "710",
-      "api_url": "https://api.github.com/repos/Vauzi-17/710/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "7xx"
-      ],
-      "gpu_models": [
-        "710",
-        "720",
-        "722"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "winlator",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 65,
-      "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
-      "notes": "710 用户首选",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "710",
-          "720"
-        ]
-      },
-      "updated_at": "2026-10-12T01:28:22Z"
-    },
-    {
-      "id": "faux123-8xx",
-      "name": "faux123 turnip (8xx 显示修复)",
-      "owner": "faux123",
-      "repo": "turnip-faux123-driver",
-      "api_url": "https://api.github.com/repos/faux123/turnip-faux123-driver/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "8xx"
-      ],
-      "gpu_models": [
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "experimental",
-      "stars": 14,
-      "description": "Adreno 8xx Turnip，修复显示损坏问题",
-      "notes": "遇到花屏/显示异常时尝试",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      },
-      "updated_at": "2026-09-11T21:17:03Z"
-    },
-    {
-      "id": "fristoner-g57",
-      "name": "FristOneRR PanVK (Mali-G57)",
-      "owner": "FristOneRR",
-      "repo": "FristOneRR-Panvk-Driver",
-      "api_url": "https://api.github.com/repos/FristOneRR/FristOneRR-Panvk-Driver/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G57"
-      ],
-      "driver_type": "panvk",
-      "frontend": "JM",
-      "target_emulator": "winlator",
-      "package_format": "zip",
-      "maturity": "beta",
-      "stars": 45,
-      "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
-      "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
-      "companion": [
-        "pandxvk"
-      ],
-      "filters": {
-        "default": [
-          "Panvk",
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-10-10T15:24:58Z"
-    },
-    {
-      "id": "luke-g52",
-      "name": "LukeValen PanVK (Mali-G52)",
-      "owner": "LukeValen",
-      "repo": "panvk-mali-g52",
-      "api_url": "https://api.github.com/repos/LukeValen/panvk-mali-g52/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "bifrost"
-      ],
-      "gpu_models": [
-        "G52"
-      ],
-      "driver_type": "panvk",
-      "frontend": "JM",
-      "target_emulator": "winlator",
-      "package_format": "zip",
-      "maturity": "alpha",
-      "stars": 25,
-      "description": "Mali-G52 PanVK 驱动，alpha 阶段",
-      "notes": "G52 早期支持，可能不稳定",
-      "companion": [
-        "pandxvk"
-      ],
-      "filters": {
-        "default": [
-          "PanVk",
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-09-30T19:18:38Z"
-    },
-    {
-      "id": "noysz-g99",
-      "name": "Noysz FourFectVK (G57/G99)",
-      "owner": "Noysz",
-      "repo": "panvk-g99-jm",
-      "api_url": "https://api.github.com/repos/Noysz/panvk-g99-jm/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G57"
-      ],
-      "driver_type": "panvk",
-      "frontend": "JM",
-      "target_emulator": "winlator",
-      "package_format": "zip",
-      "maturity": "alpha",
-      "stars": 12,
-      "description": "Helio G99/Mali-G57 MC2 JM 前端 PanVK，FourFectVK 构建",
-      "notes": "针对 G99 设备测试，含详细研究文档",
-      "companion": [
-        "pandxvk"
-      ],
-      "filters": {
-        "default": [
-          "FourFectVK",
-          "G57"
-        ]
-      },
-      "updated_at": "2026-10-11T00:06:44Z"
-    },
-    {
-      "id": "xodios-g57",
-      "name": "xodiosx Mesa PanVK (G57 JM)",
-      "owner": "xodiosx",
-      "repo": "mesa-panvk-g57",
-      "api_url": "https://api.github.com/repos/xodiosx/mesa-panvk-g57/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G57"
-      ],
-      "driver_type": "panvk",
-      "frontend": "JM",
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "experimental",
-      "stars": 1,
-      "description": "Mali-G57 Valhall kbase JM 实验性 PanVK",
-      "notes": "实测最新 release（panvk-test3 panvcake_vanilla_26.3.0.R2.zip）含 meta.json + libvulkan_panfrost.so，合规；旧 build release 为 Termux tar.gz 不适用",
-      "companion": [
-        "pandxvk"
-      ],
-      "filters": {
-        "default": [
-          "panvk",
-          "panfrost"
-        ]
-      },
-      "updated_at": "2026-10-02T16:27:37Z"
-    },
-    {
-      "id": "wonderkast-g720",
-      "name": "wonderkast02 PanVK (G720 CSF)",
-      "owner": "wonderkast02",
-      "repo": "panvk-g720-kbase-csf",
-      "api_url": "https://api.github.com/repos/wonderkast02/panvk-g720-kbase-csf/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G720"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 37,
-      "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
-      "notes": "CSF 架构，native Vulkan",
-      "companion": [],
-      "filters": {
-        "default": [
-          "panvk",
-          "vulkan"
-        ]
-      },
-      "updated_at": "2026-10-10T04:10:40Z"
-    },
-    {
-      "id": "zenithblue-kbase",
-      "name": "zenithblue PanVK kbase (G615 CSF)",
-      "owner": "zenithblue-oss",
-      "repo": "panvk-kbase-android",
-      "api_url": "https://api.github.com/repos/zenithblue-oss/panvk-kbase-android/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G615",
-        "G610",
-        "G710",
-        "G720"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "so",
-      "maturity": "beta",
-      "stars": 36,
-      "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
-      "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
-      "companion": [],
-      "filters": {
-        "default": [
-          "libvulkan",
-          "panfrost"
-        ]
-      },
-      "updated_at": "2026-10-13T06:22:30Z"
-    },
-    {
-      "id": "martuniy-panvk",
-      "name": "martuniykmisha012 PanVK Stubs",
-      "owner": "martuniykmisha012-rgb",
-      "repo": "PanVK-Mali-Android-Stubs",
-      "api_url": "https://api.github.com/repos/martuniykmisha012-rgb/PanVK-Mali-Android-Stubs/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10",
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G68",
-        "G78",
-        "G715",
-        "G920",
-        "G925"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 23,
-      "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
-      "notes": "覆盖型号较广",
-      "companion": [],
-      "filters": {
-        "default": [
-          "PanVK",
-          "Mesa"
-        ]
-      },
-      "updated_at": "2026-07-22T22:33:58Z"
-    },
-    {
-      "id": "bkaneko-mtk",
-      "name": "BkaNeko PanVK MTK",
-      "owner": "BkaNeko",
-      "repo": "panvk-mtk-driver",
-      "api_url": "https://api.github.com/repos/BkaNeko/panvk-mtk-driver/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G610",
-        "G615",
-        "G710",
-        "G715",
-        "G720",
-        "G920",
-        "G925"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 8,
-      "description": "MTK Mali PanVK kbase 驱动，Redmi Note 11T 测试",
-      "notes": "源码构建型：仓库内 build-scripts/driver/patches，无 release 资产，需自行编译",
-      "companion": [],
-      "filters": {
-        "default": [
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-08-21T05:58:05Z"
-    },
-    {
-      "id": "faux123-ace",
-      "name": "faux123 PanVK Ace (G610)",
-      "owner": "faux123",
-      "repo": "panvk-faux123-driver-ace",
-      "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-ace/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G610"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "so",
-      "maturity": "experimental",
-      "stars": 1,
-      "description": "GameForce Ace 掌机 Mali-G610 PanVK",
-      "notes": "掌机设备专用",
-      "companion": [],
-      "filters": {
-        "default": [
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-10-10T10:48:44Z"
-    },
-    {
-      "id": "faux123-rg556",
-      "name": "faux123 PanVK RG556 (G57)",
-      "owner": "faux123",
-      "repo": "panvk-faux123-driver-rg556",
-      "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-rg556/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G57"
-      ],
-      "driver_type": "panvk",
-      "frontend": "JM",
-      "target_emulator": "generic",
-      "package_format": "so",
-      "maturity": "experimental",
-      "stars": 6,
-      "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
-      "notes": "掌机设备专用",
-      "companion": [
-        "pandxvk"
-      ],
-      "filters": {
-        "default": [
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-10-10T07:47:24Z"
-    },
-    {
-      "id": "dkdndje-g720",
-      "name": "Dkdndje XHYN-V (G720 MC8)",
-      "owner": "Dkdndje",
-      "repo": "XHYN-V-Mali-G720-MC8",
-      "api_url": "https://api.github.com/repos/Dkdndje/XHYN-V-Mali-G720-MC8/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G720"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 2,
-      "description": "Mali-G720 MC8 XHYN V Vulkan 驱动包",
-      "notes": "",
-      "companion": [],
-      "filters": {
-        "default": [
-          "XHYN",
-          "vulkan"
-        ]
-      },
-      "updated_at": "2026-10-01T19:47:49Z"
-    },
-    {
-      "id": "koadzba-droid",
-      "name": "Koadzba PanVK-Droid (Bifrost)",
-      "owner": "Koadzba",
-      "repo": "PanVK-Droid",
-      "api_url": "https://api.github.com/repos/Koadzba/PanVK-Droid/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G77"
-      ],
-      "driver_type": "panvk",
-      "frontend": "JM",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "beta",
-      "stars": 0,
-      "description": "Mali-G77 MC9 PanVK（Mesa 26.2.0-dev）",
-      "notes": "实测 meta.json：PanVK-MaliG77 MC9，minApi 27，zip 含 meta.json 合规",
-      "companion": [],
-      "filters": {
-        "default": [
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-06-04T17:39:38Z"
-    },
-    {
-      "id": "pandxvk",
-      "name": "panDXVK (Mali 纹理转码)",
-      "owner": "isygold",
-      "repo": "panDXVK",
-      "api_url": "https://api.github.com/repos/isygold/panDXVK/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [],
-      "gpu_models": [],
-      "driver_type": "component",
-      "component_type": "DXVK",
-      "frontend": null,
-      "target_emulator": "winlator",
-      "package_format": "wcp",
-      "maturity": "beta",
-      "stars": 12,
-      "description": "PanVK 专用 DXVK，BC→ASTC 纹理转码，Mali GPU 运行 PC 游戏必需",
-      "notes": "Mali 用户玩 D3D9-11 游戏必选，.wcp 一键安装；归入组件专区 DXVK 分类",
-      "companion": [],
-      "filters": {
-        "default": [
-          "wcp",
-          "merged"
-        ]
-      },
-      "updated_at": "2026-10-13T07:52:13Z"
-    },
-    {
-      "id": "xclipse940-radv",
-      "name": "JimVulkan RADV Xclipse",
-      "owner": "JimVulkan",
-      "repo": "radv-xclipse",
-      "api_url": "https://api.github.com/repos/JimVulkan/radv-xclipse/releases",
-      "gpu_vendor": "xclipse",
-      "gpu_arch": [
-        "rdna"
-      ],
-      "gpu_models": [
-        "940"
-      ],
-      "driver_type": "radv",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "experimental",
-      "stars": 8,
-      "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
-      "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
-      "companion": [],
-      "filters": {
-        "default": [
-          "RADV",
-          "Xclipse"
-        ]
-      },
-      "updated_at": "2026-10-13T00:00:00Z"
-    },
-    {
-      "id": "winnative-drivers",
-      "name": "WinNative Drivers",
-      "owner": "WinNative-Emu",
-      "repo": "Drivers",
-      "api_url": "https://api.github.com/repos/WinNative-Emu/Drivers/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "beta",
-      "stars": 85,
-      "description": "WinNative 开发团队构建的 Turnip 驱动合集，更新频繁",
-      "notes": "同时提供 Android 包与 Linux 变体",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      },
-      "updated_at": "2026-09-30T17:46:50Z"
-    },
-    {
-      "id": "balemunis-aurora",
-      "name": "Balemuni's Aurora",
-      "owner": "Balemuni",
-      "repo": "Balemunis-Aurora",
-      "api_url": "https://api.github.com/repos/Balemuni/Balemunis-Aurora/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "610",
-        "612",
-        "613",
-        "615",
-        "616",
-        "618",
-        "619",
-        "620",
-        "630",
-        "640",
-        "642",
-        "642l",
-        "650",
-        "660",
-        "662",
-        "710",
-        "720",
-        "722",
-        "725",
-        "730",
-        "735",
-        "740",
-        "750",
-        "810",
-        "812",
-        "825",
-        "829",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "winlator",
-      "package_format": "adpkg",
-      "maturity": "experimental",
-      "stars": 216,
-      "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
-      "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Aurora"
-        ]
-      },
-      "updated_at": "2026-08-26T13:19:57Z"
-    },
-    {
-      "id": "jimvulkan-panvk",
-      "name": "JimVulkan Mali PanVK",
-      "owner": "JimVulkan",
-      "repo": "mali-panvk",
-      "api_url": "https://api.github.com/repos/JimVulkan/mali-panvk/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "bifrost"
-      ],
-      "gpu_models": [
-        "G76",
-        "G72",
-        "G52"
-      ],
-      "driver_type": "panvk",
-      "frontend": "kbase",
-      "target_emulator": "winlator",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 7,
-      "description": "将 Mesa PanVK 移植到 Mali Bifrost（G76/G72/G52），无需 root",
-      "notes": "基于 Mesa 26.3，compute 模拟缺失的几何/曲面细分，面向 DXVK",
-      "companion": [],
-      "filters": {
-        "default": [
-          "PanVK"
-        ]
-      },
-      "updated_at": "2026-09-27T20:57:19Z"
-    },
-    {
-      "id": "apexspan-panvk-g57",
-      "name": "ApexSpan Mesa PanVK G57",
-      "owner": "apexspan-svg",
-      "repo": "mesa-panvk-mali-g57",
-      "api_url": "https://api.github.com/repos/apexspan-svg/mesa-panvk-mali-g57/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v9"
-      ],
-      "gpu_models": [
-        "G57"
-      ],
-      "driver_type": "panvk",
-      "frontend": "kbase",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 1,
-      "description": "面向 Mali-G57 MC2（天玑 6300）的实验性 PanVK，支持 Termux:X11 硬件加速",
-      "notes": "跑在 kbase JM 接口上，无需 panfrost.ko，适合 Termux 用户",
-      "companion": [],
-      "filters": {
-        "default": [
-          "PanVK"
-        ]
-      },
-      "updated_at": "2026-10-01T09:51:44Z"
-    },
-    {
-      "id": "msx-g615-eden",
-      "name": "msx94302 PanVK Mali-G615 (eden 专用)",
-      "owner": "msx94302-ops",
-      "repo": "Panvk-Mali-G615",
-      "api_url": "https://api.github.com/repos/msx94302-ops/Panvk-Mali-G615/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G615"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "eden",
-      "package_format": "adpkg",
-      "maturity": "beta",
-      "stars": 1,
-      "description": "Mali-G615 eden 专用 PanVK（mesa 26.3.0-devel，含 kraid/adaptive-tiler/fast-submit 补丁）",
-      "notes": "实测 zip 含 meta.json + libvulkan_panfrost.so 合规；release 命名 EDEN-EMULATOR；活跃（2026-10-07）",
-      "companion": [],
-      "filters": {
-        "default": [
-          "PanVK",
-          "G615",
-          "EDEN"
-        ]
-      },
-      "updated_at": "2026-10-10T21:28:37Z"
-    },
-    {
-      "id": "pandxvk-lloyd262",
-      "name": "panDXVK Lloyd262 (gplasync)",
-      "owner": "isygold",
-      "repo": "panDXVK-lloyd262",
-      "api_url": "https://api.github.com/repos/isygold/panDXVK-lloyd262/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [],
-      "gpu_models": [],
-      "driver_type": "component",
-      "component_type": "DXVK",
-      "frontend": null,
-      "target_emulator": "winlator",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 1,
-      "description": "panDXVK BC→ASTC 纹理转码移植到 DXVK v2.4.1 + gplasync（Lloyd GTA V 修复个人构建）",
-      "notes": "个人实验构建，Mali 用户遇到 GTA V 等特定问题时可对比 panDXVK 本体；与 pandxvk 同属 DXVK 组件源自动合并",
-      "companion": [],
-      "filters": {
-        "default": [
-          "zip"
-        ]
-      },
-      "updated_at": "2026-10-08T13:57:15Z"
-    },
-    {
-      "id": "minegraph-panvk",
-      "name": "MineGraph PanVK (G610/G615/G710/G715/G720)",
-      "owner": "MineGraph-bilibili",
-      "repo": "panvk-Android",
-      "api_url": "https://api.github.com/repos/MineGraph-bilibili/panvk-Android/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G610",
-        "G615",
-        "G710",
-        "G715",
-        "G720"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "beta",
-      "stars": 16,
-      "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
-      "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
-      "companion": [],
-      "filters": {
-        "default": [
-          "panvk",
-          "panfrost"
-        ]
-      },
-      "updated_at": "2026-10-10T14:09:26Z"
-    },
-    {
-      "id": "alexsanz-sd865",
-      "name": "AlexSanz Turnip SD865 Z (Adreno 650)",
-      "owner": "AlexSanz0902",
-      "repo": "turnip-sd865-z",
-      "api_url": "https://api.github.com/repos/AlexSanz0902/turnip-sd865-z/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx"
-      ],
-      "gpu_models": [
-        "650"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 17,
-      "description": "骁龙 865 / Adreno 650 专用 Turnip（Mesa main bffd91947efc），Switch 模拟优化，社区 Z 构建",
-      "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "SD865"
-        ]
-      },
-      "updated_at": "2026-10-13T07:23:29Z"
-    },
-    {
-      "id": "weab-turnip-ci",
-      "name": "Weab-chan Turnip CI",
-      "owner": "Weab-chan",
-      "repo": "freedreno_turnip-CI",
-      "description": "Weab-chan Turnip 驱动 CI 构建（每两周 GitHub Actions 自动构建 adrenotool 包）",
-      "api_url": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx"
-      ],
-      "gpu_models": [],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "ci",
-      "stars": 251,
-      "notes": "每两周 GitHub Actions 自动构建 adrenotool 包；最后一次 push 2025-12-25（CI 周期运行）",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip"
-        ]
-      },
-      "updated_at": "2025-12-25T00:00:00Z"
-    },
-    {
-      "id": "faux123-pixel7",
-      "name": "faux123 PanVK (Mali-G710 Pixel7)",
-      "owner": "faux123",
-      "repo": "panvk-faux123-driver-pixel7",
-      "description": "Pixel 7 系列 Mali-G710 PanVK 驱动（faux123 系列，adpkg 格式）",
-      "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-pixel7/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "G710",
-        "G715"
-      ],
-      "gpu_models": [
-        "g710",
-        "g715"
-      ],
-      "driver_type": "panvk",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 1,
-      "notes": "faux123 全家桶之一：Ace/RG556/RP4Pro/Pixel7 按 GPU 型号分发；活跃（2026-10-13 v0.10.0）",
-      "companion": [
-        "faux123-ace",
-        "faux123-rg556",
-        "faux123-rp4pro"
-      ],
-      "filters": {
-        "default": []
-      },
-      "updated_at": "2026-10-13T00:00:00Z"
-    },
-    {
-      "id": "faux123-rp4pro",
-      "name": "faux123 PanVK (Mali-G77 RP4Pro)",
-      "owner": "faux123",
-      "repo": "panvk-faux123-driver-rp4pro",
-      "description": "Retroid Pocket 4 Pro Mali-G77 PanVK 驱动（faux123 系列）",
-      "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-rp4pro/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "G77"
-      ],
-      "gpu_models": [
-        "g77"
-      ],
-      "driver_type": "panvk",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "adpkg",
-      "maturity": "stable",
-      "stars": 5,
-      "notes": "按 GPU 型号分发；活跃（2026-10-10 v0.15.0）",
-      "companion": [
-        "faux123-ace",
-        "faux123-rg556",
-        "faux123-pixel7"
-      ],
-      "filters": {
-        "default": []
-      },
-      "updated_at": "2026-10-10T00:00:00Z"
-    },
-    {
-      "id": "lukevalen-kbase",
-      "name": "LukeValen PanVK kbase (通用)",
-      "owner": "LukeValen",
-      "repo": "panvk-kbase-android",
-      "description": "LukeValen 通用 kbase PanVK（Switch 模拟安全版：Eden/Lemon 双包）",
-      "api_url": "https://api.github.com/repos/LukeValen/panvk-kbase-android/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "G52",
-        "G57",
-        "G610",
-        "G615",
-        "G710",
-        "G720"
-      ],
-      "gpu_models": [
-        "g52",
-        "g57",
-        "g610",
-        "g615",
-        "g710",
-        "g720"
-      ],
-      "driver_type": "panvk",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 7,
-      "notes": "panvk-rc3-switch-safety2 2026-10-12，Eden/Lemon 模拟器专用安全构建",
-      "companion": [
-        "lukevalen-g52"
-      ],
-      "filters": {
-        "default": []
-      },
-      "updated_at": "2026-10-12T00:00:00Z"
-    },
-    {
-      "id": "guna-panvk-kbase",
-      "name": "GunaCharanTeja PanVK kbase (CI)",
-      "owner": "GunaCharanTeja",
-      "repo": "panvk-kbase-android",
-      "description": "GunaCharanTeja PanVK kbase CI 构建（配合 WinlatorMali，Actions 每夜构建）",
-      "api_url": "https://api.github.com/repos/GunaCharanTeja/panvk-kbase-android/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "G52",
-        "G57",
-        "G610",
-        "G615",
-        "G710",
-        "G720"
-      ],
-      "gpu_models": [
-        "g52",
-        "g57",
-        "g610",
-        "g615",
-        "g710",
-        "g720"
-      ],
-      "driver_type": "panvk",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "ci",
-      "stars": 21,
-      "notes": "活跃（2026-10-14）；无 Release，APK/zip 从 Actions 产物获取",
-      "companion": [
-        "guna-winlatormali"
-      ],
-      "filters": {
-        "default": []
-      },
-      "updated_at": "2026-10-14T00:00:00Z"
-    },
-    {
-      "id": "ghaelv-turnip-lemon-ade",
-      "name": "Ghael-V Turnip Lemon-Ade",
-      "owner": "Ghael-V",
-      "repo": "Turnip-Lemon-Ade",
-      "description": "Ghael-V Turnip 分支（Lemon 模拟器专用优化，含 Ade 修复）",
-      "api_url": "https://api.github.com/repos/Ghael-V/Turnip-Lemon-Ade/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [
-        "660",
-        "690",
-        "740",
-        "750",
-        "830",
-        "840"
-      ],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 4,
-      "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
-      "companion": [
-        "ghaelv-lemon-project"
-      ],
-      "filters": {
-        "default": []
-      },
-      "updated_at": "2026-10-13T00:00:00Z"
-    }
-  ]
+ "version": "1.0.1",
+ "updated_at": "2026-10-14T00:00:00Z",
+ "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
+ "repositories": [
+  {
+   "id": "k11mch1",
+   "name": "K11MCH1 AdrenoTools",
+   "owner": "K11MCH1",
+   "repo": "AdrenoToolsDrivers",
+   "api_url": "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 5132,
+   "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
+   "notes": "长期维护，兼容性最好",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip"
+    ]
+   },
+   "updated_at": "2026-02-24T14:40:51Z"
+  },
+  {
+   "id": "stevenmxz",
+   "name": "StevenMXZ",
+   "owner": "StevenMXZ",
+   "repo": "Adreno-Tools-Drivers",
+   "api_url": "https://api.github.com/repos/StevenMXZ/Adreno-Tools-Drivers/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 1007,
+   "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
+   "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
+   "companion": [],
+   "filters": {
+    "6xx": [
+     "Turnip v26"
+    ],
+    "7xx": [
+     "Turnip v26"
+    ],
+    "8xx": [
+     "Turnip Gen8"
+    ]
+   },
+   "updated_at": "2026-10-05T19:49:48Z"
+  },
+  {
+   "id": "stevenmxz-adrenotools",
+   "name": "StevenMXZ Adrenotools",
+   "owner": "StevenMXZ",
+   "repo": "Adrenotools-Drivers",
+   "api_url": "https://api.github.com/repos/StevenMXZ/Adrenotools-Drivers/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "8xx"
+   ],
+   "gpu_models": [
+    "825",
+    "830",
+    "840",
+    "842",
+    "845",
+    "849",
+    "8elite"
+   ],
+   "driver_type": "qualcomm",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "stable",
+   "stars": 19,
+   "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）",
+   "updated_at": "2026-01-05T10:36:05Z",
+   "companion": []
+  },
+  {
+   "id": "mrpurple",
+   "name": "MrPurple666 Purple-Turnip",
+   "owner": "MrPurple666",
+   "repo": "purple-turnip",
+   "api_url": "https://api.github.com/repos/MrPurple666/purple-turnip/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 833,
+   "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
+   "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "vturnip",
+     "turnip_mrpurple"
+    ]
+   },
+   "updated_at": "2026-08-17T12:38:01Z"
+  },
+  {
+   "id": "v3kt0r-builder",
+   "name": "Mesa-Turnip-Builder",
+   "owner": "v3kt0r-87",
+   "repo": "Mesa-Turnip-Builder",
+   "api_url": "https://api.github.com/repos/v3kt0r-87/Mesa-Turnip-Builder/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "magisk",
+   "maturity": "stable",
+   "stars": 213,
+   "description": "Turnip Magisk 模块构建脚本，适合有 root 的用户",
+   "notes": "Magisk 模块格式，需要 root",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "Mesa"
+    ]
+   },
+   "updated_at": "2026-09-18T20:22:21Z"
+  },
+  {
+   "id": "banner",
+   "name": "The412Banner Banners-Turnip",
+   "owner": "The412Banner",
+   "repo": "Banners-Turnip",
+   "api_url": "https://api.github.com/repos/The412Banner/Banners-Turnip/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "ci",
+   "stars": 180,
+   "description": "自动构建最新 Mesa Turnip，bleeding-edge",
+   "notes": "CI 自动构建，最新但可能不稳定",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "Mesa",
+     "Adreno"
+    ]
+   },
+   "asset_includes": {
+    "8xx": [
+     "A8xx"
+    ]
+   },
+   "asset_excludes": {
+    "6xx": [
+     "A8xx",
+     "710-720-Test"
+    ],
+    "7xx": [
+     "A8xx",
+     "710-720-Test"
+    ]
+   },
+   "updated_at": "2026-10-13T01:47:44Z"
+  },
+  {
+   "id": "ilhan-athn7-ci",
+   "name": "ilhan-athn7 freedreno_turnip-CI",
+   "owner": "ilhan-athn7",
+   "repo": "freedreno_turnip-CI",
+   "api_url": "https://api.github.com/repos/ilhan-athn7/freedreno_turnip-CI/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "magisk",
+   "maturity": "stable",
+   "stars": 165,
+   "description": "Turnip Magisk 模块 CI 构建",
+   "notes": "Magisk 模块格式，需要 root",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "Mesa"
+    ]
+   },
+   "updated_at": "2026-05-21T21:55:53Z"
+  },
+  {
+   "id": "whitebelyash",
+   "name": "whitebelyash",
+   "owner": "whitebelyash",
+   "repo": "AdrenoToolsDrivers",
+   "api_url": "https://api.github.com/repos/whitebelyash/AdrenoToolsDrivers/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "beta",
+   "stars": 466,
+   "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
+   "notes": "",
+   "companion": [],
+   "filters": {
+    "default": [
+     "A8XX",
+     "Mainline Turnip",
+     "Stable Turnip",
+     "tu_",
+     "stu_"
+    ]
+   },
+   "updated_at": "2026-09-19T13:37:43Z"
+  },
+  {
+   "id": "jade-mesa",
+   "name": "JustCallMeJade Drivers_Android_Mesa",
+   "owner": "JustCallMeJade",
+   "repo": "Drivers_Android_Mesa",
+   "api_url": "https://api.github.com/repos/JustCallMeJade/Drivers_Android_Mesa/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "winlator",
+   "package_format": "zip",
+   "maturity": "ci",
+   "stars": 18,
+   "description": "GitHub Actions 每日从源码编译 Turnip，Winlator 可用",
+   "notes": "每日更新，注意 DXVK 2.4.1+ 有性能回退",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip"
+    ]
+   },
+   "updated_at": "2026-09-20T08:07:04Z"
+  },
+  {
+   "id": "tiagosouza",
+   "name": "tiagosouzacandido AdrenoToolsTurnipDrivers",
+   "owner": "tiagosouzacandido",
+   "repo": "AdrenoToolsTurnipDrivers",
+   "api_url": "https://api.github.com/repos/tiagosouzacandido/AdrenoToolsTurnipDrivers/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 25,
+   "description": "Adrenotools Turnip 驱动集合",
+   "notes": "",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip"
+    ]
+   },
+   "updated_at": "2026-08-25T12:40:44Z"
+  },
+  {
+   "id": "s1mptom-eden",
+   "name": "s1mptom (A830/A840 eden 专用)",
+   "owner": "s1mptom",
+   "repo": "freedreno_turnip-CI",
+   "api_url": "https://api.github.com/repos/s1mptom/freedreno_turnip-CI/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "8xx"
+   ],
+   "gpu_models": [
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "eden",
+   "package_format": "adpkg",
+   "maturity": "beta",
+   "stars": 50,
+   "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
+   "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "Mesa"
+    ]
+   },
+   "updated_at": "2026-05-19T19:40:37Z"
+  },
+  {
+   "id": "wintermist-a810",
+   "name": "WinterMist010 (A810/A812)",
+   "owner": "WinterMist010",
+   "repo": "AdrenoToolsDriversA810",
+   "api_url": "https://api.github.com/repos/WinterMist010/AdrenoToolsDriversA810/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "8xx"
+   ],
+   "gpu_models": [
+    "810",
+    "812"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "beta",
+   "stars": 2,
+   "description": "Adreno A810/A812 实验性 Turnip 构建",
+   "notes": "",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "A81"
+    ]
+   },
+   "updated_at": "2026-10-08T03:47:52Z"
+  },
+  {
+   "id": "diskdvd-a8xx",
+   "name": "DiskDVD (A810/A829)",
+   "owner": "DiskDVD",
+   "repo": "TurniptoolsA8XX",
+   "api_url": "https://api.github.com/repos/DiskDVD/TurniptoolsA8XX/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "8xx"
+   ],
+   "gpu_models": [
+    "810",
+    "829"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "beta",
+   "stars": 44,
+   "description": "whitebelyash fork，A810/A829 额外补丁，积极维护",
+   "notes": "",
+   "companion": [],
+   "filters": {
+    "default": [
+     "A8XX",
+     "Turnip"
+    ]
+   },
+   "updated_at": "2026-09-27T12:22:37Z"
+  },
+  {
+   "id": "frane-a810",
+   "name": "Frane12 Testturnip (A810)",
+   "owner": "Frane12",
+   "repo": "Testturnip",
+   "api_url": "https://api.github.com/repos/Frane12/Testturnip/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "8xx"
+   ],
+   "gpu_models": [
+    "810"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "alpha",
+   "stars": 4,
+   "description": "A810 专用 Turnip，含 autotuner 自动调优版本",
+   "notes": "有 autotuner 和 S2 两个版本",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "A810"
+    ]
+   },
+   "updated_at": "2026-10-11T18:15:06Z"
+  },
+  {
+   "id": "vauzi-710",
+   "name": "Vauzi-17 (710/720/722)",
+   "owner": "Vauzi-17",
+   "repo": "710",
+   "api_url": "https://api.github.com/repos/Vauzi-17/710/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "7xx"
+   ],
+   "gpu_models": [
+    "710",
+    "720",
+    "722"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "winlator",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 65,
+   "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
+   "notes": "710 用户首选",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "710",
+     "720"
+    ]
+   },
+   "updated_at": "2026-10-12T01:28:22Z"
+  },
+  {
+   "id": "faux123-8xx",
+   "name": "faux123 turnip (8xx 显示修复)",
+   "owner": "faux123",
+   "repo": "turnip-faux123-driver",
+   "api_url": "https://api.github.com/repos/faux123/turnip-faux123-driver/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "8xx"
+   ],
+   "gpu_models": [
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "experimental",
+   "stars": 14,
+   "description": "Adreno 8xx Turnip，修复显示损坏问题",
+   "notes": "遇到花屏/显示异常时尝试",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip"
+    ]
+   },
+   "updated_at": "2026-09-11T21:17:03Z"
+  },
+  {
+   "id": "fristoner-g57",
+   "name": "FristOneRR PanVK (Mali-G57)",
+   "owner": "FristOneRR",
+   "repo": "FristOneRR-Panvk-Driver",
+   "api_url": "https://api.github.com/repos/FristOneRR/FristOneRR-Panvk-Driver/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G57"
+   ],
+   "driver_type": "panvk",
+   "frontend": "JM",
+   "target_emulator": "winlator",
+   "package_format": "zip",
+   "maturity": "beta",
+   "stars": 45,
+   "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
+   "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
+   "companion": [
+    "pandxvk"
+   ],
+   "filters": {
+    "default": [
+     "Panvk",
+     "panvk"
+    ]
+   },
+   "updated_at": "2026-10-10T15:24:58Z"
+  },
+  {
+   "id": "luke-g52",
+   "name": "LukeValen PanVK (Mali-G52)",
+   "owner": "LukeValen",
+   "repo": "panvk-mali-g52",
+   "api_url": "https://api.github.com/repos/LukeValen/panvk-mali-g52/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "bifrost"
+   ],
+   "gpu_models": [
+    "G52"
+   ],
+   "driver_type": "panvk",
+   "frontend": "JM",
+   "target_emulator": "winlator",
+   "package_format": "zip",
+   "maturity": "alpha",
+   "stars": 25,
+   "description": "Mali-G52 PanVK 驱动，alpha 阶段",
+   "notes": "G52 早期支持，可能不稳定",
+   "companion": [
+    "pandxvk"
+   ],
+   "filters": {
+    "default": [
+     "PanVk",
+     "panvk"
+    ]
+   },
+   "updated_at": "2026-09-30T19:18:38Z"
+  },
+  {
+   "id": "noysz-g99",
+   "name": "Noysz FourFectVK (G57/G99)",
+   "owner": "Noysz",
+   "repo": "panvk-g99-jm",
+   "api_url": "https://api.github.com/repos/Noysz/panvk-g99-jm/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G57"
+   ],
+   "driver_type": "panvk",
+   "frontend": "JM",
+   "target_emulator": "winlator",
+   "package_format": "zip",
+   "maturity": "alpha",
+   "stars": 12,
+   "description": "Helio G99/Mali-G57 MC2 JM 前端 PanVK，FourFectVK 构建",
+   "notes": "针对 G99 设备测试，含详细研究文档",
+   "companion": [
+    "pandxvk"
+   ],
+   "filters": {
+    "default": [
+     "FourFectVK",
+     "G57"
+    ]
+   },
+   "updated_at": "2026-10-11T00:06:44Z"
+  },
+  {
+   "id": "xodios-g57",
+   "name": "xodiosx Mesa PanVK (G57 JM)",
+   "owner": "xodiosx",
+   "repo": "mesa-panvk-g57",
+   "api_url": "https://api.github.com/repos/xodiosx/mesa-panvk-g57/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G57"
+   ],
+   "driver_type": "panvk",
+   "frontend": "JM",
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "experimental",
+   "stars": 1,
+   "description": "Mali-G57 Valhall kbase JM 实验性 PanVK",
+   "notes": "实测最新 release（panvk-test3 panvcake_vanilla_26.3.0.R2.zip）含 meta.json + libvulkan_panfrost.so，合规；旧 build release 为 Termux tar.gz 不适用",
+   "companion": [
+    "pandxvk"
+   ],
+   "filters": {
+    "default": [
+     "panvk",
+     "panfrost"
+    ]
+   },
+   "updated_at": "2026-10-02T16:27:37Z"
+  },
+  {
+   "id": "wonderkast-g720",
+   "name": "wonderkast02 PanVK (G720 CSF)",
+   "owner": "wonderkast02",
+   "repo": "panvk-g720-kbase-csf",
+   "api_url": "https://api.github.com/repos/wonderkast02/panvk-g720-kbase-csf/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G720"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 37,
+   "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
+   "notes": "CSF 架构，native Vulkan",
+   "companion": [],
+   "filters": {
+    "default": [
+     "panvk",
+     "vulkan"
+    ]
+   },
+   "updated_at": "2026-10-10T04:10:40Z"
+  },
+  {
+   "id": "zenithblue-kbase",
+   "name": "zenithblue PanVK kbase (G615 CSF)",
+   "owner": "zenithblue-oss",
+   "repo": "panvk-kbase-android",
+   "api_url": "https://api.github.com/repos/zenithblue-oss/panvk-kbase-android/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G615",
+    "G610",
+    "G710",
+    "G720"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "so",
+   "maturity": "beta",
+   "stars": 36,
+   "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
+   "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
+   "companion": [],
+   "filters": {
+    "default": [
+     "libvulkan",
+     "panfrost"
+    ]
+   },
+   "updated_at": "2026-10-13T06:22:30Z"
+  },
+  {
+   "id": "martuniy-panvk",
+   "name": "martuniykmisha012 PanVK Stubs",
+   "owner": "martuniykmisha012-rgb",
+   "repo": "PanVK-Mali-Android-Stubs",
+   "api_url": "https://api.github.com/repos/martuniykmisha012-rgb/PanVK-Mali-Android-Stubs/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10",
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G68",
+    "G78",
+    "G715",
+    "G920",
+    "G925"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 23,
+   "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
+   "notes": "覆盖型号较广",
+   "companion": [],
+   "filters": {
+    "default": [
+     "PanVK",
+     "Mesa"
+    ]
+   },
+   "updated_at": "2026-07-22T22:33:58Z"
+  },
+  {
+   "id": "bkaneko-mtk",
+   "name": "BkaNeko PanVK MTK",
+   "owner": "BkaNeko",
+   "repo": "panvk-mtk-driver",
+   "api_url": "https://api.github.com/repos/BkaNeko/panvk-mtk-driver/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G610",
+    "G615",
+    "G710",
+    "G715",
+    "G720",
+    "G920",
+    "G925"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 8,
+   "description": "MTK Mali PanVK kbase 驱动，Redmi Note 11T 测试",
+   "notes": "源码构建型：仓库内 build-scripts/driver/patches，无 release 资产，需自行编译",
+   "companion": [],
+   "filters": {
+    "default": [
+     "panvk"
+    ]
+   },
+   "updated_at": "2026-08-21T05:58:05Z"
+  },
+  {
+   "id": "faux123-ace",
+   "name": "faux123 PanVK Ace (G610)",
+   "owner": "faux123",
+   "repo": "panvk-faux123-driver-ace",
+   "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-ace/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G610"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "so",
+   "maturity": "experimental",
+   "stars": 1,
+   "description": "GameForce Ace 掌机 Mali-G610 PanVK",
+   "notes": "掌机设备专用",
+   "companion": [],
+   "filters": {
+    "default": [
+     "panvk"
+    ]
+   },
+   "updated_at": "2026-10-10T10:48:44Z"
+  },
+  {
+   "id": "faux123-rg556",
+   "name": "faux123 PanVK RG556 (G57)",
+   "owner": "faux123",
+   "repo": "panvk-faux123-driver-rg556",
+   "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-rg556/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G57"
+   ],
+   "driver_type": "panvk",
+   "frontend": "JM",
+   "target_emulator": "generic",
+   "package_format": "so",
+   "maturity": "experimental",
+   "stars": 6,
+   "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
+   "notes": "掌机设备专用",
+   "companion": [
+    "pandxvk"
+   ],
+   "filters": {
+    "default": [
+     "panvk"
+    ]
+   },
+   "updated_at": "2026-10-10T07:47:24Z"
+  },
+  {
+   "id": "dkdndje-g720",
+   "name": "Dkdndje XHYN-V (G720 MC8)",
+   "owner": "Dkdndje",
+   "repo": "XHYN-V-Mali-G720-MC8",
+   "api_url": "https://api.github.com/repos/Dkdndje/XHYN-V-Mali-G720-MC8/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G720"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 2,
+   "description": "Mali-G720 MC8 XHYN V Vulkan 驱动包",
+   "notes": "",
+   "companion": [],
+   "filters": {
+    "default": [
+     "XHYN",
+     "vulkan"
+    ]
+   },
+   "updated_at": "2026-10-01T19:47:49Z"
+  },
+  {
+   "id": "koadzba-droid",
+   "name": "Koadzba PanVK-Droid (Bifrost)",
+   "owner": "Koadzba",
+   "repo": "PanVK-Droid",
+   "api_url": "https://api.github.com/repos/Koadzba/PanVK-Droid/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G77"
+   ],
+   "driver_type": "panvk",
+   "frontend": "JM",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "beta",
+   "stars": 0,
+   "description": "Mali-G77 MC9 PanVK（Mesa 26.2.0-dev）",
+   "notes": "实测 meta.json：PanVK-MaliG77 MC9，minApi 27，zip 含 meta.json 合规",
+   "companion": [],
+   "filters": {
+    "default": [
+     "panvk"
+    ]
+   },
+   "updated_at": "2026-06-04T17:39:38Z"
+  },
+  {
+   "id": "pandxvk",
+   "name": "panDXVK (Mali 纹理转码)",
+   "owner": "isygold",
+   "repo": "panDXVK",
+   "api_url": "https://api.github.com/repos/isygold/panDXVK/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [],
+   "gpu_models": [],
+   "driver_type": "component",
+   "component_type": "DXVK",
+   "frontend": null,
+   "target_emulator": "winlator",
+   "package_format": "wcp",
+   "maturity": "beta",
+   "stars": 12,
+   "description": "PanVK 专用 DXVK，BC→ASTC 纹理转码，Mali GPU 运行 PC 游戏必需",
+   "notes": "Mali 用户玩 D3D9-11 游戏必选，.wcp 一键安装；归入组件专区 DXVK 分类",
+   "companion": [],
+   "filters": {
+    "default": [
+     "wcp",
+     "merged"
+    ]
+   },
+   "updated_at": "2026-10-13T07:52:13Z"
+  },
+  {
+   "id": "xclipse940-radv",
+   "name": "JimVulkan RADV Xclipse",
+   "owner": "JimVulkan",
+   "repo": "radv-xclipse",
+   "api_url": "https://api.github.com/repos/JimVulkan/radv-xclipse/releases",
+   "gpu_vendor": "xclipse",
+   "gpu_arch": [
+    "rdna"
+   ],
+   "gpu_models": [
+    "940"
+   ],
+   "driver_type": "radv",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "experimental",
+   "stars": 8,
+   "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
+   "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
+   "companion": [],
+   "filters": {
+    "default": [
+     "RADV",
+     "Xclipse"
+    ]
+   },
+   "updated_at": "2026-10-13T00:00:00Z"
+  },
+  {
+   "id": "winnative-drivers",
+   "name": "WinNative Drivers",
+   "owner": "WinNative-Emu",
+   "repo": "Drivers",
+   "api_url": "https://api.github.com/repos/WinNative-Emu/Drivers/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "beta",
+   "stars": 85,
+   "description": "WinNative 开发团队构建的 Turnip 驱动合集，更新频繁",
+   "notes": "同时提供 Android 包与 Linux 变体",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip"
+    ]
+   },
+   "updated_at": "2026-09-30T17:46:50Z"
+  },
+  {
+   "id": "balemunis-aurora",
+   "name": "Balemuni's Aurora",
+   "owner": "Balemuni",
+   "repo": "Balemunis-Aurora",
+   "api_url": "https://api.github.com/repos/Balemuni/Balemunis-Aurora/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "610",
+    "612",
+    "613",
+    "615",
+    "616",
+    "618",
+    "619",
+    "620",
+    "630",
+    "640",
+    "642",
+    "642l",
+    "650",
+    "660",
+    "662",
+    "710",
+    "720",
+    "722",
+    "725",
+    "730",
+    "735",
+    "740",
+    "750",
+    "810",
+    "812",
+    "825",
+    "829",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "winlator",
+   "package_format": "adpkg",
+   "maturity": "experimental",
+   "stars": 216,
+   "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
+   "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Aurora"
+    ]
+   },
+   "updated_at": "2026-08-26T13:19:57Z"
+  },
+  {
+   "id": "jimvulkan-panvk",
+   "name": "JimVulkan Mali PanVK",
+   "owner": "JimVulkan",
+   "repo": "mali-panvk",
+   "api_url": "https://api.github.com/repos/JimVulkan/mali-panvk/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "bifrost"
+   ],
+   "gpu_models": [
+    "G76",
+    "G72",
+    "G52"
+   ],
+   "driver_type": "panvk",
+   "frontend": "kbase",
+   "target_emulator": "winlator",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 7,
+   "description": "将 Mesa PanVK 移植到 Mali Bifrost（G76/G72/G52），无需 root",
+   "notes": "基于 Mesa 26.3，compute 模拟缺失的几何/曲面细分，面向 DXVK",
+   "companion": [],
+   "filters": {
+    "default": [
+     "PanVK"
+    ]
+   },
+   "updated_at": "2026-09-27T20:57:19Z"
+  },
+  {
+   "id": "apexspan-panvk-g57",
+   "name": "ApexSpan Mesa PanVK G57",
+   "owner": "apexspan-svg",
+   "repo": "mesa-panvk-mali-g57",
+   "api_url": "https://api.github.com/repos/apexspan-svg/mesa-panvk-mali-g57/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v9"
+   ],
+   "gpu_models": [
+    "G57"
+   ],
+   "driver_type": "panvk",
+   "frontend": "kbase",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 1,
+   "description": "面向 Mali-G57 MC2（天玑 6300）的实验性 PanVK，支持 Termux:X11 硬件加速",
+   "notes": "跑在 kbase JM 接口上，无需 panfrost.ko，适合 Termux 用户",
+   "companion": [],
+   "filters": {
+    "default": [
+     "PanVK"
+    ]
+   },
+   "updated_at": "2026-10-01T09:51:44Z"
+  },
+  {
+   "id": "msx-g615-eden",
+   "name": "msx94302 PanVK Mali-G615 (eden 专用)",
+   "owner": "msx94302-ops",
+   "repo": "Panvk-Mali-G615",
+   "api_url": "https://api.github.com/repos/msx94302-ops/Panvk-Mali-G615/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G615"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "eden",
+   "package_format": "adpkg",
+   "maturity": "beta",
+   "stars": 1,
+   "description": "Mali-G615 eden 专用 PanVK（mesa 26.3.0-devel，含 kraid/adaptive-tiler/fast-submit 补丁）",
+   "notes": "实测 zip 含 meta.json + libvulkan_panfrost.so 合规；release 命名 EDEN-EMULATOR；活跃（2026-10-07）",
+   "companion": [],
+   "filters": {
+    "default": [
+     "PanVK",
+     "G615",
+     "EDEN"
+    ]
+   },
+   "updated_at": "2026-10-10T21:28:37Z"
+  },
+  {
+   "id": "pandxvk-lloyd262",
+   "name": "panDXVK Lloyd262 (gplasync)",
+   "owner": "isygold",
+   "repo": "panDXVK-lloyd262",
+   "api_url": "https://api.github.com/repos/isygold/panDXVK-lloyd262/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [],
+   "gpu_models": [],
+   "driver_type": "component",
+   "component_type": "DXVK",
+   "frontend": null,
+   "target_emulator": "winlator",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 1,
+   "description": "panDXVK BC→ASTC 纹理转码移植到 DXVK v2.4.1 + gplasync（Lloyd GTA V 修复个人构建）",
+   "notes": "个人实验构建，Mali 用户遇到 GTA V 等特定问题时可对比 panDXVK 本体；与 pandxvk 同属 DXVK 组件源自动合并",
+   "companion": [],
+   "filters": {
+    "default": [
+     "zip"
+    ]
+   },
+   "updated_at": "2026-10-08T13:57:15Z"
+  },
+  {
+   "id": "minegraph-panvk",
+   "name": "MineGraph PanVK (G610/G615/G710/G715/G720)",
+   "owner": "MineGraph-bilibili",
+   "repo": "panvk-Android",
+   "api_url": "https://api.github.com/repos/MineGraph-bilibili/panvk-Android/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "valhall-v10"
+   ],
+   "gpu_models": [
+    "G610",
+    "G615",
+    "G710",
+    "G715",
+    "G720"
+   ],
+   "driver_type": "panvk",
+   "frontend": "CSF",
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "beta",
+   "stars": 16,
+   "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
+   "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
+   "companion": [],
+   "filters": {
+    "default": [
+     "panvk",
+     "panfrost"
+    ]
+   },
+   "updated_at": "2026-10-10T14:09:26Z"
+  },
+  {
+   "id": "alexsanz-sd865",
+   "name": "AlexSanz Turnip SD865 Z (Adreno 650)",
+   "owner": "AlexSanz0902",
+   "repo": "turnip-sd865-z",
+   "api_url": "https://api.github.com/repos/AlexSanz0902/turnip-sd865-z/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx"
+   ],
+   "gpu_models": [
+    "650"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 17,
+   "description": "骁龙 865 / Adreno 650 专用 Turnip（Mesa main bffd91947efc），Switch 模拟优化，社区 Z 构建",
+   "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip",
+     "SD865"
+    ]
+   },
+   "updated_at": "2026-10-13T07:23:29Z"
+  },
+  {
+   "id": "weab-turnip-ci",
+   "name": "Weab-chan Turnip CI",
+   "owner": "Weab-chan",
+   "repo": "freedreno_turnip-CI",
+   "description": "Weab-chan Turnip 驱动 CI 构建（每两周 GitHub Actions 自动构建 adrenotool 包）",
+   "api_url": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx"
+   ],
+   "gpu_models": [],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "ci",
+   "stars": 252,
+   "notes": "每两周 GitHub Actions 自动构建 adrenotool 包；最后一次 push 2025-12-25（CI 周期运行）",
+   "companion": [],
+   "filters": {
+    "default": [
+     "Turnip"
+    ]
+   },
+   "updated_at": "2025-12-25T00:00:00Z"
+  },
+  {
+   "id": "faux123-pixel7",
+   "name": "faux123 PanVK (Mali-G710 Pixel7)",
+   "owner": "faux123",
+   "repo": "panvk-faux123-driver-pixel7",
+   "description": "Pixel 7 系列 Mali-G710 PanVK 驱动（faux123 系列，adpkg 格式）",
+   "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-pixel7/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "G710",
+    "G715"
+   ],
+   "gpu_models": [
+    "g710",
+    "g715"
+   ],
+   "driver_type": "panvk",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 1,
+   "notes": "faux123 全家桶之一：Ace/RG556/RP4Pro/Pixel7 按 GPU 型号分发；活跃（2026-10-13 v0.10.0）",
+   "companion": [
+    "faux123-ace",
+    "faux123-rg556",
+    "faux123-rp4pro"
+   ],
+   "filters": {
+    "default": []
+   },
+   "updated_at": "2026-10-13T00:00:00Z"
+  },
+  {
+   "id": "faux123-rp4pro",
+   "name": "faux123 PanVK (Mali-G77 RP4Pro)",
+   "owner": "faux123",
+   "repo": "panvk-faux123-driver-rp4pro",
+   "description": "Retroid Pocket 4 Pro Mali-G77 PanVK 驱动（faux123 系列）",
+   "api_url": "https://api.github.com/repos/faux123/panvk-faux123-driver-rp4pro/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "G77"
+   ],
+   "gpu_models": [
+    "g77"
+   ],
+   "driver_type": "panvk",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "adpkg",
+   "maturity": "stable",
+   "stars": 5,
+   "notes": "按 GPU 型号分发；活跃（2026-10-10 v0.15.0）",
+   "companion": [
+    "faux123-ace",
+    "faux123-rg556",
+    "faux123-pixel7"
+   ],
+   "filters": {
+    "default": []
+   },
+   "updated_at": "2026-10-10T00:00:00Z"
+  },
+  {
+   "id": "lukevalen-kbase",
+   "name": "LukeValen PanVK kbase (通用)",
+   "owner": "LukeValen",
+   "repo": "panvk-kbase-android",
+   "description": "LukeValen 通用 kbase PanVK（Switch 模拟安全版：Eden/Lemon 双包）",
+   "api_url": "https://api.github.com/repos/LukeValen/panvk-kbase-android/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "G52",
+    "G57",
+    "G610",
+    "G615",
+    "G710",
+    "G720"
+   ],
+   "gpu_models": [
+    "g52",
+    "g57",
+    "g610",
+    "g615",
+    "g710",
+    "g720"
+   ],
+   "driver_type": "panvk",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 7,
+   "notes": "panvk-rc3-switch-safety2 2026-10-12，Eden/Lemon 模拟器专用安全构建",
+   "companion": [
+    "lukevalen-g52"
+   ],
+   "filters": {
+    "default": []
+   },
+   "updated_at": "2026-10-12T00:00:00Z"
+  },
+  {
+   "id": "guna-panvk-kbase",
+   "name": "GunaCharanTeja PanVK kbase (CI)",
+   "owner": "GunaCharanTeja",
+   "repo": "panvk-kbase-android",
+   "description": "GunaCharanTeja PanVK kbase CI 构建（配合 WinlatorMali，Actions 每夜构建）",
+   "api_url": "https://api.github.com/repos/GunaCharanTeja/panvk-kbase-android/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "G52",
+    "G57",
+    "G610",
+    "G615",
+    "G710",
+    "G720"
+   ],
+   "gpu_models": [
+    "g52",
+    "g57",
+    "g610",
+    "g615",
+    "g710",
+    "g720"
+   ],
+   "driver_type": "panvk",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "ci",
+   "stars": 21,
+   "notes": "活跃（2026-10-14）；无 Release，APK/zip 从 Actions 产物获取",
+   "companion": [
+    "guna-winlatormali"
+   ],
+   "filters": {
+    "default": []
+   },
+   "updated_at": "2026-10-14T00:00:00Z"
+  },
+  {
+   "id": "ghaelv-turnip-lemon-ade",
+   "name": "Ghael-V Turnip Lemon-Ade",
+   "owner": "Ghael-V",
+   "repo": "Turnip-Lemon-Ade",
+   "description": "Ghael-V Turnip 分支（Lemon 模拟器专用优化，含 Ade 修复）",
+   "api_url": "https://api.github.com/repos/Ghael-V/Turnip-Lemon-Ade/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx",
+    "8xx"
+   ],
+   "gpu_models": [
+    "660",
+    "690",
+    "740",
+    "750",
+    "830",
+    "840"
+   ],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "experimental",
+   "stars": 4,
+   "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
+   "companion": [
+    "ghaelv-lemon-project"
+   ],
+   "filters": {
+    "default": []
+   },
+   "updated_at": "2026-10-13T00:00:00Z"
+  },
+  {
+   "id": "zenith-panprobe",
+   "name": "PanProbe (Mali 驱动探测)",
+   "owner": "zenithblue-oss",
+   "repo": "panprobe",
+   "api_url": "https://api.github.com/repos/zenithblue-oss/panprobe/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "g5xx",
+    "g6xx",
+    "g7xx"
+   ],
+   "gpu_models": [],
+   "driver_type": "testtool",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "apk",
+   "maturity": "experimental",
+   "stars": 2,
+   "description": "PanProbe：Vulkan 信息与设备端驱动测试（PanVK Kbase Mali 驱动自检，含 sha256 与日志上传，驱动测试参考）",
+   "notes": "驱动功能探测参考工具（实例/扩展/队列族采集）",
+   "companion": "zenithblue-oss/panplay",
+   "filters": [],
+   "updated_at": "2026-10-13T00:00:00Z"
+  },
+  {
+   "id": "zenith-panplay",
+   "name": "PanPlay (Mali 游戏启动器)",
+   "owner": "zenithblue-oss",
+   "repo": "panplay",
+   "api_url": "https://api.github.com/repos/zenithblue-oss/panplay/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "g5xx",
+    "g6xx",
+    "g7xx"
+   ],
+   "gpu_models": [],
+   "driver_type": "testtool",
+   "frontend": "winlator",
+   "target_emulator": "generic",
+   "package_format": "apk",
+   "maturity": "experimental",
+   "stars": 9,
+   "description": "PanPlay：Android Windows 游戏启动器（Wine/FEX/DXVK + PanVK Kbase Mali 驱动，内嵌容器内驱动验证）",
+   "notes": "容器内驱动性能验证参考（自定义驱动完整运行路径）",
+   "companion": "zenithblue-oss/panprobe",
+   "filters": [],
+   "updated_at": "2026-10-12T00:00:00Z"
+  },
+  {
+   "id": "faux123-gamenative-mali",
+   "name": "GameNative-Mali (原生游戏前端)",
+   "owner": "faux123",
+   "repo": "GameNative-Mali",
+   "api_url": "https://api.github.com/repos/faux123/GameNative-Mali/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "g5xx",
+    "g6xx",
+    "g7xx"
+   ],
+   "gpu_models": [],
+   "driver_type": "testtool",
+   "frontend": "gamenative",
+   "target_emulator": "generic",
+   "package_format": "apk",
+   "maturity": "experimental",
+   "stars": 5,
+   "description": "GameNative-Mali：Steam/Epic/GOG/Amazon 原生 PC 游戏集成（Mali 驱动渲染环境）",
+   "notes": "faux123 出品，与 panvk 驱动家族同作者",
+   "companion": "faux123/panvk-kbase-android",
+   "filters": [],
+   "updated_at": "2026-10-11T00:00:00Z"
+  },
+  {
+   "id": "gunacharan-winlatormali",
+   "name": "WinlatorMali (Mali 容器运行时)",
+   "owner": "GunaCharanTeja",
+   "repo": "WinlatorMali",
+   "api_url": "https://api.github.com/repos/GunaCharanTeja/WinlatorMali/releases",
+   "gpu_vendor": "mali",
+   "gpu_arch": [
+    "g5xx",
+    "g6xx",
+    "g7xx"
+   ],
+   "gpu_models": [],
+   "driver_type": "testtool",
+   "frontend": "winlator",
+   "target_emulator": "generic",
+   "package_format": "apk",
+   "maturity": "beta",
+   "stars": 446,
+   "description": "WinlatorMali：Winlator Mali 分支（Wine + Box64 + PanVK Kbase，社区配置仓库同作者）",
+   "notes": "与 Winlator-Mali-Community-Configs 配置仓库同源",
+   "companion": "GunaCharanTeja/panvk-kbase-android",
+   "filters": [],
+   "updated_at": "2026-10-04T00:00:00Z"
+  }
+ ]
 }
