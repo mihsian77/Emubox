@@ -2,6 +2,9 @@
     <string name="alpha_version">Alpha v%1$s</string>
     <string name="back">Back</string>
     <string name="rescan_local">Rescan local files</string>
+    <string name="scan_folder_prompt_title">Scan folder not authorized</string>
+    <string name="scan_folder_prompt_desc">Authorize the EmuBox download folder so the library can read files directly from disk (covers files from earlier versions / after app updates).</string>
+    <string name="scan_folder_authorize">Authorize download folder</string>
     <string name="refresh">Refresh</string>
     <string name="donate">Donate</string>
     <string name="downloads">Downloads</string>
