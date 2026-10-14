@@ -20,6 +20,7 @@ enum class ColorTheme {
 }
 
 private const val PREFS_SETTINGS = "emu_hub_settings"
+private const val KEY_STORAGE_PERMISSION_ASKED = "storage_permission_asked"
 private const val KEY_DOWNLOAD_FOLDER_URI = "download_folder_uri"
 private const val KEY_THEME_MODE = "theme_mode"
 private const val KEY_COLOR_THEME = "color_theme"
@@ -38,6 +39,12 @@ object SettingsManager {
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREFS_SETTINGS, Context.MODE_PRIVATE)
+    }
+
+    fun isStoragePermissionAsked(): Boolean = prefs.getBoolean(KEY_STORAGE_PERMISSION_ASKED, false)
+
+    fun setStoragePermissionAsked() {
+        prefs.edit().putBoolean(KEY_STORAGE_PERMISSION_ASKED, true).apply()
     }
 
     fun getDownloadFolderUri(): String? = prefs.getString(KEY_DOWNLOAD_FOLDER_URI, null)
