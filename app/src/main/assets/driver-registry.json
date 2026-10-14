@@ -1739,7 +1739,9 @@
    "stars": 2,
    "description": "PanProbe：Vulkan 信息与设备端驱动测试（PanVK Kbase Mali 驱动自检，含 sha256 与日志上传，驱动测试参考）",
    "notes": "驱动功能探测参考工具（实例/扩展/队列族采集）",
-   "companion": "zenithblue-oss/panplay",
+   "companion": [
+    "zenithblue-oss/panplay"
+   ],
    "filters": [],
    "updated_at": "2026-10-13T00:00:00Z"
   },
@@ -1764,7 +1766,9 @@
    "stars": 9,
    "description": "PanPlay：Android Windows 游戏启动器（Wine/FEX/DXVK + PanVK Kbase Mali 驱动，内嵌容器内驱动验证）",
    "notes": "容器内驱动性能验证参考（自定义驱动完整运行路径）",
-   "companion": "zenithblue-oss/panprobe",
+   "companion": [
+    "zenithblue-oss/panprobe"
+   ],
    "filters": [],
    "updated_at": "2026-10-12T00:00:00Z"
   },
@@ -1789,7 +1793,9 @@
    "stars": 5,
    "description": "GameNative-Mali：Steam/Epic/GOG/Amazon 原生 PC 游戏集成（Mali 驱动渲染环境）",
    "notes": "faux123 出品，与 panvk 驱动家族同作者",
-   "companion": "faux123/panvk-kbase-android",
+   "companion": [
+    "faux123/panvk-kbase-android"
+   ],
    "filters": [],
    "updated_at": "2026-10-11T00:00:00Z"
   },
@@ -1814,7 +1820,9 @@
    "stars": 446,
    "description": "WinlatorMali：Winlator Mali 分支（Wine + Box64 + PanVK Kbase，社区配置仓库同作者）",
    "notes": "与 Winlator-Mali-Community-Configs 配置仓库同源",
-   "companion": "GunaCharanTeja/panvk-kbase-android",
+   "companion": [
+    "GunaCharanTeja/panvk-kbase-android"
+   ],
    "filters": [],
    "updated_at": "2026-10-04T00:00:00Z"
   }
