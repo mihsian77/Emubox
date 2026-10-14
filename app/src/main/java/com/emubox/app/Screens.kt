@@ -68,7 +68,10 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
     }
 
     val active = DownloadsManager.activeDownloads
+    // 渲染层去重兜底：MediaStore content URI 与磁盘绝对路径可能形成两条同文件
+    // 记录（id 不同但 fileName+subPath 相同），按文件名+子路径只显示一条
     val completed = DownloadsManager.completedDownloads
+        .distinctBy { it.fileName.lowercase() to it.subPath }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val completedBytes = completed.sumOf { it.sizeBytes }
@@ -2137,7 +2140,8 @@ fun ComponentGuideScreen(
     onBack: () -> Unit,
     adrenoSeries: String?,
     initialTopicId: String? = null,
-    driverMode: Boolean = false
+    driverMode: Boolean = false,
+    deviceInfo: DeviceInfo? = null
 ) {
     BackHandler { onBack() }
 
@@ -2225,7 +2229,7 @@ fun ComponentGuideScreen(
             }
 
             item(key = "guide_quick_pick") {
-                QuickPickGuideCard(adrenoSeries, driverMode)
+                QuickPickGuideCard(adrenoSeries, driverMode, deviceInfo)
             }
 
             item(key = "guide_notice") {
@@ -2269,7 +2273,7 @@ fun ComponentGuideScreen(
 }
 
 @Composable
-private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean) {
+private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean, deviceInfo: DeviceInfo? = null) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(26.dp),
@@ -2294,14 +2298,68 @@ private fun QuickPickGuideCard(adrenoSeries: String?, driverMode: Boolean) {
                 }
             }
 
+            // 智能设备识别：当前设备型号 + SoC 品牌徽章（文字+品牌色，避免官方 logo 版权）
+            if (deviceInfo != null) {
+                val socName = deviceInfo.socName
+                val brand = if (socName.isNotBlank()) detectSocBrand(socName)
+                    else detectGpuSocBrand(deviceInfo.gpuModel, deviceInfo.gpuVendor)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(brand.color).copy(alpha = 0.14f))
+                            .padding(horizontal = 10.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            brand.label,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Color(brand.color)
+                        )
+                    }
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        listOf(deviceInfo.deviceBrand, deviceInfo.deviceModel)
+                            .filter { it.isNotBlank() }.distinct().joinToString(" ")
+                            .ifBlank { socName.ifBlank { "—" } },
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+
             // 驱动指南只列驱动相关快速选择，避免与组件指南内容重复
-            QuickPickRow(appString(R.string.gpu_driver), appString(R.string.quick_gpu))
-            if (!driverMode) {
-                QuickPickRow("DirectX 8–11", appString(R.string.quick_dx8_11))
-                QuickPickRow("DirectX 12", appString(R.string.quick_dx12))
-                QuickPickRow("Direct3D 3–7", appString(R.string.quick_d3d3_7))
-                QuickPickRow(appString(R.string.windows_runtime), appString(R.string.quick_windows))
-                QuickPickRow(appString(R.string.x86_64_arm64), appString(R.string.quick_cpu))
+            // 按 GPU 厂商给驱动推荐：Adreno→Turnip、Mali→PanVK、PowerVR→厂商/实验
+            val vendor = deviceInfo?.gpuVendor
+            if (driverMode) {
+                when (vendor) {
+                    GpuVendor.ADRENO -> {
+                        QuickPickRow(appString(R.string.gpu_driver), appString(R.string.quick_gpu))
+                        QuickPickRow("Turnip (Mesa)", "Adreno 专用开源驱动，推荐首选")
+                        QuickPickRow("AdrenoTools", "驱动包实测：加载/扩展/实例对比")
+                    }
+                    GpuVendor.MALI -> {
+                        QuickPickRow("PanVK", "Mali 专用 Vulkan 驱动（实验）")
+                        QuickPickRow("厂商驱动", "优先使用系统自带 Mali 驱动")
+                    }
+                    GpuVendor.POWERVR -> {
+                        QuickPickRow("厂商驱动", "PowerVR 无开源驱动，用系统自带")
+                    }
+                    else -> {
+                        QuickPickRow(appString(R.string.gpu_driver), appString(R.string.quick_gpu))
+                        QuickPickRow("Turnip (Mesa)", "Adreno 专用开源驱动，推荐首选")
+                    }
+                }
+            } else {
+                QuickPickRow(appString(R.string.gpu_driver), appString(R.string.quick_gpu))
+                if (!driverMode) {
+                    QuickPickRow("DirectX 8–11", appString(R.string.quick_dx8_11))
+                    QuickPickRow("DirectX 12", appString(R.string.quick_dx12))
+                    QuickPickRow("Direct3D 3–7", appString(R.string.quick_d3d3_7))
+                    QuickPickRow(appString(R.string.windows_runtime), appString(R.string.quick_windows))
+                    QuickPickRow(appString(R.string.x86_64_arm64), appString(R.string.quick_cpu))
+                }
             }
         }
     }
@@ -2479,7 +2537,7 @@ private fun GuideDetailBlock(label: String, text: String, icon: ImageVector) {
 
 /** 设备指南：解释设备信息字段、跑分口径、SoC 知识库与驱动路线推荐 */
 @Composable
-private fun DeviceGuideDialog(onDismiss: () -> Unit) {
+private fun DeviceGuideDialog(onDismiss: () -> Unit, deviceInfo: DeviceInfo? = null) {
     Dialog(onDismissRequest = onDismiss) {
         Card(
             shape = RoundedCornerShape(24.dp),
@@ -2499,7 +2557,49 @@ private fun DeviceGuideDialog(onDismiss: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                HorizontalDivider()
+                // 智能：当前设备摘要卡（品牌/型号 + SoC 品牌徽章）
+                if (deviceInfo != null) {
+                    val socName = deviceInfo.socName
+                    val brand = if (socName.isNotBlank()) detectSocBrand(socName)
+                        else detectGpuSocBrand(deviceInfo.gpuModel, deviceInfo.gpuVendor)
+                    Surface(
+                        shape = RoundedCornerShape(16.dp),
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text(
+                                listOf(deviceInfo.deviceBrand, deviceInfo.deviceModel)
+                                    .filter { it.isNotBlank() }.distinct().joinToString(" ")
+                                    .ifBlank { socName.ifBlank { "—" } },
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Box(
+                                    modifier = Modifier
+                                        .clip(RoundedCornerShape(8.dp))
+                                        .background(Color(brand.color).copy(alpha = 0.14f))
+                                        .padding(horizontal = 10.dp, vertical = 4.dp)
+                                ) {
+                                    Text(brand.label, style = MaterialTheme.typography.labelMedium, color = Color(brand.color))
+                                }
+                                Spacer(Modifier.width(8.dp))
+                                Text(
+                                    listOfNotNull(
+                                        socName.ifBlank { null },
+                                        deviceInfo.gpuModel.takeIf { it.isNotBlank() },
+                                        deviceInfo.ram.takeIf { it.isNotBlank() }
+                                    ).joinToString(" · ").ifBlank { "—" },
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                        }
+                    }
+                    HorizontalDivider()
+                }
                 GuideDetailBlock(
                     appString(R.string.device_guide_vulkan),
                     appString(R.string.device_guide_vulkan_desc),
@@ -2984,6 +3084,13 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     DeviceStat(
+                        icon = Icons.Default.Phone,
+                        label = appString(R.string.device_label),
+                        value = listOf(deviceInfo.deviceBrand, deviceInfo.deviceModel)
+                            .filter { it.isNotBlank() }.distinct().joinToString(" ").ifBlank { "—" },
+                        modifier = Modifier.weight(1f)
+                    )
+                    DeviceStat(
                         icon = Icons.Default.Android,
                         label = appString(R.string.android_label),
                         value = deviceInfo.androidVersion,
@@ -2995,12 +3102,43 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         value = "Adreno ${deviceInfo.adrenoSeries}",
                         modifier = Modifier.weight(1f)
                     )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     DeviceStat(
                         icon = Icons.Default.Storage,
                         label = appString(R.string.ram_label),
                         value = deviceInfo.ram,
                         modifier = Modifier.weight(1f)
                     )
+                    DeviceStat(
+                        icon = Icons.Default.Info,
+                        label = appString(R.string.soc_label),
+                        value = deviceInfo.socName.ifBlank { "—" },
+                        modifier = Modifier.weight(2f)
+                    )
+                }
+                // SoC 品牌徽章（文字+品牌色，避免官方 logo 版权）
+                Spacer(Modifier.height(8.dp))
+                val socBrand = detectSocBrand(deviceInfo.socName)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(socBrand.color).copy(alpha = 0.12f))
+                            .padding(horizontal = 10.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            "${socBrand.label} · ${deviceInfo.socName}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Color(socBrand.color),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             }
         }
@@ -3477,7 +3615,7 @@ fun TurnipDriverSection(
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
                     currentCategory = currentCategory,
-                    avatarUrl = githubOwnerAvatar(currentSource.apiUrl),
+                    avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) },
                     currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
                         .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
@@ -3502,7 +3640,8 @@ fun TurnipDriverSection(
                 releases = releases,
                 selectionKey = selectionKey,
                 onDownload = onDownload,
-                buttonLabel = appString(R.string.download_turnip)
+                buttonLabel = appString(R.string.download_turnip),
+                avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
             )
             }
             }
@@ -4074,7 +4213,7 @@ fun DriverCardDynamic(
                     currentExperimental = currentSource.experimental,
                     currentArchived = currentSource.archived,
                     currentCategory = "general",
-                    avatarUrl = githubOwnerAvatar(currentSource.apiUrl),
+                    avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) },
                     currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
                         .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
                     options = sources.map { source ->
@@ -4099,7 +4238,8 @@ fun DriverCardDynamic(
                 releases = releases,
                 selectionKey = selectionKey,
                 onDownload = onDownload,
-                buttonLabel = appString(R.string.download_type, title)
+                buttonLabel = appString(R.string.download_type, title),
+                avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
             )
             }
             }
@@ -4224,7 +4364,8 @@ private fun DriverReleasePicker(
     releases: List<GithubRelease>,
     selectionKey: String,
     onDownload: (GithubRelease, GithubAsset) -> Unit,
-    buttonLabel: String
+    buttonLabel: String,
+    avatarUrl: String? = null
 ) {
     val context = LocalContext.current
     val selectVersionFileMessage = appString(R.string.select_version_file)
@@ -4317,6 +4458,7 @@ private fun DriverReleasePicker(
                     release = release,
                     isSelected = release.tagName == selectedRelease?.tagName,
                     isLatest = release.tagName == latestRelease?.tagName,
+                    avatarUrl = avatarUrl,
                     onClick = {
                         selectedTag = release.tagName
                         SettingsManager.setSelectedReleaseTag(selectionKey, release.tagName)
@@ -4333,6 +4475,7 @@ private fun DriverReleasePicker(
                     release = release,
                     isSelected = release.tagName == selectedRelease?.tagName,
                     isLatest = release.tagName == latestRelease?.tagName,
+                    avatarUrl = avatarUrl,
                     onClick = {
                         selectedTag = release.tagName
                         SettingsManager.setSelectedReleaseTag(selectionKey, release.tagName)
@@ -4496,7 +4639,8 @@ private fun DriverVersionCard(
     release: GithubRelease,
     isSelected: Boolean,
     isLatest: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    avatarUrl: String? = null
 ) {
     val totalSize = release.assets.sumOf { it.sizeBytes }
     Card(
@@ -4519,6 +4663,15 @@ private fun DriverVersionCard(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
+                if (avatarUrl != null) {
+                    AsyncImage(
+                        model = avatarUrl,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp).clip(RoundedCornerShape(5.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(Modifier.width(6.dp))
+                }
                 Text(
                     text = release.tagName,
                     style = MaterialTheme.typography.labelLarge,
@@ -4582,7 +4735,8 @@ private fun ComponentVersionCard(
     sourceName: String,
     isSelected: Boolean,
     isLatest: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    avatarUrl: String? = null
 ) {
     Card(
         modifier = Modifier
@@ -4604,6 +4758,15 @@ private fun ComponentVersionCard(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
+                if (avatarUrl != null) {
+                    AsyncImage(
+                        model = avatarUrl,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp).clip(RoundedCornerShape(5.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(Modifier.width(6.dp))
+                }
                 Text(
                     text = component.verName,
                     style = MaterialTheme.typography.labelMedium,
@@ -4835,6 +4998,7 @@ fun ComponentSection(
                                     ComponentVersionCard(
                                         component = component,
                                         sourceName = currentSource.name,
+                                        avatarUrl = githubOwnerAvatar(currentSource.manifestUrl),
                                         isSelected = component.verName == selected?.verName,
                                         isLatest = component.verName == latestComponent?.verName,
                                         onClick = {
@@ -4852,6 +5016,7 @@ fun ComponentSection(
                                     ComponentVersionCard(
                                         component = component,
                                         sourceName = currentSource.name,
+                                        avatarUrl = githubOwnerAvatar(currentSource.manifestUrl),
                                         isSelected = component.verName == selected?.verName,
                                         isLatest = component.verName == latestComponent?.verName,
                                         onClick = {
@@ -4955,7 +5120,7 @@ fun DeviceScreen(
     var showDeviceGuide by remember { mutableStateOf(false) }
 
     if (showDeviceGuide) {
-        DeviceGuideDialog(onDismiss = { showDeviceGuide = false })
+        DeviceGuideDialog(onDismiss = { showDeviceGuide = false }, deviceInfo = deviceInfo)
     }
 
     LaunchedEffect(Unit) {
@@ -5305,10 +5470,12 @@ private fun GpuBenchmarkCard(
                 }
 
                 error != null -> {
+                    // 环境受限（SELinux/容器）：不再反复红字报失败，改为引导模拟器内验证
+                    var showEnvGuide by remember { mutableStateOf(false) }
                     Text(
                         appString(R.string.benchmark_failed),
                         style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.error
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                     Spacer(Modifier.height(4.dp))
                     Text(
@@ -5317,8 +5484,20 @@ private fun GpuBenchmarkCard(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(Modifier.height(12.dp))
-                    Button(onClick = onRun) {
-                        Text(appString(R.string.benchmark_start))
+                    Button(onClick = { showEnvGuide = true }) {
+                        Text(appString(R.string.benchmark_guide_btn))
+                    }
+                    if (showEnvGuide) {
+                        AlertDialog(
+                            onDismissRequest = { showEnvGuide = false },
+                            title = { Text(appString(R.string.benchmark_guide_btn)) },
+                            text = { Text(appString(R.string.benchmark_env_guide)) },
+                            confirmButton = {
+                                Button(onClick = { showEnvGuide = false }) {
+                                    Text(appString(R.string.confirm_ok))
+                                }
+                            }
+                        )
                     }
                 }
 
@@ -5691,6 +5870,27 @@ private fun DriverDetectionList(
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        // 检测覆盖面说明：明确 AdrenoTools 实测的能力边界
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(18.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+        ) {
+            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text(
+                    appString(R.string.detection_coverage_title),
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Text(
+                    appString(R.string.detection_coverage_desc),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+
         downloadedDrivers.forEach { download ->
             val result = detectionResults[download.id]
             val isDetecting = detectingId == download.id
@@ -6330,6 +6530,16 @@ private fun DriverNewsCard(
                         modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        val ownerAvatar = githubOwnerAvatar(item.apiUrl)
+                        if (ownerAvatar != null) {
+                            AsyncImage(
+                                model = ownerAvatar,
+                                contentDescription = null,
+                                modifier = Modifier.size(20.dp).clip(CircleShape),
+                                contentScale = ContentScale.Crop
+                            )
+                            Spacer(Modifier.width(6.dp))
+                        }
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(6.dp))
@@ -7333,6 +7543,8 @@ private fun RuntimeComponentCard(
     onDownload: (RuntimeComponent) -> Unit
 ) {
     val context = LocalContext.current
+    // 来源 GitHub 作者头像（从下载 URL 提取 owner，无则省略）
+    val avatarUrl = remember(component) { component.primaryFile?.url?.let { githubOwnerAvatar(it) } }
     // 已下载态：与 downloadRuntimeLibrary 相同命名/路径规则
     val downloaded = remember(component) {
         val f = component.primaryFile
@@ -7353,6 +7565,15 @@ private fun RuntimeComponentCard(
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
+                if (avatarUrl != null) {
+                    AsyncImage(
+                        model = avatarUrl,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp).clip(CircleShape),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(Modifier.width(8.dp))
+                }
                 Text(
                     text = component.name,
                     style = MaterialTheme.typography.titleSmall,
@@ -8925,7 +9146,7 @@ private fun EmulatorListRow(
                         style = MaterialTheme.typography.titleSmall,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.weight(1f, fill = false)
+                        modifier = Modifier.weight(1f)
                     )
                     if (entry.official) {
                         Spacer(Modifier.width(4.dp))
@@ -9059,7 +9280,7 @@ private fun EmulatorDetailDialog(
                         style = MaterialTheme.typography.titleLarge,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.weight(1f, fill = false)
+                        modifier = Modifier.weight(1f)
                     )
                     if (entry.official) {
                         Spacer(Modifier.width(6.dp))

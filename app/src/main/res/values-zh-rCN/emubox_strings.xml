@@ -497,6 +497,9 @@
 
     <!-- GPU 性能跑分 -->
     <string name="benchmark_title">GPU 性能跑分</string>
+    <string name="confirm_ok">好的</string>
+    <string name="detection_coverage_title">检测覆盖面说明</string>
+    <string name="detection_coverage_desc">实测检测支持标准 AdrenoTools 结构包（meta.json + Turnip/PanVK .so）。厂商系统提取驱动（VENDOR_SYSTEM）需 root 系统级安装，无法在此实测；模拟器专属结构（XR 头显版 / GameHub 定制）不在检测范围，请在对应模拟器内验证。</string>
     <string name="benchmark_start">开始测试</string>
     <string name="benchmark_running">测试中…</string>
     <string name="benchmark_total_score">总分</string>
@@ -507,6 +510,16 @@
     <string name="benchmark_cpu_int">CPU 整数吞吐（多线程）</string>    <string name="benchmark_device">设备</string>
     <string name="benchmark_note">测试 GPU 内存带宽（填充 + 拷贝），用于对比不同驱动的性能差异。</string>
     <string name="benchmark_failed">跑分失败</string>
+    <string name="benchmark_guide_btn">模拟器内验证指南</string>
+    <string name="benchmark_env_guide">App 进程受系统环境限制（SELinux/容器），无法在此稳定提交 GPU 基准负载。
+
+驱动加载、设备识别、扩展对比都已可用——性能数字请在模拟器环境内验证（Winlator / Eden）。
+
+模拟器内验证步骤：
+1. 在 Winlator/Eden 中照常安装驱动包
+2. 在模拟器设置中启用自定义驱动
+3. 在模拟器内运行游戏或 GPU 测试应用
+4. 对比不同驱动下的帧率/帧时间稳定性</string>
 
     <!-- 驱动检测 -->
     <string name="driver_detection_title">已下载驱动检测</string>
@@ -521,6 +534,10 @@
     <string name="unknown_gpu">未知 GPU</string>
     <string name="chip_arch">架构</string>
     <string name="chip_ram">内存</string>
+    <string name="device_label">设备</string>
+    <string name="device_brand_label">品牌</string>
+    <string name="soc_label">处理器</string>
+    <string name="soc_badge">%1$s</string>
     <string name="chip_android">安卓</string>
     <string name="vulkan_heap">堆 %1$d</string>
     <string name="vulkan_memory_type">类型 %1$d</string>
