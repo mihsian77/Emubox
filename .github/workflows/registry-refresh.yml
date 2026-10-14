@@ -27,15 +27,19 @@ jobs:
           python3 scripts/refresh-ranking.py
           python3 scripts/refresh-emulator-registry.py
 
+      - name: 刷新配置推荐数据（聚合两社区仓库）
+        run: |
+          python3 scripts/aggregate-recipes.py --clone
+
       - name: 有变化则提交
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! git diff --quiet -- driver-registry.json catalog/catalog.json emulator-ranking.json emulator-registry.json; then
+          if ! git diff --quiet -- driver-registry.json catalog/catalog.json emulator-ranking.json emulator-registry.json app/src/main/assets/winlator-recipes.json; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add driver-registry.json catalog/catalog.json emulator-ranking.json emulator-registry.json
-            git commit -m "chore: 每日刷新驱动/模拟器/排行数据（更新时间/星标/全量 releases）"
+            git add driver-registry.json catalog/catalog.json emulator-ranking.json emulator-registry.json app/src/main/assets/winlator-recipes.json
+            git commit -m "chore: 每日刷新驱动/模拟器/排行/配置推荐数据"
             # checkout 默认无推送权限，显式带 token 推送
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             git push origin HEAD:main
