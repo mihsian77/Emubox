@@ -4427,6 +4427,51 @@ private fun DownloadPanelHeader(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+// ── 游戏支持能力评估（驱动实测 → 转译游戏分级）────────────────────
+data class GameSupportEval(val title: String, val level: String, val note: String)
+
+/** 基于实测驱动类型 + 设备 GPU + 扩展数，评估 Windows(D3D) 与 Switch 游戏转译支持等级。
+ *  level: 基本能跑 / 可能能跑（缺条件）/ 跑不了
+ *  依据：DXVK 按 D3D API 的成熟度（D3D8-11 成熟、D3D12 仍多问题）、
+ *        PanVK/Turnip 驱动成熟度、Vulkan API 版本门槛。 */
+fun assessGameSupport(
+    driverType: String,          // turnip / panvk / qualcomm / system
+    isAdrenoDevice: Boolean,
+    isMaliDevice: Boolean,
+    extCount: Int,
+    apiVersion: String
+): List<GameSupportEval> {
+    val out = mutableListOf<GameSupportEval>()
+    val vk13 = apiVersion.startsWith("1.3") || apiVersion.startsWith("1.4")
+    val vk12 = apiVersion.startsWith("1.2") || vk13
+    val rich = extCount >= 60 // 扩展充足（含 VK_KHR_* 常用集）
+    when (driverType) {
+        "turnip" -> {
+            out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "DXVK 2.7.3 转译成熟，社区 171+ 配置验证")
+            out += if (rich) GameSupportEval("Windows D3D10/11（DXVK）", "基本能跑", "Turnip 扩展齐全，多数 3A 可玩")
+                else GameSupportEval("Windows D3D10/11（DXVK）", "可能能跑", "扩展不足，部分游戏缺 VK_KHR_* 特性")
+            out += GameSupportEval("Windows D3D12（VKD3D）", if (vk13) "可能能跑" else "可能能跑", if (vk13) "Vulkan 1.3 支持，转译问题仍多" else "需 Vulkan 1.2+，黑屏概率高")
+            out += if (isAdrenoDevice) GameSupportEval("Switch 游戏（Eden/Citron）", if (vk13 && rich) "基本能跑" else "可能能跑", "Eden 对 Adreno 优化，需完整 Vulkan 特性")
+                else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "GPU 非 Adreno，兼容性以实测为准")
+        }
+        "panvk" -> {
+            out += GameSupportEval("Windows D3D8/9（DXVK）", "可能能跑", "PanVK 在开发中，部分游戏异常")
+            out += GameSupportEval("Windows D3D10/11（DXVK）", "可能能跑", "依赖 PanVK 成熟度，建议社区配置")
+            out += GameSupportEval("Windows D3D12（VKD3D）", "跑不了", "PanVK 缺 D3D12 所需特性，暂不建议")
+            out += if (isMaliDevice) GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "PanVK 对 Mali 逐步支持，黑屏/贴图错误可能")
+                else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "非 Mali 设备装 PanVK 意义有限")
+        }
+        else -> { // qualcomm 系统驱动
+            out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "系统驱动稳定，DXVK 成熟")
+            out += GameSupportEval("Windows D3D10/11（DXVK）", "基本能跑", "高通官方 Vulkan 完整")
+            out += GameSupportEval("Windows D3D12（VKD3D）", if (vk13) "可能能跑" else "可能能跑", "Vulkan 1.3 支持则 D3D12 可尝试")
+            out += if (isAdrenoDevice) GameSupportEval("Switch 游戏（Eden/Citron）", "基本能跑", "系统驱动 + Eden 优化组合")
+                else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "视设备 GPU 支持而定")
+        }
+    }
+    return out
+}
+
 @Composable
 fun DriverCardDynamic(
     title: String,
@@ -6311,6 +6356,44 @@ private fun DriverDetectionList(
                                     Text(
                                         "拷贝 ${"%.1f".format(adtBench.copyBandwidthGBs)} GB/s",
                                         style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
+                                // 游戏支持评估：按驱动类型 + 设备 GPU + 实测扩展给出转译分级
+                                Spacer(Modifier.height(8.dp))
+                                // 驱动类型按实测 vendor 推导：0x5143=Adreno→Turnip、0x13B5=Mali→PanVK
+                                val evalDriverType = when (dev?.vendorId) {
+                                    0x5143 -> "turnip"
+                                    0x13B5 -> "panvk"
+                                    else -> "system"
+                                }
+                                val evals = assessGameSupport(
+                                    driverType = evalDriverType,
+                                    isAdrenoDevice = (systemDevice?.vendorId ?: 0) == 0x5143,
+                                    isMaliDevice = (systemDevice?.vendorId ?: 0) == 0x13B5,
+                                    extCount = dev?.extensions?.size ?: 0,
+                                    apiVersion = dev?.apiVersion.orEmpty()
+                                )
+                                Column(Modifier.padding(top = 4.dp)) {
+                                    Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                                    evals.forEach { e ->
+                                        Row(Modifier.padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
+                                            val color = when (e.level) {
+                                                "基本能跑" -> Color(0xFF2E7D32)
+                                                "可能能跑" -> Color(0xFFF9A825)
+                                                else -> Color(0xFFC62828)
+                                            }
+                                            Box(Modifier.size(8.dp).clip(CircleShape).background(color))
+                                            Spacer(Modifier.width(6.dp))
+                                            Text(e.title, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                            Spacer(Modifier.weight(1f))
+                                            Text(e.level, style = MaterialTheme.typography.bodySmall, color = color, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
+                                        }
+                                    }
+                                    Text(
+                                        evals.firstOrNull()?.note ?: "",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        maxLines = 2
                                     )
                                 }
                             } else {
