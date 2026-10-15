@@ -273,7 +273,7 @@ object SourceCatalogRepository {
                 filters = mapOf(
                     "6xx" to listOf("Turnip v26"),
                     "7xx" to listOf("Turnip v26"),
-                    "8xx" to listOf("Turnip Gen8")
+                    "8xx" to listOf("Turnip Gen8", "Rutabaga")
                 )
             ),
             TurnipSource(
