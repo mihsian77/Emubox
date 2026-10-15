@@ -3177,7 +3177,7 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(appString(R.string.your_device), style = MaterialTheme.typography.titleLarge)
                     Text(
-                        if (isLoading) appString(R.string.detecting_hardware) else deviceInfo?.gpuRenderer ?: appString(R.string.hardware_unavailable),
+                        if (isLoading) appString(R.string.detecting_hardware) else mapVendorDisplayName(deviceInfo?.gpuRenderer ?: "") ?: appString(R.string.hardware_unavailable),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
                         maxLines = 2
@@ -6715,7 +6715,7 @@ private fun DriverDeviceSummaryCard(deviceInfo: DeviceInfo) {
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    deviceInfo.gpuRenderer.ifBlank { appString(R.string.unknown_gpu) },
+                    mapVendorDisplayName(deviceInfo.gpuRenderer.ifBlank { appString(R.string.unknown_gpu) }),
                     style = MaterialTheme.typography.titleSmall,
                     maxLines = 2
                 )
@@ -7261,7 +7261,17 @@ fun DriverScreen(
         item(key = "driver_search") {
             OutlinedTextField(
                 value = driverQuery,
-                onValueChange = { driverQuery = it },
+                onValueChange = { v ->
+                    driverQuery = v
+                    // 搜索词精确匹配源名 → 自动切换该源并加载其版本列表
+                    // （修复"搜索后仅该来源但可下载文件不刷新"：仅过滤源列表不切换源的问题）
+                    val q = v.trim()
+                    if (q.isNotBlank()) {
+                        turnipSources.firstOrNull { it.name.equals(q, ignoreCase = true) }?.let {
+                            onTurnipSourceChange(it.id)
+                        }
+                    }
+                },
                 placeholder = { Text(appString(R.string.search_hint)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                 trailingIcon = {
@@ -7401,7 +7411,8 @@ fun ComponentScreen(
     componentSources: List<ComponentSource>,
     componentCatalogs: Map<String, Map<String, List<Component>>>,
     componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
-    onDownloadComponent: (Component) -> Unit
+    onDownloadComponent: (Component) -> Unit,
+    onOpenGuide: () -> Unit = {}
 ) {
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
     val discoveredComponentTypes = componentCatalogs.values
@@ -7460,6 +7471,27 @@ fun ComponentScreen(
                 icon = Icons.Default.Extension,
                 remote = null
             )
+        }
+
+        // 组件指南入口（组件分区直达组件指南）
+        item(key = "component_guide_entry") {
+            Surface(
+                onClick = onOpenGuide,
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(20.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.component_guide), style = MaterialTheme.typography.bodyMedium)
+                    Spacer(Modifier.weight(1f))
+                    Icon(Icons.Default.ChevronRight, contentDescription = null)
+                }
+            }
         }
 
         var hasAnyComponent = false

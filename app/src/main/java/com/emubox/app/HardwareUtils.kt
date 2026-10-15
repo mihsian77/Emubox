@@ -65,6 +65,17 @@ fun detectGpuVendor(gpuString: String): GpuVendor = when {
     else -> GpuVendor.UNKNOWN
 }
 
+/** 厂商原文 → 中文厂商名优先（qcom/Qualcomm 等股票代码/缩写 → 厂商全名） */
+fun mapVendorDisplayName(raw: String): String = when {
+    raw.startsWith("qcom", ignoreCase = true) -> raw.replaceFirst("qcom", "高通", ignoreCase = true)
+    raw.startsWith("Qualcomm", ignoreCase = true) -> raw.replaceFirst("Qualcomm", "高通", ignoreCase = true)
+    raw.startsWith("MediaTek", ignoreCase = true) ->
+        Regex("^(MediaTek|mediatek)", RegexOption.IGNORE_CASE).replaceFirst(raw, "联发科")
+    raw.startsWith("Mali", ignoreCase = true) && !raw.startsWith("ARM Mali", ignoreCase = true) ->
+        raw.replaceFirst("Mali", "ARM Mali", ignoreCase = true)
+    else -> raw
+}
+
 fun detectAdrenoSeries(gpuString: String): String {
     val model = Regex("Adreno.*?(\\d{3,4})", RegexOption.IGNORE_CASE).find(gpuString)?.groupValues?.get(1) ?: return "unknown"
     return when { model.startsWith("8") -> "8xx"; model.startsWith("7") -> "7xx"; model.startsWith("6") -> "6xx"; else -> "unknown" }
