@@ -10043,7 +10043,7 @@ fun GlobalSearchSheet(
                                     GlobalSearchRow(
                                         name = d.name,
                                         subtitle = d.description,
-                                        onClick = { onNavigate("drivers"); onDismiss() }
+                                        onClick = { onNavigate("drivers:${d.id}"); onDismiss() }
                                     )
                                 }
                             }

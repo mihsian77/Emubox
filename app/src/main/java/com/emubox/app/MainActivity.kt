@@ -520,6 +520,15 @@ class MainActivity : ComponentActivity() {
                                                     "components" -> currentScreen = AppScreen.COMPONENTS
                                                     "runtime" -> currentScreen = AppScreen.RUNTIME
                                                     "downloads" -> currentScreen = AppScreen.DOWNLOADS
+                                                    else -> {
+                                                        // 全局搜索驱动结果：携带注册表条目 id → 切换对应驱动源并加载其版本
+                                                        if (target.startsWith("drivers:")) {
+                                                            currentScreen = AppScreen.DRIVERS
+                                                            val srcId = "reg-${target.removePrefix("drivers:")}"
+                                                            turnipSourceId = srcId
+                                                            SettingsManager.setTurnipSource(srcId)
+                                                        }
+                                                    }
                                                 }
                                             },
                                             onDismiss = { globalSearchOpen = false }
