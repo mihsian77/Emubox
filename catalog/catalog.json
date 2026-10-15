@@ -24,8 +24,8 @@
           "Turnip Gen8"
         ]
       },
-      "updatedAt": 1791229788000,
-      "stars": 1008
+      "updatedAt": 1791980165000,
+      "stars": 1012
     },
     {
       "id": "whitebelyash",
@@ -66,7 +66,7 @@
         ]
       },
       "updatedAt": 1791904173000,
-      "stars": 5134
+      "stars": 5133
     },
     {
       "id": "mrpurple",
@@ -122,8 +122,8 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1791956392000,
-      "stars": 181
+      "updatedAt": 1792026458000,
+      "stars": 188
     },
     {
       "id": "s1mptom",
@@ -145,7 +145,7 @@
         ]
       },
       "updatedAt": 1779219637000,
-      "stars": 50
+      "stars": 51
     },
     {
       "id": "wintermist010-a810",
@@ -189,7 +189,7 @@
         ]
       },
       "updatedAt": 1790511757000,
-      "stars": 44
+      "stars": 45
     },
     {
       "id": "vauzi17-710",
@@ -213,7 +213,7 @@
         ]
       },
       "updatedAt": 1791768502000,
-      "stars": 66
+      "stars": 68
     },
     {
       "id": "panvk-g720",
@@ -233,7 +233,7 @@
         ]
       },
       "updatedAt": 1791605440000,
-      "stars": 37
+      "stars": 39
     }
   ],
   "qualcommSources": [
@@ -246,8 +246,8 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1008,
-      "updatedAt": 1791229788000
+      "stars": 1012,
+      "updatedAt": 1791980165000
     },
     {
       "id": "k11mch1-qualcomm",
@@ -259,7 +259,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5134,
+      "stars": 5133,
       "updatedAt": 1791904173000
     },
     {
@@ -269,7 +269,7 @@
       "description": "A8xx 旧版高通系统驱动集合（2026-01 停更），仅 Adreno 8xx 设备",
       "experimental": false,
       "filters": [],
-      "stars": 19,
+      "stars": 20,
       "archived": true,
       "updatedAt": 1767609365000
     }
@@ -282,7 +282,7 @@
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1791888393000
+      "updatedAt": 1791968026000
     },
     {
       "id": "xnick",
@@ -290,7 +290,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1791898725000
+      "updatedAt": 1791976650000
     },
     {
       "id": "banner-components",
@@ -298,7 +298,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/contents.json",
       "description": "Winlator 夜间构建组件清单",
       "experimental": true,
-      "updatedAt": 1791862431000
+      "updatedAt": 1792028490000
     },
     {
       "id": "ref4ik",
