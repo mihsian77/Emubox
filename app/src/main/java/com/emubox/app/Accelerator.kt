@@ -92,7 +92,7 @@ object Accelerator {
      * 放在本仓库 main 分支，raw URL 稳定，所有代理节点均支持 Raw 流量。
      */
     private const val SPEEDTEST_FILE =
-        "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/speedtest.bin"
+        "https://raw.githubusercontent.com/mihsian77/Emubox/main/speedtest.bin"
 
     /** 下载测速超时（毫秒），超时则按已下载字节计算速度 */
     private const val SPEEDTEST_TIMEOUT_MS = 15000L
