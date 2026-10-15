@@ -16,7 +16,7 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ---
 
-> GitHub 下载 APK 限速？可直接下载 Release APK；[赞助/信息页](https://mihsian77.github.io/Emubox/sponsor.html) 已随仓库同步更新（原旧域名 Pages 已失效）。完整体验请使用 App。
+> GitHub 下载 APK 限速，或暂时不想安装 App？可使用[网页版备选](https://mihsian77.github.io/EmuHub/)（EmuHub 导航站，独立仓库，已归档只读），在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
 
 ---
 
