@@ -571,7 +571,7 @@
     {
       "id": "ppsspp",
       "name": "PPSSPP",
-      "category": "Emulator PS2",
+      "category": "PSP",
       "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
       "owner": "hrydgard",
       "repo": "hrydgard/ppsspp",

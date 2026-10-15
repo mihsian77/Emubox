@@ -158,7 +158,12 @@ class MainActivity : ComponentActivity() {
                     } + ranking.filter { r ->
                         registry.none { it.id == r.id || it.repo == r.repo }
                     }
-                    emulatorEntries = merged
+                    // 内置保底：远程 registry 覆盖面小于内置时，内置独有条目不被丢弃
+                    // （此前远程 registry 仅 13 条，内置 Lemon/Eden 等独有条目会被覆盖丢失）
+                    val mergedWithBuiltin = merged + emulatorEntries.filter { base ->
+                        merged.none { it.id == base.id || it.repo == base.repo }
+                    }
+                    emulatorEntries = mergedWithBuiltin
                 }
 
                 // 慢下载推荐弹窗
@@ -638,7 +643,8 @@ class MainActivity : ComponentActivity() {
                                                 downloadScope.launch {
                                                     downloadComponent(appContext, component)
                                                 }
-                                            }
+                                            },
+                                            onOpenGuide = { openGuide(null, driverMode = false) }
                                         )
                                     }
                                 }
