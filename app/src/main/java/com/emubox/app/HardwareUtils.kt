@@ -142,19 +142,26 @@ data class SocBrand(val name: String, val color: Long, val label: String)
 
 fun detectSocBrand(socName: String): SocBrand = when {
     socName.contains("Snapdragon", ignoreCase = true) ->
-        SocBrand("Qualcomm", 0xFF0A6ED1, "骁龙")
+        SocBrand("高通", 0xFF0A6ED1, "骁龙")
     socName.contains("Dimensity", ignoreCase = true) || socName.contains("天玑", ignoreCase = true) ->
-        SocBrand("MediaTek", 0xFF1B6AC7, "天玑")
+        SocBrand("联发科", 0xFF1B6AC7, "天玑")
     socName.contains("Exynos", ignoreCase = true) ->
-        SocBrand("Samsung", 0xFF1428A0, "Exynos")
+        SocBrand("三星", 0xFF1428A0, "Exynos")
     socName.contains("Kirin", ignoreCase = true) || socName.contains("麒麟", ignoreCase = true) ->
-        SocBrand("Huawei", 0xFFC7000B, "麒麟")
+        SocBrand("华为", 0xFFC7000B, "麒麟")
     socName.contains("Tensor", ignoreCase = true) ->
-        SocBrand("Google", 0xFF4285F4, "Tensor")
+        SocBrand("谷歌", 0xFF4285F4, "Tensor")
     socName.contains("Unisoc", ignoreCase = true) || socName.contains("展锐", ignoreCase = true) ||
     socName.contains("Xclipse", ignoreCase = true) ->
-        SocBrand("Unisoc", 0xFF00A0E9, "展锐")
-    else -> SocBrand("SoC", 0xFF546E7A, socName.take(12))
+        SocBrand("展锐", 0xFF00A0E9, "展锐")
+    else -> when {
+        // 厂商代号回退识别（Build.HARDWARE 常见值为 qcom/mediatek 等，此前直接显示原文）
+        socName.contains("qcom", ignoreCase = true) || socName.contains("Qualcomm", ignoreCase = true) ->
+            SocBrand("高通", 0xFF0A6ED1, "高通")
+        socName.contains("mediatek", ignoreCase = true) ->
+            SocBrand("联发科", 0xFF1B6AC7, "联发科")
+        else -> SocBrand("SoC", 0xFF546E7A, socName.take(12))
+    }
 }
 
 /**
@@ -162,21 +169,22 @@ fun detectSocBrand(socName: String): SocBrand = when {
  * 返回 null 的品牌回退为文字徽章。颜色与 SocBrand.color 一致。
  */
 fun socBrandIconUrl(brandName: String): String? = when (brandName) {
-    "Qualcomm" -> "https://cdn.simpleicons.org/qualcomm/0A6ED1"
-    "MediaTek" -> "https://cdn.simpleicons.org/mediatek/1B6AC7"
-    "Samsung" -> "https://cdn.simpleicons.org/samsung/1428A0"
-    "Huawei" -> "https://cdn.simpleicons.org/huawei/C7000B"
-    "Google" -> "https://cdn.simpleicons.org/google/4285F4"
+    "Qualcomm", "高通" -> "https://cdn.simpleicons.org/qualcomm/0A6ED1"
+    "MediaTek", "联发科" -> "https://cdn.simpleicons.org/mediatek/1B6AC7"
+    "Samsung", "三星" -> "https://cdn.simpleicons.org/samsung/1428A0"
+    "Huawei", "华为" -> "https://cdn.simpleicons.org/huawei/C7000B"
+    "Google", "谷歌" -> "https://cdn.simpleicons.org/google/4285F4"
     "ARM" -> "https://cdn.simpleicons.org/arm/1B6AC7"
+    "Unisoc", "展锐" -> "https://cdn.simpleicons.org/unisoc/00A0E9"
     else -> null
 }
 
 /** GPU 型号 → SoC 品牌名（设备页徽章用） */
 fun detectGpuSocBrand(gpuModel: String, gpuVendor: GpuVendor): SocBrand = when (gpuVendor) {
-    GpuVendor.ADRENO -> SocBrand("Qualcomm", 0xFF0A6ED1, "骁龙")
+    GpuVendor.ADRENO -> SocBrand("高通", 0xFF0A6ED1, "骁龙")
     GpuVendor.MALI -> SocBrand("ARM", 0xFF1B6AC7, "Mali")
     GpuVendor.POWERVR -> SocBrand("Imagination", 0xFF546E7A, "PowerVR")
-    GpuVendor.XCLIPSE -> SocBrand("Unisoc", 0xFF00A0E9, "展锐")
+    GpuVendor.XCLIPSE -> SocBrand("展锐", 0xFF00A0E9, "展锐")
     GpuVendor.UNKNOWN -> SocBrand("SoC", 0xFF546E7A, gpuModel.take(12))
 }
 

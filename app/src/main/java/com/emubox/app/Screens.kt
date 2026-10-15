@@ -3257,11 +3257,11 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
 private fun SocBrandBadge(brand: SocBrand, text: String, modifier: Modifier = Modifier) {
     // 本地内置 PNG 图标（Simple Icons 转制），显示厂商全名；未收录厂商回退纯文字徽章
     val iconRes = when (brand.name) {
-        "Qualcomm" -> R.drawable.ic_soc_qualcomm
-        "MediaTek" -> R.drawable.ic_soc_mediatek
-        "Samsung" -> R.drawable.ic_soc_samsung
-        "Huawei" -> R.drawable.ic_soc_huawei
-        "Google" -> R.drawable.ic_soc_google
+        "Qualcomm", "高通" -> R.drawable.ic_soc_qualcomm
+        "MediaTek", "联发科" -> R.drawable.ic_soc_mediatek
+        "Samsung", "三星" -> R.drawable.ic_soc_samsung
+        "Huawei", "华为" -> R.drawable.ic_soc_huawei
+        "Google", "谷歌" -> R.drawable.ic_soc_google
         "ARM" -> R.drawable.ic_soc_arm
         else -> null
     }
