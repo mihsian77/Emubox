@@ -2,7 +2,8 @@
 
 <div align="center">
 
-[![赞助支持 · 进入主页选择平台](https://img.shields.io/badge/赞助支持-进入主页选择平台-e85d5d?style=for-the-badge&logo=heart&logoColor=white)](https://mihsian77.github.io/EmuHub-CN/sponsor.html)
+[![爱发电 · 支持开发者](https://img.shields.io/badge/爱发电-支持开发者-e85d5d?style=for-the-badge&logo=heart&logoColor=white)](https://afdian.com/a/moon279)
+[![下载 Release](https://img.shields.io/badge/下载-Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white)](https://github.com/mihsian77/EmuHub-CN/releases)
 
 </div>
 
