@@ -3,12 +3,12 @@
 <div align="center">
 
 [![爱发电 · 支持开发者](https://img.shields.io/badge/爱发电-支持开发者-e85d5d?style=for-the-badge&logo=heart&logoColor=white)](https://afdian.com/a/moon279)
-[![下载 Release](https://img.shields.io/badge/下载-Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white)](https://github.com/mihsian77/EmuHub-CN/releases)
+[![下载 Release](https://img.shields.io/badge/下载-Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white)](https://github.com/mihsian77/Emubox/releases)
 
 </div>
 
 [![许可](https://img.shields.io/badge/许可-MIT-blue.svg)](LICENSE)
-[![平台](https://img.shields.io/badge/平台-Android-green.svg)](https://github.com/mihsian77/EmuHub-CN/releases)
+[![平台](https://img.shields.io/badge/平台-Android-green.svg)](https://github.com/mihsian77/Emubox/releases)
 
 > 安卓 Windows 模拟环境的驱动、组件与运行库下载管理器。完整中文界面、国内下载加速、按设备自动匹配。
 
@@ -33,14 +33,14 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ## 下载
 
-从 [Releases](https://github.com/mihsian77/EmuHub-CN/releases) 获取最新 APK。最低系统要求 Android 9.0（API 28）。
+从 [Releases](https://github.com/mihsian77/Emubox/releases) 获取最新 APK。最低系统要求 Android 9.0（API 28）。
 
 ## 构建
 
 环境：JDK 17、Android SDK（compileSdk 37、NDK 用于 native Vulkan 采集）。
 
 ```bash
-git clone https://github.com/mihsian77/EmuHub-CN.git
+git clone https://github.com/mihsian77/Emubox.git
 cd emubox
 ./gradlew assembleDebug
 ```
