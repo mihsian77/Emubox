@@ -16,13 +16,13 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ---
 
-> GitHub 下载 APK 限速，或暂时不想安装 App？可使用[网页版备选](https://mihsian77.github.io/EmuHub-CN/)（仓库 Pages，旧名保留），在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
+> GitHub 下载 APK 限速？可直接下载 Release APK；[赞助/信息页](https://mihsian77.github.io/Emubox/sponsor.html) 已随仓库同步更新（原旧域名 Pages 已失效）。完整体验请使用 App。
 
 ---
 
 ## 功能
 
-- **驱动专区** — Turnip（高通 Adreno）、PanVK（ARM Mali）、三星 Xclipse 三类 GPU 驱动，内置 35 个驱动源，按 GPU 架构、型号、目标平台、成熟度分类
+- **驱动专区** — Turnip（高通 Adreno）、PanVK（ARM Mali）、三星 Xclipse 三类 GPU 驱动，内置 48 条驱动源记录，按 GPU 架构、型号、目标平台、成熟度分类
 - **组件专区** — Wine / Proton、Box64 / FEXCore / WOWBox64、DXVK / VKD3D-Proton / D7VK 等图形与转译组件，聚合多个上游目录
 - **运行库专区** — VC++ 运行库、.NET、解码器、字体、DirectX 等 Winlator 常用依赖，附中文用途说明与安装指引
 - **按设备匹配** — 自动识别 GPU 型号、Adreno / Mali 代际、安卓版本与运行内存，驱动按匹配度排序推荐；可在设置关闭以查看全部
@@ -80,11 +80,11 @@ app/src/main/
 
 ## 驱动来源
 
-内置驱动注册表维护 35 个源：
+内置驱动注册表维护 48 条源记录：
 
-- **高通 Adreno（17）**：Turnip 构建，覆盖 6xx / 7xx 通用系列与 8xx（含 810 / 812 / 829 / 830 / 840）专属构建
-- **ARM Mali（17）**：PanVK 构建，覆盖 Bifrost（G52 / G72）、Valhall v9 / JM（G57 / G77 / G99）、Valhall v10 / CSF（G610 / G615 / G710 / G720）
-- **三星 Xclipse（1）**：基于 AMD RDNA 的 Xclipse GPU 驱动
+- **高通 Adreno / Turnip（20）**：覆盖 6xx / 7xx 通用系列与 8xx（含 810 / 812 / 829 / 830 / 840）专属构建
+- **ARM Mali / PanVK（20）**：覆盖 Bifrost（G52 / G72）、Valhall v9 / JM（G57 / G77 / G99）、Valhall v10 / CSF（G610 / G615 / G710 / G720）
+- **其他（8）**：三星 Xclipse（AMD RDNA）、厂商系统驱动等
 
 驱动包标准格式为 zip（adpkg），内含 `meta.json`（名称、版本、厂商、最低 API、驱动库名）与驱动本体 `.so`。注册表随 App 版本更新，来源均为公开开源社区；为避免驱动源被收集滥用，此处不列具体仓库地址。
 
@@ -108,7 +108,7 @@ MIT License。
 
 ## 赞助
 
-项目建立在上游开源成果之上。如果它帮到了你，可在[赞助主页](https://mihsian77.github.io/EmuHub-CN/sponsor.html)选择平台支持维护，所得用于测试设备与维护投入。
+项目建立在上游开源成果之上。如果它帮到了你，可在[赞助主页](https://mihsian77.github.io/Emubox/sponsor.html)选择平台支持维护，所得用于测试设备与维护投入。
 
 ## 致谢
 
