@@ -3712,6 +3712,8 @@ fun TurnipDriverSection(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title ?: appString(R.string.turnip_driver), style = MaterialTheme.typography.titleSmall)
                     if (expanded) {
+                        // I2：简介可点击展开/收起，解决长简介截断无法查看全文
+                        var descExpanded by rememberSaveable(selectionKey + ":desc") { mutableStateOf(false) }
                         Text(
                             description ?: when (adrenoSeries) {
                                 "8xx" -> appString(R.string.turnip_desc_8xx)
@@ -3719,9 +3721,18 @@ fun TurnipDriverSection(
                                 else -> appString(R.string.turnip_desc_generic)
                             },
                             style = MaterialTheme.typography.bodySmall,
-                            maxLines = 2,
+                            maxLines = if (descExpanded) Int.MAX_VALUE else 2,
                             overflow = TextOverflow.Ellipsis,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier
+                                .clickable { descExpanded = !descExpanded }
+                                .padding(top = 4.dp)
+                        )
+                        Text(
+                            if (descExpanded) appString(R.string.collapse) else appString(R.string.expand),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.clickable { descExpanded = !descExpanded }
                         )
                     }
                 }
@@ -4429,8 +4440,24 @@ fun DriverCardDynamic(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title, style = MaterialTheme.typography.titleSmall)
                     if (expanded) {
-                        Text(description, style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        // I2：简介可点击展开/收起，解决长简介截断无法查看全文
+                        var descExpanded by rememberSaveable(selectionKey + ":desc") { mutableStateOf(false) }
+                        Text(
+                            description,
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = if (descExpanded) Int.MAX_VALUE else 2,
+                            overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier
+                                .clickable { descExpanded = !descExpanded }
+                                .padding(top = 4.dp)
+                        )
+                        Text(
+                            if (descExpanded) appString(R.string.collapse) else appString(R.string.expand),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.clickable { descExpanded = !descExpanded }
+                        )
                     }
                 }
                 if (!expanded && currentSource != null) {
