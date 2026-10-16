@@ -286,13 +286,26 @@ suspend fun fetchComponentsFromUrl(): Map<String, List<Component>> =
 suspend fun fetchGithubComponents(
     apiUrl: String,
     componentType: String,
-    preferredExtensions: List<String> = listOf(".wcp", ".zip")
+    preferredExtensions: List<String> = listOf(
+        ".wcp", ".zip", ".tar.gz", ".7z", ".so", ".dll", ".exe", ".msi",
+        ".patch", ".diff", ".txt", ".json", ".apk", ".aab"
+    )
 ): List<Component> {
     val releases = fetchGithubReleasesFromUrl(apiUrl)
     return releases.mapNotNull { release ->
-        val asset = release.assets.firstOrNull { a ->
-            preferredExtensions.any { a.name.lowercase().endsWith(it) }
-        } ?: release.assets.firstOrNull { it.downloadUrl.isNotBlank() }
+        // 优先级：主组件包（wcp/zip/so）→ 补丁/配置等特殊文件 → 任意可下载资产
+        val primary = release.assets.firstOrNull { a ->
+            val n = a.name.lowercase()
+            n.endsWith(".wcp") || n.endsWith(".zip") || n.endsWith(".tar.gz") ||
+                n.endsWith(".7z") || n.endsWith(".so")
+        }
+        val special = release.assets.firstOrNull { a ->
+            val n = a.name.lowercase()
+            n.endsWith(".patch") || n.endsWith(".diff") || n.endsWith(".txt") ||
+                n.endsWith(".json") || n.endsWith(".dll") || n.endsWith(".exe") ||
+                n.endsWith(".msi") || n.endsWith(".apk") || n.endsWith(".aab")
+        }
+        val asset = primary ?: special ?: release.assets.firstOrNull { it.downloadUrl.isNotBlank() }
             ?: return@mapNotNull null
         Component(
             type = componentType,
