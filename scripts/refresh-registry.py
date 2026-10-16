@@ -36,20 +36,29 @@ def extract_owner_repo(url: str):
 
 
 def fetch_repo_meta(owner: str, repo: str, retries: int = 3):
-    url = f"https://api.github.com/repos/{owner}/{repo}"
-    for attempt in range(retries):
+    # 更新时间优先取最新 release 发布时间（published_at），fallback 仓库推送时间（pushed_at）
+    def api_get(url):
         req = urllib.request.Request(url, headers={
             "Authorization": f"Bearer {TOKEN}",
             "Accept": "application/vnd.github+json",
             "User-Agent": "emubox-registry-refresh",
         })
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    for attempt in range(retries):
         try:
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                d = json.loads(resp.read().decode("utf-8"))
-                pushed = d.get("pushed_at", "")
-                stars = d.get("stargazers_count")
-                if pushed and stars is not None:
-                    return pushed, int(stars)
+            released = ""
+            try:
+                rel = api_get(f"https://api.github.com/repos/{owner}/{repo}/releases/latest")
+                released = rel.get("published_at", "")
+            except Exception:
+                released = ""
+            d = api_get(f"https://api.github.com/repos/{owner}/{repo}")
+            pushed = d.get("pushed_at", "")
+            stars = d.get("stargazers_count")
+            updated = released or pushed
+            if updated and stars is not None:
+                return updated, int(stars)
         except Exception as e:
             if attempt < retries - 1:
                 time.sleep(2 * (attempt + 1))
