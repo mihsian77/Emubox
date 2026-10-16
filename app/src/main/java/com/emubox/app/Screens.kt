@@ -6413,7 +6413,11 @@ private fun DriverDetectionList(
                                 apiVersion = dev.apiVersion
                             )
                             Column(Modifier.padding(top = 4.dp)) {
-                                Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                                    Spacer(Modifier.width(6.dp))
+                                    Text("基于驱动能力静态评估，非实测运行", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                }
                                 evals.forEach { e ->
                                     Row(Modifier.padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
                                         val color = when (e.level) {
@@ -7329,8 +7333,7 @@ fun DriverScreen(
     onQualcommSourceChange: (String) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
-    driverSourceStars: Map<String, Long> = emptyMap(),
-    registryStatus: String? = null
+    driverSourceStars: Map<String, Long> = emptyMap()
 ) {
     // 高通提取驱动分区：有数据即展示（不因 8xx 等系列隐藏——高通官方提取
     // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
@@ -7390,25 +7393,6 @@ fun DriverScreen(
                 icon = Icons.Default.Memory,
                 remote = sourceCatalogRemote
             )
-        }
-
-        // 驱动源状态条：显示注册表实际加载来源与源总数，便于用户核对
-        // "全量 39 源"是否生效（此前多次出现"源少了一大堆"且来源不明）。
-        if (!registryStatus.isNullOrBlank()) {
-            item(key = "driver_registry_status") {
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        registryStatus,
-                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            }
         }
 
         item(key = "driver_search") {
