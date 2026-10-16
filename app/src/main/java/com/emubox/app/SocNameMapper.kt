@@ -16,6 +16,10 @@ object SocNameMapper {
     @Volatile
     private var nameMap: Map<String, String>? = null
 
+    // 小写键索引：Build.SOC/HARDWARE 大小写不统一（qcom/QCOM），精确未命中时兜底
+    @Volatile
+    private var lowerMap: Map<String, String>? = null
+
     /** 初始化（从 assets 加载，线程安全） */
     fun init(context: Context) {
         if (nameMap != null) return
@@ -25,21 +29,25 @@ object SocNameMapper {
                 val json = context.assets.open("soc_name_map.json").bufferedReader().use { it.readText() }
                 val obj = JSONObject(json)
                 val map = HashMap<String, String>(obj.length())
+                val lower = HashMap<String, String>(obj.length())
                 val keys = obj.keys()
                 while (keys.hasNext()) {
                     val key = keys.next()
-                    map[key] = obj.getString(key)
+                    val value = obj.getString(key)
+                    map[key] = value
+                    lower.putIfAbsent(key.lowercase(), value)
                 }
                 nameMap = map
+                lowerMap = lower
             } catch (e: Exception) {
                 nameMap = emptyMap()
             }
         }
     }
 
-    /** 查询 SOC 友好名称，找不到返回 null */
+    /** 查询 SOC 友好名称，找不到返回 null；精确未命中时按小写键兜底（防 QCOM/qcom 大小写不一致） */
     fun lookup(soc: String): String? {
-        return nameMap?.get(soc)
+        return nameMap?.get(soc) ?: lowerMap?.get(soc.lowercase())
     }
 
     /**
