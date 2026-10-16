@@ -2284,9 +2284,25 @@ fun ComponentGuideScreen(
 // ── 配置推荐（Winlator 社区热度聚合）─────────────────────────────
 data class ComboRec(val combo: List<Pair<String, String>>, val count: Int, val share: Double)
 
+/** 远程聚合配置源：CI 每日聚合两社区仓库后提交，App 远程拉取优先、内置资产兜底 */
+private const val RECIPES_REMOTE_URL =
+    "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/app/src/main/assets/winlator-recipes.json"
+
 fun loadWinlatorRecipes(context: Context): Pair<Map<String, List<ComboRec>>, Map<String, List<ComboRec>>> {
     return try {
-        val text = context.assets.open("winlator-recipes.json").bufferedReader().use { it.readText() }
+        // 远程优先：拿到 CI 最新聚合结果；失败回退内置资产（离线可用）
+        val remoteText = runCatching {
+            val conn = java.net.URL(RECIPES_REMOTE_URL).openConnection() as java.net.HttpURLConnection
+            conn.connectTimeout = 5000
+            conn.readTimeout = 8000
+            conn.setRequestProperty("User-Agent", "EmuBox")
+            val ok = conn.responseCode == 200
+            val t = if (ok) conn.inputStream.bufferedReader().use { it.readText() } else ""
+            conn.disconnect()
+            t
+        }.getOrNull()
+        val text = if (!remoteText.isNullOrBlank()) remoteText
+            else context.assets.open("winlator-recipes.json").bufferedReader().use { it.readText() }
         val j = org.json.JSONObject(text)
         fun parse(obj: org.json.JSONObject): Map<String, List<ComboRec>> {
             val out = mutableMapOf<String, List<ComboRec>>()
@@ -4344,26 +4360,44 @@ private fun DownloadPanelHeader(
 // ── 游戏支持能力评估（驱动实测 → 转译游戏分级）────────────────────
 data class GameSupportEval(val title: String, val level: String, val note: String)
 
-/** 基于实测驱动类型 + 设备 GPU + 扩展数，评估 Windows(D3D) 与 Switch 游戏转译支持等级。
+/** 基于实测驱动类型 + 设备 GPU + 实测扩展列表，评估 Windows(D3D) 与 Switch 游戏转译支持等级。
  *  level: 基本能跑 / 可能能跑（缺条件）/ 跑不了
  *  依据：DXVK 按 D3D API 的成熟度（D3D8-11 成熟、D3D12 仍多问题）、
- *        PanVK/Turnip 驱动成熟度、Vulkan API 版本门槛。 */
+ *        PanVK/Turnip 驱动成熟度、Vulkan API 版本门槛，
+ *        以及驱动实测上报的关键扩展覆盖（swapchain/maintenance/timeline/dynamic_rendering 等）。 */
+private val CRITICAL_DXVK_EXTS = setOf(
+    "VK_KHR_swapchain", "VK_KHR_maintenance1", "VK_KHR_maintenance2",
+    "VK_KHR_maintenance3", "VK_KHR_timeline_semaphore", "VK_KHR_dynamic_rendering",
+    "VK_EXT_memory_budget", "VK_KHR_descriptor_indexing", "VK_KHR_16bit_storage"
+)
+
+/** 关键扩展覆盖度：驱动实测扩展列表中命中关键集的占比 */
+private fun criticalExtCoverage(extensions: List<String>): Float {
+    if (extensions.isEmpty()) return 0f
+    val set = extensions.toSet()
+    return CRITICAL_DXVK_EXTS.count { it in set }.toFloat() / CRITICAL_DXVK_EXTS.size
+}
+
 fun assessGameSupport(
     driverType: String,          // turnip / panvk / qualcomm / system
     isAdrenoDevice: Boolean,
     isMaliDevice: Boolean,
-    extCount: Int,
+    extensions: List<String>,
     apiVersion: String
 ): List<GameSupportEval> {
     val out = mutableListOf<GameSupportEval>()
     val vk13 = apiVersion.startsWith("1.3") || apiVersion.startsWith("1.4")
     val vk12 = apiVersion.startsWith("1.2") || vk13
-    val rich = extCount >= 60 // 扩展充足（含 VK_KHR_* 常用集）
+    val coverage = criticalExtCoverage(extensions)
+    // 扩展充足：关键集覆盖 >= 70% 且必备 swapchain/maintenance1 齐全
+    val rich = coverage >= 0.7f &&
+        extensions.contains("VK_KHR_swapchain") && extensions.contains("VK_KHR_maintenance1")
+    val coverageNote = "关键扩展覆盖 ${(coverage * 100).toInt()}%（DXVK 依赖集）"
     when (driverType) {
         "turnip" -> {
             out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "DXVK 2.7.3 转译成熟，社区 171+ 配置验证")
-            out += if (rich) GameSupportEval("Windows D3D10/11（DXVK）", "基本能跑", "Turnip 扩展齐全，多数 3A 可玩")
-                else GameSupportEval("Windows D3D10/11（DXVK）", "可能能跑", "扩展不足，部分游戏缺 VK_KHR_* 特性")
+            out += if (rich) GameSupportEval("Windows D3D10/11（DXVK）", "基本能跑", "Turnip 扩展齐全，多数 3A 可玩（$coverageNote）")
+                else GameSupportEval("Windows D3D10/11（DXVK）", "可能能跑", "关键扩展覆盖不足（$coverageNote）")
             out += GameSupportEval("Windows D3D12（VKD3D）", if (vk13) "可能能跑" else "可能能跑", if (vk13) "Vulkan 1.3 支持，转译问题仍多" else "需 Vulkan 1.2+，黑屏概率高")
             out += if (isAdrenoDevice) GameSupportEval("Switch 游戏（Eden/Citron）", if (vk13 && rich) "基本能跑" else "可能能跑", "Eden 对 Adreno 优化，需完整 Vulkan 特性")
                 else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "GPU 非 Adreno，兼容性以实测为准")
@@ -6409,7 +6443,7 @@ private fun DriverDetectionList(
                                 driverType = evalDriverType,
                                 isAdrenoDevice = (systemDevice?.vendorId ?: 0) == 0x5143,
                                 isMaliDevice = (systemDevice?.vendorId ?: 0) == 0x13B5,
-                                extCount = dev.extensions.size,
+                                extensions = dev.extensions.map { it.name },
                                 apiVersion = dev.apiVersion
                             )
                             Column(Modifier.padding(top = 4.dp)) {
