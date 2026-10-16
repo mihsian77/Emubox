@@ -13,15 +13,15 @@ import kotlin.math.abs
 enum class GpuVendor {
     ADRENO,      // 高通 Adreno
     MALI,        // ARM Mali（天玑/麒麟/Exynos）
-    POWERVR,     // Imagination PowerVR
-    XCLIPSE,     // 紫光展锐 Xclipse
+    POWERVR,     // Imagination PowerVR（紫光展锐等）
+    XCLIPSE,     // 三星 Xclipse（Exynos + AMD RDNA）
     UNKNOWN;
 
     val displayName: String get() = when (this) {
         ADRENO -> "高通 Adreno"
         MALI -> "ARM Mali"
         POWERVR -> "Imagination PowerVR"
-        XCLIPSE -> "紫光展锐 Xclipse"
+        XCLIPSE -> "三星 Xclipse"
         UNKNOWN -> "未知"
     }
 }

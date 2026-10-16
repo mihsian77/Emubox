@@ -2357,10 +2357,20 @@ private fun WinlatorConfigRecsCard(deviceInfo: DeviceInfo?) {
     val (adrenoMap, maliMap) = recipes
     val gpuModel = deviceInfo?.gpuModel.orEmpty()
     val isMali = deviceInfo?.gpuVendor == GpuVendor.MALI
-    val matched = if (isMali) maliMap[gpuModel] else adrenoMap[gpuModel]
+    // 设备 gpuModel 为纯数字（如 "740"），recipes 键为 "Adreno-740"/"Mali-G57"，需归一化；
+    // 精确未命中再做 contains 兜底（应对键带后缀）。此前直接用纯数字取键恒 miss、永远走最热 fallback。
+    val targetMap = if (isMali) maliMap else adrenoMap
+    val gpuKey = if (gpuModel.isBlank() || gpuModel == "unknown") ""
+        else if (isMali) "Mali-G$gpuModel" else "Adreno-$gpuModel"
+    val matched = when {
+        gpuKey.isBlank() -> null
+        targetMap[gpuKey] != null -> targetMap[gpuKey]
+        else -> targetMap.entries.firstOrNull { it.key.contains(gpuKey, ignoreCase = true) }?.value
+    }
     val fallback = if (isMali) maliMap.values.maxByOrNull { it.sumOf { c -> c.count } } ?: emptyList()
         else adrenoMap.values.maxByOrNull { it.sumOf { c -> c.count } } ?: emptyList()
     val recs = matched ?: fallback
+    val matchIsExact = matched != null && gpuKey.isNotBlank()
     if (recs.isEmpty()) return
 
     Card(
@@ -2380,8 +2390,16 @@ private fun WinlatorConfigRecsCard(deviceInfo: DeviceInfo?) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(Modifier.height(12.dp))
-            val gpuLabel = gpuModel.ifBlank { if (isMali) "Mali" else "Adreno" }
-            Text("当前 GPU：$gpuLabel", style = MaterialTheme.typography.labelLarge)
+            val gpuLabel = when {
+                gpuModel.isBlank() || gpuModel == "unknown" -> if (isMali) "Mali" else "Adreno"
+                isMali -> "Mali-G$gpuModel"
+                else -> "Adreno $gpuModel"
+            }
+            Text(
+                if (matchIsExact) "当前 GPU：$gpuLabel · 本机型号配置"
+                else "当前 GPU：$gpuLabel · 暂无该型号数据，显示社区最热",
+                style = MaterialTheme.typography.labelLarge
+            )
             Spacer(Modifier.height(8.dp))
             recs.take(3).forEachIndexed { idx, rec ->
                 Surface(
@@ -6679,9 +6697,15 @@ private fun DriverDetectionList(
                             val br = benchmarkResults[download.id]!!
                             if (br.success) {
                                 Text(
-                                    "实测跑分（${br.deviceName}）",
+                                    "系统硬件跑分（${br.deviceName}）",
                                     style = MaterialTheme.typography.bodySmall,
                                     fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                                )
+                                Spacer(Modifier.height(2.dp))
+                                Text(
+                                    "系统驱动底力，非该驱动性能；自定义驱动请在模拟器内验证",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                                 Spacer(Modifier.height(4.dp))
                                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
