@@ -28,8 +28,10 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           if [ -n "$KEYSTORE_BASE64" ]; then
+            # build.gradle.kts 从 ~/.emubox/keystore/keystore.properties 读取签名配置
+            mkdir -p ~/.emubox/keystore
             echo "$KEYSTORE_BASE64" | base64 -d > app/release.jks
-            cat > keystore.properties <<EOF
+            cat > ~/.emubox/keystore/keystore.properties <<EOF
           storeFile=app/release.jks
           storePassword=$KEYSTORE_PASSWORD
           keyAlias=$KEY_ALIAS
