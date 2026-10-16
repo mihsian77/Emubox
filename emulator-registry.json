@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-10-16T03:57:42Z",
+  "updated_at": "2026-10-16T06:31:10Z",
   "emulators": [
     {
       "id": "brunodev85-winlator",
@@ -299,7 +299,7 @@
       "latest_apk_url": "https://github.com/azahar-emu/azahar/releases/download/2127.0-alpha2/azahar-android-googleplay-2127.0-alpha2.aab",
       "latest_apk_size": 81268438,
       "pushed_at": "2026-10-15T21:23:19Z",
-      "stars": 8370,
+      "stars": 8371,
       "forks": 0,
       "watchers": 0,
       "downloads": 8637312,
@@ -5926,7 +5926,7 @@
       "latest_apk_url": "https://github.com/StevenMXZ/Winlator-Ludashi/releases/download/v4.1/ludashi-build.apk",
       "latest_apk_size": 551444161,
       "pushed_at": "2026-10-07T21:29:08Z",
-      "stars": 1239,
+      "stars": 1240,
       "forks": 0,
       "watchers": 0,
       "downloads": 1535231,
@@ -6570,7 +6570,7 @@
       "latest_apk_url": "https://github.com/Producdevity/gamehub-lite/releases/download/v5.1.8/GameHub-Lite-v5.1.8-alt-antutu.apk",
       "latest_apk_size": 51993473,
       "pushed_at": "2026-07-03T18:28:52Z",
-      "stars": 2058,
+      "stars": 2059,
       "forks": 0,
       "watchers": 0,
       "downloads": 1483629,
@@ -6991,7 +6991,7 @@
       "latest_apk_name": "gamenative-v1.3.0-legacy-xr.apk",
       "latest_apk_url": "https://github.com/utkarshdalal/GameNative/releases/download/v1.3.0/gamenative-v1.3.0-legacy-xr.apk",
       "latest_apk_size": 573779844,
-      "pushed_at": "2026-10-15T16:41:07Z",
+      "pushed_at": "2026-10-16T06:09:34Z",
       "stars": 11345,
       "forks": 0,
       "watchers": 0,
@@ -7662,8 +7662,8 @@
       "latest_apk_name": "ARMSX2-2.8.3-a11-armv8.2-sdk30.apk",
       "latest_apk_url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.8.3/ARMSX2-2.8.3-a11-armv8.2-sdk30.apk",
       "latest_apk_size": 68849731,
-      "pushed_at": "2026-10-16T03:14:54Z",
-      "stars": 2195,
+      "pushed_at": "2026-10-16T04:13:40Z",
+      "stars": 2196,
       "forks": 0,
       "watchers": 0,
       "downloads": 936685,
@@ -13404,8 +13404,8 @@
       "latest_apk_name": "DroidDeck-0.4.0-antutu.apk",
       "latest_apk_url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-antutu.apk",
       "latest_apk_size": 46558141,
-      "pushed_at": "2026-10-16T03:53:46Z",
-      "stars": 9050,
+      "pushed_at": "2026-10-16T06:08:10Z",
+      "stars": 9107,
       "forks": 0,
       "watchers": 0,
       "downloads": 316398,
@@ -13929,7 +13929,7 @@
       "latest_apk_url": "https://github.com/The412Banner/bannerhub-revanced/releases/download/v1.0.2-631/BannerHub-V6-1.0.2-631-Patched-alt-AnTuTu.apk",
       "latest_apk_size": 77595394,
       "pushed_at": "2026-10-15T22:29:02Z",
-      "stars": 177,
+      "stars": 178,
       "forks": 0,
       "watchers": 0,
       "downloads": 215016,
@@ -16157,7 +16157,7 @@
       "latest_apk_name": "Bannerlator-3.1.7-pre2-antutu.apk",
       "latest_apk_url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7-pre2/Bannerlator-3.1.7-pre2-antutu.apk",
       "latest_apk_size": 552405861,
-      "pushed_at": "2026-10-16T03:51:54Z",
+      "pushed_at": "2026-10-16T04:27:06Z",
       "stars": 419,
       "forks": 0,
       "watchers": 0,
@@ -22848,7 +22848,7 @@
       "latest_apk_url": "https://github.com/citron-neo/emulator/releases/download/2026-04-27/app-mainline-release.apk",
       "latest_apk_size": 22157733,
       "pushed_at": "2026-10-15T19:51:43Z",
-      "stars": 565,
+      "stars": 567,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -23125,7 +23125,7 @@
       "latest_apk_url": "https://github.com/Ghael-V/Lemon-Project/releases/download/v1.2.0/Lemon-Lite-Spoofed-v1.2.0-lite-spoofed.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-14T08:25:38Z",
-      "stars": 178,
+      "stars": 181,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -23476,7 +23476,7 @@
       "latest_apk_url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-15T13:59:31Z",
-      "stars": 10844,
+      "stars": 10843,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -25436,7 +25436,7 @@
       "latest_apk_url": "https://github.com/melonDS-emu/melonDS/releases/download/1.1/melonDS-1.1-appimage-aarch64.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-08-23T22:29:01Z",
-      "stars": 5111,
+      "stars": 5112,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -30315,7 +30315,7 @@
       "latest_apk_url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.27.0/metroid-prime-port-0.27.0-android-arm64.apk",
       "latest_apk_size": 17971631,
       "pushed_at": "2026-10-15T22:33:54Z",
-      "stars": 436,
+      "stars": 438,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -32928,12 +32928,12 @@
       "official": true,
       "channel": "stable",
       "latest_tag": "prerelease",
-      "latest_date": "2026-10-16T00:36:54Z",
+      "latest_date": "2026-10-16T06:15:30Z",
       "latest_body": "",
       "latest_apk_name": "cue2cdi-linux-x86_64",
       "latest_apk_url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/cue2cdi-linux-x86_64",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-16T03:48:46Z",
+      "pushed_at": "2026-10-16T06:15:10Z",
       "stars": 50,
       "forks": 0,
       "watchers": 0,
@@ -32942,9 +32942,9 @@
       "releases": [
         {
           "tag": "prerelease",
-          "name": "Release candidate 1ea26ba",
-          "date": "2026-10-16T00:36:54Z",
-          "body": "### Release candidate `1ea26ba` — `v3.9.1` (`release/v3.9.1`)\n\n| | |\n|---|---|\n| **Commit** | [`1ea26ba`](https://github.com/libretro/virtualjaguar-libretro/commit/1ea26ba3280fd42bead8caf2198cfce47be591e5) |\n| **Built** | 2026-10-16 00:36 UTC |\n| **CI run** | [build log](https://github.com/libretro/virtualjaguar-libretro/actions/runs/38808686056) |\n| **Branch** | `release/v3.9.1` |\n\n> Automatic build of the `release/v3.9.1` tip, replaced on every push. It compiled on all 24 targets; it has **not** been through the test suite or any manual QA. For a stable build use the [latest release](https://github.com/libretro/virtualjaguar-libretro/releases/latest). This is a RELEASE CANDIDATE from a release branch, not a release: it exists so the 24-platform matrix runs on the code about to ship, instead of first meeting it at the tag.\n\nThe core logs its identity as `v3.9.1 1ea26ba` at startup — quote that line when reporting a bug against this build.\n\n### Changes since the previous release candidate\n\n```\n557571a docs(matrix): regenerate the cart boot matrix for #978's loader fixes\nc1750ae docs: v3.9.1 notes: loader fixes (#978), matrix trap scoring (#980), site picker (#970), legacy MSVC fix ",
+          "name": "Release candidate 994355c",
+          "date": "2026-10-16T06:15:30Z",
+          "body": "### Release candidate `994355c` — `v3.9.1` (`release/v3.9.1`)\n\n| | |\n|---|---|\n| **Commit** | [`994355c`](https://github.com/libretro/virtualjaguar-libretro/commit/994355ce59758f6c6acfbde00b0fb03462f5256a) |\n| **Built** | 2026-10-16 06:15 UTC |\n| **CI run** | [build log](https://github.com/libretro/virtualjaguar-libretro/actions/runs/38846786849) |\n| **Branch** | `release/v3.9.1` |\n\n> Automatic build of the `release/v3.9.1` tip, replaced on every push. It compiled on all 24 targets; it has **not** been through the test suite or any manual QA. For a stable build use the [latest release](https://github.com/libretro/virtualjaguar-libretro/releases/latest). This is a RELEASE CANDIDATE from a release branch, not a release: it exists so the 24-platform matrix runs on the code about to ship, instead of first meeting it at the tag.\n\nThe core logs its identity as `v3.9.1 994355c` at startup — quote that line when reporting a bug against this build.\n\n### Changes since the previous release candidate\n\n```\ne652c91 ci(macos): sign and notarize every macOS build (#989) (#990)\n5aafd86 fix(site): honest cart-matrix labels for boot-ROM rejects, crashes and RAM programs (#988)\n8adcc75 docs(matrix): r",
           "prerelease": true,
           "assets": [
             {
@@ -32954,7 +32954,7 @@
             },
             {
               "name": "cue2cdi-macos-universal",
-              "size": 84664,
+              "size": 135424,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/cue2cdi-macos-universal"
             },
             {
@@ -32969,7 +32969,7 @@
             },
             {
               "name": "jagcd-tools-macos.zip",
-              "size": 885594,
+              "size": 884967,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/jagcd-tools-macos.zip"
             },
             {
@@ -32979,12 +32979,12 @@
             },
             {
               "name": "SHA256SUMS.txt",
-              "size": 6625,
+              "size": 7170,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/SHA256SUMS.txt"
             },
             {
               "name": "VirtualJaguar-prerelease-linux-aarch64.AppImage",
-              "size": 27712008,
+              "size": 27703816,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-linux-aarch64.AppImage"
             },
             {
@@ -32994,82 +32994,82 @@
             },
             {
               "name": "VirtualJaguar-prerelease-linux-x86_64.flatpak",
-              "size": 19826112,
+              "size": 19892184,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-linux-x86_64.flatpak"
             },
             {
               "name": "VirtualJaguar-prerelease-macos-universal.zip",
-              "size": 31875835,
+              "size": 31878161,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-macos-universal.zip"
             },
             {
               "name": "VirtualJaguar-prerelease-windows-arm64-setup.exe",
-              "size": 21011446,
+              "size": 21011278,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-windows-arm64-setup.exe"
             },
             {
               "name": "VirtualJaguar-prerelease-windows-arm64.zip",
-              "size": 23762302,
+              "size": 23762402,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-windows-arm64.zip"
             },
             {
               "name": "VirtualJaguar-prerelease-windows-x64-setup.exe",
-              "size": 22542336,
+              "size": 22544193,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-windows-x64-setup.exe"
             },
             {
               "name": "VirtualJaguar-prerelease-windows-x64.zip",
-              "size": 25863275,
+              "size": 25863981,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/VirtualJaguar-prerelease-windows-x64.zip"
             },
             {
               "name": "virtualjaguar_libretro-android-arm64-v8a-debug.tar.gz",
-              "size": 1046,
+              "size": 1045,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-arm64-v8a-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-arm64-v8a.so",
-              "size": 2435416,
+              "size": 2435576,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-arm64-v8a.so"
             },
             {
               "name": "virtualjaguar_libretro-android-armeabi-v7a-debug.tar.gz",
-              "size": 1092,
+              "size": 1088,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-armeabi-v7a-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-armeabi-v7a.so",
-              "size": 1833616,
+              "size": 1833872,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-armeabi-v7a.so"
             },
             {
               "name": "virtualjaguar_libretro-android-x86-debug.tar.gz",
-              "size": 1011,
+              "size": 1009,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-x86-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-x86.so",
-              "size": 2324600,
+              "size": 2324840,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-x86.so"
             },
             {
               "name": "virtualjaguar_libretro-android-x86_64-debug.tar.gz",
-              "size": 1055,
+              "size": 1057,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-x86_64.so",
-              "size": 2506248,
+              "size": 2506568,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-android-x86_64.so"
             },
             {
               "name": "virtualjaguar_libretro-emscripten-wasm-debug.tar.gz",
-              "size": 3258296,
+              "size": 3258780,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-emscripten-wasm-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-emscripten-wasm.bc",
-              "size": 30656128,
+              "size": 30656924,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-emscripten-wasm.bc"
             },
             {
@@ -33084,7 +33084,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-aarch64-debug.tar.gz",
-              "size": 2288886,
+              "size": 2288968,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-aarch64-debug.tar.gz"
             },
             {
@@ -33094,7 +33094,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-i686-debug.tar.gz",
-              "size": 2329838,
+              "size": 2329845,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-i686-debug.tar.gz"
             },
             {
@@ -33104,7 +33104,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi1-armv6-debug.tar.gz",
-              "size": 2214902,
+              "size": 2215245,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi1-armv6-debug.tar.gz"
             },
             {
@@ -33114,7 +33114,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi2-cortex-a7-debug.tar.gz",
-              "size": 2345823,
+              "size": 2346168,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi2-cortex-a7-debug.tar.gz"
             },
             {
@@ -33124,7 +33124,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3-cortex-a53-debug.tar.gz",
-              "size": 2336466,
+              "size": 2336441,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi3-cortex-a53-debug.tar.gz"
             },
             {
@@ -33134,7 +33134,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3_64-cortex-a53-debug.tar.gz",
-              "size": 2292220,
+              "size": 2292871,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi3_64-cortex-a53-debug.tar.gz"
             },
             {
@@ -33144,7 +33144,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4-cortex-a72-debug.tar.gz",
-              "size": 2346461,
+              "size": 2346677,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi4-cortex-a72-debug.tar.gz"
             },
             {
@@ -33154,7 +33154,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4_64-cortex-a72-debug.tar.gz",
-              "size": 2302662,
+              "size": 2303240,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi4_64-cortex-a72-debug.tar.gz"
             },
             {
@@ -33164,7 +33164,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5-cortex-a76-debug.tar.gz",
-              "size": 2346404,
+              "size": 2346611,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi5-cortex-a76-debug.tar.gz"
             },
             {
@@ -33174,7 +33174,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5_64-cortex-a76-debug.tar.gz",
-              "size": 2304399,
+              "size": 2304792,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-rpi5_64-cortex-a76-debug.tar.gz"
             },
             {
@@ -33184,7 +33184,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-x86_64-debug.tar.gz",
-              "size": 2373295,
+              "size": 2373371,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-linux-x86_64-debug.tar.gz"
             },
             {
@@ -33194,37 +33194,37 @@
             },
             {
               "name": "virtualjaguar_libretro-macos-arm64-debug.tar.gz",
-              "size": 1067741,
+              "size": 1067859,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-macos-arm64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-macos-arm64.dylib",
-              "size": 2340808,
+              "size": 2345472,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-macos-arm64.dylib"
             },
             {
               "name": "virtualjaguar_libretro-macos-x86_64-debug.tar.gz",
-              "size": 1241097,
+              "size": 1241191,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-macos-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-macos-x86_64.dylib",
-              "size": 2278616,
+              "size": 2314896,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-macos-x86_64.dylib"
             },
             {
               "name": "virtualjaguar_libretro-switch-debug.tar.gz",
-              "size": 3066998,
+              "size": 3067136,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-switch-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-switch.a",
-              "size": 6026298,
+              "size": 6026650,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-switch.a"
             },
             {
               "name": "virtualjaguar_libretro-tvos-arm64-debug.tar.gz",
-              "size": 1161611,
+              "size": 1161707,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-tvos-arm64-debug.tar.gz"
             },
             {
@@ -33234,32 +33234,32 @@
             },
             {
               "name": "virtualjaguar_libretro-vita-debug.tar.gz",
-              "size": 2845741,
+              "size": 2845892,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-vita-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-vita.a",
-              "size": 2884168,
+              "size": 2884372,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-vita.a"
             },
             {
               "name": "virtualjaguar_libretro-windows-i686-debug.tar.gz",
-              "size": 2622009,
+              "size": 2622057,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-windows-i686-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-windows-i686.dll",
-              "size": 25034937,
+              "size": 25035449,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-windows-i686.dll"
             },
             {
               "name": "virtualjaguar_libretro-windows-x86_64-debug.tar.gz",
-              "size": 2765192,
+              "size": 2765234,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-windows-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-windows-x86_64.dll",
-              "size": 25295751,
+              "size": 25296263,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_libretro-windows-x86_64.dll"
             },
             {
@@ -33269,21 +33269,21 @@
             },
             {
               "name": "virtualjaguar_prerelease_amd64.deb",
-              "size": 19607192,
+              "size": 19604712,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_prerelease_amd64.deb"
             },
             {
               "name": "virtualjaguar_prerelease_arm64.deb",
-              "size": 18826764,
+              "size": 18826976,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/prerelease/virtualjaguar_prerelease_arm64.deb"
             }
           ]
         },
         {
           "tag": "nightly",
-          "name": "Nightly 8bc5b02",
-          "date": "2026-10-15T09:06:27Z",
-          "body": "### Nightly `8bc5b02` — `v3.9.0` (`develop`)\n\n| | |\n|---|---|\n| **Commit** | [`8bc5b02`](https://github.com/libretro/virtualjaguar-libretro/commit/8bc5b029ad175d5a6121c07179a19dff7806f4e2) |\n| **Built** | 2026-10-15 09:06 UTC |\n| **CI run** | [build log](https://github.com/libretro/virtualjaguar-libretro/actions/runs/38691580685) |\n| **Branch** | `develop` |\n\n> Automatic build of the `develop` tip, replaced on every push. It compiled on all 24 targets; it has **not** been through the test suite or any manual QA. For a stable build use the [latest release](https://github.com/libretro/virtualjaguar-libretro/releases/latest).\n\nThe core logs its identity as `v3.9.0 8bc5b02` at startup — quote that line when reporting a bug against this build.\n\n### Changes since the previous nightly\n\n```\n5d2ea0b fix(app): crt-geom and other arrays-of-arrays shader presets on macOS; GLSL at the context's version (#963)\n2c3e888 fix(app): show the Jaguar CD art hint only when a disc has no art (#960)\n4d6d18d test(app): pacing_trace includes <cctype>\n6879ca0 perf(gpu): idle skip admits invariant local-RAM stores and the full jr reach (#957)\n7988dc8 test(app): pacing_trace replays a measured cost trace throu",
+          "name": "Nightly 3c8797e",
+          "date": "2026-10-16T05:58:32Z",
+          "body": "### Nightly `3c8797e` — `v3.9.0` (`develop`)\n\n| | |\n|---|---|\n| **Commit** | [`3c8797e`](https://github.com/libretro/virtualjaguar-libretro/commit/3c8797ed064b7e74dcddd812f64bca94e29c7095) |\n| **Built** | 2026-10-16 05:58 UTC |\n| **CI run** | [build log](https://github.com/libretro/virtualjaguar-libretro/actions/runs/38850381363) |\n| **Branch** | `develop` |\n\n> Automatic build of the `develop` tip, replaced on every push. It compiled on all 24 targets; it has **not** been through the test suite or any manual QA. For a stable build use the [latest release](https://github.com/libretro/virtualjaguar-libretro/releases/latest).\n\nThe core logs its identity as `v3.9.0 3c8797e` at startup — quote that line when reporting a bug against this build.\n\n### Changes since the previous nightly\n\n```\n3c8797e docs(app): TV mode and gamepad navigation design and plan (#992)\ne652c91 ci(macos): sign and notarize every macOS build (#989) (#990)\n5aafd86 fix(site): honest cart-matrix labels for boot-ROM rejects, crashes and RAM programs (#988)\n8adcc75 docs(matrix): regenerate the cart boot matrix for #979's erased-header entry (#987)\n7ed64fa fix(loader): enter an erased-header cart at $802000, not $800000 ",
           "prerelease": true,
           "assets": [
             {
@@ -33293,7 +33293,7 @@
             },
             {
               "name": "cue2cdi-macos-universal",
-              "size": 84664,
+              "size": 135424,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/cue2cdi-macos-universal"
             },
             {
@@ -33308,7 +33308,7 @@
             },
             {
               "name": "jagcd-tools-macos.zip",
-              "size": 885598,
+              "size": 884972,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/jagcd-tools-macos.zip"
             },
             {
@@ -33323,97 +33323,97 @@
             },
             {
               "name": "VirtualJaguar-nightly-linux-aarch64.AppImage",
-              "size": 27703816,
+              "size": 27707912,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-linux-aarch64.AppImage"
             },
             {
               "name": "VirtualJaguar-nightly-linux-x86_64.AppImage",
-              "size": 28350968,
+              "size": 28346872,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-linux-x86_64.AppImage"
             },
             {
               "name": "VirtualJaguar-nightly-linux-x86_64.flatpak",
-              "size": 19821816,
+              "size": 19820464,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-linux-x86_64.flatpak"
             },
             {
               "name": "VirtualJaguar-nightly-macos-universal.zip",
-              "size": 31874754,
+              "size": 31877522,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-macos-universal.zip"
             },
             {
               "name": "VirtualJaguar-nightly-windows-arm64-setup.exe",
-              "size": 21010992,
+              "size": 21010080,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-arm64-setup.exe"
             },
             {
               "name": "VirtualJaguar-nightly-windows-arm64.zip",
-              "size": 23761841,
+              "size": 23762305,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-arm64.zip"
             },
             {
               "name": "VirtualJaguar-nightly-windows-x64-setup.exe",
-              "size": 22543333,
+              "size": 22543566,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-x64-setup.exe"
             },
             {
               "name": "VirtualJaguar-nightly-windows-x64.zip",
-              "size": 25862682,
+              "size": 25863791,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-x64.zip"
             },
             {
               "name": "virtualjaguar_libretro-android-arm64-v8a-debug.tar.gz",
-              "size": 1079,
+              "size": 1046,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-arm64-v8a-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-arm64-v8a.so",
-              "size": 2434104,
+              "size": 2435576,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-arm64-v8a.so"
             },
             {
               "name": "virtualjaguar_libretro-android-armeabi-v7a-debug.tar.gz",
-              "size": 1088,
+              "size": 1089,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-armeabi-v7a-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-armeabi-v7a.so",
-              "size": 1832672,
+              "size": 1833872,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-armeabi-v7a.so"
             },
             {
               "name": "virtualjaguar_libretro-android-x86-debug.tar.gz",
-              "size": 1012,
+              "size": 1011,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-x86.so",
-              "size": 2322904,
+              "size": 2324840,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86.so"
             },
             {
               "name": "virtualjaguar_libretro-android-x86_64-debug.tar.gz",
-              "size": 1053,
+              "size": 1056,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-x86_64.so",
-              "size": 2504904,
+              "size": 2506568,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86_64.so"
             },
             {
               "name": "virtualjaguar_libretro-emscripten-wasm-debug.tar.gz",
-              "size": 3252210,
+              "size": 3258580,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-emscripten-wasm-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-emscripten-wasm.bc",
-              "size": 30649890,
+              "size": 30656924,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-emscripten-wasm.bc"
             },
             {
               "name": "virtualjaguar_libretro-ios-arm64-debug.tar.gz",
-              "size": 1045508,
+              "size": 1047452,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-ios-arm64-debug.tar.gz"
             },
             {
@@ -33423,17 +33423,17 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-aarch64-debug.tar.gz",
-              "size": 2286401,
+              "size": 2288968,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-aarch64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-aarch64.so",
-              "size": 2696504,
+              "size": 2696520,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-aarch64.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-i686-debug.tar.gz",
-              "size": 2324716,
+              "size": 2329837,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-i686-debug.tar.gz"
             },
             {
@@ -33443,17 +33443,17 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi1-armv6-debug.tar.gz",
-              "size": 2211736,
+              "size": 2215231,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi1-armv6-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi1-armv6.so",
-              "size": 2455424,
+              "size": 2459520,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi1-armv6.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi2-cortex-a7-debug.tar.gz",
-              "size": 2341585,
+              "size": 2346167,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi2-cortex-a7-debug.tar.gz"
             },
             {
@@ -33463,7 +33463,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3-cortex-a53-debug.tar.gz",
-              "size": 2332404,
+              "size": 2336476,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi3-cortex-a53-debug.tar.gz"
             },
             {
@@ -33473,57 +33473,57 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3_64-cortex-a53-debug.tar.gz",
-              "size": 2289692,
+              "size": 2292870,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi3_64-cortex-a53-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3_64-cortex-a53.so",
-              "size": 2696496,
+              "size": 2696512,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi3_64-cortex-a53.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4-cortex-a72-debug.tar.gz",
-              "size": 2341488,
+              "size": 2346673,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4-cortex-a72-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4-cortex-a72.so",
-              "size": 2197412,
+              "size": 2201508,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4-cortex-a72.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4_64-cortex-a72-debug.tar.gz",
-              "size": 2301087,
+              "size": 2303241,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4_64-cortex-a72-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4_64-cortex-a72.so",
-              "size": 2696496,
+              "size": 2696512,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4_64-cortex-a72.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5-cortex-a76-debug.tar.gz",
-              "size": 2341647,
+              "size": 2346612,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi5-cortex-a76-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5-cortex-a76.so",
-              "size": 2197412,
+              "size": 2201508,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi5-cortex-a76.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5_64-cortex-a76-debug.tar.gz",
-              "size": 2300399,
+              "size": 2304796,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi5_64-cortex-a76-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5_64-cortex-a76.so",
-              "size": 2696496,
+              "size": 2696512,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi5_64-cortex-a76.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-x86_64-debug.tar.gz",
-              "size": 2368106,
+              "size": 2373371,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-x86_64-debug.tar.gz"
             },
             {
@@ -33533,37 +33533,37 @@
             },
             {
               "name": "virtualjaguar_libretro-macos-arm64-debug.tar.gz",
-              "size": 1065969,
+              "size": 1067861,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-arm64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-macos-arm64.dylib",
-              "size": 2340808,
+              "size": 2345472,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-arm64.dylib"
             },
             {
               "name": "virtualjaguar_libretro-macos-x86_64-debug.tar.gz",
-              "size": 1238690,
+              "size": 1241199,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-macos-x86_64.dylib",
-              "size": 2278616,
+              "size": 2314896,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-x86_64.dylib"
             },
             {
               "name": "virtualjaguar_libretro-switch-debug.tar.gz",
-              "size": 3062937,
+              "size": 3067109,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-switch-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-switch.a",
-              "size": 6024626,
+              "size": 6026650,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-switch.a"
             },
             {
               "name": "virtualjaguar_libretro-tvos-arm64-debug.tar.gz",
-              "size": 1159142,
+              "size": 1161701,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-tvos-arm64-debug.tar.gz"
             },
             {
@@ -33573,32 +33573,32 @@
             },
             {
               "name": "virtualjaguar_libretro-vita-debug.tar.gz",
-              "size": 2842684,
+              "size": 2845891,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-vita-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-vita.a",
-              "size": 2883072,
+              "size": 2884372,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-vita.a"
             },
             {
               "name": "virtualjaguar_libretro-windows-i686-debug.tar.gz",
-              "size": 2618249,
+              "size": 2622055,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-i686-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-windows-i686.dll",
-              "size": 25033401,
+              "size": 25035449,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-i686.dll"
             },
             {
               "name": "virtualjaguar_libretro-windows-x86_64-debug.tar.gz",
-              "size": 2761764,
+              "size": 2765232,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-windows-x86_64.dll",
-              "size": 25294727,
+              "size": 25296263,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-x86_64.dll"
             },
             {
@@ -33608,12 +33608,12 @@
             },
             {
               "name": "virtualjaguar_nightly_amd64.deb",
-              "size": 19603268,
+              "size": 19607868,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_nightly_amd64.deb"
             },
             {
               "name": "virtualjaguar_nightly_arm64.deb",
-              "size": 18826812,
+              "size": 18823496,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_nightly_arm64.deb"
             }
           ]
@@ -40759,7 +40759,7 @@
       "latest_tag": "v0.119.0-beta.3",
       "latest_apk_url": "https://github.com/termux/termux-app/releases/download/v0.119.0-beta.3/termux-app_v0.119.0-beta.3%2Bapt-android-5-github-debug_arm64-v8a.apk",
       "pushed_at": "2026-09-26T05:11:44Z",
-      "stars": 62706,
+      "stars": 62710,
       "homepage": "https://termux.dev/cn/",
       "repo_url": "https://github.com/termux/termux-app",
       "releases": [
@@ -42178,8 +42178,8 @@
       "repo": "libretro/RetroArch",
       "latest_tag": "v1.22.2",
       "latest_apk_url": "https://github.com/libretro/RetroArch/releases/download/v1.22.2/retroarch-sourceonly-1.22.2.tar.xz",
-      "pushed_at": "2026-10-16T03:57:00Z",
-      "stars": 14341,
+      "pushed_at": "2026-10-16T04:46:41Z",
+      "stars": 14343,
       "homepage": "https://www.retroarch.com",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/retroarch.png",
       "repo_url": "https://github.com/libretro/RetroArch",
@@ -42468,7 +42468,7 @@
       "latest_tag": "nJoy",
       "latest_apk_url": "",
       "pushed_at": "2026-10-12T04:41:55Z",
-      "stars": 15663,
+      "stars": 15662,
       "homepage": "https://dolphin-emu.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/dolphin.png",
       "repo_url": "https://github.com/dolphin-emu/dolphin",
@@ -42670,7 +42670,7 @@
       "logoUrl": "https://avatars.githubusercontent.com/u/103731829?v=4",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
       "stars": 70,
-      "pushed_at": "2026-10-16T03:48:45Z",
+      "pushed_at": "2026-10-16T06:25:28Z",
       "latest_tag": "1.0.8",
       "latest_date": "2026-06-05T11:27:23Z",
       "latest_apk_name": "box64-android-glibc-v11.tar.xz",
@@ -45497,7 +45497,7 @@
       "homepage": "https://github.com/hanxinhao000/ZeroTermux",
       "logoUrl": "https://avatars.githubusercontent.com/u/23556571?v=4",
       "description": "Termux 知名 fork（3k+ star）：集成增强功能，独立版本线持续发布 APK",
-      "stars": 3063,
+      "stars": 3064,
       "pushed_at": "2026-08-10T15:45:31Z",
       "latest_tag": "ZeroTermux-0.118.3.64",
       "latest_date": "2026-08-08T14:13:25Z",

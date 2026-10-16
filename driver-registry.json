@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5133,
+      "stars": 5136,
       "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -52,7 +52,7 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-10-13T15:09:33Z"
+      "updated_at": "2026-01-14T13:54:43Z"
     },
     {
       "id": "stevenmxz",
@@ -102,7 +102,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1012,
+      "stars": 1015,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -196,7 +196,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 836,
+      "stars": 839,
       "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -267,7 +267,7 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-09-18T20:22:21Z"
+      "updated_at": "2026-09-18T20:04:43Z"
     },
     {
       "id": "banner",
@@ -317,7 +317,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 188,
+      "stars": 193,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -343,7 +343,7 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-10-15T01:07:38Z"
+      "updated_at": "2026-10-16T02:01:15Z"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -403,7 +403,7 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-05-21T21:55:53Z"
+      "updated_at": "2024-01-01T05:33:16Z"
     },
     {
       "id": "whitebelyash",
@@ -453,7 +453,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 468,
+      "stars": 470,
       "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
       "notes": "",
       "companion": [],
@@ -466,7 +466,7 @@
           "stu_"
         ]
       },
-      "updated_at": "2026-09-19T13:37:43Z"
+      "updated_at": "2026-09-19T13:37:44Z"
     },
     {
       "id": "jade-mesa",
@@ -525,7 +525,7 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-09-20T08:07:04Z"
+      "updated_at": "2026-08-31T10:26:10Z"
     },
     {
       "id": "tiagosouza",
@@ -615,7 +615,7 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-05-19T19:40:37Z"
+      "updated_at": "2026-03-18T17:25:13Z"
     },
     {
       "id": "wintermist-a810",
@@ -646,7 +646,7 @@
           "A81"
         ]
       },
-      "updated_at": "2026-10-08T03:47:52Z"
+      "updated_at": "2026-10-08T03:21:28Z"
     },
     {
       "id": "diskdvd-a8xx",
@@ -677,7 +677,7 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-09-27T12:22:37Z"
+      "updated_at": "2026-09-27T12:22:38Z"
     },
     {
       "id": "frane-a810",
@@ -707,7 +707,7 @@
           "A810"
         ]
       },
-      "updated_at": "2026-10-14T16:10:53Z"
+      "updated_at": "2026-10-11T09:43:37Z"
     },
     {
       "id": "vauzi-710",
@@ -729,7 +729,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 68,
+      "stars": 70,
       "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
       "notes": "710 用户首选",
       "companion": [],
@@ -740,7 +740,7 @@
           "720"
         ]
       },
-      "updated_at": "2026-10-12T01:28:22Z"
+      "updated_at": "2026-10-11T04:15:13Z"
     },
     {
       "id": "faux123-8xx",
@@ -794,7 +794,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 47,
+      "stars": 48,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -902,7 +902,7 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-02T16:27:37Z"
+      "updated_at": "2026-10-01T15:32:36Z"
     },
     {
       "id": "wonderkast-g720",
@@ -932,7 +932,7 @@
           "vulkan"
         ]
       },
-      "updated_at": "2026-10-10T04:10:40Z"
+      "updated_at": "2026-09-24T22:42:17Z"
     },
     {
       "id": "zenithblue-kbase",
@@ -955,7 +955,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 46,
+      "stars": 51,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -990,7 +990,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 24,
+      "stars": 25,
       "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
       "notes": "覆盖型号较广",
       "companion": [],
@@ -1000,7 +1000,7 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-07-22T22:33:58Z"
+      "updated_at": "2026-07-22T22:33:59Z"
     },
     {
       "id": "bkaneko-mtk",
@@ -1064,7 +1064,7 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-10T10:48:44Z"
+      "updated_at": "2026-10-15T14:29:26Z"
     },
     {
       "id": "faux123-rg556",
@@ -1095,7 +1095,7 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-10T07:47:24Z"
+      "updated_at": "2026-10-15T13:56:26Z"
     },
     {
       "id": "dkdndje-g720",
@@ -1181,7 +1181,7 @@
           "merged"
         ]
       },
-      "updated_at": "2026-10-14T22:11:42Z"
+      "updated_at": "2026-10-15T10:05:32Z"
     },
     {
       "id": "xclipse940-radv",
@@ -1201,7 +1201,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 9,
+      "stars": 12,
       "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1211,7 +1211,7 @@
           "Xclipse"
         ]
       },
-      "updated_at": "2026-10-13T22:36:53Z"
+      "updated_at": "2026-10-13T22:36:21Z"
     },
     {
       "id": "winnative-drivers",
@@ -1320,7 +1320,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 222,
+      "stars": 227,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1389,7 +1389,7 @@
           "PanVK"
         ]
       },
-      "updated_at": "2026-10-01T09:51:44Z"
+      "updated_at": "2026-09-30T08:57:18Z"
     },
     {
       "id": "msx-g615-eden",
@@ -1470,7 +1470,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 17,
+      "stars": 16,
       "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
       "companion": [],
@@ -1480,7 +1480,7 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-10T14:09:26Z"
+      "updated_at": "2026-10-06T07:15:50Z"
     },
     {
       "id": "alexsanz-sd865",
@@ -1538,7 +1538,7 @@
           "Turnip"
         ]
       },
-      "updated_at": "2025-12-25T08:54:56Z"
+      "updated_at": "2025-10-11T23:54:12Z"
     },
     {
       "id": "faux123-pixel7",
@@ -1561,7 +1561,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 2,
+      "stars": 3,
       "notes": "faux123 全家桶之一：Ace/RG556/RP4Pro/Pixel7 按 GPU 型号分发；活跃（2026-10-13 v0.10.0）",
       "companion": [
         "faux123-ace",
@@ -1571,7 +1571,7 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-13T02:02:16Z"
+      "updated_at": "2026-10-15T12:26:45Z"
     },
     {
       "id": "faux123-rp4pro",
@@ -1592,7 +1592,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 6,
+      "stars": 7,
       "notes": "按 GPU 型号分发；活跃（2026-10-10 v0.15.0）",
       "companion": [
         "faux123-ace",
@@ -1602,7 +1602,7 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-10T07:47:20Z"
+      "updated_at": "2026-10-15T14:14:04Z"
     },
     {
       "id": "lukevalen-kbase",
@@ -1641,7 +1641,7 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-14T13:11:00Z"
+      "updated_at": "2026-10-15T15:12:45Z"
     },
     {
       "id": "guna-panvk-kbase",
@@ -1680,7 +1680,7 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-15T06:18:28Z"
+      "updated_at": "2026-10-15T13:38:26Z"
     },
     {
       "id": "ghaelv-turnip-lemon-ade",
@@ -1708,7 +1708,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 4,
+      "stars": 5,
       "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
       "companion": [
         "ghaelv-lemon-project"
@@ -1736,14 +1736,14 @@
       "target_emulator": "generic",
       "package_format": "apk",
       "maturity": "experimental",
-      "stars": 2,
+      "stars": 3,
       "description": "PanProbe：Vulkan 信息与设备端驱动测试（PanVK Kbase Mali 驱动自检，含 sha256 与日志上传，驱动测试参考）",
       "notes": "驱动功能探测参考工具（实例/扩展/队列族采集）",
       "companion": [
         "zenithblue-oss/panplay"
       ],
       "filters": [],
-      "updated_at": "2026-10-13T13:34:16Z"
+      "updated_at": "2026-10-13T13:35:04Z"
     },
     {
       "id": "zenith-panplay",
@@ -1790,7 +1790,7 @@
       "target_emulator": "generic",
       "package_format": "apk",
       "maturity": "experimental",
-      "stars": 5,
+      "stars": 6,
       "description": "GameNative-Mali：Steam/Epic/GOG/Amazon 原生 PC 游戏集成（Mali 驱动渲染环境）",
       "notes": "faux123 出品，与 panvk 驱动家族同作者",
       "companion": [
@@ -1817,14 +1817,14 @@
       "target_emulator": "generic",
       "package_format": "apk",
       "maturity": "beta",
-      "stars": 449,
+      "stars": 448,
       "description": "WinlatorMali：Winlator Mali 分支（Wine + Box64 + PanVK Kbase，社区配置仓库同作者）",
       "notes": "与 Winlator-Mali-Community-Configs 配置仓库同源",
       "companion": [
         "GunaCharanTeja/panvk-kbase-android"
       ],
       "filters": [],
-      "updated_at": "2026-10-04T12:44:25Z"
+      "updated_at": "2026-07-09T19:05:29Z"
     }
   ]
 }
