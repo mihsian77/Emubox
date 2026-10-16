@@ -604,11 +604,7 @@ class MainActivity : ComponentActivity() {
                                                 }
                                             },
                                             driverSourceUpdatedAt = driverSourceUpdatedAt,
-                                            driverSourceStars = driverSourceStars,
-                                            registryStatus = buildRegistryStatus(
-                                                registryEntries,
-                                                sourceCatalog.turnipSources.size
-                                            )
+                                            driverSourceStars = driverSourceStars
                                         )
                                     }
                                 }
@@ -839,15 +835,4 @@ private data class AppLoadResult(
     val driverSourceStars: Map<String, Long> = emptyMap()
 )
 
-/** 驱动源状态条文案：注册表加载来源 + 实际合并后 turnipSources 总数 */
-private fun buildRegistryStatus(registryEntries: List<DriverRegistryEntry>, mergedTurnipCount: Int): String {
-    val sourceLabel = when (DriverRegistryRepository.lastLoadSource) {
-        "remote" -> "远程 GitHub"
-        "jsdelivr" -> "远程 jsDelivr"
-        "assets" -> "内置 APK"
-        "fallback" -> "硬编码兜底"
-        else -> "未知"
-    }
-    val driverCount = registryEntries.count { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
-    return "驱动源状态：注册表 ${driverCount} 个驱动源（来源：$sourceLabel）＋精选 ${mergedTurnipCount} 个已并入"
-}
+
