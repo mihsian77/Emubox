@@ -145,6 +145,29 @@ suspend fun downloadComponent(context: Context, component: Component) {
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
 }
 
+/** R5：来源级捆绑——下载某组件来源最新 release 的全部资产文件（wcp/补丁/配置等），
+ *  让用户一眼看出该来源组件特色。存 Components/Bundle-<来源名>/ 目录。 */
+suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceName: String) {
+    val apiUrl = deriveRepoApiUrl(manifestUrl) ?: return
+    val releases = fetchGithubReleasesFromUrl(apiUrl)
+    val latest = releases.firstOrNull() ?: return
+    val assets = latest.assets.filter { it.downloadUrl.isNotBlank() }
+    if (assets.isEmpty()) return
+    val subPath = "Components/Bundle-${sanitizeFileName(sourceName)}"
+    val tag = latest.tagName
+    assets.forEach { asset ->
+        val rawName = asset.name
+        val hasVersion = Regex("\\d+\\.\\d+|v\\d+", RegexOption.IGNORE_CASE).containsMatchIn(rawName)
+        val desiredName = sanitizeFileName(
+            if (hasVersion || rawName.length > 24) rawName
+            else "${tag}_$rawName"
+        )
+        if (ensureFileNotExists(context, desiredName, subPath)) return@forEach
+        val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
+        downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+    }
+}
+
 /** 下载模拟器 APK（emulator-registry 最新版本直链），存入 Download/Emulators/ */
 /** 下载模拟器指定资产文件（补丁/zip/apk 等，作者同发的所有文件都可下） */
 suspend fun downloadEmulatorAsset(context: Context, emulatorName: String, url: String, fileName: String) {

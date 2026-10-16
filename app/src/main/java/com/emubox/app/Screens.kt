@@ -5161,6 +5161,7 @@ fun ComponentSection(
         mutableStateOf(SettingsManager.getSelectedComponentVersion(selectionKey))
     }
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val selectVersionMessage = appString(R.string.select_version)
     val latestComponent = components.firstOrNull()
     val selected = remember(components, selectedVersion) {
@@ -5275,6 +5276,39 @@ fun ComponentSection(
                         },
                         onSelected = onSourceChange
                     )
+
+                    // R5：来源级捆绑——一键下载该来源最新 release 的全部资产
+                    var bundleBusy by remember(selectionKey) { mutableStateOf(false) }
+                    val bundleDoneMsg = appString(R.string.source_bundle_done, currentSource.name)
+                    OutlinedButton(
+                        onClick = {
+                            if (bundleBusy) return@OutlinedButton
+                            bundleBusy = true
+                            scope.launch {
+                                try {
+                                    downloadSourceBundle(context, currentSource.manifestUrl, currentSource.name)
+                                    Toast.makeText(context, bundleDoneMsg, Toast.LENGTH_LONG).show()
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, e.message ?: "bundle failed", Toast.LENGTH_LONG).show()
+                                } finally {
+                                    bundleBusy = false
+                                }
+                            }
+                        },
+                        enabled = !bundleBusy,
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        if (bundleBusy) {
+                            CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
+                            Spacer(Modifier.width(8.dp))
+                            Text(appString(R.string.source_bundle_downloading))
+                        } else {
+                            Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(appString(R.string.source_bundle_download, currentSource.name), maxLines = 1)
+                        }
+                    }
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
