@@ -316,6 +316,14 @@
       "description": "WCP 组件包合集（DXVK/FEXCore/VKD3D）",
       "experimental": true,
       "updatedAt": 1791848348000
+    },
+    {
+      "id": "stevenmxz-wcp",
+      "name": "StevenMXZ WCP",
+      "manifestUrl": "https://raw.githubusercontent.com/StevenMXZ/Winlator-Contents/main/contents.json",
+      "description": "StevenMXZ 的 WCP 组件集（Wine/DXVK 等 Windows 兼容组件）",
+      "experimental": false,
+      "updatedAt": 0
     }
   ]
 }
