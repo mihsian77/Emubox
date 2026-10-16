@@ -3679,11 +3679,20 @@ fun TurnipDriverSection(
     updatedAtMap: Map<String, Long> = emptyMap(),
     remoteStars: Map<String, Long> = emptyMap(),
     title: String? = null,
-    description: String? = null
+    description: String? = null,
+    expandTrigger: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
     // 区块默认折叠：与组件专区一致，一屏可浏览全部驱动大区
     var expanded by rememberSaveable(selectionKey) { mutableStateOf(false) }
+    // I1：外部触发展开（切换来源后自动打开对应文件列表）
+    val lastTrigger = remember { mutableStateOf("") }
+    LaunchedEffect(selectionKey, expandTrigger) {
+        if (expandTrigger != null && expandTrigger != lastTrigger.value) {
+            expanded = true
+            lastTrigger.value = expandTrigger
+        }
+    }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -4378,11 +4387,20 @@ fun DriverCardDynamic(
     selectionKey: String,
     onDownload: (GithubRelease, GithubAsset) -> Unit,
     updatedAtMap: Map<String, Long> = emptyMap(),
-    remoteStars: Map<String, Long> = emptyMap()
+    remoteStars: Map<String, Long> = emptyMap(),
+    expandTrigger: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
     // 高通区块默认折叠：与 Turnip/PanVK 大区一致
     var expanded by rememberSaveable(selectionKey) { mutableStateOf(false) }
+    // I1：外部触发展开（切换来源后自动打开对应文件列表）
+    val lastTrigger = remember { mutableStateOf("") }
+    LaunchedEffect(selectionKey, expandTrigger) {
+        if (expandTrigger != null && expandTrigger != lastTrigger.value) {
+            expanded = true
+            lastTrigger.value = expandTrigger
+        }
+    }
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
@@ -7225,8 +7243,23 @@ fun DriverScreen(
         else qualcommSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
     }
 
+    // I1：切换来源后滚动定位到对应分区并自动展开其文件列表
+    val listState = rememberLazyListState()
+    val scope = rememberCoroutineScope()
+    var expandTrigger by remember { mutableStateOf<String?>(null) }
+    fun sectionIndex(target: Int): Int { // 0=turnip 1=panvk 2=qualcomm
+        var idx = 3
+        if (deviceInfo != null) idx++
+        if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) idx++
+        var off = 0
+        if (target > 0 && showTurnipSection && filteredTurnip.isNotEmpty()) off++
+        if (target > 1 && showPanvkSection && filteredPanvk.isNotEmpty()) off++
+        return idx + off
+    }
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
+        state = listState,
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -7318,12 +7351,17 @@ fun DriverScreen(
                     adrenoSeries = deviceInfo?.adrenoSeries,
                     sources = filteredTurnip,
                     currentSourceId = turnipSourceId,
-                    onSourceChange = onTurnipSourceChange,
+                    onSourceChange = { id ->
+                        onTurnipSourceChange(id)
+                        expandTrigger = "turnip:$id"
+                        scope.launch { listState.animateScrollToItem(sectionIndex(0)) }
+                    },
                     releases = turnipReleases,
                     selectionKey = "turnip:$turnipSourceId",
                     onDownload = onDownloadAsset,
                     updatedAtMap = driverSourceUpdatedAt,
-                    remoteStars = driverSourceStars
+                    remoteStars = driverSourceStars,
+                    expandTrigger = expandTrigger?.takeIf { it.startsWith("turnip:") }
                 )
             }
         }
@@ -7335,12 +7373,17 @@ fun DriverScreen(
                     adrenoSeries = deviceInfo?.adrenoSeries,
                     sources = filteredPanvk,
                     currentSourceId = panvkSourceId,
-                    onSourceChange = onPanvkSourceChange,
+                    onSourceChange = { id ->
+                        onPanvkSourceChange(id)
+                        expandTrigger = "panvk:$id"
+                        scope.launch { listState.animateScrollToItem(sectionIndex(1)) }
+                    },
                     releases = panvkReleases,
                     selectionKey = "panvk:$panvkSourceId",
                     onDownload = onDownloadAsset,
                     updatedAtMap = driverSourceUpdatedAt,
                     remoteStars = driverSourceStars,
+                    expandTrigger = expandTrigger?.takeIf { it.startsWith("panvk:") },
                     title = "PanVK 驱动专区",
                     description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持"
                 )
@@ -7355,12 +7398,17 @@ fun DriverScreen(
                     icon = Icons.Default.Memory,
                     sources = filteredQualcomm,
                     currentSourceId = qualcommSourceId,
-                    onSourceChange = onQualcommSourceChange,
+                    onSourceChange = { id ->
+                        onQualcommSourceChange(id)
+                        expandTrigger = "qualcomm:$id"
+                        scope.launch { listState.animateScrollToItem(sectionIndex(2)) }
+                    },
                     releases = qualcommReleases,
                     selectionKey = "qualcomm:$qualcommSourceId",
                     onDownload = onDownloadAsset,
                     updatedAtMap = driverSourceUpdatedAt,
-                    remoteStars = driverSourceStars
+                    remoteStars = driverSourceStars,
+                    expandTrigger = expandTrigger?.takeIf { it.startsWith("qualcomm:") }
                 )
             }
         }
