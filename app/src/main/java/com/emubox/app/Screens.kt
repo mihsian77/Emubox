@@ -2157,6 +2157,22 @@ fun ComponentGuideScreen(
     val visibleTopics = componentGuideTopics.filter {
         if (driverMode) it.id in driverTopicIds else it.id !in driverTopicIds
     }
+    // 按当前设备 GPU 重排主题：Adreno 用户 Turnip/高通驱动优先，Mali 用户 PanVK 优先
+    val isAdrenoGuide = deviceInfo?.gpuVendor == GpuVendor.ADRENO
+    val isMaliGuide = deviceInfo?.gpuVendor == GpuVendor.MALI
+    val sortedTopics = remember(visibleTopics, isAdrenoGuide, isMaliGuide) {
+        if (driverMode) {
+            val order = when {
+                isAdrenoGuide -> listOf("turnip", "qualcomm", "adrenotools", "panvk")
+                isMaliGuide -> listOf("panvk", "adrenotools", "turnip", "qualcomm")
+                else -> listOf("turnip", "qualcomm", "adrenotools", "panvk")
+            }
+            visibleTopics.sortedBy { t ->
+                val i = order.indexOf(t.id)
+                if (i < 0) Int.MAX_VALUE else i
+            }
+        } else visibleTopics
+    }
 
     LaunchedEffect(initialTopicId) {
         if (initialTopicId != null) {
@@ -2266,7 +2282,7 @@ fun ComponentGuideScreen(
                 }
             }
 
-            visibleTopics.forEach { topic ->
+            sortedTopics.forEach { topic ->
                 item(key = "guide_topic_${topic.id}") {
                     GuideTopicCard(
                         topic = topic,
@@ -2742,8 +2758,64 @@ private fun DeviceGuideDialog(onDismiss: () -> Unit, deviceInfo: DeviceInfo? = n
                     appString(R.string.device_guide_route_desc),
                     Icons.Default.Navigation
                 )
+                DeviceGuideComponentRec(deviceInfo)
                 TextButton(onClick = onDismiss, modifier = Modifier.align(Alignment.End)) {
                     Text(appString(R.string.ok))
+                }
+            }
+        }
+    }
+}
+
+/** 设备指南-组件类型推荐：按当前 GPU 厂商给出组件组合与官方发布日志要点（动态生成，无官方 logo 依赖） */
+@Composable
+private fun DeviceGuideComponentRec(deviceInfo: DeviceInfo?) {
+    val vendor = deviceInfo?.gpuVendor
+    val isAdreno = vendor == GpuVendor.ADRENO
+    val isMali = vendor == GpuVendor.MALI
+    val recs = when {
+        isAdreno -> listOf(
+            "驱动路线：Turnip + Zink 为 Winlator 首选，AdrenoTools 自定义驱动可解锁更高版本；备选高通官方驱动（兼容性优先）",
+            "DXVK 2.x：D3D9/10/11 转译层，官方日志持续改进动态渲染与内存管理，Adreno 7xx 推荐 2.5+",
+            "VKD3D-Proton 2.x：D3D12 转译层，支持光追后备；游戏要求 D3D12 时安装",
+            "Wine/Proton：WOW64 组件配合 Box64 使用；新版 Wine 修复大量 Winlator 兼容性问题，优先用各源最新发布"
+        )
+        isMali -> listOf(
+            "驱动路线：PanVK（Mesa Panfrost 开源 Mali 驱动）首选，备选 Mali 厂商驱动",
+            "DXVK 2.x：D3D9/10/11 转译层，官方日志含 Mali 相关修复，推荐与 PanVK 搭配",
+            "VKD3D-Proton：D3D12 转译层，Mali 支持随上游改进",
+            "Box64/WOWBox64：x86 转译基础组件，按模拟器内置版本对应选择"
+        )
+        else -> listOf(
+            "驱动：按 GPU 厂商选择对应开源驱动（Adreno→Turnip，Mali→PanVK），或厂商官方驱动",
+            "组件：DXVK 2.x 转译 D3D9/10/11，VKD3D-Proton 转译 D3D12，两者按游戏 API 需求安装",
+            "Wine/Proton + Box64：Winlator 运行环境基础，建议跟随组件源最新版本"
+        )
+    }
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+    ) {
+        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Extension, null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    "组件类型推荐（按当前设备）",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                )
+            }
+            recs.forEach { r ->
+                Row(verticalAlignment = Alignment.Top) {
+                    Text("•", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
+                    Spacer(Modifier.width(6.dp))
+                    Text(
+                        r,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
                 }
             }
         }
@@ -2803,10 +2875,11 @@ fun DriverHubScreen(
     val showQualcommSection = !matchByDevice || !isMali
 
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
+    // Turnip 组件（Rutabaga 等 WCP 构建）已移至驱动专区 Turnip 分区展示，组件区不再显示该类型
     val discoveredComponentTypes = componentCatalogs.values
         .flatMap { it.keys }
         .distinct()
-        .filterNot { it in preferredComponentOrder }
+        .filterNot { it in preferredComponentOrder || it.equals("Turnip", ignoreCase = true) }
         .sorted()
     val componentOrder = preferredComponentOrder + discoveredComponentTypes
     val componentSourceSelections = remember { mutableStateMapOf<String, String>() }
@@ -3034,6 +3107,15 @@ fun DriverHubScreen(
             }
         }
 
+        // Turnip 组件分区（Rutabaga WCP 构建，来自 banner 社区源）：并入驱动区 Turnip 分区展示，
+        // 组件区已不再显示 Turnip 类型。按设备匹配与 Turnip 分区一致（Mali 设备隐藏）。
+        val rutabagaComponents = componentCatalogs["banner-components"]?.get("Turnip").orEmpty()
+        if (rutabagaComponents.isNotEmpty() && showTurnipSection) {
+            item(key = "turnip_rutabaga") {
+                RutabagaDriverCard(components = rutabagaComponents, onDownload = onDownloadComponent)
+            }
+        }
+
         // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
         if (panvkSources.isNotEmpty() && showPanvkSection) {
             item(key = "panvk_section") {
@@ -3250,18 +3332,23 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                     DeviceStat(
                         icon = Icons.Default.Info,
                         label = appString(R.string.soc_label),
-                        value = deviceInfo.socName.ifBlank { "—" },
+                        value = SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName.ifBlank { "—" },
                         modifier = Modifier.weight(2f)
                     )
                 }
                 // SoC 品牌徽章（文字+品牌色，避免官方 logo 版权）
                 Spacer(Modifier.height(8.dp))
                 val socBrand = detectSocBrand(deviceInfo.socName)
+                val socFriendly = SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     SocBrandBadge(
                         brand = socBrand,
-                        text = if (socBrand.name == "SoC") deviceInfo.socName
-                            else "${socBrand.name} · ${deviceInfo.socName}"
+                        // 名称已含厂商名（如"高通骁龙"）时不再重复拼接"高通 ·"
+                        text = when {
+                            socBrand.name == "SoC" -> socFriendly
+                            socFriendly.startsWith(socBrand.name) -> socFriendly
+                            else -> "${socBrand.name} · $socFriendly"
+                        }
                     )
                 }
             }
@@ -4148,6 +4235,51 @@ private fun buildTurnipPreview(source: TurnipSource, remoteStars: Map<String, Lo
     val stars = remoteStars[source.id] ?: source.stars
     if (stars > 0) lines += PreviewItem(Icons.Default.Star, appString(R.string.preview_stars, formatStars(stars)))
     return lines
+}
+
+/** Rutabaga Turnip 驱动卡片（banner 社区源 WCP 构建）：并入驱动区 Turnip 分区。
+ *  条目来自 winlator-contents manifest type=Turnip（Rutabaga-* 版本），
+ *  下载走组件下载通道（onDownloadComponent）。 */
+@Composable
+private fun RutabagaDriverCard(
+    components: List<Component>,
+    onDownload: (Component) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+    ) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Memory, null, tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    "Rutabaga（Turnip 驱动，banner 社区源）",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                )
+            }
+            Text(
+                "Mesa Turnip 的 Rutabaga 实验构建，以 WCP 打包分发，Adreno 6xx/7xx 适用。版本随上游发布更新。",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 6.dp, bottom = 10.dp)
+            )
+            components.forEach { c ->
+                Row(
+                    Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(c.verName, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    Spacer(Modifier.weight(1f))
+                    OutlinedButton(onClick = { onDownload(c) }, contentPadding = PaddingValues(horizontal = 10.dp, vertical = 2.dp)) {
+                        Text("下载", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+            }
+        }
+    }
 }
 
 /** Qualcomm 来源预览：系统驱动说明 + 活跃度 + 停更状态，star 优先用远程元数据覆盖 */
@@ -6374,6 +6506,16 @@ private fun DriverDetectionList(
                             InfoRow(appString(R.string.meta_author), meta.author)
                         if (meta.minApi.isNotBlank())
                             InfoRow(appString(R.string.meta_min_api), meta.minApi)
+                        if (meta.description.isNotBlank())
+                            InfoRow("驱动说明", meta.description)
+                        InfoRow(
+                            "驱动类型",
+                            when (meta.driverType()) {
+                                DriverMetaParser.DriverType.VENDOR_SYSTEM -> "厂商系统提取（需 root/系统级安装，App 内不可加载）"
+                                DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> "AdrenoTools 打包（模拟器注入加载，App 内以 fork 隔离实测）"
+                                else -> "未声明/其他（App 内按通用路径尝试）"
+                            }
+                        )
                     }
 
                     // ── AdrenoTools 实测结果（M4）：实例/设备扩展、设备属性、兼容、跑分 ──
@@ -6400,6 +6542,33 @@ private fun DriverDetectionList(
                                 InfoRow("API 版本", dev.apiVersion)
                                 InfoRow("驱动版本", dev.driverVersion)
                                 InfoRow("设备扩展", "${dev.extensions.size} 个")
+                                // 关键扩展缺失提示：DXVK/VKD3D 转译依赖的关键扩展逐项对照
+                                val extNames = dev.extensions.map { it.name }
+                                val missingCritical = CRITICAL_DXVK_EXTS.filter { it !in extNames }
+                                if (missingCritical.isNotEmpty()) {
+                                    Spacer(Modifier.height(4.dp))
+                                    Surface(
+                                        shape = RoundedCornerShape(10.dp),
+                                        color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.5f),
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                            Text(
+                                                "缺失关键扩展 ${missingCritical.size}/${CRITICAL_DXVK_EXTS.size}（影响转译层功能）",
+                                                style = MaterialTheme.typography.labelSmall,
+                                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                                                color = MaterialTheme.colorScheme.onErrorContainer
+                                            )
+                                            Text(
+                                                missingCritical.joinToString("、"),
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.onErrorContainer,
+                                                maxLines = 2,
+                                                overflow = TextOverflow.Ellipsis
+                                            )
+                                        }
+                                    }
+                                }
                                 // 兼容徽章：驱动面向 GPU 厂商 vs 当前设备 GPU 厂商
                                 val sysVendor = systemDevice?.vendorId
                                 val compat = when (dev.vendorId) {
@@ -7601,10 +7770,11 @@ fun ComponentScreen(
     onOpenGuide: () -> Unit = {}
 ) {
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
+    // Turnip 组件（Rutabaga 等 WCP 构建）已移至驱动专区 Turnip 分区展示，组件区不再显示该类型
     val discoveredComponentTypes = componentCatalogs.values
         .flatMap { it.keys }
         .distinct()
-        .filterNot { it in preferredComponentOrder }
+        .filterNot { it in preferredComponentOrder || it.equals("Turnip", ignoreCase = true) }
         .sorted()
     val componentOrder = preferredComponentOrder + discoveredComponentTypes
     val componentSourceSelections = remember { mutableStateMapOf<String, String>() }
