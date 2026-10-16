@@ -4523,6 +4523,9 @@ private fun ReleaseChangelog(release: GithubRelease?) {
         release?.body?.let { cleanReleaseNotes(it) }.orEmpty()
     }
     if (notes.isBlank()) return
+    // R4：官方日志按 Markdown 段落（## 标题）分类，用户自选感兴趣的段落查看
+    val sections = remember(release?.tagName, notes) { splitChangelogSections(notes) }
+    var selectedSection by remember(release?.tagName) { mutableStateOf(0) }
     var expanded by remember(release?.tagName) { mutableStateOf(false) }
     var showTranslated by remember(release?.tagName) { mutableStateOf(false) }
     var translated by remember(release?.tagName) { mutableStateOf<String?>(null) }
@@ -4564,7 +4567,9 @@ private fun ReleaseChangelog(release: GithubRelease?) {
                             } else if (!translating) {
                                 translating = true
                                 scope.launch {
-                                    val result = translateReleaseNotes(notes)
+                                    val result = translateReleaseNotes(
+                                        if (sections.size > 1) sections.getOrNull(selectedSection)?.second ?: notes else notes
+                                    )
                                     translated = result
                                     showTranslated = result != null
                                     translating = false
@@ -4597,7 +4602,35 @@ private fun ReleaseChangelog(release: GithubRelease?) {
                 Spacer(Modifier.height(8.dp))
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 Spacer(Modifier.height(8.dp))
-                val displayText = if (showTranslated) translated ?: notes else notes
+                // R4：段落分类自选——多段落日志按标题拆分，顶部 chips 选择
+                if (sections.size > 1) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        sections.forEachIndexed { idx, sec ->
+                            FilterChip(
+                                selected = idx == selectedSection,
+                                onClick = {
+                                    selectedSection = idx
+                                    translated = null
+                                    showTranslated = false
+                                },
+                                label = {
+                                    Text(
+                                        sec.first ?: appString(R.string.changelog_section_body),
+                                        maxLines = 1
+                                    )
+                                }
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                }
+                val currentText = if (sections.size > 1) sections.getOrNull(selectedSection)?.second ?: notes else notes
+                val displayText = if (showTranslated) translated ?: currentText else currentText
                 Text(
                     text = displayText,
                     style = MaterialTheme.typography.bodySmall,
@@ -4626,6 +4659,32 @@ private fun cleanReleaseNotes(raw: String): String = raw
     .replace(Regex("(?m)^\\s*>\\s?"), "")
     .replace(Regex("[ \\t]+\n"), "\n")
     .trim()
+
+/** R4：官方日志按 Markdown 标题段落拆分，返回 (段落标题, 段落正文) 列表 */
+private fun splitChangelogSections(text: String): List<Pair<String?, String>> {
+    val titleRe = Regex("^\\s*(#{1,6})\\s+(.*)$")
+    val sections = mutableListOf<Pair<String?, String>>()
+    var curTitle: String? = null
+    val curBody = StringBuilder()
+    for (line in text.lines()) {
+        val m = titleRe.find(line)
+        if (m != null) {
+            if (curBody.isNotBlank() || sections.isNotEmpty()) {
+                sections.add(curTitle to curBody.toString().trim())
+            }
+            curTitle = m.groupValues[2].trim()
+            curBody.setLength(0)
+        } else {
+            if (line.isNotBlank()) {
+                curBody.append(line).append("\n")
+            }
+        }
+    }
+    if (curBody.isNotBlank() || sections.isEmpty()) {
+        sections.add(curTitle to curBody.toString().trim())
+    }
+    return sections.filter { it.second.isNotBlank() }.ifEmpty { listOf(null to text) }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
