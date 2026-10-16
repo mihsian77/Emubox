@@ -369,6 +369,12 @@ suspend fun fetchRepositoryPushedAt(manifestUrl: String): Long? =
 suspend fun fetchRepositoryStars(url: String): Long? =
     fetchRepoMeta(url)?.stars
 
+/** R5：从组件清单/发布 URL 推导仓库 API 地址（拉取最新 release 全部资产用） */
+fun deriveRepoApiUrl(url: String): String? {
+    val (owner, repo) = extractOwnerRepo(url) ?: return null
+    return "https://api.github.com/repos/$owner/$repo"
+}
+
 /** 从清单/发布 URL 提取 owner/repo（小写化），识别不出返回 null */
 private fun extractOwnerRepo(url: String): Pair<String, String>? {
     return try {

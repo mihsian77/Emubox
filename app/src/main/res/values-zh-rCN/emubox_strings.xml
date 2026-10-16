@@ -246,6 +246,9 @@
     <string name="file_format_special">%1$s 特殊格式</string>
     <string name="file">文件</string>
     <string name="files">个文件</string>
+    <string name="source_bundle_done">已开始下载 %1$s 最新捆绑包（全部资产文件）</string>
+    <string name="source_bundle_downloading">正在获取捆绑包…</string>
+    <string name="source_bundle_download">下载 %1$s 最新捆绑包</string>
     <string name="changelog_section_body">正文</string>
     <string name="changelog">更新日志</string>
     <string name="no_compatible_releases">未找到兼容的版本。</string>
