@@ -28,6 +28,8 @@ private const val KEY_DOWNLOAD_SECTION = "download_section"
 private const val KEY_TURNIP_SOURCE = "turnip_source"
 private const val KEY_PANVK_SOURCE = "panvk_source"
 private const val KEY_QUALCOMM_SOURCE = "qualcomm_source"
+private const val KEY_XCLIPSE_SOURCE = "xclipse_source"
+private const val KEY_WRAPPER_SOURCE = "wrapper_source"
 private const val KEY_SOURCE_CATALOG_URL = "source_catalog_url"
 private const val KEY_APP_LANGUAGE = "app_language"
 private const val KEY_ACCELERATOR_MODE = "accelerator_mode"
@@ -130,6 +132,20 @@ object SettingsManager {
 
     fun setQualcommSource(sourceId: String) {
         prefs.edit().putString(KEY_QUALCOMM_SOURCE, sourceId).apply()
+    }
+
+    fun getXclipseSource(): String =
+        prefs.getString(KEY_XCLIPSE_SOURCE, "xclipse940-radv") ?: "xclipse940-radv"
+
+    fun setXclipseSource(sourceId: String) {
+        prefs.edit().putString(KEY_XCLIPSE_SOURCE, sourceId).apply()
+    }
+
+    fun getWrapperSource(): String =
+        prefs.getString(KEY_WRAPPER_SOURCE, "wrapper-banner") ?: "wrapper-banner"
+
+    fun setWrapperSource(sourceId: String) {
+        prefs.edit().putString(KEY_WRAPPER_SOURCE, sourceId).apply()
     }
 
     fun getComponentSource(type: String): String? =

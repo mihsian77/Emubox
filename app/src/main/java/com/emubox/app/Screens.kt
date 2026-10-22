@@ -2866,12 +2866,20 @@ fun DriverHubScreen(
     qualcommSourceId: String,
     qualcommSources: List<QualcommSource>,
     qualcommReleases: List<GithubRelease>,
+    xclipseSourceId: String,
+    xclipseSources: List<TurnipSource>,
+    xclipseReleases: List<GithubRelease>,
+    wrapperSourceId: String,
+    wrapperSources: List<TurnipSource>,
+    wrapperReleases: List<GithubRelease>,
     componentSources: List<ComponentSource>,
     componentCatalogs: Map<String, Map<String, List<Component>>>,
     sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
     onPanvkSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
+    onXclipseSourceChange: (String) -> Unit,
+    onWrapperSourceChange: (String) -> Unit,
     onOpenGuide: (String?) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     onDownloadComponent: (Component) -> Unit,
@@ -4582,6 +4590,12 @@ fun assessGameSupport(
             out += GameSupportEval("Windows D3D12（VKD3D）", "跑不了", "PanVK 缺 D3D12 所需特性，暂不建议")
             out += if (isMaliDevice) GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "PanVK 对 Mali 逐步支持，黑屏/贴图错误可能")
                 else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "非 Mali 设备装 PanVK 意义有限")
+        }
+        "radv" -> { // Mesa RADV / 三星 Xclipse 实验性驱动
+            out += GameSupportEval("Windows D3D8/9（DXVK）", "可能能跑", "Xclipse 驱动实验性，DXVK 需实测")
+            out += GameSupportEval("Windows D3D10/11（DXVK）", "可能能跑", "RADV 移植起步阶段，社区配置稀缺")
+            out += GameSupportEval("Windows D3D12（VKD3D）", "跑不了", "实验性驱动暂不建议 D3D12")
+            out += GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "Xclipse 需专用 WinXclipse 分支，兼容性以实测为准")
         }
         else -> { // qualcomm 系统驱动
             out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "系统驱动稳定，DXVK 成熟")
@@ -7620,10 +7634,18 @@ fun DriverScreen(
     qualcommSourceId: String,
     qualcommSources: List<QualcommSource>,
     qualcommReleases: List<GithubRelease>,
+    xclipseSourceId: String,
+    xclipseSources: List<TurnipSource>,
+    xclipseReleases: List<GithubRelease>,
+    wrapperSourceId: String,
+    wrapperSources: List<TurnipSource>,
+    wrapperReleases: List<GithubRelease>,
     sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
     onPanvkSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
+    onXclipseSourceChange: (String) -> Unit,
+    onWrapperSourceChange: (String) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
     driverSourceStars: Map<String, Long> = emptyMap()
@@ -7642,6 +7664,11 @@ fun DriverScreen(
     val showTurnipSection = !matchByDevice || !isMali
     val showPanvkSection = !matchByDevice || isMali
     val showQualcommSection = !matchByDevice || !isMali
+    // Xclipse 只对三星 Exynos(RDNA) 设备有意义：按设备匹配时仅 Xclipse 设备显示
+    val isXclipse = gpuVendor == GpuVendor.XCLIPSE
+    val showXclipseSection = !matchByDevice || isXclipse
+    // Wrapper 通用性强（wmali→Mali、compat/gamenative→通用），始终显示
+    val showWrapperSection = true
 
     // 驱动局部搜索：按源名称/简介过滤三个区块
     var driverQuery by remember { mutableStateOf("") }
@@ -7658,18 +7685,28 @@ fun DriverScreen(
         if (q.isBlank()) qualcommSources
         else qualcommSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
     }
+    val filteredXclipse = remember(xclipseSources, q) {
+        if (q.isBlank()) xclipseSources
+        else xclipseSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
+    }
+    val filteredWrapper = remember(wrapperSources, q) {
+        if (q.isBlank()) wrapperSources
+        else wrapperSources.filter { it.name.contains(q, true) || it.description.contains(q, true) }
+    }
 
     // I1：切换来源后滚动定位到对应分区并自动展开其文件列表
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
     var expandTrigger by remember { mutableStateOf<String?>(null) }
-    fun sectionIndex(target: Int): Int { // 0=turnip 1=panvk 2=qualcomm
+    fun sectionIndex(target: Int): Int { // 0=turnip 1=panvk 2=qualcomm 3=xclipse 4=wrapper
         var idx = 3
         if (deviceInfo != null) idx++
         if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) idx++
         var off = 0
         if (target > 0 && showTurnipSection && filteredTurnip.isNotEmpty()) off++
         if (target > 1 && showPanvkSection && filteredPanvk.isNotEmpty()) off++
+        if (target > 2 && showQualcommSection && filteredQualcomm.isNotEmpty()) off++
+        if (target > 3 && showXclipseSection && filteredXclipse.isNotEmpty()) off++
         return idx + off
     }
 
@@ -7806,6 +7843,54 @@ fun DriverScreen(
                     updatedAtMap = driverSourceUpdatedAt,
                     remoteStars = driverSourceStars,
                     expandTrigger = expandTrigger?.takeIf { it.startsWith("qualcomm:") }
+                )
+            }
+        }
+
+        // ── 三星 Xclipse 驱动专区：Exynos RDNA GPU（Exynos 2200/2400）独立区块 ──
+        if (filteredXclipse.isNotEmpty() && showXclipseSection) {
+            item(key = "xclipse_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = filteredXclipse,
+                    currentSourceId = xclipseSourceId,
+                    onSourceChange = { id ->
+                        onXclipseSourceChange(id)
+                        expandTrigger = "xclipse:$id"
+                        scope.launch { listState.animateScrollToItem(sectionIndex(3)) }
+                    },
+                    releases = xclipseReleases,
+                    selectionKey = "xclipse:$xclipseSourceId",
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars,
+                    expandTrigger = expandTrigger?.takeIf { it.startsWith("xclipse:") },
+                    title = "三星 Xclipse 驱动专区",
+                    description = "Mesa RADV / WinXclipse 驱动，为三星 Exynos（RDNA Xclipse GPU）在 Winlator 等模拟器提供 Vulkan 支持"
+                )
+            }
+        }
+
+        // ── 驱动包装器专区：Vulkan/GL 包装层（wmali、compat-bcn、gamenative 等）──
+        if (filteredWrapper.isNotEmpty() && showWrapperSection) {
+            item(key = "wrapper_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = filteredWrapper,
+                    currentSourceId = wrapperSourceId,
+                    onSourceChange = { id ->
+                        onWrapperSourceChange(id)
+                        expandTrigger = "wrapper:$id"
+                        scope.launch { listState.animateScrollToItem(sectionIndex(4)) }
+                    },
+                    releases = wrapperReleases,
+                    selectionKey = "wrapper:$wrapperSourceId",
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars,
+                    expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
+                    title = "驱动包装器专区",
+                    description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性"
                 )
             }
         }
