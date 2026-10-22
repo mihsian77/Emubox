@@ -112,10 +112,14 @@ class MainActivity : ComponentActivity() {
                 var turnipSourceId by remember { mutableStateOf(SettingsManager.getTurnipSource()) }
                 var panvkSourceId by remember { mutableStateOf(SettingsManager.getPanvkSource()) }
                 var qualcommSourceId by remember { mutableStateOf(SettingsManager.getQualcommSource()) }
+                var xclipseSourceId by remember { mutableStateOf(SettingsManager.getXclipseSource()) }
+                var wrapperSourceId by remember { mutableStateOf(SettingsManager.getWrapperSource()) }
 
                 var turnipReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var panvkReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var qualcommReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
+                var xclipseReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
+                var wrapperReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var componentCatalogs by remember {
                     mutableStateOf<Map<String, Map<String, List<Component>>>>(emptyMap())
                 }
@@ -195,7 +199,12 @@ class MainActivity : ComponentActivity() {
                         // 驱动注册表：按设备 GPU 匹配（含 Mali PanVK 全系列），转换为
                         // TurnipSource 后与内置源合并；注册表推荐源排前，按 apiUrl 去重。
                         // 关闭"按设备匹配"时显示全部驱动源（不按 GPU 过滤）。
-                        val driverEntries = loadedRegistry.filter { it.driverType !in DriverRegistryRepository.COMPONENT_TYPES }
+                        // wrapper 驱动包装器独立抽出：不参与 GPU 厂商硬过滤，始终可见。
+                        val driverEntries = loadedRegistry.filter {
+                            it.driverType !in DriverRegistryRepository.COMPONENT_TYPES &&
+                                it.driverType != "wrapper"
+                        }
+                        val wrapperEntries = loadedRegistry.filter { it.driverType == "wrapper" }
                         // 全部注册表驱动源始终可见（本设备匹配的排前），不再按 GPU 厂商
                         // 硬排除——Adreno 设备也能看到 Mali PanVK 源，只是排在推荐之后。
                         // 修复：MineGraph PanVK（Mali）等新源此前被 match 厂商过滤掉。
@@ -209,6 +218,18 @@ class MainActivity : ComponentActivity() {
                         }).map { DriverRegistryRepository.toTurnipSource(it.entry) }
                         val existingDriverUrls = baseCatalog.turnipSources.map { it.apiUrl }.toSet()
                         val newDriverSources = matchedDriverSources.filter { it.apiUrl !in existingDriverUrls }
+
+                        // 驱动包装器源：始终全量可见；开启设备匹配时按 本设备厂商→通用→其他 排序
+                        val wrapperVendorKey = info?.gpuVendor?.name?.lowercase()
+                        val wrapperSources = wrapperEntries
+                            .map { DriverRegistryRepository.toTurnipSource(it) }
+                            .sortedBy { source ->
+                                when {
+                                    source.requiredVendor == "any" -> 1
+                                    wrapperVendorKey != null && source.requiredVendor == wrapperVendorKey -> 0
+                                    else -> 2
+                                }
+                            }
 
                         // 设备专属组件（如 Mali 的 panDXVK）：GitHub release 直接分发 .wcp，
                         // 不走 contents.json，单独拉取后并入对应组件分类。
@@ -246,7 +267,11 @@ class MainActivity : ComponentActivity() {
                         val compatibleSources = catalog.turnipSources
                         // PanVK（Mali）独立专区：按 requiredVendor 拆出，不再混在 Turnip 区
                         val panvkSources = compatibleSources.filter { it.requiredVendor == "mali" }
-                        val turnipOnlySources = compatibleSources.filterNot { it.requiredVendor == "mali" }
+                        // 三星 Xclipse 独立专区：Exynos GPU（RDNA）与 Adreno/Mali 均不兼容
+                        val xclipseSources = compatibleSources.filter { it.requiredVendor == "xclipse" }
+                        val turnipOnlySources = compatibleSources.filterNot {
+                            it.requiredVendor in listOf("mali", "xclipse")
+                        }
 
                         val selectedSource = turnipOnlySources.firstOrNull { source ->
                             source.id.equals(turnipSourceId, ignoreCase = true) ||
@@ -263,6 +288,20 @@ class MainActivity : ComponentActivity() {
                         val panvk = selectedPanvkSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
                             ?: emptyList()
 
+                        val selectedXclipseSource = xclipseSources.firstOrNull { source ->
+                            source.id.equals(xclipseSourceId, ignoreCase = true) ||
+                                source.name.equals(xclipseSourceId, ignoreCase = true)
+                        } ?: xclipseSources.firstOrNull()
+                        val xclipse = selectedXclipseSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
+                            ?: emptyList()
+
+                        val selectedWrapperSource = wrapperSources.firstOrNull { source ->
+                            source.id.equals(wrapperSourceId, ignoreCase = true) ||
+                                source.name.equals(wrapperSourceId, ignoreCase = true)
+                        } ?: wrapperSources.firstOrNull()
+                        val wrapper = selectedWrapperSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
+                            ?: emptyList()
+
                         val selectedQualcommSource = catalog.qualcommSources.firstOrNull { source ->
                             source.id.equals(qualcommSourceId, ignoreCase = true) ||
                                 source.name.equals(qualcommSourceId, ignoreCase = true)
@@ -277,6 +316,35 @@ class MainActivity : ComponentActivity() {
                                         "stevenmxz-wcp" -> {
                                             val base = fetchComponentsFromUrl(source.manifestUrl)
                                             source.id to mergeCmodHistorical(base)
+                                        }
+                                        "banner-components" -> {
+                                            // banner 社区源：contents.json Turnip 分类 + 补 The412Banner
+                                            // rutabaga-drivers-v1 release 全部 zip（App 只读 contents.json
+                                            // 会漏掉该独立 release，用户实测 Rutabaga 卡缺失）
+                                            val base = fetchComponentsFromUrl(source.manifestUrl)
+                                            val rutabagaExtra = runCatching {
+                                                fetchGithubReleasesFromUrl(
+                                                    "https://api.github.com/repos/The412Banner/winlator-contents/releases"
+                                                ).filter { it.tagName.contains("rutabaga", true) }
+                                                    .flatMap { r ->
+                                                        r.assets.map { a ->
+                                                            Component(
+                                                                type = "Turnip",
+                                                                verName = r.tagName,
+                                                                verCode = "",
+                                                                remoteUrl = a.downloadUrl,
+                                                                sizeBytes = a.sizeBytes.takeIf { it > 0 }
+                                                            )
+                                                        }
+                                                    }
+                                            }.getOrDefault(emptyList())
+                                            if (rutabagaExtra.isEmpty()) {
+                                                source.id to base
+                                            } else {
+                                                val merged = base.toMutableMap()
+                                                merged["Turnip"] = merged["Turnip"].orEmpty() + rutabagaExtra
+                                                source.id to merged
+                                            }
                                         }
                                         else -> source.id to fetchComponentsFromUrl(source.manifestUrl)
                                     }
@@ -313,9 +381,13 @@ class MainActivity : ComponentActivity() {
                             selectedTurnipSource = selectedSource,
                             selectedPanvkSource = selectedPanvkSource,
                             selectedQualcommSource = selectedQualcommSource,
+                            selectedXclipseSource = selectedXclipseSource,
+                            selectedWrapperSource = selectedWrapperSource,
                             turnipReleases = releases,
                             panvkReleases = panvk,
                             qualcommReleases = qualcomm,
+                            xclipseReleases = xclipse,
+                            wrapperReleases = wrapper,
                             componentCatalogs = manifestComponentMaps + registryComponentMaps
                         )
                     }
@@ -325,6 +397,8 @@ class MainActivity : ComponentActivity() {
                     turnipReleases = result.turnipReleases
                     panvkReleases = result.panvkReleases
                     qualcommReleases = result.qualcommReleases
+                    xclipseReleases = result.xclipseReleases
+                    wrapperReleases = result.wrapperReleases
                     componentCatalogs = result.componentCatalogs
                     componentSourceUpdatedAt = result.componentSourceUpdatedAt
                     driverSourceUpdatedAt = result.driverSourceUpdatedAt
@@ -341,6 +415,14 @@ class MainActivity : ComponentActivity() {
                     if (qualcommSourceId != result.selectedQualcommSource.id) {
                         qualcommSourceId = result.selectedQualcommSource.id
                         SettingsManager.setQualcommSource(result.selectedQualcommSource.id)
+                    }
+                    if (result.selectedXclipseSource != null && xclipseSourceId != result.selectedXclipseSource.id) {
+                        xclipseSourceId = result.selectedXclipseSource.id
+                        SettingsManager.setXclipseSource(result.selectedXclipseSource.id)
+                    }
+                    if (result.selectedWrapperSource != null && wrapperSourceId != result.selectedWrapperSource.id) {
+                        wrapperSourceId = result.selectedWrapperSource.id
+                        SettingsManager.setWrapperSource(result.selectedWrapperSource.id)
                     }
 
                     isLoading = false
@@ -379,6 +461,34 @@ class MainActivity : ComponentActivity() {
                     } ?: sourceCatalog.qualcommSources.first()
                     qualcommReleases = withContext(Dispatchers.IO) {
                         fetchQualcommReleases(selected)
+                    }
+                }
+
+                // 快速路径：切换 Xclipse 源 → 只重拉该源 releases
+                LaunchedEffect(xclipseSourceId) {
+                    if (!fullyLoaded) return@LaunchedEffect
+                    val xclipseSources = sourceCatalog.turnipSources.filter { it.requiredVendor == "xclipse" }
+                    if (xclipseSources.isEmpty()) return@LaunchedEffect
+                    val selected = xclipseSources.firstOrNull { source ->
+                        source.id == xclipseSourceId || source.name == xclipseSourceId
+                    } ?: xclipseSources.first()
+                    xclipseReleases = withContext(Dispatchers.IO) {
+                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
+                    }
+                }
+
+                // 快速路径：切换 Wrapper 源 → 只重拉该源 releases
+                LaunchedEffect(wrapperSourceId) {
+                    if (!fullyLoaded || registryEntries.isEmpty()) return@LaunchedEffect
+                    val wrapperSources = registryEntries
+                        .filter { it.driverType == "wrapper" }
+                        .map { DriverRegistryRepository.toTurnipSource(it) }
+                    if (wrapperSources.isEmpty()) return@LaunchedEffect
+                    val selected = wrapperSources.firstOrNull { source ->
+                        source.id == wrapperSourceId || source.name == wrapperSourceId
+                    } ?: wrapperSources.first()
+                    wrapperReleases = withContext(Dispatchers.IO) {
+                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
                     }
                 }
 
@@ -577,7 +687,9 @@ class MainActivity : ComponentActivity() {
                                             // 全量展示：注册表 39 源合并后不再二次过滤（厂商/系列过滤会
                                             // 把不匹配源隐藏，导致 8xx 设备 turnip 只剩 7 个、PanVK 被过滤空）。
                                             // 设备匹配只影响加载时的排序与推荐标签，不减少可见源数量。
-                                            turnipSources = sourceCatalog.turnipSources.filterNot { it.requiredVendor == "mali" },
+                                            turnipSources = sourceCatalog.turnipSources.filterNot {
+                                                it.requiredVendor in listOf("mali", "xclipse")
+                                            },
                                             turnipReleases = turnipReleases,
                                             panvkSourceId = panvkSourceId,
                                             panvkSources = sourceCatalog.turnipSources.filter { it.requiredVendor == "mali" },
@@ -585,6 +697,14 @@ class MainActivity : ComponentActivity() {
                                             qualcommSourceId = qualcommSourceId,
                                             qualcommSources = sourceCatalog.qualcommSources,
                                             qualcommReleases = qualcommReleases,
+                                            xclipseSourceId = xclipseSourceId,
+                                            xclipseSources = sourceCatalog.turnipSources.filter { it.requiredVendor == "xclipse" },
+                                            xclipseReleases = xclipseReleases,
+                                            wrapperSourceId = wrapperSourceId,
+                                            wrapperSources = registryEntries
+                                                .filter { it.driverType == "wrapper" }
+                                                .map { DriverRegistryRepository.toTurnipSource(it) },
+                                            wrapperReleases = wrapperReleases,
                                             sourceCatalogRemote = sourceCatalog.isRemote,
                                             onTurnipSourceChange = { sourceId ->
                                                 turnipSourceId = sourceId
@@ -597,6 +717,14 @@ class MainActivity : ComponentActivity() {
                                             onQualcommSourceChange = { sourceId ->
                                                 qualcommSourceId = sourceId
                                                 SettingsManager.setQualcommSource(sourceId)
+                                            },
+                                            onXclipseSourceChange = { sourceId ->
+                                                xclipseSourceId = sourceId
+                                                SettingsManager.setXclipseSource(sourceId)
+                                            },
+                                            onWrapperSourceChange = { sourceId ->
+                                                wrapperSourceId = sourceId
+                                                SettingsManager.setWrapperSource(sourceId)
                                             },
                                             onDownloadAsset = { release, asset ->
                                                 downloadScope.launch {
@@ -826,9 +954,13 @@ private data class AppLoadResult(
     val selectedTurnipSource: TurnipSource,
     val selectedPanvkSource: TurnipSource? = null,
     val selectedQualcommSource: QualcommSource,
+    val selectedXclipseSource: TurnipSource? = null,
+    val selectedWrapperSource: TurnipSource? = null,
     val turnipReleases: List<GithubRelease>,
     val panvkReleases: List<GithubRelease> = emptyList(),
     val qualcommReleases: List<GithubRelease>,
+    val xclipseReleases: List<GithubRelease> = emptyList(),
+    val wrapperReleases: List<GithubRelease> = emptyList(),
     val componentCatalogs: Map<String, Map<String, List<Component>>>,
     val componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
     val driverSourceUpdatedAt: Map<String, Long> = emptyMap(),

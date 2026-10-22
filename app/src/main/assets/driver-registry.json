@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
-  "updated_at": "2026-10-14T00:00:00Z",
+  "updated_at": "2026-10-22T15:09:40Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -1717,6 +1717,116 @@
         "default": []
       },
       "updated_at": "2026-10-13T00:00:00Z"
+    },
+    {
+      "id": "winx-xclipse-drivers",
+      "name": "avavo WinXclipse 驱动 (Xclipse530/540)",
+      "owner": "avavo",
+      "repo": "WinXclipse",
+      "api_url": "https://api.github.com/repos/avavo/WinXclipse/releases",
+      "gpu_vendor": "xclipse",
+      "gpu_arch": [
+        "rdna"
+      ],
+      "gpu_models": [],
+      "driver_type": "radv",
+      "frontend": null,
+      "target_emulator": "winlator",
+      "package_format": "zip",
+      "maturity": "experimental",
+      "stars": 34,
+      "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
+      "notes": "drivers_0.9 2026-08-25；配合 WinXclipse 本体使用",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Xclipse"
+        ]
+      },
+      "updated_at": "2026-08-25T00:00:00Z"
+    },
+    {
+      "id": "wrapper-banner",
+      "name": "The412Banner Wrapper Catalog",
+      "owner": "The412Banner",
+      "repo": "winlator-contents",
+      "api_url": "https://api.github.com/repos/The412Banner/winlator-contents/releases",
+      "gpu_vendor": "any",
+      "gpu_arch": [],
+      "gpu_models": [],
+      "driver_type": "wrapper",
+      "frontend": null,
+      "target_emulator": "winlator",
+      "package_format": "tzst",
+      "maturity": "stable",
+      "stars": 133,
+      "description": "BannerHub Wrapper 目录：wmali-wrapper/compat-bcn/gamenative/original 等 14 个 Vulkan/GL 包装层",
+      "notes": "wrappers-v1 2026-07-20；Mali 用 wmali-wrapper，通用用 compat-bcn/gamenative",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Wrapper"
+        ]
+      },
+      "updated_at": "2026-07-20T00:00:00Z"
+    },
+    {
+      "id": "wrapper-fristoner",
+      "name": "FristOneRR-Wrapper (Mali PanVK)",
+      "owner": "FristOneRR-Admin",
+      "repo": "FristOneRR-Wrapperv1",
+      "api_url": "https://api.github.com/repos/FristOneRR-Admin/FristOneRR-Wrapperv1/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "valhall-v9"
+      ],
+      "gpu_models": [],
+      "driver_type": "wrapper",
+      "frontend": "JM",
+      "target_emulator": "winlator",
+      "package_format": "tzst",
+      "maturity": "beta",
+      "stars": 9,
+      "description": "FristOneRR Vulkan wrapper，配合 FristOneRR PanVK on Mali (kbase) 使用",
+      "notes": "v3.0 2026-10-20；含 SHA256SUMS",
+      "companion": [
+        "fristoner-g57"
+      ],
+      "filters": {
+        "default": [
+          "Wrapper"
+        ]
+      },
+      "updated_at": "2026-10-20T00:00:00Z"
+    },
+    {
+      "id": "wrapper-winx",
+      "name": "WinXclipse Wrapper (Xclipse)",
+      "owner": "avavo",
+      "repo": "WinXclipse",
+      "api_url": "https://api.github.com/repos/avavo/WinXclipse/releases",
+      "gpu_vendor": "xclipse",
+      "gpu_arch": [
+        "rdna"
+      ],
+      "gpu_models": [],
+      "driver_type": "wrapper",
+      "frontend": null,
+      "target_emulator": "winlator",
+      "package_format": "tzst",
+      "maturity": "beta",
+      "stars": 34,
+      "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
+      "notes": "wrappers 2026-08-31",
+      "companion": [
+        "winx-xclipse-drivers"
+      ],
+      "filters": {
+        "default": [
+          "Wrapper"
+        ]
+      },
+      "updated_at": "2026-08-31T00:00:00Z"
     }
   ]
 }
