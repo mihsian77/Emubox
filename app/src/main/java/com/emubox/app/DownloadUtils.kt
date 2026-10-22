@@ -145,25 +145,56 @@ suspend fun downloadComponent(context: Context, component: Component) {
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
 }
 
-/** R5：来源级捆绑——下载某组件来源最新 release 的全部资产文件（wcp/补丁/配置等），
- *  让用户一眼看出该来源组件特色。存 Components/Bundle-<来源名>/ 目录。 */
+/** R5：来源级捆绑——一键下载某组件来源"最新一套"文件。
+ *  两种分发形态：
+ *  1) GitHub release 型源（manifestUrl 指向 release 仓库，如 REF4IK）：
+ *     拉取最新 release 的全部资产文件。
+ *  2) contents.json 清单型源（WinNative/banner/StevenMXZ 等，仓库无 releases）：
+ *     取清单中每个组件分类的最新版本文件。
+ *  统一存入 Components/Bundle-<来源名>/ 目录，让用户一眼看出该来源组件特色。 */
 suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceName: String) {
-    val apiUrl = deriveRepoApiUrl(manifestUrl) ?: return
-    val releases = fetchGithubReleasesFromUrl(apiUrl)
-    val latest = releases.firstOrNull() ?: return
-    val assets = latest.assets.filter { it.downloadUrl.isNotBlank() }
-    if (assets.isEmpty()) return
     val subPath = "Components/Bundle-${sanitizeFileName(sourceName)}"
-    val tag = latest.tagName
-    assets.forEach { asset ->
-        val rawName = asset.name
-        val hasVersion = Regex("\\d+\\.\\d+|v\\d+", RegexOption.IGNORE_CASE).containsMatchIn(rawName)
+
+    // 1) release 型源：最新 release 的全部资产
+    val apiUrl = deriveRepoApiUrl(manifestUrl)
+    if (apiUrl != null) {
+        val releases = fetchGithubReleasesFromUrl(apiUrl)
+        val latest = releases.firstOrNull()
+        if (latest != null) {
+            val assets = latest.assets.filter { it.downloadUrl.isNotBlank() }
+            if (assets.isNotEmpty()) {
+                val tag = latest.tagName
+                assets.forEach { asset ->
+                    val rawName = asset.name
+                    val hasVersion = Regex("\\d+\\.\\d+|v\\d+", RegexOption.IGNORE_CASE).containsMatchIn(rawName)
+                    val desiredName = sanitizeFileName(
+                        if (hasVersion || rawName.length > 24) rawName
+                        else "${tag}_$rawName"
+                    )
+                    if (ensureFileNotExists(context, desiredName, subPath)) return@forEach
+                    val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
+                    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+                }
+                return
+            }
+        }
+    }
+
+    // 2) 清单型源：各分类最新版本组件文件（contents.json / pack.json）
+    val components = fetchComponentsFromUrl(manifestUrl)
+    val latestPerType = components.flatMap { (_, list) ->
+        list.firstOrNull()?.let { listOf(it) } ?: emptyList()
+    }
+    if (latestPerType.isEmpty()) return
+    latestPerType.forEach { component ->
+        val url = component.remoteUrl
+        if (url.isBlank()) return@forEach
+        val rawName = Uri.decode(url.substringAfterLast("/").substringBefore("?"))
         val desiredName = sanitizeFileName(
-            if (hasVersion || rawName.length > 24) rawName
-            else "${tag}_$rawName"
+            rawName.ifBlank { "${component.type}_${component.verName}" }
         )
         if (ensureFileNotExists(context, desiredName, subPath)) return@forEach
-        val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
+        val acceleratedUrl = Accelerator.rewriteUrl(url)
         downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
     }
 }
