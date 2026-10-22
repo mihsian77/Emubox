@@ -915,7 +915,7 @@ private fun DownloadStatCard(
                 modifier = Modifier.size(19.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
-            Text(value, style = MaterialTheme.typography.titleMedium, maxLines = 2)
+            Text(value, style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis)
             Text(
                 label,
                 style = MaterialTheme.typography.labelSmall,
@@ -1076,12 +1076,13 @@ private fun formatBytes(bytes: Long): String {
     }
 }
 
-/** GitHub ISO 时间（如 2026-10-05T12:34:56Z）转相对时间：x 天前 / x 小时前 / 刚刚 */
-/** 从 GitHub apiUrl/manifestUrl 提取 owner 并返回作者头像 URL（驱动/组件源卡用） */
+/** 从 GitHub apiUrl/manifestUrl 提取 owner 并返回作者头像 URL（驱动/组件源卡用）。
+ *  直接使用头像 CDN 直链：github.com/{owner}.png 会 302 跳转到
+ *  avatars.githubusercontent.com，国内网络对跳转链加载不稳且易受限流。 */
 private fun githubOwnerAvatar(url: String): String? {
     val m = Regex("github\\.com/([^/]+)").find(url) ?: return null
     val owner = m.groupValues[1].trim('/').ifBlank { return null }
-    return "https://github.com/$owner.png?size=64"
+    return "https://avatars.githubusercontent.com/$owner?size=64"
 }
 
 private fun formatRelativeTime(iso: String): String {
@@ -3180,6 +3181,12 @@ fun DriverHubScreen(
             )
         }
 
+        // R5：来源级捆绑——独立区块，一键下载各组件源最新一套文件，
+        // 让用户直观对比各来源组件特色（不再放在每个组件分类卡片内）。
+        item(key = "component_bundle_region") {
+            ComponentBundleSection(sources = componentSources)
+        }
+
         componentOrder.forEach { type ->
             val source = currentComponentSource(type)
             val list = source?.let { componentCatalogs[it.id]?.get(type).orEmpty() }.orEmpty()
@@ -3296,7 +3303,8 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         if (isLoading) appString(R.string.detecting_hardware) else mapVendorDisplayName(deviceInfo?.gpuRenderer ?: "") ?: appString(R.string.hardware_unavailable),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        maxLines = 2
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
                     )
                     if (!isLoading) {
                         Text(
@@ -3430,7 +3438,7 @@ private fun DeviceStat(
             Icon(icon, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(Modifier.height(4.dp))
             Text(label, style = MaterialTheme.typography.labelSmall)
-            Text(value, style = MaterialTheme.typography.bodySmall, maxLines = 2)
+            Text(value, style = MaterialTheme.typography.bodySmall, maxLines = 2, overflow = TextOverflow.Ellipsis)
         }
     }
 }
@@ -3719,7 +3727,8 @@ private fun DownloadIndexCard(
                 section.subtitle,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
             Text(
                 appString(R.string.source_format, section.source),
@@ -3877,7 +3886,8 @@ fun TurnipDriverSection(
                             style = MaterialTheme.typography.labelSmall,
                             color = if (fresh) MaterialTheme.colorScheme.tertiary
                                     else MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 1
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                 }
@@ -3927,8 +3937,7 @@ fun TurnipDriverSection(
                 releases = releases,
                 selectionKey = selectionKey,
                 onDownload = onDownload,
-                buttonLabel = appString(R.string.download_turnip),
-                avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
+                buttonLabel = appString(R.string.download_turnip)
             )
             }
             }
@@ -4006,7 +4015,12 @@ private fun SourcePickerCard(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title, style = MaterialTheme.typography.labelMedium)
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(currentName, style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            currentName,
+                            style = MaterialTheme.typography.titleMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                         // 优先级标签（推荐 / 专属 / 通用），停更优先显示停更
                         if (!currentArchived && currentCategory == "recommended") {
                             Spacer(Modifier.width(6.dp))
@@ -4057,11 +4071,21 @@ private fun SourcePickerCard(
                         }
                     }
                     if (currentDescription.isNotBlank()) {
+                        // 来源简介可点击展开/收起，避免长简介截断无法查看全文
+                        var descExpanded by rememberSaveable("${title}:src-desc") { mutableStateOf(false) }
                         Text(
                             currentDescription,
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.78f),
-                            maxLines = 2
+                            maxLines = if (descExpanded) Int.MAX_VALUE else 2,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.clickable { descExpanded = !descExpanded }
+                        )
+                        Text(
+                            if (descExpanded) appString(R.string.collapse) else appString(R.string.expand),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.clickable { descExpanded = !descExpanded }
                         )
                     }
                     // 源仓库更新时间（组件清单无时间字段，用仓库活跃度参考）
@@ -4691,8 +4715,7 @@ fun DriverCardDynamic(
                 releases = releases,
                 selectionKey = selectionKey,
                 onDownload = onDownload,
-                buttonLabel = appString(R.string.download_type, title),
-                avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
+                buttonLabel = appString(R.string.download_type, title)
             )
             }
             }
@@ -4876,8 +4899,7 @@ private fun DriverReleasePicker(
     releases: List<GithubRelease>,
     selectionKey: String,
     onDownload: (GithubRelease, GithubAsset) -> Unit,
-    buttonLabel: String,
-    avatarUrl: String? = null
+    buttonLabel: String
 ) {
     val context = LocalContext.current
     val selectVersionFileMessage = appString(R.string.select_version_file)
@@ -4970,7 +4992,6 @@ private fun DriverReleasePicker(
                     release = release,
                     isSelected = release.tagName == selectedRelease?.tagName,
                     isLatest = release.tagName == latestRelease?.tagName,
-                    avatarUrl = avatarUrl,
                     onClick = {
                         selectedTag = release.tagName
                         SettingsManager.setSelectedReleaseTag(selectionKey, release.tagName)
@@ -4987,7 +5008,6 @@ private fun DriverReleasePicker(
                     release = release,
                     isSelected = release.tagName == selectedRelease?.tagName,
                     isLatest = release.tagName == latestRelease?.tagName,
-                    avatarUrl = avatarUrl,
                     onClick = {
                         selectedTag = release.tagName
                         SettingsManager.setSelectedReleaseTag(selectionKey, release.tagName)
@@ -5151,8 +5171,7 @@ private fun DriverVersionCard(
     release: GithubRelease,
     isSelected: Boolean,
     isLatest: Boolean,
-    onClick: () -> Unit,
-    avatarUrl: String? = null
+    onClick: () -> Unit
 ) {
     val totalSize = release.assets.sumOf { it.sizeBytes }
     Card(
@@ -5175,15 +5194,6 @@ private fun DriverVersionCard(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                if (avatarUrl != null) {
-                    AsyncImage(
-                        model = avatarUrl,
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp).clip(RoundedCornerShape(5.dp)),
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(Modifier.width(6.dp))
-                }
                 Text(
                     text = release.tagName,
                     style = MaterialTheme.typography.labelLarge,
@@ -5247,8 +5257,7 @@ private fun ComponentVersionCard(
     sourceName: String,
     isSelected: Boolean,
     isLatest: Boolean,
-    onClick: () -> Unit,
-    avatarUrl: String? = null
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -5270,15 +5279,6 @@ private fun ComponentVersionCard(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                if (avatarUrl != null) {
-                    AsyncImage(
-                        model = avatarUrl,
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp).clip(RoundedCornerShape(5.dp)),
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(Modifier.width(6.dp))
-                }
                 Text(
                     text = component.verName,
                     style = MaterialTheme.typography.labelMedium,
@@ -5330,6 +5330,108 @@ private fun componentBranch(verName: String): String {
 /** 组件"主线"分支的显示名 */
 private const val componentBranchMainlineLabel = "主线"
 
+/** R5：来源级捆绑独立区块——列出全部组件源，一键下载各源最新一套文件。
+ *  各源分发形态不同（release 仓库 / contents.json 清单），由
+ *  DownloadUtils.downloadSourceBundle 按 manifestUrl 自动适配。 */
+@Composable
+private fun ComponentBundleSection(sources: List<ComponentSource>) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val busyIds = remember { mutableStateMapOf<String, Boolean>() }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.Download,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(Modifier.width(10.dp))
+                Column {
+                    Text(appString(R.string.source_bundle_title), style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        appString(R.string.source_bundle_subtitle),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+
+            sources.forEach { source ->
+                val busy = busyIds[source.id] == true
+                val bundleDoneMsg = appString(R.string.source_bundle_done, source.name)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    AsyncImage(
+                        model = githubOwnerAvatar(source.manifestUrl),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(34.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.surface),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(Modifier.width(10.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = source.name,
+                            style = MaterialTheme.typography.bodyMedium,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Text(
+                            text = source.description,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                    Spacer(Modifier.width(8.dp))
+                    OutlinedButton(
+                        onClick = {
+                            if (busy) return@OutlinedButton
+                            busyIds[source.id] = true
+                            scope.launch {
+                                try {
+                                    downloadSourceBundle(context, source.manifestUrl, source.name)
+                                    Toast.makeText(context, bundleDoneMsg, Toast.LENGTH_LONG).show()
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, e.message ?: "bundle failed", Toast.LENGTH_LONG).show()
+                                } finally {
+                                    busyIds[source.id] = false
+                                }
+                            }
+                        },
+                        enabled = !busy,
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        if (busy) {
+                            CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
+                            Spacer(Modifier.width(6.dp))
+                            Text(appString(R.string.source_bundle_downloading), maxLines = 1)
+                        } else {
+                            Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(15.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text(appString(R.string.source_bundle_btn), maxLines = 1)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @Composable
 fun ComponentSection(
     type: String,
@@ -5345,7 +5447,6 @@ fun ComponentSection(
         mutableStateOf(SettingsManager.getSelectedComponentVersion(selectionKey))
     }
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
     val selectVersionMessage = appString(R.string.select_version)
     val latestComponent = components.firstOrNull()
     val selected = remember(components, selectedVersion) {
@@ -5461,39 +5562,6 @@ fun ComponentSection(
                         onSelected = onSourceChange
                     )
 
-                    // R5：来源级捆绑——一键下载该来源最新 release 的全部资产
-                    var bundleBusy by remember(selectionKey) { mutableStateOf(false) }
-                    val bundleDoneMsg = appString(R.string.source_bundle_done, currentSource.name)
-                    OutlinedButton(
-                        onClick = {
-                            if (bundleBusy) return@OutlinedButton
-                            bundleBusy = true
-                            scope.launch {
-                                try {
-                                    downloadSourceBundle(context, currentSource.manifestUrl, currentSource.name)
-                                    Toast.makeText(context, bundleDoneMsg, Toast.LENGTH_LONG).show()
-                                } catch (e: Exception) {
-                                    Toast.makeText(context, e.message ?: "bundle failed", Toast.LENGTH_LONG).show()
-                                } finally {
-                                    bundleBusy = false
-                                }
-                            }
-                        },
-                        enabled = !bundleBusy,
-                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                        shape = RoundedCornerShape(14.dp)
-                    ) {
-                        if (bundleBusy) {
-                            CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
-                            Spacer(Modifier.width(8.dp))
-                            Text(appString(R.string.source_bundle_downloading))
-                        } else {
-                            Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Spacer(Modifier.width(8.dp))
-                            Text(appString(R.string.source_bundle_download, currentSource.name), maxLines = 1)
-                        }
-                    }
-
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = appString(R.string.version),
@@ -5545,7 +5613,6 @@ fun ComponentSection(
                                     ComponentVersionCard(
                                         component = component,
                                         sourceName = currentSource.name,
-                                        avatarUrl = githubOwnerAvatar(currentSource.manifestUrl),
                                         isSelected = component.verName == selected?.verName,
                                         isLatest = component.verName == latestComponent?.verName,
                                         onClick = {
@@ -5563,7 +5630,6 @@ fun ComponentSection(
                                     ComponentVersionCard(
                                         component = component,
                                         sourceName = currentSource.name,
-                                        avatarUrl = githubOwnerAvatar(currentSource.manifestUrl),
                                         isSelected = component.verName == selected?.verName,
                                         isLatest = component.verName == latestComponent?.verName,
                                         onClick = {
@@ -8228,8 +8294,6 @@ private fun RuntimeComponentCard(
     onDownload: (RuntimeComponent) -> Unit
 ) {
     val context = LocalContext.current
-    // 来源 GitHub 作者头像（从下载 URL 提取 owner，无则省略）
-    val avatarUrl = remember(component) { component.primaryFile?.url?.let { githubOwnerAvatar(it) } }
     // 已下载态：与 downloadRuntimeLibrary 相同命名/路径规则
     val downloaded = remember(component) {
         val f = component.primaryFile
