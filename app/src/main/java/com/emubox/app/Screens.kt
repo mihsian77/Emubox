@@ -8685,6 +8685,11 @@ fun EmulatorScreen(
             .take(10)
     }
 
+    // 精选大卡：综合热度最高条目（方案 C hero 区）
+    val topEntry = remember(entries) {
+        entries.maxByOrNull { it.downloads + it.stars * 10L }
+    }
+
     val flatItems = buildList {
         categoryOrder.forEach { cat ->
             val group = grouped[cat].orEmpty()
@@ -8758,6 +8763,15 @@ fun EmulatorScreen(
                         )
                     }
                 }
+            }
+        }
+        topEntry?.let { hero ->
+            item(key = "emulator_hero", span = { GridItemSpan(maxLineSpan) }) {
+                EmulatorHeroCard(
+                    entry = hero,
+                    categoryLabel = categoryLabel[hero.category].orEmpty(),
+                    onClickDetail = { detailEntry = hero }
+                )
             }
         }
         item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
@@ -9585,6 +9599,104 @@ private fun EmulatorRecipesCard(recipes: List<EmulatorRecipe>) {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EmulatorHeroCard(
+    entry: EmulatorEntry,
+    categoryLabel: String,
+    onClickDetail: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClickDetail),
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        border = BorderStroke(1.dp, Fusion.BorderAlt)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.linearGradient(colors = listOf(Fusion.HeroStart, Fusion.HeroEnd)))
+                .padding(14.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (entry.logoUrl.isNotBlank()) {
+                AsyncImage(
+                    model = entry.logoUrl,
+                    contentDescription = null,
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)),
+                    contentScale = ContentScale.Crop
+                )
+            } else {
+                Box(
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(14.dp))
+                        .background(Fusion.SurfaceAlt),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        entry.name.firstOrNull()?.uppercase() ?: "?",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Fusion.Primary
+                    )
+                }
+            }
+            Spacer(Modifier.width(14.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    entry.name,
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Fusion.OnSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    "$categoryLabel · ${entry.latestTag.ifBlank { "latest" }}",
+                    fontSize = 12.sp,
+                    color = Fusion.OnSurfaceDim,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Row(
+                    modifier = Modifier.padding(top = 7.dp),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    Text(
+                        "★ ${entry.stars}",
+                        fontSize = 10.sp,
+                        color = Fusion.Amber,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(Color.White.copy(alpha = 0.14f))
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+                    if (entry.latestApkUrl.isNotBlank()) {
+                        Text(
+                            "Android",
+                            fontSize = 10.sp,
+                            color = Fusion.OnSurfaceDim,
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(Color.White.copy(alpha = 0.14f))
+                                .padding(horizontal = 8.dp, vertical = 3.dp)
+                        )
+                    }
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .size(34.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(Color.White),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("›", color = Fusion.HeroStart, fontSize = 16.sp, fontWeight = FontWeight.Black)
             }
         }
     }
