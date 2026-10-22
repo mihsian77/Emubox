@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.emubox.app.ui.theme.EmuBoxTheme
@@ -138,13 +139,15 @@ class MainActivity : ComponentActivity() {
                 var emulatorInsights by remember {
                     mutableStateOf(EmulatorInsights())
                 }
+                val emulatorAppContext = LocalContext.current.applicationContext
 
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
-                // 模拟器清单远程刷新：官方 registry（版本/APK）+ 社区排行（下载量/日志），失败保留内置
+                // 模拟器清单远程刷新：官方 registry（版本/APK）+ 社区排行（下载量/日志），
+                // 磁盘缓存优先（秒开），后台刷新有更新才覆盖；失败保留缓存/内置
                 LaunchedEffect(Unit) {
-                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry()
-                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking()
+                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry(emulatorAppContext)
+                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking(emulatorAppContext)
                     emulatorInsights = EmulatorInsightsRepository.fetchRemoteInsights()
                     // 合并：registry 数据优先（官方 APK 直链），ranking 补充下载量/日志
                     val merged = registry.map { base ->
@@ -795,8 +798,8 @@ class MainActivity : ComponentActivity() {
                                                             if (!isRefreshingLocal) {
                                                                 scope.launch {
                                                                     isRefreshingLocal = true
-                                                                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry()
-                                                                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking()
+                                                                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry(emulatorAppContext)
+                                                                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking(emulatorAppContext)
                                                                     emulatorInsights = EmulatorInsightsRepository.fetchRemoteInsights()
                                                                     val merged = registry.map { base ->
                                                                         val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
