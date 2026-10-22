@@ -6481,10 +6481,9 @@ private fun DriverDetectionList(
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                     ))
                 } else {
-                    // 性能跑分改用系统 Vulkan 驱动（vktest 同款思路：系统驱动可在 App 进程稳定跑负载，
-                    // 不加载自定义驱动，避免 SELinux/容器边界导致的 DRIVER_CRASHED）。
-                    // 自定义驱动性能请在 Winlator/Eden 内用 PanPlay/PanProbe 验证。
-                    benchmarkResults = benchmarkResults + (id to NativeVulkanBridge.benchmarkSystemVulkan())
+                    // 自定义驱动实测（vktest 逆向落地）：fork 子进程隔离加载驱动 .so 跑带宽基准，
+                    // 驱动崩溃只死子进程不闪退；失败返回具体错误码（SELinux 禁 GPU 节点/符号缺失等）。
+                    benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(NativeVulkanBridge.benchmarkVulkan(soFile.absolutePath)))
                 }
             } catch (e: Exception) {
                 benchmarkResults = benchmarkResults + (id to BenchmarkResult(
@@ -6782,13 +6781,13 @@ private fun DriverDetectionList(
                             val br = benchmarkResults[download.id]!!
                             if (br.success) {
                                 Text(
-                                    "系统硬件跑分（${br.deviceName}）",
+                                    "该驱动实测（${br.deviceName}）",
                                     style = MaterialTheme.typography.bodySmall,
                                     fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
                                 )
                                 Spacer(Modifier.height(2.dp))
                                 Text(
-                                    "系统驱动底力，非该驱动性能；自定义驱动请在模拟器内验证",
+                                    "fork 隔离直载驱动跑分；失败多为 SELinux 限制 GPU 节点访问",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
