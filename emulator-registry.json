@@ -1,6 +1,6 @@
 {
   "version": "1.2.0",
-  "updated_at": "2026-10-22T15:53:38Z",
+  "updated_at": "2026-10-23T00:00:00Z",
   "emulators": [
     {
       "id": "brunodev85-winlator",
@@ -47467,6 +47467,56 @@
       "downloads": 0,
       "logo_url": "",
       "releases": []
+    },
+    {
+      "id": "mircowuffwuff-sharpdroid",
+      "name": "SharpDroid",
+      "category": "Emulator PS5",
+      "description": "an android app that runs SharpEmu, a PS5 emulator",
+      "owner": "mircowuffwuff",
+      "repo": "mircowuffwuff/sharpdroid",
+      "homepage": "",
+      "repo_url": "https://github.com/mircowuffwuff/sharpdroid",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "sharpdroid-8",
+      "latest_date": "2026-10-20T13:44:16Z",
+      "latest_body": "",
+      "latest_apk_name": "sharpdroid-8.apk",
+      "latest_apk_url": "https://github.com/mircowuffwuff/sharpdroid/releases/download/sharpdroid-8/sharpdroid-8.apk",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-10-20T13:44:16Z",
+      "stars": 60,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "releases": [],
+      "logo_url": ""
+    },
+    {
+      "id": "ghael-v-capyps5",
+      "name": "CapyPS5",
+      "category": "Emulator PS5",
+      "description": "PS5 emulator（早期原型 v0.0.1，官方 release 直链）",
+      "owner": "Ghael-V",
+      "repo": "Ghael-V/CapyPS5",
+      "homepage": "",
+      "repo_url": "https://github.com/Ghael-V/CapyPS5",
+      "official": false,
+      "channel": "alpha",
+      "latest_tag": "v0.0.1",
+      "latest_date": "2026-10-22T12:05:20Z",
+      "latest_body": "",
+      "latest_apk_name": "CapyPS5-v0.0.1.apk",
+      "latest_apk_url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.1/CapyPS5-v0.0.1.apk",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-10-22T12:05:20Z",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "releases": [],
+      "logo_url": ""
     }
   ]
 }
