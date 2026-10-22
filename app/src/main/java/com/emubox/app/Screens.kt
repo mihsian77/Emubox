@@ -9248,7 +9248,8 @@ private fun EmulatorSectionHeader(
         Text(
             "$label（$count）",
             style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.Bold,
+            color = Fusion.OnSurfaceDim,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -9355,19 +9356,25 @@ private fun EmulatorNewsCard(
     onOpen: (EmulatorEntry) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
+    ) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
                 .fillMaxWidth()
                 .clickable { expanded = !expanded }) {
                 Icon(Icons.Default.Notifications, contentDescription = null, modifier = Modifier.size(18.dp),
-                    tint = MaterialTheme.colorScheme.primary)
+                    tint = Fusion.Amber)
                 Spacer(Modifier.width(6.dp))
-                Text(appString(R.string.emulator_news_title), style = MaterialTheme.typography.titleSmall)
+                Text(appString(R.string.emulator_news_title), style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold, color = Fusion.OnSurface)
                 Spacer(Modifier.weight(1f))
                 Icon(
                     if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                    contentDescription = null, tint = Fusion.OnSurfaceDim
                 )
             }
             if (expanded) {
@@ -9390,12 +9397,13 @@ private fun EmulatorNewsCard(
                         }
                         Column(Modifier.weight(1f)) {
                             Text("${e.name} · ${e.latestTag}", style = MaterialTheme.typography.labelMedium,
+                                color = Fusion.OnSurface,
                                 maxLines = 1, overflow = TextOverflow.Ellipsis)
                             Spacer(Modifier.height(2.dp))
                             Text(
                                 e.latestBody.trim().lines().firstOrNull()?.take(90) ?: appString(R.string.emulator_news_no_body),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                color = Fusion.OnSurfaceDim,
                                 maxLines = 2, overflow = TextOverflow.Ellipsis
                             )
                         }
@@ -9403,10 +9411,10 @@ private fun EmulatorNewsCard(
                         Text(
                             formatRelativeTime(e.latestDate),
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary
+                            color = Fusion.Primary
                         )
                     }
-                    if (e != news.last()) HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                    if (e != news.last()) HorizontalDivider(color = Fusion.BorderAlt.copy(alpha = 0.6f))
                 }
             }
         }
