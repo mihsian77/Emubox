@@ -1,6 +1,10 @@
 package com.emubox.app
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -66,13 +70,18 @@ private val githubClient by lazy {
 }
 
 // In-memory cache to avoid re-fetching the same GitHub releases / component
-// manifest on every source switch. TTL is 10 minutes; stale entries are
-// transparently re-fetched.
-private const val CACHE_TTL_MS = 10 * 60 * 1000L
+// manifest on every source switch. TTL is 3 minutes; stale entries are
+// returned immediately and silently re-fetched in background (SWR),
+// so data self-refreshes without a manual pull-to-refresh.
+private const val CACHE_TTL_MS = 3 * 60 * 1000L
 private data class CacheEntry<T>(val data: T, val timestamp: Long)
 private val releaseCache = ConcurrentHashMap<String, CacheEntry<List<GithubRelease>>>()
 private val componentCache = ConcurrentHashMap<String, CacheEntry<Map<String, List<Component>>>>()
 private val repoMetaCache = ConcurrentHashMap<String, CacheEntry<RepoMeta>>()
+
+/** 后台静默刷新去重：同一 URL 同时只允许一个后台刷新任务，避免并发重复请求。 */
+private val inFlightReleases = ConcurrentHashMap.newKeySet<String>()
+private val inFlightComponents = ConcurrentHashMap.newKeySet<String>()
 
 /** 仓库元数据：最近推送时间 + 星标数（一次 /repos 请求带回，来源卡片共用） */
 data class RepoMeta(val pushedAt: Long?, val stars: Long?)
@@ -87,54 +96,88 @@ private fun <T> ConcurrentHashMap<String, CacheEntry<T>>.getValid(key: String): 
 }
 
 suspend fun fetchGithubReleasesFromUrl(apiUrl: String): List<GithubRelease> = withContext(Dispatchers.IO) {
-    releaseCache.getValid(apiUrl)?.let { return@withContext it }
+    val cached = releaseCache[apiUrl]
+    val now = System.currentTimeMillis()
+    if (cached != null && now - cached.timestamp < CACHE_TTL_MS) {
+        return@withContext cached.data
+    }
+    if (cached != null) {
+        // 过期缓存先返回（立即渲染），后台静默刷新到新数据，避免白屏等待。
+        refreshReleasesInBackground(apiUrl)
+        return@withContext cached.data
+    }
+    refreshReleases(apiUrl)
+}
 
+private fun refreshReleasesInBackground(apiUrl: String) {
+    if (!inFlightReleases.add(apiUrl)) return
+    val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    scope.launch {
+        try {
+            refreshReleases(apiUrl)
+        } catch (_: Exception) {
+        } finally {
+            inFlightReleases.remove(apiUrl)
+            scope.cancel()
+        }
+    }
+}
+
+/** 拉取并解析 release 列表；加速节点请求失败/空结果时回退直连原 URL 重试一次。 */
+private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
     val acceleratedUrl = Accelerator.rewriteUrl(apiUrl)
+    var json = executeReleasesRequest(acceleratedUrl)
+    if (json == null && acceleratedUrl != apiUrl) {
+        // 加速节点超时/限流/缓存异常：直连 GitHub 兜底
+        json = executeReleasesRequest(apiUrl)
+    }
+    if (json == null) return emptyList()
+    val jsonArray = json // 稳定引用：var 被 lambda 捕获后无法 smart-cast
+
+    val releases = (0 until jsonArray.length()).mapNotNull { idx ->
+        val obj = jsonArray.getJSONObject(idx)
+        if (obj.optBoolean("draft", false)) return@mapNotNull null
+
+        val tagName = obj.optString("tag_name")
+        if (tagName.isBlank()) return@mapNotNull null
+
+        val name = obj.optString("name").ifBlank { tagName }
+        val assetsArray = obj.optJSONArray("assets") ?: JSONArray()
+        val assets = (0 until assetsArray.length()).map { assetIdx ->
+            val asset = assetsArray.getJSONObject(assetIdx)
+            GithubAsset(
+                name = asset.optString("name"),
+                downloadUrl = asset.optString("browser_download_url"),
+                sizeBytes = asset.optLong("size", 0L)
+            )
+        }.filter { it.name.isNotBlank() && it.downloadUrl.isNotBlank() }
+
+        GithubRelease(
+            tagName = tagName,
+            name = name,
+            assets = assets,
+            publishedAt = obj.optString("published_at", obj.optString("created_at", "")),
+            body = obj.optString("body", "")
+        )
+    }.sortGithubReleasesNewestFirst()
+
+    releaseCache[apiUrl] = CacheEntry(releases, System.currentTimeMillis())
+    return releases
+}
+
+private fun executeReleasesRequest(url: String): JSONArray? = try {
     val request = Request.Builder()
-        .url(acceleratedUrl)
+        .url(url)
         .header("Accept", "application/vnd.github+json")
         .header("X-GitHub-Api-Version", "2022-11-28")
         .build()
-
-    try {
-        githubClient.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return@withContext emptyList()
-            val json = response.body?.string() ?: return@withContext emptyList()
-            val releasesArray = JSONArray(json)
-
-            val releases = (0 until releasesArray.length()).mapNotNull { idx ->
-                val obj = releasesArray.getJSONObject(idx)
-                if (obj.optBoolean("draft", false)) return@mapNotNull null
-
-                val tagName = obj.optString("tag_name")
-                if (tagName.isBlank()) return@mapNotNull null
-
-                val name = obj.optString("name").ifBlank { tagName }
-                val assetsArray = obj.optJSONArray("assets") ?: JSONArray()
-                val assets = (0 until assetsArray.length()).map { assetIdx ->
-                    val asset = assetsArray.getJSONObject(assetIdx)
-                    GithubAsset(
-                        name = asset.optString("name"),
-                        downloadUrl = asset.optString("browser_download_url"),
-                        sizeBytes = asset.optLong("size", 0L)
-                    )
-                }.filter { it.name.isNotBlank() && it.downloadUrl.isNotBlank() }
-
-                GithubRelease(
-                    tagName = tagName,
-                    name = name,
-                    assets = assets,
-                    publishedAt = obj.optString("published_at", obj.optString("created_at", "")),
-                    body = obj.optString("body", "")
-                )
-            }.sortGithubReleasesNewestFirst()
-
-            releaseCache[apiUrl] = CacheEntry(releases, System.currentTimeMillis())
-            releases
-        }
-    } catch (_: Exception) {
-        emptyList()
+    githubClient.newCall(request).execute().use { response ->
+        if (!response.isSuccessful) return null
+        val body = response.body?.string() ?: return null
+        JSONArray(body)
     }
+} catch (_: Exception) {
+    null
 }
 
 suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): List<GithubRelease> {
@@ -179,7 +222,16 @@ suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): Lis
         ?: source.assetExcludes["default"]
         ?: emptyList()
 
-    return (filtered.ifEmpty { fallback }.ifEmpty { allReleases })
+    // 精确匹配非空时，命名变体（如 Gamesir Rutabaga）可能被 patterns 遗漏，
+    // 将 fallback 中不在精确集内的条目并入，避免变体被整体丢弃。以 tagName 去重。
+    val merged = if (patterns.isEmpty()) {
+        allReleases
+    } else {
+        val filteredTags = filtered.mapTo(mutableSetOf()) { it.tagName }
+        filtered + fallback.filter { it.tagName !in filteredTags }
+    }
+
+    return (merged.ifEmpty { allReleases })
         .map { release ->
             // 驱动包约定为 zip/adpkg（含驱动本体与 meta.json）：
             // 先按源 include/exclude 规则匹配，再硬性只保留压缩驱动包，
@@ -234,43 +286,71 @@ suspend fun loadQualcommDriver(): GithubRelease? {
 
 suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Component>> =
     withContext(Dispatchers.IO) {
-        componentCache.getValid(manifestUrl)?.let { return@withContext it }
-
-        val acceleratedUrl = Accelerator.rewriteUrl(manifestUrl)
-        val request = Request.Builder().url(acceleratedUrl).build()
-
-        try {
-            githubClient.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return@withContext emptyMap()
-                val jsonArray = JSONArray(response.body?.string() ?: return@withContext emptyMap())
-                val map = mutableMapOf<String, MutableList<Component>>()
-
-                for (i in 0 until jsonArray.length()) {
-                    val obj = jsonArray.getJSONObject(i)
-                    val type = obj.optString("type").trim()
-                    val verName = obj.optString("verName").trim()
-                    val remoteUrl = obj.optString("remoteUrl").trim()
-                    if (type.isBlank() || verName.isBlank() || remoteUrl.isBlank()) continue
-
-                    val component = Component(
-                        type = type,
-                        verName = verName,
-                        verCode = obj.opt("verCode")?.toString().orEmpty(),
-                        remoteUrl = remoteUrl
-                    )
-                    map.getOrPut(component.type) { mutableListOf() }.add(component)
-                }
-
-                map.forEach { (_, list) ->
-                    list.sortWith { a, b -> naturalVersionCompare(b.verName, a.verName) }
-                }
-                componentCache[manifestUrl] = CacheEntry(map, System.currentTimeMillis())
-                map
-            }
-        } catch (_: Exception) {
-            emptyMap()
+        val cached = componentCache[manifestUrl]
+        val now = System.currentTimeMillis()
+        if (cached != null && now - cached.timestamp < CACHE_TTL_MS) {
+            return@withContext cached.data
         }
+        if (cached != null) {
+            // 过期缓存先返回，后台静默刷新（与 release 一致的 SWR 策略）
+            if (inFlightComponents.add(manifestUrl)) {
+                val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                scope.launch {
+                    try { refreshComponents(manifestUrl) } catch (_: Exception) {
+                    } finally {
+                        inFlightComponents.remove(manifestUrl)
+                        scope.cancel()
+                    }
+                }
+            }
+            return@withContext cached.data
+        }
+        refreshComponents(manifestUrl)
     }
+
+private suspend fun refreshComponents(manifestUrl: String): Map<String, List<Component>> {
+    val acceleratedUrl = Accelerator.rewriteUrl(manifestUrl)
+    var json = executeComponentsRequest(acceleratedUrl)
+    if (json == null && acceleratedUrl != manifestUrl) {
+        // 加速节点（jsdelivr 等）失败/缓存异常：回退 raw.githubusercontent 直连
+        json = executeComponentsRequest(manifestUrl)
+    }
+    if (json == null) return emptyMap()
+    val jsonArray = json // 稳定引用：var 被 lambda 捕获后无法 smart-cast
+
+    val map = mutableMapOf<String, MutableList<Component>>()
+    for (i in 0 until jsonArray.length()) {
+        val obj = jsonArray.getJSONObject(i)
+        val type = obj.optString("type").trim()
+        val verName = obj.optString("verName").trim()
+        val remoteUrl = obj.optString("remoteUrl").trim()
+        if (type.isBlank() || verName.isBlank() || remoteUrl.isBlank()) continue
+
+        val component = Component(
+            type = type,
+            verName = verName,
+            verCode = obj.opt("verCode")?.toString().orEmpty(),
+            remoteUrl = remoteUrl
+        )
+        map.getOrPut(component.type) { mutableListOf() }.add(component)
+    }
+    map.forEach { (_, list) ->
+        list.sortWith { a, b -> naturalVersionCompare(b.verName, a.verName) }
+    }
+    componentCache[manifestUrl] = CacheEntry(map, System.currentTimeMillis())
+    return map
+}
+
+private fun executeComponentsRequest(url: String): JSONArray? = try {
+    val request = Request.Builder().url(url).build()
+    githubClient.newCall(request).execute().use { response ->
+        if (!response.isSuccessful) return null
+        val body = response.body?.string() ?: return null
+        JSONArray(body)
+    }
+} catch (_: Exception) {
+    null
+}
 
 /** Backwards-compatible default used by older call sites/tests. */
 suspend fun fetchComponentsFromUrl(): Map<String, List<Component>> =
