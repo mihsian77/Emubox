@@ -8867,17 +8867,11 @@ fun EmulatorScreen(
                     val chips = mutableListOf("all")
                     chips += categoryOrder
                     chips.forEach { c ->
-                        FilterChip(
+                        FusionFilterChip(
+                            label = if (c == "all") appString(R.string.emulator_cat_all)
+                            else categoryLabel[c].orEmpty(),
                             selected = filterCat == c,
-                            onClick = { filterCat = c },
-                            label = {
-                                Text(
-                                    if (c == "all") appString(R.string.emulator_cat_all)
-                                    else categoryLabel[c].orEmpty(),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            }
+                            onClick = { filterCat = c }
                         )
                     }
                 }
@@ -9601,6 +9595,34 @@ private fun EmulatorRecipesCard(recipes: List<EmulatorRecipe>) {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun FusionFilterChip(
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(10.dp))
+            .background(
+                if (selected) Brush.linearGradient(colors = listOf(Fusion.GradientStart, Fusion.GradientEnd))
+                else androidx.compose.ui.graphics.SolidColor(Fusion.SurfaceAlt)
+            )
+            .border(1.dp, if (selected) Color.Transparent else Fusion.BorderAlt, RoundedCornerShape(10.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 7.dp)
+    ) {
+        Text(
+            label,
+            fontSize = 13.sp,
+            color = if (selected) Color.White else Fusion.OnSurfaceDim,
+            fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 }
 
