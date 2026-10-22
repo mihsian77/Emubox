@@ -229,31 +229,44 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
         }.filter { it.id.isNotBlank() }
     }
 
-    suspend fun fetchRemoteRegistry(): List<EmulatorEntry> = withContext(Dispatchers.IO) {
+    suspend fun fetchRemoteRegistry(context: android.content.Context): List<EmulatorEntry> = withContext(Dispatchers.IO) {
+        // 本地优先：磁盘缓存秒开，弱网/离线不白屏
+        DiskRegistryCache.read(context, "emulator_registry")?.let { cached ->
+            parseEmulators(JSONObject(cached))?.let { if (it.isNotEmpty()) return@withContext it }
+        }
         val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_REGISTRY_URL)
         val request = Request.Builder().url(acceleratedUrl).build()
-        runCatching {
+        val entries = runCatching {
             client.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) return@use null
                 val json = JSONObject(response.body?.string() ?: return@use null)
-                val entries = parseEmulators(json)
-                if (entries.isEmpty()) null else entries
+                val parsed = parseEmulators(json)
+                if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_registry", json.toString()) }
             }
-        }.getOrNull() ?: builtInRegistry()
+        }.getOrNull()
+        entries ?: DiskRegistryCache.read(context, "emulator_registry")?.let {
+            parseEmulators(JSONObject(it))?.takeIf { p -> p.isNotEmpty() }
+        } ?: builtInRegistry()
     }
 
-    /** 拉取远程社区排行（下载量/更新日志），失败回退内置 */
-    suspend fun fetchRemoteRanking(): List<EmulatorEntry> = withContext(Dispatchers.IO) {
+    /** 拉取远程社区排行（下载量/更新日志），本地缓存优先，失败回退内置 */
+    suspend fun fetchRemoteRanking(context: android.content.Context): List<EmulatorEntry> = withContext(Dispatchers.IO) {
+        DiskRegistryCache.read(context, "emulator_ranking")?.let { cached ->
+            parseEmulators(JSONObject(cached))?.let { if (it.isNotEmpty()) return@withContext it }
+        }
         val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_RANKING_URL)
         val request = Request.Builder().url(acceleratedUrl).build()
-        runCatching {
+        val entries = runCatching {
             client.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) return@use null
                 val json = JSONObject(response.body?.string() ?: return@use null)
-                val entries = parseEmulators(json)
-                if (entries.isEmpty()) null else entries
+                val parsed = parseEmulators(json)
+                if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_ranking", json.toString()) }
             }
-        }.getOrNull() ?: builtInRegistry()
+        }.getOrNull()
+        entries ?: DiskRegistryCache.read(context, "emulator_ranking")?.let {
+            parseEmulators(JSONObject(it))?.takeIf { p -> p.isNotEmpty() }
+        } ?: builtInRegistry()
     }
 
     private fun parseReleases(obj: JSONObject): List<EmulatorRelease> {
