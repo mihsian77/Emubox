@@ -164,6 +164,7 @@
     <string name="versions_footer">Versions are fetched directly from the selected upstream source. Change sources at any time; EmuBox remembers one source per category.</string>
     <string name="emulator_region">Emulators</string>
     <string name="emulator_desc">Common Android emulators with official sources and latest releases.</string>
+    <string name="emulator_search_hint">Search emulators &amp; ports</string>
     <string name="emulator_cat_all">All</string>
     <string name="emulator_sort_popular">Popular</string>
     <string name="emulator_sort_stars">Most starred</string>
