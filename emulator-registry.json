@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T17:00:00Z",
+ "updated_at": "2026-10-23T17:20:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -56562,32 +56562,63 @@
    "id": "azahartrigger-3ds",
    "name": "AzaharTrigger",
    "category": "Nintendo 3DS",
-   "description": "Azahar 3DS 模拟器 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus）：带额外功能（聊天模组等）的增强分支，2026-08 活跃；中文汉化版由 klark231 分发（视频系列），APK 见 fork release 与社区汉化。",
+   "description": "Azahar 3DS 模拟器增强 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus）：带聊天模组等额外功能，2026-07 起连续发布 v1.0.x 且含 Android APK；中文汉化版由 klark231 分发（视频系列）。",
    "owner": "diegolix29",
    "repo": "diegolix29/AzaharTrigger",
    "homepage": "",
    "repo_url": "https://github.com/diegolix29/AzaharTrigger",
    "official": false,
    "channel": "beta",
-   "latest_tag": "",
-   "latest_date": "",
-   "latest_body": "",
-   "latest_apk_name": "",
-   "latest_apk_url": "",
-   "latest_apk_size": 0,
+   "latest_tag": "v1.0.13",
+   "latest_date": "2026-07-18T16:12:11Z",
+   "latest_body": "- AZplus commits (cb79dc66f)\n- Rebase 7/17/2026 - Fixing duplicate multilplayer setting on Android + Android updates fixes after this release internal updater wont have conflicts anymore. (d5facac7e)\n",
+   "latest_apk_name": "azahar-android-universal-20260711-cb79dc6.apk",
+   "latest_apk_url": "https://github.com/diegolix29/AzaharTrigger/releases/download/v1.0.13/azahar-android-universal-20260711-cb79dc6.apk",
+   "latest_apk_size": 51607654,
    "pushed_at": "2026-08-23T00:00:00Z",
    "stars": 13,
    "forks": 0,
    "watchers": 0,
    "downloads": 0,
    "logo_url": "",
-   "releases": []
+   "releases": [
+    {
+     "tag": "v1.0.13",
+     "name": "v1.0.13 - AZplus commits",
+     "date": "2026-07-18T16:12:11Z",
+     "body": "",
+     "assets": [
+      "azahar-android-universal-20260711-cb79dc6.apk",
+      "azahar-android-universal-20260711-d3b305f.apk",
+      "azahar-android-universal-20260717-d5facac.apk",
+      "azahar-android-universal-v1.0.14.apk"
+     ]
+    },
+    {
+     "tag": "v1.0.12",
+     "name": "v1.0.12 - Rebase + desktop self update fixes + trasnlation fixes",
+     "date": "2026-07-15T17:07:17Z",
+     "body": "",
+     "assets": [
+      "azahar-android-universal-20260715-935f3c8.apk"
+     ]
+    },
+    {
+     "tag": "v1.0.11",
+     "name": "v1.0.11 - Quick Rebase to master+ Desktop: Virtual pointer like retroarch for right joysticks.",
+     "date": "2026-07-14T06:00:19Z",
+     "body": "",
+     "assets": [
+      "azahar-android-universal-20260713-c378b67.apk"
+     ]
+    }
+   ]
   },
   {
    "id": "eclipseds-nds",
    "name": "EclipseDS",
    "category": "Nintendo DS",
-   "description": "NDS 安卓模拟器（2026-07 发布，4PDA 首发，v1.0）：全新自研引擎（精度到周期级）、双屏支持、RetroAchievements、云存档、GPU 3D 渲染、30 语言、100% 免费无广告；Mega Update 计划中。经 Google Play 上架（用户确认），包名待核；无公开 GitHub 仓库。",
+   "description": "NDS 安卓模拟器（2026-07 发布 v1.0 内测）：全新自研引擎（周期级精度）、双屏、RetroAchievements、云存档、GPU 3D 渲染、30 语言；曾短期上架/内测分发，**内测已结束，当前商店与下载入口均不可见**（4PDA 首发帖与媒体报道仍可查证）；Mega Update 计划状态不明，待项目重新开放后跟进。",
    "owner": "",
    "repo": "",
    "homepage": "",
@@ -56596,7 +56627,7 @@
    "channel": "stable",
    "latest_tag": "1.0",
    "latest_date": "2026-07-31T00:00:00Z",
-   "latest_body": "4PDA 首发 v1.0；Mega Update（含 HD2D 风格滤镜/主题/皮肤/GBA 支持）计划中",
+   "latest_body": "内测已结束，下载入口当前不可见",
    "latest_apk_name": "",
    "latest_apk_url": "",
    "latest_apk_size": 0,
