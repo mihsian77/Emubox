@@ -9363,11 +9363,13 @@ private fun EmulatorInsightsCard(insights: EmulatorInsights) {
             else -> "$v"
         }
     }
-    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Default.BarChart, contentDescription = null, modifier = Modifier.size(18.dp),
-                    tint = MaterialTheme.colorScheme.primary)
+                    tint = Fusion.GradientStart)
                 Spacer(Modifier.width(6.dp))
                 Text(appString(R.string.emulator_insights_title), style = MaterialTheme.typography.titleSmall)
             }
@@ -9382,15 +9384,15 @@ private fun EmulatorInsightsCard(insights: EmulatorInsights) {
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
+                            containerColor = Fusion.SurfaceAlt
                         )
                     ) {
                         Column(Modifier.padding(vertical = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(value, style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.primary)
+                                color = Fusion.GradientStart)
                             Spacer(Modifier.height(2.dp))
                             Text(label, style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                color = Fusion.OnSurfaceDim,
                                 maxLines = 1, overflow = TextOverflow.Ellipsis)
                         }
                     }
@@ -9401,7 +9403,7 @@ private fun EmulatorInsightsCard(insights: EmulatorInsights) {
             Text(
                 appString(R.string.emulator_insights_trend, fmt(delta), insights.trendBaseDate, insights.trendLatestDate),
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = Fusion.OnSurfaceDim
             )
             if (insights.weeklyReleases > 0 || insights.totalVisits > 0 || insights.onlineNow > 0) {
                 Spacer(Modifier.height(6.dp))
@@ -9410,21 +9412,21 @@ private fun EmulatorInsightsCard(insights: EmulatorInsights) {
                         Text(
                             appString(R.string.emulator_insights_weekly, insights.weeklyReleases),
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary
+                            color = Fusion.GradientStart
                         )
                     }
                     if (insights.totalVisits > 0) {
                         Text(
                             appString(R.string.emulator_insights_visits, fmt(insights.totalVisits)),
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary
+                            color = Fusion.GradientStart
                         )
                     }
                     if (insights.onlineNow > 0) {
                         Text(
                             appString(R.string.emulator_insights_online, insights.onlineNow),
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary
+                            color = Fusion.GradientStart
                         )
                     }
                 }
@@ -9513,26 +9515,28 @@ private fun EmulatorTrendingCard(
     onOpen: (EmulatorEntry) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
                 .fillMaxWidth()
                 .clickable { expanded = !expanded }) {
                 Icon(Icons.Default.TrendingUp, contentDescription = null, modifier = Modifier.size(18.dp),
-                    tint = MaterialTheme.colorScheme.primary)
+                    tint = Fusion.GradientStart)
                 Spacer(Modifier.width(6.dp))
                 Text(appString(R.string.emulator_trending_title), style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Icon(
                     if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                    contentDescription = null, tint = Fusion.GradientStart
                 )
             }
             Spacer(Modifier.height(4.dp))
             Text(
                 appString(R.string.emulator_trending_period, baseDate, latestDate),
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = Fusion.OnSurfaceDim
             )
             if (expanded) {
                 Spacer(Modifier.height(6.dp))
@@ -9546,7 +9550,7 @@ private fun EmulatorTrendingCard(
                         Text(
                             "${idx + 1}",
                             style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.primary,
+                            color = Fusion.GradientStart,
                             modifier = Modifier.width(22.dp)
                         )
                         // 项目图标：数据源 logoUrl（缺失时 fallback 作者头像）
@@ -9578,19 +9582,21 @@ private fun EmulatorTrendingCard(
 @Composable
 private fun EmulatorCategoryShareCard(categories: List<CategoryDownloads>) {
     var expanded by remember { mutableStateOf(false) }
-    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
                 .fillMaxWidth()
                 .clickable { expanded = !expanded }) {
                 Icon(Icons.Default.PieChart, contentDescription = null, modifier = Modifier.size(18.dp),
-                    tint = MaterialTheme.colorScheme.primary)
+                    tint = Fusion.GradientStart)
                 Spacer(Modifier.width(6.dp))
                 Text(appString(R.string.emulator_cat_share_title), style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Icon(
                     if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = null, tint = MaterialTheme.colorScheme.primary
+                    contentDescription = null, tint = Fusion.GradientStart
                 )
             }
             if (expanded) {
@@ -9603,19 +9609,19 @@ private fun EmulatorCategoryShareCard(categories: List<CategoryDownloads>) {
                                 maxLines = 1, overflow = TextOverflow.Ellipsis,
                                 modifier = Modifier.weight(1f))
                             Text(formatStars(c.downloads), style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                color = Fusion.OnSurfaceDim)
                         }
                         Spacer(Modifier.height(3.dp))
                         val frac = if (total > 0) (c.downloads / total).coerceIn(0.02, 1.0) else 0.02
                         Box(
                             modifier = Modifier.fillMaxWidth().height(6.dp)
                                 .clip(RoundedCornerShape(3.dp))
-                                .background(MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                                .background(Fusion.SurfaceAlt)
                         ) {
                             Box(
                                 modifier = Modifier.fillMaxWidth(frac.toFloat()).fillMaxHeight()
                                     .clip(RoundedCornerShape(3.dp))
-                                    .background(MaterialTheme.colorScheme.primary)
+                                    .background(Fusion.GradientStart)
                             )
                         }
                     }
