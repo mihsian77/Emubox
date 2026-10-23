@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T13:10:00Z",
+ "updated_at": "2026-10-23T14:00:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -55811,6 +55811,497 @@
    "downloads": 0,
    "logo_url": "",
    "releases": []
+  },
+  {
+   "id": "cappyps5-android",
+   "name": "CapyPS5",
+   "category": "Emulator PS5",
+   "description": "",
+   "owner": "Ghael-V",
+   "repo": "Ghael-V/CapyPS5",
+   "homepage": "",
+   "repo_url": "https://github.com/Ghael-V/CapyPS5",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "v0.0.2",
+   "latest_date": "2026-10-23T09:33:17Z",
+   "latest_body": "Second alpha of the first PlayStation 5 emulator for Android. Fixes for what testers reported on v0.0.1, a trophy screen, and 60 games on the compatibility list. Existing installs are offered this upd",
+   "latest_apk_name": "CapyPS5-v0.0.2.apk",
+   "latest_apk_url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.2/CapyPS5-v0.0.2.apk",
+   "latest_apk_size": 52959155,
+   "pushed_at": "2026-10-23",
+   "stars": 15,
+   "forks": 2,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.0.2",
+     "name": "v0.0.2",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.0.1",
+     "name": "v0.0.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "emucorex-android",
+   "name": "EmuCoreX",
+   "category": "PlayStation 2 Emulator",
+   "description": "PlayStation 2 emulator for Android with a PCSX2-based core adapted by EmuCoreX, a modern game library, live overlay controls, and a handheld-focused experience.",
+   "owner": "sashkinbro",
+   "repo": "sashkinbro/EmuCoreX",
+   "homepage": "https://emucorex.web.app/",
+   "repo_url": "https://github.com/sashkinbro/EmuCoreX",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "v0.5.1",
+   "latest_date": "2026-10-23T10:31:07Z",
+   "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.5.0...v0.5.1\r\n\r\nWhat's new: 0.5.1\r\n\r\n- UI fixes\r\n- Core fixes and improvements",
+   "latest_apk_name": "EmuCoreX-0.5.1-parallel-v051.apk",
+   "latest_apk_url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.1/EmuCoreX-0.5.1-parallel-v051.apk",
+   "latest_apk_size": 73989453,
+   "pushed_at": "2026-10-23",
+   "stars": 239,
+   "forks": 18,
+   "watchers": 13,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.5.1",
+     "name": "v0.5.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.5.0",
+     "name": "v0.5.0",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.4.9",
+     "name": "v0.4.9",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "emucoreh-android",
+   "name": "EmuCoreH",
+   "category": "Sega Dreamcast",
+   "description": "EmuCoreH - Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
+   "owner": "sashkinbro",
+   "repo": "sashkinbro/EmuCoreH",
+   "homepage": "https://emucoreh.web.app/",
+   "repo_url": "https://github.com/sashkinbro/EmuCoreH",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "v0.1.1",
+   "latest_date": "2026-10-19T19:08:07Z",
+   "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreH/compare/v0.1.0...v0.1.1\r\n\r\nWhat's new: 0.1.1\r\n\r\n- UI fixes\r\n- Core fixes and improvements",
+   "latest_apk_name": "EmuCoreH-0.1.1-parallel011.apk",
+   "latest_apk_url": "https://github.com/sashkinbro/EmuCoreH/releases/download/v0.1.1/EmuCoreH-0.1.1-parallel011.apk",
+   "latest_apk_size": 57161400,
+   "pushed_at": "2026-10-23",
+   "stars": 12,
+   "forks": 1,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.1.1",
+     "name": "v0.1.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.1.0",
+     "name": "v0.1.0",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.0.9",
+     "name": "v0.0.9",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "emucorea-android",
+   "name": "EmuCoreA",
+   "category": "PlayStation Portable",
+   "description": "PlayStation PSP Emulator for Android",
+   "owner": "sashkinbro",
+   "repo": "sashkinbro/EmuCoreA",
+   "homepage": "https://emucorea.web.app/",
+   "repo_url": "https://github.com/sashkinbro/EmuCoreA",
+   "official": false,
+   "channel": "beta",
+   "latest_tag": "v0.1.1",
+   "latest_date": "2026-10-19T21:50:12Z",
+   "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreA/compare/v0.0.9...v0.1.1\r\n\r\nWhat's new: 0.1.1\r\n\r\n- UI fixes\r\n- Core fixes and improvements",
+   "latest_apk_name": "EmuCoreA-0.1.1-parallel011.apk",
+   "latest_apk_url": "https://github.com/sashkinbro/EmuCoreA/releases/download/v0.1.1/EmuCoreA-0.1.1-parallel011.apk",
+   "latest_apk_size": 64115023,
+   "pushed_at": "2026-10-23",
+   "stars": 15,
+   "forks": 2,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.1.1",
+     "name": "v0.1.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.0.9",
+     "name": "v0.0.9",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.0.8",
+     "name": "v0.0.8",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "emucorep-android",
+   "name": "EmuCoreP-Releases",
+   "category": "Windows PC",
+   "description": "PC gaming on Android, simplified - a fast native UI for Wine and Box64.",
+   "owner": "sashkinbro",
+   "repo": "sashkinbro/EmuCoreP-Releases",
+   "homepage": "",
+   "repo_url": "https://github.com/sashkinbro/EmuCoreP-Releases",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "v0.0.3",
+   "latest_date": "2026-09-17T15:11:52Z",
+   "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreP-Releases/compare/v0.0.1...v0.0.3\r\n\r\nWhat's new: 0.0.3\r\n\r\n- Fixed UI issues\r\n- Other improvements and optimizations",
+   "latest_apk_name": "EmuCoreP.v0.0.3.apk",
+   "latest_apk_url": "https://github.com/sashkinbro/EmuCoreP-Releases/releases/download/v0.0.3/EmuCoreP.v0.0.3.apk",
+   "latest_apk_size": 325016536,
+   "pushed_at": "2026-09-17",
+   "stars": 19,
+   "forks": 0,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.0.3",
+     "name": "v0.0.3",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.0.2",
+     "name": "v0.0.2",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.0.1",
+     "name": "v0.0.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "armsx1-ps1",
+   "name": "ARMSX1",
+   "category": "PlayStation 1 Emulator",
+   "description": "New PS1 Emulator from the Founders of ARMSX2 ",
+   "owner": "ARMSX2",
+   "repo": "ARMSX2/ARMSX1",
+   "homepage": "",
+   "repo_url": "https://github.com/ARMSX2/ARMSX1",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "0.1.4",
+   "latest_date": "2026-09-25T09:31:53Z",
+   "latest_body": "this update includes a huge lot of fixes thanks to our testers and contributors! Read our discord for the full list of fixes ",
+   "latest_apk_name": "ARMSX1-release-20260925-arm64-v8a.apk",
+   "latest_apk_url": "https://github.com/ARMSX2/ARMSX1/releases/download/0.1.4/ARMSX1-release-20260925-arm64-v8a.apk",
+   "latest_apk_size": 71379155,
+   "pushed_at": "2026-10-23",
+   "stars": 285,
+   "forks": 13,
+   "watchers": 9,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "0.1.4",
+     "name": "0.1.4",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "0.3.6",
+     "name": "0.3.6",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "0.2.6",
+     "name": "0.2.6",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "ax360e-android",
+   "name": "ax360e",
+   "category": "Microsoft Xbox 360",
+   "description": "An experimental Android XBOX360 emulator based on Xenia and Xenia canary porting.",
+   "owner": "aenu1",
+   "repo": "aenu1/ax360e",
+   "homepage": "https://aenu.cc/ax360e",
+   "repo_url": "https://github.com/aenu1/ax360e",
+   "official": true,
+   "channel": "alpha",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-08-16",
+   "stars": 73,
+   "forks": 18,
+   "watchers": 4,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "dingooemu-android",
+   "name": "DingooEmu",
+   "category": "Handheld Console",
+   "description": "",
+   "owner": "AloysHF",
+   "repo": "AloysHF/DingooEmu",
+   "homepage": "https://aloyshf.github.io/DingooEmu/",
+   "repo_url": "https://github.com/AloysHF/DingooEmu",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "nightly-build",
+   "latest_date": "2026-10-22T23:13:16Z",
+   "latest_body": "Automated nightly build — **for testing only**.\n\n- Built: 2026-10-22 23:13:05 UTC\n- Commit: [`109e566`](https://github.com/AloysHF/DingooEmu/commit/109e566ad63690eda7634b5a2db00efe05471f43)\n- Platform",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-10-22",
+   "stars": 20,
+   "forks": 3,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "nightly-build",
+     "name": "nightly-build",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.3.0",
+     "name": "v0.3.0",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.2.0",
+     "name": "v0.2.0",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "azaharplus-android",
+   "name": "AzaharPlus",
+   "category": "Nintendo 3DS",
+   "description": "Enhanced Nintendo 3DS emulator with additional features and optimizations",
+   "owner": "f4mrfaux",
+   "repo": "f4mrfaux/AzaharPlus",
+   "homepage": "",
+   "repo_url": "https://github.com/f4mrfaux/AzaharPlus",
+   "official": true,
+   "channel": "alpha",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2025-08-19",
+   "stars": 25,
+   "forks": 4,
+   "watchers": 3,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "nin64-android",
+   "name": "Nin64-Emulator",
+   "category": "Nintendo 64",
+   "description": "Nintendo 64 Emulator for Android",
+   "owner": "izzy2lost",
+   "repo": "izzy2lost/Nin64-Emulator",
+   "homepage": "https://www.izzy2lost.com/",
+   "repo_url": "https://github.com/izzy2lost/Nin64-Emulator",
+   "official": true,
+   "channel": "alpha",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-06-30",
+   "stars": 12,
+   "forks": 0,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "pockethle-android",
+   "name": "PocketHLE",
+   "category": "Windows Mobile",
+   "description": "A high-level Windows Mobile / Pocket PC / Gizmondo emulator for Linux, Windows and Android.",
+   "owner": "j92580498-max",
+   "repo": "j92580498-max/PocketHLE",
+   "homepage": "",
+   "repo_url": "https://github.com/j92580498-max/PocketHLE",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "0.3.2",
+   "latest_date": "2026-10-18T11:10:11Z",
+   "latest_body": "## What's New\r\n\r\n### Games\r\nThe following games are now working:\r\n- Bubble Bash\r\n- Tower Bloxx\r\n- GTS Racing Challenge\r\n- Spider-Man: Toxic City\r\n- Cops & Robbers\r\n- Quake III Arena\r\n\r\n### Interface\r\n",
+   "latest_apk_name": "app-debug.apk",
+   "latest_apk_url": "https://github.com/j92580498-max/PocketHLE/releases/download/0.3.2/app-debug.apk",
+   "latest_apk_size": 171466778,
+   "pushed_at": "2026-10-18",
+   "stars": 103,
+   "forks": 16,
+   "watchers": 4,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "0.3.2",
+     "name": "0.3.2",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.3.1",
+     "name": "v0.3.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.3.0",
+     "name": "v0.3.0",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "mandarineneo-3ds",
+   "name": "mandarine-neo",
+   "category": "Nintendo 3DS",
+   "description": "A Citra fork with new features and hacks which are experimental and may not be present in Azahar. Continuation of Mandarine 3DS emulator.",
+   "owner": "ptyfyre",
+   "repo": "ptyfyre/mandarine-neo",
+   "homepage": "",
+   "repo_url": "https://github.com/ptyfyre/mandarine-neo",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "r1.3.0",
+   "latest_date": "2026-04-15T15:38:08Z",
+   "latest_body": "## New changes \r\n\r\nNote: This release is minimal on purpose, I need to gather feedback as in to what direction this project should go. This release was just meant to get Mandarine back into it's feet ",
+   "latest_apk_name": "mandarine-android-universal-20260415-3f023d0.apk",
+   "latest_apk_url": "https://github.com/ptyfyre/mandarine-neo/releases/download/r1.3.0/mandarine-android-universal-20260415-3f023d0.apk",
+   "latest_apk_size": 50871177,
+   "pushed_at": "2026-04-19",
+   "stars": 750,
+   "forks": 28,
+   "watchers": 32,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "r1.3.0",
+     "name": "r1.3.0",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "r1.2.1",
+     "name": "r1.2.1",
+     "date": "",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "r1,2",
+     "name": "r1,2",
+     "date": "",
+     "body": "",
+     "assets": []
+    }
+   ]
   }
  ]
 }
