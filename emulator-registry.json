@@ -1,6 +1,6 @@
 {
- "version": "1.2.0",
- "updated_at": "2026-10-23T09:15:00Z",
+ "version": "1.2.1",
+ "updated_at": "2026-10-23T12:30:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -55559,6 +55559,180 @@
    "downloads": 0,
    "logo_url": "",
    "releases": []
+  },
+  {
+   "id": "seedlessds-android",
+   "name": "SeedlessDS",
+   "category": "Nintendo DS Emulator",
+   "description": "NDS 安卓模拟器（SapphireRhodonite 制作组）：核心由 DraStic r2.6.0.4a 重构并源码构建，专为物理按键掌机与双屏设备优化，内置游戏库、按键映射、即时存档、金手指与 RetroAchievements；与 WatermelonDS（melonDS 内核）为姊妹项目。",
+   "owner": "SapphireRhodonite",
+   "repo": "SapphireRhodonite/SeedlessDS",
+   "homepage": "",
+   "repo_url": "https://github.com/SapphireRhodonite/SeedlessDS",
+   "official": true,
+   "channel": "stable",
+   "latest_tag": "1.0.1",
+   "latest_date": "2026-10-15T03:24:53Z",
+   "latest_body": "# SeedlessDS 1.0.1\r\nSeedlessDS **1.0.1** is now available.\r\n<p align=\"center\">\r\n<img width=\"200\" height=\"200\" alt=\"Logo SeedlessDS sin semillas\" src=\"https://github.com/user-attachments/assets/357ad4b",
+   "latest_apk_name": "SeedlessDS-1.0.1-release.apk",
+   "latest_apk_url": "https://github.com/SapphireRhodonite/SeedlessDS/releases/download/1.0.1/SeedlessDS-1.0.1-release.apk",
+   "latest_apk_size": 15527601,
+   "pushed_at": "2026-10-15T03:26:02Z",
+   "stars": 239,
+   "forks": 5,
+   "watchers": 16,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "1.0.1",
+     "name": "SeedlessDS 1.0.1",
+     "date": "2026-10-15T03:24:53Z",
+     "body": "# SeedlessDS 1.0.1\r\nSeedlessDS **1.0.1** is now available.\r\n<p align=\"center\">\r\n<img width=\"200\" height=\"200\" alt=\"Logo SeedlessDS sin semillas\" src=\"https://github.com/user-attachments/assets/357ad4ba-6188-479d-a300-d38543a812b0\" />\r\n</p>\r\n\r\nThis release focuses on important compatibility fixes, graphics fixes, archive handling improvements, external display behavior, and stability improvements when closing games.\r\n\r\nThe biggest user-facing fixes are:\r\n\r\n- **Dementium II now starts correctly**\r",
+     "assets": [
+      "SeedlessDS-1.0.1-release.apk"
+     ]
+    },
+    {
+     "tag": "1.0.0",
+     "name": "SeedlessDS 1.0.0: Dynamic 3D Resolution, 16 KB Page Support and Library Fixes!!! (also all src released!)",
+     "date": "2026-10-03T01:35:39Z",
+     "body": "# SeedlessDS 1.0.0\r\n\r\nThis is a very important release for **SeedlessDS**.\r\n\r\nSeedlessDS has now moved from beta to **1.0.0**, with **versionCode 110**.\r\n\r\n<p align=\"center\">\r\n<img width=\"400\" height=\"600\" alt=\"1\" src=\"https://github.com/user-attachments/assets/41600eea-704f-491d-bf17-700af29c42bd\" />\r\n\r\n# More importantly, for the first time, the **DraStic-based SeedlessDS core source is now public**.\r\n</p>\r\n\r\nThis means the project can finally start moving forward in the open. \r\nThe code can b",
+     "assets": [
+      "SeedlessDS-1.0.0.apk"
+     ]
+    },
+    {
+     "tag": "1.0.0-beta1",
+     "name": "SeedlessDS 1.0.0-beta1",
+     "date": "2026-08-08T02:33:58Z",
+     "body": "## This is the first public beta release of **SeedlessDS**.\r\n\r\n\r\n\r\nSeedlessDS is a Nintendo DS emulator app for Android built around the **DraStic r2.6.0.4a** core, with a new Android frontend, a new UI written in Kotlin and Jetpack Compose, RetroAchievements integration work, and dual-screen behavior designed for modern Android handhelds.\r\n\r\n<p align=\"center\">\r\n<img width=\"350\" height=\"300\" alt=\"Screenshot_20260807-202219\" src=\"https://github.com/user-attachments/assets/9e9fbcee-28d5-4938-8b81-",
+     "assets": [
+      "SeedlessDS-1.0.0-beta1.apk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "watermelonds-android",
+   "name": "WatermelonDS",
+   "category": "Nintendo DS Emulator",
+   "description": "NDS 安卓模拟器（SapphireRhodonite 制作组）：基于 melonDS 内核，界面与交互大幅重构，为带实体按键的安卓掌机（双屏设备）设计；SeedlessDS 为同组的姊妹项目（DraStic 内核重构）。",
+   "owner": "SapphireRhodonite",
+   "repo": "SapphireRhodonite/WatermelonDS",
+   "homepage": "",
+   "repo_url": "https://github.com/SapphireRhodonite/WatermelonDS",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "0.8.0.rc3",
+   "latest_date": "2026-10-17T02:18:41Z",
+   "latest_body": "# WatermelonDS 0.8.0.rc3 is here!!!\r\n<p align=\"center\">\r\n<img width=\"200\" height=\"200\" alt=\"logo WatermelonDS\" src=\"https://github.com/user-attachments/assets/e568bd62-6e7c-4c4d-a027-89761992032b\" />\r",
+   "latest_apk_name": "WatermelonDS-0.8.0.rc3.apk",
+   "latest_apk_url": "https://github.com/SapphireRhodonite/WatermelonDS/releases/download/0.8.0.rc3/WatermelonDS-0.8.0.rc3.apk",
+   "latest_apk_size": 27984399,
+   "pushed_at": "2026-10-17T02:18:41Z",
+   "stars": 605,
+   "forks": 24,
+   "watchers": 12,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "0.8.0.rc3",
+     "name": "WatermelonDS 0.8.0.rc3",
+     "date": "2026-10-17T02:18:41Z",
+     "body": "# WatermelonDS 0.8.0.rc3 is here!!!\r\n<p align=\"center\">\r\n<img width=\"200\" height=\"200\" alt=\"logo WatermelonDS\" src=\"https://github.com/user-attachments/assets/e568bd62-6e7c-4c4d-a027-89761992032b\" />\r\n<p>\r\n\r\n\r\nThis release brings a large collection of game compatibility and graphics fixes, more flexible controls, audio improvements, and easier management of save states and DSi configurations.\r\n\r\nHighlights include **optional Vulkan low-latency mode**, **independent A/B/X/Y touch controls**, **DS",
+     "assets": [
+      "WatermelonDS-0.8.0.rc3.apk"
+     ]
+    },
+    {
+     "tag": "0.8.0.rc2",
+     "name": "WatermelonDS 0.8.0.rc2: Vulkan, Audio and Library Stability Update!",
+     "date": "2026-09-25T09:25:06Z",
+     "body": "# WatermelonDS 0.8.0.rc2 is here!!!\r\n\r\n<p align=\"center\">\r\n<img width=\"400\" height=\"400\" alt=\"image\" src=\"https://github.com/user-attachments/assets/29d5806f-b667-421f-9eea-5f9f9b1b666c\"/>\r\n</p>\r\n\r\nThis release focuses on smoother high-resolution Vulkan performance, audio and graphics fixes reported by the community, and quality-of-life improvements for libraries, saves, and RetroAchievements.\r\n\r\n---\r\n\r\n## Vulkan performance improvements\r\n\r\nVulkan has received major performance and stability imp",
+     "assets": [
+      "WatermelonDS-0.8.0.rc2.apk"
+     ]
+    },
+    {
+     "tag": "0.7.0",
+     "name": "WatermelonDS 0.7.0 is finally here!",
+     "date": "2026-08-08T03:19:00Z",
+     "body": "## This is a very special release.\r\n\r\nAfter several release candidates under the **melonDualDS** name, the project is now officially renamed to:\r\n\r\n# WatermelonDS\r\n\r\n<img width=\"350\" height=\"300\" alt=\"Screenshot_20260807-205316\" src=\"https://github.com/user-attachments/assets/4743d5c3-1331-49f9-8b9e-54e542040e8b\" />\r\n<img width=\"350\" height=\"300\" alt=\"Screenshot_20260807-205306\" src=\"https://github.com/user-attachments/assets/bb76defe-d347-48ed-82aa-afd5d4cb7c6d\" />\r\n<img width=\"350\" height=\"300",
+     "assets": [
+      "WatermelonDS-0.7.0.apk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "seedlessds-cn-fork",
+   "name": "SeedlessDS 优化分支",
+   "category": "Nintendo DS Emulator",
+   "description": "SeedlessDS 第三方中文优化分支（yjhqq）：副屏悬浮窗、可绑定按键回溯、Vulkan 低延迟呈现、16 项内置滤镜、社区金手指与 OpenGL 滤镜集成；自制版本号与官方独立（当前 1.0.11-shaders，Vulkan 低延迟仅作用于软件渲染帧呈现，非新增硬件 3D 核心）。",
+   "owner": "yjhqq761261552-wq",
+   "repo": "yjhqq761261552-wq/seedless-ds-fork",
+   "homepage": "",
+   "repo_url": "https://github.com/yjhqq761261552-wq/seedless-ds-fork",
+   "official": false,
+   "channel": "beta",
+   "latest_tag": "v1.0.11-shaders",
+   "latest_date": "2026-10-22T05:37:00Z",
+   "latest_body": "## SeedlessDS 1.0.11-shaders（自制测试版）\n\n基于 1.0.10，新增 Sharp Bilinear、Sharp Shimmerless、Pixel AA Fast、LCD3x、Quilez 五个家族共 9 项效果，Vulkan 共 16 项。默认 OpenGL；屏幕菜单可选 Vulkan，并按后端筛选滤镜。\n\n- ARM64，最低 Android API 21；Vul",
+   "latest_apk_name": "SeedlessDS-1.0.11-vulkan-shaders-debug.apk",
+   "latest_apk_url": "https://github.com/yjhqq761261552-wq/seedless-ds-fork/releases/download/v1.0.11-shaders/SeedlessDS-1.0.11-vulkan-shaders-debug.apk",
+   "latest_apk_size": 38950213,
+   "pushed_at": "2026-10-22T05:37:00Z",
+   "stars": 0,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v1.0.11-shaders",
+     "name": "SeedlessDS 1.0.11 · Vulkan 精选滤镜（测试版）",
+     "date": "2026-10-22T05:37:00Z",
+     "body": "## SeedlessDS 1.0.11-shaders（自制测试版）\n\n基于 1.0.10，新增 Sharp Bilinear、Sharp Shimmerless、Pixel AA Fast、LCD3x、Quilez 五个家族共 9 项效果，Vulkan 共 16 项。默认 OpenGL；屏幕菜单可选 Vulkan，并按后端筛选滤镜。\n\n- ARM64，最低 Android API 21；Vulkan 还需系统/驱动支持。\n- 包名 com.seedlessds.app.debug，versionCode 121，与此前自制测试版同签名，可覆盖升级。\n- 构建、94 项 JVM 测试、原生检查与 shader 编译已通过；Lint 0 错误 / 27 警告。新增滤镜尚未真机验证，没有端到端延迟测量。\n- APK 是此前交付的原始 1.0.11 安装包，未因仓库文档更新重新构建。随附源码压缩包对应该次构建；最新仓库另补充作者致谢。\n\n### 致谢\n\n特别感谢 SapphireRhodonite、WatermelonDS / SeedlessDS 制作组及贡献者。感谢 OpenGL 滤镜",
+     "assets": [
+      "SeedlessDS-1.0.11-vulkan-shaders-debug.apk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wpr-wp7-8",
+   "name": "WPR",
+   "category": "Windows Mobile",
+   "description": "Windows Phone 7/8 APP 运行器（安卓端）：可运行部分 WP7/8 应用；上游 2022 年停更（release 停在 0.0.1-alpha），中文社区有延续汉化版（如 v0.1.0x 系列，经网盘分发）。",
+   "owner": "8212369",
+   "repo": "8212369/WPR",
+   "homepage": "",
+   "repo_url": "https://github.com/8212369/WPR",
+   "official": false,
+   "channel": "alpha",
+   "latest_tag": "0.0.1-alpha",
+   "latest_date": "2022-09-21T19:31:49Z",
+   "latest_body": "**Binaries for:** Windows, Android\r\n\r\nTested and supported games:\r\n\r\n- Earthworm Jim (no achievements yet, add them to json)\r\n- Skulls of the Shogun\r\n- Ilomilo\r\n- Zuma's revenge\r\n- Plant vs zombie\r\n- ",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2022-12-10T21:51:36Z",
+   "stars": 304,
+   "forks": 34,
+   "watchers": 19,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "0.0.1-alpha",
+     "name": "WPR Alpha 0.0.1",
+     "date": "2022-09-21T19:31:49Z",
+     "body": "**Binaries for:** Windows, Android\r\n\r\nTested and supported games:\r\n\r\n- Earthworm Jim (no achievements yet, add them to json)\r\n- Skulls of the Shogun\r\n- Ilomilo\r\n- Zuma's revenge\r\n- Plant vs zombie\r\n- The Sims 3\r\n- The Sims Medival\r\n- Civilization Revolution\r\n- I love Katamari\r\n- Fruit Ninja (crash after play done one match)\r\n- Sonic 4 ep 1\r\n- Tower Bloxx\r\n- Kinectimals\r\n- MonstaFish\r\n- Bug Village\r\n- Brain Challenge\r\n- Ragdoll Run (bugged)\r\n- Max and the Magic Marker\r\n- Tentacles\r\n- Tiki Towers\r",
+     "assets": []
+    }
+   ]
   }
  ]
 }
