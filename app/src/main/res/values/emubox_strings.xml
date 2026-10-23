@@ -236,6 +236,8 @@
     <string name="bench_bw_cmp">Memory bandwidth</string>
     <string name="bench_fp_cmp">FP32 compute</string>
     <string name="bench_driver_pc_note">Physical quantity comparison (GB/s, TFLOPS); not a same-benchmark-system conversion.</string>
+
+    <string name="bench_samechip_partial">Only some models are on the Ludashi list; others not listed.</string>
     <string name="soc_source_note">Data compiled from public benchmark platforms; for reference only.</string>
     <string name="soc_devices">Common devices</string>
     <string name="component_wine_subtitle">Windows compatibility layer</string>

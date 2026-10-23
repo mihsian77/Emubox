@@ -45,7 +45,6 @@ jobs:
           cp bench-data/antutu_soc.json app/src/main/assets/bench/antutu_soc.json
           cp bench-data/ludashi.json app/src/main/assets/bench/ludashi.json
           cp bench-data/manifest.json app/src/main/assets/bench/manifest.json
-          cp app/src/main/assets/bench/bench_meta.json app/src/main/assets/bench/bench_meta.json
           if ! git diff --quiet -- app/src/main/assets/bench; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

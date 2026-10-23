@@ -10872,9 +10872,10 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
             }
         }
 
-        // 同芯机型跑分（榜单未收录如实标注）
+        // 同芯机型跑分（榜单未收录机型折叠为说明，不刷屏）
         info.sameChip?.let { list ->
-            if (list.isNotEmpty()) {
+            val scored = list.filter { it.score != null }
+            if (scored.isNotEmpty()) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(28.dp)
@@ -10885,7 +10886,7 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                             style = MaterialTheme.typography.titleSmall
                         )
                         Spacer(Modifier.height(8.dp))
-                        list.forEach { d ->
+                        scored.forEach { d ->
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)
@@ -10898,12 +10899,20 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                                     modifier = Modifier.weight(1f)
                                 )
                                 Text(
-                                    d.score?.let { "%,d".format(it) } ?: appString(R.string.bench_samechip_missing),
+                                    d.score?.let { "%,d".format(it) } ?: "",
                                     style = MaterialTheme.typography.labelMedium,
-                                    color = if (d.score != null) MaterialTheme.colorScheme.primary
-                                        else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                                    color = MaterialTheme.colorScheme.primary
                                 )
                             }
+                        }
+                        if (scored.size < list.size) {
+                            Spacer(Modifier.height(6.dp))
+                            Text(
+                                appString(R.string.bench_samechip_partial),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                                maxLines = 2
+                            )
                         }
                     }
                 }
