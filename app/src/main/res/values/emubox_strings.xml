@@ -210,6 +210,7 @@
     <string name="soc_knowledge_not_found">No record for this chip yet.</string>
     <string name="soc_process">Process</string>
     <string name="soc_cpu">CPU</string>
+    <string name="soc_cpu_cores">Cores / Max Freq</string>
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">Benchmark (Antutu V10)</string>
 

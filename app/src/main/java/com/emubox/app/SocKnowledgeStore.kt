@@ -14,6 +14,16 @@ data class SocKnowledge(
     val devices: String
 )
 
+/** 芯片实测规格：CPU 架构/频率（来自安兔兔天梯内置字段，随跑分管线自动刷新） */
+data class SocSpec(
+    val cpuSummary: String,
+    val totalCores: Int,
+    val maxFreqGhZ: Double,
+    val cpuScore: String,
+    val gpuScore: String,
+    val totalScore: String
+)
+
 /** 芯片知识库：assets/soc_knowledge.json 前缀/包含匹配 */
 object SocKnowledgeStore {
     private var cache: List<Pair<List<String>, SocKnowledge>>? = null
@@ -67,5 +77,49 @@ object SocKnowledgeStore {
         return load(context).firstOrNull { (keys, _) ->
             keys.any { k -> haystacks.any { h -> h.contains(k) } }
         }?.second
+    }
+}
+
+/** 芯片规格库：assets/bench/soc_specs.json（安兔兔 clusters 字段解析，随跑分数据刷新） */
+object SocSpecStore {
+    private var cache: Map<String, SocSpec>? = null
+
+    private fun load(context: Context): Map<String, SocSpec> {
+        cache?.let { return it }
+        val map = runCatching {
+            val text = context.assets.open("bench/soc_specs.json")
+                .bufferedReader().use { it.readText() }
+            val obj = JSONObject(text).getJSONObject("socs")
+            val out = mutableMapOf<String, SocSpec>()
+            val names = obj.names() ?: return@runCatching emptyMap<String, SocSpec>()
+            for (i in 0 until names.length()) {
+                val key = names.getString(i)
+                val o = obj.getJSONObject(key)
+                if (!o.has("cpu_summary")) continue
+                out[key] = SocSpec(
+                    cpuSummary = o.getString("cpu_summary"),
+                    totalCores = o.optInt("total_cores"),
+                    maxFreqGhZ = o.optDouble("max_freq_ghz"),
+                    cpuScore = o.optString("cpu_score"),
+                    gpuScore = o.optString("gpu_score"),
+                    totalScore = o.optString("total_score")
+                )
+            }
+            out
+        }.getOrElse { emptyMap() }
+        cache = map
+        return map
+    }
+
+    /** 按 SoC 名匹配规格（antutu 全名如「高通 骁龙888」；socName 如「骁龙888」做包含匹配） */
+    fun find(socName: String, context: Context): SocSpec? {
+        if (socName.isBlank()) return null
+        val h = socName.lowercase().replace(" ", "")
+        val specs = load(context)
+        specs.forEach { (k, v) ->
+            val kk = k.lowercase().replace(" ", "")
+            if (kk.contains(h) || h.contains(kk)) return v
+        }
+        return null
     }
 }

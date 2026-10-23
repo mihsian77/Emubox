@@ -1074,8 +1074,14 @@ private suspend fun deleteFile(context: android.content.Context, file: Downloads
     }
 }
 
-private fun formatBytes(bytes: Long): String {
-    return when {
+/** 频率格式化：4.35GHz → "4.35 GHz"（去多余小数） */
+private fun formatFreq(ghz: Double): String {
+    val s = if (ghz % 1.0 == 0.0) ghz.toInt().toString() else String.format("%.2f", ghz)
+        .trimEnd('0').trimEnd('.')
+    return "$s GHz"
+}
+
+private fun formatBytes(bytes: Long): String {    return when {
         bytes < 1024 -> "$bytes B"
         bytes < 1024 * 1024 -> String.format("%.2f KB", bytes / 1024.0)
         bytes < 1024 * 1024 * 1024 -> String.format("%.2f MB", bytes / (1024.0 * 1024))
@@ -10695,6 +10701,8 @@ private fun EmulatorDetailDialog(
 private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
     val socName = remember { SocNameMapper.getCurrentSocName(context) }
     val knowledge = remember(socName, gpuModel) { SocKnowledgeStore.find(socName, gpuModel, context) }
+    // 实测规格（安兔兔天梯 clusters）：命中时优先展示含频率的 CPU 明细
+    val spec = remember(socName) { SocSpecStore.find(socName, context) }
     // 跑分引擎命中时隐藏知识库文案分数，避免与真实跑分冲突
     val benchInfo = remember(socName, gpuModel) { BenchEngine.resolve(socName, gpuModel, context) }
     val hasBenchScore = benchInfo?.antutuTotal != null || benchInfo?.ludashiScore != null
@@ -10762,7 +10770,13 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                         InfoRow(label = appString(R.string.soc_score_label), value = knowledge.score)
                     }
                     InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
-                    InfoRow(label = appString(R.string.soc_cpu), value = knowledge.cpu)
+                    InfoRow(label = appString(R.string.soc_cpu), value = spec?.cpuSummary ?: knowledge.cpu)
+                    if (spec != null) {
+                        InfoRow(
+                            label = appString(R.string.soc_cpu_cores),
+                            value = "${spec.totalCores} 核 · 最高 ${formatFreq(spec.maxFreqGhZ)}"
+                        )
+                    }
                     InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)
                     InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)
                     Spacer(Modifier.height(6.dp))

@@ -1,0 +1,6936 @@
+{
+ "version": "1.0.0",
+ "note": "CPU 架构/频率来自安兔兔 SoC 天梯内置字段；制程/GPU/发布时间由维基列表管线补全（缺失留空）",
+ "socs": {
+  "15930 分": {
+   "level": "level3",
+   "total_score": "",
+   "cpu_score": "",
+   "gpu_score": ""
+  },
+  "20846 分": {
+   "level": "level3",
+   "total_score": "",
+   "cpu_score": "",
+   "gpu_score": ""
+  },
+  "24773 分": {
+   "level": "level3",
+   "total_score": "",
+   "cpu_score": "",
+   "gpu_score": ""
+  },
+  "25673 分": {
+   "level": "level1",
+   "total_score": "",
+   "cpu_score": "",
+   "gpu_score": ""
+  },
+  "Amlogic A311D2": {
+   "level": "level3",
+   "total_score": "150581",
+   "cpu_score": "85498",
+   "gpu_score": "65083",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Cortex-A73 + 4×2.0GHz Cortex-A53"
+  },
+  "Synaptics VS680": {
+   "level": "level3",
+   "total_score": "80822",
+   "cpu_score": "53912",
+   "gpu_score": "26910",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A73"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.1,
+   "cpu_summary": "4×2.1GHz Cortex-A73"
+  },
+  "Xiaomi 玄戒O3": {
+   "level": "level2",
+   "total_score": "3010770",
+   "cpu_score": "1178051",
+   "gpu_score": "1832719",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 4.35,
+     "core": "C1-Ultra"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 3.68,
+     "core": "C1-Premium"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 3.15,
+     "core": "C1-Pro"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 4.35,
+   "cpu_summary": "2×4.35GHz C1-Ultra + 4×3.68GHz C1-Premium + 4×3.15GHz C1-Pro"
+  },
+  "三星 Exynos 1080": {
+   "level": "level1",
+   "total_score": "496915",
+   "cpu_score": "358342",
+   "gpu_score": "138573",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "1×2.8GHz Cortex-A78 + 3×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "三星 Exynos 1280": {
+   "level": "level1",
+   "total_score": "279887",
+   "cpu_score": "211418",
+   "gpu_score": "68469",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "三星 Exynos 1330": {
+   "level": "level1",
+   "total_score": "276263",
+   "cpu_score": "234160",
+   "gpu_score": "42103",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "三星 Exynos 1380": {
+   "level": "level1",
+   "total_score": "381081",
+   "cpu_score": "292643",
+   "gpu_score": "88438",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "4×2.4GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "三星 Exynos 1480": {
+   "level": "level1",
+   "total_score": "583238",
+   "cpu_score": "361997",
+   "gpu_score": "221241",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.75,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.75,
+   "cpu_summary": "4×2.75GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "三星 Exynos 2100": {
+   "level": "level1",
+   "total_score": "485315",
+   "cpu_score": "296974",
+   "gpu_score": "188341",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.9,
+     "core": "Cortex-X1"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.9,
+   "cpu_summary": "1×2.9GHz Cortex-X1 + 3×2.8GHz Cortex-A78 + 4×2.2GHz Cortex-A55"
+  },
+  "三星 Exynos 2200": {
+   "level": "level1",
+   "total_score": "773051",
+   "cpu_score": "420123",
+   "gpu_score": "352928",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.8,
+     "core": "Cortex-X2"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A710"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "1×2.8GHz Cortex-X2 + 3×2.5GHz Cortex-A710 + 4×1.8GHz Cortex-A510"
+  },
+  "三星 Exynos 2400": {
+   "level": "level1",
+   "total_score": "935838",
+   "cpu_score": "559029",
+   "gpu_score": "376809",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.9,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz Cortex-X4 + 2×2.9GHz Cortex-A720 + 3×2.6GHz Cortex-A720 + 4×1.95GHz Cortex-A520"
+  },
+  "三星 Exynos 2500": {
+   "level": "level1",
+   "total_score": "1288409",
+   "cpu_score": "687559",
+   "gpu_score": "600850",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.3,
+     "core": "Cortex-X925"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 5,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 3.3,
+   "cpu_summary": "1×3.3GHz Cortex-X925 + 2×2.36GHz Cortex-A725 + 5×1.8GHz Cortex-A725 + 2×1.8GHz Cortex-A520"
+  },
+  "三星 Exynos 7420": {
+   "level": "level1",
+   "total_score": "168199",
+   "cpu_score": "139950",
+   "gpu_score": "28249",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A57"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.1,
+   "cpu_summary": "4×2.1GHz Cortex-A57 + 4×1.5GHz Cortex-A53"
+  },
+  "三星 Exynos 7570": {
+   "level": "level1",
+   "total_score": "47943",
+   "cpu_score": "45383",
+   "gpu_score": "2560",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.4,
+   "cpu_summary": "4×1.4GHz Cortex-A53"
+  },
+  "三星 Exynos 7580": {
+   "level": "level1",
+   "total_score": "41847",
+   "cpu_score": "34114",
+   "gpu_score": "7733",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.6,
+   "cpu_summary": "8×1.6GHz Cortex-A53"
+  },
+  "三星 Exynos 7870": {
+   "level": "level1",
+   "total_score": "81960",
+   "cpu_score": "76679",
+   "gpu_score": "5281",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.6,
+   "cpu_summary": "8×1.6GHz Cortex-A53"
+  },
+  "三星 Exynos 7872": {
+   "level": "level1",
+   "total_score": "72907",
+   "cpu_score": "61234",
+   "gpu_score": "11673",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A73 + 4×1.6GHz Cortex-A53"
+  },
+  "三星 Exynos 7880": {
+   "level": "level1",
+   "total_score": "100504",
+   "cpu_score": "85208",
+   "gpu_score": "15296",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.9,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.9,
+   "cpu_summary": "8×1.9GHz Cortex-A53"
+  },
+  "三星 Exynos 7885": {
+   "level": "level1",
+   "total_score": "131266",
+   "cpu_score": "113783",
+   "gpu_score": "17483",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A73 + 6×1.6GHz Cortex-A53"
+  },
+  "三星 Exynos 7904": {
+   "level": "level1",
+   "total_score": "118742",
+   "cpu_score": "104431",
+   "gpu_score": "14311",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A73 + 6×1.6GHz Cortex-A53"
+  },
+  "三星 Exynos 850": {
+   "level": "level1",
+   "total_score": "114963",
+   "cpu_score": "96961",
+   "gpu_score": "18002",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A55 + 4×2.0GHz Cortex-A55"
+  },
+  "三星 Exynos 880": {
+   "level": "level1",
+   "total_score": "299949",
+   "cpu_score": "260120",
+   "gpu_score": "39829",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A77 + 6×1.8GHz Cortex-A55"
+  },
+  "三星 Exynos 8890": {
+   "level": "level1",
+   "total_score": "190282",
+   "cpu_score": "148082",
+   "gpu_score": "42200",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "Mongoose"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz Mongoose + 4×1.6GHz Cortex-A53"
+  },
+  "三星 Exynos 8895": {
+   "level": "level1",
+   "total_score": "237394",
+   "cpu_score": "165434",
+   "gpu_score": "71960",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "M2"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.69,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz M2 + 4×1.69GHz Cortex-A53"
+  },
+  "三星 Exynos 9610": {
+   "level": "level1",
+   "total_score": "149558",
+   "cpu_score": "121256",
+   "gpu_score": "28302",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.7,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+  },
+  "三星 Exynos 9611": {
+   "level": "level1",
+   "total_score": "154567",
+   "cpu_score": "124896",
+   "gpu_score": "29671",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.7,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+  },
+  "三星 Exynos 980": {
+   "level": "level1",
+   "total_score": "327561",
+   "cpu_score": "267789",
+   "gpu_score": "59772",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A77 + 6×1.8GHz Cortex-A55"
+  },
+  "三星 Exynos 9810": {
+   "level": "level1",
+   "total_score": "305096",
+   "cpu_score": "216161",
+   "gpu_score": "88935",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.9,
+     "core": "M3"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.9,
+   "cpu_summary": "4×2.9GHz M3 + 4×1.9GHz Cortex-A55"
+  },
+  "三星 Exynos 9820": {
+   "level": "level1",
+   "total_score": "390207",
+   "cpu_score": "260763",
+   "gpu_score": "129444",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.73,
+     "core": "M4"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.31,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.73,
+   "cpu_summary": "2×2.73GHz M4 + 2×2.31GHz Cortex-A75 + 4×1.95GHz Cortex-A55"
+  },
+  "三星 Exynos 9825": {
+   "level": "level1",
+   "total_score": "403546",
+   "cpu_score": "267009",
+   "gpu_score": "136537",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.73,
+     "core": "M4"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.73,
+   "cpu_summary": "2×2.73GHz M4 + 2×2.4GHz Cortex-A75 + 4×1.95GHz Cortex-A55"
+  },
+  "三星 Exynos 990": {
+   "level": "level1",
+   "total_score": "457632",
+   "cpu_score": "300684",
+   "gpu_score": "156948",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.73,
+     "core": "M5"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.73,
+   "cpu_summary": "2×2.73GHz M5 + 2×2.5GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+  },
+  "全志 A100": {
+   "level": "level3",
+   "total_score": "31565",
+   "cpu_score": "24625",
+   "gpu_score": "6940",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.6,
+   "cpu_summary": "4×1.6GHz Cortex-A53"
+  },
+  "全志 A133": {
+   "level": "level3",
+   "total_score": "35461",
+   "cpu_score": "28026",
+   "gpu_score": "7435",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.5,
+   "cpu_summary": "4×1.5GHz Cortex-A55"
+  },
+  "全志 A523": {
+   "level": "level3",
+   "total_score": "76934",
+   "cpu_score": "53811",
+   "gpu_score": "23123",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "8×1.8GHz Cortex-A55"
+  },
+  "全志 A63": {
+   "level": "level3",
+   "total_score": "29992",
+   "cpu_score": "24759",
+   "gpu_score": "5233"
+  },
+  "全志 H6": {
+   "level": "level3",
+   "total_score": "28548",
+   "cpu_score": "22643",
+   "gpu_score": "5905",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Cortex-A53"
+  },
+  "全志 H616": {
+   "level": "level3",
+   "total_score": "27814",
+   "cpu_score": "20572",
+   "gpu_score": "7242"
+  },
+  "全志 H618": {
+   "level": "level3",
+   "total_score": "41940",
+   "cpu_score": "29564",
+   "gpu_score": "12376",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.5,
+   "cpu_summary": "4×1.5GHz Cortex-A53"
+  },
+  "全志 R311": {
+   "level": "level3",
+   "total_score": "",
+   "cpu_score": "15930",
+   "gpu_score": "",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A7"
+    }
+   ],
+   "total_cores": 2,
+   "max_freq_ghz": 1.5,
+   "cpu_summary": "2×1.5GHz Cortex-A7"
+  },
+  "小米 玄戒O1": {
+   "level": "level1",
+   "total_score": "1957221",
+   "cpu_score": "1002180",
+   "gpu_score": "955041",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 3.9,
+     "core": "Cortex-X925"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 1.9,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 3.9,
+   "cpu_summary": "2×3.9GHz Cortex-X925 + 4×3.4GHz Cortex-A725 + 2×1.9GHz Cortex-A725 + 2×1.8GHz Cortex-A520"
+  },
+  "小米 玄戒O3": {
+   "level": "level1",
+   "total_score": "3010770",
+   "cpu_score": "1178051",
+   "gpu_score": "1832719",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 4.35,
+     "core": "C1-Ultra"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 3.68,
+     "core": "C1-Premium"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 3.15,
+     "core": "C1-Pro"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 4.35,
+   "cpu_summary": "2×4.35GHz C1-Ultra + 4×3.68GHz C1-Premium + 4×3.15GHz C1-Pro"
+  },
+  "晶晨 S905X4": {
+   "level": "level3",
+   "total_score": "45440",
+   "cpu_score": "34813",
+   "gpu_score": "10627",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A55"
+  },
+  "杰发科技 AC8227L": {
+   "level": "level3",
+   "total_score": "",
+   "cpu_score": "20846",
+   "gpu_score": "",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.1,
+     "core": "Cortex-A7"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.1,
+   "cpu_summary": "4×1.1GHz Cortex-A7"
+  },
+  "杰发科技 AC8257": {
+   "level": "level3",
+   "total_score": "34215",
+   "cpu_score": "27022",
+   "gpu_score": "7193",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53"
+  },
+  "海思 麒麟65x": {
+   "level": "level1",
+   "total_score": "57283",
+   "cpu_score": "46587",
+   "gpu_score": "10696",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.7,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53 + 4×1.7GHz Cortex-A53"
+  },
+  "海思 麒麟710": {
+   "level": "level1",
+   "total_score": "176176",
+   "cpu_score": "154645",
+   "gpu_score": "21531",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.7,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+  },
+  "海思 麒麟710A": {
+   "level": "level1",
+   "total_score": "161615",
+   "cpu_score": "141414",
+   "gpu_score": "20201",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.7,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+  },
+  "海思 麒麟8000": {
+   "level": "level1",
+   "total_score": "380706",
+   "cpu_score": "270123",
+   "gpu_score": "110583",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.4,
+     "core": ""
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.19,
+     "core": ""
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "1×2.4GHz  + 3×2.19GHz "
+  },
+  "海思 麒麟8000A": {
+   "level": "level1",
+   "total_score": "356304",
+   "cpu_score": "253408",
+   "gpu_score": "102896",
+   "cores": [
+    {
+     "count": 3,
+     "freq_ghz": 2.19,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 2.19,
+   "cpu_summary": "3×2.19GHz Cortex-A77 + 3×1.84GHz Cortex-A55"
+  },
+  "海思 麒麟810": {
+   "level": "level1",
+   "total_score": "323604",
+   "cpu_score": "265666",
+   "gpu_score": "57938",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.27,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.88,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.27,
+   "cpu_summary": "2×2.27GHz Cortex-A76 + 6×1.88GHz Cortex-A55"
+  },
+  "海思 麒麟820": {
+   "level": "level1",
+   "total_score": "363465",
+   "cpu_score": "290121",
+   "gpu_score": "73344",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.22,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.36,
+   "cpu_summary": "1×2.36GHz Cortex-A76 + 3×2.22GHz Cortex-A76 + 4×1.84GHz Cortex-A55"
+  },
+  "海思 麒麟820E": {
+   "level": "level1",
+   "total_score": "349190",
+   "cpu_score": "273234",
+   "gpu_score": "75956",
+   "cores": [
+    {
+     "count": 3,
+     "freq_ghz": 2.22,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 2.22,
+   "cpu_summary": "3×2.22GHz Cortex-A76 + 3×1.84GHz Cortex-A55"
+  },
+  "海思 麒麟9000": {
+   "level": "level1",
+   "total_score": "539852",
+   "cpu_score": "354708",
+   "gpu_score": "185144",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.13,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.54,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.13,
+   "cpu_summary": "1×3.13GHz Cortex-A77 + 3×2.54GHz Cortex-A77 + 4×2.05GHz Cortex-A55"
+  },
+  "海思 麒麟9000E": {
+   "level": "level1",
+   "total_score": "531347",
+   "cpu_score": "351895",
+   "gpu_score": "179452",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.13,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.54,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.13,
+   "cpu_summary": "1×3.13GHz Cortex-A77 + 3×2.54GHz Cortex-A77 + 4×2.05GHz Cortex-A55"
+  },
+  "海思 麒麟9000S1": {
+   "level": "level1",
+   "total_score": "510624",
+   "cpu_score": "382291",
+   "gpu_score": "128333",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.487,
+     "core": "TSV big"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.15,
+     "core": "TSV middle"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.53,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.487,
+   "cpu_summary": "1×2.487GHz TSV big + 3×2.15GHz TSV middle + 4×1.53GHz Cortex-A510"
+  },
+  "海思 麒麟9000SL": {
+   "level": "level1",
+   "total_score": "475243",
+   "cpu_score": "346570",
+   "gpu_score": "128673",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.35,
+     "core": "TSV big"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.15,
+     "core": "TSV middle"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.53,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 2.35,
+   "cpu_summary": "1×2.35GHz TSV big + 2×2.15GHz TSV middle + 3×1.53GHz Cortex-A510"
+  },
+  "海思 麒麟9000s": {
+   "level": "level1",
+   "total_score": "542821",
+   "cpu_score": "385167",
+   "gpu_score": "157654",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.62,
+     "core": "TSV big"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.15,
+     "core": "TSV middle"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.53,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.62,
+   "cpu_summary": "1×2.62GHz TSV big + 3×2.15GHz TSV middle + 4×1.53GHz Cortex-A510"
+  },
+  "海思 麒麟9010": {
+   "level": "level1",
+   "total_score": "573577",
+   "cpu_score": "419285",
+   "gpu_score": "154292",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.3,
+     "core": "TSV big"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.18,
+     "core": "TSV middle"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.55,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "1×2.3GHz TSV big + 3×2.18GHz TSV middle + 4×1.55GHz Cortex-A510"
+  },
+  "海思 麒麟9010E": {
+   "level": "level1",
+   "total_score": "516866",
+   "cpu_score": "392964",
+   "gpu_score": "123902",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.189,
+     "core": "TSV big"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.18,
+     "core": "TSV middle"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.55,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.189,
+   "cpu_summary": "1×2.189GHz TSV big + 3×2.18GHz TSV middle + 4×1.55GHz Cortex-A510"
+  },
+  "海思 麒麟9010L": {
+   "level": "level1",
+   "total_score": "515658",
+   "cpu_score": "393669",
+   "gpu_score": "121989",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.189,
+     "core": "TSV big"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.18,
+     "core": "TSV middle"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 2.189,
+   "cpu_summary": "1×2.189GHz TSV big + 2×2.18GHz TSV middle + 3×1.4GHz Cortex-A510"
+  },
+  "海思 麒麟9020": {
+   "level": "level1",
+   "total_score": "680418",
+   "cpu_score": "455084",
+   "gpu_score": "225334",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.5,
+     "core": ""
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.15,
+     "core": ""
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "1×2.5GHz  + 3×2.15GHz "
+  },
+  "海思 麒麟9020A": {
+   "level": "level1",
+   "total_score": "647346",
+   "cpu_score": "452139",
+   "gpu_score": "195207",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.4,
+     "core": ""
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.02,
+     "core": ""
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "1×2.4GHz  + 3×2.02GHz "
+  },
+  "海思 麒麟950": {
+   "level": "level1",
+   "total_score": "92650",
+   "cpu_score": "68429",
+   "gpu_score": "24221",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz Cortex-A72 + 4×1.8GHz Cortex A53"
+  },
+  "海思 麒麟960": {
+   "level": "level1",
+   "total_score": "170423",
+   "cpu_score": "134229",
+   "gpu_score": "36194",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.36,
+   "cpu_summary": "4×2.36GHz Cortex-A73 + 4×1.84GHz Cortex-A53"
+  },
+  "海思 麒麟970": {
+   "level": "level1",
+   "total_score": "196655",
+   "cpu_score": "161490",
+   "gpu_score": "35165",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.36,
+   "cpu_summary": "4×2.36GHz Cortex-A73 + 4×1.84GHz Cortex-A53"
+  },
+  "海思 麒麟980": {
+   "level": "level1",
+   "total_score": "359415",
+   "cpu_score": "283330",
+   "gpu_score": "76085",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 1.92,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "2×2.6GHz Cortex-A76 + 2×1.92GHz Cortex-A76 + 4×1.8GHz Cortex-A55"
+  },
+  "海思 麒麟985": {
+   "level": "level1",
+   "total_score": "379052",
+   "cpu_score": "300347",
+   "gpu_score": "78705",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.58,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.58,
+   "cpu_summary": "1×2.58GHz Cortex-A76 + 3×2.4GHz Cortex-A76 + 4×1.84GHz Cortex-A55"
+  },
+  "海思 麒麟990": {
+   "level": "level1",
+   "total_score": "462066",
+   "cpu_score": "321548",
+   "gpu_score": "140518",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.86,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.09,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.86,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.86,
+   "cpu_summary": "2×2.86GHz Cortex-A76 + 2×2.09GHz Cortex-A76 + 4×1.86GHz Cortex-A55"
+  },
+  "海思 麒麟990 5G": {
+   "level": "level1",
+   "total_score": "480231",
+   "cpu_score": "338761",
+   "gpu_score": "141470",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.86,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.86,
+   "cpu_summary": "2×2.86GHz Cortex-A76 + 2×2.36GHz Cortex-A76 + 4×1.95GHz Cortex-A55"
+  },
+  "海思 麒麟990E": {
+   "level": "level1",
+   "total_score": "422239",
+   "cpu_score": "295149",
+   "gpu_score": "127090",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.86,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.86,
+   "cpu_summary": "2×2.86GHz Cortex-A76 + 2×2.36GHz Cortex-A76 + 4×1.95GHz Cortex-A55"
+  },
+  "瑞芯微 RK3326": {
+   "level": "level3",
+   "total_score": "24016",
+   "cpu_score": "16152",
+   "gpu_score": "7864",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A35"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.5,
+   "cpu_summary": "4×1.5GHz Cortex-A35"
+  },
+  "瑞芯微 RK3399": {
+   "level": "level3",
+   "total_score": "74759",
+   "cpu_score": "51263",
+   "gpu_score": "23496",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A72 + 4×1.4GHz Cortex-A53"
+  },
+  "瑞芯微 RK3528": {
+   "level": "level3",
+   "total_score": "",
+   "cpu_score": "24773",
+   "gpu_score": "",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53"
+  },
+  "瑞芯微 RK3562": {
+   "level": "level3",
+   "total_score": "47406",
+   "cpu_score": "29280",
+   "gpu_score": "18126",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53"
+  },
+  "瑞芯微 RK3566": {
+   "level": "level3",
+   "total_score": "46195",
+   "cpu_score": "30223",
+   "gpu_score": "15972",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Cortex-A55"
+  },
+  "瑞芯微 RK3568": {
+   "level": "level3",
+   "total_score": "47674",
+   "cpu_score": "31038",
+   "gpu_score": "16636",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A55"
+  },
+  "瑞芯微 RK3588": {
+   "level": "level3",
+   "total_score": "263955",
+   "cpu_score": "124311",
+   "gpu_score": "139644",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "4×2.4GHz Cortex-A76 + 4×1.8GHz Cortex-A55"
+  },
+  "瓴盛科技 JLQ JR510": {
+   "level": "level1",
+   "total_score": "96399",
+   "cpu_score": "85105",
+   "gpu_score": "11294",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A55 + 4×1.5GHz Cortex-A55"
+  },
+  "紫光展锐 8541E": {
+   "level": "level3",
+   "total_score": "27210",
+   "cpu_score": "23163",
+   "gpu_score": "4047",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.4,
+   "cpu_summary": "4×1.4GHz Cortex-A53"
+  },
+  "紫光展锐 8581E": {
+   "level": "level3",
+   "total_score": "66776",
+   "cpu_score": "52963",
+   "gpu_score": "13813",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.3,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 2,
+   "max_freq_ghz": 1.3,
+   "cpu_summary": "2×1.3GHz Cortex-A53"
+  },
+  "紫光展锐 P7885": {
+   "level": "level3",
+   "total_score": "246578",
+   "cpu_score": "159216",
+   "gpu_score": "87362",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.7,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.7,
+   "cpu_summary": "1×2.7GHz Cortex-A76 + 3×2.3GHz Cortex-A76 + 4×2.1GHz Cortex-A55"
+  },
+  "紫光展锐 SC9863A": {
+   "level": "level1",
+   "total_score": "89580",
+   "cpu_score": "79629",
+   "gpu_score": "9951",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A55"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.2,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.6,
+   "cpu_summary": "4×1.6GHz Cortex-A55 + 4×1.2GHz Cortex-A55"
+  },
+  "紫光展锐 T310": {
+   "level": "level1",
+   "total_score": "118736",
+   "cpu_score": "110172",
+   "gpu_score": "8564",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "1×2.0GHz Cortex-A75 + 3×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T510": {
+   "level": "level1",
+   "total_score": "179657",
+   "cpu_score": "157693",
+   "gpu_score": "21964",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.82,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.82,
+   "cpu_summary": "4×1.82GHz Cortex-A75 + 4×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T603": {
+   "level": "level1",
+   "total_score": "98218",
+   "cpu_score": "87530",
+   "gpu_score": "10688",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.6GHz Cortex-A55"
+  },
+  "紫光展锐 T606": {
+   "level": "level1",
+   "total_score": "146938",
+   "cpu_score": "131415",
+   "gpu_score": "15523",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.6,
+   "cpu_summary": "2×1.6GHz Cortex-A75 + 6×1.6GHz Cortex-A55"
+  },
+  "紫光展锐 T610": {
+   "level": "level1",
+   "total_score": "163439",
+   "cpu_score": "141338",
+   "gpu_score": "22101",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T612": {
+   "level": "level1",
+   "total_score": "163883",
+   "cpu_score": "140897",
+   "gpu_score": "22986",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T616": {
+   "level": "level1",
+   "total_score": "164049",
+   "cpu_score": "146531",
+   "gpu_score": "17518",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.6GHz Cortex-A55"
+  },
+  "紫光展锐 T618": {
+   "level": "level1",
+   "total_score": "180314",
+   "cpu_score": "151848",
+   "gpu_score": "28466",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×2.0GHz Cortex-A55"
+  },
+  "紫光展锐 T700": {
+   "level": "level1",
+   "total_score": "179496",
+   "cpu_score": "149014",
+   "gpu_score": "30482",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T710": {
+   "level": "level1",
+   "total_score": "197172",
+   "cpu_score": "168257",
+   "gpu_score": "28915",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A75 + 4×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T7250": {
+   "level": "level1",
+   "total_score": "190707",
+   "cpu_score": "169607",
+   "gpu_score": "21100",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.6GHz Cortex-A55"
+  },
+  "紫光展锐 T750": {
+   "level": "level1",
+   "total_score": "234305",
+   "cpu_score": "196562",
+   "gpu_score": "37743",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+  },
+  "紫光展锐 T7510": {
+   "level": "level1",
+   "total_score": "201992",
+   "cpu_score": "173260",
+   "gpu_score": "28732",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A75 + 4×1.8GHz Cortex-A55"
+  },
+  "紫光展锐 T760": {
+   "level": "level1",
+   "total_score": "308508",
+   "cpu_score": "255846",
+   "gpu_score": "52662",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Cortex-A76"
+  },
+  "紫光展锐 T765": {
+   "level": "level1",
+   "total_score": "257842",
+   "cpu_score": "218474",
+   "gpu_score": "39368",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A76"
+    }
+   ],
+   "total_cores": 2,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "2×2.3GHz Cortex-A76"
+  },
+  "紫光展锐 T770": {
+   "level": "level1",
+   "total_score": "325906",
+   "cpu_score": "241253",
+   "gpu_score": "84653",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "1×2.5GHz Cortex-A76 + 3×2.2GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+  },
+  "紫光展锐 T820": {
+   "level": "level1",
+   "total_score": "317066",
+   "cpu_score": "264401",
+   "gpu_score": "52665",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.7,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.7,
+   "cpu_summary": "1×2.7GHz Cortex-A76 + 3×2.3GHz Cortex-A76 + 4×2.1GHz Cortex-A55"
+  },
+  "紫光展锐 T8200": {
+   "level": "level1",
+   "total_score": "259435",
+   "cpu_score": "220570",
+   "gpu_score": "38865",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A76"
+    }
+   ],
+   "total_cores": 2,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "2×2.3GHz Cortex-A76"
+  },
+  "联发科技 Helio A20": {
+   "level": "level1",
+   "total_score": "65547",
+   "cpu_score": "59232",
+   "gpu_score": "6315",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Cortex-A53"
+  },
+  "联发科技 Helio A22": {
+   "level": "level1",
+   "total_score": "67140",
+   "cpu_score": "60512",
+   "gpu_score": "6628",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53"
+  },
+  "联发科技 Helio G200": {
+   "level": "level1",
+   "total_score": "259315",
+   "cpu_score": "211137",
+   "gpu_score": "48178",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio G25": {
+   "level": "level1",
+   "total_score": "89004",
+   "cpu_score": "77213",
+   "gpu_score": "11791",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "8×2.0GHz Cortex-A53"
+  },
+  "联发科技 Helio G35": {
+   "level": "level1",
+   "total_score": "104597",
+   "cpu_score": "92337",
+   "gpu_score": "12260",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "8×2.3GHz Cortex-A53"
+  },
+  "联发科技 Helio G36": {
+   "level": "level1",
+   "total_score": "86218",
+   "cpu_score": "74537",
+   "gpu_score": "11681",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Cortex-A53 + 4×1.8GHz Cortex-A53"
+  },
+  "联发科技 Helio G37": {
+   "level": "level1",
+   "total_score": "107823",
+   "cpu_score": "95634",
+   "gpu_score": "12189",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz Cortex-A53 + 4×1.8GHz Cortex-A53"
+  },
+  "联发科技 Helio G70": {
+   "level": "level1",
+   "total_score": "170286",
+   "cpu_score": "146784",
+   "gpu_score": "23502",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.7GHz Cortex-A55"
+  },
+  "联发科技 Helio G80": {
+   "level": "level1",
+   "total_score": "179900",
+   "cpu_score": "153844",
+   "gpu_score": "26056",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "联发科技 Helio G81-Ultra": {
+   "level": "level1",
+   "total_score": "174994",
+   "cpu_score": "151008",
+   "gpu_score": "23986",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "联发科技 Helio G88": {
+   "level": "level1",
+   "total_score": "168805",
+   "cpu_score": "142109",
+   "gpu_score": "26696",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "联发科技 Helio G90T": {
+   "level": "level1",
+   "total_score": "268567",
+   "cpu_score": "221982",
+   "gpu_score": "46585",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.05,
+   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio G95": {
+   "level": "level1",
+   "total_score": "254586",
+   "cpu_score": "198067",
+   "gpu_score": "56519",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.05,
+   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.05GHz Cortex-A55"
+  },
+  "联发科技 Helio G96": {
+   "level": "level1",
+   "total_score": "231774",
+   "cpu_score": "191556",
+   "gpu_score": "40218",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.05,
+   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio G99": {
+   "level": "level1",
+   "total_score": "277949",
+   "cpu_score": "232363",
+   "gpu_score": "45586",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio G99 Ultra": {
+   "level": "level1",
+   "total_score": "252310",
+   "cpu_score": "206117",
+   "gpu_score": "46193",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio P10": {
+   "level": "level1",
+   "total_score": "77195",
+   "cpu_score": "72319",
+   "gpu_score": "4876",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.2,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53 + 4×1.2GHz Cortex-A53"
+  },
+  "联发科技 Helio P20": {
+   "level": "level1",
+   "total_score": "92612",
+   "cpu_score": "80576",
+   "gpu_score": "12036",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "4×2.3GHz Cortex-A53 + 4×1.6GHz Cortex-A53"
+  },
+  "联发科技 Helio P22": {
+   "level": "level1",
+   "total_score": "93591",
+   "cpu_score": "82589",
+   "gpu_score": "11002",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "8×2.0GHz Cortex-A53"
+  },
+  "联发科技 Helio P23": {
+   "level": "level1",
+   "total_score": "97454",
+   "cpu_score": "85066",
+   "gpu_score": "12388",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "8×2.3GHz Cortex-A53"
+  },
+  "联发科技 Helio P25": {
+   "level": "level1",
+   "total_score": "103227",
+   "cpu_score": "92482",
+   "gpu_score": "10745",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A53 + 4×1.6GHz Cortex-A53"
+  },
+  "联发科技 Helio P35": {
+   "level": "level1",
+   "total_score": "110931",
+   "cpu_score": "99737",
+   "gpu_score": "11194",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "8×2.3GHz Cortex-A53"
+  },
+  "联发科技 Helio P60": {
+   "level": "level1",
+   "total_score": "165107",
+   "cpu_score": "142756",
+   "gpu_score": "22351",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A73 + 4×2.0GHz Cortex-A53"
+  },
+  "联发科技 Helio P65": {
+   "level": "level1",
+   "total_score": "168883",
+   "cpu_score": "147055",
+   "gpu_score": "21828",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio P70": {
+   "level": "level1",
+   "total_score": "171134",
+   "cpu_score": "145086",
+   "gpu_score": "26048",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.1,
+   "cpu_summary": "4×2.1GHz Cortex-A73 + 4×2.0GHz Cortex-A53"
+  },
+  "联发科技 Helio P90": {
+   "level": "level1",
+   "total_score": "219136",
+   "cpu_score": "187970",
+   "gpu_score": "31166",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A75 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 Helio X20": {
+   "level": "level1",
+   "total_score": "54852",
+   "cpu_score": "47977",
+   "gpu_score": "6875",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.85,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 2.1,
+   "cpu_summary": "2×2.1GHz Cortex-A72 + 4×1.85GHz Cortex-A53 + 4×1.4GHz Cortex-A53"
+  },
+  "联发科技 Helio X25": {
+   "level": "level1",
+   "total_score": "59167",
+   "cpu_score": "35296",
+   "gpu_score": "23871",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.55,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "2×2.5GHz Cortex-A72 + 4×2.0GHz Cortex-A53 + 4×1.55GHz Cortex-A53"
+  },
+  "联发科技 Helio X30": {
+   "level": "level1",
+   "total_score": "132180",
+   "cpu_score": "72100",
+   "gpu_score": "60080",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A73"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Cortex-A35"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 10,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "2×2.6GHz Cortex-A73 + 4×1.9GHz Cortex-A35 + 4×2.2GHz Cortex-A53"
+  },
+  "联发科技 MT6750": {
+   "level": "level1",
+   "total_score": "30814",
+   "cpu_score": "27012",
+   "gpu_score": "3802",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.5,
+   "cpu_summary": "4×1.5GHz Cortex-A53 + 4×1.0GHz Cortex-A53"
+  },
+  "联发科技 S900": {
+   "level": "level3",
+   "total_score": "75127",
+   "cpu_score": "47583",
+   "gpu_score": "27544",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A73"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Cortex-A73"
+  },
+  "联发科技 天玑1000+": {
+   "level": "level1",
+   "total_score": "457336",
+   "cpu_score": "330072",
+   "gpu_score": "127264",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A77 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑1000L": {
+   "level": "level1",
+   "total_score": "439761",
+   "cpu_score": "315023",
+   "gpu_score": "124738",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A77"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Cortex-A77 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑1050": {
+   "level": "level1",
+   "total_score": "358760",
+   "cpu_score": "282416",
+   "gpu_score": "76344",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑1080": {
+   "level": "level1",
+   "total_score": "401747",
+   "cpu_score": "324565",
+   "gpu_score": "77182",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑1100": {
+   "level": "level1",
+   "total_score": "516831",
+   "cpu_score": "378961",
+   "gpu_score": "137870",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑1200": {
+   "level": "level1",
+   "total_score": "529094",
+   "cpu_score": "394300",
+   "gpu_score": "134794",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑1300": {
+   "level": "level1",
+   "total_score": "505476",
+   "cpu_score": "366328",
+   "gpu_score": "139148",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78"
+  },
+  "联发科技 天玑6020": {
+   "level": "level1",
+   "total_score": "241199",
+   "cpu_score": "201687",
+   "gpu_score": "39512",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑6080": {
+   "level": "level1",
+   "total_score": "274915",
+   "cpu_score": "232932",
+   "gpu_score": "41983",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑6100+": {
+   "level": "level1",
+   "total_score": "272447",
+   "cpu_score": "230218",
+   "gpu_score": "42229",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑6300": {
+   "level": "level1",
+   "total_score": "264289",
+   "cpu_score": "218143",
+   "gpu_score": "46146",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76 @ 6x 2.0GHz Cortex-A55"
+    }
+   ],
+   "total_cores": 2,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A76 @ 6x 2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑6360-Max": {
+   "level": "level1",
+   "total_score": "287113",
+   "cpu_score": "241094",
+   "gpu_score": "46019",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑6500 Elite": {
+   "level": "level1",
+   "total_score": "284415",
+   "cpu_score": "241278",
+   "gpu_score": "43137",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "2×2.6GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑700": {
+   "level": "level1",
+   "total_score": "276704",
+   "cpu_score": "236164",
+   "gpu_score": "40540",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7020": {
+   "level": "level1",
+   "total_score": "229931",
+   "cpu_score": "150910",
+   "gpu_score": "79021",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7025": {
+   "level": "level1",
+   "total_score": "299813",
+   "cpu_score": "246969",
+   "gpu_score": "52844",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7025-Ultra": {
+   "level": "level1",
+   "total_score": "344388",
+   "cpu_score": "287828",
+   "gpu_score": "56560",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7030": {
+   "level": "level1",
+   "total_score": "372365",
+   "cpu_score": "280167",
+   "gpu_score": "92198",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7050": {
+   "level": "level1",
+   "total_score": "365693",
+   "cpu_score": "289801",
+   "gpu_score": "75892",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑720": {
+   "level": "level1",
+   "total_score": "230095",
+   "cpu_score": "184497",
+   "gpu_score": "45598",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7200": {
+   "level": "level1",
+   "total_score": "499269",
+   "cpu_score": "389401",
+   "gpu_score": "109868",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "2×2.8GHz Cortex-A715 + 6×2.0GHz Cortex-A510"
+  },
+  "联发科技 天玑7200-Ultra": {
+   "level": "level1",
+   "total_score": "498161",
+   "cpu_score": "345068",
+   "gpu_score": "153093",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "2×2.8GHz Cortex-A715 + 6×2.0GHz Cortex-A510"
+  },
+  "联发科技 天玑7300": {
+   "level": "level1",
+   "total_score": "382424",
+   "cpu_score": "289659",
+   "gpu_score": "92765",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7300 Energy": {
+   "level": "level1",
+   "total_score": "383095",
+   "cpu_score": "256128",
+   "gpu_score": "126967",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7300-Ultra": {
+   "level": "level1",
+   "total_score": "412204",
+   "cpu_score": "319158",
+   "gpu_score": "93046",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7300X": {
+   "level": "level1",
+   "total_score": "387539",
+   "cpu_score": "294108",
+   "gpu_score": "93431",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7300e": {
+   "level": "level1",
+   "total_score": "426321",
+   "cpu_score": "347299",
+   "gpu_score": "79022",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7360-Super": {
+   "level": "level1",
+   "total_score": "412204",
+   "cpu_score": "319158",
+   "gpu_score": "93046",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7400": {
+   "level": "level1",
+   "total_score": "465597",
+   "cpu_score": "362029",
+   "gpu_score": "103568",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7400-Super": {
+   "level": "level1",
+   "total_score": "452426",
+   "cpu_score": "350724",
+   "gpu_score": "101702",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7400-Ultimate": {
+   "level": "level1",
+   "total_score": "469673",
+   "cpu_score": "310929",
+   "gpu_score": "158744",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7400-Ultra": {
+   "level": "level1",
+   "total_score": "442363",
+   "cpu_score": "345311",
+   "gpu_score": "97052",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑7500 满血版": {
+   "level": "level1",
+   "total_score": "546085",
+   "cpu_score": "439875",
+   "gpu_score": "106210",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "C1- Pro"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "C1-Nano"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz C1- Pro + 4×2.0GHz C1-Nano"
+  },
+  "联发科技 天玑800": {
+   "level": "level1",
+   "total_score": "329516",
+   "cpu_score": "264699",
+   "gpu_score": "64817",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8000": {
+   "level": "level1",
+   "total_score": "486451",
+   "cpu_score": "304126",
+   "gpu_score": "182325",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.75,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.75,
+   "cpu_summary": "4×2.75GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑800U": {
+   "level": "level1",
+   "total_score": "303441",
+   "cpu_score": "248641",
+   "gpu_score": "54800",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8020": {
+   "level": "level1",
+   "total_score": "426891",
+   "cpu_score": "284015",
+   "gpu_score": "142876",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8050": {
+   "level": "level1",
+   "total_score": "495553",
+   "cpu_score": "355714",
+   "gpu_score": "139839",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78"
+  },
+  "联发科技 天玑810": {
+   "level": "level1",
+   "total_score": "285452",
+   "cpu_score": "238994",
+   "gpu_score": "46458",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8100": {
+   "level": "level1",
+   "total_score": "599131",
+   "cpu_score": "413235",
+   "gpu_score": "185896",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.85,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.85,
+   "cpu_summary": "4×2.85GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8100-Max": {
+   "level": "level1",
+   "total_score": "607213",
+   "cpu_score": "455278",
+   "gpu_score": "151935",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.85,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.85,
+   "cpu_summary": "4×2.85GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑820": {
+   "level": "level1",
+   "total_score": "378811",
+   "cpu_score": "296900",
+   "gpu_score": "81911",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8200/8200 Ultra": {
+   "level": "level1",
+   "total_score": "648658",
+   "cpu_score": "491273",
+   "gpu_score": "157385",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.1,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.1,
+   "cpu_summary": "1×3.1GHz Cortex-A78 + 3×3.0GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8250": {
+   "level": "level1",
+   "total_score": "681908",
+   "cpu_score": "451357",
+   "gpu_score": "230551",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.1,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.1,
+   "cpu_summary": "1×3.1GHz Cortex-A78 + 3×3.0GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑8300-Ultra": {
+   "level": "level1",
+   "total_score": "894877",
+   "cpu_score": "492051",
+   "gpu_score": "402826",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.35,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.35,
+   "cpu_summary": "1×3.35GHz Cortex-A715 + 3×3.2GHz Cortex-A715 + 4×2.2GHz Cortex-A510"
+  },
+  "联发科技 天玑8350": {
+   "level": "level1",
+   "total_score": "807642",
+   "cpu_score": "473825",
+   "gpu_score": "473705",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.35,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.35,
+   "cpu_summary": "1×3.35GHz Cortex-A715 + 3×3.2GHz Cortex-A715 + 4×2.2GHz Cortex-A510"
+  },
+  "联发科技 天玑8350-Ultimate": {
+   "level": "level1",
+   "total_score": "965049",
+   "cpu_score": "486715",
+   "gpu_score": "478334",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.35,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.35,
+   "cpu_summary": "1×3.35GHz Cortex-A715 + 3×3.2GHz Cortex-A715 + 4×2.2GHz Cortex-A510"
+  },
+  "联发科技 天玑8400 满血版": {
+   "level": "level1",
+   "total_score": "1224860",
+   "cpu_score": "664203",
+   "gpu_score": "560657",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.25,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.25,
+   "cpu_summary": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725"
+  },
+  "联发科技 天玑8400-Max": {
+   "level": "level1",
+   "total_score": "1327167",
+   "cpu_score": "686832",
+   "gpu_score": "640335",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.25,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.25,
+   "cpu_summary": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725"
+  },
+  "联发科技 天玑8400-Ultra": {
+   "level": "level1",
+   "total_score": "1227294",
+   "cpu_score": "665278",
+   "gpu_score": "562016",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.25,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.25,
+   "cpu_summary": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725"
+  },
+  "联发科技 天玑8450": {
+   "level": "level1",
+   "total_score": "1321939",
+   "cpu_score": "679062",
+   "gpu_score": "642877",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.25,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.25,
+   "cpu_summary": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725"
+  },
+  "联发科技 天玑8500 Elite": {
+   "level": "level1",
+   "total_score": "1390468",
+   "cpu_score": "674244",
+   "gpu_score": "716224",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑8500 Super": {
+   "level": "level1",
+   "total_score": "1358742",
+   "cpu_score": "674535",
+   "gpu_score": "684207",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑8500 满血版": {
+   "level": "level1",
+   "total_score": "1302780",
+   "cpu_score": "661699",
+   "gpu_score": "641081",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑8500 竞速版": {
+   "level": "level1",
+   "total_score": "1321684",
+   "cpu_score": "602298",
+   "gpu_score": "719386",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑8500-Ultra": {
+   "level": "level1",
+   "total_score": "1300797",
+   "cpu_score": "672403",
+   "gpu_score": "628394",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑8550 Elite": {
+   "level": "level1",
+   "total_score": "1247157",
+   "cpu_score": "502459",
+   "gpu_score": "744698",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑8550 Super": {
+   "level": "level1",
+   "total_score": "1352732",
+   "cpu_score": "686946",
+   "gpu_score": "665786",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.2,
+     "core": "Cortex-A725"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A725"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+  },
+  "联发科技 天玑900": {
+   "level": "level1",
+   "total_score": "359100",
+   "cpu_score": "288714",
+   "gpu_score": "70386",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑9000": {
+   "level": "level1",
+   "total_score": "759904",
+   "cpu_score": "559180",
+   "gpu_score": "200724",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.05,
+     "core": "Cortex-X2"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.85,
+     "core": "Cortex-A710"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.05,
+   "cpu_summary": "1×3.05GHz Cortex-X2 + 3×2.85GHz Cortex-A710 + 4×1.8GHz Cortex-A510"
+  },
+  "联发科技 天玑9000+": {
+   "level": "level1",
+   "total_score": "793927",
+   "cpu_score": "596694",
+   "gpu_score": "197233",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "Cortex-X2"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.85,
+     "core": "Cortex-A710"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz Cortex-X2 + 3×2.85GHz Cortex-A710 + 4×1.8GHz Cortex-A510"
+  },
+  "联发科技 天玑920": {
+   "level": "level1",
+   "total_score": "357755",
+   "cpu_score": "284803",
+   "gpu_score": "72952",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑9200": {
+   "level": "level1",
+   "total_score": "1066849",
+   "cpu_score": "594463",
+   "gpu_score": "472386",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.05,
+     "core": "Cortex-X3"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.85,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.05,
+   "cpu_summary": "1×3.05GHz Cortex-X3 + 3×2.85GHz Cortex-A715 + 4×1.8GHz Cortex-A510"
+  },
+  "联发科技 天玑9200+": {
+   "level": "level1",
+   "total_score": "1090404",
+   "cpu_score": "619264",
+   "gpu_score": "471140",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.35,
+     "core": "Cortex-X3"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.35,
+   "cpu_summary": "1×3.35GHz Cortex-X3 + 3×3.0GHz Cortex-A715 + 4×2.0GHz Cortex-A510"
+  },
+  "联发科技 天玑930": {
+   "level": "level1",
+   "total_score": "325142",
+   "cpu_score": "272165",
+   "gpu_score": "52977",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 天玑9300": {
+   "level": "level1",
+   "total_score": "1414180",
+   "cpu_score": "733400",
+   "gpu_score": "680780",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.25,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.85,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.25,
+   "cpu_summary": "1×3.25GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720"
+  },
+  "联发科技 天玑9300+": {
+   "level": "level1",
+   "total_score": "1452612",
+   "cpu_score": "740355",
+   "gpu_score": "712257",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.85,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720"
+  },
+  "联发科技 天玑9400": {
+   "level": "level1",
+   "total_score": "1795254",
+   "cpu_score": "881088",
+   "gpu_score": "914166",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.626,
+     "core": "Cortex-X925"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.3,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.626,
+   "cpu_summary": "1×3.626GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720"
+  },
+  "联发科技 天玑9400+": {
+   "level": "level1",
+   "total_score": "1835027",
+   "cpu_score": "887236",
+   "gpu_score": "947791",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.73,
+     "core": "Cortex-X925"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.3,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.73,
+   "cpu_summary": "1×3.73GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720"
+  },
+  "联发科技 天玑9400e": {
+   "level": "level1",
+   "total_score": "1529930",
+   "cpu_score": "773600",
+   "gpu_score": "756330",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.4,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.85,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.4,
+   "cpu_summary": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720"
+  },
+  "联发科技 天玑9500": {
+   "level": "level1",
+   "total_score": "2299863",
+   "cpu_score": "1038120",
+   "gpu_score": "1261743",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 4.21,
+     "core": "C1-Ultra"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.5,
+     "core": "C1-Premiuim"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.7,
+     "core": "C1-Pro"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 4.21,
+   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro"
+  },
+  "联发科技 天玑9500M": {
+   "level": "level1",
+   "total_score": "2097349",
+   "cpu_score": "1007659",
+   "gpu_score": "1089690",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 4.21,
+     "core": "C1-Ultra"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.5,
+     "core": "C1-Premiuim"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.7,
+     "core": "C1-Pro"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 4.21,
+   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro"
+  },
+  "联发科技 天玑9500s": {
+   "level": "level1",
+   "total_score": "1842492",
+   "cpu_score": "901907",
+   "gpu_score": "940585",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.73,
+     "core": "Cortex-X925"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.3,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.73,
+   "cpu_summary": "1×3.73GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720"
+  },
+  "联发科技 天玑9600 Pro": {
+   "level": "level1",
+   "total_score": "2801365",
+   "cpu_score": "1162281",
+   "gpu_score": "1639084",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 4.55,
+     "core": "C2-Ultra"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 4.35,
+     "core": "C2-Pro"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.31,
+     "core": "C2-Pro"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 4.55,
+   "cpu_summary": "2×4.55GHz C2-Ultra + 3×4.35GHz C2-Pro + 3×3.31GHz C2-Pro"
+  },
+  "联发科技 天玑9600M": {
+   "level": "level1",
+   "total_score": "2083797",
+   "cpu_score": "957273",
+   "gpu_score": "1126524",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 4.21,
+     "core": "C1-Ultra"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.5,
+     "core": "C1-Premiuim"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.7,
+     "core": "C1-Pro"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 4.21,
+   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro"
+  },
+  "联发科技 曦力G100": {
+   "level": "level1",
+   "total_score": "280758",
+   "cpu_score": "234698",
+   "gpu_score": "46060",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 曦力G100-Ultimate": {
+   "level": "level1",
+   "total_score": "261749",
+   "cpu_score": "214198",
+   "gpu_score": "47551",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 曦力G100-Ultra": {
+   "level": "level1",
+   "total_score": "283510",
+   "cpu_score": "236674",
+   "gpu_score": "46836",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 曦力G85": {
+   "level": "level1",
+   "total_score": "178306",
+   "cpu_score": "151513",
+   "gpu_score": "26793",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A75"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+  },
+  "联发科技 迅鲲1200": {
+   "level": "level3",
+   "total_score": "349144",
+   "cpu_score": "229442",
+   "gpu_score": "119702",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "联发科技 迅鲲800T": {
+   "level": "level3",
+   "total_score": "202534",
+   "cpu_score": "139593",
+   "gpu_score": "62941",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+  },
+  "联发科技 迅鲲900T": {
+   "level": "level3",
+   "total_score": "259987",
+   "cpu_score": "149194",
+   "gpu_score": "110793",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "谷歌 Tensor": {
+   "level": "level1",
+   "total_score": "511865",
+   "cpu_score": "371525",
+   "gpu_score": "140340",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.8,
+     "core": "Cortex-X1"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.25,
+     "core": "Cortex-A76"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "2×2.8GHz Cortex-X1 + 2×2.25GHz Cortex-A76 + 4×1.8GHz Cortex-A55"
+  },
+  "谷歌 Tensor G2": {
+   "level": "level1",
+   "total_score": "644730",
+   "cpu_score": "380887",
+   "gpu_score": "263843",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.85,
+     "core": "Cortex-X1"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.35,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.85,
+   "cpu_summary": "2×2.85GHz Cortex-X1 + 2×2.35GHz Cortex-A78 + 4×1.8GHz Cortex-A55"
+  },
+  "谷歌 Tensor G3": {
+   "level": "level1",
+   "total_score": "800832",
+   "cpu_score": "441836",
+   "gpu_score": "358996",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Cortex-X3"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.45,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.15,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 9,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Cortex-X3 + 4×2.45GHz Cortex-A715 + 4×2.15GHz Cortex-A510"
+  },
+  "谷歌 Tensor G4": {
+   "level": "level1",
+   "total_score": "925515",
+   "cpu_score": "521122",
+   "gpu_score": "404393",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.1,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.92,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.1,
+   "cpu_summary": "1×3.1GHz Cortex-X4 + 3×2.6GHz Cortex-A720 + 4×1.92GHz Cortex-A520"
+  },
+  "高通 QCM4290": {
+   "level": "level3",
+   "total_score": "120328",
+   "cpu_score": "85270",
+   "gpu_score": "35058",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo 260"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Kryo 260 + 4×1.8GHz Kryo 260"
+  },
+  "高通 QCM4325": {
+   "level": "level3",
+   "total_score": "112512",
+   "cpu_score": "71827",
+   "gpu_score": "40685"
+  },
+  "高通 QCM4490": {
+   "level": "level3",
+   "total_score": "216667",
+   "cpu_score": "165507",
+   "gpu_score": "51160",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Gold A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Silver A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Gold A78 + 6×2.0GHz Silver A55"
+  },
+  "高通 QCM5430": {
+   "level": "level3",
+   "total_score": "204337",
+   "cpu_score": "138372",
+   "gpu_score": "65965",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Kryo 670 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 670 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.1,
+   "cpu_summary": "4×2.1GHz Kryo 670 Gold + 4×1.8GHz Kryo 670 Silver"
+  },
+  "高通 QCM6490": {
+   "level": "level3",
+   "total_score": "381242",
+   "cpu_score": "198937",
+   "gpu_score": "182305",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.7,
+     "core": "Kryo 670"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Kryo 670"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.7,
+   "cpu_summary": "4×2.7GHz Kryo 670 + 4×1.9GHz Kryo 670"
+  },
+  "高通 QCM8550": {
+   "level": "level3",
+   "total_score": "827208",
+   "cpu_score": "338409",
+   "gpu_score": "488799",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "GoldPlus"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.8,
+     "core": "Gold"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.0,
+     "core": "Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz GoldPlus + 4×2.8GHz Gold + 3×2.0GHz Silver"
+  },
+  "高通 QCS2290": {
+   "level": "level3",
+   "total_score": "47317",
+   "cpu_score": "34426",
+   "gpu_score": "12891",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A53"
+  },
+  "高通 QCS4290": {
+   "level": "level3",
+   "total_score": "119520",
+   "cpu_score": "84286",
+   "gpu_score": "35234",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo 260"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Kryo 260 + 4×1.8GHz Kryo 260"
+  },
+  "高通 QCS4490": {
+   "level": "level3",
+   "total_score": "213265",
+   "cpu_score": "162451",
+   "gpu_score": "50814",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Gold A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Silver A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Gold A78 + 6×2.0GHz Silver A55"
+  },
+  "高通 QCS5430": {
+   "level": "level3",
+   "total_score": "257358",
+   "cpu_score": "170368",
+   "gpu_score": "86990",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.1,
+     "core": "Kryo 670 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 670 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.1,
+   "cpu_summary": "4×2.1GHz Kryo 670 Gold + 4×1.8GHz Kryo 670 Silver"
+  },
+  "高通 QCS6490": {
+   "level": "level3",
+   "total_score": "399257",
+   "cpu_score": "221595",
+   "gpu_score": "177662",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.7,
+     "core": "Kryo 670"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Kryo 670"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.7,
+   "cpu_summary": "4×2.7GHz Kryo 670 + 4×1.9GHz Kryo 670"
+  },
+  "高通 QCS8550": {
+   "level": "level3",
+   "total_score": "749052",
+   "cpu_score": "318636",
+   "gpu_score": "430416",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "GoldPlus"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.8,
+     "core": "Gold"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.0,
+     "core": "Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz GoldPlus + 4×2.8GHz Gold + 3×2.0GHz Silver"
+  },
+  "高通 骁龙4 Gen 1": {
+   "level": "level1",
+   "total_score": "303999",
+   "cpu_score": "254817",
+   "gpu_score": "49182",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Kryo Gold + 6×1.8GHz Kryo Silver"
+  },
+  "高通 骁龙4 Gen 2": {
+   "level": "level1",
+   "total_score": "306688",
+   "cpu_score": "272404",
+   "gpu_score": "34284",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "高通 骁龙4 Gen 5": {
+   "level": "level1",
+   "total_score": "343696",
+   "cpu_score": "285143",
+   "gpu_score": "58553",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "高通 骁龙425": {
+   "level": "level1",
+   "total_score": "",
+   "cpu_score": "25573",
+   "gpu_score": "",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 1.4,
+   "cpu_summary": "4×1.4GHz Cortex-A53"
+  },
+  "高通 骁龙430": {
+   "level": "level1",
+   "total_score": "34599",
+   "cpu_score": "30362",
+   "gpu_score": "4237",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.4,
+   "cpu_summary": "8×1.4GHz Cortex-A53"
+  },
+  "高通 骁龙435": {
+   "level": "level1",
+   "total_score": "36900",
+   "cpu_score": "31288",
+   "gpu_score": "5612",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.4,
+   "cpu_summary": "8×1.4GHz Cortex-A53"
+  },
+  "高通 骁龙439": {
+   "level": "level1",
+   "total_score": "95471",
+   "cpu_score": "85039",
+   "gpu_score": "10432",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.45,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.95,
+   "cpu_summary": "4×1.95GHz Cortex-A53 + 4×1.45GHz Cortex-A53"
+  },
+  "高通 骁龙450": {
+   "level": "level1",
+   "total_score": "81744",
+   "cpu_score": "71609",
+   "gpu_score": "10135",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "8×1.8GHz Cortex-A53"
+  },
+  "高通 骁龙460": {
+   "level": "level1",
+   "total_score": "161136",
+   "cpu_score": "142713",
+   "gpu_score": "18423",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 240 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 240 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Kryo 240 Gold + 4×1.8GHz Kryo 240 Silver"
+  },
+  "高通 骁龙480": {
+   "level": "level1",
+   "total_score": "292212",
+   "cpu_score": "243222",
+   "gpu_score": "48990",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Kryo 460 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 460 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Kryo 460 Gold + 6×1.8GHz Kryo 460 Silver"
+  },
+  "高通 骁龙480 Plus": {
+   "level": "level1",
+   "total_score": "298709",
+   "cpu_score": "248438",
+   "gpu_score": "50271",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Kryo 460 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.9,
+     "core": "Kryo 460 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Kryo 460 Gold + 6×1.9GHz Kryo 460 Silver"
+  },
+  "高通 骁龙4s Gen 2": {
+   "level": "level1",
+   "total_score": "253265",
+   "cpu_score": "225130",
+   "gpu_score": "28135",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Cortex-A78 + 6×1.8GHz Cortex-A55"
+  },
+  "高通 骁龙6 Gen 1": {
+   "level": "level1",
+   "total_score": "377676",
+   "cpu_score": "303665",
+   "gpu_score": "74011",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Kryo Gold + 4×1.8GHz Kryo Silver"
+  },
+  "高通 骁龙6 Gen 3": {
+   "level": "level1",
+   "total_score": "389396",
+   "cpu_score": "299077",
+   "gpu_score": "90319",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "4×2.4GHz Cortex-A78 + 4×1.8GHz Cortex-A55"
+  },
+  "高通 骁龙6 Gen 4": {
+   "level": "level1",
+   "total_score": "477986",
+   "cpu_score": "378823",
+   "gpu_score": "99163",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "1×2.3GHz Cortex-A720 + 3×2.2GHz Cortex-A720 + 4×1.8GHz Cortex-A520"
+  },
+  "高通 骁龙6 Gen 5": {
+   "level": "level1",
+   "total_score": "492875",
+   "cpu_score": "373770",
+   "gpu_score": "119105",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.6,
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+  },
+  "高通 骁龙617": {
+   "level": "level1",
+   "total_score": "40174",
+   "cpu_score": "29650",
+   "gpu_score": "10524",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.2,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.5,
+   "cpu_summary": "4×1.5GHz Cortex-A53 + 4×1.2GHz Cortex-A53"
+  },
+  "高通 骁龙625": {
+   "level": "level1",
+   "total_score": "54314",
+   "cpu_score": "43808",
+   "gpu_score": "10506",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "8×2.0GHz Cortex-A53"
+  },
+  "高通 骁龙626": {
+   "level": "level1",
+   "total_score": "79641",
+   "cpu_score": "67290",
+   "gpu_score": "12351",
+   "cores": [
+    {
+     "count": 8,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "8×2.2GHz Cortex-A53"
+  },
+  "高通 骁龙630": {
+   "level": "level1",
+   "total_score": "114761",
+   "cpu_score": "97124",
+   "gpu_score": "17637",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Cortex-A53"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Cortex-A53 + 4×1.8GHz Cortex-A53"
+  },
+  "高通 骁龙632": {
+   "level": "level1",
+   "total_score": "133786",
+   "cpu_score": "122075",
+   "gpu_score": "11711",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 250 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 250 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Kryo 250 Gold + 4×1.8GHz Kryo 250 Silver"
+  },
+  "高通 骁龙636": {
+   "level": "level1",
+   "total_score": "150507",
+   "cpu_score": "132995",
+   "gpu_score": "17512",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.6,
+     "core": "Kryo 260 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Kryo 260 Gold + 4×1.6GHz Kryo 260 Silver"
+  },
+  "高通 骁龙650": {
+   "level": "level1",
+   "total_score": "64414",
+   "cpu_score": "46704",
+   "gpu_score": "17710",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A72 + 4×1.4GHz Cortex-A53"
+  },
+  "高通 骁龙652": {
+   "level": "level1",
+   "total_score": "71841",
+   "cpu_score": "51932",
+   "gpu_score": "19909",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "4×1.8GHz Cortex-A72 + 4×1.4GHz Cortex-A53"
+  },
+  "高通 骁龙653": {
+   "level": "level1",
+   "total_score": "76952",
+   "cpu_score": "53857",
+   "gpu_score": "23095",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A72"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.44,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 1.95,
+   "cpu_summary": "4×1.95GHz Cortex-A72 + 4×1.44GHz Cortex-A53"
+  },
+  "高通 骁龙660": {
+   "level": "level1",
+   "total_score": "169306",
+   "cpu_score": "149507",
+   "gpu_score": "19799",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Kryo 260 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+  },
+  "高通 骁龙662": {
+   "level": "level1",
+   "total_score": "166633",
+   "cpu_score": "154683",
+   "gpu_score": "23625",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo 260 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+  },
+  "高通 骁龙662 IoT": {
+   "level": "level3",
+   "total_score": "121514",
+   "cpu_score": "86364",
+   "gpu_score": "35150",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo 260 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+  },
+  "高通 骁龙665": {
+   "level": "level1",
+   "total_score": "166731",
+   "cpu_score": "143650",
+   "gpu_score": "23081",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo 260 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+  },
+  "高通 骁龙665 IoT": {
+   "level": "level3",
+   "total_score": "120063",
+   "cpu_score": "84823",
+   "gpu_score": "35240",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo 260 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 260 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+  },
+  "高通 骁龙670": {
+   "level": "level1",
+   "total_score": "191333",
+   "cpu_score": "157131",
+   "gpu_score": "34202",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Kryo 360 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Kryo 360 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver"
+  },
+  "高通 骁龙675": {
+   "level": "level1",
+   "total_score": "232113",
+   "cpu_score": "203239",
+   "gpu_score": "28874",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Kryo 460 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Kryo 460 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Kryo 460 Gold + 6×1.7GHz Kryo 460 Silver"
+  },
+  "高通 骁龙680": {
+   "level": "level1",
+   "total_score": "233275",
+   "cpu_score": "205686",
+   "gpu_score": "27589",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.2,
+     "core": "Kryo 265 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 265 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "4×2.2GHz Kryo 265 Gold + 4×1.8GHz Kryo 265 Silver"
+  },
+  "高通 骁龙690": {
+   "level": "level1",
+   "total_score": "290969",
+   "cpu_score": "234428",
+   "gpu_score": "56541",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Kryo 560 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Kryo 560 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "2×2.0GHz Kryo 560 Gold + 6×1.7GHz Kryo 560 Silver"
+  },
+  "高通 骁龙695": {
+   "level": "level1",
+   "total_score": "325217",
+   "cpu_score": "267992",
+   "gpu_score": "57225",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Kryo 660 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Kryo 660 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Kryo 660 Gold + 6×1.7GHz Kryo 660 Silver"
+  },
+  "高通 骁龙6s Gen 3": {
+   "level": "level1",
+   "total_score": "352225",
+   "cpu_score": "293841",
+   "gpu_score": "58384",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.3,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "2×2.3GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+  },
+  "高通 骁龙6s Gen 4": {
+   "level": "level1",
+   "total_score": "423021",
+   "cpu_score": "340877",
+   "gpu_score": "82144",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "4×2.4GHz Cortex-A78 + 4×1.5GHz Cortex-A55"
+  },
+  "高通 骁龙7 Gen 1": {
+   "level": "level1",
+   "total_score": "462426",
+   "cpu_score": "354429",
+   "gpu_score": "107997",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.4,
+     "core": "Kryo Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.36,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "1×2.4GHz Kryo Prime + 3×2.36GHz Kryo Gold + 4×1.8GHz Kryo Silver"
+  },
+  "高通 骁龙7 Gen 3": {
+   "level": "level1",
+   "total_score": "559437",
+   "cpu_score": "408149",
+   "gpu_score": "151288",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.63,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.63,
+   "cpu_summary": "1×2.63GHz Cortex-A715 + 3×2.4GHz Cortex-A715 + 4×1.8GHz Cortex-A510"
+  },
+  "高通 骁龙7 Gen 4": {
+   "level": "level1",
+   "total_score": "798597",
+   "cpu_score": "474107",
+   "gpu_score": "324490",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.84,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "1×2.8GHz Cortex-A720 + 4×2.4GHz Cortex-A720 + 3×1.84GHz Cortex-A520"
+  },
+  "高通 骁龙7+ Gen 2": {
+   "level": "level1",
+   "total_score": "782853",
+   "cpu_score": "549589",
+   "gpu_score": "233264",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.91,
+     "core": "Kryo Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.49,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.91,
+   "cpu_summary": "1×2.91GHz Kryo Prime + 3×2.49GHz Kryo Gold + 4×1.8GHz Kryo Silver"
+  },
+  "高通 骁龙7+ Gen 3": {
+   "level": "level1",
+   "total_score": "994559",
+   "cpu_score": "568831",
+   "gpu_score": "425728",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.8,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.6,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 1.9,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "1×2.8GHz Cortex-X4 + 4×2.6GHz Cortex-A720 + 3×1.9GHz Cortex-A520"
+  },
+  "高通 骁龙710": {
+   "level": "level1",
+   "total_score": "206611",
+   "cpu_score": "168156",
+   "gpu_score": "38455",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Kryo 360 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Kryo 360 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver"
+  },
+  "高通 骁龙712": {
+   "level": "level1",
+   "total_score": "217055",
+   "cpu_score": "172642",
+   "gpu_score": "44413",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.3,
+     "core": "Kryo 360 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.7,
+     "core": "Kryo 360 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "2×2.3GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver"
+  },
+  "高通 骁龙720G": {
+   "level": "level1",
+   "total_score": "282758",
+   "cpu_score": "231351",
+   "gpu_score": "51407",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.3,
+     "core": "Kryo 465 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 465 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "2×2.3GHz Kryo 465 Gold + 6×1.8GHz Kryo 465 Silver"
+  },
+  "高通 骁龙730G": {
+   "level": "level1",
+   "total_score": "296139",
+   "cpu_score": "246726",
+   "gpu_score": "49413",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Kryo 470 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 470 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Kryo 470 Gold + 6×1.8GHz Kryo 470 Silver"
+  },
+  "高通 骁龙732G": {
+   "level": "level1",
+   "total_score": "247948",
+   "cpu_score": "199774",
+   "gpu_score": "48174",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.3,
+     "core": "Kryo 470 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 470 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.3,
+   "cpu_summary": "2×2.3GHz Kryo 470 Gold + 6×1.8GHz Kryo 470 Silver"
+  },
+  "高通 骁龙750G": {
+   "level": "level1",
+   "total_score": "275764",
+   "cpu_score": "222795",
+   "gpu_score": "52969",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.2,
+     "core": "Kryo 570 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 570 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.2,
+   "cpu_summary": "2×2.2GHz Kryo 570 Gold + 6×1.8GHz Kryo 570 Silver"
+  },
+  "高通 骁龙765G": {
+   "level": "level1",
+   "total_score": "333085",
+   "cpu_score": "271057",
+   "gpu_score": "62028",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.4,
+     "core": "Kryo 475 Prime"
+    },
+    {
+     "count": 1,
+     "freq_ghz": 2.2,
+     "core": "Kryo 475 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 475 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "1×2.4GHz Kryo 475 Prime + 1×2.2GHz Kryo 475 Gold + 6×1.8GHz Kryo 475 Sliver"
+  },
+  "高通 骁龙768G": {
+   "level": "level1",
+   "total_score": "338393",
+   "cpu_score": "270690",
+   "gpu_score": "67703",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.8,
+     "core": "Kryo 475 Prime"
+    },
+    {
+     "count": 1,
+     "freq_ghz": 2.2,
+     "core": "Kryo 475 Gold"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 1.8,
+     "core": "Kryo 475 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.8,
+   "cpu_summary": "1×2.8GHz Kryo 475 Prime + 1×2.2GHz Kryo 475 Gold + 6×1.8GHz Kryo 475 Sliver"
+  },
+  "高通 骁龙778G": {
+   "level": "level1",
+   "total_score": "431328",
+   "cpu_score": "333944",
+   "gpu_score": "97384",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.4,
+     "core": "Kryo 670 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.2,
+     "core": "Kryo 670 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Kryo 670 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "1×2.4GHz Kryo 670 Prime + 3×2.2GHz Kryo 670 Gold + 4×1.9GHz Kryo 670 Sliver"
+  },
+  "高通 骁龙778G Plus": {
+   "level": "level1",
+   "total_score": "451423",
+   "cpu_score": "346400",
+   "gpu_score": "105023",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.5,
+     "core": "Kryo 670 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.2,
+     "core": "Kryo 670 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Kryo 670 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "1×2.5GHz Kryo 670 Prime + 3×2.2GHz Kryo 670 Gold + 4×1.9GHz Kryo 670 Sliver"
+  },
+  "高通 骁龙780G": {
+   "level": "level1",
+   "total_score": "463818",
+   "cpu_score": "359944",
+   "gpu_score": "103874",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.4,
+     "core": "Kryo 670 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.2,
+     "core": "Kryo 670 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "670 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "1×2.4GHz Kryo 670 Prime + 3×2.2GHz Kryo 670 Gold + 4×1.9GHz 670 Sliver"
+  },
+  "高通 骁龙782G": {
+   "level": "level1",
+   "total_score": "449076",
+   "cpu_score": "337605",
+   "gpu_score": "111471",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.7,
+     "core": "Kryo 670 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.2,
+     "core": "Kryo 670 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Kryo 670 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.7,
+   "cpu_summary": "1×2.7GHz Kryo 670 Prime + 3×2.2GHz Kryo 670 Gold + 4×1.9GHz Kryo 670 Silver"
+  },
+  "高通 骁龙7s Gen 2": {
+   "level": "level1",
+   "total_score": "434658",
+   "cpu_score": "344673",
+   "gpu_score": "89985",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.95,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.4,
+   "cpu_summary": "4×2.4GHz Cortex-A78 + 4×1.95GHz Cortex-A55"
+  },
+  "高通 骁龙7s Gen 3": {
+   "level": "level1",
+   "total_score": "533191",
+   "cpu_score": "431422",
+   "gpu_score": "101769",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.5,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.4,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.5,
+   "cpu_summary": "1×2.5GHz Cortex-A720 + 3×2.4GHz Cortex-A720 + 4×1.8GHz Cortex-A520"
+  },
+  "高通 骁龙8 Gen 1": {
+   "level": "level1",
+   "total_score": "720239",
+   "cpu_score": "488811",
+   "gpu_score": "231428",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Kryo Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.5,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Kryo Prime + 3×2.5GHz Kryo Gold + 4×1.8GHz Kryo Silver"
+  },
+  "高通 骁龙8 Gen 2": {
+   "level": "level1",
+   "total_score": "1034945",
+   "cpu_score": "610530",
+   "gpu_score": "424415",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "Cortex-X3"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A710"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz Cortex-X3 + 2×2.8GHz Cortex-A715 + 2×2.8GHz Cortex-A710 + 3×2.0GHz Cortex-A510"
+  },
+  "高通 骁龙8 Gen 3": {
+   "level": "level1",
+   "total_score": "1473128",
+   "cpu_score": "708427",
+   "gpu_score": "764701",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.3,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.15,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.96,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.27,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.3,
+   "cpu_summary": "1×3.3GHz Cortex-X4 + 3×3.15GHz Cortex-A720 + 2×2.96GHz Cortex-A720 + 2×2.27GHz Cortex-A520"
+  },
+  "高通 骁龙8 Gen 5": {
+   "level": "level1",
+   "total_score": "1928653",
+   "cpu_score": "958707",
+   "gpu_score": "969946",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 3.8,
+     "core": "Oryon Prime"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 3.32,
+     "core": "Oryon Performance"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.8,
+   "cpu_summary": "2×3.8GHz Oryon Prime + 6×3.32GHz Oryon Performance"
+  },
+  "高通 骁龙8 至尊版": {
+   "level": "level1",
+   "total_score": "2086572",
+   "cpu_score": "967722",
+   "gpu_score": "1118850",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 4.32,
+     "core": "Oryon Prime"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 3.53,
+     "core": "Oryon Performance"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 4.32,
+   "cpu_summary": "2×4.32GHz Oryon Prime + 6×3.53GHz Oryon Performance"
+  },
+  "高通 骁龙8 至尊版 Gen 6": {
+   "level": "level1",
+   "total_score": "2657880",
+   "cpu_score": "1067700",
+   "gpu_score": "1590180",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 5.01,
+     "core": "Oryon Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 4.03,
+     "core": "Oryon Performance"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.74,
+     "core": "Oryon Performance"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 5.01,
+   "cpu_summary": "2×5.01GHz Oryon Prime + 3×4.03GHz Oryon Performance + 3×3.74GHz Oryon Performance"
+  },
+  "高通 骁龙8 至尊版 Gen5": {
+   "level": "level1",
+   "total_score": "2449060",
+   "cpu_score": "1137283",
+   "gpu_score": "1367745",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 4.6,
+     "core": "Oryon Prime"
+    },
+    {
+     "count": 6,
+     "freq_ghz": 3.62,
+     "core": "Oryon Performance"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 4.6,
+   "cpu_summary": "2×4.6GHz Oryon Prime + 6×3.62GHz Oryon Performance"
+  },
+  "高通 骁龙8 超级至尊版 Gen 6": {
+   "level": "level1",
+   "total_score": "2912164",
+   "cpu_score": "1161762",
+   "gpu_score": "1750402",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 5.07,
+     "core": "Oryon Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 4.03,
+     "core": "Oryon Performance"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.74,
+     "core": "Oryon Performance"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 5.07,
+   "cpu_summary": "2×5.07GHz Oryon Prime + 3×4.03GHz Oryon Performance + 3×3.74GHz Oryon Performance"
+  },
+  "高通 骁龙8+ Gen 1": {
+   "level": "level1",
+   "total_score": "831251",
+   "cpu_score": "564964",
+   "gpu_score": "266287",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "Kryo Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.75,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz Kryo Prime + 3×2.75GHz Kryo Gold + 4×2.0GHz Kryo Silver"
+  },
+  "高通 骁龙8+ Gen 1 UC": {
+   "level": "level1",
+   "total_score": "809432",
+   "cpu_score": "551716",
+   "gpu_score": "257716",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Kryo Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.5,
+     "core": "Kryo Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Kryo Prime + 3×2.5GHz Kryo Gold + 4×1.8GHz Kryo Silver"
+  },
+  "高通 骁龙801AC": {
+   "level": "level1",
+   "total_score": "28762",
+   "cpu_score": "13690",
+   "gpu_score": "15072",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.45,
+     "core": "Krait 400"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.45,
+   "cpu_summary": "4×2.45GHz Krait 400"
+  },
+  "高通 骁龙808": {
+   "level": "level1",
+   "total_score": "71432",
+   "cpu_score": "46473",
+   "gpu_score": "24959",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A57"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.4,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 1.8,
+   "cpu_summary": "2×1.8GHz Cortex-A57 + 4×1.4GHz Cortex-A53"
+  },
+  "高通 骁龙810": {
+   "level": "level1",
+   "total_score": "58338",
+   "cpu_score": "38765",
+   "gpu_score": "19573",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A57"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.5,
+     "core": "Cortex-A53"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.0,
+   "cpu_summary": "4×2.0GHz Cortex-A57 + 4×1.5GHz Cortex-A53"
+  },
+  "高通 骁龙820": {
+   "level": "level1",
+   "total_score": "190169",
+   "cpu_score": "136995",
+   "gpu_score": "53174",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.15,
+     "core": "Kryo"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 1.6,
+     "core": "Kryo"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.15,
+   "cpu_summary": "2×2.15GHz Kryo + 2×1.6GHz Kryo"
+  },
+  "高通 骁龙821": {
+   "level": "level1",
+   "total_score": "190965",
+   "cpu_score": "138492",
+   "gpu_score": "52473",
+   "cores": [
+    {
+     "count": 2,
+     "freq_ghz": 2.35,
+     "core": "Kryo"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.19,
+     "core": "Kryo"
+    }
+   ],
+   "total_cores": 4,
+   "max_freq_ghz": 2.35,
+   "cpu_summary": "2×2.35GHz Kryo + 2×2.19GHz Kryo"
+  },
+  "高通 骁龙835": {
+   "level": "level1",
+   "total_score": "274835",
+   "cpu_score": "208071",
+   "gpu_score": "66764",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.45,
+     "core": "Kryo 280 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.9,
+     "core": "Kryo 280 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.45,
+   "cpu_summary": "4×2.45GHz Kryo 280 Gold + 4×1.9GHz Kryo 280 Silver"
+  },
+  "高通 骁龙845": {
+   "level": "level1",
+   "total_score": "317455",
+   "cpu_score": "223667",
+   "gpu_score": "93788",
+   "cores": [
+    {
+     "count": 4,
+     "freq_ghz": 2.96,
+     "core": "Kryo 385 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.7,
+     "core": "Kryo 385 Silver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.96,
+   "cpu_summary": "4×2.96GHz Kryo 385 Gold + 4×1.7GHz Kryo 385 Silver"
+  },
+  "高通 骁龙855": {
+   "level": "level1",
+   "total_score": "477548",
+   "cpu_score": "354692",
+   "gpu_score": "122856",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.84,
+     "core": "Kryo 485 Gold"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.41,
+     "core": "Kryo 485 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.78,
+     "core": "Kryo 485 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.84,
+   "cpu_summary": "1×2.84GHz Kryo 485 Gold + 3×2.41GHz Kryo 485 Gold + 4×1.78GHz Kryo 485 Sliver"
+  },
+  "高通 骁龙855 Plus": {
+   "level": "level1",
+   "total_score": "490803",
+   "cpu_score": "363520",
+   "gpu_score": "127283",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.96,
+     "core": "Kryo 485 Gold"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.42,
+     "core": "Kryo 485 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 485 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.96,
+   "cpu_summary": "1×2.96GHz Kryo 485 Gold + 3×2.42GHz Kryo 485 Gold + 4×1.8GHz Kryo 485 Sliver"
+  },
+  "高通 骁龙860": {
+   "level": "level1",
+   "total_score": "465807",
+   "cpu_score": "338527",
+   "gpu_score": "127280",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.84,
+     "core": "Kryo 485 Gold"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.41,
+     "core": "Kryo 485 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.78,
+     "core": "Kryo 485 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.84,
+   "cpu_summary": "1×2.84GHz Kryo 485 Gold + 3×2.41GHz Kryo 485 Gold + 4×1.78GHz Kryo 485 Sliver"
+  },
+  "高通 骁龙865": {
+   "level": "level1",
+   "total_score": "578228",
+   "cpu_score": "445934",
+   "gpu_score": "132294",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.84,
+     "core": "Kryo 585 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.42,
+     "core": "Kryo 585 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 585 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.84,
+   "cpu_summary": "1×2.84GHz Kryo 585 Prime + 3×2.42GHz Kryo 585 Gold + 4×1.8GHz Kryo 585 Sliver"
+  },
+  "高通 骁龙865 IoT": {
+   "level": "level3",
+   "total_score": "325131",
+   "cpu_score": "223323",
+   "gpu_score": "101808",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.84,
+     "core": "Kryo 585 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.42,
+     "core": "Kryo 585 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 585 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.84,
+   "cpu_summary": "1×2.84GHz Kryo 585 Prime + 3×2.42GHz Kryo 585 Gold + 4×1.8GHz Kryo 585 Sliver"
+  },
+  "高通 骁龙865 Plus": {
+   "level": "level1",
+   "total_score": "585852",
+   "cpu_score": "402864",
+   "gpu_score": "182988",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.1,
+     "core": "Kryo 585 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.42,
+     "core": "Kryo 585 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 585 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.1,
+   "cpu_summary": "1×3.1GHz Kryo 585 Prime + 3×2.42GHz Kryo 585 Gold + 4×1.8GHz Kryo 585 Sliver"
+  },
+  "高通 骁龙870": {
+   "level": "level1",
+   "total_score": "592893",
+   "cpu_score": "425093",
+   "gpu_score": "167800",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "Kryo 585 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.42,
+     "core": "Kryo 585 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 585 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz Kryo 585 Prime + 3×2.42GHz Kryo 585 Gold + 4×1.8GHz Kryo 585 Sliver"
+  },
+  "高通 骁龙888": {
+   "level": "level1",
+   "total_score": "646030",
+   "cpu_score": "456399",
+   "gpu_score": "189631",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.84,
+     "core": "Kryo 680 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.4,
+     "core": "Kryo 680 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 680 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 2.84,
+   "cpu_summary": "1×2.84GHz Kryo 680 Prime + 3×2.4GHz Kryo 680 Gold + 4×1.8GHz Kryo 680 Sliver"
+  },
+  "高通 骁龙888 Plus": {
+   "level": "level1",
+   "total_score": "661976",
+   "cpu_score": "455978",
+   "gpu_score": "205998",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Kryo 680 Prime"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.4,
+     "core": "Kryo 680 Gold"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Kryo 680 Sliver"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Kryo 680 Prime + 3×2.4GHz Kryo 680 Gold + 4×1.8GHz Kryo 680 Sliver"
+  },
+  "高通 骁龙8s Gen 3": {
+   "level": "level1",
+   "total_score": "1061206",
+   "cpu_score": "576655",
+   "gpu_score": "484551",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A520"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Cortex-X4 + 4×2.8GHz Cortex-A720 + 3×2.0GHz Cortex-A520"
+  },
+  "高通 骁龙8s Gen 4": {
+   "level": "level1",
+   "total_score": "1523460",
+   "cpu_score": "729993",
+   "gpu_score": "793467",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.2,
+     "core": "Cortex-X4"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 3.0,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.8,
+     "core": "Cortex-A720"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.0,
+     "core": "Cortex-A720"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.2,
+   "cpu_summary": "1×3.2GHz Cortex-X4 + 3×3.0GHz Cortex-A720 + 2×2.8GHz Cortex-A720 + 2×2.0GHz Cortex-A720"
+  },
+  "高通 骁龙G3x Gen 1": {
+   "level": "level3",
+   "total_score": "487166",
+   "cpu_score": "221330",
+   "gpu_score": "265836",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 3.0,
+     "core": "Cortex-X1"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.42,
+     "core": "Cortex-A78"
+    },
+    {
+     "count": 4,
+     "freq_ghz": 1.8,
+     "core": "Cortex-A55"
+    }
+   ],
+   "total_cores": 8,
+   "max_freq_ghz": 3.0,
+   "cpu_summary": "1×3.0GHz Cortex-X1 + 3×2.42GHz Cortex-A78 + 4×1.8GHz Cortex-A55"
+  },
+  "高通 骁龙G3x Gen 2": {
+   "level": "level3",
+   "total_score": "795875",
+   "cpu_score": "318111",
+   "gpu_score": "477764"
+  },
+  "高通 骁龙XR2 Gen 2": {
+   "level": "level3",
+   "total_score": "561033",
+   "cpu_score": "162630",
+   "gpu_score": "398403",
+   "cores": [
+    {
+     "count": 1,
+     "freq_ghz": 2.36,
+     "core": "Cortex-X3"
+    },
+    {
+     "count": 2,
+     "freq_ghz": 2.36,
+     "core": "Cortex-A715"
+    },
+    {
+     "count": 3,
+     "freq_ghz": 2.05,
+     "core": "Cortex-A510"
+    }
+   ],
+   "total_cores": 6,
+   "max_freq_ghz": 2.36,
+   "cpu_summary": "1×2.36GHz Cortex-X3 + 2×2.36GHz Cortex-A715 + 3×2.05GHz Cortex-A510"
+  }
+ }
+}
