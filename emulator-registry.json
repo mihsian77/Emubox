@@ -1,6 +1,6 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-10-23T08:45:00Z",
+ "updated_at": "2026-10-23T08:50:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -55513,8 +55513,8 @@
   {
    "id": "hyperhle",
    "name": "HyperHLE",
-   "category": "Winlator",
-   "description": "[待核实] GitHub 仓库无 README/描述，用途不明；j92580498-max/tapHLE-android 为其 Android 构建（HyperHLE-style CI）。",
+   "category": "iOS Emulator",
+   "description": "HyperHLE（touchHLE 系高分支，iOS 应用 HLE 模拟器）：原 j92580498-max 分支已停更（作者推荐转向 KlugKlugTG 接手分支）。touchHLE 兼容性库见 appdb.touchhle.org。",
    "owner": "j92580498-max",
    "repo": "j92580498-max/HyperHLE",
    "homepage": null,
@@ -55531,6 +55531,31 @@
    "stars": 7,
    "forks": 2,
    "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "hyperhle-reborn",
+   "name": "HyperHLE-Reborn",
+   "category": "iOS Emulator",
+   "description": "KlugKlugTG 接手的 HyperHLE 活跃分支：基于 touchHLE 的 iOS 应用 HLE 模拟器，支持面与功能更多。release 含 Android AArch64 / iOS trollstore / Linux 三端。",
+   "owner": "KlugKlugTG",
+   "repo": "KlugKlugTG/HyperHLE-Reborn",
+   "homepage": "",
+   "repo_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn",
+   "official": false,
+   "channel": "stable",
+   "latest_tag": "v1.2.4",
+   "latest_date": "2026-10-22T00:00:00Z",
+   "latest_body": "HyperHLE v1.2.4（2026-10-22）：Android AArch64 / iOS trollstore / Linux x86_64 三端发布。",
+   "latest_apk_name": "HyperHLE_Android_AArch64.zip",
+   "latest_apk_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.4/HyperHLE_Android_AArch64.zip",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-10-23T04:19:59Z",
+   "stars": 66,
+   "forks": 0,
+   "watchers": 0,
    "downloads": 0,
    "logo_url": "",
    "releases": []
