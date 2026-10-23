@@ -3011,13 +3011,19 @@ fun DriverHubScreen(
 
     var showDriverCompare by remember { mutableStateOf(false) }
 
+    // 驱动资讯：IT之家 driver 类新闻（行业级，与 registry 更新提示互补）
+    var driverNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
+    val driverNewsContext = LocalContext.current
+    LaunchedEffect(Unit) {
+        driverNewsItems = NewsRepository.loadNews(driverNewsContext)
+    }
+
     // ── 驱动更新动态：全源最新 release 汇总 ──
     // 数据源 = 内置 driver-registry.json 的 latest_tag/latest_date/latest_body 字段
     // （CI 每日刷新）。离线必显示，不再依赖运行时 GitHub 拉取（此前并发拉 release
     // 在慢网/限流下常为空，用户侧表现为"驱动专区没有更新提示"）。
     var driverNews by remember { mutableStateOf<List<DriverNewsItem>>(emptyList()) }
     var driverNewsLoading by remember { mutableStateOf(false) }
-    val driverNewsContext = LocalContext.current
     fun buildDriverNewsFromRegistry(): List<DriverNewsItem> {
         val entries = DriverRegistryRepository.loadFromAssets(driverNewsContext) ?: return emptyList()
         return entries
@@ -3072,6 +3078,14 @@ fun DriverHubScreen(
                     driverNews = buildDriverNewsFromRegistry()
                     driverNewsLoading = false
                 }
+            )
+        }
+
+        item(key = "driver_news_ithome") {
+            NewsZoneCard(
+                title = appString(R.string.news_driver_title),
+                items = driverNewsItems,
+                category = "driver"
             )
         }
 
@@ -5742,6 +5756,12 @@ fun DeviceScreen(
     var benchmarkLoading by remember { mutableStateOf(false) }
     var benchmarkError by remember { mutableStateOf<String?>(null) }
     var showDeviceGuide by remember { mutableStateOf(false) }
+    // 生态动态：IT之家 eco 类新闻（芯片/手机/安卓，与设备检测呼应）
+    var deviceNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
+    val deviceNewsContext = LocalContext.current
+    LaunchedEffect(Unit) {
+        deviceNewsItems = NewsRepository.loadNews(deviceNewsContext)
+    }
 
     if (showDeviceGuide) {
         DeviceGuideDialog(onDismiss = { showDeviceGuide = false }, deviceInfo = deviceInfo)
@@ -5772,6 +5792,15 @@ fun DeviceScreen(
     ) {
         item(key = "device_summary") {
             DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
+        }
+
+        item(key = "device_news") {
+            NewsZoneCard(
+                title = appString(R.string.news_eco_title),
+                items = deviceNewsItems,
+                category = "eco",
+                showGeneralFold = true
+            )
         }
 
         item(key = "device_guide_entry") {
@@ -7960,6 +7989,12 @@ fun ComponentScreen(
     onOpenGuide: () -> Unit = {}
 ) {
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
+    // 组件资讯：IT之家 component 类新闻（DXVK/VKD3D 等转换层上游）
+    var componentNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
+    val componentNewsContext = LocalContext.current
+    LaunchedEffect(Unit) {
+        componentNewsItems = NewsRepository.loadNews(componentNewsContext)
+    }
     // Turnip 组件（Rutabaga 等 WCP 构建）已移至驱动专区 Turnip 分区展示，组件区不再显示该类型
     val discoveredComponentTypes = componentCatalogs.values
         .flatMap { it.keys }
@@ -8016,6 +8051,14 @@ fun ComponentScreen(
                 title = appString(R.string.component_region),
                 icon = Icons.Default.Extension,
                 remote = null
+            )
+        }
+
+        item(key = "component_news") {
+            NewsZoneCard(
+                title = appString(R.string.news_component_title),
+                items = componentNewsItems,
+                category = "component"
             )
         }
 
@@ -8109,6 +8152,12 @@ fun RuntimeLibraryScreen(
     var components by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var loadError by remember { mutableStateOf(false) }
+    // 运行库资讯：IT之家 runtime 类新闻（Wine/Box64/Proton 运行时）
+    var runtimeNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
+    val runtimeNewsContext = LocalContext.current
+    LaunchedEffect(Unit) {
+        runtimeNewsItems = NewsRepository.loadNews(runtimeNewsContext)
+    }
     var showGuide by remember { mutableStateOf(false) }
 
     if (showGuide) {
@@ -8200,6 +8249,13 @@ fun RuntimeLibraryScreen(
                 Icon(Icons.Default.Info, contentDescription = appString(R.string.runtime_guide_title))
             }
         }
+
+        // 运行库资讯：Wine/Box64/Proton 运行时新闻
+        NewsZoneCard(
+            title = appString(R.string.news_runtime_title),
+            items = runtimeNewsItems,
+            category = "runtime"
+        )
 
         // 数据来源与版权免责声明
         Card(
@@ -8693,12 +8749,14 @@ private fun NewsRowItem(item: NewsItem) {
     }
 }
 
-/** 业界动态：IT之家新闻分栏（全部/模拟器/驱动组件/生态/泛科技） */
+/** 分区新闻卡：按固定分类展示 IT之家新闻（无筛选，分区即分类）。
+ *  @param showGeneralFold 是否在底部折叠展示泛科技资讯（保底不丢 IT 无关新闻）。 */
 @Composable
-private fun NewsSectionCard(
+private fun NewsZoneCard(
+    title: String,
     items: List<NewsItem>?,
-    filter: String,
-    onFilterChange: (String) -> Unit
+    category: String,
+    showGeneralFold: Boolean = false
 ) {
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
@@ -8706,42 +8764,13 @@ private fun NewsSectionCard(
                 Icon(Icons.Default.Article, contentDescription = null, modifier = Modifier.size(18.dp),
                     tint = MaterialTheme.colorScheme.primary)
                 Spacer(Modifier.width(6.dp))
-                Text(appString(R.string.news_section_title), style = MaterialTheme.typography.titleSmall)
+                Text(title, style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Text(
                     appString(R.string.news_source_ithome),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-            }
-            Spacer(Modifier.height(10.dp))
-            val chips = listOf(
-                "all" to appString(R.string.news_chip_all),
-                "emulator" to appString(R.string.news_chip_emulator),
-                "driver" to appString(R.string.news_chip_driver),
-                "eco" to appString(R.string.news_chip_eco),
-                "general" to appString(R.string.news_chip_general)
-            )
-            Row(
-                modifier = Modifier.horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                chips.forEach { (cat, label) ->
-                    val selected = filter == cat
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(if (selected) Fusion.GradientStart else Fusion.SurfaceAlt)
-                            .clickable { onFilterChange(cat) }
-                            .padding(horizontal = 10.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            label,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = if (selected) Color.White else Fusion.OnSurfaceDim
-                        )
-                    }
-                }
             }
             Spacer(Modifier.height(4.dp))
             when {
@@ -8759,11 +8788,51 @@ private fun NewsSectionCard(
                     )
                 }
                 else -> {
-                    val shown = items.filter { filter == "all" || it.category == filter }.take(5)
-                    shown.forEachIndexed { i, item ->
-                        NewsRowItem(item)
-                        if (i != shown.lastIndex) {
-                            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                    val shown = items.filter { it.category == category }.take(5)
+                    if (shown.isEmpty()) {
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            appString(R.string.news_empty),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else {
+                        shown.forEachIndexed { i, item ->
+                            NewsRowItem(item)
+                            if (i != shown.lastIndex) {
+                                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                            }
+                        }
+                    }
+                    if (showGeneralFold) {
+                        var generalExpanded by remember { mutableStateOf(false) }
+                        Spacer(Modifier.height(4.dp))
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                        Row(
+                            modifier = Modifier.fillMaxWidth().clickable { generalExpanded = !generalExpanded }
+                                .padding(vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                appString(R.string.news_general_fold),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.weight(1f)
+                            )
+                            Icon(
+                                if (generalExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                        if (generalExpanded) {
+                            items.filter { it.category == "general" }.take(3).forEachIndexed { i, item ->
+                                NewsRowItem(item)
+                                if (i != 2) {
+                                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                                }
+                            }
                         }
                     }
                 }
@@ -8822,7 +8891,6 @@ fun EmulatorScreen(
     val scope = rememberCoroutineScope()
     // 新闻模块：IT之家业界动态（CI 每日刷新 news-data.json，无网走内置离线副本）
     var newsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
-    var newsFilter by remember { mutableStateOf("all") }
     LaunchedEffect(Unit) {
         newsItems = NewsRepository.loadNews(context)
     }
@@ -8954,13 +9022,6 @@ fun EmulatorScreen(
                     }
                 }
             }
-        }
-        item(key = "news_section", span = { GridItemSpan(maxLineSpan) }) {
-            NewsSectionCard(
-                items = newsItems,
-                filter = newsFilter,
-                onFilterChange = { newsFilter = it }
-            )
         }
         item(key = "news_releases", span = { GridItemSpan(maxLineSpan) }) {
             NewsReleaseCard(items = newsItems)

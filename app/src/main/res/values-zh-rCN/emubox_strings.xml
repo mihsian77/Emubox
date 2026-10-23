@@ -698,4 +698,9 @@
     <string name="news_source_ithome">IT之家</string>
     <string name="news_open_link">打开原文</string>
     <string name="news_empty">暂无新闻，稍后再来。</string>
+    <string name="news_eco_title">生态动态</string>
+    <string name="news_driver_title">驱动资讯</string>
+    <string name="news_component_title">组件资讯</string>
+    <string name="news_runtime_title">运行库资讯</string>
+    <string name="news_general_fold">更多科技资讯</string>
 </resources>

@@ -31,26 +31,36 @@ DROP_WORDS = [
     "汽车", "车", "新能源车", "电动车", "自动驾驶", "特斯拉", "比亚迪", "蔚来", "理想汽车", "小米汽车",
     "家电", "冰箱", "洗衣机", "空调", "电视", "扫地机", "智能家居", "厨电", "烤箱",
 ]
-# 模拟器 / 新作发布
+# 模拟器 / 新作发布（专有词，避免"游戏/显卡"等宽词误命中游戏本/外设新闻）
 EMU_WORDS = [
     "模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu", "Dolphin", "PCSX2", "PPSSPP",
     "PS5", "PS4", "PS3", "PS2", "Switch", "任天堂", "掌机", "游戏机", "NS", "3DS", "NDS",
-    "Winlator", "Wine", "移植", "手游", "Steam", "游戏", "主机游戏", "PC游戏", "玩家", "大作", "IGN",
-    "Capcom", "索尼", "微软", "Xbox", "PlayStation",
+    "Winlator", "移植", "手游",
 ]
-# 驱动 / 组件 / 上游
+# 驱动（GPU 驱动 / Vulkan / Mesa 上游）
 DRV_WORDS = [
-    "驱动", "Vulkan", "Mesa", "Turnip", "PanVK", "RADV", "DXVK", "vkd3d", "Wine", "渲染",
-    "GPU驱动", "显卡驱动", "OpenGL", "图形", "适配器", "显卡", "图形处理器",
+    "驱动", "Vulkan", "Mesa", "Turnip", "PanVK", "RADV", "OpenGL", "渲染",
+    "GPU驱动", "显卡驱动", "图形栈", "图形驱动",
+]
+# 组件（DXVK / VKD3D 等图形转换层）
+COMPONENT_WORDS = [
+    "DXVK", "vkd3d", "D7VK", "转换层", "图形转换", "兼容层",
+]
+# 运行库（Wine / Box64 / Proton 运行时）
+RUNTIME_WORDS = [
+    "Wine", "Box64", "Proton", "运行时", "WOW64",
 ]
 # 生态（芯片 / 安卓平台 / 设备）
 ECO_WORDS = [
     "骁龙", "天玑", "麒麟", "Exynos", "Tensor", "安卓", "Android", "ARM", "SoC", "芯片",
     "GPU", "CPU", "处理器", "高通", "联发科", "三星", "台积电", "工艺", "制程", "5G", "终端",
-    "手机", "平板", "折叠屏", "鸿蒙", "HarmonyOS",
+    "手机", "平板", "折叠屏", "鸿蒙", "HarmonyOS", "笔记本", "显卡",
 ]
 
-CATS = {"emulator": "模拟器", "driver": "驱动组件", "eco": "生态", "general": "泛科技"}
+CATS = {
+    "emulator": "模拟器", "driver": "驱动", "component": "组件",
+    "runtime": "运行库", "eco": "生态", "general": "泛科技",
+}
 
 
 def classify(title: str, summary: str) -> str:
@@ -61,6 +71,10 @@ def classify(title: str, summary: str) -> str:
         return "emulator"
     if any(w.lower() in text for w in DRV_WORDS):
         return "driver"
+    if any(w.lower() in text for w in COMPONENT_WORDS):
+        return "component"
+    if any(w.lower() in text for w in RUNTIME_WORDS):
+        return "runtime"
     if any(w.lower() in text for w in ECO_WORDS):
         return "eco"
     return "general"
