@@ -1,0 +1,533 @@
+{
+ "version": "1",
+ "aliases": [
+  {
+   "keys": [
+    "骁龙888",
+    "SM8350"
+   ],
+   "family": "骁龙8",
+   "year": "2020-12",
+   "antutu_name": "高通 骁龙888",
+   "antutu_total": "646030",
+   "antutu_cpu": "456399",
+   "antutu_gpu": "189631",
+   "antutu_clusters": "(1x 2.84GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
+   "ludashi_score": "480872"
+  },
+  {
+   "keys": [
+    "骁龙8 Gen1",
+    "骁龙8 Gen 1",
+    "SM8450"
+   ],
+   "family": "骁龙8",
+   "year": "2021-12",
+   "antutu_name": "高通 骁龙8 Gen 1",
+   "antutu_total": "720239",
+   "antutu_cpu": "488811",
+   "antutu_gpu": "231428",
+   "antutu_clusters": "(1x 3.0GHz Kryo Prime & 3x 2.5GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "骁龙8 Gen2",
+    "骁龙8 Gen 2",
+    "SM8550"
+   ],
+   "family": "骁龙8",
+   "year": "2022-11",
+   "antutu_name": "高通 骁龙8 Gen 2",
+   "antutu_total": "1034945",
+   "antutu_cpu": "610530",
+   "antutu_gpu": "424415",
+   "antutu_clusters": "(1x 3.2GHz Cortex-X3 & 2x 2.8GHz Cortex-A715 & 2x 2.8GHz Cortex-A710 & 3x 2.0GHz Cortex-A510)",
+   "ludashi_score": "807517"
+  },
+  {
+   "keys": [
+    "骁龙8 Gen3",
+    "骁龙8 Gen 3",
+    "SM8650"
+   ],
+   "family": "骁龙8",
+   "year": "2023-10",
+   "antutu_name": "高通 骁龙8 Gen 3",
+   "antutu_total": "1473128",
+   "antutu_cpu": "708427",
+   "antutu_gpu": "764701",
+   "antutu_clusters": "(1x 3.3GHz Cortex-X4 & 3x 3.15GHz Cortex-A720 & 2x 2.96GHz Cortex-A720 & 2x 2.27GHz Cortex-A520)",
+   "ludashi_score": "1062717"
+  },
+  {
+   "keys": [
+    "骁龙8 Elite",
+    "骁龙8 至尊版",
+    "SM8750"
+   ],
+   "family": "骁龙8 Elite",
+   "year": "2024-10",
+   "antutu_name": "高通 骁龙8 至尊版",
+   "antutu_total": "2086572",
+   "antutu_cpu": "967722",
+   "antutu_gpu": "1118850",
+   "antutu_clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
+   "ludashi_score": "1159763"
+  },
+  {
+   "keys": [
+    "骁龙8 Elite Gen5",
+    "骁龙8 至尊版 Gen5"
+   ],
+   "family": "骁龙8 Elite",
+   "year": "2025-10",
+   "antutu_name": "高通 骁龙8 至尊版 Gen5",
+   "antutu_total": "2449060",
+   "antutu_cpu": "1137283",
+   "antutu_gpu": "1367745",
+   "antutu_clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
+   "ludashi_score": "1308603"
+  },
+  {
+   "keys": [
+    "骁龙8 Elite Gen6",
+    "骁龙8 至尊版 Gen6"
+   ],
+   "family": "骁龙8 Elite",
+   "year": "2026-10",
+   "antutu_name": "高通 骁龙8 至尊版 Gen 6",
+   "antutu_total": "2657880",
+   "antutu_cpu": "1067700",
+   "antutu_gpu": "1590180",
+   "antutu_clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+   "ludashi_score": "1385516"
+  },
+  {
+   "keys": [
+    "骁龙8 Elite Extreme",
+    "骁龙8 超级至尊版"
+   ],
+   "family": "骁龙8 Elite",
+   "year": "2026-12",
+   "antutu_name": "高通 骁龙8 超级至尊版 Gen 6",
+   "antutu_total": "2912164",
+   "antutu_cpu": "1161762",
+   "antutu_gpu": "1750402",
+   "antutu_clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+   "ludashi_score": "1467056"
+  },
+  {
+   "keys": [
+    "骁龙8s Gen3"
+   ],
+   "family": "骁龙8s",
+   "year": "2024-03",
+   "antutu_name": "高通 骁龙8s Gen 3",
+   "antutu_total": "1061206",
+   "antutu_cpu": "576655",
+   "antutu_gpu": "484551",
+   "antutu_clusters": "(1x 3.0GHz Cortex-X4 & 4x 2.8GHz Cortex-A720 & 3x 2.0GHz Cortex-A520)",
+   "ludashi_score": "724435"
+  },
+  {
+   "keys": [
+    "骁龙8s Gen4"
+   ],
+   "family": "骁龙8s",
+   "year": "2025-04",
+   "antutu_name": "高通 骁龙8s Gen 4",
+   "antutu_total": "1523460",
+   "antutu_cpu": "729993",
+   "antutu_gpu": "793467",
+   "antutu_clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
+   "ludashi_score": "996259"
+  },
+  {
+   "keys": [
+    "骁龙7 Gen3"
+   ],
+   "family": "骁龙7",
+   "year": "2023-11",
+   "antutu_name": "高通 骁龙7 Gen 3",
+   "antutu_total": "559437",
+   "antutu_cpu": "408149",
+   "antutu_gpu": "151288",
+   "antutu_clusters": "(1x 2.63GHz Cortex-A715 & 3x 2.4GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "骁龙7s Gen3"
+   ],
+   "family": "骁龙7s",
+   "year": "2024-08",
+   "antutu_name": "高通 骁龙7s Gen 3",
+   "antutu_total": "533191",
+   "antutu_cpu": "431422",
+   "antutu_gpu": "101769",
+   "antutu_clusters": "(1x 2.5GHz Cortex-A720 & 3x 2.4GHz Cortex-A720 & 4x 1.8GHz Cortex-A520)",
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "骁龙7 Gen4"
+   ],
+   "family": "骁龙7",
+   "year": "2025-02",
+   "antutu_name": "高通 骁龙7 Gen 4",
+   "antutu_total": "798597",
+   "antutu_cpu": "474107",
+   "antutu_gpu": "324490",
+   "antutu_clusters": "(1x 2.8GHz Cortex-A720 & 4x 2.4GHz Cortex-A720 & 3x 1.84GHz Cortex-A520)",
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "天玑9000",
+    "MT6983"
+   ],
+   "family": "天玑旗舰",
+   "year": "2021-12",
+   "antutu_name": "联发科技 天玑9000",
+   "antutu_total": "759904",
+   "antutu_cpu": "559180",
+   "antutu_gpu": "200724",
+   "antutu_clusters": "(1x 3.05GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+   "ludashi_score": "602793"
+  },
+  {
+   "keys": [
+    "天玑9200",
+    "MT6985"
+   ],
+   "family": "天玑旗舰",
+   "year": "2022-11",
+   "antutu_name": "联发科技 天玑9200",
+   "antutu_total": "1066849",
+   "antutu_cpu": "594463",
+   "antutu_gpu": "472386",
+   "antutu_clusters": "(1x 3.05GHz Cortex-X3 & 3x 2.85GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
+   "ludashi_score": "787766"
+  },
+  {
+   "keys": [
+    "天玑9300",
+    "MT6989"
+   ],
+   "family": "天玑旗舰",
+   "year": "2023-11",
+   "antutu_name": "联发科技 天玑9300",
+   "antutu_total": "1414180",
+   "antutu_cpu": "733400",
+   "antutu_gpu": "680780",
+   "antutu_clusters": "(1x 3.25GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+   "ludashi_score": "922847"
+  },
+  {
+   "keys": [
+    "天玑9400",
+    "MT6995"
+   ],
+   "family": "天玑旗舰",
+   "year": "2024-10",
+   "antutu_name": "联发科技 天玑9400",
+   "antutu_total": "1795254",
+   "antutu_cpu": "881088",
+   "antutu_gpu": "914166",
+   "antutu_clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+   "ludashi_score": "1114009"
+  },
+  {
+   "keys": [
+    "天玑9500"
+   ],
+   "family": "天玑旗舰",
+   "year": "2025-10",
+   "antutu_name": "联发科技 天玑9500",
+   "antutu_total": "2299863",
+   "antutu_cpu": "1038120",
+   "antutu_gpu": "1261743",
+   "antutu_clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+   "ludashi_score": "1372822"
+  },
+  {
+   "keys": [
+    "天玑9600"
+   ],
+   "family": "天玑旗舰",
+   "year": "2026-08",
+   "antutu_name": null,
+   "antutu_total": null,
+   "antutu_cpu": null,
+   "antutu_gpu": null,
+   "antutu_clusters": null,
+   "ludashi_score": "1496365"
+  },
+  {
+   "keys": [
+    "天玑9400+"
+   ],
+   "family": "天玑旗舰",
+   "year": "2025-06",
+   "antutu_name": "联发科技 天玑9400+",
+   "antutu_total": "1835027",
+   "antutu_cpu": "887236",
+   "antutu_gpu": "947791",
+   "antutu_clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+   "ludashi_score": "1114009"
+  },
+  {
+   "keys": [
+    "A15"
+   ],
+   "family": "Apple A",
+   "year": "2021-09",
+   "antutu_name": null,
+   "antutu_total": null,
+   "antutu_cpu": null,
+   "antutu_gpu": null,
+   "antutu_clusters": null,
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "A16"
+   ],
+   "family": "Apple A",
+   "year": "2022-09",
+   "antutu_name": null,
+   "antutu_total": null,
+   "antutu_cpu": null,
+   "antutu_gpu": null,
+   "antutu_clusters": null,
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "A17 Pro",
+    "A17Pro"
+   ],
+   "family": "Apple A",
+   "year": "2023-09",
+   "antutu_name": null,
+   "antutu_total": null,
+   "antutu_cpu": null,
+   "antutu_gpu": null,
+   "antutu_clusters": null,
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "A18 Pro",
+    "A18Pro"
+   ],
+   "family": "Apple A",
+   "year": "2024-09",
+   "antutu_name": null,
+   "antutu_total": null,
+   "antutu_cpu": null,
+   "antutu_gpu": null,
+   "antutu_clusters": null,
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "A19 Pro",
+    "A19Pro"
+   ],
+   "family": "Apple A",
+   "year": "2025-09",
+   "antutu_name": null,
+   "antutu_total": null,
+   "antutu_cpu": null,
+   "antutu_gpu": null,
+   "antutu_clusters": null,
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "Exynos 2200"
+   ],
+   "family": "Exynos",
+   "year": "2022-01",
+   "antutu_name": "三星 Exynos 2200",
+   "antutu_total": "773051",
+   "antutu_cpu": "420123",
+   "antutu_gpu": "352928",
+   "antutu_clusters": "(1x 2.8GHz Cortex-X2 & 3x 2.50GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "Exynos 2400"
+   ],
+   "family": "Exynos",
+   "year": "2024-01",
+   "antutu_name": "三星 Exynos 2400",
+   "antutu_total": "935838",
+   "antutu_cpu": "559029",
+   "antutu_gpu": "376809",
+   "antutu_clusters": "(1x 3.2GHz Cortex-X4 & 2x 2.9GHz Cortex-A720 & 3x 2.6GHz Cortex-A720 & 4x 1.95GHz Cortex-A520)",
+   "ludashi_score": null
+  },
+  {
+   "keys": [
+    "Exynos 2500"
+   ],
+   "family": "Exynos",
+   "year": "2025-01",
+   "antutu_name": "三星 Exynos 2500",
+   "antutu_total": "1288409",
+   "antutu_cpu": "687559",
+   "antutu_gpu": "600850",
+   "antutu_clusters": "(1x 3.3GHz Cortex-X925 & 2x 2.36GHz Cortex-A725 & 5x 1.8GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+   "ludashi_score": null
+  }
+ ],
+ "emulator_tiers": {
+  "winlator": {
+   "smooth": 2800000,
+   "playable": 2000000,
+   "heavy": 1200000,
+   "note": "Win 游戏容器（含 DXVK/VKD3D 需求）"
+  },
+  "ns": {
+   "smooth": 2600000,
+   "playable": 1800000,
+   "heavy": 1000000,
+   "note": "Switch（GPU 负载重，优先看 GPU 分）"
+  },
+  "ps2": {
+   "smooth": 1500000,
+   "playable": 900000,
+   "heavy": 500000,
+   "note": "PS2"
+  },
+  "gc_wii": {
+   "smooth": 1800000,
+   "playable": 1000000,
+   "heavy": 600000,
+   "note": "NGC/Wii"
+  },
+  "ds3ds": {
+   "smooth": 1200000,
+   "playable": 600000,
+   "heavy": 300000,
+   "note": "3DS"
+  },
+  "psp": {
+   "smooth": 800000,
+   "playable": 400000,
+   "heavy": 200000,
+   "note": "PSP（低要求）"
+  }
+ },
+ "same_chip_devices": [
+  {
+   "soc": "骁龙8 Elite",
+   "devices": [
+    {
+     "name": "小米15 Pro",
+     "score": null
+    },
+    {
+     "name": "iQOO 13",
+     "score": "1717253"
+    },
+    {
+     "name": "一加13",
+     "score": null
+    },
+    {
+     "name": "红魔10 Pro",
+     "score": null
+    },
+    {
+     "name": "荣耀Magic7 Pro",
+     "score": "1765464"
+    }
+   ]
+  },
+  {
+   "soc": "骁龙8 Gen 3",
+   "devices": [
+    {
+     "name": "小米14",
+     "score": null
+    },
+    {
+     "name": "iQOO 12",
+     "score": null
+    },
+    {
+     "name": "一加12",
+     "score": null
+    },
+    {
+     "name": "红魔9 Pro",
+     "score": null
+    },
+    {
+     "name": "魅族21",
+     "score": null
+    }
+   ]
+  },
+  {
+   "soc": "骁龙8 Gen 2",
+   "devices": [
+    {
+     "name": "小米13",
+     "score": null
+    },
+    {
+     "name": "iQOO 11",
+     "score": null
+    },
+    {
+     "name": "一加11",
+     "score": null
+    },
+    {
+     "name": "红魔8 Pro",
+     "score": null
+    },
+    {
+     "name": "三星Galaxy S23",
+     "score": null
+    }
+   ]
+  },
+  {
+   "soc": "天玑9400",
+   "devices": [
+    {
+     "name": "vivo X200 Pro",
+     "score": null
+    },
+    {
+     "name": "OPPO Find X8 Pro",
+     "score": "1627287"
+    },
+    {
+     "name": "iQOO Neo10 Pro",
+     "score": "1698805"
+    }
+   ]
+  },
+  {
+   "soc": "天玑9300",
+   "devices": [
+    {
+     "name": "vivo X100 Pro",
+     "score": null
+    },
+    {
+     "name": "OPPO Find X7 Ultra",
+     "score": null
+    }
+   ]
+  }
+ ]
+}
