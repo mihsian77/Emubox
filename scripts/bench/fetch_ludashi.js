@@ -5,7 +5,7 @@ const OUT = process.env.OUT_DIR || require('path').resolve(__dirname, '../../ben
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined, args: ['--no-sandbox'] });
   const page = await browser.newPage({ userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36', viewport:{width:1400,height:2000} });
   fs.mkdirSync(OUT,{recursive:true});
-  await page.goto('https://www.ludashi.com/rank',{timeout:30000,waitUntil:'domcontentloaded'});
+  await page.goto('https://www.ludashi.com/rank',{timeout:120000,waitUntil:'domcontentloaded'});
   await page.waitForTimeout(3000);
   async function clickText(t){return await page.evaluate((tt)=>{const els=[...document.querySelectorAll('*')];for(const el of els){if(el.children.length===0&&el.innerText&&el.innerText.trim()===tt){el.click();return true;}}return false;},t);}
   async function grab(){
