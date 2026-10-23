@@ -1,7 +1,7 @@
 {
- "version": "1.1.0",
+ "version": "1.2.0",
  "updated_at": "2026-10-14T00:00:00Z",
- "description": "Winlator 社区配置推荐（聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs，按 GPU 热度排行）",
+ "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
   "Adreno-830": {
@@ -4657,5 +4657,104 @@
     }
    ]
   }
- }
+ },
+ "official_recipes": [
+  {
+   "id": "winlator-adreno-starter",
+   "title": "Winlator + Adreno · 入门配置",
+   "summary": "高通设备的起点配置. 按游戏微调，并以社区反馈为准.",
+   "settings": [
+    {
+     "key": "图形驱动",
+     "value": "兼容时使用 Turnip / AdrenoTools"
+    },
+    {
+     "key": "渲染器",
+     "value": "Vulkan"
+    },
+    {
+     "key": "Wrapper",
+     "value": "先用 DXVK；仅 DirectX 12 游戏再试 VKD3D"
+    },
+    {
+     "key": "分辨率",
+     "value": "1280×720 或降低原生分辨率"
+    },
+    {
+     "key": "Box64",
+     "value": "先保持项目默认预设，再手动微调"
+    },
+    {
+     "key": "音频",
+     "value": "首选 ALSA"
+    }
+   ],
+   "checks": [
+    {
+     "title": "确认驱动匹配 GPU 与 Android 版本。",
+     "detail": ""
+    },
+    {
+     "title": "先单点修改，避免同时改多个选项。",
+     "detail": ""
+    },
+    {
+     "title": "反馈兼容性时记录版本、驱动、wrapper 与结果。",
+     "detail": ""
+    }
+   ],
+   "sources": [
+    "https://github.com/brunodev85/winlator/releases",
+    "https://github.com/K11MCH1/AdrenoToolsDrivers"
+   ]
+  },
+  {
+   "id": "winlator-mali-starter",
+   "title": "Winlator + Mali · 入门配置",
+   "summary": "Mali 的试验性起点配置，效果随 GPU 代际、驱动与游戏差异很大。",
+   "settings": [
+    {
+     "key": "图形驱动",
+     "value": "Vortek 或系统驱动（视支持情况）"
+    },
+    {
+     "key": "渲染器",
+     "value": "优先 Vulkan；OpenGL 作为回退测试"
+    },
+    {
+     "key": "Wrapper",
+     "value": "先用 DXVK；出现画面错误再降低配置复杂度"
+    },
+    {
+     "key": "分辨率",
+     "value": "1280×720 para o primeiro teste"
+    },
+    {
+     "key": "Box64",
+     "value": "Preset padrão do projeto"
+    },
+    {
+     "key": "音频",
+     "value": "首选 ALSA"
+    }
+   ],
+   "checks": [
+    {
+     "title": "确认容器实际使用的渲染器。",
+     "detail": ""
+    },
+    {
+     "title": "下结论前先用已知可玩的游戏验证。",
+     "detail": ""
+    },
+    {
+     "title": "记录图形错误、崩溃与设备温度。",
+     "detail": ""
+    }
+   ],
+   "sources": [
+    "https://github.com/brunodev85/winlator/releases"
+   ]
+  }
+ ]
 }

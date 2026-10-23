@@ -13,6 +13,7 @@
   python3 scripts/aggregate-recipes.py [--clone]   # --clone 时先 git clone 两份仓库
 """
 import collections
+import datetime
 import json
 import os
 import re
@@ -109,15 +110,24 @@ def main():
                  'share': round(v / sum(c.values()) * 100, 1)} for k, v in c.most_common(3)]
 
     out = {
-        "version": "1.1.0",
-        "updated_at": "2026-10-14T00:00:00Z",
-        "description": "Winlator 社区配置推荐（聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs，按 GPU 热度排行）",
+        "version": "1.2.0",
+        "updated_at": datetime.datetime.now().strftime('%Y-%m-%dT00:00:00Z'),
+        "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
         "generated": True,
         "gpu_combos": {g: {'configs': banner_cnt[g], 'top': top3(c)}
                        for g, c in sorted(banner_by_gpu.items(), key=lambda x: -sum(x[1].values()))},
         "mali_combos": {g: {'configs': mali_cnt[g], 'top': top3(c)}
                         for g, c in sorted(mali_by_gpu.items(), key=lambda x: -sum(x[1].values()))},
     }
+    # 官方层：从 emulator-ranking.json 同步入门配置（Adreno/Mali 各一条）
+    try:
+        er = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                         'emulator-ranking.json')))
+        recipes = er.get('recipes', [])
+        if recipes:
+            out['official_recipes'] = recipes
+    except Exception as e:
+        print('warn: 未同步 official_recipes', e, file=sys.stderr)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1)
     print(f'OK  gpu={len(out["gpu_combos"])} mali={len(out["mali_combos"])} -> {OUT}')
