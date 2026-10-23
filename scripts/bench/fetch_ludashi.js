@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const OUT = process.env.OUT_DIR || '/home/user/Doubao/chats/38444562484718594/emuhub-cn/bench-data';
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/usr/local/bin/chromium', args: ['--no-sandbox'] });
+  const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined, args: ['--no-sandbox'] });
   const page = await browser.newPage({ userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36', viewport:{width:1400,height:2000} });
   fs.mkdirSync(OUT,{recursive:true});
   await page.goto('https://www.ludashi.com/rank',{timeout:30000,waitUntil:'domcontentloaded'});
