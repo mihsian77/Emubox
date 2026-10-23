@@ -688,4 +688,14 @@
     <string name="global_search_prompt">输入关键词，跨模拟器、驱动、组件、运行库四个专区搜索。</string>
     <string name="search_empty">未找到匹配项。</string>
     <string name="global_search_empty">未找到相关内容。</string>
+    <string name="news_section_title">业界动态</string>
+    <string name="news_chip_all">全部</string>
+    <string name="news_chip_emulator">模拟器</string>
+    <string name="news_chip_driver">驱动组件</string>
+    <string name="news_chip_eco">生态</string>
+    <string name="news_chip_general">泛科技</string>
+    <string name="news_new_releases">新作发布</string>
+    <string name="news_source_ithome">IT之家</string>
+    <string name="news_open_link">打开原文</string>
+    <string name="news_empty">暂无新闻，稍后再来。</string>
 </resources>

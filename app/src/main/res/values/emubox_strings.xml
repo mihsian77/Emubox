@@ -691,4 +691,14 @@ How to verify in emulator:
     <string name="global_search_prompt">Type to search across emulators, drivers, components and runtimes.</string>
     <string name="search_empty">No matches found.</string>
     <string name="global_search_empty">No results found.</string>
+    <string name="news_section_title">News &amp; Updates</string>
+    <string name="news_chip_all">All</string>
+    <string name="news_chip_emulator">Emulator</string>
+    <string name="news_chip_driver">Driver</string>
+    <string name="news_chip_eco">Ecosystem</string>
+    <string name="news_chip_general">Tech</string>
+    <string name="news_new_releases">New Releases</string>
+    <string name="news_source_ithome">ITHome</string>
+    <string name="news_open_link">Open source article</string>
+    <string name="news_empty">No news yet. Check back later.</string>
 </resources>
