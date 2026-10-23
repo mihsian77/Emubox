@@ -6199,6 +6199,35 @@ private fun GpuBenchmarkCard(
                         unit = "MFLOPS",
                         threads = result.cpuThreads
                     )
+
+                    // 对比 PC 显卡（物理量：带宽/算力）
+                    val benchCtx = LocalContext.current
+                    val pcCmp = remember(result) {
+                        BenchEngine.driverVsPc(result.fillBandwidthGBs, result.computeGFLOPS, benchCtx)
+                    }
+                    if (pcCmp != null) {
+                        Spacer(Modifier.height(16.dp))
+                        Text(
+                            appString(R.string.bench_driver_pc_title),
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        InfoRow(
+                            label = appString(R.string.bench_bw_cmp),
+                            value = "≈ ${pcCmp.bandwidthName} 的 ${pcCmp.bandwidthPct}%"
+                        )
+                        InfoRow(
+                            label = appString(R.string.bench_fp_cmp),
+                            value = "≈ ${pcCmp.computeName} 的 ${pcCmp.computePct}%"
+                        )
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            appString(R.string.bench_driver_pc_note),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                            maxLines = 2
+                        )
+                    }
                     Spacer(Modifier.height(16.dp))
 
                     Button(onClick = onRun) {
@@ -10752,6 +10781,12 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                     Spacer(Modifier.height(8.dp))
                     InfoRow(label = appString(R.string.bench_equiv_cpu), value = info.pcEquiv.cpuName)
                     InfoRow(label = appString(R.string.bench_equiv_gpu), value = info.pcEquiv.gpuName)
+                    if (info.gpuEquivName != null) {
+                        InfoRow(
+                            label = appString(R.string.bench_equiv_gpu_chip),
+                            value = info.gpuEquivName
+                        )
+                    }
                 }
             }
         } else if (info.antutuTotal != null) {

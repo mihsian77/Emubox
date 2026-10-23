@@ -1,5 +1,5 @@
 {
- "version": "1",
+ "version": "2",
  "aliases": [
   {
    "keys": [
@@ -13,7 +13,13 @@
    "antutu_cpu": "456399",
    "antutu_gpu": "189631",
    "antutu_clusters": "(1x 2.84GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
-   "ludashi_score": "480872"
+   "ludashi_score": "480872",
+   "gpu_equiv": {
+    "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
+    "score": 142581,
+    "est": 141151,
+    "ratio": 0.294
+   }
   },
   {
    "keys": [
@@ -28,7 +34,8 @@
    "antutu_cpu": "488811",
    "antutu_gpu": "231428",
    "antutu_clusters": "(1x 3.0GHz Kryo Prime & 3x 2.5GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -43,7 +50,13 @@
    "antutu_cpu": "610530",
    "antutu_gpu": "424415",
    "antutu_clusters": "(1x 3.2GHz Cortex-X3 & 2x 2.8GHz Cortex-A715 & 2x 2.8GHz Cortex-A710 & 3x 2.0GHz Cortex-A510)",
-   "ludashi_score": "807517"
+   "ludashi_score": "807517",
+   "gpu_equiv": {
+    "name": "AMD Radeon RX 7600M XT 8GB",
+    "score": 330655,
+    "est": 331150,
+    "ratio": 0.41
+   }
   },
   {
    "keys": [
@@ -58,7 +71,13 @@
    "antutu_cpu": "708427",
    "antutu_gpu": "764701",
    "antutu_clusters": "(1x 3.3GHz Cortex-X4 & 3x 3.15GHz Cortex-A720 & 2x 2.96GHz Cortex-A720 & 2x 2.27GHz Cortex-A520)",
-   "ludashi_score": "1062717"
+   "ludashi_score": "1062717",
+   "gpu_equiv": {
+    "name": "NVIDIA GeForce RTX 2080 Ti 11GB",
+    "score": 540245,
+    "est": 551656,
+    "ratio": 0.519
+   }
   },
   {
    "keys": [
@@ -73,7 +92,13 @@
    "antutu_cpu": "967722",
    "antutu_gpu": "1118850",
    "antutu_clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
-   "ludashi_score": "1159763"
+   "ludashi_score": "1159763",
+   "gpu_equiv": {
+    "name": "AMD Radeon RX 7700 XT 12GB",
+    "score": 615283,
+    "est": 621881,
+    "ratio": 0.536
+   }
   },
   {
    "keys": [
@@ -87,7 +112,13 @@
    "antutu_cpu": "1137283",
    "antutu_gpu": "1367745",
    "antutu_clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
-   "ludashi_score": "1308603"
+   "ludashi_score": "1308603",
+   "gpu_equiv": {
+    "name": "NVIDIA GeForce RTX 3080 12GB",
+    "score": 740233,
+    "est": 730825,
+    "ratio": 0.558
+   }
   },
   {
    "keys": [
@@ -101,7 +132,13 @@
    "antutu_cpu": "1067700",
    "antutu_gpu": "1590180",
    "antutu_clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
-   "ludashi_score": "1385516"
+   "ludashi_score": "1385516",
+   "gpu_equiv": {
+    "name": "AMD Radeon RX 6900 XT 16GB",
+    "score": 818113,
+    "est": 828938,
+    "ratio": 0.598
+   }
   },
   {
    "keys": [
@@ -115,7 +152,13 @@
    "antutu_cpu": "1161762",
    "antutu_gpu": "1750402",
    "antutu_clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
-   "ludashi_score": "1467056"
+   "ludashi_score": "1467056",
+   "gpu_equiv": {
+    "name": "AMD Radeon RX 9070 16GB",
+    "score": 896370,
+    "est": 881797,
+    "ratio": 0.601
+   }
   },
   {
    "keys": [
@@ -128,7 +171,13 @@
    "antutu_cpu": "576655",
    "antutu_gpu": "484551",
    "antutu_clusters": "(1x 3.0GHz Cortex-X4 & 4x 2.8GHz Cortex-A720 & 3x 2.0GHz Cortex-A520)",
-   "ludashi_score": "724435"
+   "ludashi_score": "724435",
+   "gpu_equiv": {
+    "name": "AMD Radeon RX 7600M XT 8GB",
+    "score": 330655,
+    "est": 330779,
+    "ratio": 0.457
+   }
   },
   {
    "keys": [
@@ -141,7 +190,13 @@
    "antutu_cpu": "729993",
    "antutu_gpu": "793467",
    "antutu_clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
-   "ludashi_score": "996259"
+   "ludashi_score": "996259",
+   "gpu_equiv": {
+    "name": "NVIDIA TITAN V 12GB",
+    "score": 518597,
+    "est": 518883,
+    "ratio": 0.521
+   }
   },
   {
    "keys": [
@@ -154,7 +209,8 @@
    "antutu_cpu": "408149",
    "antutu_gpu": "151288",
    "antutu_clusters": "(1x 2.63GHz Cortex-A715 & 3x 2.4GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -167,7 +223,8 @@
    "antutu_cpu": "431422",
    "antutu_gpu": "101769",
    "antutu_clusters": "(1x 2.5GHz Cortex-A720 & 3x 2.4GHz Cortex-A720 & 4x 1.8GHz Cortex-A520)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -180,7 +237,8 @@
    "antutu_cpu": "474107",
    "antutu_gpu": "324490",
    "antutu_clusters": "(1x 2.8GHz Cortex-A720 & 4x 2.4GHz Cortex-A720 & 3x 1.84GHz Cortex-A520)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -194,7 +252,13 @@
    "antutu_cpu": "559180",
    "antutu_gpu": "200724",
    "antutu_clusters": "(1x 3.05GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
-   "ludashi_score": "602793"
+   "ludashi_score": "602793",
+   "gpu_equiv": {
+    "name": "AMD Radeon RX 580 2048SP 8GB",
+    "score": 160376,
+    "est": 159224,
+    "ratio": 0.264
+   }
   },
   {
    "keys": [
@@ -208,7 +272,13 @@
    "antutu_cpu": "594463",
    "antutu_gpu": "472386",
    "antutu_clusters": "(1x 3.05GHz Cortex-X3 & 3x 2.85GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
-   "ludashi_score": "787766"
+   "ludashi_score": "787766",
+   "gpu_equiv": {
+    "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
+    "score": 348065,
+    "est": 348811,
+    "ratio": 0.443
+   }
   },
   {
    "keys": [
@@ -222,7 +292,13 @@
    "antutu_cpu": "733400",
    "antutu_gpu": "680780",
    "antutu_clusters": "(1x 3.25GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
-   "ludashi_score": "922847"
+   "ludashi_score": "922847",
+   "gpu_equiv": {
+    "name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
+    "score": 443395,
+    "est": 444254,
+    "ratio": 0.481
+   }
   },
   {
    "keys": [
@@ -236,7 +312,13 @@
    "antutu_cpu": "881088",
    "antutu_gpu": "914166",
    "antutu_clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-   "ludashi_score": "1114009"
+   "ludashi_score": "1114009",
+   "gpu_equiv": {
+    "name": "NVIDIA TITAN RTX 24GB",
+    "score": 580759,
+    "est": 567267,
+    "ratio": 0.509
+   }
   },
   {
    "keys": [
@@ -249,7 +331,13 @@
    "antutu_cpu": "1038120",
    "antutu_gpu": "1261743",
    "antutu_clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-   "ludashi_score": "1372822"
+   "ludashi_score": "1372822",
+   "gpu_equiv": {
+    "name": "NVIDIA GeForce RTX 4090 Laptop GPU 16GB",
+    "score": 754389,
+    "est": 753152,
+    "ratio": 0.549
+   }
   },
   {
    "keys": [
@@ -262,7 +350,8 @@
    "antutu_cpu": null,
    "antutu_gpu": null,
    "antutu_clusters": null,
-   "ludashi_score": "1496365"
+   "ludashi_score": "1496365",
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -275,7 +364,13 @@
    "antutu_cpu": "887236",
    "antutu_gpu": "947791",
    "antutu_clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-   "ludashi_score": "1114009"
+   "ludashi_score": "1114009",
+   "gpu_equiv": {
+    "name": "NVIDIA TITAN RTX 24GB",
+    "score": 580759,
+    "est": 575385,
+    "ratio": 0.516
+   }
   },
   {
    "keys": [
@@ -288,7 +383,8 @@
    "antutu_cpu": null,
    "antutu_gpu": null,
    "antutu_clusters": null,
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -301,7 +397,8 @@
    "antutu_cpu": null,
    "antutu_gpu": null,
    "antutu_clusters": null,
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -315,7 +412,8 @@
    "antutu_cpu": null,
    "antutu_gpu": null,
    "antutu_clusters": null,
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -329,7 +427,8 @@
    "antutu_cpu": null,
    "antutu_gpu": null,
    "antutu_clusters": null,
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -343,7 +442,8 @@
    "antutu_cpu": null,
    "antutu_gpu": null,
    "antutu_clusters": null,
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -356,7 +456,8 @@
    "antutu_cpu": "420123",
    "antutu_gpu": "352928",
    "antutu_clusters": "(1x 2.8GHz Cortex-X2 & 3x 2.50GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -369,7 +470,8 @@
    "antutu_cpu": "559029",
    "antutu_gpu": "376809",
    "antutu_clusters": "(1x 3.2GHz Cortex-X4 & 2x 2.9GHz Cortex-A720 & 3x 2.6GHz Cortex-A720 & 4x 1.95GHz Cortex-A520)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   },
   {
    "keys": [
@@ -382,7 +484,8 @@
    "antutu_cpu": "687559",
    "antutu_gpu": "600850",
    "antutu_clusters": "(1x 3.3GHz Cortex-X925 & 2x 2.36GHz Cortex-A725 & 5x 1.8GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
-   "ludashi_score": null
+   "ludashi_score": null,
+   "gpu_equiv": null
   }
  ],
  "emulator_tiers": {
@@ -529,5 +632,87 @@
     }
    ]
   }
+ ],
+ "pc_gpu_specs": [
+  [
+   "NVIDIA GeForce RTX 4090",
+   1008,
+   82.6
+  ],
+  [
+   "NVIDIA GeForce RTX 4080",
+   717,
+   48.7
+  ],
+  [
+   "NVIDIA GeForce RTX 4070 Ti",
+   504,
+   40.1
+  ],
+  [
+   "NVIDIA GeForce RTX 4070",
+   504,
+   29.1
+  ],
+  [
+   "NVIDIA GeForce RTX 4060 Ti",
+   288,
+   22.1
+  ],
+  [
+   "NVIDIA GeForce RTX 4060",
+   272,
+   15.1
+  ],
+  [
+   "NVIDIA GeForce RTX 3080",
+   760,
+   29.8
+  ],
+  [
+   "NVIDIA GeForce RTX 3070",
+   448,
+   20.3
+  ],
+  [
+   "NVIDIA GeForce RTX 3060",
+   360,
+   12.7
+  ],
+  [
+   "NVIDIA GeForce GTX 1080",
+   320,
+   8.9
+  ],
+  [
+   "NVIDIA GeForce GTX 1060",
+   192,
+   4.4
+  ],
+  [
+   "AMD Radeon RX 7900 XTX",
+   960,
+   61.4
+  ],
+  [
+   "AMD Radeon RX 7900 XT",
+   800,
+   51.5
+  ],
+  [
+   "AMD Radeon RX 7800 XT",
+   624,
+   37.3
+  ],
+  [
+   "AMD Radeon RX 7700 XT",
+   432,
+   28.3
+  ],
+  [
+   "AMD Radeon RX 6750 XT",
+   384,
+   13.4
+  ]
  ]
 }
