@@ -2452,6 +2452,46 @@ private fun WinlatorConfigRecsCard(deviceInfo: DeviceInfo?) {
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+
+            // 官方/社区入门配置层：按 GPU 厂商给出原则性起点（渲染器/Wrapper/分辨率等）
+            val official = remember(gpuModel, isMali) { ConfigRecommendStore.find(gpuModel, context)?.official.orEmpty() }
+            if (official.isNotEmpty()) {
+                Spacer(Modifier.height(10.dp))
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
+                Spacer(Modifier.height(10.dp))
+                Text(
+                    appString(R.string.winlator_official_recs_title),
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(Modifier.height(6.dp))
+                official.forEach { rec ->
+                    Surface(
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp),
+                        shape = RoundedCornerShape(14.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
+                    ) {
+                        Column(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
+                            Text(rec.title, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                            if (rec.summary.isNotBlank()) {
+                                Spacer(Modifier.height(2.dp))
+                                Text(rec.summary, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                            rec.settings.forEach { (k, v) ->
+                                Spacer(Modifier.height(4.dp))
+                                Row(verticalAlignment = Alignment.Top) {
+                                    Text(
+                                        k,
+                                        modifier = Modifier.width(88.dp),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.primary
+                                    )
+                                    Text(v, style = MaterialTheme.typography.labelSmall, maxLines = 3, overflow = TextOverflow.Ellipsis)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

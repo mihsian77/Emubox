@@ -34,3 +34,4 @@ google-services.json
 # Android Profiling
 *.hprof
 .kotlin/
+scripts/__pycache__/
