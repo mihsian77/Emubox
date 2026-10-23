@@ -90,11 +90,43 @@ EMU_TIERS = {
     "psp":      {"smooth": 800000,  "playable": 400000,  "heavy": 200000,  "note": "PSP（低要求）"},
 }
 
+# ---------------- PC 显卡规格（显存带宽/FP32算力；来源：厂商公开规格 + TechPowerUp 数据库） ----------------
+PC_GPU_SPECS = [
+    # name, 显存带宽 GB/s, FP32 TFLOPS
+    ["NVIDIA GeForce RTX 4090", 1008, 82.6],
+    ["NVIDIA GeForce RTX 4080", 717, 48.7],
+    ["NVIDIA GeForce RTX 4070 Ti", 504, 40.1],
+    ["NVIDIA GeForce RTX 4070", 504, 29.1],
+    ["NVIDIA GeForce RTX 4060 Ti", 288, 22.1],
+    ["NVIDIA GeForce RTX 4060", 272, 15.1],
+    ["NVIDIA GeForce RTX 3080", 760, 29.8],
+    ["NVIDIA GeForce RTX 3070", 448, 20.3],
+    ["NVIDIA GeForce RTX 3060", 360, 12.7],
+    ["NVIDIA GeForce GTX 1080", 320, 8.9],
+    ["NVIDIA GeForce GTX 1060", 192, 4.4],
+    ["AMD Radeon RX 7900 XTX", 960, 61.4],
+    ["AMD Radeon RX 7900 XT", 800, 51.5],
+    ["AMD Radeon RX 7800 XT", 624, 37.3],
+    ["AMD Radeon RX 7700 XT", 432, 28.3],
+    ["AMD Radeon RX 6750 XT", 384, 13.4],
+]
+
+# GPU 等效显卡：自占比法（鲁大师同分制分 × 安兔兔GPU占比）→ 桌面GPU榜最近邻
+def gpu_equiv(antutu_gpu, antutu_total, ludashi_score):
+    if not (antutu_gpu and antutu_total and ludashi_score):
+        return None
+    ratio = int(antutu_gpu) / int(antutu_total)
+    est = int(ludashi_score) * ratio
+    best = min(l['desktop_gpu'], key=lambda r: abs(int(r['score']) - est)) if l['desktop_gpu'] else None
+    if best is None: return None
+    return {"name": best['name'], "score": int(best['score']), "est": int(est), "ratio": round(ratio, 3)}
+
 meta = {
-    "version": "1",
+    "version": "2",
     "aliases": [],
     "emulator_tiers": EMU_TIERS,
     "same_chip_devices": [],
+    "pc_gpu_specs": PC_GPU_SPECS,
 }
 
 for al in ALIASES:
@@ -110,6 +142,7 @@ for al in ALIASES:
         "antutu_gpu": aa["gpu_score"] if aa else None,
         "antutu_clusters": aa["clusters"] if aa else None,
         "ludashi_score": ls["score"] if ls else None,
+        "gpu_equiv": gpu_equiv(aa["gpu_score"] if aa else None, aa["total_score"] if aa else None, ls["score"] if ls else None),
     })
 
 for sc in SAME_CHIP:

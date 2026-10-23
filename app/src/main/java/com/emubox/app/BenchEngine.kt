@@ -16,6 +16,12 @@ data class UpgradeSuggestion(val nextName: String, val nextScore: Long, val gain
 /** 同芯机型条目：榜单收录才有分，未收录为 null（如实展示） */
 data class SameChipDevice(val name: String, val score: Long?)
 
+/** 驱动实测 ↔ PC 显卡物理量对比（带宽/算力，跨体系但单位可比） */
+data class PcGpuCompare(
+    val bandwidthName: String, val bandwidthGBs: Double, val bandwidthPct: Int,
+    val computeName: String, val computeTFLOPS: Double, val computePct: Int
+)
+
 /** SoC 跑分综合信息 */
 data class SocBenchInfo(
     val name: String,
@@ -28,6 +34,8 @@ data class SocBenchInfo(
     val antutuClusters: String?,
     val ludashiScore: Long?,
     val pcEquiv: PcEquiv?,
+    val gpuEquivName: String?,
+    val gpuEquivScore: Long?,
     val emulatorTiers: List<EmulatorTier>,
     val upgrade: UpgradeSuggestion?,
     val sameChip: List<SameChipDevice>?,
@@ -94,6 +102,7 @@ object BenchEngine {
         val year = entry.optString("year")
 
         val pcEquiv = ludashiScore?.let { equivalentPc(it, context) }
+        val gpuEquiv = entry.optJSONObject("gpu_equiv")
         val tiers = emulatorTiers(antutuTotal, m.optJSONObject("emulator_tiers"))
         val upgrade = antutuTotal?.let { upgradeFrom(it, arr) }
         val sameChip = sameChipDevices(family, m.optJSONArray("same_chip_devices"))
@@ -105,7 +114,10 @@ object BenchEngine {
             antutuTotal = antutuTotal, antutuCpu = antutuCpu, antutuGpu = antutuGpu,
             antutuClusters = entry.optString("antutu_clusters").ifBlank { null },
             ludashiScore = ludashiScore,
-            pcEquiv = pcEquiv, emulatorTiers = tiers, upgrade = upgrade,
+            pcEquiv = pcEquiv,
+            gpuEquivName = gpuEquiv?.optString("name")?.ifBlank { null },
+            gpuEquivScore = gpuEquiv?.optLong("score", -1)?.takeIf { it > 0 },
+            emulatorTiers = tiers, upgrade = upgrade,
             sameChip = sameChip, generation = gen
         )
     }
@@ -212,5 +224,50 @@ object BenchEngine {
                 add(Triple(y, n, s))
             }
         }.sortedBy { it.first }
+    }
+
+    /**
+     * 驱动实测 ↔ PC 显卡：带宽（GB/s）与算力（TFLOPS）是物理量，跨设备可比。
+     * 用内置 PC 显卡规格表（显存带宽/FP32 算力）最近邻，展示"≈ 台式机某显卡的 x%"。
+     * 注意：这是物理量级对比，不是同一跑分体系换算。
+     */
+    fun driverVsPc(fillBandwidthGBs: Double, computeGFLOPS: Double, context: Context): PcGpuCompare? {
+        if (fillBandwidthGBs <= 0 && computeGFLOPS <= 0) return null
+        val m = meta(context) ?: return null
+        val specs = m.optJSONArray("pc_gpu_specs") ?: return null
+        if (specs.length() == 0) return null
+        val computeTFLOPS = computeGFLOPS / 1000.0
+
+        var bwName: String? = null; var bwGBs = 0.0; var bwPct = 0
+        var cpName: String? = null; var cpTF = 0.0; var cpPct = 0
+        var bwDiff = Double.MAX_VALUE; var cpDiff = Double.MAX_VALUE
+        for (i in 0 until specs.length()) {
+            val o = specs.getJSONArray(i)
+            if (o.length() < 3) continue
+            val name = o.optString(0)
+            val bw = o.optDouble(1, 0.0)
+            val tf = o.optDouble(2, 0.0)
+            if (bw <= 0 || tf <= 0) continue
+            if (fillBandwidthGBs > 0) {
+                val d = kotlin.math.abs(bw - fillBandwidthGBs)
+                if (d < bwDiff) {
+                    bwDiff = d; bwName = name; bwGBs = bw
+                    bwPct = ((fillBandwidthGBs / bw) * 100).toInt().coerceAtMost(100)
+                }
+            }
+            if (computeTFLOPS > 0) {
+                val d = kotlin.math.abs(tf - computeTFLOPS)
+                if (d < cpDiff) {
+                    cpDiff = d; cpName = name; cpTF = tf
+                    cpPct = ((computeTFLOPS / tf) * 100).toInt().coerceAtMost(100)
+                }
+            }
+        }
+        val n1 = bwName; val n2 = cpName
+        if ((fillBandwidthGBs > 0 && n1 == null) || (computeTFLOPS > 0 && n2 == null)) return null
+        return PcGpuCompare(
+            bandwidthName = n1 ?: "—", bandwidthGBs = bwGBs, bandwidthPct = bwPct,
+            computeName = n2 ?: "—", computeTFLOPS = cpTF, computePct = cpPct
+        )
     }
 }
