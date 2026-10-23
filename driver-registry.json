@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
-  "updated_at": "2026-10-22T15:09:40Z",
+  "updated_at": "2026-10-23T15:20:00Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -52,7 +52,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-01-14T13:54:43Z"
+      "updated_at": "2026-01-14T13:54:43Z",
+      "latest_tag": "v840",
+      "latest_date": "2026-01-14T13:54:43Z",
+      "latest_body": "Qualcomm drivers v840 extracted from Meta Ray-Ban Glasses.\r\n\r\nNOTES\r\n\r\n- For a7xx. Maybe a6xx.\r\n\r\n\r\n---\r\n\r\nUse at your own discretion.\r\n\r\nThanks:\r\n\r\nHugo\r\nStevenMX"
     },
     {
       "id": "stevenmxz",
@@ -102,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1042,
+      "stars": 1043,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -117,7 +120,10 @@
           "Turnip Gen8"
         ]
       },
-      "updated_at": "2026-10-19T08:50:28Z"
+      "updated_at": "2026-10-19T08:50:28Z",
+      "latest_tag": "v27.0.0-R1",
+      "latest_date": "2026-10-19T08:50:28Z",
+      "latest_body": "V38 build from: https://github.com/whitebelyash/mesa-unified/tree/turnip/gen8 + mesa Upstream\r\n\r\nfor A8xx GPUs ( a840, a830, a829, a825, 810)\r\n\r\nV38 patched with Winnative patchs/hacks https://github.com/WinNative-Emu/Drivers/tree/main/patches\r\n\r\nhttps://github.com/Vauzi-17/710/tree/experiment/patches\r\n\r\nmesa now is 27.0.0, some previous patchs were merged to upstream, and added some new patchs from Hugo/Vauzi, thanks to them\r\n\r\nVulkan Version 1.4.363"
     },
     {
       "id": "stevenmxz-adrenotools",
@@ -146,7 +152,10 @@
       "stars": 20,
       "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）",
       "updated_at": "2026-01-05T10:36:05Z",
-      "companion": []
+      "companion": [],
+      "latest_tag": "v849",
+      "latest_date": "2026-01-05T10:36:05Z",
+      "latest_body": "for adreno a8xx devices only"
     },
     {
       "id": "mrpurple",
@@ -196,7 +205,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 853,
+      "stars": 854,
       "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -207,7 +216,10 @@
           "turnip_mrpurple"
         ]
       },
-      "updated_at": "2026-08-17T12:38:01Z"
+      "updated_at": "2026-08-17T12:38:01Z",
+      "latest_tag": "vturnip_mrpurple_T30-toasted.adpkg",
+      "latest_date": "2026-08-17T12:38:01Z",
+      "latest_body": "• Turnip Driver Unified MrPurple\n• Unified: A6XX, A7XX, A8XX\n• READ IT before all, please.\n━━━━━━ ×✕× ━━━━━━\n- Driver Version: 26.3.0-devel\n- Version: T-30\n- Vulkan Version: 1.4.359\n- By: Mr_Purple_666\n━━━━━━ ×✕× ━━━━━━\n- Changelog:\n•Upstream to latest Mesa source\n•All T-29 changes\n•Partially dropped A710 and A720 for now (there were several bugs related to these devices)\n•Fixed 6XX and A7XX Support\n•Fixed some weird bugs/problems that have in T29\n•Fixed graphical issues present in the test vers"
     },
     {
       "id": "v3kt0r-builder",
@@ -267,7 +279,10 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-09-18T20:04:43Z"
+      "updated_at": "2026-09-18T20:04:43Z",
+      "latest_tag": "19_sep_2026",
+      "latest_date": "2026-09-18T20:04:43Z",
+      "latest_body": "## KernelSU and Magisk supported\n## Android 14 and above required to install\n\n* ✅ **Turnip (Vulkan driver)** upgraded to **Mesa 26.2.3**, synced with latest upstream changes.\n* ⚡ Continued **performance improvements** and **bug fixes** for various Vulkan games and applications.\n* 🎮 Enhanced compatibility and support for newer **Qualcomm Adreno GPUs**.\n* 🧩 Additional tuning for Android-specific driver quirks and rendering edge cases.\n* 🚀 Optimized **GPU Cache Cleaner** into single-pass targeted t"
     },
     {
       "id": "banner",
@@ -343,7 +358,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-10-23T02:23:16Z"
+      "updated_at": "2026-10-23T09:09:21Z",
+      "latest_tag": "v27.0.0-20261023-r3",
+      "latest_date": "2026-10-23T09:09:21Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`056bcae`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/056bcaeb8531580f13862db87530bcff07bbed9a) |\n| **Commit title** | v3dv: keep descriptors aligned after inline uniform blocks |\n| **Vulkan version** | Vulkan 1.4.363 |\n| **Date** | 2026-10-23 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--- | :-"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -403,7 +421,10 @@
           "Mesa"
         ]
       },
-      "updated_at": "2024-01-01T05:33:16Z"
+      "updated_at": "2024-01-01T05:33:16Z",
+      "latest_tag": "github_run",
+      "latest_date": "2024-01-01T05:33:16Z",
+      "latest_body": "Turnip magisk module and driver package for adrenotools"
     },
     {
       "id": "whitebelyash",
@@ -466,7 +487,10 @@
           "stu_"
         ]
       },
-      "updated_at": "2026-09-19T13:37:44Z"
+      "updated_at": "2026-09-19T13:37:44Z",
+      "latest_tag": "stu_v2",
+      "latest_date": "2026-09-19T13:37:44Z",
+      "latest_body": "Stable Turnip Vulkan V2\r\nBuilt from: https://github.com/whitebelyash/mesa-unified (turnip/26.2 branch). Based on Mesa 26.2.     \r\n\r\nI didn't test this this much. Contact me on MojoLauncher.en (#offtopic-non-help, requires Community role) or EmuCore discord if there are any issues.\r\n\r\n\r\n>[!WARNING]\r\n> Please don't report issues to Mesa, PLEASE\r\n          \r\nSupported GPUs:\r\n* Adreno 8XX Family: 840, 830, 829, 825, 812, 810\r\n* Adreno 7XX Family: any GPU supported by the upstream Turnip + 710/720/72"
     },
     {
       "id": "jade-mesa",
@@ -525,7 +549,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-08-31T10:26:10Z"
+      "updated_at": "2026-08-31T10:26:10Z",
+      "latest_tag": "v26.3.0-V5.0",
+      "latest_date": "2026-08-31T10:26:10Z",
+      "latest_body": "### 6XX\n- **605** : **Supported**  ✓\n- **610** : **Supported**  ✓\n- **612** : **Supported**  ✓\n- **613** : **Supported**  ✓\n- **615** : **Supported**  ✓\n- **616** : **Supported**  ✓\n- **618** : **Supported**  ✓\n- **619** : **Supported**  ✓\n- **619L** : **Supported** ✓\n- **620** : **Supported**  ✓\n- **630** : **Supported**  ✓\n- **640** : **Supported**  ✓\n- **642** : **Supported**  ✓\n- **643** : **Supported**  ✓\n- **644** : **Supported**  ✓\n- **650** : **Supported**  ✓\n- **660** : **Supported**  ✓"
     },
     {
       "id": "tiagosouza",
@@ -584,7 +611,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-08-25T12:40:44Z"
+      "updated_at": "2026-08-25T12:40:44Z",
+      "latest_tag": "20260825",
+      "latest_date": "2026-08-25T12:40:44Z",
+      "latest_body": ""
     },
     {
       "id": "s1mptom-eden",
@@ -615,7 +645,10 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-03-18T17:25:13Z"
+      "updated_at": "2026-03-18T17:25:13Z",
+      "latest_tag": "mesa_v26.1-eden-fix-latest-crash-fix",
+      "latest_date": "2026-03-18T17:25:13Z",
+      "latest_body": "Mesa Turnip V26.1-eden-fix-latest-crash-fix  \nBuilt from: https://gitlab.freedesktop.org/mesa/mesa (latest main)\n\n>[!WARNING]\n> GPUs other than A830/A840 may work unstable!\n\nThis is a build of current upstream Mesa with my GPU enablement hacks applied\n"
     },
     {
       "id": "wintermist-a810",
@@ -646,7 +679,10 @@
           "A81"
         ]
       },
-      "updated_at": "2026-10-19T03:35:47Z"
+      "updated_at": "2026-10-19T03:35:47Z",
+      "latest_tag": "tu_v4N-PR2",
+      "latest_date": "2026-10-19T03:35:47Z",
+      "latest_body": "**Experimental and may introduce bugs and glitches**\r\n\r\nA81X Turnip Vulkan V4N-PR2\r\nhttps://github.com/WinterMist010/mist-mesa-unified.git new-a810 branch.\r\n\r\nSecond pre release of V4N\r\n\r\nFork from whitebelyash's turnip to provide better Adreno 810/Adreno 812 configs.\r\n\r\nBuild based on whitebelyash upstream with my hacks. Contact me for bugs and glitches.\r\n\r\n> Please don't report issues to Mesa. Report them to me @ discord: voided.exe_\r\n          \r\nSupported GPUs:\r\n* Adreno 8XX Family: 840, 830,"
     },
     {
       "id": "diskdvd-a8xx",
@@ -677,7 +713,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-09-27T12:22:38Z"
+      "updated_at": "2026-09-27T12:22:38Z",
+      "latest_tag": "tu_A8XX-Y3.0",
+      "latest_date": "2026-09-27T12:22:38Z",
+      "latest_body": "Turnip TU8 — Fork of whitebelyashx's Repository with Adreno 8XX Patches\r\n\r\nThis release is a custom fork of the original work by whitebelyashx, extended with additional patches and optimizations specifically targeted at Adreno 810/829.\r\nThe build is still in beta testing, and stability may vary depending on the device.\r\nPlease do not report any issues to Mesa, as this is an unofficial fork.\r\n\r\n💿 Interlayer:\r\n1) proton-10arm64ec or proton-11arm64ec\r\n2) Rendering mode: DXVK 2.4.1 or then gradually"
     },
     {
       "id": "frane-a810",
@@ -707,7 +746,10 @@
           "A810"
         ]
       },
-      "updated_at": "2026-10-11T09:43:37Z"
+      "updated_at": "2026-10-11T09:43:37Z",
+      "latest_tag": "drnas-turnip-a810-s-ultimate-v1.0",
+      "latest_date": "2026-10-11T09:43:37Z",
+      "latest_body": "# Drnas-Turnip A810 S Ultimate v1.0\n\n**First public release of S Ultimate for Adreno 810**  \nAndroid AArch64 / KGSL · Mesa 26.3.0-devel · Vulkan Turnip\n\nThis release packages the **audited RC1 binary unchanged**. Only the installer's displayed name, package version and ZIP filename differ from RC1. No further autotuner changes were made after the successful RC1 Android CI build.\n\n## Features\n\n- **Dynamic V3 category learning:** a lightweight four-slot cache of measured GMEM/SYSMEM winners per re"
     },
     {
       "id": "vauzi-710",
@@ -729,7 +771,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 76,
+      "stars": 77,
       "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
       "notes": "710 用户首选",
       "companion": [],
@@ -740,7 +782,10 @@
           "720"
         ]
       },
-      "updated_at": "2026-10-21T08:23:37Z"
+      "updated_at": "2026-10-21T08:23:37Z",
+      "latest_tag": "4.4-exp",
+      "latest_date": "2026-10-21T08:23:37Z",
+      "latest_body": "> Experimental build based on Mesa (main branch).\r\n> Not officially supported — do **not** report issues to Mesa upstream.\r\n\r\n## Support\r\n- Need help? https://t.me/vauzi_17\r\n\r\n---\r\n\r\n## Changes in v4.4-exp\r\n- Synced with the latest Mesa main branch\r\n\r\n## Build Info\r\n| | |\r\n|---|---|\r\n| Mesa | 27.0.0-devel |\r\n| Mesa commit | [`74920caaa0be`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/74920caaa0bed55313e7af00036c61515621913b) (2026-10-21) |\r\n| Vulkan | 1.4.363 |\r\n| Android NDK | r29, compil"
     },
     {
       "id": "faux123-8xx",
@@ -774,7 +819,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-10-20T22:20:07Z"
+      "updated_at": "2026-10-20T22:20:07Z",
+      "latest_tag": "v1.1.9",
+      "latest_date": "2026-10-20T22:20:07Z",
+      "latest_body": "Mesa Turnip for Adreno 8xx, built from mesa `main` at `dd45fd0`.\n\nDownload `turnip_faux123_v1.1.9.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.1.7\n\n- GPU hang fixed: a compute job after a tiled render pass could freeze the game (Sonic Racing CrossWorlds on Eden froze for about 2 seconds, three times a minute).\n- Memory leak fixed in GPU job submission, plus a file handle leak.\n- Faster compute shaders (shared memory reads), wi"
     },
     {
       "id": "fristoner-g57",
@@ -806,7 +854,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-20T01:26:28Z"
+      "updated_at": "2026-10-20T01:26:28Z",
+      "latest_tag": "v3.0",
+      "latest_date": "2026-10-20T01:26:28Z",
+      "latest_body": "## Panvk-Mali-G57 3.0\r\n\r\nPanVK for Mali (kbase), for Winlator / DXVK / vkd3d-proton and emulators with a custom GPU driver option.\r\n\r\n**What's new**\r\n- D3D12 works through vkd3d-proton (with [FristOneRR-Wrapper 3.0](https://github.com/FristOneRR-Admin/FristOneRR-Wrapperv1)).\r\n- Black triangles fixed in some games.\r\n- Mali-G52 bug fixes (DXVK 2.x on Bifrost is planned for the next update; use DXVK 1.x).\r\n- Works in Switch, PS2, PS3 and PS4 emulators that can install custom GPU drivers (PS2 recomm"
     },
     {
       "id": "luke-g52",
@@ -838,7 +889,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-09-30T19:18:38Z"
+      "updated_at": "2026-09-30T19:18:38Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "noysz-g99",
@@ -870,7 +924,10 @@
           "G57"
         ]
       },
-      "updated_at": "2026-10-23T00:24:34Z"
+      "updated_at": "2026-10-23T00:24:34Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "xodios-g57",
@@ -902,7 +959,10 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-01T15:32:36Z"
+      "updated_at": "2026-10-01T15:32:36Z",
+      "latest_tag": "build-2026-10-01-152609-2699094",
+      "latest_date": "2026-10-01T15:32:36Z",
+      "latest_body": "## PanVK + Zink for Termux (aarch64, native build)\r\n\r\nBuilt natively inside Termux (`termux/termux-docker:aarch64`)\r\non `ubuntu-24.04-arm`.\r\n\r\n**Build date (UTC):** `2026-10-01`\r\n**Build time (UTC):** `152609`\r\n**Commit:** `26990947b05665a0745439a2d7cfb664e7c8ba2c`\r\n**Build types:** `[\"debugoptimized\",\"release\"]`\r\n**Upstream sync:** `true`\r\n\r\n### What is included\r\n- **PanVK** — Vulkan driver for Mali-G57 (Valhall JM) via kbase\r\n- **Zink** — Gallium driver that provides OpenGL/GLES on top of\r\n  V"
     },
     {
       "id": "wonderkast-g720",
@@ -932,7 +992,10 @@
           "vulkan"
         ]
       },
-      "updated_at": "2026-09-24T22:42:17Z"
+      "updated_at": "2026-09-24T22:42:17Z",
+      "latest_tag": "0.1.0-beta.2",
+      "latest_date": "2026-09-24T22:42:17Z",
+      "latest_body": "# 🚀 PanVK G720 0.1.0 Beta 2\n\n### Beta pública • Mali-G720 • Kbase/CSF • Android\n\n`Vulkan → Mesa/PanVK → Kbase/CSF → Mali-G720`\n\n> [!WARNING]\n> **Versão experimental para testes da comunidade.**\n>\n> Não declara conformidade Vulkan nem compatibilidade universal.\n\n## ✨ Destaques\n\n- ✅ PanVK nativo sobre Kbase/CSF\n- ✅ Mali-G720 MC8 no hardware de referência\n- ✅ Computação e gráficos\n- ✅ Geometry Shader\n- ✅ Tessellation\n- ✅ GPU WAIT64 interno para dependências elegíveis\n- 🧪 Winlator, DXVK e jogos em v"
     },
     {
       "id": "zenithblue-kbase",
@@ -965,7 +1028,10 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-22T17:15:12Z"
+      "updated_at": "2026-10-23T11:14:10Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "martuniy-panvk",
@@ -1000,7 +1066,10 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-07-22T22:33:59Z"
+      "updated_at": "2026-07-22T22:33:59Z",
+      "latest_tag": "v1.0-alpha",
+      "latest_date": "2026-07-22T22:33:59Z",
+      "latest_body": "First experimental public build of Mesa 26.2-rc1 (PanVK) with custom Turnip OpenGL stubs for stock Android devices."
     },
     {
       "id": "bkaneko-mtk",
@@ -1035,7 +1104,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-08-21T05:58:05Z"
+      "updated_at": "2026-08-21T05:58:05Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "faux123-ace",
@@ -1064,7 +1136,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-15T14:29:26Z"
+      "updated_at": "2026-10-15T14:29:26Z",
+      "latest_tag": "v0.40.0",
+      "latest_date": "2026-10-15T14:29:26Z",
+      "latest_body": "Mesa PanVK for the GameForce Ace (Mali-G610), Mesa 26.3.0-devel, running on the `mali_kbase` kernel driver. Experimental.\n\n**Bug reports and questions are welcome:** open an issue here, post in [r/faux123](https://www.reddit.com/r/faux123/) with the **PanVK help** flair, or ask in the [FauxApps Discord](https://discord.gg/ceyPguKNbu). I do not do remote debugging, and I do not take requests for devices I do not own.\n\nDownload `panvk_faux123_ace_v0.40.0.adpkg.zip` below and import it in an app wh"
     },
     {
       "id": "faux123-rg556",
@@ -1095,7 +1170,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-15T13:56:26Z"
+      "updated_at": "2026-10-15T13:56:26Z",
+      "latest_tag": "v0.16.0",
+      "latest_date": "2026-10-15T13:56:26Z",
+      "latest_body": "Mesa PanVK for the Anbernic RG556 (Mali-G57), Mesa 26.3.0-devel, running on the `mali_kbase` kernel driver. Experimental.\n\n**Bug reports and questions are welcome:** open an issue here, post in [r/faux123](https://www.reddit.com/r/faux123/) with the **PanVK help** flair, or ask in the [FauxApps Discord](https://discord.gg/ceyPguKNbu). I do not do remote debugging, and I do not take requests for devices I do not own.\n\nDownload `panvk_faux123_rg556_v0.16.0.adpkg.zip` below and import it in an app "
     },
     {
       "id": "dkdndje-g720",
@@ -1125,7 +1203,10 @@
           "vulkan"
         ]
       },
-      "updated_at": "2026-10-01T19:47:49Z"
+      "updated_at": "2026-10-01T19:47:49Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "koadzba-droid",
@@ -1154,7 +1235,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-06-04T17:39:38Z"
+      "updated_at": "2026-06-04T17:39:38Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "pandxvk",
@@ -1181,7 +1265,10 @@
           "merged"
         ]
       },
-      "updated_at": "2026-10-15T10:05:32Z"
+      "updated_at": "2026-10-15T10:05:32Z",
+      "latest_tag": "v01",
+      "latest_date": "2026-10-15T10:05:32Z",
+      "latest_body": "# panDXVK v01\n\n## Summary\n\n**What this release targets.** v01 is a **compatibility build first**, with the stability\nfixes alongside it. The Sarek v1.14.1 sync carries the compatibility gain — three and a half\nyears of upstream renderer and state-handling fixes — and the BC→ASTC transcode exists so\ntextures display at all on Mali. Stability comes from the teardown and device-detachment\nfixes and from the GPL library path disabling itself rather than crashing after repeated\nlink failures. The asy"
     },
     {
       "id": "xclipse940-radv",
@@ -1211,7 +1298,10 @@
           "Xclipse"
         ]
       },
-      "updated_at": "2026-10-19T22:27:02Z"
+      "updated_at": "2026-10-19T22:27:02Z",
+      "latest_tag": "v1.8.0",
+      "latest_date": "2026-10-19T22:27:02Z",
+      "latest_body": "RADV for Samsung Xclipse GPUs. This release loads BC6H and BC7 textures about twice as fast\r\nand adds a build for Bannerlator's Wayland mode.\r\n\r\n## What's new\r\n\r\n- **BC6H and BC7 textures load about twice as fast.** The driver converts these formats on the GPU\r\n  when a game loads them, and that conversion is now much quicker. For a 2048x2048 texture on the\r\n  Xclipse 920: BC7 about 4 ms instead of 10, BC6H about 2.5 ms instead of 5. Games that stream many\r\n  textures should stutter less while l"
     },
     {
       "id": "winnative-drivers",
@@ -1270,7 +1360,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-09-30T17:46:50Z"
+      "updated_at": "2026-09-30T17:46:50Z",
+      "latest_tag": "v1.19",
+      "latest_date": "2026-09-30T17:46:50Z",
+      "latest_body": "Turnip built from upstream Mesa main, packaged for Adrenotools.\n\n| | |\n|---|---|\n| Mesa | `30da39187` (26.3.0-devel) |\n| NDK | r26d |\n| Previous release | [v1.18](https://github.com/WinNative-Emu/Drivers/releases/tag/v1.18) |\n\n## Driver changes since v1.18\n\n_No repository commits since the previous release; this is a Mesa-only refresh._\n\n## Mesa changes since v1.18\n\n`c4eb475c2` … `30da39187` — **52 commits** ([compare on GitLab](https://gitlab.freedesktop.org/mesa/mesa/-/compare/c4eb475c289b7129"
     },
     {
       "id": "balemunis-aurora",
@@ -1320,7 +1413,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 241,
+      "stars": 242,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1329,7 +1422,10 @@
           "Aurora"
         ]
       },
-      "updated_at": "2026-08-26T13:19:57Z"
+      "updated_at": "2026-08-26T13:19:57Z",
+      "latest_tag": "V2",
+      "latest_date": "2026-08-26T13:19:57Z",
+      "latest_body": "# Balemuni’s Turnip Mesa 26.3.0-devel — Apex Universal/Ultimate V2\r\n\r\nApex Universal V2 is the next generation of the Apex Edition — rebuilt from the latest Mesa main branch, compiled with an upgraded toolchain, and tested across multiple devices. It delivers smoother performance, higher stability, and broader compatibility than previous releases.\r\n\r\n## What’s New Compared to Apex Edition\r\n\r\n### Updated Toolchain\r\nBoth builds are now compiled with NDK r28, improving frame pacing and instruction "
     },
     {
       "id": "jimvulkan-panvk",
@@ -1360,7 +1456,10 @@
           "PanVK"
         ]
       },
-      "updated_at": "2026-09-27T20:57:19Z"
+      "updated_at": "2026-09-27T20:57:19Z",
+      "latest_tag": "v1.3.0",
+      "latest_date": "2026-09-27T20:57:19Z",
+      "latest_body": "# mali-panvk r4\r\n\r\nPanVK for Arm Mali Bifrost GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel\r\ndriver the phone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Based on Mesa\r\n26.3.0-devel; the driver reports Vulkan 1.3.\r\n\r\n## Tested on\r\n\r\n| Phone | GPU | SoC |\r\n|---|---|---|\r\n| Galaxy S10e | Mali-G76 MC12 | Exynos 9820 |\r\n| Galaxy A31 | Mali-G52 MC2 | MediaTek Helio P65 (MT6768) |\r\n\r\nThe geometry shader, tessellation, transform feedback, draw, descriptor,"
     },
     {
       "id": "apexspan-panvk-g57",
@@ -1389,7 +1488,10 @@
           "PanVK"
         ]
       },
-      "updated_at": "2026-09-30T08:57:18Z"
+      "updated_at": "2026-09-30T08:57:18Z",
+      "latest_tag": "v1.3.0",
+      "latest_date": "2026-09-30T08:57:18Z",
+      "latest_body": "# PanVK Mali-G57 Release v1.3.0 (Termux ARM64)\n\nPrebuilt Mesa PanVK Vulkan driver for ARM Mali-G57 MC2: strict submit-nowait\npipelining, true async submission, zero-copy dma-buf present, pipelined tiler\noverlap, dma-buf fd interop, and real semaphore fd import/export via kbase\nsoft-fence atoms.\n\nBinary md5: `b97530425c9aed22d6847f4ac6e3063d` (`libvulkan_panfrost.so`)\n\n## What's new in v1.3.0\n\n- **Submit-nowait** (`PANVK_SUBMIT_NOWAIT=1`, needs `PANVK_ASYNC=1`): one strict\n  linear atom chain acr"
     },
     {
       "id": "msx-g615-eden",
@@ -1420,7 +1522,10 @@
           "EDEN"
         ]
       },
-      "updated_at": "2026-10-10T21:28:37Z"
+      "updated_at": "2026-10-10T21:28:37Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "pandxvk-lloyd262",
@@ -1446,7 +1551,10 @@
           "zip"
         ]
       },
-      "updated_at": "2026-10-08T13:57:15Z"
+      "updated_at": "2026-10-08T13:57:15Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "minegraph-panvk",
@@ -1480,7 +1588,10 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-06T07:15:50Z"
+      "updated_at": "2026-10-06T07:15:50Z",
+      "latest_tag": "Mesa.26.3.0-panvk.4",
+      "latest_date": "2026-10-06T07:15:50Z",
+      "latest_body": "# Mesa 26.3.0 panvk.4 — Mali-G610 D3D12 (vkd3d) 支持修复\n\nMali-G610 (Valhall v10) D3D12/vkd3d 支持修复 + kbase 老 BSP 内核兼容性改进。\n\n## 修复内容\n\n### 1. D3D12 / vkd3d 支持（重点修复）\n- vkd3d-proton 创建 D3D12 设备时**硬性要求** `robustBufferAccess2`，而 panvk 此前仅在 arch 11+（G715/G720）上暴露该 feature。Mali-G610 / G710（arch 10）上 `D3D12CreateDevice` 直接返回 `VK_ERROR_FEATURE_NOT_PRESENT`，所有 D3D12 应用静默失败。\n- 现在同样在 v10 上暴露 `robustBufferAccess2`。v10 编译器本已为 core `robustBufferAccess`（原值为 true）对所有 buffer 访问做边界检查，且 `nullDescriptor` 早已支持——逐元素边界检查天然满足"
     },
     {
       "id": "alexsanz-sd865",
@@ -1500,7 +1611,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 33,
+      "stars": 34,
       "description": "骁龙 865 / Adreno 650 专用 Turnip（Mesa main bffd91947efc），Switch 模拟优化，社区 Z 构建",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1510,7 +1621,10 @@
           "SD865"
         ]
       },
-      "updated_at": "2026-10-19T08:27:14Z"
+      "updated_at": "2026-10-19T08:27:14Z",
+      "latest_tag": "v0.3.0",
+      "latest_date": "2026-10-19T08:27:14Z",
+      "latest_body": "\r\n\r\n**What’s new**\r\n•\tFewer crashes.\r\n•\tMore stable image, with fewer visual bugs and glitches.\r\n•\tEnhanced solution for correct colors in Unreal Engine games.\r\n•\tAnisotropic filtering re-enabled (up to 4x) for sharper textures at an angle.\r\n•\tExperimental less stuttering while shaders compile\r\n•\tKnown trade-off: This version is slightly slower than v0.2.0 in some games in raw performance. In exchange, it is much more stable and has fewer visual bugs. I think it’s way worth it, since at docked 1"
     },
     {
       "id": "weab-turnip-ci",
@@ -1538,7 +1652,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2025-10-11T23:54:12Z"
+      "updated_at": "2025-10-11T23:54:12Z",
+      "latest_tag": "25.3.0-devel_bbdd688",
+      "latest_date": "2025-10-11T23:54:12Z",
+      "latest_body": "### Base commit : [bbdd688](https://gitlab.freedesktop.org/mesa/mesa/-/commit/bbdd688)\r\n## Upstreams / Patches\r\nThese have not been merged by Mesa officially yet and may introduce bugs or\r\nwe revert stuff that breaks games but still got merged in (see --reverse)\r\n- force_sysmem_no_autotuner, ../../patches/force_sysmem_no_autotuner.patch, \r\n\r\n_Upstreams / Patches are only applied to the patched version (\\_patched.zip)_\r\n_If a patch is not present anymore, it's most likely because it got merged, i"
     },
     {
       "id": "faux123-pixel7",
@@ -1571,7 +1688,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-15T12:26:45Z"
+      "updated_at": "2026-10-15T12:26:45Z",
+      "latest_tag": "v0.11.0",
+      "latest_date": "2026-10-15T12:26:45Z",
+      "latest_body": "Mesa PanVK for the Google Pixel 7 (Mali-G710), Mesa 26.3.0-devel, running on the `mali_kbase` kernel driver. Experimental.\n\n**Bug reports and questions are welcome:** open an issue here, post in [r/faux123](https://www.reddit.com/r/faux123/) with the **PanVK help** flair, or ask in the [FauxApps Discord](https://discord.gg/ceyPguKNbu). I do not do remote debugging, and I do not take requests for devices I do not own.\n\nDownload `panvk_faux123_pixel7_v0.11.0.adpkg.zip` below and import it in an ap"
     },
     {
       "id": "faux123-rp4pro",
@@ -1602,7 +1722,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-15T14:14:04Z"
+      "updated_at": "2026-10-15T14:14:04Z",
+      "latest_tag": "v0.17.0",
+      "latest_date": "2026-10-15T14:14:04Z",
+      "latest_body": "Mesa PanVK for the Retroid Pocket 4 Pro (Mali-G77), Mesa 26.3.0-devel, running on the `mali_kbase` kernel driver. Experimental.\n\n**Bug reports and questions are welcome:** open an issue here, post in [r/faux123](https://www.reddit.com/r/faux123/) with the **PanVK help** flair, or ask in the [FauxApps Discord](https://discord.gg/ceyPguKNbu). I do not do remote debugging, and I do not take requests for devices I do not own.\n\nDownload `panvk_faux123_rp4pro_v0.17.0.adpkg.zip` below and import it in "
     },
     {
       "id": "lukevalen-kbase",
@@ -1641,7 +1764,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-18T11:53:44Z"
+      "updated_at": "2026-10-18T11:53:44Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "guna-panvk-kbase",
@@ -1680,7 +1806,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-16T19:46:16Z"
+      "updated_at": "2026-10-16T19:46:16Z",
+      "latest_tag": "g615-1.1.5-FC",
+      "latest_date": "2026-10-16T19:46:16Z",
+      "latest_body": "# PanVK G615 1.1.5-FC\n\nA Vulkan driver for phones with a **Mali-G615** GPU (for example Dimensity 7300 / 8300) to play PC games\nthrough Winlator-style apps or Termux.\n\n## What's new\n- **Compressed game textures (BC1-BC7) now use the same memory as on a PC GPU.** That is half of 1.1.4-FC\n  for most textures and up to 2.5x less for some, leaving more RAM for the game.\n- **Textures load faster**: up to 7x faster conversion, so fewer stutters when new areas stream in.\n- Looks the same in play (teste"
     },
     {
       "id": "ghaelv-turnip-lemon-ade",
@@ -1716,7 +1845,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-13T08:59:34Z"
+      "updated_at": "2026-10-13T08:59:34Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "winx-xclipse-drivers",
@@ -1743,7 +1875,10 @@
           "Xclipse"
         ]
       },
-      "updated_at": "2026-09-14T16:55:29Z"
+      "updated_at": "2026-09-14T16:55:29Z",
+      "latest_tag": "v0.9.5",
+      "latest_date": "2026-09-14T16:55:29Z",
+      "latest_body": "# WinXclipse v0.9.5\r\n\r\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\r\n\r\n## Highlights\r\n\r\n### Apex"
     },
     {
       "id": "wrapper-banner",
@@ -1768,7 +1903,10 @@
           "Wrapper"
         ]
       },
-      "updated_at": "2026-10-13T03:33:30Z"
+      "updated_at": "2026-10-13T03:33:30Z",
+      "latest_tag": "rutabaga-drivers-v1",
+      "latest_date": "2026-10-13T03:33:30Z",
+      "latest_body": "Rutabaga Turnip (Mesa freedreno) Vulkan drivers for Adreno, repackaged from GameHub as AdrenoTools zips (meta.json + libvulkan_freedreno.so).\n\n- **Rutabaga-26.10.10**: Mesa 26.3.0-devel git-b00479181d. Newest: Uncharted A6xx/A7xx compat + SSBO emulation, Assassin's Creed IV work, indexed-draw hang workaround (witcher3-hdr branch).\n- **Rutabaga-26.09.24**: Mesa 26.3.0-devel git-511bc6093f. First Rutabaga build (R33): Uncharted + Onimusha profiles, Wave32 option, mesh-shader opt-out.\n- **Rutabaga-"
     },
     {
       "id": "wrapper-fristoner",
@@ -1797,7 +1935,10 @@
           "Wrapper"
         ]
       },
-      "updated_at": "2026-10-20T01:37:35Z"
+      "updated_at": "2026-10-20T01:37:35Z",
+      "latest_tag": "v3.0",
+      "latest_date": "2026-10-20T01:37:35Z",
+      "latest_body": "## FristOneRR-Wrapper 3.0\r\n\r\nFor [FristOneRR PanVK 3.0](https://github.com/FristOneRR/FristOneRR-Panvk-Driver).\r\n\r\n**What's new**\r\n- D3D12 through vkd3d-proton.\r\n- One-click install: extract the zip, double-click `install.bat` inside the container, then restart the container. It backs up the app's own wrapper to `Z:\\usr\\lib\\FristOneRR-backup\\` first. `restore.bat` puts it back.\r\n\r\n**Packages (same wrapper)**\r\n- `FristOneRR-Wrapper-3.0.zip`: `libvulkan_wrapper.so` + `install.bat` + `restore.bat`\r"
     },
     {
       "id": "wrapper-winx",
@@ -1826,7 +1967,25 @@
           "Wrapper"
         ]
       },
-      "updated_at": "2026-09-14T16:55:29Z"
+      "updated_at": "2026-09-14T16:55:29Z",
+      "latest_tag": "v0.9.5",
+      "latest_date": "2026-09-14T16:55:29Z",
+      "latest_body": "# WinXclipse v0.9.5\r\n\r\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\r\n\r\n## Highlights\r\n\r\n### Apex"
+    },
+    {
+      "id": "rutabaga-gfx",
+      "name": "Rutabaga（GPU 虚拟化）",
+      "driver_type": "component",
+      "owner": "magma-gpu",
+      "repo": "magma-gpu/rutabaga_gfx",
+      "api_url": "https://api.github.com/repos/magma-gpu/rutabaga_gfx/releases",
+      "description": "跨平台开源 Rust 版 GPU paravirtualization 驱动（★72，活跃）：供 Android 模拟器/AVD（Cuttlefish 等）使用。注：用户提及的 The412Banner Rutabaga fork 经 GitHub 60 仓库全量核查不存在，已收录官方上游源。",
+      "pushed_at": "2026-10-20",
+      "updated_at": "2026-08-06T14:16:04Z",
+      "stars": 72,
+      "latest_tag": "v0.1.85",
+      "latest_date": "2026-08-06T14:16:04Z",
+      "latest_body": "## What's Changed\r\n* rutabaga: Fix map_placed implementation for fixed mappings by @valentineburley in https://github.com/magma-gpu/rutabaga_gfx/pull/65\r\n* Fixes to magma-gpu crates by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull/67\r\n* Fixes ported from libkrun's downstream rutabaga_gfx by @dorindabassey in https://github.com/magma-gpu/rutabaga_gfx/pull/68\r\n* rutabaga release 0.1.85 + flexible array removal by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull"
     }
   ]
 }

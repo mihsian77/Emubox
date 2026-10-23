@@ -22,6 +22,7 @@ if not TOKEN:
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(REPO_ROOT, "driver-registry.json")
+REGISTRY_ASSETS = os.path.join(REPO_ROOT, "app", "src", "main", "assets", "driver-registry.json")
 CATALOG = os.path.join(REPO_ROOT, "catalog", "catalog.json")
 
 OWNER_REPO_RE = re.compile(
@@ -48,9 +49,13 @@ def fetch_repo_meta(owner: str, repo: str, retries: int = 3):
     for attempt in range(retries):
         try:
             released = ""
+            latest_tag = ""
+            latest_body = ""
             try:
                 rel = api_get(f"https://api.github.com/repos/{owner}/{repo}/releases/latest")
                 released = rel.get("published_at", "")
+                latest_tag = rel.get("tag_name", "")
+                latest_body = (rel.get("body") or "")[:500]
             except Exception:
                 released = ""
             d = api_get(f"https://api.github.com/repos/{owner}/{repo}")
@@ -58,7 +63,7 @@ def fetch_repo_meta(owner: str, repo: str, retries: int = 3):
             stars = d.get("stargazers_count")
             updated = released or pushed
             if updated and stars is not None:
-                return updated, int(stars)
+                return updated, int(stars), latest_tag, released, latest_body
         except Exception as e:
             if attempt < retries - 1:
                 time.sleep(2 * (attempt + 1))
@@ -119,12 +124,22 @@ def main():
         v = meta_for(r.get("api_url", ""))
         if not v:
             continue
-        pushed, stars = v
+        pushed, stars, latest_tag, latest_date, latest_body = v
         if r.get("updated_at") != pushed:
             r["updated_at"] = pushed
             changed = True
         if int(r.get("stars", 0)) != stars:
             r["stars"] = stars
+            changed = True
+        # 驱动更新提示：latest release 信息
+        if r.get("latest_tag") != latest_tag:
+            r["latest_tag"] = latest_tag
+            changed = True
+        if r.get("latest_date") != latest_date:
+            r["latest_date"] = latest_date
+            changed = True
+        if r.get("latest_body") != latest_body:
+            r["latest_body"] = latest_body
             changed = True
 
     # catalog
@@ -132,7 +147,7 @@ def main():
         v = meta_for(s.get("apiUrl", ""))
         if not v:
             continue
-        pushed, stars = v
+        pushed, stars, _, _, _ = v
         if s.get("updatedAt") != iso_to_epoch(pushed):
             s["updatedAt"] = iso_to_epoch(pushed)
             changed = True
@@ -143,7 +158,7 @@ def main():
         v = meta_for(s.get("manifestUrl", ""))
         if not v:
             continue
-        pushed, _ = v
+        pushed, _, _, _, _ = v
         if s.get("updatedAt") != iso_to_epoch(pushed):
             s["updatedAt"] = iso_to_epoch(pushed)
             changed = True
@@ -153,8 +168,10 @@ def main():
         return
 
     json.dump(registry, open(REGISTRY, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    # 同步 assets 副本（App 端实际读取此份），保持双副本一致
+    json.dump(registry, open(REGISTRY_ASSETS, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     json.dump(catalog, open(CATALOG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    print("已更新 registry/catalog")
+    print("已更新 registry/catalog（含 assets 副本）")
 
 
 if __name__ == "__main__":
