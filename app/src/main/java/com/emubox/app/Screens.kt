@@ -5508,7 +5508,8 @@ fun ComponentSection(
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
             // 折叠头：图标 + 类型名 + 版本数 + 当前版本 + 来源 + 展开箭头
@@ -6281,7 +6282,7 @@ private fun ComputeRow(label: String, gflops: Double) {
                 .fillMaxWidth()
                 .height(8.dp)
                 .clip(RoundedCornerShape(4.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(Fusion.SurfaceAlt)
         ) {
             Box(
                 modifier = Modifier
@@ -6317,7 +6318,7 @@ private fun CpuRow(label: String, value: Double, unit: String, threads: Int) {
                 .fillMaxWidth()
                 .height(8.dp)
                 .clip(RoundedCornerShape(4.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(Fusion.SurfaceAlt)
         ) {
             Box(
                 modifier = Modifier
@@ -6352,7 +6353,7 @@ private fun BandwidthRow(label: String, valueGBs: Double) {
                 .fillMaxWidth()
                 .height(8.dp)
                 .clip(RoundedCornerShape(4.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(Fusion.SurfaceAlt)
         ) {
             Box(
                 modifier = Modifier
@@ -8044,8 +8045,9 @@ fun ComponentScreen(
         item(key = "component_guide_entry") {
             Surface(
                 onClick = onOpenGuide,
-                shape = RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(14.dp),
+                color = Fusion.Surface,
+                border = BorderStroke(1.dp, Fusion.Border),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Row(
