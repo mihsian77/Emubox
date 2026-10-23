@@ -1,6 +1,6 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-10-23T08:50:00Z",
+ "updated_at": "2026-10-23T09:15:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -55208,7 +55208,7 @@
    "id": "dukeps3-android",
    "name": "DukePS3",
    "category": "Emulator PS3",
-   "description": "PlayStation 3 Android Emulator（基于 PS3Native 与 RPCS3 Android 移植，内置 DIS 帧生成；LSFG 需自行授权 Lossless.dll）。直链待核：GitHub release 页面暂未公开（tag 1.0.0 存在）。",
+   "description": "PS3Native 的 fork（thecrixux 分支）：PS3 安卓模拟器。上游 PS3Native v0.3.0 起已内置 LSFG 帧生成（用户自备 Lossless.dll）；本分支独有 DIS 内置免费帧生成与游戏 FPS/输出 FPS 分离 overlay，并与上游协作提 PR（固件修复已并入 v0.4.0）。直链待核：GitHub release 页未公开（tag 1.0.0 存在）。",
    "owner": "thecrixux",
    "repo": "thecrixux/DukePS3",
    "homepage": null,
