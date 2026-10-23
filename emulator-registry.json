@@ -56562,7 +56562,7 @@
    "id": "azahartrigger-3ds",
    "name": "AzaharTrigger",
    "category": "Nintendo 3DS",
-   "description": "Azahar 3DS 模拟器增强 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus）：带聊天模组等额外功能，2026-07 起连续发布 v1.0.x 且含 Android APK；中文汉化版由 klark231 分发（视频系列）。",
+   "description": "Azahar 3DS 模拟器增强 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus）：带聊天模组等额外功能，2026-07 起连续发布 v1.0.x 且含 Android APK；中文汉化版由 klark231 分发（视频系列）。 上游为 AzaharPlus/AzaharPlus（★1352，已单独收录）。",
    "owner": "diegolix29",
    "repo": "diegolix29/AzaharTrigger",
    "homepage": "",
@@ -56618,16 +56618,16 @@
    "id": "eclipseds-nds",
    "name": "EclipseDS",
    "category": "Nintendo DS",
-   "description": "NDS 安卓模拟器（2026-07 发布 v1.0 内测）：全新自研引擎（周期级精度）、双屏、RetroAchievements、云存档、GPU 3D 渲染、30 语言；曾短期上架/内测分发，**内测已结束，当前商店与下载入口均不可见**（4PDA 首发帖与媒体报道仍可查证）；Mega Update 计划状态不明，待项目重新开放后跟进。",
+   "description": "NDS 安卓模拟器（2026-07 发布 v1.0 内测）：全新自研引擎（周期级精度）、双屏、RetroAchievements、云存档、GPU 3D 渲染、30 语言；曾短期上架/内测分发，**内测已结束，当前商店与下载入口均不可见**（4PDA 首发帖与媒体报道仍可查证）；Mega Update 计划状态不明，待项目重新开放后跟进。 【状态】内测结束、暂不可得（2026-10 用户核实），待正式发布后恢复条目。",
    "owner": "",
    "repo": "",
    "homepage": "",
    "repo_url": "",
    "official": true,
-   "channel": "stable",
+   "channel": "beta",
    "latest_tag": "1.0",
    "latest_date": "2026-07-31T00:00:00Z",
-   "latest_body": "内测已结束，下载入口当前不可见",
+   "latest_body": "内测已于近期结束，商店页面暂不可得；正式版待发布后恢复",
    "latest_apk_name": "",
    "latest_apk_url": "",
    "latest_apk_size": 0,
@@ -56638,6 +56638,62 @@
    "downloads": 0,
    "logo_url": "",
    "releases": []
+  },
+  {
+   "id": "azaharplus-main",
+   "name": "AzaharPlus",
+   "category": "Nintendo 3DS",
+   "description": "Azahar 3DS 模拟器主流增强 fork（★1352，2026-10 活跃）：恢复 3DS 文件直接支持、官方服务器下载系统文件等特性，社区规模远超同名小 fork；本体为 AzaharTrigger 等分支的上游。",
+   "owner": "AzaharPlus",
+   "repo": "AzaharPlus/AzaharPlus",
+   "homepage": "",
+   "repo_url": "https://github.com/AzaharPlus/AzaharPlus",
+   "official": false,
+   "channel": "beta",
+   "latest_tag": "AZAHAR_PLUS_2126_2_A",
+   "latest_date": "2026-10-09T10:12:07Z",
+   "latest_body": "⚠️⚠️⚠️\r\nThis version fixes a critical security vulnerability that was publicly announced so immediate update is advised\r\nhttps://github.com/azahar-emu",
+   "latest_apk_name": "azaharplus-2126.2-A-android_coexists_with_azahar.apk",
+   "latest_apk_url": "https://github.com/AzaharPlus/AzaharPlus/releases/download/AZAHAR_PLUS_2126_2_A/azaharplus-2126.2-A-android_coexists_with_azahar.apk",
+   "latest_apk_size": 51588119,
+   "pushed_at": "2026-10-22T18:34:12Z",
+   "stars": 1352,
+   "forks": 63,
+   "watchers": 26,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "AZAHAR_PLUS_2126_2_A",
+     "name": "AzaharPlus 2126.2-A",
+     "date": "2026-10-09T10:12:07Z",
+     "body": "",
+     "assets": [
+      "azaharplus-2126.2-A-android_coexists_with_azahar.apk",
+      "azaharplus-2126.2-A-android_replaces_azahar.apk"
+     ]
+    },
+    {
+     "tag": "AZAHAR_PLUS_2126_1_B",
+     "name": "AzaharPlus 2126.1-B",
+     "date": "2026-09-19T06:24:04Z",
+     "body": "",
+     "assets": [
+      "azaharplus-2126.1-B-android_coexists_with_azahar.apk",
+      "azaharplus-2126.1-B-android_replaces_azahar.apk"
+     ]
+    },
+    {
+     "tag": "AZAHAR_PLUS_2126_1_A",
+     "name": "AzaharPlus 2126.1-A",
+     "date": "2026-09-18T07:12:18Z",
+     "body": "",
+     "assets": [
+      "azaharplus-2126.1-A-android_coexists_with_azahar.apk",
+      "azaharplus-2126.1-A-android_replaces_azahar.apk"
+     ]
+    }
+   ]
   }
  ]
 }
