@@ -50,6 +50,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -1494,8 +1496,9 @@ private fun SettingsCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Text(title, style = MaterialTheme.typography.titleMedium)
@@ -1523,8 +1526,9 @@ private fun AcceleratorSettingsCard() {
 
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Text(appString(R.string.accelerator_mode), style = MaterialTheme.typography.titleMedium)
@@ -1716,8 +1720,9 @@ private fun AboutCard() {
 
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -3261,9 +3266,15 @@ private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
             )
             Spacer(Modifier.width(10.dp))
             Text(
-                title,
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.primary
+                AnnotatedString(
+                    title,
+                    spanStyle = SpanStyle(
+                        brush = Brush.linearGradient(
+                            colors = listOf(Fusion.GradientStart, Fusion.GradientEnd)
+                        )
+                    )
+                ),
+                style = MaterialTheme.typography.titleLarge
             )
         }
         if (remote != null) {
@@ -3839,8 +3850,9 @@ fun TurnipDriverSection(
 
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column {
             Row(
@@ -3850,7 +3862,7 @@ fun TurnipDriverSection(
                     .padding(horizontal = 20.dp, vertical = 14.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(Icons.Default.Eco, contentDescription = null, modifier = Modifier.size(22.dp), tint = MaterialTheme.colorScheme.primary)
+                Icon(Icons.Default.Eco, contentDescription = null, modifier = Modifier.size(22.dp), tint = Fusion.GradientStart)
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title ?: appString(R.string.turnip_driver), style = MaterialTheme.typography.titleSmall)
@@ -4615,7 +4627,7 @@ fun assessGameSupport(
 
 @Composable
 fun DriverCardDynamic(
-    title: String,
+title: String,
     description: String,
     icon: ImageVector,
     sources: List<QualcommSource>,
@@ -4641,8 +4653,9 @@ fun DriverCardDynamic(
     }
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column {
             Row(
@@ -7762,9 +7775,9 @@ fun DriverScreen(
         }
 
         item(key = "driver_search") {
-            OutlinedTextField(
-                value = driverQuery,
-                onValueChange = { v ->
+            FusionSearchBar(
+                query = driverQuery,
+                onQueryChange = { v ->
                     driverQuery = v
                     // 搜索词精确匹配源名 → 自动切换该源并加载其版本列表
                     // （修复"搜索后仅该来源但可下载文件不刷新"：仅过滤源列表不切换源的问题）
@@ -7775,20 +7788,7 @@ fun DriverScreen(
                         }
                     }
                 },
-                placeholder = { Text(appString(R.string.search_hint)) },
-                leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                trailingIcon = {
-                    if (driverQuery.isNotBlank()) {
-                        Icon(
-                            Icons.Default.Close,
-                            contentDescription = null,
-                            modifier = Modifier.clickable { driverQuery = "" }
-                        )
-                    }
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp)
+                placeholder = appString(R.string.search_hint)
             )
         }
 
@@ -8200,7 +8200,14 @@ fun RuntimeLibraryScreen(
         ) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
-                    text = appString(R.string.runtime_title),
+                    text = AnnotatedString(
+                        appString(R.string.runtime_title),
+                        spanStyle = SpanStyle(
+                            brush = Brush.linearGradient(
+                                colors = listOf(Fusion.GradientStart, Fusion.GradientEnd)
+                            )
+                        )
+                    ),
                     style = MaterialTheme.typography.headlineSmall
                 )
                 Text(
@@ -8242,15 +8249,10 @@ fun RuntimeLibraryScreen(
         }
 
         // 搜索框
-        OutlinedTextField(
-            value = searchQuery,
-            onValueChange = { searchQuery = it },
-            modifier = Modifier.fillMaxWidth(),
-            placeholder = { Text(appString(R.string.runtime_search_hint)) },
-            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-            singleLine = true,
-            shape = RoundedCornerShape(14.dp),
-            textStyle = MaterialTheme.typography.bodyMedium
+        FusionSearchBar(
+            query = searchQuery,
+            onQueryChange = { searchQuery = it },
+            placeholder = appString(R.string.runtime_search_hint)
         )
 
         if (isLoading) {
@@ -9662,6 +9664,45 @@ private fun FusionFilterChip(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
+    }
+}
+
+@Composable
+private fun FusionSearchBar(
+    query: String,
+    onQueryChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(Brush.linearGradient(colors = listOf(Fusion.SurfaceAlt, Color(0xFF1C2030))))
+            .border(1.dp, Fusion.BorderAlt, RoundedCornerShape(14.dp))
+            .padding(horizontal = 14.dp, vertical = 11.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            Icons.Default.Search,
+            contentDescription = null,
+            tint = Fusion.OnSurfaceDim,
+            modifier = Modifier.size(18.dp)
+        )
+        Spacer(Modifier.width(8.dp))
+        BasicTextField(
+            value = query,
+            onValueChange = onQueryChange,
+            singleLine = true,
+            textStyle = androidx.compose.ui.text.TextStyle(color = Fusion.OnSurface, fontSize = 14.sp),
+            cursorBrush = androidx.compose.ui.graphics.SolidColor(Fusion.GradientStart),
+            modifier = Modifier.weight(1f)
+        ) { inner ->
+            if (query.isEmpty()) {
+                Text(placeholder, color = Fusion.OnSurfaceDim, fontSize = 14.sp)
+            }
+            inner()
+        }
     }
 }
 
