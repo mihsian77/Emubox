@@ -25,8 +25,8 @@
           "Rutabaga"
         ]
       },
-      "updatedAt": 1791980165000,
-      "stars": 1015
+      "updatedAt": 1792399828000,
+      "stars": 1042
     },
     {
       "id": "whitebelyash",
@@ -49,7 +49,7 @@
         ]
       },
       "updatedAt": 1789825064000,
-      "stars": 470
+      "stars": 477
     },
     {
       "id": "k11mch1",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5136
+      "stars": 5144
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 839
+      "stars": 853
     },
     {
       "id": "banner",
@@ -123,8 +123,8 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1792116075000,
-      "stars": 193
+      "updatedAt": 1792722196000,
+      "stars": 206
     },
     {
       "id": "s1mptom",
@@ -167,7 +167,7 @@
           "A81"
         ]
       },
-      "updatedAt": 1791429688000,
+      "updatedAt": 1792380947000,
       "stars": 2
     },
     {
@@ -213,8 +213,8 @@
           "720"
         ]
       },
-      "updatedAt": 1791692113000,
-      "stars": 70
+      "updatedAt": 1792571017000,
+      "stars": 76
     },
     {
       "id": "panvk-g720",
@@ -234,7 +234,7 @@
         ]
       },
       "updatedAt": 1790289737000,
-      "stars": 39
+      "stars": 41
     }
   ],
   "qualcommSources": [
@@ -247,8 +247,8 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1015,
-      "updatedAt": 1791980165000
+      "stars": 1042,
+      "updatedAt": 1792399828000
     },
     {
       "id": "k11mch1-qualcomm",
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5136,
+      "stars": 5144,
       "updatedAt": 1768398883000
     },
     {
@@ -283,7 +283,7 @@
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1792052109000
+      "updatedAt": 1792658800000
     },
     {
       "id": "xnick",
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1792052126000
+      "updatedAt": 1792662079000
     },
     {
       "id": "banner-components",
