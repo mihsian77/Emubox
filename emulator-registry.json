@@ -56562,7 +56562,7 @@
    "id": "azahartrigger-3ds",
    "name": "AzaharTrigger",
    "category": "Nintendo 3DS",
-   "description": "Azahar 3DS 模拟器增强 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus）：带聊天模组等额外功能，2026-07 起连续发布 v1.0.x 且含 Android APK；中文汉化版由 klark231 分发（视频系列）。 上游为 AzaharPlus/AzaharPlus（★1352，已单独收录）。",
+   "description": "Azahar 3DS 模拟器 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus ★1352）：带额外功能（聊天模组等）的增强分支，2026-07 起连续 release（v1.0.11→v1.0.13）且含 APK；中文汉化版由 klark231 分发。",
    "owner": "diegolix29",
    "repo": "diegolix29/AzaharTrigger",
    "homepage": "",
