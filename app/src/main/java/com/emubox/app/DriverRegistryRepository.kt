@@ -27,6 +27,12 @@ data class DriverRegistryEntry(
     val stars: Int,
     /** 仓库最近推送时间（epoch ms，由 driver-registry.json 内置，CI 每日刷新） */
     val updatedAt: Long = 0L,
+    /** 最新 release 版本号（CI 每日刷新，驱动更新提示数据源） */
+    val latestTag: String = "",
+    /** 最新 release 发布时间（epoch ms） */
+    val latestDate: Long = 0L,
+    /** 最新 release 发布说明（截断，CI 每日刷新） */
+    val latestBody: String = "",
     val description: String,
     val notes: String,
     val companion: List<String>,    // 配套组件 id（指向 component 类型条目）
@@ -195,6 +201,9 @@ object DriverRegistryRepository {
                             maturity = o.optString("maturity", "experimental"),
                             stars = o.optInt("stars", 0),
                             updatedAt = parseIsoEpoch(o.optString("updated_at", "")),
+                            latestTag = o.optString("latest_tag", ""),
+                            latestDate = parseIsoEpoch(o.optString("latest_date", "")),
+                            latestBody = o.optString("latest_body", ""),
                             description = o.optString("description", ""),
                             notes = o.optString("notes", ""),
                             companion = o.optJSONArray("companion")?.let { ja ->
