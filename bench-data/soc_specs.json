@@ -61,7 +61,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 2.1,
-   "cpu_summary": "4×2.1GHz Cortex-A73"
+   "cpu_summary": "4×2.1GHz Cortex-A73",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
   },
   "Xiaomi 玄戒O3": {
    "level": "level2",
@@ -113,7 +116,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.8,
-   "cpu_summary": "1×2.8GHz Cortex-A78 + 3×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "1×2.8GHz Cortex-A78 + 3×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "三星 Exynos 1280": {
    "level": "level1",
@@ -134,7 +140,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "三星 Exynos 1330": {
    "level": "level1",
@@ -155,7 +164,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "三星 Exynos 1380": {
    "level": "level1",
@@ -176,7 +188,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "4×2.4GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.4GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "三星 Exynos 1480": {
    "level": "level1",
@@ -197,7 +212,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.75,
-   "cpu_summary": "4×2.75GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.75GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "三星 Exynos 2100": {
    "level": "level1",
@@ -223,7 +241,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.9,
-   "cpu_summary": "1×2.9GHz Cortex-X1 + 3×2.8GHz Cortex-A78 + 4×2.2GHz Cortex-A55"
+   "cpu_summary": "1×2.9GHz Cortex-X1 + 3×2.8GHz Cortex-A78 + 4×2.2GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali -G78",
+   "year": "2021"
   },
   "三星 Exynos 2200": {
    "level": "level1",
@@ -249,7 +270,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.8,
-   "cpu_summary": "1×2.8GHz Cortex-X2 + 3×2.5GHz Cortex-A710 + 4×1.8GHz Cortex-A510"
+   "cpu_summary": "1×2.8GHz Cortex-X2 + 3×2.5GHz Cortex-A710 + 4×1.8GHz Cortex-A510",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
   },
   "三星 Exynos 2400": {
    "level": "level1",
@@ -311,7 +335,10 @@
    ],
    "total_cores": 10,
    "max_freq_ghz": 3.3,
-   "cpu_summary": "1×3.3GHz Cortex-X925 + 2×2.36GHz Cortex-A725 + 5×1.8GHz Cortex-A725 + 2×1.8GHz Cortex-A520"
+   "cpu_summary": "1×3.3GHz Cortex-X925 + 2×2.36GHz Cortex-A725 + 5×1.8GHz Cortex-A725 + 2×1.8GHz Cortex-A520",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "三星 Exynos 7420": {
    "level": "level1",
@@ -332,7 +359,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.1,
-   "cpu_summary": "4×2.1GHz Cortex-A57 + 4×1.5GHz Cortex-A53"
+   "cpu_summary": "4×2.1GHz Cortex-A57 + 4×1.5GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7570": {
    "level": "level1",
@@ -348,7 +378,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 1.4,
-   "cpu_summary": "4×1.4GHz Cortex-A53"
+   "cpu_summary": "4×1.4GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7580": {
    "level": "level1",
@@ -364,7 +397,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.6,
-   "cpu_summary": "8×1.6GHz Cortex-A53"
+   "cpu_summary": "8×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7870": {
    "level": "level1",
@@ -380,7 +416,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.6,
-   "cpu_summary": "8×1.6GHz Cortex-A53"
+   "cpu_summary": "8×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7872": {
    "level": "level1",
@@ -401,7 +440,10 @@
    ],
    "total_cores": 6,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Cortex-A73 + 4×1.6GHz Cortex-A53"
+   "cpu_summary": "2×2.0GHz Cortex-A73 + 4×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7880": {
    "level": "level1",
@@ -417,7 +459,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.9,
-   "cpu_summary": "8×1.9GHz Cortex-A53"
+   "cpu_summary": "8×1.9GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7885": {
    "level": "level1",
@@ -438,7 +483,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A73 + 6×1.6GHz Cortex-A53"
+   "cpu_summary": "2×2.2GHz Cortex-A73 + 6×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 7904": {
    "level": "level1",
@@ -459,7 +507,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "2×1.8GHz Cortex-A73 + 6×1.6GHz Cortex-A53"
+   "cpu_summary": "2×1.8GHz Cortex-A73 + 6×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "三星 Exynos 850": {
    "level": "level1",
@@ -480,7 +531,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Cortex-A55 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.0GHz Cortex-A55 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
   },
   "三星 Exynos 880": {
    "level": "level1",
@@ -501,7 +555,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Cortex-A77 + 6×1.8GHz Cortex-A55"
+   "cpu_summary": "2×2.0GHz Cortex-A77 + 6×1.8GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
   },
   "三星 Exynos 8890": {
    "level": "level1",
@@ -522,7 +579,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz Mongoose + 4×1.6GHz Cortex-A53"
+   "cpu_summary": "4×2.3GHz Mongoose + 4×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
   },
   "三星 Exynos 8895": {
    "level": "level1",
@@ -543,7 +603,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz M2 + 4×1.69GHz Cortex-A53"
+   "cpu_summary": "4×2.3GHz M2 + 4×1.69GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
   },
   "三星 Exynos 9610": {
    "level": "level1",
@@ -564,7 +627,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+   "cpu_summary": "4×2.3GHz Cortex-A73 + 4×1.7GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "三星 Exynos 9611": {
    "level": "level1",
@@ -585,7 +651,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+   "cpu_summary": "4×2.3GHz Cortex-A73 + 4×1.7GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "三星 Exynos 980": {
    "level": "level1",
@@ -606,7 +675,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A77 + 6×1.8GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A77 + 6×1.8GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "三星 Exynos 9810": {
    "level": "level1",
@@ -627,7 +699,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.9,
-   "cpu_summary": "4×2.9GHz M3 + 4×1.9GHz Cortex-A55"
+   "cpu_summary": "4×2.9GHz M3 + 4×1.9GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "三星 Exynos 9820": {
    "level": "level1",
@@ -653,7 +728,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.73,
-   "cpu_summary": "2×2.73GHz M4 + 2×2.31GHz Cortex-A75 + 4×1.95GHz Cortex-A55"
+   "cpu_summary": "2×2.73GHz M4 + 2×2.31GHz Cortex-A75 + 4×1.95GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "三星 Exynos 9825": {
    "level": "level1",
@@ -679,7 +757,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.73,
-   "cpu_summary": "2×2.73GHz M4 + 2×2.4GHz Cortex-A75 + 4×1.95GHz Cortex-A55"
+   "cpu_summary": "2×2.73GHz M4 + 2×2.4GHz Cortex-A75 + 4×1.95GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "三星 Exynos 990": {
    "level": "level1",
@@ -705,7 +786,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.73,
-   "cpu_summary": "2×2.73GHz M5 + 2×2.5GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.73GHz M5 + 2×2.5GHz Cortex-A76 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "全志 A100": {
    "level": "level3",
@@ -753,13 +837,19 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "8×1.8GHz Cortex-A55"
+   "cpu_summary": "8×1.8GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2011"
   },
   "全志 A63": {
    "level": "level3",
    "total_score": "29992",
    "cpu_score": "24759",
-   "gpu_score": "5233"
+   "gpu_score": "5233",
+   "process": "32 nm",
+   "gpu": "",
+   "year": "2012"
   },
   "全志 H6": {
    "level": "level3",
@@ -886,7 +976,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "杰发科技 AC8227L": {
    "level": "level3",
@@ -960,7 +1053,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "4×2.2GHz Cortex-A73 + 4×1.7GHz Cortex-A53"
+   "cpu_summary": "4×2.2GHz Cortex-A73 + 4×1.7GHz Cortex-A53",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2025"
   },
   "海思 麒麟710A": {
    "level": "level1",
@@ -1002,7 +1098,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "1×2.4GHz  + 3×2.19GHz "
+   "cpu_summary": "1×2.4GHz  + 3×2.19GHz ",
+   "process": "5 nm",
+   "gpu": "Mali-G610",
+   "year": "2022"
   },
   "海思 麒麟8000A": {
    "level": "level1",
@@ -1044,7 +1143,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.27,
-   "cpu_summary": "2×2.27GHz Cortex-A76 + 6×1.88GHz Cortex-A55"
+   "cpu_summary": "2×2.27GHz Cortex-A76 + 6×1.88GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2021"
   },
   "海思 麒麟820": {
    "level": "level1",
@@ -1070,7 +1172,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.36,
-   "cpu_summary": "1×2.36GHz Cortex-A76 + 3×2.22GHz Cortex-A76 + 4×1.84GHz Cortex-A55"
+   "cpu_summary": "1×2.36GHz Cortex-A76 + 3×2.22GHz Cortex-A76 + 4×1.84GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
   },
   "海思 麒麟820E": {
    "level": "level1",
@@ -1117,7 +1222,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.13,
-   "cpu_summary": "1×3.13GHz Cortex-A77 + 3×2.54GHz Cortex-A77 + 4×2.05GHz Cortex-A55"
+   "cpu_summary": "1×3.13GHz Cortex-A77 + 3×2.54GHz Cortex-A77 + 4×2.05GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G710",
+   "year": "2021"
   },
   "海思 麒麟9000E": {
    "level": "level1",
@@ -1169,7 +1277,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.487,
-   "cpu_summary": "1×2.487GHz TSV big + 3×2.15GHz TSV middle + 4×1.53GHz Cortex-A510"
+   "cpu_summary": "1×2.487GHz TSV big + 3×2.15GHz TSV middle + 4×1.53GHz Cortex-A510",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "海思 麒麟9000SL": {
    "level": "level1",
@@ -1362,7 +1473,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz Cortex-A72 + 4×1.8GHz Cortex A53"
+   "cpu_summary": "4×2.3GHz Cortex-A72 + 4×1.8GHz Cortex A53",
+   "process": "",
+   "gpu": "Immortalis-G925",
+   "year": "2026"
   },
   "海思 麒麟960": {
    "level": "level1",
@@ -1383,7 +1497,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.36,
-   "cpu_summary": "4×2.36GHz Cortex-A73 + 4×1.84GHz Cortex-A53"
+   "cpu_summary": "4×2.36GHz Cortex-A73 + 4×1.84GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2012"
   },
   "海思 麒麟970": {
    "level": "level1",
@@ -1430,7 +1547,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "2×2.6GHz Cortex-A76 + 2×1.92GHz Cortex-A76 + 4×1.8GHz Cortex-A55"
+   "cpu_summary": "2×2.6GHz Cortex-A76 + 2×1.92GHz Cortex-A76 + 4×1.8GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2019"
   },
   "海思 麒麟985": {
    "level": "level1",
@@ -1482,7 +1602,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.86,
-   "cpu_summary": "2×2.86GHz Cortex-A76 + 2×2.09GHz Cortex-A76 + 4×1.86GHz Cortex-A55"
+   "cpu_summary": "2×2.86GHz Cortex-A76 + 2×2.09GHz Cortex-A76 + 4×1.86GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": "2020"
   },
   "海思 麒麟990 5G": {
    "level": "level1",
@@ -1819,7 +1942,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.6GHz Cortex-A55"
+   "cpu_summary": "2×1.8GHz Cortex-A75 + 6×1.6GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": ""
   },
   "紫光展锐 T606": {
    "level": "level1",
@@ -2145,7 +2271,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "4×1.8GHz Cortex-A53"
+   "cpu_summary": "4×1.8GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
   },
   "联发科技 Helio A22": {
    "level": "level1",
@@ -2161,7 +2290,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Cortex-A53"
+   "cpu_summary": "4×2.0GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
   },
   "联发科技 Helio G200": {
    "level": "level1",
@@ -2182,7 +2314,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2025"
   },
   "联发科技 Helio G25": {
    "level": "level1",
@@ -2198,7 +2333,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "8×2.0GHz Cortex-A53"
+   "cpu_summary": "8×2.0GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
   },
   "联发科技 Helio G35": {
    "level": "level1",
@@ -2256,7 +2394,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz Cortex-A53 + 4×1.8GHz Cortex-A53"
+   "cpu_summary": "4×2.3GHz Cortex-A53 + 4×1.8GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "联发科技 Helio G70": {
    "level": "level1",
@@ -2277,7 +2418,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.7GHz Cortex-A55"
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.7GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali G52",
+   "year": "2000"
   },
   "联发科技 Helio G80": {
    "level": "level1",
@@ -2340,7 +2484,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.8GHz Cortex-A55"
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×1.8GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "联发科技 Helio G90T": {
    "level": "level1",
@@ -2361,7 +2508,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.05,
-   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": ""
   },
   "联发科技 Helio G95": {
    "level": "level1",
@@ -2382,7 +2532,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.05,
-   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.05GHz Cortex-A55"
+   "cpu_summary": "2×2.05GHz Cortex-A76 + 6×2.05GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2020"
   },
   "联发科技 Helio G96": {
    "level": "level1",
@@ -2424,7 +2577,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
   },
   "联发科技 Helio G99 Ultra": {
    "level": "level1",
@@ -2487,7 +2643,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "4×2.3GHz Cortex-A53 + 4×1.6GHz Cortex-A53"
+   "cpu_summary": "4×2.3GHz Cortex-A53 + 4×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
   },
   "联发科技 Helio P22": {
    "level": "level1",
@@ -2503,7 +2662,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "8×2.0GHz Cortex-A53"
+   "cpu_summary": "8×2.0GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
   },
   "联发科技 Helio P23": {
    "level": "level1",
@@ -2519,7 +2681,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "8×2.3GHz Cortex-A53"
+   "cpu_summary": "8×2.3GHz Cortex-A53",
+   "process": "",
+   "gpu": "Mali-G71",
+   "year": "2017"
   },
   "联发科技 Helio P25": {
    "level": "level1",
@@ -2540,7 +2705,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A53 + 4×1.6GHz Cortex-A53"
+   "cpu_summary": "4×2.6GHz Cortex-A53 + 4×1.6GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
   },
   "联发科技 Helio P35": {
    "level": "level1",
@@ -2556,7 +2724,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.3,
-   "cpu_summary": "8×2.3GHz Cortex-A53"
+   "cpu_summary": "8×2.3GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
   },
   "联发科技 Helio P60": {
    "level": "level1",
@@ -2577,7 +2748,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Cortex-A73 + 4×2.0GHz Cortex-A53"
+   "cpu_summary": "4×2.0GHz Cortex-A73 + 4×2.0GHz Cortex-A53",
+   "process": "",
+   "gpu": "Mali-G72",
+   "year": "2000"
   },
   "联发科技 Helio P65": {
    "level": "level1",
@@ -2598,7 +2772,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.0GHz Cortex-A75 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G52",
+   "year": "2019"
   },
   "联发科技 Helio P70": {
    "level": "level1",
@@ -2640,7 +2817,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A75 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A75 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
   },
   "联发科技 Helio X20": {
    "level": "level1",
@@ -2666,7 +2846,10 @@
    ],
    "total_cores": 10,
    "max_freq_ghz": 2.1,
-   "cpu_summary": "2×2.1GHz Cortex-A72 + 4×1.85GHz Cortex-A53 + 4×1.4GHz Cortex-A53"
+   "cpu_summary": "2×2.1GHz Cortex-A72 + 4×1.85GHz Cortex-A53 + 4×1.4GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
   },
   "联发科技 Helio X25": {
    "level": "level1",
@@ -2692,7 +2875,10 @@
    ],
    "total_cores": 10,
    "max_freq_ghz": 2.5,
-   "cpu_summary": "2×2.5GHz Cortex-A72 + 4×2.0GHz Cortex-A53 + 4×1.55GHz Cortex-A53"
+   "cpu_summary": "2×2.5GHz Cortex-A72 + 4×2.0GHz Cortex-A53 + 4×1.55GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
   },
   "联发科技 Helio X30": {
    "level": "level1",
@@ -2718,7 +2904,10 @@
    ],
    "total_cores": 10,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "2×2.6GHz Cortex-A73 + 4×1.9GHz Cortex-A35 + 4×2.2GHz Cortex-A53"
+   "cpu_summary": "2×2.6GHz Cortex-A73 + 4×1.9GHz Cortex-A35 + 4×2.2GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
   },
   "联发科技 MT6750": {
    "level": "level1",
@@ -2755,7 +2944,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "4×1.8GHz Cortex-A73"
+   "cpu_summary": "4×1.8GHz Cortex-A73",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "联发科技 天玑1000+": {
    "level": "level1",
@@ -2776,7 +2968,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A77 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A77 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
   },
   "联发科技 天玑1000L": {
    "level": "level1",
@@ -2797,7 +2992,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "4×2.2GHz Cortex-A77 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.2GHz Cortex-A77 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": "2020"
   },
   "联发科技 天玑1050": {
    "level": "level1",
@@ -2818,7 +3016,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.5,
-   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2022"
   },
   "联发科技 天玑1080": {
    "level": "level1",
@@ -2839,7 +3040,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2022"
   },
   "联发科技 天玑1100": {
    "level": "level1",
@@ -2860,7 +3064,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": "2021"
   },
   "联发科技 天玑1200": {
    "level": "level1",
@@ -2886,7 +3093,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.0,
-   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": ""
   },
   "联发科技 天玑1300": {
    "level": "level1",
@@ -2928,7 +3138,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2023"
   },
   "联发科技 天玑6080": {
    "level": "level1",
@@ -2949,7 +3162,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
   },
   "联发科技 天玑6100+": {
    "level": "level1",
@@ -2970,7 +3186,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2023"
   },
   "联发科技 天玑6300": {
    "level": "level1",
@@ -2986,7 +3205,10 @@
    ],
    "total_cores": 2,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A76 @ 6x 2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A76 @ 6x 2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2024"
   },
   "联发科技 天玑6360-Max": {
    "level": "level1",
@@ -3049,7 +3271,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2021"
   },
   "联发科技 天玑7020": {
    "level": "level1",
@@ -3070,7 +3295,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
   },
   "联发科技 天玑7025": {
    "level": "level1",
@@ -3091,7 +3319,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.5,
-   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
   },
   "联发科技 天玑7025-Ultra": {
    "level": "level1",
@@ -3133,7 +3364,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.5,
-   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2023"
   },
   "联发科技 天玑7050": {
    "level": "level1",
@@ -3154,7 +3388,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.6GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2023"
   },
   "联发科技 天玑720": {
    "level": "level1",
@@ -3175,7 +3412,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.0GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
   },
   "联发科技 天玑7200": {
    "level": "level1",
@@ -3196,7 +3436,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.8,
-   "cpu_summary": "2×2.8GHz Cortex-A715 + 6×2.0GHz Cortex-A510"
+   "cpu_summary": "2×2.8GHz Cortex-A715 + 6×2.0GHz Cortex-A510",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2023"
   },
   "联发科技 天玑7200-Ultra": {
    "level": "level1",
@@ -3238,7 +3481,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.5,
-   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.5GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2026"
   },
   "联发科技 天玑7300 Energy": {
    "level": "level1",
@@ -3322,7 +3568,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2026"
   },
   "联发科技 天玑7360-Super": {
    "level": "level1",
@@ -3364,7 +3613,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G615",
+   "year": "2025"
   },
   "联发科技 天玑7400-Super": {
    "level": "level1",
@@ -3448,7 +3700,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz C1- Pro + 4×2.0GHz C1-Nano"
+   "cpu_summary": "4×2.6GHz C1- Pro + 4×2.0GHz C1-Nano",
+   "process": "",
+   "gpu": "Mali-G625",
+   "year": ""
   },
   "联发科技 天玑800": {
    "level": "level1",
@@ -3469,7 +3724,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.0GHz Cortex-A76 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
   },
   "联发科技 天玑8000": {
    "level": "level1",
@@ -3490,7 +3748,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.75,
-   "cpu_summary": "4×2.75GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.75GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "5 nm",
+   "gpu": "Mali-G610",
+   "year": "2022"
   },
   "联发科技 天玑800U": {
    "level": "level1",
@@ -3511,7 +3772,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
   },
   "联发科技 天玑8020": {
    "level": "level1",
@@ -3532,7 +3796,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "6 nm",
+   "gpu": "Mali-G77",
+   "year": "2023"
   },
   "联发科技 天玑8050": {
    "level": "level1",
@@ -3553,7 +3820,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 3.0,
-   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78"
+   "cpu_summary": "1×3.0GHz Cortex-A78 + 3×2.6GHz Cortex-A78",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": ""
   },
   "联发科技 天玑810": {
    "level": "level1",
@@ -3574,7 +3844,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2021"
   },
   "联发科技 天玑8100": {
    "level": "level1",
@@ -3595,7 +3868,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.85,
-   "cpu_summary": "4×2.85GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.85GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "5 nm",
+   "gpu": "Mali-G610",
+   "year": "2022"
   },
   "联发科技 天玑8100-Max": {
    "level": "level1",
@@ -3637,7 +3913,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A76 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A76 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
   },
   "联发科技 天玑8200/8200 Ultra": {
    "level": "level1",
@@ -3689,7 +3968,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.1,
-   "cpu_summary": "1×3.1GHz Cortex-A78 + 3×3.0GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "1×3.1GHz Cortex-A78 + 3×3.0GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Adreno 200",
+   "year": "2008"
   },
   "联发科技 天玑8300-Ultra": {
    "level": "level1",
@@ -3793,7 +4075,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.25,
-   "cpu_summary": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725"
+   "cpu_summary": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725",
+   "process": "",
+   "gpu": "Mali-G720",
+   "year": "2024"
   },
   "联发科技 天玑8400-Max": {
    "level": "level1",
@@ -3949,7 +4234,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.4,
-   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
+   "process": "",
+   "gpu": "Mali-G720",
+   "year": "2026"
   },
   "联发科技 天玑8500 竞速版": {
    "level": "level1",
@@ -3975,7 +4263,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.4,
-   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725"
+   "cpu_summary": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
+   "process": "",
+   "gpu": "Mali-G720",
+   "year": "2026"
   },
   "联发科技 天玑8500-Ultra": {
    "level": "level1",
@@ -4074,7 +4365,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.4GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2021"
   },
   "联发科技 天玑9000": {
    "level": "level1",
@@ -4100,7 +4394,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.05,
-   "cpu_summary": "1×3.05GHz Cortex-X2 + 3×2.85GHz Cortex-A710 + 4×1.8GHz Cortex-A510"
+   "cpu_summary": "1×3.05GHz Cortex-X2 + 3×2.85GHz Cortex-A710 + 4×1.8GHz Cortex-A510",
+   "process": "",
+   "gpu": "Mali-G710",
+   "year": "2021"
   },
   "联发科技 天玑9000+": {
    "level": "level1",
@@ -4126,7 +4423,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.2,
-   "cpu_summary": "1×3.2GHz Cortex-X2 + 3×2.85GHz Cortex-A710 + 4×1.8GHz Cortex-A510"
+   "cpu_summary": "1×3.2GHz Cortex-X2 + 3×2.85GHz Cortex-A710 + 4×1.8GHz Cortex-A510",
+   "process": "",
+   "gpu": "Mali-G710",
+   "year": "2021"
   },
   "联发科技 天玑920": {
    "level": "level1",
@@ -4147,7 +4447,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.5,
-   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.5GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
   },
   "联发科技 天玑9200": {
    "level": "level1",
@@ -4173,7 +4476,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.05,
-   "cpu_summary": "1×3.05GHz Cortex-X3 + 3×2.85GHz Cortex-A715 + 4×1.8GHz Cortex-A510"
+   "cpu_summary": "1×3.05GHz Cortex-X3 + 3×2.85GHz Cortex-A715 + 4×1.8GHz Cortex-A510",
+   "process": "4 nm",
+   "gpu": "Immortalis-G715",
+   "year": "2022"
   },
   "联发科技 天玑9200+": {
    "level": "level1",
@@ -4199,7 +4505,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.35,
-   "cpu_summary": "1×3.35GHz Cortex-X3 + 3×3.0GHz Cortex-A715 + 4×2.0GHz Cortex-A510"
+   "cpu_summary": "1×3.35GHz Cortex-X3 + 3×3.0GHz Cortex-A715 + 4×2.0GHz Cortex-A510",
+   "process": "4 nm",
+   "gpu": "Immortalis-G715",
+   "year": "2022"
   },
   "联发科技 天玑930": {
    "level": "level1",
@@ -4220,7 +4529,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55"
+   "cpu_summary": "2×2.2GHz Cortex-A78 + 6×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "",
+   "year": ""
   },
   "联发科技 天玑9300": {
    "level": "level1",
@@ -4246,7 +4558,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.25,
-   "cpu_summary": "1×3.25GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720"
+   "cpu_summary": "1×3.25GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720",
+   "process": "4 nm",
+   "gpu": "Immortalis-G720",
+   "year": "2023"
   },
   "联发科技 天玑9300+": {
    "level": "level1",
@@ -4272,7 +4587,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.4,
-   "cpu_summary": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720"
+   "cpu_summary": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720",
+   "process": "4 nm",
+   "gpu": "Immortalis-G720",
+   "year": "2023"
   },
   "联发科技 天玑9400": {
    "level": "level1",
@@ -4298,7 +4616,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.626,
-   "cpu_summary": "1×3.626GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720"
+   "cpu_summary": "1×3.626GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "联发科技 天玑9400+": {
    "level": "level1",
@@ -4324,7 +4645,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.73,
-   "cpu_summary": "1×3.73GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720"
+   "cpu_summary": "1×3.73GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "联发科技 天玑9400e": {
    "level": "level1",
@@ -4350,7 +4674,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.4,
-   "cpu_summary": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720"
+   "cpu_summary": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "联发科技 天玑9500": {
    "level": "level1",
@@ -4376,7 +4703,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 4.21,
-   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro"
+   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro",
+   "process": "",
+   "gpu": "Immortalis-G925",
+   "year": "2026"
   },
   "联发科技 天玑9500M": {
    "level": "level1",
@@ -4402,7 +4732,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 4.21,
-   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro"
+   "cpu_summary": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro",
+   "process": "3 nm",
+   "gpu": "Mali G1",
+   "year": "2026"
   },
   "联发科技 天玑9500s": {
    "level": "level1",
@@ -4428,7 +4761,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.73,
-   "cpu_summary": "1×3.73GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720"
+   "cpu_summary": "1×3.73GHz Cortex-X925 + 3×3.3GHz Cortex-X4 + 4×2.4GHz Cortex-A720",
+   "process": "",
+   "gpu": "Immortalis-G925",
+   "year": "2026"
   },
   "联发科技 天玑9600 Pro": {
    "level": "level1",
@@ -4454,7 +4790,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 4.55,
-   "cpu_summary": "2×4.55GHz C2-Ultra + 3×4.35GHz C2-Pro + 3×3.31GHz C2-Pro"
+   "cpu_summary": "2×4.55GHz C2-Ultra + 3×4.35GHz C2-Pro + 3×3.31GHz C2-Pro",
+   "process": "2 nm",
+   "gpu": "Mali G2",
+   "year": ""
   },
   "联发科技 天玑9600M": {
    "level": "level1",
@@ -4585,7 +4924,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.6,
-   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55"
+   "cpu_summary": "4×2.6GHz Cortex-A78 + 4×2.0GHz Cortex-A55",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": ""
   },
   "联发科技 迅鲲800T": {
    "level": "level3",
@@ -4752,13 +5094,19 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Kryo 260 + 4×1.8GHz Kryo 260"
+   "cpu_summary": "4×2.0GHz Kryo 260 + 4×1.8GHz Kryo 260",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
   },
   "高通 QCM4325": {
    "level": "level3",
    "total_score": "112512",
    "cpu_score": "71827",
-   "gpu_score": "40685"
+   "gpu_score": "40685",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
   },
   "高通 QCM4490": {
    "level": "level3",
@@ -4779,7 +5127,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Gold A78 + 6×2.0GHz Silver A55"
+   "cpu_summary": "2×2.4GHz Gold A78 + 6×2.0GHz Silver A55",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
   },
   "高通 QCM5430": {
    "level": "level3",
@@ -4800,7 +5151,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.1,
-   "cpu_summary": "4×2.1GHz Kryo 670 Gold + 4×1.8GHz Kryo 670 Silver"
+   "cpu_summary": "4×2.1GHz Kryo 670 Gold + 4×1.8GHz Kryo 670 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "高通 QCM6490": {
    "level": "level3",
@@ -4821,7 +5175,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.7,
-   "cpu_summary": "4×2.7GHz Kryo 670 + 4×1.9GHz Kryo 670"
+   "cpu_summary": "4×2.7GHz Kryo 670 + 4×1.9GHz Kryo 670",
+   "process": "",
+   "gpu": "",
+   "year": ""
   },
   "高通 QCM8550": {
    "level": "level3",
@@ -4884,7 +5241,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Kryo 260 + 4×1.8GHz Kryo 260"
+   "cpu_summary": "4×2.0GHz Kryo 260 + 4×1.8GHz Kryo 260",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
   },
   "高通 QCS4490": {
    "level": "level3",
@@ -4905,7 +5265,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.4,
-   "cpu_summary": "2×2.4GHz Gold A78 + 6×2.0GHz Silver A55"
+   "cpu_summary": "2×2.4GHz Gold A78 + 6×2.0GHz Silver A55",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
   },
   "高通 QCS5430": {
    "level": "level3",
@@ -4926,7 +5289,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.1,
-   "cpu_summary": "4×2.1GHz Kryo 670 Gold + 4×1.8GHz Kryo 670 Silver"
+   "cpu_summary": "4×2.1GHz Kryo 670 Gold + 4×1.8GHz Kryo 670 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2019"
   },
   "高通 QCS6490": {
    "level": "level3",
@@ -4947,7 +5313,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.7,
-   "cpu_summary": "4×2.7GHz Kryo 670 + 4×1.9GHz Kryo 670"
+   "cpu_summary": "4×2.7GHz Kryo 670 + 4×1.9GHz Kryo 670",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
   },
   "高通 QCS8550": {
    "level": "level3",
@@ -4973,7 +5342,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 3.2,
-   "cpu_summary": "1×3.2GHz GoldPlus + 4×2.8GHz Gold + 3×2.0GHz Silver"
+   "cpu_summary": "1×3.2GHz GoldPlus + 4×2.8GHz Gold + 3×2.0GHz Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
   },
   "高通 骁龙4 Gen 1": {
    "level": "level1",
@@ -5052,7 +5424,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 1.4,
-   "cpu_summary": "4×1.4GHz Cortex-A53"
+   "cpu_summary": "4×1.4GHz Cortex-A53",
+   "process": "",
+   "gpu": "Adreno 610",
+   "year": "2020"
   },
   "高通 骁龙430": {
    "level": "level1",
@@ -5084,7 +5459,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.4,
-   "cpu_summary": "8×1.4GHz Cortex-A53"
+   "cpu_summary": "8×1.4GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
   },
   "高通 骁龙439": {
    "level": "level1",
@@ -5105,7 +5483,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.95,
-   "cpu_summary": "4×1.95GHz Cortex-A53 + 4×1.45GHz Cortex-A53"
+   "cpu_summary": "4×1.95GHz Cortex-A53 + 4×1.45GHz Cortex-A53",
+   "process": "",
+   "gpu": "Adreno 505",
+   "year": ""
   },
   "高通 骁龙450": {
    "level": "level1",
@@ -5121,7 +5502,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "8×1.8GHz Cortex-A53"
+   "cpu_summary": "8×1.8GHz Cortex-A53",
+   "process": "",
+   "gpu": "Adreno 506",
+   "year": "2017"
   },
   "高通 骁龙460": {
    "level": "level1",
@@ -5163,7 +5547,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Kryo 460 Gold + 6×1.8GHz Kryo 460 Silver"
+   "cpu_summary": "2×2.0GHz Kryo 460 Gold + 6×1.8GHz Kryo 460 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
   },
   "高通 骁龙480 Plus": {
    "level": "level1",
@@ -5368,7 +5755,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "4×2.2GHz Cortex-A53 + 4×1.8GHz Cortex-A53"
+   "cpu_summary": "4×2.2GHz Cortex-A53 + 4×1.8GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
   },
   "高通 骁龙632": {
    "level": "level1",
@@ -5389,7 +5779,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "4×1.8GHz Kryo 250 Gold + 4×1.8GHz Kryo 250 Silver"
+   "cpu_summary": "4×1.8GHz Kryo 250 Gold + 4×1.8GHz Kryo 250 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
   },
   "高通 骁龙636": {
    "level": "level1",
@@ -5410,7 +5803,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "4×1.8GHz Kryo 260 Gold + 4×1.6GHz Kryo 260 Silver"
+   "cpu_summary": "4×1.8GHz Kryo 260 Gold + 4×1.6GHz Kryo 260 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
   },
   "高通 骁龙650": {
    "level": "level1",
@@ -5431,7 +5827,10 @@
    ],
    "total_cores": 6,
    "max_freq_ghz": 1.8,
-   "cpu_summary": "2×1.8GHz Cortex-A72 + 4×1.4GHz Cortex-A53"
+   "cpu_summary": "2×1.8GHz Cortex-A72 + 4×1.4GHz Cortex-A53",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "高通 骁龙652": {
    "level": "level1",
@@ -5494,7 +5893,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "4×2.2GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+   "cpu_summary": "4×2.2GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
   },
   "高通 骁龙662": {
    "level": "level1",
@@ -5557,7 +5959,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver"
+   "cpu_summary": "4×2.0GHz Kryo 260 Gold + 4×1.8GHz Kryo 260 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
   },
   "高通 骁龙665 IoT": {
    "level": "level3",
@@ -5599,7 +6004,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver"
+   "cpu_summary": "2×2.0GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
   },
   "高通 骁龙675": {
    "level": "level1",
@@ -5620,7 +6028,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "2×2.0GHz Kryo 460 Gold + 6×1.7GHz Kryo 460 Silver"
+   "cpu_summary": "2×2.0GHz Kryo 460 Gold + 6×1.7GHz Kryo 460 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
   },
   "高通 骁龙680": {
    "level": "level1",
@@ -5641,7 +6052,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "4×2.2GHz Kryo 265 Gold + 4×1.8GHz Kryo 265 Silver"
+   "cpu_summary": "4×2.2GHz Kryo 265 Gold + 4×1.8GHz Kryo 265 Silver",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
   },
   "高通 骁龙690": {
    "level": "level1",
@@ -5876,7 +6290,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.2,
-   "cpu_summary": "2×2.2GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver"
+   "cpu_summary": "2×2.2GHz Kryo 360 Gold + 6×1.7GHz Kryo 360 Silver",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2025"
   },
   "高通 骁龙712": {
    "level": "level1",
@@ -6314,7 +6731,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 4.32,
-   "cpu_summary": "2×4.32GHz Oryon Prime + 6×3.53GHz Oryon Performance"
+   "cpu_summary": "2×4.32GHz Oryon Prime + 6×3.53GHz Oryon Performance",
+   "process": "",
+   "gpu": "Adreno 200",
+   "year": "2008"
   },
   "高通 骁龙8 至尊版 Gen 6": {
    "level": "level1",
@@ -6497,7 +6917,10 @@
    ],
    "total_cores": 8,
    "max_freq_ghz": 2.0,
-   "cpu_summary": "4×2.0GHz Cortex-A57 + 4×1.5GHz Cortex-A53"
+   "cpu_summary": "4×2.0GHz Cortex-A57 + 4×1.5GHz Cortex-A53",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2021"
   },
   "高通 骁龙820": {
    "level": "level1",
@@ -6518,7 +6941,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 2.15,
-   "cpu_summary": "2×2.15GHz Kryo + 2×1.6GHz Kryo"
+   "cpu_summary": "2×2.15GHz Kryo + 2×1.6GHz Kryo",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
   },
   "高通 骁龙821": {
    "level": "level1",
@@ -6539,7 +6965,10 @@
    ],
    "total_cores": 4,
    "max_freq_ghz": 2.35,
-   "cpu_summary": "2×2.35GHz Kryo + 2×2.19GHz Kryo"
+   "cpu_summary": "2×2.35GHz Kryo + 2×2.19GHz Kryo",
+   "process": "",
+   "gpu": "Adreno 302",
+   "year": ""
   },
   "高通 骁龙835": {
    "level": "level1",

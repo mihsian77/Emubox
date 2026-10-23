@@ -48,10 +48,11 @@ jobs:
           cp bench-data/ludashi.json app/src/main/assets/bench/ludashi.json
           cp bench-data/manifest.json app/src/main/assets/bench/manifest.json
           cp bench-data/soc_specs.json app/src/main/assets/bench/soc_specs.json
-          if ! git diff --quiet -- app/src/main/assets/bench; then
+          # bench-data 与 assets 双副本一起提交，避免仓库内两份数据漂移
+          if ! git diff --quiet -- app/src/main/assets/bench bench-data; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add app/src/main/assets/bench
+            git add app/src/main/assets/bench bench-data
             git commit -m "chore: 刷新跑分数据"
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             git push origin HEAD:main
