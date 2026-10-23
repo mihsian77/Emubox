@@ -212,6 +212,24 @@
     <string name="soc_cpu">CPU</string>
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">Benchmark (Antutu V10)</string>
+
+    <string name="bench_engine_title">Bench Engine</string>
+    <string name="bench_no_data">No benchmark data for this SoC yet</string>
+    <string name="bench_equiv_title">Equivalent PC Config</string>
+    <string name="bench_equiv_cpu">Desktop CPU</string>
+    <string name="bench_equiv_gpu">Desktop GPU</string>
+    <string name="bench_equiv_none">Not on Ludashi list; PC equivalence unavailable</string>
+    <string name="bench_emu_title">Emulator Experience Estimate</string>
+    <string name="bench_emu_calib">Experience thresholds, pending on-device calibration</string>
+    <string name="bench_upgrade_title">Upgrade Suggestion</string>
+    <string name="bench_upgrade_next">Next tier</string>
+    <string name="bench_gen_title">Generation Trend</string>
+    <string name="bench_samechip_title">Same-Chip Device Scores</string>
+    <string name="bench_samechip_missing">Not listed</string>
+    <string name="bench_tier_smooth">Smooth</string>
+    <string name="bench_tier_playable">Playable</string>
+    <string name="bench_tier_heavy">Heavy</string>
+    <string name="bench_tier_bad">Not advised</string>
     <string name="soc_source_note">Data compiled from public benchmark platforms; for reference only.</string>
     <string name="soc_devices">Common devices</string>
     <string name="component_wine_subtitle">Windows compatibility layer</string>

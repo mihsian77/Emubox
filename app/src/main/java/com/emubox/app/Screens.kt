@@ -5820,6 +5820,9 @@ fun DeviceScreen(
             item(key = "soc_knowledge") {
                 SocKnowledgeCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
             }
+            item(key = "bench_engine") {
+                BenchEngineCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
+            }
         }
 
         item(key = "vulkan_header") {
@@ -10695,8 +10698,257 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
     }
 }
 
+/** SoC 跑分引擎：等效 PC / 模拟器体验预估 / 升级建议 / 世代演进 / 同芯机型。
+ *  数据来自安兔兔 SoC 天梯 + 鲁大师五榜（assets/bench，CI 每日刷新）。
+ *  匹配失败或数据缺失一律展示空态，不编造分数。 */
+@Composable
+private fun BenchEngineCard(context: Context, gpuModel: String = "") {
+    val socName = remember { SocNameMapper.getCurrentSocName(context) }
+    val info = remember(socName, gpuModel) { BenchEngine.resolve(socName, gpuModel, context) }
 
-/** 全局搜索（Quick Search 移动端移植）：跨模拟器/驱动/组件/运行库，结果分组，点击跳转对应专区 */
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        RegionHeader(
+            title = appString(R.string.bench_engine_title),
+            icon = Icons.Default.TrendingUp,
+            remote = null
+        )
+        if (info == null) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                )
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        socName.ifBlank { "SOC: unknown" },
+                        style = MaterialTheme.typography.titleSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        appString(R.string.bench_no_data),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+            return@Column
+        }
+
+        // 等效 PC 配置（鲁大师同分制最近邻）
+        if (info.pcEquiv != null) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp)
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        appString(R.string.bench_equiv_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    InfoRow(label = appString(R.string.bench_equiv_cpu), value = info.pcEquiv.cpuName)
+                    InfoRow(label = appString(R.string.bench_equiv_gpu), value = info.pcEquiv.gpuName)
+                }
+            }
+        } else if (info.antutuTotal != null) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                )
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        appString(R.string.bench_equiv_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        appString(R.string.bench_equiv_none),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+
+        // 模拟器体验预估
+        if (info.emulatorTiers.isNotEmpty()) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp)
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        appString(R.string.bench_emu_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    info.emulatorTiers.forEach { t -> BenchTierRow(t) }
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        appString(R.string.bench_emu_calib),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                    )
+                }
+            }
+        }
+
+        // 升级建议
+        info.upgrade?.let { u ->
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp)
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        appString(R.string.bench_upgrade_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    InfoRow(
+                        label = appString(R.string.bench_upgrade_next),
+                        value = "${u.nextName}（+${u.gainPct}%）"
+                    )
+                }
+            }
+        }
+
+        // 世代演进（同家族按发布年柱状）
+        if (info.generation.size >= 3) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp)
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        appString(R.string.bench_gen_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(10.dp))
+                    BenchGenerationBars(info.generation)
+                }
+            }
+        }
+
+        // 同芯机型跑分（榜单未收录如实标注）
+        info.sameChip?.let { list ->
+            if (list.isNotEmpty()) {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(28.dp)
+                ) {
+                    Column(Modifier.padding(16.dp)) {
+                        Text(
+                            appString(R.string.bench_samechip_title),
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        list.forEach { d ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)
+                            ) {
+                                Text(
+                                    d.name,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                Text(
+                                    d.score?.let { "%,d".format(it) } ?: appString(R.string.bench_samechip_missing),
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = if (d.score != null) MaterialTheme.colorScheme.primary
+                                        else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 模拟器档位行：名称 + 语义色档位 */
+@Composable
+private fun BenchTierRow(tier: EmulatorTier) {
+    val color = when (tier.tier) {
+        "流畅" -> Color(0xFF2E7D32)
+        "可玩" -> Color(0xFF1565C0)
+        "吃力" -> Color(0xFFEF6C00)
+        else -> Color(0xFFC62828)
+    }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp)
+    ) {
+        Text(
+            tier.name,
+            style = MaterialTheme.typography.bodyMedium,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f)
+        )
+        Surface(shape = RoundedCornerShape(8.dp), color = color.copy(alpha = 0.14f)) {
+            Text(
+                tier.tier,
+                style = MaterialTheme.typography.labelMedium,
+                color = color,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp)
+            )
+        }
+    }
+}
+
+/** 世代演进柱状（同家族逐年，按总分归一化高度） */
+@Composable
+private fun BenchGenerationBars(data: List<Triple<String, String, Long>>) {
+    val max = data.maxOf { it.third }
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.Bottom,
+        modifier = Modifier.fillMaxWidth().height(140.dp)
+    ) {
+        data.forEach { (year, name, score) ->
+            val h = ((score.toFloat() / max.toFloat()) * 100f).coerceAtLeast(10f)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    year,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1
+                )
+                Spacer(Modifier.height(4.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(0.7f)
+                        .height(h.dp)
+                        .clip(RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
+                        .background(MaterialTheme.colorScheme.primaryContainer)
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    name,
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
+}
 @Composable
 fun GlobalSearchSheet(
     emulators: List<EmulatorEntry>,
