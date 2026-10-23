@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T15:20:00Z",
+ "updated_at": "2026-10-23T15:50:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -56458,6 +56458,31 @@
    "stars": 343,
    "forks": 0,
    "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "md.emu-sms",
+   "name": "MD.emu",
+   "category": "Sega Mega Drive",
+   "description": "Sega Genesis/Mega Drive 与 Master System 模拟器（Robert Broglia .emu 系列）：GitHub 官方源码镜像（neonichu 维护），正式版经 Google Play 分发（免费+付费版）；视频中 v1.5.8x 系列版本。",
+   "owner": "neonichu",
+   "repo": "neonichu/MD.emu",
+   "homepage": "https://play.google.com/store/apps/developer?id=Robert+Broglia",
+   "repo_url": "https://github.com/neonichu/MD.emu",
+   "official": true,
+   "channel": "stable",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2017-04-17T09:01:06Z",
+   "stars": 38,
+   "forks": 23,
+   "watchers": 7,
    "downloads": 0,
    "logo_url": "",
    "releases": []
