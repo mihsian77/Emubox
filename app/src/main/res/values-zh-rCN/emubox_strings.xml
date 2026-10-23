@@ -212,6 +212,24 @@
     <string name="soc_cpu">CPU</string>
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">性能跑分（安兔兔 V10）</string>
+
+    <string name="bench_engine_title">SoC 跑分引擎</string>
+    <string name="bench_no_data">该芯片暂无跑分数据</string>
+    <string name="bench_equiv_title">等效 PC 配置</string>
+    <string name="bench_equiv_cpu">台式机 CPU</string>
+    <string name="bench_equiv_gpu">台式机显卡</string>
+    <string name="bench_equiv_none">鲁大师榜未收录，无法换算 PC 等效</string>
+    <string name="bench_emu_title">模拟器体验预估</string>
+    <string name="bench_emu_calib">经验阈值，待实测校准</string>
+    <string name="bench_upgrade_title">升级建议</string>
+    <string name="bench_upgrade_next">下一档</string>
+    <string name="bench_gen_title">世代演进</string>
+    <string name="bench_samechip_title">同芯机型跑分</string>
+    <string name="bench_samechip_missing">榜单未收录</string>
+    <string name="bench_tier_smooth">流畅</string>
+    <string name="bench_tier_playable">可玩</string>
+    <string name="bench_tier_heavy">吃力</string>
+    <string name="bench_tier_bad">不建议</string>
     <string name="soc_source_note">数据来源：公开跑分平台综合整理，仅供参考。</string>
     <string name="soc_devices">常见机型</string>
     <string name="component_wine_subtitle">Windows 兼容层</string>
