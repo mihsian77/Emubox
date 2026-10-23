@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T16:10:00Z",
+ "updated_at": "2026-10-23T16:30:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -56532,6 +56532,31 @@
      ]
     }
    ]
+  },
+  {
+   "id": "myps2-ps2",
+   "name": "MYPS2",
+   "category": "PlayStation 2",
+   "description": "安卓 PS2 模拟器（韩国 iefriends 开发，Google Play 上架，包名 kr.co.iefriends.myps2）：全新开发的 PS2 模拟方案；无公开 GitHub 仓库，官方经 Play 商店分发，APKPure 等第三方镜像有收录（镜像需校验签名）。",
+   "owner": "iefriends",
+   "repo": "",
+   "homepage": "https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2",
+   "repo_url": "",
+   "official": true,
+   "channel": "stable",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "Google Play 商店分发（kr.co.iefriends.myps2）",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "",
+   "stars": 0,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
   }
  ]
 }
