@@ -3010,59 +3010,38 @@ fun DriverHubScreen(
         ?: qualcommSources.firstOrNull()
 
     var showDriverCompare by remember { mutableStateOf(false) }
-    val driverNewsScope = rememberCoroutineScope()
 
-    // ── 驱动更新动态：全源最新 release 汇总（并发拉取，10min 缓存兜底）──
+    // ── 驱动更新动态：全源最新 release 汇总 ──
+    // 数据源 = 内置 driver-registry.json 的 latest_tag/latest_date/latest_body 字段
+    // （CI 每日刷新）。离线必显示，不再依赖运行时 GitHub 拉取（此前并发拉 release
+    // 在慢网/限流下常为空，用户侧表现为"驱动专区没有更新提示"）。
     var driverNews by remember { mutableStateOf<List<DriverNewsItem>>(emptyList()) }
     var driverNewsLoading by remember { mutableStateOf(false) }
-    LaunchedEffect(turnipSources, panvkSources, qualcommSources, deviceInfo?.adrenoSeries) {
-        if (driverNews.isNotEmpty()) return@LaunchedEffect
-        driverNewsLoading = true
-        val series = deviceInfo?.adrenoSeries ?: "default"
-        val jobs = buildList {
-            turnipSources.forEach { add(Triple(it.name, "turnip", it.apiUrl)) }
-            panvkSources.forEach { add(Triple(it.name, "panvk", it.apiUrl)) }
-            qualcommSources.forEach { add(Triple(it.name, "qualcomm", it.apiUrl)) }
-        }
-        driverNews = withContext(Dispatchers.IO) {
-            val sem = java.util.concurrent.Semaphore(4, true)
-            coroutineScope {
-                jobs.map { (name, family, apiUrl) ->
-                    async {
-                        sem.acquire()
-                        try {
-                            withTimeout(8000) {
-                                val rel = if (family == "qualcomm") {
-                                    fetchGithubReleasesFromUrl(apiUrl)
-                                } else {
-                                    fetchTurnipReleases(
-                                        turnipSources.firstOrNull { it.apiUrl == apiUrl }
-                                            ?: panvkSources.firstOrNull { it.apiUrl == apiUrl }
-                                            ?: return@withTimeout null,
-                                        series
-                                    )
-                                }
-                                rel.firstOrNull()?.let { r ->
-                                    DriverNewsItem(
-                                        sourceName = name,
-                                        family = family,
-                                        tag = r.tagName,
-                                        date = r.publishedAt,
-                                        body = r.body.take(140),
-                                        zipName = r.assets.firstOrNull()?.name ?: "",
-                                        apiUrl = apiUrl
-                                    )
-                                }
-                            }
-                        } catch (_: Exception) {
-                            null
-                        } finally {
-                            sem.release()
-                        }
-                    }
-                }.awaitAll().filterNotNull().sortedByDescending { it.date }
+    val driverNewsContext = LocalContext.current
+    fun buildDriverNewsFromRegistry(): List<DriverNewsItem> {
+        val entries = DriverRegistryRepository.loadFromAssets(driverNewsContext) ?: return emptyList()
+        return entries
+            .filter { it.latestTag.isNotBlank() && it.latestDate > 0L }
+            .sortedByDescending { it.latestDate }
+            .map { e ->
+                DriverNewsItem(
+                    sourceName = e.name,
+                    family = when (e.driverType) {
+                        "panvk" -> "panvk"
+                        "qualcomm" -> "qualcomm"
+                        else -> "turnip"
+                    },
+                    tag = e.latestTag,
+                    date = java.time.Instant.ofEpochMilli(e.latestDate).toString(),
+                    body = e.latestBody,
+                    zipName = "",
+                    apiUrl = e.apiUrl
+                )
             }
-        }
+    }
+    LaunchedEffect(Unit) {
+        driverNewsLoading = true
+        driverNews = buildDriverNewsFromRegistry()
         driverNewsLoading = false
     }
 
@@ -3089,57 +3068,9 @@ fun DriverHubScreen(
                 items = driverNews,
                 loading = driverNewsLoading,
                 onRefresh = {
-                    driverNews = emptyList()
                     driverNewsLoading = true
-                    val series = deviceInfo?.adrenoSeries ?: "default"
-                    val jobs = buildList {
-                        turnipSources.forEach { add(Triple(it.name, "turnip", it.apiUrl)) }
-                        panvkSources.forEach { add(Triple(it.name, "panvk", it.apiUrl)) }
-                        qualcommSources.forEach { add(Triple(it.name, "qualcomm", it.apiUrl)) }
-                    }
-                    // 全源并发（信号量限 4），走 releaseCache 的 10min TTL
-                    driverNewsScope.launch {
-                        driverNews = withContext(Dispatchers.IO) {
-                            val sem = java.util.concurrent.Semaphore(4, true)
-                            coroutineScope {
-                                jobs.map { (name, family, apiUrl) ->
-                                    async {
-                                        sem.acquire()
-                                        try {
-                                            withTimeout(8000) {
-                                                val rel = if (family == "qualcomm") {
-                                                    fetchGithubReleasesFromUrl(apiUrl)
-                                                } else {
-                                                    fetchTurnipReleases(
-                                                        turnipSources.firstOrNull { it.apiUrl == apiUrl }
-                                                            ?: panvkSources.firstOrNull { it.apiUrl == apiUrl }
-                                                            ?: return@withTimeout null,
-                                                        series
-                                                    )
-                                                }
-                                                rel.firstOrNull()?.let { r ->
-                                                    DriverNewsItem(
-                                                        sourceName = name,
-                                                        family = family,
-                                                        tag = r.tagName,
-                                                        date = r.publishedAt,
-                                                        body = r.body.take(140),
-                                                        zipName = r.assets.firstOrNull()?.name ?: "",
-                                                        apiUrl = apiUrl
-                                                    )
-                                                }
-                                            }
-                                        } catch (_: Exception) {
-                                            null
-                                        } finally {
-                                            sem.release()
-                                        }
-                                    }
-                                }.awaitAll().filterNotNull().sortedByDescending { it.date }
-                            }
-                        }
-                        driverNewsLoading = false
-                    }
+                    driverNews = buildDriverNewsFromRegistry()
+                    driverNewsLoading = false
                 }
             )
         }
@@ -8709,6 +8640,177 @@ private fun emulatorCategoryLabel(category: String): String = when (category) {
     "multi" -> "多平台聚合"
     else -> category
 }
+/** 打开新闻原文（系统浏览器） */
+private fun openNewsLink(context: Context, url: String) {
+    runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
+}
+
+/** 新闻分类色块 */
+private fun newsCategoryColor(category: String): Color = when (category) {
+    "emulator" -> Color(0xFF059669)
+    "driver" -> Color(0xFFEA580C)
+    "eco" -> Color(0xFF2563EB)
+    else -> Color(0xFF64748B)
+}
+
+/** 新闻条目行：分类标签 + 标题 + 来源·时间 */
+@Composable
+private fun NewsRowItem(item: NewsItem) {
+    val context = LocalContext.current
+    Row(
+        modifier = Modifier.fillMaxWidth().clickable { openNewsLink(context, item.url) }
+            .padding(vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(6.dp))
+                .background(newsCategoryColor(item.category).copy(alpha = 0.13f))
+                .padding(horizontal = 6.dp, vertical = 2.dp)
+        ) {
+            Text(
+                item.categoryLabel,
+                style = MaterialTheme.typography.labelSmall,
+                color = newsCategoryColor(item.category)
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        Column(Modifier.weight(1f)) {
+            Text(
+                item.title,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(Modifier.height(2.dp))
+            Text(
+                appString(R.string.news_source_ithome) + " · " +
+                    formatRelativeTimeMs(item.publishedAt * 1000L),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+/** 业界动态：IT之家新闻分栏（全部/模拟器/驱动组件/生态/泛科技） */
+@Composable
+private fun NewsSectionCard(
+    items: List<NewsItem>?,
+    filter: String,
+    onFilterChange: (String) -> Unit
+) {
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Article, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.news_section_title), style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                Text(
+                    appString(R.string.news_source_ithome),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Spacer(Modifier.height(10.dp))
+            val chips = listOf(
+                "all" to appString(R.string.news_chip_all),
+                "emulator" to appString(R.string.news_chip_emulator),
+                "driver" to appString(R.string.news_chip_driver),
+                "eco" to appString(R.string.news_chip_eco),
+                "general" to appString(R.string.news_chip_general)
+            )
+            Row(
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                chips.forEach { (cat, label) ->
+                    val selected = filter == cat
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(if (selected) Fusion.GradientStart else Fusion.SurfaceAlt)
+                            .clickable { onFilterChange(cat) }
+                            .padding(horizontal = 10.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            label,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = if (selected) Color.White else Fusion.OnSurfaceDim
+                        )
+                    }
+                }
+            }
+            Spacer(Modifier.height(4.dp))
+            when {
+                items == null -> {
+                    Spacer(Modifier.height(8.dp))
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                    Spacer(Modifier.height(8.dp))
+                }
+                items.isEmpty() -> {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        appString(R.string.news_empty),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                else -> {
+                    val shown = items.filter { filter == "all" || it.category == filter }.take(5)
+                    shown.forEachIndexed { i, item ->
+                        NewsRowItem(item)
+                        if (i != shown.lastIndex) {
+                            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 新作发布：模拟器类新闻列表 */
+@Composable
+private fun NewsReleaseCard(items: List<NewsItem>?) {
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
+        Column(Modifier.padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.SportsEsports, contentDescription = null, modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.news_new_releases), style = MaterialTheme.typography.titleSmall)
+            }
+            Spacer(Modifier.height(6.dp))
+            when {
+                items == null -> {
+                    Spacer(Modifier.height(8.dp))
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                    Spacer(Modifier.height(8.dp))
+                }
+                items.none { it.category == "emulator" } -> {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        appString(R.string.news_empty),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                else -> {
+                    items.filter { it.category == "emulator" }.take(5).forEachIndexed { i, item ->
+                        NewsRowItem(item)
+                        if (i != 4) {
+                            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @Composable
 fun EmulatorScreen(
     modifier: Modifier = Modifier,
@@ -8718,6 +8820,12 @@ fun EmulatorScreen(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    // 新闻模块：IT之家业界动态（CI 每日刷新 news-data.json，无网走内置离线副本）
+    var newsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
+    var newsFilter by remember { mutableStateOf("all") }
+    LaunchedEffect(Unit) {
+        newsItems = NewsRepository.loadNews(context)
+    }
     var filterCat by remember { mutableStateOf("all") }
     var sortMode by remember { mutableStateOf("popular") }
     var detailEntry by remember { mutableStateOf<EmulatorEntry?>(null) }
@@ -8846,6 +8954,16 @@ fun EmulatorScreen(
                     }
                 }
             }
+        }
+        item(key = "news_section", span = { GridItemSpan(maxLineSpan) }) {
+            NewsSectionCard(
+                items = newsItems,
+                filter = newsFilter,
+                onFilterChange = { newsFilter = it }
+            )
+        }
+        item(key = "news_releases", span = { GridItemSpan(maxLineSpan) }) {
+            NewsReleaseCard(items = newsItems)
         }
         topEntry?.let { hero ->
             item(key = "emulator_hero", span = { GridItemSpan(maxLineSpan) }) {
