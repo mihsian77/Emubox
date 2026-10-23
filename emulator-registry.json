@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T14:40:00Z",
+ "updated_at": "2026-10-23T15:20:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -56302,6 +56302,165 @@
      "assets": []
     }
    ]
+  },
+  {
+   "id": "panda3ds-3ds",
+   "name": "Panda3DS",
+   "category": "Nintendo 3DS",
+   "description": "HLE 3DS 模拟器（★1413，持续开发中）：完整 HLE 架构、独立实现，Android 构建经 CI 分发；GitHub 最新 release v0.9（2024-12），APK 见 CI 产物（直链待核）。",
+   "owner": "wheremyfoodat",
+   "repo": "wheremyfoodat/Panda3DS",
+   "homepage": "",
+   "repo_url": "https://github.com/wheremyfoodat/Panda3DS",
+   "official": true,
+   "channel": "alpha",
+   "latest_tag": "v0.9",
+   "latest_date": "2024-12-25T00:00:00Z",
+   "latest_body": "",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-10-04T00:00:00Z",
+   "stars": 1413,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.9",
+     "name": "v0.9",
+     "date": "2024-12-25",
+     "body": "",
+     "assets": []
+    },
+    {
+     "tag": "v0.8",
+     "name": "v0.8",
+     "date": "2024-01-22",
+     "body": "",
+     "assets": []
+    }
+   ]
+  },
+  {
+   "id": "wie-skvm",
+   "name": "Wie",
+   "category": "J2ME Emulator",
+   "description": "WIPI/SKVM/J2ME 模拟器（dlunch，★206，活跃）：韩系 SKVM（智能卡虚拟机）与 J2ME 手机游戏运行器，Android nightly 持续构建（v0.2.12 含 aarch64 APK）。",
+   "owner": "dlunch",
+   "repo": "dlunch/wie",
+   "homepage": "",
+   "repo_url": "https://github.com/dlunch/wie",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "v0.2.12",
+   "latest_date": "2026-10-23T00:00:00Z",
+   "latest_body": "",
+   "latest_apk_name": "wie-v0.2.12-android-aarch64.apk",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-10-23T00:00:00Z",
+   "stars": 206,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.2.12",
+     "name": "v0.2.12",
+     "date": "2026-10-23",
+     "body": "",
+     "assets": [
+      "wie-v0.2.12-android-aarch64.apk"
+     ]
+    },
+    {
+     "tag": "nightly-e3495262cb93",
+     "name": "nightly",
+     "date": "2026-10-23",
+     "body": "",
+     "assets": [
+      "wie-nightly-android-aarch64.apk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lime3ds-3ds",
+   "name": "Lime3DS",
+   "category": "Nintendo 3DS",
+   "description": "3DS 模拟器（Citra 分支，★176）：2024-2025 主流维护分支之一，2025-04 项目停更后源码归档（lime3ds-archive）；不再有新 release，历史版本见归档。",
+   "owner": "Lime3DS",
+   "repo": "Lime3DS/lime3ds-archive",
+   "homepage": "https://lime3ds.github.io/",
+   "repo_url": "https://github.com/Lime3DS/lime3ds-archive",
+   "official": true,
+   "channel": "archive",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "已归档（2025-04 停更）",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2025-04-22T00:00:00Z",
+   "stars": 176,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "borked3ds-3ds",
+   "name": "Borked3DS",
+   "category": "Nintendo 3DS",
+   "description": "实验性 3DS 模拟器（Lime3DS 系 fork，★276）：2025 年初活跃的实验分支，2025-04 后停更（与 Lime3DS 同期归档）；源码保留，无独立 release。",
+   "owner": "Borked3DS",
+   "repo": "Borked3DS/Borked3DS",
+   "homepage": "https://borked3ds.github.io/",
+   "repo_url": "https://github.com/Borked3DS/Borked3DS",
+   "official": true,
+   "channel": "archive",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "已停更（2025-04）",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2025-04-15T00:00:00Z",
+   "stars": 276,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
+  },
+  {
+   "id": "redream-dc",
+   "name": "redream",
+   "category": "Sega Dreamcast",
+   "description": "Dreamcast 模拟器（★343）：GitHub 源码为 WIP 分支（2023 后停更），正式版经官网 redream.io 分发（免费/付费授权）；Android 版见官网下载。",
+   "owner": "inolen",
+   "repo": "inolen/redream",
+   "homepage": "https://redream.io",
+   "repo_url": "https://github.com/inolen/redream",
+   "official": true,
+   "channel": "stable",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "正式版经官网 redream.io 分发（免费+付费）",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2023-04-12T00:00:00Z",
+   "stars": 343,
+   "forks": 0,
+   "watchers": 0,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
   }
  ]
 }

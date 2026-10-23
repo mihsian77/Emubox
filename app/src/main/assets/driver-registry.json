@@ -1,6 +1,6 @@
 {
  "version": "1.0.1",
- "updated_at": "2026-10-22T15:09:40Z",
+ "updated_at": "2026-10-23T15:20:00Z",
  "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
  "repositories": [
   {
@@ -1827,6 +1827,16 @@
     ]
    },
    "updated_at": "2026-08-31T00:00:00Z"
+  },
+  {
+   "id": "rutabaga-gfx",
+   "name": "Rutabaga（GPU 虚拟化）",
+   "driver_type": "component",
+   "owner": "magma-gpu",
+   "repo": "magma-gpu/rutabaga_gfx",
+   "api_url": "https://api.github.com/repos/magma-gpu/rutabaga_gfx/releases",
+   "description": "跨平台开源 Rust 版 GPU paravirtualization 驱动（★72，活跃）：供 Android 模拟器/AVD（Cuttlefish 等）使用。注：用户提及的 The412Banner Rutabaga fork 经 GitHub 60 仓库全量核查不存在，已收录官方上游源。",
+   "pushed_at": "2026-10-20"
   }
  ]
 }
