@@ -36,6 +36,7 @@ jobs:
           python3 scripts/bench/parse_bench.py
           python3 scripts/bench/check_bench.py
           python3 scripts/bench/build_meta.py
+          node scripts/bench/fetch_soc_specs.js
           python3 scripts/bench/build_specs.py
 
       - name: 同步内置数据到 assets 并提交
