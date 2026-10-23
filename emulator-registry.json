@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T12:30:00Z",
+ "updated_at": "2026-10-23T13:10:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -55733,6 +55733,84 @@
      "assets": []
     }
    ]
+  },
+  {
+   "id": "xendroid-plus",
+   "name": "Xendroid+",
+   "category": "Microsoft Xbox 360",
+   "description": "XenDroid 增强 fork（phforner0）：推进 Xbox 360 安卓模拟，基于 XenDroid 代码持续优化，独立发布节奏（0.2.0-preview.108 起含 APK）。",
+   "owner": "phforner0",
+   "repo": "phforner0/Xendroid-Plus",
+   "homepage": "",
+   "repo_url": "https://github.com/phforner0/Xendroid-Plus",
+   "official": false,
+   "channel": "beta",
+   "latest_tag": "XenDroid-v108-9a84d065",
+   "latest_date": "2026-10-20T21:22:53Z",
+   "latest_body": "Controller navigation: the focus no longer gets stuck in the search field, and B no longer closes the app at once.\n\n* Text fields let the D-pad and B out, and A shows the keyboard again.\n* A controlle",
+   "latest_apk_name": "XenDroid_Release_9a84d065.apk",
+   "latest_apk_url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v108-9a84d065/XenDroid_Release_9a84d065.apk",
+   "latest_apk_size": 42527945,
+   "pushed_at": "2026-10-20T21:22:53Z",
+   "stars": 36,
+   "forks": 5,
+   "watchers": 5,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "XenDroid-v108-9a84d065",
+     "name": "Xendroid+ 0.2.0-preview.108",
+     "date": "2026-10-20T21:22:53Z",
+     "body": "Controller navigation: the focus no longer gets stuck in the search field, and B no longer closes the app at once.\n\n* Text fields let the D-pad and B out, and A shows the keyboard again.\n* A controller's first press in the library goes to the games, not to the search field.\n* With a controller, sheets and the Start menu take the focus on their first control, and B closes them at once.\n* B at the l",
+     "assets": [
+      "XenDroid_Release_9a84d065.apk"
+     ]
+    },
+    {
+     "tag": "XenDroid-v107-e0d45b9f",
+     "name": "Xendroid+ 0.2.0-preview.107",
+     "date": "2026-10-20T21:14:29Z",
+     "body": "First step toward XNA games such as Bastion: the console kernel's user mode, which their .NET runtime needs.\n\n* The kernel's user mode, where the runtime of XNA games runs the game's code, is now implemented.\n* Code a game compiles while it runs is now translated, and dropped again when the game rewrites it.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v104-8715",
+     "assets": [
+      "XenDroid_Release_e0d45b9f.apk"
+     ]
+    },
+    {
+     "tag": "XenDroid-v104-8715d0fb",
+     "name": "Xendroid+ 0.1.0",
+     "date": "2026-10-19T19:07:40Z",
+     "body": "Releases now have version numbers, and every change reaches the Preview channel first.\n\nFile operations behave more like the console, and a batch of small fixes from upstream.\n\nThree leftovers of the upstream sweep: a copy mode some Kinect games use, a memory allocation fix, and socket fixes.\n\nBad game and content files can no longer crash the app or lose your data.\n\nWith an empty shader cache, ef",
+     "assets": [
+      "XenDroid_Release_8715d0fb.apk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dukestation-ps1",
+   "name": "DukeStation",
+   "category": "PlayStation 1 Emulator",
+   "description": "PS1 安卓模拟器（thecrixux，DukePS3 同作者）：基于 sashkinbro/EmuCoreR 的 fork，2026-09 起活跃维护；GitHub release 页暂未公开，APK 经网盘分发（直链待核）。",
+   "owner": "thecrixux",
+   "repo": "thecrixux/DukeStation",
+   "homepage": "",
+   "repo_url": "https://github.com/thecrixux/DukeStation",
+   "official": false,
+   "channel": "alpha",
+   "latest_tag": "",
+   "latest_date": "",
+   "latest_body": "",
+   "latest_apk_name": "",
+   "latest_apk_url": "",
+   "latest_apk_size": 0,
+   "pushed_at": "2026-10-12T22:00:36Z",
+   "stars": 29,
+   "forks": 1,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": []
   }
  ]
 }
