@@ -210,6 +210,7 @@
     <string name="soc_knowledge_not_found">暂未收录该芯片信息。</string>
     <string name="soc_process">工艺</string>
     <string name="soc_cpu">CPU</string>
+    <string name="soc_cpu_cores">核心数 / 最高频率</string>
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">性能跑分（安兔兔 V10）</string>
 
