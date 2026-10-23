@@ -701,4 +701,9 @@ How to verify in emulator:
     <string name="news_source_ithome">ITHome</string>
     <string name="news_open_link">Open source article</string>
     <string name="news_empty">No news yet. Check back later.</string>
+    <string name="news_eco_title">Ecosystem News</string>
+    <string name="news_driver_title">Driver News</string>
+    <string name="news_component_title">Component News</string>
+    <string name="news_runtime_title">Runtime News</string>
+    <string name="news_general_fold">More tech news</string>
 </resources>
