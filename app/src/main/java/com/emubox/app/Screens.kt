@@ -5374,7 +5374,8 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
+        border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -5382,7 +5383,7 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
                     Icons.Default.Download,
                     contentDescription = null,
                     modifier = Modifier.size(20.dp),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = Fusion.GradientStart
                 )
                 Spacer(Modifier.width(10.dp))
                 Column {
