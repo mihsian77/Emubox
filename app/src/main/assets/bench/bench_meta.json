@@ -531,104 +531,60 @@
    "soc": "骁龙8 Elite",
    "devices": [
     {
-     "name": "小米15 Pro",
-     "score": null
+     "name": "Xiaomi 18 Pro",
+     "score": "2027543"
     },
     {
-     "name": "iQOO 13",
-     "score": "1717253"
+     "name": "iQOO 16",
+     "score": "2113890"
     },
     {
-     "name": "一加13",
-     "score": null
+     "name": "vivo X500 Pro Max",
+     "score": "2149574"
     },
     {
-     "name": "红魔10 Pro",
-     "score": null
+     "name": "荣耀Magic9 Pro Max",
+     "score": "2061873"
+    },
+    {
+     "name": "一加 Ace 6 至尊版",
+     "score": "1999715"
+    },
+    {
+     "name": "红魔11S Pro+",
+     "score": "1968990"
+    },
+    {
+     "name": "OPPO Find X9 Ultra",
+     "score": "1899891"
+    },
+    {
+     "name": "REDMI K90 Pro Max",
+     "score": "1887886"
+    },
+    {
+     "name": "OPPO Find X8 Ultra",
+     "score": "1842942"
+    },
+    {
+     "name": "vivo X200 Ultra",
+     "score": "1796594"
     },
     {
      "name": "荣耀Magic7 Pro",
      "score": "1765464"
-    }
-   ]
-  },
-  {
-   "soc": "骁龙8 Gen 3",
-   "devices": [
-    {
-     "name": "小米14",
-     "score": null
     },
     {
-     "name": "iQOO 12",
-     "score": null
+     "name": "红魔10pro+",
+     "score": "1773043"
     },
     {
-     "name": "一加12",
-     "score": null
+     "name": "iQOO 15",
+     "score": "2092421"
     },
     {
-     "name": "红魔9 Pro",
-     "score": null
-    },
-    {
-     "name": "魅族21",
-     "score": null
-    }
-   ]
-  },
-  {
-   "soc": "骁龙8 Gen 2",
-   "devices": [
-    {
-     "name": "小米13",
-     "score": null
-    },
-    {
-     "name": "iQOO 11",
-     "score": null
-    },
-    {
-     "name": "一加11",
-     "score": null
-    },
-    {
-     "name": "红魔8 Pro",
-     "score": null
-    },
-    {
-     "name": "三星Galaxy S23",
-     "score": null
-    }
-   ]
-  },
-  {
-   "soc": "天玑9400",
-   "devices": [
-    {
-     "name": "vivo X200 Pro",
-     "score": null
-    },
-    {
-     "name": "OPPO Find X8 Pro",
-     "score": "1627287"
-    },
-    {
-     "name": "iQOO Neo10 Pro",
-     "score": "1698805"
-    }
-   ]
-  },
-  {
-   "soc": "天玑9300",
-   "devices": [
-    {
-     "name": "vivo X100 Pro",
-     "score": null
-    },
-    {
-     "name": "OPPO Find X7 Ultra",
-     "score": null
+     "name": "一加 13",
+     "score": "1850526"
     }
    ]
   }

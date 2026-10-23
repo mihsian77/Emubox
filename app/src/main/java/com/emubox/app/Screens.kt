@@ -10651,6 +10651,9 @@ private fun EmulatorDetailDialog(
 private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
     val socName = remember { SocNameMapper.getCurrentSocName(context) }
     val knowledge = remember(socName, gpuModel) { SocKnowledgeStore.find(socName, gpuModel, context) }
+    // 跑分引擎命中时隐藏知识库文案分数，避免与真实跑分冲突
+    val benchInfo = remember(socName, gpuModel) { BenchEngine.resolve(socName, gpuModel, context) }
+    val hasBenchScore = benchInfo?.antutuTotal != null || benchInfo?.ludashiScore != null
 
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         RegionHeader(
@@ -10695,21 +10698,25 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f)
                         )
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = MaterialTheme.colorScheme.primaryContainer
-                        ) {
-                            Text(
-                                knowledge.score,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                                maxLines = 1
-                            )
+                        if (!hasBenchScore) {
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = MaterialTheme.colorScheme.primaryContainer
+                            ) {
+                                Text(
+                                    knowledge.score,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                                    maxLines = 1
+                                )
+                            }
                         }
                     }
                     Spacer(Modifier.height(10.dp))
-                    InfoRow(label = appString(R.string.soc_score_label), value = knowledge.score)
+                    if (!hasBenchScore) {
+                        InfoRow(label = appString(R.string.soc_score_label), value = knowledge.score)
+                    }
                     InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
                     InfoRow(label = appString(R.string.soc_cpu), value = knowledge.cpu)
                     InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)

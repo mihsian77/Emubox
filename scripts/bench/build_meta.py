@@ -71,13 +71,14 @@ ALIASES = [
     {"keys":["Exynos 2500"], "antutu":"Exynos 2500", "ludashi":None, "year":"2025-01", "family":"Exynos"},
 ]
 
-# ---------------- 同芯机型 curated 表（鲁大师手机性能榜内取分） ----------------
+# ---------------- 同芯机型 curated 表（榜内实存机型，家族级归类；分数取自鲁大师手机性能榜） ----------------
 SAME_CHIP = [
-    {"soc": "骁龙8 Elite", "devices": ["小米15 Pro", "iQOO 13", "一加13", "红魔10 Pro", "荣耀Magic7 Pro"]},
-    {"soc": "骁龙8 Gen 3", "devices": ["小米14", "iQOO 12", "一加12", "红魔9 Pro", "魅族21"]},
-    {"soc": "骁龙8 Gen 2", "devices": ["小米13", "iQOO 11", "一加11", "红魔8 Pro", "三星Galaxy S23"]},
-    {"soc": "天玑9400", "devices": ["vivo X200 Pro", "OPPO Find X8 Pro", "iQOO Neo10 Pro"]},
-    {"soc": "天玑9300", "devices": ["vivo X100 Pro", "OPPO Find X7 Ultra"]},
+    {"soc": "骁龙8 Elite", "devices": [
+        "Xiaomi 18 Pro", "iQOO 16", "vivo X500 Pro Max", "荣耀Magic9 Pro Max",
+        "一加 Ace 6 至尊版", "红魔11S Pro+", "OPPO Find X9 Ultra", "REDMI K90 Pro Max",
+        "OPPO Find X8 Ultra", "vivo X200 Ultra", "荣耀Magic7 Pro", "红魔10pro+",
+        "iQOO 15", "一加 13"
+    ]},
 ]
 
 # ---------------- 模拟器分级阈值（安兔兔总分体系；经验值，待实测校准） ----------------
