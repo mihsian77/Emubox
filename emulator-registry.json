@@ -1,6 +1,6 @@
 {
  "version": "1.2.1",
- "updated_at": "2026-10-23T15:50:00Z",
+ "updated_at": "2026-10-23T16:10:00Z",
  "emulators": [
   {
    "id": "brunodev85-winlator",
@@ -56486,6 +56486,52 @@
    "downloads": 0,
    "logo_url": "",
    "releases": []
+  },
+  {
+   "id": "emucorec-ps3",
+   "name": "EmuCoreC",
+   "category": "PlayStation 3",
+   "description": "PS3 安卓模拟器（sashkinbro EmuCore 家族，★43，基于 RPCS3 内核）：2026-08 起活跃，v0.0.5/v0.0.6 连续发布且含 APK；独立安卓前端界面。",
+   "owner": "sashkinbro",
+   "repo": "sashkinbro/EmuCoreC",
+   "homepage": "",
+   "repo_url": "https://github.com/sashkinbro/EmuCoreC",
+   "official": true,
+   "channel": "beta",
+   "latest_tag": "v0.0.6",
+   "latest_date": "2026-09-26T11:19:01Z",
+   "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreC/compare/v0.0.5...v0.0.6\r\n\r\nWhat's new: 0.0.6\r\n\r\n- UI fixes and updates\r\n- Updated profile\r\n- Discord integration\r\nOther fixes and improvement",
+   "latest_apk_name": "EmuCoreC-0.0.6-parallel-v006.apk",
+   "latest_apk_url": "https://github.com/sashkinbro/EmuCoreC/releases/download/v0.0.6/EmuCoreC-0.0.6-parallel-v006.apk",
+   "latest_apk_size": 62657477,
+   "pushed_at": "2026-10-21T19:49:34Z",
+   "stars": 43,
+   "forks": 2,
+   "watchers": 1,
+   "downloads": 0,
+   "logo_url": "",
+   "releases": [
+    {
+     "tag": "v0.0.6",
+     "name": "v0.0.6",
+     "date": "2026-09-26T11:19:01Z",
+     "body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreC/compare/v0.0.5...v0.0.6\r\n\r\nWhat's new: 0.0.6\r\n\r\n- UI fixes and updates\r\n- Updated profile\r\n- Discord integration\r\nOther fixes and improvements",
+     "assets": [
+      "EmuCoreC-0.0.6-parallel-v006.apk",
+      "EmuCoreC.v0.0.6.apk"
+     ]
+    },
+    {
+     "tag": "v0.0.5",
+     "name": "v0.0.5",
+     "date": "2026-08-20T20:55:38Z",
+     "body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreC/compare/v0.0.4...v0.0.5\r\n\r\nWhat's New: 0.0.5\r\n\r\n- Added the OpenGL backend.\r\n- Added support for installing patches.\r\n- Updated to the latest RPCS3 version.\r\n- Other improvements and optimizations.\r\nA clean installation is recommended.",
+     "assets": [
+      "EmuCoreC-0.0.5-parallel-v005.apk",
+      "EmuCoreC.v0.0.5.apk"
+     ]
+    }
+   ]
   }
  ]
 }
