@@ -1620,6 +1620,32 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkVulkan(JNIEnv* env, jobject /* t
 // 回滚方法：删除本段代码与 Kotlin 侧两个 external 声明即可。
 // ═══════════════════════════════════════════════════════════════════════════
 
+// ── 系统 Vulkan 预热（vktest/PPSSPP 同款前提）─────────────────────────────
+// :drivertest 独立进程启动后从未初始化系统 Vulkan。AdrenoTools 的
+// GPU_MAPPING_IMPORT 需要把自定义驱动挂到系统驱动的 GSL 映射上（非 root 下
+// 不用开 /dev/kgsl）；缺宿主 GPU 上下文则 mapping import 无对象，降级仅
+// CUSTOM 又要求 kgsl 权限，两路必败。故加载自定义驱动前先创建系统实例并
+// 枚举物理设备，让系统驱动建立映射上下文。实例静态持有至进程退出。
+static VkInstance g_systemVulkanInstance = VK_NULL_HANDLE;
+static void warmupSystemVulkan() {
+    if (g_systemVulkanInstance != VK_NULL_HANDLE) return;
+    // native 库链接了系统 libvulkan（loader），全局 vkCreateInstance 可用
+    VkInstance instance = createVulkanInstance(vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) return;
+    // 枚举物理设备，触发系统驱动真实初始化（打开 GPU 节点）
+    auto enumFn = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            vkGetInstanceProcAddr(instance, "vkEnumeratePhysicalDevices"));
+    if (enumFn) {
+        uint32_t count = 0;
+        enumFn(instance, &count, nullptr);
+        if (count > 0) {
+            std::vector<VkPhysicalDevice> devs(count);
+            enumFn(instance, &count, devs.data());
+        }
+    }
+    g_systemVulkanInstance = instance;
+}
+
 // 加载驱动并解析 ICD 入口；成功返回空串并写出句柄，失败返回错误 JSON。
 // useMappingImport=false 时强制仅 CUSTOM（不启用 GPU_MAPPING_IMPORT）：
 // 跑分在 fork 子进程中提交实际 GPU 负载，GSL 映射句柄跨 fork 可能失效
@@ -1647,6 +1673,8 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
     void* lib = nullptr;
     std::string firstErr;
     if (useMappingImport) {
+        // 先预热系统 GPU 上下文（vktest/PPSSPP 同款前提），再挂载自定义驱动
+        warmupSystemVulkan();
         lib = adrenotools_open_libvulkan(
                 RTLD_NOW,
                 ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
