@@ -128,13 +128,8 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
         withContext(Dispatchers.IO) {
             DownloadsManager.scanExistingFiles(context)
         }
-        // 未授权下载目录时自动弹一次 SAF 授权（用户拒绝过则不打扰，可手动按钮重试）：
-        // 授权后下载与扫描都走 DocumentFile 直读，覆盖安装/MediaStore 索引失效也能扫出
-        if (!folderAuthorized &&
-            !SettingsManager.getDownloadAuthDismissed()) {
-            SettingsManager.setDownloadAuthDismissed(true)
-            scanFolderLauncher.launch(defaultDownloadTreeUri(context))
-        }
+        // 自动授权已由 MainActivity 启动时统一处理（Android 11+ 文件权限 / 低版本运行时权限），
+        // 此处不再重复弹 SAF；未授权时保留手动按钮（授权后下载/扫描走 DocumentFile 直读）
     }
 
     Scaffold(
