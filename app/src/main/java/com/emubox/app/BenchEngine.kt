@@ -54,6 +54,16 @@ object BenchEngine {
     private var metaCache: JSONObject? = null
     private var ludashiCache: JSONObject? = null
 
+    /** 归一化：去空格/连字符/下划线 + 厂商英文名转中文（设备上报多英文，数据表多中文）。 */
+    private fun normalizeSoc(s: String): String {
+        var t = s.lowercase().replace(" ", "").replace("-", "").replace("_", "")
+        t = t.replace("snapdragon", "骁龙")
+            .replace("dimensity", "天玑")
+            .replace("kirin", "麒麟")
+            .replace("exynos", "exynos")
+        return t
+    }
+
     private fun meta(context: Context): JSONObject? {
         metaCache?.let { return it }
         metaCache = runCatching {
@@ -70,12 +80,11 @@ object BenchEngine {
         return ludashiCache
     }
 
-    /** 入口：按 SoC 显示名 + GPU 型号解析综合信息 */
-    fun resolve(socName: String, gpuModel: String, context: Context): SocBenchInfo? {
+    /** 入口：按 SoC 显示名 + GPU 型号解析综合信息 */    fun resolve(socName: String, gpuModel: String, context: Context): SocBenchInfo? {
         val m = meta(context) ?: return null
         val arr = m.optJSONArray("aliases") ?: return null
         val query = buildList {
-            if (socName.isNotBlank()) add(socName.lowercase())
+            if (socName.isNotBlank()) add(normalizeSoc(socName))
             if (gpuModel.isNotBlank() && gpuModel != "unknown") {
                 add("adreno$gpuModel")
                 add("mali$gpuModel")
@@ -87,8 +96,10 @@ object BenchEngine {
             val o = arr.getJSONObject(i)
             val keys = o.optJSONArray("keys") ?: continue
             for (j in 0 until keys.length()) {
-                val k = keys.optString(j).lowercase()
-                if (query.any { q -> q.contains(k) }) { best = o; break }
+                val k = normalizeSoc(keys.optString(j))
+                // 双向包含：数据表键为中文（骁龙8 Gen2）、设备上报为英文（Snapdragon 8 Gen 2）
+                // 归一化后统一为「骁龙8gen2」双向命中；SM8550 类代号同理
+                if (query.any { q -> q.contains(k) || k.contains(q) }) { best = o; break }
             }
             if (best != null) break
         }
