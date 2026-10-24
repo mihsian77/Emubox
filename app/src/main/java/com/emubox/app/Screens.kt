@@ -1151,6 +1151,8 @@ fun SettingsScreen(
     onColorThemeChange: (ColorTheme) -> Unit,
     appLanguage: AppLanguage,
     onAppLanguageChange: (AppLanguage) -> Unit,
+    uiScale: UiScale,
+    onUiScaleChange: (UiScale) -> Unit,
     onSourceCatalogChanged: () -> Unit,
     showBack: Boolean = true
 ) {
@@ -1247,6 +1249,21 @@ fun SettingsScreen(
                     ThemeModeSelector(
                         selected = themeMode,
                         onSelected = onThemeModeChange
+                    )
+                }
+            }
+
+            item {
+                SettingsCard(title = appString(R.string.ui_scale_title)) {
+                    Text(
+                        text = appString(R.string.ui_scale_desc),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    UiScaleSelector(
+                        selected = uiScale,
+                        onSelected = onUiScaleChange
                     )
                 }
             }
@@ -1857,6 +1874,30 @@ private fun languageLabel(language: AppLanguage): String = when (language) {
     AppLanguage.SYSTEM -> appString(R.string.language_system)
     AppLanguage.ENGLISH -> appString(R.string.language_english)
     AppLanguage.CHINESE -> appString(R.string.language_chinese)
+}
+
+@Composable
+private fun UiScaleSelector(
+    selected: UiScale,
+    onSelected: (UiScale) -> Unit
+) {
+    val choices = UiScale.entries.map { it to appString(it.labelRes) }
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        choices.chunked(2).forEach { rowItems ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                rowItems.forEach { (scale, label) ->
+                    FilterChip(
+                        selected = selected == scale,
+                        onClick = { onSelected(scale) },
+                        label = { Text(label) }
+                    )
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -3314,20 +3355,32 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                 Spacer(Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(appString(R.string.your_device), style = MaterialTheme.typography.titleLarge)
-                    Text(
-                        if (isLoading) appString(R.string.detecting_hardware) else mapVendorDisplayName(deviceInfo?.gpuRenderer ?: "") ?: appString(R.string.hardware_unavailable),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    if (!isLoading) {
+                    if (isLoading) {
                         Text(
-                            "SOC: $socName",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
-                            maxLines = 1
+                            appString(R.string.detecting_hardware),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
+                    } else {
+                        // 处理器名称（型号，不带厂商前缀）：如「骁龙8 Gen 2」
+                        val socFriendly = SocNameMapper.lookup(deviceInfo?.socName ?: "") ?: socName
+                        Text(
+                            socFriendly.ifBlank { appString(R.string.hardware_unavailable) },
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        if (deviceInfo != null) {
+                            Text(
+                                "Adreno ${deviceInfo.adrenoSeries} · ${deviceInfo.androidVersion}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
                     }
                 }
             }
@@ -3352,12 +3405,6 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         value = deviceInfo.androidVersion,
                         modifier = Modifier.weight(1f)
                     )
-                    DeviceStat(
-                        icon = Icons.Default.Memory,
-                        label = appString(R.string.gpu_label),
-                        value = "Adreno ${deviceInfo.adrenoSeries}",
-                        modifier = Modifier.weight(1f)
-                    )
                 }
                 Spacer(Modifier.height(8.dp))
                 Row(
@@ -3377,18 +3424,16 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         modifier = Modifier.weight(2f)
                     )
                 }
-                // SoC 品牌徽章（文字+品牌色，避免官方 logo 版权）
+                // SoC 品牌徽章（文字+品牌色，避免官方 logo 版权）：只展示厂商原名
                 Spacer(Modifier.height(8.dp))
                 val socBrand = detectSocBrand(deviceInfo.socName)
-                val socFriendly = SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     SocBrandBadge(
                         brand = socBrand,
-                        // 名称已含厂商名（如"高通骁龙"）时不再重复拼接"高通 ·"
+                        // 厂商名与处理器型号分工：徽章只显示厂商（高通），处理器型号在顶部
                         text = when {
-                            socBrand.name == "SoC" -> socFriendly
-                            socFriendly.startsWith(socBrand.name) -> socFriendly
-                            else -> "${socBrand.name} · $socFriendly"
+                            socBrand.name == "SoC" -> (SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName)
+                            else -> socBrand.name
                         }
                     )
                 }
@@ -6237,10 +6282,13 @@ private fun GpuBenchmarkCard(
                             label = appString(R.string.bench_bw_cmp),
                             value = "≈ ${pcCmp.bandwidthName} 的 ${pcCmp.bandwidthPct}%"
                         )
-                        InfoRow(
-                            label = appString(R.string.bench_fp_cmp),
-                            value = "≈ ${pcCmp.computeName} 的 ${pcCmp.computePct}%"
-                        )
+                        // FP32 算力仅在 native 实测返回有效值（>0）时展示，避免恒 0% 假数据
+                        if (pcCmp.computeTFLOPS > 0 && pcCmp.computeName != "—") {
+                            InfoRow(
+                                label = appString(R.string.bench_fp_cmp),
+                                value = "≈ ${pcCmp.computeName} 的 ${pcCmp.computePct}%"
+                            )
+                        }
                         Spacer(Modifier.height(4.dp))
                         Text(
                             appString(R.string.bench_driver_pc_note),
@@ -6338,10 +6386,10 @@ private fun CpuRow(label: String, value: Double, unit: String, threads: Int) {
     }
 }
 
-/** 带宽数值 + 进度条（满格 20 GB/s）。 */
+/** 带宽数值 + 进度条（满格 64 GB/s，对应 Adreno 8 系带宽量级，低端机也能看出比例）。 */
 @Composable
 private fun BandwidthRow(label: String, valueGBs: Double) {
-    val fraction = (valueGBs / 20.0).coerceIn(0.0, 1.0)
+    val fraction = (valueGBs / 64.0).coerceIn(0.0, 1.0)
     Column {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -7049,14 +7097,14 @@ private fun DriverDetectionList(
                 ) {
                     Column(Modifier.padding(14.dp)) {
                         Text(
-                            "AdrenoTools 实测对比",
+                            "驱动对比",
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
                         )
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            "同机同条件（fork 隔离），与 Winlator/GameHub/Eden 同款加载路径",
+                            "有实测结果时并排展示采集+跑分；实测不可用时回退 meta.json 静态对比",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -7099,9 +7147,44 @@ private fun DriverDetectionList(
                                 )
                             }
                         } else {
+                            // ── meta.json 静态对比：实测未跑/失败时也有真实信息可比 ──
+                            val metaA = driverMetas[idA]
+                            val metaB = driverMetas[idB]
+                            val typeLabel: (DriverMetaParser.DriverType) -> String = { t ->
+                                when (t) {
+                                    DriverMetaParser.DriverType.VENDOR_SYSTEM -> "厂商系统提取"
+                                    DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> "AdrenoTools 打包"
+                                    else -> "未声明/其他"
+                                }
+                            }
+                            CompareRow("驱动", shortName(dlA.fileName), shortName(dlB.fileName))
+                            if (metaA != null && metaB != null) {
+                                CompareRow("名称", metaA.name, metaB.name)
+                                CompareRow("包版本", metaA.packageVersion, metaB.packageVersion)
+                                CompareRow("驱动版本", metaA.driverVersion, metaB.driverVersion)
+                                CompareRow("厂商", metaA.vendor, metaB.vendor)
+                                CompareRow("作者", metaA.author, metaB.author)
+                                CompareRow("驱动类型", typeLabel(metaA.driverType()), typeLabel(metaB.driverType()))
+                            } else {
+                                Text(
+                                    "驱动包 meta.json 信息待解析（点击下方按钮触发解析+实测）",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            Spacer(Modifier.height(6.dp))
                             val running = adrenotoolsTestingId != null
                             Button(
                                 onClick = {
+                                    // 先补解析 meta（若缺），再依次实测
+                                    if (metaA == null) {
+                                        val parsedA = runCatching { DriverMetaParser.parse(context, dlA.filePath) }.getOrNull()
+                                        if (parsedA != null) driverMetas = driverMetas + (idA to parsedA)
+                                    }
+                                    if (metaB == null) {
+                                        val parsedB = runCatching { DriverMetaParser.parse(context, dlB.filePath) }.getOrNull()
+                                        if (parsedB != null) driverMetas = driverMetas + (idB to parsedB)
+                                    }
                                     testWithAdrenoTools(idA, dlA.filePath)
                                     testWithAdrenoTools(idB, dlB.filePath)
                                 },
@@ -7114,14 +7197,15 @@ private fun DriverDetectionList(
                                 } else {
                                     Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(Modifier.width(6.dp))
-                                    Text("开始实测对比", style = MaterialTheme.typography.bodySmall)
+                                    Text("解析+实测对比", style = MaterialTheme.typography.bodySmall)
                                 }
                             }
                             Spacer(Modifier.height(4.dp))
                             Text(
-                                "对比前无需先单测：按钮会依次对两个驱动执行采集+跑分",
+                                "实测受 App 进程环境限制（SELinux/glibc），失败时以上 meta 静态对比仍可作为版本/作者/类型依据；性能请在模拟器内验证",
                                 style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 3
                             )
                         }
                         Spacer(Modifier.height(6.dp))
@@ -10968,6 +11052,12 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
             ) {
                 Column(Modifier.padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+                        // 厂商专属图标徽章（品牌色+图形，与设备身份卡一致）
+                        val brand = detectSocBrand(knowledge.name)
+                        if (brand.name != "SoC") {
+                            SocBrandBadge(brand = brand, text = brand.name)
+                            Spacer(Modifier.width(8.dp))
+                        }
                         Text(
                             knowledge.name,
                             style = MaterialTheme.typography.titleMedium,
@@ -11055,6 +11145,43 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                 }
             }
             return@Column
+        }
+
+        // 芯片身份行：厂商徽章 + 芯片名 + 安兔兔总分（无则隐藏总分）
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(28.dp)
+        ) {
+            Column(Modifier.padding(16.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    val brand = detectSocBrand(info.name)
+                    if (brand.name != "SoC") {
+                        SocBrandBadge(brand = brand, text = brand.name)
+                        Spacer(Modifier.width(8.dp))
+                    }
+                    Text(
+                        info.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f)
+                    )
+                    if (info.antutuTotal != null) {
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = MaterialTheme.colorScheme.primaryContainer
+                        ) {
+                            Text(
+                                "安兔兔 ${info.antutuTotal}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                                maxLines = 1
+                            )
+                        }
+                    }
+                }
+            }
         }
 
         // 等效 PC 配置（鲁大师同分制最近邻）
