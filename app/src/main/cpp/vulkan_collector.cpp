@@ -1923,3 +1923,55 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotools(
     env->ReleaseStringUTFChars(hookLibDir, hl);
     return env->NewStringUTF(json.c_str());
 }
+
+// ── JNI 入口（独立进程版）：AdrenoTools 采集，不 fork ───────────────────────
+// 由 :drivertest service 进程调用。该进程由系统全新启动，未初始化系统
+// Vulkan/GPU 状态，adrenotools 加载 turnip/panvk 时 GPU 状态干净，
+// 与 vktest（独立 App 进程加载）同构，规避主进程 fork 继承 GPU 状态
+// 导致的 DRIVER_CRASHED。驱动崩溃只杀 service 进程，主进程无感。
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_emubox_app_NativeVulkanBridge_collectDriverAdrenotoolsInProcess(
+        JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
+        jstring tmpDir, jstring hookLibDir) {
+    const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
+    const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
+    const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
+    const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    if (!dd || !dn || !td || !hl) {
+        if (dd) env->ReleaseStringUTFChars(driverDir, dd);
+        if (dn) env->ReleaseStringUTFChars(driverName, dn);
+        if (td) env->ReleaseStringUTFChars(tmpDir, td);
+        if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"deviceCount\":0,\"devices\":[]}");
+    }
+    std::string json = collectDriverAdrenotoolsJson(dd, dn, td, hl);
+    env->ReleaseStringUTFChars(driverDir, dd);
+    env->ReleaseStringUTFChars(driverName, dn);
+    env->ReleaseStringUTFChars(tmpDir, td);
+    env->ReleaseStringUTFChars(hookLibDir, hl);
+    return env->NewStringUTF(json.c_str());
+}
+
+// ── JNI 入口（独立进程版）：AdrenoTools 跑分，不 fork ──────────────────────
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
+        JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
+        jstring tmpDir, jstring hookLibDir) {
+    const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
+    const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
+    const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
+    const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    if (!dd || !dn || !td || !hl) {
+        if (dd) env->ReleaseStringUTFChars(driverDir, dd);
+        if (dn) env->ReleaseStringUTFChars(driverName, dn);
+        if (td) env->ReleaseStringUTFChars(tmpDir, td);
+        if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}");
+    }
+    std::string json = benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
+    env->ReleaseStringUTFChars(driverDir, dd);
+    env->ReleaseStringUTFChars(driverName, dn);
+    env->ReleaseStringUTFChars(tmpDir, td);
+    env->ReleaseStringUTFChars(hookLibDir, hl);
+    return env->NewStringUTF(json.c_str());
+}

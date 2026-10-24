@@ -1,0 +1,88 @@
+package com.emubox.app
+
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+import org.json.JSONObject
+import java.io.File
+
+/**
+ * 独立进程驱动实测服务（android:process=":drivertest"）。
+ *
+ * 目的：主进程已初始化系统 Vulkan/GPU 状态，fork 子进程再加载 adrenotools
+ * 驱动的实测路径会因 GPU 状态冲突崩溃（DRIVER_CRASHED）。本服务由系统
+ * 在独立进程中全新启动——该进程未触碰系统 Vulkan，adrenotools 加载
+ * turnip/panvk 时 GPU 状态干净（与 vktest 独立 App 进程同构），实测
+ * 成功率更高；驱动崩溃只杀 service 进程，主进程无感。
+ *
+ * 结果经 files/driver_test_result.json 回传，主进程轮询读取。
+ */
+class DriverTestService : Service() {
+
+    override fun onBind(intent: Intent?): IBinder? = null
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val driverDir = intent?.getStringExtra("driverDir")
+        val driverName = intent?.getStringExtra("driverName")
+        val tmpDir = intent?.getStringExtra("tmpDir")
+        val hookLibDir = intent?.getStringExtra("hookLibDir")
+        val resultId = intent?.getStringExtra("resultId")
+        val runBenchmark = intent?.getBooleanExtra("runBenchmark", false) ?: false
+
+        if (driverDir == null || driverName == null || tmpDir == null || hookLibDir == null || resultId == null) {
+            writeResult(resultId ?: "none", JSONObject().put("success", false)
+                .put("errorCode", "BAD_ARGS").put("errorMessage", "missing service extras"))
+            stopSelf(startId)
+            return START_NOT_STICKY
+        }
+
+        Thread {
+            try {
+                val collectJson = NativeVulkanBridge.collectDriverAdrenotoolsInProcess(
+                    driverDir, driverName, tmpDir, hookLibDir
+                )
+                val benchJson = if (runBenchmark) {
+                    NativeVulkanBridge.benchmarkDriverAdrenotoolsInProcess(
+                        driverDir, driverName, tmpDir, hookLibDir
+                    )
+                } else {
+                    JSONObject().put("success", false)
+                        .put("errorCode", "SKIPPED")
+                        .put("errorMessage", "仅采集").toString()
+                }
+                val result = JSONObject()
+                    .put("collect", JSONObject(collectJson))
+                    .put("benchmark", JSONObject(benchJson))
+                writeResult(resultId, result)
+            } catch (e: Exception) {
+                writeResult(
+                    resultId,
+                    JSONObject()
+                        .put("success", false)
+                        .put("errorCode", "SERVICE_EXCEPTION")
+                        .put("errorMessage", e.message ?: "unknown")
+                )
+            } finally {
+                stopSelf(startId)
+            }
+        }.start()
+        return START_NOT_STICKY
+    }
+
+    private fun writeResult(resultId: String, json: JSONObject) {
+        runCatching {
+            val file = File(filesDir, "driver_test_${resultId}.json")
+            file.writeText(json.toString())
+            // 清理旧结果，避免主进程读到过期文件
+            filesDir.listFiles()?.filter {
+                it.name.startsWith("driver_test_") && it.name != file.name
+            }?.forEach { it.delete() }
+        }
+    }
+
+    companion object {
+        /** 结果文件绝对路径（主进程同一 filesDir，可共享读取）。 */
+        fun resultFile(context: android.content.Context, resultId: String): File =
+            File(context.filesDir, "driver_test_${resultId}.json")
+    }
+}
