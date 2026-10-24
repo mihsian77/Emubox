@@ -1886,6 +1886,46 @@ static std::string loadDriverViaLoader(const char* driverDir, const char* driver
     return "";
 }
 
+// 校验加载的驱动确实生效（防假成功）：枚举物理设备读 driverName（VK_KHR_driver_properties）。
+// Android 的 Vulkan loader 不读取 VK_ICD_FILENAMES（桌面机制），setenv 后 dlopen
+// libvulkan.so 仍是系统 loader + 系统驱动——"加载成功"实为假象，设备信息/跑分全是
+// 系统驱动数据。自定义驱动特征：driverName/deviceName 含 turnip / panvk / mesa；
+// 系统驱动为 qualcomm 或空。非自定义即判失败，禁止以其结果冒充实测。
+static std::string checkCustomDriverActive(VulkanDispatch& vk, VkInstance instance) {
+    if (!vk.vkEnumeratePhysicalDevices || !vk.vkGetPhysicalDeviceProperties) {
+        return "NO_ENUM_FUNCS";
+    }
+    uint32_t count = 0;
+    if (vk.vkEnumeratePhysicalDevices(instance, &count, nullptr) != VK_SUCCESS || count == 0) {
+        return "NO_DEVICE";
+    }
+    std::vector<VkPhysicalDevice> devs(count);
+    if (vk.vkEnumeratePhysicalDevices(instance, &count, devs.data()) != VK_SUCCESS) {
+        return "ENUM_FAILED";
+    }
+    std::string driverName;
+    if (vk.vkGetPhysicalDeviceProperties2) {
+        VkPhysicalDeviceDriverProperties driverProps{};
+        driverProps.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES;
+        VkPhysicalDeviceProperties2 props2{};
+        props2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
+        props2.pNext = &driverProps;
+        vk.vkGetPhysicalDeviceProperties2(devs[0], &props2);
+        driverName = driverProps.driverName;
+    }
+    VkPhysicalDeviceProperties props{};
+    vk.vkGetPhysicalDeviceProperties(devs[0], &props);
+    std::string low = driverName + " " + props.deviceName;
+    for (auto& c : low) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    bool custom = low.find("turnip") != std::string::npos ||
+                  low.find("panvk") != std::string::npos ||
+                  low.find("mesa") != std::string::npos;
+    if (!custom) {
+        return "DRIVER_NOT_ACTIVE(driverName=" + driverName + ",device=" + props.deviceName + ")";
+    }
+    return "";
+}
+
 // Loader 路径采集：与 collectDriverAdrenotoolsJson 同构，仅加载段走 ICD JSON+loader
 static std::string collectDriverViaLoaderJson(const char* driverDir, const char* driverName,
                                               const char* tmpDir, const char* hookLibDir) {
@@ -2024,6 +2064,20 @@ static std::string benchmarkDriverViaLoaderJson(const char* driverDir, const cha
             getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
     vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
             getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
+            getInst(instance, "vkGetPhysicalDeviceProperties2"));
+
+    {
+        std::string act = checkCustomDriverActive(vk, instance);
+        if (!act.empty()) {
+            dlclose(lib);
+            unsetenv("VK_ICD_FILENAMES");
+            return "{\"success\":false,\"errorCode\":\"" + act + "\",\"errorMessage\":\""
+                   "loader 路径未加载自定义驱动（Android loader 不读 VK_ICD_FILENAMES）\","
+                   "\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,"
+                   "\"computeError\":\"\",\"totalScore\":0}";
+        }
+    }
 
     uint32_t deviceCount = 0;
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
@@ -2718,6 +2772,8 @@ static std::string renderDriverViaLoaderJson(const char* driverDir, const char* 
             getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
     vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
             getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
+            getInst(instance, "vkGetPhysicalDeviceProperties2"));
     if (!vk.vkEnumeratePhysicalDevices || !vk.vkGetPhysicalDeviceQueueFamilyProperties ||
         !vk.vkGetPhysicalDeviceMemoryProperties) {
         vk.vkDestroyInstance(instance, nullptr);
@@ -2732,6 +2788,17 @@ static std::string renderDriverViaLoaderJson(const char* driverDir, const char* 
         dlclose(lib);
         unsetenv("VK_ICD_FILENAMES");
         return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\"render: no physical devices\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    {
+        std::string act = checkCustomDriverActive(vk, instance);
+        if (!act.empty()) {
+            vk.vkDestroyInstance(instance, nullptr);
+            dlclose(lib);
+            unsetenv("VK_ICD_FILENAMES");
+            return "{\"success\":false,\"errorCode\":\"" + act + "\",\"errorMessage\":\""
+                   "render: loader 路径未加载自定义驱动（Android loader 不读 VK_ICD_FILENAMES）\","
+                   "\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+        }
     }
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
