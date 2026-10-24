@@ -6979,8 +6979,22 @@ private fun DriverDetectionList(
                             val raw = runCatching { rf.readText() }.getOrNull()
                             if (raw != null && raw.isNotBlank()) {
                                 val result = runCatching { org.json.JSONObject(raw) }.getOrNull()
-                                if (result != null && result.has("benchmark")) {
-                                    benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(result.getJSONObject("benchmark").toString()))
+                                if (result != null) {
+                                    // 分阶段写盘：有 benchmark 直接用；仅 collect 说明跑分/渲染阶段崩溃
+                                    val brJson = result.optJSONObject("benchmark")
+                                    if (brJson != null) {
+                                        benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(brJson.toString()))
+                                    } else if (result.has("collect")) {
+                                        benchmarkResults = benchmarkResults + (id to BenchmarkResult(
+                                            success = false, errorCode = "STAGE_CRASHED",
+                                            errorMessage = "跑分/渲染阶段进程崩溃，采集结果已保留",
+                                            deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
+                                            computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
+                                            totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                                        ))
+                                    } else {
+                                        continue
+                                    }
                                     rf.delete()
                                     benchmarkingId = null
                                     return@launch
