@@ -2762,7 +2762,7 @@ private fun GuideTopicCard(
 }
 
 @Composable
-private fun GuideDetailBlock(label: String, text: String, icon: ImageVector) {
+private fun GuideDetailBlock(label: String, text: String, icon: ImageVector, extra: String? = null) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.Top
@@ -2785,13 +2785,55 @@ private fun GuideDetailBlock(label: String, text: String, icon: ImageVector) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            if (extra != null) {
+                Spacer(Modifier.height(4.dp))
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.secondaryContainer
+                ) {
+                    Text(
+                        extra,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                    )
+                }
+            }
         }
     }
 }
 
 /** 设备指南：解释设备信息字段、跑分口径、SoC 知识库与驱动路线推荐 */
 @Composable
-private fun DeviceGuideDialog(onDismiss: () -> Unit, deviceInfo: DeviceInfo? = null) {
+private fun DeviceGuideDialog(
+    onDismiss: () -> Unit,
+    deviceInfo: DeviceInfo? = null,
+    vulkanPayload: VulkanInfoPayload? = null,
+    benchmarkResult: BenchmarkResult? = null
+) {
+    val guideContext = LocalContext.current
+    // 动态附注：全部来自本机实测/本地规格库，不编造
+    val vulkanExtra = vulkanPayload?.devices?.firstOrNull()?.let { d ->
+        "本机实测：Vulkan ${d.apiVersion} · ${d.driverName}（${d.extensions.size} 个扩展）"
+    } ?: "本机 Vulkan 信息暂未采集"
+    val benchExtra = when {
+        benchmarkResult?.success == true -> "本机实测总分 ${benchmarkResult.totalScore}（填充带宽 ${benchmarkResult.fillBandwidthGBs} GB/s）"
+        benchmarkResult != null -> "实测受 App 进程环境限制（SELinux/容器），性能请在模拟器内验证"
+        else -> "尚未实测；点击跑分按钮后自动填充"
+    }
+    val socExtra = if (deviceInfo != null) {
+        val spec = SocSpecStore.find(deviceInfo.socName, guideContext)
+        val bench = BenchEngine.resolve(deviceInfo.socName, deviceInfo.gpuModel, guideContext)
+        when {
+            spec != null && bench?.antutuTotal != null ->
+                "规格命中：${spec.totalCores} 核 · 最高 ${formatFreq(spec.maxFreqGhZ)}；安兔兔 ${bench.antutuTotal}"
+            spec != null ->
+                "规格命中：${spec.totalCores} 核 · 最高 ${formatFreq(spec.maxFreqGhZ)}（含各簇频率）"
+            bench?.antutuTotal != null ->
+                "跑分命中：安兔兔 ${bench.antutuTotal}（规格库暂无 CPU 明细）"
+            else -> "规格库未收录当前芯片，按平台通用信息展示"
+        }
+    } else "未检测到设备信息"
     Dialog(onDismissRequest = onDismiss) {
         Card(
             shape = RoundedCornerShape(24.dp),
@@ -2857,17 +2899,20 @@ private fun DeviceGuideDialog(onDismiss: () -> Unit, deviceInfo: DeviceInfo? = n
                 GuideDetailBlock(
                     appString(R.string.device_guide_vulkan),
                     appString(R.string.device_guide_vulkan_desc),
-                    Icons.Default.Info
+                    Icons.Default.Info,
+                    extra = vulkanExtra
                 )
                 GuideDetailBlock(
                     appString(R.string.device_guide_bench),
                     appString(R.string.device_guide_bench_desc),
-                    Icons.Default.Speed
+                    Icons.Default.Speed,
+                    extra = benchExtra
                 )
                 GuideDetailBlock(
                     appString(R.string.device_guide_soc),
                     appString(R.string.device_guide_soc_desc),
-                    Icons.Default.Memory
+                    Icons.Default.Memory,
+                    extra = socExtra
                 )
                 GuideDetailBlock(
                     appString(R.string.device_guide_route),
@@ -2886,27 +2931,55 @@ private fun DeviceGuideDialog(onDismiss: () -> Unit, deviceInfo: DeviceInfo? = n
 /** 设备指南-组件类型推荐：按当前 GPU 厂商给出组件组合与官方发布日志要点（动态生成，无官方 logo 依赖） */
 @Composable
 private fun DeviceGuideComponentRec(deviceInfo: DeviceInfo?) {
+    val ctx = LocalContext.current
     val vendor = deviceInfo?.gpuVendor
     val isAdreno = vendor == GpuVendor.ADRENO
     val isMali = vendor == GpuVendor.MALI
+    // 真实驱动匹配：driver-registry.json 按当前 GPU 评分排序，优先展示推荐条目
+    val registryDrivers = remember(deviceInfo) {
+        DriverRegistryRepository.loadFromAssets(ctx)
+            ?.let { DriverRegistryRepository.match(deviceInfo, it) }
+            ?.sortedByDescending { it.recommended }
+            ?.take(3)
+            ?: emptyList()
+    }
     val recs = when {
-        isAdreno -> listOf(
-            "驱动路线：Turnip + Zink 为 Winlator 首选，AdrenoTools 自定义驱动可解锁更高版本；备选高通官方驱动（兼容性优先）",
-            "DXVK 2.x：D3D9/10/11 转译层，官方日志持续改进动态渲染与内存管理，Adreno 7xx 推荐 2.5+",
-            "VKD3D-Proton 2.x：D3D12 转译层，支持光追后备；游戏要求 D3D12 时安装",
-            "Wine/Proton：WOW64 组件配合 Box64 使用；新版 Wine 修复大量 Winlator 兼容性问题，优先用各源最新发布"
-        )
-        isMali -> listOf(
-            "驱动路线：PanVK（Mesa Panfrost 开源 Mali 驱动）首选，备选 Mali 厂商驱动",
-            "DXVK 2.x：D3D9/10/11 转译层，官方日志含 Mali 相关修复，推荐与 PanVK 搭配",
-            "VKD3D-Proton：D3D12 转译层，Mali 支持随上游改进",
-            "Box64/WOWBox64：x86 转译基础组件，按模拟器内置版本对应选择"
-        )
-        else -> listOf(
-            "驱动：按 GPU 厂商选择对应开源驱动（Adreno→Turnip，Mali→PanVK），或厂商官方驱动",
-            "组件：DXVK 2.x 转译 D3D9/10/11，VKD3D-Proton 转译 D3D12，两者按游戏 API 需求安装",
-            "Wine/Proton + Box64：Winlator 运行环境基础，建议跟随组件源最新版本"
-        )
+        registryDrivers.isNotEmpty() -> registryDrivers.map { m ->
+            val e = m.entry
+            val tag = if (e.latestTag.isNotBlank()) "（${e.latestTag}）" else ""
+            "驱动：${e.name}$tag — ${e.description}${if (m.recommended) "（按当前设备推荐）" else ""}"
+        } + when {
+            isAdreno -> listOf(
+                "DXVK 2.x：D3D9/10/11 转译层，Adreno 7xx 推荐 2.5+；VKD3D-Proton 2.x 处理 D3D12",
+                "Wine/Proton：WOW64 + Box64 基础组件，优先用各源最新发布"
+            )
+            isMali -> listOf(
+                "DXVK 2.x + VKD3D-Proton：转译层与 PanVK 搭配，官方日志含 Mali 修复",
+                "Box64/WOWBox64：x86 转译基础组件，按模拟器内置版本对应选择"
+            )
+            else -> listOf(
+                "组件：DXVK 2.x 转译 D3D9/10/11，VKD3D-Proton 转译 D3D12，按游戏 API 需求安装",
+                "Wine/Proton + Box64：Winlator 运行环境基础，跟随组件源最新版本"
+            )
+        }
+        else -> when {
+            isAdreno -> listOf(
+                "驱动路线：Turnip（Mesa 开源）为 Winlator 首选，AdrenoTools 自定义驱动可解锁更高版本；备选高通官方驱动",
+                "DXVK 2.x：D3D9/10/11 转译层，官方日志持续改进动态渲染与内存管理，Adreno 7xx 推荐 2.5+",
+                "VKD3D-Proton 2.x：D3D12 转译层，支持光追后备；游戏要求 D3D12 时安装",
+                "Wine/Proton：WOW64 组件配合 Box64 使用，优先用各源最新发布"
+            )
+            isMali -> listOf(
+                "驱动路线：PanVK（Mesa Panfrost 开源 Mali 驱动）首选，备选 Mali 厂商驱动",
+                "DXVK 2.x + VKD3D-Proton：转译层与 PanVK 搭配，官方日志含 Mali 相关修复",
+                "Box64/WOWBox64：x86 转译基础组件，按模拟器内置版本对应选择"
+            )
+            else -> listOf(
+                "驱动：按 GPU 厂商选择对应开源驱动（Adreno→Turnip，Mali→PanVK），或厂商官方驱动",
+                "组件：DXVK 2.x 转译 D3D9/10/11，VKD3D-Proton 转译 D3D12，两者按游戏 API 需求安装",
+                "Wine/Proton + Box64：Winlator 运行环境基础，建议跟随组件源最新版本"
+            )
+        }
     }
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -3581,7 +3654,8 @@ private fun recommendDriverRoute(deviceInfo: DeviceInfo): DriverRouteRecommendat
 @Composable
 private fun DriverRecommendationCard(
     deviceInfo: DeviceInfo,
-    onNavigateToDrivers: (() -> Unit)?
+    onNavigateToDrivers: (() -> Unit)?,
+    onOpenDriverFiles: ((String) -> Unit)? = null
 ) {
     var recommendations by remember(deviceInfo) { mutableStateOf<List<DriverMatchResult>?>(null) }
     var loadFailed by remember(deviceInfo) { mutableStateOf(false) }
@@ -3594,7 +3668,8 @@ private fun DriverRecommendationCard(
                 val entries = DriverRegistryRepository.load(context = context)
                 DriverRegistryRepository.match(deviceInfo, entries)
                     .filter { it.recommended || it.score >= 80 }
-                    .take(3)
+                    .sortedWith(compareByDescending<DriverMatchResult> { it.recommended }
+                        .thenByDescending { it.entry.stars })
             }
             if (result.isEmpty()) loadFailed = true else recommendations = result
         } catch (e: Exception) {
@@ -3705,6 +3780,12 @@ private fun DriverRecommendationCard(
                                         style = MaterialTheme.typography.labelSmall,
                                         color = MaterialTheme.colorScheme.onPrimary
                                     )
+                                }
+                            }
+                            if (onOpenDriverFiles != null) {
+                                Spacer(Modifier.width(8.dp))
+                                TextButton(onClick = { onOpenDriverFiles(entry.id) }) {
+                                    Text("查看驱动文件", style = MaterialTheme.typography.labelMedium)
                                 }
                             }
                         }
@@ -5791,7 +5872,8 @@ fun DeviceScreen(
     modifier: Modifier = Modifier,
     deviceInfo: DeviceInfo?,
     isLoading: Boolean,
-    onNavigateToDrivers: (() -> Unit)? = null
+    onNavigateToDrivers: (() -> Unit)? = null,
+    onOpenDriverFiles: ((String) -> Unit)? = null
 ) {
     var vulkanPayload by remember { mutableStateOf<VulkanInfoPayload?>(null) }
     var vulkanLoading by remember { mutableStateOf(true) }
@@ -5809,7 +5891,12 @@ fun DeviceScreen(
     }
 
     if (showDeviceGuide) {
-        DeviceGuideDialog(onDismiss = { showDeviceGuide = false }, deviceInfo = deviceInfo)
+        DeviceGuideDialog(
+            onDismiss = { showDeviceGuide = false },
+            deviceInfo = deviceInfo,
+            vulkanPayload = vulkanPayload,
+            benchmarkResult = benchmarkResult
+        )
     }
 
     LaunchedEffect(Unit) {
@@ -5880,7 +5967,8 @@ fun DeviceScreen(
             item(key = "driver_route") {
                 DriverRecommendationCard(
                     deviceInfo = deviceInfo,
-                    onNavigateToDrivers = onNavigateToDrivers
+                    onNavigateToDrivers = onNavigateToDrivers,
+                    onOpenDriverFiles = onOpenDriverFiles
                 )
             }
             item(key = "soc_knowledge") {
@@ -5955,6 +6043,19 @@ fun DeviceScreen(
                         if (device.driverName.isNotEmpty()) {
                             InfoRow(appString(R.string.vulkan_driver_name), device.driverName)
                         }
+                        Spacer(Modifier.height(12.dp))
+                        Text("关键特性", style = MaterialTheme.typography.titleSmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                        Spacer(Modifier.height(4.dp))
+                        VULKAN_KEY_FEATURES.forEach { (key, hint) ->
+                            VulkanKeyFeatureRow(
+                                enabled = device.features2[key] == true,
+                                label = key,
+                                hint = hint
+                            )
+                        }
+                        if (device.features2.isEmpty()) {
+                            Text("本机/驱动未上报 Vulkan 1.2+ 特性（旧 ROM 或旧驱动）", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
                     }
                 }
             }
@@ -5987,6 +6088,73 @@ fun DeviceScreen(
                             InfoRow(appString(R.string.vulkan_memory_types), device.memoryTypes.size.toString())
                             InfoRow(appString(R.string.vulkan_memory_heaps), device.memoryHeaps.size.toString())
                             InfoRow(appString(R.string.vulkan_queue_families), device.queueFamilies.size.toString())
+                        }
+                    )
+                }
+
+                item(key = "vulkan_key_exts") {
+                    val extSet = device.extensions.map { it.name }.toSet()
+                    val hitCount = CRITICAL_DXVK_EXTS.count { it in extSet }
+                    VulkanDetailCard(
+                        title = "关键扩展覆盖（DXVK/VKD3D）${hitCount}/${CRITICAL_DXVK_EXTS.size}",
+                        content = {
+                            CRITICAL_DXVK_EXTS.forEach { name ->
+                                VulkanKeyExtensionRow(
+                                    name = name,
+                                    present = name in extSet,
+                                    hint = VULKAN_KEY_EXT_HINTS[name] ?: ""
+                                )
+                            }
+                        }
+                    )
+                }
+
+                item(key = "vulkan_features2") {
+                    val f2 = device.features2
+                    VulkanDetailCard(
+                        title = "Vulkan 1.2/1.3 特性（${f2.values.count { it }}/${f2.size}）",
+                        content = {
+                            if (f2.isEmpty()) {
+                                Text("未上报（旧 ROM/驱动未导出 vkGetPhysicalDeviceFeatures2）", style = MaterialTheme.typography.bodySmall)
+                            } else {
+                                f2.toSortedMap().forEach { (key, value) ->
+                                    VulkanKeyFeatureRow(enabled = value, label = key, hint = "")
+                                }
+                            }
+                        }
+                    )
+                }
+
+                item(key = "vulkan_formats") {
+                    VulkanDetailCard(
+                        title = "格式支持矩阵（${device.formats.size} 关键格式）",
+                        content = {
+                            if (device.formats.isEmpty()) {
+                                Text("未采集（驱动未导出 vkGetPhysicalDeviceFormatProperties）", style = MaterialTheme.typography.bodySmall)
+                            } else {
+                                device.formats.forEach { fmt ->
+                                    val ok = fmt.optimalTilingFeatures != 0L
+                                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
+                                        Surface(
+                                            shape = RoundedCornerShape(6.dp),
+                                            color = if (ok) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+                                        ) {
+                                            Text(
+                                                if (ok) "✓" else "—",
+                                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = if (ok) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                                            )
+                                        }
+                                        Spacer(Modifier.width(8.dp))
+                                        Text(
+                                            "${fmt.format}  [0x${fmt.optimalTilingFeatures.toString(16)}]",
+                                            style = MaterialTheme.typography.bodySmall
+                                        )
+                                    }
+                                }
+                            }
                         }
                     )
                 }
@@ -7252,6 +7420,83 @@ private fun vendorName(vendorId: Int?): String {
     }
 }
 
+/** Vulkan 关键特性（Vulkan 1.2/1.3 高价值项）中文说明。普通档+root 档共用。 */
+private val VULKAN_KEY_FEATURES: List<Pair<String, String>> = listOf(
+    "dynamicRendering" to "动态渲染（现代管线首选，DXVK 9+/Zink 依赖）",
+    "timelineSemaphore" to "时间线信号量（VKD3D-Proton 常用）",
+    "descriptorIndexing" to "描述符索引（现代渲染必需）",
+    "synchronization2" to "同步2 API（新驱动首选同步方式）",
+    "bufferDeviceAddress" to "缓冲设备地址（VKD3D/光追相关）",
+    "shaderFloat16" to "FP16 着色器（DXVK 性能优化项）",
+    "pipelineCreationCacheControl" to "管线缓存控制（重复构建提速）",
+    "inlineUniformBlock" to "内联统一块（UBO 访问加速）"
+)
+
+/** 关键特性徽章行：✓ 高亮 / ✗ 灰显，右侧附用途说明。 */
+@Composable
+private fun VulkanKeyFeatureRow(enabled: Boolean, label: String, hint: String) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+        Surface(
+            shape = RoundedCornerShape(6.dp),
+            color = if (enabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+        ) {
+            Text(
+                if (enabled) "✓" else "✗",
+                modifier = Modifier.padding(horizontal = 7.dp, vertical = 2.dp),
+                style = MaterialTheme.typography.labelMedium,
+                color = if (enabled) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        Column {
+            Text(label, style = MaterialTheme.typography.bodySmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Medium)
+            if (hint.isNotEmpty()) {
+                Text(hint, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+    }
+}
+
+/** 关键扩展覆盖矩阵：DXVK/VKD3D 转译依赖的关键扩展命中情况。 */
+@Composable
+private fun VulkanKeyExtensionRow(name: String, present: Boolean, hint: String) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+        Surface(
+            shape = RoundedCornerShape(6.dp),
+            color = if (present) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+        ) {
+            Text(
+                if (present) "✓" else "✗",
+                modifier = Modifier.padding(horizontal = 7.dp, vertical = 2.dp),
+                style = MaterialTheme.typography.labelMedium,
+                color = if (present) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        Column {
+            Text(name, style = MaterialTheme.typography.bodySmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Medium)
+            if (hint.isNotEmpty()) {
+                Text(hint, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+    }
+}
+
+/** 关键扩展用途说明（DXVK/VKD3D 视角）。 */
+private val VULKAN_KEY_EXT_HINTS = mapOf(
+    "VK_KHR_swapchain" to "交换链：窗口呈现核心",
+    "VK_KHR_maintenance1" to "命令缓冲维护（基础兼容）",
+    "VK_KHR_maintenance2" to "维护2（几何着色器点大小等）",
+    "VK_KHR_maintenance3" to "维护3（描述符集上限）",
+    "VK_KHR_timeline_semaphore" to "时间线信号量（VKD3D 依赖）",
+    "VK_KHR_dynamic_rendering" to "动态渲染（DXVK 9+ 依赖）",
+    "VK_EXT_memory_budget" to "内存预算（进程内存管理）",
+    "VK_KHR_descriptor_indexing" to "描述符索引（现代绑定）",
+    "VK_KHR_16bit_storage" to "16 位存储（着色器优化）"
+)
+
 @Composable
 private fun VulkanDetailCard(
     title: String,
@@ -7789,7 +8034,9 @@ fun DriverScreen(
     onWrapperSourceChange: (String) -> Unit,
     onDownloadAsset: (GithubRelease, GithubAsset) -> Unit,
     driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
-    driverSourceStars: Map<String, Long> = emptyMap()
+    driverSourceStars: Map<String, Long> = emptyMap(),
+    pendingRepo: String? = null,
+    onPendingRepoConsumed: () -> Unit = {}
 ) {
     // 高通提取驱动分区：有数据即展示（不因 8xx 等系列隐藏——高通官方提取
     // 驱动同样适用于最新 Adreno，用户应能看到全量可选项）
@@ -7848,7 +8095,60 @@ fun DriverScreen(
         if (target > 1 && showPanvkSection && filteredPanvk.isNotEmpty()) off++
         if (target > 2 && showQualcommSection && filteredQualcomm.isNotEmpty()) off++
         if (target > 3 && showXclipseSection && filteredXclipse.isNotEmpty()) off++
+        if (target > 4 && showWrapperSection && filteredWrapper.isNotEmpty()) off++
         return idx + off
+    }
+
+    // 设备页推荐卡「查看驱动文件」→ 文件级跳转：切来源 + 展开 + 滚动到对应分区
+    val pendingContext = LocalContext.current
+    LaunchedEffect(pendingRepo) {
+        val target = pendingRepo ?: return@LaunchedEffect
+        val entry = DriverRegistryRepository.loadFromAssets(pendingContext)
+            ?.firstOrNull { it.id == target }
+        if (entry != null) {
+            val prefix = when {
+                entry.driverType == "qualcomm" -> "qualcomm"
+                entry.gpuVendor == "mali" -> "panvk"
+                entry.gpuVendor == "xclipse" -> "xclipse"
+                entry.driverType == "wrapper" -> "wrapper"
+                else -> "turnip"
+            }
+            val sectionIdx = when (prefix) {
+                "qualcomm" -> 2
+                "xclipse" -> 3
+                "wrapper" -> 4
+                "panvk" -> 1
+                else -> 0
+            }
+            val hasTarget = when (prefix) {
+                "turnip" -> filteredTurnip.any { it.id == target }
+                "panvk" -> filteredPanvk.any { it.id == target }
+                "qualcomm" -> filteredQualcomm.any { it.id == target }
+                "xclipse" -> filteredXclipse.any { it.id == target }
+                else -> filteredWrapper.any { it.id == target }
+            }
+            if (hasTarget) {
+                val current = when (prefix) {
+                    "turnip" -> turnipSourceId
+                    "panvk" -> panvkSourceId
+                    "qualcomm" -> qualcommSourceId
+                    "xclipse" -> xclipseSourceId
+                    else -> wrapperSourceId
+                }
+                if (current != target) {
+                    when (prefix) {
+                        "turnip" -> onTurnipSourceChange(target)
+                        "panvk" -> onPanvkSourceChange(target)
+                        "qualcomm" -> onQualcommSourceChange(target)
+                        "xclipse" -> onXclipseSourceChange(target)
+                        else -> onWrapperSourceChange(target)
+                    }
+                }
+            }
+            expandTrigger = "$prefix:$target"
+            scope.launch { listState.animateScrollToItem(sectionIndex(sectionIdx)) }
+        }
+        onPendingRepoConsumed()
     }
 
     LazyColumn(
