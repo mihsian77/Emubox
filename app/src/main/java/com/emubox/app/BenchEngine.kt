@@ -36,6 +36,7 @@ data class SocBenchInfo(
     val pcEquiv: PcEquiv?,
     val gpuEquivName: String?,
     val gpuEquivScore: Long?,
+    val gpuEquivRatio: Double?,
     val emulatorTiers: List<EmulatorTier>,
     val upgrade: UpgradeSuggestion?,
     val sameChip: List<SameChipDevice>?,
@@ -61,6 +62,7 @@ object BenchEngine {
             .replace("dimensity", "天玑")
             .replace("kirin", "麒麟")
             .replace("exynos", "exynos")
+        t = t.replace("qualcomm", "高通")
         return t
     }
 
@@ -89,6 +91,8 @@ object BenchEngine {
                 add("adreno$gpuModel")
                 add("mali$gpuModel")
             }
+            // GPU 反查具体芯片名（Adreno 740 → 骁龙8gen2）：厂商粒度名或 GPU 代号兜底必中
+            SocNameMapper.resolveByGpu(gpuModel)?.let { add(normalizeSoc(it)) }
         }
         if (query.isEmpty()) return null
         var best: JSONObject? = null
@@ -128,6 +132,7 @@ object BenchEngine {
             pcEquiv = pcEquiv,
             gpuEquivName = gpuEquiv?.optString("name")?.ifBlank { null },
             gpuEquivScore = gpuEquiv?.optLong("score", -1)?.takeIf { it > 0 },
+            gpuEquivRatio = gpuEquiv?.optDouble("ratio", -1.0)?.takeIf { it > 0 },
             emulatorTiers = tiers, upgrade = upgrade,
             sameChip = sameChip, generation = gen
         )
