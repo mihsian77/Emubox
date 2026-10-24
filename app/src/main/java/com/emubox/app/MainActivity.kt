@@ -58,14 +58,15 @@ class MainActivity : ComponentActivity() {
         DownloadsManager.init(applicationContext)
         SettingsManager.init(applicationContext)
 
-        // 首次启动请求文件管理权限（Android 11+ 跳系统授权页）：授权后下载库
-        // 可直读/直删 Download/EmuBox 目录，根治 MediaStore 索引扫不出与删除无效。
-        // 仅首次引导，用户拒绝不影响下载（MediaStore 写入无需权限）。
+        // 自动授权读取本地文件（用户要求"真正自动授权"，非进入下载区才弹）：
+        // Android 11+ 每次启动检查——未授予文件管理权限且未用 SAF 指定目录时，
+        // 自动跳系统授权页；授权一次后 App 永久直读 Download/EmuBox 目录，
+        // 下载、扫描、删除全部走 File 直读，根治 MediaStore 索引扫不出/删除无效。
+        // 已通过 SAF 指定目录（folderUri 非空）时跳过：SAF 授权已覆盖直读。
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
             !Environment.isExternalStorageManager() &&
-            !SettingsManager.isStoragePermissionAsked()
+            SettingsManager.getDownloadFolderUri() == null
         ) {
-            SettingsManager.setStoragePermissionAsked()
             runCatching {
                 val intent = Intent(
                     Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
@@ -73,6 +74,17 @@ class MainActivity : ComponentActivity() {
                 )
                 startActivity(intent)
             }
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+            SettingsManager.getDownloadFolderUri() == null
+        ) {
+            // Android 10 以下：运行时存储权限（自动请求，覆盖"必须进下载区"）
+            requestPermissions(
+                arrayOf(
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                1001
+            )
         }
 
         // 扫描下载目录中磁盘已有、但记录缺失的文件（卸载重装 / 外部放入），
