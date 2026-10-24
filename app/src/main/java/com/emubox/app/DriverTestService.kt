@@ -41,33 +41,27 @@ class DriverTestService : Service() {
 
         Thread {
             try {
+                // 分阶段写盘：采集 → 写 → 跑分 → 写 → 渲染 → 写。
+                // 驱动渲染/跑分在独立进程崩溃时，已完成的阶段结果不丢失；
+                // 主进程读到部分结果即可展示，不会整体判定失败。
                 val collectJson = NativeVulkanBridge.collectDriverAdrenotoolsInProcess(
                     driverDir, driverName, tmpDir, hookLibDir
                 )
-                val benchJson = if (runBenchmark) {
-                    NativeVulkanBridge.benchmarkDriverAdrenotoolsInProcess(
-                        driverDir, driverName, tmpDir, hookLibDir
-                    )
-                } else {
-                    JSONObject().put("success", false)
-                        .put("errorCode", "SKIPPED")
-                        .put("errorMessage", "仅采集").toString()
-                }
-                val renderJson = if (runBenchmark) {
-                    // 渲染测试（vktest 同款）：驱动加载成功后离屏渲染三角形测 FPS
-                    NativeVulkanBridge.renderDriverAdrenotoolsInProcess(
-                        driverDir, driverName, tmpDir, hookLibDir
-                    )
-                } else {
-                    JSONObject().put("success", false)
-                        .put("errorCode", "SKIPPED")
-                        .put("errorMessage", "仅采集").toString()
-                }
-                val result = JSONObject()
-                    .put("collect", JSONObject(collectJson))
-                    .put("benchmark", JSONObject(benchJson))
-                    .put("render", JSONObject(renderJson))
+                var result = JSONObject().put("collect", JSONObject(collectJson))
                 writeResult(resultId, result)
+                if (runBenchmark) {
+                    val benchJson = NativeVulkanBridge.benchmarkDriverAdrenotoolsInProcess(
+                        driverDir, driverName, tmpDir, hookLibDir
+                    )
+                    result = result.put("benchmark", JSONObject(benchJson))
+                    writeResult(resultId, result)
+                    // 渲染测试（vktest 同款）：驱动加载成功后离屏渲染三角形测 FPS
+                    val renderJson = NativeVulkanBridge.renderDriverAdrenotoolsInProcess(
+                        driverDir, driverName, tmpDir, hookLibDir
+                    )
+                    result = result.put("render", JSONObject(renderJson))
+                    writeResult(resultId, result)
+                }
             } catch (e: Exception) {
                 writeResult(
                     resultId,

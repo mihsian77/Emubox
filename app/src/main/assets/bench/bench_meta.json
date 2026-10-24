@@ -491,40 +491,40 @@
  ],
  "emulator_tiers": {
   "winlator": {
-   "smooth": 2800000,
-   "playable": 2000000,
-   "heavy": 1200000,
-   "note": "Win 游戏容器（含 DXVK/VKD3D 需求）"
+   "smooth": 1400000,
+   "playable": 800000,
+   "heavy": 450000,
+   "note": "Win 游戏容器（含 DXVK/VKD3D 需求）；8Gen2 可玩、8Gen3 流畅"
   },
   "ns": {
-   "smooth": 2600000,
-   "playable": 1800000,
-   "heavy": 1000000,
-   "note": "Switch（GPU 负载重，优先看 GPU 分）"
-  },
-  "ps2": {
-   "smooth": 1500000,
-   "playable": 900000,
-   "heavy": 500000,
-   "note": "PS2"
-  },
-  "gc_wii": {
-   "smooth": 1800000,
+   "smooth": 1900000,
    "playable": 1000000,
    "heavy": 600000,
-   "note": "NGC/Wii"
+   "note": "Switch（GPU 负载重，优先看 GPU 分）；8Gen2 可玩"
+  },
+  "ps2": {
+   "smooth": 1000000,
+   "playable": 650000,
+   "heavy": 400000,
+   "note": "PS2；8Gen2 流畅"
+  },
+  "gc_wii": {
+   "smooth": 1000000,
+   "playable": 700000,
+   "heavy": 450000,
+   "note": "NGC/Wii；8Gen2 流畅"
   },
   "ds3ds": {
-   "smooth": 1200000,
-   "playable": 600000,
-   "heavy": 300000,
-   "note": "3DS"
+   "smooth": 900000,
+   "playable": 500000,
+   "heavy": 250000,
+   "note": "3DS；8Gen2 流畅"
   },
   "psp": {
-   "smooth": 800000,
-   "playable": 400000,
+   "smooth": 600000,
+   "playable": 350000,
    "heavy": 200000,
-   "note": "PSP（低要求）"
+   "note": "PSP（低要求）；8Gen2 流畅"
   }
  },
  "same_chip_devices": [
