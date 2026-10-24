@@ -267,6 +267,12 @@ fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Bo
         val rootDoc = DocumentFile.fromTreeUri(context, folderUri)
         val subDoc = if (subPath.isBlank()) rootDoc else rootDoc?.let { findSubDirectory(it, subPath) }
         subDoc?.findFile(desiredName) != null
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+        Environment.isExternalStorageManager()) {
+        // 文件管理权限已授予：File 直读（不依赖 MediaStore 索引，根治扫不出）
+        @Suppress("DEPRECATION")
+        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), desiredName).exists()
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val resolver = context.contentResolver
         val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
@@ -334,6 +340,11 @@ private suspend fun getUniqueFileName(
             val rootDoc = DocumentFile.fromTreeUri(context, folderUri)
             val subDoc = if (subPath.isBlank()) rootDoc else rootDoc?.let { findSubDirectory(it, subPath) }
             subDoc?.findFile(newName) != null
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+            Environment.isExternalStorageManager()) {
+            @Suppress("DEPRECATION")
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), newName).exists()
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val resolver = context.contentResolver
             val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
@@ -377,6 +388,14 @@ private suspend fun createOutputUri(
             Log.e(TAG, "Cannot write to custom folder: $folderUri")
             null
         }
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+        Environment.isExternalStorageManager()) {
+        // 文件管理权限已授予：File 直写 Download/EmuBox/<分类>/，绕过 MediaStore 索引
+        @Suppress("DEPRECATION")
+        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val targetDir = File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath")
+        if (!targetDir.exists() && !targetDir.mkdirs()) return@withContext null
+        Uri.fromFile(File(targetDir, uniqueFileName))
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         // 默认路径：Download/EmuBox/<分类>/（保留旧版 EmuHub-CN 目录扫描兼容，防止老用户下载文件失联）
         val relativePath = if (subPath.isBlank()) {
