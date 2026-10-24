@@ -2743,11 +2743,14 @@ static std::string renderDriverViaLoaderJson(const char* driverDir, const char* 
 }
 
 // AdrenoTools 路径跑分：fill/copy 带宽 + 计算吞吐（复用 runBenchmark）
+// InProcess 实测（独立进程直接加载，无 fork）：与采集同走 GPU_MAPPING_IMPORT。
+// 采集已验证该路径在本机可用；仅 CUSTOM 要求 turnip 自开 /dev/kgsl，
+// 无 root 进程必然崩溃（历史 DRIVER_CRASHED 根因）。
 static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
                                                   const char* tmpDir, const char* hookLibDir) {
     void* lib = nullptr;
     GetInstanceProcAddrFn getInst = nullptr;
-    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, false, &lib, &getInst);
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, true, &lib, &getInst);
     if (!err.empty()) return err;
 
     VulkanDispatch vk;
@@ -2914,9 +2917,10 @@ Java_com_emubox_app_NativeVulkanBridge_collectDriverAdrenotoolsInProcess(
 // AdrenoTools 路径渲染测试（与 loader 同构，仅加载段不同）
 static std::string renderDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
                                                const char* tmpDir, const char* hookLibDir) {
+    // 同 benchmark：InProcess 无 fork，GPU_MAPPING_IMPORT 与采集同路径
     void* lib = nullptr;
     GetInstanceProcAddrFn getInst = nullptr;
-    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, false, &lib, &getInst);
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, true, &lib, &getInst);
     if (!err.empty()) return err;
     VulkanDispatch vk;
     vk.libHandle = lib;
