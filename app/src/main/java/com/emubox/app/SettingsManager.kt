@@ -19,6 +19,14 @@ enum class ColorTheme {
     CN
 }
 
+/** 界面大小档位（全局 density 缩放：字体/间距/图标一体缩放） */
+enum class UiScale(val scale: Float, val labelRes: Int) {
+    SMALL(0.85f, R.string.ui_scale_small),
+    STANDARD(1.0f, R.string.ui_scale_standard),
+    LARGE(1.15f, R.string.ui_scale_large),
+    XLARGE(1.3f, R.string.ui_scale_xlarge)
+}
+
 private const val PREFS_SETTINGS = "emu_hub_settings"
 private const val KEY_STORAGE_PERMISSION_ASKED = "storage_permission_asked"
 private const val KEY_DOWNLOAD_FOLDER_URI = "download_folder_uri"
@@ -32,6 +40,7 @@ private const val KEY_XCLIPSE_SOURCE = "xclipse_source"
 private const val KEY_WRAPPER_SOURCE = "wrapper_source"
 private const val KEY_SOURCE_CATALOG_URL = "source_catalog_url"
 private const val KEY_APP_LANGUAGE = "app_language"
+private const val KEY_UI_SCALE = "ui_scale"
 private const val KEY_ACCELERATOR_MODE = "accelerator_mode"
 private const val KEY_ACCELERATOR_NODE = "accelerator_node"
 private const val KEY_MATCH_DRIVERS_BY_DEVICE = "match_drivers_by_device"
@@ -66,6 +75,12 @@ object SettingsManager {
     }
 
     fun getColorTheme(): ColorTheme = enumPreference(KEY_COLOR_THEME, ColorTheme.DYNAMIC)
+
+    fun getUiScale(): UiScale = enumPreference(KEY_UI_SCALE, UiScale.STANDARD)
+
+    fun setUiScale(scale: UiScale) {
+        prefs.edit().putString(KEY_UI_SCALE, scale.name).apply()
+    }
 
     fun getAppLanguage(): AppLanguage = enumPreference(KEY_APP_LANGUAGE, AppLanguage.SYSTEM)
 

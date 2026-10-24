@@ -25,6 +25,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.emubox.app.ui.theme.EmuBoxTheme
@@ -89,9 +91,18 @@ class MainActivity : ComponentActivity() {
             var themeMode by remember { mutableStateOf(SettingsManager.getThemeMode()) }
             var colorTheme by remember { mutableStateOf(SettingsManager.getColorTheme()) }
             var appLanguage by remember { mutableStateOf(SettingsManager.getAppLanguage()) }
+            var uiScale by remember { mutableStateOf(SettingsManager.getUiScale()) }
 
             ProvideAppLanguage(appLanguage) {
                 EmuBoxTheme(themeMode = themeMode, colorTheme = colorTheme) {
+                // 全局界面大小：density 缩放（字体/间距/图标一体），档位由设置页控制
+                val baseDensity = LocalDensity.current
+                CompositionLocalProvider(
+                    LocalDensity provides Density(
+                        density = baseDensity.density * uiScale.scale,
+                        fontScale = baseDensity.fontScale
+                    )
+                ) {
                 val downloadScope = rememberCoroutineScope()
                 val appContext = applicationContext
 
@@ -877,6 +888,11 @@ class MainActivity : ComponentActivity() {
                                         SettingsManager.setAppLanguage(language)
                                         appLanguage = language
                                     },
+                                    uiScale = uiScale,
+                                    onUiScaleChange = { scale ->
+                                        SettingsManager.setUiScale(scale)
+                                        uiScale = scale
+                                    },
                                     onSourceCatalogChanged = { refreshTrigger++ }
                                 )
 
@@ -921,6 +937,7 @@ class MainActivity : ComponentActivity() {
                             }
                         )
                     }
+                }
                 }
             }
         }

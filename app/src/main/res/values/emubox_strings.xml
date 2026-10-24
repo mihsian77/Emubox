@@ -701,9 +701,15 @@ How to verify in emulator:
     <string name="news_source_ithome">ITHome</string>
     <string name="news_open_link">Open source article</string>
     <string name="news_empty">No news yet. Check back later.</string>
-    <string name="news_eco_title">Ecosystem News</string>
+    <string name="news_eco_title">Chip &amp; Device News</string>
     <string name="news_driver_title">Driver News</string>
     <string name="news_component_title">Component News</string>
     <string name="news_runtime_title">Runtime News</string>
     <string name="news_general_fold">More tech news</string>
+    <string name="ui_scale_title">UI Size</string>
+    <string name="ui_scale_desc">Scale fonts, spacing and icons together.</string>
+    <string name="ui_scale_small">Small</string>
+    <string name="ui_scale_standard">Standard</string>
+    <string name="ui_scale_large">Large</string>
+    <string name="ui_scale_xlarge">Extra Large</string>
 </resources>

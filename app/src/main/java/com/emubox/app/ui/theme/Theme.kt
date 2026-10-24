@@ -91,6 +91,8 @@ fun EmuBoxTheme(
         ThemeMode.LIGHT -> false
         ThemeMode.DARK, ThemeMode.AMOLED -> true
     }
+    // Fusion 品牌色板跟随主题（亮/暗双色板），驱动全 App 的 Fusion.* 引用
+    Fusion.applyTheme(darkTheme)
 
     val context = LocalContext.current
     val baseScheme = when {
