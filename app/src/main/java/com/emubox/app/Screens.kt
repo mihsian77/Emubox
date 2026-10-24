@@ -6926,16 +6926,15 @@ private fun DriverDetectionList(
         }
     }
 
-    // 实测跑分：确保 .so 已解压 → fork 子进程加载驱动跑分（崩溃只死子进程）
+    // 实测跑分：与"驱动信息"同一条独立进程链路（service + AdrenoTools + 系统预热）。
+    // 旧实现 fork 子进程裸 dlopen 驱动 .so 跑带宽：无 root 进程无法访问 GPU 节点，
+    // 与 vktest 差异在缺系统 Vulkan 宿主上下文，实测必败；现统一走 service，
+    // 结果文件独立命名（bench_ 前缀），不占用检测轮询位。
     val benchmarkDriver: (String, String) -> Unit = { id, filePath ->
         benchmarkingId = id
         scope.launch(Dispatchers.IO) {
             try {
                 val soFile = extractSoFor(id, filePath)
-                // 静态检查结果仅记录为提示：自写 ELF 解析器曾多次误判 turnip ICD 入口
-                // （turnip 标准导出 vk_icdGetInstanceProcAddr），不得作为加载门禁。
-                // 统一走 native AdrenoTools 实测：加载失败由 native 返回明确错误码，
-                // ICD 入口也在 native 侧校验（loadDriverAdrenoTools 双符号查找）。
                 exportFlags = exportFlags + (id to DriverMetaParser.soExportsVkGetInstanceProcAddr(soFile))
                 if (soFile == null) {
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult(
@@ -6945,10 +6944,52 @@ private fun DriverDetectionList(
                         computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                     ))
+                    benchmarkingId = null
                 } else {
-                    // 自定义驱动实测（vktest 逆向落地）：fork 子进程隔离加载驱动 .so 跑带宽基准，
-                    // 驱动崩溃只死子进程不闪退；失败返回具体错误码（SELinux 禁 GPU 节点/符号缺失等）。
-                    benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(NativeVulkanBridge.benchmarkVulkan(soFile.absolutePath)))
+                    val (tmpDir, hookLibDir) = adrenotoolsDirs
+                    val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
+                    val benchResultId = "bench_$id"
+                    DriverTestService.resultFile(context, benchResultId).delete()
+                    val startedFile = File(context.filesDir, "driver_test_${benchResultId}.started")
+                    File(context.filesDir, "driver_test_${benchResultId}.started").writeText("1")
+                    val intent = android.content.Intent(context, DriverTestService::class.java).apply {
+                        putExtra("driverDir", dir)
+                        putExtra("driverName", soFile.name)
+                        putExtra("tmpDir", tmpDir)
+                        putExtra("hookLibDir", hookLibDir)
+                        putExtra("resultId", benchResultId)
+                        putExtra("runBenchmark", true)
+                    }
+                    context.startService(intent)
+                    // 轮询结果（与检测共用 25s 窗口；native 加载+渲染在 service 内完成）
+                    val deadline = System.currentTimeMillis() + 25_000L
+                    while (System.currentTimeMillis() < deadline) {
+                        val rf = DriverTestService.resultFile(context, benchResultId)
+                        if (rf.exists()) {
+                            val raw = runCatching { rf.readText() }.getOrNull()
+                            if (raw != null && raw.isNotBlank()) {
+                                val result = runCatching { org.json.JSONObject(raw) }.getOrNull()
+                                if (result != null && result.has("benchmark")) {
+                                    benchmarkResults = benchmarkResults + (id to BenchmarkResult.fromJson(result.getJSONObject("benchmark").toString()))
+                                    rf.delete()
+                                    benchmarkingId = null
+                                    return@launch
+                                }
+                            }
+                        }
+                        Thread.sleep(300)
+                    }
+                    // 超时/崩溃判定
+                    val crashed = startedFile.exists()
+                    benchmarkResults = benchmarkResults + (id to BenchmarkResult(
+                        success = false,
+                        errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
+                        errorMessage = if (crashed) "驱动加载崩溃（独立进程被杀）。可能为驱动包与内置 AdrenoTools 运行时不匹配" else "独立进程实测未启动，请重试",
+                        deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
+                        computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
+                        totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                    ))
+                    benchmarkingId = null
                 }
             } catch (e: Exception) {
                 benchmarkResults = benchmarkResults + (id to BenchmarkResult(
@@ -6958,7 +6999,6 @@ private fun DriverDetectionList(
                     computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                     totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                 ))
-            } finally {
                 benchmarkingId = null
             }
         }
@@ -11715,6 +11755,46 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                         }
                     }
                 }
+                // 本机机型跑分（安兔兔 V10 手机榜按具体机型计分，含配置差异）
+                if (info.deviceBench != null) {
+                    Spacer(Modifier.height(10.dp))
+                    Divider()
+                    Spacer(Modifier.height(8.dp))
+                    val fmt = { v: Long -> String.format("%,d", v) }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            "本机机型跑分",
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            "${info.deviceBench.name}",
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f)
+                        )
+                        Text(
+                            fmt(info.deviceBench.totalScore!!),
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                        )
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    val db = info.deviceBench
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        db.cpuScore?.let { Text("CPU ${fmt(it)}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                        db.gpuScore?.let { Text("GPU ${fmt(it)}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                        Text("配置 ${db.soc}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
+                    Text(
+                        "安兔兔 V10 手机榜按具体机型计分；处理器分为 SoC 天梯口径，两者口径不同",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                    )
+                }
             }
         }
 
@@ -11914,55 +11994,55 @@ private fun BenchTierRow(tier: EmulatorTier) {
     }
 }
 
-/** 世代演进柱状（同家族逐年，按总分归一化高度；条目多时可横向滚动，避免文字截断） */
+/** 世代演进列表（同家族逐年，按发布年排序，分数条归一化；信息完整不截断） */
 @Composable
 private fun BenchGenerationBars(data: List<Triple<String, String, Long>>) {
     val max = data.maxOf { it.third }
-    Column {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-            verticalAlignment = Alignment.Bottom,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(128.dp)
-                .horizontalScroll(rememberScrollState())
-        ) {
-            data.forEach { (year, name, score) ->
-                val h = ((score.toFloat() / max.toFloat()) * 100f).coerceAtLeast(10f)
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.width(72.dp)
-                ) {
-                    Text(
-                        year,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(0.7f)
-                            .height(h.dp)
-                            .clip(RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
-                            .background(MaterialTheme.colorScheme.primaryContainer)
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        name,
-                        style = MaterialTheme.typography.labelSmall,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        data.forEachIndexed { idx, (year, name, score) ->
+            val pct = ((score.toFloat() / max.toFloat()) * 100f).coerceAtLeast(2f)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    year,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.width(44.dp)
+                )
+                Text(
+                    name,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f)
+                )
+                Text(
+                    String.format("%,d", score),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                )
             }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(fraction = 0f)
+                    .then(
+                        Modifier
+                            .fillMaxWidth(pct / 100f)
+                            .height(6.dp)
+                            .clip(RoundedCornerShape(3.dp))
+                            .background(
+                                if (idx == 0) MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.primaryContainer
+                            )
+                    )
+            )
         }
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(2.dp))
         Text(
-            if (data.size > 6) "← 左右滑动查看全部 ${data.size} 代 →" else "同家族 ${data.size} 代按发布年排序（按总分归一化高度）",
+            "同家族 ${data.size} 代按发布年排序（分数条按总分归一化）",
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

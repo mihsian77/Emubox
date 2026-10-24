@@ -16,6 +16,15 @@ data class UpgradeSuggestion(val nextName: String, val nextScore: Long, val gain
 /** 同芯机型条目：榜单收录才有分，未收录为 null（如实展示） */
 data class SameChipDevice(val name: String, val score: Long?)
 
+/** 本机机型跑分（安兔兔 V10 手机榜，按具体机型而非处理器） */
+data class DeviceBench(
+    val name: String,
+    val soc: String,
+    val cpuScore: Long?,
+    val gpuScore: Long?,
+    val totalScore: Long?
+)
+
 /** 驱动实测 ↔ PC 显卡物理量对比（带宽/算力，跨体系但单位可比） */
 data class PcGpuCompare(
     val bandwidthName: String, val bandwidthGBs: Double, val bandwidthPct: Int,
@@ -41,7 +50,8 @@ data class SocBenchInfo(
     val emulatorTiers: List<EmulatorTier>,
     val upgrade: UpgradeSuggestion?,
     val sameChip: List<SameChipDevice>?,
-    val generation: List<Triple<String, String, Long>> // (年份, 名称, 总分)
+    val generation: List<Triple<String, String, Long>>, // (年份, 名称, 总分)
+    val deviceBench: DeviceBench?
 )
 
 /**
@@ -131,6 +141,7 @@ object BenchEngine {
         val upgrade = antutuTotal?.let { upgradeFrom(it, arr, selfBrand) }
         val sameChip = sameChipDevices(family, m.optJSONArray("same_chip_devices"))
         val gen = generation(family, arr, name, context)
+        val deviceBench = deviceBench(context)
 
         return SocBenchInfo(
             name = name, family = family, year = year,
@@ -144,8 +155,68 @@ object BenchEngine {
             gpuEquivScore = gpuEquiv?.optLong("score", -1)?.takeIf { it > 0 },
             gpuEquivRatio = gpuEquiv?.optDouble("ratio", -1.0)?.takeIf { it > 0 },
             emulatorTiers = tiers, upgrade = upgrade,
-            sameChip = sameChip, generation = gen
+            sameChip = sameChip, generation = gen,
+            deviceBench = deviceBench
         )
+    }
+
+    private var deviceBenchCache: DeviceBench? = null
+    private var marketingNameCache: String? = null
+
+    /** 本机营销名：device_models.json 映射（V2338A→iQOO Neo9），未收录回退 Build.MODEL。 */
+    fun marketingName(context: Context): String {
+        marketingNameCache?.let { return it }
+        val model = runCatching { android.os.Build.MODEL }.getOrDefault("")
+        val mapped = runCatching {
+            val root = JSONObject(
+                context.assets.open("device_models.json").bufferedReader().use { it.readText() }
+            )
+            root.optJSONObject("models")?.optString(model)?.ifBlank { null }
+        }.getOrNull()
+        val brand = runCatching { android.os.Build.BRAND }.getOrDefault("")
+        marketingNameCache = buildString {
+            if (!brand.isBlank()) append(brand)
+            append(' ')
+            append(mapped ?: model)
+        }
+        return marketingNameCache ?: ""
+    }
+
+    /** 本机机型跑分（安兔兔 V10 手机榜 device_bench.json）：机型名匹配，未收录返回 null。 */
+    fun deviceBench(context: Context): DeviceBench? {
+        deviceBenchCache?.let { return it }
+        val arr = runCatching {
+            JSONObject(context.assets.open("bench/device_bench.json").bufferedReader().use { it.readText() })
+                .optJSONArray("devices")
+        }.getOrNull() ?: return null
+        val mn = marketingName(context)
+        if (mn.isBlank()) return null
+        val norm = { s: String -> s.lowercase().replace(" ", "").replace("-", "") }
+        var hit: JSONObject? = null
+        for (i in 0 until arr.length()) {
+            val o = arr.getJSONObject(i)
+            val n = o.optString("name")
+            // 机型名归一化后精确相等或包含（营销名 → 榜单名）
+            if (norm(n) == norm(mn)) { hit = o; break }
+            if (norm(n).contains(norm(mn)) || norm(mn).contains(norm(n))) {
+                // 包含匹配取最短名（最接近本机型号），避免"Neo9"误中"Neo9 Pro"
+                val cand = o
+                if (hit == null || norm(cand.optString("name")).length < norm(hit.optString("name")).length) {
+                    hit = cand
+                }
+            }
+        }
+        if (hit == null) return null
+        val total = hit.optLong("total_score", -1).takeIf { it > 0 }
+        if (total == null) return null
+        deviceBenchCache = DeviceBench(
+            name = hit.optString("name"),
+            soc = hit.optString("soc"),
+            cpuScore = hit.optLong("cpu_score", -1).takeIf { it > 0 },
+            gpuScore = hit.optLong("gpu_score", -1).takeIf { it > 0 },
+            totalScore = total
+        )
+        return deviceBenchCache
     }
 
     /** 等效 PC：鲁大师同分制最近邻（手机芯片分 ↔ 台式机 CPU / GPU 榜分） */
