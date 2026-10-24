@@ -9,7 +9,7 @@
         "ludashi_phone": 100,
         "ludashi_soc": 100,
         "ludashi_desktop_cpu": 500,
-        "ludashi_desktop_gpu": 499,
+        "ludashi_desktop_gpu": 500,
         "ludashi_laptop_cpu": 500
       },
       "note": "单页全量渲染，页码导航为页面干扰，无数据丢失"
@@ -23,7 +23,7 @@
         "ludashi_phone": 100,
         "ludashi_soc": 100,
         "ludashi_desktop_cpu": 500,
-        "ludashi_desktop_gpu": 499,
+        "ludashi_desktop_gpu": 500,
         "ludashi_laptop_cpu": 500
       },
       "note": "各榜均无\"加载更多\"，全量"
@@ -33,6 +33,6 @@
       "note": "数值通道未完成（WASM codec / tooltip 采集）"
     }
   },
-  "fetched_at": "2026-10-23T07:55:32.573Z",
+  "fetched_at": "2026-10-24T07:41:43.134Z",
   "integrity": "ok"
 }

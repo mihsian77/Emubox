@@ -1,0 +1,2021 @@
+{
+ "fetched_at": "2026-10-24T07:42:24.990Z",
+ "sources": [
+  "List of Qualcomm Snapdragon systems on chips",
+  "List of MediaTek systems on chips",
+  "Apple silicon",
+  "Kirin (chip)",
+  "Exynos"
+ ],
+ "entries": [
+  {
+   "vendor": "Qualcomm",
+   "chip": "Model&#160;number",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM7225 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2007"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM7227 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 200",
+   "year": "2008"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM7225A &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 200",
+   "year": "2011"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM7227A &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 200",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM7225AB &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "QSD8250 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 200",
+   "year": "2008"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM7230 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 205",
+   "year": "2010"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8055 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8255 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8255T &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8060 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 220",
+   "year": "2011"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8260 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2010"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "Model number",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8225 &#91; 12 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8227 &#91; 12 &#93;",
+   "process": "",
+   "gpu": "Adreno 305",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8030 &#91; 12 &#93;",
+   "process": "",
+   "gpu": "Adreno 305",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8060A &#91; 12 &#93;",
+   "process": "",
+   "gpu": "Adreno 225",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8260A &#91; 12 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8260A Pro &#91; 12 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8960T &#91; 12 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8960DT &#91; 16 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2013"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8064 &#91; 14 &#93; &#91; 17 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8225Q &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Adreno 203",
+   "year": "2013"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8210 &#91; 1 &#93; &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Adreno 302",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8212 &#91; 1 &#93; &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8905 &#91; 3 &#93;",
+   "process": "",
+   "gpu": "Adreno 304",
+   "year": "2017"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8208 &#91; 5 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8909 &#91; 7 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8909AA &#91; 8 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "QM215 &#91; 10 &#93;",
+   "process": "",
+   "gpu": "Adreno 308",
+   "year": "2019"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8026 &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Adreno 305",
+   "year": "2013"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8028 &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Adreno 305",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8230 &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Adreno 305",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8930AA &#91; 1 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8030AB &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Adreno 305",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8016",
+   "process": "",
+   "gpu": "Adreno 306",
+   "year": "2013"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8916&#160;v2 &#91; 5 &#93;",
+   "process": "",
+   "gpu": "Adreno 306",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8929 &#91; 7 &#93;",
+   "process": "",
+   "gpu": "Adreno 405",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8917 &#91; 9 &#93;",
+   "process": "",
+   "gpu": "Adreno 308",
+   "year": "2016"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8920 &#91; 11 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8937 &#91; 14 &#93;",
+   "process": "",
+   "gpu": "Adreno 505",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8940 &#91; 16 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM429 &#91; 17 &#93;",
+   "process": "",
+   "gpu": "Adreno 504",
+   "year": "2018"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM439 &#91; 19 &#93;",
+   "process": "",
+   "gpu": "Adreno 505",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM450 &#91; 20 &#93;",
+   "process": "",
+   "gpu": "Adreno 506",
+   "year": "2017"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4250-AA &#91; 22 &#93;",
+   "process": "",
+   "gpu": "Adreno 610",
+   "year": "2020"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4350 &#91; 24 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4350-AC &#91; 26 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4375 &#91; 28 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4450 &#91; 30 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4635 &#91; 33 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4450-AF &#91; 35 &#93;",
+   "process": "",
+   "gpu": "Adreno 613",
+   "year": "2025"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM4850 &#91; 36 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8064-1AA",
+   "process": "",
+   "gpu": "",
+   "year": "2013"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8064M",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8064T",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "APQ8064AB",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8936",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8939",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8939 v2",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8952",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8953",
+   "process": "",
+   "gpu": "Adreno 506",
+   "year": "2016"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8953 Pro",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM630",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM632",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM636",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8956",
+   "process": "",
+   "gpu": "Adreno 510",
+   "year": "2015"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8976",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "MSM8976 Pro",
+   "process": "",
+   "gpu": "Adreno 510",
+   "year": "2016"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM660",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDA660",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6115",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6125",
+   "process": "",
+   "gpu": "",
+   "year": "2019"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SDM670",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6150",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6150- AC",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6225",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6225- AD",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6350",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6375",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6115-AC &#91; 49 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6225-AF &#91; 51 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6450 &#91; 52 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6475-AB &#91; 54 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6475Q",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6375-AC &#91; 56 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6650 &#91; 58 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6435-AA &#91; 60 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Qualcomm",
+   "chip": "SM6850 &#91; 61 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio X10 MT6795M/ 6795/6795T",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio X20 MT6797 &#91; 1 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio X23 MT6797D",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio X25 MT6797T &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio X27 MT6797X &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio X30 MT6799 &#91; 3 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio A20 MT6761V/WE",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio A22 MT6761V/WAB MT6761V/WBB",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio A25 MT6762V/WB MT6762V/WD",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P15 MT6755T &#91; 5 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P18 MT6755S &#91; 5 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P20 MT6757 &#91; 6 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P25 / P25T MT6757CD MT6757T",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P22 MT6762",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P23 / P23T MT6763 MT6763T",
+   "process": "",
+   "gpu": "Mali-G71",
+   "year": "2017"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P30 MT6758",
+   "process": "",
+   "gpu": "Mali-G71",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P35 MT6765",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P60 MT6771 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Mali-G72",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P65 MT6768 &#91; 8 &#93;",
+   "process": "",
+   "gpu": "Mali-G52",
+   "year": "2019"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P90 &#91; 9 &#93; MT6779V/CU",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G25 &#91; 10 &#93; MT6762G",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G37 &#91; 14 &#93; MT6765H",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G50 &#91; 15 &#93; MT6765V",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G70 &#91; 16 &#93; MT6769V/CB",
+   "process": "",
+   "gpu": "Mali G52",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G88 &#91; 20 &#93; MT6769H",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G91 &#91; 21 &#93; MT6769G MT6769K",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G92 &#91; 22 &#93; MT6769I",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G90 &#91; 23 &#93; MT6785 MT6785V",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G90T MT6785V/CC",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": ""
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G95 &#91; 24 &#93; MT6785V/CD",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G99+ &#91; 27 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G200 &#91; 29 &#93; MT6789T",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P15 MT6755T &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P18 MT6755S &#91; 2 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P20 MT6757 &#91; 3 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P60 MT6771 &#91; 5 &#93;",
+   "process": "",
+   "gpu": "Mali-G72",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P65 MT6768 &#91; 6 &#93;",
+   "process": "",
+   "gpu": "Mali-G52",
+   "year": "2019"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio P90 &#91; 7 &#93; MT6779V/CU",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G25 &#91; 1 &#93; MT6762G",
+   "process": "",
+   "gpu": "",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G37 &#91; 5 &#93; MT6765H",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G50 &#91; 6 &#93; MT6765V",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G70 &#91; 7 &#93; MT6769V/CB",
+   "process": "",
+   "gpu": "Mali G52",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G88 &#91; 11 &#93; MT6769H",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G91 &#91; 12 &#93; MT6769G MT6769K",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G92 &#91; 13 &#93; MT6769I",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G90 &#91; 14 &#93; MT6785 MT6785V",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2000"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G95 &#91; 15 &#93; MT6785V/CD",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G99+ &#91; 18 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Helio G200 &#91; 20 &#93; MT6789T",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity 700 &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity 720 &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 800U &#91; 3 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 800 &#91; 4 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 810 &#91; 5 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 820 &#91; 6 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 900 &#91; 7 &#93;",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 920 &#91; 8 &#93;",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 930 &#91; 9 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1000C &#91; 10 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1000L",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": "2020"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1000 &#91; 11 &#93;",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": ""
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1050 &#91; 13 &#93;",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1080 &#91; 14 &#93;",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1100 &#91; 15 &#93;",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 1200 &#91; 16 &#93;",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": ""
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 6020 &#91; 18 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 6080 &#91; 19 &#93;",
+   "process": "6 nm",
+   "gpu": "Mali-G57",
+   "year": ""
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 6100+ &#91; 20 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 6300 &#91; 21 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 6400 &#91; 23 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 6500 &#91; 24 &#93;",
+   "process": "",
+   "gpu": "Mali-G57",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7020 &#91; 25 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7025 &#91; 26 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7030 &#91; 27 &#93;",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7050 &#91; 28 &#93;",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7060 &#91; 29 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7100 &#91; 30 &#93;",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7200 &#91; 31 &#93;",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7300e &#91; 33 &#93;",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7300 &#91; 34 &#93;",
+   "process": "",
+   "gpu": "Mali-G615",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7350 &#91; 38 &#93;",
+   "process": "",
+   "gpu": "Mali-G610",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7400 &#91; 39 &#93;",
+   "process": "",
+   "gpu": "Mali-G615",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 7500 &#91; 44 &#93;",
+   "process": "",
+   "gpu": "Mali-G625",
+   "year": ""
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8000 &#91; 45 &#93;",
+   "process": "5 nm",
+   "gpu": "Mali-G610",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8020 &#91; 47 &#93;",
+   "process": "6 nm",
+   "gpu": "Mali-G77",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8050 &#91; 48 &#93;",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": ""
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8100 &#91; 49 &#93;",
+   "process": "5 nm",
+   "gpu": "Mali-G610",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8200 &#91; 50 &#93;",
+   "process": "4 nm",
+   "gpu": "Mali-G610",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8300 &#91; 54 &#93;",
+   "process": "4 nm",
+   "gpu": "Mali-G615",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8400 &#91; 57 &#93;",
+   "process": "",
+   "gpu": "Mali-G720",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 8500 &#91; 61 &#93;",
+   "process": "",
+   "gpu": "Mali-G720",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9000 &#91; 64 &#93;",
+   "process": "",
+   "gpu": "Mali-G710",
+   "year": "2021"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9000+ &#91; 67 &#93;",
+   "process": "",
+   "gpu": "Mali-G710",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9200 &#91; 69 &#93;",
+   "process": "4 nm",
+   "gpu": "Immortalis-G715",
+   "year": "2022"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9200+ &#91; 72 &#93;",
+   "process": "",
+   "gpu": "Immortalis-G715",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9300 &#91; 74 &#93;",
+   "process": "4 nm",
+   "gpu": "Immortalis-G720",
+   "year": "2023"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9300+ &#91; 78 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9400e &#91; 80 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9400 &#91; 82 &#93;",
+   "process": "3 nm",
+   "gpu": "Immortalis-G925",
+   "year": "2024"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9400+ &#91; 85 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9500s &#91; 87 &#93;",
+   "process": "",
+   "gpu": "Immortalis-G925",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9500M",
+   "process": "3 nm",
+   "gpu": "Mali G1",
+   "year": "2026"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9500 &#91; 89 &#93;",
+   "process": "",
+   "gpu": "Mali G1",
+   "year": "2025"
+  },
+  {
+   "vendor": "MediaTek",
+   "chip": "Dimensity &#160; 9600 Pro &#91; 93 &#93;",
+   "process": "2 nm",
+   "gpu": "Mali G2",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "General",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "Name",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "Core name",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A4",
+   "process": "",
+   "gpu": "",
+   "year": "2010"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A5",
+   "process": "",
+   "gpu": "",
+   "year": "2011"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "APL2498",
+   "process": "32 nm",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "APL7498",
+   "process": "",
+   "gpu": "",
+   "year": "2013"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A5X",
+   "process": "45 nm",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A6",
+   "process": "32 nm",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A6X",
+   "process": "",
+   "gpu": "",
+   "year": "2012"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A7",
+   "process": "",
+   "gpu": "",
+   "year": "2013"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "APL5698",
+   "process": "",
+   "gpu": "",
+   "year": "2013"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A8",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A8X",
+   "process": "",
+   "gpu": "",
+   "year": "2014"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A9",
+   "process": "14 nm",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "APL1022",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A9X",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "2.26&#160;GHz",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A10 Fusion",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A10X Fusion",
+   "process": "10 nm",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A11 Bionic",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A12 Bionic",
+   "process": "7 nm",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A12X Bionic",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A12Z Bionic",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A13 Bionic",
+   "process": "7 nm",
+   "gpu": "",
+   "year": "2019"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A14 Bionic",
+   "process": "5 nm",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A15 Bionic",
+   "process": "5 nm",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "3.23&#160;GHz",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "2.93&#160;GHz",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A16",
+   "process": "4 nm",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A16 Bionic",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A17 Pro",
+   "process": "3 nm",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A18",
+   "process": "3 nm",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A18 Pro",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A19",
+   "process": "3 nm",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A19 Pro",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "A20 Pro",
+   "process": "2 nm",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M1",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M1 Pro",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M1 Max",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M1 Ultra",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M2",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M2 Pro",
+   "process": "",
+   "gpu": "",
+   "year": "2048"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M2 Max",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M2 Ultra",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M3",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M3 Pro",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M3 Max",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "APL1204 T6031",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M3 Ultra",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M4",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "4.4&#160;GHz",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M4 Pro",
+   "process": "",
+   "gpu": "",
+   "year": "2048"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M4 Max",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M5",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "4.4–4.6&#160;GHz",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M5 Pro",
+   "process": "",
+   "gpu": "",
+   "year": "2048"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M5 Max",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M5 Ultra",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "M6",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "LPDDR5X -10666",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S1",
+   "process": "",
+   "gpu": "",
+   "year": "2015"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S1P",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S3",
+   "process": "",
+   "gpu": "",
+   "year": "2017"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S4",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S5",
+   "process": "",
+   "gpu": "",
+   "year": "2019"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S6",
+   "process": "",
+   "gpu": "",
+   "year": "2020"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S7",
+   "process": "",
+   "gpu": "",
+   "year": "2021"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S8",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S9",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "Apple",
+   "chip": "S10",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "SoC",
+   "process": "",
+   "gpu": "",
+   "year": ""
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 850  &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Mali-G52",
+   "year": "2020"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 880  &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": ""
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 980  &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Mali-G76",
+   "year": "2019"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 990  &#91; 2 &#93;",
+   "process": "",
+   "gpu": "Mali-G77",
+   "year": "2020"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1080  &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Mali -G78",
+   "year": "2020"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1280  &#91; 3 &#93;",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2022"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1330  &#91; 4 &#93;",
+   "process": "",
+   "gpu": "Mali -G68",
+   "year": "2023"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1380  &#91; 5 &#93;",
+   "process": "",
+   "gpu": "Mali -G68",
+   "year": "2023"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1480  &#91; 7 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1580  &#91; 8 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 1680  &#91; 10 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 2100  &#91; 1 &#93;",
+   "process": "",
+   "gpu": "Mali -G78",
+   "year": "2021"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 2200  &#91; 4 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2022"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 2500  &#91; 10 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2025"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 2600  &#91; 12 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2026"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 3 Dual 3250",
+   "process": "",
+   "gpu": "Mali -400",
+   "year": "2014"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 7 Dual 7270  &#91; 4 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2016"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos 9110  &#91; 5 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2018"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos W920  &#91; 6 &#93;",
+   "process": "",
+   "gpu": "Mali-G68",
+   "year": "2021"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos W930  &#91; 7 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2023"
+  },
+  {
+   "vendor": "Samsung",
+   "chip": "Exynos W1000  &#91; 8 &#93;",
+   "process": "",
+   "gpu": "",
+   "year": "2024"
+  }
+ ]
+}
