@@ -177,7 +177,10 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
         ) {
             // 未授权扫描下载目录时提示：授权后下载与扫描走 DocumentFile 直读
             // 文件系统，覆盖安装/MediaStore 索引失效时也能扫出全部旧文件
-            if (!folderAuthorized) {
+            if (!folderAuthorized &&
+                !(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R &&
+                    Environment.isExternalStorageManager())
+            ) {
                 item(key = "scan_authorize_prompt") {
                     Card(
                         modifier = Modifier.fillMaxWidth(),
@@ -3522,7 +3525,8 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                     DeviceStat(
                         icon = Icons.Default.Phone,
                         label = appString(R.string.device_label),
-                        value = listOf(deviceInfo.deviceBrand, deviceInfo.deviceModel)
+                        // 设备型号识别：营销名优先（V2338A → iQOO Neo9），未收录显示原代号
+                        value = listOf(deviceInfo.deviceBrand, deviceMarketingName(deviceInfo.deviceModel, context))
                             .filter { it.isNotBlank() }.distinct().joinToString(" ").ifBlank { "—" },
                         modifier = Modifier.weight(1f)
                     )
@@ -3592,6 +3596,18 @@ private fun socBrandIconRes(brandName: String): Int? = when (brandName) {
     "Google", "谷歌" -> R.drawable.ic_soc_google
     "ARM" -> R.drawable.ic_soc_arm
     else -> null
+}
+
+/** 设备代号→营销名识别（vivo V2338A → iQOO Neo9）。映射表 assets/device_models.json，未收录返回原代号。 */
+private fun deviceMarketingName(model: String, context: Context): String {
+    if (model.isBlank()) return ""
+    return runCatching {
+        val root = org.json.JSONObject(
+            context.assets.open("device_models.json").bufferedReader().use { it.readText() }
+        )
+        val models = root.optJSONObject("models") ?: return@runCatching ""
+        models.optString(model).ifBlank { model }
+    }.getOrDefault(model)
 }
 
 /** 厂商徽章英文官方原名：高通→Qualcomm、联发科→MediaTek、三星→Samsung、华为→Huawei、谷歌→Google。 */
@@ -6559,15 +6575,21 @@ private fun GpuBenchmarkCard(
                         )
                         Spacer(Modifier.height(8.dp))
                         InfoRow(
-                            label = "参考移动显卡（鲁大师跑分库）",
+                            label = "AMD 参考显卡",
                             value = benchInfo.gpuEquivName
                         )
+                        benchInfo.gpuEquivNvidia?.let { nName ->
+                            InfoRow(
+                                label = "NVIDIA 参考显卡",
+                                value = nName
+                            )
+                        }
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            "GPU 等效为跑分库人工校准参考；CPU 等效暂缺可靠数据源，不展示",
+                            "参考显卡为鲁大师 GPU 跑分库同档校准（RX 7600M XT ≈ RTX 2060 SUPER，同一榜单分数接近）；CPU 等效暂缺可靠数据源",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
-                            maxLines = 2
+                            maxLines = 3
                         )
                     }
                     Spacer(Modifier.height(16.dp))
@@ -11671,12 +11693,18 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                     // GPU 等效为跑分库人工校准（鲁大师同口径 GPU 分最近邻）；
                     // CPU 等效曾用整机分最近邻桌面榜（如 i9-12900F 失真）已停用
                     InfoRow(
-                        label = appString(R.string.bench_equiv_gpu_chip),
+                        label = "AMD 参考显卡",
                         value = info.gpuEquivName
                     )
+                    info.gpuEquivNvidia?.let { nName ->
+                        InfoRow(
+                            label = "NVIDIA 参考显卡",
+                            value = nName
+                        )
+                    }
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        "GPU 等效为跑分库人工校准参考；CPU 等效暂缺可靠数据源",
+                        "参考显卡为鲁大师 GPU 跑分库同档校准（A/N 双榜同分档）；CPU 等效暂缺可靠数据源",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
                         maxLines = 2
