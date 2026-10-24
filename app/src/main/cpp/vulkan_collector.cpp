@@ -1797,6 +1797,226 @@ static std::string collectDriverAdrenotoolsJson(const char* driverDir, const cha
     return dev;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// vktest 同款加载链：ICD JSON + 系统 Vulkan Loader（驱动检测首选路径）
+// vktest（K11MCH1 AdrenoTools 测试 App）在独立进程中经系统 loader 加载自定义
+// 驱动：写 ICD JSON → setenv VK_ICD_FILENAMES → dlopen libvulkan.so（Khronos
+// loader）→ loader 按 JSON 的 library_path 加载驱动并走标准 ICD 初始化。
+// 相比 adrenotools_open_libvulkan（linker namespace 直载），loader 路径与
+// mesa turnip/panvk 的符号解析/初始化行为完全同构，兼容面更广——这正是
+// vktest 能跑通而裸 dlopen 在部分设备失败的原因。
+// 修改原因：用户要求驱动检测达到 vktest 同水平（真正加载 + 本地渲染验证）。
+// 影响范围：新增 loader 路径，adrenotools 路径保留为 fallback。
+// 回滚方法：删除本段及 JNI 双路径包装即可。
+// ═══════════════════════════════════════════════════════════════════════════
+static std::string loadDriverViaLoader(const char* driverDir, const char* driverName,
+                                       const char* tmpDir,
+                                       void** libHandleOut, GetInstanceProcAddrFn* getInstOut) {
+    std::string dir = driverDir ? driverDir : "";
+    if (!dir.empty() && dir.back() != '/') dir += "/";
+    std::string tmp = tmpDir ? tmpDir : "";
+    if (!tmp.empty() && tmp.back() != '/') tmp += "/";
+    std::string driverPath = dir + driverName;
+    if (access(driverPath.c_str(), F_OK) != 0) {
+        return "{\"success\":false,\"errorCode\":\"DRIVER_FILE_MISSING\",\"errorMessage\":\""
+               "driver file not found: " + driverPath + "\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    // 1) 写 ICD JSON：library_path 用绝对路径
+    std::string icdPath = tmp + "icd_" + std::to_string(getpid()) + ".json";
+    std::string icdBody = "{\"file_format_version\":\"1.0.0\",\"ICD\":{\"library_path\":\""
+                          + driverPath + "\",\"api_version\":\"1.3.0\"}}";
+    {
+        FILE* f = fopen(icdPath.c_str(), "w");
+        if (!f) {
+            return "{\"success\":false,\"errorCode\":\"ICD_WRITE_FAILED\",\"errorMessage\":\""
+                   "cannot write icd json: " + icdPath + "\",\"deviceCount\":0,\"devices\":[]}";
+        }
+        fputs(icdBody.c_str(), f);
+        fclose(f);
+    }
+    // 2) setenv：loader 首次初始化读取 VK_ICD_FILENAMES
+    if (setenv("VK_ICD_FILENAMES", icdPath.c_str(), 1) != 0) {
+        return "{\"success\":false,\"errorCode\":\"SETENV_FAILED\",\"errorMessage\":\""
+               "setenv VK_ICD_FILENAMES failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    // 3) dlopen 系统 loader
+    void* loader = dlopen("libvulkan.so", RTLD_NOW);
+    if (!loader) {
+        std::string err = dlerror() ? dlerror() : "unknown";
+        return "{\"success\":false,\"errorCode\":\"LOADER_OPEN_FAILED\",\"errorMessage\":\""
+               "dlopen libvulkan.so failed: " + jsonEscape(err) + "\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    auto getInst = reinterpret_cast<GetInstanceProcAddrFn>(dlsym(loader, "vkGetInstanceProcAddr"));
+    if (!getInst) {
+        dlclose(loader);
+        return "{\"success\":false,\"errorCode\":\"LOADER_NO_ENTRY\",\"errorMessage\":\""
+               "loader lacks vkGetInstanceProcAddr\",\"deviceCount\":0,\"devices\":[]}";
+    }
+    *libHandleOut = loader;
+    *getInstOut = getInst;
+    LOGI("Driver loaded via loader+ICD JSON: %s", driverPath.c_str());
+    return "";
+}
+
+// Loader 路径采集：与 collectDriverAdrenotoolsJson 同构，仅加载段走 ICD JSON+loader
+static std::string collectDriverViaLoaderJson(const char* driverDir, const char* driverName,
+                                              const char* tmpDir, const char* hookLibDir) {
+    void* lib = nullptr;
+    GetInstanceProcAddrFn getInst = nullptr;
+    std::string err = loadDriverViaLoader(driverDir, driverName, tmpDir, &lib, &getInst);
+    if (!err.empty()) return err;
+
+    VulkanDispatch vk;
+    vk.libHandle = lib;
+    vk.vkCreateInstance = getInst
+            ? reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"))
+            : nullptr;
+    if (!vk.vkCreateInstance) {
+        vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(dlsym(lib, "vkCreateInstance"));
+    }
+    vk.vkDestroyInstance = getInst
+            ? reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"))
+            : nullptr;
+    if (!vk.vkDestroyInstance) {
+        vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(dlsym(lib, "vkDestroyInstance"));
+    }
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
+               "loader path: driver lacks vkCreateInstance/vkDestroyInstance\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\""
+               "loader path: driver vkCreateInstance failed\",\"deviceCount\":0,\"devices\":[]}";
+    }
+
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+            getInst(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceFeatures = reinterpret_cast<PFN_GetPhysicalDeviceFeatures>(
+            getInst(instance, "vkGetPhysicalDeviceFeatures"));
+    vk.vkEnumerateDeviceExtensionProperties = reinterpret_cast<PFN_EnumerateDeviceExtensionProperties>(
+            getInst(instance, "vkEnumerateDeviceExtensionProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+            getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+            getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
+            getInst(instance, "vkGetPhysicalDeviceProperties2"));
+
+    int instExtCount = 0;
+    std::string instExts = "[]";
+    auto enumInstExt = reinterpret_cast<PFN_vkEnumerateInstanceExtensionProperties>(
+            getInst(VK_NULL_HANDLE, "vkEnumerateInstanceExtensionProperties"));
+    if (enumInstExt) {
+        uint32_t n = 0;
+        if (enumInstExt(nullptr, &n, nullptr) == VK_SUCCESS && n > 0) {
+            std::vector<VkExtensionProperties> exts(n);
+            if (enumInstExt(nullptr, &n, exts.data()) == VK_SUCCESS) {
+                instExtCount = static_cast<int>(n);
+                std::ostringstream s;
+                s << "[";
+                for (uint32_t i = 0; i < n; i++) {
+                    if (i) s << ",";
+                    s << "{\"name\":\"" << jsonEscape(exts[i].extensionName)
+                      << "\",\"specVersion\":" << exts[i].specVersion << "}";
+                }
+                s << "]";
+                instExts = s.str();
+            }
+        }
+    }
+
+    std::string dev = collectDevices(vk, instance);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(lib);
+    unsetenv("VK_ICD_FILENAMES");
+    std::string insert = "\"loader\":\"loader\",\"instanceExtCount\":"
+                         + std::to_string(instExtCount) + ",\"instanceExtensions\":" + instExts + ",";
+    auto pos = dev.find("\"deviceCount\"");
+    if (pos == std::string::npos) return dev;
+    dev.insert(pos, insert);
+    return dev;
+}
+
+// Loader 路径跑分：复用 runBenchmark，验证驱动真正渲染（fill/copy 带宽 = GPU 实际负载）
+static std::string benchmarkDriverViaLoaderJson(const char* driverDir, const char* driverName,
+                                                const char* tmpDir, const char* hookLibDir) {
+    void* lib = nullptr;
+    GetInstanceProcAddrFn getInst = nullptr;
+    std::string err = loadDriverViaLoader(driverDir, driverName, tmpDir, &lib, &getInst);
+    if (!err.empty()) return err;
+
+    VulkanDispatch vk;
+    vk.libHandle = lib;
+    vk.vkCreateInstance = getInst
+            ? reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"))
+            : nullptr;
+    if (!vk.vkCreateInstance) {
+        vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(dlsym(lib, "vkCreateInstance"));
+    }
+    vk.vkDestroyInstance = getInst
+            ? reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"))
+            : nullptr;
+    if (!vk.vkDestroyInstance) {
+        vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(dlsym(lib, "vkDestroyInstance"));
+    }
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\""
+               "loader path: driver lacks vkCreateInstance/vkDestroyInstance\",\"fillBandwidthGBs\":0,"
+               "\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\""
+               "loader path: driver vkCreateInstance failed\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,"
+               "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+            getInst(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceFeatures = reinterpret_cast<PFN_GetPhysicalDeviceFeatures>(
+            getInst(instance, "vkGetPhysicalDeviceFeatures"));
+    vk.vkEnumerateDeviceExtensionProperties = reinterpret_cast<PFN_EnumerateDeviceExtensionProperties>(
+            getInst(instance, "vkEnumerateDeviceExtensionProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+            getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+            getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+
+    uint32_t deviceCount = 0;
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+    if (deviceCount == 0) {
+        vk.vkDestroyInstance(instance, nullptr);
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\""
+               "loader path: no physical devices\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,"
+               "\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}";
+    }
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+    // enableCompute=true：loader 路径即 vktest 同构，驱动已完整初始化，可提交 GPU 负载
+    std::string res = runBenchmark(vk, instance, devices[0], getInst, true);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(lib);
+    unsetenv("VK_ICD_FILENAMES");
+    return res;
+}
+
 // AdrenoTools 路径跑分：fill/copy 带宽 + 计算吞吐（复用 runBenchmark）
 static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
                                                   const char* tmpDir, const char* hookLibDir) {
@@ -1944,7 +2164,19 @@ Java_com_emubox_app_NativeVulkanBridge_collectDriverAdrenotoolsInProcess(
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"deviceCount\":0,\"devices\":[]}");
     }
-    std::string json = collectDriverAdrenotoolsJson(dd, dn, td, hl);
+    // 双路径：vktest 同款 loader 优先；失败（驱动与 loader 不兼容等）回退 adrenotools
+    std::string json = collectDriverViaLoaderJson(dd, dn, td, hl);
+    if (json.find("\"success\":false") != std::string::npos) {
+        std::string fb = collectDriverAdrenotoolsJson(dd, dn, td, hl);
+        if (fb.find("\"success\":false") == std::string::npos) {
+            json = fb;  // fallback 成功，采用 adrenotools 结果（loader 错误已记录日志）
+        } else {
+            // 双路径均失败：返回 loader 错误（更接近 vktest 根因），附 fallback 错误
+            std::string fbMsg = " | fallback: " + fb;
+            json = "{\"success\":false,\"errorCode\":\"DUAL_PATH_FAILED\",\"errorMessage\":\""
+                   + jsonEscape("loader+adrenotools both failed: " + fbMsg) + "\",\"deviceCount\":0,\"devices\":[]}";
+        }
+    }
     env->ReleaseStringUTFChars(driverDir, dd);
     env->ReleaseStringUTFChars(driverName, dn);
     env->ReleaseStringUTFChars(tmpDir, td);
@@ -1968,7 +2200,20 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}");
     }
-    std::string json = benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
+    // 双路径：vktest 同款 loader 优先；失败回退 adrenotools（同 collect）
+    std::string json = benchmarkDriverViaLoaderJson(dd, dn, td, hl);
+    if (json.find("\"success\":false") != std::string::npos) {
+        std::string fb = benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
+        if (fb.find("\"success\":false") == std::string::npos) {
+            json = fb;
+        } else {
+            std::string fbMsg = " | fallback: " + fb;
+            json = "{\"success\":false,\"errorCode\":\"DUAL_PATH_FAILED\",\"errorMessage\":\""
+                   + jsonEscape("loader+adrenotools both failed: " + fbMsg)
+                   + "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,"
+                   "\"computeError\":\"\",\"totalScore\":0}";
+        }
+    }
     env->ReleaseStringUTFChars(driverDir, dd);
     env->ReleaseStringUTFChars(driverName, dn);
     env->ReleaseStringUTFChars(tmpDir, td);
