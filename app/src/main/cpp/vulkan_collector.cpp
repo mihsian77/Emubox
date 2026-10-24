@@ -27,6 +27,35 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 
+// ── VkFormat → 名称（format 矩阵 JSON 输出用）────────────────────────
+static const char* stringifyFormat(VkFormat f) {
+    switch (f) {
+        case VK_FORMAT_R8G8B8A8_UNORM: return "R8G8B8A8_UNORM";
+        case VK_FORMAT_B8G8R8A8_UNORM: return "B8G8R8A8_UNORM";
+        case VK_FORMAT_R8G8B8A8_SRGB: return "R8G8B8A8_SRGB";
+        case VK_FORMAT_B8G8R8A8_SRGB: return "B8G8R8A8_SRGB";
+        case VK_FORMAT_R16G16B16A16_SFLOAT: return "R16G16B16A16_SFLOAT";
+        case VK_FORMAT_R32G32B32A32_SFLOAT: return "R32G32B32A32_SFLOAT";
+        case VK_FORMAT_R16_SFLOAT: return "R16_SFLOAT";
+        case VK_FORMAT_R32_SFLOAT: return "R32_SFLOAT";
+        case VK_FORMAT_R8_UNORM: return "R8_UNORM";
+        case VK_FORMAT_R8G8_UNORM: return "R8G8_UNORM";
+        case VK_FORMAT_A2R10G10B10_UNORM_PACK32: return "A2R10G10B10_UNORM_PACK32";
+        case VK_FORMAT_B10G11R11_UFLOAT_PACK32: return "B10G11R11_UFLOAT_PACK32";
+        case VK_FORMAT_D16_UNORM: return "D16_UNORM";
+        case VK_FORMAT_D24_UNORM_S8_UINT: return "D24_UNORM_S8_UINT";
+        case VK_FORMAT_D32_SFLOAT: return "D32_SFLOAT";
+        case VK_FORMAT_D32_SFLOAT_S8_UINT: return "D32_SFLOAT_S8_UINT";
+        case VK_FORMAT_BC1_RGBA_UNORM_BLOCK: return "BC1_RGBA_UNORM_BLOCK";
+        case VK_FORMAT_BC3_UNORM_BLOCK: return "BC3_UNORM_BLOCK";
+        case VK_FORMAT_BC5_UNORM_BLOCK: return "BC5_UNORM_BLOCK";
+        case VK_FORMAT_BC7_UNORM_BLOCK: return "BC7_UNORM_BLOCK";
+        case VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK: return "ETC2_R8G8B8_UNORM_BLOCK";
+        case VK_FORMAT_ASTC_4x4_UNORM_BLOCK: return "ASTC_4x4_UNORM_BLOCK";
+        default: return "UNKNOWN";
+    }
+}
+
 // ── 函数指针类型（vulkan.h 里 PFN_vk* 本身已是函数指针，直接用别名）──────
 // vkGetInstanceProcAddr 的函数指针类型（明确指定 2 参数）
 using GetInstanceProcAddrFn = PFN_vkVoidFunction (*)(VkInstance, const char*);
@@ -41,6 +70,8 @@ using PFN_EnumerateDeviceExtensionProperties = PFN_vkEnumerateDeviceExtensionPro
 using PFN_GetPhysicalDeviceMemoryProperties = PFN_vkGetPhysicalDeviceMemoryProperties;
 using PFN_GetPhysicalDeviceQueueFamilyProperties = PFN_vkGetPhysicalDeviceQueueFamilyProperties;
 using PFN_GetPhysicalDeviceProperties2 = PFN_vkGetPhysicalDeviceProperties2;
+using PFN_GetPhysicalDeviceFeatures2 = PFN_vkGetPhysicalDeviceFeatures2;
+using PFN_GetPhysicalDeviceFormatProperties = PFN_vkGetPhysicalDeviceFormatProperties;
 
 struct VulkanDispatch {
     void* libHandle = nullptr;
@@ -53,6 +84,8 @@ struct VulkanDispatch {
     PFN_GetPhysicalDeviceMemoryProperties vkGetPhysicalDeviceMemoryProperties = nullptr;
     PFN_GetPhysicalDeviceQueueFamilyProperties vkGetPhysicalDeviceQueueFamilyProperties = nullptr;
     PFN_GetPhysicalDeviceProperties2 vkGetPhysicalDeviceProperties2 = nullptr;
+    PFN_GetPhysicalDeviceFeatures2 vkGetPhysicalDeviceFeatures2 = nullptr;
+    PFN_GetPhysicalDeviceFormatProperties vkGetPhysicalDeviceFormatProperties = nullptr;
 };
 
 // ── JSON 工具（手写拼接，不引入第三方库）──────────────────────────────────
@@ -234,6 +267,47 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     j << "\"sparseResidencyAliased\":" << (features.sparseResidencyAliased ? "true" : "false") << ",";
     j << "\"variableMultisampleRate\":" << (features.variableMultisampleRate ? "true" : "false") << ",";
     j << "\"inheritedQueries\":" << (features.inheritedQueries ? "true" : "false");
+    j << "}";
+
+    // Vulkan 1.2/1.3 高价值特性（动态渲染/描述符索引/时间线信号量/同步2 等）。
+    // 仅主采集路径解析了 vkGetPhysicalDeviceFeatures2（系统+驱动两条），
+    // 解析失败（旧 ROM/驱动未导出）时输出空对象，UI 层显示"不可用"。
+    j << ",\"features2\":{";
+    bool f2ok = vk.vkGetPhysicalDeviceFeatures2 != nullptr;
+    if (f2ok) {
+        VkPhysicalDeviceVulkan13Features f13{};
+        f13.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES;
+        VkPhysicalDeviceVulkan12Features f12{};
+        f12.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES;
+        VkPhysicalDeviceFeatures2 f2{};
+        f2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
+        f2.pNext = &f12;
+        f12.pNext = &f13;
+        vk.vkGetPhysicalDeviceFeatures2(device, &f2);
+        j << "\"dynamicRendering\":" << (f13.dynamicRendering ? "true" : "false") << ","
+          << "\"synchronization2\":" << (f13.synchronization2 ? "true" : "false") << ","
+          << "\"maintenance4\":" << (f13.maintenance4 ? "true" : "false") << ","
+          << "\"pipelineCreationCacheControl\":" << (f13.pipelineCreationCacheControl ? "true" : "false") << ","
+          << "\"privateData\":" << (f13.privateData ? "true" : "false") << ","
+          << "\"shaderDemoteToHelperInvocation\":" << (f13.shaderDemoteToHelperInvocation ? "true" : "false") << ","
+          << "\"inlineUniformBlock\":" << (f13.inlineUniformBlock ? "true" : "false") << ","
+          << "\"shaderTerminateInvocation\":" << (f13.shaderTerminateInvocation ? "true" : "false") << ","
+          << "\"timelineSemaphore\":" << (f12.timelineSemaphore ? "true" : "false") << ","
+          << "\"bufferDeviceAddress\":" << (f12.bufferDeviceAddress ? "true" : "false") << ","
+          << "\"descriptorIndexing\":" << (f12.descriptorIndexing ? "true" : "false") << ","
+          << "\"shaderFloat16\":" << (f12.shaderFloat16 ? "true" : "false") << ","
+          << "\"shaderInt8\":" << (f12.shaderInt8 ? "true" : "false") << ","
+          << "\"storageBuffer8BitAccess\":" << (f12.storageBuffer8BitAccess ? "true" : "false") << ","
+          << "\"shaderBufferInt64Atomics\":" << (f12.shaderBufferInt64Atomics ? "true" : "false") << ","
+          << "\"drawIndirectCount\":" << (f12.drawIndirectCount ? "true" : "false") << ","
+          << "\"scalarBlockLayout\":" << (f12.scalarBlockLayout ? "true" : "false") << ","
+          << "\"uniformBufferStandardLayout\":" << (f12.uniformBufferStandardLayout ? "true" : "false") << ","
+          << "\"separateDepthStencilLayouts\":" << (f12.separateDepthStencilLayouts ? "true" : "false") << ","
+          << "\"hostQueryReset\":" << (f12.hostQueryReset ? "true" : "false") << ","
+          << "\"vulkanMemoryModel\":" << (f12.vulkanMemoryModel ? "true" : "false") << ","
+          << "\"shaderOutputLayer\":" << (f12.shaderOutputLayer ? "true" : "false") << ","
+          << "\"shaderOutputViewportIndex\":" << (f12.shaderOutputViewportIndex ? "true" : "false");
+    }
     j << "},";
 
     // 扩展列表
@@ -396,6 +470,36 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     j << "\"nonCoherentAtomSize\":" << lim.nonCoherentAtomSize;
     j << "}";
 
+    // Format 支持矩阵：DXVK/VKD3D 转译层判断纹理/交换链格式的关键依据
+    j << ",\"formats\":[";
+    const VkFormat keyFormats[] = {
+        VK_FORMAT_R8G8B8A8_UNORM, VK_FORMAT_B8G8R8A8_UNORM,
+        VK_FORMAT_R8G8B8A8_SRGB, VK_FORMAT_B8G8R8A8_SRGB,
+        VK_FORMAT_R16G16B16A16_SFLOAT, VK_FORMAT_R32G32B32A32_SFLOAT,
+        VK_FORMAT_R16_SFLOAT, VK_FORMAT_R32_SFLOAT,
+        VK_FORMAT_R8_UNORM, VK_FORMAT_R8G8_UNORM,
+        VK_FORMAT_A2R10G10B10_UNORM_PACK32, VK_FORMAT_B10G11R11_UFLOAT_PACK32,
+        VK_FORMAT_D16_UNORM, VK_FORMAT_D24_UNORM_S8_UINT,
+        VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT,
+        VK_FORMAT_BC1_RGBA_UNORM_BLOCK, VK_FORMAT_BC3_UNORM_BLOCK,
+        VK_FORMAT_BC5_UNORM_BLOCK, VK_FORMAT_BC7_UNORM_BLOCK,
+        VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK, VK_FORMAT_ASTC_4x4_UNORM_BLOCK
+    };
+    bool fmtOk = vk.vkGetPhysicalDeviceFormatProperties != nullptr;
+    uint32_t printedFmts = 0;
+    for (VkFormat f : keyFormats) {
+        VkFormatProperties fp{};
+        if (fmtOk) {
+            vk.vkGetPhysicalDeviceFormatProperties(device, f, &fp);
+        }
+        if (printedFmts++) j << ",";
+        j << "{\"format\":\"" << stringifyFormat(f) << "\","
+          << "\"linear\":" << fp.linearTilingFeatures << ","
+          << "\"optimal\":" << fp.optimalTilingFeatures << ","
+          << "\"buffer\":" << fp.bufferFeatures << "}";
+    }
+    j << "]";
+
     j << "}";
     return j.str();
 }
@@ -480,6 +584,10 @@ static std::string collectWithSystemVulkan() {
         vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
     vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
         vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties2"));
+    vk.vkGetPhysicalDeviceFeatures2 = reinterpret_cast<PFN_GetPhysicalDeviceFeatures2>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures2"));
+    vk.vkGetPhysicalDeviceFormatProperties = reinterpret_cast<PFN_GetPhysicalDeviceFormatProperties>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties"));
 
     std::string json = collectDevices(vk, instance);
     vkDestroyInstance(instance, nullptr);
@@ -534,6 +642,10 @@ static std::string collectWithDriver(const char* driverPath) {
         getInstanceProcAddr(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
     vk.vkGetPhysicalDeviceProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceProperties2>(
         getInstanceProcAddr(instance, "vkGetPhysicalDeviceProperties2"));
+    vk.vkGetPhysicalDeviceFeatures2 = reinterpret_cast<PFN_GetPhysicalDeviceFeatures2>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures2"));
+    vk.vkGetPhysicalDeviceFormatProperties = reinterpret_cast<PFN_GetPhysicalDeviceFormatProperties>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties"));
 
     std::string json = collectDevices(vk, instance);
     vk.vkDestroyInstance(instance, nullptr);

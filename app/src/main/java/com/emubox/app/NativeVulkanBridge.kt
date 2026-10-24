@@ -146,6 +146,8 @@ data class VulkanDeviceInfo(
     val driverName: String,
     val driverInfo: String,
     val features: Map<String, Boolean>,
+    val features2: Map<String, Boolean>,
+    val formats: List<FormatSupportInfo>,
     val extensions: List<ExtensionInfo>,
     val memoryTypes: List<MemoryTypeInfo>,
     val memoryHeaps: List<MemoryHeapInfo>,
@@ -161,6 +163,32 @@ data class VulkanDeviceInfo(
                 while (keys.hasNext()) {
                     val key = keys.next()
                     features[key] = featuresObj.optBoolean(key, false)
+                }
+            }
+
+            val features2Obj = obj.optJSONObject("features2")
+            val features2 = mutableMapOf<String, Boolean>()
+            if (features2Obj != null) {
+                val keys = features2Obj.keys()
+                while (keys.hasNext()) {
+                    val key = keys.next()
+                    features2[key] = features2Obj.optBoolean(key, false)
+                }
+            }
+
+            val formatsArray = obj.optJSONArray("formats")
+            val formats = mutableListOf<FormatSupportInfo>()
+            if (formatsArray != null) {
+                for (i in 0 until formatsArray.length()) {
+                    val fmt = formatsArray.getJSONObject(i)
+                    formats.add(
+                        FormatSupportInfo(
+                            format = fmt.optString("format", ""),
+                            linearTilingFeatures = fmt.optLong("linear", 0),
+                            optimalTilingFeatures = fmt.optLong("optimal", 0),
+                            bufferFeatures = fmt.optLong("buffer", 0)
+                        )
+                    )
                 }
             }
 
@@ -262,6 +290,8 @@ data class VulkanDeviceInfo(
                 driverName = obj.optString("driverName", ""),
                 driverInfo = obj.optString("driverInfo", ""),
                 features = features,
+                features2 = features2,
+                formats = formats,
                 extensions = extensions,
                 memoryTypes = memoryTypes,
                 memoryHeaps = memoryHeaps,
@@ -271,6 +301,13 @@ data class VulkanDeviceInfo(
         }
     }
 }
+
+data class FormatSupportInfo(
+    val format: String,
+    val linearTilingFeatures: Long,
+    val optimalTilingFeatures: Long,
+    val bufferFeatures: Long
+)
 
 data class ExtensionInfo(
     val name: String,

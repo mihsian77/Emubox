@@ -108,6 +108,8 @@ class MainActivity : ComponentActivity() {
 
                 var currentScreen by remember { mutableStateOf(AppScreen.DEVICE) }
                 var globalSearchOpen by remember { mutableStateOf(false) }
+                // 设备页推荐卡 → 驱动专区文件级跳转：待展开的驱动仓库 id（registry entry id）
+                var pendingDriverRepo by remember { mutableStateOf<String?>(null) }
                 var guideReturnTab by remember { mutableStateOf(AppScreen.DEVICE) }
                 var guideTopic by remember { mutableStateOf<String?>(null) }
                 var guideDriverMode by remember { mutableStateOf(false) }
@@ -623,7 +625,11 @@ class MainActivity : ComponentActivity() {
                                             modifier = Modifier.padding(padding),
                                             deviceInfo = deviceInfo,
                                             isLoading = isLoading,
-                                            onNavigateToDrivers = { currentScreen = AppScreen.DRIVERS }
+                                            onNavigateToDrivers = { currentScreen = AppScreen.DRIVERS },
+                                            onOpenDriverFiles = { repoId ->
+                                                pendingDriverRepo = repoId
+                                                currentScreen = AppScreen.DRIVERS
+                                            }
                                         )
                                     }
                                     if (globalSearchOpen) {
@@ -746,7 +752,9 @@ class MainActivity : ComponentActivity() {
                                                 }
                                             },
                                             driverSourceUpdatedAt = driverSourceUpdatedAt,
-                                            driverSourceStars = driverSourceStars
+                                            driverSourceStars = driverSourceStars,
+                                            pendingRepo = pendingDriverRepo,
+                                            onPendingRepoConsumed = { pendingDriverRepo = null }
                                         )
                                     }
                                 }
