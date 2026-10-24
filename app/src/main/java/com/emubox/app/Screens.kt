@@ -66,6 +66,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.delay
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -6683,7 +6684,61 @@ private fun DriverDetectionList(
         (tmp.absolutePath.ensureTrailingSlash()) to context.applicationInfo.nativeLibraryDir
     }
 
-    // AdrenoTools 实测：采集（实例扩展+设备属性+设备扩展）+ 跑分，一次跑完
+    // 独立进程实测（vktest 同构）：:drivertest service 进程系统全新启动，
+    // 无主进程已初始化的系统 Vulkan/GPU 状态，adrenotools 加载 turnip/panvk
+    // 不再受 fork 继承 GPU 状态冲突影响（DRIVER_CRASHED 根因修复）。
+    // 驱动崩溃只杀 service 进程，主进程无感；结果经 files 下 JSON 回传轮询。
+    var servicePollingId by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(servicePollingId) {
+        val id = servicePollingId ?: return@LaunchedEffect
+        val dl = downloadedDrivers.firstOrNull { it.id == id }
+        if (dl == null) { servicePollingId = null; return@LaunchedEffect }
+        val resultFile = DriverTestService.resultFile(context, id)
+        val deadline = System.currentTimeMillis() + 35_000L
+        while (System.currentTimeMillis() < deadline) {
+            resultFile.deleteOnExit()
+            if (resultFile.exists()) {
+                val raw = runCatching { resultFile.readText() }.getOrNull()
+                if (raw != null && raw.isNotBlank()) {
+                    try {
+                        val result = org.json.JSONObject(raw)
+                        if (result.has("collect")) {
+                            val payload = VulkanInfoPayload.fromJson(result.getJSONObject("collect").toString())
+                            val br = BenchmarkResult.fromJson(result.getJSONObject("benchmark").toString())
+                            adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
+                            detectionResults = detectionResults + (id to payload)
+                        } else {
+                            detectionResults = detectionResults + (id to VulkanInfoPayload(
+                                success = false,
+                                errorCode = result.optString("errorCode", "SERVICE_FAILED"),
+                                errorMessage = result.optString("errorMessage", "独立进程实测失败"),
+                                loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
+                                deviceCount = 0, devices = emptyList()
+                            ))
+                        }
+                        resultFile.delete()
+                        adrenotoolsTestingId = null
+                        servicePollingId = null
+                        return@LaunchedEffect
+                    } catch (e: Exception) {
+                        // 结果未写完或格式异常，继续轮询
+                    }
+                }
+            }
+            delay(300)
+        }
+        // 超时
+        adrenotoolsTestingId = null
+        servicePollingId = null
+        detectionResults = detectionResults + (id to VulkanInfoPayload(
+            success = false, errorCode = "SERVICE_TIMEOUT",
+            errorMessage = "独立进程实测超时（35s）", loader = "",
+            instanceExtCount = 0, instanceExtensions = emptyList(),
+            deviceCount = 0, devices = emptyList()
+        ))
+    }
+
+    // AdrenoTools 实测：启动独立进程 service（采集+跑分），结果轮询回填
     val testWithAdrenoTools: (String, String) -> Unit = { id, filePath ->
         adrenotoolsTestingId = id
         scope.launch(Dispatchers.IO) {
@@ -6697,17 +6752,21 @@ private fun DriverDetectionList(
                         deviceCount = 0, devices = emptyList()
                     )
                     detectionResults = detectionResults + (id to fail)
+                    adrenotoolsTestingId = null
                 } else {
                     val (tmpDir, hookLibDir) = adrenotoolsDirs
                     val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
-                    val payload = VulkanInfoPayload.fromJson(
-                        NativeVulkanBridge.collectDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
-                    )
-                    val br = BenchmarkResult.fromJson(
-                        NativeVulkanBridge.benchmarkDriverAdrenotools(dir, soFile.name, tmpDir, hookLibDir)
-                    )
-                    adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
-                    detectionResults = detectionResults + (id to payload)
+                    DriverTestService.resultFile(context, id).delete()
+                    val intent = android.content.Intent(context, DriverTestService::class.java).apply {
+                        putExtra("driverDir", dir)
+                        putExtra("driverName", soFile.name)
+                        putExtra("tmpDir", tmpDir)
+                        putExtra("hookLibDir", hookLibDir)
+                        putExtra("resultId", id)
+                        putExtra("runBenchmark", true)
+                    }
+                    context.startService(intent)
+                    servicePollingId = id
                 }
             } catch (e: Exception) {
                 detectionResults = detectionResults + (id to VulkanInfoPayload(
@@ -6716,7 +6775,6 @@ private fun DriverDetectionList(
                     instanceExtCount = 0, instanceExtensions = emptyList(),
                     deviceCount = 0, devices = emptyList()
                 ))
-            } finally {
                 adrenotoolsTestingId = null
             }
         }

@@ -60,6 +60,15 @@ object NativeVulkanBridge {
         driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
     ): String
 
+    /** 独立进程版（:drivertest service 内调用，进程无系统 GPU 状态）：不 fork 直载。 */
+    external fun collectDriverAdrenotoolsInProcess(
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+    ): String
+
+    external fun benchmarkDriverAdrenotoolsInProcess(
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+    ): String
+
     /** 便捷方法：AdrenoTools 路径实测一个驱动（采集+跑分一起返回）。 */
     fun testDriverAdrenotools(
         driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
