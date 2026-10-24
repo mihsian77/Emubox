@@ -6832,7 +6832,17 @@ private fun DriverDetectionList(
                         val result = org.json.JSONObject(raw)
                         if (result.has("collect")) {
                             val payload = VulkanInfoPayload.fromJson(result.getJSONObject("collect").toString())
-                            val br = BenchmarkResult.fromJson(result.getJSONObject("benchmark").toString())
+                            // 分阶段写盘后 benchmark/render 可能缺失（后段崩溃），部分结果照常展示
+                            val brJson = result.optJSONObject("benchmark")
+                            val br = if (brJson != null) BenchmarkResult.fromJson(brJson.toString())
+                                else BenchmarkResult(
+                                    success = false, errorCode = "STAGE_CRASHED",
+                                    errorMessage = "跑分/渲染阶段进程崩溃，采集结果已保留", deviceName = "",
+                                    fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0, computeGFLOPS = 0.0,
+                                    computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
+                                    totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0,
+                                    timestampPeriodNs = 0.0
+                                )
                             adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
                             if (result.has("render")) {
                                 renderResults = renderResults + (id to result.getJSONObject("render"))
@@ -9367,14 +9377,14 @@ private fun newsCategoryColor(category: String): Color = when (category) {
     else -> Color(0xFF64748B)
 }
 
-/** 新闻条目行：分类标签 + 标题 + 来源·时间 */
+/** 新闻条目行：分类标签 + 标题 + 摘要 + 来源·时间 */
 @Composable
 private fun NewsRowItem(item: NewsItem) {
     val context = LocalContext.current
     Row(
         modifier = Modifier.fillMaxWidth().clickable { openNewsLink(context, item.url) }
             .padding(vertical = 6.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.Top
     ) {
         Box(
             modifier = Modifier
@@ -9396,6 +9406,16 @@ private fun NewsRowItem(item: NewsItem) {
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
+            if (item.summary.isNotBlank()) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    item.summary,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
             Spacer(Modifier.height(2.dp))
             Text(
                 appString(R.string.news_source_ithome) + " · " +
@@ -9403,6 +9423,50 @@ private fun NewsRowItem(item: NewsItem) {
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+        }
+    }
+}
+
+/** 分页控制条：首页 / 上一页 / 页码 / 下一页（每页 pageSize，最大 20 页封顶） */
+@Composable
+private fun NewsPager(
+    total: Int,
+    page: Int,
+    pageSize: Int,
+    onPage: (Int) -> Unit
+) {
+    if (total <= pageSize) return
+    val maxPage = ((total + pageSize - 1) / pageSize).coerceAtMost(20)
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        TextButton(
+            onClick = { onPage(0) },
+            enabled = page > 0,
+            contentPadding = PaddingValues(horizontal = 8.dp)
+        ) {
+            Text("首页", style = MaterialTheme.typography.labelSmall)
+        }
+        TextButton(
+            onClick = { onPage((page - 1).coerceAtLeast(0)) },
+            enabled = page > 0,
+            contentPadding = PaddingValues(horizontal = 8.dp)
+        ) {
+            Text("上一页", style = MaterialTheme.typography.labelSmall)
+        }
+        Text(
+            "${page + 1} / $maxPage",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        TextButton(
+            onClick = { onPage((page + 1).coerceAtMost(maxPage - 1)) },
+            enabled = page < maxPage - 1,
+            contentPadding = PaddingValues(horizontal = 8.dp)
+        ) {
+            Text("下一页", style = MaterialTheme.typography.labelSmall)
         }
     }
 }
@@ -9446,8 +9510,10 @@ private fun NewsZoneCard(
                     )
                 }
                 else -> {
-                    val shown = items.filter { it.category == category }.take(5)
-                    if (shown.isEmpty()) {
+                    val pageSize = 8
+                    val catItems = items.filter { it.category == category }
+                    var page by remember { mutableStateOf(0) }
+                    if (catItems.isEmpty()) {
                         Spacer(Modifier.height(8.dp))
                         Text(
                             appString(R.string.news_empty),
@@ -9455,11 +9521,22 @@ private fun NewsZoneCard(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     } else {
-                        shown.forEachIndexed { i, item ->
-                            NewsRowItem(item)
-                            if (i != shown.lastIndex) {
-                                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                        val maxPage = ((catItems.size + pageSize - 1) / pageSize).coerceAtMost(20)
+                        val current = page.coerceIn(0, maxPage - 1)
+                        catItems.subList(current * pageSize, ((current + 1) * pageSize).coerceAtMost(catItems.size))
+                            .forEachIndexed { i, item ->
+                                NewsRowItem(item)
+                                if (i != catItems.subList(current * pageSize, ((current + 1) * pageSize).coerceAtMost(catItems.size)).lastIndex) {
+                                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                                }
                             }
+                        NewsPager(total = catItems.size, page = current, pageSize = pageSize, onPage = { page = it })
+                        if (catItems.size > maxPage * pageSize) {
+                            Text(
+                                "已展示前 ${maxPage * pageSize} 条（共 ${catItems.size} 条）",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
                         }
                     }
                     if (showGeneralFold) {
@@ -9477,6 +9554,12 @@ private fun NewsZoneCard(
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.weight(1f)
                             )
+                            Text(
+                                "共 ${items.count { it.category == "general" }} 条",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Spacer(Modifier.width(6.dp))
                             Icon(
                                 if (generalExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
                                 contentDescription = null,
@@ -9485,11 +9568,26 @@ private fun NewsZoneCard(
                             )
                         }
                         if (generalExpanded) {
-                            items.filter { it.category == "general" }.take(3).forEachIndexed { i, item ->
-                                NewsRowItem(item)
-                                if (i != 2) {
-                                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
-                                }
+                            val gItems = items.filter { it.category == "general" }
+                            var gPage by remember { mutableStateOf(0) }
+                            if (gItems.isEmpty()) {
+                                Spacer(Modifier.height(8.dp))
+                                Text(
+                                    appString(R.string.news_empty),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            } else {
+                                val gMax = ((gItems.size + pageSize - 1) / pageSize).coerceAtMost(20)
+                                val gCur = gPage.coerceIn(0, gMax - 1)
+                                gItems.subList(gCur * pageSize, ((gCur + 1) * pageSize).coerceAtMost(gItems.size))
+                                    .forEachIndexed { i, item ->
+                                        NewsRowItem(item)
+                                        if (i != gItems.subList(gCur * pageSize, ((gCur + 1) * pageSize).coerceAtMost(gItems.size)).lastIndex) {
+                                            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                                        }
+                                    }
+                                NewsPager(total = gItems.size, page = gCur, pageSize = pageSize, onPage = { gPage = it })
                             }
                         }
                     }
