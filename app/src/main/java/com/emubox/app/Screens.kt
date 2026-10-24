@@ -11914,45 +11914,58 @@ private fun BenchTierRow(tier: EmulatorTier) {
     }
 }
 
-/** 世代演进柱状（同家族逐年，按总分归一化高度） */
+/** 世代演进柱状（同家族逐年，按总分归一化高度；条目多时可横向滚动，避免文字截断） */
 @Composable
 private fun BenchGenerationBars(data: List<Triple<String, String, Long>>) {
     val max = data.maxOf { it.third }
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier.fillMaxWidth().height(140.dp)
-    ) {
-        data.forEach { (year, name, score) ->
-            val h = ((score.toFloat() / max.toFloat()) * 100f).coerceAtLeast(10f)
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    year,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1
-                )
-                Spacer(Modifier.height(4.dp))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(0.7f)
-                        .height(h.dp)
-                        .clip(RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
-                        .background(MaterialTheme.colorScheme.primaryContainer)
-                )
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    name,
-                    style = MaterialTheme.typography.labelSmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.fillMaxWidth()
-                )
+    Column {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.Bottom,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(128.dp)
+                .horizontalScroll(rememberScrollState())
+        ) {
+            data.forEach { (year, name, score) ->
+                val h = ((score.toFloat() / max.toFloat()) * 100f).coerceAtLeast(10f)
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.width(72.dp)
+                ) {
+                    Text(
+                        year,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(0.7f)
+                            .height(h.dp)
+                            .clip(RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
+                            .background(MaterialTheme.colorScheme.primaryContainer)
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        name,
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
+        Spacer(Modifier.height(4.dp))
+        Text(
+            if (data.size > 6) "← 左右滑动查看全部 ${data.size} 代 →" else "同家族 ${data.size} 代按发布年排序（按总分归一化高度）",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
     }
 }
 @Composable
