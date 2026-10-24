@@ -35,6 +35,7 @@ data class SocBenchInfo(
     val ludashiScore: Long?,
     val pcEquiv: PcEquiv?,
     val gpuEquivName: String?,
+    val gpuEquivNvidia: String?,
     val gpuEquivScore: Long?,
     val gpuEquivRatio: Double?,
     val emulatorTiers: List<EmulatorTier>,
@@ -119,9 +120,17 @@ object BenchEngine {
         val pcEquiv = ludashiScore?.let { equivalentPc(it, context) }
         val gpuEquiv = entry.optJSONObject("gpu_equiv")
         val tiers = emulatorTiers(antutuTotal, m.optJSONObject("emulator_tiers"))
-        val upgrade = antutuTotal?.let { upgradeFrom(it, arr) }
+        val selfBrand = entry.optString("keys").let { k ->
+            when {
+                JSONArray(k).optString(0).contains("骁龙") -> "骁龙"
+                JSONArray(k).optString(0).contains("天玑") -> "天玑"
+                JSONArray(k).optString(0).contains("Exynos") -> "Exynos"
+                else -> ""
+            }
+        }
+        val upgrade = antutuTotal?.let { upgradeFrom(it, arr, selfBrand) }
         val sameChip = sameChipDevices(family, m.optJSONArray("same_chip_devices"))
-        val gen = generation(family, arr, name)
+        val gen = generation(family, arr, name, context)
 
         return SocBenchInfo(
             name = name, family = family, year = year,
@@ -131,6 +140,7 @@ object BenchEngine {
             ludashiScore = ludashiScore,
             pcEquiv = pcEquiv,
             gpuEquivName = gpuEquiv?.optString("name")?.ifBlank { null },
+            gpuEquivNvidia = gpuEquiv?.optString("nvidia_name")?.ifBlank { null },
             gpuEquivScore = gpuEquiv?.optLong("score", -1)?.takeIf { it > 0 },
             gpuEquivRatio = gpuEquiv?.optDouble("ratio", -1.0)?.takeIf { it > 0 },
             emulatorTiers = tiers, upgrade = upgrade,
@@ -188,7 +198,7 @@ object BenchEngine {
     }
 
     /** 升级建议：全部别名条目按安兔兔总分排序，找下一个更高档（提升 15%~50% 内的最近条） */
-    private fun upgradeFrom(score: Long, arr: JSONArray): UpgradeSuggestion? {
+    private fun upgradeFrom(score: Long, arr: JSONArray, selfBrand: String = ""): UpgradeSuggestion? {
         val sorted = buildList {
             for (i in 0 until arr.length()) {
                 val o = arr.getJSONObject(i)
@@ -196,12 +206,26 @@ object BenchEngine {
                 if (s != null) add(o to s)
             }
         }.sortedBy { it.second }
+        // 同厂商优先（骁龙→骁龙、天玑→天玑）：升级建议首推同品牌更高档位；
+        // 同厂商无合适候选（增益区间外/无更高分）才退到跨厂商，避免推荐跳到异家芯片
+        fun sameBrand(name: String): Boolean =
+            selfBrand.isNotBlank() && name.contains(selfBrand)
+
         var best: Pair<JSONObject, Long>? = null
         for ((o, s) in sorted) {
             if (s <= score) continue
             val gain = (s - score).toDouble() / score.toDouble()
-            if (gain < 0.15 || gain > 0.5) continue
-            if (best == null || (s - score) < (best.second - score)) best = o to s
+            val name = JSONArray(o.optString("keys")).optString(0)
+            val maxGain = if (sameBrand(name)) 0.6 else 0.5
+            if (gain < 0.15 || gain > maxGain) continue
+            // 同厂商候选优先于跨厂商：跨厂商候选仅在无同厂商命中时保留
+            val cross = !sameBrand(name)
+            val curCross = best != null && !sameBrand(
+                JSONArray(best!!.first.optString("keys")).optString(0)
+            )
+            if (best == null || (cross && !curCross) || (!cross && curCross) ||
+                (cross == curCross && (s - score) < (best.second - score))
+            ) best = o to s
         }
         val b = best ?: return null
         return UpgradeSuggestion(
@@ -229,7 +253,25 @@ object BenchEngine {
     }
 
     /** 世代演进：同家族按发布年排序（年份, 名称, 总分） */
-    private fun generation(family: String, arr: JSONArray, selfName: String): List<Triple<String, String, Long>> {
+    private fun generation(family: String, arr: JSONArray, selfName: String, context: Context): List<Triple<String, String, Long>> {
+        // 骁龙8 家族：直接读安兔兔 SoC 天梯全量（26 条，含 8 超级至尊版 Gen 6 等最新旗舰），
+        // 名称前缀过滤保证同家族；年份为公开发布年 curated 映射（2025 起的 Gen 5/Gen 6 按
+        // 发布序列推断，非官方年号，UI 侧标注口径）。
+        if (family == "骁龙8") {
+            val snap = snapdragonLine(context) ?: return buildList {}
+            val yearMap = snapYearMap()
+            return buildList {
+                for (i in 0 until snap.length()) {
+                    val o = snap.getJSONObject(i)
+                    val n = o.optString("name")
+                    if (!n.startsWith("高通 骁龙8")) continue
+                    val s = o.optLong("total_score", -1).takeIf { it > 0 } ?: continue
+                    val y = yearMap[n] ?: continue
+                    add(Triple(y, n.removePrefix("高通 "), s))
+                }
+            }.sortedBy { it.first }
+        }
+        // 其他家族：沿用 aliases 的 family 字段 + year 字段
         return buildList {
             for (i in 0 until arr.length()) {
                 val o = arr.getJSONObject(i)
@@ -241,6 +283,32 @@ object BenchEngine {
             }
         }.sortedBy { it.first }
     }
+
+    private var antutuCache: JSONArray? = null
+    private fun snapdragonLine(context: Context): JSONArray? {
+        antutuCache?.let { return it }
+        val arr = runCatching {
+            val root = JSONObject(
+                context.assets.open("bench/antutu_soc.json").bufferedReader().use { it.readText() }
+            )
+            root.optJSONArray("level1")
+        }.getOrNull() ?: return null
+        antutuCache = arr
+        return arr
+    }
+
+    /** 骁龙8 家族公开发布年 curated 映射；2025 起的条目按发布序列推断。 */
+    private fun snapYearMap(): Map<String, String> = mapOf(
+        "高通 骁龙810" to "2015", "高通 骁龙820" to "2016", "高通 骁龙821" to "2016",
+        "高通 骁龙835" to "2017", "高通 骁龙845" to "2018", "高通 骁龙855" to "2019",
+        "高通 骁龙855 Plus" to "2019", "高通 骁龙865" to "2020", "高通 骁龙865 Plus" to "2020",
+        "高通 骁龙870" to "2021", "高通 骁龙860" to "2021", "高通 骁龙888" to "2021",
+        "高通 骁龙888 Plus" to "2021", "高通 骁龙8 Gen 1" to "2022", "高通 骁龙8+ Gen 1" to "2022",
+        "高通 骁龙8+ Gen 1 UC" to "2022", "高通 骁龙8 Gen 2" to "2022", "高通 骁龙8 Gen 3" to "2023",
+        "高通 骁龙8s Gen 3" to "2024", "高通 骁龙8s Gen 4" to "2025", "高通 骁龙8 至尊版" to "2024",
+        "高通 骁龙8 Gen 5" to "2025", "高通 骁龙8 至尊版 Gen5" to "2025",
+        "高通 骁龙8 至尊版 Gen 6" to "2026", "高通 骁龙8 超级至尊版 Gen 6" to "2026"
+    )
 
     /**
      * 驱动实测 ↔ PC 显卡：带宽（GB/s）与算力（TFLOPS）是物理量，跨设备可比。

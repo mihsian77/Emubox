@@ -1,0 +1,31 @@
+{
+ "version": "1.0.0",
+ "note": "设备代号(vivo V2338A)→营销名(iQOO Neo9)；条目为已核实常见型号，未收录显示原代号",
+ "models": {
+  "V2338A": "vivo iQOO Neo9",
+  "V2323A": "vivo iQOO 12",
+  "V2243A": "vivo iQOO 11",
+  "V2217A": "vivo iQOO Neo7 竞速版",
+  "V2183A": "vivo iQOO Neo6",
+  "V2156A": "vivo iQOO 9",
+  "V2145A": "vivo iQOO 8 Pro",
+  "V2118A": "vivo iQOO 8",
+  "V2073A": "vivo iQOO 7",
+  "V2025A": "vivo iQOO 5 Pro",
+  "V2054A": "vivo iQOO 3",
+  "V2055A": "vivo iQOO Z1x",
+  "V2148A": "vivo X70 Pro+",
+  "V2110A": "vivo X60 Pro+",
+  "V2185A": "vivo X80 Pro",
+  "V2254A": "vivo X90 Pro+",
+  "V2329A": "vivo X100 Pro",
+  "V2304A": "vivo X Fold2",
+  "23127PN0CC": "Xiaomi 13 Pro",
+  "2211133C": "Xiaomi 13",
+  "2210132C": "Xiaomi 12S Pro",
+  "2107119DC": "Xiaomi 11 Pro",
+  "SM-S9180": "Samsung Galaxy S23 Ultra",
+  "SM-S9110": "Samsung Galaxy S23",
+  "SM-F9460": "Samsung Galaxy Z Fold5"
+ }
+}
