@@ -54,7 +54,12 @@ RUNTIME_WORDS = [
 ECO_WORDS = [
     "骁龙", "天玑", "麒麟", "Exynos", "Tensor", "安卓", "Android", "ARM", "SoC", "芯片",
     "GPU", "CPU", "处理器", "高通", "联发科", "三星", "台积电", "工艺", "制程", "5G", "终端",
-    "手机", "平板", "折叠屏", "鸿蒙", "HarmonyOS", "笔记本", "显卡",
+    "手机", "平板", "折叠屏", "鸿蒙", "HarmonyOS", "显卡",
+]
+# 生态排除：整机/外设/显示类消费电子（虽含 CPU/显卡 词，但不是"芯片与设备"要点）
+ECO_DROP_WORDS = [
+    "笔记本", "显示器", "耳机", "音箱", "音响", "路由器", "键盘", "鼠标",
+    "机箱", "电源适配", "充电器", "游戏本", "键鼠", "手柄",
 ]
 
 CATS = {
@@ -75,7 +80,10 @@ def classify(title: str, summary: str) -> str:
         return "component"
     if any(w.lower() in text for w in RUNTIME_WORDS):
         return "runtime"
+    # 生态命中但属整机/外设/显示类 → 归泛科技，避免"芯片与设备"要点混入消费电子
     if any(w.lower() in text for w in ECO_WORDS):
+        if any(w.lower() in text for w in ECO_DROP_WORDS):
+            return "general"
         return "eco"
     return "general"
 

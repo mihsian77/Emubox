@@ -111,13 +111,23 @@ object SocSpecStore {
         return map
     }
 
-    /** 按 SoC 名匹配规格（antutu 全名如「高通 骁龙888」；socName 如「骁龙888」做包含匹配） */
+    /** 归一化：去空格/连字符/下划线 + 厂商英文名转中文（设备上报多英文，数据表多中文）。 */
+    private fun normalizeSoc(s: String): String {
+        var t = s.lowercase().replace(" ", "").replace("-", "").replace("_", "")
+        t = t.replace("snapdragon", "骁龙")
+            .replace("dimensity", "天玑")
+            .replace("kirin", "麒麟")
+            .replace("exynos", "exynos")
+        return t
+    }
+
+    /** 按 SoC 名匹配规格（antutu 全名如「高通 骁龙888」；socName 如「骁龙888/Snapdragon 888」双向归一化匹配） */
     fun find(socName: String, context: Context): SocSpec? {
         if (socName.isBlank()) return null
-        val h = socName.lowercase().replace(" ", "")
+        val h = normalizeSoc(socName)
         val specs = load(context)
         specs.forEach { (k, v) ->
-            val kk = k.lowercase().replace(" ", "")
+            val kk = normalizeSoc(k)
             if (kk.contains(h) || h.contains(kk)) return v
         }
         return null

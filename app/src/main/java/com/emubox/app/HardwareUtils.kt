@@ -141,9 +141,14 @@ private fun readMemTotalFromProc(): Long {
 data class SocBrand(val name: String, val color: Long, val label: String)
 
 fun detectSocBrand(socName: String): SocBrand = when {
-    socName.contains("Snapdragon", ignoreCase = true) ->
+    // 中英文双识别：设备可能上报 Snapdragon 8 Gen 2（英文）或骁龙8 Gen 2（已汉化）
+    socName.contains("Snapdragon", ignoreCase = true) ||
+        socName.contains("骁龙", ignoreCase = true) ||
+        socName.contains("高通", ignoreCase = true) ->
         SocBrand("高通", 0xFF0A6ED1, "骁龙")
-    socName.contains("Dimensity", ignoreCase = true) || socName.contains("天玑", ignoreCase = true) ->
+    socName.contains("Dimensity", ignoreCase = true) ||
+        socName.contains("天玑", ignoreCase = true) ||
+        socName.contains("Helio", ignoreCase = true) ->
         SocBrand("联发科", 0xFF1B6AC7, "天玑")
     socName.contains("Exynos", ignoreCase = true) ->
         SocBrand("三星", 0xFF1428A0, "Exynos")
