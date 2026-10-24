@@ -35,6 +35,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 独立进程驱动实测：系统全新启动，进程内无系统 Vulkan/GPU 状态，
+             adrenotools 加载 turnip/panvk 时 GPU 状态干净（vktest 同构），
+             规避主进程 fork 继承 GPU 状态导致的 DRIVER_CRASHED。 -->
+        <service
+            android:name=".DriverTestService"
+            android:exported="false"
+            android:process=":drivertest" />
     </application>
 
 </manifest>
