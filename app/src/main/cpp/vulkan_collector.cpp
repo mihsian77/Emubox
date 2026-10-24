@@ -2981,16 +2981,20 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}");
     }
-    // 双路径：vktest 同款 loader 优先；失败回退 adrenotools（同 collect）
-    std::string json = benchmarkDriverViaLoaderJson(dd, dn, td, hl);
+    // 双路径顺序：adrenotools（GPU_MAPPING_IMPORT）优先，loader 仅兜底。
+    // 依据：loader 路径在 vkCreateDevice 时 turnip 需自开 /dev/kgsl，无 root
+    // 进程必 SEGV 被杀，且 SEGV 无法被 native 捕获，fallback 永远不会执行
+    // （历史 STAGE_CRASHED 根因）。采集已验证 adrenotools+mapping import
+    // 在本机可用，跑分/渲染与其同路径最稳。
+    std::string json = benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
     if (json.find("\"success\":false") != std::string::npos) {
-        std::string fb = benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
+        std::string fb = benchmarkDriverViaLoaderJson(dd, dn, td, hl);
         if (fb.find("\"success\":false") == std::string::npos) {
             json = fb;
         } else {
-            std::string fbMsg = " | fallback: " + fb;
+            std::string fbMsg = " | loader-fallback: " + fb;
             json = "{\"success\":false,\"errorCode\":\"DUAL_PATH_FAILED\",\"errorMessage\":\""
-                   + jsonEscape("loader+adrenotools both failed: " + fbMsg)
+                   + jsonEscape("adrenotools+loader both failed: " + fbMsg)
                    + "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,"
                    "\"computeError\":\"\",\"totalScore\":0}";
         }
@@ -3017,16 +3021,17 @@ Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}");
     }
-    // 渲染测试（vktest 同款）：loader 路径优先，失败回退 adrenotools
-    std::string json = renderDriverViaLoaderJson(dd, dn, td, hl);
+    // 渲染测试（vktest 同款）：adrenotools（mapping import）优先，loader 兜底
+    // （顺序理由同 benchmark：loader 在 vkCreateDevice 无 kgsl 必崩且无法兜底）
+    std::string json = renderDriverAdrenotoolsJson(dd, dn, td, hl);
     if (json.find("\"success\":false") != std::string::npos) {
-        std::string fb = renderDriverAdrenotoolsJson(dd, dn, td, hl);
+        std::string fb = renderDriverViaLoaderJson(dd, dn, td, hl);
         if (fb.find("\"success\":false") == std::string::npos) {
             json = fb;
         } else {
-            std::string fbMsg = " | fallback: " + fb;
+            std::string fbMsg = " | loader-fallback: " + fb;
             json = "{\"success\":false,\"errorCode\":\"DUAL_RENDER_FAILED\",\"errorMessage\":\""
-                   + jsonEscape("render loader+adrenotools both failed: " + fbMsg)
+                   + jsonEscape("render adrenotools+loader both failed: " + fbMsg)
                    + "\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
         }
     }
