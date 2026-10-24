@@ -3436,10 +3436,12 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     } else {
-                        // 处理器名称（型号，不带厂商前缀）：如「骁龙8 Gen 2」
-                        val socFriendly = SocNameMapper.lookup(deviceInfo?.socName ?: "") ?: socName
+                        // 处理器主标题：英文官方原名（Snapdragon 8 Gen 2），厂商不重复
+                        val socPrimary = deviceInfo?.socName
+                            ?.takeIf { it.isNotBlank() && !it.contains("未知") }
+                            ?: appString(R.string.hardware_unavailable)
                         Text(
-                            socFriendly.ifBlank { appString(R.string.hardware_unavailable) },
+                            socPrimary,
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -3447,8 +3449,14 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                             overflow = TextOverflow.Ellipsis
                         )
                         if (deviceInfo != null) {
+                            // GPU 型号精确展示（Adreno 740），series 粗粒度仅作回退
+                            val gpuLine = if (deviceInfo.gpuModel != "unknown") {
+                                "Adreno ${deviceInfo.gpuModel}"
+                            } else if (deviceInfo.adrenoSeries != "unknown") {
+                                "Adreno ${deviceInfo.adrenoSeries}"
+                            } else deviceInfo.gpuRenderer
                             Text(
-                                "Adreno ${deviceInfo.adrenoSeries} · ${deviceInfo.androidVersion}",
+                                "$gpuLine · ${deviceInfo.androidVersion}",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
                                 maxLines = 1,
@@ -3494,7 +3502,7 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                     DeviceStat(
                         icon = Icons.Default.Info,
                         label = appString(R.string.soc_label),
-                        value = SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName.ifBlank { "—" },
+                        value = socChineseName(deviceInfo, context),
                         modifier = Modifier.weight(2f)
                     )
                 }
@@ -3514,6 +3522,15 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
             }
         }
     }
+}
+
+/** 中文 SoC 名：知识库条目名优先（骁龙 8 Gen 2），内置中英映射兜底。 */
+private fun socChineseName(deviceInfo: DeviceInfo, context: Context): String {
+    if (deviceInfo.socName.isBlank()) return "—"
+    // 已是中文（骁龙…/天玑…/麒麟…）直接返回
+    if (deviceInfo.socName.any { it in "骁龙天玑麒麟" }) return deviceInfo.socName
+    SocKnowledgeStore.find(deviceInfo.socName, deviceInfo.gpuModel, context)?.name?.let { return it }
+    return deviceInfo.socName
 }
 
 @Composable
@@ -3667,10 +3684,13 @@ private fun DriverRecommendationCard(
         try {
             val result = withContext(Dispatchers.IO) {
                 val entries = DriverRegistryRepository.load(context = context)
-                DriverRegistryRepository.match(deviceInfo, entries)
-                    .filter { it.recommended || it.score >= 80 }
-                    .sortedWith(compareByDescending<DriverMatchResult> { it.recommended }
-                        .thenByDescending { it.entry.stars })
+                val matched = DriverRegistryRepository.match(deviceInfo, entries)
+                // 只留「完美适配」项：gpuModels 精确命中本机型号 + 架构兼容 + stable/beta/ci
+                //（score>=100），按 star 取前 3，避免一堆「支持但非本机型号」的仓库堆在推荐卡
+                val perfect = matched.filter { it.recommended }
+                val picks = if (perfect.isNotEmpty()) perfect
+                else matched.filter { it.score >= 100 }.take(1) // 实验性兜底：型号命中但非 stable，最多 1 条
+                picks.sortedByDescending { it.entry.stars }.take(3)
             }
             if (result.isEmpty()) loadFailed = true else recommendations = result
         } catch (e: Exception) {
@@ -3752,20 +3772,19 @@ private fun DriverRecommendationCard(
                                         entry.targetEmulator.takeIf { it.isNotBlank() && it != "generic" }?.let {
                                             append(" · 适配 $it")
                                         }
-                                        entry.maturity.takeIf { it.isNotBlank() }?.let {
-                                            append(" · ${it.uppercase()}")
-                                        }
                                     },
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f)
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f),
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
                                 )
-                                // 来源简介（注册表中文描述）：说明维护者/构建类型，体现推荐理由
+                                // 来源简介（注册表中文描述）：一行说明维护者/构建类型
                                 if (entry.description.isNotBlank()) {
                                     Text(
                                         entry.description,
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f),
-                                        maxLines = 2,
+                                        maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
@@ -6246,6 +6265,7 @@ fun DeviceScreen(
         item(key = "benchmark_card") {
             GpuBenchmarkCard(
                 result = benchmarkResult,
+                deviceInfo = deviceInfo,
                 isLoading = benchmarkLoading,
                 error = benchmarkError,
                 onRun = {
@@ -6310,6 +6330,7 @@ fun DeviceScreen(
 @Composable
 private fun GpuBenchmarkCard(
     result: BenchmarkResult?,
+    deviceInfo: DeviceInfo?,
     isLoading: Boolean,
     error: String?,
     onRun: () -> Unit
@@ -6435,12 +6456,17 @@ private fun GpuBenchmarkCard(
                         threads = result.cpuThreads
                     )
 
-                    // 对比 PC 显卡（物理量：带宽/算力）
+                    // 对比 PC 显卡：优先用跑分数据库的 GPU 等效（如 8 Gen 2 → RX 7600M XT ~41%），
+                    // 而非实测物理量（手机 LPDDR 带宽与 PC 显存不是一个体系，个位数百分比无参考价值）
                     val benchCtx = LocalContext.current
-                    val pcCmp = remember(result) {
-                        BenchEngine.driverVsPc(result.fillBandwidthGBs, result.computeGFLOPS, benchCtx)
+                    val socName = deviceInfo?.socName.orEmpty()
+                    val gpuModel = deviceInfo?.gpuModel.orEmpty()
+                    val benchInfo = remember(socName, gpuModel) {
+                        if (socName.isNotBlank() || gpuModel.isNotBlank()) {
+                            BenchEngine.resolve(socName, gpuModel, benchCtx)
+                        } else null
                     }
-                    if (pcCmp != null) {
+                    if (benchInfo?.gpuEquivName != null) {
                         Spacer(Modifier.height(16.dp))
                         Text(
                             appString(R.string.bench_driver_pc_title),
@@ -6448,23 +6474,21 @@ private fun GpuBenchmarkCard(
                         )
                         Spacer(Modifier.height(8.dp))
                         InfoRow(
-                            label = appString(R.string.bench_bw_cmp),
-                            value = "≈ ${pcCmp.bandwidthName} 的 ${pcCmp.bandwidthPct}%"
+                            label = "等效 PC 显卡（跑分库）",
+                            value = benchInfo.gpuEquivName
                         )
-                        // FP32 算力仅在 native 实测返回有效值（>0）时展示，避免恒 0% 假数据
-                        if (pcCmp.computeTFLOPS > 0 && pcCmp.computeName != "—") {
+                        benchInfo.gpuEquivScore?.let { score ->
                             InfoRow(
-                                label = appString(R.string.bench_fp_cmp),
-                                value = "≈ ${pcCmp.computeName} 的 ${pcCmp.computePct}%"
+                                label = "鲁大师 GPU 分差",
+                                value = "≈ ${score} / 本机 ${benchInfo.ludashiScore ?: "—"}"
                             )
                         }
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            appString(R.string.bench_driver_pc_note),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
-                            maxLines = 2
-                        )
+                        benchInfo.gpuEquivRatio?.let { ratio ->
+                            InfoRow(
+                                label = "性能比",
+                                value = "约 ${(ratio * 100).toInt()}%（跑分口径，非物理量换算）"
+                            )
+                        }
                     }
                     Spacer(Modifier.height(16.dp))
 
@@ -6694,7 +6718,8 @@ private fun DriverDetectionList(
         val dl = downloadedDrivers.firstOrNull { it.id == id }
         if (dl == null) { servicePollingId = null; return@LaunchedEffect }
         val resultFile = DriverTestService.resultFile(context, id)
-        val deadline = System.currentTimeMillis() + 35_000L
+        val startedFile = File(context.filesDir, "driver_test_${id}.started")
+        val deadline = System.currentTimeMillis() + 25_000L
         while (System.currentTimeMillis() < deadline) {
             resultFile.deleteOnExit()
             if (resultFile.exists()) {
@@ -6727,13 +6752,20 @@ private fun DriverDetectionList(
             }
             delay(300)
         }
-        // 超时
+        // 超时判定：启动标记仍在 → 驱动加载崩溃把独立进程带走了（进程被杀）；
+        // 启动标记不在 → 服务未启动/参数异常。
+        val crashed = startedFile.exists()
         adrenotoolsTestingId = null
         servicePollingId = null
         detectionResults = detectionResults + (id to VulkanInfoPayload(
-            success = false, errorCode = "SERVICE_TIMEOUT",
-            errorMessage = "独立进程实测超时（35s）", loader = "",
-            instanceExtCount = 0, instanceExtensions = emptyList(),
+            success = false,
+            errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
+            errorMessage = if (crashed) {
+                "驱动加载崩溃（独立进程被杀，App 未受影响）。可能为驱动包与 App 内置 AdrenoTools 运行时版本不匹配，或需在模拟器内验证"
+            } else {
+                "独立进程实测未启动，请重试"
+            },
+            loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
             deviceCount = 0, devices = emptyList()
         ))
     }

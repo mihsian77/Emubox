@@ -67,15 +67,22 @@ object SocKnowledgeStore {
      */
     fun find(socName: String, gpuModel: String, context: Context): SocKnowledge? {
         val haystacks = buildList {
-            if (socName.isNotBlank()) add(socName.lowercase())
+            if (socName.isNotBlank()) {
+                var n = socName.lowercase().replace(" ", "").replace("-", "").replace("_", "")
+                n = n.replace("snapdragon", "骁龙").replace("dimensity", "天玑")
+                    .replace("kirin", "麒麟").replace("qualcomm", "高通")
+                add(n)
+            }
             if (gpuModel.isNotBlank() && gpuModel != "unknown") {
                 add("adreno$gpuModel")
                 add("mali$gpuModel")
             }
         }
         if (haystacks.isEmpty()) return null
-        return load(context).firstOrNull { (keys, _) ->
-            keys.any { k -> haystacks.any { h -> h.contains(k) } }
+        val entries = load(context)
+        // GPU 兜底优先（adreno740 类唯一性强）；再按 SoC 名 contains 匹配（key 需足够长，防厂商粒度名误命中）
+        return entries.firstOrNull { (keys, _) ->
+            keys.any { k -> haystacks.any { h -> h.contains(k) && k.length >= 5 } }
         }?.second
     }
 }
@@ -118,17 +125,28 @@ object SocSpecStore {
             .replace("dimensity", "天玑")
             .replace("kirin", "麒麟")
             .replace("exynos", "exynos")
+        // Qualcomm 前缀与中文「高通」统一成「高通」，避免「qualcomm骁龙8gen2」整体 miss
+        t = t.replace("qualcomm", "高通")
         return t
     }
 
-    /** 按 SoC 名匹配规格（antutu 全名如「高通 骁龙888」；socName 如「骁龙888/Snapdragon 888」双向归一化匹配） */
+    /** 按 SoC 名匹配规格（antutu 全名如「高通 骁龙888」；socName 如「骁龙888/Snapdragon 888」）。
+     *  匹配策略：精确相等优先；其次数据表键包含查询名（要求查询名足够长，≥6 字符）；
+     *  禁止反向包含——「高通骁龙」这类厂商粒度名会把全部高通条目当候选，
+     *  HashMap 无序首命中导致显示随机错误芯片（曾命中骁龙 4 Gen 1）。 */
     fun find(socName: String, context: Context): SocSpec? {
         if (socName.isBlank()) return null
         val h = normalizeSoc(socName)
         val specs = load(context)
         specs.forEach { (k, v) ->
             val kk = normalizeSoc(k)
-            if (kk.contains(h) || h.contains(kk)) return v
+            if (kk == h) return v
+        }
+        if (h.length >= 6) {
+            specs.forEach { (k, v) ->
+                val kk = normalizeSoc(k)
+                if (kk.contains(h)) return v
+            }
         }
         return null
     }

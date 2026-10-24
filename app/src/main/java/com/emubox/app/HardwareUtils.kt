@@ -40,16 +40,17 @@ data class DeviceInfo(
     companion object {
         suspend fun collect(context: Context): DeviceInfo = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
             val renderer = getGpuRenderer()
+            val gpuModel = detectGpuModel(renderer)
             DeviceInfo(
                 "${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})",
                 getTotalRam(context),
                 renderer,
                 detectAdrenoSeries(renderer),
-                detectGpuModel(renderer),
+                gpuModel,
                 detectGpuVendor(renderer),
                 deviceBrand = Build.MANUFACTURER.ifBlank { Build.BRAND },
                 deviceModel = Build.MODEL.ifBlank { Build.DEVICE },
-                socName = SocNameMapper.getCurrentSocName(context)
+                socName = SocNameMapper.getCurrentSocName(context, gpuModel)
             )
         }
     }

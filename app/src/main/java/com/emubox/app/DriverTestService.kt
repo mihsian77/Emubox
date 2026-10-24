@@ -36,6 +36,9 @@ class DriverTestService : Service() {
             return START_NOT_STICKY
         }
 
+        // 启动标记：主进程据此区分「驱动加载崩溃（进程被杀）」与「执行超时」
+        runCatching { File(filesDir, "driver_test_${resultId}.started").writeText("1") }
+
         Thread {
             try {
                 val collectJson = NativeVulkanBridge.collectDriverAdrenotoolsInProcess(
@@ -63,6 +66,8 @@ class DriverTestService : Service() {
                         .put("errorMessage", e.message ?: "unknown")
                 )
             } finally {
+                // 无论结果如何，清除启动标记，避免主进程误判为崩溃
+                runCatching { File(filesDir, "driver_test_${resultId}.started").delete() }
                 stopSelf(startId)
             }
         }.start()
@@ -73,10 +78,11 @@ class DriverTestService : Service() {
         runCatching {
             val file = File(filesDir, "driver_test_${resultId}.json")
             file.writeText(json.toString())
-            // 清理旧结果，避免主进程读到过期文件
+            // 清理旧结果与启动标记，避免主进程读到过期文件
             filesDir.listFiles()?.filter {
                 it.name.startsWith("driver_test_") && it.name != file.name
             }?.forEach { it.delete() }
+            File(filesDir, "driver_test_${resultId}.started").delete()
         }
     }
 
