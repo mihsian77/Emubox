@@ -71,6 +71,15 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+/** SAF 初始定位 URI：优先返回系统 Download 目录，构建失败回退 null（launcher 默认行为）。 */
+private fun defaultDownloadTreeUri(context: Context): android.net.Uri? {
+    @Suppress("DEPRECATION")
+    val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+    return runCatching {
+        if (dir.exists() || dir.mkdirs()) android.net.Uri.fromFile(dir) else null
+    }.getOrNull()
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
@@ -118,6 +127,13 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
             DownloadsManager.scanExistingFiles(context)
+        }
+        // 未授权下载目录时自动弹一次 SAF 授权（用户拒绝过则不打扰，可手动按钮重试）：
+        // 授权后下载与扫描都走 DocumentFile 直读，覆盖安装/MediaStore 索引失效也能扫出
+        if (!folderAuthorized &&
+            !SettingsManager.getDownloadAuthDismissed()) {
+            SettingsManager.setDownloadAuthDismissed(true)
+            scanFolderLauncher.launch(defaultDownloadTreeUri(context))
         }
     }
 
@@ -188,7 +204,10 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
-                            OutlinedButton(onClick = { scanFolderLauncher.launch(null) }) {
+                            OutlinedButton(onClick = {
+                                // 直接定位 Download 目录，避免部分 ROM 上 launch(null) 不弹选择器
+                                scanFolderLauncher.launch(defaultDownloadTreeUri(context))
+                            }) {
                                 Icon(Icons.Default.FolderOpen, contentDescription = null)
                                 Spacer(Modifier.width(8.dp))
                                 Text(appString(R.string.scan_folder_authorize))
@@ -3470,9 +3489,7 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         if (deviceInfo != null) {
                             // 中文名 + 芯片代号（SM8550）：socChineseName 与 soc_name_map 代号兜底
                             val cnName = socChineseName(deviceInfo, context)
-                            val codeName = SocNameMapper.lookup(deviceInfo.socName)?.let {
-                                socNameCode(it) ?: ""
-                            }.orEmpty()
+                            val codeName = SocNameMapper.lookupCode(deviceInfo.socName).orEmpty()
                             if (cnName.isNotBlank() && cnName != socPrimary) {
                                 Text(
                                     if (codeName.isNotBlank()) "$cnName · $codeName" else cnName,
@@ -3548,26 +3565,21 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                 ) {
                     SocBrandBadge(
                         brand = socBrand,
-                        text = when {
-                            socBrand.name == "SoC" -> (SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName)
-                            else -> socBrand.name
-                        }
+                        // 厂商徽章显示英文官方原名（Qualcomm / MediaTek），与顶部官方图形一致
+                        text = socBrandEnglishName(socBrand.name)
                     )
-                    SocNameMapper.lookup(deviceInfo.socName)?.let { cn ->
-                        val code = socNameCode(cn)
-                        if (code != null) {
-                            Surface(
-                                shape = RoundedCornerShape(8.dp),
-                                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.72f)
-                            ) {
-                                Text(
-                                    code,
-                                    style = MaterialTheme.typography.labelMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
-                                    maxLines = 1
-                                )
-                            }
+                    SocNameMapper.lookupCode(deviceInfo.socName)?.let { code ->
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.72f)
+                        ) {
+                            Text(
+                                code,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                                maxLines = 1
+                            )
                         }
                     }
                 }
@@ -3587,11 +3599,15 @@ private fun socBrandIconRes(brandName: String): Int? = when (brandName) {
     else -> null
 }
 
-/** 从 soc_name_map 中文名提取芯片代号（如「骁龙 8 Gen 2」→ SM8550），提取不到返回 null。 */
-private fun socNameCode(chineseName: String): String? {
-    val m = Regex("(SM\\d{4}|MT\\d{4}|Kirin\\s*\\d+|[A-Z]\\d{2,4})",
-        RegexOption.IGNORE_CASE).find(chineseName) ?: return null
-    return m.value.uppercase()
+/** 厂商徽章英文官方原名：高通→Qualcomm、联发科→MediaTek、三星→Samsung、华为→Huawei、谷歌→Google。 */
+private fun socBrandEnglishName(name: String): String = when (name) {
+    "高通", "Qualcomm" -> "Qualcomm"
+    "联发科", "MediaTek" -> "MediaTek"
+    "三星", "Samsung" -> "Samsung"
+    "华为", "Huawei" -> "Huawei"
+    "谷歌", "Google" -> "Google"
+    "ARM", "Arm" -> "ARM"
+    else -> name
 }
 
 /** 中文 SoC 名：知识库条目名优先（骁龙 8 Gen 2），内置中英映射兜底。 */
@@ -6536,8 +6552,11 @@ private fun GpuBenchmarkCard(
                             BenchEngine.resolve(socName, gpuModel, benchCtx)
                         } else null
                     }
-                    if (benchInfo?.pcEquiv != null) {
-                        // 等效 PC 配置（鲁大师同分制最近邻）：型号级参考，不做百分比换算
+                    if (benchInfo?.gpuEquivName != null) {
+                        // GPU 等效：curated 跑分库（人工校准，鲁大师同口径 GPU 分最近邻），
+                        // 仅型号参考，不做百分比换算。
+                        // 注：CPU 等效曾用整机分最近邻桌面榜（结果如 i9-12900F 明显失真），
+                        // 已停用——暂缺手机 CPU 分 ↔ 桌面 CPU 分的可靠映射数据源。
                         Spacer(Modifier.height(16.dp))
                         Text(
                             appString(R.string.bench_driver_pc_title),
@@ -6545,22 +6564,12 @@ private fun GpuBenchmarkCard(
                         )
                         Spacer(Modifier.height(8.dp))
                         InfoRow(
-                            label = "等效台式机 CPU",
-                            value = benchInfo.pcEquiv.cpuName
+                            label = "参考移动显卡（鲁大师跑分库）",
+                            value = benchInfo.gpuEquivName
                         )
-                        InfoRow(
-                            label = "等效台式机 GPU",
-                            value = benchInfo.pcEquiv.gpuName
-                        )
-                        benchInfo.gpuEquivName?.let { gpuName ->
-                            InfoRow(
-                                label = "参考移动显卡（跑分库）",
-                                value = gpuName
-                            )
-                        }
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            "鲁大师同分制最近邻，参考跑分口径而非物理量换算",
+                            "GPU 等效为跑分库人工校准参考；CPU 等效暂缺可靠数据源，不展示",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
                             maxLines = 2
@@ -11653,7 +11662,7 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
         }
 
         // 等效 PC 配置（鲁大师同分制最近邻）
-        if (info.pcEquiv != null) {
+        if (info.gpuEquivName != null) {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(28.dp)
@@ -11664,14 +11673,19 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                         style = MaterialTheme.typography.titleSmall
                     )
                     Spacer(Modifier.height(8.dp))
-                    InfoRow(label = appString(R.string.bench_equiv_cpu), value = info.pcEquiv.cpuName)
-                    InfoRow(label = appString(R.string.bench_equiv_gpu), value = info.pcEquiv.gpuName)
-                    if (info.gpuEquivName != null) {
-                        InfoRow(
-                            label = appString(R.string.bench_equiv_gpu_chip),
-                            value = info.gpuEquivName
-                        )
-                    }
+                    // GPU 等效为跑分库人工校准（鲁大师同口径 GPU 分最近邻）；
+                    // CPU 等效曾用整机分最近邻桌面榜（如 i9-12900F 失真）已停用
+                    InfoRow(
+                        label = appString(R.string.bench_equiv_gpu_chip),
+                        value = info.gpuEquivName
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        "GPU 等效为跑分库人工校准参考；CPU 等效暂缺可靠数据源",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                        maxLines = 2
+                    )
                 }
             }
         } else if (info.antutuTotal != null) {

@@ -60,6 +60,14 @@ object SettingsManager {
 
     fun getDownloadFolderUri(): String? = prefs.getString(KEY_DOWNLOAD_FOLDER_URI, null)
 
+    /** 下载区 SAF 自动授权是否已弹过（用户拒绝后不再自动打扰，可手动按钮重试）。 */
+    fun getDownloadAuthDismissed(): Boolean =
+        prefs.getBoolean("download_auth_dismissed", false)
+
+    fun setDownloadAuthDismissed(v: Boolean) {
+        prefs.edit().putBoolean("download_auth_dismissed", v).apply()
+    }
+
     fun setDownloadFolderUri(uriString: String) {
         prefs.edit().putString(KEY_DOWNLOAD_FOLDER_URI, uriString).apply()
     }

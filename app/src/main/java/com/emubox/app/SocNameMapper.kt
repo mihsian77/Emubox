@@ -50,6 +50,21 @@ object SocNameMapper {
         return nameMap?.get(soc) ?: lowerMap?.get(soc.lowercase())
     }
 
+    /** 英文官方名 → 芯片代号（SM8550/MT6895/Kirin 9000 等）：反查 nameMap 键。 */
+    fun lookupCode(englishName: String): String? {
+        if (englishName.isBlank()) return null
+        val n = englishName.trim()
+        val key = nameMap?.entries?.firstOrNull { (k, v) ->
+            v.equals(n, ignoreCase = true) || k.equals(n, ignoreCase = true)
+        }?.key ?: lowerMap?.entries?.firstOrNull { (k, v) ->
+            v.equals(n, ignoreCase = true) || k.equals(n, ignoreCase = true)
+        }?.key
+        if (key == null) return null
+        val m = Regex("(SM\\d{4}|MT\\d{4}|Kirin\\s*\\d+|[A-Z]\\d{2,4})",
+            RegexOption.IGNORE_CASE).find(key) ?: return null
+        return m.value.uppercase()
+    }
+
     /**
      * GPU 型号 → 具体 SoC 官方名（英文原名）。用于两条链路：
      * 1. Build.SOC 反射失败、HARDWARE 只给到厂商级代号（qcom）时反查具体芯片；
