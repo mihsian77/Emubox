@@ -7161,6 +7161,7 @@ private fun DriverDetectionList(
                                 "EXTRACT_FAILED" -> appString(R.string.detection_error_extract)
                                 "VENDOR_SYSTEM_DRIVER" -> (result.errorMessage
                                     ?: "厂商系统提取驱动，无法在 App 内检测，请在模拟器内加载验证")
+
                                 "UNKNOWN_PACKAGE" -> (result.errorMessage
                                     ?: appString(R.string.unknown_package_hint))
                                 "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
@@ -7296,6 +7297,7 @@ private fun DriverDetectionList(
                             }
                             CompareRow("实例扩展", "${cA.instanceExtCount}", "${cB.instanceExtCount}")
                             CompareRow("设备扩展", "${dA?.extensions?.size ?: 0}", "${dB?.extensions?.size ?: 0}")
+                            CompareRow("关键扩展覆盖", "${"%.0f".format(criticalExtCoverage(dA?.extensions?.map { it.name } ?: emptyList()) * 100)}%", "${"%.0f".format(criticalExtCoverage(dB?.extensions?.map { it.name } ?: emptyList()) * 100)}%")
                             CompareRow("API 版本", dA?.apiVersion ?: "—", dB?.apiVersion ?: "—")
                             CompareRow("GPU", dA?.deviceName ?: "—", dB?.deviceName ?: "—")
                             val scoreA = bA.totalScore
