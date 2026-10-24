@@ -3405,6 +3405,9 @@ private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
 private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
     val context = LocalContext.current
     val socName = remember { SocNameMapper.getCurrentSocName(context) }
+    // 厂商徽章（官方图形大图版）：作用域须在 Column/Row lambda 之外，供各分支复用
+    val socBrand = detectSocBrand(deviceInfo?.socName.orEmpty())
+    val brandIconRes = remember(socBrand.name) { socBrandIconRes(socBrand.name) }
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(28.dp),
@@ -3415,20 +3418,36 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Surface(
-                    shape = RoundedCornerShape(18.dp),
-                    color = MaterialTheme.colorScheme.primary
-                ) {
-                    Icon(
-                        Icons.Default.PhoneAndroid,
-                        contentDescription = null,
-                        modifier = Modifier.padding(12.dp),
-                        tint = MaterialTheme.colorScheme.onPrimary
-                    )
+                if (brandIconRes != null) {
+                    Surface(
+                        shape = RoundedCornerShape(20.dp),
+                        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
+                    ) {
+                        Image(
+                            painter = painterResource(brandIconRes),
+                            contentDescription = socBrand.name,
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .size(44.dp),
+                            contentScale = ContentScale.Fit
+                        )
+                    }
+                } else {
+                    Surface(
+                        shape = RoundedCornerShape(18.dp),
+                        color = MaterialTheme.colorScheme.primary
+                    ) {
+                        Icon(
+                            Icons.Default.PhoneAndroid,
+                            contentDescription = null,
+                            modifier = Modifier.padding(12.dp),
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
                 }
-                Spacer(Modifier.width(12.dp))
+                Spacer(Modifier.width(14.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(appString(R.string.your_device), style = MaterialTheme.typography.titleLarge)
+                    Text(appString(R.string.your_device), style = MaterialTheme.typography.labelMedium)
                     if (isLoading) {
                         Text(
                             appString(R.string.detecting_hardware),
@@ -3436,29 +3455,43 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     } else {
-                        // 处理器主标题：英文官方原名（Snapdragon 8 Gen 2），厂商不重复
+                        // 主标题：处理器英文官方原名（Snapdragon 8 Gen 2）
                         val socPrimary = deviceInfo?.socName
                             ?.takeIf { it.isNotBlank() && !it.contains("未知") }
                             ?: appString(R.string.hardware_unavailable)
                         Text(
                             socPrimary,
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                         if (deviceInfo != null) {
-                            // GPU 型号精确展示（Adreno 740），series 粗粒度仅作回退
+                            // 中文名 + 芯片代号（SM8550）：socChineseName 与 soc_name_map 代号兜底
+                            val cnName = socChineseName(deviceInfo, context)
+                            val codeName = SocNameMapper.lookup(deviceInfo.socName)?.let {
+                                socNameCode(it) ?: ""
+                            }.orEmpty()
+                            if (cnName.isNotBlank() && cnName != socPrimary) {
+                                Text(
+                                    if (codeName.isNotBlank()) "$cnName · $codeName" else cnName,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f),
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            // GPU 精确型号（Adreno 740）+ 系统版本
                             val gpuLine = if (deviceInfo.gpuModel != "unknown") {
                                 "Adreno ${deviceInfo.gpuModel}"
                             } else if (deviceInfo.adrenoSeries != "unknown") {
                                 "Adreno ${deviceInfo.adrenoSeries}"
                             } else deviceInfo.gpuRenderer
                             Text(
-                                "$gpuLine · ${deviceInfo.androidVersion}",
+                                "$gpuLine · Android ${deviceInfo.androidVersion}",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -3506,22 +3539,59 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         modifier = Modifier.weight(2f)
                     )
                 }
-                // SoC 品牌徽章（文字+品牌色，避免官方 logo 版权）：只展示厂商原名
+                // 厂商徽章行：高通 / 联发科…（官方图形 + 品牌名）
                 Spacer(Modifier.height(8.dp))
-                val socBrand = detectSocBrand(deviceInfo.socName)
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
                     SocBrandBadge(
                         brand = socBrand,
-                        // 厂商名与处理器型号分工：徽章只显示厂商（高通），处理器型号在顶部
                         text = when {
                             socBrand.name == "SoC" -> (SocNameMapper.lookup(deviceInfo.socName) ?: deviceInfo.socName)
                             else -> socBrand.name
                         }
                     )
+                    SocNameMapper.lookup(deviceInfo.socName)?.let { cn ->
+                        val code = socNameCode(cn)
+                        if (code != null) {
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.72f)
+                            ) {
+                                Text(
+                                    code,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                                    maxLines = 1
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+/** 厂商官方徽章资源（大图版）：识别失败返回 null（回退通用手机图标）。 */
+private fun socBrandIconRes(brandName: String): Int? = when (brandName) {
+    "Qualcomm", "高通" -> R.drawable.ic_soc_qualcomm
+    "MediaTek", "联发科" -> R.drawable.ic_soc_mediatek
+    "Samsung", "三星" -> R.drawable.ic_soc_samsung
+    "Huawei", "华为" -> R.drawable.ic_soc_huawei
+    "Google", "谷歌" -> R.drawable.ic_soc_google
+    "ARM" -> R.drawable.ic_soc_arm
+    else -> null
+}
+
+/** 从 soc_name_map 中文名提取芯片代号（如「骁龙 8 Gen 2」→ SM8550），提取不到返回 null。 */
+private fun socNameCode(chineseName: String): String? {
+    val m = Regex("(SM\\d{4}|MT\\d{4}|Kirin\\s*\\d+|[A-Z]\\d{2,4})",
+        RegexOption.IGNORE_CASE).find(chineseName) ?: return null
+    return m.value.uppercase()
 }
 
 /** 中文 SoC 名：知识库条目名优先（骁龙 8 Gen 2），内置中英映射兜底。 */
@@ -6466,7 +6536,8 @@ private fun GpuBenchmarkCard(
                             BenchEngine.resolve(socName, gpuModel, benchCtx)
                         } else null
                     }
-                    if (benchInfo?.gpuEquivName != null) {
+                    if (benchInfo?.pcEquiv != null) {
+                        // 等效 PC 配置（鲁大师同分制最近邻）：型号级参考，不做百分比换算
                         Spacer(Modifier.height(16.dp))
                         Text(
                             appString(R.string.bench_driver_pc_title),
@@ -6474,21 +6545,26 @@ private fun GpuBenchmarkCard(
                         )
                         Spacer(Modifier.height(8.dp))
                         InfoRow(
-                            label = "等效 PC 显卡（跑分库）",
-                            value = benchInfo.gpuEquivName
+                            label = "等效台式机 CPU",
+                            value = benchInfo.pcEquiv.cpuName
                         )
-                        benchInfo.gpuEquivScore?.let { score ->
+                        InfoRow(
+                            label = "等效台式机 GPU",
+                            value = benchInfo.pcEquiv.gpuName
+                        )
+                        benchInfo.gpuEquivName?.let { gpuName ->
                             InfoRow(
-                                label = "鲁大师 GPU 分差",
-                                value = "≈ ${score} / 本机 ${benchInfo.ludashiScore ?: "—"}"
+                                label = "参考移动显卡（跑分库）",
+                                value = gpuName
                             )
                         }
-                        benchInfo.gpuEquivRatio?.let { ratio ->
-                            InfoRow(
-                                label = "性能比",
-                                value = "约 ${(ratio * 100).toInt()}%（跑分口径，非物理量换算）"
-                            )
-                        }
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            "鲁大师同分制最近邻，参考跑分口径而非物理量换算",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                            maxLines = 2
+                        )
                     }
                     Spacer(Modifier.height(16.dp))
 
