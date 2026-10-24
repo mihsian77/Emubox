@@ -2017,6 +2017,703 @@ static std::string benchmarkDriverViaLoaderJson(const char* driverDir, const cha
     return res;
 }
 
+static const uint32_t tri_vert_spv[] = {
+    0x03, 0x02, 0x23, 0x07, 0x00, 0x00, 0x01, 0x00, 0x0a, 0x00, 0x0d, 0x00,
+    0x36, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x02, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x06, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x47, 0x4c, 0x53, 0x4c, 0x2e, 0x73, 0x74, 0x64, 0x2e, 0x34, 0x35, 0x30,
+    0x00, 0x00, 0x00, 0x00, 0x0e, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x0f, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x04, 0x00, 0x00, 0x00, 0x6d, 0x61, 0x69, 0x6e, 0x00, 0x00, 0x00, 0x00,
+    0x22, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00, 0x31, 0x00, 0x00, 0x00,
+    0x03, 0x00, 0x03, 0x00, 0x02, 0x00, 0x00, 0x00, 0xc2, 0x01, 0x00, 0x00,
+    0x04, 0x00, 0x0a, 0x00, 0x47, 0x4c, 0x5f, 0x47, 0x4f, 0x4f, 0x47, 0x4c,
+    0x45, 0x5f, 0x63, 0x70, 0x70, 0x5f, 0x73, 0x74, 0x79, 0x6c, 0x65, 0x5f,
+    0x6c, 0x69, 0x6e, 0x65, 0x5f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69,
+    0x76, 0x65, 0x00, 0x00, 0x04, 0x00, 0x08, 0x00, 0x47, 0x4c, 0x5f, 0x47,
+    0x4f, 0x4f, 0x47, 0x4c, 0x45, 0x5f, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64,
+    0x65, 0x5f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x76, 0x65, 0x00,
+    0x05, 0x00, 0x04, 0x00, 0x04, 0x00, 0x00, 0x00, 0x6d, 0x61, 0x69, 0x6e,
+    0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x03, 0x00, 0x0c, 0x00, 0x00, 0x00,
+    0x70, 0x6f, 0x73, 0x00, 0x05, 0x00, 0x03, 0x00, 0x17, 0x00, 0x00, 0x00,
+    0x63, 0x6f, 0x6c, 0x00, 0x05, 0x00, 0x06, 0x00, 0x20, 0x00, 0x00, 0x00,
+    0x67, 0x6c, 0x5f, 0x50, 0x65, 0x72, 0x56, 0x65, 0x72, 0x74, 0x65, 0x78,
+    0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x06, 0x00, 0x20, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x67, 0x6c, 0x5f, 0x50, 0x6f, 0x73, 0x69, 0x74,
+    0x69, 0x6f, 0x6e, 0x00, 0x06, 0x00, 0x07, 0x00, 0x20, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x67, 0x6c, 0x5f, 0x50, 0x6f, 0x69, 0x6e, 0x74,
+    0x53, 0x69, 0x7a, 0x65, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x07, 0x00,
+    0x20, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x67, 0x6c, 0x5f, 0x43,
+    0x6c, 0x69, 0x70, 0x44, 0x69, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x00,
+    0x06, 0x00, 0x07, 0x00, 0x20, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x67, 0x6c, 0x5f, 0x43, 0x75, 0x6c, 0x6c, 0x44, 0x69, 0x73, 0x74, 0x61,
+    0x6e, 0x63, 0x65, 0x00, 0x05, 0x00, 0x03, 0x00, 0x22, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x06, 0x00, 0x26, 0x00, 0x00, 0x00,
+    0x67, 0x6c, 0x5f, 0x56, 0x65, 0x72, 0x74, 0x65, 0x78, 0x49, 0x6e, 0x64,
+    0x65, 0x78, 0x00, 0x00, 0x05, 0x00, 0x05, 0x00, 0x31, 0x00, 0x00, 0x00,
+    0x66, 0x72, 0x61, 0x67, 0x43, 0x6f, 0x6c, 0x6f, 0x72, 0x00, 0x00, 0x00,
+    0x48, 0x00, 0x05, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x0b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x48, 0x00, 0x05, 0x00,
+    0x20, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x48, 0x00, 0x05, 0x00, 0x20, 0x00, 0x00, 0x00,
+    0x02, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x48, 0x00, 0x05, 0x00, 0x20, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x0b, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x47, 0x00, 0x03, 0x00,
+    0x20, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x47, 0x00, 0x04, 0x00,
+    0x26, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x00, 0x00, 0x2a, 0x00, 0x00, 0x00,
+    0x47, 0x00, 0x04, 0x00, 0x31, 0x00, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x13, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00,
+    0x21, 0x00, 0x03, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00,
+    0x16, 0x00, 0x03, 0x00, 0x06, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
+    0x17, 0x00, 0x04, 0x00, 0x07, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,
+    0x02, 0x00, 0x00, 0x00, 0x15, 0x00, 0x04, 0x00, 0x08, 0x00, 0x00, 0x00,
+    0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x04, 0x00,
+    0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x1c, 0x00, 0x04, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,
+    0x09, 0x00, 0x00, 0x00, 0x20, 0x00, 0x04, 0x00, 0x0b, 0x00, 0x00, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x04, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x2b, 0x00, 0x04, 0x00, 0x06, 0x00, 0x00, 0x00, 0x0e, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0xbf, 0x2c, 0x00, 0x05, 0x00, 0x07, 0x00, 0x00, 0x00,
+    0x0f, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00, 0x0e, 0x00, 0x00, 0x00,
+    0x2b, 0x00, 0x04, 0x00, 0x06, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x3f, 0x2c, 0x00, 0x05, 0x00, 0x07, 0x00, 0x00, 0x00,
+    0x11, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,
+    0x2c, 0x00, 0x05, 0x00, 0x07, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00,
+    0x0e, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x2c, 0x00, 0x06, 0x00,
+    0x0a, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x0f, 0x00, 0x00, 0x00,
+    0x11, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x17, 0x00, 0x04, 0x00,
+    0x14, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x1c, 0x00, 0x04, 0x00, 0x15, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,
+    0x09, 0x00, 0x00, 0x00, 0x20, 0x00, 0x04, 0x00, 0x16, 0x00, 0x00, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x04, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3f,
+    0x2c, 0x00, 0x06, 0x00, 0x14, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00,
+    0x18, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00,
+    0x2c, 0x00, 0x06, 0x00, 0x14, 0x00, 0x00, 0x00, 0x1a, 0x00, 0x00, 0x00,
+    0x0d, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00,
+    0x2c, 0x00, 0x06, 0x00, 0x14, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x00, 0x00,
+    0x0d, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,
+    0x2c, 0x00, 0x06, 0x00, 0x15, 0x00, 0x00, 0x00, 0x1c, 0x00, 0x00, 0x00,
+    0x19, 0x00, 0x00, 0x00, 0x1a, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x00, 0x00,
+    0x17, 0x00, 0x04, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,
+    0x04, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x04, 0x00, 0x08, 0x00, 0x00, 0x00,
+    0x1e, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1c, 0x00, 0x04, 0x00,
+    0x1f, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x00,
+    0x1e, 0x00, 0x06, 0x00, 0x20, 0x00, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x1f, 0x00, 0x00, 0x00, 0x1f, 0x00, 0x00, 0x00,
+    0x20, 0x00, 0x04, 0x00, 0x21, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x20, 0x00, 0x00, 0x00, 0x3b, 0x00, 0x04, 0x00, 0x21, 0x00, 0x00, 0x00,
+    0x22, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x15, 0x00, 0x04, 0x00,
+    0x23, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x2b, 0x00, 0x04, 0x00, 0x23, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x04, 0x00, 0x25, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x23, 0x00, 0x00, 0x00, 0x3b, 0x00, 0x04, 0x00,
+    0x25, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x20, 0x00, 0x04, 0x00, 0x28, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x20, 0x00, 0x04, 0x00, 0x2e, 0x00, 0x00, 0x00,
+    0x03, 0x00, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x20, 0x00, 0x04, 0x00,
+    0x30, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,
+    0x3b, 0x00, 0x04, 0x00, 0x30, 0x00, 0x00, 0x00, 0x31, 0x00, 0x00, 0x00,
+    0x03, 0x00, 0x00, 0x00, 0x20, 0x00, 0x04, 0x00, 0x33, 0x00, 0x00, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x36, 0x00, 0x05, 0x00,
+    0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x03, 0x00, 0x00, 0x00, 0xf8, 0x00, 0x02, 0x00, 0x05, 0x00, 0x00, 0x00,
+    0x3b, 0x00, 0x04, 0x00, 0x0b, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x3b, 0x00, 0x04, 0x00, 0x16, 0x00, 0x00, 0x00,
+    0x17, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x3e, 0x00, 0x03, 0x00,
+    0x0c, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x3e, 0x00, 0x03, 0x00,
+    0x17, 0x00, 0x00, 0x00, 0x1c, 0x00, 0x00, 0x00, 0x3d, 0x00, 0x04, 0x00,
+    0x23, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00,
+    0x41, 0x00, 0x05, 0x00, 0x28, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00,
+    0x0c, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00, 0x3d, 0x00, 0x04, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x2a, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00,
+    0x51, 0x00, 0x05, 0x00, 0x06, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x00, 0x00,
+    0x2a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x51, 0x00, 0x05, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x2c, 0x00, 0x00, 0x00, 0x2a, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x50, 0x00, 0x07, 0x00, 0x1d, 0x00, 0x00, 0x00,
+    0x2d, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x00, 0x00, 0x2c, 0x00, 0x00, 0x00,
+    0x0d, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x41, 0x00, 0x05, 0x00,
+    0x2e, 0x00, 0x00, 0x00, 0x2f, 0x00, 0x00, 0x00, 0x22, 0x00, 0x00, 0x00,
+    0x24, 0x00, 0x00, 0x00, 0x3e, 0x00, 0x03, 0x00, 0x2f, 0x00, 0x00, 0x00,
+    0x2d, 0x00, 0x00, 0x00, 0x3d, 0x00, 0x04, 0x00, 0x23, 0x00, 0x00, 0x00,
+    0x32, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00, 0x41, 0x00, 0x05, 0x00,
+    0x33, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00,
+    0x32, 0x00, 0x00, 0x00, 0x3d, 0x00, 0x04, 0x00, 0x14, 0x00, 0x00, 0x00,
+    0x35, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00, 0x3e, 0x00, 0x03, 0x00,
+    0x31, 0x00, 0x00, 0x00, 0x35, 0x00, 0x00, 0x00, 0xfd, 0x00, 0x01, 0x00,
+    0x38, 0x00, 0x01, 0x00,
+};
+static const uint32_t tri_frag_spv[] = {
+    0x03, 0x02, 0x23, 0x07, 0x00, 0x00, 0x01, 0x00, 0x0a, 0x00, 0x0d, 0x00,
+    0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x02, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x06, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x47, 0x4c, 0x53, 0x4c, 0x2e, 0x73, 0x74, 0x64, 0x2e, 0x34, 0x35, 0x30,
+    0x00, 0x00, 0x00, 0x00, 0x0e, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x0f, 0x00, 0x07, 0x00, 0x04, 0x00, 0x00, 0x00,
+    0x04, 0x00, 0x00, 0x00, 0x6d, 0x61, 0x69, 0x6e, 0x00, 0x00, 0x00, 0x00,
+    0x09, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x00, 0x10, 0x00, 0x03, 0x00,
+    0x04, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x03, 0x00, 0x03, 0x00,
+    0x02, 0x00, 0x00, 0x00, 0xc2, 0x01, 0x00, 0x00, 0x04, 0x00, 0x0a, 0x00,
+    0x47, 0x4c, 0x5f, 0x47, 0x4f, 0x4f, 0x47, 0x4c, 0x45, 0x5f, 0x63, 0x70,
+    0x70, 0x5f, 0x73, 0x74, 0x79, 0x6c, 0x65, 0x5f, 0x6c, 0x69, 0x6e, 0x65,
+    0x5f, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x76, 0x65, 0x00, 0x00,
+    0x04, 0x00, 0x08, 0x00, 0x47, 0x4c, 0x5f, 0x47, 0x4f, 0x4f, 0x47, 0x4c,
+    0x45, 0x5f, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x5f, 0x64, 0x69,
+    0x72, 0x65, 0x63, 0x74, 0x69, 0x76, 0x65, 0x00, 0x05, 0x00, 0x04, 0x00,
+    0x04, 0x00, 0x00, 0x00, 0x6d, 0x61, 0x69, 0x6e, 0x00, 0x00, 0x00, 0x00,
+    0x05, 0x00, 0x05, 0x00, 0x09, 0x00, 0x00, 0x00, 0x6f, 0x75, 0x74, 0x43,
+    0x6f, 0x6c, 0x6f, 0x72, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x05, 0x00,
+    0x0c, 0x00, 0x00, 0x00, 0x66, 0x72, 0x61, 0x67, 0x43, 0x6f, 0x6c, 0x6f,
+    0x72, 0x00, 0x00, 0x00, 0x47, 0x00, 0x04, 0x00, 0x09, 0x00, 0x00, 0x00,
+    0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x00, 0x04, 0x00,
+    0x0c, 0x00, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x13, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x21, 0x00, 0x03, 0x00,
+    0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x16, 0x00, 0x03, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x17, 0x00, 0x04, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00,
+    0x20, 0x00, 0x04, 0x00, 0x08, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x3b, 0x00, 0x04, 0x00, 0x08, 0x00, 0x00, 0x00,
+    0x09, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x17, 0x00, 0x04, 0x00,
+    0x0a, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,
+    0x20, 0x00, 0x04, 0x00, 0x0b, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x0a, 0x00, 0x00, 0x00, 0x3b, 0x00, 0x04, 0x00, 0x0b, 0x00, 0x00, 0x00,
+    0x0c, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x2b, 0x00, 0x04, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3f,
+    0x36, 0x00, 0x05, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0xf8, 0x00, 0x02, 0x00,
+    0x05, 0x00, 0x00, 0x00, 0x3d, 0x00, 0x04, 0x00, 0x0a, 0x00, 0x00, 0x00,
+    0x0d, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x00, 0x51, 0x00, 0x05, 0x00,
+    0x06, 0x00, 0x00, 0x00, 0x0f, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x51, 0x00, 0x05, 0x00, 0x06, 0x00, 0x00, 0x00,
+    0x10, 0x00, 0x00, 0x00, 0x0d, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x51, 0x00, 0x05, 0x00, 0x06, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00,
+    0x0d, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x50, 0x00, 0x07, 0x00,
+    0x07, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x0f, 0x00, 0x00, 0x00,
+    0x10, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x0e, 0x00, 0x00, 0x00,
+    0x3e, 0x00, 0x03, 0x00, 0x09, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00,
+    0xfd, 0x00, 0x01, 0x00, 0x38, 0x00, 0x01, 0x00,
+};
+
+// ── 渲染测试（vktest 同款）：自定义驱动 → 图形管线 → 离屏渲染三角形 60 帧 → FPS
+// 离屏渲染不依赖窗口/EGL，turnip 驱动可直接执行图形管线；每帧同步 submit（保守但
+// 能真实反映驱动渲染吞吐）。阶段错误分步返回，崩溃时由独立进程判定 DRIVER_CRASHED。
+static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice phys,
+                                 GetInstanceProcAddrFn getInst) {
+    if (getInst == nullptr) {
+        return "{\"success\":false,\"errorCode\":\"NO_GETINST\",\"errorMessage\":\"render: getInst null\","
+               "\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    // 设备级函数
+    using PFN_CreateDevice = VkResult (*)(VkPhysicalDevice, const VkDeviceCreateInfo*, const VkAllocationCallbacks*, VkDevice*);
+    using PFN_GetDeviceQueue = void (*)(VkDevice, uint32_t, uint32_t, VkQueue*);
+    using PFN_CreateShaderModule = VkResult (*)(VkDevice, const VkShaderModuleCreateInfo*, const VkAllocationCallbacks*, VkShaderModule*);
+    using PFN_CreateRenderPass = VkResult (*)(VkDevice, const VkRenderPassCreateInfo*, const VkAllocationCallbacks*, VkRenderPass*);
+    using PFN_CreateImageView = VkResult (*)(VkDevice, const VkImageViewCreateInfo*, const VkAllocationCallbacks*, VkImageView*);
+    using PFN_CreateImage = VkResult (*)(VkDevice, const VkImageCreateInfo*, const VkAllocationCallbacks*, VkImage*);
+    using PFN_CreateFramebuffer = VkResult (*)(VkDevice, const VkFramebufferCreateInfo*, const VkAllocationCallbacks*, VkFramebuffer*);
+    using PFN_CreatePipelineLayout = VkResult (*)(VkDevice, const VkPipelineLayoutCreateInfo*, const VkAllocationCallbacks*, VkPipelineLayout*);
+    using PFN_CreateGraphicsPipelines = VkResult (*)(VkDevice, VkPipelineCache, uint32_t, const VkGraphicsPipelineCreateInfo*, const VkAllocationCallbacks*, VkPipeline*);
+    using PFN_CreateCommandPool = VkResult (*)(VkDevice, const VkCommandPoolCreateInfo*, const VkAllocationCallbacks*, VkCommandPool*);
+    using PFN_AllocateCommandBuffers = VkResult (*)(VkDevice, const VkCommandBufferAllocateInfo*, VkCommandBuffer*);
+    using PFN_AllocateMemory = VkResult (*)(VkDevice, const VkMemoryAllocateInfo*, const VkAllocationCallbacks*, VkDeviceMemory*);
+    using PFN_BindImageMemory = VkResult (*)(VkDevice, VkImage, VkDeviceMemory, VkDeviceSize);
+    using PFN_BeginCommandBuffer = VkResult (*)(VkCommandBuffer, const VkCommandBufferBeginInfo*);
+    using PFN_CmdBeginRenderPass = void (*)(VkCommandBuffer, const VkRenderPassBeginInfo*, VkSubpassContents);
+    using PFN_CmdDraw = void (*)(VkCommandBuffer, uint32_t, uint32_t, uint32_t, uint32_t);
+    using PFN_CmdEndRenderPass = void (*)(VkCommandBuffer);
+    using PFN_EndCommandBuffer = VkResult (*)(VkCommandBuffer);
+    using PFN_QueueSubmit = VkResult (*)(VkQueue, uint32_t, const VkSubmitInfo*, VkFence);
+    using PFN_DeviceWaitIdle = VkResult (*)(VkDevice);
+    using PFN_GetMemoryRequirements = void (*)(VkDevice, VkImage, VkMemoryRequirements*);
+    using PFN_DestroyShaderModule = void (*)(VkDevice, VkShaderModule, const VkAllocationCallbacks*);
+    using PFN_DestroyRenderPass = void (*)(VkDevice, VkRenderPass, const VkAllocationCallbacks*);
+    using PFN_DestroyImageView = void (*)(VkDevice, VkImageView, const VkAllocationCallbacks*);
+    using PFN_DestroyImage = void (*)(VkDevice, VkImage, const VkAllocationCallbacks*);
+    using PFN_DestroyFramebuffer = void (*)(VkDevice, VkFramebuffer, const VkAllocationCallbacks*);
+    using PFN_DestroyPipelineLayout = void (*)(VkDevice, VkPipelineLayout, const VkAllocationCallbacks*);
+    using PFN_DestroyPipeline = void (*)(VkDevice, VkPipeline, const VkAllocationCallbacks*);
+    using PFN_DestroyCommandPool = void (*)(VkDevice, VkCommandPool, const VkAllocationCallbacks*);
+    using PFN_DestroyDevice = void (*)(VkDevice, const VkAllocationCallbacks*);
+    using PFN_GetDeviceProcAddr = PFN_vkVoidFunction (*)(VkDevice, const char*);
+
+    auto devF = [&](const char* n) -> PFN_vkVoidFunction { return getInst(instance, n); };
+    auto devFd = [&](const char* n) -> PFN_vkVoidFunction { return getInst(instance, n); };
+
+    PFN_CreateDevice vkCreateDevice = reinterpret_cast<PFN_CreateDevice>(devF("vkCreateDevice"));
+    if (!vkCreateDevice) return "{\"success\":false,\"errorCode\":\"NO_CREATE_DEVICE\",\"errorMessage\":\"render: no vkCreateDevice\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    PFN_GetDeviceQueue vkGetDeviceQueue = reinterpret_cast<PFN_GetDeviceQueue>(devF("vkGetDeviceQueue"));
+    PFN_CreateShaderModule vkCreateShaderModule = reinterpret_cast<PFN_CreateShaderModule>(devF("vkCreateShaderModule"));
+    PFN_CreateRenderPass vkCreateRenderPass = reinterpret_cast<PFN_CreateRenderPass>(devF("vkCreateRenderPass"));
+    PFN_CreateImageView vkCreateImageView = reinterpret_cast<PFN_CreateImageView>(devF("vkCreateImageView"));
+    PFN_CreateImage vkCreateImage = reinterpret_cast<PFN_CreateImage>(devF("vkCreateImage"));
+    PFN_CreateFramebuffer vkCreateFramebuffer = reinterpret_cast<PFN_CreateFramebuffer>(devF("vkCreateFramebuffer"));
+    PFN_CreatePipelineLayout vkCreatePipelineLayout = reinterpret_cast<PFN_CreatePipelineLayout>(devF("vkCreatePipelineLayout"));
+    PFN_CreateGraphicsPipelines vkCreateGraphicsPipelines = reinterpret_cast<PFN_CreateGraphicsPipelines>(devF("vkCreateGraphicsPipelines"));
+    PFN_CreateCommandPool vkCreateCommandPool = reinterpret_cast<PFN_CreateCommandPool>(devF("vkCreateCommandPool"));
+    PFN_AllocateCommandBuffers vkAllocateCommandBuffers = reinterpret_cast<PFN_AllocateCommandBuffers>(devF("vkAllocateCommandBuffers"));
+    PFN_AllocateMemory vkAllocateMemory = reinterpret_cast<PFN_AllocateMemory>(devF("vkAllocateMemory"));
+    PFN_BindImageMemory vkBindImageMemory = reinterpret_cast<PFN_BindImageMemory>(devF("vkBindImageMemory"));
+    PFN_GetMemoryRequirements vkGetMemoryRequirements = reinterpret_cast<PFN_GetMemoryRequirements>(devF("vkGetMemoryRequirements"));
+    PFN_BeginCommandBuffer vkBeginCommandBuffer = reinterpret_cast<PFN_BeginCommandBuffer>(devF("vkBeginCommandBuffer"));
+    PFN_CmdBeginRenderPass vkCmdBeginRenderPass = reinterpret_cast<PFN_CmdBeginRenderPass>(devF("vkCmdBeginRenderPass"));
+    PFN_CmdDraw vkCmdDraw = reinterpret_cast<PFN_CmdDraw>(devF("vkCmdDraw"));
+    PFN_CmdEndRenderPass vkCmdEndRenderPass = reinterpret_cast<PFN_CmdEndRenderPass>(devF("vkCmdEndRenderPass"));
+    PFN_EndCommandBuffer vkEndCommandBuffer = reinterpret_cast<PFN_EndCommandBuffer>(devF("vkEndCommandBuffer"));
+    PFN_QueueSubmit vkQueueSubmit = reinterpret_cast<PFN_QueueSubmit>(devF("vkQueueSubmit"));
+    PFN_DeviceWaitIdle vkDeviceWaitIdle = reinterpret_cast<PFN_DeviceWaitIdle>(devF("vkDeviceWaitIdle"));
+    PFN_DestroyShaderModule vkDestroyShaderModule = reinterpret_cast<PFN_DestroyShaderModule>(devF("vkDestroyShaderModule"));
+    PFN_DestroyRenderPass vkDestroyRenderPass = reinterpret_cast<PFN_DestroyRenderPass>(devF("vkDestroyRenderPass"));
+    PFN_DestroyImageView vkDestroyImageView = reinterpret_cast<PFN_DestroyImageView>(devF("vkDestroyImageView"));
+    PFN_DestroyImage vkDestroyImage = reinterpret_cast<PFN_DestroyImage>(devF("vkDestroyImage"));
+    PFN_DestroyFramebuffer vkDestroyFramebuffer = reinterpret_cast<PFN_DestroyFramebuffer>(devF("vkDestroyFramebuffer"));
+    PFN_DestroyPipelineLayout vkDestroyPipelineLayout = reinterpret_cast<PFN_DestroyPipelineLayout>(devF("vkDestroyPipelineLayout"));
+    PFN_DestroyPipeline vkDestroyPipeline = reinterpret_cast<PFN_DestroyPipeline>(devF("vkDestroyPipeline"));
+    PFN_DestroyCommandPool vkDestroyCommandPool = reinterpret_cast<PFN_DestroyCommandPool>(devF("vkDestroyCommandPool"));
+    PFN_DestroyDevice vkDestroyDevice = reinterpret_cast<PFN_DestroyDevice>(devF("vkDestroyDevice"));
+    if (!vkGetDeviceQueue || !vkCreateShaderModule || !vkCreateRenderPass || !vkCreateImageView ||
+        !vkCreateImage || !vkCreateFramebuffer || !vkCreatePipelineLayout || !vkCreateGraphicsPipelines ||
+        !vkCreateCommandPool || !vkAllocateCommandBuffers || !vkAllocateMemory || !vkBindImageMemory ||
+        !vkGetMemoryRequirements || !vkBeginCommandBuffer || !vkCmdBeginRenderPass || !vkCmdDraw ||
+        !vkCmdEndRenderPass || !vkEndCommandBuffer || !vkQueueSubmit || !vkDeviceWaitIdle) {
+        return "{\"success\":false,\"errorCode\":\"RENDER_FUNCS_MISSING\",\"errorMessage\":\"render: driver lacks device funcs\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    // 找 graphics queue family
+    uint32_t qfCount = 0;
+    vk.vkGetPhysicalDeviceQueueFamilyProperties(phys, &qfCount, nullptr);
+    std::vector<VkQueueFamilyProperties> qfs(qfCount);
+    vk.vkGetPhysicalDeviceQueueFamilyProperties(phys, &qfCount, qfs.data());
+    int32_t gfxQf = -1;
+    for (uint32_t i = 0; i < qfCount; i++) {
+        if (qfs[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) { gfxQf = static_cast<int32_t>(i); break; }
+    }
+    if (gfxQf < 0) {
+        return "{\"success\":false,\"errorCode\":\"NO_GRAPHICS_QUEUE\",\"errorMessage\":\"render: no graphics queue\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    // 创建 device
+    const float qp = 1.0f;
+    VkDeviceQueueCreateInfo dq = {};
+    dq.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    dq.queueFamilyIndex = static_cast<uint32_t>(gfxQf);
+    dq.queueCount = 1;
+    dq.pQueuePriorities = &qp;
+    VkDeviceCreateInfo dci = {};
+    dci.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    dci.queueCreateInfoCount = 1;
+    dci.pQueueCreateInfos = &dq;
+    VkDevice device = VK_NULL_HANDLE;
+    if (vkCreateDevice(phys, &dci, nullptr, &device) != VK_SUCCESS || device == VK_NULL_HANDLE) {
+        return "{\"success\":false,\"errorCode\":\"DEVICE_CREATE_FAILED\",\"errorMessage\":\"render: vkCreateDevice failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkQueue queue = VK_NULL_HANDLE;
+    vkGetDeviceQueue(device, static_cast<uint32_t>(gfxQf), 0, &queue);
+
+    // shader modules
+    VkShaderModule vs = VK_NULL_HANDLE, fs = VK_NULL_HANDLE;
+    VkShaderModuleCreateInfo vsci = {};
+    vsci.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+    vsci.codeSize = sizeof(tri_vert_spv);
+    vsci.pCode = tri_vert_spv;
+    if (vkCreateShaderModule(device, &vsci, nullptr, &vs) != VK_SUCCESS) {
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"VS_MODULE_FAILED\",\"errorMessage\":\"render: vertex shader module failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkShaderModuleCreateInfo fsci = {};
+    fsci.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+    fsci.codeSize = sizeof(tri_frag_spv);
+    fsci.pCode = tri_frag_spv;
+    if (vkCreateShaderModule(device, &fsci, nullptr, &fs) != VK_SUCCESS) {
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"FS_MODULE_FAILED\",\"errorMessage\":\"render: fragment shader module failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    // renderpass
+    VkAttachmentDescription att = {};
+    att.format = VK_FORMAT_R8G8B8A8_UNORM;
+    att.samples = VK_SAMPLE_COUNT_1_BIT;
+    att.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+    att.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+    att.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+    att.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+    att.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    att.finalLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+    VkAttachmentReference colRef = {};
+    colRef.attachment = 0;
+    colRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+    VkSubpassDescription sub = {};
+    sub.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+    sub.colorAttachmentCount = 1;
+    sub.pColorAttachments = &colRef;
+    VkRenderPassCreateInfo rpci = {};
+    rpci.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+    rpci.attachmentCount = 1;
+    rpci.pAttachments = &att;
+    rpci.subpassCount = 1;
+    rpci.pSubpasses = &sub;
+    VkRenderPass rp = VK_NULL_HANDLE;
+    if (vkCreateRenderPass(device, &rpci, nullptr, &rp) != VK_SUCCESS) {
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"RENDERPASS_FAILED\",\"errorMessage\":\"render: renderpass failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    const uint32_t W = 256, H = 256;
+    // 离屏 image
+    VkImageCreateInfo ici = {};
+    ici.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+    ici.imageType = VK_IMAGE_TYPE_2D;
+    ici.format = VK_FORMAT_R8G8B8A8_UNORM;
+    ici.extent = { W, H, 1 };
+    ici.mipLevels = 1;
+    ici.arrayLayers = 1;
+    ici.samples = VK_SAMPLE_COUNT_1_BIT;
+    ici.tiling = VK_IMAGE_TILING_OPTIMAL;
+    ici.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+    ici.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    VkImage img = VK_NULL_HANDLE;
+    if (vkCreateImage(device, &ici, nullptr, &img) != VK_SUCCESS) {
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"IMAGE_CREATE_FAILED\",\"errorMessage\":\"render: offscreen image failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkMemoryRequirements memReq = {};
+    vkGetMemoryRequirements(device, img, &memReq);
+    VkMemoryAllocateInfo mai = {};
+    mai.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    mai.allocationSize = memReq.size;
+    // 内存类型：找 host 可见或设备本地（简单取第一个支持位）
+    VkPhysicalDeviceMemoryProperties memProps = {};
+    vk.vkGetPhysicalDeviceMemoryProperties(phys, &memProps);
+    uint32_t memType = 0xFFFFFFFF;
+    for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
+        if (memReq.memoryTypeBits & (1u << i)) { memType = i; break; }
+    }
+    if (memType == 0xFFFFFFFF) {
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"NO_MEM_TYPE\",\"errorMessage\":\"render: no memory type\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    mai.memoryTypeIndex = memType;
+    VkDeviceMemory imgMem = VK_NULL_HANDLE;
+    if (vkAllocateMemory(device, &mai, nullptr, &imgMem) != VK_SUCCESS ||
+        vkBindImageMemory(device, img, imgMem, 0) != VK_SUCCESS) {
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"MEM_BIND_FAILED\",\"errorMessage\":\"render: image memory failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkImageViewCreateInfo ivci = {};
+    ivci.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+    ivci.image = img;
+    ivci.viewType = VK_IMAGE_VIEW_TYPE_2D;
+    ivci.format = VK_FORMAT_R8G8B8A8_UNORM;
+    ivci.subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+    VkImageView iv = VK_NULL_HANDLE;
+    if (vkCreateImageView(device, &ivci, nullptr, &iv) != VK_SUCCESS) {
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"IMAGEVIEW_FAILED\",\"errorMessage\":\"render: image view failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkFramebufferCreateInfo fbci = {};
+    fbci.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+    fbci.renderPass = rp;
+    fbci.attachmentCount = 1;
+    fbci.pAttachments = &iv;
+    fbci.width = W;
+    fbci.height = H;
+    fbci.layers = 1;
+    VkFramebuffer fb = VK_NULL_HANDLE;
+    if (vkCreateFramebuffer(device, &fbci, nullptr, &fb) != VK_SUCCESS) {
+        vkDestroyImageView(device, iv, nullptr);
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"FRAMEBUFFER_FAILED\",\"errorMessage\":\"render: framebuffer failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    // pipeline
+    VkPipelineShaderStageCreateInfo stages[2] = {};
+    stages[0].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+    stages[0].stage = VK_SHADER_STAGE_VERTEX_BIT;
+    stages[0].module = vs;
+    stages[0].pName = "main";
+    stages[1].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+    stages[1].stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+    stages[1].module = fs;
+    stages[1].pName = "main";
+    VkPipelineLayoutCreateInfo plci = {};
+    plci.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+    VkPipelineLayout pl = VK_NULL_HANDLE;
+    if (vkCreatePipelineLayout(device, &plci, nullptr, &pl) != VK_SUCCESS) {
+        vkDestroyFramebuffer(device, fb, nullptr);
+        vkDestroyImageView(device, iv, nullptr);
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"PIPELINE_LAYOUT_FAILED\",\"errorMessage\":\"render: pipeline layout failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkPipelineVertexInputStateCreateInfo vi = {};
+    vi.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+    VkPipelineInputAssemblyStateCreateInfo ia = {};
+    ia.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+    ia.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+    VkPipelineViewportStateCreateInfo vp = {};
+    vp.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+    VkViewport viewport = { 0.0f, 0.0f, static_cast<float>(W), static_cast<float>(H), 0.0f, 1.0f };
+    VkRect2D scissor = { {0, 0}, {W, H} };
+    vp.viewportCount = 1;
+    vp.pViewports = &viewport;
+    vp.scissorCount = 1;
+    vp.pScissors = &scissor;
+    VkPipelineRasterizationStateCreateInfo rs = {};
+    rs.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
+    rs.polygonMode = VK_POLYGON_MODE_FILL;
+    rs.cullMode = VK_CULL_MODE_NONE;
+    rs.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
+    rs.lineWidth = 1.0f;
+    VkPipelineMultisampleStateCreateInfo ms = {};
+    ms.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+    ms.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
+    VkPipelineColorBlendAttachmentState ba = {};
+    ba.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT |
+                        VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
+    VkPipelineColorBlendStateCreateInfo cb = {};
+    cb.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
+    cb.attachmentCount = 1;
+    cb.pAttachments = &ba;
+    VkGraphicsPipelineCreateInfo gpci = {};
+    gpci.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
+    gpci.stageCount = 2;
+    gpci.pStages = stages;
+    gpci.pVertexInputState = &vi;
+    gpci.pInputAssemblyState = &ia;
+    gpci.pViewportState = &vp;
+    gpci.pRasterizationState = &rs;
+    gpci.pMultisampleState = &ms;
+    gpci.pColorBlendState = &cb;
+    gpci.layout = pl;
+    gpci.renderPass = rp;
+    gpci.subpass = 0;
+    VkPipeline pipe = VK_NULL_HANDLE;
+    if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &gpci, nullptr, &pipe) != VK_SUCCESS || pipe == VK_NULL_HANDLE) {
+        vkDestroyPipelineLayout(device, pl, nullptr);
+        vkDestroyFramebuffer(device, fb, nullptr);
+        vkDestroyImageView(device, iv, nullptr);
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"PIPELINE_FAILED\",\"errorMessage\":\"render: graphics pipeline failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    // command buffer
+    VkCommandPoolCreateInfo cpci = {};
+    cpci.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    cpci.queueFamilyIndex = static_cast<uint32_t>(gfxQf);
+    VkCommandPool pool = VK_NULL_HANDLE;
+    if (vkCreateCommandPool(device, &cpci, nullptr, &pool) != VK_SUCCESS) {
+        vkDestroyPipeline(device, pipe, nullptr);
+        vkDestroyPipelineLayout(device, pl, nullptr);
+        vkDestroyFramebuffer(device, fb, nullptr);
+        vkDestroyImageView(device, iv, nullptr);
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"CMDPOOL_FAILED\",\"errorMessage\":\"render: command pool failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkCommandBufferAllocateInfo cba = {};
+    cba.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    cba.commandPool = pool;
+    cba.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    cba.commandBufferCount = 1;
+    VkCommandBuffer cmd = VK_NULL_HANDLE;
+    if (vkAllocateCommandBuffers(device, &cba, &cmd) != VK_SUCCESS) {
+        vkDestroyCommandPool(device, pool, nullptr);
+        vkDestroyPipeline(device, pipe, nullptr);
+        vkDestroyPipelineLayout(device, pl, nullptr);
+        vkDestroyFramebuffer(device, fb, nullptr);
+        vkDestroyImageView(device, iv, nullptr);
+        vkDestroyImage(device, img, nullptr);
+        vkDestroyRenderPass(device, rp, nullptr);
+        vkDestroyShaderModule(device, vs, nullptr);
+        vkDestroyShaderModule(device, fs, nullptr);
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"CMDBUF_FAILED\",\"errorMessage\":\"render: command buffer failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+
+    // 帧循环：60 帧离屏渲染，每帧同步 submit（保守口径，真实反映渲染吞吐）
+    const int FRAMES = 60;
+    VkClearValue clear = {};
+    clear.color = { {0.2f, 0.2f, 0.3f, 1.0f} };
+    auto t0 = std::chrono::steady_clock::now();
+    for (int f = 0; f < FRAMES; f++) {
+        VkCommandBufferBeginInfo cbbi = {};
+        cbbi.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+        VkRenderPassBeginInfo rpbi = {};
+        rpbi.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+        rpbi.renderPass = rp;
+        rpbi.framebuffer = fb;
+        rpbi.renderArea = { {0, 0}, {W, H} };
+        rpbi.clearValueCount = 1;
+        rpbi.pClearValues = &clear;
+        if (vkBeginCommandBuffer(cmd, &cbbi) != VK_SUCCESS) {
+            vkDestroyCommandPool(device, pool, nullptr);
+            vkDestroyPipeline(device, pipe, nullptr);
+            vkDestroyPipelineLayout(device, pl, nullptr);
+            vkDestroyFramebuffer(device, fb, nullptr);
+            vkDestroyImageView(device, iv, nullptr);
+            vkDestroyImage(device, img, nullptr);
+            vkDestroyRenderPass(device, rp, nullptr);
+            vkDestroyShaderModule(device, vs, nullptr);
+            vkDestroyShaderModule(device, fs, nullptr);
+            vkDestroyDevice(device, nullptr);
+            return "{\"success\":false,\"errorCode\":\"BEGIN_CMDBUF_FAILED\",\"errorMessage\":\"render: begin cmd failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+        }
+        vkCmdBeginRenderPass(cmd, &rpbi, VK_SUBPASS_CONTENTS_INLINE);
+        vkCmdDraw(cmd, 3, 1, 0, 0);
+        vkCmdEndRenderPass(cmd);
+        if (vkEndCommandBuffer(cmd) != VK_SUCCESS) {
+            vkDestroyCommandPool(device, pool, nullptr);
+            vkDestroyPipeline(device, pipe, nullptr);
+            vkDestroyPipelineLayout(device, pl, nullptr);
+            vkDestroyFramebuffer(device, fb, nullptr);
+            vkDestroyImageView(device, iv, nullptr);
+            vkDestroyImage(device, img, nullptr);
+            vkDestroyRenderPass(device, rp, nullptr);
+            vkDestroyShaderModule(device, vs, nullptr);
+            vkDestroyShaderModule(device, fs, nullptr);
+            vkDestroyDevice(device, nullptr);
+            return "{\"success\":false,\"errorCode\":\"END_CMDBUF_FAILED\",\"errorMessage\":\"render: end cmd failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+        }
+        VkSubmitInfo si = {};
+        si.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+        si.commandBufferCount = 1;
+        si.pCommandBuffers = &cmd;
+        if (vkQueueSubmit(queue, 1, &si, VK_NULL_HANDLE) != VK_SUCCESS) {
+            vkDestroyCommandPool(device, pool, nullptr);
+            vkDestroyPipeline(device, pipe, nullptr);
+            vkDestroyPipelineLayout(device, pl, nullptr);
+            vkDestroyFramebuffer(device, fb, nullptr);
+            vkDestroyImageView(device, iv, nullptr);
+            vkDestroyImage(device, img, nullptr);
+            vkDestroyRenderPass(device, rp, nullptr);
+            vkDestroyShaderModule(device, vs, nullptr);
+            vkDestroyShaderModule(device, fs, nullptr);
+            vkDestroyDevice(device, nullptr);
+            return "{\"success\":false,\"errorCode\":\"SUBMIT_FAILED\",\"errorMessage\":\"render: queue submit failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+        }
+        vkDeviceWaitIdle(device);
+    }
+    auto t1 = std::chrono::steady_clock::now();
+    double secs = std::chrono::duration<double>(t1 - t0).count();
+    if (secs <= 0) secs = 1e-9;
+
+    // 清理
+    vkDestroyCommandPool(device, pool, nullptr);
+    vkDestroyPipeline(device, pipe, nullptr);
+    vkDestroyPipelineLayout(device, pl, nullptr);
+    vkDestroyFramebuffer(device, fb, nullptr);
+    vkDestroyImageView(device, iv, nullptr);
+    vkDestroyImage(device, img, nullptr);
+    vkDestroyRenderPass(device, rp, nullptr);
+    vkDestroyShaderModule(device, vs, nullptr);
+    vkDestroyShaderModule(device, fs, nullptr);
+    vkDestroyDevice(device, nullptr);
+
+    char buf[256];
+    snprintf(buf, sizeof(buf),
+             "{\"success\":true,\"errorCode\":\"\",\"errorMessage\":\"\","
+             "\"fps\":%.1f,\"avgFrameMs\":%.2f,\"frameCount\":%d}",
+             FRAMES / secs, secs * 1000.0 / FRAMES, FRAMES);
+    return std::string(buf);
+}
+
+// Loader 路径渲染测试（vktest 同款）：加载自定义驱动 → 离屏渲染三角形 → FPS
+static std::string renderDriverViaLoaderJson(const char* driverDir, const char* driverName,
+                                             const char* tmpDir, const char* hookLibDir) {
+    void* lib = nullptr;
+    GetInstanceProcAddrFn getInst = nullptr;
+    std::string err = loadDriverViaLoader(driverDir, driverName, tmpDir, &lib, &getInst);
+    if (!err.empty()) return err;
+
+    VulkanDispatch vk;
+    vk.libHandle = lib;
+    vk.vkCreateInstance = getInst
+            ? reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"))
+            : nullptr;
+    if (!vk.vkCreateInstance) {
+        vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(dlsym(lib, "vkCreateInstance"));
+    }
+    vk.vkDestroyInstance = getInst
+            ? reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"))
+            : nullptr;
+    if (!vk.vkDestroyInstance) {
+        vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(dlsym(lib, "vkDestroyInstance"));
+    }
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\"render: driver lacks instance funcs\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\"render: vkCreateInstance failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+            getInst(instance, "vkGetPhysicalDeviceProperties"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+            getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+            getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    if (!vk.vkEnumeratePhysicalDevices || !vk.vkGetPhysicalDeviceQueueFamilyProperties ||
+        !vk.vkGetPhysicalDeviceMemoryProperties) {
+        vk.vkDestroyInstance(instance, nullptr);
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"PHYS_FUNCS_MISSING\",\"errorMessage\":\"render: driver lacks phys funcs\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    uint32_t deviceCount = 0;
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+    if (deviceCount == 0) {
+        vk.vkDestroyInstance(instance, nullptr);
+        dlclose(lib);
+        unsetenv("VK_ICD_FILENAMES");
+        return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\"render: no physical devices\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+    std::string res = runRenderTest(vk, instance, devices[0], getInst);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(lib);
+    unsetenv("VK_ICD_FILENAMES");
+    return res;
+}
+
 // AdrenoTools 路径跑分：fill/copy 带宽 + 计算吞吐（复用 runBenchmark）
 static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
                                                   const char* tmpDir, const char* hookLibDir) {
@@ -2185,6 +2882,58 @@ Java_com_emubox_app_NativeVulkanBridge_collectDriverAdrenotoolsInProcess(
 }
 
 // ── JNI 入口（独立进程版）：AdrenoTools 跑分，不 fork ──────────────────────
+
+// AdrenoTools 路径渲染测试（与 loader 同构，仅加载段不同）
+static std::string renderDriverAdrenotoolsJson(const char* driverDir, const char* driverName,
+                                               const char* tmpDir, const char* hookLibDir) {
+    void* lib = nullptr;
+    GetInstanceProcAddrFn getInst = nullptr;
+    std::string err = loadDriverAdrenoTools(driverDir, driverName, tmpDir, hookLibDir, false, &lib, &getInst);
+    if (!err.empty()) return err;
+    VulkanDispatch vk;
+    vk.libHandle = lib;
+    vk.vkCreateInstance = getInst
+            ? reinterpret_cast<PFN_CreateInstance>(getInst(VK_NULL_HANDLE, "vkCreateInstance"))
+            : nullptr;
+    if (!vk.vkCreateInstance) {
+        vk.vkCreateInstance = reinterpret_cast<PFN_CreateInstance>(dlsym(lib, "vkCreateInstance"));
+    }
+    vk.vkDestroyInstance = getInst
+            ? reinterpret_cast<PFN_DestroyInstance>(getInst(VK_NULL_HANDLE, "vkDestroyInstance"))
+            : nullptr;
+    if (!vk.vkDestroyInstance) {
+        vk.vkDestroyInstance = reinterpret_cast<PFN_DestroyInstance>(dlsym(lib, "vkDestroyInstance"));
+    }
+    if (!vk.vkCreateInstance || !vk.vkDestroyInstance) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"INSTANCE_FUNCS_MISSING\",\"errorMessage\":\"adt render: driver lacks instance funcs\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    VkInstance instance = createVulkanInstance(vk.vkCreateInstance);
+    if (instance == VK_NULL_HANDLE) {
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"CREATE_INSTANCE_FAILED\",\"errorMessage\":\"adt render: vkCreateInstance failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    vk.vkEnumeratePhysicalDevices = reinterpret_cast<PFN_EnumeratePhysicalDevices>(
+            getInst(instance, "vkEnumeratePhysicalDevices"));
+    vk.vkGetPhysicalDeviceQueueFamilyProperties = reinterpret_cast<PFN_GetPhysicalDeviceQueueFamilyProperties>(
+            getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
+    vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
+            getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    uint32_t deviceCount = 0;
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+    if (deviceCount == 0) {
+        vk.vkDestroyInstance(instance, nullptr);
+        dlclose(lib);
+        return "{\"success\":false,\"errorCode\":\"NO_DEVICE\",\"errorMessage\":\"adt render: no devices\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+    std::string res = runRenderTest(vk, instance, devices[0], getInst);
+    vk.vkDestroyInstance(instance, nullptr);
+    dlclose(lib);
+    return res;
+}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
         JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
@@ -2212,6 +2961,41 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
                    + jsonEscape("loader+adrenotools both failed: " + fbMsg)
                    + "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,"
                    "\"computeError\":\"\",\"totalScore\":0}";
+        }
+    }
+    env->ReleaseStringUTFChars(driverDir, dd);
+    env->ReleaseStringUTFChars(driverName, dn);
+    env->ReleaseStringUTFChars(tmpDir, td);
+    env->ReleaseStringUTFChars(hookLibDir, hl);
+    return env->NewStringUTF(json.c_str());
+}
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
+        JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
+        jstring tmpDir, jstring hookLibDir) {
+    const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
+    const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
+    const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
+    const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    if (!dd || !dn || !td || !hl) {
+        if (dd) env->ReleaseStringUTFChars(driverDir, dd);
+        if (dn) env->ReleaseStringUTFChars(driverName, dn);
+        if (td) env->ReleaseStringUTFChars(tmpDir, td);
+        if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}");
+    }
+    // 渲染测试（vktest 同款）：loader 路径优先，失败回退 adrenotools
+    std::string json = renderDriverViaLoaderJson(dd, dn, td, hl);
+    if (json.find("\"success\":false") != std::string::npos) {
+        std::string fb = renderDriverAdrenotoolsJson(dd, dn, td, hl);
+        if (fb.find("\"success\":false") == std::string::npos) {
+            json = fb;
+        } else {
+            std::string fbMsg = " | fallback: " + fb;
+            json = "{\"success\":false,\"errorCode\":\"DUAL_RENDER_FAILED\",\"errorMessage\":\""
+                   + jsonEscape("render loader+adrenotools both failed: " + fbMsg)
+                   + "\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
         }
     }
     env->ReleaseStringUTFChars(driverDir, dd);

@@ -6736,6 +6736,7 @@ private fun DriverDetectionList(
     // AdrenoTools 实测（M4）：以模拟器同款加载路径（namespace 绕过+GPU 映射导入）
     // 加载 turnip/panvk，采集实例/设备扩展并跑分——替代裸 dlopen（App 内必然失败）。
     var adrenotoolsResults by remember { mutableStateOf<Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>>(emptyMap()) }
+    var renderResults by remember { mutableStateOf<Map<String, org.json.JSONObject>>(emptyMap()) }
     var adrenotoolsTestingId by remember { mutableStateOf<String?>(null) }
     // 双选实测对比：勾选两个已下载驱动，AdrenoTools 并排实测（扩展/设备/跑分）
     val compareSelection = remember { mutableStateListOf<String>() }
@@ -6833,6 +6834,9 @@ private fun DriverDetectionList(
                             val payload = VulkanInfoPayload.fromJson(result.getJSONObject("collect").toString())
                             val br = BenchmarkResult.fromJson(result.getJSONObject("benchmark").toString())
                             adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
+                            if (result.has("render")) {
+                                renderResults = renderResults + (id to result.getJSONObject("render"))
+                            }
                             detectionResults = detectionResults + (id to payload)
                         } else {
                             detectionResults = detectionResults + (id to VulkanInfoPayload(
@@ -7163,6 +7167,42 @@ private fun DriverDetectionList(
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.error
                                 )
+                            }
+                            // ── 渲染测试（vktest 同款）：离屏渲染三角形 60 帧测 FPS ──
+                            val renderRes = renderResults[download.id]
+                            if (renderRes != null) {
+                                Spacer(Modifier.height(6.dp))
+                                if (renderRes.optBoolean("success")) {
+                                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                        Text(
+                                            "渲染测试 ${"%.1f".format(renderRes.optDouble("fps", 0.0))} FPS",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.primary,
+                                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                                        )
+                                        Text(
+                                            "帧耗时 ${"%.2f".format(renderRes.optDouble("avgFrameMs", 0.0))} ms",
+                                            style = MaterialTheme.typography.bodySmall
+                                        )
+                                        Text(
+                                            "${renderRes.optInt("frameCount", 0)} 帧",
+                                            style = MaterialTheme.typography.bodySmall
+                                        )
+                                    }
+                                    Text(
+                                        "离屏渲染 256×256 彩色三角形（vktest 同款图形管线，每帧同步提交）",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                } else {
+                                    Text(
+                                        "渲染测试失败：${renderRes.optString("errorCode", "?")} ${renderRes.optString("errorMessage", "")}",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.error,
+                                        maxLines = 3,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
                             }
                             Spacer(Modifier.height(8.dp))
                             // 游戏支持评估：按实测驱动类型分级（独立于跑分，实测成功即显示）

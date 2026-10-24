@@ -69,6 +69,11 @@ object NativeVulkanBridge {
         driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
     ): String
 
+    /** 渲染测试（vktest 同款）：独立进程内加载自定义驱动 → 离屏渲染三角形 60 帧 → FPS。 */
+    external fun renderDriverAdrenotoolsInProcess(
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+    ): String
+
     /** 便捷方法：AdrenoTools 路径实测一个驱动（采集+跑分一起返回）。 */
     fun testDriverAdrenotools(
         driverDir: String, driverName: String, tmpDir: String, hookLibDir: String

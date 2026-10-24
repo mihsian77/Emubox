@@ -53,9 +53,20 @@ class DriverTestService : Service() {
                         .put("errorCode", "SKIPPED")
                         .put("errorMessage", "仅采集").toString()
                 }
+                val renderJson = if (runBenchmark) {
+                    // 渲染测试（vktest 同款）：驱动加载成功后离屏渲染三角形测 FPS
+                    NativeVulkanBridge.renderDriverAdrenotoolsInProcess(
+                        driverDir, driverName, tmpDir, hookLibDir
+                    )
+                } else {
+                    JSONObject().put("success", false)
+                        .put("errorCode", "SKIPPED")
+                        .put("errorMessage", "仅采集").toString()
+                }
                 val result = JSONObject()
                     .put("collect", JSONObject(collectJson))
                     .put("benchmark", JSONObject(benchJson))
+                    .put("render", JSONObject(renderJson))
                 writeResult(resultId, result)
             } catch (e: Exception) {
                 writeResult(
