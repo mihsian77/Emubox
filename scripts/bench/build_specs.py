@@ -38,7 +38,8 @@ def main():
     for lv in ('level1', 'level2', 'level3'):
         for it in a.get(lv, []):
             name = it.get('name', '').strip()
-            if not name:
+            # 过滤解析错位的行：安兔兔网页偶发把分数列当名称抓成 "15930 分" 这类
+            if not name or not re.search(r'[a-zA-Z]', name):
                 continue
             seen.setdefault(name, {**it, 'level': lv})
 
