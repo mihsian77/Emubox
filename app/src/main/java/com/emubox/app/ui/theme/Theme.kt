@@ -17,9 +17,16 @@ private val EmuBoxLight = lightColorScheme(
     tertiary = Color(0xFF3E6374)
 )
 private val EmuBoxDark = darkColorScheme(
-    primary = Color(0xFF56DBA5),
-    secondary = Color(0xFFB4CCBF),
-    tertiary = Color(0xFFA5CDDF)
+    primary = Color(0xFF4FD9C9),
+    secondary = Color(0xFF9B7CFF),
+    tertiary = Color(0xFFC9A9FF),
+    background = Color(0xFF0B0A13),
+    surface = Color(0xFF161423),
+    surfaceVariant = Color(0xFF1C1A2C),
+    onBackground = Color(0xFFF0EEF8),
+    onSurface = Color(0xFFF0EEF8),
+    onSurfaceVariant = Color(0xFFABA6C9),
+    outline = Color(0xFF332F4E)
 )
 
 private val BlueLight = lightColorScheme(
