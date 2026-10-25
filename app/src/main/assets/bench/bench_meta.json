@@ -16,7 +16,7 @@
    "ludashi_score": "480872",
    "gpu_equiv": {
     "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
-    "score": 142581,
+    "score": 142472,
     "est": 141151,
     "ratio": 0.294
    }
@@ -53,8 +53,7 @@
    "ludashi_score": "807517",
    "gpu_equiv": {
     "name": "AMD Radeon RX 7600M XT 8GB",
-    "nvidia_name": "NVIDIA GeForce RTX 2060 SUPER 8GB",
-    "score": 330655,
+    "score": 331586,
     "est": 331150,
     "ratio": 0.41
    }
@@ -75,7 +74,7 @@
    "ludashi_score": "1062717",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 Ti 11GB",
-    "score": 540245,
+    "score": 540127,
     "est": 551656,
     "ratio": 0.519
    }
@@ -96,7 +95,7 @@
    "ludashi_score": "1159763",
    "gpu_equiv": {
     "name": "AMD Radeon RX 7700 XT 12GB",
-    "score": 615283,
+    "score": 615206,
     "est": 621881,
     "ratio": 0.536
    }
@@ -116,7 +115,7 @@
    "ludashi_score": "1308603",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3080 12GB",
-    "score": 740233,
+    "score": 740221,
     "est": 730825,
     "ratio": 0.558
    }
@@ -136,7 +135,7 @@
    "ludashi_score": "1385516",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6900 XT 16GB",
-    "score": 818113,
+    "score": 817989,
     "est": 828938,
     "ratio": 0.598
    }
@@ -156,7 +155,7 @@
    "ludashi_score": "1467056",
    "gpu_equiv": {
     "name": "AMD Radeon RX 9070 16GB",
-    "score": 896370,
+    "score": 896462,
     "est": 881797,
     "ratio": 0.601
    }
@@ -174,8 +173,8 @@
    "antutu_clusters": "(1x 3.0GHz Cortex-X4 & 4x 2.8GHz Cortex-A720 & 3x 2.0GHz Cortex-A520)",
    "ludashi_score": "724435",
    "gpu_equiv": {
-    "name": "AMD Radeon RX 7600M XT 8GB",
-    "score": 330655,
+    "name": "AMD Radeon RX 6600 8GB",
+    "score": 330190,
     "est": 330779,
     "ratio": 0.457
    }
@@ -194,7 +193,7 @@
    "ludashi_score": "996259",
    "gpu_equiv": {
     "name": "NVIDIA TITAN V 12GB",
-    "score": 518597,
+    "score": 518165,
     "est": 518883,
     "ratio": 0.521
    }
@@ -256,7 +255,7 @@
    "ludashi_score": "602793",
    "gpu_equiv": {
     "name": "AMD Radeon RX 580 2048SP 8GB",
-    "score": 160376,
+    "score": 160382,
     "est": 159224,
     "ratio": 0.264
    }
@@ -276,7 +275,7 @@
    "ludashi_score": "787766",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
-    "score": 348065,
+    "score": 347900,
     "est": 348811,
     "ratio": 0.443
    }
@@ -296,7 +295,7 @@
    "ludashi_score": "922847",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
-    "score": 443395,
+    "score": 443313,
     "est": 444254,
     "ratio": 0.481
    }
@@ -316,7 +315,7 @@
    "ludashi_score": "1114009",
    "gpu_equiv": {
     "name": "NVIDIA TITAN RTX 24GB",
-    "score": 580759,
+    "score": 581852,
     "est": 567267,
     "ratio": 0.509
    }
@@ -335,7 +334,7 @@
    "ludashi_score": "1372822",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 4090 Laptop GPU 16GB",
-    "score": 754389,
+    "score": 752613,
     "est": 753152,
     "ratio": 0.549
    }
@@ -368,7 +367,7 @@
    "ludashi_score": "1114009",
    "gpu_equiv": {
     "name": "NVIDIA TITAN RTX 24GB",
-    "score": 580759,
+    "score": 581852,
     "est": 575385,
     "ratio": 0.516
    }
@@ -491,40 +490,40 @@
  ],
  "emulator_tiers": {
   "winlator": {
-   "smooth": 1400000,
-   "playable": 800000,
-   "heavy": 450000,
-   "note": "Win 游戏容器（含 DXVK/VKD3D 需求）；8Gen2 可玩、8Gen3 流畅"
+   "smooth": 2800000,
+   "playable": 2000000,
+   "heavy": 1200000,
+   "note": "Win 游戏容器（含 DXVK/VKD3D 需求）"
   },
   "ns": {
-   "smooth": 1900000,
-   "playable": 1000000,
-   "heavy": 600000,
-   "note": "Switch（GPU 负载重，优先看 GPU 分）；8Gen2 可玩"
+   "smooth": 2600000,
+   "playable": 1800000,
+   "heavy": 1000000,
+   "note": "Switch（GPU 负载重，优先看 GPU 分）"
   },
   "ps2": {
-   "smooth": 1000000,
-   "playable": 650000,
-   "heavy": 400000,
-   "note": "PS2；8Gen2 流畅"
+   "smooth": 1500000,
+   "playable": 900000,
+   "heavy": 500000,
+   "note": "PS2"
   },
   "gc_wii": {
-   "smooth": 1000000,
-   "playable": 700000,
-   "heavy": 450000,
-   "note": "NGC/Wii；8Gen2 流畅"
+   "smooth": 1800000,
+   "playable": 1000000,
+   "heavy": 600000,
+   "note": "NGC/Wii"
   },
   "ds3ds": {
-   "smooth": 900000,
-   "playable": 500000,
-   "heavy": 250000,
-   "note": "3DS；8Gen2 流畅"
+   "smooth": 1200000,
+   "playable": 600000,
+   "heavy": 300000,
+   "note": "3DS"
   },
   "psp": {
-   "smooth": 600000,
-   "playable": 350000,
+   "smooth": 800000,
+   "playable": 400000,
    "heavy": 200000,
-   "note": "PSP（低要求）；8Gen2 流畅"
+   "note": "PSP（低要求）"
   }
  },
  "same_chip_devices": [
