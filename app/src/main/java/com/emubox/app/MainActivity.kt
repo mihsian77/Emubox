@@ -146,6 +146,7 @@ class MainActivity : ComponentActivity() {
                 var qualcommReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var xclipseReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
                 var wrapperReleases by remember { mutableStateOf<List<GithubRelease>>(emptyList()) }
+                var wrapperItems by remember { mutableStateOf<List<WrapperItem>>(emptyList()) }
                 var componentCatalogs by remember {
                     mutableStateOf<Map<String, Map<String, List<Component>>>>(emptyMap())
                 }
@@ -327,7 +328,17 @@ class MainActivity : ComponentActivity() {
                             source.id.equals(wrapperSourceId, ignoreCase = true) ||
                                 source.name.equals(wrapperSourceId, ignoreCase = true)
                         } ?: wrapperSources.firstOrNull()
-                        val wrapper = selectedWrapperSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
+                        // banner 来源：wrapper 内容来自作者维护的 wrappers.json 清单
+                        // （不依赖 release 标签顺序，Rutabaga/linuxfs/steamdeck 等混装
+                        // release 不会误读）；其余 wrapper 源为 release 型（strict 过滤）。
+                        val isBannerWrapper = selectedWrapperSource?.id == "reg-wrapper-banner"
+                        val wrapperItems = if (isBannerWrapper && selectedWrapperSource != null) {
+                            fetchWrappersCatalog(
+                                "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/wrappers.json"
+                            )
+                        } else emptyList()
+                        val wrapper = if (isBannerWrapper) emptyList()
+                            else selectedWrapperSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
                             ?: emptyList()
 
                         val selectedQualcommSource = catalog.qualcommSources.firstOrNull { source ->
@@ -416,6 +427,7 @@ class MainActivity : ComponentActivity() {
                             qualcommReleases = qualcomm,
                             xclipseReleases = xclipse,
                             wrapperReleases = wrapper,
+                            wrapperItems = wrapperItems,
                             componentCatalogs = manifestComponentMaps + registryComponentMaps
                         )
                     }
@@ -427,6 +439,7 @@ class MainActivity : ComponentActivity() {
                     qualcommReleases = result.qualcommReleases
                     xclipseReleases = result.xclipseReleases
                     wrapperReleases = result.wrapperReleases
+                    wrapperItems = result.wrapperItems
                     componentCatalogs = result.componentCatalogs
                     componentSourceUpdatedAt = result.componentSourceUpdatedAt
                     driverSourceUpdatedAt = result.driverSourceUpdatedAt
@@ -515,8 +528,18 @@ class MainActivity : ComponentActivity() {
                     val selected = wrapperSources.firstOrNull { source ->
                         source.id == wrapperSourceId || source.name == wrapperSourceId
                     } ?: wrapperSources.first()
-                    wrapperReleases = withContext(Dispatchers.IO) {
-                        fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
+                    if (selected.id == "reg-wrapper-banner") {
+                        wrapperItems = withContext(Dispatchers.IO) {
+                            fetchWrappersCatalog(
+                                "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/wrappers.json"
+                            )
+                        }
+                        wrapperReleases = emptyList()
+                    } else {
+                        wrapperItems = emptyList()
+                        wrapperReleases = withContext(Dispatchers.IO) {
+                            fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
+                        }
                     }
                 }
 
@@ -737,6 +760,7 @@ class MainActivity : ComponentActivity() {
                                                 .filter { it.driverType == "wrapper" }
                                                 .map { DriverRegistryRepository.toTurnipSource(it) },
                                             wrapperReleases = wrapperReleases,
+                                            wrapperItems = wrapperItems,
                                             sourceCatalogRemote = sourceCatalog.isRemote,
                                             onTurnipSourceChange = { sourceId ->
                                                 turnipSourceId = sourceId
@@ -1001,6 +1025,8 @@ private data class AppLoadResult(
     val qualcommReleases: List<GithubRelease>,
     val xclipseReleases: List<GithubRelease> = emptyList(),
     val wrapperReleases: List<GithubRelease> = emptyList(),
+    /** wrapper 清单条目（winlator-contents wrappers.json，来源切换用） */
+    val wrapperItems: List<WrapperItem> = emptyList(),
     val componentCatalogs: Map<String, Map<String, List<Component>>>,
     val componentSourceUpdatedAt: Map<String, Long> = emptyMap(),
     val driverSourceUpdatedAt: Map<String, Long> = emptyMap(),
