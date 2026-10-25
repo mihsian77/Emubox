@@ -60,18 +60,19 @@ object NativeVulkanBridge {
         driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
     ): String
 
-    /** 独立进程版（:drivertest service 内调用，进程无系统 GPU 状态）：不 fork 直载。 */
+    /** 独立进程版（:drivertest service 内调用，进程无系统 GPU 状态）：不 fork 直载。
+     *  logPath：崩溃步骤日志文件路径（native 每步 append，崩溃后主进程读取定位被杀点）。 */
     external fun collectDriverAdrenotoolsInProcess(
-        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String, logPath: String
     ): String
 
     external fun benchmarkDriverAdrenotoolsInProcess(
-        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String, logPath: String
     ): String
 
     /** 渲染测试（vktest 同款）：独立进程内加载自定义驱动 → 离屏渲染三角形 60 帧 → FPS。 */
     external fun renderDriverAdrenotoolsInProcess(
-        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String
+        driverDir: String, driverName: String, tmpDir: String, hookLibDir: String, logPath: String
     ): String
 
     /** 便捷方法：AdrenoTools 路径实测一个驱动（采集+跑分一起返回）。 */

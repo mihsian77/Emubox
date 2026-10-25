@@ -45,22 +45,24 @@ class DriverTestService : Service() {
         Thread {
             try {
                 val result = JSONObject()
+                // 崩溃步骤日志：native 每步 append，进程被杀后主进程读取定位崩溃点
+                val stepLogPath = File(filesDir, "driver_test_${resultId}.step").absolutePath
                 when (stage) {
                     "collect" -> {
                         val collectJson = NativeVulkanBridge.collectDriverAdrenotoolsInProcess(
-                            driverDir, driverName, tmpDir, hookLibDir
+                            driverDir, driverName, tmpDir, hookLibDir, stepLogPath
                         )
                         result.put("collect", JSONObject(collectJson))
                     }
                     "benchmark" -> {
                         val benchJson = NativeVulkanBridge.benchmarkDriverAdrenotoolsInProcess(
-                            driverDir, driverName, tmpDir, hookLibDir
+                            driverDir, driverName, tmpDir, hookLibDir, stepLogPath
                         )
                         result.put("benchmark", JSONObject(benchJson))
                     }
                     "render" -> {
                         val renderJson = NativeVulkanBridge.renderDriverAdrenotoolsInProcess(
-                            driverDir, driverName, tmpDir, hookLibDir
+                            driverDir, driverName, tmpDir, hookLibDir, stepLogPath
                         )
                         result.put("render", JSONObject(renderJson))
                     }
