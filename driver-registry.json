@@ -1868,17 +1868,19 @@
    "maturity": "experimental",
    "stars": 35,
    "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
-   "notes": "drivers_0.9 2026-08-25；配合 WinXclipse 本体使用",
+   "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
    "companion": [],
    "filters": {
     "default": [
-     "Xclipse"
+     "Xclipse",
+     "drivers_0.9"
     ]
    },
    "updated_at": "2026-09-14T16:55:29Z",
    "latest_tag": "v0.9.5",
    "latest_date": "2026-09-14T16:55:29Z",
-   "latest_body": "# WinXclipse v0.9.5\r\n\r\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\r\n\r\n## Highlights\r\n\r\n### Apex"
+   "latest_body": "# WinXclipse v0.9.5\r\n\r\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\r\n\r\n## Highlights\r\n\r\n### Apex",
+   "strict_filter": true
   },
   {
    "id": "wrapper-banner",
