@@ -417,9 +417,10 @@ object DriverRegistryRepository {
             supportedSeries = series,
             supportedModels = models,
             requiredVendor = entry.gpuVendor,
-            // wrapper 来源仓库混装多种内容（winlator-contents / WinXclipse），必须用注册表
-            // filters 精确过滤；其余注册表源按类型归类，release 几乎都是驱动包，不过滤避免版本丢失。
-            filters = if (entry.driverType == "wrapper") entry.filters else emptyMap(),
+            // 注册表源（含 wrapper/radv/companion 等）配置了 filters 就用精确过滤——
+            // 此前只对 wrapper 传 filters，导致 WinXclipse 三星驱动/community-configs
+            // 等混装 release 全量误入 Xclipse 区。无 filters 的源仍不过滤避免版本丢失。
+            filters = if (entry.filters.isNotEmpty()) entry.filters else emptyMap(),
             strictFilter = entry.strictFilter,
             // wrapper 包装层资产为 tzst 压缩包，需保留；驱动源保持 zip/adpkg 默认
             assetExts = if (entry.driverType == "wrapper")
