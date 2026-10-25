@@ -2403,42 +2403,41 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
 
     PFN_CreateDevice vkCreateDevice = reinterpret_cast<PFN_CreateDevice>(devF("vkCreateDevice"));
     if (!vkCreateDevice) return "{\"success\":false,\"errorCode\":\"NO_CREATE_DEVICE\",\"errorMessage\":\"render: no vkCreateDevice\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
-    PFN_GetDeviceQueue vkGetDeviceQueue = reinterpret_cast<PFN_GetDeviceQueue>(devF("vkGetDeviceQueue"));
-    PFN_CreateShaderModule vkCreateShaderModule = reinterpret_cast<PFN_CreateShaderModule>(devF("vkCreateShaderModule"));
-    PFN_CreateRenderPass vkCreateRenderPass = reinterpret_cast<PFN_CreateRenderPass>(devF("vkCreateRenderPass"));
-    PFN_CreateImageView vkCreateImageView = reinterpret_cast<PFN_CreateImageView>(devF("vkCreateImageView"));
-    PFN_CreateImage vkCreateImage = reinterpret_cast<PFN_CreateImage>(devF("vkCreateImage"));
-    PFN_CreateFramebuffer vkCreateFramebuffer = reinterpret_cast<PFN_CreateFramebuffer>(devF("vkCreateFramebuffer"));
-    PFN_CreatePipelineLayout vkCreatePipelineLayout = reinterpret_cast<PFN_CreatePipelineLayout>(devF("vkCreatePipelineLayout"));
-    PFN_CreateGraphicsPipelines vkCreateGraphicsPipelines = reinterpret_cast<PFN_CreateGraphicsPipelines>(devF("vkCreateGraphicsPipelines"));
-    PFN_CreateCommandPool vkCreateCommandPool = reinterpret_cast<PFN_CreateCommandPool>(devF("vkCreateCommandPool"));
-    PFN_AllocateCommandBuffers vkAllocateCommandBuffers = reinterpret_cast<PFN_AllocateCommandBuffers>(devF("vkAllocateCommandBuffers"));
-    PFN_AllocateMemory vkAllocateMemory = reinterpret_cast<PFN_AllocateMemory>(devF("vkAllocateMemory"));
-    PFN_BindImageMemory vkBindImageMemory = reinterpret_cast<PFN_BindImageMemory>(devF("vkBindImageMemory"));
-    PFN_GetMemoryRequirements vkGetMemoryRequirements = reinterpret_cast<PFN_GetMemoryRequirements>(devF("vkGetMemoryRequirements"));
-    PFN_BeginCommandBuffer vkBeginCommandBuffer = reinterpret_cast<PFN_BeginCommandBuffer>(devF("vkBeginCommandBuffer"));
-    PFN_CmdBeginRenderPass vkCmdBeginRenderPass = reinterpret_cast<PFN_CmdBeginRenderPass>(devF("vkCmdBeginRenderPass"));
-    PFN_CmdDraw vkCmdDraw = reinterpret_cast<PFN_CmdDraw>(devF("vkCmdDraw"));
-    PFN_CmdEndRenderPass vkCmdEndRenderPass = reinterpret_cast<PFN_CmdEndRenderPass>(devF("vkCmdEndRenderPass"));
-    PFN_EndCommandBuffer vkEndCommandBuffer = reinterpret_cast<PFN_EndCommandBuffer>(devF("vkEndCommandBuffer"));
-    PFN_QueueSubmit vkQueueSubmit = reinterpret_cast<PFN_QueueSubmit>(devF("vkQueueSubmit"));
-    PFN_DeviceWaitIdle vkDeviceWaitIdle = reinterpret_cast<PFN_DeviceWaitIdle>(devF("vkDeviceWaitIdle"));
-    PFN_DestroyShaderModule vkDestroyShaderModule = reinterpret_cast<PFN_DestroyShaderModule>(devF("vkDestroyShaderModule"));
-    PFN_DestroyRenderPass vkDestroyRenderPass = reinterpret_cast<PFN_DestroyRenderPass>(devF("vkDestroyRenderPass"));
-    PFN_DestroyImageView vkDestroyImageView = reinterpret_cast<PFN_DestroyImageView>(devF("vkDestroyImageView"));
-    PFN_DestroyImage vkDestroyImage = reinterpret_cast<PFN_DestroyImage>(devF("vkDestroyImage"));
-    PFN_DestroyFramebuffer vkDestroyFramebuffer = reinterpret_cast<PFN_DestroyFramebuffer>(devF("vkDestroyFramebuffer"));
-    PFN_DestroyPipelineLayout vkDestroyPipelineLayout = reinterpret_cast<PFN_DestroyPipelineLayout>(devF("vkDestroyPipelineLayout"));
-    PFN_DestroyPipeline vkDestroyPipeline = reinterpret_cast<PFN_DestroyPipeline>(devF("vkDestroyPipeline"));
-    PFN_DestroyCommandPool vkDestroyCommandPool = reinterpret_cast<PFN_DestroyCommandPool>(devF("vkDestroyCommandPool"));
-    PFN_DestroyDevice vkDestroyDevice = reinterpret_cast<PFN_DestroyDevice>(devF("vkDestroyDevice"));
-    if (!vkGetDeviceQueue || !vkCreateShaderModule || !vkCreateRenderPass || !vkCreateImageView ||
-        !vkCreateImage || !vkCreateFramebuffer || !vkCreatePipelineLayout || !vkCreateGraphicsPipelines ||
-        !vkCreateCommandPool || !vkAllocateCommandBuffers || !vkAllocateMemory || !vkBindImageMemory ||
-        !vkGetMemoryRequirements || !vkBeginCommandBuffer || !vkCmdBeginRenderPass || !vkCmdDraw ||
-        !vkCmdEndRenderPass || !vkEndCommandBuffer || !vkQueueSubmit || !vkDeviceWaitIdle) {
-        return "{\"success\":false,\"errorCode\":\"RENDER_FUNCS_MISSING\",\"errorMessage\":\"render: driver lacks device funcs\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
-    }
+    // device 级函数必须经 vkGetDeviceProcAddr 获取（getInst 为 instance 级入口，对 device 级符号返回空）
+    using PFN_GetDeviceProcAddr2 = PFN_vkVoidFunction (*)(VkDevice, const char*);
+    PFN_GetDeviceProcAddr2 vkGetDeviceProcAddr =
+            reinterpret_cast<PFN_GetDeviceProcAddr2>(devF("vkGetDeviceProcAddr"));
+    if (!vkGetDeviceProcAddr) return "{\"success\":false,\"errorCode\":\"NO_GDPA\",\"errorMessage\":\"render: no vkGetDeviceProcAddr\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    PFN_GetDeviceQueue vkGetDeviceQueue = nullptr;
+    PFN_CreateShaderModule vkCreateShaderModule = nullptr;
+    PFN_CreateRenderPass vkCreateRenderPass = nullptr;
+    PFN_CreateImageView vkCreateImageView = nullptr;
+    PFN_CreateImage vkCreateImage = nullptr;
+    PFN_CreateFramebuffer vkCreateFramebuffer = nullptr;
+    PFN_CreatePipelineLayout vkCreatePipelineLayout = nullptr;
+    PFN_CreateGraphicsPipelines vkCreateGraphicsPipelines = nullptr;
+    PFN_CreateCommandPool vkCreateCommandPool = nullptr;
+    PFN_AllocateCommandBuffers vkAllocateCommandBuffers = nullptr;
+    PFN_AllocateMemory vkAllocateMemory = nullptr;
+    PFN_BindImageMemory vkBindImageMemory = nullptr;
+    PFN_GetMemoryRequirements vkGetMemoryRequirements = nullptr;
+    PFN_BeginCommandBuffer vkBeginCommandBuffer = nullptr;
+    PFN_CmdBeginRenderPass vkCmdBeginRenderPass = nullptr;
+    PFN_CmdDraw vkCmdDraw = nullptr;
+    PFN_CmdEndRenderPass vkCmdEndRenderPass = nullptr;
+    PFN_EndCommandBuffer vkEndCommandBuffer = nullptr;
+    PFN_QueueSubmit vkQueueSubmit = nullptr;
+    PFN_DeviceWaitIdle vkDeviceWaitIdle = nullptr;
+    PFN_DestroyShaderModule vkDestroyShaderModule = nullptr;
+    PFN_DestroyRenderPass vkDestroyRenderPass = nullptr;
+    PFN_DestroyImageView vkDestroyImageView = nullptr;
+    PFN_DestroyImage vkDestroyImage = nullptr;
+    PFN_DestroyFramebuffer vkDestroyFramebuffer = nullptr;
+    PFN_DestroyPipelineLayout vkDestroyPipelineLayout = nullptr;
+    PFN_DestroyPipeline vkDestroyPipeline = nullptr;
+    PFN_DestroyCommandPool vkDestroyCommandPool = nullptr;
+    PFN_DestroyDevice vkDestroyDevice = nullptr;
+
 
     // 找 graphics queue family
     uint32_t qfCount = 0;
@@ -2470,6 +2469,47 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
         return "{\"success\":false,\"errorCode\":\"DEVICE_CREATE_FAILED\",\"errorMessage\":\"render: vkCreateDevice failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
     }
     VkQueue queue = VK_NULL_HANDLE;
+    // device 级函数统一经 vkGetDeviceProcAddr 获取
+    auto devD = [&](const char* n) -> PFN_vkVoidFunction {
+        return vkGetDeviceProcAddr ? vkGetDeviceProcAddr(device, n) : nullptr;
+    };
+    vkGetDeviceQueue = reinterpret_cast<PFN_GetDeviceQueue>(devD("vkGetDeviceQueue"));
+    vkCreateShaderModule = reinterpret_cast<PFN_CreateShaderModule>(devD("vkCreateShaderModule"));
+    vkCreateRenderPass = reinterpret_cast<PFN_CreateRenderPass>(devD("vkCreateRenderPass"));
+    vkCreateImageView = reinterpret_cast<PFN_CreateImageView>(devD("vkCreateImageView"));
+    vkCreateImage = reinterpret_cast<PFN_CreateImage>(devD("vkCreateImage"));
+    vkCreateFramebuffer = reinterpret_cast<PFN_CreateFramebuffer>(devD("vkCreateFramebuffer"));
+    vkCreatePipelineLayout = reinterpret_cast<PFN_CreatePipelineLayout>(devD("vkCreatePipelineLayout"));
+    vkCreateGraphicsPipelines = reinterpret_cast<PFN_CreateGraphicsPipelines>(devD("vkCreateGraphicsPipelines"));
+    vkCreateCommandPool = reinterpret_cast<PFN_CreateCommandPool>(devD("vkCreateCommandPool"));
+    vkAllocateCommandBuffers = reinterpret_cast<PFN_AllocateCommandBuffers>(devD("vkAllocateCommandBuffers"));
+    vkAllocateMemory = reinterpret_cast<PFN_AllocateMemory>(devD("vkAllocateMemory"));
+    vkBindImageMemory = reinterpret_cast<PFN_BindImageMemory>(devD("vkBindImageMemory"));
+    vkGetMemoryRequirements = reinterpret_cast<PFN_GetMemoryRequirements>(devD("vkGetMemoryRequirements"));
+    vkBeginCommandBuffer = reinterpret_cast<PFN_BeginCommandBuffer>(devD("vkBeginCommandBuffer"));
+    vkCmdBeginRenderPass = reinterpret_cast<PFN_CmdBeginRenderPass>(devD("vkCmdBeginRenderPass"));
+    vkCmdDraw = reinterpret_cast<PFN_CmdDraw>(devD("vkCmdDraw"));
+    vkCmdEndRenderPass = reinterpret_cast<PFN_CmdEndRenderPass>(devD("vkCmdEndRenderPass"));
+    vkEndCommandBuffer = reinterpret_cast<PFN_EndCommandBuffer>(devD("vkEndCommandBuffer"));
+    vkQueueSubmit = reinterpret_cast<PFN_QueueSubmit>(devD("vkQueueSubmit"));
+    vkDeviceWaitIdle = reinterpret_cast<PFN_DeviceWaitIdle>(devD("vkDeviceWaitIdle"));
+    vkDestroyShaderModule = reinterpret_cast<PFN_DestroyShaderModule>(devD("vkDestroyShaderModule"));
+    vkDestroyRenderPass = reinterpret_cast<PFN_DestroyRenderPass>(devD("vkDestroyRenderPass"));
+    vkDestroyImageView = reinterpret_cast<PFN_DestroyImageView>(devD("vkDestroyImageView"));
+    vkDestroyImage = reinterpret_cast<PFN_DestroyImage>(devD("vkDestroyImage"));
+    vkDestroyFramebuffer = reinterpret_cast<PFN_DestroyFramebuffer>(devD("vkDestroyFramebuffer"));
+    vkDestroyPipelineLayout = reinterpret_cast<PFN_DestroyPipelineLayout>(devD("vkDestroyPipelineLayout"));
+    vkDestroyPipeline = reinterpret_cast<PFN_DestroyPipeline>(devD("vkDestroyPipeline"));
+    vkDestroyCommandPool = reinterpret_cast<PFN_DestroyCommandPool>(devD("vkDestroyCommandPool"));
+    vkDestroyDevice = reinterpret_cast<PFN_DestroyDevice>(devD("vkDestroyDevice"));
+    if (!vkGetDeviceQueue || !vkCreateShaderModule || !vkCreateRenderPass || !vkCreateImageView ||
+        !vkCreateImage || !vkCreateFramebuffer || !vkCreatePipelineLayout || !vkCreateGraphicsPipelines ||
+        !vkCreateCommandPool || !vkAllocateCommandBuffers || !vkAllocateMemory || !vkBindImageMemory ||
+        !vkGetMemoryRequirements || !vkBeginCommandBuffer || !vkCmdBeginRenderPass || !vkCmdDraw ||
+        !vkCmdEndRenderPass || !vkEndCommandBuffer || !vkQueueSubmit || !vkDeviceWaitIdle) {
+        vkDestroyDevice(device, nullptr);
+        return "{\"success\":false,\"errorCode\":\"RENDER_FUNCS_MISSING\",\"errorMessage\":\"render: driver lacks device funcs (gdpa)\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+    }
     vkGetDeviceQueue(device, static_cast<uint32_t>(gfxQf), 0, &queue);
 
     // shader modules
