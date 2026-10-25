@@ -50,6 +50,28 @@ private enum class AppScreen {
 }
 
 class MainActivity : ComponentActivity() {
+
+    /** 授权返回后已补扫标记：避免每次 onResume 重复扫描 */
+    private var resumedScanDone = false
+
+    /** 从系统授权页返回后补扫：启动时扫描早于用户完成授权（异步弹窗），
+     *  授权落地前扫不到本地文件 → 返回时按新权限重扫一次，覆盖
+     *  "必须打开下载区才能读取本地文件" 的体验问题。 */
+    override fun onResume() {
+        super.onResume()
+        if (resumedScanDone) return
+        val granted = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+            Environment.isExternalStorageManager()) ||
+            SettingsManager.getDownloadFolderUri() != null ||
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
+        if (granted) {
+            resumedScanDone = true
+            lifecycleScope.launch(Dispatchers.IO) {
+                DownloadsManager.scanExistingFiles(applicationContext)
+            }
+        }
+    }
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -994,7 +1016,7 @@ class MainActivity : ComponentActivity() {
         }
         }
     }
-}
+    }
 
 /** 把 Contents-Cmod 独有 dxvk 组件（其他源缺失的历史稳定版）合并进 StevenMXZ/Winlator-Contents 清单，按版本名去重 */
 private fun mergeCmodHistorical(base: Map<String, List<Component>>): Map<String, List<Component>> {
