@@ -14,6 +14,8 @@ OUT = os.path.join(ROOT, "emulator-ranking.json")
 BUILTIN = os.path.join(ROOT, "scripts", "emu_builtin_block.txt")
 
 T412 = "https://the412banner.github.io/emulator-ranking/data/rankings.json"
+T412_CACHE = "/tmp/t412_rankings.json"  # 本地缓存（4.7MB 大文件，云 IP 直连易中断；存在且合法时优先）
+T331_CACHE = "/tmp/t331_rankings.json"
 T331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/rankings.json"
 HIST331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/history.json"
 RECIPES331 = "https://t3st31.github.io/Ranking-Emulators-Download/data/recipes.json"
@@ -44,19 +46,30 @@ OFFICIAL = {  # 官方/主渠道条目（真分类，避免乱分）
     "Vita3K/Vita3K": ("PSVITA", True),
 }
 
+KNOWN_HOMEPAGES = {  # 项目在 GitHub 未填 homepage 但确有官网的，手动补（只收录可确认的）
+    "Vita3K/Vita3K-Android": "https://vita3k.org",
+    "SSimco/Cemu": "https://cemu.info",
+    "flyinghead/flycast": "https://flycast.se",
+    "Medard22/Dolphin-MMJR2-VBI": "https://dolphin-emu.org",
+    "KreitinnSoftware/MiceWine-Application": "https://micewine.com",
+    "Swordfish90/Lemuroid": "https://lemuroid.com",
+    "the412banner/banners-web": "https://the412banner.github.io",
+}
 
-def fetch(url, retries=3):
+
+def fetch(url, retries=2):
     """拉取 JSON；4xx/5xx/网络失败返回 None（条件接入数据源未产出时容忍失败）。
-    网络抖动（IncompleteRead/超时）自动重试 3 次。"""
+    网络抖动（IncompleteRead/超时）自动重试（大文件源 t3st31 14MB 云 IP 直连易断，
+    timeout 收紧让失败快速降级，t412 走本地缓存）。"""
     for attempt in range(retries):
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 emubox-refresh"})
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
+            with urllib.request.urlopen(req, timeout=20) as r:
                 return json.load(r)
         except Exception as e:
-            print(f"  fetch 失败 {url}（第 {attempt + 1}/3 次）: {e}")
+            print(f"  fetch 失败 {url}（第 {attempt + 1}/{retries} 次）: {e}")
             if attempt < retries - 1:
-                time.sleep(2 + attempt * 2)
+                time.sleep(2)
     return None
 
 
@@ -109,14 +122,49 @@ def gh_releases(repo):
 
 
 def main():
-    t412 = fetch(T412)
-    t331 = fetch(T331)
+    # 大文件优先用本地缓存（curl -C - 断点续传后得到），缺失才走网络
+    t412 = None
+    if os.path.exists(T412_CACHE):
+        try:
+            with open(T412_CACHE, encoding="utf-8") as f:
+                t412 = json.load(f)
+            print(f"  t412 使用本地缓存 {T412_CACHE}")
+        except Exception as e:
+            print(f"  本地缓存损坏，回退网络: {e}")
+            t412 = None
+    if not t412:
+        t412 = fetch(T412)
+    # t331 大文件（14MB）：先本地缓存，缺失才网络拉取
+    t331 = None
+    if os.path.exists(T331_CACHE):
+        try:
+            with open(T331_CACHE, encoding="utf-8") as f:
+                t331 = json.load(f)
+            print(f"  t331 使用本地缓存 {T331_CACHE}")
+        except Exception:
+            t331 = None
+    if not t331:
+        t331 = fetch(T331)
+    if not t331:
+        # 降级：t331 站大文件（14MB）云 IP 直连易中断，用上次产物的 t331 独有条目兜底
+        # （t331 独有 = 上次快照里 repo 不在 t412 的条目，多为已封禁存档，note 已标注）
+        try:
+            old = json.load(open(os.path.join(ROOT, "emulator-ranking.json"), encoding="utf-8"))
+            old_entries = old.get("emulators") or []
+            t412_repos = {e.get("repo", "").lower() for e in (t412.get("results") or [])}
+            t331r = [e for e in old_entries if e.get("repo", "").lower() not in t412_repos]
+            print(f"  t331 降级：用上次快照兜底 {len(t331r)} 条 t331 独有条目")
+        except Exception as e:
+            print(f"  t331 降级失败（无快照）: {e}")
+            t331r = []
+        t331 = {"results": []}
+    else:
+        t331r = t331.get("results") or []
     # 两个主源任一失败则中止，避免以空/残缺数据覆盖现有产物
-    if not t412 or not t331:
+    if not t412:
         print("主数据源拉取失败，跳过本轮刷新，保留现有产物")
         return
     t412r = t412.get("results") or []
-    t331r = t331.get("results") or []
     hist = fetch(HIST331) or {}
     recipes_raw = (fetch(RECIPES331) or {}).get("recipes") or []
     driver_src = (fetch(DRIVERSRC331) or {}).get("sources") or []
@@ -153,7 +201,7 @@ def main():
         if key in by_repo:
             return
         cat, off = OFFICIAL.get(repo, (e.get("category", ""), False))
-        logo = e.get("logo") or ""
+        logo = e.get("logo") or e.get("logoUrl") or ""
         rels = norm_releases(e.get("releases"))
         if not rels:
             rels = gh_releases(repo)
@@ -199,6 +247,42 @@ def main():
         e["license"] = s.get("license") or ""
         e["topics"] = s.get("topics") or []
         e["archived"] = bool(s.get("archived"))
+        if not e["homepage"].startswith("http"):
+            e["homepage"] = ""
+        # 无 releases 条目标注（GitHub 移除/从未发布下载），UI 显示"暂无可用下载"
+        if not e["releases"]:
+            e["note"] = "仓库暂无可用下载（GitHub 已移除或未发布），保留条目仅作信息参考"
+
+    # homepage 补全：先套用手动确认的官网表（KNOWN_HOMEPAGES），
+    # 其余缺的用 GitHub repo 元数据 homepage 补（很多项目在 GitHub 仓库设置里填了官网但排行站未透传）
+    for key in order:
+        if not by_repo[key]["homepage"]:
+            hp = KNOWN_HOMEPAGES.get(by_repo[key]["repo"], "")
+            if hp:
+                by_repo[key]["homepage"] = hp
+    missing_home = [k for k in order if not by_repo[k]["homepage"]]
+    token = os.environ.get("GITHUB_TOKEN")
+    if missing_home and token:
+        import concurrent.futures
+
+        def fetch_home(repo):
+            url = f"https://api.github.com/repos/{repo}"
+            req = urllib.request.Request(
+                url, headers={"Authorization": f"Bearer {token}", "User-Agent": "emubox"})
+            try:
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    d = json.load(r)
+                    return repo, (d.get("homepage") or "").strip()
+            except Exception:
+                return repo, ""
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+            for repo, hp in ex.map(fetch_home, missing_home):
+                hp = (hp or "").strip()
+                if hp.startswith("http"):
+                    by_repo[repo.lower()]["homepage"] = hp
+        print(f"  homepage 补全: 查 {len(missing_home)} 个仓库，"
+              f"补到 {sum(1 for k in missing_home if by_repo[k]['homepage'])} 个")
 
     emus = [by_repo[k] for k in order]
     # 补充最新版本信息：latestTag/latestDate 从最新 release 取（releases 已按时间倒序）
