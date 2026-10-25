@@ -34,24 +34,25 @@ data class FusionPalette(
     val heroEnd: Color,           // hero 大卡渐变止
 ) {
     companion object {
+        // 模板 A「璃光暗夜」：近黑紫底 + 玻璃卡片高光描边 + 青→紫渐变强调
         val Dark = FusionPalette(
-            background = Color(0xFF0E1016),
-            surface = Color(0xFF161924),
-            surfaceAlt = Color(0xFF181B26),
-            border = Color(0xFF212536),
-            borderAlt = Color(0xFF232738),
-            primary = Color(0xFF7EA2FF),
-            secondary = Color(0xFFA98BFF),
-            gradientStart = Color(0xFF3B6EF5),
-            gradientEnd = Color(0xFF7A5CF5),
-            onSurface = Color(0xFFECEEF4),
-            onSurfaceDim = Color(0xFFA9ADC4),
-            onSurfaceFaint = Color(0xFF8A90AD),
-            onSurfaceFainter = Color(0xFF7B80A0),
-            amber = Color(0xFFFFB84D),
-            amberBg = Color(0xFF3A2F1E),
-            heroStart = Color(0xFF22305C),
-            heroEnd = Color(0xFF2C2050),
+            background = Color(0xFF0B0A13),
+            surface = Color(0xFF161423),
+            surfaceAlt = Color(0xFF1C1A2C),
+            border = Color(0xFF2B2844),
+            borderAlt = Color(0xFF332F4E),
+            primary = Color(0xFF4FD9C9),
+            secondary = Color(0xFF9B7CFF),
+            gradientStart = Color(0xFF3FD9C4),
+            gradientEnd = Color(0xFF8B5CF6),
+            onSurface = Color(0xFFF0EEF8),
+            onSurfaceDim = Color(0xFFABA6C9),
+            onSurfaceFaint = Color(0xFF8B86AC),
+            onSurfaceFainter = Color(0xFF756F95),
+            amber = Color(0xFFFFC24D),
+            amberBg = Color(0xFF3A2E1E),
+            heroStart = Color(0xFF12363F),
+            heroEnd = Color(0xFF2A1B4D),
         )
         val Light = FusionPalette(
             background = Color(0xFFF4F5F9),

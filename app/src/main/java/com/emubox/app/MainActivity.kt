@@ -18,12 +18,15 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
@@ -48,6 +51,18 @@ private enum class AppScreen {
     SETTINGS,
     GUIDE
 }
+
+private val AppScreen.labelRes: Int
+    get() = when (this) {
+        AppScreen.DEVICE -> R.string.tab_device
+        AppScreen.DRIVERS -> R.string.tab_driver
+        AppScreen.COMPONENTS -> R.string.tab_component
+        AppScreen.EMULATORS -> R.string.tab_emulator
+        AppScreen.RUNTIME -> R.string.tab_runtime
+        AppScreen.DOWNLOADS -> R.string.tab_download
+        AppScreen.SETTINGS -> R.string.tab_settings
+        AppScreen.GUIDE -> R.string.tab_driver
+    }
 
 class MainActivity : ComponentActivity() {
 
@@ -587,56 +602,61 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
                         bottomBar = {
-                            NavigationBar {
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.DEVICE,
-                                    onClick = { currentScreen = AppScreen.DEVICE },
-                                    icon = { Icon(Icons.Default.PhoneAndroid, contentDescription = null) },
-                                    label = { Text(appString(R.string.tab_device)) }
-                                )
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.DRIVERS,
-                                    onClick = { currentScreen = AppScreen.DRIVERS },
-                                    icon = { Icon(Icons.Default.Memory, contentDescription = null) },
-                                    label = { Text(appString(R.string.tab_driver)) }
-                                )
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.COMPONENTS,
-                                    onClick = { currentScreen = AppScreen.COMPONENTS },
-                                    icon = { Icon(Icons.Default.Extension, contentDescription = null) },
-                                    label = { Text(appString(R.string.tab_component)) }
-                                )
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.EMULATORS,
-                                    onClick = { currentScreen = AppScreen.EMULATORS },
-                                    icon = { Icon(Icons.Default.Android, contentDescription = null) },
-                                    label = { Text(appString(R.string.tab_emulator)) }
-                                )
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.RUNTIME,
-                                    onClick = { currentScreen = AppScreen.RUNTIME },
-                                    icon = { Icon(Icons.Default.Apps, contentDescription = null) },
-                                    label = { Text(appString(R.string.tab_runtime)) }
-                                )
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.DOWNLOADS,
-                                    onClick = { currentScreen = AppScreen.DOWNLOADS },
-                                    icon = {
-                                        BadgedBox(
-                                            badge = {
-                                                if (activeCount > 0) Badge { Text(activeCount.toString()) }
-                                            }
-                                        ) {
-                                            Icon(Icons.Default.Download, contentDescription = null)
-                                        }
-                                    },
-                                    label = { Text(appString(R.string.tab_download)) }
-                                )
-                                NavigationBarItem(
-                                    selected = currentScreen == AppScreen.SETTINGS,
-                                    onClick = { currentScreen = AppScreen.SETTINGS },
-                                    icon = { Icon(Icons.Default.Settings, contentDescription = null) },
-                                    label = { Text(appString(R.string.tab_settings)) }
+                            // 模板 A「璃光暗夜」：玻璃拟态导航 + 青紫渐变发光指示
+                            Box {
+                                NavigationBar(
+                                    containerColor = Color(0xE6161423)
+                                ) {
+                                    val navItems = listOf(
+                                        AppScreen.DEVICE to Icons.Default.PhoneAndroid,
+                                        AppScreen.DRIVERS to Icons.Default.Memory,
+                                        AppScreen.COMPONENTS to Icons.Default.Extension,
+                                        AppScreen.EMULATORS to Icons.Default.Android,
+                                        AppScreen.RUNTIME to Icons.Default.Apps,
+                                        AppScreen.DOWNLOADS to Icons.Default.Download,
+                                        AppScreen.SETTINGS to Icons.Default.Settings
+                                    )
+                                    navItems.forEach { (screen, icon) ->
+                                        NavigationBarItem(
+                                            selected = currentScreen == screen,
+                                            onClick = { currentScreen = screen },
+                                            icon = {
+                                                if (screen == AppScreen.DOWNLOADS) {
+                                                    BadgedBox(
+                                                        badge = {
+                                                            if (activeCount > 0) Badge { Text(activeCount.toString()) }
+                                                        }
+                                                    ) { Icon(icon, contentDescription = null) }
+                                                } else {
+                                                    Icon(icon, contentDescription = null)
+                                                }
+                                            },
+                                            label = { Text(appString(screen.labelRes)) },
+                                            colors = NavigationBarItemDefaults.colors(
+                                                selectedIconColor = Color(0xFF3FD9C4),
+                                                selectedTextColor = Color(0xFF9B7CFF),
+                                                unselectedIconColor = Color(0xFF8B86AC),
+                                                unselectedTextColor = Color(0xFF756F95),
+                                                indicatorColor = Color(0x333FD9C4),
+                                                disabledIconColor = Color(0xFF756F95)
+                                            )
+                                        )
+                                    }
+                                }
+                                // 顶部渐变发光分割线
+                                androidx.compose.foundation.layout.Box(
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .height(1.dp)
+                                        .background(
+                                            androidx.compose.ui.graphics.Brush.horizontalGradient(
+                                                listOf(
+                                                    Color(0x003FD9C4),
+                                                    Color(0x998B5CF6),
+                                                    Color(0x003FD9C4)
+                                                )
+                                            )
+                                        )
                                 )
                             }
                         }
