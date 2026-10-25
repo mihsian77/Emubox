@@ -1,8 +1,264 @@
 {
-  "version": 1,
-  "updated_at": "2026-10-24T17:31:20Z",
-  "source": "ithome",
+  "version": 2,
+  "updated_at": "2026-10-25T03:57:11Z",
+  "source": "ithome+github-releases",
   "items": [
+    {
+      "id": "04d50fdc",
+      "title": "R 星联合创始人丹 · 豪瑟回应 2009 年新项目《特工》为何取消：个人觉得太难了",
+      "url": "https://www.ithome.com/1/017/565.htm",
+      "published_at": 1792899826,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，据外媒 Gamesradar 今天（25 日）报道，2009 年，R 星公布了一款名为《特工》（Agent）的全新游戏，计划作为 PS3 独占作品推出。游戏以 20 世纪 70 年代的冷战时期为背景，主打开放世界和潜行玩法，但最终未能面世。R 星联合创始人丹 · 豪瑟近日透露，开发团队"
+    },
+    {
+      "id": "64b7bb73",
+      "title": "三名被解雇的 OpenAI 安全研究员否认泄密，怀疑因推动 AI 透明度被针对",
+      "url": "https://www.ithome.com/1/017/563.htm",
+      "published_at": 1792898937,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，三名因涉嫌泄密被解雇的 OpenAI 安全研究员道出了他们一方的说辞。托梅克 · 科尔巴克（Tomek Korbak）、米基塔 · 巴莱斯尼（Mikita Balesni）与王茉莉（Jasmine Wang）否认泄露机密信息，质疑解雇他们的官方理由，并猜测这件事和他们一直倡导提升 AI"
+    },
+    {
+      "id": "374bf2d2",
+      "title": "AI 智能体闯进银行，美国大行开始准备“灾后预案”",
+      "url": "https://www.ithome.com/1/017/562.htm",
+      "published_at": 1792897569,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，对 AI 末日的悲观预判，早已不再只是少数科技富豪的危言耸听。如今，那些主导全球资本流向的美国大型银行，也开始警惕失控 AI，正在为假设中由 AI 引发的灾难，制定“灾后”应急预案。据 Axios 报道称，随着代表个人客户的 AI 智能体活动激增，各大银行已经开始未雨绸缪。核心担忧来自"
+    },
+    {
+      "id": "a00e8eb7",
+      "title": "为给数据中心腾出电网容量，谷歌付费让家庭、企业减少用电",
+      "url": "https://www.ithome.com/1/017/561.htm",
+      "published_at": 1792897439,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，AI 数据中心的用电需求持续增长，科技公司却越来越难找到足够的电力。为解决供电难题，谷歌选择了另一条路：通过付费的方式间接鼓励家庭和企业在特定时段减少用电，为数据中心腾出更多电网容量。当地时间 22 日，据《纽约时报》报道，谷歌与能源服务公司 Voltus 达成协议，将在美国大西洋中部"
+    },
+    {
+      "id": "96e31f87",
+      "title": "Block 推出全双工 AI 语音模型 Dessa：真人感拉满，支持苹果 MacBook 本地运行",
+      "url": "https://www.ithome.com/1/017/557.htm",
+      "published_at": 1792895370,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，Twitter 联合创始人杰克 · 多尔西（Jack Dorsey）旗下的 Block 公司推出了一款全新语音模型 Dessa，支持本地运行，能模拟笑声、停顿、哽咽等情绪表达，听感高度拟人。官方介绍，Dessa 完全基于人类语音数据训练，训练过程仅使用了一组英伟达 GPU 机架。Des"
+    },
+    {
+      "id": "4ffca138",
+      "title": "曝三星借助小米 18 Pro Max 开展内部测试：Exynos 2700 跑分优于高通旗舰芯片",
+      "url": "https://www.ithome.com/1/017/556.htm",
+      "published_at": 1792895047,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，三星电子计划于明年初推出 Galaxy S27 系列旗舰手机，预计搭载自研处理器 Exynos 2700。据韩媒《Financial News》今天（25 日）上午报道，该芯片在三星内部性能测试中击败了高通最新旗舰处理器。测试结果显示，Exynos 2700 在 CPU 和 GPU 性"
+    },
+    {
+      "id": "683bbf01",
+      "title": "华为 Mate 90 RS / Pro Max 典藏版推 HarmonyOS 7.0.0.111SP13 升级，优化与睿影 Z10 模块相机连接",
+      "url": "https://www.ithome.com/1/017/555.htm",
+      "published_at": 1792894984,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，华为 Mate 90 RS 非凡大师和 Mate 90 Pro Max 典藏版推送了鸿蒙 HarmonyOS 7.0.0.111SP13 版本升级。系统包大小约 722.38MB，智慧修图人像大片推荐能力升级，支持修图后二次调节精修效果，同时畅连支持当面快速建群。▲ IT之家实拍：华为"
+    },
+    {
+      "id": "42158f30",
+      "title": "不能逆向一切了？Anthropic 被曝悄悄限制 Claude Opus 5.5 逆向工程能力",
+      "url": "https://www.ithome.com/1/017/554.htm",
+      "published_at": 1792894040,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，很多人把近期一波靠“氛围编码（vibe-coding）”完成的游戏反编译、重编译热潮，归功于 Anthropic 在 9 月 22 日发布的最新模型 Claude Opus 5.5。而现在，大量用户突然反馈：Opus 5.5 “可以逆向一切”的能力，或许已经被悄悄削弱。先说明一点：An"
+    },
+    {
+      "id": "204e7aa1",
+      "title": "小米第一代员工住宅项目「光谷梦享家」今日开盘：共建 4 栋楼，三种户型全覆盖 297 户",
+      "url": "https://www.ithome.com/1/017/553.htm",
+      "published_at": 1792893610,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，小米生态链总经理陈波昨日发布视频，宣布小米员工住宅项目 ——「光谷梦享家」将在今日正式开盘。据介绍，小米「光谷梦享家」项目距小米武汉科技园约 700 米，是武汉首个小米同学定制化住宅，面向小米集团正式员工销售。目前，项目营销中心、样板间、休闲会所实景开放。项目位于高新四路以南、豹溪路以"
+    },
+    {
+      "id": "3f097e88",
+      "title": "软银投资的农业无人机创企极飞科技：希望让每个农民都有自己的机器人",
+      "url": "https://www.ithome.com/1/017/552.htm",
+      "published_at": 1792893515,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据英国《金融时报》今天（25 日）上午报道，获得软银投资的中国农业无人机企业极飞科技，希望让“每个农民都有自己的机器人”。面对农业劳动力持续减少、气温不断升高，极飞认为，无需飞手操控的植保无人机能够帮助农民应对双重挑战。按营收计算，极飞是仅次于大疆的全球第二大农业无人机制造商。公司推出"
+    },
+    {
+      "id": "82662d1c",
+      "title": "荣耀平板 MagicOS 11 升级亮点公布：支持 PC 桌面、液态玻璃、无边笔记等",
+      "url": "https://www.ithome.com/1/017/550.htm",
+      "published_at": 1792892575,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，荣耀产品维护与升级 @荣耀小芳哥 总结了荣耀平板 MagicOS 11 的升级亮点，包括 UX 焕新、PC 桌面办公效率升级、极客中心 2.0、无边笔记、知识工坊个人 AI 知识工作台、学习空间等。目前，荣耀 MagicPad 3 Pro 12.3、荣耀 MagicPad 3 Pro "
+    },
+    {
+      "id": "4f43705f",
+      "title": "亚马逊 CEO 贾西： 2027 年 AWS 算力基本售罄，部分订单锁定到 2028 年",
+      "url": "https://www.ithome.com/1/017/549.htm",
+      "published_at": 1792892227,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，亚马逊首席执行官安迪・贾西（Andy Jassy）当地时间周五表示，受 AI 基础设施需求持续走高的推动，亚马逊云科技（AWS）的云计算容量到 2027 年基本已经售罄，还有大量长期算力订单锁定到 2028 年。这期视频播客由安德森・霍洛维茨基金（Andreessen Horowitz"
+    },
+    {
+      "id": "ae19aab2",
+      "title": "小米 18 Fold 中折叠手机官宣适配娱乐工作各类应用，网友热评“终于迎来最佳宣发期”",
+      "url": "https://www.ithome.com/1/017/548.htm",
+      "published_at": 1792892010,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，小米手机官方昨日发文，介绍 18 Fold 中折叠手机的应用适配情况：适配爱奇艺、网易云音乐、高德、WPS 等各类应用从休闲娱乐到日常工作，全面覆盖有网友评论称：“终于迎来了最佳宣发期。”IT之家注意到，小米手机官方昨日还介绍了小米 18 Fold 的分屏功能，称日常应用也支持该模式："
+    },
+    {
+      "id": "84f55446",
+      "title": "苹果 iPhone Duo 耐用性测试：反向弯折内屏开裂",
+      "url": "https://www.ithome.com/1/017/545.htm",
+      "published_at": 1792890342,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，千万别坐到展开状态下的 iPhone Duo 上，这条忠告来自这款苹果折叠新机开售第二天的实测。科技测评博主扎克 · 尼尔森在 YouTube 频道 JerryRigEverything 放出了该机的整机耐用性测试视频，测试了这款手机的抗刮性能与抗弯折能力。IT之家注意到，博主全程语气"
+    },
+    {
+      "id": "10f6558a",
+      "title": "消息称《艾尔登法环》真人电影预算近 2 亿美元，为 A24 史上成本最高影片",
+      "url": "https://www.ithome.com/1/017/544.htm",
+      "published_at": 1792889485,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据报道，亚历克斯 · 加兰（Alex Garland）执导的《艾尔登法环》真人电影预算高达近 2 亿美元（IT之家注：现汇率约合 13.38 亿元人民币），这也成为 A24 有史以来成本最高的影片。《华尔街日报》的一篇报道披露了这部改编自 FromSoftware 与乔治 ·R·R· "
+    },
+    {
+      "id": "06803028",
+      "title": "澳国脚授权 AI 数字分身，运动员开启肖像权 AI 商业化",
+      "url": "https://www.ithome.com/1/017/542.htm",
+      "published_at": 1792888958,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，澳大利亚国家男子足球队球星走在宽敞的中庭里，目光直视镜头，足球鞋踩在光洁的混凝土地面上，脚步声在四周回荡。突然间，他变出四个数字分身，各自散开，再出现在全球不同场景当中。IT之家注意到，这段在社交平台传播的视频是人工智能生成的假画面，但视频的原型、现年 22 岁的足球运动员克里斯蒂安 "
+    },
+    {
+      "id": "3ad06c8b",
+      "title": "印度新股认购金额最高纪录诞生：Jio 获超 770 亿美元 IPO 认购申请",
+      "url": "https://www.ithome.com/1/017/541.htm",
+      "published_at": 1792888666,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据路透社报道，当地时间 23 日，印度亿万富翁穆克什 · 安巴尼旗下的 Jio 获得了超过 770 亿美元（IT之家注：现汇率约合 5,147.35 亿元人民币）的 IPO 认购申请，创下印度新股发行认购金额最高纪录。安巴尼时隔 20 年再次推动旗下企业上市，打破了其弟弟安尼尔旗下信实"
+    },
+    {
+      "id": "68394635",
+      "title": "索尼 PS5 破解新进展：已可直接运行 Steam 游戏库中的 Windows 游戏",
+      "url": "https://www.ithome.com/1/017/540.htm",
+      "published_at": 1792888400,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，PS5 的破解社区几乎每周都有新进展。现在破解后的 PS5 可以直接从 Steam 游戏库下载 Windows 游戏并在本机运行，不需要借助 PC 串流。实现该功能的工具是 Playden for PS5，这是开发者莱奥拉巴托（leolobato）推出的早期测试版启动器，移植自 mac"
+    },
+    {
+      "id": "0c26fe21",
+      "title": "IT早报 1025：英伟达停产传闻搅动 5090 炒至 6 万元；小鹏副总裁回应“老登”称呼；曝部分手机或平板产品线将停更；微信支持 iPhone Duo 等多端同时登录...",
+      "url": "https://www.ithome.com/1/017/539.htm",
+      "published_at": 1792888007,
+      "category": "eco",
+      "summary": "“IT早报”时间，大家好，现在是 2026 年 10 月 25 日星期日，今天的重要科技资讯有：1. 显卡一日一价：英伟达停产传闻搅动华强北，RTX 5090 被炒至 6 万元尽管英伟达否认停产传闻，华强北 RTX 50 系列渠道价仍持续飙升。RTX 5090 从官方约 1.6 万元涨至 6 万元，RTX 5080 翻"
+    },
+    {
+      "id": "7dd3f2f2",
+      "title": "苹果 iPhone Duo 内屏玩《王者荣耀》《原神》暂不支持全屏显示，大黑边被网友吐槽“公摊广告位”",
+      "url": "https://www.ithome.com/1/017/538.htm",
+      "published_at": 1792887916,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，据多位博主、网友分享，腾讯《王者荣耀》和米哈游的《原神》这两款热门游戏暂未适配苹果最新折叠屏手机 iPhone Duo。玩家使用该机内屏游玩上述两款游戏时，会出现无法全屏显示的问题。两款热门游戏没适配的情况也引发网友吐槽，称内屏的黑边是“公摊广告位”、“公摊面积”。不过，iPhone "
+    },
+    {
+      "id": "b491f085",
+      "title": "PayPal 联合创始人彼得 · 蒂尔：后乔布斯时代的苹果“就没再拿出什么新东西”",
+      "url": "https://www.ithome.com/1/017/537.htm",
+      "published_at": 1792887801,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，据《商业内幕》今天（25 日）凌晨报道，PayPal 联合创始人、亿万富翁兼科技投资人彼得 · 蒂尔认为，自苹果创始人史蒂夫 · 乔布斯于 2011 年因癌症去世以来，苹果的大多数举措都没能让自己眼前一亮。蒂尔接受作家沃尔特 · 艾萨克森采访时直言：“在我看来，乔布斯去世后，苹果就没再"
+    },
+    {
+      "id": "1b6c27e5",
+      "title": "《塞尔达传说》制作人青沼英二获颁法国艺术与文学骑士勋章",
+      "url": "https://www.ithome.com/1/017/536.htm",
+      "published_at": 1792886905,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，《塞尔达传说》系列资深制作人青沼英二（Eiji Aonuma），自《时之笛》起就一直守护着时光勇者挺身而出对抗邪恶的故事。如今青沼英二本人也获封英雄头衔，只是没配上一把帅气的剑。本周，法国文化部邀请这位海拉鲁世界的缔造者，出席授勋仪式，接受骑士荣誉。法国文化部长卡特琳 · 佩加尔（Ca"
+    },
+    {
+      "id": "20b6c0e3",
+      "title": "微软 Edge 浏览器已原生支持 GPC 隐私控制功能，Chrome 也已开展相关测试",
+      "url": "https://www.ithome.com/1/017/535.htm",
+      "published_at": 1792886273,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，微软在 Edge 浏览器中推出了一项和隐私相关的更新：浏览器原生内置了全球隐私控制（GPC）开关。据IT之家了解，万维网联盟（W3C）在 2020 年 10 月推出了全球隐私控制（GPC）规范，用来帮助用户落实《加州消费者隐私法案》（CCPA）和《通用数据保护条例》（GDPR）赋予的权"
+    },
+    {
+      "id": "239f0c63",
+      "title": "同人变官方：《赛博朋克 2077》续作设计团队中，半数是被“收编”的模组作者",
+      "url": "https://www.ithome.com/1/017/533.htm",
+      "published_at": 1792885668,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，当地时间 23 日，据外媒 VGC 报道，《赛博朋克 2077》续作副总监帕维尔 · 萨斯科透露，续作任务设计团队约有一半成员曾是游戏模组作者。萨斯科认为，玩家能够随时在游戏内启用或关闭模组，不仅操作更加方便，也有助于保持游戏的新鲜感。“假如你已经玩了 800 个小时的《赛博朋克 20"
+    },
+    {
+      "id": "ee9e20d2",
+      "title": "三体宇宙全新剧集《三体・智子灾变》官宣：主创阵容首曝，概念海报同步首发",
+      "url": "https://www.ithome.com/1/017/532.htm",
+      "published_at": 1792885251,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，三体宇宙衍生真人剧《三体：智子灾变》已正式官宣，并首发概念海报。本片将由路阳监制，忻钰坤执导，剧集聚焦三体危机下的年轻一代。当倒计时笼罩全球，熟悉的世界逐渐失序，普通人将如何面对未知、做出抉择？文明危机之下，讲述更多“无名者”的故事。三体宇宙（上海）文化发展有限公司还宣布「智子世界观」"
+    },
+    {
+      "id": "4553d71d",
+      "title": "任天堂 Switch 2 破解取得进展，《三角符文》《黄昏之血》资源包流出",
+      "url": "https://www.ithome.com/1/017/531.htm",
+      "published_at": 1792884998,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，Switch 2 的破解给这台主机的自制程序生态注入了活力。任天堂已经采取措施封堵 ns2jb 漏洞，但又有一则消息正在传开：《三角符文》第 1 至 4 章以及《黄昏之血》测试版的首批次世代游戏资源包已经流出。据IT之家了解，ns2jb 由 pepsipu 开发，属于软件层面的破解手段"
+    },
+    {
+      "id": "90f838e0",
+      "title": "李小龙：2.4G / 5G 频段同时工作是 Wi-Fi 7 特性，华为在 Wi-Fi 6 时代通过私有协议提前支持",
+      "url": "https://www.ithome.com/1/017/530.htm",
+      "published_at": 1792884890,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，博主 @不是郑小康 昨晚发文，谈及了华为鸿蒙 HarmonyOS 7 系统的使用感受。他称在华为 Pura X View 的鸿蒙 7 系统中，“貌似”不能 2.4G 和 5G Wi-Fi 一起连加速上网。随后，华为终端 BG CTO 李小龙发文解答了上述问题：Pura X View 可"
+    },
+    {
+      "id": "23de3c66",
+      "title": "全球最大“电力超市”开业，南方区域电力市场正式运行",
+      "url": "https://www.ithome.com/1/017/529.htm",
+      "published_at": 1792884642,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据央视财经报道，10 月 24 日，我国首个区域电力市场 —— 南方区域电力市场正式运行。此举标志着全国统一电力市场建设迎来重大里程碑式节点。它打通了广东、广西、云南、贵州、海南五个省区的市场，把煤电、水电、核电、风电、光伏等都放到一个市场里买卖，按同一套规则竞价交易。值得一提的是，这"
+    },
+    {
+      "id": "2432d7af",
+      "title": "PHP 基金会负责人坦言资金不足：仅 1 名全职员工",
+      "url": "https://www.ithome.com/1/017/528.htm",
+      "published_at": 1792884465,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，本周，PHP 曝出两处高危漏洞，全球随即紧急行动，保护网站免遭黑客攻击。这件事也让人们看到，这门已有三十年历史的开源编程语言，对互联网而言有多重要。据估算，全球最高有约七成网站依托 PHP 搭建，但负责维护 PHP 的非营利基金会，经费却十分紧张。PHP 基金会执行董事伊丽莎白 · 巴"
+    },
+    {
+      "id": "983fb94f",
+      "title": "BBC《蓝色星球 3》刻意保留瑕疵镜头，和 AI“完美影像”划清界限",
+      "url": "https://www.ithome.com/1/017/527.htm",
+      "published_at": 1792883972,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，英国广播公司（BBC）的《蓝色星球 3》纪录片打算保留那些不算完美的镜头，以此证明内容的真实性。该系列前作的标志性特点是画面精美、通透清晰，美得近乎不真实。而人工智能生成内容的一大破绽，就是画面过度精致、毫无瑕疵。为了避开这种观感，《蓝色星球 3》选择如实呈现，不刻意美化。IT之家注意"
+    },
+    {
+      "id": "08fc290c",
+      "title": "开源项目 GPU Unlock 可释放英伟达 RTX 30 系列显卡隐藏 AI 算力，实际性能提升可达 60%",
+      "url": "https://www.ithome.com/1/017/525.htm",
+      "published_at": 1792883394,
+      "category": "driver",
+      "summary": "IT之家 10 月 25 日消息，英伟达已经上市一段时间的 GeForce RTX 30 系列（代号安培，Ampere）显卡，显然还有大量尚未释放的计算潜力。GitHub 用户扎吉塔（Zagitta）开发了一款名为 GPU Unlock 的开源新项目，可以解除安培架构显卡上部分人为设置的性能限制，在特定负载下，张量核心"
+    },
+    {
+      "id": "7216b180",
+      "title": "微软测试 Reactor 实验性框架，澄清 WinUI 和 XAML 不会被停用",
+      "url": "https://www.ithome.com/1/017/524.htm",
+      "published_at": 1792882747,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，微软推出一款名为 Microsoft.UI.Reactor 的实验性框架并开启测试后，出面澄清，并不会停用 WinUI 和 XAML。鉴于微软此前放弃 UWP、关停 Silverlight 的过往，不少开发者心存疑虑也并不意外。据IT之家了解，WinUI 是微软的原生界面框架，用它开发"
+    },
     {
       "id": "e459f1e2",
       "title": "iQOO Neo12 新机配置曝光：6.83 英寸 2K+185Hz 直屏，第五代骁龙 8 至尊版芯片",
@@ -1426,6 +1682,132 @@
       "published_at": 1792495800,
       "category": "driver",
       "summary": "IT之家 10 月 23 日消息，VGN 即将于今晚 22:00 正式发售入耳式专业电竞 HiFi 耳机魔竞 (MO)。其可选芭比粉 / 薄荷绿 / 云朵白 / 天霸限定（黑）4 种配色，活动到手价 399 元。VGN 魔竞配备 10mm 双磁路双腔动圈驱动单元，搭配类钻碳 (DLC) 振膜，频率响应范围 20~200"
+    },
+    {
+      "id": "e06a4dcf",
+      "title": "[Proton-GE] GE-Proton11-11",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-11",
+      "published_at": 1792434053,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "# GE-Proton11-11 Hotfix Release Changes since GE-Proton11-10. ## Video Playback - Fixed games freezing when a video is skipped or closed while MPEG-1 audio is playing through Direc"
+    },
+    {
+      "id": "ee5a94cd",
+      "title": "[Proton-GE] GE-Proton11-10",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-10",
+      "published_at": 1792390917,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "## Component Updates - Wine: Valve bleeding-edge 2026-10-16. This brings upstream syscall emulation through Syscall User Dispatch and native-syscall handling for EAC (EOS) launcher"
+    },
+    {
+      "id": "94708d54",
+      "title": "[Proton-GE] GE-Proton11-9",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-9",
+      "published_at": 1791936899,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "# Hotfix release: # GE-Proton11-9 ## Video Playback - Added a fix for Crimson Desert getting stuck after selecting Play or starting a new game due to looping menu-video playback. A"
+    },
+    {
+      "id": "cb610e52",
+      "title": "[Proton-GE] GE-Proton11-8",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-8",
+      "published_at": 1791924401,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "# GE-Proton11-8 Changes since GE-Proton11-7. ## Component Updates - Updated Wine bleeding-edge, DXVK, VKD3D-Proton, VKD3D, D7VK, DXVK-NVAPI, DXVK-IGDext, FEX, lsteamclient, wineope"
+    },
+    {
+      "id": "2a711a67",
+      "title": "[Proton-GE] GE-Proton11-7",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-7",
+      "published_at": 1789525696,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "## 1. Wine-Wayland Child-Process Rendering ### Expanded and Rebased Wine-Wineland Integration Imported additional cross-process DMA-BUF, Vulkan, EGL/OpenGL, and child-window compos"
+    },
+    {
+      "id": "293e5a1d",
+      "title": "[DXVK] v3.1.1",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.1.1",
+      "published_at": 1789494205,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Bug fixes and Improvements - Implemented `DXGI_SCALING_NONE` and [SetBackgroundColor](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_2/nf-dxgi1_2-idxgiswapchain1-setb"
+    },
+    {
+      "id": "2bb2d8a0",
+      "title": "[Proton-GE] GE-Proton11-6",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-6",
+      "published_at": 1787953027,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "Wine-Wayland Changes - Updated the Wine bleeding-edge base twice and imported/rebased the latest EM11 Wine-Wayland series: 3e5f91eb (https://github.com/GloriousEggroll/proton-ge-cu"
+    },
+    {
+      "id": "cc5ca9ee",
+      "title": "[DXVK] v3.1",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.1",
+      "published_at": 1787934209,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Feature support ### DXGI incremental presentation Added basic support for DXGI [present parameters](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_2/ns-dxgi1_2-dxgi_p"
+    },
+    {
+      "id": "5ba347ed",
+      "title": "[Box64] v0.4.4",
+      "url": "https://github.com/ptitSeb/box64/releases/tag/v0.4.4",
+      "published_at": 1785663503,
+      "category": "component",
+      "type": "Box64",
+      "summary": "## What's Changed * A new box64-configurator is now present (a python app) to help managing custom RCFILE profiles. It is available in both english and chinese. * DynaCache is now "
+    },
+    {
+      "id": "f1391e14",
+      "title": "[Box64] v0.4.4",
+      "url": "https://github.com/ptitSeb/box64/releases/tag/v0.4.4",
+      "published_at": 1785663503,
+      "category": "runtime",
+      "type": "Box64",
+      "summary": "## What's Changed * A new box64-configurator is now present (a python app) to help managing custom RCFILE profiles. It is available in both english and chinese. * DynaCache is now "
+    },
+    {
+      "id": "e0c31471",
+      "title": "[DXVK] v3.0.2",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.0.2",
+      "published_at": 1784327902,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Hang debugging In case of a GPU hang or driver crash resulting in `VK_ERROR_DEVICE_LOST` errors, the environment variable `DXVK_DEBUG=hang` can now be used to help narrow down t"
+    },
+    {
+      "id": "8c31c196",
+      "title": "[DXVK] v3.0.1",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.0.1",
+      "published_at": 1783276099,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Bug fixes and Improvements - Disabled secondary command buffer usage on all desktop GPUs. This may slightly impact performance in a small number of games with suboptimal MSAA re"
+    },
+    {
+      "id": "4f34c256",
+      "title": "[DXVK] v3.0",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.0",
+      "published_at": 1782417750,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Shader compiler changes DXVK now uses [dxbc-spirv](https://github.com/doitsujin/dxbc-spirv) for shader compilation, replacing the legacy shader translation code for all supporte"
+    },
+    {
+      "id": "82a29036",
+      "title": "[VKD3D-Proton] v3.0.1",
+      "url": "https://github.com/HansKristian-Work/vkd3d-proton/releases/tag/v3.0.1",
+      "published_at": 1778067327,
+      "category": "component",
+      "type": "VKD3D-Proton",
+      "summary": "This is likely the last release before `VK_EXT_descriptor_heap` lands. There are some practical reasons why this is 3.0.1 instead of 3.1, but numbers don't really matter that much "
     }
   ]
 }

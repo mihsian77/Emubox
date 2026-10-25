@@ -1,15 +1,13 @@
-#!/usr/bin/env python3
-"""刷新 news-data.json：抓取 IT之家 RSS，按分类映射落位。
+"""刷新 news-data.json：IT之家（模拟器/生态/泛科技）+ 组件与运行库官方 GitHub releases。
 
-数据源：https://www.ithome.com/rss/（综合 RSS，约 60 条/次，RSS 2.0，无 category 字段）
-分类映射：标题+摘要关键词 → 模拟器 / 驱动组件 / 生态 / 泛科技；仅明确无关（汽车、家电）丢弃。
-原则：保守宽松，未命中一律进"泛科技"保留，不误过滤有用内容。
+数据源：
+- IT之家 RSS：仅供 emulator / eco / general。IT之家几乎不报道 DXVK/Wine 类生态，
+  组件与运行库分类不再依赖关键词猜测——之前正是这样导致组件/运行库资讯空/错分。
+- 各组件类型官方 GitHub releases：DXVK / VKD3D-Proton / Box64 / Wine / Proton-GE /
+  Mesa / Mono / glibc，条目带 type 字段，App 端按组件类型筛选 + 多页面展示。
 
-输出：news-data.json（仓库根 + app/src/main/assets/news_offline.json 离线副本）
-  { version, updated_at, source, items: [{id, title, url, published_at, category, summary}] }
-窗口：保留最近 7 天，最多 200 条；url 指纹去重。
-
-用法：python3 scripts/refresh-news.py
+输出：
+  { version, updated_at, source, items: [{id, title, url, published_at, category, type?, summary}] }
 """
 import hashlib
 import json
@@ -19,14 +17,15 @@ import sys
 import time
 import urllib.request
 import xml.etree.ElementTree as ET
+from collections import Counter
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO_ROOT, "news-data.json")
 OFFLINE = os.path.join(REPO_ROOT, "app", "src", "main", "assets", "news_offline.json")
+UA = "EmuHub-CN news-refresh/1.3 (+https://github.com/mihsian77/EmuHub-CN)"
 RSS_URL = "https://www.ithome.com/rss/"
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0"
 
-# 明确无关分类：命中即丢弃（用户确认：汽车/家电与项目完全无关）
+# 明确无关分类：命中即丢弃（汽车/家电与项目完全无关）
 DROP_WORDS = [
     "汽车", "车", "新能源车", "电动车", "自动驾驶", "特斯拉", "比亚迪", "蔚来", "理想汽车", "小米汽车",
     "家电", "冰箱", "洗衣机", "空调", "电视", "扫地机", "智能家居", "厨电", "烤箱",
@@ -42,14 +41,6 @@ DRV_WORDS = [
     "驱动", "Vulkan", "Mesa", "Turnip", "PanVK", "RADV", "OpenGL", "渲染",
     "GPU驱动", "显卡驱动", "图形栈", "图形驱动",
 ]
-# 组件（DXVK / VKD3D 等图形转换层）
-COMPONENT_WORDS = [
-    "DXVK", "vkd3d", "D7VK", "转换层", "图形转换", "兼容层",
-]
-# 运行库（Wine / Box64 / Proton 运行时）
-RUNTIME_WORDS = [
-    "Wine", "Box64", "Proton", "运行时", "WOW64",
-]
 # 生态（芯片 / 安卓平台 / 设备）
 ECO_WORDS = [
     "骁龙", "天玑", "麒麟", "Exynos", "Tensor", "安卓", "Android", "ARM", "SoC", "芯片",
@@ -60,6 +51,18 @@ ECO_WORDS = [
 ECO_DROP_WORDS = [
     "笔记本", "显示器", "耳机", "音箱", "音响", "路由器", "键盘", "鼠标",
     "机箱", "电源适配", "充电器", "游戏本", "键鼠", "手柄",
+]
+
+# 官方组件/运行库源：repo / category / type / mode（release=GitHub release）
+# 注：wine 官方公告站（winehq.org）对云服务器 IP 有 Cloudflare 拦截（403，实测），
+# wine-mirror/wine 无 release 对象且 tags API 只能取到 2005 旧 tag；mono/gecko 无
+# 稳定公开 GitHub release 源（发布走 NuGet/官网）——以上均为后续接入项。
+OFFICIAL_SOURCES = [
+    ("doitsujin/dxvk", "component", "DXVK", "release"),
+    ("HansKristian-Work/vkd3d-proton", "component", "VKD3D-Proton", "release"),
+    ("ptitSeb/box64", "component", "Box64", "release"),
+    ("GloriousEggroll/proton-ge-custom", "component", "Proton-GE", "release"),
+    ("ptitSeb/box64", "runtime", "Box64", "release"),
 ]
 
 CATS = {
@@ -76,10 +79,6 @@ def classify(title: str, summary: str) -> str:
         return "emulator"
     if any(w.lower() in text for w in DRV_WORDS):
         return "driver"
-    if any(w.lower() in text for w in COMPONENT_WORDS):
-        return "component"
-    if any(w.lower() in text for w in RUNTIME_WORDS):
-        return "runtime"
     # 生态命中但属整机/外设/显示类 → 归泛科技，避免"芯片与设备"要点混入消费电子
     if any(w.lower() in text for w in ECO_WORDS):
         if any(w.lower() in text for w in ECO_DROP_WORDS):
@@ -121,50 +120,116 @@ def iso_epoch(pub_date: str):
         return 0
 
 
-def main():
+def fetch_github_releases(repo: str, per_page: int = 6):
+    """官方 releases：优先带 GH_TOKEN（CI 注入），无则匿名（公共限流 60 次/时，够用）。"""
+    url = f"https://api.github.com/repos/{repo}/releases?per_page={per_page}"
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github+json"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def github_get(url: str):
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github+json"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def iso_epoch_iso(s: str) -> int:
+    """GitHub ISO8601 → epoch 秒；失败返回 0"""
     try:
-        xml_text = fetch_rss()
-    except Exception as e:
-        print(f"RSS 抓取失败: {e}", file=sys.stderr)
-        sys.exit(1)
+        from datetime import datetime
+        return int(datetime.fromisoformat(s.replace("Z", "+00:00")).timestamp())
+    except Exception:
+        return 0
 
-    fresh = []
-    for it in parse_rss(xml_text):
-        cat = classify(it["title"], it["summary"])
-        if cat == "drop":
+
+def collect_official():
+    """官方 GitHub releases → news items（category + type，App 端按 type 筛选）"""
+    items = []
+    for repo, cat, typ, mode in OFFICIAL_SOURCES:
+        try:
+            rels = fetch_github_releases(repo)
+            if not isinstance(rels, list):
+                continue
+            for r in rels:
+                tag = r.get("tag_name") or ""
+                if not tag:
+                    continue
+                body = (r.get("body") or "").strip()
+                summary = re.sub(r"\s+", " ", body)[:180] if body else "查看官方发布说明"
+                ts = iso_epoch_iso(r.get("published_at") or r.get("created_at") or "")
+                uid = hashlib.md5(f"{cat}:{repo}:{tag}".encode()).hexdigest()[:8]
+                items.append({
+                    "id": uid,
+                    "title": f"[{typ}] {tag}",
+                    "url": r.get("html_url") or f"https://github.com/{repo}/releases",
+                    "published_at": ts,
+                    "category": cat,
+                    "type": typ,
+                    "summary": summary,
+                })
+        except Exception as e:
+            print(f"  {repo} 抓取失败: {e}", file=sys.stderr)
             continue
-        h = hashlib.md5(it["url"].encode()).hexdigest()[:8]
-        fresh.append({
-            "id": h,
-            "title": it["title"][:120],
-            "url": it["url"],
-            "published_at": iso_epoch(it["pubDate"]),
-            "category": cat,
-            "summary": it["summary"][:160],
-        })
+    return items
 
-    # 与历史合并去重（url id 指纹），窗口 7 天
+
+def main():
+    fresh_ithome = []
+    try:
+        for it in parse_rss(fetch_rss()):
+            cat = classify(it["title"], it["summary"])
+            if cat == "drop":
+                continue
+            h = hashlib.md5(it["url"].encode()).hexdigest()[:8]
+            fresh_ithome.append({
+                "id": h,
+                "title": it["title"][:120],
+                "url": it["url"],
+                "published_at": iso_epoch(it["pubDate"]),
+                "category": cat,
+                "summary": it["summary"][:160],
+            })
+    except Exception as e:
+        print(f"IT之家 RSS 抓取失败（继续用官方源）: {e}", file=sys.stderr)
+
+    fresh_official = collect_official()
+
+    # 与历史合并去重（url/repo+tag 指纹）；窗口：ithome 7 天，官方源 180 天
+    # （组件 release 节奏 2-6 个月，glibc 甚至 12 个月，60 天窗口会全滤）
     old = []
     if os.path.exists(OUT):
         old = json.load(open(OUT, encoding="utf-8")).get("items", [])
     now = int(time.time())
-    merged = {it["id"]: it for it in old + fresh}
-    merged = [it for it in merged.values() if now - it.get("published_at", 0) <= 7 * 86400]
+    merged = {it["id"]: it for it in old + fresh_ithome + fresh_official}
+    merged = [
+        it for it in merged.values()
+        if now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)
+    ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
-    merged = merged[:200]
+    merged = merged[:300]
 
     data = {
-        "version": 1,
+        "version": 2,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "source": "ithome",
+        "source": "ithome+github-releases",
         "items": merged,
     }
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     json.dump(data, open(OFFLINE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
-    from collections import Counter
-    print(f"抓取 {len(fresh)} 条，合并后 {len(merged)} 条（7 天窗口）")
+    print(f"ithome {len(fresh_ithome)} 条 + 官方 {len(fresh_official)} 条，合并后 {len(merged)} 条")
     print("分类分布:", dict(Counter(it["category"] for it in merged)))
+    types = Counter(it.get("type") for it in merged if it.get("type"))
+    print("官方类型分布:", dict(types))
     print(f"已写 {OUT} 与 assets 离线副本")
 
 
