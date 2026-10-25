@@ -27,7 +27,10 @@ class DriverTestService : Service() {
         val tmpDir = intent?.getStringExtra("tmpDir")
         val hookLibDir = intent?.getStringExtra("hookLibDir")
         val resultId = intent?.getStringExtra("resultId")
-        val runBenchmark = intent?.getBooleanExtra("runBenchmark", false) ?: false
+        // 单阶段执行：collect / benchmark / render。每个阶段一个全新独立进程，
+        // 进程内只加载一次驱动（vktest 同构），避免同进程重复 mapping import
+        // 导致 turnip GSL 状态冲突崩溃（历史 STAGE_CRASHED 根因）。
+        val stage = intent?.getStringExtra("stage") ?: "collect"
 
         if (driverDir == null || driverName == null || tmpDir == null || hookLibDir == null || resultId == null) {
             writeResult(resultId ?: "none", JSONObject().put("success", false)
@@ -41,27 +44,28 @@ class DriverTestService : Service() {
 
         Thread {
             try {
-                // 分阶段写盘：采集 → 写 → 跑分 → 写 → 渲染 → 写。
-                // 驱动渲染/跑分在独立进程崩溃时，已完成的阶段结果不丢失；
-                // 主进程读到部分结果即可展示，不会整体判定失败。
-                val collectJson = NativeVulkanBridge.collectDriverAdrenotoolsInProcess(
-                    driverDir, driverName, tmpDir, hookLibDir
-                )
-                var result = JSONObject().put("collect", JSONObject(collectJson))
-                writeResult(resultId, result)
-                if (runBenchmark) {
-                    val benchJson = NativeVulkanBridge.benchmarkDriverAdrenotoolsInProcess(
-                        driverDir, driverName, tmpDir, hookLibDir
-                    )
-                    result = result.put("benchmark", JSONObject(benchJson))
-                    writeResult(resultId, result)
-                    // 渲染测试（vktest 同款）：驱动加载成功后离屏渲染三角形测 FPS
-                    val renderJson = NativeVulkanBridge.renderDriverAdrenotoolsInProcess(
-                        driverDir, driverName, tmpDir, hookLibDir
-                    )
-                    result = result.put("render", JSONObject(renderJson))
-                    writeResult(resultId, result)
+                val result = JSONObject()
+                when (stage) {
+                    "collect" -> {
+                        val collectJson = NativeVulkanBridge.collectDriverAdrenotoolsInProcess(
+                            driverDir, driverName, tmpDir, hookLibDir
+                        )
+                        result.put("collect", JSONObject(collectJson))
+                    }
+                    "benchmark" -> {
+                        val benchJson = NativeVulkanBridge.benchmarkDriverAdrenotoolsInProcess(
+                            driverDir, driverName, tmpDir, hookLibDir
+                        )
+                        result.put("benchmark", JSONObject(benchJson))
+                    }
+                    "render" -> {
+                        val renderJson = NativeVulkanBridge.renderDriverAdrenotoolsInProcess(
+                            driverDir, driverName, tmpDir, hookLibDir
+                        )
+                        result.put("render", JSONObject(renderJson))
+                    }
                 }
+                writeResult(resultId, result)
             } catch (e: Exception) {
                 writeResult(
                     resultId,
