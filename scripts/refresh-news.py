@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 import urllib.request
@@ -151,6 +152,108 @@ def iso_epoch_iso(s: str) -> int:
         return 0
 
 
+def _ver_key(name: str):
+    """版本号数字段排序键（wine-8.0.2 / wine-991212 / 11.3.0 通用）"""
+    return [int(x) for x in re.findall(r"\d+", name)]
+
+
+def _fetch_text(url: str, timeout: int = 25) -> str:
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", "ignore")
+
+
+def _head_last_modified(url: str) -> int:
+    """文件 HEAD → Last-Modified（RFC1123）→ epoch 秒；失败返回 0"""
+    try:
+        import email.utils
+        req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            lm = resp.headers.get("Last-Modified")
+            if lm:
+                return int(email.utils.parsedate_to_datetime(lm).timestamp())
+    except Exception:
+        pass
+    return 0
+
+
+def collect_runtime_extra():
+    """Wine / Wine Mono / Wine Gecko / Mono：官方目录源（补官方 GitHub release 缺口）。
+
+    - Wine：dl.winehq.org/wine/source/ 正式版目录（wine-11.0 等 X.0 + rc）。
+      winehq 主站与 gitlab.winehq.org 对云服务器 IP 均有反爬（Cloudflare/Anubis 实测）；
+      wine-mirror/wine GitHub 镜像 tag 只镜像到 1999（wine-991212 等，不可用）；
+      每周小版本无公开可达渠道，只收正式版（低频）。
+    - Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + 文件 HEAD Last-Modified
+      （winehq 主站被拦但 dl 子域不受 Cloudflare 保护，目录无日期列，用文件头时间）。
+    - Mono：download.mono-project.com 官方源码目录（Apache 行内日期）。
+    低频项目（数月~数年一版）标记 low_freq，不受 180 天窗口过滤，只取最新 2~3 条。"""
+    items = []
+
+    # Wine + Wine Mono + Wine Gecko：dl.winehq.org 版本目录 + HEAD 日期
+    for base, typ, pfx in [
+        ("https://dl.winehq.org/wine/source/", "Wine", "wine"),
+        ("https://dl.winehq.org/wine/wine-mono/", "Wine Mono", "wine-mono"),
+        ("https://dl.winehq.org/wine/wine-gecko/", "Wine Gecko", "wine-gecko"),
+    ]:
+        try:
+            html = _fetch_text(base)
+            vers = sorted({m for m in re.findall(r'href="([0-9.]+(?:-rc[0-9]+)?)/"', html)},
+                          key=_ver_key)
+            for v in vers[-3:] if typ == "Wine" else vers[-2:]:
+                ts = 0
+                try:
+                    vhtml = _fetch_text(base + v + "/", timeout=15)
+                    files = re.findall(r'href="([^"]+\.(?:msi|xz))"', vhtml)
+                    if files:
+                        ts = _head_last_modified(base + v + "/" + files[0])
+                except Exception:
+                    ts = 0
+                uid = hashlib.md5(f"runtime:{typ}:{v}".encode()).hexdigest()[:8]
+                items.append({
+                    "id": uid,
+                    "title": f"[{typ}] {v}",
+                    "url": base + v + "/",
+                    "published_at": ts,
+                    "category": "runtime",
+                    "type": typ,
+                    "summary": f"{pfx} {v} 官方发布（WineHQ 下载站）",
+                    "low_freq": True,
+                })
+        except Exception as e:
+            print(f"  {typ} 抓取失败: {e}", file=sys.stderr)
+
+    # 4. Mono：官方源码目录（Apache 行内日期）
+    try:
+        html = _fetch_text("https://download.mono-project.com/sources/mono/")
+        rows = re.findall(
+            r'<a href="(mono-[0-9][0-9.]+\.tar\.xz)">[^<]*</a></td>\s*<td[^>]*>'
+            r'([0-9]{4}-[0-9]{2}-[0-9]{2})',
+            html,
+        )
+        seen = {}
+        for f, d in rows:
+            v = f[len("mono-"):-len(".tar.xz")]
+            seen[v] = d
+        for v in sorted(seen, key=_ver_key)[-2:]:
+            ts = iso_epoch_iso(seen[v] + "T12:00:00Z") if seen[v] else 0
+            uid = hashlib.md5(f"runtime:Mono:{v}".encode()).hexdigest()[:8]
+            items.append({
+                "id": uid,
+                "title": f"[Mono] {v}",
+                "url": f"https://download.mono-project.com/sources/mono/mono-{v}.tar.xz",
+                "published_at": ts,
+                "category": "runtime",
+                "type": "Mono",
+                "summary": "Mono 官方源码发布（mono-project.com）",
+                "low_freq": True,
+            })
+    except Exception as e:
+        print(f"  mono 抓取失败: {e}", file=sys.stderr)
+
+    return items
+
+
 def collect_official():
     """官方 GitHub releases → news items（category + type，App 端按 type 筛选）"""
     items = []
@@ -202,17 +305,26 @@ def main():
         print(f"IT之家 RSS 抓取失败（继续用官方源）: {e}", file=sys.stderr)
 
     fresh_official = collect_official()
+    fresh_extra = collect_runtime_extra()
 
-    # 与历史合并去重（url/repo+tag 指纹）；窗口：ithome 7 天，官方源 180 天
-    # （组件 release 节奏 2-6 个月，glibc 甚至 12 个月，60 天窗口会全滤）
+    # 与历史合并去重（url/repo+tag 指纹）；窗口：ithome 7 天，官方 release 180 天，
+    # 目录/tag 低频源（low_freq）不过滤（Wine 每周、Wine Mono/Gecko/Mono 数月~数年一版）。
     old = []
     if os.path.exists(OUT):
         old = json.load(open(OUT, encoding="utf-8")).get("items", [])
     now = int(time.time())
-    merged = {it["id"]: it for it in old + fresh_ithome + fresh_official}
+    merged = {it["id"]: it for it in old + fresh_ithome + fresh_official + fresh_extra}
     merged = [
         it for it in merged.values()
-        if now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)
+        if it.get("low_freq") or
+        (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400))
+    ]
+    # 低频目录源以本次抓取为准：旧的低频条目（Wine 2005 之类镜像残留）不在
+    # fresh_extra 中则丢弃，避免过期低频版本长期占用列表。
+    fresh_extra_ids = {it["id"] for it in fresh_extra}
+    merged = [
+        it for it in merged
+        if not it.get("low_freq") or it["id"] in fresh_extra_ids
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
     merged = merged[:300]
@@ -220,13 +332,13 @@ def main():
     data = {
         "version": 2,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "source": "ithome+github-releases",
+        "source": "ithome+github-releases+winehq-dl",
         "items": merged,
     }
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     json.dump(data, open(OFFLINE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
-    print(f"ithome {len(fresh_ithome)} 条 + 官方 {len(fresh_official)} 条，合并后 {len(merged)} 条")
+    print(f"ithome {len(fresh_ithome)} 条 + 官方 {len(fresh_official)} 条 + 目录源 {len(fresh_extra)} 条，合并后 {len(merged)} 条")
     print("分类分布:", dict(Counter(it["category"] for it in merged)))
     types = Counter(it.get("type") for it in merged if it.get("type"))
     print("官方类型分布:", dict(types))

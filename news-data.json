@@ -1,8 +1,40 @@
 {
   "version": 2,
-  "updated_at": "2026-10-25T03:57:11Z",
-  "source": "ithome+github-releases",
+  "updated_at": "2026-10-25T04:42:19Z",
+  "source": "ithome+github-releases+winehq-dl",
   "items": [
+    {
+      "id": "c195c8fd",
+      "title": "摆脱微软并不容易？丹麦政府因技术问题放弃“弃用 Office”计划",
+      "url": "https://www.ithome.com/1/017/580.htm",
+      "published_at": 1792902921,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，2025 年，丹麦政府宣布计划弃用 Windows 和微软 Office，改用 Linux 等开源软件，希望借此降低对微软等美国科技企业的依赖，避免受到政策多变的美国政府牵制。然而据外媒 Neowin 今天（25 日）上午报道，丹麦推动软件自主的计划未能取得预期成果。丹麦放弃了以英国软"
+    },
+    {
+      "id": "98e7b4ab",
+      "title": "卢伟冰再谈小米 18 Fold 手机折痕：采用新一代折叠架构，平均深度 ≤30μm",
+      "url": "https://www.ithome.com/1/017/579.htm",
+      "published_at": 1792902686,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，小米集团合伙人 / 总裁、手机部总裁、小米品牌总经理卢伟冰今日发文，再度谈及了小米 18 Fold 中折叠手机的折痕情况：采用新一代折叠架构，强度更高，更抗冲击同时带来超强折痕控制，平均折痕深度 ≤30μm据IT之家此前报道，小米 18 Fold 中折叠手机发布于 9 月 7 日，首发"
+    },
+    {
+      "id": "debc6c19",
+      "title": "苹果 iPhone Duo 拆解：双电池 4883mAh，无实体 SIM 卡槽",
+      "url": "https://www.ithome.com/1/017/578.htm",
+      "published_at": 1792902303,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，YouTube 频道 REWA Technology 与 Phone Repair Guru 放出了首批 iPhone Duo 的拆机视频，让外界得以看清这款折叠机型的内部构造。IT之家注意到，iPhone Duo 采用双电芯设计，两块电池都依靠电控胶拆卸：大容量电池：2962 mAh"
+    },
+    {
+      "id": "b15a0335",
+      "title": "我国成功发射卫星互联网低轨 28 组卫星",
+      "url": "https://www.ithome.com/1/017/566.htm",
+      "published_at": 1792900310,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据央视新闻报道，北京时间 2026 年 10 月 25 日 10 时 03 分，我国在海南商业航天发射场使用长征八号甲运载火箭，成功将卫星互联网低轨 28 组卫星发射升空，卫星顺利进入预定轨道，发射任务获得圆满成功。延伸阅读长征八号甲运载火箭由航天科技集团一院抓总研制，是我国自主研制的"
+    },
     {
       "id": "04d50fdc",
       "title": "R 星联合创始人丹 · 豪瑟回应 2009 年新项目《特工》为何取消：个人觉得太难了",
@@ -45,7 +77,7 @@
     },
     {
       "id": "4ffca138",
-      "title": "曝三星借助小米 18 Pro Max 开展内部测试：Exynos 2700 跑分优于高通旗舰芯片",
+      "title": "曝三星开展内部测试：Exynos 2700 跑分优于搭载高通旗舰芯片的机型",
       "url": "https://www.ithome.com/1/017/556.htm",
       "published_at": 1792895047,
       "category": "eco",
@@ -1738,6 +1770,16 @@
       "summary": "## Bug fixes and Improvements - Implemented `DXGI_SCALING_NONE` and [SetBackgroundColor](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_2/nf-dxgi1_2-idxgiswapchain1-setb"
     },
     {
+      "id": "ddb56cc5",
+      "title": "[Wine Mono] 11.2.1",
+      "url": "https://dl.winehq.org/wine/wine-mono/11.2.1/",
+      "published_at": 1788540465,
+      "category": "runtime",
+      "type": "Wine Mono",
+      "summary": "wine-mono 11.2.1 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
       "id": "2bb2d8a0",
       "title": "[Proton-GE] GE-Proton11-6",
       "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-6",
@@ -1754,6 +1796,16 @@
       "category": "component",
       "type": "DXVK",
       "summary": "## Feature support ### DXGI incremental presentation Added basic support for DXGI [present parameters](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_2/ns-dxgi1_2-dxgi_p"
+    },
+    {
+      "id": "e40214d5",
+      "title": "[Wine Mono] 11.3.0",
+      "url": "https://dl.winehq.org/wine/wine-mono/11.3.0/",
+      "published_at": 1786700100,
+      "category": "runtime",
+      "type": "Wine Mono",
+      "summary": "wine-mono 11.3.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
     },
     {
       "id": "5ba347ed",
@@ -1808,6 +1860,76 @@
       "category": "component",
       "type": "VKD3D-Proton",
       "summary": "This is likely the last release before `VK_EXT_descriptor_heap` lands. There are some practical reasons why this is 3.0.1 instead of 3.1, but numbers don't really matter that much "
+    },
+    {
+      "id": "cf3c8c0a",
+      "title": "[Wine] 11.0",
+      "url": "https://dl.winehq.org/wine/source/11.0/",
+      "published_at": 1764967779,
+      "category": "runtime",
+      "type": "Wine",
+      "summary": "wine 11.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "54f2fbfc",
+      "title": "[Wine Gecko] 2.47.4",
+      "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4/",
+      "published_at": 1745234377,
+      "category": "runtime",
+      "type": "Wine Gecko",
+      "summary": "wine-gecko 2.47.4 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "39fd6b1e",
+      "title": "[Wine Gecko] 2.47.4-rc1",
+      "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4-rc1/",
+      "published_at": 1745234373,
+      "category": "runtime",
+      "type": "Wine Gecko",
+      "summary": "wine-gecko 2.47.4-rc1 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "61626c8b",
+      "title": "[Wine] 9.0",
+      "url": "https://dl.winehq.org/wine/source/9.0/",
+      "published_at": 1745233934,
+      "category": "runtime",
+      "type": "Wine",
+      "summary": "wine 9.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "238701fa",
+      "title": "[Wine] 10.0",
+      "url": "https://dl.winehq.org/wine/source/10.0/",
+      "published_at": 1745233860,
+      "category": "runtime",
+      "type": "Wine",
+      "summary": "wine 10.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "5fb78151",
+      "title": "[Mono] 6.12.0.199",
+      "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.199.tar.xz",
+      "published_at": 1690459200,
+      "category": "runtime",
+      "type": "Mono",
+      "summary": "Mono 官方源码发布（mono-project.com）",
+      "low_freq": true
+    },
+    {
+      "id": "4a4761b8",
+      "title": "[Mono] 6.12.0.182",
+      "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz",
+      "published_at": 1655208000,
+      "category": "runtime",
+      "type": "Mono",
+      "summary": "Mono 官方源码发布（mono-project.com）",
+      "low_freq": true
     }
   ]
 }
