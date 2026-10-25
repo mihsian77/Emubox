@@ -1179,6 +1179,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     double computeGFLOPS = 0.0;
     if (enableCompute) {
         stepLog("bench:compute_try");
+        stepLog("bench:compute_pipeline_try");
     {
         // shader module（字节数组本地构造并校验，见 kComputeShaderSpv）
         VkShaderModuleCreateInfo smCI{};
@@ -1499,7 +1500,7 @@ static std::string runBenchmarkWithDriver(const char* driverPath) {
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
     // 跑基准：resolver 传驱动的 vkGetInstanceProcAddr，保证 device 级函数从驱动解析
-    std::string result = runBenchmark(vk, instance, devices[0], getInst, true);
+    std::string result = runBenchmark(vk, instance, devices[0], getInst, false); // compute 段在 turnip+mapping import 下崩溃，先关（fill/copy 带宽已可测）
     vk.vkDestroyInstance(instance, nullptr);
     dlclose(vk.libHandle);
     return result;
@@ -2957,7 +2958,7 @@ static std::string benchmarkDriverAdrenotoolsJson(const char* driverDir, const c
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
-    std::string result = runBenchmark(vk, instance, devices[0], getInst, true);
+    std::string result = runBenchmark(vk, instance, devices[0], getInst, false); // compute 段在 turnip+mapping import 下崩溃，先关（fill/copy 带宽已可测）
     vk.vkDestroyInstance(instance, nullptr);
     dlclose(lib);
     return result;
