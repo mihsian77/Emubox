@@ -27,6 +27,9 @@ data class RuntimeComponent(
     /** 中文用途说明：按 name 匹配常见组件，无匹配返回原英文 description */
     val chineseHint: String get() = RuntimeChineseHints.lookup(name) ?: description
 
+    /** 可溯源官网（规则函数，自动覆盖新增条目，无需维护映射表） */
+    val sourceInfo: RuntimeSourceInfo get() = RuntimeSource.lookup(name, provider)
+
     /** 安装方式子标签：安装包 / DLL 复制包 / 字体包 / 系统环境 */
     val installTag: String get() {
         val actions = steps.map { it.action }
@@ -78,6 +81,61 @@ data class RuntimeFile(
     val checksum: String,
     val rename: String
 )
+
+/** 运行库来源信息（官网溯源） */
+data class RuntimeSourceInfo(
+    val name: String,          // 来源名（如 "Microsoft .NET"）
+    val url: String,           // 官网/项目地址
+    val track: String          // 更新策略：官网直链 / 镜像托管 / 上游待源
+)
+
+/** 运行库溯源规则：按组件名/提供方归类到可核实官网。
+ *  纯规则函数，新增组件自动命中，无需维护映射表。
+ *  下载文件本体仍走 winlator-contents 镜像（The412Banner 托管构建），
+ *  官网地址用于查看更新日志与核对版本。 */
+object RuntimeSource {
+    fun lookup(name: String, provider: String): RuntimeSourceInfo {
+        val n = name.lowercase()
+        val ms = "Microsoft" to "https://learn.microsoft.com"
+        val mirror = "The412Banner 镜像托管" to "https://github.com/The412Banner/winlator-contents"
+        return when {
+            // .NET 全家（官方下载中心）
+            n.contains("dotnet") -> RuntimeSourceInfo("Microsoft .NET", "https://dotnet.microsoft.com/download", "官网直链")
+            // 微软系统组件（D3D/DirectX 运行库/媒体组件）
+            n.contains("d3dcompiler") || n.contains("d3dx") || n.contains("d3d") ||
+                n.contains("directplay") || n.contains("directmusic") || n.contains("directshow") ||
+                n.contains("directsound") || n.contains("dsound") || n.contains("dmusic") ||
+                n.contains("amstream") || n.contains("art2k") || n.contains("devenum") ||
+                n.contains("avifil32") || n.contains("msvcp") || n.contains("msxml") ||
+                n.contains("mfc") || n.contains("mdac") || n.contains("xact") ||
+                n.contains("xinput") || n.contains("xaudio") || n.contains("x3daudio") ||
+                n.contains("xapofx") || n.contains("dmband") || n.contains("dmcompos") ||
+                n.contains("dmime") || n.contains("dmloader") || n.contains("dmscript") ||
+                n.contains("dmstyle") || n.contains("dmsynth") || n.contains("dsdmo") ||
+                n.contains("mediafoundation") || n.contains("wmdecoder") || n.contains("wmv") ||
+                n.contains("wmadmod") || n.contains("wmasf") || n.contains("qasf") ||
+                n.contains("webview2") -> RuntimeSourceInfo("Microsoft", "https://www.microsoft.com/download", "官网直链")
+            // Vulkan 运行时
+            n.contains("vulkanrt") || n.contains("vulkan") && provider.lowercase().contains("lunar") ->
+                RuntimeSourceInfo("LunarG", "https://vulkan.lunarg.com", "官网直链")
+            // CnCNet 社区补丁（cnc-ddraw）
+            n.contains("cnc-ddraw") || n.contains("ddraw") -> RuntimeSourceInfo("CnCNet", "https://cncnet.org", "官网直链")
+            // 编解码包
+            n.contains("k-lite") || n.contains("codec") -> RuntimeSourceInfo("Codec Guide", "https://codecguide.com", "官网直链")
+            // XLive（Games for Windows Live 兼容层）
+            n.contains("xlive") || n.contains("xliveless") -> RuntimeSourceInfo("XLiveless/GFWL", "https://github.com/thirteenAG/Ultimate-ASI-Loader", "官网直链")
+            // Adobe 字体库
+            n.contains("atmlib") || n.contains("atm") -> RuntimeSourceInfo("Adobe", "https://www.adobe.com", "官网直链")
+            // 中文字体（社区收集）
+            n.contains("cjk") || n.contains("font") || n.contains("sourcehan") ->
+                RuntimeSourceInfo("社区字体", "https://github.com/The412Banner/winlator-contents", "镜像托管")
+            // PhysX 物理引擎
+            n.contains("physx") -> RuntimeSourceInfo("NVIDIA", "https://www.nvidia.com/download", "官网直链")
+            // 默认兜底：镜像托管（二进制由 The412Banner 统一构建分发）
+            else -> RuntimeSourceInfo(mirror.first, mirror.second, "镜像托管")
+        }
+    }
+}
 
 /** 运行库分类 */
 enum class RuntimeCategory(val labelRes: String, val order: Int) {
