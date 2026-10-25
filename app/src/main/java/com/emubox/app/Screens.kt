@@ -1112,7 +1112,11 @@ private fun formatBytes(bytes: Long): String {    return when {
  *  直接使用头像 CDN 直链：github.com/{owner}.png 会 302 跳转到
  *  avatars.githubusercontent.com，国内网络对跳转链加载不稳且易受限流。 */
 private fun githubOwnerAvatar(url: String): String? {
-    val m = Regex("github\\.com/([^/]+)").find(url) ?: return null
+    // api.github.com/repos/owner/repo 优先（此前只匹配 github.com 会把 api 域的
+    // owner 错取为 "repos"，头像 URL 指向不存在的用户 → 全部显示 GitHub 默认头像）
+    val m = Regex("api\\.github\\.com/repos/([^/]+)").find(url)
+        ?: Regex("github\\.com/([^/]+)").find(url)
+        ?: return null
     val owner = m.groupValues[1].trim('/').ifBlank { return null }
     return "https://avatars.githubusercontent.com/$owner?size=64"
 }
@@ -4720,13 +4724,26 @@ private fun SourcePickerGridCard(
             }
             if (option.description.isNotBlank()) {
                 Spacer(Modifier.height(6.dp))
+                // 简介可点击展开/收起：不截断信息，避免长简介（wrapper 发布说明等）被过滤
+                var descExpanded by rememberSaveable(option.id) { mutableStateOf(false) }
                 Text(
                     option.description,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    maxLines = if (descExpanded) Int.MAX_VALUE else 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.clickable { descExpanded = !descExpanded }
                 )
+                if (!descExpanded && option.description.length > 50) {
+                    Text(
+                        appString(R.string.expand),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .clickable { descExpanded = true }
+                            .padding(top = 2.dp)
+                    )
+                }
             }
             if (option.updatedHint != null) {
                 Spacer(Modifier.height(4.dp))
@@ -8768,7 +8785,7 @@ fun DriverScreen(
                         updatedAtMap = driverSourceUpdatedAt,
                         remoteStars = driverSourceStars,
                         expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
-                        title = "驱动包装器专区",
+                        title = "Wrapper",
                         description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性"
                     )
                 }

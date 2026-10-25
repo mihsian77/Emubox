@@ -1989,6 +1989,33 @@
    "latest_tag": "v0.1.85",
    "latest_date": "2026-08-06T14:16:04Z",
    "latest_body": "## What's Changed\r\n* rutabaga: Fix map_placed implementation for fixed mappings by @valentineburley in https://github.com/magma-gpu/rutabaga_gfx/pull/65\r\n* Fixes to magma-gpu crates by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull/67\r\n* Fixes ported from libkrun's downstream rutabaga_gfx by @dorindabassey in https://github.com/magma-gpu/rutabaga_gfx/pull/68\r\n* rutabaga release 0.1.85 + flexible array removal by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull"
+  },
+  {
+   "id": "reg-rutabaga-drivers",
+   "name": "Rutabaga 驱动（winlator-contents）",
+   "owner": "The412Banner",
+   "repo": "winlator-contents",
+   "api_url": "https://api.github.com/repos/The412Banner/winlator-contents/releases",
+   "gpu_vendor": "adreno",
+   "gpu_arch": [
+    "6xx",
+    "7xx"
+   ],
+   "gpu_models": [],
+   "driver_type": "turnip",
+   "frontend": null,
+   "target_emulator": "generic",
+   "package_format": "zip",
+   "maturity": "stable",
+   "description": "winlator-contents 的 rutabaga-drivers release：Turnip/Venus 驱动包（Adreno），与 wrapper 混装在同一仓库但独立 release",
+   "notes": "归 Turnip 分区；strict 过滤只读含 rutabaga 的 release，wrapper/linuxfs/steamdeck 等不误入",
+   "companion": [],
+   "filters": {
+    "default": [
+     "rutabaga"
+    ]
+   },
+   "strict_filter": true
   }
  ]
 }
