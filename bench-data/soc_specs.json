@@ -2,30 +2,6 @@
  "version": "1.0.0",
  "note": "CPU 架构/频率来自安兔兔 SoC 天梯内置字段；制程/GPU/发布时间由维基列表管线补全（缺失留空）",
  "socs": {
-  "15930 分": {
-   "level": "level3",
-   "total_score": "",
-   "cpu_score": "",
-   "gpu_score": ""
-  },
-  "20846 分": {
-   "level": "level3",
-   "total_score": "",
-   "cpu_score": "",
-   "gpu_score": ""
-  },
-  "24773 分": {
-   "level": "level3",
-   "total_score": "",
-   "cpu_score": "",
-   "gpu_score": ""
-  },
-  "25673 分": {
-   "level": "level1",
-   "total_score": "",
-   "cpu_score": "",
-   "gpu_score": ""
-  },
   "Amlogic A311D2": {
    "level": "level3",
    "total_score": "150581",
