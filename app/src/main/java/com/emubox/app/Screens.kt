@@ -55,6 +55,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.emubox.app.ui.theme.Fusion
@@ -1114,6 +1115,46 @@ private fun githubOwnerAvatar(url: String): String? {
     val m = Regex("github\\.com/([^/]+)").find(url) ?: return null
     val owner = m.groupValues[1].trim('/').ifBlank { return null }
     return "https://avatars.githubusercontent.com/$owner?size=64"
+}
+
+/** 仓库/作者头像：GitHub 头像加载失败（国内网络/头像缺失）时显示首字母圆形，
+ *  本地绘制不依赖网络，避免出现 GitHub 官方默认图标。 */
+@Composable
+private fun RepoAvatar(
+    avatarUrl: String?,
+    fallbackName: String,
+    size: Dp = 26.dp,
+    selected: Boolean = false
+) {
+    val initial = fallbackName.trim().firstOrNull()?.uppercase() ?: "?"
+    Box(
+        modifier = Modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(
+                if (selected) MaterialTheme.colorScheme.primary
+                else MaterialTheme.colorScheme.surfaceVariant
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        // 底层：首字母圆形（头像加载失败/加载中时可见）
+        Text(
+            initial,
+            style = MaterialTheme.typography.labelMedium,
+            color = if (selected) MaterialTheme.colorScheme.onPrimary
+            else MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
+        )
+        if (avatarUrl != null) {
+            // 顶层：GitHub 头像，加载成功即覆盖首字母
+            AsyncImage(
+                model = avatarUrl,
+                contentDescription = null,
+                modifier = Modifier.size(size).clip(CircleShape),
+                contentScale = ContentScale.Crop
+            )
+        }
+    }
 }
 
 private fun formatRelativeTime(iso: String): String {
@@ -4257,11 +4298,9 @@ private fun SourcePickerCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (avatarUrl != null) {
-                    AsyncImage(
-                        model = avatarUrl,
-                        contentDescription = null,
-                        modifier = Modifier.size(26.dp).clip(CircleShape),
-                        contentScale = ContentScale.Crop
+                    RepoAvatar(
+                        avatarUrl = avatarUrl,
+                        fallbackName = currentName
                     )
                 } else {
                     Icon(
@@ -4621,23 +4660,11 @@ private fun SourcePickerGridCard(
             // 第一行：图标 + 名称（名称独占剩余空间，标签不挤占，避免被压成单字）
             Row(verticalAlignment = Alignment.Top) {
                 if (option.avatarUrl != null) {
-                    Box(
-                        Modifier
-                            .size(28.dp)
-                            .clip(CircleShape)
-                            .background(
-                                if (selected) MaterialTheme.colorScheme.primary
-                                else MaterialTheme.colorScheme.surfaceVariant
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        AsyncImage(
-                            model = option.avatarUrl,
-                            contentDescription = null,
-                            modifier = Modifier.size(26.dp).clip(CircleShape),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
+                    RepoAvatar(
+                        avatarUrl = option.avatarUrl,
+                        fallbackName = option.name,
+                        selected = selected
+                    )
                 } else {
                     Surface(
                         shape = CircleShape,
@@ -4900,16 +4927,10 @@ title: String,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 val srcAvatar = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
-                if (srcAvatar != null) {
-                    AsyncImage(
-                        model = srcAvatar,
-                        contentDescription = null,
-                        modifier = Modifier.size(26.dp).clip(CircleShape),
-                        error = painterResource(android.R.drawable.ic_menu_gallery)
-                    )
-                } else {
-                    Icon(icon, contentDescription = null, modifier = Modifier.size(22.dp), tint = MaterialTheme.colorScheme.primary)
-                }
+                RepoAvatar(
+                    avatarUrl = srcAvatar,
+                    fallbackName = currentSource?.name ?: title
+                )
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title, style = MaterialTheme.typography.titleSmall)
@@ -5431,6 +5452,106 @@ private fun EmulatorApkSize(apkUrl: String, content: @Composable (String) -> Uni
     content(sizeText)
 }
 
+/** wrapper 清单区块（winlator-contents wrappers.json）：每个条目一张卡，
+ *  简介为作者维护的发布说明（自动读取，不依赖 release 标签顺序），可折叠展开。 */
+@Composable
+private fun WrapperCatalogSection(
+    items: List<WrapperItem>,
+    onDownload: (WrapperItem) -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        items.forEach { item ->
+            var descExpanded by rememberSaveable(item.id) { mutableStateOf(false) }
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+            ) {
+                Column(Modifier.padding(12.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.Eco,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(Modifier.width(6.dp))
+                        Text(
+                            item.name,
+                            style = MaterialTheme.typography.titleSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    if (item.author.isNotBlank() || item.license.isNotBlank()) {
+                        Spacer(Modifier.height(2.dp))
+                        Text(
+                            listOfNotNull(
+                                item.author.takeIf { it.isNotBlank() },
+                                item.license.takeIf { it.isNotBlank() }
+                            ).joinToString(" · "),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                    if (item.description.isNotBlank()) {
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            item.description,
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = if (descExpanded) Int.MAX_VALUE else 2,
+                            overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.clickable { descExpanded = !descExpanded }
+                        )
+                        if (!descExpanded && item.description.length > 60) {
+                            Text(
+                                appString(R.string.expand),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier
+                                    .clickable { descExpanded = true }
+                                    .padding(top = 2.dp)
+                            )
+                        }
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            item.url.substringAfterLast('/'),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f)
+                        )
+                        if (item.fileSizeBytes > 0) {
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                formatBytes(item.fileSizeBytes),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Button(
+                            onClick = { onDownload(item) },
+                            modifier = Modifier.height(32.dp)
+                        ) {
+                            Text(appString(R.string.download), style = MaterialTheme.typography.labelSmall)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 /** 驱动版本双列网格卡片：版本号 + 日期 + 文件数 + 大小 + latest 标签 */
 @Composable
 private fun DriverVersionCard(
@@ -5515,7 +5636,6 @@ private fun DriverVersionCard(
         }
     }
 }
-
 /** 组件版本双列网格卡片：版本号 + 来源 + 大小 + latest 标签 */
 @Composable
 private fun ComponentVersionCard(
@@ -8324,6 +8444,7 @@ fun DriverScreen(
     wrapperSourceId: String,
     wrapperSources: List<TurnipSource>,
     wrapperReleases: List<GithubRelease>,
+    wrapperItems: List<WrapperItem> = emptyList(),
     sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
     onPanvkSourceChange: (String) -> Unit,
@@ -8599,25 +8720,58 @@ fun DriverScreen(
 
         // ── 驱动包装器专区：Vulkan/GL 包装层（wmali、compat-bcn、gamenative 等）──
         if (filteredWrapper.isNotEmpty() && showWrapperSection) {
-            item(key = "wrapper_section") {
-                TurnipDriverSection(
-                    adrenoSeries = deviceInfo?.adrenoSeries,
-                    sources = filteredWrapper,
-                    currentSourceId = wrapperSourceId,
-                    onSourceChange = { id ->
-                        onWrapperSourceChange(id)
-                        expandTrigger = "wrapper:$id"
-                        scope.launch { listState.animateScrollToItem(sectionIndex(4)) }
-                    },
-                    releases = wrapperReleases,
-                    selectionKey = "wrapper:$wrapperSourceId",
-                    onDownload = onDownloadAsset,
-                    updatedAtMap = driverSourceUpdatedAt,
-                    remoteStars = driverSourceStars,
-                    expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
-                    title = "驱动包装器专区",
-                    description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性"
-                )
+            // banner 来源：wrapper 内容来自作者维护的 wrappers.json 清单（条目自带简介，
+            // 不依赖 release 标签顺序）；其余 wrapper 源走 release 型版本卡。
+            if (wrapperItems.isNotEmpty()) {
+                item(key = "wrapper_catalog") {
+                    WrapperCatalogSection(
+                        items = wrapperItems,
+                        onDownload = { item ->
+                            val fileName = item.url.substringAfterLast('/')
+                            onDownloadAsset(
+                                GithubRelease(
+                                    tagName = item.id,
+                                    name = item.name,
+                                    assets = listOf(
+                                        GithubAsset(
+                                            name = fileName,
+                                            downloadUrl = item.url,
+                                            sizeBytes = item.fileSizeBytes
+                                        )
+                                    ),
+                                    publishedAt = "",
+                                    body = item.description
+                                ),
+                                GithubAsset(
+                                    name = fileName,
+                                    downloadUrl = item.url,
+                                    sizeBytes = item.fileSizeBytes
+                                )
+                            )
+                        }
+                    )
+                }
+            } else {
+                item(key = "wrapper_section") {
+                    TurnipDriverSection(
+                        adrenoSeries = deviceInfo?.adrenoSeries,
+                        sources = filteredWrapper,
+                        currentSourceId = wrapperSourceId,
+                        onSourceChange = { id ->
+                            onWrapperSourceChange(id)
+                            expandTrigger = "wrapper:$id"
+                            scope.launch { listState.animateScrollToItem(sectionIndex(4)) }
+                        },
+                        releases = wrapperReleases,
+                        selectionKey = "wrapper:$wrapperSourceId",
+                        onDownload = onDownloadAsset,
+                        updatedAtMap = driverSourceUpdatedAt,
+                        remoteStars = driverSourceStars,
+                        expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
+                        title = "驱动包装器专区",
+                        description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性"
+                    )
+                }
             }
         }
 

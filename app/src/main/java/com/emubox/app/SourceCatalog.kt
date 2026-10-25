@@ -31,7 +31,11 @@ data class TurnipSource(
     /** 仓库星标数，来源选择预览展示活跃度 */
     val stars: Long = 0L,
     /** 仓库最近推送时间（epoch ms，由 catalog 内置，CI 每日刷新） */
-    val updatedAt: Long = 0L
+    val updatedAt: Long = 0L,
+    /** 严格过滤：只按 filters 匹配，禁用 fallback 兜底（wrapper 混装仓库专用） */
+    val strictFilter: Boolean = false,
+    /** 可下载资产扩展名白名单（wrapper 源含 .tzst 包装层包） */
+    val assetExts: Set<String> = setOf(".zip", ".adpkg")
 )
 
 data class QualcommSource(

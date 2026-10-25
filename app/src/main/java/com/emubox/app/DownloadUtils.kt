@@ -41,9 +41,13 @@ private const val DEFAULT_ROOT_FOLDER = "EmuBox"
     private const val LEGACY_ROOT_FOLDER = "EmuHub-CN"
 
 // Reuse the HTTP client instead of creating a new connection pool for every file.
+// 收紧超时 + 禁用 OkHttp 内部静默重连：连接失败立即返回，交由 App 层
+// 自动重试/加速↔直连切换逻辑处理，避免"连接中"长时间挂起无反馈。
 private val downloadClient = OkHttpClient.Builder()
-    .connectTimeout(30, TimeUnit.SECONDS)
-    .readTimeout(60, TimeUnit.SECONDS)
+    .connectTimeout(12, TimeUnit.SECONDS)
+    .readTimeout(25, TimeUnit.SECONDS)
+    .callTimeout(120, TimeUnit.SECONDS)
+    .retryOnConnectionFailure(false)
     .followRedirects(true)
     .followSslRedirects(true)
     .build()

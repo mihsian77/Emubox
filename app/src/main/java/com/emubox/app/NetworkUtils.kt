@@ -62,6 +62,19 @@ data class Component(
     val sizeBytes: Long? = null
 )
 
+/** wrapper 清单条目（winlator-contents wrappers.json，作者维护的目录，不依赖 release 标签顺序） */
+data class WrapperItem(
+    val id: String,
+    val name: String,
+    val description: String,
+    val author: String,
+    val license: String,
+    val url: String,
+    val fileSizeBytes: Long,
+    val version: Int,
+    val gpuTargets: List<String>
+)
+
 private val githubClient by lazy {
     OkHttpClient.Builder()
         .connectTimeout(6, java.util.concurrent.TimeUnit.SECONDS)
@@ -206,6 +219,11 @@ suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): Lis
         }
     }
 
+    // 严格过滤（wrapper 混装仓库专用）：只返回 filters 命中的 release，
+    // 禁 fallback 兜底与全量兜底——winlator-contents/WinXclipse 等仓库混装
+    // 驱动/运行库/桌面包，fallback 会把 Rutabaga、linuxfs、steamdeck 等误判为 wrapper。
+    if (source.strictFilter) return filtered
+
     // If an upstream maintainer changes naming, prefer showing Turnip-looking releases
     // rather than presenting an empty page. This keeps remote catalogs resilient.
     val fallback = allReleases.filter { release ->
@@ -242,8 +260,8 @@ suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): Lis
                 val excluded = excludeAssetPatterns.any { asset.name.contains(it, ignoreCase = true) }
                 included && !excluded
             }.filter { asset ->
-                asset.name.endsWith(".zip", ignoreCase = true) ||
-                    asset.name.endsWith(".adpkg", ignoreCase = true)
+                // 驱动包约定为 zip/adpkg，wrapper 包装层为 tzst——按来源扩展名白名单保留
+                source.assetExts.any { asset.name.endsWith(it, ignoreCase = true) }
             }
             release.copy(assets = compatibleAssets)
         }
@@ -282,6 +300,86 @@ suspend fun fetchQualcommReleases(source: QualcommSource): List<GithubRelease> {
 suspend fun loadQualcommDriver(): GithubRelease? {
     val source = SourceCatalogRepository.builtInCatalog().qualcommSources.first()
     return fetchQualcommReleases(source).firstOrNull()
+}
+
+/** wrapper 清单缓存（wrappers.json，SWR 策略与 release/component 一致） */
+private val wrapperCache = ConcurrentHashMap<String, CacheEntry<List<WrapperItem>>>()
+
+/**
+ * 读取 wrapper 清单（winlator-contents wrappers.json）：
+ * 作者维护的 wrapper 目录（id/name/description/url/checksum），
+ * 不依赖 release 标签顺序——标签变动不会导致内容错读。
+ */
+suspend fun fetchWrappersCatalog(manifestUrl: String): List<WrapperItem> = withContext(Dispatchers.IO) {
+    val cached = wrapperCache[manifestUrl]
+    val now = System.currentTimeMillis()
+    if (cached != null && now - cached.timestamp < CACHE_TTL_MS) {
+        return@withContext cached.data
+    }
+    if (cached != null) {
+        if (inFlightWrappers.add(manifestUrl)) {
+            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+            scope.launch {
+                try { refreshWrappers(manifestUrl) } catch (_: Exception) {
+                } finally {
+                    inFlightWrappers.remove(manifestUrl)
+                    scope.cancel()
+                }
+            }
+        }
+        return@withContext cached.data
+    }
+    refreshWrappers(manifestUrl)
+}
+
+private val inFlightWrappers = ConcurrentHashMap.newKeySet<String>()
+
+private suspend fun refreshWrappers(manifestUrl: String): List<WrapperItem> {
+    val acceleratedUrl = Accelerator.rewriteUrl(manifestUrl)
+    var json = executeWrappersRequest(acceleratedUrl)
+    if (json == null && acceleratedUrl != manifestUrl) {
+        json = executeWrappersRequest(manifestUrl)
+    }
+    if (json == null) return emptyList()
+
+    val items = buildList {
+        val wrappersArr = json.optJSONArray("wrappers") ?: JSONArray()
+        for (i in 0 until wrappersArr.length()) {
+            val obj = wrappersArr.optJSONObject(i) ?: continue
+            val url = obj.optString("url").trim()
+            val id = obj.optString("id").trim()
+            if (url.isBlank() || id.isBlank()) continue
+            val gpuTargets = obj.optJSONArray("gpuTargets")?.let { ja ->
+                (0 until ja.length()).map { ja.getString(it) }
+            } ?: emptyList()
+            add(
+                WrapperItem(
+                    id = id,
+                    name = obj.optString("name").trim().ifBlank { id },
+                    description = obj.optString("description").trim(),
+                    author = obj.optString("author").trim(),
+                    license = obj.optString("license").trim(),
+                    url = url,
+                    fileSizeBytes = obj.optLong("file_size", 0L),
+                    version = obj.optInt("version", 1),
+                    gpuTargets = gpuTargets
+                )
+            )
+        }
+    }
+    wrapperCache[manifestUrl] = CacheEntry(items, System.currentTimeMillis())
+    return items
+}
+
+private fun executeWrappersRequest(url: String): JSONObject? = try {
+    val request = Request.Builder().url(url).build()
+    githubClient.newCall(request).execute().use { response ->
+        if (!response.isSuccessful) return null
+        val body = response.body?.string() ?: return null
+        JSONObject(body)
+    }
+} catch (_: Exception) {
+    null
 }
 
 suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Component>> =

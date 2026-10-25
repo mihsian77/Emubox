@@ -36,7 +36,10 @@ data class DriverRegistryEntry(
     val description: String,
     val notes: String,
     val companion: List<String>,    // 配套组件 id（指向 component 类型条目）
-    val filters: Map<String, List<String>>
+    val filters: Map<String, List<String>>,
+    /** 严格过滤：只按 filters 精确匹配 release，禁用 turnip/mesa fallback 兜底与全量兜底
+     *  （wrapper 类来源专用：仓库混装多种内容 release，如 winlator-contents / WinXclipse） */
+    val strictFilter: Boolean = false
 )
 
 /** 匹配结果 */
@@ -209,7 +212,8 @@ object DriverRegistryRepository {
                             companion = o.optJSONArray("companion")?.let { ja ->
                                 (0 until ja.length()).map { ja.getString(it) }
                             } ?: emptyList(),
-                            filters = filters
+                            filters = filters,
+                            strictFilter = o.optBoolean("strict_filter", false)
                         )
                     }.getOrNull()
                     if (entry != null) add(entry)
@@ -413,7 +417,13 @@ object DriverRegistryRepository {
             supportedSeries = series,
             supportedModels = models,
             requiredVendor = entry.gpuVendor,
-            filters = emptyMap(),
+            // wrapper 来源仓库混装多种内容（winlator-contents / WinXclipse），必须用注册表
+            // filters 精确过滤；其余注册表源按类型归类，release 几乎都是驱动包，不过滤避免版本丢失。
+            filters = if (entry.driverType == "wrapper") entry.filters else emptyMap(),
+            strictFilter = entry.strictFilter,
+            // wrapper 包装层资产为 tzst 压缩包，需保留；驱动源保持 zip/adpkg 默认
+            assetExts = if (entry.driverType == "wrapper")
+                setOf(".zip", ".adpkg", ".tzst") else setOf(".zip", ".adpkg"),
             targetEmulator = entry.targetEmulator,
             stars = entry.stars.toLong(),
             updatedAt = entry.updatedAt
