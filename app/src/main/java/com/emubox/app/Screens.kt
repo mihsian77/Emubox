@@ -33,6 +33,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -1093,13 +1094,14 @@ private fun RepoAvatar(
     avatarUrl: String?,
     fallbackName: String,
     size: Dp = 26.dp,
-    selected: Boolean = false
+    selected: Boolean = false,
+    shape: Shape = CircleShape
 ) {
     val initial = fallbackName.trim().firstOrNull()?.uppercase() ?: "?"
     Box(
         modifier = Modifier
             .size(size)
-            .clip(CircleShape)
+            .clip(shape)
             .background(
                 if (selected) MaterialTheme.colorScheme.primary
                 else MaterialTheme.colorScheme.surfaceVariant
@@ -1119,11 +1121,25 @@ private fun RepoAvatar(
             AsyncImage(
                 model = avatarUrl,
                 contentDescription = null,
-                modifier = Modifier.size(size).clip(CircleShape),
+                modifier = Modifier.size(size).clip(shape),
                 contentScale = ContentScale.Crop
             )
         }
     }
+}
+
+/** 项目图标统一链路：App 徽标（logoUrl，the412banner 等徽标站）→ 作者 GitHub 头像 → 首字母兜底。
+ *  模拟器/组件/驱动所有分区卡片共用，保证图标风格一致。 */
+@Composable
+private fun ProjectAvatar(
+    logoUrl: String,
+    owner: String,
+    fallbackName: String,
+    size: Dp = 26.dp,
+    shape: Shape = CircleShape
+) {
+    val avatar = logoUrl.ifBlank { if (owner.isNotBlank()) "https://github.com/$owner.png?size=64" else null }
+    RepoAvatar(avatarUrl = avatar, fallbackName = fallbackName, size = size, shape = shape)
 }
 
 private fun formatRelativeTime(iso: String): String {
@@ -9372,6 +9388,23 @@ private fun RuntimeComponentCard(
                             overflow = TextOverflow.Ellipsis
                         )
                     }
+                    if (component.sourceInfo.url.isNotBlank()) {
+                        Spacer(Modifier.width(6.dp))
+                        Text(
+                            text = "来源·${component.sourceInfo.name}",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.clickable {
+                                runCatching {
+                                    context.startActivity(
+                                        Intent(Intent.ACTION_VIEW, Uri.parse(component.sourceInfo.url))
+                                    )
+                                }
+                            }
+                        )
+                    }
                 }
                 if (component.fileSize > 0) {
                     Text(
@@ -10613,22 +10646,25 @@ private fun EmulatorNewsCard(
             }
             if (expanded) {
                 Spacer(Modifier.height(8.dp))
-                news.forEach { e ->
+                // 分页：每页 8 条，最多 20 页（与主页/生态动态 NewsZoneCard 一致）
+                val pageSize = 8
+                var page by remember { mutableStateOf(0) }
+                val maxPage = ((news.size + pageSize - 1) / pageSize).coerceAtMost(20)
+                val pageNews = news.drop(page * pageSize).take(pageSize)
+                pageNews.forEachIndexed { idx, e ->
                     Row(
                         modifier = Modifier.fillMaxWidth().clickable { onOpen(e) }.padding(vertical = 6.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // 项目图标：数据源 logoUrl（缺失时 fallback 作者头像）
-                        val logo = e.logoUrl.ifBlank { if (e.owner.isNotBlank()) "https://github.com/${e.owner}.png?size=64" else "" }
-                        if (logo.isNotBlank()) {
-                            AsyncImage(
-                                model = logo,
-                                contentDescription = null,
-                                modifier = Modifier.size(32.dp).clip(RoundedCornerShape(8.dp)),
-                                contentScale = ContentScale.Crop
-                            )
-                            Spacer(Modifier.width(10.dp))
-                        }
+                        // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
+                        ProjectAvatar(
+                            logoUrl = e.logoUrl,
+                            owner = e.owner,
+                            fallbackName = e.name,
+                            size = 32.dp,
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                        Spacer(Modifier.width(10.dp))
                         Column(Modifier.weight(1f)) {
                             Text("${e.name} · ${e.latestTag}", style = MaterialTheme.typography.labelMedium,
                                 color = Fusion.OnSurface,
@@ -10648,8 +10684,10 @@ private fun EmulatorNewsCard(
                             color = Fusion.Primary
                         )
                     }
-                    if (e != news.last()) HorizontalDivider(color = Fusion.BorderAlt.copy(alpha = 0.6f))
+                    if (idx < pageNews.lastIndex) HorizontalDivider(color = Fusion.BorderAlt.copy(alpha = 0.6f))
                 }
+                // 分页控制条：首页 / 上一页 / 页码 / 下一页
+                NewsPager(total = news.size, page = page, pageSize = pageSize, onPage = { page = it })
             }
         }
     }
@@ -10702,17 +10740,15 @@ private fun EmulatorTrendingCard(
                             color = Fusion.GradientStart,
                             modifier = Modifier.width(22.dp)
                         )
-                        // 项目图标：数据源 logoUrl（缺失时 fallback 作者头像）
-                        val logo = entry?.logoUrl?.ifBlank { null } ?: entry?.owner?.takeIf { it.isNotBlank() }?.let { "https://github.com/$it.png?size=64" }
-                        if (logo != null) {
-                            AsyncImage(
-                                model = logo,
-                                contentDescription = null,
-                                modifier = Modifier.size(24.dp).clip(RoundedCornerShape(6.dp)),
-                                contentScale = ContentScale.Crop
-                            )
-                            Spacer(Modifier.width(8.dp))
-                        }
+                        // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
+                        ProjectAvatar(
+                            logoUrl = entry?.logoUrl ?: "",
+                            owner = entry?.owner ?: "",
+                            fallbackName = name,
+                            size = 24.dp,
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        Spacer(Modifier.width(8.dp))
                         Text(name, style = MaterialTheme.typography.labelMedium,
                             maxLines = 1, overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f))
@@ -10931,27 +10967,14 @@ private fun EmulatorHeroCard(
                 .padding(14.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (entry.logoUrl.isNotBlank()) {
-                AsyncImage(
-                    model = entry.logoUrl,
-                    contentDescription = null,
-                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(14.dp)),
-                    contentScale = ContentScale.Crop
-                )
-            } else {
-                Box(
-                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(14.dp))
-                        .background(Fusion.SurfaceAlt),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        entry.name.firstOrNull()?.uppercase() ?: "?",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Black,
-                        color = Fusion.Primary
-                    )
-                }
-            }
+            // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
+            ProjectAvatar(
+                logoUrl = entry.logoUrl,
+                owner = entry.owner,
+                fallbackName = entry.name,
+                size = 56.dp,
+                shape = RoundedCornerShape(14.dp)
+            )
             Spacer(Modifier.width(14.dp))
             Column(Modifier.weight(1f)) {
                 Text(
@@ -11032,26 +11055,14 @@ private fun EmulatorCard(
     ) {
         Column(Modifier.padding(10.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                if (entry.logoUrl.isNotBlank()) {
-                    AsyncImage(
-                        model = entry.logoUrl,
-                        contentDescription = null,
-                        modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp)),
-                        contentScale = ContentScale.Crop
-                    )
-                } else {
-                    Box(
-                        modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp))
-                            .background(Fusion.SurfaceAlt),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            entry.name.firstOrNull()?.uppercase() ?: "?",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = Fusion.Primary
-                        )
-                    }
-                }
+                // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
+                ProjectAvatar(
+                    logoUrl = entry.logoUrl,
+                    owner = entry.owner,
+                    fallbackName = entry.name,
+                    size = 36.dp,
+                    shape = RoundedCornerShape(10.dp)
+                )
                 Spacer(Modifier.width(6.dp))
                 // 名称独占主行宽度（maxLines=2），避免被徽章+按钮挤压成逐字截断
                 Text(
@@ -11110,6 +11121,16 @@ private fun EmulatorCard(
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            if (entry.note.isNotBlank()) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    entry.note,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.error,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -11437,26 +11458,14 @@ private fun EmulatorListRow(
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (entry.logoUrl.isNotBlank()) {
-                AsyncImage(
-                    model = entry.logoUrl,
-                    contentDescription = null,
-                    modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp)),
-                    contentScale = ContentScale.Crop
-                )
-            } else {
-                Box(
-                    modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp))
-                        .background(MaterialTheme.colorScheme.primaryContainer),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        entry.name.firstOrNull()?.uppercase() ?: "?",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                }
-            }
+            // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
+            ProjectAvatar(
+                logoUrl = entry.logoUrl,
+                owner = entry.owner,
+                fallbackName = entry.name,
+                size = 36.dp,
+                shape = RoundedCornerShape(10.dp)
+            )
             Spacer(Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
