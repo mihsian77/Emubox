@@ -12202,9 +12202,16 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                     )
                     Spacer(Modifier.height(8.dp))
                     InfoRow(
-                        label = appString(R.string.bench_upgrade_next),
+                        label = if (u.altName != null) "同厂商首选" else appString(R.string.bench_upgrade_next),
                         value = "${u.nextName}（+${u.gainPct}%）"
                     )
+                    if (u.altName != null) {
+                        Spacer(Modifier.height(4.dp))
+                        InfoRow(
+                            label = "次选（跨厂商）",
+                            value = "${u.altName}（+${u.altGainPct}%）"
+                        )
+                    }
                 }
             }
         }

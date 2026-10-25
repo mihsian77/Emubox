@@ -11,7 +11,16 @@ data class PcEquiv(val cpuName: String, val cpuScore: Long, val gpuName: String,
 data class EmulatorTier(val id: String, val name: String, val tier: String, val note: String)
 
 /** 升级建议：当前芯片的下一性能档 */
-data class UpgradeSuggestion(val nextName: String, val nextScore: Long, val gainPct: Int)
+/** 升级建议：首选同厂商更高档位；次选跨厂商（增益 15%~50% 内最近） */
+data class UpgradeSuggestion(
+    val nextName: String,
+    val nextScore: Long,
+    val gainPct: Int,
+    /** 跨厂商次选（同厂商无候选或增益过近时给出；无则 null） */
+    val altName: String? = null,
+    val altScore: Long? = null,
+    val altGainPct: Int? = null
+)
 
 /** 同芯机型条目：榜单收录才有分，未收录为 null（如实展示） */
 data class SameChipDevice(val name: String, val score: Long?)
@@ -278,31 +287,41 @@ object BenchEngine {
             }
         }.sortedBy { it.second }
         // 同厂商优先（骁龙→骁龙、天玑→天玑）：升级建议首推同品牌更高档位；
-        // 同厂商无合适候选（增益区间外/无更高分）才退到跨厂商，避免推荐跳到异家芯片
+        // 同厂商增益可达 60%+（骁龙8Gen2→8Gen3 约 65%），同厂商上限放宽到 0.85；
+        // 跨厂商候选（增益 15%~50%）作为次选列出，不作为首选。
         fun sameBrand(name: String): Boolean =
             selfBrand.isNotBlank() && name.contains(selfBrand)
 
-        var best: Pair<JSONObject, Long>? = null
+        var best: Pair<JSONObject, Long>? = null      // 首选：同厂商优先
+        var alt: Pair<JSONObject, Long>? = null       // 次选：跨厂商
         for ((o, s) in sorted) {
             if (s <= score) continue
             val gain = (s - score).toDouble() / score.toDouble()
             val name = JSONArray(o.optString("keys")).optString(0)
-            val maxGain = if (sameBrand(name)) 0.6 else 0.5
-            if (gain < 0.15 || gain > maxGain) continue
-            // 同厂商候选优先于跨厂商：跨厂商候选仅在无同厂商命中时保留
-            val cross = !sameBrand(name)
-            val curCross = best != null && !sameBrand(
-                JSONArray(best!!.first.optString("keys")).optString(0)
-            )
-            if (best == null || (cross && !curCross) || (!cross && curCross) ||
-                (cross == curCross && (s - score) < (best.second - score))
-            ) best = o to s
+            if (sameBrand(name)) {
+                if (gain >= 0.15 && gain <= 0.85 &&
+                    (best == null || (s - score) < (best!!.second - score))
+                ) best = o to s
+            } else if (gain >= 0.15 && gain <= 0.5 &&
+                (alt == null || (s - score) < (alt!!.second - score))
+            ) {
+                alt = o to s
+            }
+        }
+        // 同厂商有候选 → 首选同厂商；无 → 首选降级为跨厂商最近条
+        if (best == null) {
+            best = alt
+            alt = null
         }
         val b = best ?: return null
+        val a = alt
         return UpgradeSuggestion(
             nextName = JSONArray(b.first.optString("keys")).optString(0),
             nextScore = b.second,
-            gainPct = (((b.second - score).toDouble() / score.toDouble()) * 100).toInt()
+            gainPct = (((b.second - score).toDouble() / score.toDouble()) * 100).toInt(),
+            altName = a?.let { JSONArray(it.first.optString("keys")).optString(0) },
+            altScore = a?.second,
+            altGainPct = a?.let { (((it.second - score).toDouble() / score.toDouble()) * 100).toInt() }
         )
     }
 
