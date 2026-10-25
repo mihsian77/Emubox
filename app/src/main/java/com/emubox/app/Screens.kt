@@ -8894,7 +8894,8 @@ fun ComponentScreen(
             NewsZoneCard(
                 title = appString(R.string.news_component_title),
                 items = componentNewsItems,
-                category = "component"
+                category = "component",
+                typeFilter = true
             )
         }
 
@@ -9090,7 +9091,8 @@ fun RuntimeLibraryScreen(
         NewsZoneCard(
             title = appString(R.string.news_runtime_title),
             items = runtimeNewsItems,
-            category = "runtime"
+            category = "runtime",
+            typeFilter = true
         )
 
         // 数据来源与版权免责声明
@@ -9646,7 +9648,9 @@ private fun NewsZoneCard(
     title: String,
     items: List<NewsItem>?,
     category: String,
-    showGeneralFold: Boolean = false
+    showGeneralFold: Boolean = false,
+    /** 官方组件/运行库条目按 type 筛选（组件类型 chips） */
+    typeFilter: Boolean = false
 ) {
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
@@ -9679,8 +9683,50 @@ private fun NewsZoneCard(
                 }
                 else -> {
                     val pageSize = 8
-                    val catItems = items.filter { it.category == category }
+                    val catItemsAll = items.filter { it.category == category }
+                    // 官方组件/运行库：组件类型筛选 chips（全部 + 各 type）
+                    val typeOptions = if (typeFilter) {
+                        buildList {
+                            add("")
+                            addAll(catItemsAll.mapNotNull { it.type.takeIf { t -> t.isNotBlank() } }.distinct())
+                        }
+                    } else emptyList()
+                    var selectedType by remember(category, typeFilter) { mutableStateOf("") }
+                    val catItems = if (selectedType.isNotBlank()) {
+                        catItemsAll.filter { it.type == selectedType }
+                    } else catItemsAll
                     var page by remember { mutableStateOf(0) }
+                    if (typeFilter && typeOptions.size > 1) {
+                        // 类型筛选行：横向滚动 chips
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            typeOptions.forEach { t ->
+                                val label = if (t.isBlank()) appString(R.string.news_type_all) else t
+                                val selected = t == selectedType
+                                SuggestionChip(
+                                    onClick = { selectedType = t; page = 0 },
+                                    label = { Text(label, style = MaterialTheme.typography.labelSmall) },
+                                    colors = SuggestionChipDefaults.suggestionChipColors(
+                                        containerColor = if (selected) {
+                                            MaterialTheme.colorScheme.primaryContainer
+                                        } else {
+                                            MaterialTheme.colorScheme.surfaceVariant
+                                        },
+                                        labelColor = if (selected) {
+                                            MaterialTheme.colorScheme.onPrimaryContainer
+                                        } else {
+                                            MaterialTheme.colorScheme.onSurfaceVariant
+                                        }
+                                    )
+                                )
+                            }
+                        }
+                        Spacer(Modifier.height(4.dp))
+                    }
                     if (catItems.isEmpty()) {
                         Spacer(Modifier.height(8.dp))
                         Text(

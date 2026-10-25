@@ -7,14 +7,15 @@ import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
-/** IT之家新闻条目（news-data.json 由 CI 每日刷新） */
+/** 新闻条目（news-data.json 由 CI 每日刷新；官方组件/运行库条目带 type 字段） */
 data class NewsItem(
     val id: String,
     val title: String,
     val url: String,
     val publishedAt: Long,   // epoch 秒
-    val category: String,    // emulator / driver / eco / general
-    val summary: String
+    val category: String,    // emulator / driver / component / runtime / eco / general
+    val summary: String,
+    val type: String = ""    // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
 ) {
     /** 分类展示名（随 App 语言由 UI 层映射，此处仅存机器分类） */
     val categoryLabel: String
@@ -59,7 +60,8 @@ object NewsRepository {
                             url = o.optString("url"),
                             publishedAt = o.optLong("published_at", 0L),
                             category = o.optString("category", "general"),
-                            summary = o.optString("summary", "").trim().take(160)
+                            summary = o.optString("summary", "").trim().take(160),
+                            type = o.optString("type", "")
                         )
                     )
                 }
