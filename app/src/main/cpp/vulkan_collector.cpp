@@ -26,6 +26,7 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
 
 // ── VkFormat → 名称（format 矩阵 JSON 输出用）────────────────────────
 static const char* stringifyFormat(VkFormat f) {
@@ -1652,6 +1653,40 @@ static void warmupSystemVulkan() {
 // 导致崩溃（DRIVER_CRASHED），故跑分路径不申请映射，保留 fork 安全隔离。
 // ── 崩溃步骤日志：native 每关键步骤 append 一行，进程被杀后由主进程
 // 读取最后步骤定位崩溃点（真机无法抓 logcat 时的落地方案）。─────────────
+// ── 外部新版 adrenotools 运行时（FauxVkTest 1.11 同款，android_dlopen_ext
+// hook + /dev/kgsl 直连机制）。内置为 2021 linkernsbypass 旧版，其 GSL hook
+// 对现代 turnip（mesa 25+/27）初始化不兼容：warmup 通过后在 GPU mapping
+// import 打开驱动瞬间被杀（mapping_import_try 崩）。新版运行时以
+// libvulkan_samples.so 形式从 assets 解压到 filesDir，此处 dlopen + dlsym
+// 拿到新版 adrenotools_open_libvulkan，实测全链路优先走它；dlsym 失败
+// 自动回退内置旧版（不中断功能）。────────────────────────────
+static void* g_extRtHandle = nullptr;
+typedef void* (*AdrenotoolsOpenFn)(int, int, const char*, const char*, const char*,
+                                   const char*, const char*, void**);
+static AdrenotoolsOpenFn g_extOpen = nullptr;
+static char g_extRuntimeDir[512] = {0};
+
+static void loadExternalAdrenotools() {
+    if (g_extOpen) return;
+    if (g_extRuntimeDir[0] == '\0') return;
+    std::string soPath = std::string(g_extRuntimeDir) + "/libvulkan_samples.so";
+    if (access(soPath.c_str(), F_OK) != 0) return;
+    g_extRtHandle = dlopen(soPath.c_str(), RTLD_NOW | RTLD_GLOBAL);
+    if (!g_extRtHandle) {
+        LOGW("external adrenotools dlopen failed: %s", dlerror());
+        return;
+    }
+    g_extOpen = reinterpret_cast<AdrenotoolsOpenFn>(
+            dlsym(g_extRtHandle, "adrenotools_open_libvulkan"));
+    if (!g_extOpen) {
+        LOGW("external adrenotools dlsym failed: %s", dlerror());
+        dlclose(g_extRtHandle);
+        g_extRtHandle = nullptr;
+    } else {
+        LOGI("external adrenotools runtime ready (%s)", g_extRuntimeDir);
+    }
+}
+
 static std::string g_stepLogPath;
 static void stepLog(const char* msg) {
     if (g_stepLogPath.empty()) return;
@@ -1686,33 +1721,44 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
     // 子进程退出即释放，无需手动 close。
     void* lib = nullptr;
     std::string firstErr;
+    loadExternalAdrenotools();  // 优先新版运行时（FauxVkTest 同款），失败静默回退内置
+    const char* extHookDir = g_extOpen ? g_extRuntimeDir : hookLibDir;
     if (useMappingImport) {
         // 先预热系统 GPU 上下文（vktest/PPSSPP 同款前提），再挂载自定义驱动
         stepLog("adt:warmup_before");
         warmupSystemVulkan();
         stepLog("adt:warmup_after");
         stepLog("adt:mapping_import_try");
-        lib = adrenotools_open_libvulkan(
-                RTLD_NOW,
-                ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
-                td, hookLibDir, dd, driverName, nullptr, &mappingHandle);
+        lib = g_extOpen
+              ? g_extOpen(RTLD_NOW, ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
+                          td, extHookDir, dd, driverName, nullptr, &mappingHandle)
+              : adrenotools_open_libvulkan(
+                      RTLD_NOW,
+                      ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
+                      td, hookLibDir, dd, driverName, nullptr, &mappingHandle);
         if (!lib) {
             stepLog("adt:mapping_import_failed");
             firstErr = dlerror() ? dlerror() : "unknown";
             void* retryMapping = nullptr;
             stepLog("adt:custom_retry");
-            lib = adrenotools_open_libvulkan(
-                    RTLD_NOW,
-                    ADRENOTOOLS_DRIVER_CUSTOM,
-                    td, hookLibDir, dd, driverName, nullptr, &retryMapping);
+            lib = g_extOpen
+                  ? g_extOpen(RTLD_NOW, ADRENOTOOLS_DRIVER_CUSTOM,
+                              td, extHookDir, dd, driverName, nullptr, &retryMapping)
+                  : adrenotools_open_libvulkan(
+                          RTLD_NOW,
+                          ADRENOTOOLS_DRIVER_CUSTOM,
+                          td, hookLibDir, dd, driverName, nullptr, &retryMapping);
         }
     } else {
         // 跑分路径：强制仅 CUSTOM，不申请 GPU 映射，规避映射句柄跨 fork 失效。
         stepLog("adt:custom_only_try");
-        lib = adrenotools_open_libvulkan(
-                RTLD_NOW,
-                ADRENOTOOLS_DRIVER_CUSTOM,
-                td, hookLibDir, dd, driverName, nullptr, nullptr);
+        lib = g_extOpen
+              ? g_extOpen(RTLD_NOW, ADRENOTOOLS_DRIVER_CUSTOM,
+                          td, extHookDir, dd, driverName, nullptr, nullptr)
+              : adrenotools_open_libvulkan(
+                      RTLD_NOW,
+                      ADRENOTOOLS_DRIVER_CUSTOM,
+                      td, hookLibDir, dd, driverName, nullptr, nullptr);
     }
     if (!lib) {
         stepLog("adt:open_failed");
@@ -3162,4 +3208,24 @@ Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
     env->ReleaseStringUTFChars(hookLibDir, hl);
     if (lp) env->ReleaseStringUTFChars(logPath, lp);
     return env->NewStringUTF(json.c_str());
+}
+
+// 设置外部新版 adrenotools 运行时目录（assets 解压到 filesDir/fauxvktest-runtime）。
+// 实测/跑分/渲染任一入口调用前由 Kotlin 侧调用一次；dlopen 失败静默回退内置旧版。
+extern "C" JNIEXPORT void JNICALL
+Java_com_emubox_app_NativeVulkanBridge_setExternalRuntimeDir(
+        JNIEnv* env, jobject /* thiz */, jstring runtimeDir) {
+    const char* rd = runtimeDir ? env->GetStringUTFChars(runtimeDir, nullptr) : nullptr;
+    if (rd) {
+        snprintf(g_extRuntimeDir, sizeof(g_extRuntimeDir), "%s", rd);
+        env->ReleaseStringUTFChars(runtimeDir, rd);
+    } else {
+        g_extRuntimeDir[0] = '\0';
+    }
+    g_extOpen = nullptr;
+    if (g_extRtHandle) {
+        dlclose(g_extRtHandle);
+        g_extRtHandle = nullptr;
+    }
+    loadExternalAdrenotools();
 }
