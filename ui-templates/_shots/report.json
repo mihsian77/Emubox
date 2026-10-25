@@ -1,0 +1,465 @@
+{
+  "src": "UI重构模板v1.html",
+  "url": "file:///home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/UI%E9%87%8D%E6%9E%84%E6%A8%A1%E6%9D%BFv1.html",
+  "outdir": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/_shots",
+  "include": [
+    "lint",
+    "screenshots",
+    "structure"
+  ],
+  "shots": {
+    "desktop": {
+      "revealed": 0,
+      "screenshot": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/_shots/UI重构模板v1_desktop.jpg",
+      "screenshotBytes": 79030,
+      "truncated": false,
+      "structure": {
+        "title": "EmuHub 1.4 UI 重构风格模板 v1",
+        "firstH1": "EmuHub 1.4 · UI 重构风格模板 v1",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "fullpage": {
+          "w": 1440,
+          "h": 1030
+        },
+        "counts": {
+          "section": 3,
+          "h1": 1,
+          "h2": 3,
+          "img": 0,
+          "canvas": 0,
+          "svg": 0,
+          "links": 0,
+          "buttons": 0
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [],
+      "emojiUsageWarning": [
+        {
+          "tag": "div",
+          "chars": "⚠",
+          "contextText": "⚠ 模板仅定视觉方向（色板 / 卡片 / 密度 / 字体），不代表最终功能布局"
+        },
+        {
+          "tag": "b",
+          "chars": "⛁",
+          "contextText": "⛁"
+        },
+        {
+          "tag": "b",
+          "chars": "⚙",
+          "contextText": "⚙"
+        },
+        {
+          "tag": "b",
+          "chars": "⛁",
+          "contextText": "⛁"
+        },
+        {
+          "tag": "b",
+          "chars": "⚙",
+          "contextText": "⚙"
+        },
+        {
+          "tag": "span",
+          "chars": "✓",
+          "contextText": "adreno ✓"
+        },
+        {
+          "tag": "b",
+          "chars": "⛁",
+          "contextText": "⛁"
+        },
+        {
+          "tag": "b",
+          "chars": "⚙",
+          "contextText": "⚙"
+        }
+      ],
+      "emojiUsageHint": "warning · 含义：页面正文里检出 emoji 字符（U+1F300–U+1FAFF 或 U+2600–U+27BF 平面）。SKILL.md 视觉设计段明确禁用 emoji——不作图标、不作装饰、不放进数据。 | 修法：换成内联 SVG 图标（<svg viewBox=\"0 0 24 24\">）建立风格连贯的图标语言。 | 豁免：(1) **用户品牌资产明确包含 emoji**（罕见，但如即时通讯、社交媒体主题的产物合理）；(2) 主题本身就是关于 emoji 的（emoji 历史 / 表情包研究 / Unicode 演进）；(3) 引用某条真实文本原文（如推文截图的文字版），emoji 是内容而非装饰——保留原文可接受，但仍应权衡；(4) 装饰性 dingbat（如 U+2713 勾选符 ✓、U+2192 箭头 →、U+2605 星 ★）落入 U+2600–U+27BF 平面被误报的，如确认是符号非 emoji 可忽略。",
+      "faviconWarning": {
+        "present": false
+      },
+      "faviconHint": "warning · 含义：没有任何 favicon 声明——浏览器 tab、书签、历史记录里显示的是空白默认图标，产物看起来没做完。实测模型原始产物的缺失率 94%。 | 修法：用**内联 SVG data URI**，一行搞定、零额外文件：`<link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F766E'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E\">`。图形取产物主题里的一个符号（首字母、核心图标、品牌形状），配色沿用页面主色，别用无关的通用图标。 | **三个必须注意的编码细节**：外层 href 用双引号、SVG 内部属性用单引号；`<` `>` 写成 `%3C` `%3E`；**颜色的 `#` 必须写成 `%23`**——不编码会被当成 URL fragment，图标直接不显示。想做深浅色两版就写两个 link，加 `media=\"(prefers-color-scheme: dark)\"`。 | 为什么只能用 data URI：`link href` **不在发布链路的资源收集白名单里**（那里只认 `src` 属性和 CSS `url()`），指向 `assets/` 的图标文件发布后必然 404；而且额外文件破坏单文件自包含，用户拿到一个 html 就该能用。 | 会不会被平台图标覆盖：不会。发布平台把自己的默认 favicon 注入在 `<head>` 最前面，浏览器对多个 icon link **取最后一个**，模型写在后面的那个生效。 | 豁免：(1) 产物是页面片段（没有完整 `<head>`）时不适用；(2) externalRefs 指向 CDN 域名（`lf3-static.bytednsdoc.com` 之类）时，那是**发布平台注入的**默认图标，不是你写的——迭代已发布产物时会看到，忽略即可，自己另加一个 data URI 的 link 就行（浏览器对多个 icon link 取最后一个）。"
+    },
+    "mobile": {
+      "revealed": 0,
+      "screenshot": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/_shots/UI重构模板v1_mobile.jpg",
+      "screenshotBytes": 132713,
+      "truncated": false,
+      "structure": {
+        "title": "EmuHub 1.4 UI 重构风格模板 v1",
+        "firstH1": "EmuHub 1.4 · UI 重构风格模板 v1",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "fullpage": {
+          "w": 390,
+          "h": 2824
+        },
+        "counts": {
+          "section": 3,
+          "h1": 1,
+          "h2": 3,
+          "img": 0,
+          "canvas": 0,
+          "svg": 0,
+          "links": 0,
+          "buttons": 0
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [],
+      "emojiUsageWarning": [
+        {
+          "tag": "div",
+          "chars": "⚠",
+          "contextText": "⚠ 模板仅定视觉方向（色板 / 卡片 / 密度 / 字体），不代表最终功能布局"
+        },
+        {
+          "tag": "b",
+          "chars": "⛁",
+          "contextText": "⛁"
+        },
+        {
+          "tag": "b",
+          "chars": "⚙",
+          "contextText": "⚙"
+        },
+        {
+          "tag": "b",
+          "chars": "⛁",
+          "contextText": "⛁"
+        },
+        {
+          "tag": "b",
+          "chars": "⚙",
+          "contextText": "⚙"
+        },
+        {
+          "tag": "span",
+          "chars": "✓",
+          "contextText": "adreno ✓"
+        },
+        {
+          "tag": "b",
+          "chars": "⛁",
+          "contextText": "⛁"
+        },
+        {
+          "tag": "b",
+          "chars": "⚙",
+          "contextText": "⚙"
+        }
+      ],
+      "emojiUsageHint": "warning · 含义：页面正文里检出 emoji 字符（U+1F300–U+1FAFF 或 U+2600–U+27BF 平面）。SKILL.md 视觉设计段明确禁用 emoji——不作图标、不作装饰、不放进数据。 | 修法：换成内联 SVG 图标（<svg viewBox=\"0 0 24 24\">）建立风格连贯的图标语言。 | 豁免：(1) **用户品牌资产明确包含 emoji**（罕见，但如即时通讯、社交媒体主题的产物合理）；(2) 主题本身就是关于 emoji 的（emoji 历史 / 表情包研究 / Unicode 演进）；(3) 引用某条真实文本原文（如推文截图的文字版），emoji 是内容而非装饰——保留原文可接受，但仍应权衡；(4) 装饰性 dingbat（如 U+2713 勾选符 ✓、U+2192 箭头 →、U+2605 星 ★）落入 U+2600–U+27BF 平面被误报的，如确认是符号非 emoji 可忽略。",
+      "faviconWarning": {
+        "present": false
+      },
+      "faviconHint": "warning · 含义：没有任何 favicon 声明——浏览器 tab、书签、历史记录里显示的是空白默认图标，产物看起来没做完。实测模型原始产物的缺失率 94%。 | 修法：用**内联 SVG data URI**，一行搞定、零额外文件：`<link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F766E'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E\">`。图形取产物主题里的一个符号（首字母、核心图标、品牌形状），配色沿用页面主色，别用无关的通用图标。 | **三个必须注意的编码细节**：外层 href 用双引号、SVG 内部属性用单引号；`<` `>` 写成 `%3C` `%3E`；**颜色的 `#` 必须写成 `%23`**——不编码会被当成 URL fragment，图标直接不显示。想做深浅色两版就写两个 link，加 `media=\"(prefers-color-scheme: dark)\"`。 | 为什么只能用 data URI：`link href` **不在发布链路的资源收集白名单里**（那里只认 `src` 属性和 CSS `url()`），指向 `assets/` 的图标文件发布后必然 404；而且额外文件破坏单文件自包含，用户拿到一个 html 就该能用。 | 会不会被平台图标覆盖：不会。发布平台把自己的默认 favicon 注入在 `<head>` 最前面，浏览器对多个 icon link **取最后一个**，模型写在后面的那个生效。 | 豁免：(1) 产物是页面片段（没有完整 `<head>`）时不适用；(2) externalRefs 指向 CDN 域名（`lf3-static.bytednsdoc.com` 之类）时，那是**发布平台注入的**默认图标，不是你写的——迭代已发布产物时会看到，忽略即可，自己另加一个 data URI 的 link 就行（浏览器对多个 icon link 取最后一个）。"
+    }
+  },
+  "engine": "playwright",
+  "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
+  "elapsedSec": 5.37,
+  "schemaVersion": 2,
+  "status": "warning",
+  "engineInfo": {
+    "name": "playwright",
+    "degraded": false,
+    "degradedReasons": []
+  },
+  "input": {
+    "original": "UI重构模板v1.html",
+    "resolvedPath": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/UI重构模板v1.html",
+    "baseUrl": "file:///home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/UI%E9%87%8D%E6%9E%84%E6%A8%A1%E6%9D%BFv1.html",
+    "protocol": "file",
+    "cwd": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates",
+    "mediaMode": {
+      "reducedMotion": true
+    }
+  },
+  "artifacts": {
+    "screenshots": [
+      {
+        "viewport": "desktop",
+        "path": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/_shots/UI重构模板v1_desktop.jpg",
+        "size": 79030,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      },
+      {
+        "viewport": "mobile",
+        "path": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/_shots/UI重构模板v1_mobile.jpg",
+        "size": 132713,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      }
+    ]
+  },
+  "summary": {
+    "blocker": 0,
+    "error": 0,
+    "warning": 18,
+    "info": 0
+  },
+  "findings": [
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "div",
+      "evidence": {
+        "tag": "div",
+        "chars": "⚠",
+        "contextText": "⚠ 模板仅定视觉方向（色板 / 卡片 / 密度 / 字体），不代表最终功能布局"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|div|0"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⛁",
+        "contextText": "⛁"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|b|1"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⚙",
+        "contextText": "⚙"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|b|2"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⛁",
+        "contextText": "⛁"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|b|3"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⚙",
+        "contextText": "⚙"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|b|4"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "span",
+      "evidence": {
+        "tag": "span",
+        "chars": "✓",
+        "contextText": "adreno ✓"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|span|5"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⛁",
+        "contextText": "⛁"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|b|6"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "desktop",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⚙",
+        "contextText": "⚙"
+      },
+      "dedupeKey": "emojiUsageWarning|desktop|b|7"
+    },
+    {
+      "ruleId": "faviconWarning",
+      "severity": "warning",
+      "kind": "metadata",
+      "viewport": "desktop",
+      "selector": null,
+      "evidence": {
+        "present": false
+      },
+      "dedupeKey": "faviconWarning|desktop||0"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "div",
+      "evidence": {
+        "tag": "div",
+        "chars": "⚠",
+        "contextText": "⚠ 模板仅定视觉方向（色板 / 卡片 / 密度 / 字体），不代表最终功能布局"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|div|0"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⛁",
+        "contextText": "⛁"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|b|1"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⚙",
+        "contextText": "⚙"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|b|2"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⛁",
+        "contextText": "⛁"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|b|3"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⚙",
+        "contextText": "⚙"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|b|4"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "span",
+      "evidence": {
+        "tag": "span",
+        "chars": "✓",
+        "contextText": "adreno ✓"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|span|5"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⛁",
+        "contextText": "⛁"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|b|6"
+    },
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "kind": "typography",
+      "viewport": "mobile",
+      "selector": "b",
+      "evidence": {
+        "tag": "b",
+        "chars": "⚙",
+        "contextText": "⚙"
+      },
+      "dedupeKey": "emojiUsageWarning|mobile|b|7"
+    },
+    {
+      "ruleId": "faviconWarning",
+      "severity": "warning",
+      "kind": "metadata",
+      "viewport": "mobile",
+      "selector": null,
+      "evidence": {
+        "present": false
+      },
+      "dedupeKey": "faviconWarning|mobile||0"
+    }
+  ],
+  "prioritizedActions": [
+    {
+      "ruleId": "emojiUsageWarning",
+      "severity": "warning",
+      "viewport": "desktop",
+      "selector": "div"
+    },
+    {
+      "ruleId": "faviconWarning",
+      "severity": "warning",
+      "viewport": "desktop",
+      "selector": null
+    }
+  ],
+  "reportPath": "/home/user/Doubao/chats/38444562484718594/emuhub-cn/ui-templates/_shots/report.json"
+}

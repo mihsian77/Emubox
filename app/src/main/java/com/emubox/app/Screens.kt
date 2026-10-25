@@ -7041,8 +7041,12 @@ private fun DriverDetectionList(
         return null
     }
 
+    // 外部新版 adrenotools 运行时引导（FauxVkTest 同款机制，修复内置旧版 mapping import 崩）
+    fun ensureExternalRuntime() = RuntimeBootstrap.ensure(context)
+
     val testWithAdrenoTools: (String, String) -> Unit = { id, filePath ->
         adrenotoolsTestingId = id
+        ensureExternalRuntime()
         scope.launch(Dispatchers.IO) {
             try {
                 val soFile = extractSoFor(id, filePath)
@@ -7136,6 +7140,7 @@ private fun DriverDetectionList(
     // 结果文件独立命名（bench_ 前缀），不占用检测轮询位。
     val benchmarkDriver: (String, String) -> Unit = { id, filePath ->
         benchmarkingId = id
+        ensureExternalRuntime()
         scope.launch(Dispatchers.IO) {
             try {
                 val soFile = extractSoFor(id, filePath)

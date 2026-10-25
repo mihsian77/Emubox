@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EmuHub 1.4 UI 重构风格模板 v1</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:#0e1013; color:#e8eaed; padding:28px 20px 60px; }
+  .page-head { max-width:1320px; margin:0 auto 10px; }
+  .page-head h1 { font-size:22px; font-weight:700; letter-spacing:.5px; }
+  .page-head p { color:#9aa0a8; font-size:13px; margin-top:6px; line-height:1.7; }
+  .page-head .rule { color:#c9a86a; font-size:12px; margin-top:8px; }
+  .grid { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px; }
+  @media (max-width:1080px){ .grid{grid-template-columns:1fr;} }
+  .tpl { background:#171a1f; border:1px solid #262b32; border-radius:16px; padding:18px 18px 22px; }
+  .tpl-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; }
+  .tpl-head h2 { font-size:16px; font-weight:700; }
+  .tpl-head .tag { font-size:11px; padding:3px 8px; border-radius:20px; }
+  .tpl-desc { font-size:12px; color:#9aa0a8; margin-bottom:12px; line-height:1.6; }
+  .swatches { display:flex; gap:6px; margin-bottom:14px; }
+  .swatches i { width:26px; height:26px; border-radius:8px; border:1px solid rgba(255,255,255,.14); }
+  .swatches em { font-style:normal; font-size:10px; color:#7c828c; align-self:center; }
+
+  /* 手机 mockup */
+  .phone { width:322px; margin:0 auto; background:#000; border-radius:34px; padding:9px; box-shadow:0 24px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.06); }
+  .screen { position:relative; border-radius:26px; overflow:hidden; height:640px; display:flex; flex-direction:column; }
+  .notch { position:absolute; top:10px; left:50%; transform:translateX(-50%); width:96px; height:22px; background:#000; border-radius:12px; z-index:50; }
+  .statusbar { height:44px; display:flex; justify-content:space-between; align-items:flex-end; padding:0 20px 6px; font-size:11px; font-weight:600; position:relative; z-index:40; }
+  .appbar { padding:8px 14px 4px; display:flex; align-items:center; gap:8px; }
+  .appbar .logo { width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; }
+  .appbar h3 { font-size:15px; font-weight:700; }
+  .appbar .seg { margin-left:auto; display:flex; background:rgba(128,128,128,.16); border-radius:8px; padding:2px; }
+  .appbar .seg span { font-size:11px; padding:3px 9px; border-radius:6px; color:#9aa0a8; cursor:pointer; }
+  .appbar .seg span.on { background:rgba(255,255,255,.9); color:#000; font-weight:600; }
+  .content { flex:1; overflow:hidden; position:relative; }
+  .page { position:absolute; inset:0; padding:10px 12px 84px; overflow-y:auto; display:none; }
+  .page.on { display:block; }
+  .page::-webkit-scrollbar{width:0}
+  .nav { position:absolute; bottom:0; left:0; right:0; height:74px; display:flex; align-items:stretch; padding:0 6px; z-index:40; }
+  .nav i { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-style:normal; font-size:10px; }
+  .nav i b { font-size:16px; font-weight:600; line-height:1; }
+  .footnote { text-align:center; font-size:11px; color:#6b7078; margin-top:12px; }
+</style>
+<style>
+/* ═══ 模板 A · 璃光暗夜（Dark Glass）═══ */
+.a .screen { background:#0d1017; color:#e8ecf4; }
+.a .statusbar { color:#dfe5f0; }
+.a .appbar .logo { background:linear-gradient(135deg,#38bdf8,#a78bfa); color:#fff; }
+.a .content { background:radial-gradient(1200px 500px at 20% -10%,rgba(56,189,248,.10),transparent 60%),radial-gradient(1000px 420px at 90% 0%,rgba(167,139,250,.12),transparent 60%),#0d1017; }
+.a .nav { background:rgba(13,16,23,.82); backdrop-filter:blur(14px); border-top:1px solid rgba(255,255,255,.07); }
+.a .nav i { color:#5b6472; }
+.a .nav i.on { color:#7dd3fc; }
+.a .nav i.on b { color:#7dd3fc; text-shadow:0 0 14px rgba(125,211,252,.55); }
+.a .hero { border-radius:16px; padding:14px; background:linear-gradient(135deg,rgba(56,189,248,.20),rgba(167,139,250,.22)); border:1px solid rgba(255,255,255,.10); margin-bottom:12px; }
+.a .hero .t { font-size:13px; font-weight:700; }
+.a .hero .s { font-size:11px; color:#aab4c4; margin-top:3px; }
+.a .chip { display:inline-block; font-size:10px; padding:3px 8px; border-radius:20px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.12); color:#cfe3ff; }
+.a .card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:10px; margin-bottom:8px; }
+.a .card .row { display:flex; align-items:center; gap:9px; }
+.a .card .ic { width:34px; height:34px; border-radius:10px; flex:none; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; }
+.a .card .nm { font-size:12px; font-weight:600; }
+.a .card .sub { font-size:10px; color:#8e97a6; margin-top:1px; }
+.a .card .rt { margin-left:auto; text-align:right; flex:none; }
+.a .sec { font-size:12px; font-weight:700; color:#c3cbd8; margin:12px 0 7px; display:flex; justify-content:space-between; }
+.a .sec em { font-style:normal; font-size:10px; color:#6c7686; }
+.a .pill { font-size:9px; padding:2px 7px; border-radius:12px; background:rgba(56,189,248,.18); color:#7dd3fc; border:1px solid rgba(56,189,248,.3); }
+.a .pill.ok { background:rgba(74,222,128,.16); color:#86efac; border-color:rgba(74,222,128,.3); }
+
+/* ═══ 模板 B · 浅雾极客（Light Tech）═══ */
+.b .screen { background:#f4f6fa; color:#1c2333; }
+.b .statusbar { color:#2a3245; }
+.b .appbar .logo { background:#3b5bfd; color:#fff; }
+.b .content { background:#f4f6fa; }
+.b .nav { background:#fff; border-top:1px solid #e6eaf2; }
+.b .nav i { color:#98a2b8; }
+.b .nav i.on { color:#3b5bfd; }
+.b .nav i.on b { color:#3b5bfd; }
+.b .hero { border-radius:14px; padding:14px; background:#fff; box-shadow:0 6px 18px rgba(59,91,253,.10); border:1px solid #e8edf7; margin-bottom:12px; }
+.b .hero .t { font-size:13px; font-weight:700; }
+.b .hero .s { font-size:11px; color:#67718a; margin-top:3px; }
+.b .chip { display:inline-block; font-size:10px; padding:3px 8px; border-radius:6px; background:#eef2fe; color:#3b5bfd; font-weight:600; }
+.b .card { background:#fff; border:1px solid #e8edf7; border-radius:12px; padding:10px; margin-bottom:8px; box-shadow:0 2px 6px rgba(20,30,70,.04); }
+.b .card .row { display:flex; align-items:center; gap:9px; }
+.b .card .ic { width:34px; height:34px; border-radius:8px; flex:none; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; background:#f0f3fc; color:#3b5bfd; }
+.b .card .nm { font-size:12px; font-weight:600; color:#1c2333; }
+.b .card .sub { font-size:10px; color:#8a93a8; margin-top:1px; }
+.b .card .rt { margin-left:auto; text-align:right; flex:none; }
+.b .sec { font-size:12px; font-weight:700; color:#2a3245; margin:12px 0 7px; display:flex; justify-content:space-between; }
+.b .sec em { font-style:normal; font-size:10px; color:#98a2b8; }
+.b .pill { font-size:9px; padding:2px 7px; border-radius:6px; background:#eef2fe; color:#3b5bfd; font-weight:600; }
+.b .pill.ok { background:#e7f9ef; color:#16a34a; }
+
+/* ═══ 模板 C · 终端工坊（Terminal）═══ */
+.c .screen { background:#0b0d0e; color:#d4d6d2; font-family:"JetBrains Mono","SF Mono",Consolas,monospace; }
+.c .statusbar { color:#9aa59a; }
+.c .appbar .logo { background:#22c55e; color:#0b0d0e; border-radius:6px; font-family:"JetBrains Mono",monospace; }
+.c .appbar h3 { font-family:"JetBrains Mono",monospace; }
+.c .content { background:#0b0d0e; }
+.c .content::before { content:""; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(34,197,94,.025) 3px,rgba(34,197,94,.025) 4px); pointer-events:none; }
+.c .nav { background:rgba(11,13,14,.9); border-top:1px solid rgba(34,197,94,.22); }
+.c .nav i { color:#5c665c; }
+.c .nav i.on { color:#22c55e; }
+.c .nav i.on b { color:#22c55e; text-shadow:0 0 10px rgba(34,197,94,.6); }
+.c .hero { border:1px solid rgba(34,197,94,.35); border-radius:8px; padding:12px; background:rgba(34,197,94,.05); margin-bottom:12px; }
+.c .hero .t { font-size:12px; font-weight:700; color:#86efac; }
+.c .hero .s { font-size:10px; color:#7d8a7d; margin-top:3px; }
+.c .chip { display:inline-block; font-size:10px; padding:2px 7px; border:1px solid rgba(34,197,94,.4); color:#22c55e; border-radius:3px; }
+.c .card { border:1px solid rgba(255,255,255,.08); border-left:3px solid #22c55e; border-radius:6px; padding:9px; margin-bottom:7px; background:rgba(255,255,255,.02); }
+.c .card .row { display:flex; align-items:center; gap:9px; }
+.c .card .ic { width:32px; height:32px; border-radius:5px; flex:none; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; background:#151a16; border:1px solid rgba(34,197,94,.35); color:#86efac; }
+.c .card .nm { font-size:11px; font-weight:700; }
+.c .card .sub { font-size:9px; color:#6f7a6f; margin-top:1px; }
+.c .card .rt { margin-left:auto; text-align:right; flex:none; }
+.c .sec { font-size:11px; font-weight:700; color:#86efac; margin:11px 0 6px; display:flex; justify-content:space-between; }
+.c .sec em { font-style:normal; font-size:9px; color:#566056; }
+.c .pill { font-size:9px; padding:1px 6px; border:1px solid rgba(34,197,94,.4); color:#22c55e; border-radius:3px; }
+.c .pill.ok { background:rgba(34,197,94,.15); color:#86efac; border-color:rgba(34,197,94,.5); }
+.c .footnote { color:#566056; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <h1>EmuHub 1.4 · UI 重构风格模板 v1</h1>
+  <p>三套方向，每个框架内点「首页 / 列表」切换看两种页面形态。选定后按整套 token 落地到 Compose 主题。</p>
+  <div class="rule">⚠ 模板仅定视觉方向（色板 / 卡片 / 密度 / 字体），不代表最终功能布局</div>
+</div>
+
+<div class="grid">
+
+  <!-- ═══ 模板 A ═══ -->
+  <section class="tpl a">
+    <div class="tpl-head">
+      <h2>A · 璃光暗夜</h2>
+      <span class="tag" style="background:rgba(125,211,252,.15);color:#7dd3fc;">深色玻璃拟态</span>
+    </div>
+    <div class="tpl-desc">深底 + 玻璃模糊卡片 + 青→紫渐变强调。适合模拟器工具的气质：暗夜里发光的设备库。</div>
+    <div class="swatches"><i style="background:#0d1017"></i><i style="background:#1b2130"></i><i style="background:#38bdf8"></i><i style="background:#a78bfa"></i><i style="background:#86efac"></i><em>底色 / 卡片 / 主强调 / 副强调 / 成功态</em></div>
+    <div class="phone">
+      <div class="screen">
+        <div class="notch"></div>
+        <div class="statusbar"><span>10:24</span><span>5G ▮▮▮▯ ◐ 86%</span></div>
+        <div class="appbar">
+          <div class="logo">E</div><h3>EmuHub</h3>
+          <div class="seg"><span class="on" onclick="sw(this,'A')">首页</span><span onclick="sw(this,'A')">列表</span></div>
+        </div>
+        <div class="content">
+          <div class="page on" data-p="A1">
+            <div class="hero">
+              <div class="t">今日推荐 · Winlator 11.2</div>
+              <div class="s">GloriousEggroll 分支 · 每周四自动更新 · 已收录</div>
+              <div style="display:flex;gap:6px;margin-top:8px;"><span class="chip">Box64 集成</span><span class="chip">DXVK 2.0</span><span class="chip ok" style="color:#86efac">完美适配骁龙</span></div>
+            </div>
+            <div class="sec">分区入口 <em>6 个分区 · 63 款模拟器</em></div>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+              <div class="card"><div class="row"><div class="ic" style="background:rgba(56,189,248,.2);color:#7dd3fc;">M</div><div><div class="nm">模拟器</div><div class="sub">双源排行</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic" style="background:rgba(167,139,250,.2);color:#c4b5fd;">D</div><div><div class="nm">驱动</div><div class="sub">适配检测</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic" style="background:rgba(74,222,128,.18);color:#86efac;">R</div><div><div class="nm">运行库</div><div class="sub">来源可溯</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic" style="background:rgba(251,191,36,.16);color:#fcd34d;">C</div><div><div class="nm">组件</div><div class="sub">每周捆绑</div></div></div></div>
+            </div>
+            <div class="sec">生态动态 <em>2h 前更新</em></div>
+            <div class="card"><div class="row"><div class="ic" style="background:rgba(56,189,248,.2);color:#7dd3fc;">T</div><div style="flex:1;min-width:0"><div class="nm">turnip 27.0.0 发布</div><div class="sub">Mesa 主线合并 Adreno 新提交</div></div><span class="pill ok">新</span></div></div>
+            <div class="card"><div class="row"><div class="ic" style="background:rgba(167,139,250,.2);color:#c4b5fd;">S</div><div style="flex:1;min-width:0"><div class="nm">Skyline 复活</div><div class="sub">社区分支重启 Switch 开发</div></div><span class="pill">社区</span></div></div>
+          </div>
+          <div class="page" data-p="A2">
+            <div class="sec">模拟器 · 热门 <em>按 14 天下载增量</em></div>
+            <div class="card"><div class="row"><div class="ic" style="background:rgba(56,189,248,.2);color:#7dd3fc;">W</div><div style="flex:1;min-width:0"><div class="nm">Winlator BrunoDev</div><div class="sub">v11.2.0 · 16.1M 下载</div></div><div class="rt"><span class="pill ok">官方</span><div style="font-size:10px;color:#8e97a6;margin-top:2px">157 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic" style="background:rgba(167,139,250,.2);color:#c4b5fd;">A</div><div style="flex:1;min-width:0"><div class="nm">Azahar</div><div class="sub">2127.0-alpha1 · 8.6M 下载</div></div><div class="rt"><span class="pill">3DS</span><div style="font-size:10px;color:#8e97a6;margin-top:2px">81 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic" style="background:rgba(74,222,128,.18);color:#86efac;">P</div><div style="flex:1;min-width:0"><div class="nm">PPSSPP</div><div class="sub">v1.19.1 · 官方直连</div></div><div class="rt"><span class="pill ok">官方</span><div style="font-size:10px;color:#8e97a6;margin-top:2px">38 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic" style="background:rgba(251,191,36,.16);color:#fcd34d;">Y</div><div style="flex:1;min-width:0"><div class="nm">Yuzu (fork)</div><div class="sub">社区维护 · 2.2M 下载</div></div><div class="rt"><span class="pill">Switch</span><div style="font-size:10px;color:#8e97a6;margin-top:2px">63 MB</div></div></div></div>
+          </div>
+        </div>
+        <div class="nav">
+          <i><b>⌂</b>主页</i><i class="on"><b>▦</b>模拟器</i><i><b>⛁</b>驱动</i><i><b>▤</b>运行库</i><i><b>⚙</b>设备</i>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">玻璃卡片 · 发光导航指示 · 渐变主视觉</div>
+  </section>
+
+  <!-- ═══ 模板 B ═══ -->
+  <section class="tpl b">
+    <div class="tpl-head">
+      <h2>B · 浅雾极客</h2>
+      <span class="tag" style="background:rgba(59,91,253,.15);color:#6f8cff;">浅色效率工具</span>
+    </div>
+    <div class="tpl-desc">浅色 + 白卡片 + 靛蓝强调，信息密度高、层次干净。像专业工具的界面，弱化"游戏感"。</div>
+    <div class="swatches"><i style="background:#f4f6fa"></i><i style="background:#ffffff"></i><i style="background:#3b5bfd"></i><i style="background:#16a34a"></i><i style="background:#eef2fe"></i><em>底色 / 卡片 / 主强调 / 成功态 / 选中底</em></div>
+    <div class="phone">
+      <div class="screen">
+        <div class="notch"></div>
+        <div class="statusbar"><span>10:24</span><span>5G ▮▮▮▯ ◐ 86%</span></div>
+        <div class="appbar">
+          <div class="logo">E</div><h3>EmuHub</h3>
+          <div class="seg"><span class="on" onclick="sw(this,'B')">首页</span><span onclick="sw(this,'B')">列表</span></div>
+        </div>
+        <div class="content">
+          <div class="page on" data-p="B1">
+            <div class="hero">
+              <div class="t">Winlator 11.2 · 已是最新</div>
+              <div class="s">上次同步 2 小时前 · 16.1M 下载 · 完美适配骁龙 8 Gen 2</div>
+              <div style="display:flex;gap:6px;margin-top:8px;"><span class="chip">官方源</span><span class="chip">DXVK 2.0</span><span class="chip ok">适配通过</span></div>
+            </div>
+            <div class="sec">分区入口 <em>6 分区</em></div>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+              <div class="card"><div class="row"><div class="ic">M</div><div><div class="nm">模拟器</div><div class="sub">63 款</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic">D</div><div><div class="nm">驱动</div><div class="sub">按设备匹配</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic">R</div><div><div class="nm">运行库</div><div class="sub">来源可溯</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic">C</div><div><div class="nm">组件</div><div class="sub">每周捆绑</div></div></div></div>
+            </div>
+            <div class="sec">生态动态 <em>2h 前</em></div>
+            <div class="card"><div class="row"><div class="ic">T</div><div style="flex:1;min-width:0"><div class="nm">turnip 27.0.0 发布</div><div class="sub">Mesa 主线 · Adreno 新提交</div></div><span class="pill ok">新</span></div></div>
+            <div class="card"><div class="row"><div class="ic">S</div><div style="flex:1;min-width:0"><div class="nm">Skyline 社区复活</div><div class="sub">Switch 开发重启</div></div><span class="pill">社区</span></div></div>
+          </div>
+          <div class="page" data-p="B2">
+            <div class="sec">模拟器 · 热门 <em>按 14 天增量</em></div>
+            <div class="card"><div class="row"><div class="ic">W</div><div style="flex:1;min-width:0"><div class="nm">Winlator BrunoDev</div><div class="sub">v11.2.0 · 16.1M</div></div><div class="rt"><span class="pill ok">官方</span><div style="font-size:10px;color:#8a93a8;margin-top:2px">157 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic">A</div><div style="flex:1;min-width:0"><div class="nm">Azahar</div><div class="sub">2127.0-alpha1 · 8.6M</div></div><div class="rt"><span class="pill">3DS</span><div style="font-size:10px;color:#8a93a8;margin-top:2px">81 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic">P</div><div style="flex:1;min-width:0"><div class="nm">PPSSPP</div><div class="sub">v1.19.1 · 官方直连</div></div><div class="rt"><span class="pill ok">官方</span><div style="font-size:10px;color:#8a93a8;margin-top:2px">38 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic">Y</div><div style="flex:1;min-width:0"><div class="nm">Yuzu (fork)</div><div class="sub">社区维护 · 2.2M</div></div><div class="rt"><span class="pill">Switch</span><div style="font-size:10px;color:#8a93a8;margin-top:2px">63 MB</div></div></div></div>
+          </div>
+        </div>
+        <div class="nav">
+          <i><b>⌂</b>主页</i><i class="on"><b>▦</b>模拟器</i><i><b>⛁</b>驱动</i><i><b>▤</b>运行库</i><i><b>⚙</b>设备</i>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">白卡片 + 细边框 + 直角徽章 · 信息密度优先</div>
+  </section>
+
+  <!-- ═══ 模板 C ═══ -->
+  <section class="tpl c">
+    <div class="tpl-head">
+      <h2>C · 终端工坊</h2>
+      <span class="tag" style="background:rgba(34,197,94,.15);color:#4ade80;">硬核终端风</span>
+    </div>
+    <div class="tpl-desc">近黑 + 等宽字体 + 青绿强调 + 网格纹理。面向折腾型玩家，像操作台不像商店。</div>
+    <div class="swatches"><i style="background:#0b0d0e"></i><i style="background:#151a16"></i><i style="background:#22c55e"></i><i style="background:#86efac"></i><i style="background:#3b5bfd"></i><em>底色 / 卡片 / 主强调 / 亮态 / 辅强调</em></div>
+    <div class="phone">
+      <div class="screen">
+        <div class="notch"></div>
+        <div class="statusbar"><span>10:24</span><span>5G ▮▮▮▯ ◐ 86%</span></div>
+        <div class="appbar">
+          <div class="logo">E</div><h3>emuhub</h3>
+          <div class="seg"><span class="on" onclick="sw(this,'C')">home</span><span onclick="sw(this,'C')">list</span></div>
+        </div>
+        <div class="content">
+          <div class="page on" data-p="C1">
+            <div class="hero">
+              <div class="t">$ winlator --update</div>
+              <div class="s">v11.2.0 · downloads 16.1M · snap 2h ago</div>
+              <div style="display:flex;gap:6px;margin-top:8px;"><span class="chip">box64</span><span class="chip">dxvk-2.0</span><span class="chip ok">adreno ✓</span></div>
+            </div>
+            <div class="sec">partitions <em>6 · 63 emus</em></div>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:7px;">
+              <div class="card"><div class="row"><div class="ic">M</div><div><div class="nm">emulators</div><div class="sub">dual-source rank</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic">D</div><div><div class="nm">drivers</div><div class="sub">device match</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic">R</div><div><div class="nm">runtimes</div><div class="sub">traceable src</div></div></div></div>
+              <div class="card"><div class="row"><div class="ic">C</div><div><div class="nm">components</div><div class="sub">weekly bundle</div></div></div></div>
+            </div>
+            <div class="sec">upstream <em>2h ago</em></div>
+            <div class="card"><div class="row"><div class="ic">T</div><div style="flex:1;min-width:0"><div class="nm">turnip 27.0.0</div><div class="sub">mesa main · adreno commits</div></div><span class="pill ok">NEW</span></div></div>
+            <div class="card"><div class="row"><div class="ic">S</div><div style="flex:1;min-width:0"><div class="nm">skyline reborn</div><div class="sub">community fork · switch</div></div><span class="pill">fork</span></div></div>
+          </div>
+          <div class="page" data-p="C2">
+            <div class="sec">emulators · hot <em>14d delta</em></div>
+            <div class="card"><div class="row"><div class="ic">W</div><div style="flex:1;min-width:0"><div class="nm">winlator-brunodev</div><div class="sub">v11.2.0 · 16.1M dl</div></div><div class="rt"><span class="pill ok">OFF</span><div style="font-size:9px;color:#6f7a6f;margin-top:2px">157 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic">A</div><div style="flex:1;min-width:0"><div class="nm">azahar</div><div class="sub">2127.0-a1 · 8.6M dl</div></div><div class="rt"><span class="pill">3DS</span><div style="font-size:9px;color:#6f7a6f;margin-top:2px">81 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic">P</div><div style="flex:1;min-width:0"><div class="nm">ppsspp</div><div class="sub">v1.19.1 · official</div></div><div class="rt"><span class="pill ok">OFF</span><div style="font-size:9px;color:#6f7a6f;margin-top:2px">38 MB</div></div></div></div>
+            <div class="card"><div class="row"><div class="ic">Y</div><div style="flex:1;min-width:0"><div class="nm">yuzu-fork</div><div class="sub">community · 2.2M dl</div></div><div class="rt"><span class="pill">SW</span><div style="font-size:9px;color:#6f7a6f;margin-top:2px">63 MB</div></div></div></div>
+          </div>
+        </div>
+        <div class="nav">
+          <i><b>⌂</b>home</i><i class="on"><b>▦</b>emu</i><i><b>⛁</b>drv</i><i><b>▤</b>rt</i><i><b>⚙</b>dev</i>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">等宽字体 · 网格纹理 · 左侧状态条 · 状态码徽章</div>
+  </section>
+
+</div>
+
+<script>
+function sw(el, cls) {
+  var tpl = el.closest('.tpl.' + cls.toLowerCase());
+  if (!tpl) tpl = el.closest('.tpl');
+  var seg = tpl.querySelector('.appbar .seg');
+  seg.querySelectorAll('span').forEach(function(s){s.classList.remove('on')});
+  el.classList.add('on');
+  var pages = tpl.querySelectorAll('.page');
+  pages.forEach(function(p){p.classList.remove('on')});
+  if (cls.toUpperCase() === 'A' || cls.toUpperCase() === 'B' || cls.toUpperCase() === 'C') {
+    var idx = Array.prototype.indexOf.call(seg.querySelectorAll('span'), el);
+    pages[idx].classList.add('on');
+  }
+}
+</script>
+</body>
+</html>

@@ -116,3 +116,4 @@ MIT License。
 - NotZeetaa — EmuHub 原创作者
 - MirrorHub 与各公益加速节点运营者
 - Mesa / Turnip / PanVK / DXVK / Wine / Box64 等开源项目开发者
+- FauxVkTest 1.11（驱动实测运行时组件：AdrenoTools hook 库 + Vulkan-Samples，BSD-2/MIT）
