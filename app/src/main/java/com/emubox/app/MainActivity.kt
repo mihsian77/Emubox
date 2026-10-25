@@ -337,7 +337,9 @@ class MainActivity : ComponentActivity() {
                                 "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/wrappers.json"
                             )
                         } else emptyList()
-                        val wrapper = if (isBannerWrapper) emptyList()
+                        // 清单拉取失败（网络）时回退 strict release（wrappers-v1 标签），
+                        // 保证 wrapper 区不空；Rutabaga/linuxfs 等混装 release 仍被过滤。
+                        val wrapper = if (isBannerWrapper && wrapperItems.isNotEmpty()) emptyList()
                             else selectedWrapperSource?.let { fetchTurnipReleases(it, info.adrenoSeries) }
                             ?: emptyList()
 
@@ -534,7 +536,12 @@ class MainActivity : ComponentActivity() {
                                 "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/wrappers.json"
                             )
                         }
-                        wrapperReleases = emptyList()
+                        // 清单拉取失败时回退 strict release，避免 wrapper 区空白
+                        wrapperReleases = if (wrapperItems.isEmpty()) {
+                            withContext(Dispatchers.IO) {
+                                fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
+                            }
+                        } else emptyList()
                     } else {
                         wrapperItems = emptyList()
                         wrapperReleases = withContext(Dispatchers.IO) {
