@@ -8741,9 +8741,30 @@ fun DriverScreen(
             // 不依赖 release 标签顺序）；其余 wrapper 源走 release 型版本卡。
             if (wrapperItems.isNotEmpty()) {
                 item(key = "wrapper_catalog") {
-                    WrapperCatalogSection(
-                        items = wrapperItems,
-                        onDownload = { item ->
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        // 区块标题：与 Turnip/PanVK 等分区一致，用户要求分区名直接叫 "Wrapper"
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                Icons.Default.Eco,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                "Wrapper",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                        Text(
+                            "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        WrapperCatalogSection(
+                            items = wrapperItems,
+                            onDownload = { item ->
                             val fileName = item.url.substringAfterLast('/')
                             onDownloadAsset(
                                 GithubRelease(
@@ -8767,6 +8788,7 @@ fun DriverScreen(
                             )
                         }
                     )
+                    }
                 }
             } else {
                 item(key = "wrapper_section") {
