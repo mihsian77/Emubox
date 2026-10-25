@@ -1,8 +1,376 @@
 {
   "version": 2,
-  "updated_at": "2026-10-25T07:43:17Z",
+  "updated_at": "2026-10-25T17:44:39Z",
   "source": "ithome+github-releases+winehq-dl",
   "items": [
+    {
+      "id": "0b45d627",
+      "title": "古尔曼：苹果正测试配备 OLED 屏幕的 iMac 和 MacBook Air",
+      "url": "https://www.ithome.com/1/017/717.htm",
+      "published_at": 1792940709,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，彭博社记者马克 · 古尔曼今天在最新一期《Power On》通讯中提到，苹果正在测试新款 iMac 和 MacBook Pro，这两款原型机均配备 OLED 屏幕，表明苹果计划将 OLED 技术引入公司旗下偏大众化的电脑产品，但具体推出时间暂时还没有准信。古尔曼透露，苹果将在未来几天内"
+    },
+    {
+      "id": "aa5f3569",
+      "title": "国产武侠游戏《影之刃零》10 月 27 日 10:00 开启预下载，游戏本体约 145G",
+      "url": "https://www.ithome.com/1/017/716.htm",
+      "published_at": 1792940010,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，国产武侠游戏《影之刃零》今晚宣布将于 10 月 27 日 10:00 开启预下载，并公布官方配置要求。官方提醒，为保障良好的游戏体验，请将游戏安装在固态硬盘 (SSD) 中；游戏本体约 145G，由于预下载机制，请预留至少 300G 可用磁盘空间；请务必将显卡驱动更新至最新版本。IT之"
+    },
+    {
+      "id": "a2e7badb",
+      "title": "苹果硬件技术部门再迎人事调整：两名显示技术高管退休临近，转任顾问角色",
+      "url": "https://www.ithome.com/1/017/714.htm",
+      "published_at": 1792939922,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，彭博社记者马克・古尔曼发文，透露今年早些时候，苹果对硬件工程和硬件技术部门进行了大规模调整，将团队交由新任首席硬件官 Johny Srouji 负责。此外，苹果两名资深显示技术高管 Wei Chen 和 John Zhong 在公司工作约 30 年后，正逐步转向规模更小、偏顾问性质的岗"
+    },
+    {
+      "id": "77ac983c",
+      "title": "古尔曼：苹果正为 iPhone Duo 开发全新“便捷访问”模式，方便左撇子用户根据持机习惯调整界面",
+      "url": "https://www.ithome.com/1/017/713.htm",
+      "published_at": 1792939611,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，彭博社记者马克・古尔曼发文，透露苹果正在为 iPhone Duo 开发新的“便捷访问”（Reachability）模式，可以将外屏“主要内容”移动至左侧或右侧，方便用户根据自己的持机习惯调整界面。IT之家获悉，此前有不少用户吐槽左撇子用户难以操作 iPhone Duo，不过古尔曼指出，"
+    },
+    {
+      "id": "3e627ca8",
+      "title": "遏制退货欺诈：苹果开发新型检测设备，可帮助 Apple Store 员工扫描密封包装盒内 iPhone 完整性",
+      "url": "https://www.ithome.com/1/017/712.htm",
+      "published_at": 1792939386,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，彭博社记者马克・古尔曼发文，透露苹果 Apple Store 零售门店近年来面临一种棘手问题：部分顾客购买 iPhone 或其他产品后，会将包装盒里的设备拿走，再利用配重块调整包装重量，之后将其后封伪装成“未开封”产品进行退款。为了应对这一问题，苹果曾要求零售店员工仔细检查退货商品，即"
+    },
+    {
+      "id": "ca3382ac",
+      "title": "古尔曼：苹果首款触屏 MacBook Pro 北京时间 10 月 29 日发布，标志公司产品策略迎来重大转变",
+      "url": "https://www.ithome.com/1/017/711.htm",
+      "published_at": 1792939075,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，彭博社记者马克・古尔曼发文，透露苹果首款触屏 MacBook Pro 即将于北京时间 10 月 29 日凌晨 1 点正式亮相。这款产品不仅将为 Mac 产品线引入触控操作，还将采用 OLED 屏幕和全新的交互界面，成为苹果近年来产品策略转变的又一例证。苹果高管过去曾多次在相关产品正式推"
+    },
+    {
+      "id": "fb6b3769",
+      "title": "Claude 桌面应用推出新版界面，从草图到上线用时不到 3 周",
+      "url": "https://www.ithome.com/1/017/710.htm",
+      "published_at": 1792938792,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，Anthropic 设计工程师蔡斯 · 麦科伊（Chase McCoy）昨日宣布，Claude 桌面应用已推出全新界面。IT之家注意到，新版界面由 Claude 帮助设计，从草图到正式上线，整个过程不到 3 周。部分用户在评论区中指出，新版界面的信息密度较低，摒弃了衬线字体和暖色调的背"
+    },
+    {
+      "id": "62a20a70",
+      "title": "联合创新“D32U1”31.5 英寸显示器发售：4K 60Hz、USB-C 65W，1699 元",
+      "url": "https://www.ithome.com/1/017/709.htm",
+      "published_at": 1792938477,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，联合创新现已在京东上架一款型号为“D32U1”的 31.5 英寸显示器，该机为 4K 60Hz 规格，定价为 1699 元。京东联合创新 D32U1 显示器券后 1699 元领 190 元券该机配备一块 3840x2160 分辨率 60Hz IPS 面板，显示器亮度 350 尼特，对比"
+    },
+    {
+      "id": "fd65b412",
+      "title": "华为鸿蒙 HarmonyOS 7.0.0.111 版本更多“隐藏”新特性盘点，深色模式随日出日落切换等功能下放",
+      "url": "https://www.ithome.com/1/017/707.htm",
+      "published_at": 1792938197,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，华为近两日面向 Mate 80 / 70 / 60、Pura 80 / 70 等系列机型推送了最新的鸿蒙 HarmonyOS 7.0.0.111 版本升级，带来了与 iPhone 双机互联，实况窗分享等功能。▲ IT之家开箱：华为 Pura 70 Pro+「光织银」图赏更新日志并未公开"
+    },
+    {
+      "id": "439a5aa7",
+      "title": "雷蛇幻影战狼 V4 系列手柄发售：电容摇杆，竞技版 799 元、专业版 1599 元",
+      "url": "https://www.ithome.com/1/017/705.htm",
+      "published_at": 1792937959,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，Razer（雷蛇）现已启动 Wolverine 幻影战狼 V4 系列手柄控制器的国行销售：Tournament Edition 竞技版为 799 元、Pro 专业版为 1,599 元。▲ 幻影战狼 V4 专业版两款幻影战狼 V4 手柄均配备高分辨率电容式拇指控制杆、可调式长 / 短双模"
+    },
+    {
+      "id": "471197d1",
+      "title": "铺路铺到苹果家：开发者成功令微软 Surface Duo 2 运行 iOS / iPadOS 26 系统",
+      "url": "https://www.ithome.com/1/017/703.htm",
+      "published_at": 1792936843,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，随着 AI 技术突飞猛进，许多开发者在大模型辅助加持之下对各种老旧机型进行折腾，例如博主 @none25smu 便发文，展示其成功为微软 Surface Duo 2 刷入苹果 iOS/iPadOS 26 系统。开发者表示，在其他人尝试移植 iOS 16/17 时，自己一直在推进 iPa"
+    },
+    {
+      "id": "a384c2d0",
+      "title": "苹果发布 iPhone Duo 支持文档，帮助用户排查铰链和屏幕问题",
+      "url": "https://www.ithome.com/1/017/701.htm",
+      "published_at": 1792936611,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，苹果现已为 iPhone Duo 折叠屏手机发布一批支持文档，其中最值得关注的是排除铰链故障指南。如果您手上的 iPhone Duo 开合时发出异常声响，或是无法正常合上，不妨参考这份指南。苹果这份指南中列明，用户需留意 iPhone Duo 无法完全打开或关闭、折叠时发出异常声音，以"
+    },
+    {
+      "id": "566d20d1",
+      "title": "手游《蔚蓝档案》日服运营商变更：Yostar 将于 2027 年 1 月移交业务给 NEXON",
+      "url": "https://www.ithome.com/1/017/699.htm",
+      "published_at": 1792935782,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，韩国 NEXON Games 旗下手游《蔚蓝档案》日服运营商 Yostar 今日在官方直播中宣布，计划于 2027 年 1 月左右将日本地区的游戏运营业务全面移交给 NEXON，结束自游戏 2021 年上线以来持续近六年的代理合作关系。Yostar 代表取缔役社长李衡达表示，Yosta"
+    },
+    {
+      "id": "36186273",
+      "title": "联想极光键盘 GK1077 Lite 三模版上市：硅胶轻音按键，129 元",
+      "url": "https://www.ithome.com/1/017/697.htm",
+      "published_at": 1792935486,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，联想 (Lenovo) 现已在电商平台销售极光键盘 GK1077 Lite 三模版。该型号基于硅胶轻音按键，可选冰雾蓝、奶咖橙、蜜桃粉 3 种配色，到手价均为 129 元。联想极光键盘 GK1077 Lite 三模版在常规 70% 配列的基础上于右侧提供了多媒体旋钮和一块状态显示屏，用"
+    },
+    {
+      "id": "7fb5d53c",
+      "title": "一加 Ace 7 系列支持 IP66/68/69/69K 防尘防水，10 月 29 日发布",
+      "url": "https://www.ithome.com/1/017/696.htm",
+      "published_at": 1792935342,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，一加 Ace7 系列新品发布会将于 10 月 29 日 19:00 举行，据官方最新预热，一加 Ace 7 系列支持 IP66/68/69/69K 超豪华防尘防水。据此前官方介绍，全新一加 Ace7 系列带来旗舰的质感设计：「风暴岛」隐藏式进风口，凭借空气动力学设计带来更大进风风量；「"
+    },
+    {
+      "id": "1a64209b",
+      "title": "韩 KRAFTON AI 预览 Raon-1 mini 模型：30B-A4B，可与 Meta Muse Glimmer 竞争",
+      "url": "https://www.ithome.com/1/017/695.htm",
+      "published_at": 1792934838,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，韩国知名游戏企业 KRAFTON（魁匠团）旗下人工智能分支 KRAFTON AI 本周公布了其从头训练的 Raon-1 mini 模型的预览版本，该模型的正式版和后续的更大模型即将推出。Raon-1 mini 采用混合专家架构，导入线性注意力，支持推测解码，整体体量为 30B-A4B。"
+    },
+    {
+      "id": "45f58107",
+      "title": "技嘉上线工作站主板 WRX90 AI TOP：7 条 PCIe + 2 个 MCIO，集成 BMC",
+      "url": "https://www.ithome.com/1/017/694.htm",
+      "published_at": 1792934138,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，技嘉 (GIGABYTE) 近日正式在官网上线了 WRX90 AI TOP 工作站主板。这一型号搭载 Socket sTR5 插槽，采用 E-ATX 板型，基于 14 层超低损耗 PCB，拥有 32+3+3+3 项供电。WRX90 AI TOP 配备 8 通道 1DPC 的 DDR5 "
+    },
+    {
+      "id": "8f1dd004",
+      "title": "《流浪地球 3（上）》电影全新物料即将发布，2027 年春节档上映",
+      "url": "https://www.ithome.com/1/017/693.htm",
+      "published_at": 1792933748,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据中国电影报道今日消息，第三十届全国影片推介会上，《流浪地球 3（上）》正式亮相，定档 2027 年春节档。影片延续前两部的世界观，在原班人马回归的基础上，沈腾、杨紫琼、“瓦叔”克里斯托弗・瓦尔兹全新加盟，为系列带来全新的故事线索。据片方介绍，影片全新物料即将发布。《流浪地球 3》改编"
+    },
+    {
+      "id": "6386d696",
+      "title": "888 元购 27 英寸 2K 275Hz：泰坦军团“P2710S PLUS”显示器发售（国补后 799 元）",
+      "url": "https://www.ithome.com/1/017/692.htm",
+      "published_at": 1792933007,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，泰坦军团旗下“P2710S PLUS”27 英寸显示器现已在京东发售，该机主打 2K 275Hz，定价为 888 元，部分地区国补后 799 元。京东泰坦军团 P2710S PLUS 显示器 888 元（国补后 799 元）直达链接该机配备一块 2560x1440 分辨率 275Hz "
+    },
+    {
+      "id": "cd219055",
+      "title": "力积电 2026Q3 净利润环比几乎翻倍，新产能将与客户共同投资",
+      "url": "https://www.ithome.com/1/017/690.htm",
+      "published_at": 1792932555,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，中国台湾地区半导体企业力积电 (PSMC) 本月 21 日公布了企业 2026Q3 财报数据：营业收入：213.42 亿新台币（现汇率约合 43.75 亿元人民币），环比 +23%、同比 +80%；净利：65 亿新台币（现汇率约合 13.32 亿元人民币），环比 +98%、同比 +33"
+    },
+    {
+      "id": "24c0a5c1",
+      "title": "1499 元购 27 英寸 2K 240Hz QD-OLED：泰坦军团“G2783S”显示器 10 月 27 日首销",
+      "url": "https://www.ithome.com/1/017/689.htm",
+      "published_at": 1792932434,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，泰坦军团旗下“G2783S”26.5 英寸（27 英寸）显示器现已在京东上架，该机主打 2K 240Hz QD-OLED，将于 10 月 27 日晚 6 点发售，首发价 1499 元。京东泰坦军团 G2783S 显示器 10 月 27 日首销活动价 1499 元直达链接该机配备三星四代"
+    },
+    {
+      "id": "c61694e4",
+      "title": "vivo X500 Ultra 国际版现身数据库，预计明年 3-4 月国内发布",
+      "url": "https://www.ithome.com/1/017/687.htm",
+      "published_at": 1792932233,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，vivo X500 Ultra 国际版于 10 月 23 日现身 GSMA IMEI 数据库，型号 V2660，这款影像超大杯新品预计将在全球市场上市。IT之家注意到，vivo X500 系列手机已于 9 月 21 日正式发布，首发带来标准版、Pro 版、Pro Max 版，全球首发天"
+    },
+    {
+      "id": "b2e4a552",
+      "title": "Nacon 推出 REVOLUTION PRO X 特别版手柄：等高线纹理，力可调摇杆",
+      "url": "https://www.ithome.com/1/017/686.htm",
+      "published_at": 1792931313,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，法国游戏发行与外设企业 NACON 近日推出了 REVOLUTION PRO X – Special Edition 手柄控制器。这一特别版型号为 XBOX 而设计，拥有受游戏《地狱即我们》(Hell is Us) 启发的正面等高线纹理。REVOLUTION PRO X – Speci"
+    },
+    {
+      "id": "8ced674b",
+      "title": "欧洲 CPU 初创企业 SiPearl 将与神盾合作开发下代处理器 Rhea2",
+      "url": "https://www.ithome.com/1/017/684.htm",
+      "published_at": 1792930694,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，欧洲 CPU 初创企业 SiPearl 本月 22 日宣布与中国台湾地区芯片 IP 与设计服务企业神盾 (Egis) 签署战略合作与投资协议。SiPearl 的下代处理器 Rhea2 将基于其同神盾下属安国 (Alcor Micro) 合作开发的 Mobius100 服务器 CPU 同"
+    },
+    {
+      "id": "ca6870f0",
+      "title": "会员年卡 11.11 狂促合集：bilibili 低至 99.8 元 / 年、QQ 音乐迅雷夸克剪映皆好价",
+      "url": "https://www.ithome.com/1/017/683.htm",
+      "published_at": 1792930318,
+      "category": "general",
+      "summary": "11.11 会员狂促现已全面开启，皆为年内好价。京东 无门槛红包至高 26888 元，每天抽 3 次：点此抽取。淘宝 无门槛红包至高 26888 元，每天抽 1 次：点此抽取。bilibili点击下方卡片后 → 下滑到宝贝详情页 → 先领 10 元券，再点击淘金币抵扣横幅，实付 108 元即可入手。折合 8.3 元 /"
+    },
+    {
+      "id": "c75b964a",
+      "title": "申通快递：快递行业的“反内卷”预计有望持续",
+      "url": "https://www.ithome.com/1/017/682.htm",
+      "published_at": 1792930024,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，今日，申通快递在业绩说明会谈及“如何看待行业反内卷的持续性？”，并公布部分经营信息。IT之家注意到，该公司表示，本轮“反内卷”核心是禁止低于成本的恶性价格战，淡旺季之间的价格波动乃是跟随电商促销节奏、节假日以及货品结构的影响所致，是正常的价格波动。7-8 月淡季过后，9 月起部分快递核"
+    },
+    {
+      "id": "989c28d9",
+      "title": "谷歌 DeepMind 高管：终身学习者将在 AI 职场中占据优势",
+      "url": "https://www.ithome.com/1/017/681.htm",
+      "published_at": 1792929563,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据《商业内幕》今天报道，谷歌 DeepMind 高管莱拉 · 易卜拉欣（Lila Ibrahim）近期表示，公司越来越看重那些能够证明自己在课堂之外，持续学习的求职者。这名高管表示，虽然学历依然重要，但公司的招聘已经更重视求职者的经历。例如一项资历能告诉面试官你学过什么，多项资历则能说"
+    },
+    {
+      "id": "8328ff17",
+      "title": "华为 Mate60 等机型迎来鸿蒙 HarmonyOS 7.0.0.111 SP10 版本更新，通信共享升级为多人互助通信共享",
+      "url": "https://www.ithome.com/1/017/679.htm",
+      "published_at": 1792929389,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，今日，华为 Mate60 等机型迎来鸿蒙 HarmonyOS 7.0.0.111 SP10 版本更新，安装包体积为 3.03GB。本次更新通信共享升级为多人互助通信共享，同时支持通过 iPhone 的“鸿蒙星河互联”应用与 iPhone 互联。▲ IT之家开箱：华为 Mate60 Pr"
+    },
+    {
+      "id": "95396b10",
+      "title": "GEEKCON 2026 上海站闭幕：黑客展示“隔空劫持无人机”“一条链接控制头部 App”等安全漏洞",
+      "url": "https://www.ithome.com/1/017/678.htm",
+      "published_at": 1792929303,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据 Geekcon 公众号，知名黑客赛事 GEEKCON 2026 上海站于昨日正式闭幕。主办方“大牛蛙”表示，今年的 GEEKCON“差点儿流产”，这是因为“今年的 AI 成长太快，几乎已经替代掉人类黑客了”：AI 来了。如果 99% 的白帽子注定被 AI 替代，我为什么还要鼓励年轻"
+    },
+    {
+      "id": "4732d099",
+      "title": "极米 RS30 Pro 高亮版投影仪发售：4500 CVIA 流明、可变光圈，7299 元",
+      "url": "https://www.ithome.com/1/017/677.htm",
+      "published_at": 1792928317,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，极米旗下 RS30 Pro 高亮版投影仪现已在京东发售，该产品主打 4500 CVIA 流明，定价为 7299 元，部分地区国补后低至 6569.1 元。该投影仪尺寸为 298x249x190mm，重量为 4.9kg。配备 0.47''DMD 显示芯片，带有可变光圈（F/2.0-F/5"
+    },
+    {
+      "id": "5d902d93",
+      "title": "微软 Teams 将允许第三方工具扫描会议内容，识别深度伪造",
+      "url": "https://www.ithome.com/1/017/676.htm",
+      "published_at": 1792928102,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据科技媒体 Windows Latest 今天报道，微软 Teams 将允许组织接入已认证的第三方工具，扫描会议中的视频和音频内容，检测是否存在深度伪造。该功能将于 11 月中旬在 Teams 桌面版、Mac 版和网页版逐步推出。微软表示，深度伪造（IT之家注：Deepfake）内容检"
+    },
+    {
+      "id": "01ade1b7",
+      "title": "德明利：2026 年第三季度归母净利润 27.29 亿元，同比增长 2902.75%",
+      "url": "https://www.ithome.com/1/017/674.htm",
+      "published_at": 1792927833,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，德明利今日公告，2026 年第三季度营业收入 116.45 亿元，同比增长 356.64%；归母净利润 27.29 亿元，同比增长 2,902.75%；扣非净利润 27.26 亿元，同比增长 3,692.08%。2026 年前三季度营业收入 285.55 亿元，同比增长 328.81%"
+    },
+    {
+      "id": "a4300db6",
+      "title": "戴尔推出“SE2726HM”27 英寸显示器：1080P 120Hz，649 元",
+      "url": "https://www.ithome.com/1/017/673.htm",
+      "published_at": 1792927179,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，戴尔现已在京东上架“SE2726HM”27 英寸显示器，该机主打 1080P 120Hz，定价为 649 元。京东戴尔“SE2726HM”显示器 649 元直达链接该机配备一块 1920x1080 分辨率 120Hz IPS 面板，显示器亮度 250 尼特，对比度 1000:1，显示器"
+    },
+    {
+      "id": "51d42595",
+      "title": "启元机器人第 5000 台个人机器人下线，日产能提升至 200 余台",
+      "url": "https://www.ithome.com/1/017/672.htm",
+      "published_at": 1792927102,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，启元机器人今天宣布，公司第 5000 台个人机器人正式下线。IT之家从启元机器人公众号获悉，该公司 9 月 20 日正式发售启元 Q1、启元 T1 两款个人机器人，如今迎来第 5000 台机器人下线，代表其机器人规模化量产交付能力正在逐步形成。启元机器人联席总裁、中央研发部总裁高全中表"
+    },
+    {
+      "id": "61a2035c",
+      "title": "发售日临近，任天堂将 Switch 版《塞尔达传说：时之笛重制版》游戏体积缩减至 24.54GB",
+      "url": "https://www.ithome.com/1/017/671.htm",
+      "published_at": 1792925787,
+      "category": "emulator",
+      "summary": "IT之家 10 月 25 日消息，《塞尔达传说：时之笛重制版》将在 11 月 5 日正式发售。本作针对 Switch 2 进行了高规格重制，采用全新 3D 视觉风格并加入了手动跳跃、冲刺、快速切换道具与体感瞄准等现代化操作。据外媒 Nintendeal 报道，本作在任天堂商店后台显示的数字版容量已从此前的 27GB 缩"
+    },
+    {
+      "id": "f43ea8fc",
+      "title": "阿里千问蒋冠军谈个人 AI 智能体技术框架：需要模型、记忆与生态协同推进",
+      "url": "https://www.ithome.com/1/017/669.htm",
+      "published_at": 1792924729,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，在 10 月 22 日的 2026 中国计算机大会上，阿里巴巴千问事业部 AI 算法负责人蒋冠军分享了千问打造个人 AI 智能体的技术实践过程。他认为，真正的个人智能体阶段，应该带来增量价值的创造和个性化的主动服务，模型、记忆与生态是共同构建这一核心能力的三要素。蒋冠军将 AI 应用的"
+    },
+    {
+      "id": "2c1737e2",
+      "title": "微软承认 Win11 系统通用打印功能已故障数月，用户需手动修复",
+      "url": "https://www.ithome.com/1/017/667.htm",
+      "published_at": 1792923989,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据科技媒体 neowin 今天报道，微软早在 2020 年就推出了通用打印（Universal Print）方案，帮助企业解决云打印方面的诸多问题。不过微软最近确认，部分柯尼卡美能达打印机存在通用打印相关问题。微软表示，部分柯尼卡美能达打印机会间歇性地停止与通用打印（UP）服务通信。受"
+    },
+    {
+      "id": "0d7eb3fa",
+      "title": "vivo OriginOS 7 近期升级计划公布：悬浮控件、相机界面，本月起分批推送",
+      "url": "https://www.ithome.com/1/017/654.htm",
+      "published_at": 1792922841,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，vivo 公布 OriginOS 7 近期升级计划，包括相机色彩风格、悬浮控件视觉适配、相机界面升级、相册编辑升级、相机调色盘等。IT之家整理如下：十月：29 日版本陆续升级相机色彩风格：新增追光、浓郁、冷白、人文街头、人文肖像、人文生活色彩风格。适配机型：X300 Pro 卫星通信版"
+    },
+    {
+      "id": "854bd7b9",
+      "title": "航嘉高能 S67 mini 充电头发售：2C+1A，支持 AVS 及 67W MiPPS 协议，109 元",
+      "url": "https://www.ithome.com/1/017/646.htm",
+      "published_at": 1792921722,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，航嘉旗下高能 S67 mini 充电头现已在京东发售，该产品采用 2C+1A 设计，支持 PD3.2 AVS 与小米 67W 澎湃有线秒充，定价为 109 元。京东航嘉高能 S67 mini109 元直达链接该产品尺寸为 52x30.5x51.2mm，采用钛空银哑光机身、黑色接口面板，"
+    },
+    {
+      "id": "8c3e32ae",
+      "title": "苹果 iPhone Duo 京东原价开放购买，15999 元次日送货上门",
+      "url": "https://www.ithome.com/1/017/645.htm",
+      "published_at": 1792921591,
+      "category": "general",
+      "summary": "【京东每天 10:00~17:55 开售，小伙伴们可等明天 10:00 开抢哦。】京东自营部分地区 iPhone Duo 已支持开放购买次日达，实付 15999 元起 + 12 期免息 *。* 12 期免息需每天 20:00 蹲点抢券：点此抢新品免息券。京东 11.11 红包至高 26888 元无门槛可用，每天可领 1"
+    },
+    {
+      "id": "a8c2d5ac",
+      "title": "图拉斯推出小冰块 Vision 单 USB-C 充电头：支持 AVS 协议 60W 输出，188 元",
+      "url": "https://www.ithome.com/1/017/644.htm",
+      "published_at": 1792921000,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，图拉斯现已在京东上架一款小冰块 Vision 带屏充电头，该产品采用单 USB-C 接口，定价为 238 元，首发价 188 元。京东图拉斯小冰块 Vision 充电头 188 元直达链接该充电头尺寸为 45x37.7x38.6mm，配备了隐藏式屏幕，使用 PCTG 材质“冰透”外壳，"
+    },
+    {
+      "id": "43eeca39",
+      "title": "美运营商 Verizon 为苹果 iPhone Duo 预购延迟发货致歉，向受影响顾客赠送 100 美元礼品卡",
+      "url": "https://www.ithome.com/1/017/641.htm",
+      "published_at": 1792920634,
+      "category": "eco",
+      "summary": "IT之家 10 月 25 日消息，据科技媒体 macrumors 昨天报道，美国运营商 Verizon 最近向部分客户表示，由于意外的运输延误，部分客户可能需要等多一会儿才能收到苹果 iPhone Duo 手机。为了弥补这段等待，该运营商决定向客户赠送 100 美元（IT之家注：现汇率约合 668.9 元人民币）礼品卡"
+    },
+    {
+      "id": "19567dc0",
+      "title": "迈从 K87 V3 键盘开启预订：360° 环绕灯效 + 多功能旋钮，289 元起",
+      "url": "https://www.ithome.com/1/017/640.htm",
+      "published_at": 1792920403,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，迈从 K87 V3 键盘现已开启预订，10 月 29 日 20:00 全平台开售，两款型号售价分别为 289 元和 339 元。IT之家从官方介绍获悉，该产品采用 87 配列，键帽采用 PBT 双色注塑，配备铝合金阳极氧化装饰背板，提供约 1600 万色 ARGB（360°ARGB 环"
+    },
+    {
+      "id": "e0f8c209",
+      "title": "iKF 推出 Ultra Clip 开放式蓝牙耳机：12mm 动圈、45 小时续航，499 元",
+      "url": "https://www.ithome.com/1/017/638.htm",
+      "published_at": 1792919960,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，iKF 现已在京东上架一款 Ultra Clip 开放式蓝牙耳机，该耳机配备 12mm 动圈，支持定向传音技术，定价为 499 元。京东 iKF Ultra Clip 耳机 499 元直达链接相应耳机提供 IP56 认证，采用云感柔韧 C 桥设计，以亲肤硅胶包覆记忆钛丝，结合三角力学支"
+    },
+    {
+      "id": "43d240f0",
+      "title": "软银孙正义计划在马来西亚投资 500 亿美元，押注 AI、数据中心",
+      "url": "https://www.ithome.com/1/017/637.htm",
+      "published_at": 1792919825,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，据彭博社今天报道，马来西亚总理安瓦尔宣布，软银集团创办人兼社长孙正义计划在马来西亚投资 500 亿美元（IT之家注：现汇率约合 3,344.6 亿元人民币），涉及 AI、数据中心等多个领域。据报道，安瓦尔昨日在马六甲的一场活动中公布了这则消息，他已经于 20 日和孙正义进行线上会议，就"
+    },
+    {
+      "id": "b90fee2d",
+      "title": "因日活量不佳，VRMMO 游戏《Zenith》将于 12 月正式关闭服务器",
+      "url": "https://www.ithome.com/1/017/636.htm",
+      "published_at": 1792919314,
+      "category": "general",
+      "summary": "IT之家 10 月 25 日消息，开发商 Ramen VR 宣布旗下 VR 大型多人在线角色扮演游戏《Zenith》将于今年 12 月正式关闭服务器。公开信息显示，《Zenith》于 2022 年推出，曾获得数千万美元融资。然而本作玩家近年来逐步锐减，尽管 Ramen VR 曾尝试通过转为免费游玩模式等方式挽回用户，游"
+    },
     {
       "id": "0df143ed",
       "title": "AI 云厂商 Nscale“摊上事了”，被前工程师指控报复性解雇、违法使用分包人员",
@@ -2051,85 +2419,6 @@
       "category": "component",
       "type": "DXVK",
       "summary": "## Shader compiler changes DXVK now uses [dxbc-spirv](https://github.com/doitsujin/dxbc-spirv) for shader compilation, replacing the legacy shader translation code for all supporte"
-    },
-    {
-      "id": "82a29036",
-      "title": "[VKD3D-Proton] v3.0.1",
-      "url": "https://github.com/HansKristian-Work/vkd3d-proton/releases/tag/v3.0.1",
-      "published_at": 1778067327,
-      "category": "component",
-      "type": "VKD3D-Proton",
-      "summary": "This is likely the last release before `VK_EXT_descriptor_heap` lands. There are some practical reasons why this is 3.0.1 instead of 3.1, but numbers don't really matter that much "
-    },
-    {
-      "id": "cf3c8c0a",
-      "title": "[Wine] 11.0",
-      "url": "https://dl.winehq.org/wine/source/11.0/",
-      "published_at": 1764967779,
-      "category": "runtime",
-      "type": "Wine",
-      "summary": "wine 11.0 官方发布（WineHQ 下载站）",
-      "low_freq": true
-    },
-    {
-      "id": "54f2fbfc",
-      "title": "[Wine Gecko] 2.47.4",
-      "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4/",
-      "published_at": 1745234377,
-      "category": "runtime",
-      "type": "Wine Gecko",
-      "summary": "wine-gecko 2.47.4 官方发布（WineHQ 下载站）",
-      "low_freq": true
-    },
-    {
-      "id": "39fd6b1e",
-      "title": "[Wine Gecko] 2.47.4-rc1",
-      "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4-rc1/",
-      "published_at": 1745234373,
-      "category": "runtime",
-      "type": "Wine Gecko",
-      "summary": "wine-gecko 2.47.4-rc1 官方发布（WineHQ 下载站）",
-      "low_freq": true
-    },
-    {
-      "id": "61626c8b",
-      "title": "[Wine] 9.0",
-      "url": "https://dl.winehq.org/wine/source/9.0/",
-      "published_at": 1745233934,
-      "category": "runtime",
-      "type": "Wine",
-      "summary": "wine 9.0 官方发布（WineHQ 下载站）",
-      "low_freq": true
-    },
-    {
-      "id": "238701fa",
-      "title": "[Wine] 10.0",
-      "url": "https://dl.winehq.org/wine/source/10.0/",
-      "published_at": 1745233860,
-      "category": "runtime",
-      "type": "Wine",
-      "summary": "wine 10.0 官方发布（WineHQ 下载站）",
-      "low_freq": true
-    },
-    {
-      "id": "5fb78151",
-      "title": "[Mono] 6.12.0.199",
-      "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.199.tar.xz",
-      "published_at": 1690459200,
-      "category": "runtime",
-      "type": "Mono",
-      "summary": "Mono 官方源码发布（mono-project.com）",
-      "low_freq": true
-    },
-    {
-      "id": "4a4761b8",
-      "title": "[Mono] 6.12.0.182",
-      "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz",
-      "published_at": 1655208000,
-      "category": "runtime",
-      "type": "Mono",
-      "summary": "Mono 官方源码发布（mono-project.com）",
-      "low_freq": true
     }
   ]
 }
