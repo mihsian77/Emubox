@@ -7013,6 +7013,14 @@ private fun DriverDetectionList(
         context.startService(intent)
     }
 
+    // 崩溃步骤日志（native 每步 append）：进程被杀后主进程读取，定位崩溃到具体步骤
+    fun stepLogTail(resultId: String, lines: Int = 3): String {
+        return runCatching {
+            val f = File(context.filesDir, "driver_test_${resultId}.step")
+            if (f.exists()) f.readLines().takeLast(lines).joinToString(" > ") else ""
+        }.getOrNull().orEmpty()
+    }
+
     // 轮询单个阶段结果文件（25s 窗口）。返回结果 JSON，超时/崩溃返回 null。
     fun pollStageResult(resultId: String): org.json.JSONObject? {
         val deadline = System.currentTimeMillis() + 25_000L
@@ -7057,10 +7065,12 @@ private fun DriverDetectionList(
                     val collectJson = pollStageResult(id)
                     if (collectJson == null) {
                         val crashed = File(context.filesDir, "driver_test_${id}.started").exists()
+                        val steps = stepLogTail(id)
                         detectionResults = detectionResults + (id to VulkanInfoPayload(
                             success = false,
                             errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-                            errorMessage = if (crashed) "驱动加载崩溃（独立进程被杀）" else "独立进程实测未启动，请重试",
+                            errorMessage = (if (crashed) "驱动加载崩溃（独立进程被杀）" else "独立进程实测未启动，请重试") +
+                                (if (steps.isNotEmpty()) "\n崩溃步骤：$steps" else ""),
                             loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
                             deviceCount = 0, devices = emptyList()
                         ))
@@ -7087,10 +7097,12 @@ private fun DriverDetectionList(
                                 .put("errorMessage", "渲染阶段进程崩溃，跑分结果已保留")))
                     } else {
                         val crashed = File(context.filesDir, "driver_test_${benchId}.started").exists()
+                        val steps = stepLogTail(benchId)
                         adrenotoolsResults = adrenotoolsResults + (id to (payload to BenchmarkResult(
                             success = false,
                             errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-                            errorMessage = if (crashed) "跑分阶段进程崩溃（驱动加载后执行负载被杀）" else "跑分独立进程未启动，请重试",
+                            errorMessage = (if (crashed) "跑分阶段进程崩溃（驱动加载后执行负载被杀）" else "跑分独立进程未启动，请重试") +
+                                (if (steps.isNotEmpty()) "\n崩溃步骤：$steps" else ""),
                             deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
                             computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                             totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
@@ -7187,10 +7199,12 @@ private fun DriverDetectionList(
                     }
                     // 超时/崩溃判定
                     val crashed = startedFile.exists()
+                    val steps = stepLogTail(benchResultId)
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult(
                         success = false,
                         errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-                        errorMessage = if (crashed) "驱动加载崩溃（独立进程被杀）。可能为驱动包与内置 AdrenoTools 运行时不匹配" else "独立进程实测未启动，请重试",
+                        errorMessage = (if (crashed) "驱动加载崩溃（独立进程被杀）。可能为驱动包与内置 AdrenoTools 运行时不匹配" else "独立进程实测未启动，请重试") +
+                            (if (steps.isNotEmpty()) "\n崩溃步骤：$steps" else ""),
                         deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
                         computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0

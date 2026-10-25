@@ -1650,6 +1650,20 @@ static void warmupSystemVulkan() {
 // useMappingImport=false 时强制仅 CUSTOM（不启用 GPU_MAPPING_IMPORT）：
 // 跑分在 fork 子进程中提交实际 GPU 负载，GSL 映射句柄跨 fork 可能失效
 // 导致崩溃（DRIVER_CRASHED），故跑分路径不申请映射，保留 fork 安全隔离。
+// ── 崩溃步骤日志：native 每关键步骤 append 一行，进程被杀后由主进程
+// 读取最后步骤定位崩溃点（真机无法抓 logcat 时的落地方案）。─────────────
+static std::string g_stepLogPath;
+static void stepLog(const char* msg) {
+    if (g_stepLogPath.empty()) return;
+    FILE* f = fopen(g_stepLogPath.c_str(), "a");
+    if (f) {
+        fputs(msg, f);
+        fputs("\n", f);
+        fflush(f);
+        fclose(f);
+    }
+}
+
 static std::string loadDriverAdrenoTools(const char* driverDir, const char* driverName,
                                          const char* tmpDir, const char* hookLibDir,
                                          bool useMappingImport,
@@ -1674,14 +1688,19 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
     std::string firstErr;
     if (useMappingImport) {
         // 先预热系统 GPU 上下文（vktest/PPSSPP 同款前提），再挂载自定义驱动
+        stepLog("adt:warmup_before");
         warmupSystemVulkan();
+        stepLog("adt:warmup_after");
+        stepLog("adt:mapping_import_try");
         lib = adrenotools_open_libvulkan(
                 RTLD_NOW,
                 ADRENOTOOLS_DRIVER_CUSTOM | ADRENOTOOLS_DRIVER_GPU_MAPPING_IMPORT,
                 td, hookLibDir, dd, driverName, nullptr, &mappingHandle);
         if (!lib) {
+            stepLog("adt:mapping_import_failed");
             firstErr = dlerror() ? dlerror() : "unknown";
             void* retryMapping = nullptr;
+            stepLog("adt:custom_retry");
             lib = adrenotools_open_libvulkan(
                     RTLD_NOW,
                     ADRENOTOOLS_DRIVER_CUSTOM,
@@ -1689,12 +1708,14 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
         }
     } else {
         // 跑分路径：强制仅 CUSTOM，不申请 GPU 映射，规避映射句柄跨 fork 失效。
+        stepLog("adt:custom_only_try");
         lib = adrenotools_open_libvulkan(
                 RTLD_NOW,
                 ADRENOTOOLS_DRIVER_CUSTOM,
                 td, hookLibDir, dd, driverName, nullptr, nullptr);
     }
     if (!lib) {
+        stepLog("adt:open_failed");
         std::string err = dlerror() ? dlerror() : firstErr;
         // 附加前置诊断：驱动文件是否存在/hook 库是否在 nativeLibraryDir，
         // 帮助区分"路径/文件问题"与"系统级权限问题"。
@@ -2947,35 +2968,49 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotools(
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_emubox_app_NativeVulkanBridge_collectDriverAdrenotoolsInProcess(
         JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
-        jstring tmpDir, jstring hookLibDir) {
+        jstring tmpDir, jstring hookLibDir, jstring logPath) {
     const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
     const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
     const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
     const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    const char* lp = logPath ? env->GetStringUTFChars(logPath, nullptr) : nullptr;
+    g_stepLogPath = lp ? lp : "";
+    stepLog("collect:enter");
     if (!dd || !dn || !td || !hl) {
         if (dd) env->ReleaseStringUTFChars(driverDir, dd);
         if (dn) env->ReleaseStringUTFChars(driverName, dn);
         if (td) env->ReleaseStringUTFChars(tmpDir, td);
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        if (lp) env->ReleaseStringUTFChars(logPath, lp);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"deviceCount\":0,\"devices\":[]}");
     }
-    // 双路径：vktest 同款 loader 优先；失败（驱动与 loader 不兼容等）回退 adrenotools
-    std::string json = collectDriverViaLoaderJson(dd, dn, td, hl);
+    // 双路径：adrenotools（GPU_MAPPING_IMPORT）优先，loader 仅兜底。
+    // 依据与 benchmark 一致：loader 路径在 vkCreateDevice 时 turnip 需自开
+    // /dev/kgsl，无 root 进程必 SEGV 被杀，且 SEGV 无法被 native 捕获，
+    // fallback 永不执行；且 Android loader 不读 VK_ICD_FILENAMES，loader 只会
+    // 假成功返回系统驱动（已被防伪校验拦截）。adrenotools 是唯一可靠实测路径。
+    stepLog("collect:adt_try");
+    std::string json = collectDriverAdrenotoolsJson(dd, dn, td, hl);
+    stepLog("collect:adt_done");
     if (json.find("\"success\":false") != std::string::npos) {
-        std::string fb = collectDriverAdrenotoolsJson(dd, dn, td, hl);
+        stepLog("collect:loader_fallback_try");
+        std::string fb = collectDriverViaLoaderJson(dd, dn, td, hl);
+        stepLog("collect:loader_fallback_done");
         if (fb.find("\"success\":false") == std::string::npos) {
-            json = fb;  // fallback 成功，采用 adrenotools 结果（loader 错误已记录日志）
+            json = fb;  // fallback 成功，采用 loader 结果（adrenotools 错误已记录日志）
         } else {
-            // 双路径均失败：返回 loader 错误（更接近 vktest 根因），附 fallback 错误
-            std::string fbMsg = " | fallback: " + fb;
+            // 双路径均失败：返回 adrenotools 错误（更接近实测根因），附 fallback 错误
+            std::string fbMsg = " | loader-fallback: " + fb;
             json = "{\"success\":false,\"errorCode\":\"DUAL_PATH_FAILED\",\"errorMessage\":\""
-                   + jsonEscape("loader+adrenotools both failed: " + fbMsg) + "\",\"deviceCount\":0,\"devices\":[]}";
+                   + jsonEscape("adrenotools+loader both failed: " + fbMsg) + "\",\"deviceCount\":0,\"devices\":[]}";
         }
     }
+    stepLog("collect:done");
     env->ReleaseStringUTFChars(driverDir, dd);
     env->ReleaseStringUTFChars(driverName, dn);
     env->ReleaseStringUTFChars(tmpDir, td);
     env->ReleaseStringUTFChars(hookLibDir, hl);
+    if (lp) env->ReleaseStringUTFChars(logPath, lp);
     return env->NewStringUTF(json.c_str());
 }
 
@@ -3036,16 +3071,20 @@ static std::string renderDriverAdrenotoolsJson(const char* driverDir, const char
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
         JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
-        jstring tmpDir, jstring hookLibDir) {
+        jstring tmpDir, jstring hookLibDir, jstring logPath) {
     const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
     const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
     const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
     const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    const char* lp = logPath ? env->GetStringUTFChars(logPath, nullptr) : nullptr;
+    g_stepLogPath = lp ? lp : "";
+    stepLog("bench:enter");
     if (!dd || !dn || !td || !hl) {
         if (dd) env->ReleaseStringUTFChars(driverDir, dd);
         if (dn) env->ReleaseStringUTFChars(driverName, dn);
         if (td) env->ReleaseStringUTFChars(tmpDir, td);
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        if (lp) env->ReleaseStringUTFChars(logPath, lp);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,\"computeError\":\"\",\"totalScore\":0}");
     }
     // 双路径顺序：adrenotools（GPU_MAPPING_IMPORT）优先，loader 仅兜底。
@@ -3053,9 +3092,13 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
     // 进程必 SEGV 被杀，且 SEGV 无法被 native 捕获，fallback 永远不会执行
     // （历史 STAGE_CRASHED 根因）。采集已验证 adrenotools+mapping import
     // 在本机可用，跑分/渲染与其同路径最稳。
+    stepLog("bench:adt_try");
     std::string json = benchmarkDriverAdrenotoolsJson(dd, dn, td, hl);
+    stepLog("bench:adt_done");
     if (json.find("\"success\":false") != std::string::npos) {
+        stepLog("bench:loader_fallback_try");
         std::string fb = benchmarkDriverViaLoaderJson(dd, dn, td, hl);
+        stepLog("bench:loader_fallback_done");
         if (fb.find("\"success\":false") == std::string::npos) {
             json = fb;
         } else {
@@ -3066,33 +3109,43 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
                    "\"computeError\":\"\",\"totalScore\":0}";
         }
     }
+    stepLog("bench:done");
     env->ReleaseStringUTFChars(driverDir, dd);
     env->ReleaseStringUTFChars(driverName, dn);
     env->ReleaseStringUTFChars(tmpDir, td);
     env->ReleaseStringUTFChars(hookLibDir, hl);
+    if (lp) env->ReleaseStringUTFChars(logPath, lp);
     return env->NewStringUTF(json.c_str());
 }
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
         JNIEnv* env, jobject /* thiz */, jstring driverDir, jstring driverName,
-        jstring tmpDir, jstring hookLibDir) {
+        jstring tmpDir, jstring hookLibDir, jstring logPath) {
     const char* dd = driverDir ? env->GetStringUTFChars(driverDir, nullptr) : nullptr;
     const char* dn = driverName ? env->GetStringUTFChars(driverName, nullptr) : nullptr;
     const char* td = tmpDir ? env->GetStringUTFChars(tmpDir, nullptr) : nullptr;
     const char* hl = hookLibDir ? env->GetStringUTFChars(hookLibDir, nullptr) : nullptr;
+    const char* lp = logPath ? env->GetStringUTFChars(logPath, nullptr) : nullptr;
+    g_stepLogPath = lp ? lp : "";
+    stepLog("render:enter");
     if (!dd || !dn || !td || !hl) {
         if (dd) env->ReleaseStringUTFChars(driverDir, dd);
         if (dn) env->ReleaseStringUTFChars(driverName, dn);
         if (td) env->ReleaseStringUTFChars(tmpDir, td);
         if (hl) env->ReleaseStringUTFChars(hookLibDir, hl);
+        if (lp) env->ReleaseStringUTFChars(logPath, lp);
         return env->NewStringUTF("{\"success\":false,\"errorCode\":\"BAD_ARGS\",\"errorMessage\":\"missing args\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}");
     }
     // 渲染测试（vktest 同款）：adrenotools（mapping import）优先，loader 兜底
     // （顺序理由同 benchmark：loader 在 vkCreateDevice 无 kgsl 必崩且无法兜底）
+    stepLog("render:adt_try");
     std::string json = renderDriverAdrenotoolsJson(dd, dn, td, hl);
+    stepLog("render:adt_done");
     if (json.find("\"success\":false") != std::string::npos) {
+        stepLog("render:loader_fallback_try");
         std::string fb = renderDriverViaLoaderJson(dd, dn, td, hl);
+        stepLog("render:loader_fallback_done");
         if (fb.find("\"success\":false") == std::string::npos) {
             json = fb;
         } else {
@@ -3102,9 +3155,11 @@ Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
                    + "\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
         }
     }
+    stepLog("render:done");
     env->ReleaseStringUTFChars(driverDir, dd);
     env->ReleaseStringUTFChars(driverName, dn);
     env->ReleaseStringUTFChars(tmpDir, td);
     env->ReleaseStringUTFChars(hookLibDir, hl);
+    if (lp) env->ReleaseStringUTFChars(logPath, lp);
     return env->NewStringUTF(json.c_str());
 }
