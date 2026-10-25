@@ -176,45 +176,6 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
             contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            // 未授权扫描下载目录时提示：授权后下载与扫描走 DocumentFile 直读
-            // 文件系统，覆盖安装/MediaStore 索引失效时也能扫出全部旧文件
-            if (!folderAuthorized &&
-                !(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R &&
-                    Environment.isExternalStorageManager())
-            ) {
-                item(key = "scan_authorize_prompt") {
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(24.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.secondaryContainer
-                        )
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(16.dp),
-                            verticalArrangement = Arrangement.spacedBy(10.dp)
-                        ) {
-                            Text(
-                                appString(R.string.scan_folder_prompt_title),
-                                style = MaterialTheme.typography.titleSmall
-                            )
-                            Text(
-                                appString(R.string.scan_folder_prompt_desc),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer
-                            )
-                            OutlinedButton(onClick = {
-                                // 直接定位 Download 目录，避免部分 ROM 上 launch(null) 不弹选择器
-                                scanFolderLauncher.launch(defaultDownloadTreeUri(context))
-                            }) {
-                                Icon(Icons.Default.FolderOpen, contentDescription = null)
-                                Spacer(Modifier.width(8.dp))
-                                Text(appString(R.string.scan_folder_authorize))
-                            }
-                        }
-                    }
-                }
-            }
             item(key = "download_summary") {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -3362,44 +3323,6 @@ fun DriverHubScreen(
             }
         }
 
-        // ── 组件专区：每个组件类型一个独立区块，直接展示来源+版本+下载 ──
-        item(key = "component_region_header") {
-            RegionHeader(
-                title = appString(R.string.component_region),
-                icon = Icons.Default.Extension,
-                remote = null
-            )
-        }
-
-        // R5：来源级捆绑——独立区块，一键下载各组件源最新一套文件，
-        // 让用户直观对比各来源组件特色（不再放在每个组件分类卡片内）。
-        item(key = "component_bundle_region") {
-            ComponentBundleSection(sources = componentSources)
-        }
-
-        componentOrder.forEach { type ->
-            val source = currentComponentSource(type)
-            val list = source?.let { componentCatalogs[it.id]?.get(type).orEmpty() }.orEmpty()
-            if (list.isNotEmpty() && source != null) {
-                item(key = "component:$type") {
-                    ComponentSection(
-                        type = type,
-                        sources = sourcesByRichness.filter { s ->
-                            componentCatalogs[s.id]?.get(type).orEmpty().isNotEmpty()
-                        },
-                        currentSource = source,
-                        components = list,
-                        selectionKey = "component:$type:${source.id}",
-                        onSourceChange = { sourceId ->
-                            componentSourceSelections[type] = sourceId
-                            SettingsManager.setComponentSource(type, sourceId)
-                        },
-                        onDownload = onDownloadComponent
-                    )
-                }
-            }
-        }
-
         item(key = "footer") {
             Text(
                 text = appString(R.string.versions_footer),
@@ -4775,6 +4698,11 @@ private fun SourcePickerGridCard(
                         verticalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         option.preview.forEach { item ->
+                            // 长行（如支持型号列表 610/612/...）默认 2 行截断，点击展开全文
+                            var previewExpanded by rememberSaveable(option.id, item.text) {
+                                mutableStateOf(false)
+                            }
+                            val longLine = item.text.length > 40
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
                                     item.icon,
@@ -4786,8 +4714,26 @@ private fun SourcePickerGridCard(
                                 Text(
                                     item.text,
                                     style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = if (previewExpanded) Int.MAX_VALUE else 2,
+                                    overflow = TextOverflow.Ellipsis,
+                                    modifier = Modifier
+                                        .weight(1f, fill = false)
+                                        .then(
+                                            if (longLine) Modifier.clickable {
+                                                previewExpanded = !previewExpanded
+                                            } else Modifier
+                                        )
                                 )
+                                if (longLine && !previewExpanded) {
+                                    Spacer(Modifier.width(4.dp))
+                                    Text(
+                                        appString(R.string.expand),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        modifier = Modifier.clickable { previewExpanded = true }
+                                    )
+                                }
                             }
                         }
                     }
@@ -8937,6 +8883,11 @@ fun ComponentScreen(
                 icon = Icons.Default.Extension,
                 remote = null
             )
+        }
+
+        // R5：来源级捆绑——组件区主页单独分类，一键下载各组件源最新一套文件
+        item(key = "component_bundle_region") {
+            ComponentBundleSection(sources = componentSources)
         }
 
         item(key = "component_news") {
