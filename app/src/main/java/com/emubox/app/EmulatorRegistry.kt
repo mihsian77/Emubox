@@ -51,7 +51,9 @@ data class EmulatorEntry(
     val latestDate: String = "",
     val latestBody: String = "",
     val releases: List<EmulatorRelease> = emptyList(),
-    val logoUrl: String = ""
+    val logoUrl: String = "",
+    /** 无下载条目标注（GitHub 移除/未发布），UI 展示"暂无可用下载" */
+    val note: String = ""
 ) {
     val githubUrl: String
         get() = if (owner.isNotBlank() && repo.isNotBlank()) "https://github.com/$owner/$repo" else ""
@@ -218,6 +220,7 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                         latestApkSize = firstAsset?.optLong("size", 0L) ?: 0L,
                         pushedAt = obj.optString("pushed_at"),
                         logoUrl = obj.optString("logoUrl"),
+                        note = obj.optString("note"),
                         stars = obj.optLong("stars", 0L),
                         forks = obj.optLong("forks", 0L),
                         watchers = obj.optLong("watchers", 0L),
