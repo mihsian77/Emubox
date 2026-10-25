@@ -950,8 +950,12 @@ static int findDeviceLocalMemoryType(const VulkanDispatch& vk, VkPhysicalDevice 
     return -1;
 }
 
+// stepLog 定义于文件后部（崩溃步骤日志），runBenchmark 先声明后使用
+static void stepLog(const char* msg);
+
 static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice device,
                                 PFN_vkGetInstanceProcAddr resolver = nullptr, bool enableCompute = false) {
+    stepLog("bench:enter");
     BenchmarkDispatch bk{};
     VkDevice logicalDevice = VK_NULL_HANDLE;
     VkQueue queue = VK_NULL_HANDLE;
@@ -997,6 +1001,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     // 1. 找 graphics queue family
     int qf = findGraphicsQueueFamily(vk, device);
     if (qf < 0) return fail("NO_GRAPHICS_QUEUE", "设备无 graphics queue");
+    stepLog("bench:qfamily_ok");
 
     // 2. 检查 timestamp 支持
     VkPhysicalDeviceProperties props{};
@@ -1023,9 +1028,11 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     devCI.queueCreateInfoCount = 1;
     devCI.pQueueCreateInfos = &queueCI;
 
+    stepLog("bench:device_create_try");
     if (bk.vkCreateDevice(device, &devCI, nullptr, &logicalDevice) != VK_SUCCESS) {
         return fail("CREATE_DEVICE_FAILED", "创建逻辑设备失败");
     }
+    stepLog("bench:device_create_ok");
 
     if (!loadDeviceDispatch(logicalDevice, bk)) {
         return fail("LOAD_DEVICE_DISPATCH_FAILED", "加载 device 级函数失败");
@@ -1085,8 +1092,10 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
         return true;
     };
 
+    stepLog("bench:buffer_alloc_try");
     if (!createBuffer(bufA, memA)) return fail("CREATE_BUFFER_A_FAILED", "创建 buffer A 失败");
     if (!createBuffer(bufB, memB)) return fail("CREATE_BUFFER_B_FAILED", "创建 buffer B 失败");
+    stepLog("bench:buffer_alloc_ok");
 
     // 7. 辅助：录制 + 提交 + 取时间戳（失败时设置 stageError 并返回负值）
     std::string stageError;
@@ -1131,6 +1140,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
 
     // 8. 测试1：fill bandwidth（填充 32MB × 50 次）
     const int FILL_ITERS = 30;
+    stepLog("bench:fill_submit_try");
     double fillNs = runTimed(FILL_ITERS, [&]() {
         for (int i = 0; i < FILL_ITERS; i++) {
             bk.vkCmdFillBuffer(cmdBuf, bufA, 0, VK_WHOLE_SIZE, 0x41414141);
@@ -1168,6 +1178,7 @@ static std::string runBenchmark(const VulkanDispatch& vk, VkInstance instance, V
     std::string computeError;
     double computeGFLOPS = 0.0;
     if (enableCompute) {
+        stepLog("bench:compute_try");
     {
         // shader module（字节数组本地构造并校验，见 kComputeShaderSpv）
         VkShaderModuleCreateInfo smCI{};
@@ -2453,6 +2464,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     dci.queueCreateInfoCount = 1;
     dci.pQueueCreateInfos = &dq;
     VkDevice device = VK_NULL_HANDLE;
+    stepLog("render:device_create_try");
     if (vkCreateDevice(phys, &dci, nullptr, &device) != VK_SUCCESS || device == VK_NULL_HANDLE) {
         return "{\"success\":false,\"errorCode\":\"DEVICE_CREATE_FAILED\",\"errorMessage\":\"render: vkCreateDevice failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
     }
