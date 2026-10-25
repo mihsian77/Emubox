@@ -6995,7 +6995,44 @@ private fun DriverDetectionList(
         ))
     }
 
-    // AdrenoTools 实测：启动独立进程 service（采集+跑分），结果轮询回填
+    // AdrenoTools 实测：分阶段独立进程（collect → benchmark → render）。
+    // 每个阶段一个全新 :drivertest 进程、进程内只加载一次驱动（vktest 同构），
+    // 规避同进程重复 mapping import 导致 turnip GSL 状态冲突崩溃（STAGE_CRASHED 根因）。
+    // 单阶段崩溃只丢该阶段结果，其余阶段照常展示。
+    fun startStageService(resultId: String, stage: String, dir: String, name: String, tmp: String, hook: String) {
+        DriverTestService.resultFile(context, resultId).delete()
+        File(context.filesDir, "driver_test_${resultId}.started").writeText("1")
+        val intent = android.content.Intent(context, DriverTestService::class.java).apply {
+            putExtra("driverDir", dir)
+            putExtra("driverName", name)
+            putExtra("tmpDir", tmp)
+            putExtra("hookLibDir", hook)
+            putExtra("resultId", resultId)
+            putExtra("stage", stage)
+        }
+        context.startService(intent)
+    }
+
+    // 轮询单个阶段结果文件（25s 窗口）。返回结果 JSON，超时/崩溃返回 null。
+    fun pollStageResult(resultId: String): org.json.JSONObject? {
+        val deadline = System.currentTimeMillis() + 25_000L
+        while (System.currentTimeMillis() < deadline) {
+            val rf = DriverTestService.resultFile(context, resultId)
+            if (rf.exists()) {
+                val raw = runCatching { rf.readText() }.getOrNull()
+                if (raw != null && raw.isNotBlank()) {
+                    val json = runCatching { org.json.JSONObject(raw) }.getOrNull()
+                    if (json != null) {
+                        rf.delete()
+                        return json
+                    }
+                }
+            }
+            Thread.sleep(300)
+        }
+        return null
+    }
+
     val testWithAdrenoTools: (String, String) -> Unit = { id, filePath ->
         adrenotoolsTestingId = id
         scope.launch(Dispatchers.IO) {
@@ -7013,17 +7050,53 @@ private fun DriverDetectionList(
                 } else {
                     val (tmpDir, hookLibDir) = adrenotoolsDirs
                     val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
-                    DriverTestService.resultFile(context, id).delete()
-                    val intent = android.content.Intent(context, DriverTestService::class.java).apply {
-                        putExtra("driverDir", dir)
-                        putExtra("driverName", soFile.name)
-                        putExtra("tmpDir", tmpDir)
-                        putExtra("hookLibDir", hookLibDir)
-                        putExtra("resultId", id)
-                        putExtra("runBenchmark", true)
+                    val name = soFile.name
+
+                    // 阶段 1 · 采集（全新进程，单次加载）
+                    startStageService(id, "collect", dir, name, tmpDir, hookLibDir)
+                    val collectJson = pollStageResult(id)
+                    if (collectJson == null) {
+                        val crashed = File(context.filesDir, "driver_test_${id}.started").exists()
+                        detectionResults = detectionResults + (id to VulkanInfoPayload(
+                            success = false,
+                            errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
+                            errorMessage = if (crashed) "驱动加载崩溃（独立进程被杀）" else "独立进程实测未启动，请重试",
+                            loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
+                            deviceCount = 0, devices = emptyList()
+                        ))
+                        adrenotoolsTestingId = null
+                        return@launch
                     }
-                    context.startService(intent)
-                    servicePollingId = id
+                    val payload = VulkanInfoPayload.fromJson(collectJson.getJSONObject("collect").toString())
+                    detectionResults = detectionResults + (id to payload)
+
+                    // 阶段 2 · 跑分（独立进程，单次加载）
+                    val benchId = "${id}_b"
+                    startStageService(benchId, "benchmark", dir, name, tmpDir, hookLibDir)
+                    val benchJson = pollStageResult(benchId)
+                    if (benchJson != null) {
+                        val br = BenchmarkResult.fromJson(benchJson.getJSONObject("benchmark").toString())
+                        adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
+
+                        // 阶段 3 · 渲染（独立进程，单次加载）
+                        val renderId = "${id}_r"
+                        startStageService(renderId, "render", dir, name, tmpDir, hookLibDir)
+                        val renderJson = pollStageResult(renderId)
+                        renderResults = renderResults + (id to (renderJson?.getJSONObject("render")
+                            ?: org.json.JSONObject().put("success", false).put("errorCode", "STAGE_CRASHED")
+                                .put("errorMessage", "渲染阶段进程崩溃，跑分结果已保留")))
+                    } else {
+                        val crashed = File(context.filesDir, "driver_test_${benchId}.started").exists()
+                        adrenotoolsResults = adrenotoolsResults + (id to (payload to BenchmarkResult(
+                            success = false,
+                            errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
+                            errorMessage = if (crashed) "跑分阶段进程崩溃（驱动加载后执行负载被杀）" else "跑分独立进程未启动，请重试",
+                            deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
+                            computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
+                            totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
+                        )))
+                    }
+                    adrenotoolsTestingId = null
                 }
             } catch (e: Exception) {
                 detectionResults = detectionResults + (id to VulkanInfoPayload(
@@ -7077,7 +7150,7 @@ private fun DriverDetectionList(
                         putExtra("tmpDir", tmpDir)
                         putExtra("hookLibDir", hookLibDir)
                         putExtra("resultId", benchResultId)
-                        putExtra("runBenchmark", true)
+                        putExtra("stage", "benchmark")
                     }
                     context.startService(intent)
                     // 轮询结果（与检测共用 25s 窗口；native 加载+渲染在 service 内完成）
