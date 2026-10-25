@@ -1112,9 +1112,13 @@ private fun formatBytes(bytes: Long): String {    return when {
  *  直接使用头像 CDN 直链：github.com/{owner}.png 会 302 跳转到
  *  avatars.githubusercontent.com，国内网络对跳转链加载不稳且易受限流。 */
 private fun githubOwnerAvatar(url: String): String? {
-    // api.github.com/repos/owner/repo 优先（此前只匹配 github.com 会把 api 域的
-    // owner 错取为 "repos"，头像 URL 指向不存在的用户 → 全部显示 GitHub 默认头像）
+    // 按 URL 形态提取 owner：
+    // 1) api.github.com/repos/owner/repo（注册表驱动/组件源）
+    // 2) raw.githubusercontent.com/owner/repo/...（contents.json 清单源）
+    // 3) github.com/owner/repo（普通仓库页）
+    // 此前只匹配 github.com 会把 api 域的 owner 错取为 "repos" → 全部显示默认头像。
     val m = Regex("api\\.github\\.com/repos/([^/]+)").find(url)
+        ?: Regex("raw\\.githubusercontent\\.com/([^/]+)").find(url)
         ?: Regex("github\\.com/([^/]+)").find(url)
         ?: return null
     val owner = m.groupValues[1].trim('/').ifBlank { return null }
@@ -4141,7 +4145,13 @@ fun TurnipDriverSection(
                     .padding(horizontal = 20.dp, vertical = 14.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(Icons.Default.Eco, contentDescription = null, modifier = Modifier.size(22.dp), tint = Fusion.GradientStart)
+                // 区块头像：与高通区一致，显示当前源作者头像；加载失败回退首字母
+                val srcAvatar = currentSource?.apiUrl?.let { githubOwnerAvatar(it) }
+                RepoAvatar(
+                    avatarUrl = srcAvatar,
+                    fallbackName = currentSource?.name ?: (title ?: "D"),
+                    size = 24.dp
+                )
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title ?: appString(R.string.turnip_driver), style = MaterialTheme.typography.titleSmall)
