@@ -7014,7 +7014,7 @@ private fun DriverDetectionList(
     }
 
     // 崩溃步骤日志（native 每步 append）：进程被杀后主进程读取，定位崩溃到具体步骤
-    fun stepLogTail(resultId: String, lines: Int = 3): String {
+    fun stepLogTail(resultId: String, lines: Int = 12): String {
         return runCatching {
             val f = File(context.filesDir, "driver_test_${resultId}.step")
             if (f.exists()) f.readLines().takeLast(lines).joinToString(" > ") else ""
