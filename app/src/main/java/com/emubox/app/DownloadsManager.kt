@@ -193,8 +193,30 @@ object DownloadsManager {
                 ?.let { restored -> _activeDownloads[restored.fileName] = restored }
         }
 
-        // Normalize persisted CONNECTING/DOWNLOADING states to PAUSED immediately.
+        // 恢复时兜底收尾：字节已达标的任务直接转 completed，避免"文件下载完但状态
+        // 一直卡在连接中/下载中"（写盘完成与状态回写之间存在窗口，进程被杀即残留）。
+        // 未达标任务统一归一为 PAUSED（可手动续传），不再以 CONNECTING 假象阻塞。
+        val ready = _activeDownloads.values.filter { it.totalBytes > 0L && it.downloadedBytes >= it.totalBytes }
+        ready.forEach { d ->
+            _activeDownloads.remove(d.fileName)
+            _completedDownloads.removeAll { it.fileName.equals(d.fileName, ignoreCase = true) && it.subPath == d.subPath }
+            _completedDownloads.add(
+                0,
+                CompletedDownload(
+                    UUID.randomUUID().toString(),
+                    d.fileName,
+                    d.outputUri.ifBlank { "/unknown" },
+                    d.downloadedBytes,
+                    System.currentTimeMillis(),
+                    d.subPath
+                )
+            )
+        }
+        _activeDownloads.values.forEach { d ->
+            _activeDownloads[d.fileName] = d.copy(status = DownloadStatus.PAUSED)
+        }
         saveActiveDownloads(force = true)
+        saveCompletedDownloads()
     }
 
     fun startDownload(
@@ -331,6 +353,27 @@ object DownloadsManager {
     }
 
     fun failDownload(fileName: String) {
+        // 兜底：若字节已下载完整（下载过程完成但状态回写失败），转 completed 而非标失败，
+        // 根治"明明下载完了却提示失败、重下又提示已存在"的矛盾状态。
+        val d = _activeDownloads[fileName]
+        if (d != null && d.totalBytes > 0L && d.downloadedBytes >= d.totalBytes) {
+            _activeDownloads.remove(fileName)
+            _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) && it.subPath == d.subPath }
+            _completedDownloads.add(
+                0,
+                CompletedDownload(
+                    UUID.randomUUID().toString(),
+                    d.fileName,
+                    d.outputUri.ifBlank { "/unknown" },
+                    d.downloadedBytes,
+                    System.currentTimeMillis(),
+                    d.subPath
+                )
+            )
+            saveActiveDownloads(force = true)
+            saveCompletedDownloads()
+            return
+        }
         _activeDownloads.remove(fileName)
         // 失败时同步清理同名 completed 残留：文件可能从未真正落盘，避免"重新下载提示已存在"
         _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) }
