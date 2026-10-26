@@ -2397,14 +2397,30 @@ static std::string runRenderCopyTest(VulkanDispatch& vk, VkInstance instance, Vk
     };
 
     stepLog("rcopy:qfamily_try");
-    int qf = findGraphicsQueueFamily(vk, device);
+    stepLog("rcopy:qprops_try");
+    uint32_t qfCount = 0;
+    if (!vk.vkGetPhysicalDeviceQueueFamilyProperties) return fail("LOAD_QFUNC_FAILED", "vkGetPhysicalDeviceQueueFamilyProperties 未加载");
+    vk.vkGetPhysicalDeviceQueueFamilyProperties(device, &qfCount, nullptr);
+    stepLog("rcopy:qprops_count_ok");
+    if (qfCount == 0) return fail("NO_GRAPHICS_QUEUE", "设备无 graphics queue");
+    std::vector<VkQueueFamilyProperties> qfProps(qfCount);
+    vk.vkGetPhysicalDeviceQueueFamilyProperties(device, &qfCount, qfProps.data());
+    stepLog("rcopy:qprops_ok");
+    int qf = -1;
+    for (uint32_t qi = 0; qi < qfCount; qi++) {
+        if (qfProps[qi].queueFlags & VK_QUEUE_GRAPHICS_BIT) { qf = (int)qi; break; }
+    }
     if (qf < 0) return fail("NO_GRAPHICS_QUEUE", "设备无 graphics queue");
+    stepLog("rcopy:devprops_try");
     VkPhysicalDeviceProperties props{};
     vk.vkGetPhysicalDeviceProperties(device, &props);
+    stepLog("rcopy:devprops_ok");
     if (!props.limits.timestampComputeAndGraphics) return fail("TIMESTAMP_UNSUPPORTED", "设备不支持 timestamp query");
     float timestampPeriod = props.limits.timestampPeriod;
 
+    stepLog("rcopy:inst_dispatch_try");
     if (!loadInstanceDispatch(instance, bk, resolver)) return fail("LOAD_INSTANCE_DISPATCH_FAILED", "加载 instance 级函数失败");
+    stepLog("rcopy:inst_dispatch_ok");
     float queuePriority = 1.0f;
     VkDeviceQueueCreateInfo queueCI{};
     queueCI.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
