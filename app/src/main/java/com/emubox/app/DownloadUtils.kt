@@ -283,7 +283,14 @@ suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent
 private suspend fun ensureFileNotExists(context: Context, desiredName: String, subPath: String): Boolean {
     val existed = withContext(Dispatchers.IO) {
         if (DownloadsManager.existsCompleted(desiredName, subPath)) {
-            true
+            // completed 记录在，但磁盘/MediaStore 实际找不到文件 = 死文件记录
+            // （file:// 直写残留 / 权限回收后不可见）→ 清记录放行重新下载，不卡死
+            if (!fileExistsOnDisk(context, desiredName, subPath)) {
+                DownloadsManager.removeCompletedByFile(desiredName, subPath)
+                false
+            } else {
+                true
+            }
         } else {
             fileExistsOnDisk(context, desiredName, subPath)
         }
