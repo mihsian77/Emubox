@@ -2485,7 +2485,6 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     vkAllocateCommandBuffers = reinterpret_cast<PFN_AllocateCommandBuffers>(devD("vkAllocateCommandBuffers"));
     vkAllocateMemory = reinterpret_cast<PFN_AllocateMemory>(devD("vkAllocateMemory"));
     vkBindImageMemory = reinterpret_cast<PFN_BindImageMemory>(devD("vkBindImageMemory"));
-    vkGetMemoryRequirements = reinterpret_cast<PFN_GetMemoryRequirements>(devD("vkGetMemoryRequirements"));
     vkBeginCommandBuffer = reinterpret_cast<PFN_BeginCommandBuffer>(devD("vkBeginCommandBuffer"));
     vkCmdBeginRenderPass = reinterpret_cast<PFN_CmdBeginRenderPass>(devD("vkCmdBeginRenderPass"));
     vkCmdDraw = reinterpret_cast<PFN_CmdDraw>(devD("vkCmdDraw"));
@@ -2515,7 +2514,6 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     else if (!vkAllocateCommandBuffers) missing = "vkAllocateCommandBuffers";
     else if (!vkAllocateMemory) missing = "vkAllocateMemory";
     else if (!vkBindImageMemory) missing = "vkBindImageMemory";
-    else if (!vkGetMemoryRequirements) missing = "vkGetMemoryRequirements";
     else if (!vkBeginCommandBuffer) missing = "vkBeginCommandBuffer";
     else if (!vkCmdBeginRenderPass) missing = "vkCmdBeginRenderPass";
     else if (!vkCmdDraw) missing = "vkCmdDraw";
@@ -2605,17 +2603,16 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
         vkDestroyDevice(device, nullptr);
         return "{\"success\":false,\"errorCode\":\"IMAGE_CREATE_FAILED\",\"errorMessage\":\"render: offscreen image failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
     }
-    VkMemoryRequirements memReq = {};
-    vkGetMemoryRequirements(device, img, &memReq);
+    // 绕开 vkGetMemoryRequirements（FauxVkTest hook 运行时未覆盖该函数，gdpa 返回空）：
+    // 离屏 image 直接用 device-local 内存 + 固定对齐分配尺寸（Vulkan 允许分配超过实际需求）
     VkMemoryAllocateInfo mai = {};
     mai.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-    mai.allocationSize = memReq.size;
-    // 内存类型：找 host 可见或设备本地（简单取第一个支持位）
+    mai.allocationSize = (VkDeviceSize(W) * H * 4 + 4095) & ~(VkDeviceSize)4095;
     VkPhysicalDeviceMemoryProperties memProps = {};
     vk.vkGetPhysicalDeviceMemoryProperties(phys, &memProps);
     uint32_t memType = 0xFFFFFFFF;
     for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
-        if (memReq.memoryTypeBits & (1u << i)) { memType = i; break; }
+        if (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT) { memType = i; break; }
     }
     if (memType == 0xFFFFFFFF) {
         vkDestroyImage(device, img, nullptr);
