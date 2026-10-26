@@ -7096,9 +7096,11 @@ private fun DriverDetectionList(
                         val renderId = "${id}_r"
                         startStageService(renderId, "render", dir, name, tmpDir, hookLibDir)
                         val renderJson = pollStageResult(renderId)
+                        val renderSteps = stepLogTail(renderId)
                         renderResults = renderResults + (id to (renderJson?.getJSONObject("render")
                             ?: org.json.JSONObject().put("success", false).put("errorCode", "STAGE_CRASHED")
-                                .put("errorMessage", "渲染阶段进程崩溃，跑分结果已保留")))
+                                .put("errorMessage", "渲染阶段进程崩溃，跑分结果已保留" +
+                                    (if (renderSteps.isNotEmpty()) "\n崩溃步骤：$renderSteps" else ""))))
                     } else {
                         val crashed = File(context.filesDir, "driver_test_${benchId}.started").exists()
                         val steps = stepLogTail(benchId)

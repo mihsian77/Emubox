@@ -332,7 +332,10 @@ object DownloadsManager {
 
     fun failDownload(fileName: String) {
         _activeDownloads.remove(fileName)
+        // 失败时同步清理同名 completed 残留：文件可能从未真正落盘，避免"重新下载提示已存在"
+        _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) }
         saveActiveDownloads(force = true)
+        saveCompletedDownloads()
     }
 
     fun removeCompleted(id: String) {
