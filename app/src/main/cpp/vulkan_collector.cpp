@@ -2722,6 +2722,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     cb.pAttachments = &ba;
     stepLog("render:pipeline_try");
     VkGraphicsPipelineCreateInfo gpci = {};
+    stepLog("render:pipeline_create_try");
     gpci.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
     gpci.stageCount = 2;
     gpci.pStages = stages;
