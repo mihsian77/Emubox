@@ -8836,9 +8836,11 @@ fun DriverScreen(
         }
 
         // ── 驱动包装器专区：Vulkan/GL 包装层（wmali、compat-bcn、gamenative 等）──
+        // 2026-10-26 修复：banner catalog 与 release 型源（fristoner/winx）原本 if/else 互斥，
+        // banner 清单存在时 fristoner/winx 完全不可见。改为并存：banner 走 wrappers.json 清单卡，
+        // 其余 wrapper 源（release 型）独立区块并列，源切换弹窗仍可用。
+        val releaseWrapperSources = filteredWrapper.filter { it.id != "reg-wrapper-banner" }
         if (filteredWrapper.isNotEmpty() && showWrapperSection) {
-            // banner 来源：wrapper 内容来自作者维护的 wrappers.json 清单（条目自带简介，
-            // 不依赖 release 标签顺序）；其余 wrapper 源走 release 型版本卡。
             if (wrapperItems.isNotEmpty()) {
                 item(key = "wrapper_catalog") {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -8890,11 +8892,13 @@ fun DriverScreen(
                     )
                     }
                 }
-            } else {
+            }
+            // release 型 wrapper 源（fristoner/winx）独立区块，与 banner catalog 并存
+            if (releaseWrapperSources.isNotEmpty()) {
                 item(key = "wrapper_section") {
                     TurnipDriverSection(
                         adrenoSeries = deviceInfo?.adrenoSeries,
-                        sources = filteredWrapper,
+                        sources = releaseWrapperSources,
                         currentSourceId = wrapperSourceId,
                         onSourceChange = { id ->
                             onWrapperSourceChange(id)
