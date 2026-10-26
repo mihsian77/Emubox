@@ -2502,13 +2502,33 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     vkDestroyPipeline = reinterpret_cast<PFN_DestroyPipeline>(devD("vkDestroyPipeline"));
     vkDestroyCommandPool = reinterpret_cast<PFN_DestroyCommandPool>(devD("vkDestroyCommandPool"));
     vkDestroyDevice = reinterpret_cast<PFN_DestroyDevice>(devD("vkDestroyDevice"));
-    if (!vkGetDeviceQueue || !vkCreateShaderModule || !vkCreateRenderPass || !vkCreateImageView ||
-        !vkCreateImage || !vkCreateFramebuffer || !vkCreatePipelineLayout || !vkCreateGraphicsPipelines ||
-        !vkCreateCommandPool || !vkAllocateCommandBuffers || !vkAllocateMemory || !vkBindImageMemory ||
-        !vkGetMemoryRequirements || !vkBeginCommandBuffer || !vkCmdBeginRenderPass || !vkCmdDraw ||
-        !vkCmdEndRenderPass || !vkEndCommandBuffer || !vkQueueSubmit || !vkDeviceWaitIdle) {
+    const char* missing = nullptr;
+    if (!vkGetDeviceQueue) missing = "vkGetDeviceQueue";
+    else if (!vkCreateShaderModule) missing = "vkCreateShaderModule";
+    else if (!vkCreateRenderPass) missing = "vkCreateRenderPass";
+    else if (!vkCreateImageView) missing = "vkCreateImageView";
+    else if (!vkCreateImage) missing = "vkCreateImage";
+    else if (!vkCreateFramebuffer) missing = "vkCreateFramebuffer";
+    else if (!vkCreatePipelineLayout) missing = "vkCreatePipelineLayout";
+    else if (!vkCreateGraphicsPipelines) missing = "vkCreateGraphicsPipelines";
+    else if (!vkCreateCommandPool) missing = "vkCreateCommandPool";
+    else if (!vkAllocateCommandBuffers) missing = "vkAllocateCommandBuffers";
+    else if (!vkAllocateMemory) missing = "vkAllocateMemory";
+    else if (!vkBindImageMemory) missing = "vkBindImageMemory";
+    else if (!vkGetMemoryRequirements) missing = "vkGetMemoryRequirements";
+    else if (!vkBeginCommandBuffer) missing = "vkBeginCommandBuffer";
+    else if (!vkCmdBeginRenderPass) missing = "vkCmdBeginRenderPass";
+    else if (!vkCmdDraw) missing = "vkCmdDraw";
+    else if (!vkCmdEndRenderPass) missing = "vkCmdEndRenderPass";
+    else if (!vkEndCommandBuffer) missing = "vkEndCommandBuffer";
+    else if (!vkQueueSubmit) missing = "vkQueueSubmit";
+    else if (!vkDeviceWaitIdle) missing = "vkDeviceWaitIdle";
+    if (missing) {
         vkDestroyDevice(device, nullptr);
-        return "{\"success\":false,\"errorCode\":\"RENDER_FUNCS_MISSING\",\"errorMessage\":\"render: driver lacks device funcs (gdpa)\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
+        std::string em = "render: device func missing (gdpa): ";
+        em += missing;
+        return "{\"success\":false,\"errorCode\":\"RENDER_FUNCS_MISSING\",\"errorMessage\":\""
+               + jsonEscape(em) + "\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
     }
     vkGetDeviceQueue(device, static_cast<uint32_t>(gfxQf), 0, &queue);
 
