@@ -2410,6 +2410,7 @@ static std::string runRenderCopyTest(VulkanDispatch& vk, VkInstance instance, Vk
     }
     if (qf < 0) return fail("NO_GRAPHICS_QUEUE", "设备无 graphics queue");
     stepLog("rcopy:devprops_try");
+    if (!vk.vkGetPhysicalDeviceProperties) return fail("LOAD_DEVPROPS_FAILED", "vkGetPhysicalDeviceProperties 未加载");
     VkPhysicalDeviceProperties props{};
     vk.vkGetPhysicalDeviceProperties(device, &props);
     stepLog("rcopy:devprops_ok");
@@ -3383,6 +3384,12 @@ static std::string renderDriverAdrenotoolsJson(const char* driverDir, const char
             getInst(instance, "vkGetPhysicalDeviceQueueFamilyProperties"));
     vk.vkGetPhysicalDeviceMemoryProperties = reinterpret_cast<PFN_GetPhysicalDeviceMemoryProperties>(
             getInst(instance, "vkGetPhysicalDeviceMemoryProperties"));
+    vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+            getInst(instance, "vkGetPhysicalDeviceProperties"));
+    if (!vk.vkGetPhysicalDeviceProperties) {
+        vk.vkGetPhysicalDeviceProperties = reinterpret_cast<PFN_GetPhysicalDeviceProperties>(
+                dlsym(lib, "vkGetPhysicalDeviceProperties"));
+    }
     uint32_t deviceCount = 0;
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
     if (deviceCount == 0) {
