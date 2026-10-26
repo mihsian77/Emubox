@@ -5747,6 +5747,7 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val busyIds = remember { mutableStateMapOf<String, Boolean>() }
+    val results = remember { mutableStateMapOf<String, BundleResult>() }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -5778,6 +5779,7 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
             sources.forEach { source ->
                 val busy = busyIds[source.id] == true
                 val bundleDoneMsg = appString(R.string.source_bundle_done, source.name)
+                val result = results[source.id]
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
@@ -5803,9 +5805,60 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
                             text = source.description,
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 2,
+                            maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
+                        // 最新整包信息：tag + 稳定/夜版徽标 + 资产数 + 发布时间
+                        if (result != null && result.tag != null) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = result.tag,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = Fusion.GradientStart,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Surface(
+                                    shape = RoundedCornerShape(6.dp),
+                                    color = if (result.prerelease) Fusion.SurfaceAlt.copy(alpha = 0.6f)
+                                    else Fusion.GradientStart.copy(alpha = 0.15f)
+                                ) {
+                                    Text(
+                                        text = if (result.prerelease) "夜版" else "稳定",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = if (result.prerelease) Fusion.GradientStart else Fusion.GradientStart,
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                    )
+                                }
+                                if (result.assetCount > 0) {
+                                    Spacer(Modifier.width(6.dp))
+                                    Text(
+                                        text = "${result.assetCount} 个文件",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
+                        // 下载结果汇总：成功/失败 + 失败项重试
+                        if (result != null && (result.success.isNotEmpty() || result.failed.isNotEmpty())) {
+                            if (result.failed.isEmpty()) {
+                                Text(
+                                    text = "已下载 ${result.success.size} 个文件",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = Fusion.GradientStart
+                                )
+                            } else {
+                                Text(
+                                    text = "成功 ${result.success.size} / 失败 ${result.failed.size}，失败项：${result.failed.take(3).joinToString("、")}",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.error,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                        }
                     }
                     Spacer(Modifier.width(8.dp))
                     OutlinedButton(
@@ -5814,8 +5867,17 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
                             busyIds[source.id] = true
                             scope.launch {
                                 try {
-                                    downloadSourceBundle(context, source.manifestUrl, source.name)
-                                    Toast.makeText(context, bundleDoneMsg, Toast.LENGTH_LONG).show()
+                                    results[source.id] = downloadSourceBundle(context, source.manifestUrl, source.name)
+                                    val r = results[source.id]
+                                    if (r != null && r.failed.isEmpty()) {
+                                        Toast.makeText(context, bundleDoneMsg, Toast.LENGTH_LONG).show()
+                                    } else if (r != null && r.failed.isNotEmpty()) {
+                                        Toast.makeText(
+                                            context,
+                                            "完成 ${r.success.size}，失败 ${r.failed.size} 个（可点击重试）",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
                                 } catch (e: Exception) {
                                     Toast.makeText(context, e.message ?: "bundle failed", Toast.LENGTH_LONG).show()
                                 } finally {
@@ -5833,7 +5895,10 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
                         } else {
                             Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(15.dp))
                             Spacer(Modifier.width(6.dp))
-                            Text(appString(R.string.source_bundle_btn), maxLines = 1)
+                            Text(
+                                text = if (result != null && result.failed.isNotEmpty()) "重试" else appString(R.string.source_bundle_btn),
+                                maxLines = 1
+                            )
                         }
                     }
                 }
