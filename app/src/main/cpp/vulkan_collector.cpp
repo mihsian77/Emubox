@@ -1739,8 +1739,9 @@ static std::string loadDriverAdrenoTools(const char* driverDir, const char* driv
     std::string firstErr;
     loadExternalAdrenotools();  // 优先新版运行时（FauxVkTest 同款），失败静默回退内置
     const char* extHookDir = g_extOpen ? g_extRuntimeDir : hookLibDir;
-    if (useMappingImport) {
-        // 先预热系统 GPU 上下文（vktest/PPSSPP 同款前提），再挂载自定义驱动
+    if (useMappingImport && !g_extOpen) {
+        // 先预热系统 GPU 上下文（vktest/PPSSPP 同款前提），再挂载自定义驱动。
+        // 外部新版运行时（g_extOpen）已 hook 系统 loader，warmup 调系统 vkCreateInstance 会崩（实测），跳过。
         stepLog("adt:warmup_before");
         warmupSystemVulkan();
         stepLog("adt:warmup_after");
