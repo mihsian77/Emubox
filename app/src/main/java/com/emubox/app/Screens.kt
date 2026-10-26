@@ -7462,13 +7462,26 @@ private fun DriverDetectionList(
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 } else {
+                                    var renderErrExpanded by remember { mutableStateOf(false) }
+                                    val renderErrMsg = renderRes.optString("errorMessage", "")
                                     Text(
-                                        "渲染测试失败：${renderRes.optString("errorCode", "?")} ${renderRes.optString("errorMessage", "")}",
+                                        "渲染测试失败：${renderRes.optString("errorCode", "?")} $renderErrMsg",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.error,
-                                        maxLines = 3,
-                                        overflow = TextOverflow.Ellipsis
+                                        maxLines = if (renderErrExpanded) Int.MAX_VALUE else 2,
+                                        overflow = TextOverflow.Ellipsis,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clickable { renderErrExpanded = !renderErrExpanded }
                                     )
+                                    if (!renderErrExpanded && renderErrMsg.length > 48) {
+                                        Text(
+                                            "点击展开完整内容",
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.primary,
+                                            modifier = Modifier.clickable { renderErrExpanded = true }
+                                        )
+                                    }
                                 }
                             }
                             Spacer(Modifier.height(8.dp))
