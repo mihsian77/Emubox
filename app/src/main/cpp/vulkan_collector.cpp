@@ -2693,6 +2693,14 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     }
     VkPipelineVertexInputStateCreateInfo vi = {};
     vi.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+    // turnip：空 vertex input + gl_VertexIndex 组合在 pipeline 编译时崩溃（实锤多次）。
+    // 加 dummy binding/attribute（shader 不使用输入变量，合法且被忽略）绕开。
+    VkVertexInputBindingDescription viBind = { 0, 8, VK_VERTEX_INPUT_RATE_VERTEX };
+    VkVertexInputAttributeDescription viAttr = { 0, 0, VK_FORMAT_R32G32_SFLOAT, 0 };
+    vi.vertexBindingDescriptionCount = 1;
+    vi.pVertexBindingDescriptions = &viBind;
+    vi.vertexAttributeDescriptionCount = 1;
+    vi.pVertexAttributeDescriptions = &viAttr;
     VkPipelineInputAssemblyStateCreateInfo ia = {};
     ia.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
     ia.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
