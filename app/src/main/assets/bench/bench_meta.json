@@ -16,7 +16,7 @@
    "ludashi_score": "480872",
    "gpu_equiv": {
     "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
-    "score": 142472,
+    "score": 142465,
     "est": 141151,
     "ratio": 0.294
    }
@@ -52,8 +52,8 @@
    "antutu_clusters": "(1x 3.2GHz Cortex-X3 & 2x 2.8GHz Cortex-A715 & 2x 2.8GHz Cortex-A710 & 3x 2.0GHz Cortex-A510)",
    "ludashi_score": "807517",
    "gpu_equiv": {
-    "name": "AMD Radeon RX 7600M XT 8GB",
-    "score": 331586,
+    "name": "NVIDIA GeForce RTX 2060 SUPER 8GB",
+    "score": 331619,
     "est": 331150,
     "ratio": 0.41
    }
@@ -74,7 +74,7 @@
    "ludashi_score": "1062717",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 Ti 11GB",
-    "score": 540127,
+    "score": 540051,
     "est": 551656,
     "ratio": 0.519
    }
@@ -95,7 +95,7 @@
    "ludashi_score": "1159763",
    "gpu_equiv": {
     "name": "AMD Radeon RX 7700 XT 12GB",
-    "score": 615206,
+    "score": 615191,
     "est": 621881,
     "ratio": 0.536
    }
@@ -115,7 +115,7 @@
    "ludashi_score": "1308603",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3080 12GB",
-    "score": 740221,
+    "score": 740200,
     "est": 730825,
     "ratio": 0.558
    }
@@ -135,7 +135,7 @@
    "ludashi_score": "1385516",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6900 XT 16GB",
-    "score": 817989,
+    "score": 817731,
     "est": 828938,
     "ratio": 0.598
    }
@@ -155,7 +155,7 @@
    "ludashi_score": "1467056",
    "gpu_equiv": {
     "name": "AMD Radeon RX 9070 16GB",
-    "score": 896462,
+    "score": 896548,
     "est": 881797,
     "ratio": 0.601
    }
@@ -174,7 +174,7 @@
    "ludashi_score": "724435",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6600 8GB",
-    "score": 330190,
+    "score": 330157,
     "est": 330779,
     "ratio": 0.457
    }
@@ -193,7 +193,7 @@
    "ludashi_score": "996259",
    "gpu_equiv": {
     "name": "NVIDIA TITAN V 12GB",
-    "score": 518165,
+    "score": 518212,
     "est": 518883,
     "ratio": 0.521
    }
@@ -255,7 +255,7 @@
    "ludashi_score": "602793",
    "gpu_equiv": {
     "name": "AMD Radeon RX 580 2048SP 8GB",
-    "score": 160382,
+    "score": 160384,
     "est": 159224,
     "ratio": 0.264
    }
@@ -275,7 +275,7 @@
    "ludashi_score": "787766",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
-    "score": 347900,
+    "score": 347760,
     "est": 348811,
     "ratio": 0.443
    }
@@ -295,7 +295,7 @@
    "ludashi_score": "922847",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
-    "score": 443313,
+    "score": 443247,
     "est": 444254,
     "ratio": 0.481
    }
@@ -334,7 +334,7 @@
    "ludashi_score": "1372822",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 4090 Laptop GPU 16GB",
-    "score": 752613,
+    "score": 750463,
     "est": 753152,
     "ratio": 0.549
    }
