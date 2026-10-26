@@ -5479,7 +5479,7 @@ private fun WrapperCatalogSection(
                         )
                         Spacer(Modifier.width(6.dp))
                         Text(
-                            item.name,
+                            wrapperNameZh(item.name),
                             style = MaterialTheme.typography.titleSmall,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -5502,14 +5502,14 @@ private fun WrapperCatalogSection(
                     if (item.description.isNotBlank()) {
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            item.description,
+                            wrapperDescZh(item.description),
                             style = MaterialTheme.typography.bodySmall,
                             maxLines = if (descExpanded) Int.MAX_VALUE else 2,
                             overflow = TextOverflow.Ellipsis,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.clickable { descExpanded = !descExpanded }
                         )
-                        if (!descExpanded && item.description.length > 60) {
+                        if (!descExpanded && wrapperDescZh(item.description).length > 60) {
                             Text(
                                 appString(R.string.expand),
                                 style = MaterialTheme.typography.labelSmall,
