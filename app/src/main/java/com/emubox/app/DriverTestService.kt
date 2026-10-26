@@ -49,7 +49,9 @@ class DriverTestService : Service() {
         Thread {
             try {
                 val result = JSONObject()
-                // 崩溃步骤日志：native 每步 append，进程被杀后主进程读取定位崩溃点
+                // 崩溃步骤日志：native 每步 append，进程被杀后主进程读取定位崩溃点。
+                // 先清空旧文件，防止上一轮崩溃步骤残留误显示（实测踩坑）
+                runCatching { File(filesDir, "driver_test_${resultId}.step").delete() }
                 val stepLogPath = File(filesDir, "driver_test_${resultId}.step").absolutePath
                 when (stage) {
                     "collect" -> {
