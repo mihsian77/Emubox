@@ -2178,7 +2178,7 @@ static std::string benchmarkDriverViaLoaderJson(const char* driverDir, const cha
     return res;
 }
 
-static const uint32_t tri_vert_spv[] = {
+static const uint8_t tri_vert_spv[] = {
     0x03, 0x02, 0x23, 0x07, 0x00, 0x00, 0x01, 0x00, 0x0a, 0x00, 0x0d, 0x00,
     0x36, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x02, 0x00,
     0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x06, 0x00, 0x01, 0x00, 0x00, 0x00,
@@ -2305,7 +2305,7 @@ static const uint32_t tri_vert_spv[] = {
     0x31, 0x00, 0x00, 0x00, 0x35, 0x00, 0x00, 0x00, 0xfd, 0x00, 0x01, 0x00,
     0x38, 0x00, 0x01, 0x00,
 };
-static const uint32_t tri_frag_spv[] = {
+static const uint8_t tri_frag_spv[] = {
     0x03, 0x02, 0x23, 0x07, 0x00, 0x00, 0x01, 0x00, 0x0a, 0x00, 0x0d, 0x00,
     0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x02, 0x00,
     0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x06, 0x00, 0x01, 0x00, 0x00, 0x00,
@@ -2535,7 +2535,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     VkShaderModuleCreateInfo vsci = {};
     vsci.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
     vsci.codeSize = sizeof(tri_vert_spv);
-    vsci.pCode = tri_vert_spv;
+    vsci.pCode = reinterpret_cast<const uint32_t*>(tri_vert_spv);
     if (vkCreateShaderModule(device, &vsci, nullptr, &vs) != VK_SUCCESS) {
         vkDestroyDevice(device, nullptr);
         return "{\"success\":false,\"errorCode\":\"VS_MODULE_FAILED\",\"errorMessage\":\"render: vertex shader module failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
@@ -2543,7 +2543,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     VkShaderModuleCreateInfo fsci = {};
     fsci.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
     fsci.codeSize = sizeof(tri_frag_spv);
-    fsci.pCode = tri_frag_spv;
+    fsci.pCode = reinterpret_cast<const uint32_t*>(tri_frag_spv);
     if (vkCreateShaderModule(device, &fsci, nullptr, &fs) != VK_SUCCESS) {
         vkDestroyShaderModule(device, vs, nullptr);
         vkDestroyDevice(device, nullptr);
