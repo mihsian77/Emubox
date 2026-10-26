@@ -154,11 +154,26 @@ suspend fun downloadComponent(context: Context, component: Component) {
  *     拉取最新 release 的全部资产文件。
  *  2) contents.json 清单型源（WinNative/banner/StevenMXZ 等，仓库无 releases）：
  *     取清单中每个组件分类的最新版本文件。
- *  统一存入 Components/Bundle-<来源名>/ 目录，让用户一眼看出该来源组件特色。 */
-suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceName: String) {
-    val subPath = "Components/Bundle-${sanitizeFileName(sourceName)}"
+ *  统一存入 Components/Bundle-<来源名>/ 目录，让用户一眼看出该来源组件特色。
+ *
+ *  2026-10-26 改造：逐资产下载不再"一个失败全停"——单文件失败捕获后继续
+ *  下一个，返回成功/失败清单；UI 可对失败项单独重试。release 型源同时返回
+ *  最新 tag/是否 prerelease（夜版/稳定区分）与资产数。 */
+data class BundleResult(
+    val success: List<String>,
+    val failed: List<String>,
+    val tag: String? = null,
+    val prerelease: Boolean = false,
+    val publishedAt: String = "",
+    val assetCount: Int = 0
+)
 
-    // 1) release 型源：最新 release 的全部资产
+suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceName: String): BundleResult {
+    val subPath = "Components/Bundle-${sanitizeFileName(sourceName)}"
+    val success = mutableListOf<String>()
+    val failed = mutableListOf<String>()
+
+    // 1) release 型源：最新 release 的全部资产（失败跳过继续，不中断整批）
     val apiUrl = deriveRepoApiUrl(manifestUrl)
     if (apiUrl != null) {
         val releases = fetchGithubReleasesFromUrl(apiUrl)
@@ -174,11 +189,26 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
                         if (hasVersion || rawName.length > 24) rawName
                         else "${tag}_$rawName"
                     )
-                    if (ensureFileNotExists(context, desiredName, subPath)) return@forEach
-                    val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
-                    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+                    try {
+                        if (ensureFileNotExists(context, desiredName, subPath)) {
+                            success += rawName
+                            return@forEach
+                        }
+                        val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
+                        downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+                        success += rawName
+                    } catch (e: Exception) {
+                        failed += rawName
+                    }
                 }
-                return
+                return BundleResult(
+                    success = success,
+                    failed = failed,
+                    tag = tag,
+                    prerelease = latest.prerelease,
+                    publishedAt = latest.publishedAt,
+                    assetCount = assets.size
+                )
             }
         }
     }
@@ -188,7 +218,7 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
     val latestPerType = components.flatMap { (_, list) ->
         list.firstOrNull()?.let { listOf(it) } ?: emptyList()
     }
-    if (latestPerType.isEmpty()) return
+    if (latestPerType.isEmpty()) return BundleResult(success = success, failed = failed)
     latestPerType.forEach { component ->
         val url = component.remoteUrl
         if (url.isBlank()) return@forEach
@@ -196,12 +226,20 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
         val desiredName = sanitizeFileName(
             rawName.ifBlank { "${component.type}_${component.verName}" }
         )
-        if (ensureFileNotExists(context, desiredName, subPath)) return@forEach
-        val acceleratedUrl = Accelerator.rewriteUrl(url)
-        downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+        try {
+            if (ensureFileNotExists(context, desiredName, subPath)) {
+                success += rawName
+                return@forEach
+            }
+            val acceleratedUrl = Accelerator.rewriteUrl(url)
+            downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+            success += rawName
+        } catch (e: Exception) {
+            failed += rawName
+        }
     }
+    return BundleResult(success = success, failed = failed)
 }
-
 /** 下载模拟器 APK（emulator-registry 最新版本直链），存入 Download/Emulators/ */
 /** 下载模拟器指定资产文件（补丁/zip/apk 等，作者同发的所有文件都可下） */
 suspend fun downloadEmulatorAsset(context: Context, emulatorName: String, url: String, fileName: String) {

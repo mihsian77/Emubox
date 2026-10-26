@@ -17,7 +17,8 @@ data class GithubRelease(
     val name: String,
     val assets: List<GithubAsset>,
     val publishedAt: String = "",
-    val body: String = ""
+    val body: String = "",
+    val prerelease: Boolean = false
 )
 
 data class GithubAsset(val name: String, val downloadUrl: String, val sizeBytes: Long)
@@ -155,6 +156,7 @@ private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
         if (tagName.isBlank()) return@mapNotNull null
 
         val name = obj.optString("name").ifBlank { tagName }
+        val prerelease = obj.optBoolean("prerelease", false)
         val assetsArray = obj.optJSONArray("assets") ?: JSONArray()
         val assets = (0 until assetsArray.length()).map { assetIdx ->
             val asset = assetsArray.getJSONObject(assetIdx)
@@ -170,7 +172,8 @@ private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
             name = name,
             assets = assets,
             publishedAt = obj.optString("published_at", obj.optString("created_at", "")),
-            body = obj.optString("body", "")
+            body = obj.optString("body", ""),
+            prerelease = prerelease
         )
     }.sortGithubReleasesNewestFirst()
 
