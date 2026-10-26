@@ -573,12 +573,9 @@ class MainActivity : ComponentActivity() {
                                 "https://raw.githubusercontent.com/The412Banner/winlator-contents/main/wrappers.json"
                             )
                         }
-                        // 清单拉取失败时回退 strict release，避免 wrapper 区空白
-                        wrapperReleases = if (wrapperItems.isEmpty()) {
-                            withContext(Dispatchers.IO) {
-                                fetchTurnipReleases(selected, deviceInfo?.adrenoSeries ?: "unknown")
-                            }
-                        } else emptyList()
+                        // banner 走 wrappers.json 清单；release 区块仅含 fristoner/winx，
+                        // 此处无需回退 release（避免错源 release 混显到 release 区块）
+                        wrapperReleases = emptyList()
                     } else {
                         wrapperItems = emptyList()
                         wrapperReleases = withContext(Dispatchers.IO) {
