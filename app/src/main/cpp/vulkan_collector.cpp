@@ -2533,6 +2533,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     }
 
     // renderpass
+    stepLog("render:renderpass_try");
     VkAttachmentDescription att = {};
     att.format = VK_FORMAT_R8G8B8A8_UNORM;
     att.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -2630,6 +2631,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
         vkDestroyDevice(device, nullptr);
         return "{\"success\":false,\"errorCode\":\"IMAGEVIEW_FAILED\",\"errorMessage\":\"render: image view failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
     }
+    stepLog("render:framebuffer_try");
     VkFramebufferCreateInfo fbci = {};
     fbci.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
     fbci.renderPass = rp;
@@ -2701,6 +2703,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
     cb.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
     cb.attachmentCount = 1;
     cb.pAttachments = &ba;
+    stepLog("render:pipeline_try");
     VkGraphicsPipelineCreateInfo gpci = {};
     gpci.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
     gpci.stageCount = 2;
@@ -2793,6 +2796,7 @@ static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhys
             return "{\"success\":false,\"errorCode\":\"BEGIN_CMDBUF_FAILED\",\"errorMessage\":\"render: begin cmd failed\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
         }
         vkCmdBeginRenderPass(cmd, &rpbi, VK_SUBPASS_CONTENTS_INLINE);
+        stepLog("render:draw_try");
         vkCmdDraw(cmd, 3, 1, 0, 0);
         vkCmdEndRenderPass(cmd);
         if (vkEndCommandBuffer(cmd) != VK_SUCCESS) {
@@ -3203,7 +3207,7 @@ Java_com_emubox_app_NativeVulkanBridge_benchmarkDriverAdrenotoolsInProcess(
         } else {
             std::string fbMsg = " | loader-fallback: " + fb;
             json = "{\"success\":false,\"errorCode\":\"DUAL_PATH_FAILED\",\"errorMessage\":\""
-                   + jsonEscape("adrenotools+loader both failed: " + fbMsg)
+                   + jsonEscape("adrenotools failed: " + json + fbMsg)
                    + "\",\"fillBandwidthGBs\":0,\"copyBandwidthGBs\":0,\"computeGFLOPS\":0,"
                    "\"computeError\":\"\",\"totalScore\":0}";
         }
@@ -3250,7 +3254,7 @@ Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
         } else {
             std::string fbMsg = " | loader-fallback: " + fb;
             json = "{\"success\":false,\"errorCode\":\"DUAL_RENDER_FAILED\",\"errorMessage\":\""
-                   + jsonEscape("render adrenotools+loader both failed: " + fbMsg)
+                   + jsonEscape("render adrenotools failed: " + json + fbMsg)
                    + "\",\"fps\":0,\"avgFrameMs\":0,\"frameCount\":0}";
         }
     }
