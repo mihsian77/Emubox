@@ -5464,6 +5464,9 @@ private fun WrapperCatalogSection(
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         items.forEach { item ->
             var descExpanded by rememberSaveable(item.id) { mutableStateOf(false) }
+            var useZh by rememberSaveable(item.id + ":zh") { mutableStateOf(true) }
+            val displayName = if (useZh) wrapperNameZh(item.name) else item.name
+            val displayDesc = if (useZh) wrapperDescZh(item.description) else item.description
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
@@ -5479,11 +5482,29 @@ private fun WrapperCatalogSection(
                         )
                         Spacer(Modifier.width(6.dp))
                         Text(
-                            wrapperNameZh(item.name),
+                            displayName,
                             style = MaterialTheme.typography.titleSmall,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f)
+                        )
+                        // 译文/原文切换（记忆到条目级）
+                        Text(
+                            if (useZh) "译文" else "原文",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier
+                                .clickable { useZh = !useZh }
+                                .padding(start = 6.dp)
+                        )
+                    }
+                    if (!useZh && wrapperNameZh(item.name) != item.name) {
+                        Text(
+                            wrapperNameZh(item.name),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                     if (item.author.isNotBlank() || item.license.isNotBlank()) {
@@ -5502,14 +5523,14 @@ private fun WrapperCatalogSection(
                     if (item.description.isNotBlank()) {
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            wrapperDescZh(item.description),
+                            displayDesc,
                             style = MaterialTheme.typography.bodySmall,
                             maxLines = if (descExpanded) Int.MAX_VALUE else 2,
                             overflow = TextOverflow.Ellipsis,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.clickable { descExpanded = !descExpanded }
                         )
-                        if (!descExpanded && wrapperDescZh(item.description).length > 60) {
+                        if (!descExpanded && displayDesc.length > 60) {
                             Text(
                                 appString(R.string.expand),
                                 style = MaterialTheme.typography.labelSmall,
