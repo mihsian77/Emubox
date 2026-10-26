@@ -33,6 +33,14 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 
 private const val TAG = "EmuBoxDownload"
+
+/** 会话级加速节点黑名单：某加速 host 网络失败累计后，本轮会话强制走直连 */
+private val accelBlacklistHosts = mutableSetOf<String>()
+
+private fun accelHostOf(url: String): String? = runCatching {
+    val m = Regex("https?://([^/]+)/").find(url)
+    m?.groupValues?.getOrNull(1)
+}.getOrNull()
 private const val DOWNLOAD_BUFFER_SIZE = 64 * 1024
 private const val PROGRESS_UPDATE_INTERVAL_MS = 120L
 
@@ -133,7 +141,7 @@ suspend fun downloadAsset(context: Context, release: GithubRelease, asset: Githu
     )
     if (ensureFileNotExists(context, desiredName, "Drivers")) return
     val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, "Drivers")
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, "Drivers", originalUrl = asset.downloadUrl)
 }
 
 suspend fun downloadComponent(context: Context, component: Component) {
@@ -145,7 +153,7 @@ suspend fun downloadComponent(context: Context, component: Component) {
     val category = "Components/${component.type}"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(component.remoteUrl)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category, originalUrl = component.remoteUrl)
 }
 
 /** R5：来源级捆绑——一键下载某组件来源"最新一套"文件。
@@ -195,7 +203,7 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
                             return@forEach
                         }
                         val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
-                        downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+                        downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath, originalUrl = asset.downloadUrl)
                         success += rawName
                     } catch (e: Exception) {
                         failed += rawName
@@ -232,7 +240,7 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
                 return@forEach
             }
             val acceleratedUrl = Accelerator.rewriteUrl(url)
-            downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath)
+            downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath, originalUrl = url)
             success += rawName
         } catch (e: Exception) {
             failed += rawName
@@ -251,7 +259,7 @@ suspend fun downloadEmulatorAsset(context: Context, emulatorName: String, url: S
     val category = "Emulators"
     if (ensureFileNotExists(context, safe, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(url)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, safe, category)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, safe, category, originalUrl = url)
 }
 
 suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
@@ -263,7 +271,7 @@ suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
     val category = "Emulators"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(url)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category, originalUrl = url)
 }
 
 /** 下载 Windows 运行库文件，按分类存入 Download/Runtime/<分类>/ */
@@ -273,7 +281,7 @@ suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent
     val category = "Runtime/${component.category.labelRes}"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(file.url)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category, originalUrl = file.url)
 }
 
 /**
@@ -662,6 +670,21 @@ private suspend fun transferExistingDownload(
 
         call.execute().use { response ->
             if (!response.isSuccessful) {
+                // 416 Range Not Satisfiable：请求偏移已超出文件大小 = 文件此前已写完整
+                // （下载完成但状态回写被打断）。直接按完整文件收尾，不再反复重试
+                // "下载完了总是连接中重试失败"的根因之一。
+                if (response.code == 416 && requestedOffset > 0L) {
+                    withContext(Dispatchers.Main) {
+                        DownloadsManager.completeDownload(
+                            fileName,
+                            outputPath(outputUri),
+                            requestedOffset,
+                            state.subPath
+                        )
+                        Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
+                    }
+                    return@transfer true
+                }
                 throw IOException("HTTP ${response.code}")
             }
 
@@ -776,7 +799,8 @@ private suspend fun downloadFileWithProgress(
     context: Context,
     url: String,
     originalDesiredName: String,
-    subPath: String
+    subPath: String,
+    originalUrl: String? = null
 ) = withContext(Dispatchers.IO) download@{
     val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
     val uniqueFileName = getUniqueFileName(context, folderUri, originalDesiredName, subPath)
@@ -808,8 +832,10 @@ private suspend fun downloadFileWithProgress(
     // ── 自动重试 + 加速/直连自动切换（配合断点续传）────────────
     // 网络抖动（移动网络/代理不稳定）时自动续传重试，最多 MAX_ATTEMPTS 次；
     // 加速源连续失败后自动切换到直连，直连失败再换回加速，直至用尽次数。
-    val directUrl = extractOriginalUrlIfAccelerated(url)
+    val directUrl = originalUrl ?: extractOriginalUrlIfAccelerated(url)
     val hasFallback = directUrl != null && !url.equals(directUrl, ignoreCase = true)
+    val accelHost = accelHostOf(url)
+    val accelBlacklisted = accelHost != null && accelHost in accelBlacklistHosts
     val MAX_ATTEMPTS = 4
     var success = false
     var lastErrorUrl: String? = null
@@ -820,8 +846,10 @@ private suspend fun downloadFileWithProgress(
             DownloadsManager.activeDownloads[uniqueFileName]
         } ?: return@download
 
-        // 本轮使用的 URL：首次用原 URL；有直连可回退时，偶数轮切直连、奇数轮回加速
-        val useDirect = hasFallback && (attempt % 2 == 0)
+        // 本轮使用的 URL：加速节点已被黑名单标记 → 强制直连；
+        // 否则首次用加速，失败 1 次后（attempt>=2）切换直连不再回加速，
+        // 根治"加速节点不稳导致反复重试全失败"。
+        val useDirect = hasFallback && (accelBlacklisted || attempt >= 2)
         val targetUrl = when {
             useDirect -> directUrl
             else -> url
@@ -843,6 +871,12 @@ private suspend fun downloadFileWithProgress(
             urlOverride = targetUrl
         )
         if (success) break
+
+        // 网络失败且本轮用的是加速节点 → 记入会话黑名单（连续失败立即生效，下个文件起直连）
+        if (!success && targetUrl == url && accelHost != null && accelHost !in accelBlacklistHosts) {
+            accelBlacklistHosts.add(accelHost)
+            Log.i(TAG, "加速节点 $accelHost 网络失败，已加入会话黑名单，后续下载走直连")
+        }
 
         // 主动暂停/取消时不自动重试（transfer 内部已处理状态）
         val control = downloadControls[uniqueFileName]
