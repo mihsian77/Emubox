@@ -641,7 +641,16 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                         onClick = {
                                             scope.launch {
                                                 val deleted = deleteFile(context, file)
-                                                if (deleted) DownloadsManager.removeCompleted(file.id)
+                                                // 无论删除成败都移除记录：避免 file:// 死文件记录
+                                                // 卡住下载库导致"无法重新下载"（文件在权限恢复后可再删）
+                                                DownloadsManager.removeCompleted(file.id)
+                                                if (!deleted) {
+                                                    Toast.makeText(
+                                                        context,
+                                                        "文件已删除失败（权限不足），但已从列表移除，可重新下载",
+                                                        Toast.LENGTH_LONG
+                                                    ).show()
+                                                }
                                                 showDeleteDialog = false
                                             }
                                         },
@@ -1014,7 +1023,9 @@ private suspend fun deleteFile(context: android.content.Context, file: Downloads
                     context.contentResolver.delete(uri, null, null) > 0
                 }
             } else {
-                val f = File(file.filePath)
+                // file:// 前缀剥离：Uri.fromFile 记录存的带前缀，File() 需要裸路径
+                val rawPath = file.filePath.removePrefix("file://")
+                val f = File(rawPath)
                 val direct = if (f.exists()) f.delete() else false
                 if (direct) {
                     true

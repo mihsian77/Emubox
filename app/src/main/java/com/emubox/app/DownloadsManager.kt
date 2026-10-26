@@ -381,6 +381,12 @@ object DownloadsManager {
         saveCompletedDownloads()
     }
 
+    /** 按文件名+子路径移除 completed 记录（死文件记录清理，允许重新下载） */
+    fun removeCompletedByFile(fileName: String, subPath: String) {
+        _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) && it.subPath == subPath }
+        saveCompletedDownloads()
+    }
+
     fun removeCompleted(id: String) {
         _completedDownloads.removeAll { it.id == id }
         saveCompletedDownloads()
