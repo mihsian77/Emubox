@@ -7440,6 +7440,7 @@ private fun DriverDetectionList(
                             if (renderRes != null) {
                                 Spacer(Modifier.height(6.dp))
                                 if (renderRes.optBoolean("success")) {
+                                    val mode = renderRes.optString("mode", "graphics")
                                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                         Text(
                                             "渲染测试 ${"%.1f".format(renderRes.optDouble("fps", 0.0))} FPS",
@@ -7447,20 +7448,40 @@ private fun DriverDetectionList(
                                             color = MaterialTheme.colorScheme.primary,
                                             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                                         )
+                                        val avgMs = renderRes.optDouble("avgFrameMs", 0.0)
+                                        if (avgMs > 0.0) {
+                                            Text(
+                                                "帧耗时 ${"%.2f".format(avgMs)} ms",
+                                                style = MaterialTheme.typography.bodySmall
+                                            )
+                                        }
+                                        val frames = renderRes.optInt("frameCount", -1)
+                                        if (frames > 0) {
+                                            Text("${frames} 帧", style = MaterialTheme.typography.bodySmall)
+                                        }
+                                        val gbs = renderRes.optDouble("copyBandwidthGBs", 0.0)
+                                        if (gbs > 0.0) {
+                                            Text(
+                                                "拷贝 ${"%.1f".format(gbs)} GB/s",
+                                                style = MaterialTheme.typography.bodySmall,
+                                                color = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
+                                    }
+                                    if (mode == "copy-render") {
                                         Text(
-                                            "帧耗时 ${"%.2f".format(renderRes.optDouble("avgFrameMs", 0.0))} ms",
-                                            style = MaterialTheme.typography.bodySmall
+                                            "兼容模式：fill+copy 渲染链验证（turnip graphics pipeline 编译崩溃，已绕开），读回校验 " +
+                                                (if (renderRes.optBoolean("readbackOk", false)) "通过" else "失败"),
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
+                                    } else {
                                         Text(
-                                            "${renderRes.optInt("frameCount", 0)} 帧",
-                                            style = MaterialTheme.typography.bodySmall
+                                            "离屏渲染 256×256 彩色三角形（vktest 同款图形管线，每帧同步提交）",
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
                                     }
-                                    Text(
-                                        "离屏渲染 256×256 彩色三角形（vktest 同款图形管线，每帧同步提交）",
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
                                 } else {
                                     var renderErrExpanded by remember { mutableStateOf(false) }
                                     val renderErrMsg = renderRes.optString("errorMessage", "")
