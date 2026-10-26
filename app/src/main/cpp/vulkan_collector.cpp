@@ -846,6 +846,8 @@ struct BenchmarkDispatch {
     PFN_vkCmdBindPipeline vkCmdBindPipeline = nullptr;
     PFN_vkCmdBindDescriptorSets vkCmdBindDescriptorSets = nullptr;
     PFN_vkCmdDispatch vkCmdDispatch = nullptr;
+    PFN_vkMapMemory vkMapMemory = nullptr;
+    PFN_vkUnmapMemory vkUnmapMemory = nullptr;
 };
 
 // 阶段 1：加载 instance 级入口（创建逻辑设备前必须有 vkCreateDevice/vkGetDeviceProcAddr）
@@ -896,6 +898,8 @@ static bool loadDeviceDispatch(VkDevice device, BenchmarkDispatch& bk) {
     LOAD_DEV(vkCmdResetQueryPool);
     LOAD_DEV(vkCmdWriteTimestamp);
     LOAD_DEV(vkGetQueryPoolResults);
+    LOAD_DEV(vkMapMemory);
+    LOAD_DEV(vkUnmapMemory);
     LOAD_DEV(vkCreateShaderModule);
     LOAD_DEV(vkDestroyShaderModule);
     LOAD_DEV(vkCreateDescriptorSetLayout);
@@ -2359,6 +2363,189 @@ static const uint8_t tri_frag_spv[] = {
 // ── 渲染测试（vktest 同款）：自定义驱动 → 图形管线 → 离屏渲染三角形 60 帧 → FPS
 // 离屏渲染不依赖窗口/EGL，turnip 驱动可直接执行图形管线；每帧同步 submit（保守但
 // 能真实反映驱动渲染吞吐）。阶段错误分步返回，崩溃时由独立进程判定 DRIVER_CRASHED。
+// 渲染测试·兼容模式：不创建 graphics pipeline（turnip 编译 pipeline 崩溃，实锤多次）。
+// 用 fill+copy 提交链 + 读回校验验证 GPU 渲染/提交链可用（与 benchmark 同链路，必然出结果）。
+static std::string runRenderCopyTest(VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice device,
+                                     PFN_vkGetInstanceProcAddr resolver) {
+    stepLog("rcopy:enter");
+    BenchmarkDispatch bk{};
+    VkDevice logicalDevice = VK_NULL_HANDLE;
+    VkQueue queue = VK_NULL_HANDLE;
+    VkCommandPool cmdPool = VK_NULL_HANDLE;
+    VkCommandBuffer cmdBuf = VK_NULL_HANDLE;
+    VkBuffer bufA = VK_NULL_HANDLE, bufB = VK_NULL_HANDLE;
+    VkDeviceMemory memA = VK_NULL_HANDLE, memB = VK_NULL_HANDLE;
+    VkQueryPool queryPool = VK_NULL_HANDLE;
+    std::string stageError;
+
+    auto cleanup = [&]() {
+        if (bk.vkFreeCommandBuffers && cmdBuf && cmdPool) bk.vkFreeCommandBuffers(logicalDevice, cmdPool, 1, &cmdBuf);
+        if (bk.vkDestroyCommandPool && cmdPool) bk.vkDestroyCommandPool(logicalDevice, cmdPool, nullptr);
+        if (bk.vkDestroyBuffer && bufA) bk.vkDestroyBuffer(logicalDevice, bufA, nullptr);
+        if (bk.vkDestroyBuffer && bufB) bk.vkDestroyBuffer(logicalDevice, bufB, nullptr);
+        if (bk.vkFreeMemory && memA) bk.vkFreeMemory(logicalDevice, memA, nullptr);
+        if (bk.vkFreeMemory && memB) bk.vkFreeMemory(logicalDevice, memB, nullptr);
+        if (bk.vkDestroyQueryPool && queryPool) bk.vkDestroyQueryPool(logicalDevice, queryPool, nullptr);
+        if (bk.vkDestroyDevice && logicalDevice) bk.vkDestroyDevice(logicalDevice, nullptr);
+    };
+    auto fail = [&](const char* code, const char* msg) -> std::string {
+        cleanup();
+        std::ostringstream j;
+        j << "{\"success\":false,\"errorCode\":\"" << code << "\",\"errorMessage\":\""
+          << jsonEscape(msg) << "\",\"fps\":0,\"readbackOk\":false}";
+        return j.str();
+    };
+
+    stepLog("rcopy:qfamily_try");
+    int qf = findGraphicsQueueFamily(vk, device);
+    if (qf < 0) return fail("NO_GRAPHICS_QUEUE", "设备无 graphics queue");
+    VkPhysicalDeviceProperties props{};
+    vk.vkGetPhysicalDeviceProperties(device, &props);
+    if (!props.limits.timestampComputeAndGraphics) return fail("TIMESTAMP_UNSUPPORTED", "设备不支持 timestamp query");
+    float timestampPeriod = props.limits.timestampPeriod;
+
+    if (!loadInstanceDispatch(instance, bk, resolver)) return fail("LOAD_INSTANCE_DISPATCH_FAILED", "加载 instance 级函数失败");
+    float queuePriority = 1.0f;
+    VkDeviceQueueCreateInfo queueCI{};
+    queueCI.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    queueCI.queueFamilyIndex = static_cast<uint32_t>(qf);
+    queueCI.queueCount = 1;
+    queueCI.pQueuePriorities = &queuePriority;
+    VkDeviceCreateInfo devCI{};
+    devCI.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    devCI.queueCreateInfoCount = 1;
+    devCI.pQueueCreateInfos = &queueCI;
+    stepLog("rcopy:device_create_try");
+    if (bk.vkCreateDevice(device, &devCI, nullptr, &logicalDevice) != VK_SUCCESS) return fail("CREATE_DEVICE_FAILED", "创建逻辑设备失败");
+    if (!loadDeviceDispatch(logicalDevice, bk)) return fail("LOAD_DEVICE_DISPATCH_FAILED", "加载 device 级函数失败");
+    bk.vkGetDeviceQueue(logicalDevice, static_cast<uint32_t>(qf), 0, &queue);
+
+    VkCommandPoolCreateInfo poolCI{};
+    poolCI.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    poolCI.queueFamilyIndex = static_cast<uint32_t>(qf);
+    poolCI.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+    if (bk.vkCreateCommandPool(logicalDevice, &poolCI, nullptr, &cmdPool) != VK_SUCCESS) return fail("CREATE_CMDPOOL_FAILED", "创建 command pool 失败");
+    VkCommandBufferAllocateInfo allocCI{};
+    allocCI.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    allocCI.commandPool = cmdPool;
+    allocCI.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    allocCI.commandBufferCount = 1;
+    if (bk.vkAllocateCommandBuffers(logicalDevice, &allocCI, &cmdBuf) != VK_SUCCESS) return fail("ALLOC_CMDBUF_FAILED", "分配 command buffer 失败");
+    VkQueryPoolCreateInfo queryCI{};
+    queryCI.sType = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO;
+    queryCI.queryType = VK_QUERY_TYPE_TIMESTAMP;
+    queryCI.queryCount = 2;
+    if (bk.vkCreateQueryPool(logicalDevice, &queryCI, nullptr, &queryPool) != VK_SUCCESS) return fail("CREATE_QUERYPOOL_FAILED", "创建 query pool 失败");
+
+    // 32MB × 2 device-local（B 为 host-visible，用于读回校验）
+    const VkDeviceSize BUF_SIZE = 32ull * 1024 * 1024;
+    auto createBuffer = [&](VkBuffer& buf, VkDeviceMemory& mem, bool hostVisible) -> bool {
+        VkBufferCreateInfo bufCI{};
+        bufCI.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+        bufCI.size = BUF_SIZE;
+        bufCI.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+        bufCI.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+        if (bk.vkCreateBuffer(logicalDevice, &bufCI, nullptr, &buf) != VK_SUCCESS) return false;
+        VkMemoryRequirements memReq{};
+        bk.vkGetBufferMemoryRequirements(logicalDevice, buf, &memReq);
+        VkMemoryPropertyFlags want = hostVisible ? VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+                                                 : VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+        VkPhysicalDeviceMemoryProperties memProps{};
+        vk.vkGetPhysicalDeviceMemoryProperties(device, &memProps);
+        int memType = -1;
+        for (uint32_t mi = 0; mi < memProps.memoryTypeCount; mi++) {
+            if ((memReq.memoryTypeBits & (1u << mi)) &&
+                (memProps.memoryTypes[mi].propertyFlags & want) == want) { memType = (int)mi; break; }
+        }
+        if (memType < 0) {
+            for (uint32_t mi = 0; mi < memProps.memoryTypeCount; mi++) {
+                if ((memReq.memoryTypeBits & (1u << mi)) &&
+                    (memProps.memoryTypes[mi].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT)) { memType = (int)mi; break; }
+            }
+        }
+        if (memType < 0) {
+            for (uint32_t mi = 0; mi < memProps.memoryTypeCount; mi++) {
+                if (memReq.memoryTypeBits & (1u << mi)) { memType = (int)mi; break; }
+            }
+        }
+        if (memType < 0) return false;
+        VkMemoryAllocateInfo allocInfo{};
+        allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+        allocInfo.allocationSize = memReq.size;
+        allocInfo.memoryTypeIndex = static_cast<uint32_t>(memType);
+        if (bk.vkAllocateMemory(logicalDevice, &allocInfo, nullptr, &mem) != VK_SUCCESS) return false;
+        if (bk.vkBindBufferMemory(logicalDevice, buf, mem, 0) != VK_SUCCESS) return false;
+        return true;
+    };
+    stepLog("rcopy:buffer_alloc_try");
+    if (!createBuffer(bufA, memA, false)) return fail("CREATE_BUFFER_A_FAILED", "创建 buffer A 失败");
+    if (!createBuffer(bufB, memB, true)) return fail("CREATE_BUFFER_B_FAILED", "创建 buffer B 失败");
+    stepLog("rcopy:buffer_alloc_ok");
+
+    auto runTimed = [&](int iterations, std::function<void()> recordCmds) -> double {
+        bk.vkResetCommandBuffer(cmdBuf, 0);
+        VkCommandBufferBeginInfo beginInfo{};
+        beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+        beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+        bk.vkBeginCommandBuffer(cmdBuf, &beginInfo);
+        bk.vkCmdResetQueryPool(cmdBuf, queryPool, 0, 2);
+        bk.vkCmdWriteTimestamp(cmdBuf, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, queryPool, 0);
+        recordCmds();
+        bk.vkCmdWriteTimestamp(cmdBuf, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, queryPool, 1);
+        bk.vkEndCommandBuffer(cmdBuf);
+        VkSubmitInfo submitInfo{};
+        submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+        submitInfo.commandBufferCount = 1;
+        submitInfo.pCommandBuffers = &cmdBuf;
+        VkResult submitRes = bk.vkQueueSubmit(queue, 1, &submitInfo, VK_NULL_HANDLE);
+        if (submitRes != VK_SUCCESS) { stageError = "QUEUE_SUBMIT_FAILED_" + std::to_string(submitRes); return -1.0; }
+        bk.vkQueueWaitIdle(queue);
+        uint64_t timestamps[2] = {0, 0};
+        VkResult qRes = bk.vkGetQueryPoolResults(logicalDevice, queryPool, 0, 2,
+                                  sizeof(timestamps), timestamps, sizeof(uint64_t),
+                                  VK_QUERY_RESULT_64_BIT | VK_QUERY_RESULT_WAIT_BIT);
+        if (qRes != VK_SUCCESS || timestamps[1] <= timestamps[0]) { stageError = "TIMESTAMP_QUERY_FAILED_" + std::to_string(qRes); return -1.0; }
+        return static_cast<double>(timestamps[1] - timestamps[0]) * timestampPeriod;
+    };
+
+    // 1) fill A（写 pattern）→ 2) copy A→B ×30（渲染提交链）→ 3) 读回 B 校验
+    stepLog("rcopy:fill_try");
+    double fillNs = runTimed(1, [&]() { bk.vkCmdFillBuffer(cmdBuf, bufA, 0, VK_WHOLE_SIZE, 0x41414141u); });
+    if (fillNs <= 0.0) { cleanup(); return fail(stageError.empty() ? "FILL_STAGE_FAILED" : stageError.c_str(), "fill stage failed"); }
+
+    const int COPY_ITERS = 30;
+    stepLog("rcopy:copy_try");
+    double copyNs = runTimed(COPY_ITERS, [&]() {
+        VkBufferCopy copyRegion{};
+        copyRegion.size = BUF_SIZE;
+        for (int i = 0; i < COPY_ITERS; i++) bk.vkCmdCopyBuffer(cmdBuf, bufA, bufB, 1, &copyRegion);
+    });
+    if (copyNs <= 0.0) { cleanup(); return fail(stageError.empty() ? "COPY_STAGE_FAILED" : stageError.c_str(), "copy stage failed"); }
+    double copyGBs = (static_cast<double>(BUF_SIZE) * COPY_ITERS / (copyNs / 1e9)) / (1024.0 * 1024.0 * 1024.0);
+    double fps = 1000.0 / (copyNs / COPY_ITERS / 1e6); // 每次提交的毫秒数换算帧率
+
+    // 读回校验：B 前 16 字节应为 pattern
+    stepLog("rcopy:readback_try");
+    bool readbackOk = false;
+    if (bk.vkMapMemory && bk.vkUnmapMemory) {
+        void* mapped = nullptr;
+        if (bk.vkMapMemory(logicalDevice, memB, 0, 16, 0, &mapped) == VK_SUCCESS && mapped) {
+            const uint32_t* p = static_cast<const uint32_t*>(mapped);
+            readbackOk = (p[0] == 0x41414141u && p[1] == 0x41414141u && p[2] == 0x41414141u && p[3] == 0x41414141u);
+            bk.vkUnmapMemory(logicalDevice, memB);
+        }
+    }
+    stepLog("rcopy:done");
+
+    cleanup();
+    std::ostringstream j;
+    j << "{\"success\":true,\"mode\":\"copy-render\",\"errorCode\":\"\",\"errorMessage\":\"\","
+      << "\"fps\":" << std::fixed << std::setprecision(1) << fps
+      << ",\"copyBandwidthGBs\":" << std::setprecision(2) << copyGBs
+      << ",\"readbackOk\":" << (readbackOk ? "true" : "false") << "}";
+    return j.str();
+}
+
 static std::string runRenderTest(VulkanDispatch& vk, VkInstance instance, VkPhysicalDevice phys,
                                  GetInstanceProcAddrFn getInst) {
     if (getInst == nullptr) {
@@ -3191,7 +3378,7 @@ static std::string renderDriverAdrenotoolsJson(const char* driverDir, const char
     }
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vk.vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
-    std::string res = runRenderTest(vk, instance, devices[0], getInst);
+    std::string res = runRenderCopyTest(vk, instance, devices[0], getInst);
     vk.vkDestroyInstance(instance, nullptr);
     dlclose(lib);
     return res;
