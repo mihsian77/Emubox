@@ -521,10 +521,16 @@ private suspend fun copyWithProgress(
 
 private fun publishMediaStoreFile(context: Context, uri: Uri, usesMediaStore: Boolean) {
     if (usesMediaStore && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        val values = ContentValues().apply {
-            put(MediaStore.MediaColumns.IS_PENDING, 0)
+        runCatching {
+            val values = ContentValues().apply {
+                put(MediaStore.MediaColumns.IS_PENDING, 0)
+            }
+            context.contentResolver.update(uri, values, null, null)
+        }.onFailure { err ->
+            // pending 文件在外部文件管理器不可见：发布失败时删除，避免"本地无文件却提示已存在"
+            deletePartialOutput(context, uri)
+            throw IOException("Publish MediaStore file failed", err)
         }
-        context.contentResolver.update(uri, values, null, null)
     }
 }
 
@@ -801,6 +807,9 @@ private suspend fun downloadFileWithProgress(
             // 指数退避：1s → 2s → 4s，给网络恢复时间
             val backoffMs = (1L shl (attempt - 1)) * 1000L
             Log.i(TAG, "下载失败，${backoffMs / 1000}s 后重试（第 ${attempt + 1}/$MAX_ATTEMPTS 次）")
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "下载中断，${backoffMs / 1000}s 后自动重试（${attempt + 1}/$MAX_ATTEMPTS）", Toast.LENGTH_SHORT).show()
+            }
             delay(backoffMs)
         }
     }
