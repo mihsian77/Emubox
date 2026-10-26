@@ -4056,7 +4056,9 @@ fun TurnipDriverSection(
     remoteStars: Map<String, Long> = emptyMap(),
     title: String? = null,
     description: String? = null,
-    expandTrigger: String? = null
+    expandTrigger: String? = null,
+    catalogItems: List<WrapperItem> = emptyList(),
+    onCatalogDownload: ((WrapperItem) -> Unit)? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
     // 区块默认折叠：与组件专区一致，一屏可浏览全部驱动大区
@@ -4186,12 +4188,23 @@ fun TurnipDriverSection(
                 )
             }
 
-            DriverReleasePicker(
-                releases = releases,
-                selectionKey = selectionKey,
-                onDownload = onDownload,
-                buttonLabel = appString(R.string.download_turnip)
-            )
+            if (catalogItems.isNotEmpty()) {
+                // wrapper 清单型源（banner wrappers.json）：展开区直接列清单卡，
+                // 不依赖 release 标签；条目即版本卡。
+                WrapperCatalogSection(
+                    items = catalogItems,
+                    onDownload = { item ->
+                        onCatalogDownload?.invoke(item)
+                    }
+                )
+            } else {
+                DriverReleasePicker(
+                    releases = releases,
+                    selectionKey = selectionKey,
+                    onDownload = onDownload,
+                    buttonLabel = appString(R.string.download_turnip)
+                )
+            }
             }
             }
         }
@@ -8836,85 +8849,53 @@ fun DriverScreen(
         }
 
         // ── 驱动包装器专区：Vulkan/GL 包装层（wmali、compat-bcn、gamenative 等）──
-        // 2026-10-26 修复：banner catalog 与 release 型源（fristoner/winx）原本 if/else 互斥，
-        // banner 清单存在时 fristoner/winx 完全不可见。改为并存：banner 走 wrappers.json 清单卡，
-        // 其余 wrapper 源（release 型）独立区块并列，源切换弹窗仍可用。
-        val releaseWrapperSources = filteredWrapper.filter { it.id != "reg-wrapper-banner" }
+        // Wrapper 专区：三源（banner/fristoner/winx）单区块并列，源切换弹窗可选。
+        // banner 源为 wrappers.json 清单型：展开区显示清单卡（集成在 TurnipDriverSection
+        // 的 catalogItems 分支），不占满页面；fristoner/winx 为 release 型展开显示版本卡。
         if (filteredWrapper.isNotEmpty() && showWrapperSection) {
-            if (wrapperItems.isNotEmpty()) {
-                item(key = "wrapper_catalog") {
-                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        // 区块标题：与 Turnip/PanVK 等分区一致，用户要求分区名直接叫 "Wrapper"
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                Icons.Default.Eco,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp),
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-                            Spacer(Modifier.width(6.dp))
-                            Text(
-                                "Wrapper",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                        }
-                        Text(
-                            "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        WrapperCatalogSection(
-                            items = wrapperItems,
-                            onDownload = { item ->
-                            val fileName = item.url.substringAfterLast('/')
-                            onDownloadAsset(
-                                GithubRelease(
-                                    tagName = item.id,
-                                    name = item.name,
-                                    assets = listOf(
-                                        GithubAsset(
-                                            name = fileName,
-                                            downloadUrl = item.url,
-                                            sizeBytes = item.fileSizeBytes
-                                        )
-                                    ),
-                                    publishedAt = "",
-                                    body = item.description
+            item(key = "wrapper_section") {
+                TurnipDriverSection(
+                    adrenoSeries = deviceInfo?.adrenoSeries,
+                    sources = filteredWrapper,
+                    currentSourceId = wrapperSourceId,
+                    onSourceChange = { id ->
+                        onWrapperSourceChange(id)
+                        expandTrigger = "wrapper:$id"
+                        scope.launch { listState.animateScrollToItem(sectionIndex(4)) }
+                    },
+                    releases = wrapperReleases,
+                    selectionKey = "wrapper:$wrapperSourceId",
+                    onDownload = onDownloadAsset,
+                    updatedAtMap = driverSourceUpdatedAt,
+                    remoteStars = driverSourceStars,
+                    expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
+                    title = "Wrapper",
+                    description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性",
+                    catalogItems = wrapperItems,
+                    onCatalogDownload = { item ->
+                        val fileName = item.url.substringAfterLast('/')
+                        onDownloadAsset(
+                            GithubRelease(
+                                tagName = item.id,
+                                name = item.name,
+                                assets = listOf(
+                                    GithubAsset(
+                                        name = fileName,
+                                        downloadUrl = item.url,
+                                        sizeBytes = item.fileSizeBytes
+                                    )
                                 ),
-                                GithubAsset(
-                                    name = fileName,
-                                    downloadUrl = item.url,
-                                    sizeBytes = item.fileSizeBytes
-                                )
+                                publishedAt = "",
+                                body = item.description
+                            ),
+                            GithubAsset(
+                                name = fileName,
+                                downloadUrl = item.url,
+                                sizeBytes = item.fileSizeBytes
                             )
-                        }
-                    )
+                        )
                     }
-                }
-            }
-            // release 型 wrapper 源（fristoner/winx）独立区块，与 banner catalog 并存
-            if (releaseWrapperSources.isNotEmpty()) {
-                item(key = "wrapper_section") {
-                    TurnipDriverSection(
-                        adrenoSeries = deviceInfo?.adrenoSeries,
-                        sources = releaseWrapperSources,
-                        currentSourceId = wrapperSourceId,
-                        onSourceChange = { id ->
-                            onWrapperSourceChange(id)
-                            expandTrigger = "wrapper:$id"
-                            scope.launch { listState.animateScrollToItem(sectionIndex(4)) }
-                        },
-                        releases = wrapperReleases,
-                        selectionKey = "wrapper:$wrapperSourceId",
-                        onDownload = onDownloadAsset,
-                        updatedAtMap = driverSourceUpdatedAt,
-                        remoteStars = driverSourceStars,
-                        expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
-                        title = "Wrapper",
-                        description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性"
-                    )
-                }
+                )
             }
         }
 
