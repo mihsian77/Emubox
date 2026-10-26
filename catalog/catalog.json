@@ -26,7 +26,7 @@
         ]
       },
       "updatedAt": 1792791931000,
-      "stars": 1056
+      "stars": 1060
     },
     {
       "id": "whitebelyash",
@@ -49,7 +49,7 @@
         ]
       },
       "updatedAt": 1789825064000,
-      "stars": 480
+      "stars": 479
     },
     {
       "id": "k11mch1",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5149
+      "stars": 5150
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 859
+      "stars": 865
     },
     {
       "id": "banner",
@@ -123,8 +123,8 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1792906054000,
-      "stars": 209
+      "updatedAt": 1792969052000,
+      "stars": 210
     },
     {
       "id": "s1mptom",
@@ -167,7 +167,7 @@
           "A81"
         ]
       },
-      "updatedAt": 1792804493000,
+      "updatedAt": 1792996995000,
       "stars": 2
     },
     {
@@ -214,7 +214,7 @@
         ]
       },
       "updatedAt": 1792898915000,
-      "stars": 80
+      "stars": 86
     },
     {
       "id": "panvk-g720",
@@ -234,7 +234,7 @@
         ]
       },
       "updatedAt": 1790289737000,
-      "stars": 42
+      "stars": 44
     }
   ],
   "qualcommSources": [
@@ -247,7 +247,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1056,
+      "stars": 1060,
       "updatedAt": 1792791931000
     },
     {
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5149,
+      "stars": 5150,
       "updatedAt": 1768398883000
     },
     {
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1792829978000
+      "updatedAt": 1792917187000
     },
     {
       "id": "banner-components",

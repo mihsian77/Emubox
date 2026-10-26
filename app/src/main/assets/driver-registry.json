@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5149,
+      "stars": 5150,
       "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1056,
+      "stars": 1060,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -205,7 +205,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 859,
+      "stars": 865,
       "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -332,7 +332,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 209,
+      "stars": 210,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -358,10 +358,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-10-25T05:27:34Z",
-      "latest_tag": "v27.0.0-20261025",
-      "latest_date": "2026-10-25T05:27:34Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`02f1337`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/02f13375231bf0a9ed20b09cb21171351053be52) |\n| **Commit title** | mesa: don't read past the name when matching a resource without its [0] |\n| **Vulkan version** | Vulkan 1.4.363 |\n| **Date** | 2026-10-24 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--"
+      "updated_at": "2026-10-25T22:57:32Z",
+      "latest_tag": "v27.0.0-20261025-r5",
+      "latest_date": "2026-10-25T22:57:32Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`ab1502f`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/ab1502fd1606633e910212da185e92fa6bd4cde1) |\n| **Commit title** | asahi: Fix GL_EXT_semaphore[_fd]. |\n| **Vulkan version** | Vulkan 1.4.363 |\n| **Date** | 2026-10-25 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--- | :--- | :--- |\n| **Standard*"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -474,7 +474,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 480,
+      "stars": 479,
       "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
       "notes": "",
       "companion": [],
@@ -679,10 +679,10 @@
           "A81"
         ]
       },
-      "updated_at": "2026-10-24T01:14:53Z",
-      "latest_tag": "tu_v1U",
-      "latest_date": "2026-10-24T01:14:53Z",
-      "latest_body": "**Experimental and may introduce bugs and glitches**\r\n\r\nA81X Turnip Vulkan V1U\r\n\r\nBased of upstream mesa, NOT whitebelyash turnip/gen8 mesa fork!\r\n\r\nPatched mesa turnip drivers for Adreno 810/812 and the rest of the family.\r\n\r\n> Please don't report issues to Mesa. Report them to me @ discord: voided.exe_\r\n          \r\nSupported GPUs:\r\n* Adreno 8XX Family: 840, 840 (8 Elite Gen 5V variant), 830, 829, 825 (not sure), 812 (untested, should work fine considering its an overclocked 810), 810. Upstream"
+      "updated_at": "2026-10-26T06:43:15Z",
+      "latest_tag": "tu_v2U",
+      "latest_date": "2026-10-26T06:43:15Z",
+      "latest_body": "**Experimental and may introduce bugs and glitches**\r\n\r\nA81X Turnip Vulkan V2U\r\n\r\nBased of upstream mesa, NOT whitebelyash turnip/gen8 mesa fork!\r\n\r\nPatched mesa turnip drivers for Adreno 810/812 and the rest of the family.\r\n\r\n> Please don't report issues to Mesa. Report them to me @ discord: voided.exe_\r\n          \r\nSupported GPUs:\r\n* Adreno 8XX Family: 840, 840 (8 Elite Gen 5V variant, 840V i guess), 830, 829, 825 (not sure), 812 (untested, should work fine considering its an overclocked 810),"
     },
     {
       "id": "diskdvd-a8xx",
@@ -771,7 +771,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 80,
+      "stars": 86,
       "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
       "notes": "710 用户首选",
       "companion": [],
@@ -810,7 +810,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 14,
+      "stars": 15,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -819,10 +819,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-10-20T22:20:07Z",
-      "latest_tag": "v1.1.9",
-      "latest_date": "2026-10-20T22:20:07Z",
-      "latest_body": "Mesa Turnip for Adreno 8xx, built from mesa `main` at `dd45fd0`.\n\nDownload `turnip_faux123_v1.1.9.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.1.7\n\n- GPU hang fixed: a compute job after a tiled render pass could freeze the game (Sonic Racing CrossWorlds on Eden froze for about 2 seconds, three times a minute).\n- Memory leak fixed in GPU job submission, plus a file handle leak.\n- Faster compute shaders (shared memory reads), wi"
+      "updated_at": "2026-10-25T22:04:12Z",
+      "latest_tag": "v1.2.0",
+      "latest_date": "2026-10-25T22:04:12Z",
+      "latest_body": "Mesa Turnip for Adreno, built from mesa `main` at `dd45fd0`, the same base as v1.1.20, plus two speed changes.\n\nDownload `turnip_faux123_v1.2.0.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.1.20\n\n- Faster compute shaders that declare more shared memory than they use. The driver now sizes shared memory to what the shader actually touches, so more work runs on the GPU at once. This is an upstream Mesa change (`9a2b3746`, by Rhys "
     },
     {
       "id": "fristoner-g57",
@@ -842,7 +842,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 74,
+      "stars": 75,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -982,7 +982,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 42,
+      "stars": 44,
       "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
       "notes": "CSF 架构，native Vulkan",
       "companion": [],
@@ -1018,7 +1018,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 77,
+      "stars": 84,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1028,7 +1028,7 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-24T03:53:25Z",
+      "updated_at": "2026-10-26T02:40:24Z",
       "latest_tag": "",
       "latest_date": "",
       "latest_body": ""
@@ -1127,7 +1127,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 3,
+      "stars": 5,
       "description": "GameForce Ace 掌机 Mali-G610 PanVK",
       "notes": "掌机设备专用",
       "companion": [],
@@ -1136,10 +1136,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-24T19:20:35Z",
-      "latest_tag": "v1.0.0",
-      "latest_date": "2026-10-24T19:20:35Z",
-      "latest_body": "**One universal driver.** Starting with this release, the Ace, Pixel 7, Retroid Pocket 4 Pro, and RG556 repositories all ship the same driver: one `libvulkan_panfrost.so` that detects the Mali GPU it runs on and turns on only the fixes that device needs. Every repository ships the identical package, `panvk_faux123_v1.0.0.adpkg.zip`, with the same name and the same bytes.\n\n**Going forward:** every release comes out in all four repositories at the same time, with the same version number and the sa"
+      "updated_at": "2026-10-26T06:59:09Z",
+      "latest_tag": "v1.0.2",
+      "latest_date": "2026-10-26T06:59:09Z",
+      "latest_body": "**Vita3K fix and FP16 for the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.0.2.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.0.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- Vita3K no longer flickers. At 4x resolution in Persona 4 Golden on the Retroid Pocket 4 Pro, 68 of 264 recorded frames were black on v1.0.1; on v1.0.2, 0 of 301.\n- Vita3K "
     },
     {
       "id": "faux123-rg556",
@@ -1170,10 +1170,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-24T19:20:44Z",
-      "latest_tag": "v1.0.0",
-      "latest_date": "2026-10-24T19:20:44Z",
-      "latest_body": "**One universal driver.** Starting with this release, the Ace, Pixel 7, Retroid Pocket 4 Pro, and RG556 repositories all ship the same driver: one `libvulkan_panfrost.so` that detects the Mali GPU it runs on and turns on only the fixes that device needs. Every repository ships the identical package, `panvk_faux123_v1.0.0.adpkg.zip`, with the same name and the same bytes.\n\n**Going forward:** every release comes out in all four repositories at the same time, with the same version number and the sa"
+      "updated_at": "2026-10-26T06:59:17Z",
+      "latest_tag": "v1.0.2",
+      "latest_date": "2026-10-26T06:59:17Z",
+      "latest_body": "**Vita3K fix and FP16 for the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.0.2.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.0.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- Vita3K no longer flickers. At 4x resolution in Persona 4 Golden on the Retroid Pocket 4 Pro, 68 of 264 recorded frames were black on v1.0.1; on v1.0.2, 0 of 301.\n- Vita3K "
     },
     {
       "id": "dkdndje-g720",
@@ -1288,7 +1288,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 27,
+      "stars": 32,
       "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1413,7 +1413,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 244,
+      "stars": 245,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1447,7 +1447,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 19,
+      "stars": 22,
       "description": "将 Mesa PanVK 移植到 Mali Bifrost（G76/G72/G52），无需 root",
       "notes": "基于 Mesa 26.3，compute 模拟缺失的几何/曲面细分，面向 DXVK",
       "companion": [],
@@ -1456,10 +1456,10 @@
           "PanVK"
         ]
       },
-      "updated_at": "2026-09-27T20:57:19Z",
-      "latest_tag": "v1.3.0",
-      "latest_date": "2026-09-27T20:57:19Z",
-      "latest_body": "# mali-panvk r4\r\n\r\nPanVK for Arm Mali Bifrost GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel\r\ndriver the phone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Based on Mesa\r\n26.3.0-devel; the driver reports Vulkan 1.3.\r\n\r\n## Tested on\r\n\r\n| Phone | GPU | SoC |\r\n|---|---|---|\r\n| Galaxy S10e | Mali-G76 MC12 | Exynos 9820 |\r\n| Galaxy A31 | Mali-G52 MC2 | MediaTek Helio P65 (MT6768) |\r\n\r\nThe geometry shader, tessellation, transform feedback, draw, descriptor,"
+      "updated_at": "2026-10-25T21:14:36Z",
+      "latest_tag": "v1.4.0",
+      "latest_date": "2026-10-25T21:14:36Z",
+      "latest_body": "# mali-panvk r8\r\n\r\nPanVK for Arm Mali GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel driver the\r\nphone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Now based on Mesa\r\n27.0.0-devel, and no longer Bifrost only: this release adds Valhall.\r\n\r\n`mali-panvk-27.0.0-devel-r8.zip`, sha256\r\n`d82d8f2dd4a368770b9b43566f7b5295d205060cb6ffd536b07afc33914858a1`. Built from `d896b0a`.\r\n\r\n## Supported GPUs\r\n\r\n| Architecture | GPUs | Vulkan | Status |\r\n|---|---|---|---|"
     },
     {
       "id": "apexspan-panvk-g57",
@@ -1479,7 +1479,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 3,
+      "stars": 4,
       "description": "面向 Mali-G57 MC2（天玑 6300）的实验性 PanVK，支持 Termux:X11 硬件加速",
       "notes": "跑在 kbase JM 接口上，无需 panfrost.ko，适合 Termux 用户",
       "companion": [],
@@ -1578,7 +1578,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 16,
+      "stars": 17,
       "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
       "companion": [],
@@ -1611,7 +1611,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 37,
+      "stars": 51,
       "description": "骁龙 865 / Adreno 650 专用 Turnip（Mesa main bffd91947efc），Switch 模拟优化，社区 Z 构建",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1688,10 +1688,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-24T19:20:38Z",
-      "latest_tag": "v1.0.0",
-      "latest_date": "2026-10-24T19:20:38Z",
-      "latest_body": "**One universal driver.** Starting with this release, the Ace, Pixel 7, Retroid Pocket 4 Pro, and RG556 repositories all ship the same driver: one `libvulkan_panfrost.so` that detects the Mali GPU it runs on and turns on only the fixes that device needs. Every repository ships the identical package, `panvk_faux123_v1.0.0.adpkg.zip`, with the same name and the same bytes.\n\n**Going forward:** every release comes out in all four repositories at the same time, with the same version number and the sa"
+      "updated_at": "2026-10-26T06:59:12Z",
+      "latest_tag": "v1.0.2",
+      "latest_date": "2026-10-26T06:59:12Z",
+      "latest_body": "**Vita3K fix and FP16 for the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.0.2.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.0.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- Vita3K no longer flickers. At 4x resolution in Persona 4 Golden on the Retroid Pocket 4 Pro, 68 of 264 recorded frames were black on v1.0.1; on v1.0.2, 0 of 301.\n- Vita3K "
     },
     {
       "id": "faux123-rp4pro",
@@ -1722,10 +1722,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-24T19:20:41Z",
-      "latest_tag": "v1.0.0",
-      "latest_date": "2026-10-24T19:20:41Z",
-      "latest_body": "**One universal driver.** Starting with this release, the Ace, Pixel 7, Retroid Pocket 4 Pro, and RG556 repositories all ship the same driver: one `libvulkan_panfrost.so` that detects the Mali GPU it runs on and turns on only the fixes that device needs. Every repository ships the identical package, `panvk_faux123_v1.0.0.adpkg.zip`, with the same name and the same bytes.\n\n**Going forward:** every release comes out in all four repositories at the same time, with the same version number and the sa"
+      "updated_at": "2026-10-26T06:59:14Z",
+      "latest_tag": "v1.0.2",
+      "latest_date": "2026-10-26T06:59:14Z",
+      "latest_body": "**Vita3K fix and FP16 for the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.0.2.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.0.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- Vita3K no longer flickers. At 4x resolution in Persona 4 Golden on the Retroid Pocket 4 Pro, 68 of 264 recorded frames were black on v1.0.1; on v1.0.2, 0 of 301.\n- Vita3K "
     },
     {
       "id": "lukevalen-kbase",
@@ -1798,7 +1798,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "ci",
-      "stars": 28,
+      "stars": 29,
       "notes": "活跃（2026-10-14）；无 Release，APK/zip 从 Actions 产物获取",
       "companion": [
         "guna-winlatormali"
@@ -1927,7 +1927,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 10,
+      "stars": 11,
       "description": "FristOneRR Vulkan wrapper，配合 FristOneRR PanVK on Mali (kbase) 使用",
       "notes": "v3.0 2026-10-20；含 SHA256SUMS",
       "companion": [
