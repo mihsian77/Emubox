@@ -342,7 +342,11 @@ def main():
         if not it.get("low_freq") or it["id"] in fresh_extra_ids
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
-    merged = merged[:300]
+    # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限
+    # 与 IT之家高频条目挤掉（用户反馈组件/运行库资讯时常为空）
+    official_items = [it for it in merged if it.get("type")]
+    other_items = [it for it in merged if not it.get("type")]
+    merged = (official_items + other_items)[:300]
 
     data = {
         "version": 2,

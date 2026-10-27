@@ -1,8 +1,909 @@
 {
   "version": 2,
-  "updated_at": "2026-10-27T08:10:08Z",
+  "updated_at": "2026-10-27T12:09:09Z",
   "source": "ithome+github-releases+winehq-dl",
   "items": [
+    {
+      "id": "21bb255f",
+      "title": "[faux123 PanVK] v1.1.0",
+      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v1.1.0",
+      "published_at": 1793076629,
+      "category": "driver",
+      "type": "faux123 PanVK",
+      "summary": "**Much faster tessellation on the Mali-G57 and G77, faster barriers on the Mali-G610 and G710, and a tessellation fix for all four.** All four repositories ship the same package, `"
+    },
+    {
+      "id": "db11b836",
+      "title": "[faux123 PanVK] v1.0.2",
+      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v1.0.2",
+      "published_at": 1792997949,
+      "category": "driver",
+      "type": "faux123 PanVK",
+      "summary": "**Vita3K fix and FP16 for the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.0.2.adpkg.zip`, with the same bytes. Download `panvk_faux123_v1.0.2"
+    },
+    {
+      "id": "2161098a",
+      "title": "[faux123 Turnip] v1.2.0",
+      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.2.0",
+      "published_at": 1792965852,
+      "category": "driver",
+      "type": "faux123 Turnip",
+      "summary": "Mesa Turnip for Adreno, built from mesa `main` at `dd45fd0`, the same base as v1.1.20, plus two speed changes. Download `turnip_faux123_v1.2.0.adpkg.zip` below and import it in you"
+    },
+    {
+      "id": "e3eefb01",
+      "title": "[faux123 PanVK] v1.0.1",
+      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v1.0.1",
+      "published_at": 1792953661,
+      "category": "driver",
+      "type": "faux123 PanVK",
+      "summary": "**Fixes and restores what v1.0.0 lost.** This release brings back every feature and fix the old per-device builds had, fixes several rendering bugs, and makes no device slower than"
+    },
+    {
+      "id": "351e3a04",
+      "title": "[faux123 Turnip] v1.1.20",
+      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.1.20",
+      "published_at": 1792953160,
+      "category": "driver",
+      "type": "faux123 Turnip",
+      "summary": "Mesa Turnip for Adreno, built from mesa `main` at `dd45fd0`, the same base as v1.1.9. Download `turnip_faux123_v1.1.20.adpkg.zip` below and import it in your app's AdrenoTools driv"
+    },
+    {
+      "id": "55bdd11e",
+      "title": "[faux123 Turnip] v1.1.9",
+      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.1.9",
+      "published_at": 1792534807,
+      "category": "driver",
+      "type": "faux123 Turnip",
+      "summary": "Mesa Turnip for Adreno 8xx, built from mesa `main` at `dd45fd0`. Download `turnip_faux123_v1.1.9.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzi"
+    },
+    {
+      "id": "5cd5cd53",
+      "title": "[RADV Xclipse] v1.8.0",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v1.8.0",
+      "published_at": 1792448822,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "RADV for Samsung Xclipse GPUs. This release loads BC6H and BC7 textures about twice as fast and adds a build for Bannerlator's Wayland mode. ## What's new - **BC6H and BC7 textures"
+    },
+    {
+      "id": "e06a4dcf",
+      "title": "[Proton-GE] GE-Proton11-11",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-11",
+      "published_at": 1792434053,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "# GE-Proton11-11 Hotfix Release Changes since GE-Proton11-10. ## Video Playback - Fixed games freezing when a video is skipped or closed while MPEG-1 audio is playing through Direc"
+    },
+    {
+      "id": "ee5a94cd",
+      "title": "[Proton-GE] GE-Proton11-10",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-10",
+      "published_at": 1792390917,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "## Component Updates - Wine: Valve bleeding-edge 2026-10-16. This brings upstream syscall emulation through Syscall User Dispatch and native-syscall handling for EAC (EOS) launcher"
+    },
+    {
+      "id": "dc1d10da",
+      "title": "[RADV Xclipse] v1.7.0",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v1.7.0",
+      "published_at": 1792356939,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "RADV for Samsung Xclipse GPUs, now based on Mesa 27.0.0-devel. This release adds the Xclipse 540, 550, 950 and 960, so every Xclipse GPU so far is supported, and moves to the lates"
+    },
+    {
+      "id": "d7c59cdf",
+      "title": "[faux123 PanVK] v0.40.0",
+      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v0.40.0",
+      "published_at": 1792074566,
+      "category": "driver",
+      "type": "faux123 PanVK",
+      "summary": "Mesa PanVK for the GameForce Ace (Mali-G610), Mesa 26.3.0-devel, running on the `mali_kbase` kernel driver. Experimental. **Bug reports and questions are welcome:** open an issue h"
+    },
+    {
+      "id": "811189b2",
+      "title": "[panDXVK] v01",
+      "url": "https://github.com/isygold/panDXVK/releases/tag/v01",
+      "published_at": 1792058732,
+      "category": "driver",
+      "type": "panDXVK",
+      "summary": "# panDXVK v01 ## Summary **What this release targets.** v01 is a **compatibility build first**, with the stability fixes alongside it. The Sarek v1.14.1 sync carries the compatibil"
+    },
+    {
+      "id": "94708d54",
+      "title": "[Proton-GE] GE-Proton11-9",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-9",
+      "published_at": 1791936899,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "# Hotfix release: # GE-Proton11-9 ## Video Playback - Added a fix for Crimson Desert getting stuck after selecting Play or starting a new game due to looping menu-video playback. A"
+    },
+    {
+      "id": "927e9783",
+      "title": "[RADV Xclipse] v.1.6.0",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v.1.6.0",
+      "published_at": 1791930981,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "RADV for Samsung Xclipse GPUs, based on Mesa 26.3.0-devel. This release makes tessellation and transform feedback work on every supported Xclipse GPU, and fixes the Immortals Fenyx"
+    },
+    {
+      "id": "cb610e52",
+      "title": "[Proton-GE] GE-Proton11-8",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-8",
+      "published_at": 1791924401,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "# GE-Proton11-8 Changes since GE-Proton11-7. ## Component Updates - Updated Wine bleeding-edge, DXVK, VKD3D-Proton, VKD3D, D7VK, DXVK-NVAPI, DXVK-IGDext, FEX, lsteamclient, wineope"
+    },
+    {
+      "id": "ddf71f0a",
+      "title": "[RADV Xclipse] v1.6.0-RC",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v1.6.0-RC",
+      "published_at": 1791827261,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "RADV for Samsung Xclipse GPUs, based on Mesa 26.3.0-devel. **This is a pre-release.** It adds experimental support for the Xclipse 940 (Galaxy S24 series), so some games might not "
+    },
+    {
+      "id": "7159dfe6",
+      "title": "[panDXVK] v1.10.3-panVK.12",
+      "url": "https://github.com/isygold/panDXVK/releases/tag/v1.10.3-panVK.12",
+      "published_at": 1791471065,
+      "category": "driver",
+      "type": "panDXVK",
+      "summary": "# panDXVK v1.10.3-panVK.12 ## Summary This release fixes the first row of `timeline.csv`, which reported lifetime counter totals instead of the window delta because the counter bas"
+    },
+    {
+      "id": "f07ec1f3",
+      "title": "[panDXVK] v1.10.3-panVK.11",
+      "url": "https://github.com/isygold/panDXVK/releases/tag/v1.10.3-panVK.11",
+      "published_at": 1791456120,
+      "category": "driver",
+      "type": "panDXVK",
+      "summary": "# panDXVK v1.10.3-panVK.11 ## Summary This release fixes a telemetry bug that silenced the module from its second launch onward, so session reports and crash detection now work on "
+    },
+    {
+      "id": "d6d689de",
+      "title": "[panDXVK] v1.10.3-panVK.10",
+      "url": "https://github.com/isygold/panDXVK/releases/tag/v1.10.3-panVK.10",
+      "published_at": 1791388229,
+      "category": "driver",
+      "type": "panDXVK",
+      "summary": "# panDXVK v1.10.3-panVK.10 ## Summary v10 adds **session reports and crash detection** — the build can now write down what it saw during a run, including whether the run ended badl"
+    },
+    {
+      "id": "6edff6eb",
+      "title": "[panDXVK] v1.10.3-panVK.9-1",
+      "url": "https://github.com/isygold/panDXVK/releases/tag/v1.10.3-panVK.9-1",
+      "published_at": 1791295876,
+      "category": "driver",
+      "type": "panDXVK",
+      "summary": "# panDXVK v1.10.3-panVK.9-1 ## Summary This is a **measurement build**, not a fix. Nothing is broken in v9. It does two things: 1. It fixes the texture colour bug (the ASTC encoder"
+    },
+    {
+      "id": "d580798a",
+      "title": "[RADV Xclipse] v1.5.0",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v1.5.0",
+      "published_at": 1791231564,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "RADV for Samsung Xclipse GPUs, based on Mesa 26.3.0-devel. This release makes ray tracing work on the Xclipse 920, fixes shaders that froze the GPU for seconds at a time, and keeps"
+    },
+    {
+      "id": "f6a5cf60",
+      "title": "[xodiosx PanVK] panvk-test3",
+      "url": "https://github.com/xodiosx/mesa-panvk-g57/releases/tag/panvk-test3",
+      "published_at": 1790958457,
+      "category": "driver",
+      "type": "xodiosx PanVK",
+      "summary": "# PanVK `panvcake` driver for AdrenoTools ## Build mode - `apply_patches` = **false** - Patched builds include: vk_android_native_buffer revert, desktop vulkan.sym, honest hw_get_m"
+    },
+    {
+      "id": "ed570bf6",
+      "title": "[xodiosx PanVK] build-2026-10-01-152609-2699094",
+      "url": "https://github.com/xodiosx/mesa-panvk-g57/releases/tag/build-2026-10-01-152609-2699094",
+      "published_at": 1790868756,
+      "category": "driver",
+      "type": "xodiosx PanVK",
+      "summary": "## PanVK + Zink for Termux (aarch64, native build) Built natively inside Termux (`termux/termux-docker:aarch64`) on `ubuntu-24.04-arm`. **Build date (UTC):** `2026-10-01` **Build t"
+    },
+    {
+      "id": "89dc82a1",
+      "title": "[RADV Xclipse] v1.4.0",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v1.4.0",
+      "published_at": 1790780100,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "## What's new - **Faster BC5 texture uploads.** The Xclipse GPU can't read BC5 textures (two-channel textures, mostly normal maps) directly, so the driver converts each one to a fo"
+    },
+    {
+      "id": "129c7593",
+      "title": "[panDXVK] v1.10.3-panVK.9",
+      "url": "https://github.com/isygold/panDXVK/releases/tag/v1.10.3-panVK.9",
+      "published_at": 1790718802,
+      "category": "driver",
+      "type": "panDXVK",
+      "summary": "# panDXVK v1.10.3-panVK.9 ## Summary v1.10.3-panVK.9 makes panDXVK self-identifying and tightens two correctness gates. The startup log and the HUD now report the panDXVK release a"
+    },
+    {
+      "id": "134c61b1",
+      "title": "[xodiosx PanVK] panvk-test2",
+      "url": "https://github.com/xodiosx/mesa-panvk-g57/releases/tag/panvk-test2",
+      "published_at": 1790718792,
+      "category": "driver",
+      "type": "xodiosx PanVK",
+      "summary": "# PanVK `panvcake` driver for AdrenoTools ## Build mode - `apply_patches` = **false** - Patched builds include: vk_android_native_buffer revert, desktop vulkan.sym, honest hw_get_m"
+    },
+    {
+      "id": "db1c1daa",
+      "title": "[xodiosx PanVK] build-2026-09-28-185127-2d5a5fb",
+      "url": "https://github.com/xodiosx/mesa-panvk-g57/releases/tag/build-2026-09-28-185127-2d5a5fb",
+      "published_at": 1790621842,
+      "category": "driver",
+      "type": "xodiosx PanVK",
+      "summary": "## PanVK + Zink for Termux (aarch64, native build) Built natively inside Termux (`termux/termux-docker:aarch64`) on `ubuntu-24.04-arm`. **Build date (UTC):** `2026-09-28` **Build t"
+    },
+    {
+      "id": "532a78e9",
+      "title": "[xodiosx PanVK] build-2026-09-28-023311-3a18606",
+      "url": "https://github.com/xodiosx/mesa-panvk-g57/releases/tag/build-2026-09-28-023311-3a18606",
+      "published_at": 1790563185,
+      "category": "driver",
+      "type": "xodiosx PanVK",
+      "summary": "## PanVK + Zink for Termux (aarch64, native build) Built natively inside Termux (`termux/termux-docker:aarch64`) on `ubuntu-24.04-arm`. **Build date (UTC):** `2026-09-28` **Build t"
+    },
+    {
+      "id": "d3cafe02",
+      "title": "[xodiosx PanVK] build-2026-09-27-165556-996f933",
+      "url": "https://github.com/xodiosx/mesa-panvk-g57/releases/tag/build-2026-09-27-165556-996f933",
+      "published_at": 1790528574,
+      "category": "driver",
+      "type": "xodiosx PanVK",
+      "summary": "## PanVK + Zink for Termux (aarch64, native build) Built natively inside Termux (`termux/termux-docker:aarch64`) on `ubuntu-24.04-arm`. **Build date (UTC):** `2026-09-27` **Build t"
+    },
+    {
+      "id": "2a711a67",
+      "title": "[Proton-GE] GE-Proton11-7",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-7",
+      "published_at": 1789525696,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "## 1. Wine-Wayland Child-Process Rendering ### Expanded and Rebased Wine-Wineland Integration Imported additional cross-process DMA-BUF, Vulkan, EGL/OpenGL, and child-window compos"
+    },
+    {
+      "id": "293e5a1d",
+      "title": "[DXVK] v3.1.1",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.1.1",
+      "published_at": 1789494205,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Bug fixes and Improvements - Implemented `DXGI_SCALING_NONE` and [SetBackgroundColor](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_2/nf-dxgi1_2-idxgiswapchain1-setb"
+    },
+    {
+      "id": "a77ac2ad",
+      "title": "[faux123 Turnip] v1.1.7",
+      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.1.7",
+      "published_at": 1789161423,
+      "category": "driver",
+      "type": "faux123 Turnip",
+      "summary": "Mesa Turnip for Adreno 8xx, built from mesa `main` at `dd45fd0`. Download `turnip_faux123_v1.1.7.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzi"
+    },
+    {
+      "id": "ddb56cc5",
+      "title": "[Wine Mono] 11.2.1",
+      "url": "https://dl.winehq.org/wine/wine-mono/11.2.1/",
+      "published_at": 1788540465,
+      "category": "runtime",
+      "type": "Wine Mono",
+      "summary": "wine-mono 11.2.1 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "5fbbab58",
+      "title": "[faux123 Turnip] v1.0.0",
+      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.0.0",
+      "published_at": 1788140755,
+      "category": "driver",
+      "type": "faux123 Turnip",
+      "summary": "First release. Mesa Turnip built from `main` at `29c5f0a` (`26.3.0-devel`) with three patches. Download the `.adpkg.zip` below and import it in your app's AdrenoTools driver picker"
+    },
+    {
+      "id": "2bb2d8a0",
+      "title": "[Proton-GE] GE-Proton11-6",
+      "url": "https://github.com/GloriousEggroll/proton-ge-custom/releases/tag/GE-Proton11-6",
+      "published_at": 1787953027,
+      "category": "component",
+      "type": "Proton-GE",
+      "summary": "Wine-Wayland Changes - Updated the Wine bleeding-edge base twice and imported/rebased the latest EM11 Wine-Wayland series: 3e5f91eb (https://github.com/GloriousEggroll/proton-ge-cu"
+    },
+    {
+      "id": "cc5ca9ee",
+      "title": "[DXVK] v3.1",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.1",
+      "published_at": 1787934209,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Feature support ### DXGI incremental presentation Added basic support for DXGI [present parameters](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_2/ns-dxgi1_2-dxgi_p"
+    },
+    {
+      "id": "35ce30f4",
+      "title": "[Purple-Turnip] vturnip_mrpurple_T30-toasted.adpkg",
+      "url": "https://github.com/MrPurple666/purple-turnip/releases/tag/vturnip_mrpurple_T30-toasted.adpkg",
+      "published_at": 1786970281,
+      "category": "driver",
+      "type": "Purple-Turnip",
+      "summary": "• Turnip Driver Unified MrPurple • Unified: A6XX, A7XX, A8XX • READ IT before all, please. ━━━━━━ ×✕× ━━━━━━ - Driver Version: 26.3.0-devel - Version: T-30 - Vulkan Version: 1.4.35"
+    },
+    {
+      "id": "e40214d5",
+      "title": "[Wine Mono] 11.3.0",
+      "url": "https://dl.winehq.org/wine/wine-mono/11.3.0/",
+      "published_at": 1786700100,
+      "category": "runtime",
+      "type": "Wine Mono",
+      "summary": "wine-mono 11.3.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "5ba347ed",
+      "title": "[Box64] v0.4.4",
+      "url": "https://github.com/ptitSeb/box64/releases/tag/v0.4.4",
+      "published_at": 1785663503,
+      "category": "component",
+      "type": "Box64",
+      "summary": "## What's Changed * A new box64-configurator is now present (a python app) to help managing custom RCFILE profiles. It is available in both english and chinese. * DynaCache is now "
+    },
+    {
+      "id": "f1391e14",
+      "title": "[Box64] v0.4.4",
+      "url": "https://github.com/ptitSeb/box64/releases/tag/v0.4.4",
+      "published_at": 1785663503,
+      "category": "runtime",
+      "type": "Box64",
+      "summary": "## What's Changed * A new box64-configurator is now present (a python app) to help managing custom RCFILE profiles. It is available in both english and chinese. * DynaCache is now "
+    },
+    {
+      "id": "e0c31471",
+      "title": "[DXVK] v3.0.2",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.0.2",
+      "published_at": 1784327902,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Hang debugging In case of a GPU hang or driver crash resulting in `VK_ERROR_DEVICE_LOST` errors, the environment variable `DXVK_DEBUG=hang` can now be used to help narrow down t"
+    },
+    {
+      "id": "e3ea7a5e",
+      "title": "[Purple-Turnip] vturnip_mrpurple_T29-toasted.adpkg",
+      "url": "https://github.com/MrPurple666/purple-turnip/releases/tag/vturnip_mrpurple_T29-toasted.adpkg",
+      "published_at": 1783628057,
+      "category": "driver",
+      "type": "Purple-Turnip",
+      "summary": "• Turnip Driver Unified MrPurple • Unified: A6XX, A7XX, A8XX • READ IT before all, please. ━━━━━━ ×✕× ━━━━━━ - Driver Version: 26.2.0-devel - Version: T-29 - Vulkan Version: 1.4.35"
+    },
+    {
+      "id": "8c31c196",
+      "title": "[DXVK] v3.0.1",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.0.1",
+      "published_at": 1783276099,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Bug fixes and Improvements - Disabled secondary command buffer usage on all desktop GPUs. This may slightly impact performance in a small number of games with suboptimal MSAA re"
+    },
+    {
+      "id": "4f34c256",
+      "title": "[DXVK] v3.0",
+      "url": "https://github.com/doitsujin/dxvk/releases/tag/v3.0",
+      "published_at": 1782417750,
+      "category": "component",
+      "type": "DXVK",
+      "summary": "## Shader compiler changes DXVK now uses [dxbc-spirv](https://github.com/doitsujin/dxbc-spirv) for shader compilation, replacing the legacy shader translation code for all supporte"
+    },
+    {
+      "id": "82a29036",
+      "title": "[VKD3D-Proton] v3.0.1",
+      "url": "https://github.com/HansKristian-Work/vkd3d-proton/releases/tag/v3.0.1",
+      "published_at": 1778067327,
+      "category": "component",
+      "type": "VKD3D-Proton",
+      "summary": "This is likely the last release before `VK_EXT_descriptor_heap` lands. There are some practical reasons why this is 3.0.1 instead of 3.1, but numbers don't really matter that much "
+    },
+    {
+      "id": "cf3c8c0a",
+      "title": "[Wine] 11.0",
+      "url": "https://dl.winehq.org/wine/source/11.0/",
+      "published_at": 1764967779,
+      "category": "runtime",
+      "type": "Wine",
+      "summary": "wine 11.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "54f2fbfc",
+      "title": "[Wine Gecko] 2.47.4",
+      "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4/",
+      "published_at": 1745234377,
+      "category": "runtime",
+      "type": "Wine Gecko",
+      "summary": "wine-gecko 2.47.4 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "39fd6b1e",
+      "title": "[Wine Gecko] 2.47.4-rc1",
+      "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4-rc1/",
+      "published_at": 1745234373,
+      "category": "runtime",
+      "type": "Wine Gecko",
+      "summary": "wine-gecko 2.47.4-rc1 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "61626c8b",
+      "title": "[Wine] 9.0",
+      "url": "https://dl.winehq.org/wine/source/9.0/",
+      "published_at": 1745233934,
+      "category": "runtime",
+      "type": "Wine",
+      "summary": "wine 9.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "238701fa",
+      "title": "[Wine] 10.0",
+      "url": "https://dl.winehq.org/wine/source/10.0/",
+      "published_at": 1745233860,
+      "category": "runtime",
+      "type": "Wine",
+      "summary": "wine 10.0 官方发布（WineHQ 下载站）",
+      "low_freq": true
+    },
+    {
+      "id": "5fb78151",
+      "title": "[Mono] 6.12.0.199",
+      "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.199.tar.xz",
+      "published_at": 1690459200,
+      "category": "runtime",
+      "type": "Mono",
+      "summary": "Mono 官方源码发布（mono-project.com）",
+      "low_freq": true
+    },
+    {
+      "id": "4a4761b8",
+      "title": "[Mono] 6.12.0.182",
+      "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz",
+      "published_at": 1655208000,
+      "category": "runtime",
+      "type": "Mono",
+      "summary": "Mono 官方源码发布（mono-project.com）",
+      "low_freq": true
+    },
+    {
+      "id": "2c0703e7",
+      "title": "NECPC 发布 2 款 LAVIE 平板电脑，分别基于天玑 6400、曦力 G85",
+      "url": "https://www.ithome.com/1/018/645.htm",
+      "published_at": 1793101833,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，NECPC 今日在推出 3 款笔记本电脑的同时也带来了两款 Android 平板电脑产品，分别为基于联发科技天玑 6400 的 LAVIE Tab T12N、基于联发科技曦力 G85 的 LAVIE Tab T8。LAVIE Tab T12NLAVIE Tab T12N 配备 12.1"
+    },
+    {
+      "id": "c63f60a8",
+      "title": "波音 2026 年第三季度营收 241.88 亿美元同比增长 4%：净亏损收窄至 1.16 亿美元，交付 161 架飞机而积压订单超 6300 架",
+      "url": "https://www.ithome.com/1/018/644.htm",
+      "published_at": 1793101601,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，波音今日发布 2026 财年（2026 年 1 月～2026 年 12 月）前三季度报（2026 年 1 月～2026 年 9 月）及第三财季（2026 年 7 月～2026 年 9 月）报告。财报显示，波音第三季度营收同比增长 4% 至 241.88 亿美元，GAAP 运营利润转为正"
+    },
+    {
+      "id": "5c8b22fe",
+      "title": "八位堂猎户座 3 代青春竞技版手柄发售：阻力可调 TMR 传感器摇杆，199 元",
+      "url": "https://www.ithome.com/1/018/642.htm",
+      "published_at": 1793101367,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，八位堂 (8BitDo) 旗下猎户座 3 代青春竞技版手柄现已在京东发售。这款控制器也就是全球市场的 Ultimate 3C+，国行定价 199 元人民币。京东八位堂猎户座 3 代青春竞技版游戏手柄 199 元直达链接猎户座 3 代青春竞技版配备 40~80gf 阻力可调 TMR 传感"
+    },
+    {
+      "id": "7a4b477e",
+      "title": "Anthropic 重申：我们永远不会在 Claude 对话中展示广告",
+      "url": "https://www.ithome.com/1/018/641.htm",
+      "published_at": 1793101074,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，Anthropic 公司昨日向美国证券交易委员会提交 S-1 注册文件，计划首次公开发行 A 类普通股，并申请在纳斯达克以“ANT”为股票代码上市。IT之家注意到，Anthropic 在 IPO 文件中重申：公司永远不会在 Claude 的对话中展示广告。该公司还在文件中写道：“人们会"
+    },
+    {
+      "id": "8bfa3552",
+      "title": "消息称苹果 iPad mini（A20 Pro）的 OLED 面板实为 120Hz 刷新率锁 60Hz",
+      "url": "https://www.ithome.com/1/018/640.htm",
+      "published_at": 1793100892,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，博主 @有没有搞措 发文，透露苹果昨晚发布的 iPad mini（A20 Pro）配备的 OLED 面板实为 120Hz 刷新率锁 60Hz。对此，博主 @Kang 认为苹果此举可能是为了照顾平板续航能力。IT之家参考官网设备详情获悉，苹果 iPad mini（A20 Pro）搭载 8"
+    },
+    {
+      "id": "9fa726f0",
+      "title": "小米 REDMI 首款耳夹式耳机 Clip Neo 开售：单耳 5.3g 重，国补价 359.15 元",
+      "url": "https://www.ithome.com/1/018/639.htm",
+      "published_at": 1793100875,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，小米 REDMI 品牌首款耳夹式耳机 Clip Neo 现已开售，定价为 399 元，叠加国补后 359.15 元。REDMI Clip Neo 采用跑道形 C 桥与同色系一体化设计，搭配立式充电盒以及云隙光灯效 2.0，提供零度黑、珍珠白两种配色。佩戴方面，其单耳仅重 5.3g，采用"
+    },
+    {
+      "id": "92f3a2de",
+      "title": "威刚 XPG 推出 CORE REACTOR III 电源，提供主体 + 线材双重 12V-2×6 保护",
+      "url": "https://www.ithome.com/1/018/638.htm",
+      "published_at": 1793100825,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，威刚 (ADATA) 旗下电竞品牌 XPG 现已推出 CORE REACTOR III 电源。这一型号采用 ATX 外形规格，不过长度提升到 150mm。CORE REACTOR III 配备主体 + 线材双重 12V-2×6 保护机制：主体上的 Power Guard 技术一旦侦测到"
+    },
+    {
+      "id": "89bb5794",
+      "title": "小米 REDMI Book 2027 笔记本电脑发布：6799 元起，首销赠送 20000mAh 充电宝",
+      "url": "https://www.ithome.com/1/018/637.htm",
+      "published_at": 1793100448,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，小米 REDMI Book 2027 正式发布，11 月 3 日 10:00 正式开售，首销赠送 20000mAh 充电宝。IT之家汇总价格如下：REDMI Book 14酷睿 5 320、16GB+512GB 版本：6799 元，国补价 5779.15 元酷睿 7 350、16GB+"
+    },
+    {
+      "id": "2f17df11",
+      "title": "XREAL 1 Pro+ 智能眼镜国行发售：峰值亮度提升至 1200 尼特、鼻托结构重新设计，3499 元",
+      "url": "https://www.ithome.com/1/018/636.htm",
+      "published_at": 1793100354,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，XREAL 旗下新款 AR 眼镜 XREAL 1 Pro+ 现已在京东发售，该产品相对于上一代主要提升面板亮度，同时调整人体工程学设计，国行定价 3499 元。京东 XREAL 1 Pro+3499 元直达链接XREAL 1 Pro+ 采用重新设计的鼻托结构，旨在改善眼镜与面部的贴合度"
+    },
+    {
+      "id": "02f1f57d",
+      "title": "小米 REDMI K100 手机发布：骁龙 8 至尊版旗舰芯，限时特惠价 2999 元起",
+      "url": "https://www.ithome.com/1/018/635.htm",
+      "published_at": 1793100167,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，小米 REDMI K100 手机今日发布，限时特惠到手价 2999 元起。即刻开始预售，10 月 31 号 10 点正式开售。IT之家附价格如下：12GB+256GB 版建议零售价 3499 元，双 11 限时特惠 2999 元，国补价 2549.15 元12GB+512GB 版建议零"
+    },
+    {
+      "id": "38eae85b",
+      "title": "微信 Windows / macOS PC 版 4.2.0 发布，修复一些已知问题",
+      "url": "https://www.ithome.com/1/018/634.htm",
+      "published_at": 1793100049,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，微信今晚发布了 Windows 与 Mac 双平台的 4.2.0 正式版更新，官方更新依然为“修复一些已知问题”。当然，目前包括鸿蒙版在内的所有平台清一色都是“修复一些已知问题”。根据此前曝光的内测信息，4.2.0 版本在基础聊天场景中做出了几项实质改动（不排除正式版撤回的可能）：翻译"
+    },
+    {
+      "id": "1b58bb4e",
+      "title": "小米 18 Pro 系列全球版机型定价曝光：1549 欧元起",
+      "url": "https://www.ithome.com/1/018/610.htm",
+      "published_at": 1793099283,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，据科技媒体 Notebookcheck 今天报道，意大利零售商 Epto 最近提前公开了小米 18 Pro 系列手机全球版定价，起售价为 1,549 欧元（IT之家注：现汇率约合 11,574 元人民币）。据介绍，小米 18 Pro 和 18 Pro Max 在全球市场将提供黑色、白色"
+    },
+    {
+      "id": "dc529da7",
+      "title": "康宁 2026 财年前三季度报归母净利润 16.1 亿美元，同比增长 53%",
+      "url": "https://www.ithome.com/1/018/609.htm",
+      "published_at": 1793099267,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，康宁今日发布 2026 财年（2026 年 1 月～2026 年 12 月）前三季度报（2026 年 1 月～2026 年 9 月）及第三财季（2026 年 7 月～2026 年 9 月）报告：2026 财年前三季度报营业总收入：135.04 亿美元（IT之家注：现汇率约合 902.5"
+    },
+    {
+      "id": "b0924fa3",
+      "title": "PayPal 2026 财年前三季度营收 256.19 亿美元，净利润同比下降 13.3%",
+      "url": "https://www.ithome.com/1/018/608.htm",
+      "published_at": 1793099251,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，PayPal 今日发布 2026 财年（2026 年 1 月～2026 年 9 月）前三季度报（2026 年 1 月～2026 年 9 月）及第三财季（2026 年 7 月～2026 年 9 月）报告：2026 财年前三季度报营业总收入：256.19 亿美元（IT之家注：现汇率约合 1"
+    },
+    {
+      "id": "5d5661f4",
+      "title": "中国西南确认全球首件丹尼索瓦人桡骨：近端像尼安德特人，整体接近现代人",
+      "url": "https://www.ithome.com/1/018/603.htm",
+      "published_at": 1793098531,
+      "category": "general",
+      "summary": "IT 之家 10 月 27 日消息，据 ScitechDaily 今日报道，科研人员从云南蝙蝠洞遗址超过 6 万件碎骨中筛选出了目前全球唯一一件经分子证据确认的丹尼索瓦人桡骨。这件编号 BFD771 的前臂骨碎片，为理解丹尼索瓦人的肢体形态和生物力学适应提供了此前完全空缺的直接证据。相关研究由中国科学院古脊椎动物与古人"
+    },
+    {
+      "id": "1e120454",
+      "title": "荷兰计划用 AI 取代 2.5 万个政府工作岗位，目标节省 35 亿欧元",
+      "url": "https://www.ithome.com/1/018/599.htm",
+      "published_at": 1793097765,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，据彭博社报道，荷兰政府宣布大力布局 AI 提升行政效率，计划逐渐削减 2.5 万个政府工作岗位，裁员规模约占荷兰政府员工总数的 16%，最终目的是节省 35 亿欧元（IT之家注：现汇率约合 261.52 亿元人民币）。据报道，荷兰政府希望借助 AI 提高效率，将生产力提高 20%。并计"
+    },
+    {
+      "id": "89f2a825",
+      "title": "思特威 2026 年前三季度营收 75.61 亿元同比增长 19.70%，归母净利润 8.4 亿元同比增长 20.05%",
+      "url": "https://www.ithome.com/1/018/597.htm",
+      "published_at": 1793097230,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，思特威今日发布 2026 年三季度（2026 年 1 月～2026 年 9 月）报告：第三季度营业收入为 29.62 亿元，同比增长 17.03%；前三季度营业收入为 75.61 亿元，同比增长 19.70%。第三季度利润总额为 3.52 亿元，同比增长 5.20%；前三季度利润总额为"
+    },
+    {
+      "id": "82a95329",
+      "title": "景嘉微 2026 年前三季度归母净亏损 1.85 亿元，同比由盈转亏",
+      "url": "https://www.ithome.com/1/018/591.htm",
+      "published_at": 1793096684,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，景嘉微今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）报告：营业总收入：5.53 亿元，同比增长 11.71%归母净利润：-1.85 亿元，同比下降 154.49%扣非净利润：-1.99 亿元，同比下降 130.91%经营现金流：-5.42 亿元，同比下降 "
+    },
+    {
+      "id": "9585ddbd",
+      "title": "影石创新 2026 前三季度营收 94.36 亿元同比增长 42.73%，归母净利润 4783.56 万元同比大降 93.96%",
+      "url": "https://www.ithome.com/1/018/593.htm",
+      "published_at": 1793096282,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，影石创新今日发布 2026 年三季度（2026 年 1 月～2026 年 9 月）报告：三季度营业收入 39.19 亿元，同比增长 33.30%，年初至报告期末为 94.36 亿元，同比增长 42.73%；三季度净利润 -1.19 亿元，同比下降 144.63%，年初至报告期末为-2."
+    },
+    {
+      "id": "181bd30f",
+      "title": "三星前副社长因泄露商业机密获刑 3 年，当庭收押",
+      "url": "https://www.ithome.com/1/018/590.htm",
+      "published_at": 1793095759,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，韩国首尔高等法院驳回了三星电子前副社长、前知识产权中心负责人安承浩的上诉，维持其因泄露三星商业机密而被判处的 3 年有期徒刑，并当庭将其收押。该案件涉及安承浩在代表美国音频设备制造商 Tekiya 对三星电子提起专利侵权诉讼期间，使用三星内部机密文件的行为。与此同时，二审还加重了对另外"
+    },
+    {
+      "id": "fa894c4c",
+      "title": "为避免在韩国市场引发争议，苹果悄悄移除当地官网 iPad mini（A20 Pro）海报中的手部",
+      "url": "https://www.ithome.com/1/018/589.htm",
+      "published_at": 1793095731,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，有网友发现，苹果在韩国官网展示的 iPad mini（A 20 Pro）宣传海报中去掉了手部，仅保留设备本体。IT之家注意到，访问苹果中国 iPad mini（A20 Pro）产品详情页时，可以看到第二页展示一只手捏住平板电脑的画面，以此突出新款 iPad mini 的 5.4mm 纤"
+    },
+    {
+      "id": "2cee9473",
+      "title": "因后端 PHP 程序存在安全隐患，卡普空《街头霸王 5》PS4 与 Steam 版线上功能全面暂停",
+      "url": "https://www.ithome.com/1/018/584.htm",
+      "published_at": 1793095418,
+      "category": "emulator",
+      "summary": "IT之家 10 月 27 日消息，卡普空今天发布紧急通知，将暂时停止销售 PS4 版和 Steam 版《街头霸王 5》游戏。IT之家了解到，卡普空此次停售是为了消除游戏后端 PHP 程序的安全隐患，目前游戏的在线功能暂时无法使用。修复工作完成之前，玩家仅可游玩离线模式，官方也在 PlayStation Store 和 "
+    },
+    {
+      "id": "497cbe87",
+      "title": "国内商业航天最大直径，深蓝航天星云二号 5 米一子级贮箱全部交付",
+      "url": "https://www.ithome.com/1/018/579.htm",
+      "published_at": 1793095276,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，据深蓝航天，近期，该公司研制的星云二号 5 米直径一子级关键结构件：液氧贮箱、煤油贮箱，在深蓝航天长青基地相继完成制造下线。继二子级贮箱下线后，星云二号火箭的又一关键制造节点顺利落地，标志着星云二号箭体主体结构的关键件 —— 低温液氧贮箱和常温煤油贮箱，生产制造已基本完成。据介绍，星云"
+    },
+    {
+      "id": "405d2a31",
+      "title": "百度网盘 11.11 年内探底：SVIP 超级会员 13 元 / 月、157 元 / 年",
+      "url": "https://www.ithome.com/1/018/570.htm",
+      "published_at": 1793095070,
+      "category": "general",
+      "summary": "百度网盘超级会员年卡官方售价 298 元，今日券后直降至 196 元年内好价，限时加赠 3 个月。到手共 15 个月，折合 13.1 元 / 月、157 元 / 年：京东百度网盘 SVIP 超级会员 15 月卡券后 196 元领 10 元券百度网盘超级会员年卡 + B站大会员季卡 + 网易云音乐月卡今日折后仅需 176"
+    },
+    {
+      "id": "f5ca83f6",
+      "title": "铭瑄将“深度参与”英特尔 GPU D 系列项目研发制造，规划三形态产品",
+      "url": "https://www.ithome.com/1/018/560.htm",
+      "published_at": 1793094891,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，铭瑄 (MAXSUN) 在其 2026 英特尔 LOEM 峰会新闻稿中提到，该企业将“深度参与”英特尔 GPU D 系列（代号 Crescent Island，简称 CRI）项目研发制造。▲ \"Crescent Island\" 公版设计铭瑄规划了 3 种形态的 \"Crescent Is"
+    },
+    {
+      "id": "7fd6a34d",
+      "title": "格斗游戏《碧蓝幻想 Versus：崛起》免费版 11 月 1 日终止运营，玩家可限时体验正式版全部 38 个角色",
+      "url": "https://www.ithome.com/1/018/551.htm",
+      "published_at": 1793094718,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，开发商 Cygames 宣布旗下格斗游戏《碧蓝幻想 Versus：崛起》免费版将于 11 月 1 日 23:00 终止运营。作为散伙饭，玩家可以在 11 月 1 日 23:00 前在免费版游戏中体验正式版的全部 38 个角色（不含 2B）。作为对比：平日免费版只可体验 4 个角色（古兰"
+    },
+    {
+      "id": "2c568a78",
+      "title": "《刺客信条：黑旗 记忆重置》游戏最后一次大型更新今日上线：新增新游戏 + 模式、噩梦难度等",
+      "url": "https://www.ithome.com/1/018/550.htm",
+      "published_at": 1793094615,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，育碧今天宣布，《刺客信条：黑旗 记忆重置》游戏今天将上线最后一次大型内容更新，上线时间预计为 UTC 14:00（北京时间 22:00），全平台同步推送。据介绍，本次更新最重要的内容是新增“新游戏 +”二周目模式，玩家可将一周目获得的大部分物品和解锁内容继承至新游戏，以下是具体继承内容"
+    },
+    {
+      "id": "146e1990",
+      "title": "我国首个智慧货运枢纽领域国家标准 2027 年 4 月 1 日起实施，降低社会物流成本",
+      "url": "https://www.ithome.com/1/018/548.htm",
+      "published_at": 1793094055,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，据市场监管总局，近日，国家标准委批准发布《智慧货运枢纽基本要求》（GB/T 48172—2026）国家标准，该标准是我国首个智慧货运枢纽领域国家标准，将自 2027 年 4 月 1 日起实施。该标准主要内容如下：通则方面，明确枢纽选址布局、设施设备配置、先进技术应用、网络安全等要求，针"
+    },
+    {
+      "id": "d6be5609",
+      "title": "消息称主要中系 CSP 与三星电子、SK 海力士洽谈服务器内存长期供应合同",
+      "url": "https://www.ithome.com/1/018/547.htm",
+      "published_at": 1793094000,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，韩国《每日经济新闻》当地时间今日报道称，包括阿里巴巴、腾讯、字节跳动在内的中国主要云服务供应商 (CSP) 已在同三星电子、SK 海力士洽谈服务器内存长期供应协议 (LTA)。主要中系 CSP 与两大韩国 DRAM 制造商的谈判涉及服务器级 DDR 产品和 LPDDR。当前 x86 阵"
+    },
+    {
+      "id": "74539492",
+      "title": "欧盟委员会接受 TEMU 整改计划，此前因违反 DSA 被罚 2 亿欧元",
+      "url": "https://www.ithome.com/1/018/546.htm",
+      "published_at": 1793093852,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，欧盟委员会当地时间周一宣布，已接受拼多多旗下国际电商平台 TEMU 提交的整改计划，要求其进一步评估平台上非法商品的传播风险，并完善内容审核和商品推荐机制。TEMU 此前因未能充分评估平台上非法商品的系统性风险，违反《数字服务法》（DSA），于 2026 年 5 月被欧盟处以 2 亿欧"
+    },
+    {
+      "id": "ebac306d",
+      "title": "WPS 赚钱京东花：WPS 京东 PLUS 联合会员 268 元，单个会员 1 年仅需 59 元",
+      "url": "https://www.ithome.com/1/018/545.htm",
+      "published_at": 1793093708,
+      "category": "general",
+      "summary": "WPS 超级会员 3 年日常 288 元，今日买超会 3 年送联合会员 1 年，券后实付 268 元赠 30 元电影券包。下单前加入店铺会员，付款后可兑换 30 元京东 E 卡，折合仅需 238 元。折合仅需 238 元，单会员单年折合仅需 59.5 元。京东 11.11 红包至高 26888 元无门槛可用，每天可抽一"
+    },
+    {
+      "id": "52c3f106",
+      "title": "3299 → 799 元享 25000Pa 超强吸力 +180° 超薄躺平：石头 A30 Max 智能洗地机新品 3 期免息",
+      "url": "https://www.ithome.com/1/018/544.htm",
+      "published_at": 1793093687,
+      "category": "general",
+      "summary": "石头 A30 Max 智能洗地机官方定价 4299 元，今日按下方步骤下单，仅需 799 元即可入手：88VIP 需先领 1500-180 元消费券，然后膨胀至 1800-220 元（非 88VIP 前往领券中心可领取不定额消费券，也可膨胀至类似的额度）；点击下方卡片可享淘金币抵扣 180.98 元（如果淘金币不够的话"
+    },
+    {
+      "id": "9642e4ae",
+      "title": "2999 元购 31.5 英寸 4K 180Hz QD-OLED：泰坦军团“G3280V”显示器开启首销",
+      "url": "https://www.ithome.com/1/018/543.htm",
+      "published_at": 1793093641,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，泰坦军团旗下“G3280V”31.5 英寸显示器将于今晚 6 点开启首销，该机主打 4K 180Hz，定价为 4799 元，今晚 6 点至 8 点限时活动价 2999 元（名额有限）。京东泰坦军团 G3280V 显示器今天 18:00-20:00 限时首发价 2999 元点此访问该机配"
+    },
+    {
+      "id": "25eec98a",
+      "title": "金山办公 2026 年第三季度经调整归母净利润 5.39 亿元，同比增长 8.44%",
+      "url": "https://www.ithome.com/1/018/532.htm",
+      "published_at": 1793093576,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，金山办公今日发布 2026 年第三季度（2026 年 7 月～2026 年 9 月）报告：营业总收入：17.66 亿元，同比增长 16.11%归母净利润：1.19 亿元，同比下降 72.3%扣非净利润：1.14 亿元，同比下降 72.85%经营现金流：4.67 亿元，同比下降 13.2"
+    },
+    {
+      "id": "847ee6ac",
+      "title": "南非女作家借 AI 约 20 个月出版 371 本书引争议，自称年收入超百万美元",
+      "url": "https://www.ithome.com/1/018/540.htm",
+      "published_at": 1793093477,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，南非女作家珂拉尔 · 哈特（笔名 Coral Hart）借助 AI 在约 20 个月内出版了 371 本书，累计销量超过 100 万册。据她本人估算，仅 2026 年以来的收入就已超过 100 万美元（IT之家注：现汇率约合 668.4 万元人民币）。不过，这种利用 AI 批量创作并商"
+    },
+    {
+      "id": "bed608c2",
+      "title": "1499 元购 27 英寸 2K 240Hz QD-OLED：泰坦军团“G2783S”显示器开启首销",
+      "url": "https://www.ithome.com/1/018/539.htm",
+      "published_at": 1793093341,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，泰坦军团旗下“G2783S”26.5 英寸（27 英寸）显示器将于今晚 6 点发售，该机主打 2K 240Hz QD-OLED，晚 6 点-8 点首发价 1499 元（名额有限）。京东泰坦军团 G2783S 显示器今天 18:00-20:00 限时首发价 1499 元点此访问该机配备三"
+    },
+    {
+      "id": "24dd1bb3",
+      "title": "英飞凌将在欧洲建设全球首个 12 英寸氮化镓功率半导体大规模量产晶圆厂",
+      "url": "https://www.ithome.com/1/018/536.htm",
+      "published_at": 1793093216,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，Infineon（英飞凌）当地时间今日宣布，将在欧洲建设全球首个用于生产氮化镓 (GaN) 功率半导体的 300mm（12 英寸）大规模量产晶圆厂。300mm（12 英寸）的单片晶圆芯片产出是 200mm（8 英寸）晶圆的 2.3 倍。更大面积的原料可助力生产工艺改进和效率提升。作为该"
+    },
+    {
+      "id": "a4684118",
+      "title": "上海“星枢计划”目标 2032 年完成千星部署，百万级 TOPS 算力上天",
+      "url": "https://www.ithome.com/1/018/535.htm",
+      "published_at": 1793093211,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，2026 卫星互联网产业生态大会于今日（10 月 27 日）在上海召开。据界面新闻报道，上海正式启动筹建卫星互联网产业基金。该基金由市区两级投资平台联合社会资本共同发起，将发挥国有资本杠杆作用，赋能技术创新，培育产业生态。复旦大学党委副书记、副校长迟楠在会上公布了“星枢计划”的部署规划"
+    },
+    {
+      "id": "255951ac",
+      "title": "品丘联合魅族 PANDAER 推出 Power Duo 磁吸移动电源：可当苹果 iPhone Duo 支架，众筹价 1499 元",
+      "url": "https://www.ithome.com/1/018/534.htm",
+      "published_at": 1793093197,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，初创公司品丘宣布联合魅族 PANDAER 推出一款 Power Duo 磁吸移动电源，官方称零售价 1999 元，众筹价为 1499 元。该产品折叠尺寸为 9 x 8.2 x 1.04cm，内置两组磁体，采用硅胶磁吸面，号称“适配 iPhone Duo 全部交互姿态”，同时“铰链经过 "
+    },
+    {
+      "id": "41adcc9e",
+      "title": "剪剪剪剪剪：剪映 SVIP 超级会员 79 → 15 元 / 月 1.9 折年内探底，支持电脑端",
+      "url": "https://www.ithome.com/1/018/533.htm",
+      "published_at": 1793093185,
+      "category": "general",
+      "summary": "剪映 SVIP 超级会员官方定价 758 元 / 年，连续包年 599 元 / 年，单月 79 元。今日官方仅需 180 元即可入手年卡，折合仅需 15 元 / 月好价：京东剪映 SVIP 会员年卡支持电脑端券后 180 元领 319 元券京东剪映 VIP 会员年卡 6.25 元 / 月券后 75 元领 113 元券京"
+    },
+    {
+      "id": "10b7f18a",
+      "title": "微星推出 MAG 341CQP QD-OLED X24 显示器：延续 RGB 条纹子像素，刷新率降级",
+      "url": "https://www.ithome.com/1/018/531.htm",
+      "published_at": 1793092675,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，微星 (MSI) 现已在官网上线 MAG 341CQP QD-OLED X24 显示器。这一型号基于 RGB 条纹子像素排列的 QD-OLED Penta Tandem 面板，覆盖 Dark Armor 薄膜，但刷新率降低至 240Hz。MAG 341CQP QD-OLED X24 显"
+    },
+    {
+      "id": "dac66eb4",
+      "title": "消息称某厂新机影像实验室出现双潜望长焦方案，预计华为旗下",
+      "url": "https://www.ithome.com/1/018/530.htm",
+      "published_at": 1793092498,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，据博主 @数码闲聊站 今日爆料，某厂新机影像实验室出现了双潜望长焦方案，一颗 50Mp RYYB 小底，一颗 200Mp 1/1.3″ RYYB 超大底，焦段配置上新。结合该博主此前的爆料习惯，预计该机为华为旗下。IT之家注意到，该博主此前爆料某厂 2027H1 影像旗舰在评估阔屏，据"
+    },
+    {
+      "id": "e0d4ec93",
+      "title": "华硕推出 TUF Gaming Radeon RX 9070 XT《鬼武者：剑之道》特别版显卡：蓝金外观，附赠游戏兑换码",
+      "url": "https://www.ithome.com/1/018/529.htm",
+      "published_at": 1793092489,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，华硕今日宣布推出 TUF Gaming Radeon RX 9070 XT《鬼武者：剑之道》特别版显卡。该卡由华硕与 AMD、卡普空三方联合打造，是配合《鬼武者：剑之道》推出的限量联名产品。这款显卡本体在硬件规格上与标准版 TUF Gaming Radeon RX 9070 XT 保持"
+    },
+    {
+      "id": "0af426f3",
+      "title": "TCOMAS 钛钽推出静音版 A080/A090 一体式水冷散热器：六年质保，398 元起",
+      "url": "https://www.ithome.com/1/018/527.htm",
+      "published_at": 1793092167,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，TCOMAS（钛钽）现已在京东上架静音版 A080/A090 系列一体式水冷散热器，售价 398 元起，提供六年质保，支持个人送保。A080 静音版：398 元A090 静音版：528 元京东 TCOMAS 钛钽 A080 静音版 398 元直达链接京东 TCOMAS 钛钽 A090 "
+    },
+    {
+      "id": "a0eda14d",
+      "title": "《寂静岭》初代重制版游戏新爆料：2027 年见？",
+      "url": "https://www.ithome.com/1/018/526.htm",
+      "published_at": 1793091771,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，据外媒 MP1st 报道，由 Bloober Team 开发的《寂静岭》初代重制版计划 2027 年发售，参与项目的两名女演员包括 Gabrielle Fritz 和 Jade Matthew。据报道，《寂静岭》初代重制版目前正在制作中，选角阶段使用的代号为 Project Noise"
+    },
+    {
+      "id": "a2ab2bac",
+      "title": "超频三推出 MR100 V1 工作站机箱：支持 SSI-EEB / E-ATX 主板",
+      "url": "https://www.ithome.com/1/018/525.htm",
+      "published_at": 1793091647,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，超频三 (CPS, Pccooler) 现已推出 MR100 V1 工作站机箱。这一型号拥有 7 条扩展槽，支持 SSI-EEB / E-ATX 及以下尺寸的主板。该型号三维 461.4 × 220 × 491.6 (mm)，扩展卡限长 360mm、ATX 电源限长 210mm、处理器"
+    },
+    {
+      "id": "b40e6b25",
+      "title": "低过 10 元 / 月：迅雷超级会员 11.11 直降，12T 网盘 + 每天 1000 次云添加",
+      "url": "https://www.ithome.com/1/018/522.htm",
+      "published_at": 1793091407,
+      "category": "general",
+      "summary": "迅雷超级会员年卡日常售价 360 元，连续包年为 264 元（22 元 / 月）。11.11 大促期间，30 个月券后直降至 298 元，单月约合 9.93 元官方好价：京东迅雷超级会员 30 个月补贴后 9.93 元 / 月 298 元直达链接京东迅雷超级会员 15 个月补贴后 10.6 元 / 月 159 元直达链"
+    },
+    {
+      "id": "969094b3",
+      "title": "河南以旧换新补贴新增 10 类产品：覆盖扫洗地机 / 智能门锁 / 洗碗机，最高 1500 元",
+      "url": "https://www.ithome.com/1/018/520.htm",
+      "published_at": 1793091341,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，河南省商务厅、省发展改革委、省财政厅 10 月 27 日联合发布公告，优化实施 2026 年消费品以旧换新地方自主品类补贴活动，在保留原有自主补贴品类的基础上进一步突出智能化产品。IT之家获悉，本次优化调整后的补贴品类共 10 类，包括智能清洁机器人（含扫洗地机、擦窗机器人）、智能干衣"
+    },
+    {
+      "id": "ae2303fe",
+      "title": "小米米家直流变频冷暖两季扇新增灰色 / 黑色版本：冬夏可用，799 元",
+      "url": "https://www.ithome.com/1/018/518.htm",
+      "published_at": 1793090808,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，小米宣布为旗下米家直流变频冷暖两季扇新增黑色和灰色版本（点此访问），两款配色定价均为 799 元。IT之家从商品页面获悉，该产品采用专利 PTC 旋转结构，闭合时吹暖风，打开时吹凉风。冬夏两季可用，换季无需收纳。圆柱形设计，底盘直径仅 30cm，不占空间。整机约 6.9kg。高品质铜线"
+    },
+    {
+      "id": "24b45348",
+      "title": "米哈游推出《崩坏 3》爱莉希雅 · 霁月婵娟高保真蓝牙耳机，礼盒 499 元",
+      "url": "https://www.ithome.com/1/018/517.htm",
+      "published_at": 1793090745,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，米哈游新上架了一款《崩坏 3》爱莉希雅 · 霁月婵娟高保真蓝牙耳机礼盒，官方标价 499 元，10 月 31 日 20:00 开售。在此之前，米哈游还推出了一款同样基于水月雨轻巧豆 Dots 设计的《崩坏：星穹铁道》火花真无线蓝牙耳机，同样 499 元。这款礼盒除耳机外还附赠霁月婵娟系"
+    },
+    {
+      "id": "1266b58d",
+      "title": "ATK 宝可梦联名耿鬼款外设开启线上预售，键鼠垫套装到手价 829 元",
+      "url": "https://www.ithome.com/1/018/516.htm",
+      "published_at": 1793090596,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，外设制造商 ATK 今日启动了其宝可梦联名外设耿鬼款的线上预售。此次的联名键鼠均拥有专属装饰，其中键盘为键帽、金属铭牌、背板“三位一体”主题设计。IT之家了解到，耿鬼款联名 RS8 Air 磁轴键盘到手价 429 元、联名烈空 ZERO+ 鼠标到手价  369 元、联名鼠标垫则是 69"
+    },
+    {
+      "id": "84060413",
+      "title": "国内首个面向 DPU 数据处理器的国家标准发布，中国移动 / 联通 / 电信、中兴通讯等起草",
+      "url": "https://www.ithome.com/1/018/514.htm",
+      "published_at": 1793090560,
+      "category": "eco",
+      "summary": "IT之家 10 月 27 日消息，中国移动云公司今日发文，国家标准《智能计算集群 数据处理单元应用技术规范》已正式发布并实施。标准由中国信息通信研究院牵头，多家头部科技企业共同参与编制，明确了数据处理单元（DPU）应用于智能计算集群的技术要求，适用于数据处理单元的研制，以及在服务器、智能计算集群的部署、应用和管理，可为"
+    },
+    {
+      "id": "a49e66aa",
+      "title": "罗技推出 MX Master 4 开发者特别版鼠标，130 欧元限量发售",
+      "url": "https://www.ithome.com/1/018/513.htm",
+      "published_at": 1793090535,
+      "category": "general",
+      "summary": "IT之家 10 月 27 日消息，罗技现已在海外市场推出 MX Master 4 开发者特别版鼠标，定价 130 欧元（IT之家注：现汇率约合 971.4 元人民币），限量发售，功能与普通版 MX Master 4 没有区别。据介绍，这款鼠标采用了浅灰色、石墨灰色撞色设计，外壳带有激光雕刻的特别元素，如“0xFF + "
+    },
     {
       "id": "9f5895b5",
       "title": "苹果 iOS 27.2 系统为 AI 生成图片加入 SynthID 隐藏水印",
@@ -314,15 +1215,6 @@
       "published_at": 1793077113,
       "category": "general",
       "summary": "IT之家 10 月 27 日消息，天文学家发现了一个非同寻常的伽马射线暴（GRB），和同类宇宙爆发相比，其堪称伽马暴里的“绿巨人”。这个伽马射线暴最特别之处在于，驱动这次爆发的中心引擎持续活跃了大约 27 天，在初始爆发之后不断产生 X 射线耀发。这个时长比此前有记录的最长伽马暴还要多出 20 天。据IT之家了解，这次"
-    },
-    {
-      "id": "21bb255f",
-      "title": "[faux123 PanVK] v1.1.0",
-      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v1.1.0",
-      "published_at": 1793076629,
-      "category": "driver",
-      "type": "faux123 PanVK",
-      "summary": "**Much faster tessellation on the Mali-G57 and G77, faster barriers on the Mali-G610 and G710, and a tessellation fix for all four.** All four repositories ship the same package, `"
     },
     {
       "id": "04192ae9",
@@ -1301,15 +2193,6 @@
       "summary": "IT之家 10 月 26 日消息，极摩客现已在海外市场推出 NucBox M3S 迷你主机，新品采用英特尔 Wildcat Lake 平台，支持 USB4、三屏 4K 输出，提供 12GB 板载内存，定价 389.99 美元。据介绍，这款迷你主机搭载英特尔酷睿 3 304 处理器，带有 1 个性能核心及 4 个能效核心"
     },
     {
-      "id": "db11b836",
-      "title": "[faux123 PanVK] v1.0.2",
-      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v1.0.2",
-      "published_at": 1792997949,
-      "category": "driver",
-      "type": "faux123 PanVK",
-      "summary": "**Vita3K fix and FP16 for the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.0.2.adpkg.zip`, with the same bytes. Download `panvk_faux123_v1.0.2"
-    },
-    {
       "id": "200b1fe3",
       "title": "努比亚冰淇淋散热器全新配色「可可黑」发售，99 元",
       "url": "https://www.ithome.com/1/017/910.htm",
@@ -1518,33 +2401,6 @@
       "summary": "B站大会员年卡 + 京东 PLUS 年卡日常售价 258 元，现 11.11 大促价为 148 元，到手双会员各一年：京东哔哩哔哩大会员 12 个月年卡 + 京东 PLUS 会员年卡 148 元直达链接如果不需要京东 PLUS 会员，还有单会员也在大促中，年卡原价 233 元，11.11 大促期间，直降至 118 元 "
     },
     {
-      "id": "2161098a",
-      "title": "[faux123 Turnip] v1.2.0",
-      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.2.0",
-      "published_at": 1792965852,
-      "category": "driver",
-      "type": "faux123 Turnip",
-      "summary": "Mesa Turnip for Adreno, built from mesa `main` at `dd45fd0`, the same base as v1.1.20, plus two speed changes. Download `turnip_faux123_v1.2.0.adpkg.zip` below and import it in you"
-    },
-    {
-      "id": "e3eefb01",
-      "title": "[faux123 PanVK] v1.0.1",
-      "url": "https://github.com/faux123/panvk-faux123-driver-ace/releases/tag/v1.0.1",
-      "published_at": 1792953661,
-      "category": "driver",
-      "type": "faux123 PanVK",
-      "summary": "**Fixes and restores what v1.0.0 lost.** This release brings back every feature and fix the old per-device builds had, fixes several rendering bugs, and makes no device slower than"
-    },
-    {
-      "id": "351e3a04",
-      "title": "[faux123 Turnip] v1.1.20",
-      "url": "https://github.com/faux123/turnip-faux123-driver/releases/tag/v1.1.20",
-      "published_at": 1792953160,
-      "category": "driver",
-      "type": "faux123 Turnip",
-      "summary": "Mesa Turnip for Adreno, built from mesa `main` at `dd45fd0`, the same base as v1.1.9. Download `turnip_faux123_v1.1.20.adpkg.zip` below and import it in your app's AdrenoTools driv"
-    },
-    {
       "id": "0b45d627",
       "title": "古尔曼：苹果正测试配备 OLED 屏幕的 iMac 和 MacBook Air",
       "url": "https://www.ithome.com/1/017/717.htm",
@@ -1607,806 +2463,6 @@
       "published_at": 1792938477,
       "category": "general",
       "summary": "IT之家 10 月 25 日消息，联合创新现已在京东上架一款型号为“D32U1”的 31.5 英寸显示器，该机为 4K 60Hz 规格，定价为 1699 元。京东联合创新 D32U1 显示器券后 1699 元领 190 元券该机配备一块 3840x2160 分辨率 60Hz IPS 面板，显示器亮度 350 尼特，对比"
-    },
-    {
-      "id": "fd65b412",
-      "title": "华为鸿蒙 HarmonyOS 7.0.0.111 版本更多“隐藏”新特性盘点，深色模式随日出日落切换等功能下放",
-      "url": "https://www.ithome.com/1/017/707.htm",
-      "published_at": 1792938197,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，华为近两日面向 Mate 80 / 70 / 60、Pura 80 / 70 等系列机型推送了最新的鸿蒙 HarmonyOS 7.0.0.111 版本升级，带来了与 iPhone 双机互联，实况窗分享等功能。▲ IT之家开箱：华为 Pura 70 Pro+「光织银」图赏更新日志并未公开"
-    },
-    {
-      "id": "439a5aa7",
-      "title": "雷蛇幻影战狼 V4 系列手柄发售：电容摇杆，竞技版 799 元、专业版 1599 元",
-      "url": "https://www.ithome.com/1/017/705.htm",
-      "published_at": 1792937959,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，Razer（雷蛇）现已启动 Wolverine 幻影战狼 V4 系列手柄控制器的国行销售：Tournament Edition 竞技版为 799 元、Pro 专业版为 1,599 元。▲ 幻影战狼 V4 专业版两款幻影战狼 V4 手柄均配备高分辨率电容式拇指控制杆、可调式长 / 短双模"
-    },
-    {
-      "id": "471197d1",
-      "title": "铺路铺到苹果家：开发者成功令微软 Surface Duo 2 运行 iOS / iPadOS 26 系统",
-      "url": "https://www.ithome.com/1/017/703.htm",
-      "published_at": 1792936843,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，随着 AI 技术突飞猛进，许多开发者在大模型辅助加持之下对各种老旧机型进行折腾，例如博主 @none25smu 便发文，展示其成功为微软 Surface Duo 2 刷入苹果 iOS/iPadOS 26 系统。开发者表示，在其他人尝试移植 iOS 16/17 时，自己一直在推进 iPa"
-    },
-    {
-      "id": "a384c2d0",
-      "title": "苹果发布 iPhone Duo 支持文档，帮助用户排查铰链和屏幕问题",
-      "url": "https://www.ithome.com/1/017/701.htm",
-      "published_at": 1792936611,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，苹果现已为 iPhone Duo 折叠屏手机发布一批支持文档，其中最值得关注的是排除铰链故障指南。如果您手上的 iPhone Duo 开合时发出异常声响，或是无法正常合上，不妨参考这份指南。苹果这份指南中列明，用户需留意 iPhone Duo 无法完全打开或关闭、折叠时发出异常声音，以"
-    },
-    {
-      "id": "566d20d1",
-      "title": "手游《蔚蓝档案》日服运营商变更：Yostar 将于 2027 年 1 月移交业务给 NEXON",
-      "url": "https://www.ithome.com/1/017/699.htm",
-      "published_at": 1792935782,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，韩国 NEXON Games 旗下手游《蔚蓝档案》日服运营商 Yostar 今日在官方直播中宣布，计划于 2027 年 1 月左右将日本地区的游戏运营业务全面移交给 NEXON，结束自游戏 2021 年上线以来持续近六年的代理合作关系。Yostar 代表取缔役社长李衡达表示，Yosta"
-    },
-    {
-      "id": "36186273",
-      "title": "联想极光键盘 GK1077 Lite 三模版上市：硅胶轻音按键，129 元",
-      "url": "https://www.ithome.com/1/017/697.htm",
-      "published_at": 1792935486,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，联想 (Lenovo) 现已在电商平台销售极光键盘 GK1077 Lite 三模版。该型号基于硅胶轻音按键，可选冰雾蓝、奶咖橙、蜜桃粉 3 种配色，到手价均为 129 元。联想极光键盘 GK1077 Lite 三模版在常规 70% 配列的基础上于右侧提供了多媒体旋钮和一块状态显示屏，用"
-    },
-    {
-      "id": "7fb5d53c",
-      "title": "一加 Ace 7 系列支持 IP66/68/69/69K 防尘防水，10 月 29 日发布",
-      "url": "https://www.ithome.com/1/017/696.htm",
-      "published_at": 1792935342,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，一加 Ace7 系列新品发布会将于 10 月 29 日 19:00 举行，据官方最新预热，一加 Ace 7 系列支持 IP66/68/69/69K 超豪华防尘防水。据此前官方介绍，全新一加 Ace7 系列带来旗舰的质感设计：「风暴岛」隐藏式进风口，凭借空气动力学设计带来更大进风风量；「"
-    },
-    {
-      "id": "1a64209b",
-      "title": "韩 KRAFTON AI 预览 Raon-1 mini 模型：30B-A4B，可与 Meta Muse Glimmer 竞争",
-      "url": "https://www.ithome.com/1/017/695.htm",
-      "published_at": 1792934838,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，韩国知名游戏企业 KRAFTON（魁匠团）旗下人工智能分支 KRAFTON AI 本周公布了其从头训练的 Raon-1 mini 模型的预览版本，该模型的正式版和后续的更大模型即将推出。Raon-1 mini 采用混合专家架构，导入线性注意力，支持推测解码，整体体量为 30B-A4B。"
-    },
-    {
-      "id": "45f58107",
-      "title": "技嘉上线工作站主板 WRX90 AI TOP：7 条 PCIe + 2 个 MCIO，集成 BMC",
-      "url": "https://www.ithome.com/1/017/694.htm",
-      "published_at": 1792934138,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，技嘉 (GIGABYTE) 近日正式在官网上线了 WRX90 AI TOP 工作站主板。这一型号搭载 Socket sTR5 插槽，采用 E-ATX 板型，基于 14 层超低损耗 PCB，拥有 32+3+3+3 项供电。WRX90 AI TOP 配备 8 通道 1DPC 的 DDR5 "
-    },
-    {
-      "id": "8f1dd004",
-      "title": "《流浪地球 3（上）》电影全新物料即将发布，2027 年春节档上映",
-      "url": "https://www.ithome.com/1/017/693.htm",
-      "published_at": 1792933748,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据中国电影报道今日消息，第三十届全国影片推介会上，《流浪地球 3（上）》正式亮相，定档 2027 年春节档。影片延续前两部的世界观，在原班人马回归的基础上，沈腾、杨紫琼、“瓦叔”克里斯托弗・瓦尔兹全新加盟，为系列带来全新的故事线索。据片方介绍，影片全新物料即将发布。《流浪地球 3》改编"
-    },
-    {
-      "id": "6386d696",
-      "title": "888 元购 27 英寸 2K 275Hz：泰坦军团“P2710S PLUS”显示器发售（国补后 799 元）",
-      "url": "https://www.ithome.com/1/017/692.htm",
-      "published_at": 1792933007,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，泰坦军团旗下“P2710S PLUS”27 英寸显示器现已在京东发售，该机主打 2K 275Hz，定价为 888 元，部分地区国补后 799 元。京东泰坦军团 P2710S PLUS 显示器 888 元（国补后 799 元）直达链接该机配备一块 2560x1440 分辨率 275Hz "
-    },
-    {
-      "id": "cd219055",
-      "title": "力积电 2026Q3 净利润环比几乎翻倍，新产能将与客户共同投资",
-      "url": "https://www.ithome.com/1/017/690.htm",
-      "published_at": 1792932555,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，中国台湾地区半导体企业力积电 (PSMC) 本月 21 日公布了企业 2026Q3 财报数据：营业收入：213.42 亿新台币（现汇率约合 43.75 亿元人民币），环比 +23%、同比 +80%；净利：65 亿新台币（现汇率约合 13.32 亿元人民币），环比 +98%、同比 +33"
-    },
-    {
-      "id": "24c0a5c1",
-      "title": "1499 元购 27 英寸 2K 240Hz QD-OLED：泰坦军团“G2783S”显示器 10 月 27 日首销",
-      "url": "https://www.ithome.com/1/017/689.htm",
-      "published_at": 1792932434,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，泰坦军团旗下“G2783S”26.5 英寸（27 英寸）显示器现已在京东上架，该机主打 2K 240Hz QD-OLED，将于 10 月 27 日晚 6 点发售，首发价 1499 元。京东泰坦军团 G2783S 显示器 10 月 27 日首销活动价 1499 元直达链接该机配备三星四代"
-    },
-    {
-      "id": "c61694e4",
-      "title": "vivo X500 Ultra 国际版现身数据库，预计明年 3-4 月国内发布",
-      "url": "https://www.ithome.com/1/017/687.htm",
-      "published_at": 1792932233,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，vivo X500 Ultra 国际版于 10 月 23 日现身 GSMA IMEI 数据库，型号 V2660，这款影像超大杯新品预计将在全球市场上市。IT之家注意到，vivo X500 系列手机已于 9 月 21 日正式发布，首发带来标准版、Pro 版、Pro Max 版，全球首发天"
-    },
-    {
-      "id": "b2e4a552",
-      "title": "Nacon 推出 REVOLUTION PRO X 特别版手柄：等高线纹理，力可调摇杆",
-      "url": "https://www.ithome.com/1/017/686.htm",
-      "published_at": 1792931313,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，法国游戏发行与外设企业 NACON 近日推出了 REVOLUTION PRO X – Special Edition 手柄控制器。这一特别版型号为 XBOX 而设计，拥有受游戏《地狱即我们》(Hell is Us) 启发的正面等高线纹理。REVOLUTION PRO X – Speci"
-    },
-    {
-      "id": "8ced674b",
-      "title": "欧洲 CPU 初创企业 SiPearl 将与神盾合作开发下代处理器 Rhea2",
-      "url": "https://www.ithome.com/1/017/684.htm",
-      "published_at": 1792930694,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，欧洲 CPU 初创企业 SiPearl 本月 22 日宣布与中国台湾地区芯片 IP 与设计服务企业神盾 (Egis) 签署战略合作与投资协议。SiPearl 的下代处理器 Rhea2 将基于其同神盾下属安国 (Alcor Micro) 合作开发的 Mobius100 服务器 CPU 同"
-    },
-    {
-      "id": "ca6870f0",
-      "title": "会员年卡 11.11 狂促合集：bilibili 低至 99.8 元 / 年、QQ 音乐迅雷夸克剪映皆好价",
-      "url": "https://www.ithome.com/1/017/683.htm",
-      "published_at": 1792930318,
-      "category": "general",
-      "summary": "11.11 会员狂促现已全面开启，皆为年内好价。京东 无门槛红包至高 26888 元，每天抽 3 次：点此抽取。淘宝 无门槛红包至高 26888 元，每天抽 1 次：点此抽取。bilibili点击下方卡片后 → 下滑到宝贝详情页 → 先领 10 元券，再点击淘金币抵扣横幅，实付 108 元即可入手。折合 8.3 元 /"
-    },
-    {
-      "id": "c75b964a",
-      "title": "申通快递：快递行业的“反内卷”预计有望持续",
-      "url": "https://www.ithome.com/1/017/682.htm",
-      "published_at": 1792930024,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，今日，申通快递在业绩说明会谈及“如何看待行业反内卷的持续性？”，并公布部分经营信息。IT之家注意到，该公司表示，本轮“反内卷”核心是禁止低于成本的恶性价格战，淡旺季之间的价格波动乃是跟随电商促销节奏、节假日以及货品结构的影响所致，是正常的价格波动。7-8 月淡季过后，9 月起部分快递核"
-    },
-    {
-      "id": "989c28d9",
-      "title": "谷歌 DeepMind 高管：终身学习者将在 AI 职场中占据优势",
-      "url": "https://www.ithome.com/1/017/681.htm",
-      "published_at": 1792929563,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据《商业内幕》今天报道，谷歌 DeepMind 高管莱拉 · 易卜拉欣（Lila Ibrahim）近期表示，公司越来越看重那些能够证明自己在课堂之外，持续学习的求职者。这名高管表示，虽然学历依然重要，但公司的招聘已经更重视求职者的经历。例如一项资历能告诉面试官你学过什么，多项资历则能说"
-    },
-    {
-      "id": "8328ff17",
-      "title": "华为 Mate60 等机型迎来鸿蒙 HarmonyOS 7.0.0.111 SP10 版本更新，通信共享升级为多人互助通信共享",
-      "url": "https://www.ithome.com/1/017/679.htm",
-      "published_at": 1792929389,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，今日，华为 Mate60 等机型迎来鸿蒙 HarmonyOS 7.0.0.111 SP10 版本更新，安装包体积为 3.03GB。本次更新通信共享升级为多人互助通信共享，同时支持通过 iPhone 的“鸿蒙星河互联”应用与 iPhone 互联。▲ IT之家开箱：华为 Mate60 Pr"
-    },
-    {
-      "id": "95396b10",
-      "title": "GEEKCON 2026 上海站闭幕：黑客展示“隔空劫持无人机”“一条链接控制头部 App”等安全漏洞",
-      "url": "https://www.ithome.com/1/017/678.htm",
-      "published_at": 1792929303,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据 Geekcon 公众号，知名黑客赛事 GEEKCON 2026 上海站于昨日正式闭幕。主办方“大牛蛙”表示，今年的 GEEKCON“差点儿流产”，这是因为“今年的 AI 成长太快，几乎已经替代掉人类黑客了”：AI 来了。如果 99% 的白帽子注定被 AI 替代，我为什么还要鼓励年轻"
-    },
-    {
-      "id": "4732d099",
-      "title": "极米 RS30 Pro 高亮版投影仪发售：4500 CVIA 流明、可变光圈，7299 元",
-      "url": "https://www.ithome.com/1/017/677.htm",
-      "published_at": 1792928317,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，极米旗下 RS30 Pro 高亮版投影仪现已在京东发售，该产品主打 4500 CVIA 流明，定价为 7299 元，部分地区国补后低至 6569.1 元。该投影仪尺寸为 298x249x190mm，重量为 4.9kg。配备 0.47''DMD 显示芯片，带有可变光圈（F/2.0-F/5"
-    },
-    {
-      "id": "5d902d93",
-      "title": "微软 Teams 将允许第三方工具扫描会议内容，识别深度伪造",
-      "url": "https://www.ithome.com/1/017/676.htm",
-      "published_at": 1792928102,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据科技媒体 Windows Latest 今天报道，微软 Teams 将允许组织接入已认证的第三方工具，扫描会议中的视频和音频内容，检测是否存在深度伪造。该功能将于 11 月中旬在 Teams 桌面版、Mac 版和网页版逐步推出。微软表示，深度伪造（IT之家注：Deepfake）内容检"
-    },
-    {
-      "id": "01ade1b7",
-      "title": "德明利：2026 年第三季度归母净利润 27.29 亿元，同比增长 2902.75%",
-      "url": "https://www.ithome.com/1/017/674.htm",
-      "published_at": 1792927833,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，德明利今日公告，2026 年第三季度营业收入 116.45 亿元，同比增长 356.64%；归母净利润 27.29 亿元，同比增长 2,902.75%；扣非净利润 27.26 亿元，同比增长 3,692.08%。2026 年前三季度营业收入 285.55 亿元，同比增长 328.81%"
-    },
-    {
-      "id": "a4300db6",
-      "title": "戴尔推出“SE2726HM”27 英寸显示器：1080P 120Hz，649 元",
-      "url": "https://www.ithome.com/1/017/673.htm",
-      "published_at": 1792927179,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，戴尔现已在京东上架“SE2726HM”27 英寸显示器，该机主打 1080P 120Hz，定价为 649 元。京东戴尔“SE2726HM”显示器 649 元直达链接该机配备一块 1920x1080 分辨率 120Hz IPS 面板，显示器亮度 250 尼特，对比度 1000:1，显示器"
-    },
-    {
-      "id": "51d42595",
-      "title": "启元机器人第 5000 台个人机器人下线，日产能提升至 200 余台",
-      "url": "https://www.ithome.com/1/017/672.htm",
-      "published_at": 1792927102,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，启元机器人今天宣布，公司第 5000 台个人机器人正式下线。IT之家从启元机器人公众号获悉，该公司 9 月 20 日正式发售启元 Q1、启元 T1 两款个人机器人，如今迎来第 5000 台机器人下线，代表其机器人规模化量产交付能力正在逐步形成。启元机器人联席总裁、中央研发部总裁高全中表"
-    },
-    {
-      "id": "61a2035c",
-      "title": "发售日临近，任天堂将 Switch 版《塞尔达传说：时之笛重制版》游戏体积缩减至 24.54GB",
-      "url": "https://www.ithome.com/1/017/671.htm",
-      "published_at": 1792925787,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，《塞尔达传说：时之笛重制版》将在 11 月 5 日正式发售。本作针对 Switch 2 进行了高规格重制，采用全新 3D 视觉风格并加入了手动跳跃、冲刺、快速切换道具与体感瞄准等现代化操作。据外媒 Nintendeal 报道，本作在任天堂商店后台显示的数字版容量已从此前的 27GB 缩"
-    },
-    {
-      "id": "f43ea8fc",
-      "title": "阿里千问蒋冠军谈个人 AI 智能体技术框架：需要模型、记忆与生态协同推进",
-      "url": "https://www.ithome.com/1/017/669.htm",
-      "published_at": 1792924729,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，在 10 月 22 日的 2026 中国计算机大会上，阿里巴巴千问事业部 AI 算法负责人蒋冠军分享了千问打造个人 AI 智能体的技术实践过程。他认为，真正的个人智能体阶段，应该带来增量价值的创造和个性化的主动服务，模型、记忆与生态是共同构建这一核心能力的三要素。蒋冠军将 AI 应用的"
-    },
-    {
-      "id": "2c1737e2",
-      "title": "微软承认 Win11 系统通用打印功能已故障数月，用户需手动修复",
-      "url": "https://www.ithome.com/1/017/667.htm",
-      "published_at": 1792923989,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据科技媒体 neowin 今天报道，微软早在 2020 年就推出了通用打印（Universal Print）方案，帮助企业解决云打印方面的诸多问题。不过微软最近确认，部分柯尼卡美能达打印机存在通用打印相关问题。微软表示，部分柯尼卡美能达打印机会间歇性地停止与通用打印（UP）服务通信。受"
-    },
-    {
-      "id": "0d7eb3fa",
-      "title": "vivo OriginOS 7 近期升级计划公布：悬浮控件、相机界面，本月起分批推送",
-      "url": "https://www.ithome.com/1/017/654.htm",
-      "published_at": 1792922841,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，vivo 公布 OriginOS 7 近期升级计划，包括相机色彩风格、悬浮控件视觉适配、相机界面升级、相册编辑升级、相机调色盘等。IT之家整理如下：十月：29 日版本陆续升级相机色彩风格：新增追光、浓郁、冷白、人文街头、人文肖像、人文生活色彩风格。适配机型：X300 Pro 卫星通信版"
-    },
-    {
-      "id": "854bd7b9",
-      "title": "航嘉高能 S67 mini 充电头发售：2C+1A，支持 AVS 及 67W MiPPS 协议，109 元",
-      "url": "https://www.ithome.com/1/017/646.htm",
-      "published_at": 1792921722,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，航嘉旗下高能 S67 mini 充电头现已在京东发售，该产品采用 2C+1A 设计，支持 PD3.2 AVS 与小米 67W 澎湃有线秒充，定价为 109 元。京东航嘉高能 S67 mini109 元直达链接该产品尺寸为 52x30.5x51.2mm，采用钛空银哑光机身、黑色接口面板，"
-    },
-    {
-      "id": "8c3e32ae",
-      "title": "苹果 iPhone Duo 京东原价开放购买，15999 元次日送货上门",
-      "url": "https://www.ithome.com/1/017/645.htm",
-      "published_at": 1792921591,
-      "category": "general",
-      "summary": "【京东每天 10:00~17:55 开售，小伙伴们可等明天 10:00 开抢哦。】京东自营部分地区 iPhone Duo 已支持开放购买次日达，实付 15999 元起 + 12 期免息 *。* 12 期免息需每天 20:00 蹲点抢券：点此抢新品免息券。京东 11.11 红包至高 26888 元无门槛可用，每天可领 1"
-    },
-    {
-      "id": "a8c2d5ac",
-      "title": "图拉斯推出小冰块 Vision 单 USB-C 充电头：支持 AVS 协议 60W 输出，188 元",
-      "url": "https://www.ithome.com/1/017/644.htm",
-      "published_at": 1792921000,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，图拉斯现已在京东上架一款小冰块 Vision 带屏充电头，该产品采用单 USB-C 接口，定价为 238 元，首发价 188 元。京东图拉斯小冰块 Vision 充电头 188 元直达链接该充电头尺寸为 45x37.7x38.6mm，配备了隐藏式屏幕，使用 PCTG 材质“冰透”外壳，"
-    },
-    {
-      "id": "43eeca39",
-      "title": "美运营商 Verizon 为苹果 iPhone Duo 预购延迟发货致歉，向受影响顾客赠送 100 美元礼品卡",
-      "url": "https://www.ithome.com/1/017/641.htm",
-      "published_at": 1792920634,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，据科技媒体 macrumors 昨天报道，美国运营商 Verizon 最近向部分客户表示，由于意外的运输延误，部分客户可能需要等多一会儿才能收到苹果 iPhone Duo 手机。为了弥补这段等待，该运营商决定向客户赠送 100 美元（IT之家注：现汇率约合 668.9 元人民币）礼品卡"
-    },
-    {
-      "id": "19567dc0",
-      "title": "迈从 K87 V3 键盘开启预订：360° 环绕灯效 + 多功能旋钮，289 元起",
-      "url": "https://www.ithome.com/1/017/640.htm",
-      "published_at": 1792920403,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，迈从 K87 V3 键盘现已开启预订，10 月 29 日 20:00 全平台开售，两款型号售价分别为 289 元和 339 元。IT之家从官方介绍获悉，该产品采用 87 配列，键帽采用 PBT 双色注塑，配备铝合金阳极氧化装饰背板，提供约 1600 万色 ARGB（360°ARGB 环"
-    },
-    {
-      "id": "e0f8c209",
-      "title": "iKF 推出 Ultra Clip 开放式蓝牙耳机：12mm 动圈、45 小时续航，499 元",
-      "url": "https://www.ithome.com/1/017/638.htm",
-      "published_at": 1792919960,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，iKF 现已在京东上架一款 Ultra Clip 开放式蓝牙耳机，该耳机配备 12mm 动圈，支持定向传音技术，定价为 499 元。京东 iKF Ultra Clip 耳机 499 元直达链接相应耳机提供 IP56 认证，采用云感柔韧 C 桥设计，以亲肤硅胶包覆记忆钛丝，结合三角力学支"
-    },
-    {
-      "id": "43d240f0",
-      "title": "软银孙正义计划在马来西亚投资 500 亿美元，押注 AI、数据中心",
-      "url": "https://www.ithome.com/1/017/637.htm",
-      "published_at": 1792919825,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据彭博社今天报道，马来西亚总理安瓦尔宣布，软银集团创办人兼社长孙正义计划在马来西亚投资 500 亿美元（IT之家注：现汇率约合 3,344.6 亿元人民币），涉及 AI、数据中心等多个领域。据报道，安瓦尔昨日在马六甲的一场活动中公布了这则消息，他已经于 20 日和孙正义进行线上会议，就"
-    },
-    {
-      "id": "b90fee2d",
-      "title": "因日活量不佳，VRMMO 游戏《Zenith》将于 12 月正式关闭服务器",
-      "url": "https://www.ithome.com/1/017/636.htm",
-      "published_at": 1792919314,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，开发商 Ramen VR 宣布旗下 VR 大型多人在线角色扮演游戏《Zenith》将于今年 12 月正式关闭服务器。公开信息显示，《Zenith》于 2022 年推出，曾获得数千万美元融资。然而本作玩家近年来逐步锐减，尽管 Ramen VR 曾尝试通过转为免费游玩模式等方式挽回用户，游"
-    },
-    {
-      "id": "0df143ed",
-      "title": "AI 云厂商 Nscale“摊上事了”，被前工程师指控报复性解雇、违法使用分包人员",
-      "url": "https://www.ithome.com/1/017/618.htm",
-      "published_at": 1792914063,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，据彭博社 23 日报道，英国 AI 基础设施企业 Nscale 遭到一名工程师起诉。这名工程师曾在 Nscale 位于挪威的数据中心工作，指控该公司违法采用分包用工模式，并涉及不当解雇。诉状称，该工程师通过分包商 CloudBrothers 进入数据中心工作，实际雇主却是 Nscale"
-    },
-    {
-      "id": "de9468cf",
-      "title": "Lava 推出 Aura Curve 手机：曲面屏 + 背部副屏，天玑 7100 芯片",
-      "url": "https://www.ithome.com/1/017/616.htm",
-      "published_at": 1792913919,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，Lava 现已在印度市场推出 Aura Curve 手机。新品采用曲面屏 + 背部副屏的组合配置，售价 23,999 卢比（IT之家注：现汇率约合 1,690 元人民币）。据介绍，这款手机搭载联发科天玑 7100 处理器，安兔兔跑分超 80 万分，拥有 6GB 内存和 128GB 存储"
-    },
-    {
-      "id": "2e9e1435",
-      "title": "英伟达黄仁勋：市场对新型云服务商的需求高到离谱，但问题是缺钱",
-      "url": "https://www.ithome.com/1/017/614.htm",
-      "published_at": 1792913242,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，当地时间 22 日，英伟达 CEO 黄仁勋接受美国 CNBC 采访时说，市场对新型云服务商的需求极其旺盛，“高到离谱（off the charts）”，但资金短缺正成为制约行业发展的主要障碍。“从基本面看，新型云服务商的市场需求非常旺盛。”他还称，这些企业的能力“非同寻常”。“眼下最缺"
-    },
-    {
-      "id": "287fd292",
-      "title": "蓝思科技：第三季度归母净利润 8.43 亿元，同比下降 50.42%",
-      "url": "https://www.ithome.com/1/017/613.htm",
-      "published_at": 1792913219,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，蓝思科技今日公告，2026 年第三季度实现营业收入 190.35 亿元，同比下降 8.05%；归母净利润 8.43 亿元，同比下降 50.42%；基本每股收益 0.16 元。IT之家从报告获悉，该公司前三季度实现营业收入 479.02 亿元，同比下降 10.74%；归母净利润 14.2"
-    },
-    {
-      "id": "2063eaaa",
-      "title": "超频三推出 C3 T400 海景房机箱：兼容 360mm 水冷，黑白双色均售 326 元",
-      "url": "https://www.ithome.com/1/017/612.htm",
-      "published_at": 1792913108,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，超频三现已在京东上架 C3 T400 电脑机箱，该风扇提供 10 个 120mm 风扇安装位，兼容 360mm 水冷，黑白双色定价均为 326 元。该机箱尺寸 425x285x423mm，支持安装 Micro ATX 与 ITX 规格的主板，机箱采用无立柱玻璃结构的 270° 全景视窗"
-    },
-    {
-      "id": "b3edf3de",
-      "title": "飞傲 JD1 GAMING 游戏耳机开售，109 元",
-      "url": "https://www.ithome.com/1/017/610.htm",
-      "published_at": 1792912844,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，飞傲 JD1 GAMING 游戏耳机现已在京东开售，新品采用入耳式设计，配备独立 DSP 音频解码芯片，支持换线，售价 109 元。据介绍，这款耳机配备 10mmLCP 液晶振膜，可输出浑厚充盈的低频量感，采用非对称性内外双磁路设计，提升音圈处磁场密度。内置 DSP 音频解码芯片，支持"
-    },
-    {
-      "id": "28a6377c",
-      "title": "腾讯《王者荣耀》暂未开放 iPhone Duo 机型 120 帧模式，Air 用户苦等一年也仍未解锁",
-      "url": "https://www.ithome.com/1/017/609.htm",
-      "published_at": 1792912666,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，腾讯《王者荣耀》、米哈游《原神》等热门游戏尚未适配 iPhone Duo 这两天引发了网友热议。玩家使用该机内屏游玩上述两款游戏时，会出现无法全屏显示的问题。IT之家注意到，腾讯《王者荣耀》除了暂未适配 iPhone Duo 的内屏显示外，还没有开放该机型的 120 帧模式。这意味着玩"
-    },
-    {
-      "id": "98d11b46",
-      "title": "V社停止生产 Valve Index VR 头显，剩余库存打折出售",
-      "url": "https://www.ithome.com/1/017/608.htm",
-      "published_at": 1792912566,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，Valve 宣布，已于当地时间 10 月 14 日正式停止生产 Valve Index VR 头显，目前库存剩余的头显、控制器及相关配件仍可打折购买，售完即止。Valve 表示，对于已经购买 Valve Index 的用户，产品支持政策没有任何变化，该头显仍可正常在 Steam 和 S"
-    },
-    {
-      "id": "81806907",
-      "title": "聚焦帕金森病、癫痫等 10 类疾病方向，全国首个国家脑机接口高质量数据集建设项目启动",
-      "url": "https://www.ithome.com/1/017/607.htm",
-      "published_at": 1792912292,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据极目新闻报道，华中科技大学同济医学院附属同济医院牵头的脑机接口高质量数据集建设项目，24 日在武汉正式启动。根据建设方案，该项目拟于 2027 年建成投用，聚焦脑卒中康复、脊髓损伤、帕金森病、癫痫、意识障碍、顽固性疼痛、面瘫、言语功能障碍、运动障碍性疾病和胃肠神经调控等 10 类疾病"
-    },
-    {
-      "id": "fc7c3b4b",
-      "title": "KTC 推出“棱镜 U27”27 英寸显示器：4K 160Hz / FHD 320Hz 双模，1227 元",
-      "url": "https://www.ithome.com/1/017/606.htm",
-      "published_at": 1792912253,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，KTC 现已在京东上架“棱镜 U27”27 英寸显示器，该机主打 4K 160Hz / FHD 320Hz，券后 1227 元，部分地区国补后低至 1173.6 元。京东 KTC“棱镜 U27”显示器券后 1227 元领 190 元券该机配备的 Fast IPS 面板支持以 3840x"
-    },
-    {
-      "id": "703d3575",
-      "title": "迈从 GT 75 机能风全铝电竞磁轴键盘官宣，10 月 30 日开启预订",
-      "url": "https://www.ithome.com/1/017/605.htm",
-      "published_at": 1792912196,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，迈从今日官宣 GT 75 机能风全铝电竞磁轴键盘，10 月 30 日 10:00 开启预订。从官方预热图来看，迈从 GT75 预计采用银色全铝机身设计，由硬朗的切割线条搭配透明键帽，整体带来机甲风观感。另外，该产品还有望带来配备灯带等设计。关于这款新品的更多消息，感兴趣的朋友可以关注I"
-    },
-    {
-      "id": "9ed0514c",
-      "title": "曜越推出 AX600 Pro 机箱：提供多达 20 个风扇位，899 元",
-      "url": "https://www.ithome.com/1/017/603.htm",
-      "published_at": 1792911758,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，曜越现已在京东上架“AX600 Pro”机箱，该机箱采用商务风格外形设计，定价为 899 元。该机箱尺寸为 555x250x650mm，支持 M-ITX、ATX、E-ATX 至 HPTX 等多种主板规格，机箱外部采用多面散热孔设计，底部配备了滚轮。I/O 方面其顶部提供 1 个 USB"
-    },
-    {
-      "id": "561cf35d",
-      "title": "技嘉上架“FO32U24G”31.5 英寸显示器：4K 240Hz / FHD 480Hz，5789 元",
-      "url": "https://www.ithome.com/1/017/601.htm",
-      "published_at": 1792910977,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，技嘉现已在京东上架“FO32U24G”显示器，该机主打 4K 240Hz / FHD 480Hz 双模，定价为 5789 元。京东技嘉“FO32U24G”显示器 5789 元直达链接该机基于 32\"  第四代 Tandem WOLED 面板，采用镜面屏技术，支持 UHD 240Hz /"
-    },
-    {
-      "id": "4341cfcc",
-      "title": "《赛博朋克 2077》游戏 2.5 更新后 Steam 峰值突破 16.2 万，创三年来新高",
-      "url": "https://www.ithome.com/1/017/600.htm",
-      "published_at": 1792910637,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据 SteamDB 数据，《赛博朋克 2077》游戏 2.5 版本更新后，Steam 平台 24 小时内同时在线玩家峰值达 162291 人，创下近 3 年来的最高纪录。值得注意的是，本作上一次取得如此高的关注度，还是《往日之影》资料片推出以后。2023 年 10 月，《赛博朋克 20"
-    },
-    {
-      "id": "633b0c56",
-      "title": "八位堂《战争机器：事变日》主题 Retro 87 机械键盘及 Retro R8 鼠标上市，599 元 / 299 元",
-      "url": "https://www.ithome.com/1/017/599.htm",
-      "published_at": 1792910511,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，八位堂 (8BitDo) 现已在国内电商平台上架《战争机器：事变日》主题版本的 Retro 87 机械键盘与 Retro R8 鼠标，键盘单品价格 599 元、鼠标单品价格 299 元。京东八位堂 Retro 87 机械键盘《战争机器：事变日》联名版 599 元直达链接京东八位堂 Re"
-    },
-    {
-      "id": "2cfb1531",
-      "title": "盛色推出“OF24QC”23.8 英寸显示器：2K 100Hz，595 元",
-      "url": "https://www.ithome.com/1/017/596.htm",
-      "published_at": 1792910034,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，盛色现已在京东上架型号为“OF24QC”的 23.8 英寸显示器，该机主打 2K 100Hz，定价为 595 元，部分地区国补后低至 513 元。京东 SANC“OF24QC”显示器券后 595 元领 90 元券该机配备一块 2560x1440 分辨率 100Hz IPS 面板，峰值亮"
-    },
-    {
-      "id": "32800493",
-      "title": "苹果 iPhone Duo 部分区域破发，王腾称相比小米、华为阔折叠手机没有特别领先的地方",
-      "url": "https://www.ithome.com/1/017/594.htm",
-      "published_at": 1792909262,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，今日宜休科技公司创始人王腾今日发文，谈及了 iPhone Duo 破发这一话题。他表示：上手体验了下 iPhone Duo，整体还是挺精致的，但相比小米、华为的阔折叠并没有什么特别领先的地方。今天依托优秀的工程师团队和强大的产业链资源，中国的科技团队，在大多数领域都能做出不逊于海外友商"
-    },
-    {
-      "id": "c6085377",
-      "title": "苹果 iPhone Duo 在部分区域破发：已加入电商平台“百亿补贴”，相对上市价便宜约 200-300 元",
-      "url": "https://www.ithome.com/1/017/593.htm",
-      "published_at": 1792909056,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，综合各大平台网友反馈，苹果 iPhone Duo 在国内部分区域出现“破发”情况，同时当下拼多多已将该机上架百亿补贴频道（注：仅部分地区能看到），相对于上市价格便宜约 200-300 元。虽然苹果 iPhone Duo 首发日被加价到 1500-2000 元，然而该机在发售 2 天后的"
-    },
-    {
-      "id": "3bd852a8",
-      "title": "网络安全专家：AI 发现的漏洞，很快或将引发新的安全隐患",
-      "url": "https://www.ithome.com/1/017/592.htm",
-      "published_at": 1792908365,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，路透社采访的七名网络安全专家认为，随着 AI 技术不断揭示软件中隐藏的安全漏洞，类似本周全球多地政府网站接连中断服务的事件，几乎肯定会再次发生。美国马萨诸塞州网络威胁情报公司 VulnCheck 即将发布的研究显示，AI 推动了软件漏洞发现数量的增长，过去一年发现的漏洞数量同比翻了一番"
-    },
-    {
-      "id": "13d9ca7a",
-      "title": "雷神 ZERO Air 15 双十一大促：12499 元起，轻至 1.54kg 兼顾便携与性能释放",
-      "url": "https://www.ithome.com/1/017/591.htm",
-      "published_at": 1792908249,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，双十一大促已经开启，笔记本产品也迎来新一轮优惠。此前在 CES 2026 上，雷神推出了面向未来的“轻型”游戏本新品 —— 雷神 ZERO Air。官方表示，该系列产品希望在兼顾便携性的同时，保留游戏本的性能表现，其中雷神 ZERO Air 15 在 1.54kg 的机身内实现了 16"
-    },
-    {
-      "id": "d21ffaa4",
-      "title": "一加 Ace 7 系列设计细节公布：星际光效呼吸灯、隐藏式进风口等，新机 10 月 29 日发布",
-      "url": "https://www.ithome.com/1/017/589.htm",
-      "published_at": 1792907781,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，一加中国区总裁李杰今日发布视频，展示了一加 Ace 7 系列手机全新配色 ——「破风」和「淬火」的外观。视频画面显示，一加 Ace 7 系列手机的这两款配色采用特殊纹理设计。「破风」为一加 Ace 7 Pro 的配色，整体呈冰蓝色，背部印有冲击感较强的“Ace”图标。根据官方介绍，该机"
-    },
-    {
-      "id": "18920736",
-      "title": "电诈分子盯上医院潜入安装 GOIP 虚拟拨号设备，企图将境外电话转成本地医院号码诈骗",
-      "url": "https://www.ithome.com/1/017/584.htm",
-      "published_at": 1792905952,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据央视新闻今日报道，近日，辽宁锦州，两男子潜入医院安装 GOIP 设备。嫌疑人通过技术开锁进入医院弱电室，企图将境外电话转成本地医院号码诈骗。民警迅速锁定嫌疑人并成功抓捕，目前犯罪嫌疑人已被公安机关依法处理。IT之家注：GOIP 设备一种能将传统电话信号转化为网络信号的虚拟拨号设备，是"
-    },
-    {
-      "id": "ae5b6526",
-      "title": "Apple TV 剧集《灵异女仆》被指抄袭案尘埃落定，苹果胜诉",
-      "url": "https://www.ithome.com/1/017/583.htm",
-      "published_at": 1792904917,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据路透社报道，苹果与 M· 奈特 · 沙马兰（M. Night Shyamalan）在 Apple TV 剧集《灵异女仆》（Servant）的版权诉讼上诉中胜诉，美国联邦第九巡回上诉法院维持了去年陪审团作出的有利于他们的裁决。法院在 10 月 22 日出具裁定，驳回了导演弗朗西斯卡 ·"
-    },
-    {
-      "id": "c3f438f5",
-      "title": "马斯克预告 X 平台新功能：长按点赞按钮，将通过 X Money 向对方转账 1 美元",
-      "url": "https://www.ithome.com/1/017/581.htm",
-      "published_at": 1792903526,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，今天（25 日）上午，马斯克在 X 平台发文宣布：将为“长按点赞”操作加入转账 1 美元（IT之家注：现汇率约合 6.7 元人民币）功能，有关交易将会经由 X Money 完成。不过，马斯克暂未透露这一功能的上线日期。据悉，X Money 于 7 月下旬正式在美国上线，面向 Premi"
-    },
-    {
-      "id": "c195c8fd",
-      "title": "摆脱微软并不容易？丹麦政府因技术问题放弃“弃用 Office”计划",
-      "url": "https://www.ithome.com/1/017/580.htm",
-      "published_at": 1792902921,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，2025 年，丹麦政府宣布计划弃用 Windows 和微软 Office，改用 Linux 等开源软件，希望借此降低对微软等美国科技企业的依赖，避免受到政策多变的美国政府牵制。然而据外媒 Neowin 今天（25 日）上午报道，丹麦推动软件自主的计划未能取得预期成果。丹麦放弃了以英国软"
-    },
-    {
-      "id": "98e7b4ab",
-      "title": "卢伟冰再谈小米 18 Fold 手机折痕：采用新一代折叠架构，平均深度 ≤30μm",
-      "url": "https://www.ithome.com/1/017/579.htm",
-      "published_at": 1792902686,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，小米集团合伙人 / 总裁、手机部总裁、小米品牌总经理卢伟冰今日发文，再度谈及了小米 18 Fold 中折叠手机的折痕情况：采用新一代折叠架构，强度更高，更抗冲击同时带来超强折痕控制，平均折痕深度 ≤30μm据IT之家此前报道，小米 18 Fold 中折叠手机发布于 9 月 7 日，首发"
-    },
-    {
-      "id": "debc6c19",
-      "title": "苹果 iPhone Duo 拆解：双电池 4883mAh，无实体 SIM 卡槽",
-      "url": "https://www.ithome.com/1/017/578.htm",
-      "published_at": 1792902303,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，YouTube 频道 REWA Technology 与 Phone Repair Guru 放出了首批 iPhone Duo 的拆机视频，让外界得以看清这款折叠机型的内部构造。IT之家注意到，iPhone Duo 采用双电芯设计，两块电池都依靠电控胶拆卸：大容量电池：2962 mAh"
-    },
-    {
-      "id": "b15a0335",
-      "title": "我国成功发射卫星互联网低轨 28 组卫星",
-      "url": "https://www.ithome.com/1/017/566.htm",
-      "published_at": 1792900310,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据央视新闻报道，北京时间 2026 年 10 月 25 日 10 时 03 分，我国在海南商业航天发射场使用长征八号甲运载火箭，成功将卫星互联网低轨 28 组卫星发射升空，卫星顺利进入预定轨道，发射任务获得圆满成功。延伸阅读长征八号甲运载火箭由航天科技集团一院抓总研制，是我国自主研制的"
-    },
-    {
-      "id": "04d50fdc",
-      "title": "R 星联合创始人丹 · 豪瑟回应 2009 年新项目《特工》为何取消：个人觉得太难了",
-      "url": "https://www.ithome.com/1/017/565.htm",
-      "published_at": 1792899826,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，据外媒 Gamesradar 今天（25 日）报道，2009 年，R 星公布了一款名为《特工》（Agent）的全新游戏，计划作为 PS3 独占作品推出。游戏以 20 世纪 70 年代的冷战时期为背景，主打开放世界和潜行玩法，但最终未能面世。R 星联合创始人丹 · 豪瑟近日透露，开发团队"
-    },
-    {
-      "id": "64b7bb73",
-      "title": "三名被解雇的 OpenAI 安全研究员否认泄密，怀疑因推动 AI 透明度被针对",
-      "url": "https://www.ithome.com/1/017/563.htm",
-      "published_at": 1792898937,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，三名因涉嫌泄密被解雇的 OpenAI 安全研究员道出了他们一方的说辞。托梅克 · 科尔巴克（Tomek Korbak）、米基塔 · 巴莱斯尼（Mikita Balesni）与王茉莉（Jasmine Wang）否认泄露机密信息，质疑解雇他们的官方理由，并猜测这件事和他们一直倡导提升 AI"
-    },
-    {
-      "id": "374bf2d2",
-      "title": "AI 智能体闯进银行，美国大行开始准备“灾后预案”",
-      "url": "https://www.ithome.com/1/017/562.htm",
-      "published_at": 1792897569,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，对 AI 末日的悲观预判，早已不再只是少数科技富豪的危言耸听。如今，那些主导全球资本流向的美国大型银行，也开始警惕失控 AI，正在为假设中由 AI 引发的灾难，制定“灾后”应急预案。据 Axios 报道称，随着代表个人客户的 AI 智能体活动激增，各大银行已经开始未雨绸缪。核心担忧来自"
-    },
-    {
-      "id": "a00e8eb7",
-      "title": "为给数据中心腾出电网容量，谷歌付费让家庭、企业减少用电",
-      "url": "https://www.ithome.com/1/017/561.htm",
-      "published_at": 1792897439,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，AI 数据中心的用电需求持续增长，科技公司却越来越难找到足够的电力。为解决供电难题，谷歌选择了另一条路：通过付费的方式间接鼓励家庭和企业在特定时段减少用电，为数据中心腾出更多电网容量。当地时间 22 日，据《纽约时报》报道，谷歌与能源服务公司 Voltus 达成协议，将在美国大西洋中部"
-    },
-    {
-      "id": "96e31f87",
-      "title": "Block 推出全双工 AI 语音模型 Dessa：真人感拉满，支持苹果 MacBook 本地运行",
-      "url": "https://www.ithome.com/1/017/557.htm",
-      "published_at": 1792895370,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，Twitter 联合创始人杰克 · 多尔西（Jack Dorsey）旗下的 Block 公司推出了一款全新语音模型 Dessa，支持本地运行，能模拟笑声、停顿、哽咽等情绪表达，听感高度拟人。官方介绍，Dessa 完全基于人类语音数据训练，训练过程仅使用了一组英伟达 GPU 机架。Des"
-    },
-    {
-      "id": "4ffca138",
-      "title": "曝三星开展内部测试：Exynos 2700 跑分优于搭载高通旗舰芯片的机型",
-      "url": "https://www.ithome.com/1/017/556.htm",
-      "published_at": 1792895047,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，三星电子计划于明年初推出 Galaxy S27 系列旗舰手机，预计搭载自研处理器 Exynos 2700。据韩媒《Financial News》今天（25 日）上午报道，该芯片在三星内部性能测试中击败了高通最新旗舰处理器。测试结果显示，Exynos 2700 在 CPU 和 GPU 性"
-    },
-    {
-      "id": "683bbf01",
-      "title": "华为 Mate 90 RS / Pro Max 典藏版推 HarmonyOS 7.0.0.111SP13 升级，优化与睿影 Z10 模块相机连接",
-      "url": "https://www.ithome.com/1/017/555.htm",
-      "published_at": 1792894984,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，华为 Mate 90 RS 非凡大师和 Mate 90 Pro Max 典藏版推送了鸿蒙 HarmonyOS 7.0.0.111SP13 版本升级。系统包大小约 722.38MB，智慧修图人像大片推荐能力升级，支持修图后二次调节精修效果，同时畅连支持当面快速建群。▲ IT之家实拍：华为"
-    },
-    {
-      "id": "42158f30",
-      "title": "不能逆向一切了？Anthropic 被曝悄悄限制 Claude Opus 5.5 逆向工程能力",
-      "url": "https://www.ithome.com/1/017/554.htm",
-      "published_at": 1792894040,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，很多人把近期一波靠“氛围编码（vibe-coding）”完成的游戏反编译、重编译热潮，归功于 Anthropic 在 9 月 22 日发布的最新模型 Claude Opus 5.5。而现在，大量用户突然反馈：Opus 5.5 “可以逆向一切”的能力，或许已经被悄悄削弱。先说明一点：An"
-    },
-    {
-      "id": "204e7aa1",
-      "title": "小米第一代员工住宅项目「光谷梦享家」今日开盘：共建 4 栋楼，三种户型全覆盖 297 户",
-      "url": "https://www.ithome.com/1/017/553.htm",
-      "published_at": 1792893610,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，小米生态链总经理陈波昨日发布视频，宣布小米员工住宅项目 ——「光谷梦享家」将在今日正式开盘。据介绍，小米「光谷梦享家」项目距小米武汉科技园约 700 米，是武汉首个小米同学定制化住宅，面向小米集团正式员工销售。目前，项目营销中心、样板间、休闲会所实景开放。项目位于高新四路以南、豹溪路以"
-    },
-    {
-      "id": "3f097e88",
-      "title": "软银投资的农业无人机创企极飞科技：希望让每个农民都有自己的机器人",
-      "url": "https://www.ithome.com/1/017/552.htm",
-      "published_at": 1792893515,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据英国《金融时报》今天（25 日）上午报道，获得软银投资的中国农业无人机企业极飞科技，希望让“每个农民都有自己的机器人”。面对农业劳动力持续减少、气温不断升高，极飞认为，无需飞手操控的植保无人机能够帮助农民应对双重挑战。按营收计算，极飞是仅次于大疆的全球第二大农业无人机制造商。公司推出"
-    },
-    {
-      "id": "82662d1c",
-      "title": "荣耀平板 MagicOS 11 升级亮点公布：支持 PC 桌面、液态玻璃、无边笔记等",
-      "url": "https://www.ithome.com/1/017/550.htm",
-      "published_at": 1792892575,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，荣耀产品维护与升级 @荣耀小芳哥 总结了荣耀平板 MagicOS 11 的升级亮点，包括 UX 焕新、PC 桌面办公效率升级、极客中心 2.0、无边笔记、知识工坊个人 AI 知识工作台、学习空间等。目前，荣耀 MagicPad 3 Pro 12.3、荣耀 MagicPad 3 Pro "
-    },
-    {
-      "id": "4f43705f",
-      "title": "亚马逊 CEO 贾西： 2027 年 AWS 算力基本售罄，部分订单锁定到 2028 年",
-      "url": "https://www.ithome.com/1/017/549.htm",
-      "published_at": 1792892227,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，亚马逊首席执行官安迪・贾西（Andy Jassy）当地时间周五表示，受 AI 基础设施需求持续走高的推动，亚马逊云科技（AWS）的云计算容量到 2027 年基本已经售罄，还有大量长期算力订单锁定到 2028 年。这期视频播客由安德森・霍洛维茨基金（Andreessen Horowitz"
-    },
-    {
-      "id": "ae19aab2",
-      "title": "小米 18 Fold 中折叠手机官宣适配娱乐工作各类应用，网友热评“终于迎来最佳宣发期”",
-      "url": "https://www.ithome.com/1/017/548.htm",
-      "published_at": 1792892010,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，小米手机官方昨日发文，介绍 18 Fold 中折叠手机的应用适配情况：适配爱奇艺、网易云音乐、高德、WPS 等各类应用从休闲娱乐到日常工作，全面覆盖有网友评论称：“终于迎来了最佳宣发期。”IT之家注意到，小米手机官方昨日还介绍了小米 18 Fold 的分屏功能，称日常应用也支持该模式："
-    },
-    {
-      "id": "84f55446",
-      "title": "苹果 iPhone Duo 耐用性测试：反向弯折内屏开裂",
-      "url": "https://www.ithome.com/1/017/545.htm",
-      "published_at": 1792890342,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，千万别坐到展开状态下的 iPhone Duo 上，这条忠告来自这款苹果折叠新机开售第二天的实测。科技测评博主扎克 · 尼尔森在 YouTube 频道 JerryRigEverything 放出了该机的整机耐用性测试视频，测试了这款手机的抗刮性能与抗弯折能力。IT之家注意到，博主全程语气"
-    },
-    {
-      "id": "10f6558a",
-      "title": "消息称《艾尔登法环》真人电影预算近 2 亿美元，为 A24 史上成本最高影片",
-      "url": "https://www.ithome.com/1/017/544.htm",
-      "published_at": 1792889485,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据报道，亚历克斯 · 加兰（Alex Garland）执导的《艾尔登法环》真人电影预算高达近 2 亿美元（IT之家注：现汇率约合 13.38 亿元人民币），这也成为 A24 有史以来成本最高的影片。《华尔街日报》的一篇报道披露了这部改编自 FromSoftware 与乔治 ·R·R· "
-    },
-    {
-      "id": "06803028",
-      "title": "澳国脚授权 AI 数字分身，运动员开启肖像权 AI 商业化",
-      "url": "https://www.ithome.com/1/017/542.htm",
-      "published_at": 1792888958,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，澳大利亚国家男子足球队球星走在宽敞的中庭里，目光直视镜头，足球鞋踩在光洁的混凝土地面上，脚步声在四周回荡。突然间，他变出四个数字分身，各自散开，再出现在全球不同场景当中。IT之家注意到，这段在社交平台传播的视频是人工智能生成的假画面，但视频的原型、现年 22 岁的足球运动员克里斯蒂安 "
-    },
-    {
-      "id": "3ad06c8b",
-      "title": "印度新股认购金额最高纪录诞生：Jio 获超 770 亿美元 IPO 认购申请",
-      "url": "https://www.ithome.com/1/017/541.htm",
-      "published_at": 1792888666,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据路透社报道，当地时间 23 日，印度亿万富翁穆克什 · 安巴尼旗下的 Jio 获得了超过 770 亿美元（IT之家注：现汇率约合 5,147.35 亿元人民币）的 IPO 认购申请，创下印度新股发行认购金额最高纪录。安巴尼时隔 20 年再次推动旗下企业上市，打破了其弟弟安尼尔旗下信实"
-    },
-    {
-      "id": "68394635",
-      "title": "索尼 PS5 破解新进展：已可直接运行 Steam 游戏库中的 Windows 游戏",
-      "url": "https://www.ithome.com/1/017/540.htm",
-      "published_at": 1792888400,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，PS5 的破解社区几乎每周都有新进展。现在破解后的 PS5 可以直接从 Steam 游戏库下载 Windows 游戏并在本机运行，不需要借助 PC 串流。实现该功能的工具是 Playden for PS5，这是开发者莱奥拉巴托（leolobato）推出的早期测试版启动器，移植自 mac"
-    },
-    {
-      "id": "0c26fe21",
-      "title": "IT早报 1025：英伟达停产传闻搅动 5090 炒至 6 万元；小鹏副总裁回应“老登”称呼；曝部分手机或平板产品线将停更；微信支持 iPhone Duo 等多端同时登录...",
-      "url": "https://www.ithome.com/1/017/539.htm",
-      "published_at": 1792888007,
-      "category": "eco",
-      "summary": "“IT早报”时间，大家好，现在是 2026 年 10 月 25 日星期日，今天的重要科技资讯有：1. 显卡一日一价：英伟达停产传闻搅动华强北，RTX 5090 被炒至 6 万元尽管英伟达否认停产传闻，华强北 RTX 50 系列渠道价仍持续飙升。RTX 5090 从官方约 1.6 万元涨至 6 万元，RTX 5080 翻"
-    },
-    {
-      "id": "7dd3f2f2",
-      "title": "苹果 iPhone Duo 内屏玩《王者荣耀》《原神》暂不支持全屏显示，大黑边被网友吐槽“公摊广告位”",
-      "url": "https://www.ithome.com/1/017/538.htm",
-      "published_at": 1792887916,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，据多位博主、网友分享，腾讯《王者荣耀》和米哈游的《原神》这两款热门游戏暂未适配苹果最新折叠屏手机 iPhone Duo。玩家使用该机内屏游玩上述两款游戏时，会出现无法全屏显示的问题。两款热门游戏没适配的情况也引发网友吐槽，称内屏的黑边是“公摊广告位”、“公摊面积”。不过，iPhone "
-    },
-    {
-      "id": "b491f085",
-      "title": "PayPal 联合创始人彼得 · 蒂尔：后乔布斯时代的苹果“就没再拿出什么新东西”",
-      "url": "https://www.ithome.com/1/017/537.htm",
-      "published_at": 1792887801,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，据《商业内幕》今天（25 日）凌晨报道，PayPal 联合创始人、亿万富翁兼科技投资人彼得 · 蒂尔认为，自苹果创始人史蒂夫 · 乔布斯于 2011 年因癌症去世以来，苹果的大多数举措都没能让自己眼前一亮。蒂尔接受作家沃尔特 · 艾萨克森采访时直言：“在我看来，乔布斯去世后，苹果就没再"
-    },
-    {
-      "id": "1b6c27e5",
-      "title": "《塞尔达传说》制作人青沼英二获颁法国艺术与文学骑士勋章",
-      "url": "https://www.ithome.com/1/017/536.htm",
-      "published_at": 1792886905,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，《塞尔达传说》系列资深制作人青沼英二（Eiji Aonuma），自《时之笛》起就一直守护着时光勇者挺身而出对抗邪恶的故事。如今青沼英二本人也获封英雄头衔，只是没配上一把帅气的剑。本周，法国文化部邀请这位海拉鲁世界的缔造者，出席授勋仪式，接受骑士荣誉。法国文化部长卡特琳 · 佩加尔（Ca"
-    },
-    {
-      "id": "20b6c0e3",
-      "title": "微软 Edge 浏览器已原生支持 GPC 隐私控制功能，Chrome 也已开展相关测试",
-      "url": "https://www.ithome.com/1/017/535.htm",
-      "published_at": 1792886273,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，微软在 Edge 浏览器中推出了一项和隐私相关的更新：浏览器原生内置了全球隐私控制（GPC）开关。据IT之家了解，万维网联盟（W3C）在 2020 年 10 月推出了全球隐私控制（GPC）规范，用来帮助用户落实《加州消费者隐私法案》（CCPA）和《通用数据保护条例》（GDPR）赋予的权"
-    },
-    {
-      "id": "239f0c63",
-      "title": "同人变官方：《赛博朋克 2077》续作设计团队中，半数是被“收编”的模组作者",
-      "url": "https://www.ithome.com/1/017/533.htm",
-      "published_at": 1792885668,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，当地时间 23 日，据外媒 VGC 报道，《赛博朋克 2077》续作副总监帕维尔 · 萨斯科透露，续作任务设计团队约有一半成员曾是游戏模组作者。萨斯科认为，玩家能够随时在游戏内启用或关闭模组，不仅操作更加方便，也有助于保持游戏的新鲜感。“假如你已经玩了 800 个小时的《赛博朋克 20"
-    },
-    {
-      "id": "ee9e20d2",
-      "title": "三体宇宙全新剧集《三体・智子灾变》官宣：主创阵容首曝，概念海报同步首发",
-      "url": "https://www.ithome.com/1/017/532.htm",
-      "published_at": 1792885251,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，三体宇宙衍生真人剧《三体：智子灾变》已正式官宣，并首发概念海报。本片将由路阳监制，忻钰坤执导，剧集聚焦三体危机下的年轻一代。当倒计时笼罩全球，熟悉的世界逐渐失序，普通人将如何面对未知、做出抉择？文明危机之下，讲述更多“无名者”的故事。三体宇宙（上海）文化发展有限公司还宣布「智子世界观」"
-    },
-    {
-      "id": "4553d71d",
-      "title": "任天堂 Switch 2 破解取得进展，《三角符文》《黄昏之血》资源包流出",
-      "url": "https://www.ithome.com/1/017/531.htm",
-      "published_at": 1792884998,
-      "category": "emulator",
-      "summary": "IT之家 10 月 25 日消息，Switch 2 的破解给这台主机的自制程序生态注入了活力。任天堂已经采取措施封堵 ns2jb 漏洞，但又有一则消息正在传开：《三角符文》第 1 至 4 章以及《黄昏之血》测试版的首批次世代游戏资源包已经流出。据IT之家了解，ns2jb 由 pepsipu 开发，属于软件层面的破解手段"
-    },
-    {
-      "id": "90f838e0",
-      "title": "李小龙：2.4G / 5G 频段同时工作是 Wi-Fi 7 特性，华为在 Wi-Fi 6 时代通过私有协议提前支持",
-      "url": "https://www.ithome.com/1/017/530.htm",
-      "published_at": 1792884890,
-      "category": "eco",
-      "summary": "IT之家 10 月 25 日消息，博主 @不是郑小康 昨晚发文，谈及了华为鸿蒙 HarmonyOS 7 系统的使用感受。他称在华为 Pura X View 的鸿蒙 7 系统中，“貌似”不能 2.4G 和 5G Wi-Fi 一起连加速上网。随后，华为终端 BG CTO 李小龙发文解答了上述问题：Pura X View 可"
-    },
-    {
-      "id": "23de3c66",
-      "title": "全球最大“电力超市”开业，南方区域电力市场正式运行",
-      "url": "https://www.ithome.com/1/017/529.htm",
-      "published_at": 1792884642,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，据央视财经报道，10 月 24 日，我国首个区域电力市场 —— 南方区域电力市场正式运行。此举标志着全国统一电力市场建设迎来重大里程碑式节点。它打通了广东、广西、云南、贵州、海南五个省区的市场，把煤电、水电、核电、风电、光伏等都放到一个市场里买卖，按同一套规则竞价交易。值得一提的是，这"
-    },
-    {
-      "id": "2432d7af",
-      "title": "PHP 基金会负责人坦言资金不足：仅 1 名全职员工",
-      "url": "https://www.ithome.com/1/017/528.htm",
-      "published_at": 1792884465,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，本周，PHP 曝出两处高危漏洞，全球随即紧急行动，保护网站免遭黑客攻击。这件事也让人们看到，这门已有三十年历史的开源编程语言，对互联网而言有多重要。据估算，全球最高有约七成网站依托 PHP 搭建，但负责维护 PHP 的非营利基金会，经费却十分紧张。PHP 基金会执行董事伊丽莎白 · 巴"
-    },
-    {
-      "id": "983fb94f",
-      "title": "BBC《蓝色星球 3》刻意保留瑕疵镜头，和 AI“完美影像”划清界限",
-      "url": "https://www.ithome.com/1/017/527.htm",
-      "published_at": 1792883972,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，英国广播公司（BBC）的《蓝色星球 3》纪录片打算保留那些不算完美的镜头，以此证明内容的真实性。该系列前作的标志性特点是画面精美、通透清晰，美得近乎不真实。而人工智能生成内容的一大破绽，就是画面过度精致、毫无瑕疵。为了避开这种观感，《蓝色星球 3》选择如实呈现，不刻意美化。IT之家注意"
-    },
-    {
-      "id": "7216b180",
-      "title": "微软测试 Reactor 实验性框架，澄清 WinUI 和 XAML 不会被停用",
-      "url": "https://www.ithome.com/1/017/524.htm",
-      "published_at": 1792882747,
-      "category": "general",
-      "summary": "IT之家 10 月 25 日消息，微软推出一款名为 Microsoft.UI.Reactor 的实验性框架并开启测试后，出面澄清，并不会停用 WinUI 和 XAML。鉴于微软此前放弃 UWP、关停 Silverlight 的过往，不少开发者心存疑虑也并不意外。据IT之家了解，WinUI 是微软的原生界面框架，用它开发"
-    },
-    {
-      "id": "e459f1e2",
-      "title": "iQOO Neo12 新机配置曝光：6.83 英寸 2K+185Hz 直屏，第五代骁龙 8 至尊版芯片",
-      "url": "https://www.ithome.com/1/017/523.htm",
-      "published_at": 1792855604,
-      "category": "eco",
-      "summary": "IT之家 10 月 24 日消息，博主 @数码闲聊站 今日曝光 iQOO Neo12 新机配置，该机将于本月发布并上市。据介绍，该机搭载 6.83 英寸 2K+185Hz LTPS 直屏，采用维信诺 pTSF 发光材料，搭载骁龙 8E5 处理器（第五代骁龙 8 至尊版），配备 Q3 电竞芯片 + 主动散热风扇。此外，该"
-    },
-    {
-      "id": "3bbeb803",
-      "title": "刘慈欣监制《三体·大史》年内开机，导演杨磊称演员都已“众神归位”",
-      "url": "https://www.ithome.com/1/017/522.htm",
-      "published_at": 1792855019,
-      "category": "general",
-      "summary": "IT之家 10 月 24 日消息，2026 年是《三体》小说发表 20 周年，在 2026 年三体日活动现场，导演杨磊确认《三体 · 大史》已定档 2026 年第四季度开机，目前处于开机前的最后冲刺阶段，演员已全部“众神归位”。本片将延续剧版《三体》第一部核心班底，刘慈欣继续担任监制，杨磊执导，陆贝珂出任视觉导演；演员"
-    },
-    {
-      "id": "59be170d",
-      "title": "戴尔推出 UltraSharp“焕新版”4K 显示器：32 英寸 5199 元，27 英寸 3999 元",
-      "url": "https://www.ithome.com/1/017/521.htm",
-      "published_at": 1792854458,
-      "category": "general",
-      "summary": "IT之家 10 月 24 日消息，戴尔京东自营店新上了两款 UltraSharp“焕新版”显示器，但本质上是一次渠道型号的调整。其中，32 英寸的 U3226QER 定价 5199 元，IT之家此前已有报道；27 英寸的 U2726QER 到手价 3999 元。Chiphell 论坛上有用户挖掘发现，两款型号分别对应此"
     }
   ]
 }
