@@ -661,9 +661,11 @@ private fun publishMediaStoreFile(context: Context, uri: Uri, usesMediaStore: Bo
             }
             context.contentResolver.update(uri, values, null, null)
         }.onFailure { err ->
-            // pending 文件在外部文件管理器不可见：发布失败时删除，避免"本地无文件却提示已存在"
-            deletePartialOutput(context, uri)
-            throw IOException("Publish MediaStore file failed", err)
+            // 发布失败降级为日志（不再删文件、不再抛异常）：
+            // 文件已完整写入，IS_PENDING 置 0 只是让文件在系统媒体库可见；
+            // 若在此抛异常 → 下载完成→publish 失败→重试→再写→再失败 无限循环
+            // （用户实测"无限下载"根因）。保留文件，完成状态照常回写。
+            Log.w(TAG, "Publish MediaStore file failed (non-fatal): $uri", err)
         }
     }
 }
@@ -758,6 +760,7 @@ private suspend fun transferExistingDownload(
                 if (response.code == 416 && requestedOffset > 0L) {
                     val localBytes = outputFileSize(context, outputUri)
                     if (localBytes >= requestedOffset) {
+                        forceFreshResume.remove(fileName)
                         withContext(Dispatchers.Main) {
                             DownloadsManager.completeDownload(
                                 fileName,
