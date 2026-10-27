@@ -37,6 +37,9 @@ private const val TAG = "EmuBoxDownload"
 /** 会话级加速节点黑名单：某加速 host 网络失败累计后，本轮会话强制走直连 */
 private val accelBlacklistHosts = mutableSetOf<String>()
 
+/** 加速节点连续失败计数（跨文件累计，>=3 入黑名单） */
+private val accelFailCounts = mutableMapOf<String, Int>()
+
 private fun accelHostOf(url: String): String? = runCatching {
     val m = Regex("https?://([^/]+)/").find(url)
     m?.groupValues?.getOrNull(1)
@@ -52,7 +55,7 @@ private const val DEFAULT_ROOT_FOLDER = "EmuBox"
 // 收紧连接/读超时让"连接中"尽快反馈；保留 OkHttp 重连兜底（DNS/握手抖动）。
 // 注意：不能设置 callTimeout——GB 级驱动下载会超整体时限被杀，表现为下载到一半失败。
 private val downloadClient = OkHttpClient.Builder()
-    .connectTimeout(12, TimeUnit.SECONDS)
+    .connectTimeout(10, TimeUnit.SECONDS)
     .readTimeout(30, TimeUnit.SECONDS)
     .retryOnConnectionFailure(true)
     .followRedirects(true)
@@ -913,9 +916,10 @@ private suspend fun downloadFileWithProgress(
     // 加速源连续失败后自动切换到直连，直连失败再换回加速，直至用尽次数。
     val directUrl = originalUrl ?: extractOriginalUrlIfAccelerated(url)
     val hasFallback = directUrl != null && !url.equals(directUrl, ignoreCase = true)
-    val accelHost = accelHostOf(url)
-    val accelBlacklisted = accelHost != null && accelHost in accelBlacklistHosts
-    val MAX_ATTEMPTS = 4
+    // 大陆网络 GitHub 直连往往不可达：加速节点失败后应【轮换下一个加速节点】，
+    // 全部加速节点试完才回退直连，避免"失败即切直连=自杀"。
+    val failedNodeIds = mutableSetOf<String>()
+    val MAX_ATTEMPTS = 6
     var success = false
     var lastErrorUrl: String? = null
 
@@ -925,17 +929,25 @@ private suspend fun downloadFileWithProgress(
             DownloadsManager.activeDownloads[uniqueFileName]
         } ?: return@download
 
-        // 本轮使用的 URL：加速节点已被黑名单标记 → 强制直连；
-        // 否则首次用加速，失败 1 次后（attempt>=2）切换直连不再回加速，
-        // 根治"加速节点不稳导致反复重试全失败"。
-        val useDirect = hasFallback && (accelBlacklisted || attempt >= 2)
-        val targetUrl = when {
-            useDirect -> directUrl
-            else -> url
+        // 本轮节点选择（多加速节点轮换）：
+        //  ① 当前最优加速节点（getActiveNode，首次优先）未失败过 → 用它
+        //  ② 失败过 → 换下一个未尝试的加速节点
+        //  ③ 所有加速节点都试过 → 直连兜底（最后机会）
+        // 同时 honor 会话级加速黑名单（已拉黑的节点跳过）。
+        val activeNode = Accelerator.getActiveNode()
+        val activeId = activeNode.id
+        val (targetUrl, usedNodeId) = when {
+            activeId != Accelerator.DIRECT_NODE.id && activeId !in failedNodeIds && activeId !in accelBlacklistHosts ->
+                Accelerator.rewriteWith(url, activeNode) to activeId
+            else -> {
+                val next = Accelerator.nextAccelNode(failedNodeIds + activeId + accelBlacklistHosts)
+                if (next != null) Accelerator.rewriteWith(url, next) to next.id
+                else (directUrl ?: url) to "direct"
+            }
         }
 
         if (targetUrl != lastErrorUrl) {
-            Log.i(TAG, "下载重试第 $attempt/$MAX_ATTEMPTS 次，来源: ${if (useDirect) "直连" else "加速"}: $targetUrl")
+            Log.i(TAG, "下载重试第 $attempt/$MAX_ATTEMPTS 次，来源: $usedNodeId : $targetUrl")
             withContext(Dispatchers.Main) {
                 DownloadsManager.updateUrl(uniqueFileName, targetUrl)
             }
@@ -951,10 +963,16 @@ private suspend fun downloadFileWithProgress(
         )
         if (success) break
 
-        // 网络失败且本轮用的是加速节点 → 记入会话黑名单（连续失败立即生效，下个文件起直连）
-        if (!success && targetUrl == url && accelHost != null && accelHost !in accelBlacklistHosts) {
-            accelBlacklistHosts.add(accelHost)
-            Log.i(TAG, "加速节点 $accelHost 网络失败，已加入会话黑名单，后续下载走直连")
+        // 网络失败且本轮用的是加速节点 → 本轮内轮换下一个节点；
+        // 同一加速节点连续多文件失败再入会话黑名单（防风控节点反复占用）。
+        if (!success && usedNodeId != "direct") {
+            failedNodeIds.add(usedNodeId)
+            accelFailCounts[usedNodeId] = (accelFailCounts[usedNodeId] ?: 0) + 1
+            if ((accelFailCounts[usedNodeId] ?: 0) >= 3) {
+                accelBlacklistHosts.add(usedNodeId)
+                Log.i(TAG, "加速节点 $usedNodeId 连续 3 次失败，加入会话黑名单")
+            }
+            Log.i(TAG, "加速节点 $usedNodeId 失败，已换节点，剩余候选: ${Accelerator.nextAccelNode(failedNodeIds)?.id ?: "无（最后直连兜底）"}")
         }
 
         // 主动暂停/取消时不自动重试（transfer 内部已处理状态）
