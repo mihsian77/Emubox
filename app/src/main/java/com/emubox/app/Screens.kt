@@ -536,18 +536,29 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                                 Uri.fromFile(File(file.filePath))
                                             }
                                             val intent = Intent(Intent.ACTION_VIEW).apply {
-                                                setDataAndType(uri, "application/octet-stream")
+                                                // 按扩展名推断 MIME：像系统文件管理器一样，
+                                                // 让"打开方式"自动展开可打开该类型的所有应用
+                                                setDataAndType(uri, mimeTypeForFileName(file.fileName))
                                                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                             }
                                             try {
                                                 context.startActivity(Intent.createChooser(intent, openWithLabel))
                                             } catch (e: Exception) {
-                                                // 无可用打开程序（zip/so 等常见于文件管理器），提示而不是崩溃
-                                                Toast.makeText(
-                                                    context,
-                                                    appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
+                                                // 无可用打开程序（zip/so 等常见于文件管理器）：降级用
+                                                // octet-stream 再试一次（部分文件管理器按通用类型兜底展示）
+                                                try {
+                                                    val fallback = Intent(Intent.ACTION_VIEW).apply {
+                                                        setDataAndType(uri, "application/octet-stream")
+                                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                                    }
+                                                    context.startActivity(Intent.createChooser(fallback, openWithLabel))
+                                                } catch (e2: Exception) {
+                                                    Toast.makeText(
+                                                        context,
+                                                        appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
                                             }
                                         },
                                         modifier = Modifier.weight(1f),
@@ -12778,5 +12789,40 @@ private fun GlobalSearchRow(
                 Text(subtitle, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
         }
+    }
+}
+
+private fun mimeTypeForFileName(name: String): String {
+    val n = name.lowercase()
+    return when {
+        n.endsWith(".zip") || n.endsWith(".apks") || n.endsWith(".xapk") -> "application/zip"
+        n.endsWith(".apk") -> "application/vnd.android.package-archive"
+        n.endsWith(".7z") -> "application/x-7z-compressed"
+        n.endsWith(".tar") -> "application/x-tar"
+        n.endsWith(".tar.gz") || n.endsWith(".tgz") -> "application/x-compressed-tar"
+        n.endsWith(".tar.xz") || n.endsWith(".txz") -> "application/x-xz"
+        n.endsWith(".xz") -> "application/x-xz"
+        n.endsWith(".gz") || n.endsWith(".gzip") -> "application/gzip"
+        n.endsWith(".bz2") -> "application/x-bzip2"
+        n.endsWith(".txt") || n.endsWith(".log") || n.endsWith(".md") -> "text/plain"
+        n.endsWith(".json") -> "application/json"
+        n.endsWith(".xml") -> "application/xml"
+        n.endsWith(".html") || n.endsWith(".htm") -> "text/html"
+        n.endsWith(".csv") -> "text/csv"
+        n.endsWith(".png") -> "image/png"
+        n.endsWith(".jpg") || n.endsWith(".jpeg") -> "image/jpeg"
+        n.endsWith(".gif") -> "image/gif"
+        n.endsWith(".webp") -> "image/webp"
+        n.endsWith(".svg") -> "image/svg+xml"
+        n.endsWith(".mp3") -> "audio/mpeg"
+        n.endsWith(".wav") -> "audio/wav"
+        n.endsWith(".ogg") -> "audio/ogg"
+        n.endsWith(".m4a") -> "audio/mp4"
+        n.endsWith(".mp4") -> "video/mp4"
+        n.endsWith(".mkv") -> "video/x-matroska"
+        n.endsWith(".webm") -> "video/webm"
+        n.endsWith(".pdf") -> "application/pdf"
+        n.endsWith(".so") -> "application/octet-stream"
+        else -> "application/octet-stream"
     }
 }
