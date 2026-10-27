@@ -171,6 +171,21 @@ object Accelerator {
         cachedBestNode = null
     }
 
+    /** 下载失败轮换：返回下一个未尝试的加速节点（跳过 excludeIds 与直连）。
+     *  全部加速节点都试过返回 null，调用方此时可尝试直连兜底。 */
+    fun nextAccelNode(excludeIds: Set<String>): ProxyNode? {
+        return effectiveNodes.firstOrNull { it.id !in excludeIds }
+    }
+
+    /** 用指定节点重写 URL（绕过 getActiveNode 判定，供下载失败轮换使用）。
+     *  直连节点或非 GitHub URL 原样返回。 */
+    fun rewriteWith(url: String, node: ProxyNode): String {
+        if (node.id == DIRECT_NODE.id || !isGithubUrl(url)) return url
+        val kind = classifyTraffic(url)
+        if (kind != null && !node.supports(kind)) return url
+        return node.rewrite(url)
+    }
+
     /**
      * 分类 GitHub URL 的流量类型。
      * Release 附件：objects.githubusercontent.com 或 github.com/.../releases/download/
