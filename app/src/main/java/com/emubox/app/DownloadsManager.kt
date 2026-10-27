@@ -39,7 +39,9 @@ object DownloadsManager {
         val outputUri: String = "",
         val usesMediaStore: Boolean = false,
         val speedBytesPerSec: Long = 0L,
-        val subPath: String = ""
+        val subPath: String = "",
+        /** 最近一次失败的 HTTP 码/异常，UI 展示便于定位下载失败根因 */
+        val lastError: String? = null
     ) {
         fun toJson(): JSONObject = JSONObject().apply {
             put("fileName", fileName)
@@ -52,6 +54,7 @@ object DownloadsManager {
             put("usesMediaStore", usesMediaStore)
             put("speedBytesPerSec", speedBytesPerSec)
             put("subPath", subPath)
+            put("lastError", lastError)
         }
 
         companion object {
@@ -81,7 +84,8 @@ object DownloadsManager {
                     outputUri = outputUri,
                     usesMediaStore = json.optBoolean("usesMediaStore", false),
                     speedBytesPerSec = 0L,
-                    subPath = json.optString("subPath", "")
+                    subPath = json.optString("subPath", ""),
+                    lastError = if (json.has("lastError")) json.optString("lastError") else null
                 )
             }
         }
@@ -258,6 +262,13 @@ object DownloadsManager {
         }
     }
 
+    fun setLastError(fileName: String, error: String?) {
+        if (error == null) return
+        _activeDownloads[fileName]?.let { d ->
+            _activeDownloads[fileName] = d.copy(lastError = error)
+        }
+    }
+
     fun markConnecting(fileName: String) {
         _activeDownloads[fileName]?.let { current ->
             if (current.status != DownloadStatus.CANCELLING) {
@@ -352,7 +363,12 @@ object DownloadsManager {
         saveCompletedDownloads()
     }
 
-    fun failDownload(fileName: String) {
+    fun failDownload(fileName: String, error: String? = null) {
+        if (error != null) {
+            _activeDownloads[fileName]?.let { d ->
+                _activeDownloads[fileName] = d.copy(lastError = error)
+            }
+        }
         // 兜底：若字节已下载完整（下载过程完成但状态回写失败），转 completed 而非标失败，
         // 根治"明明下载完了却提示失败、重下又提示已存在"的矛盾状态。
         val d = _activeDownloads[fileName]
