@@ -61,7 +61,11 @@ object Accelerator {
     val BUILTIN_NODES = listOf(
         ProxyNode("gh-proxy-org", "gh-proxy 官方", "gh-proxy.org"),
         ProxyNode("gh-proxy-com", "gh-proxy 旧域", "gh-proxy.com"),
-        ProxyNode("ghfast", "ghfast 多线", "ghfast.top"),
+        // ghfast 实测不支持 API 流量（返回 Invalid input）→ 排除 API，仅文件类
+        ProxyNode(
+            "ghfast", "ghfast 多线", "ghfast.top",
+            trafficKinds = setOf(TrafficKind.RELEASE_ASSET, TrafficKind.RAW_FILE)
+        ),
         ProxyNode("gh-con-sh", "con.sh 公益", "gh.con.sh"),
         ProxyNode("gh-idayer", "idayer 公益", "gh.idayer.com"),
         ProxyNode("gh-proxy-net", "gh-proxy 镜像", "gh-proxy.net")
