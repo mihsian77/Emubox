@@ -137,13 +137,26 @@ private fun refreshReleasesInBackground(apiUrl: String) {
     }
 }
 
-/** 拉取并解析 release 列表；加速节点请求失败/空结果时回退直连原 URL 重试一次。 */
+/** 拉取并解析 release 列表；API 节点失败时轮换下一个支持 API 的加速节点，最后直连兜底。 */
 private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
-    val acceleratedUrl = Accelerator.rewriteUrl(apiUrl)
-    var json = executeReleasesRequest(acceleratedUrl)
-    if (json == null && acceleratedUrl != apiUrl) {
-        // 加速节点超时/限流/缓存异常：直连 GitHub 兜底
-        json = executeReleasesRequest(apiUrl)
+    var json: JSONArray? = null
+    // API 请求只走支持 API 流量的节点（ghfast 等实测不支持，返回 Invalid input）；
+    // 失败则轮换下一个节点，避免 AUTO 选中不支持 API 的节点导致列表永远拉不到。
+    val triedIds = mutableSetOf<String>()
+    for (i in 0..Accelerator.ALL_NODES.size) {
+        val node = Accelerator.ALL_NODES.firstOrNull {
+            it.id !in triedIds && it.id != Accelerator.DIRECT_NODE.id &&
+                (it.trafficKinds.isEmpty() || TrafficKind.API in it.trafficKinds)
+        }
+        if (node != null) {
+            triedIds.add(node.id)
+            json = executeReleasesRequest(Accelerator.rewriteWith(apiUrl, node))
+        } else {
+            // 所有加速节点试完：直连 GitHub 最后兜底
+            json = executeReleasesRequest(apiUrl)
+            break
+        }
+        if (json != null) break
     }
     if (json == null) return emptyList()
     val jsonArray = json // 稳定引用：var 被 lambda 捕获后无法 smart-cast
