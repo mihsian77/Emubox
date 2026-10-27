@@ -72,6 +72,7 @@ def main():
             r0 = rels[0]
             e["latest_tag"] = r0["tag"]
             e["latest_date"] = r0["date"]
+            e["latest_body"] = (r0.get("body") or "")[:2000]
             a0 = r0.get("assets") or []
             if a0:
                 e["latest_apk_name"] = a0[0]["name"]
