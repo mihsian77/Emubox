@@ -300,7 +300,14 @@ private suspend fun ensureFileNotExists(context: Context, desiredName: String, s
                 true
             }
         } else {
-            fileExistsOnDisk(context, desiredName, subPath)
+            // 磁盘存在同名文件但无 completed 记录：
+            // ① 上次失败残留的 partial 孤儿（部分删除失败的场景）
+            // ② 用户手动放入/其他 App 下载的同名文件
+            // 一律改名为 xxx.partial.bak 后放行下载，不误删用户文件、不卡死重下
+            if (fileExistsOnDisk(context, desiredName, subPath)) {
+                renameOrphanOnDisk(context, desiredName, subPath)
+            }
+            false
         }
     }
     if (existed) {
@@ -346,6 +353,65 @@ fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Bo
         val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), desiredName).exists()
     }
+}
+
+/** 本地输出文件的实际字节数（content:// 或 File 路径） */
+private fun outputFileSize(context: Context, uri: Uri?): Long {
+    if (uri == null) return -1L
+    return runCatching {
+        if (uri.scheme == "content") {
+            context.contentResolver.openAssetFileDescriptor(uri, "r")?.use { fd ->
+                fd.length
+            } ?: -1L
+        } else {
+            File(uri.path.orEmpty()).length()
+        }
+    }.getOrDefault(-1L)
+}
+
+/** 无记录同名文件改名为 *.partial.bak（三种存储路径），放行重新下载 */
+private fun renameOrphanOnDisk(context: Context, desiredName: String, subPath: String) {
+    val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
+    val defaultRelativePath = "$DEFAULT_ROOT_FOLDER/$subPath"
+    val bak = desiredName + ".partial.bak"
+    runCatching {
+        if (folderUri != null && DocumentsContract.isTreeUri(folderUri)) {
+            val rootDoc = DocumentFile.fromTreeUri(context, folderUri)
+            val subDoc = if (subPath.isBlank()) rootDoc else rootDoc?.let { findSubDirectory(it, subPath) }
+            subDoc?.findFile(desiredName)?.renameTo(bak)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+            Environment.isExternalStorageManager()) {
+            @Suppress("DEPRECATION")
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val f = File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), desiredName)
+            f.renameTo(File(f.parentFile, bak))
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val resolver = context.contentResolver
+            val selection = "${MediaStore.MediaColumns.DISPLAY_NAME} = ? AND " +
+                "${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
+            resolver.query(
+                MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+                arrayOf(MediaStore.MediaColumns._ID),
+                selection,
+                arrayOf(desiredName, "%$defaultRelativePath%"),
+                null
+            )?.use { c ->
+                if (c.moveToFirst()) {
+                    val id = c.getString(0)
+                    val uri = Uri.withAppendedPath(MediaStore.Downloads.EXTERNAL_CONTENT_URI, id)
+                    val values = android.content.ContentValues().apply {
+                        put(MediaStore.MediaColumns.DISPLAY_NAME, bak)
+                    }
+                    resolver.update(uri, values, null, null)
+                }
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val f = File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), desiredName)
+            f.renameTo(File(f.parentFile, bak))
+        }
+    }.onFailure { Log.w(TAG, "renameOrphanOnDisk 失败（忽略，继续下载）", it) }
 }
 
 /** 文件名清洗：替换路径分隔符/通配符等非法字符。下载与"已下载"判断共用同一规则 */
@@ -671,19 +737,25 @@ private suspend fun transferExistingDownload(
         call.execute().use { response ->
             if (!response.isSuccessful) {
                 // 416 Range Not Satisfiable：请求偏移已超出文件大小 = 文件此前已写完整
-                // （下载完成但状态回写被打断）。直接按完整文件收尾，不再反复重试
-                // "下载完了总是连接中重试失败"的根因之一。
+                // （下载完成但状态回写被打断）。先校验本地文件实际字节数：
+                // 本地 >= 请求偏移才收尾；本地缺失/不足（如服务器 asset 被替换变小、
+                // 或部分文件被系统清理）→ 删掉 partial 从头下载，杜绝伪完成死文件。
                 if (response.code == 416 && requestedOffset > 0L) {
-                    withContext(Dispatchers.Main) {
-                        DownloadsManager.completeDownload(
-                            fileName,
-                            outputPath(outputUri),
-                            requestedOffset,
-                            state.subPath
-                        )
-                        Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
+                    val localBytes = outputFileSize(context, outputUri)
+                    if (localBytes >= requestedOffset) {
+                        withContext(Dispatchers.Main) {
+                            DownloadsManager.completeDownload(
+                                fileName,
+                                outputPath(outputUri),
+                                requestedOffset,
+                                state.subPath
+                            )
+                            Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
+                        }
+                        return@transfer true
                     }
-                    return@transfer true
+                    deletePartialOutput(context, outputUri)
+                    throw IOException("HTTP 416 partial mismatch")
                 }
                 throw IOException("HTTP ${response.code}")
             }
@@ -735,8 +807,15 @@ private suspend fun transferExistingDownload(
 
             publishMediaStoreFile(context, outputUri, state.usesMediaStore)
             withContext(Dispatchers.Main) {
-                DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, state.subPath)
-                Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
+                runCatching {
+                    DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, state.subPath)
+                    Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
+                }.onFailure { e ->
+                    // 记录回写失败：先删掉已写文件再标记失败，防止"无记录+磁盘有文件"的死文件
+                    Log.e(TAG, "completeDownload 回写失败，清理文件防死文件", e)
+                    deletePartialOutput(context, outputUri)
+                    DownloadsManager.failDownload(fileName)
+                }
             }
             return@transfer true
         }
