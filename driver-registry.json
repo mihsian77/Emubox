@@ -1990,7 +1990,11 @@
       "stars": 72,
       "latest_tag": "v0.1.85",
       "latest_date": "2026-08-06T14:16:04Z",
-      "latest_body": "## What's Changed\r\n* rutabaga: Fix map_placed implementation for fixed mappings by @valentineburley in https://github.com/magma-gpu/rutabaga_gfx/pull/65\r\n* Fixes to magma-gpu crates by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull/67\r\n* Fixes ported from libkrun's downstream rutabaga_gfx by @dorindabassey in https://github.com/magma-gpu/rutabaga_gfx/pull/68\r\n* rutabaga release 0.1.85 + flexible array removal by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull"
+      "latest_body": "## What's Changed\r\n* rutabaga: Fix map_placed implementation for fixed mappings by @valentineburley in https://github.com/magma-gpu/rutabaga_gfx/pull/65\r\n* Fixes to magma-gpu crates by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull/67\r\n* Fixes ported from libkrun's downstream rutabaga_gfx by @dorindabassey in https://github.com/magma-gpu/rutabaga_gfx/pull/68\r\n* rutabaga release 0.1.85 + flexible array removal by @gurchetansingh in https://github.com/magma-gpu/rutabaga_gfx/pull",
+      "gpu_vendor": "any",
+      "gpu_arch": [],
+      "gpu_models": [],
+      "companion": []
     },
     {
       "id": "reg-rutabaga-drivers",
