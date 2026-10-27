@@ -64,6 +64,15 @@ OFFICIAL_SOURCES = [
     ("ptitSeb/box64", "component", "Box64", "release"),
     ("GloriousEggroll/proton-ge-custom", "component", "Proton-GE", "release"),
     ("ptitSeb/box64", "runtime", "Box64", "release"),
+    # 驱动官方源（driver 分类专属；与 driver-registry.json 同名仓库对齐）
+    ("K11MCH1/AdrenoToolsDrivers", "driver", "K11MCH1 AdrenoTools", "release"),
+    ("StevenMXZ/Adrenotools-Drivers", "driver", "StevenMXZ Adrenotools", "release"),
+    ("MrPurple666/purple-turnip", "driver", "Purple-Turnip", "release"),
+    ("faux123/turnip-faux123-driver", "driver", "faux123 Turnip", "release"),
+    ("faux123/panvk-faux123-driver-ace", "driver", "faux123 PanVK", "release"),
+    ("xodiosx/mesa-panvk-g57", "driver", "xodiosx PanVK", "release"),
+    ("isygold/panDXVK", "driver", "panDXVK", "release"),
+    ("JimVulkan/radv-xclipse", "driver", "RADV Xclipse", "release"),
 ]
 
 CATS = {
@@ -78,8 +87,8 @@ def classify(title: str, summary: str) -> str:
         return "drop"
     if any(w.lower() in text for w in EMU_WORDS):
         return "emulator"
-    if any(w.lower() in text for w in DRV_WORDS):
-        return "driver"
+    # 注意：不再从 IT之家 RSS 产生 driver 分类（词表过宽会把散热器/耳机等
+    # 消费电子杂项误分进驱动资讯）；driver 分类只由下方 OFFICIAL_SOURCES 官方源产生。
     # 生态命中但属整机/外设/显示类 → 归泛科技，避免"芯片与设备"要点混入消费电子
     if any(w.lower() in text for w in ECO_WORDS):
         if any(w.lower() in text for w in ECO_DROP_WORDS):
@@ -313,11 +322,17 @@ def main():
     if os.path.exists(OUT):
         old = json.load(open(OUT, encoding="utf-8")).get("items", [])
     now = int(time.time())
-    merged = {it["id"]: it for it in old + fresh_ithome + fresh_official + fresh_extra}
+    # 官方源不稳定（api.github.com 常被阻断/部分 repo 超时）：
+    # 本次成功 ∪ 上次成功（按 id 去重），180 天窗口过滤兜底，避免组件/驱动
+    # 资讯列表随网络波动反复清空。
+    old_official = [it for it in old if it.get("type")]
+    official_now = {it["id"]: it for it in old_official + fresh_official}.values()
+    merged = {it["id"]: it for it in old + fresh_ithome + list(official_now) + fresh_extra}
     merged = [
         it for it in merged.values()
-        if it.get("low_freq") or
-        (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400))
+        if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史 IT之家杂项误标 driver
+        and (it.get("low_freq") or
+             (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)))
     ]
     # 低频目录源以本次抓取为准：旧的低频条目（Wine 2005 之类镜像残留）不在
     # fresh_extra 中则丢弃，避免过期低频版本长期占用列表。
