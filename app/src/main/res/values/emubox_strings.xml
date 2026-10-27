@@ -700,6 +700,8 @@ How to verify in emulator:
     <string name="news_new_releases">New Releases</string>
     <string name="news_source_ithome">ITHome</string>
     <string name="news_open_link">Open source article</string>
+    <string name="news_empty_official">Official sources unavailable; will auto-refresh once network recovers (GitHub releases)</string>
+    <string name="news_source_official">GitHub official</string>
     <string name="news_empty">No news yet. Check back later.</string>
     <string name="news_type_all">All Types</string>
 
