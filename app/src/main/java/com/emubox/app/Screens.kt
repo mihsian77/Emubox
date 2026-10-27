@@ -348,6 +348,13 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     )
                                 }
 
+                                if (!download.lastError.isNullOrBlank()) {
+                                    Text(
+                                        "失败原因: ${download.lastError}",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.error
+                                    )
+                                }
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
                                     horizontalArrangement = Arrangement.SpaceBetween

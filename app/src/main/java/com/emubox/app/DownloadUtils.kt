@@ -761,7 +761,13 @@ private suspend fun transferExistingDownload(
                         return@transfer true
                     }
                     deletePartialOutput(context, outputUri)
+                    withContext(Dispatchers.Main) {
+                        DownloadsManager.setLastError(fileName, "HTTP 416 续传偏移与本地文件不符，已清空重下")
+                    }
                     throw IOException("HTTP 416 partial mismatch")
+                }
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.setLastError(fileName, "HTTP ${response.code}")
                 }
                 throw IOException("HTTP ${response.code}")
             }
@@ -870,6 +876,10 @@ private suspend fun transferExistingDownload(
                 // 网络/服务器错误：保留已下载的部分文件，交由调用方决定重试续传或放弃
                 // （不要在这里删除 partial，否则断点续传与自动重试失去意义）
                 Log.e(TAG, "Download failed: ${state.url}", error)
+                val brief = (error.message ?: error.javaClass.simpleName).take(120)
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.setLastError(fileName, brief)
+                }
                 return@transfer false
             }
         }
