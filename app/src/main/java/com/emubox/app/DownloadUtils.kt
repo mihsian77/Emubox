@@ -79,6 +79,15 @@ private class DownloadPausedException : IOException("Download paused")
 private val downloadControls = ConcurrentHashMap<String, DownloadControl>()
 
 /**
+ * 416 partial mismatch 后强制从头（resume=false）下载的文件名集合。
+ * 原因：服务器（加速节点）对 Range 续传返回 416 且本地字节与偏移不符时，
+ * 若下一轮仍带 Range 续传会再次 416 → 删除→重试→再 416 的死循环
+ * （用户实测：6 次重连全耗在 416 上，最终死文件）。
+ * 标记后下一轮从 0 全量下载（不带 Range），节点返回 200 正常完成。
+ */
+private val forceFreshResume = ConcurrentHashMap<String, Boolean>()
+
+/**
  * Pause by closing the current HTTP call. The partial file and metadata stay on disk.
  * Resume opens a new HTTP Range request, so pausing also survives process death.
  */
@@ -761,8 +770,11 @@ private suspend fun transferExistingDownload(
                         return@transfer true
                     }
                     deletePartialOutput(context, outputUri)
+                    // 关键：标记该文件强制从头下载，下一轮 resume=false 不再带 Range，
+                    // 否则重试循环会 416→删→再 416 死循环（用户实测根因）。
+                    forceFreshResume[fileName] = true
                     withContext(Dispatchers.Main) {
-                        DownloadsManager.setLastError(fileName, "HTTP 416 续传偏移与本地文件不符，已清空重下")
+                        DownloadsManager.setLastError(fileName, "HTTP 416 续传偏移与本地不符，已清空，下一轮从头下载")
                     }
                     throw IOException("HTTP 416 partial mismatch")
                 }
@@ -820,6 +832,7 @@ private suspend fun transferExistingDownload(
             publishMediaStoreFile(context, outputUri, state.usesMediaStore)
             withContext(Dispatchers.Main) {
                 runCatching {
+                    forceFreshResume.remove(fileName)
                     DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, state.subPath)
                     Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
                 }.onFailure { e ->
@@ -968,10 +981,11 @@ private suspend fun downloadFileWithProgress(
         }
 
         // 第 1 次全新下载；失败后保留 partial，后续轮次续传
+        val forceFresh = forceFreshResume[uniqueFileName] == true
         success = transferExistingDownload(
             context,
             current,
-            resume = attempt > 1,
+            resume = attempt > 1 && !forceFresh,
             urlOverride = targetUrl
         )
         if (success) break
