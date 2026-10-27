@@ -17268,7 +17268,7 @@
       "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
       "owner": "XHYN-PH",
       "repo": "XHYN-PH/exagear-302",
-      "homepage": "",
+      "homepage": "https://xhyn-ph.github.io/exagear-302/",
       "repo_url": "https://github.com/XHYN-PH/exagear-302",
       "official": false,
       "channel": "stable",
@@ -17327,11 +17327,11 @@
       "repo_url": "https://github.com/Stredohori/Winlator-CMOD",
       "official": false,
       "channel": "stable",
-      "latest_tag": "26f65e9",
-      "latest_date": "2026-05-12T18:19:19Z",
+      "latest_tag": "e120cf1",
+      "latest_date": "2026-02-02T12:47:23Z",
       "latest_body": "Latest changes from the developer.\\nFixed graphical response of pressing the button by coffincolors.\\nThe controller will _not_ work with this version.\\nSet box64-0.4.1-fix, wowbox64-0.4.1-fix, fexcore-2",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
+      "latest_apk_name": "CMOD_3DMark.apk",
+      "latest_apk_url": "https://github.com/Stredohori/Winlator-CMOD/releases/download/e120cf1/CMOD_3DMark.apk",
       "latest_apk_size": 526043927,
       "pushed_at": "2026-05-12T18:19:19Z",
       "stars": 221,
@@ -17831,7 +17831,7 @@
         }
       ],
       "source": "github",
-      "note": "无独立 APK 发布，随 Winlator 主包分发"
+      "note": "GitHub release 自动映射"
     },
     {
       "id": "winnative-emu-winnative",
@@ -17840,7 +17840,7 @@
       "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
       "owner": "WinNative-Emu",
       "repo": "WinNative-Emu/WinNative",
-      "homepage": "",
+      "homepage": "https://winnative-emu.github.io/WinNative/",
       "repo_url": "https://github.com/WinNative-Emu/WinNative",
       "official": false,
       "channel": "stable",
@@ -18254,12 +18254,12 @@
       "repo_url": "https://github.com/jacojayy/star",
       "official": false,
       "channel": "stable",
-      "latest_tag": "yesysyeysys",
-      "latest_date": "2026-10-06T19:44:52Z",
+      "latest_tag": "1.3",
+      "latest_date": "2026-06-09T05:37:13Z",
       "latest_body": "ignore this, its just a test for winhub",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "latest_apk_size": 19,
+      "latest_apk_name": "star-ludashi-1.3.apk",
+      "latest_apk_url": "https://github.com/winhub-emu/winhub/releases/download/1.3/star-ludashi-1.3.apk",
+      "latest_apk_size": 630320047,
       "pushed_at": "2026-10-06T19:44:52Z",
       "stars": 438,
       "forks": 0,
@@ -18557,7 +18557,7 @@
         }
       ],
       "source": "github",
-      "note": "上游 release 仅含测试文件（1.json），未发布正式 APK；可从官网 WinHub 获取"
+      "note": "GitHub release 自动映射"
     },
     {
       "id": "kreitinnsoftware-micewine-application",
@@ -23345,7 +23345,7 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sumi.png",
       "releases": [],
-      "source": "community-archive"
+      "source": "official-web"
     },
     {
       "id": "ghaelv-lemon-project",
@@ -23746,7 +23746,7 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/kenjinx.png",
       "releases": [],
-      "source": "community-archive"
+      "source": "official-web"
     },
     {
       "id": "duckstation",
@@ -28539,7 +28539,7 @@
       "description": "GBA/GB/GBC/DS 多机种模拟器，活跃更新",
       "owner": "skylersaleh",
       "repo": "skylersaleh/SkyEmu",
-      "homepage": "",
+      "homepage": "https://skylersaleh.github.io/SkyEmu/",
       "repo_url": "https://github.com/skylersaleh/SkyEmu",
       "official": true,
       "channel": "stable",
@@ -32270,7 +32270,7 @@
       "description": "命令与征服：红色警戒 Android 移植（APK 经 GitHub Actions 构建，arm64-v8a debug 包）",
       "owner": "dk8827",
       "repo": "dk8827/ra-port",
-      "homepage": "",
+      "homepage": "https://www.retroarch.com/",
       "repo_url": "https://github.com/dk8827/ra-port",
       "official": true,
       "channel": "stable",
@@ -33308,7 +33308,7 @@
       "description": "免费 J2ME 模拟器（libretro/awt/sdl2），开源活跃",
       "owner": "hex007",
       "repo": "hex007/freej2me",
-      "homepage": "",
+      "homepage": "https://www.retroarch.com/",
       "repo_url": "https://github.com/hex007/freej2me",
       "official": true,
       "channel": "stable",
@@ -38736,7 +38736,7 @@
       "description": "Atari Lynx 模拟器 Handy（RetroArch 内核）",
       "owner": "libretro",
       "repo": "libretro/libretro-handy",
-      "homepage": "",
+      "homepage": "https://www.retroarch.com/",
       "repo_url": "https://github.com/libretro/libretro-handy",
       "official": true,
       "channel": "stable",
@@ -38763,7 +38763,7 @@
       "description": "MAME 0.78 增强版（RetroArch 内核），仓库活跃",
       "owner": "libretro",
       "repo": "libretro/mame2003-plus-libretro",
-      "homepage": "",
+      "homepage": "https://www.retroarch.com/",
       "repo_url": "https://github.com/libretro/mame2003-plus-libretro",
       "official": true,
       "channel": "stable",
@@ -41174,7 +41174,7 @@
       "downloads": 0,
       "logo_url": "https://github.com/Ryujinx.png",
       "releases": [],
-      "source": "community-archive",
+      "source": "official-web",
       "dead": true,
       "dead_reason": "2024-10 因 DMCA 停更"
     },
@@ -41202,7 +41202,8 @@
       "downloads": 0,
       "logo_url": "",
       "releases": [],
-      "source": "community-archive"
+      "source": "community-archive",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "strato-emulator",
@@ -41228,7 +41229,7 @@
       "downloads": 0,
       "logo_url": "https://github.com/strato-emu.png",
       "releases": [],
-      "source": "community-archive",
+      "source": "github",
       "dead": true,
       "dead_reason": "2024-09 后停更，无官方 release"
     },
@@ -41256,7 +41257,7 @@
       "downloads": 0,
       "logo_url": "",
       "releases": [],
-      "source": "community-archive"
+      "source": "official-web"
     },
     {
       "id": "torzu-emulator",
@@ -41311,7 +41312,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "2024 停止开发，GitHub 已因 DMCA 删除"
+      "dead_reason": "2024 停止开发，GitHub 已因 DMCA 删除",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "ryubing-emulator",
@@ -41366,7 +41368,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "2023 自愿停更，2026-08 仓库已删"
+      "dead_reason": "2023 自愿停更，2026-08 仓库已删",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "skyline-pine",
@@ -41394,7 +41397,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "上游停更，社区归档"
+      "dead_reason": "上游停更，社区归档",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "skyline-tagline",
@@ -41422,7 +41426,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "上游停更，社区归档"
+      "dead_reason": "上游停更，社区归档",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -41450,7 +41455,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "上游停更，社区归档"
+      "dead_reason": "上游停更，社区归档",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "yuzu-official",
@@ -41478,7 +41484,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "2024-03 任天堂诉讼停更删库"
+      "dead_reason": "2024-03 任天堂诉讼停更删库",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "yuzu-citrus",
@@ -41506,7 +41513,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "上游 yuzu 停更，分支归档"
+      "dead_reason": "上游 yuzu 停更，分支归档",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "yuzu-plus",
@@ -41534,7 +41542,8 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "上游 yuzu 停更，分支归档"
+      "dead_reason": "上游 yuzu 停更，分支归档",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "epsxe",
@@ -45426,8 +45435,9 @@
           ]
         }
       ],
-      "source": "community-archive",
-      "logo_url": "https://raw.githubusercontent.com/termux/termux-app/master/icon.png"
+      "source": "github",
+      "logo_url": "https://raw.githubusercontent.com/termux/termux-app/master/icon.png",
+      "repo_url": "https://github.com/mrndstvndv/termux-ghostty"
     },
     {
       "id": "termux-plus",
@@ -49468,7 +49478,7 @@
       "description": "Bachata S4 releases, compatibility reports, and public community ports",
       "owner": "JICA98",
       "repo": "JICA98/Bachata-S4",
-      "homepage": "",
+      "homepage": "https://jica98.github.io/Bachata-S4/",
       "repo_url": "https://github.com/JICA98/Bachata-S4",
       "official": true,
       "channel": "stable/unknown",
@@ -52047,7 +52057,7 @@
       "description": "Native PC port of Mario Kart 64",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/SpaghettiKart",
-      "homepage": "",
+      "homepage": "https://harbourmasters.github.io/SpaghettiKart/",
       "repo_url": "https://github.com/HarbourMasters/SpaghettiKart",
       "official": true,
       "channel": "stable/unknown",
@@ -57000,7 +57010,7 @@
       "description": "Tool for automatic PS5 executables porting to Linux and Windows",
       "owner": "boykopovar",
       "repo": "boykopovar/AnyPS5",
-      "homepage": null,
+      "homepage": "https://boykopovar.github.io/AnyPS5/",
       "repo_url": "https://github.com/boykopovar/AnyPS5",
       "official": false,
       "channel": "stable",
@@ -59622,7 +59632,7 @@
       "description": "XenDroid 增强 fork（phforner0）：推进 Xbox 360 安卓模拟，基于 XenDroid 代码持续优化，独立发布节奏（0.2.0-preview.108 起含 APK）。",
       "owner": "phforner0",
       "repo": "phforner0/Xendroid-Plus",
-      "homepage": "",
+      "homepage": "https://phforner0.github.io/Xendroid-Plus/",
       "repo_url": "https://github.com/phforner0/Xendroid-Plus",
       "official": false,
       "channel": "beta",
@@ -62094,7 +62104,7 @@
       "description": "A high-level Windows Mobile / Pocket PC / Gizmondo emulator for Linux, Windows and Android.",
       "owner": "j92580498-max",
       "repo": "j92580498-max/PocketHLE",
-      "homepage": "",
+      "homepage": "https://j92580498-max.github.io/PocketHLE/",
       "repo_url": "https://github.com/j92580498-max/PocketHLE",
       "official": true,
       "channel": "beta",
@@ -66517,7 +66527,7 @@
       "description": "Dreamcast 模拟器（★343）：GitHub 源码为 WIP 分支（2023 后停更），正式版经官网 redream.io 分发（免费/付费授权）；Android 版见官网下载。",
       "owner": "inolen",
       "repo": "inolen/redream",
-      "homepage": "https://redream.io",
+      "homepage": "https://redream.io/download",
       "repo_url": "https://github.com/inolen/redream",
       "official": true,
       "channel": "stable",
@@ -67529,7 +67539,8 @@
       "downloads": 0,
       "logo_url": "",
       "releases": [],
-      "source": "community-archive"
+      "source": "community-archive",
+      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
     },
     {
       "id": "azaharplus-main",
