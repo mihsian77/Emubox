@@ -1,6 +1,6 @@
 {
   "version": "1.2.1",
-  "updated_at": "2026-10-26T07:10:37Z",
+  "updated_at": "2026-10-27T06:56:48Z",
   "emulators": [
     {
       "id": "brunodev85-winlator",
@@ -20,7 +20,7 @@
       "latest_apk_url": "https://github.com/brunodev85/winlator/releases/download/v11.2.0/Winlator_11.2.apk",
       "latest_apk_size": 157549075,
       "pushed_at": "2026-10-17T12:17:12Z",
-      "stars": 19628,
+      "stars": 19644,
       "forks": 0,
       "watchers": 0,
       "downloads": 16099710,
@@ -299,7 +299,7 @@
       "latest_apk_url": "https://github.com/azahar-emu/azahar/releases/download/2127.0-alpha3/azahar-android-googleplay-2127.0-alpha3.aab",
       "latest_apk_size": 81268438,
       "pushed_at": "2026-10-25T20:38:34Z",
-      "stars": 8468,
+      "stars": 8479,
       "forks": 0,
       "watchers": 0,
       "downloads": 8637312,
@@ -5315,7 +5315,7 @@
       "latest_apk_url": "https://github.com/Trixarian/NetherSX2-patch/releases/download/2.2n/NetherSX2-v2.2n-4248.apk",
       "latest_apk_size": 21621788,
       "pushed_at": "2026-09-22T04:21:34Z",
-      "stars": 2722,
+      "stars": 2725,
       "forks": 0,
       "watchers": 0,
       "downloads": 3506965,
@@ -5622,7 +5622,7 @@
       "latest_apk_url": "https://github.com/SSimco/Cemu/releases/download/0.5/Cemu-0.5.apk",
       "latest_apk_size": 33124708,
       "pushed_at": "2026-09-12T17:30:42Z",
-      "stars": 1223,
+      "stars": 1225,
       "forks": 0,
       "watchers": 0,
       "downloads": 2876791,
@@ -5774,7 +5774,7 @@
       "latest_apk_url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2/Winlator_Mali_1.2_Bionic_AnTuTu.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-22T19:50:30Z",
-      "stars": 477,
+      "stars": 480,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -6432,7 +6432,7 @@
       "latest_apk_url": "https://github.com/Trixarian/NetherSX2-classic/releases/download/2.2n/NetherSX2-v2.2n-3668.apk",
       "latest_apk_size": 19544036,
       "pushed_at": "2026-06-29T12:01:14Z",
-      "stars": 1221,
+      "stars": 1224,
       "forks": 0,
       "watchers": 0,
       "downloads": 1510112,
@@ -6594,7 +6594,7 @@
       "latest_apk_url": "https://github.com/Producdevity/gamehub-lite/releases/download/v5.1.8/GameHub-Lite-v5.1.8-alt-antutu.apk",
       "latest_apk_size": 51993473,
       "pushed_at": "2026-07-03T18:28:52Z",
-      "stars": 2083,
+      "stars": 2087,
       "forks": 0,
       "watchers": 0,
       "downloads": 1483629,
@@ -7015,8 +7015,8 @@
       "latest_apk_name": "gamenative-v1.4.0-prerelease-legacy-xr.apk",
       "latest_apk_url": "https://github.com/utkarshdalal/GameNative/releases/download/v1.4.0-prerelease/gamenative-v1.4.0-prerelease-legacy-xr.apk",
       "latest_apk_size": 573779844,
-      "pushed_at": "2026-10-25T12:32:33Z",
-      "stars": 11553,
+      "pushed_at": "2026-10-27T04:22:13Z",
+      "stars": 11570,
       "forks": 0,
       "watchers": 0,
       "downloads": 1318143,
@@ -7685,19 +7685,58 @@
       "repo_url": "https://github.com/ARMSX2/ARMSX2",
       "official": false,
       "channel": "stable",
-      "latest_tag": "nightly-20261023",
-      "latest_date": "2026-10-23T14:10:10Z",
+      "latest_tag": "2.9",
+      "latest_date": "2026-10-26T14:16:39Z",
       "latest_body": "# ARMSX2 2.8.3\\n\\nWhat's new: \\n\\n## MaliSX2 for Mali GPUs\\n\\nMaliSX2 is a Vulkan driver for Mali GPUs that @bmdhacks built for ARMSX2. In 2.8.2 it was offered only on the Mali-G615 and G715, under its old ",
-      "latest_apk_name": "ARMSX2-nightly-20261023-90126bdfea-Android-arm64.apk",
-      "latest_apk_url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261023/ARMSX2-nightly-20261023-90126bdfea-Android-arm64.apk",
+      "latest_apk_name": "ARMSX2-2.9-a11-armv8.2-sdk30.apk",
+      "latest_apk_url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-a11-armv8.2-sdk30.apk",
       "latest_apk_size": 68849731,
-      "pushed_at": "2026-10-26T03:18:03Z",
-      "stars": 2278,
+      "pushed_at": "2026-10-27T03:16:36Z",
+      "stars": 2294,
       "forks": 0,
       "watchers": 0,
       "downloads": 936685,
       "logo_url": "https://the412banner.github.io/emulator-ranking/logos/armsx2.png",
       "releases": [
+        {
+          "tag": "2.9",
+          "name": "ARMSX2 2.9",
+          "date": "2026-10-26T14:16:39Z",
+          "body": "# ARMSX2 2.9\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/9146d2ba-7653-4993-a258-1b28481b59a3\" />\n\nHappy one year anniversary to ARMSX2!\n\nARMSX2 is now one year old! On October 26th, 2025, the first version of ARMSX2 was released to the world. We are so grateful for all of the support and love we've received since then, and how far the project has come! This update brings a new VU1 compiler that makes 3D-heavy games faster, an option to run the PS2's I/O processor on its own thread, our own GPU drivers offered right in setup, a lot of work for the Retroid Pocket Duo and other Adreno handhelds, Automatic Performance Tuning, and a big batch of community fixes. \n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/558c0c6f-09ae-461b-8769-057af33f186b\" />\n\n## Our GPU drivers in setup, and the Retroid Pocket Duo\n\nFirst-run setup now offers the GPU driver ARMSX2 builds for your device: ARMSX2 Turnip on Adreno 6xx and 7xx, and MaliSX2 on the Mali GPUs it supports. One tap downloads it and makes it your driver. The GPU driver page recommends ARMSX2 Turnip on every Adreno 6xx and 7xx, including the Adre",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ARMSX2-2.9-a11-armv8.2-sdk30.apk",
+              "size": 77365841,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-a11-armv8.2-sdk30.apk"
+            },
+            {
+              "name": "ARMSX2-2.9-a13-armv8.2-sdk33.apk",
+              "size": 77218385,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-a13-armv8.2-sdk33.apk"
+            },
+            {
+              "name": "ARMSX2-2.9-a15-armv8.2-sdk35.apk",
+              "size": 77185617,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-a15-armv8.2-sdk35.apk"
+            },
+            {
+              "name": "ARMSX2-2.9-legacy-armv8.0-sdk26.apk",
+              "size": 74093137,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-legacy-armv8.0-sdk26.apk"
+            },
+            {
+              "name": "ARMSX2-2.9-Linux-arm64-16K-pages.AppImage",
+              "size": 62908936,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-Linux-arm64-16K-pages.AppImage"
+            },
+            {
+              "name": "ARMSX2-2.9-Linux-arm64-4K-pages.AppImage",
+              "size": 62892552,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.9/ARMSX2-2.9-Linux-arm64-4K-pages.AppImage"
+            }
+          ]
+        },
         {
           "tag": "nightly-20261023",
           "name": "ARMSX2 nightly 20261023 (90126bdfea)",
@@ -8598,20 +8637,6 @@
               "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.6.6.4/ARMSX2-2.6.6.4.apk"
             }
           ]
-        },
-        {
-          "tag": "2.6.6.3",
-          "name": "ARMSX2 2.6.6.3 ",
-          "date": "2026-08-03T13:47:08Z",
-          "body": "ARMSX2 2.6.6.3\n\nWhat's new:\n\nSave states:\n\n- Support for AetherSX2 / NetherSX2-format save states,  bring your existing saves over from\n  those emulators, including full SPU2 audio-core state from AetherSX2-era states. @bmdhacks \n\n- Legacy save-state blobs (0x9A2C / 0x9A34 layouts) are read correctly, including states\n  captured before the game's ELF CRC is known. @bmdhacks \n\n- New feature to import Save States in the Save/Load manager. In the in-game Save/Load screen and the \"Load / Manage Saves\"\n  manager, tap Import, pick a file, and it's copied into the game's next free slot, ready to load.\n\nEmulation accuracy (EE FPU / VU): \n\n- A broad sweep of floating-point fixes so the recompiler matches real PS2 silicon more accurately:\n  SQRT.S, RSQRT.S, ABS.S / NEG.S, MAX.S / MIN.S, ESQRT / ERSQRT, the EATAN family, and\n  PMADDW / PMSUBW, plus correct overflow / underflow and invalid-operation flag behaviour\n  (NaN, denormal, and -0 handling; sticky flags). Games that lean on exact FPU edge cases\n  behave more correctly.\n\n- COP2 / VU flag model corrected: sticky D/I bits, macro-flag merge, CTC2 / CFC1 masking,\n  and MAC-flag retirement on empty destination masks.\n\n- New hardware-checked ",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "ARMSX2-2.6.6.3.apk",
-              "size": 84601094,
-              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/2.6.6.3/ARMSX2-2.6.6.3.apk"
-            }
-          ]
         }
       ]
     },
@@ -8632,8 +8657,8 @@
       "latest_apk_name": "flycast-2.7.apk",
       "latest_apk_url": "https://github.com/flyinghead/flycast/releases/download/v2.7/flycast-2.7.apk",
       "latest_apk_size": 36280670,
-      "pushed_at": "2026-10-24T15:24:36Z",
-      "stars": 2622,
+      "pushed_at": "2026-10-26T13:20:24Z",
+      "stars": 2623,
       "forks": 0,
       "watchers": 0,
       "downloads": 882334,
@@ -9085,7 +9110,7 @@
       "latest_apk_url": "https://github.com/RPCSX/rpcsx-ui-android/releases/download/v20250425/rpcsx-release.apk",
       "latest_apk_size": 11134143,
       "pushed_at": "2026-08-29T13:27:19Z",
-      "stars": 1336,
+      "stars": 1337,
       "forks": 0,
       "watchers": 0,
       "downloads": 851858,
@@ -9153,7 +9178,7 @@
       "latest_apk_url": "",
       "latest_apk_size": 161893,
       "pushed_at": "2025-12-09T22:36:49Z",
-      "stars": 1116,
+      "stars": 1118,
       "forks": 0,
       "watchers": 0,
       "downloads": 845181,
@@ -10346,7 +10371,7 @@
       "latest_apk_url": "",
       "latest_apk_size": 54133653,
       "pushed_at": "2026-05-04T03:29:50Z",
-      "stars": 750,
+      "stars": 752,
       "forks": 0,
       "watchers": 0,
       "downloads": 756391,
@@ -11062,7 +11087,7 @@
       "latest_apk_url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2/Winlator_Mali_1.2_Bionic_AnTuTu.apk",
       "latest_apk_size": 789162895,
       "pushed_at": "2026-10-22T19:50:30Z",
-      "stars": 477,
+      "stars": 480,
       "forks": 0,
       "watchers": 0,
       "downloads": 642398,
@@ -11198,7 +11223,7 @@
       "latest_apk_url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL/releases/download/v0.6.3/x360-companion-0.1.0.apk",
       "latest_apk_size": 9486485,
       "pushed_at": "2026-10-18T15:39:26Z",
-      "stars": 575,
+      "stars": 578,
       "forks": 0,
       "watchers": 0,
       "downloads": 526915,
@@ -11368,8 +11393,8 @@
       "latest_apk_name": "ARMSX3-1.4-a11-armv8.2-sdk30.apk",
       "latest_apk_url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.4/ARMSX3-1.4-a11-armv8.2-sdk30.apk",
       "latest_apk_size": 85855944,
-      "pushed_at": "2026-10-25T04:58:31Z",
-      "stars": 918,
+      "pushed_at": "2026-10-27T01:08:03Z",
+      "stars": 924,
       "forks": 0,
       "watchers": 0,
       "downloads": 506775,
@@ -12265,7 +12290,7 @@
       "latest_apk_url": "https://github.com/HorizonEmuTeam/Horizon-Emu/releases/download/v4/HorizonEmu4.NotConnectedFix.apk",
       "latest_apk_size": 36803150,
       "pushed_at": "2025-02-28T07:48:56Z",
-      "stars": 719,
+      "stars": 720,
       "forks": 0,
       "watchers": 0,
       "downloads": 487053,
@@ -12319,7 +12344,7 @@
       "latest_apk_url": "https://github.com/The412Banner/BannerHub/releases/download/v3.8.1/BannerHub-v3.8.1-alt-AnTuTu.apk",
       "latest_apk_size": 145626131,
       "pushed_at": "2026-09-28T21:24:36Z",
-      "stars": 558,
+      "stars": 560,
       "forks": 0,
       "watchers": 0,
       "downloads": 364904,
@@ -13467,8 +13492,8 @@
       "latest_apk_name": "DroidDeck-0.6.0-antutu.apk",
       "latest_apk_url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-antutu.apk",
       "latest_apk_size": 46558141,
-      "pushed_at": "2026-10-26T06:25:03Z",
-      "stars": 14576,
+      "pushed_at": "2026-10-27T04:23:50Z",
+      "stars": 15026,
       "forks": 0,
       "watchers": 0,
       "downloads": 316398,
@@ -14059,8 +14084,8 @@
       "latest_apk_name": "BannerHub-V6-1.0.2-631-Patched-alt-AnTuTu.apk",
       "latest_apk_url": "https://github.com/The412Banner/bannerhub-revanced/releases/download/v1.0.2-631/BannerHub-V6-1.0.2-631-Patched-alt-AnTuTu.apk",
       "latest_apk_size": 77595394,
-      "pushed_at": "2026-10-25T18:27:36Z",
-      "stars": 179,
+      "pushed_at": "2026-10-26T14:24:52Z",
+      "stars": 180,
       "forks": 0,
       "watchers": 0,
       "downloads": 215016,
@@ -16081,7 +16106,7 @@
       "latest_apk_url": "https://github.com/rfandango/XenDroid/releases/download/XenDroid-c4f6863/XenDroid_Release_c4f6863.apk",
       "latest_apk_size": 13655333,
       "pushed_at": "2026-08-20T11:32:36Z",
-      "stars": 484,
+      "stars": 488,
       "forks": 0,
       "watchers": 0,
       "downloads": 202720,
@@ -16288,8 +16313,8 @@
       "latest_apk_name": "Bannerlator-3.1.7-pre4-antutu.apk",
       "latest_apk_url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7-pre4/Bannerlator-3.1.7-pre4-antutu.apk",
       "latest_apk_size": 552405861,
-      "pushed_at": "2026-10-25T03:34:07Z",
-      "stars": 463,
+      "pushed_at": "2026-10-27T04:05:54Z",
+      "stars": 468,
       "forks": 0,
       "watchers": 0,
       "downloads": 187268,
@@ -17274,7 +17299,7 @@
       "latest_apk_url": "",
       "latest_apk_size": 526043927,
       "pushed_at": "2026-05-12T18:19:19Z",
-      "stars": 222,
+      "stars": 221,
       "forks": 0,
       "watchers": 0,
       "downloads": 145926,
@@ -17789,7 +17814,7 @@
       "latest_apk_url": "https://github.com/WinNative-Emu/WinNative/releases/download/v0.8.0-beta/WinNative-v0.8.0-beta-Antutu-signed.apk",
       "latest_apk_size": 609382705,
       "pushed_at": "2026-10-25T14:12:53Z",
-      "stars": 722,
+      "stars": 726,
       "forks": 0,
       "watchers": 0,
       "downloads": 141006,
@@ -18761,7 +18786,7 @@
       "latest_apk_url": "https://github.com/Swordfish90/Lemuroid/releases/download/1.17.0/lemuroid-app-free-dynamic-release.apk",
       "latest_apk_size": 11985230,
       "pushed_at": "2026-10-16T09:07:56Z",
-      "stars": 4434,
+      "stars": 4438,
       "forks": 0,
       "watchers": 0,
       "downloads": 97256,
@@ -20177,7 +20202,7 @@
       "latest_apk_url": "https://github.com/The412Banner/Bannerhub-Lite/releases/download/v1.0.2/Bannerhub-Lite-v1.0.2-alt-AnTuTu.apk",
       "latest_apk_size": 49396229,
       "pushed_at": "2026-05-21T21:17:38Z",
-      "stars": 66,
+      "stars": 67,
       "forks": 0,
       "watchers": 0,
       "downloads": 28583,
@@ -22989,7 +23014,7 @@
       "latest_apk_url": "https://github.com/citron-neo/emulator/releases/download/2026-04-27/app-mainline-release.apk",
       "latest_apk_size": 22157733,
       "pushed_at": "2026-10-25T23:55:59Z",
-      "stars": 592,
+      "stars": 595,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -23266,7 +23291,7 @@
       "latest_apk_url": "https://github.com/Ghael-V/Lemon-Project/releases/download/v1.2.2/Lemon-Lite-Spoofed-v1.2.2-lite-spoofed.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-22T19:08:28Z",
-      "stars": 254,
+      "stars": 260,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -23659,13 +23684,13 @@
       "official": true,
       "channel": "stable",
       "latest_tag": "preview",
-      "latest_date": "2026-10-26T02:41:17Z",
+      "latest_date": "2026-10-26T16:54:27Z",
       "latest_body": "",
       "latest_apk_name": "DuckStation-arm64.AppImage",
       "latest_apk_url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T06:59:12Z",
-      "stars": 10888,
+      "pushed_at": "2026-10-26T16:54:25Z",
+      "stars": 10894,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -23674,78 +23699,78 @@
         {
           "tag": "preview",
           "name": "Latest Preview Build",
-          "date": "2026-10-26T02:41:17Z",
-          "body": "## Commits\n- dc623ca: Spanish (Spain) translation update 2026/10/25 (#3814) (Víctor \"IlDucci) [#3814](https://github.com/stenzek/duckstation/pull/3814)",
+          "date": "2026-10-26T16:54:27Z",
+          "body": "## Commits\n- Add descriptions to post-processing page ([Stenzek](https://github.com/stenzek/duckstation/commit/a78082b8c1bbeff01ac4ed6f2847fb2b9302a598))\n- Remove 'Post Processing Chain' groupbox ([Stenzek](https://github.com/stenzek/duckstation/commit/e0f6fa82b71e1c85877e8c18f642c0d2fba9209e))\n- Poll disconnected slots periodically ([Stenzek](https://github.com/stenzek/duckstation/commit/0310f59ac16388fef7603763ab1e6c6d25d4345e))\n- Device notification fixes ([Stenzek](https://github.com/stenzek/duckstation/commit/e41bcd36df872cf90b105e67a81a67571c10e17e))\n- Fix heap overflow when shrinking DynamicHeapArray ([Stenzek](https://github.com/stenzek/duckstation/commit/f591ef20e2ea0fa1d35fa9940e29564896f4a9bb))\n- 526b4a1: Clarify Swedish automatic setting descriptions (#3816) (Daniel Nylander) [#3816](https://github.com/stenzek/duckstation/pull/3816)",
           "prerelease": true,
           "assets": [
             {
               "name": "DuckStation-arm64.AppImage",
-              "size": 87904512,
+              "size": 87920896,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage"
             },
             {
               "name": "DuckStation-armhf.AppImage",
-              "size": 84692636,
+              "size": 84709020,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-armhf.AppImage"
             },
             {
               "name": "duckstation-mac-release.zip",
-              "size": 96358619,
+              "size": 96367306,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-mac-release.zip"
             },
             {
               "name": "duckstation-windows-arm64-installer.exe",
-              "size": 43392026,
+              "size": 43424607,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-installer.exe"
             },
             {
               "name": "duckstation-windows-arm64-release-symbols.7z",
-              "size": 12155713,
+              "size": 12165514,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-arm64-release.zip",
-              "size": 72836830,
+              "size": 72844044,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-arm64-release.zip"
             },
             {
               "name": "duckstation-windows-x64-installer.exe",
-              "size": 46095933,
+              "size": 46098577,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-installer.exe"
             },
             {
               "name": "duckstation-windows-x64-release-symbols.7z",
-              "size": 12511332,
+              "size": 12522483,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-x64-release.zip",
-              "size": 73996047,
+              "size": 74003808,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-release.zip"
             },
             {
               "name": "duckstation-windows-x64-sse2-installer.exe",
-              "size": 46097020,
+              "size": 46091448,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-installer.exe"
             },
             {
               "name": "duckstation-windows-x64-sse2-release-symbols.7z",
-              "size": 12518082,
+              "size": 12523457,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release-symbols.7z"
             },
             {
               "name": "duckstation-windows-x64-sse2-release.zip",
-              "size": 73999677,
+              "size": 74007779,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/duckstation-windows-x64-sse2-release.zip"
             },
             {
               "name": "DuckStation-x64-SSE2.AppImage",
-              "size": 94556448,
+              "size": 94576928,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64-SSE2.AppImage"
             },
             {
               "name": "DuckStation-x64.AppImage",
-              "size": 94531872,
+              "size": 94548256,
               "url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-x64.AppImage"
             }
           ]
@@ -25704,7 +25729,7 @@
       "latest_apk_url": "https://github.com/melonDS-emu/melonDS/releases/download/1.1/melonDS-1.1-appimage-aarch64.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-21T21:16:04Z",
-      "stars": 5148,
+      "stars": 5155,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -26360,7 +26385,7 @@
       "latest_apk_url": "https://github.com/mgba-emu/mgba/releases/download/0.10.5/mGBA-0.10.5-win64.7z",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-25T22:14:35Z",
-      "stars": 7529,
+      "stars": 7532,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -28446,7 +28471,7 @@
       "latest_apk_url": "https://github.com/skylersaleh/SkyEmu/releases/download/v5/SkyEmu-v5-Android.apk",
       "latest_apk_size": 105716083,
       "pushed_at": "2026-10-24T14:51:40Z",
-      "stars": 1313,
+      "stars": 1312,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -28855,13 +28880,13 @@
       "official": true,
       "channel": "stable",
       "latest_tag": "latest",
-      "latest_date": "2026-10-26T01:30:25Z",
+      "latest_date": "2026-10-27T06:49:35Z",
       "latest_body": "",
       "latest_apk_name": "linux-sdl1-x86_64.zip",
       "latest_apk_url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/linux-sdl1-x86_64.zip",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T01:30:25Z",
-      "stars": 1550,
+      "pushed_at": "2026-10-27T06:49:35Z",
+      "stars": 1551,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -28870,48 +28895,48 @@
         {
           "tag": "latest",
           "name": "nightly release",
-          "date": "2026-10-26T01:30:25Z",
-          "body": "### Notes\n• The macos and linux standalone ports are not actively maintained, and might be missing important features, using our libretro port or running windows builds through wine/crossover is considered a safer choice for those platforms\n• The macos builds might first require running `xattr -dr com.apple.quarantine FinalBurn Neo.app` from a terminal to avoid a \"FinalBurn Neo is damaged\" error\n\n### Commits since previous nightly\n• add bosco 'n pals to d_galaga (dinkc64)\n",
+          "date": "2026-10-27T06:49:35Z",
+          "body": "### Notes\n• The macos and linux standalone ports are not actively maintained, and might be missing important features, using our libretro port or running windows builds through wine/crossover is considered a safer choice for those platforms\n• The macos builds might first require running `xattr -dr com.apple.quarantine FinalBurn Neo.app` from a terminal to avoid a \"FinalBurn Neo is damaged\" error\n\n### Commits since previous nightly\n• speccy update from gab75 (dinkc64)\n",
           "prerelease": false,
           "assets": [
             {
               "name": "linux-sdl1-x86_64.zip",
-              "size": 15866223,
+              "size": 15884281,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/linux-sdl1-x86_64.zip"
             },
             {
               "name": "linux-sdl2-x86_64.zip",
-              "size": 15771971,
+              "size": 15782148,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/linux-sdl2-x86_64.zip"
             },
             {
               "name": "windows-arm64-debug.zip",
-              "size": 12119235,
+              "size": 12131416,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/windows-arm64-debug.zip"
             },
             {
               "name": "windows-arm64.zip",
-              "size": 11981684,
+              "size": 11994131,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/windows-arm64.zip"
             },
             {
               "name": "windows-x86_32-debug.zip",
-              "size": 16198296,
+              "size": 16217330,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/windows-x86_32-debug.zip"
             },
             {
               "name": "windows-x86_32.zip",
-              "size": 16055276,
+              "size": 16069501,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/windows-x86_32.zip"
             },
             {
               "name": "windows-x86_64-debug.zip",
-              "size": 16861311,
+              "size": 16879339,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/windows-x86_64-debug.zip"
             },
             {
               "name": "windows-x86_64.zip",
-              "size": 16681075,
+              "size": 16695635,
               "url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/windows-x86_64.zip"
             }
           ]
@@ -28993,7 +29018,7 @@
       "latest_apk_name": "EKA2L1-Android.apk",
       "latest_apk_url": "https://github.com/EKA2L1/EKA2L1/releases/download/continous/EKA2L1-Android.apk",
       "latest_apk_size": 28273326,
-      "pushed_at": "2026-10-25T17:32:51Z",
+      "pushed_at": "2026-10-27T05:54:53Z",
       "stars": 2061,
       "forks": 0,
       "watchers": 0,
@@ -29009,27 +29034,27 @@
           "assets": [
             {
               "name": "EKA2L1-Android.apk",
-              "size": 29236049,
+              "size": 29244390,
               "url": "https://github.com/EKA2L1/EKA2L1/releases/download/continous/EKA2L1-Android.apk"
             },
             {
               "name": "EKA2L1-iOS-unsigned.ipa",
-              "size": 11462842,
+              "size": 11467671,
               "url": "https://github.com/EKA2L1/EKA2L1/releases/download/continous/EKA2L1-iOS-unsigned.ipa"
             },
             {
               "name": "EKA2L1-Linux-x86_64.AppImage",
-              "size": 116169208,
+              "size": 116173304,
               "url": "https://github.com/EKA2L1/EKA2L1/releases/download/continous/EKA2L1-Linux-x86_64.AppImage"
             },
             {
               "name": "EKA2L1-MacOS-arm64.dmg",
-              "size": 43400251,
+              "size": 43397886,
               "url": "https://github.com/EKA2L1/EKA2L1/releases/download/continous/EKA2L1-MacOS-arm64.dmg"
             },
             {
               "name": "EKA2L1-Windows-x86_64.zip",
-              "size": 73555122,
+              "size": 73563242,
               "url": "https://github.com/EKA2L1/EKA2L1/releases/download/continous/EKA2L1-Windows-x86_64.zip"
             }
           ]
@@ -29107,7 +29132,7 @@
       "latest_apk_url": "https://github.com/nikita36078/J2ME-Loader/releases/download/continuous/J2ME_Loader-1.8.2-dev-1978-release.apk",
       "latest_apk_size": 8473066,
       "pushed_at": "2026-10-24T20:35:00Z",
-      "stars": 2715,
+      "stars": 2717,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -29553,7 +29578,7 @@
       "latest_apk_url": "https://github.com/touchHLE/touchHLE/releases/download/v0.3.0/touchHLE_v0.3.0_Android_AArch64.zip",
       "latest_apk_size": 20963890,
       "pushed_at": "2026-10-21T12:18:04Z",
-      "stars": 4039,
+      "stars": 4040,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -29749,19 +29774,48 @@
       "repo_url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port",
       "official": true,
       "channel": "stable",
-      "latest_tag": "1.0.9.1",
-      "latest_date": "2026-10-25T22:38:50Z",
+      "latest_tag": "1.1",
+      "latest_date": "2026-10-26T21:15:13Z",
       "latest_body": "",
-      "latest_apk_name": "nectar-windows.zip",
-      "latest_apk_url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.0.9.1/nectar-windows.zip",
+      "latest_apk_name": "nectar-linux.tar.gz",
+      "latest_apk_url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/nectar-linux.tar.gz",
       "latest_apk_size": 21108673,
-      "pushed_at": "2026-10-25T22:38:49Z",
-      "stars": 279,
+      "pushed_at": "2026-10-26T21:15:13Z",
+      "stars": 281,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
       "releases": [
+        {
+          "tag": "1.1",
+          "name": "Open Nectar 1.1 — Your saves, your folder",
+          "date": "2026-10-26T21:15:13Z",
+          "body": "# Open Nectar 1.1 — Your saves, your folder\n\nImport your Dolphin and GameCube saves from the launcher, keep all your\nAndroid data in a folder you can open, and play Pikmin 2 co-op without the\nnew-Pikmin crash. Also: PS4 controllers on Android, Pikmin sounds back in\nPikmin 2, and a redesigned launcher. Saves, settings, texture packs and maps\ncarry over.\n\n**Updating:** press **Update** in your launcher. On Android, install the new\nAPK over the old one. **Do not uninstall first**, or your data is lost.\n\n## New: import saves (launcher)\n\nA new **Saves** page in the launcher's **Settings**.\n\n* **Import a save** from Dolphin or a real GameCube memory card (`.gci`\n  export), or an Open Nectar save file from another install. The launcher\n  checks that it belongs to the right game and region, and tells you\n  clearly when it doesn't.\n* **Your current save is backed up first**, to a `card0-backups` folder\n  (the newest 5 are kept). **Open backups folder** takes you there. If\n  anything goes wrong during the import, your old save stays as it was.\n\n## New: Android data folder\n\nEverything Open Nectar keeps on your phone (installed games, saves,\nsettings, texture packs, HD models and maps) now liv",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "nectar-linux.tar.gz",
+              "size": 31393409,
+              "url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/nectar-linux.tar.gz"
+            },
+            {
+              "name": "nectar-windows.zip",
+              "size": 25146803,
+              "url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/nectar-windows.zip"
+            },
+            {
+              "name": "Open_Nectar-x86_64.AppImage",
+              "size": 29657592,
+              "url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/Open_Nectar-x86_64.AppImage"
+            },
+            {
+              "name": "open_nectar_1.1.apk",
+              "size": 63124821,
+              "url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/open_nectar_1.1.apk"
+            }
+          ]
+        },
         {
           "tag": "1.0.9.1",
           "name": "Open Nectar 1.0.9.1 — Windows ONLY antivirus fix",
@@ -30463,7 +30517,7 @@
       "latest_apk_url": "https://github.com/SansNope/UnleashedRecomp-Android/releases/download/v0.6.1/UnleashedRecomp_0.6.1.apk",
       "latest_apk_size": 70169911,
       "pushed_at": "2026-10-14T02:24:43Z",
-      "stars": 229,
+      "stars": 232,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -30665,7 +30719,7 @@
       "latest_apk_url": "https://github.com/jakobkhansen/SilksongAndroid/releases/download/v2.0.0/SilksongAndroid-2.0.0.apk",
       "latest_apk_size": 69694538,
       "pushed_at": "2026-09-25T19:23:48Z",
-      "stars": 99,
+      "stars": 101,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -30880,19 +30934,78 @@
       "repo_url": "https://github.com/Odrannnn/MetroidPrimePort",
       "official": true,
       "channel": "stable",
-      "latest_tag": "v0.33.1",
-      "latest_date": "2026-10-25T12:09:42Z",
+      "latest_tag": "v0.34.0",
+      "latest_date": "2026-10-26T23:07:15Z",
       "latest_body": "",
-      "latest_apk_name": "metroid-prime-port-0.33.1-android-arm64.apk",
-      "latest_apk_url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.33.1/metroid-prime-port-0.33.1-android-arm64.apk",
+      "latest_apk_name": "metroid-prime-port-0.34.0-android-arm64.apk",
+      "latest_apk_url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-android-arm64.apk",
       "latest_apk_size": 17971631,
-      "pushed_at": "2026-10-25T23:00:34Z",
-      "stars": 531,
+      "pushed_at": "2026-10-27T06:23:57Z",
+      "stars": 541,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
       "releases": [
+        {
+          "tag": "v0.34.0",
+          "name": "0.34.0",
+          "date": "2026-10-26T23:07:15Z",
+          "body": "## Metroid Prime Trilogy support\n\n**The port now runs Metroid Prime from a Metroid Prime Trilogy disc** (`R3ME01` USA, `R3MP01` PAL), with Trilogy's own Wii presentation:\n- **Trilogy's HUD**: Scan visor\n- **Wii radial beam and visor menus**, also on touch (slide a Beam/Visor button to point at an entry). With radial menus turned off, the corner menu icons show instead.\n- **Trilogy saves**: import and export on a Trilogy disc, and the port's card can mirror an emulator's Trilogy save. Switching from a GameCube disc offers to bring your saves over.\n\nAlso in this release: an experimental iPhone and iPad build, an OpenGL renderer, Remastered's thermal visor and a Remastered performance mode.\n\n**You need your own disc image:** Metroid Prime Trilogy (`R3ME01` USA, `R3MP01` PAL), whose Metroid Prime is run as the base game, Metroid Prime USA (`GM8E01`, revisions 1.00, 1.01 and 1.02), or the experimental PAL release (`GM8P01`). No disc image or game assets are included.\n\n## What else changed\n\n### Saves\n- After switching to another release's disc (for example GameCube to Trilogy), the port offers to copy that release's newest saves over, randomizer and Archipelago cards included. The Memory",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "metroid-prime-port-0.34.0-android-arm64.apk",
+              "size": 19306632,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-android-arm64.apk"
+            },
+            {
+              "name": "metroid-prime-port-0.34.0-linux-aarch64.tar.gz",
+              "size": 152928535,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-linux-aarch64.tar.gz"
+            },
+            {
+              "name": "metroid-prime-port-0.34.0-linux-x86_64.tar.gz",
+              "size": 156572611,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-linux-x86_64.tar.gz"
+            },
+            {
+              "name": "metroid-prime-port-0.34.0-macos-arm64.zip",
+              "size": 18144994,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-macos-arm64.zip"
+            },
+            {
+              "name": "metroid-prime-port-0.34.0-windows-arm64.zip",
+              "size": 69820214,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-windows-arm64.zip"
+            },
+            {
+              "name": "metroid-prime-port-0.34.0-windows-x86_64.zip",
+              "size": 71973526,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/metroid-prime-port-0.34.0-windows-x86_64.zip"
+            },
+            {
+              "name": "MetroidPrime-aarch64.AppImage",
+              "size": 137607688,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/MetroidPrime-aarch64.AppImage"
+            },
+            {
+              "name": "MetroidPrime-x86_64.AppImage",
+              "size": 141228536,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/MetroidPrime-x86_64.AppImage"
+            },
+            {
+              "name": "MetroidPrimePort.flatpak",
+              "size": 13571160,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/MetroidPrimePort.flatpak"
+            },
+            {
+              "name": "MetroidPrimePort.ipa",
+              "size": 14449672,
+              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.34.0/MetroidPrimePort.ipa"
+            }
+          ]
+        },
         {
           "tag": "v0.33.1",
           "name": "0.33.1 hotfix",
@@ -32058,40 +32171,6 @@
               "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.10.0/MetroidPrimePort.flatpak"
             }
           ]
-        },
-        {
-          "tag": "v0.9.0",
-          "name": "v0.9.0",
-          "date": "2026-10-03T09:44:26Z",
-          "body": "Archipelago seeds now shape the game itself (start room, items, elevators,\ndoors, blast shields, the temple), with a logic tracker on the map. This\nrelease also adds new control options, fullscreen, and a movable data folder\non Android. The experimental Remastered import grows to cover the HUD, map\nscreen, menu movies, liquids, font and text.\nLinux, Windows and Android, all built from one commit (`d6a48dd8`).\n\n**You need your own disc image.** Metroid Prime (USA) v1.00, `GM8E01` disc 0\nrevision 0. Nothing here contains any part of the game — no disc, no assets.\n\n## What changed\n\n### Fixes\n\n- **Android: the first launch could crash** right after picking the disc (the\n  picker took the window's surface away while the renderer still used it).\n- **Android: gyro aim turned the wrong way** horizontally.\n- **Rooms with PBR mod textures no longer streak** towards the horizon on\n  tiled floors (anisotropic filtering is capped at 2x for those maps).\n\n### Archipelago\n\n- **The game follows the seed's layout:** starting room and items, elevator\n  destinations, artifact count and final bosses, door colours, locked doors,\n  blast shields, the seed's smaller options, and randomprime's standard\n  p",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "metroid-prime-port-0.9.0-android-arm64.apk",
-              "size": 15951562,
-              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.9.0/metroid-prime-port-0.9.0-android-arm64.apk"
-            },
-            {
-              "name": "metroid-prime-port-0.9.0-linux-x86_64.tar.gz",
-              "size": 101755073,
-              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.9.0/metroid-prime-port-0.9.0-linux-x86_64.tar.gz"
-            },
-            {
-              "name": "metroid-prime-port-0.9.0-windows-x86_64.zip",
-              "size": 45352157,
-              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.9.0/metroid-prime-port-0.9.0-windows-x86_64.zip"
-            },
-            {
-              "name": "MetroidPrime-x86_64.AppImage",
-              "size": 92940792,
-              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.9.0/MetroidPrime-x86_64.AppImage"
-            },
-            {
-              "name": "MetroidPrimePort.flatpak",
-              "size": 9468296,
-              "url": "https://github.com/Odrannnn/MetroidPrimePort/releases/download/v0.9.0/MetroidPrimePort.flatpak"
-            }
-          ]
         }
       ]
     },
@@ -32192,7 +32271,7 @@
       "latest_apk_url": "https://github.com/deivid22srk/dk64-recomp-android/releases/download/v1.0.3-android-r7/dk64recomp-android-v1.0.3-android-r7.apk",
       "latest_apk_size": 10488083,
       "pushed_at": "2026-09-05T12:39:59Z",
-      "stars": 24,
+      "stars": 23,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -32399,7 +32478,7 @@
       "latest_apk_url": "https://github.com/trzy/Supermodel/releases/download/v0.3a-20261025-git-1481545/supermodel-0.3a-20261025-git-1481545-linux.tar.gz",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-25T11:08:00Z",
-      "stars": 673,
+      "stars": 675,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -33145,7 +33224,7 @@
       "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-04T17:11:21Z",
-      "stars": 684,
+      "stars": 686,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -33164,12 +33243,12 @@
       "official": true,
       "channel": "stable",
       "latest_tag": "nightly",
-      "latest_date": "2026-10-24T14:08:40Z",
+      "latest_date": "2026-10-27T01:31:57Z",
       "latest_body": "",
       "latest_apk_name": "cue2cdi-linux-x86_64",
       "latest_apk_url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/cue2cdi-linux-x86_64",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T06:04:36Z",
+      "pushed_at": "2026-10-27T06:02:53Z",
       "stars": 60,
       "forks": 0,
       "watchers": 0,
@@ -33178,9 +33257,9 @@
       "releases": [
         {
           "tag": "nightly",
-          "name": "Nightly 98212bf",
-          "date": "2026-10-24T14:08:40Z",
-          "body": "### Nightly `98212bf` — `v3.10.0` (`develop`)\n\n| | |\n|---|---|\n| **Commit** | [`98212bf`](https://github.com/libretro/virtualjaguar-libretro/commit/98212bf95d243f822f33a7383d8a603ba1b276d2) |\n| **Built** | 2026-10-24 14:08 UTC |\n| **CI run** | [build log](https://github.com/libretro/virtualjaguar-libretro/actions/runs/40089586527) |\n| **Branch** | `develop` |\n\n> Automatic build of the `develop` tip, replaced on every push. It compiled on all 24 targets; it has **not** been through the test suite or any manual QA. For a stable build use the [latest release](https://github.com/libretro/virtualjaguar-libretro/releases/latest).\n\nThe core logs its identity as `v3.10.0 98212bf` at startup — quote that line when reporting a bug against this build.\n\n### Changes since the previous nightly\n\n```\n98212bf9 fix(app): don't block in the GL swap when the display was asleep at launch (#1081) (#1089)\nfe699d5d fix(app): release a gdb-held halt on Detach/Reset/Open/Close and the Phase 3 halt follow-ups (#1090)\n```\n\n### Artifacts\n\n```\nSHA256SUMS.txt\nVirtualJaguar-nightly-linux-aarch64.AppImage\nVirtualJaguar-nightly-linux-x86_64.AppImage\nVirtualJaguar-nightly-linux-x86_64.flatpak\nVirtualJaguar-nightly-m",
+          "name": "Nightly 325f35b",
+          "date": "2026-10-27T01:31:57Z",
+          "body": "### Nightly `325f35b` — `v3.10.0` (`develop`)\n\n| | |\n|---|---|\n| **Commit** | [`325f35b`](https://github.com/libretro/virtualjaguar-libretro/commit/325f35b2b6c2f586b2f2c7e00c592f7689efd6a2) |\n| **Built** | 2026-10-27 01:31 UTC |\n| **CI run** | [build log](https://github.com/libretro/virtualjaguar-libretro/actions/runs/40413249526) |\n| **Branch** | `develop` |\n\n> Automatic build of the `develop` tip, replaced on every push. It compiled on all 24 targets; it has **not** been through the test suite or any manual QA. For a stable build use the [latest release](https://github.com/libretro/virtualjaguar-libretro/releases/latest).\n\nThe core logs its identity as `v3.10.0 325f35b` at startup — quote that line when reporting a bug against this build.\n\n### Changes since the previous nightly\n\n```\n325f35b2 ci: bump actions/checkout, setup-node, setup-python to v7 (Dependabot #1107, #1108, #1109) (#1110)\n```\n\n### Artifacts\n\n```\nSHA256SUMS.txt\nVirtualJaguar-nightly-linux-aarch64.AppImage\nVirtualJaguar-nightly-linux-x86_64.AppImage\nVirtualJaguar-nightly-linux-x86_64.flatpak\nVirtualJaguar-nightly-macos-universal.zip\nVirtualJaguar-nightly-windows-arm64-setup.exe\nVirtualJaguar-nightly-windows-arm64.z",
           "prerelease": true,
           "assets": [
             {
@@ -33205,12 +33284,12 @@
             },
             {
               "name": "jagcd-tools-macos.zip",
-              "size": 1947433,
+              "size": 1947416,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/jagcd-tools-macos.zip"
             },
             {
               "name": "jagcd-tools-windows-x64.zip",
-              "size": 3178458,
+              "size": 3177527,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/jagcd-tools-windows-x64.zip"
             },
             {
@@ -33220,97 +33299,97 @@
             },
             {
               "name": "VirtualJaguar-nightly-linux-aarch64.AppImage",
-              "size": 28277256,
+              "size": 28305928,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-linux-aarch64.AppImage"
             },
             {
               "name": "VirtualJaguar-nightly-linux-x86_64.AppImage",
-              "size": 28961272,
+              "size": 28985848,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-linux-x86_64.AppImage"
             },
             {
               "name": "VirtualJaguar-nightly-linux-x86_64.flatpak",
-              "size": 20447000,
+              "size": 20432984,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-linux-x86_64.flatpak"
             },
             {
               "name": "VirtualJaguar-nightly-macos-universal.zip",
-              "size": 32960191,
+              "size": 32999804,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-macos-universal.zip"
             },
             {
               "name": "VirtualJaguar-nightly-windows-arm64-setup.exe",
-              "size": 21346433,
+              "size": 21358974,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-arm64-setup.exe"
             },
             {
               "name": "VirtualJaguar-nightly-windows-arm64.zip",
-              "size": 24273000,
+              "size": 24290259,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-arm64.zip"
             },
             {
               "name": "VirtualJaguar-nightly-windows-x64-setup.exe",
-              "size": 23018408,
+              "size": 23034190,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-x64-setup.exe"
             },
             {
               "name": "VirtualJaguar-nightly-windows-x64.zip",
-              "size": 26593841,
+              "size": 26619279,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/VirtualJaguar-nightly-windows-x64.zip"
             },
             {
               "name": "virtualjaguar_libretro-android-arm64-v8a-debug.tar.gz",
-              "size": 1073,
+              "size": 1076,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-arm64-v8a-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-arm64-v8a.so",
-              "size": 2438056,
+              "size": 2438760,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-arm64-v8a.so"
             },
             {
               "name": "virtualjaguar_libretro-android-armeabi-v7a-debug.tar.gz",
-              "size": 1096,
+              "size": 1097,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-armeabi-v7a-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-armeabi-v7a.so",
-              "size": 1835280,
+              "size": 1835760,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-armeabi-v7a.so"
             },
             {
               "name": "virtualjaguar_libretro-android-x86-debug.tar.gz",
-              "size": 1008,
+              "size": 1014,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-x86.so",
-              "size": 2327352,
+              "size": 2328168,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86.so"
             },
             {
               "name": "virtualjaguar_libretro-android-x86_64-debug.tar.gz",
-              "size": 1052,
+              "size": 1057,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-android-x86_64.so",
-              "size": 2508808,
+              "size": 2509448,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-android-x86_64.so"
             },
             {
               "name": "virtualjaguar_libretro-emscripten-wasm-debug.tar.gz",
-              "size": 3259643,
+              "size": 3265411,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-emscripten-wasm-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-emscripten-wasm.bc",
-              "size": 30667514,
+              "size": 30671670,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-emscripten-wasm.bc"
             },
             {
               "name": "virtualjaguar_libretro-ios-arm64-debug.tar.gz",
-              "size": 1049646,
+              "size": 1050038,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-ios-arm64-debug.tar.gz"
             },
             {
@@ -33320,7 +33399,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-aarch64-debug.tar.gz",
-              "size": 2299947,
+              "size": 2300161,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-aarch64-debug.tar.gz"
             },
             {
@@ -33330,7 +33409,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-i686-debug.tar.gz",
-              "size": 2343708,
+              "size": 2345039,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-i686-debug.tar.gz"
             },
             {
@@ -33340,7 +33419,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi1-armv6-debug.tar.gz",
-              "size": 2225491,
+              "size": 2227108,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi1-armv6-debug.tar.gz"
             },
             {
@@ -33350,7 +33429,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi2-cortex-a7-debug.tar.gz",
-              "size": 2357484,
+              "size": 2358228,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi2-cortex-a7-debug.tar.gz"
             },
             {
@@ -33360,7 +33439,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3-cortex-a53-debug.tar.gz",
-              "size": 2350327,
+              "size": 2351402,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi3-cortex-a53-debug.tar.gz"
             },
             {
@@ -33370,7 +33449,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi3_64-cortex-a53-debug.tar.gz",
-              "size": 2303624,
+              "size": 2304917,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi3_64-cortex-a53-debug.tar.gz"
             },
             {
@@ -33380,7 +33459,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4-cortex-a72-debug.tar.gz",
-              "size": 2360398,
+              "size": 2361318,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4-cortex-a72-debug.tar.gz"
             },
             {
@@ -33390,17 +33469,17 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4_64-cortex-a72-debug.tar.gz",
-              "size": 2314279,
+              "size": 2315712,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4_64-cortex-a72-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi4_64-cortex-a72.so",
-              "size": 2696512,
+              "size": 2762048,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi4_64-cortex-a72.so"
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5-cortex-a76-debug.tar.gz",
-              "size": 2360189,
+              "size": 2361285,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi5-cortex-a76-debug.tar.gz"
             },
             {
@@ -33410,7 +33489,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-rpi5_64-cortex-a76-debug.tar.gz",
-              "size": 2315609,
+              "size": 2316738,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-rpi5_64-cortex-a76-debug.tar.gz"
             },
             {
@@ -33420,7 +33499,7 @@
             },
             {
               "name": "virtualjaguar_libretro-linux-x86_64-debug.tar.gz",
-              "size": 2390818,
+              "size": 2387699,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-linux-x86_64-debug.tar.gz"
             },
             {
@@ -33430,17 +33509,17 @@
             },
             {
               "name": "virtualjaguar_libretro-macos-arm64-debug.tar.gz",
-              "size": 1069683,
+              "size": 1069994,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-arm64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-macos-arm64.dylib",
-              "size": 2345472,
+              "size": 2345488,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-arm64.dylib"
             },
             {
               "name": "virtualjaguar_libretro-macos-x86_64-debug.tar.gz",
-              "size": 1243484,
+              "size": 1244029,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-macos-x86_64-debug.tar.gz"
             },
             {
@@ -33450,17 +33529,17 @@
             },
             {
               "name": "virtualjaguar_libretro-switch-debug.tar.gz",
-              "size": 3073757,
+              "size": 3073098,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-switch-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-switch.a",
-              "size": 6030164,
+              "size": 6032476,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-switch.a"
             },
             {
               "name": "virtualjaguar_libretro-tvos-arm64-debug.tar.gz",
-              "size": 1163846,
+              "size": 1164121,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-tvos-arm64-debug.tar.gz"
             },
             {
@@ -33470,32 +33549,32 @@
             },
             {
               "name": "virtualjaguar_libretro-vita-debug.tar.gz",
-              "size": 2849906,
+              "size": 2849923,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-vita-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-vita.a",
-              "size": 2885926,
+              "size": 2886734,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-vita.a"
             },
             {
               "name": "virtualjaguar_libretro-windows-i686-debug.tar.gz",
-              "size": 2637839,
+              "size": 2639280,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-i686-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-windows-i686.dll",
-              "size": 25045689,
+              "size": 25046713,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-i686.dll"
             },
             {
               "name": "virtualjaguar_libretro-windows-x86_64-debug.tar.gz",
-              "size": 2782900,
+              "size": 2783198,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-x86_64-debug.tar.gz"
             },
             {
               "name": "virtualjaguar_libretro-windows-x86_64.dll",
-              "size": 25306503,
+              "size": 25307015,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_libretro-windows-x86_64.dll"
             },
             {
@@ -33505,12 +33584,12 @@
             },
             {
               "name": "virtualjaguar_nightly_amd64.deb",
-              "size": 20162452,
+              "size": 20198200,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_nightly_amd64.deb"
             },
             {
               "name": "virtualjaguar_nightly_arm64.deb",
-              "size": 19307180,
+              "size": 19323664,
               "url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/virtualjaguar_nightly_arm64.deb"
             }
           ]
@@ -38594,8 +38673,8 @@
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-25T23:39:17Z",
-      "stars": 255,
+      "pushed_at": "2026-10-27T01:10:27Z",
+      "stars": 254,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -38629,7 +38708,7 @@
       "latest_apk_url": "https://github.com/vitor251093/KHMelonMix/releases/download/v0.9.3/MelonMix-appimage-x86_64.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-16T03:27:37Z",
-      "stars": 636,
+      "stars": 637,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -40536,7 +40615,7 @@
       "latest_apk_url": "https://github.com/zenithblue-oss/panplay/releases/download/panplay-v1.2.7/PanPlay-v1.2.7.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-12T18:02:32Z",
-      "stars": 18,
+      "stars": 19,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -41521,7 +41600,7 @@
       "latest_tag": "v0.119.0-beta.3",
       "latest_apk_url": "https://github.com/termux/termux-app/releases/download/v0.119.0-beta.3/termux-app_v0.119.0-beta.3%2Bapt-android-5-github-debug_arm64-v8a.apk",
       "pushed_at": "2026-09-26T05:11:44Z",
-      "stars": 63430,
+      "stars": 63494,
       "homepage": "https://termux.dev/cn/",
       "repo_url": "https://github.com/termux/termux-app",
       "releases": [
@@ -42086,8 +42165,8 @@
       "repo": "hrydgard/ppsspp",
       "latest_tag": "v1.20.4",
       "latest_apk_url": "https://github.com/hrydgard/ppsspp/releases/download/v1.20.4/org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb",
-      "pushed_at": "2026-10-25T22:53:14Z",
-      "stars": 14752,
+      "pushed_at": "2026-10-26T23:46:23Z",
+      "stars": 14757,
       "homepage": "https://www.ppsspp.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/ppsspp.png",
       "repo_url": "https://github.com/hrydgard/ppsspp",
@@ -42940,8 +43019,8 @@
       "repo": "libretro/RetroArch",
       "latest_tag": "v1.22.2",
       "latest_apk_url": "https://github.com/libretro/RetroArch/releases/download/v1.22.2/retroarch-sourceonly-1.22.2.tar.xz",
-      "pushed_at": "2026-10-26T07:09:18Z",
-      "stars": 14436,
+      "pushed_at": "2026-10-27T06:38:49Z",
+      "stars": 14451,
       "homepage": "https://www.retroarch.com",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/retroarch.png",
       "repo_url": "https://github.com/libretro/RetroArch",
@@ -43230,7 +43309,7 @@
       "latest_tag": "nJoy",
       "latest_apk_url": "",
       "pushed_at": "2026-10-25T12:40:23Z",
-      "stars": 15718,
+      "stars": 15723,
       "homepage": "https://dolphin-emu.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/dolphin.png",
       "repo_url": "https://github.com/dolphin-emu/dolphin",
@@ -43245,7 +43324,7 @@
       "logoUrl": "https://avatars.githubusercontent.com/u/103731829?v=4",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
       "stars": 72,
-      "pushed_at": "2026-10-25T06:37:08Z",
+      "pushed_at": "2026-10-27T06:21:13Z",
       "latest_tag": "1.0.8",
       "latest_date": "2026-06-05T11:27:23Z",
       "latest_apk_name": "box64-android-glibc-v11.tar.xz",
@@ -47617,45 +47696,45 @@
       "repo_url": "https://github.com/shadps4-emu/shadPS4",
       "official": true,
       "channel": "stable/unknown",
-      "latest_tag": "Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51",
-      "latest_date": "2026-10-25T23:09:13Z",
+      "latest_tag": "Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc",
+      "latest_date": "2026-10-26T22:51:26Z",
       "latest_body": "",
-      "latest_apk_name": "shadps4-linux-sdl-2026-10-25-2cdefaa.zip",
-      "latest_apk_url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51/shadps4-linux-sdl-2026-10-25-2cdefaa.zip",
+      "latest_apk_name": "shadps4-linux-sdl-2026-10-26-3eecea9.zip",
+      "latest_apk_url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc/shadps4-linux-sdl-2026-10-26-3eecea9.zip",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-25T23:09:35Z",
-      "stars": 33919,
+      "pushed_at": "2026-10-26T22:51:49Z",
+      "stars": 33934,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/shadps4.png",
       "releases": [
         {
-          "tag": "Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51",
-          "name": "Pre-release-shadPS4-2026-10-25-2cdefaa",
-          "date": "2026-10-25T23:09:13Z",
-          "body": "Full Changelog: [v.0.20.0...2cdefaa](https://github.com/shadps4-emu/shadPS4/compare/v.0.20.0...2cdefaa1298c6e4ece6c74bd84e90f3906282d51)",
+          "tag": "Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc",
+          "name": "Pre-release-shadPS4-2026-10-26-3eecea9",
+          "date": "2026-10-26T22:51:26Z",
+          "body": "Full Changelog: [v.0.20.0...3eecea9](https://github.com/shadps4-emu/shadPS4/compare/v.0.20.0...3eecea94ddaca360b19f4b800523b609a8b2ffcc)",
           "prerelease": true,
           "assets": [
             {
-              "name": "shadps4-linux-sdl-2026-10-25-2cdefaa.zip",
-              "size": 33378878,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51/shadps4-linux-sdl-2026-10-25-2cdefaa.zip"
+              "name": "shadps4-linux-sdl-2026-10-26-3eecea9.zip",
+              "size": 33379633,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc/shadps4-linux-sdl-2026-10-26-3eecea9.zip"
             },
             {
-              "name": "shadps4-macos-sdl-2026-10-25-2cdefaa.zip",
-              "size": 36906876,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51/shadps4-macos-sdl-2026-10-25-2cdefaa.zip"
+              "name": "shadps4-macos-sdl-2026-10-26-3eecea9.zip",
+              "size": 36908558,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc/shadps4-macos-sdl-2026-10-26-3eecea9.zip"
             },
             {
-              "name": "shadps4-ubuntu64-2026-10-25-2cdefaa.zip",
-              "size": 45237712,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51/shadps4-ubuntu64-2026-10-25-2cdefaa.zip"
+              "name": "shadps4-ubuntu64-2026-10-26-3eecea9.zip",
+              "size": 45238467,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc/shadps4-ubuntu64-2026-10-26-3eecea9.zip"
             },
             {
-              "name": "shadps4-win64-sdl-2026-10-25-2cdefaa.zip",
-              "size": 31465550,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-25-2cdefaa1298c6e4ece6c74bd84e90f3906282d51/shadps4-win64-sdl-2026-10-25-2cdefaa.zip"
+              "name": "shadps4-win64-sdl-2026-10-26-3eecea9.zip",
+              "size": 31470698,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc/shadps4-win64-sdl-2026-10-26-3eecea9.zip"
             }
           ]
         },
@@ -48413,19 +48492,109 @@
       "repo_url": "https://github.com/KytyPS5/KytyPS5",
       "official": true,
       "channel": "stable/unknown",
-      "latest_tag": "KytyPS5-2026-10-26-597137e",
-      "latest_date": "2026-10-26T01:25:30Z",
+      "latest_tag": "KytyPS5-2026-10-27-fd6b28c",
+      "latest_date": "2026-10-27T06:40:01Z",
       "latest_body": "",
-      "latest_apk_name": "KytyPS5-2026-10-26-597137e-Linux-x86_64.tar.gz",
-      "latest_apk_url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-26-597137e/KytyPS5-2026-10-26-597137e-Linux-x86_64.tar.gz",
+      "latest_apk_name": "KytyPS5-2026-10-27-fd6b28c-Linux-x86_64.tar.gz",
+      "latest_apk_url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-fd6b28c/KytyPS5-2026-10-27-fd6b28c-Linux-x86_64.tar.gz",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T05:03:29Z",
-      "stars": 9862,
+      "pushed_at": "2026-10-27T06:51:24Z",
+      "stars": 9938,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
       "releases": [
+        {
+          "tag": "KytyPS5-2026-10-27-fd6b28c",
+          "name": "KytyPS5-2026-10-27-fd6b28c",
+          "date": "2026-10-27T06:40:01Z",
+          "body": "**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-27-770438c...KytyPS5-2026-10-27-fd6b28c",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "KytyPS5-2026-10-27-fd6b28c-Linux-x86_64.tar.gz",
+              "size": 77485819,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-fd6b28c/KytyPS5-2026-10-27-fd6b28c-Linux-x86_64.tar.gz"
+            },
+            {
+              "name": "KytyPS5-2026-10-27-fd6b28c-macOS-x86_64.zip",
+              "size": 57466091,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-fd6b28c/KytyPS5-2026-10-27-fd6b28c-macOS-x86_64.zip"
+            },
+            {
+              "name": "KytyPS5-2026-10-27-fd6b28c-Windows-x64.zip",
+              "size": 29624411,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-fd6b28c/KytyPS5-2026-10-27-fd6b28c-Windows-x64.zip"
+            }
+          ]
+        },
+        {
+          "tag": "KytyPS5-2026-10-27-db12f0c",
+          "name": "KytyPS5-2026-10-27-db12f0c",
+          "date": "2026-10-27T03:47:01Z",
+          "body": "**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-26-986721f...KytyPS5-2026-10-27-db12f0c",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "KytyPS5-2026-10-27-db12f0c-Windows-x64.zip",
+              "size": 29202373,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-db12f0c/KytyPS5-2026-10-27-db12f0c-Windows-x64.zip"
+            }
+          ]
+        },
+        {
+          "tag": "KytyPS5-2026-10-27-770438c",
+          "name": "KytyPS5-2026-10-27-770438c",
+          "date": "2026-10-27T05:41:43Z",
+          "body": "## What's Changed\n* ci: fix the Linux build and the macOS SRT walker test crashes by @MrBigBritches in https://github.com/KytyPS5/KytyPS5/pull/1922\n\n\n**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-27-db12f0c...KytyPS5-2026-10-27-770438c",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "KytyPS5-2026-10-27-770438c-Linux-x86_64.tar.gz",
+              "size": 77263130,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-770438c/KytyPS5-2026-10-27-770438c-Linux-x86_64.tar.gz"
+            },
+            {
+              "name": "KytyPS5-2026-10-27-770438c-macOS-x86_64.zip",
+              "size": 57064908,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-770438c/KytyPS5-2026-10-27-770438c-macOS-x86_64.zip"
+            },
+            {
+              "name": "KytyPS5-2026-10-27-770438c-Windows-x64.zip",
+              "size": 29202057,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-770438c/KytyPS5-2026-10-27-770438c-Windows-x64.zip"
+            }
+          ]
+        },
+        {
+          "tag": "KytyPS5-2026-10-26-f90a8b1",
+          "name": "KytyPS5-2026-10-26-f90a8b1",
+          "date": "2026-10-26T07:39:10Z",
+          "body": "**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-26-3c62269...KytyPS5-2026-10-26-f90a8b1",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "KytyPS5-2026-10-26-f90a8b1-Windows-x64.zip",
+              "size": 29189660,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-26-f90a8b1/KytyPS5-2026-10-26-f90a8b1-Windows-x64.zip"
+            }
+          ]
+        },
+        {
+          "tag": "KytyPS5-2026-10-26-986721f",
+          "name": "KytyPS5-2026-10-26-986721f",
+          "date": "2026-10-26T21:57:50Z",
+          "body": "## What's Changed\n* shader: decode FLAT, GLOBAL and SCRATCH D16 high-half loads by @MrFr3di in https://github.com/KytyPS5/KytyPS5/pull/1924\n\n## New Contributors\n* @MrFr3di made their first contribution in https://github.com/KytyPS5/KytyPS5/pull/1924\n\n**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-26-f90a8b1...KytyPS5-2026-10-26-986721f",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "KytyPS5-2026-10-26-986721f-Windows-x64.zip",
+              "size": 29189295,
+              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-26-986721f/KytyPS5-2026-10-26-986721f-Windows-x64.zip"
+            }
+          ]
+        },
         {
           "tag": "KytyPS5-2026-10-26-597137e",
           "name": "KytyPS5-2026-10-26-597137e",
@@ -48985,126 +49154,6 @@
               "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-4644c52/KytyPS5-2026-10-21-4644c52-Windows-x64.zip"
             }
           ]
-        },
-        {
-          "tag": "KytyPS5-2026-10-21-2864818",
-          "name": "KytyPS5-2026-10-21-2864818",
-          "date": "2026-10-21T19:53:32Z",
-          "body": "## What's Changed\n* shader: emit float min/max as host instructions on AMD GPUs by @Arda501 in https://github.com/KytyPS5/KytyPS5/pull/1761\n\n## New Contributors\n* @Arda501 made their first contribution in https://github.com/KytyPS5/KytyPS5/pull/1761\n\n**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-21-c07ad62...KytyPS5-2026-10-21-2864818",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "KytyPS5-2026-10-21-2864818-Linux-x86_64.tar.gz",
-              "size": 76622339,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-2864818/KytyPS5-2026-10-21-2864818-Linux-x86_64.tar.gz"
-            },
-            {
-              "name": "KytyPS5-2026-10-21-2864818-macOS-x86_64.zip",
-              "size": 56323170,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-2864818/KytyPS5-2026-10-21-2864818-macOS-x86_64.zip"
-            },
-            {
-              "name": "KytyPS5-2026-10-21-2864818-Windows-x64.zip",
-              "size": 28340919,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-2864818/KytyPS5-2026-10-21-2864818-Windows-x64.zip"
-            }
-          ]
-        },
-        {
-          "tag": "KytyPS5-2026-10-21-13b291f",
-          "name": "KytyPS5-2026-10-21-13b291f",
-          "date": "2026-10-21T17:43:12Z",
-          "body": "**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-21-4644c52...KytyPS5-2026-10-21-13b291f",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "KytyPS5-2026-10-21-13b291f-Linux-x86_64.tar.gz",
-              "size": 76622680,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-13b291f/KytyPS5-2026-10-21-13b291f-Linux-x86_64.tar.gz"
-            },
-            {
-              "name": "KytyPS5-2026-10-21-13b291f-macOS-x86_64.zip",
-              "size": 56320927,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-13b291f/KytyPS5-2026-10-21-13b291f-macOS-x86_64.zip"
-            },
-            {
-              "name": "KytyPS5-2026-10-21-13b291f-Windows-x64.zip",
-              "size": 28338527,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-13b291f/KytyPS5-2026-10-21-13b291f-Windows-x64.zip"
-            }
-          ]
-        },
-        {
-          "tag": "KytyPS5-2026-10-20-f492027",
-          "name": "KytyPS5-2026-10-20-f492027",
-          "date": "2026-10-20T13:48:26Z",
-          "body": "**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-20-1a053f9...KytyPS5-2026-10-20-f492027",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "KytyPS5-2026-10-20-f492027-Linux-x86_64.tar.gz",
-              "size": 76691490,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-f492027/KytyPS5-2026-10-20-f492027-Linux-x86_64.tar.gz"
-            },
-            {
-              "name": "KytyPS5-2026-10-20-f492027-macOS-x86_64.zip",
-              "size": 56467373,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-f492027/KytyPS5-2026-10-20-f492027-macOS-x86_64.zip"
-            },
-            {
-              "name": "KytyPS5-2026-10-20-f492027-Windows-x64.zip",
-              "size": 28381849,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-f492027/KytyPS5-2026-10-20-f492027-Windows-x64.zip"
-            }
-          ]
-        },
-        {
-          "tag": "KytyPS5-2026-10-20-f186b35",
-          "name": "KytyPS5-2026-10-20-f186b35",
-          "date": "2026-10-20T02:00:49Z",
-          "body": "**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-20-992a830...KytyPS5-2026-10-20-f186b35",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "KytyPS5-2026-10-20-f186b35-Linux-x86_64.tar.gz",
-              "size": 76686675,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-f186b35/KytyPS5-2026-10-20-f186b35-Linux-x86_64.tar.gz"
-            },
-            {
-              "name": "KytyPS5-2026-10-20-f186b35-macOS-x86_64.zip",
-              "size": 56451138,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-f186b35/KytyPS5-2026-10-20-f186b35-macOS-x86_64.zip"
-            },
-            {
-              "name": "KytyPS5-2026-10-20-f186b35-Windows-x64.zip",
-              "size": 28375234,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-f186b35/KytyPS5-2026-10-20-f186b35-Windows-x64.zip"
-            }
-          ]
-        },
-        {
-          "tag": "KytyPS5-2026-10-20-992a830",
-          "name": "KytyPS5-2026-10-20-992a830",
-          "date": "2026-10-20T01:37:24Z",
-          "body": "## What's Changed\n* tests: stub VR pad ports in controller settings tests by @theantipopau in https://github.com/KytyPS5/KytyPS5/pull/1741\n\n\n**Full Changelog**: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-19-0cad467...KytyPS5-2026-10-20-992a830",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "KytyPS5-2026-10-20-992a830-Linux-x86_64.tar.gz",
-              "size": 76684300,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-992a830/KytyPS5-2026-10-20-992a830-Linux-x86_64.tar.gz"
-            },
-            {
-              "name": "KytyPS5-2026-10-20-992a830-macOS-x86_64.zip",
-              "size": 56451074,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-992a830/KytyPS5-2026-10-20-992a830-macOS-x86_64.zip"
-            },
-            {
-              "name": "KytyPS5-2026-10-20-992a830-Windows-x64.zip",
-              "size": 28375523,
-              "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-20-992a830/KytyPS5-2026-10-20-992a830-Windows-x64.zip"
-            }
-          ]
         }
       ]
     },
@@ -49126,7 +49175,7 @@
       "latest_apk_url": "https://github.com/Ilya114/Box64Droid/releases/download/alpha/glibc-prefix.tar.xz",
       "latest_apk_size": 0,
       "pushed_at": "2026-05-15T23:16:07Z",
-      "stars": 1089,
+      "stars": 1090,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -49250,7 +49299,7 @@
       "latest_apk_url": "https://github.com/JICA98/Bachata-S4/releases/download/v0.2.5/bachatas4-0.2.5-release.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-23T03:21:52Z",
-      "stars": 249,
+      "stars": 257,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -49378,8 +49427,8 @@
       "latest_apk_name": "NXEmu-0.6.0-462-65abc63.zip",
       "latest_apk_url": "https://github.com/N3xoX1/nxemu/releases/download/0.6.0-462-65abc63/NXEmu-0.6.0-462-65abc63.zip",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T04:29:17Z",
-      "stars": 400,
+      "pushed_at": "2026-10-27T03:05:11Z",
+      "stars": 404,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -49753,7 +49802,7 @@
       "latest_apk_url": "https://github.com/HarbourMasters/Shipwright/releases/download/9.3.1/SoH-Dewey-Bravo-Mac.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-24T13:40:22Z",
-      "stars": 5762,
+      "stars": 5772,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -50694,7 +50743,7 @@
       "latest_apk_url": "https://github.com/2ship2harkinian/2ship2harkinian/releases/download/5.0.1/2Ship-Battler-Bravo-Linux.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-24T14:42:15Z",
-      "stars": 2380,
+      "stars": 2383,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -51440,7 +51489,7 @@
       "latest_apk_url": "https://github.com/Zelda64Recomp/Zelda64Recomp/releases/download/v1.2.2/Zelda64Recompiled-v1.2.2-Linux-ARM64.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-25T18:57:57Z",
-      "stars": 7526,
+      "stars": 7538,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -51663,8 +51712,8 @@
       "latest_apk_name": "Nautilus-Alfa-Android.zip",
       "latest_apk_url": "https://github.com/HarbourMasters/Ghostship/releases/download/3.0.0/Nautilus-Alfa-Android.zip",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-25T10:17:44Z",
-      "stars": 858,
+      "pushed_at": "2026-10-27T06:37:54Z",
+      "stars": 865,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -51820,7 +51869,7 @@
       "latest_apk_url": "https://github.com/HarbourMasters/SpaghettiKart/releases/download/1.0.0/spaghetti-linux.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-22T15:55:20Z",
-      "stars": 2452,
+      "stars": 2458,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -51918,7 +51967,7 @@
       "latest_apk_url": "https://github.com/BanjoRecomp/BanjoRecomp/releases/download/v1.0.2/BanjoRecompiled-v1.0.2-Linux-ARM64.tar.gz",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-25T18:57:08Z",
-      "stars": 2090,
+      "stars": 2095,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -52041,7 +52090,7 @@
       "latest_apk_url": "https://github.com/Rainchus/Donkey-Kong-64-Recompiled/releases/download/v1.0.3/DK64Recompiled-Flatpak-X64-Release-1-0-3.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-30T00:21:10Z",
-      "stars": 546,
+      "stars": 549,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -52203,7 +52252,7 @@
       "latest_apk_url": "https://github.com/JackandBeans/Snap64Recomp/releases/download/v1.1.6/Snap64Recomp-1.1.6-android.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-25T02:17:38Z",
-      "stars": 122,
+      "stars": 125,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -52912,7 +52961,7 @@
       "latest_apk_url": "https://github.com/TwilitRealm/dusklight/releases/download/v2.0.3/Dusklight-v2.0.3-android-arm64.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-26T04:50:53Z",
-      "stars": 6081,
+      "stars": 6097,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -53799,7 +53848,7 @@
       "latest_apk_url": "https://github.com/Zorkats/G-Diffuser/releases/download/nightly/G-Diffuser-v1.1.0-nightly.20261017.bf1f367-linux-arm64.tar.gz",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-25T01:00:55Z",
-      "stars": 297,
+      "stars": 300,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -53949,7 +53998,7 @@
       "latest_apk_url": "https://github.com/mchughalex/skate3recomp/releases/download/v2.0.2/Skate3Recomp-Linux.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-07-24T21:18:52Z",
-      "stars": 1727,
+      "stars": 1738,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -54179,40 +54228,59 @@
       "repo_url": "https://github.com/FelipePrado0/SpartanPort",
       "official": true,
       "channel": "stable/unknown",
-      "latest_tag": "windows-v2.8.0-intel-test2",
-      "latest_date": "2026-10-26T04:56:58Z",
+      "latest_tag": "windows-v2.8.0-launcher-identity-test1",
+      "latest_date": "2026-10-27T04:37:53Z",
       "latest_body": "",
-      "latest_apk_name": "release-windows.json",
-      "latest_apk_url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test2/release-windows.json",
+      "latest_apk_name": "spartanport-windows.zip",
+      "latest_apk_url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-launcher-identity-test1/spartanport-windows.zip",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T04:56:58Z",
-      "stars": 4166,
+      "pushed_at": "2026-10-27T04:37:53Z",
+      "stars": 4227,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
       "releases": [
         {
-          "tag": "windows-v2.8.0-intel-test2",
-          "name": "Windows test build windows-v2.8.0-intel-test2",
-          "date": "2026-10-26T04:56:58Z",
-          "body": "Windows test build from `09f0fd1`. Download `spartanport-windows.zip`, extract it and run `SpartanPort.exe`. Not a final release: please report in the linked issue whether it opens and runs.",
+          "tag": "windows-v2.8.0-launcher-identity-test1",
+          "name": "Windows test build windows-v2.8.0-launcher-identity-test1",
+          "date": "2026-10-27T04:37:53Z",
+          "body": "Windows test build from `8812a19`. Download `spartanport-windows.zip`, extract it and run `SpartanPort.exe`. Not a final release: please report in the linked issue whether it opens and runs.",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "spartanport-windows.zip",
+              "size": 71085698,
+              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-launcher-identity-test1/spartanport-windows.zip"
+            },
+            {
+              "name": "spartanport-windows.zip.sha256",
+              "size": 90,
+              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-launcher-identity-test1/spartanport-windows.zip.sha256"
+            }
+          ]
+        },
+        {
+          "tag": "windows-v2.8.0-intel-test4",
+          "name": "Windows test build windows-v2.8.0-intel-test4",
+          "date": "2026-10-27T00:24:06Z",
+          "body": "Windows test build from `4008738`. Download `spartanport-windows.zip`, extract it and run `SpartanPort.exe`. Not a final release: please report in the linked issue whether it opens and runs.",
           "prerelease": true,
           "assets": [
             {
               "name": "release-windows.json",
               "size": 72,
-              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test2/release-windows.json"
+              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test4/release-windows.json"
             },
             {
               "name": "spartanport-windows.zip",
-              "size": 86864175,
-              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test2/spartanport-windows.zip"
+              "size": 86899699,
+              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test4/spartanport-windows.zip"
             },
             {
               "name": "spartanport-windows.zip.sha256",
               "size": 90,
-              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test2/spartanport-windows.zip.sha256"
+              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test4/spartanport-windows.zip.sha256"
             }
           ]
         },
@@ -54237,30 +54305,6 @@
               "name": "spartanport-windows.zip.sha256",
               "size": 90,
               "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-issue1075-test1/spartanport-windows.zip.sha256"
-            }
-          ]
-        },
-        {
-          "tag": "windows-v2.8.0-intel-test1",
-          "name": "Windows test build windows-v2.8.0-intel-test1",
-          "date": "2026-10-25T21:09:27Z",
-          "body": "Windows test build from `c04f8d8`. Download `spartanport-windows.zip`, extract it and run `SpartanPort.exe`. Not a final release: please report in the linked issue whether it opens and runs.",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "release-windows.json",
-              "size": 72,
-              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test1/release-windows.json"
-            },
-            {
-              "name": "spartanport-windows.zip",
-              "size": 86637028,
-              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test1/spartanport-windows.zip"
-            },
-            {
-              "name": "spartanport-windows.zip.sha256",
-              "size": 90,
-              "url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-intel-test1/spartanport-windows.zip.sha256"
             }
           ]
         },
@@ -54840,7 +54884,7 @@
       "latest_apk_url": "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.9.4/Bloodborne-Windows.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-23T21:30:46Z",
-      "stars": 4648,
+      "stars": 4718,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -55339,7 +55383,7 @@
       "latest_apk_url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.3/CapyPS5-v0.0.3.apk",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-24T11:59:59Z",
-      "stars": 56,
+      "stars": 58,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
@@ -55407,7 +55451,7 @@
       "latest_apk_url": "https://github.com/samsixx6/Pocket2Droid/releases/download/1.0.2/Pocket2Droid-v1.0.2.apk",
       "latest_apk_size": 17671756,
       "pushed_at": "2026-10-18T16:39:43Z",
-      "stars": 12,
+      "stars": 13,
       "forks": 1,
       "watchers": 1,
       "downloads": 0,
@@ -55496,7 +55540,7 @@
       "latest_apk_url": "https://github.com/sashkinbro/EmuCoreV/releases/download/v0.2.6/EmuCoreV-0.2.6-parallel-v026.apk",
       "latest_apk_size": 31765028,
       "pushed_at": "2026-10-25T09:50:28Z",
-      "stars": 244,
+      "stars": 243,
       "forks": 7,
       "watchers": 9,
       "downloads": 0,
@@ -55977,7 +56021,7 @@
       "latest_apk_name": "zeebx-android-arm64-v8a.apk",
       "latest_apk_url": "https://github.com/ZeebxTeam/zeebx-emu/releases/download/v0.4.3/zeebx-android-arm64-v8a.apk",
       "latest_apk_size": 17913172,
-      "pushed_at": "2026-10-24T01:36:19Z",
+      "pushed_at": "2026-10-27T02:22:39Z",
       "stars": 60,
       "forks": 9,
       "watchers": 5,
@@ -56734,7 +56778,7 @@
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-24T09:33:32Z",
+      "pushed_at": "2026-10-27T00:43:57Z",
       "stars": 15,
       "forks": 2,
       "watchers": 1,
@@ -56759,8 +56803,8 @@
       "latest_apk_name": "INPUT_MAPPING.md",
       "latest_apk_url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/INPUT_MAPPING.md",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T07:04:00Z",
-      "stars": 48340,
+      "pushed_at": "2026-10-27T06:44:38Z",
+      "stars": 48729,
       "forks": 4362,
       "watchers": 419,
       "downloads": 0,
@@ -56997,7 +57041,7 @@
       "latest_apk_url": "https://github.com/Swordpdf/ProsperoEden/releases/download/v1.005.000/ProsperoEden-v1.005.000.zip",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-18T03:56:25Z",
-      "stars": 899,
+      "stars": 909,
       "forks": 115,
       "watchers": 18,
       "downloads": 0,
@@ -57369,19 +57413,73 @@
       "repo_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn",
       "official": false,
       "channel": "stable",
-      "latest_tag": "v1.2.10",
-      "latest_date": "2026-10-25T17:48:00Z",
+      "latest_tag": "v1.2.11",
+      "latest_date": "2026-10-26T20:12:18Z",
       "latest_body": "HyperHLE v1.2.4（2026-10-22）：Android AArch64 / iOS trollstore / Linux x86_64 三端发布。",
       "latest_apk_name": "HyperHLE-iOS-trollstore-permanent-jit.ipa",
-      "latest_apk_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.10/HyperHLE-iOS-trollstore-permanent-jit.ipa",
+      "latest_apk_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE-iOS-trollstore-permanent-jit.ipa",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T00:07:43Z",
-      "stars": 72,
+      "pushed_at": "2026-10-27T06:33:30Z",
+      "stars": 73,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
       "releases": [
+        {
+          "tag": "v1.2.11",
+          "name": "HyperHLE v1.2.11",
+          "date": "2026-10-26T20:12:18Z",
+          "body": "HyperHLE v1.2.11\n\n## Changelog\n\n- [`10003d5`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/10003d51f7a63bada50f09c5db4838ac9947582c) **@claude**: Fix CF run loop timers, CFURL resource properties and stat inodes\n- [`f54d0b2`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/f54d0b2c438ef7ba98f10cdf7e0d9df552c60d4b) **@lw404-ai**: fix: reset guest locale and GL presenter state across sessions\n- [`d5da3b8`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/d5da3b8342d5bf959438cfca8589afe0982cace7) **@KlugKlugTG**: Merge pull request #346 from lw404-ai/fix/session-relaunch-gl-ctype-20261026\n- [`13634b4`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/13634b482af0a5e7a15577eea8adeb1e22bfc413) **@goodvids56**: Merge pull request #345 from KlugKlugTG/claude/wonderful-newton-jhahff\n- [`3c93032`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/3c93032fe864c0a2188d1c6094d60ac6eb1a3ba1) **@claude**: Return the default global queue from dispatch_get_current_queue off the main thread\n- [`62a2d48`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/62a2d4827ffacecf536a95fb6b32e209e5fb4bf9) **@goodvids56**: Merge pull request #347 from KlugKlugTG/claude/intelligent-lo",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "HyperHLE-iOS-trollstore-permanent-jit.ipa",
+              "size": 44639522,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE-iOS-trollstore-permanent-jit.ipa"
+            },
+            {
+              "name": "HyperHLE-iOS-trollstore.ipa",
+              "size": 44639505,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE-iOS-trollstore.ipa"
+            },
+            {
+              "name": "HyperHLE-iOS-unsigned.ipa",
+              "size": 44634200,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE-iOS-unsigned.ipa"
+            },
+            {
+              "name": "HyperHLE_Android_AArch64.zip",
+              "size": 48774390,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE_Android_AArch64.zip"
+            },
+            {
+              "name": "HyperHLE_Linux_x86_64.zip",
+              "size": 42823896,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE_Linux_x86_64.zip"
+            },
+            {
+              "name": "HyperHLE_macOS_AArch64.zip",
+              "size": 42958950,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE_macOS_AArch64.zip"
+            },
+            {
+              "name": "HyperHLE_macOS_x86_64.zip",
+              "size": 44532805,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE_macOS_x86_64.zip"
+            },
+            {
+              "name": "HyperHLE_Windows_x86_64.zip",
+              "size": 41035400,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE_Windows_x86_64.zip"
+            },
+            {
+              "name": "HyperHLE_Windows_x86_64_Setup.exe",
+              "size": 32966507,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE_Windows_x86_64_Setup.exe"
+            }
+          ]
+        },
         {
           "tag": "v1.2.10",
           "name": "HyperHLE v1.2.10",
@@ -58627,35 +58725,6 @@
               "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.0.117/HyperHLE_Windows_x86_64.zip"
             }
           ]
-        },
-        {
-          "tag": "v1.0.116",
-          "name": "HyperHLE v1.0.116",
-          "date": "2026-10-10T11:40:09Z",
-          "body": "HyperHLE v1.0.116\n\n## Changelog\n\n- [`f6b478d`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/f6b478d505d56ce16cad4cdcb9e36d193727a28f) Update README.md (KlugKlugTG)\n- [`f0f941b`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/f0f941b05ecfc21d443b8235968ecf18130bc7cd) Remove temporary GLES diagnostic probes (zocomputer)\n- [`3e7bbc1`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/3e7bbc122814b7903eadfcdbb5e35f5104543279) App picker: delete apps with a long-press dialog, add Language setting (KlugKlugTG)\n- [`11aeb46`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/11aeb46db3a4519320fe715036977c5838edf187) App picker: animate the delete dialog when it appears (KlugKlugTG)\n- [`3fcd42b`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/3fcd42bf6b3fe5578e824d38a6f9a7895cfe78ad) App picker: animate the delete dialog when it closes (KlugKlugTG)\n- [`3bfd57e`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/3bfd57e12cbc954008bbc9e724ed62dd94c0ee6f) Merge pull request #178 from arlan7m-dot/chore/trim-gles-debug-diagnostics (KlugKlugTG)\n- [`9a5d009`](https://github.com/KlugKlugTG/HyperHLE-Fork/commit/9a5d0093b771add940b87420c230f5ad9b6315b7) Merge pull request #180 from K",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "HyperHLE_Android_AArch64.zip",
-              "size": 48014343,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.0.116/HyperHLE_Android_AArch64.zip"
-            },
-            {
-              "name": "HyperHLE_Linux_x86_64.zip",
-              "size": 42222399,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.0.116/HyperHLE_Linux_x86_64.zip"
-            },
-            {
-              "name": "HyperHLE_macOS_x86_64.zip",
-              "size": 43494445,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.0.116/HyperHLE_macOS_x86_64.zip"
-            },
-            {
-              "name": "HyperHLE_Windows_x86_64.zip",
-              "size": 40620197,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.0.116/HyperHLE_Windows_x86_64.zip"
-            }
-          ]
         }
       ]
     },
@@ -58745,7 +58814,7 @@
       "latest_apk_url": "https://github.com/SapphireRhodonite/WatermelonDS/releases/download/0.8.0.rc3/WatermelonDS-0.8.0.rc3.apk",
       "latest_apk_size": 27984399,
       "pushed_at": "2026-10-17T02:18:41Z",
-      "stars": 615,
+      "stars": 619,
       "forks": 24,
       "watchers": 12,
       "downloads": 0,
@@ -59346,7 +59415,7 @@
       "latest_apk_url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v108-9a84d065/XenDroid_Release_9a84d065.apk",
       "latest_apk_size": 42527945,
       "pushed_at": "2026-10-20T21:22:53Z",
-      "stars": 46,
+      "stars": 63,
       "forks": 5,
       "watchers": 5,
       "downloads": 0,
@@ -59817,7 +59886,7 @@
       "latest_apk_url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.3/CapyPS5-v0.0.3.apk",
       "latest_apk_size": 52959155,
       "pushed_at": "2026-10-24T11:59:59Z",
-      "stars": 56,
+      "stars": 58,
       "forks": 2,
       "watchers": 1,
       "downloads": 0,
@@ -59878,19 +59947,38 @@
       "repo_url": "https://github.com/sashkinbro/EmuCoreX",
       "official": true,
       "channel": "beta",
-      "latest_tag": "v0.5.1",
-      "latest_date": "2026-10-23T10:31:07Z",
+      "latest_tag": "v0.5.2",
+      "latest_date": "2026-10-26T12:50:00Z",
       "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.5.0...v0.5.1\r\n\r\nWhat's new: 0.5.1\r\n\r\n- UI fixes\r\n- Core fixes and improvements",
-      "latest_apk_name": "EmuCoreX-0.5.1-parallel-v051.apk",
-      "latest_apk_url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.1/EmuCoreX-0.5.1-parallel-v051.apk",
+      "latest_apk_name": "EmuCoreX-0.5.2-parallel-v052.apk",
+      "latest_apk_url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.2/EmuCoreX-0.5.2-parallel-v052.apk",
       "latest_apk_size": 73989453,
-      "pushed_at": "2026-10-25T10:05:16Z",
+      "pushed_at": "2026-10-26T12:50:00Z",
       "stars": 240,
       "forks": 18,
       "watchers": 13,
       "downloads": 0,
       "logo_url": "",
       "releases": [
+        {
+          "tag": "v0.5.2",
+          "name": "v0.5.2",
+          "date": "2026-10-26T12:50:00Z",
+          "body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.5.1...v0.5.2\n\nWhat's new: 0.5.2\n\n- UI fixes\n- Core fixes and improvements",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "EmuCoreX-0.5.2-parallel-v052.apk",
+              "size": 74054858,
+              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.2/EmuCoreX-0.5.2-parallel-v052.apk"
+            },
+            {
+              "name": "EmuCoreX.v0.5.2.apk",
+              "size": 70876408,
+              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.2/EmuCoreX.v0.5.2.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.5.1",
           "name": "v0.5.1",
@@ -60441,25 +60529,6 @@
               "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.2.3/EmuCoreX.v0.2.3.apk"
             }
           ]
-        },
-        {
-          "tag": "v0.2.2",
-          "name": "v0.2.2",
-          "date": "2026-06-28T15:50:30Z",
-          "body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.2.1...v0.2.2\n\nWhat's New: 0.2.2\n\n- Fixed Killzone and Scarface games.\nOther improvements and refinements.",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "EmuCoreX-0.2.2-parallel-v022.apk",
-              "size": 30773496,
-              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.2.2/EmuCoreX-0.2.2-parallel-v022.apk"
-            },
-            {
-              "name": "EmuCoreX.v0.2.2.apk",
-              "size": 28779094,
-              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.2.2/EmuCoreX.v0.2.2.apk"
-            }
-          ]
         }
       ]
     },
@@ -60480,7 +60549,7 @@
       "latest_apk_name": "EmuCoreH-0.1.1-parallel011.apk",
       "latest_apk_url": "https://github.com/sashkinbro/EmuCoreH/releases/download/v0.1.1/EmuCoreH-0.1.1-parallel011.apk",
       "latest_apk_size": 57161400,
-      "pushed_at": "2026-10-25T11:37:43Z",
+      "pushed_at": "2026-10-26T20:28:45Z",
       "stars": 12,
       "forks": 1,
       "watchers": 1,
@@ -60697,7 +60766,7 @@
       "latest_apk_url": "https://github.com/sashkinbro/EmuCoreA/releases/download/v0.1.2/EmuCoreA-0.1.2-parallel012.apk",
       "latest_apk_size": 64115023,
       "pushed_at": "2026-10-25T09:49:05Z",
-      "stars": 16,
+      "stars": 15,
       "forks": 2,
       "watchers": 0,
       "downloads": 0,
@@ -61000,7 +61069,7 @@
       "latest_apk_url": "https://github.com/ARMSX2/ARMSX1/releases/download/0.1.4/ARMSX1-release-20260925-arm64-v8a.apk",
       "latest_apk_size": 71379155,
       "pushed_at": "2026-10-23T09:55:07Z",
-      "stars": 290,
+      "stars": 292,
       "forks": 13,
       "watchers": 9,
       "downloads": 0,
@@ -61409,12 +61478,12 @@
       "official": true,
       "channel": "beta",
       "latest_tag": "nightly-build",
-      "latest_date": "2026-10-25T22:30:04Z",
+      "latest_date": "2026-10-26T23:47:27Z",
       "latest_body": "Automated nightly build — **for testing only**.\n\n- Built: 2026-10-22 23:13:05 UTC\n- Commit: [`109e566`](https://github.com/AloysHF/DingooEmu/commit/109e566ad63690eda7634b5a2db00efe05471f43)\n- Platform",
       "latest_apk_name": "dingoo-emu-android-libretro.tar.gz",
       "latest_apk_url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-android-libretro.tar.gz",
       "latest_apk_size": 3900000,
-      "pushed_at": "2026-10-25T22:30:04Z",
+      "pushed_at": "2026-10-26T23:47:27Z",
       "stars": 20,
       "forks": 3,
       "watchers": 1,
@@ -61423,29 +61492,29 @@
       "releases": [
         {
           "tag": "nightly-build",
-          "name": "Nightly Build 20261025 (3504b37)",
-          "date": "2026-10-25T22:30:04Z",
-          "body": "Automated nightly build — **for testing only**.\n\n- Built: 2026-10-25 22:29:56 UTC\n- Commit: [`3504b37`](https://github.com/AloysHF/DingooEmu/commit/3504b37e9b64e3b12a0ca635c1a61a0ce66db12f)\n- Platforms: Windows x86_64/i686, macOS x86_64/aarch64, Linux x86_64/aarch64/i686\n  (the 32-bit i686 builds are libretro cores only, no standalone binary)\n- Includes the standalone emulator and the libretro core (`*-libretro.*`) for RetroArch\n- Android libretro core (`dingoo-emu-android-libretro.tar.gz`) with arm64-v8a, armeabi-v7a, x86 and x86_64 ABIs\n- iOS libretro core (`dingoo-emu-ios-libretro.tar.gz`) for real devices (arm64) and simulators\n- webOS libretro core (`dingoo-emu-webos-libretro.tar.gz`) for ARMv7 TVs\n- EmulatorJS core (`dingoo-emu-emulatorjs.zip`): `cores/dingooemu-wasm.data`,\n  `cores/dingooemu-legacy-wasm.data` and `cores/reports/dingooemu.json`, ready\n  to drop into EmulatorJS's `data/` directory\n\n⚠️ Unsigned build: Windows SmartScreen / macOS Gatekeeper may block on first launch.",
+          "name": "Nightly Build 20261026 (3504b37)",
+          "date": "2026-10-26T23:47:27Z",
+          "body": "Automated nightly build — **for testing only**.\n\n- Built: 2026-10-26 23:47:20 UTC\n- Commit: [`3504b37`](https://github.com/AloysHF/DingooEmu/commit/3504b37e9b64e3b12a0ca635c1a61a0ce66db12f)\n- Platforms: Windows x86_64/i686, macOS x86_64/aarch64, Linux x86_64/aarch64/i686\n  (the 32-bit i686 builds are libretro cores only, no standalone binary)\n- Includes the standalone emulator and the libretro core (`*-libretro.*`) for RetroArch\n- Android libretro core (`dingoo-emu-android-libretro.tar.gz`) with arm64-v8a, armeabi-v7a, x86 and x86_64 ABIs\n- iOS libretro core (`dingoo-emu-ios-libretro.tar.gz`) for real devices (arm64) and simulators\n- webOS libretro core (`dingoo-emu-webos-libretro.tar.gz`) for ARMv7 TVs\n- EmulatorJS core (`dingoo-emu-emulatorjs.zip`): `cores/dingooemu-wasm.data`,\n  `cores/dingooemu-legacy-wasm.data` and `cores/reports/dingooemu.json`, ready\n  to drop into EmulatorJS's `data/` directory\n\n⚠️ Unsigned build: Windows SmartScreen / macOS Gatekeeper may block on first launch.",
           "prerelease": true,
           "assets": [
             {
               "name": "dingoo-emu-android-libretro.tar.gz",
-              "size": 4082364,
+              "size": 4082360,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-android-libretro.tar.gz"
             },
             {
               "name": "dingoo-emu-emulatorjs.zip",
-              "size": 2173324,
+              "size": 2173328,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-emulatorjs.zip"
             },
             {
               "name": "dingoo-emu-ios-libretro.tar.gz",
-              "size": 1253628,
+              "size": 1253635,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-ios-libretro.tar.gz"
             },
             {
               "name": "dingoo-emu-linux-aarch64-libretro.tar.gz",
-              "size": 1286630,
+              "size": 1286631,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-linux-aarch64-libretro.tar.gz"
             },
             {
@@ -61455,42 +61524,42 @@
             },
             {
               "name": "dingoo-emu-linux-i686-libretro.tar.gz",
-              "size": 497953,
+              "size": 497952,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-linux-i686-libretro.tar.gz"
             },
             {
               "name": "dingoo-emu-linux-x86_64-libretro.tar.gz",
-              "size": 1824631,
+              "size": 1824633,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-linux-x86_64-libretro.tar.gz"
             },
             {
               "name": "dingoo-emu-linux-x86_64.tar.gz",
-              "size": 4387723,
+              "size": 4387724,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-linux-x86_64.tar.gz"
             },
             {
               "name": "dingoo-emu-macos-aarch64-libretro.tar.gz",
-              "size": 1240822,
+              "size": 1240829,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-macos-aarch64-libretro.tar.gz"
             },
             {
               "name": "dingoo-emu-macos-aarch64.tar.gz",
-              "size": 3365167,
+              "size": 3365168,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-macos-aarch64.tar.gz"
             },
             {
               "name": "dingoo-emu-macos-x86_64-libretro.tar.gz",
-              "size": 1779356,
+              "size": 1779353,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-macos-x86_64-libretro.tar.gz"
             },
             {
               "name": "dingoo-emu-macos-x86_64.tar.gz",
-              "size": 4037207,
+              "size": 4037202,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-macos-x86_64.tar.gz"
             },
             {
               "name": "dingoo-emu-webos-libretro.tar.gz",
-              "size": 456503,
+              "size": 456508,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-webos-libretro.tar.gz"
             },
             {
@@ -61500,12 +61569,12 @@
             },
             {
               "name": "dingoo-emu-windows-x86_64-libretro.zip",
-              "size": 1806044,
+              "size": 1806043,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-windows-x86_64-libretro.zip"
             },
             {
               "name": "dingoo-emu-windows-x86_64.zip",
-              "size": 4140013,
+              "size": 4140015,
               "url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-windows-x86_64.zip"
             }
           ]
@@ -61948,7 +62017,7 @@
       "latest_apk_url": "https://github.com/ptyfyre/mandarine-neo/releases/download/r1.3.0/mandarine-android-universal-20260415-3f023d0.apk",
       "latest_apk_size": 50871177,
       "pushed_at": "2026-04-19T11:46:23Z",
-      "stars": 750,
+      "stars": 751,
       "forks": 28,
       "watchers": 32,
       "downloads": 0,
@@ -62411,19 +62480,241 @@
       "repo_url": "https://github.com/dlunch/wie",
       "official": true,
       "channel": "beta",
-      "latest_tag": "v0.2.16",
-      "latest_date": "2026-10-25T03:56:06Z",
+      "latest_tag": "v0.2.18",
+      "latest_date": "2026-10-27T03:43:13Z",
       "latest_body": "",
-      "latest_apk_name": "wie-v0.2.16-android-aarch64.aab",
-      "latest_apk_url": "https://github.com/dlunch/wie/releases/download/v0.2.16/wie-v0.2.16-android-aarch64.aab",
+      "latest_apk_name": "wie-v0.2.18-android-aarch64.aab",
+      "latest_apk_url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-android-aarch64.aab",
       "latest_apk_size": 0,
-      "pushed_at": "2026-10-26T01:35:26Z",
+      "pushed_at": "2026-10-27T03:11:23Z",
       "stars": 206,
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
       "releases": [
+        {
+          "tag": "v0.2.18",
+          "name": "v0.2.18",
+          "date": "2026-10-27T03:43:13Z",
+          "body": "## Changes\n\n## What's Changed\n* Fix KTF native reference retention during garbage collection by @dlunch in https://github.com/dlunch/wie/pull/1545\n\n\n**Full Changelog**: https://github.com/dlunch/wie/compare/v0.2.17...v0.2.18",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "wie-v0.2.18-android-aarch64.aab",
+              "size": 46746256,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-android-aarch64.aab"
+            },
+            {
+              "name": "wie-v0.2.18-android-aarch64.apk",
+              "size": 48087269,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-android-aarch64.apk"
+            },
+            {
+              "name": "wie-v0.2.18-ios-aarch64-unsigned.xcarchive.zip",
+              "size": 14241016,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-ios-aarch64-unsigned.xcarchive.zip"
+            },
+            {
+              "name": "wie-v0.2.18-linux-aarch64.AppImage",
+              "size": 103926280,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-linux-aarch64.AppImage"
+            },
+            {
+              "name": "wie-v0.2.18-linux-aarch64.deb",
+              "size": 25214892,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-linux-aarch64.deb"
+            },
+            {
+              "name": "wie-v0.2.18-linux-x86_64.AppImage",
+              "size": 106760696,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-linux-x86_64.AppImage"
+            },
+            {
+              "name": "wie-v0.2.18-linux-x86_64.deb",
+              "size": 25606998,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-linux-x86_64.deb"
+            },
+            {
+              "name": "wie-v0.2.18-macos-universal-unsigned.app.zip",
+              "size": 49930458,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-macos-universal-unsigned.app.zip"
+            },
+            {
+              "name": "wie-v0.2.18-macos-universal-unsigned.dmg",
+              "size": 51797354,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-macos-universal-unsigned.dmg"
+            },
+            {
+              "name": "wie-v0.2.18-windows-aarch64-unsigned-setup.exe",
+              "size": 15907828,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-windows-aarch64-unsigned-setup.exe"
+            },
+            {
+              "name": "wie-v0.2.18-windows-aarch64-unsigned.msi",
+              "size": 22499328,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-windows-aarch64-unsigned.msi"
+            },
+            {
+              "name": "wie-v0.2.18-windows-x86_64-unsigned-setup.exe",
+              "size": 18181684,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-windows-x86_64-unsigned-setup.exe"
+            },
+            {
+              "name": "wie-v0.2.18-windows-x86_64-unsigned.msi",
+              "size": 25161728,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.18/wie-v0.2.18-windows-x86_64-unsigned.msi"
+            }
+          ]
+        },
+        {
+          "tag": "v0.2.17",
+          "name": "v0.2.17",
+          "date": "2026-10-26T10:48:15Z",
+          "body": "## Changes\n\n## What's Changed\n* build(deps): bump lucide from 1.60.0 to 1.61.0 by @dependabot[bot] in https://github.com/dlunch/wie/pull/1544\n\n\n**Full Changelog**: https://github.com/dlunch/wie/compare/v0.2.16...v0.2.17",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "wie-v0.2.17-android-aarch64.aab",
+              "size": 46681472,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-android-aarch64.aab"
+            },
+            {
+              "name": "wie-v0.2.17-android-aarch64.apk",
+              "size": 48061157,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-android-aarch64.apk"
+            },
+            {
+              "name": "wie-v0.2.17-ios-aarch64-unsigned.xcarchive.zip",
+              "size": 14236234,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-ios-aarch64-unsigned.xcarchive.zip"
+            },
+            {
+              "name": "wie-v0.2.17-linux-aarch64.AppImage",
+              "size": 103913992,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-linux-aarch64.AppImage"
+            },
+            {
+              "name": "wie-v0.2.17-linux-aarch64.deb",
+              "size": 25201806,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-linux-aarch64.deb"
+            },
+            {
+              "name": "wie-v0.2.17-linux-x86_64.AppImage",
+              "size": 106732024,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-linux-x86_64.AppImage"
+            },
+            {
+              "name": "wie-v0.2.17-linux-x86_64.deb",
+              "size": 25586798,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-linux-x86_64.deb"
+            },
+            {
+              "name": "wie-v0.2.17-macos-universal-unsigned.app.zip",
+              "size": 49892139,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-macos-universal-unsigned.app.zip"
+            },
+            {
+              "name": "wie-v0.2.17-macos-universal-unsigned.dmg",
+              "size": 51762338,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-macos-universal-unsigned.dmg"
+            },
+            {
+              "name": "wie-v0.2.17-windows-aarch64-unsigned-setup.exe",
+              "size": 15896544,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-windows-aarch64-unsigned-setup.exe"
+            },
+            {
+              "name": "wie-v0.2.17-windows-aarch64-unsigned.msi",
+              "size": 22482944,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-windows-aarch64-unsigned.msi"
+            },
+            {
+              "name": "wie-v0.2.17-windows-x86_64-unsigned-setup.exe",
+              "size": 18182276,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-windows-x86_64-unsigned-setup.exe"
+            },
+            {
+              "name": "wie-v0.2.17-windows-x86_64-unsigned.msi",
+              "size": 25149440,
+              "url": "https://github.com/dlunch/wie/releases/download/v0.2.17/wie-v0.2.17-windows-x86_64-unsigned.msi"
+            }
+          ]
+        },
+        {
+          "tag": "nightly-ba2594727555",
+          "name": "nightly",
+          "date": "2026-10-27T01:35:03Z",
+          "body": "## Nightly\n\n- Target SHA: `ba2594727555642151dde3563663c9b35fd94d83`",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "wie-nightly-android-aarch64.aab",
+              "size": 46682094,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-android-aarch64.aab"
+            },
+            {
+              "name": "wie-nightly-android-aarch64.apk",
+              "size": 48061205,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-android-aarch64.apk"
+            },
+            {
+              "name": "wie-nightly-ios-aarch64-unsigned.xcarchive.zip",
+              "size": 14236139,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-ios-aarch64-unsigned.xcarchive.zip"
+            },
+            {
+              "name": "wie-nightly-linux-aarch64.AppImage",
+              "size": 103909896,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-linux-aarch64.AppImage"
+            },
+            {
+              "name": "wie-nightly-linux-aarch64.deb",
+              "size": 25203182,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-linux-aarch64.deb"
+            },
+            {
+              "name": "wie-nightly-linux-x86_64.AppImage",
+              "size": 106736120,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-linux-x86_64.AppImage"
+            },
+            {
+              "name": "wie-nightly-linux-x86_64.deb",
+              "size": 25587144,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-linux-x86_64.deb"
+            },
+            {
+              "name": "wie-nightly-macos-universal-unsigned.app.zip",
+              "size": 49892814,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-macos-universal-unsigned.app.zip"
+            },
+            {
+              "name": "wie-nightly-macos-universal-unsigned.dmg",
+              "size": 51762658,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-macos-universal-unsigned.dmg"
+            },
+            {
+              "name": "wie-nightly-windows-aarch64-unsigned-setup.exe",
+              "size": 15895125,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-windows-aarch64-unsigned-setup.exe"
+            },
+            {
+              "name": "wie-nightly-windows-aarch64-unsigned.msi",
+              "size": 22482944,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-windows-aarch64-unsigned.msi"
+            },
+            {
+              "name": "wie-nightly-windows-x86_64-unsigned-setup.exe",
+              "size": 18163587,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-windows-x86_64-unsigned-setup.exe"
+            },
+            {
+              "name": "wie-nightly-windows-x86_64-unsigned.msi",
+              "size": 25149440,
+              "url": "https://github.com/dlunch/wie/releases/download/nightly-ba2594727555/wie-nightly-windows-x86_64-unsigned.msi"
+            }
+          ]
+        },
         {
           "tag": "v0.2.16",
           "name": "v0.2.16",
@@ -62495,80 +62786,6 @@
               "name": "wie-v0.2.16-windows-x86_64-unsigned.msi",
               "size": 25079808,
               "url": "https://github.com/dlunch/wie/releases/download/v0.2.16/wie-v0.2.16-windows-x86_64-unsigned.msi"
-            }
-          ]
-        },
-        {
-          "tag": "nightly-9bc8e783e3b5",
-          "name": "nightly",
-          "date": "2026-10-26T01:35:23Z",
-          "body": "## Nightly\n\n- Target SHA: `9bc8e783e3b5e3ae1b84fc4b356fccd00d441334`",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "wie-nightly-android-aarch64.aab",
-              "size": 46596969,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-android-aarch64.aab"
-            },
-            {
-              "name": "wie-nightly-android-aarch64.apk",
-              "size": 47951317,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-android-aarch64.apk"
-            },
-            {
-              "name": "wie-nightly-ios-aarch64-unsigned.xcarchive.zip",
-              "size": 14231232,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-ios-aarch64-unsigned.xcarchive.zip"
-            },
-            {
-              "name": "wie-nightly-linux-aarch64.AppImage",
-              "size": 103885320,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-linux-aarch64.AppImage"
-            },
-            {
-              "name": "wie-nightly-linux-aarch64.deb",
-              "size": 25168456,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-linux-aarch64.deb"
-            },
-            {
-              "name": "wie-nightly-linux-x86_64.AppImage",
-              "size": 106699256,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-linux-x86_64.AppImage"
-            },
-            {
-              "name": "wie-nightly-linux-x86_64.deb",
-              "size": 25561708,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-linux-x86_64.deb"
-            },
-            {
-              "name": "wie-nightly-macos-universal-unsigned.app.zip",
-              "size": 49816466,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-macos-universal-unsigned.app.zip"
-            },
-            {
-              "name": "wie-nightly-macos-universal-unsigned.dmg",
-              "size": 51689566,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-macos-universal-unsigned.dmg"
-            },
-            {
-              "name": "wie-nightly-windows-aarch64-unsigned-setup.exe",
-              "size": 15869221,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-windows-aarch64-unsigned-setup.exe"
-            },
-            {
-              "name": "wie-nightly-windows-aarch64-unsigned.msi",
-              "size": 22425600,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-windows-aarch64-unsigned.msi"
-            },
-            {
-              "name": "wie-nightly-windows-x86_64-unsigned-setup.exe",
-              "size": 18148986,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-windows-x86_64-unsigned-setup.exe"
-            },
-            {
-              "name": "wie-nightly-windows-x86_64-unsigned.msi",
-              "size": 25104384,
-              "url": "https://github.com/dlunch/wie/releases/download/nightly-9bc8e783e3b5/wie-nightly-windows-x86_64-unsigned.msi"
             }
           ]
         },
@@ -67083,7 +67300,7 @@
       "latest_apk_url": "https://github.com/AzaharPlus/AzaharPlus/releases/download/AZAHAR_PLUS_2126_2_A/azaharplus-2126.2-A-android_coexists_with_azahar.apk",
       "latest_apk_size": 51588119,
       "pushed_at": "2026-10-25T20:54:33Z",
-      "stars": 1359,
+      "stars": 1374,
       "forks": 63,
       "watchers": 26,
       "downloads": 0,
@@ -68400,7 +68617,7 @@
       "official": false,
       "channel": "stable",
       "stars": 19,
-      "pushed_at": "2026-10-26T03:30:06Z",
+      "pushed_at": "2026-10-27T05:36:33Z",
       "releases": [
         {
           "tag": "3.9-release",

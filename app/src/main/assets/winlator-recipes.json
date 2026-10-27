@@ -1,11 +1,11 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-10-26T00:00:00Z",
+ "updated_at": "2026-10-27T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
   "Adreno-830": {
-   "configs": 313,
+   "configs": 314,
    "top": [
     {
      "combo": [
@@ -49,7 +49,7 @@
       ]
      ],
      "count": 24,
-     "share": 7.7
+     "share": 7.6
     },
     {
      "combo": [
@@ -360,7 +360,7 @@
    ]
   },
   "Adreno-740": {
-   "configs": 150,
+   "configs": 152,
    "top": [
     {
      "combo": [
@@ -382,7 +382,7 @@
       ]
      ],
      "count": 15,
-     "share": 10.0
+     "share": 9.9
     },
     {
      "combo": [
@@ -404,7 +404,7 @@
       ]
      ],
      "count": 7,
-     "share": 4.7
+     "share": 4.6
     },
     {
      "combo": [
@@ -426,12 +426,12 @@
       ]
      ],
      "count": 4,
-     "share": 2.7
+     "share": 2.6
     }
    ]
   },
   "Mali-G615": {
-   "configs": 113,
+   "configs": 114,
    "top": [
     {
      "combo": [
@@ -453,7 +453,7 @@
       ]
      ],
      "count": 27,
-     "share": 23.9
+     "share": 23.7
     },
     {
      "combo": [
@@ -474,8 +474,8 @@
        "2.8"
       ]
      ],
-     "count": 6,
-     "share": 5.3
+     "count": 7,
+     "share": 6.1
     },
     {
      "combo": [
@@ -715,7 +715,7 @@
    ]
   },
   "Adreno-735": {
-   "configs": 84,
+   "configs": 86,
    "top": [
     {
      "combo": [
@@ -737,7 +737,7 @@
       ]
      ],
      "count": 8,
-     "share": 9.5
+     "share": 9.3
     },
     {
      "combo": [
@@ -758,8 +758,8 @@
        "2.8"
       ]
      ],
-     "count": 4,
-     "share": 4.8
+     "count": 5,
+     "share": 5.8
     },
     {
      "combo": [
@@ -781,7 +781,7 @@
       ]
      ],
      "count": 2,
-     "share": 2.4
+     "share": 2.3
     }
    ]
   },
@@ -999,8 +999,30 @@
    ]
   },
   "Adreno-810": {
-   "configs": 43,
+   "configs": 44,
    "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "turnip-sdk36"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 7,
+     "share": 15.9
+    },
     {
      "combo": [
       [
@@ -1021,29 +1043,7 @@
       ]
      ],
      "count": 7,
-     "share": 16.3
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "turnip-sdk36"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 6,
-     "share": 14.0
+     "share": 15.9
     },
     {
      "combo": [
@@ -1065,7 +1065,7 @@
       ]
      ],
      "count": 3,
-     "share": 7.0
+     "share": 6.8
     }
    ]
   },
@@ -1187,7 +1187,7 @@
    ]
   },
   "Adreno-642": {
-   "configs": 37,
+   "configs": 38,
    "top": [
     {
      "combo": [
@@ -1209,7 +1209,7 @@
       ]
      ],
      "count": 3,
-     "share": 8.1
+     "share": 7.9
     },
     {
      "combo": [
@@ -1231,7 +1231,7 @@
       ]
      ],
      "count": 2,
-     "share": 5.4
+     "share": 5.3
     },
     {
      "combo": [
@@ -1253,7 +1253,7 @@
       ]
      ],
      "count": 2,
-     "share": 5.4
+     "share": 5.3
     }
    ]
   },
@@ -1329,7 +1329,7 @@
    ]
   },
   "Adreno-660": {
-   "configs": 33,
+   "configs": 34,
    "top": [
     {
      "combo": [
@@ -1351,7 +1351,7 @@
       ]
      ],
      "count": 6,
-     "share": 18.2
+     "share": 17.6
     },
     {
      "combo": [
@@ -1373,7 +1373,7 @@
       ]
      ],
      "count": 2,
-     "share": 6.1
+     "share": 5.9
     },
     {
      "combo": [
@@ -1395,7 +1395,78 @@
       ]
      ],
      "count": 1,
-     "share": 3.0
+     "share": 2.9
+    }
+   ]
+  },
+  "Adreno-618": {
+   "configs": 33,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "turnip-sdk36"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 3,
+     "share": 9.1
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "FEXCore-2607-4"
+      ],
+      [
+       "GPU",
+       "turnip-sdk36"
+      ],
+      [
+       "VKD3D",
+       "3.0.1-arm64ec-4ed1fe7a-0"
+      ]
+     ],
+     "count": 3,
+     "share": 9.1
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.4.1.1-gplasync-sp-0"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "Mesa Turnip v26.3.0-20260817-r6-A8xx"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 2,
+     "share": 6.1
     }
    ]
   },
@@ -1467,77 +1538,6 @@
      ],
      "count": 2,
      "share": 6.1
-    }
-   ]
-  },
-  "Adreno-618": {
-   "configs": 32,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "turnip-sdk36"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 3,
-     "share": 9.4
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "FEXCore-2607-4"
-      ],
-      [
-       "GPU",
-       "turnip-sdk36"
-      ],
-      [
-       "VKD3D",
-       "3.0.1-arm64ec-4ed1fe7a-0"
-      ]
-     ],
-     "count": 3,
-     "share": 9.4
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.4.1.1-gplasync-sp-0"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "Mesa Turnip v26.3.0-20260817-r6-A8xx"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 2,
-     "share": 6.2
     }
    ]
   },
@@ -1613,7 +1613,7 @@
    ]
   },
   "Mali-G925": {
-   "configs": 29,
+   "configs": 30,
    "top": [
     {
      "combo": [
@@ -1635,7 +1635,7 @@
       ]
      ],
      "count": 5,
-     "share": 17.2
+     "share": 16.7
     },
     {
      "combo": [
@@ -1657,7 +1657,7 @@
       ]
      ],
      "count": 2,
-     "share": 6.9
+     "share": 6.7
     },
     {
      "combo": [
@@ -1675,7 +1675,7 @@
       ]
      ],
      "count": 2,
-     "share": 6.9
+     "share": 6.7
     }
    ]
   },
@@ -3318,7 +3318,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 150,
+   "configs": 151,
    "top": [
     {
      "combo": [
@@ -3344,7 +3344,7 @@
       ]
      ],
      "count": 57,
-     "share": 38.0
+     "share": 37.7
     },
     {
      "combo": [
@@ -3484,7 +3484,7 @@
    ]
   },
   "Mali-G615": {
-   "configs": 110,
+   "configs": 114,
    "top": [
     {
      "combo": [
@@ -3510,7 +3510,7 @@
       ]
      ],
      "count": 21,
-     "share": 19.1
+     "share": 18.4
     },
     {
      "combo": [
@@ -3536,7 +3536,7 @@
       ]
      ],
      "count": 14,
-     "share": 12.7
+     "share": 12.3
     },
     {
      "combo": [
@@ -3562,12 +3562,12 @@
       ]
      ],
      "count": 8,
-     "share": 7.3
+     "share": 7.0
     }
    ]
   },
   "Mali-G68": {
-   "configs": 31,
+   "configs": 32,
    "top": [
     {
      "combo": [
@@ -3593,7 +3593,7 @@
       ]
      ],
      "count": 14,
-     "share": 45.2
+     "share": 43.8
     },
     {
      "combo": [
@@ -3619,7 +3619,7 @@
       ]
      ],
      "count": 5,
-     "share": 16.1
+     "share": 15.6
     },
     {
      "combo": [
@@ -3645,7 +3645,7 @@
       ]
      ],
      "count": 4,
-     "share": 12.9
+     "share": 12.5
     }
    ]
   },
@@ -3816,7 +3816,7 @@
    ]
   },
   "Mali-G925": {
-   "configs": 12,
+   "configs": 13,
    "top": [
     {
      "combo": [
@@ -3842,7 +3842,7 @@
       ]
      ],
      "count": 4,
-     "share": 33.3
+     "share": 30.8
     },
     {
      "combo": [
@@ -3868,7 +3868,7 @@
       ]
      ],
      "count": 2,
-     "share": 16.7
+     "share": 15.4
     },
     {
      "combo": [
@@ -3894,7 +3894,7 @@
       ]
      ],
      "count": 2,
-     "share": 16.7
+     "share": 15.4
     }
    ]
   },
@@ -4147,6 +4147,89 @@
     }
    ]
   },
+  "Adreno-610": {
+   "configs": 4,
+   "top": [
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.4.3"
+      ],
+      [
+       "Driver",
+       "wrapper-gamenative"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2508"
+      ],
+      [
+       "Wine",
+       "10.0-arm64ec-0"
+      ]
+     ],
+     "count": 2,
+     "share": 50.0
+    },
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.3.7"
+      ],
+      [
+       "Driver",
+       "wrapper-gamenative"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2605"
+      ],
+      [
+       "Wine",
+       "proton-9.0-x86_64"
+      ]
+     ],
+     "count": 1,
+     "share": 25.0
+    },
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.3.7"
+      ],
+      [
+       "Driver",
+       "wrapper-gamenative"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2601"
+      ],
+      [
+       "Wine",
+       "proton-10-arm64ec"
+      ]
+     ],
+     "count": 1,
+     "share": 25.0
+    }
+   ]
+  },
   "Adreno-530": {
    "configs": 4,
    "top": [
@@ -4310,63 +4393,6 @@
      ],
      "count": 1,
      "share": 33.3
-    }
-   ]
-  },
-  "Adreno-610": {
-   "configs": 2,
-   "top": [
-    {
-     "combo": [
-      [
-       "Box64",
-       "0.3.7"
-      ],
-      [
-       "Driver",
-       "wrapper-gamenative"
-      ],
-      [
-       "DxWrapper",
-       "dxvk+vkd3d"
-      ],
-      [
-       "FEX",
-       "2605"
-      ],
-      [
-       "Wine",
-       "proton-9.0-x86_64"
-      ]
-     ],
-     "count": 1,
-     "share": 50.0
-    },
-    {
-     "combo": [
-      [
-       "Box64",
-       "0.3.7"
-      ],
-      [
-       "Driver",
-       "wrapper-gamenative"
-      ],
-      [
-       "DxWrapper",
-       "dxvk+vkd3d"
-      ],
-      [
-       "FEX",
-       "2601"
-      ],
-      [
-       "Wine",
-       "proton-10-arm64ec"
-      ]
-     ],
-     "count": 1,
-     "share": 50.0
     }
    ]
   },
