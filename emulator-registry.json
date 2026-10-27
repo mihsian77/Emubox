@@ -6593,7 +6593,7 @@
       "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
       "owner": "Producdevity",
       "repo": "Producdevity/gamehub-lite",
-      "homepage": "",
+      "homepage": "https://www.emuready.com/",
       "repo_url": "https://github.com/Producdevity/gamehub-lite",
       "official": false,
       "channel": "stable",
@@ -11237,7 +11237,7 @@
       "description": "",
       "owner": "Ashnar2602",
       "repo": "Ashnar2602/X360-Mobile---OFFICIAL",
-      "homepage": "",
+      "homepage": "https://www.x360mobile.com",
       "repo_url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL",
       "official": false,
       "channel": "nightly",
@@ -18819,7 +18819,7 @@
       "description": "All in one emulator on Android!",
       "owner": "Swordfish90",
       "repo": "Swordfish90/Lemuroid",
-      "homepage": "",
+      "homepage": "https://swordfish90.github.io/",
       "repo_url": "https://github.com/Swordfish90/Lemuroid",
       "official": false,
       "channel": "stable",
@@ -20794,7 +20794,7 @@
       "description": "",
       "owner": "winlatorbrasil",
       "repo": "winlatorbrasil/Winlator-Brasil",
-      "homepage": "",
+      "homepage": "https://winlator.org",
       "repo_url": "https://github.com/winlatorbrasil/Winlator-Brasil",
       "official": false,
       "channel": "stable/unknown",
@@ -20828,9 +20828,9 @@
       "latest_tag": "Mobox_Patched_3.0",
       "latest_date": "2025-06-26T21:09:19Z",
       "latest_body": "June 26,  2025\\n\\nUpdated glibc to 2.41-1\\nAdded box64 0.3.6 & 0.3.7\\nAdded wine 10\\nAdded dxvk 2.6.1, 2.6.1 gplasync & 2.6.2\\nAdded new testd3d and gpu info in app menu",
-      "latest_apk_name": "mobox_patched_3.0.tar.gz",
-      "latest_apk_url": "https://github.com/jaycore/mobox-patched/releases/download/Mobox_Patched_3.0/mobox_patched_3.0.tar.gz",
-      "latest_apk_size": 1914631295,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "pushed_at": "2025-06-26T21:09:18Z",
       "stars": 77,
       "forks": 0,
@@ -20909,7 +20909,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "itzdfplayer-gamehub-lite",
@@ -20918,7 +20919,7 @@
       "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
       "owner": "ItzDFPlayer",
       "repo": "ItzDFPlayer/gamehub-lite",
-      "homepage": "",
+      "homepage": "https://www.emuready.com/",
       "repo_url": "https://github.com/ItzDFPlayer/gamehub-lite",
       "official": false,
       "channel": "stable",
@@ -21061,7 +21062,7 @@
       "description": "",
       "owner": "WinDroidEmulation",
       "repo": "WinDroidEmulation/WinNative",
-      "homepage": "",
+      "homepage": "https://winlator.org",
       "repo_url": "https://github.com/WinDroidEmulation/WinNative",
       "official": false,
       "channel": "stable/unknown",
@@ -21853,7 +21854,7 @@
       "description": "",
       "owner": "edeegg",
       "repo": "edeegg/sharpemu-arm64",
-      "homepage": "",
+      "homepage": "https://sharpemu.app",
       "repo_url": "https://github.com/edeegg/sharpemu-arm64",
       "official": false,
       "channel": "stable/unknown",
@@ -21908,7 +21909,7 @@
       "description": "APKs of Pipetto-crypto's Winlator Bionic",
       "owner": "Alexoqool",
       "repo": "Alexoqool/winlator-bionic-build",
-      "homepage": "",
+      "homepage": "https://winlator.org",
       "repo_url": "https://github.com/Alexoqool/winlator-bionic-build",
       "official": false,
       "channel": "stable",
@@ -22898,7 +22899,7 @@
       "description": "",
       "owner": "deivid22srk",
       "repo": "deivid22srk/Winlator-Xmod",
-      "homepage": "",
+      "homepage": "https://winlator.org",
       "repo_url": "https://github.com/deivid22srk/Winlator-Xmod",
       "official": false,
       "channel": "stable",
@@ -23354,7 +23355,7 @@
       "description": "Android-only Switch 模拟器（Adreno GPU），2026 活跃：标准版 / Lite / Lite-Spoofed",
       "owner": "Ghael-V",
       "repo": "Ghael-V/Lemon-Project",
-      "homepage": "",
+      "homepage": "https://lemon-emu.org",
       "repo_url": "https://github.com/Ghael-V/Lemon-Project",
       "official": false,
       "channel": "stable",
@@ -25802,8 +25803,8 @@
       "latest_tag": "1.1",
       "latest_date": "2025-11-18T10:14:11Z",
       "latest_body": "",
-      "latest_apk_name": "melonDS-1.1-appimage-aarch64.zip",
-      "latest_apk_url": "https://github.com/melonDS-emu/melonDS/releases/download/1.1/melonDS-1.1-appimage-aarch64.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-21T21:16:04Z",
       "stars": 5155,
@@ -26443,7 +26444,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "mgba",
@@ -28738,8 +28740,8 @@
       "latest_tag": "Pre-release",
       "latest_date": "2022-12-02T16:02:16Z",
       "latest_body": "",
-      "latest_apk_name": "mupen64plus-ae-master.zip",
-      "latest_apk_url": "https://github.com/mupen64plus-ae/mupen64plus-ae/releases/download/Pre-release/mupen64plus-ae-master.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-08-28T13:45:57Z",
       "stars": 504,
@@ -28947,7 +28949,8 @@
           "assets": []
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "fbneo",
@@ -28956,15 +28959,15 @@
       "description": "街机/家用机多平台模拟器（FinalBurn Neo），每日更新",
       "owner": "finalburnneo",
       "repo": "finalburnneo/FBNeo",
-      "homepage": "",
+      "homepage": "http://neo-source.com",
       "repo_url": "https://github.com/finalburnneo/FBNeo",
       "official": true,
       "channel": "stable",
       "latest_tag": "latest",
       "latest_date": "2026-10-27T06:49:35Z",
       "latest_body": "",
-      "latest_apk_name": "linux-sdl1-x86_64.zip",
-      "latest_apk_url": "https://github.com/finalburnneo/FBNeo/releases/download/latest/linux-sdl1-x86_64.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T06:49:35Z",
       "stars": 1551,
@@ -29081,7 +29084,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "eka2l1",
@@ -29090,7 +29094,7 @@
       "description": "Symbian OS / N-Gage 模拟器，活跃开源",
       "owner": "EKA2L1",
       "repo": "EKA2L1/EKA2L1",
-      "homepage": "",
+      "homepage": "https://eka2l1.github.io",
       "repo_url": "https://github.com/EKA2L1/EKA2L1",
       "official": true,
       "channel": "stable",
@@ -29651,16 +29655,16 @@
       "description": "早期 iOS 应用高级模拟器（touchHLE），Android 包含于 zip",
       "owner": "touchHLE",
       "repo": "touchHLE/touchHLE",
-      "homepage": "",
+      "homepage": "https://touchhle.org/",
       "repo_url": "https://github.com/touchHLE/touchHLE",
       "official": true,
       "channel": "stable",
       "latest_tag": "v0.3.0",
       "latest_date": "2026-10-01T13:43:22Z",
       "latest_body": "",
-      "latest_apk_name": "touchHLE_v0.3.0_Android_AArch64.zip",
-      "latest_apk_url": "https://github.com/touchHLE/touchHLE/releases/download/v0.3.0/touchHLE_v0.3.0_Android_AArch64.zip",
-      "latest_apk_size": 20963890,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "pushed_at": "2026-10-21T12:18:04Z",
       "stars": 4040,
       "forks": 0,
@@ -29846,7 +29850,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "opennectar",
@@ -29862,9 +29867,9 @@
       "latest_tag": "1.1",
       "latest_date": "2026-10-26T21:15:13Z",
       "latest_body": "",
-      "latest_apk_name": "nectar-linux.tar.gz",
-      "latest_apk_url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/nectar-linux.tar.gz",
-      "latest_apk_size": 21108673,
+      "latest_apk_name": "open_nectar_1.1.apk",
+      "latest_apk_url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port/releases/download/1.1/open_nectar_1.1.apk",
+      "latest_apk_size": 63124821,
       "pushed_at": "2026-10-26T21:15:13Z",
       "stars": 281,
       "forks": 0,
@@ -31018,7 +31023,7 @@
       "description": "银河战士 Prime（GC）原生移植：Linux/Windows/Android",
       "owner": "Odrannnn",
       "repo": "Odrannnn/MetroidPrimePort",
-      "homepage": "",
+      "homepage": "https://github.com/Odrannnn/MetroidPrimePort/releases/latest",
       "repo_url": "https://github.com/Odrannnn/MetroidPrimePort",
       "official": true,
       "channel": "stable",
@@ -32452,8 +32457,8 @@
       "latest_tag": "Pre-release",
       "latest_date": "2023-01-17T12:00:58Z",
       "latest_body": "",
-      "latest_apk_name": "2600Emu.zip",
-      "latest_apk_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases/download/Pre-release/2600Emu.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-04-13T11:23:14Z",
       "stars": 1258,
@@ -32552,7 +32557,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "supermodel3",
@@ -32561,15 +32567,15 @@
       "description": "Sega Model 3 街机模拟器，2026-10 活跃更新",
       "owner": "trzy",
       "repo": "trzy/Supermodel",
-      "homepage": "",
+      "homepage": "https://supermodel3.com",
       "repo_url": "https://github.com/trzy/Supermodel",
       "official": true,
       "channel": "stable",
       "latest_tag": "v0.3a-20261025-git-1481545",
       "latest_date": "2026-10-25T11:08:00Z",
       "latest_body": "",
-      "latest_apk_name": "supermodel-0.3a-20261025-git-1481545-linux.tar.gz",
-      "latest_apk_url": "https://github.com/trzy/Supermodel/releases/download/v0.3a-20261025-git-1481545/supermodel-0.3a-20261025-git-1481545-linux.tar.gz",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-25T11:08:00Z",
       "stars": 675,
@@ -33299,7 +33305,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "freej2me",
@@ -33335,7 +33342,7 @@
       "description": "Atari Jaguar/Jaguar CD 模拟器（RetroArch 内核），活跃",
       "owner": "libretro",
       "repo": "libretro/virtualjaguar-libretro",
-      "homepage": "",
+      "homepage": "https://jaguar.provenance-emu.com",
       "repo_url": "https://github.com/libretro/virtualjaguar-libretro",
       "official": true,
       "channel": "stable",
@@ -38806,8 +38813,8 @@
       "latest_tag": "v0.9.3",
       "latest_date": "2026-08-13T21:04:59Z",
       "latest_body": "",
-      "latest_apk_name": "MelonMix-appimage-x86_64.zip",
-      "latest_apk_url": "https://github.com/vitor251093/KHMelonMix/releases/download/v0.9.3/MelonMix-appimage-x86_64.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-16T03:27:37Z",
       "stars": 637,
@@ -40167,7 +40174,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "pocket8",
@@ -40711,7 +40719,7 @@
       "description": "PanPlay：Android Windows 游戏启动器（Wine/FEX/DXVK，Mali）",
       "owner": "zenithblue-oss",
       "repo": "zenithblue-oss/panplay",
-      "homepage": "",
+      "homepage": "https://winlator.org",
       "repo_url": "https://github.com/zenithblue-oss/panplay",
       "official": true,
       "channel": "stable",
@@ -41200,7 +41208,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
       "releases": [],
       "source": "community-archive",
       "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
@@ -41212,7 +41220,7 @@
       "description": "Skyline 继任者（strato-emu/strato），2348★，2024-09 后停更，无官方 release；社区经 社区归档分发",
       "owner": "strato-emu",
       "repo": "strato-emu/strato",
-      "homepage": "",
+      "homepage": "https://strato-emu.github.io",
       "repo_url": "https://github.com/strato-emu/strato",
       "official": false,
       "channel": "stable",
@@ -41255,7 +41263,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sudachi.png",
       "releases": [],
       "source": "official-web"
     },
@@ -41393,7 +41401,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
       "releases": [],
       "source": "community-archive",
       "dead": true,
@@ -41422,7 +41430,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
       "releases": [],
       "source": "community-archive",
       "dead": true,
@@ -41451,7 +41459,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
       "releases": [],
       "source": "community-archive",
       "dead": true,
@@ -41509,7 +41517,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/yuzu.png",
       "releases": [],
       "source": "community-archive",
       "dead": true,
@@ -41538,7 +41546,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads": 0,
-      "logo_url": "",
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/yuzu.png",
       "releases": [],
       "source": "community-archive",
       "dead": true,
@@ -47886,8 +47894,8 @@
       "latest_tag": "Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc",
       "latest_date": "2026-10-26T22:51:26Z",
       "latest_body": "",
-      "latest_apk_name": "shadps4-linux-sdl-2026-10-26-3eecea9.zip",
-      "latest_apk_url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-10-26-3eecea94ddaca360b19f4b800523b609a8b2ffcc/shadps4-linux-sdl-2026-10-26-3eecea9.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-26T22:51:49Z",
       "stars": 33934,
@@ -48667,7 +48675,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "kytyps5-kytyps5",
@@ -48683,8 +48692,8 @@
       "latest_tag": "KytyPS5-2026-10-27-fd6b28c",
       "latest_date": "2026-10-27T06:40:01Z",
       "latest_body": "",
-      "latest_apk_name": "KytyPS5-2026-10-27-fd6b28c-Linux-x86_64.tar.gz",
-      "latest_apk_url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-27-fd6b28c/KytyPS5-2026-10-27-fd6b28c-Linux-x86_64.tar.gz",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T06:51:24Z",
       "stars": 9938,
@@ -49344,7 +49353,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "ilya114-box64droid",
@@ -49615,8 +49625,8 @@
       "latest_tag": "0.6.0-462-65abc63",
       "latest_date": "2026-08-23T12:13:46Z",
       "latest_body": "",
-      "latest_apk_name": "NXEmu-0.6.0-462-65abc63.zip",
-      "latest_apk_url": "https://github.com/N3xoX1/nxemu/releases/download/0.6.0-462-65abc63/NXEmu-0.6.0-462-65abc63.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T03:05:11Z",
       "stars": 404,
@@ -49710,7 +49720,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "maxjivi05-ps3native",
@@ -49992,8 +50003,8 @@
       "latest_tag": "9.3.1",
       "latest_date": "2026-10-18T21:06:27Z",
       "latest_body": "",
-      "latest_apk_name": "SoH-Dewey-Bravo-Mac.zip",
-      "latest_apk_url": "https://github.com/HarbourMasters/Shipwright/releases/download/9.3.1/SoH-Dewey-Bravo-Mac.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-24T13:40:22Z",
       "stars": 5772,
@@ -50918,7 +50929,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "2ship2harkinian-2ship2harkinian",
@@ -50934,8 +50946,8 @@
       "latest_tag": "5.0.1",
       "latest_date": "2026-08-25T17:54:43Z",
       "latest_body": "",
-      "latest_apk_name": "2Ship-Battler-Bravo-Linux.zip",
-      "latest_apk_url": "https://github.com/2ship2harkinian/2ship2harkinian/releases/download/5.0.1/2Ship-Battler-Bravo-Linux.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-24T14:42:15Z",
       "stars": 2383,
@@ -51329,7 +51341,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "linkzenic-2ship2harkinian-android",
@@ -51682,8 +51695,8 @@
       "latest_tag": "v1.2.2",
       "latest_date": "2025-08-27T00:58:35Z",
       "latest_body": "",
-      "latest_apk_name": "Zelda64Recompiled-v1.2.2-Linux-ARM64.zip",
-      "latest_apk_url": "https://github.com/Zelda64Recomp/Zelda64Recomp/releases/download/v1.2.2/Zelda64Recompiled-v1.2.2-Linux-ARM64.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-25T18:57:57Z",
       "stars": 7538,
@@ -51891,7 +51904,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "harbourmasters-ghostship",
@@ -51900,15 +51914,15 @@
       "description": "HarbourMasters 版 Super Mario 64，反编译移植 PC 版（整理站描述）",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/Ghostship",
-      "homepage": "",
+      "homepage": "https://ghostship.net64.dev/",
       "repo_url": "https://github.com/HarbourMasters/Ghostship",
       "official": true,
       "channel": "stable/unknown",
       "latest_tag": "3.0.0",
       "latest_date": "2026-09-07T04:57:17Z",
       "latest_body": "",
-      "latest_apk_name": "Nautilus-Alfa-Android.zip",
-      "latest_apk_url": "https://github.com/HarbourMasters/Ghostship/releases/download/3.0.0/Nautilus-Alfa-Android.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T06:37:54Z",
       "stars": 865,
@@ -52048,7 +52062,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "harbourmasters-spaghettikart",
@@ -52064,8 +52079,8 @@
       "latest_tag": "1.0.0",
       "latest_date": "2026-02-25T02:26:04Z",
       "latest_body": "",
-      "latest_apk_name": "spaghetti-linux.zip",
-      "latest_apk_url": "https://github.com/HarbourMasters/SpaghettiKart/releases/download/1.0.0/spaghetti-linux.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-22T15:55:20Z",
       "stars": 2458,
@@ -52147,7 +52162,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "banjorecomp-banjorecomp",
@@ -52163,8 +52179,8 @@
       "latest_tag": "v1.0.2",
       "latest_date": "2026-07-31T19:43:17Z",
       "latest_body": "",
-      "latest_apk_name": "BanjoRecompiled-v1.0.2-Linux-ARM64.tar.gz",
-      "latest_apk_url": "https://github.com/BanjoRecomp/BanjoRecomp/releases/download/v1.0.2/BanjoRecompiled-v1.0.2-Linux-ARM64.tar.gz",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-25T18:57:08Z",
       "stars": 2095,
@@ -52271,7 +52287,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "rainchus-dk64-rekongpiled",
@@ -52287,8 +52304,8 @@
       "latest_tag": "v1.0.3",
       "latest_date": "2026-09-30T00:21:10Z",
       "latest_body": "",
-      "latest_apk_name": "DK64Recompiled-Flatpak-X64-Release-1-0-3.zip",
-      "latest_apk_url": "https://github.com/Rainchus/Donkey-Kong-64-Recompiled/releases/download/v1.0.3/DK64Recompiled-Flatpak-X64-Release-1-0-3.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-30T00:21:10Z",
       "stars": 549,
@@ -52434,7 +52451,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "jackandbeans-snap64recomp",
@@ -52443,7 +52461,7 @@
       "description": "Native Windows, Linux and macOS port of Pokémon Snap (N64)",
       "owner": "JackandBeans",
       "repo": "JackandBeans/Snap64Recomp",
-      "homepage": "",
+      "homepage": "https://github.com/JackandBeans/Snap64Recomp/releases/latest",
       "repo_url": "https://github.com/JackandBeans/Snap64Recomp",
       "official": true,
       "channel": "stable/unknown",
@@ -53153,7 +53171,7 @@
       "description": "Dusklight brings a classic adventure to PC and mobile platforms",
       "owner": "TwilitRealm",
       "repo": "TwilitRealm/dusklight",
-      "homepage": "",
+      "homepage": "https://twilitrealm.dev",
       "repo_url": "https://github.com/TwilitRealm/dusklight",
       "official": true,
       "channel": "stable/unknown",
@@ -54048,8 +54066,8 @@
       "latest_tag": "nightly",
       "latest_date": "2026-10-13T00:14:19Z",
       "latest_body": "",
-      "latest_apk_name": "G-Diffuser-v1.1.0-nightly.20261017.bf1f367-linux-arm64.tar.gz",
-      "latest_apk_url": "https://github.com/Zorkats/G-Diffuser/releases/download/nightly/G-Diffuser-v1.1.0-nightly.20261017.bf1f367-linux-arm64.tar.gz",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-25T01:00:55Z",
       "stars": 300,
@@ -54183,7 +54201,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "mchughalex-skate3recomp",
@@ -54199,8 +54218,8 @@
       "latest_tag": "v2.0.2",
       "latest_date": "2026-07-24T21:21:06Z",
       "latest_body": "",
-      "latest_apk_name": "Skate3Recomp-Linux.zip",
-      "latest_apk_url": "https://github.com/mchughalex/skate3recomp/releases/download/v2.0.2/Skate3Recomp-Linux.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-07-24T21:18:52Z",
       "stars": 1738,
@@ -54421,7 +54440,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "felipeprado0-spartanport",
@@ -54430,15 +54450,15 @@
       "description": "SpartanPort: unofficial PC port of God of War III Remastered",
       "owner": "FelipePrado0",
       "repo": "FelipePrado0/SpartanPort",
-      "homepage": "",
+      "homepage": "https://spartanport.com/en",
       "repo_url": "https://github.com/FelipePrado0/SpartanPort",
       "official": true,
       "channel": "stable/unknown",
       "latest_tag": "windows-v2.8.0-launcher-identity-test1",
       "latest_date": "2026-10-27T04:37:53Z",
       "latest_body": "",
-      "latest_apk_name": "spartanport-windows.zip",
-      "latest_apk_url": "https://github.com/FelipePrado0/SpartanPort/releases/download/windows-v2.8.0-launcher-identity-test1/spartanport-windows.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T04:37:53Z",
       "stars": 4227,
@@ -55071,7 +55091,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "supermedo-bloodborne-pc",
@@ -55080,15 +55101,15 @@
       "description": "Bloodborne running natively on Windows 10/11: launcher and reverse engineering project",
       "owner": "supermedo",
       "repo": "supermedo/bloodborne_pc",
-      "homepage": "",
+      "homepage": "https://discord.gg/yTMG8c4Bqm",
       "repo_url": "https://github.com/supermedo/bloodborne_pc",
       "official": true,
       "channel": "stable/unknown",
       "latest_tag": "windows-v1.9.4",
       "latest_date": "2026-10-21T20:57:53Z",
       "latest_body": "",
-      "latest_apk_name": "Bloodborne-Windows.zip",
-      "latest_apk_url": "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.9.4/Bloodborne-Windows.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-23T21:30:46Z",
       "stars": 4718,
@@ -55433,7 +55454,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "mircowuffwuff-sharpdroid",
@@ -57256,8 +57278,8 @@
       "latest_tag": "v1.005.000",
       "latest_date": "2026-10-18T04:17:04Z",
       "latest_body": "This alpha keeps each game in a folder of its own with everything that belongs to it, gives cheats their own list, adds a speed limit and a second frame generation method, and fixes a lost graphics device and black boxes that spread over the picture. Performance and compatibility still vary by game.\n\n### New and improved\n\n- **One folder per game.** A game can sit in a folder of its own in `roms/`, together with its update and DLC files, its mods (`mods/`), its cheats (`cheats/`) and its own post",
-      "latest_apk_name": "ProsperoEden-v1.005.000.zip",
-      "latest_apk_url": "https://github.com/Swordpdf/ProsperoEden/releases/download/v1.005.000/ProsperoEden-v1.005.000.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-18T03:56:25Z",
       "stars": 909,
@@ -57595,7 +57617,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "hyperhle",
@@ -61225,7 +61248,7 @@
       "description": "PC gaming on Android, simplified - a fast native UI for Wine and Box64.",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreP-Releases",
-      "homepage": "",
+      "homepage": "https://sashkinbro.github.io/",
       "repo_url": "https://github.com/sashkinbro/EmuCoreP-Releases",
       "official": true,
       "channel": "beta",
@@ -61719,9 +61742,9 @@
       "latest_tag": "nightly-build",
       "latest_date": "2026-10-26T23:47:27Z",
       "latest_body": "Automated nightly build — **for testing only**.\n\n- Built: 2026-10-22 23:13:05 UTC\n- Commit: [`109e566`](https://github.com/AloysHF/DingooEmu/commit/109e566ad63690eda7634b5a2db00efe05471f43)\n- Platform",
-      "latest_apk_name": "dingoo-emu-android-libretro.tar.gz",
-      "latest_apk_url": "https://github.com/AloysHF/DingooEmu/releases/download/nightly-build/dingoo-emu-android-libretro.tar.gz",
-      "latest_apk_size": 3900000,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "pushed_at": "2026-10-26T23:47:27Z",
       "stars": 20,
       "forks": 3,
@@ -62041,7 +62064,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "azaharplus-android",
@@ -62478,15 +62502,15 @@
       "description": "HLE 3DS 模拟器（★1413，持续开发中）：完整 HLE 架构、独立实现，Android 构建经 CI 分发；GitHub 最新 release v0.9（2024-12），APK 见 CI 产物（直链待核）。",
       "owner": "wheremyfoodat",
       "repo": "wheremyfoodat/Panda3DS",
-      "homepage": "",
+      "homepage": "https://panda3ds.com/",
       "repo_url": "https://github.com/wheremyfoodat/Panda3DS",
       "official": true,
       "channel": "alpha",
       "latest_tag": "v0.9",
       "latest_date": "2024-12-25T13:32:34Z",
       "latest_body": "",
-      "latest_apk_name": "android-arm64.zip",
-      "latest_apk_url": "https://github.com/wheremyfoodat/Panda3DS/releases/download/v0.9/android-arm64.zip",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-04T02:30:25Z",
       "stars": 1413,
@@ -62714,7 +62738,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "release 仅源码/安装包，无安卓 APK"
     },
     {
       "id": "wie-skvm",
@@ -62723,7 +62748,7 @@
       "description": "WIPI/SKVM/J2ME 模拟器（dlunch，★206，活跃）：韩系 SKVM（智能卡虚拟机）与 J2ME 手机游戏运行器，Android nightly 持续构建（v0.2.12 含 aarch64 APK）。",
       "owner": "dlunch",
       "repo": "dlunch/wie",
-      "homepage": "",
+      "homepage": "https://wie-site.dlunch.net",
       "repo_url": "https://github.com/dlunch/wie",
       "official": true,
       "channel": "beta",
@@ -66581,7 +66606,7 @@
       "description": "PS3 安卓模拟器（sashkinbro EmuCore 家族，★43，基于 RPCS3 内核）：2026-08 起活跃，v0.0.5/v0.0.6 连续发布且含 APK；独立安卓前端界面。",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreC",
-      "homepage": "",
+      "homepage": "https://emucorec.web.app",
       "repo_url": "https://github.com/sashkinbro/EmuCoreC",
       "official": true,
       "channel": "beta",
