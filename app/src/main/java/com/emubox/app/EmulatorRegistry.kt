@@ -53,7 +53,12 @@ data class EmulatorEntry(
     val releases: List<EmulatorRelease> = emptyList(),
     val logoUrl: String = "",
     /** 无下载条目标注（GitHub 移除/未发布），UI 展示"暂无可用下载" */
-    val note: String = ""
+    val note: String = "",
+    /** 来源分级：github/gitea/gitlab/notabug/official-web/official-play/community-archive */
+    val source: String = "",
+    /** DMCA/停更等失效仓库：UI 不跳转、隐藏下载 */
+    val dead: Boolean = false,
+    val deadReason: String = ""
 ) {
     val githubUrl: String
         get() = if (owner.isNotBlank() && repo.isNotBlank()) "https://github.com/$owner/$repo" else ""
@@ -225,7 +230,10 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                         forks = obj.optLong("forks", 0L),
                         watchers = obj.optLong("watchers", 0L),
                         downloads = obj.optLong("downloads", 0L),
-                        releases = parseReleases(obj)
+                        releases = parseReleases(obj),
+                        source = obj.optString("source", ""),
+                        dead = obj.optBoolean("dead", false),
+                        deadReason = obj.optString("dead_reason", "")
                     )
                 )
             }

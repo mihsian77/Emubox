@@ -1,6 +1,6 @@
 {
   "version": "1.2.1",
-  "updated_at": "2026-10-27T12:00:00Z",
+  "updated_at": "2026-10-27T14:00:00Z",
   "emulators": [
     {
       "id": "brunodev85-winlator",
@@ -279,7 +279,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "azahar-emu-azahar",
@@ -4230,7 +4231,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "weihuoya-citra",
@@ -5101,7 +5103,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "vita3k-vita3k-android",
@@ -5295,7 +5298,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "trixarian-nethersx2-patch",
@@ -5602,7 +5606,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "ssimco-cemu",
@@ -5754,7 +5759,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "gunacharanteja-winlatormali",
@@ -5890,7 +5896,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "faux123-gamenative-mali",
@@ -5930,7 +5937,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "stevenmxz-winlator-ludashi",
@@ -6412,7 +6420,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "trixarian-nethersx2-classic",
@@ -6574,7 +6583,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "producdevity-gamehub-lite",
@@ -6996,7 +7006,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "utkarshdalal-gamenative",
@@ -7502,7 +7513,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "longjunyu2-winlator",
@@ -7672,7 +7684,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "armsx2-armsx2",
@@ -8638,7 +8651,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "flyinghead-flycast",
@@ -9090,7 +9104,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "rpcsx-rpcsx-ui-android",
@@ -9158,7 +9173,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "coffincolors-winlator",
@@ -9461,7 +9477,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "无独立 APK 发布，随 Winlator 主包分发"
     },
     {
       "id": "afeimod-winlator-mod",
@@ -9477,9 +9495,9 @@
       "latest_tag": "10.1hotfix-Amod3fix2",
       "latest_date": "2025-12-02T08:21:17Z",
       "latest_body": "1-修复部分游戏mod失效，比如死或生5，上古卷轴五等\\n2-提供wine-10.15.whp可以在额外内容里安装，这个wine可以播放一些视频白屏有声音的游戏\\n3-其他更新见fix1\\n",
-      "latest_apk_name": "wine-10.15.whp",
-      "latest_apk_url": "https://github.com/afeimod/winlator-mod/releases/download/10.1hotfix-Amod3fix2/wine-10.15.whp",
-      "latest_apk_size": 879369555,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "pushed_at": "2026-04-19T02:53:06Z",
       "stars": 696,
       "forks": 0,
@@ -10157,7 +10175,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "最新 release 为 wine 组件包（.whp），非 APK；正式版从官网获取"
     },
     {
       "id": "medard22-dolphin-mmjr2-vbi",
@@ -10351,7 +10371,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "xodiosx-xodos",
@@ -10705,7 +10726,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "纯代码仓库，无 APK 发布"
     },
     {
       "id": "aenu1-aps3e",
@@ -11067,7 +11090,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "fcharan-winlatormali",
@@ -11203,7 +11227,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "ashnar2602-x360-mobile---official",
@@ -11374,7 +11399,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "armsx2-armsx3",
@@ -12270,7 +12296,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "horizonemuteam-horizon-emu",
@@ -12324,7 +12351,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "the412banner-bannerhub",
@@ -13473,7 +13501,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "droid-deck-droiddeck",
@@ -13975,7 +14004,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "winebox64-winlator",
@@ -14065,7 +14095,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "the412banner-bannerhub-revanced",
@@ -16086,7 +16117,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "rfandango-xendroid",
@@ -16294,7 +16326,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "the412banner-bannerlator",
@@ -17225,7 +17258,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "xhyn-ph-exagear-302",
@@ -17279,7 +17313,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "stredohori-winlator-cmod",
@@ -17794,7 +17829,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "无独立 APK 发布，随 Winlator 主包分发"
     },
     {
       "id": "winnative-emu-winnative",
@@ -18177,7 +18214,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "winlatorbrasil-gamehub-brasil",
@@ -18202,7 +18240,8 @@
       "watchers": 0,
       "downloads": 139491,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/gamehub-brasil.png",
-      "releases": []
+      "releases": [],
+      "source": "github"
     },
     {
       "id": "jacojayy-star",
@@ -18516,7 +18555,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "上游 release 仅含测试文件（1.json），未发布正式 APK；可从官网 WinHub 获取"
     },
     {
       "id": "kreitinnsoftware-micewine-application",
@@ -18541,7 +18582,8 @@
       "watchers": 0,
       "downloads": 115614,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/micewine.png",
-      "releases": []
+      "releases": [],
+      "source": "github"
     },
     {
       "id": "oxters168-pluvia",
@@ -18651,7 +18693,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "ajay9634-winlator-ajay",
@@ -18766,7 +18809,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "swordfish90-lemuroid",
@@ -19225,7 +19269,8 @@
           "prerelease": false,
           "assets": []
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
@@ -19509,7 +19554,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "juris-x-winlator_x",
@@ -19620,7 +19666,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "slaker222-steamlator",
@@ -19702,7 +19749,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "jhinzuo-winlator",
@@ -19915,7 +19963,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "honkonx-winlator-honkon",
@@ -20182,7 +20231,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "the412banner-bannerhub-lite",
@@ -20734,7 +20784,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "winlatorbrasil-winlator-brasil",
@@ -20750,8 +20801,8 @@
       "latest_tag": "Winlator_Brasil_10.1",
       "latest_date": "2025-05-24T01:26:43Z",
       "latest_body": "### 🆕 Winlator_Brasil_10.1, Winlator_Brasil_10.1_AI e Winlator Brasil CLT – Novas Versões\\n\\nEsta atualização traz duas versões, **Winlator Brasil 10.1**, **Winlator_Brasil_10.1_AI** e **Winlator Brasil",
-      "latest_apk_name": "wine-9.15-custom.whp",
-      "latest_apk_url": "https://github.com/winlatorbrasil/Winlator-Brasil/releases/download/Winlator_Brasil_10.1/wine-9.15-custom.whp",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 82243500,
       "pushed_at": "",
       "stars": 0,
@@ -20759,7 +20810,9 @@
       "watchers": 0,
       "downloads": 24046,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/winlator-brasil.png",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "最新 release 为 wine 组件包（.whp），非 APK；正式版 APK 需从官网/社区获取"
     },
     {
       "id": "jaycore-mobox-patched",
@@ -20855,7 +20908,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "itzdfplayer-gamehub-lite",
@@ -20914,7 +20968,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "winlatorxr-winlatorxr",
@@ -20996,7 +21051,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "windroidemulation-winnative",
@@ -21718,7 +21774,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
@@ -21786,7 +21843,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "edeegg-sharpemu-arm64",
@@ -21840,7 +21898,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "alexoqool-winlator-bionic-build",
@@ -22286,7 +22345,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "duckyduckg-winlator",
@@ -22732,7 +22792,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
@@ -22749,7 +22810,7 @@
       "latest_date": "2026-04-24T23:48:07Z",
       "latest_body": "# 🛡️ [MOD] Exiled Kingdoms LAN Multiplayer — 2.0!\\n\\nHey everyone! Another update to the **LAN Multiplayer** mod for Exiled Kingdoms.\\n\\nHere's the full summary:\\n\\n---\\n\\n## ⚔️ NEW — LAN Multiplayer Bug Fixe",
       "latest_apk_name": "Exiled-Kingdoms-Multiplayer-PVP-v1-3-1218-mod.apk",
-      "latest_apk_url": "https://github.com/gamehub-brasil/Exiled-Kingdoms-Multiplayer/releases/download/Exiled-Kingdoms-Multiplayer-2.0/Exiled-Kingdoms-Multiplayer-PVP-v1-3-1218-mod.apk",
+      "latest_apk_url": "https://github.com/winlatorbrasil/Exiled-Kingdoms-Multiplayer/releases/download/Exiled-Kingdoms-Multiplayer-2.0/Exiled-Kingdoms-Multiplayer-PVP-v1-3-1218-mod.apk",
       "latest_apk_size": 381595189,
       "pushed_at": "2026-04-24T23:48:07Z",
       "stars": 10,
@@ -22786,7 +22847,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "j4mcu-builds-gamehub-lite-redmagic",
@@ -22826,7 +22888,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "deivid22srk-winlator-xmod",
@@ -22894,7 +22957,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "maxjivi05-gamenative-performance",
@@ -22919,7 +22983,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/gamenative.png",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无独立 APK 发布"
     },
     {
       "id": "winlator-releases",
@@ -22944,7 +23010,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/winlator.png",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "官方 Winlator 直链层，无 GitHub APK"
     },
     {
       "id": "eden-emulator-releases",
@@ -22969,7 +23037,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/eden.png",
-      "releases": []
+      "releases": [],
+      "source": "gitea"
     },
     {
       "id": "eden-ci-nightly",
@@ -22994,7 +23063,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/eden.png",
-      "releases": []
+      "releases": [],
+      "source": "gitea"
     },
     {
       "id": "citron-emulator",
@@ -23246,7 +23316,10 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "dead": true,
+      "dead_reason": "2024-09 因 DMCA 移除"
     },
     {
       "id": "ovsky-sumi-emu",
@@ -23271,7 +23344,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sumi.png",
-      "releases": []
+      "releases": [],
+      "source": "community-archive"
     },
     {
       "id": "ghaelv-lemon-project",
@@ -23645,7 +23719,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "kenji-nx-android-releases",
@@ -23670,7 +23745,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/kenjinx.png",
-      "releases": []
+      "releases": [],
+      "source": "community-archive"
     },
     {
       "id": "duckstation",
@@ -25709,7 +25785,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "melonds",
@@ -26365,7 +26442,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "mgba",
@@ -28451,7 +28529,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "skyemu",
@@ -28642,7 +28721,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "m64plusae",
@@ -28866,7 +28946,8 @@
           "prerelease": false,
           "assets": []
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "fbneo",
@@ -28999,7 +29080,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "eka2l1",
@@ -29112,7 +29194,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "j2meloader",
@@ -29558,7 +29641,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "touchhle",
@@ -29761,7 +29845,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "opennectar",
@@ -30497,7 +30582,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "unleashedrecomp",
@@ -30699,7 +30785,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "silksongandroid",
@@ -30921,7 +31008,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "metroidprimeport",
@@ -32172,7 +32260,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "raport-redalert",
@@ -32197,7 +32286,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "RetroArch 内核，无独立 APK"
     },
     {
       "id": "nfs3recompiled",
@@ -32251,7 +32342,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "dk64recomp",
@@ -32343,7 +32435,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "snes9xexplus",
@@ -32458,7 +32551,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "supermodel3",
@@ -33204,7 +33298,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "freej2me",
@@ -33229,7 +33324,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "RetroArch 内核，无独立 APK"
     },
     {
       "id": "virtualjaguar",
@@ -38629,7 +38726,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "handylynx",
@@ -38654,7 +38752,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "RetroArch 内核，无独立 APK"
     },
     {
       "id": "mame2003plus",
@@ -38688,7 +38788,9 @@
           "prerelease": false,
           "assets": []
         }
-      ]
+      ],
+      "source": "github",
+      "note": "RetroArch 内核，无独立 APK"
     },
     {
       "id": "khmelonmix",
@@ -40064,7 +40166,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "pocket8",
@@ -40244,7 +40347,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "melange-brew",
@@ -40269,7 +40373,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "gitlab",
+      "note": "GitLab 源，无 release 发布"
     },
     {
       "id": "zenith-panprobe",
@@ -40595,7 +40701,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "zenith-panplay",
@@ -41013,7 +41120,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "producdevity-gamehub",
@@ -41038,7 +41146,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive"
     },
     {
       "id": "ryujinx-official",
@@ -41063,7 +41172,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "2024-10 因 DMCA 停更"
     },
     {
       "id": "ryujinx-benji-sc",
@@ -41088,7 +41200,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive"
     },
     {
       "id": "strato-emulator",
@@ -41113,7 +41226,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "2024-09 后停更，无官方 release"
     },
     {
       "id": "sudachi-emulator",
@@ -41138,7 +41254,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive"
     },
     {
       "id": "torzu-emulator",
@@ -41163,7 +41280,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "notabug",
+      "note": "NotABug 源，无官方 APK 发布"
     },
     {
       "id": "suyu-emulator",
@@ -41188,7 +41307,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "2024 停止开发，GitHub 已因 DMCA 删除"
     },
     {
       "id": "ryubing-emulator",
@@ -41213,7 +41335,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "skyline-official",
@@ -41238,7 +41362,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "2023 自愿停更，2026-08 仓库已删"
     },
     {
       "id": "skyline-pine",
@@ -41263,7 +41390,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "上游停更，社区归档"
     },
     {
       "id": "skyline-tagline",
@@ -41288,7 +41418,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "上游停更，社区归档"
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -41313,7 +41446,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "上游停更，社区归档"
     },
     {
       "id": "yuzu-official",
@@ -41338,7 +41474,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "2024-03 任天堂诉讼停更删库"
     },
     {
       "id": "yuzu-citrus",
@@ -41363,7 +41502,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "上游 yuzu 停更，分支归档"
     },
     {
       "id": "yuzu-plus",
@@ -41388,7 +41530,10 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive",
+      "dead": true,
+      "dead_reason": "上游 yuzu 停更，分支归档"
     },
     {
       "id": "epsxe",
@@ -41413,7 +41558,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "fpse",
@@ -41438,7 +41584,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "drastic",
@@ -41463,7 +41610,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "pizzaboy",
@@ -41488,7 +41636,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "myboy",
@@ -41513,7 +41662,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "myoldboy",
@@ -41538,7 +41688,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "m64plusfz",
@@ -41563,7 +41714,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "mame4droid",
@@ -41588,7 +41740,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-web"
     },
     {
       "id": "termux",
@@ -42154,7 +42307,8 @@
       ],
       "latest_date": "2025-05-22T22:48:54Z",
       "latest_apk_name": "termux-app_v0.119.0-beta.3+apt-android-5-github-debug_arm64-v8a.apk",
-      "logoUrl": "https://avatars.githubusercontent.com/u/8104776?v=4"
+      "logoUrl": "https://avatars.githubusercontent.com/u/8104776?v=4",
+      "source": "github"
     },
     {
       "id": "ppsspp",
@@ -43008,7 +43162,8 @@
         }
       ],
       "latest_date": "2026-05-16T12:35:08Z",
-      "latest_apk_name": "org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb"
+      "latest_apk_name": "org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb",
+      "source": "github"
     },
     {
       "id": "retroarch",
@@ -43297,7 +43452,8 @@
         }
       ],
       "latest_date": "2025-11-20T03:12:17Z",
-      "latest_apk_name": "retroarch-sourceonly-1.22.2.tar.xz"
+      "latest_apk_name": "retroarch-sourceonly-1.22.2.tar.xz",
+      "source": "github"
     },
     {
       "id": "dolphin",
@@ -43313,7 +43469,9 @@
       "homepage": "https://dolphin-emu.org",
       "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/dolphin.png",
       "repo_url": "https://github.com/dolphin-emu/dolphin",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "经 Google Play/官网分发，无 GitHub APK"
     },
     {
       "id": "termux-jiaxinchen",
@@ -43931,7 +44089,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "official-web"
     },
     {
       "id": "termux-ghostty",
@@ -45260,7 +45419,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "community-archive"
     },
     {
       "id": "termux-plus",
@@ -45291,7 +45451,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "official-web"
     },
     {
       "id": "termux-enhanced",
@@ -46030,7 +46191,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "official-web"
     },
     {
       "id": "termux-aether",
@@ -46229,7 +46391,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "official-web"
     },
     {
       "id": "termux-zero",
@@ -46646,7 +46809,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "official-web"
     },
     {
       "id": "termux-kotlin",
@@ -47683,7 +47847,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "official-web"
     },
     {
       "id": "shadps4-emu-shadps4",
@@ -48479,7 +48644,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "kytyps5-kytyps5",
@@ -49155,7 +49321,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "ilya114-box64droid",
@@ -49279,7 +49446,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "jica98-bachata-s4",
@@ -49408,7 +49576,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "n3xox1-nxemu",
@@ -49518,7 +49687,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "maxjivi05-ps3native",
@@ -49714,7 +49884,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "dev-ali2008-onrps4-android",
@@ -49782,7 +49953,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "harbourmasters-shipwright",
@@ -50723,7 +50895,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "2ship2harkinian-2ship2harkinian",
@@ -51133,7 +51306,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "linkzenic-2ship2harkinian-android",
@@ -51469,7 +51643,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "zelda64recomp-zelda64recomp",
@@ -51693,7 +51868,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "harbourmasters-ghostship",
@@ -51849,7 +52025,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "harbourmasters-spaghettikart",
@@ -51947,7 +52124,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "banjorecomp-banjorecomp",
@@ -52070,7 +52248,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "rainchus-dk64-rekongpiled",
@@ -52232,7 +52411,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "jackandbeans-snap64recomp",
@@ -52941,7 +53121,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "twilitrealm-dusklight",
@@ -53828,7 +54009,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "zorkats-g-diffuser",
@@ -53978,7 +54160,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "mchughalex-skate3recomp",
@@ -54215,7 +54398,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "felipeprado0-spartanport",
@@ -54864,7 +55048,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "supermedo-bloodborne-pc",
@@ -55225,7 +55410,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "mircowuffwuff-sharpdroid",
@@ -55363,7 +55549,8 @@
           ]
         }
       ],
-      "logo_url": ""
+      "logo_url": "",
+      "source": "github"
     },
     {
       "id": "ghael-v-capyps5",
@@ -55431,7 +55618,8 @@
           ]
         }
       ],
-      "logo_url": ""
+      "logo_url": "",
+      "source": "github"
     },
     {
       "id": "pocket2droid-android",
@@ -55495,7 +55683,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "dukeps3-android",
@@ -55520,7 +55709,9 @@
       "watchers": 3,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "emucorev-android",
@@ -56002,7 +56193,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "zeebx-zeebo",
@@ -56759,7 +56951,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "nexium-switch1",
@@ -56784,7 +56977,9 @@
       "watchers": 1,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "anyps5-porting-tool",
@@ -56800,8 +56995,8 @@
       "latest_tag": "v0.1.3",
       "latest_date": "2026-10-20T09:31:13Z",
       "latest_body": "## New Contributors\n* @akkadbakkad89 made their first contribution in https://github.com/boykopovar/AnyPS5/pull/4725\n* @MidnightApora made their first contribution in https://github.com/boykopovar/AnyPS5/pull/5555\n* @alexpournaras made their first contribution in https://github.com/boykopovar/AnyPS5/pull/5546\n* @milchgeldkassierer made their first contribution in https://github.com/boykopovar/AnyPS5/pull/5438\n* @joelfernandes23 made their first contribution in https://github.com/boykopovar/AnyPS",
-      "latest_apk_name": "INPUT_MAPPING.md",
-      "latest_apk_url": "https://github.com/boykopovar/AnyPS5/releases/download/v0.1.3/INPUT_MAPPING.md",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T06:44:38Z",
       "stars": 48729,
@@ -57021,7 +57216,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "release 仅含说明文档，无 APK 发布"
     },
     {
       "id": "prosperoeden-ps5",
@@ -57375,7 +57572,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "hyperhle",
@@ -57400,7 +57598,9 @@
       "watchers": 1,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "hyperhle-reborn",
@@ -58726,7 +58926,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "seedlessds-android",
@@ -58794,7 +58995,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "watermelonds-android",
@@ -59295,7 +59497,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "seedlessds-cn-fork",
@@ -59311,9 +59514,9 @@
       "latest_tag": "v1.0.11-shaders",
       "latest_date": "2026-10-22T05:37:00Z",
       "latest_body": "## SeedlessDS 1.0.11-shaders（自制测试版）\n\n基于 1.0.10，新增 Sharp Bilinear、Sharp Shimmerless、Pixel AA Fast、LCD3x、Quilez 五个家族共 9 项效果，Vulkan 共 16 项。默认 OpenGL；屏幕菜单可选 Vulkan，并按后端筛选滤镜。\n\n- ARM64，最低 Android API 21；Vul",
-      "latest_apk_name": "CREDITS.md",
-      "latest_apk_url": "https://github.com/yjhqq761261552-wq/seedless-ds-fork/releases/download/v1.0.11-shaders/CREDITS.md",
-      "latest_apk_size": 38950213,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "pushed_at": "2026-10-22T05:37:00Z",
       "stars": 1,
       "forks": 0,
@@ -59350,7 +59553,9 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github",
+      "note": "release 资产为文档（CREDITS.md），无 APK"
     },
     {
       "id": "wpr-wp7-8",
@@ -59395,7 +59600,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "xendroid-plus",
@@ -59841,7 +60047,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "dukestation-ps1",
@@ -59866,7 +60073,9 @@
       "watchers": 1,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "经 Google Play 分发，无 GitHub APK"
     },
     {
       "id": "cappyps5-android",
@@ -59934,7 +60143,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "emucorex-android",
@@ -60530,7 +60740,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "emucoreh-android",
@@ -60746,7 +60957,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "emucorea-android",
@@ -60981,7 +61193,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "emucorep-android",
@@ -61049,7 +61262,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "armsx1-ps1",
@@ -61439,7 +61653,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "ax360e-android",
@@ -61464,7 +61679,9 @@
       "watchers": 4,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "dingooemu-android",
@@ -61801,7 +62018,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "azaharplus-android",
@@ -61826,7 +62044,9 @@
       "watchers": 3,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "nin64-android",
@@ -61851,7 +62071,9 @@
       "watchers": 1,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "经 Google Play 分发，无 GitHub APK"
     },
     {
       "id": "pockethle-android",
@@ -61997,7 +62219,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "mandarineneo-3ds",
@@ -62223,7 +62446,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "panda3ds-3ds",
@@ -62467,7 +62691,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "wie-skvm",
@@ -64151,7 +64376,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "lime3ds-3ds",
@@ -64176,7 +64402,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "无官方 APK 发布"
     },
     {
       "id": "borked3ds-3ds",
@@ -66267,7 +66495,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "redream-dc",
@@ -66292,7 +66521,9 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "经官网/商店分发，无 GitHub APK"
     },
     {
       "id": "md.emu-sms",
@@ -66317,7 +66548,9 @@
       "watchers": 7,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "github",
+      "note": "经 Google Play 分发，无 GitHub APK"
     },
     {
       "id": "emucorec-ps3",
@@ -66438,7 +66671,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "myps2-ps2",
@@ -66463,7 +66697,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "official-play"
     },
     {
       "id": "azahartrigger-3ds",
@@ -67255,7 +67490,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "eclipseds-nds",
@@ -67280,7 +67516,8 @@
       "watchers": 0,
       "downloads": 0,
       "logo_url": "",
-      "releases": []
+      "releases": [],
+      "source": "community-archive"
     },
     {
       "id": "azaharplus-main",
@@ -67873,7 +68110,8 @@
             }
           ]
         }
-      ]
+      ],
+      "source": "github"
     },
     {
       "id": "afeimod-linbox",
@@ -68408,7 +68646,8 @@
       "latest_date": "2026-09-13T02:30:58Z",
       "latest_apk_name": "box64-v0.3.8-20260913.tar.xz",
       "latest_apk_url": "https://github.com/afeimod/linbox/releases/download/v0.3.8-20260913/box64-v0.3.8-20260913.tar.xz",
-      "latest_apk_size": 3314424
+      "latest_apk_size": 3314424,
+      "source": "github"
     },
     {
       "id": "afeimod-linbox-winemu",
@@ -68603,7 +68842,8 @@
       "latest_date": "2026-07-10T07:22:53Z",
       "latest_apk_name": "Linbox-WinEmu-2.0test.apk",
       "latest_apk_url": "https://github.com/afeimod/Linbox-WinEmu/releases/download/Linbox-WinEmu-2.0test/Linbox-WinEmu-2.0test.apk",
-      "latest_apk_size": 13606272
+      "latest_apk_size": 13606272,
+      "source": "github"
     },
     {
       "id": "afeimod-nesstation",
@@ -68764,7 +69004,8 @@
       "latest_date": "2026-10-24T08:01:35Z",
       "latest_apk_name": "NesStation-3.9-release.apk",
       "latest_apk_url": "https://github.com/afeimod/NesStation/releases/download/3.9-release/NesStation-3.9-release.apk",
-      "latest_apk_size": 151968881
+      "latest_apk_size": 151968881,
+      "source": "github"
     },
     {
       "id": "afeimod-gamehtml",
@@ -68855,7 +69096,8 @@
       "latest_date": "2026-07-27T00:02:20Z",
       "latest_apk_name": "flashgamebox3.3.apk",
       "latest_apk_url": "https://github.com/afeimod/gamehtml/releases/download/3.3/flashgamebox3.3.apk",
-      "latest_apk_size": 29660885
+      "latest_apk_size": 29660885,
+      "source": "github"
     },
     {
       "id": "afeimod-winlator-glibc",
@@ -69243,7 +69485,8 @@
       "latest_date": "2025-10-29T05:06:48Z",
       "latest_apk_name": "wine-9.9-staging-Amod-wow64.tar.xz",
       "latest_apk_url": "https://github.com/afeimod/winlator-glibc/releases/download/9.9-staging-Amod-wow64/wine-9.9-staging-Amod-wow64.tar.xz",
-      "latest_apk_size": 81512604
+      "latest_apk_size": 81512604,
+      "source": "github"
     },
     {
       "id": "afeimod-eka2l1-an",
@@ -69278,7 +69521,8 @@
       "latest_date": "2026-06-09T05:01:32Z",
       "latest_apk_name": "EKA2L1-0.1.0.1afeimod-test3.apk",
       "latest_apk_url": "https://github.com/afeimod/EKA2L1-AN/releases/download/0.1.0-mod-test/EKA2L1-0.1.0.1afeimod-test3.apk",
-      "latest_apk_size": 117314875
+      "latest_apk_size": 117314875,
+      "source": "github"
     },
     {
       "id": "afeimod-eden-an",
@@ -69346,7 +69590,8 @@
       "latest_date": "2026-06-24T23:14:39Z",
       "latest_apk_name": "eden-mod3-fix-baseline.profm.apk",
       "latest_apk_url": "https://github.com/afeimod/eden-an/releases/download/mod-3/eden-mod3-fix-baseline.profm.apk",
-      "latest_apk_size": 25960350
+      "latest_apk_size": 25960350,
+      "source": "github"
     },
     {
       "id": "maxi000q-consolefivepro",
@@ -69371,7 +69616,8 @@
       "pushed_at": "2026-10-27T11:57:56Z",
       "latest_body": "Console Five Pro v0.0.9proQ2",
       "logo_url": "",
-      "note": ""
+      "note": "",
+      "source": "github"
     }
   ]
 }

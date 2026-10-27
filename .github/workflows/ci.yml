@@ -15,6 +15,14 @@ jobs:
       - name: 校验 registry schema 完整性
         run: python3 scripts/validate-registry.py
 
+  emulator-check:
+    name: 模拟器注册表校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 校验模拟器 registry（来源/dead/下载直链）
+        run: python3 scripts/validate-emulators.py
+
   i18n-check:
     name: i18n 翻译校验
     runs-on: ubuntu-latest
