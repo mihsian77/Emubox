@@ -11280,9 +11280,21 @@ private fun EmulatorCard(
     onDownload: (EmulatorEntry) -> Unit
 ) {
     val context = LocalContext.current
-    val canDownload = entry.latestApkUrl.isNotBlank()
-    // 官网优先 homepage，无则回退仓库（模拟器专区为社区排行榜，保留仓库跳转）
-    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
+    // 来源分级徽标（github/gitea/gitlab/官网/社区归档），与官方徽标并列
+    val sourceLabel = when (entry.source) {
+        "github" -> "GitHub"
+        "gitea" -> "Gitea"
+        "gitlab" -> "GitLab"
+        "notabug" -> "NotABug"
+        "official-web" -> "官网"
+        "official-play" -> "Play 商店"
+        "community-archive" -> "社区归档"
+        else -> ""
+    }
+    // DMCA/停更仓库：社区归档（123盘历史包）保留下载，其余不跳仓库、隐藏下载
+    val isArchive = entry.source == "community-archive"
+    val canDownload = entry.latestApkUrl.isNotBlank() && !(entry.dead && !isArchive)
+    val websiteUrl = if (entry.dead && !isArchive) "" else entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -11685,6 +11697,16 @@ private fun EmulatorListRow(
     onDownload: (EmulatorEntry) -> Unit
 ) {
     val context = LocalContext.current
+    val sourceLabel = when (entry.source) {
+        "github" -> "GitHub"
+        "gitea" -> "Gitea"
+        "gitlab" -> "GitLab"
+        "notabug" -> "NotABug"
+        "official-web" -> "官网"
+        "official-play" -> "Play 商店"
+        "community-archive" -> "社区归档"
+        else -> ""
+    }
     val canDownload = entry.latestApkUrl.isNotBlank()
     // 官网优先 homepage，无则回退仓库（模拟器专区为社区排行榜，保留仓库跳转）
     val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
@@ -11722,6 +11744,28 @@ private fun EmulatorListRow(
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
+                    }
+                    if (entry.dead) {
+                        Spacer(Modifier.width(4.dp))
+                        Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.errorContainer) {
+                            Text(
+                                "已停更",
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onErrorContainer
+                            )
+                        }
+                    }
+                    if (sourceLabel.isNotBlank()) {
+                        Spacer(Modifier.width(4.dp))
+                        Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.surfaceVariant) {
+                            Text(
+                                sourceLabel,
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     }
@@ -11773,7 +11817,7 @@ private fun EmulatorListRow(
                         runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl))) }
                     }
                 },
-                enabled = canDownload || websiteUrl.isNotBlank(),
+                enabled = canDownload || (websiteUrl.isNotBlank() && !entry.dead),
                 modifier = Modifier.height(30.dp),
                 shape = RoundedCornerShape(10.dp),
                 contentPadding = PaddingValues(horizontal = 10.dp)
@@ -11820,6 +11864,7 @@ private fun EmulatorDetailDialog(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val isArchive = entry.source == "community-archive"
     var expandedTag by remember { mutableStateOf(entry.releases.firstOrNull()?.tag) }
     var translatedMap by remember { mutableStateOf<Map<String, String?>>(emptyMap()) }
     var translatingTag by remember { mutableStateOf<String?>(null) }
@@ -11841,6 +11886,20 @@ private fun EmulatorDetailDialog(
                 Modifier.padding(20.dp).verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
+                if (entry.dead && !isArchive) {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = MaterialTheme.colorScheme.errorContainer,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            "已停止维护：${entry.deadReason.ifBlank { "仓库已失效/被移除" }}",
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
+                }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         entry.name,
@@ -11917,7 +11976,7 @@ private fun EmulatorDetailDialog(
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
-                            if (entry.githubUrl.isNotBlank()) {
+                            if (entry.githubUrl.isNotBlank() && !(entry.dead && !isArchive)) {
                                 Spacer(Modifier.height(8.dp))
                                 OutlinedButton(
                                     onClick = {
@@ -12085,7 +12144,7 @@ private fun EmulatorDetailDialog(
                                         Spacer(Modifier.width(6.dp))
                                         IconButton(
                                             onClick = { onDownloadAsset(asset.url, asset.name) },
-                                            enabled = asset.url.isNotBlank()
+                                            enabled = asset.url.isNotBlank() && !(entry.dead && !isArchive)
                                         ) {
                                             Icon(
                                                 Icons.Default.Download,
