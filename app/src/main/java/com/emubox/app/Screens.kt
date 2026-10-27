@@ -9895,6 +9895,12 @@ private fun NewsZoneCard(
     /** 官方组件/运行库条目按 type 筛选（组件类型 chips） */
     typeFilter: Boolean = false
 ) {
+    // 来源标签：组件/运行库/驱动资讯来自各官方 GitHub releases，不再统一标"IT之家"
+    val sourceLabel = if (category in setOf("component", "runtime", "driver")) {
+        appString(R.string.news_source_official)
+    } else {
+        appString(R.string.news_source_ithome)
+    }
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -9904,7 +9910,7 @@ private fun NewsZoneCard(
                 Text(title, style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Text(
-                    appString(R.string.news_source_ithome),
+                    sourceLabel,
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -9919,7 +9925,11 @@ private fun NewsZoneCard(
                 items.isEmpty() -> {
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        appString(R.string.news_empty),
+                        appString(if (category in setOf("component", "runtime", "driver")) {
+                            R.string.news_empty_official
+                        } else {
+                            R.string.news_empty
+                        }),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

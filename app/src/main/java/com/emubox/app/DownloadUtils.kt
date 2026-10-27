@@ -56,7 +56,10 @@ private const val DEFAULT_ROOT_FOLDER = "EmuBox"
 // 注意：不能设置 callTimeout——GB 级驱动下载会超整体时限被杀，表现为下载到一半失败。
 private val downloadClient = OkHttpClient.Builder()
     .connectTimeout(10, TimeUnit.SECONDS)
-    .readTimeout(30, TimeUnit.SECONDS)
+    // 公益加速节点大文件（驱动/组件 GB 级）传输慢，30s 读超时会把
+    // 已下完/接近下完的传输判死并触发重连（表现为"下载完却连接中"）。
+    // 放宽到 120s：让慢传输自然走完，重连只留给真实断流。
+    .readTimeout(120, TimeUnit.SECONDS)
     .retryOnConnectionFailure(true)
     .followRedirects(true)
     .followSslRedirects(true)
