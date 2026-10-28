@@ -60123,75 +60123,6 @@
       "note": "经 Google Play 分发，无 GitHub APK"
     },
     {
-      "id": "cappyps5-android",
-      "name": "CapyPS5",
-      "category": "Emulator PS5",
-      "description": "",
-      "owner": "Ghael-V",
-      "repo": "Ghael-V/CapyPS5",
-      "homepage": "",
-      "repo_url": "https://github.com/Ghael-V/CapyPS5",
-      "official": true,
-      "channel": "beta",
-      "latest_tag": "v0.0.3",
-      "latest_date": "2026-10-24T12:00:17Z",
-      "latest_body": "Second alpha of the first PlayStation 5 emulator for Android. Fixes for what testers reported on v0.0.1, a trophy screen, and 60 games on the compatibility list. Existing installs are offered this upd",
-      "latest_apk_name": "CapyPS5-v0.0.3.apk",
-      "latest_apk_url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.3/CapyPS5-v0.0.3.apk",
-      "latest_apk_size": 52959155,
-      "pushed_at": "2026-10-24T11:59:59Z",
-      "stars": 58,
-      "forks": 2,
-      "watchers": 1,
-      "downloads": 0,
-      "logo_url": "https://github.com/Ghael-V.png",
-      "releases": [
-        {
-          "tag": "v0.0.3",
-          "name": "CapyPS5 v0.0.3",
-          "date": "2026-10-24T12:00:17Z",
-          "body": "Third alpha of the first PlayStation 5 emulator for Android. Fixes for the logs testers sent on v0.0.2, CPU work for Unreal Engine games, and more from KytyPS5. Existing installs are offered this update in the app.\n\n**Fixed**\n- Games that use fibers (sceFiber) closed the emulator at start on ARM (\"Fiber context switching is only implemented on x86_64\", Toy Story Retro Roundup). Fibers now switch the game's own registers. First support: please report how fiber games behave.\n- Final Fantasy VII Rebirth: sceKernelFtruncate, which it calls when saving, is now available.\n- Mewgenics: pthread_setcanceltype is now available.\n- The game clock (RDTSC) ran about 23 % faster than the frequency games are told; they now match.\n- Very large GPU compute dispatches (over 65535 groups, as in Astro Bot) are split to fit Adreno limits.\n- Unity backtraces no longer follow a bogus frame at the start of each guest thread.\n\n**New**\n- Unreal Engine games: the TLS and process clock reads they make millions of times a second run inside the game code instead of calling into the emulator.\n- Shaders can read the real GPU clock (S_MEMREALTIME) on drivers that offer it.\n- JpegDec and JpegEnc libraries, and more ",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "CapyPS5-v0.0.3.apk",
-              "size": 53000115,
-              "url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.3/CapyPS5-v0.0.3.apk"
-            }
-          ]
-        },
-        {
-          "tag": "v0.0.2",
-          "name": "CapyPS5 v0.0.2 (Alpha)",
-          "date": "2026-10-23T09:33:17Z",
-          "body": "Second alpha of the first PlayStation 5 emulator for Android. Fixes for what testers reported on v0.0.1, a trophy screen, and 60 games on the compatibility list. Existing installs are offered this update in the app.\n\n**Fixed**\n- Virtual controller: several buttons can now be held at once.\n- Physical controllers: the left stick no longer presses the d-pad (it moved menus and cursors, as in Mewgenics).\n- Adreno 6xx with Turnip (such as Adreno 660) no longer closes at start for lack of 8-bit storage (thanks to deivid22srk).\n- Dead Cells has its music, hits and footsteps back: NGS2 voices sent to a rack handle are now heard.\n- Games that use user clip planes or uncommon storage texture settings no longer close.\n\n**New**\n- Trophies: each game's trophy list, what you have earned, and a card to share your progress.\n- A \"What's new\" card after each update.\n- Over 35 improvements from KytyPS5: shaders, tessellation, NGS2 and ATRAC9 audio, flip waits and fewer crashes.\n\n**Requirements:** Android 12+ (arm64), a Vulkan 1.3 GPU, 12 GB of RAM recommended, and your own PS5 game dumps. Tested on Adreno 830 (AYN Odin 3) and by testers on Snapdragon 8 Elite, 8 Gen 3, 888 and Mali. Other GPUs: downlo",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "CapyPS5-v0.0.2.apk",
-              "size": 52959155,
-              "url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.2/CapyPS5-v0.0.2.apk"
-            }
-          ]
-        },
-        {
-          "tag": "v0.0.1",
-          "name": "CapyPS5 v0.0.1 (Alpha)",
-          "date": "2026-10-22T12:06:55Z",
-          "body": "The first PlayStation 5 emulator for Android. **Alpha:** a handful of games run, some at full speed; many are slow or don't boot yet. The app tells you when a new version is out.\n\n**Requirements:** Android 12+ (arm64), a Vulkan 1.3 GPU, 12 GB of RAM recommended, and your own PS5 game dumps. Tested on Adreno 830 (AYN Odin 3). Other Adreno GPUs and Mali: download a Turnip or PanVK driver in *Settings → Graphics → Download drivers*.\n\n**Playable at 60 FPS on the Odin 3:** Dead Cells, Blasphemous, Animal Well, Greak: Memories of Azur, The Binding of Isaac: Repentance, Monster Boy. Full list in the README and on https://capyps5.org.\n\n**Includes no games, BIOS, firmware or Sony keys, and needs none.** Only use games dumped from your own console.\n\nReport problems on Discord (https://discord.com/invite/PEE7Q5TVM5) with the log the app saves when a game closes.\n\n---\n\n**Español:** el primer emulador de PS5 para Android, en alpha. Requisitos y lista de juegos en el README en español y en https://capyps5.org/es/.\n\nSHA-256: `955d6502cc48a18c1f55867aafa8b7e330a0f1a2a92ecdbbe56f2981825ee613`\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "CapyPS5-v0.0.1.apk",
-              "size": 52840371,
-              "url": "https://github.com/Ghael-V/CapyPS5/releases/download/v0.0.1/CapyPS5-v0.0.1.apk"
-            }
-          ]
-        }
-      ],
-      "source": "github"
-    },
-    {
       "id": "emucorex-android",
       "name": "EmuCoreX",
       "category": "PlayStation 2 Emulator",
@@ -69673,6 +69604,113 @@
       "logo_url": "https://github.com/maxi000q.png",
       "note": "",
       "source": "github"
+    },
+    {
+      "id": "rfandango-hakux",
+      "name": "HakuX",
+      "category": "Xbox",
+      "channel": "github",
+      "repo": "rfandango/hakuX",
+      "repo_url": "https://github.com/rfandango/hakuX",
+      "desc": "原版 Xbox 安卓模拟器（FEX x86→ARM 翻译 + 原生 Xbox 内核重实现），2026-10 发布 v1.0-1.2",
+      "source": "github",
+      "official": false,
+      "downloads": 0,
+      "note": "",
+      "stars": 424,
+      "forks": 16,
+      "watchers": 424,
+      "owner": "rfandango",
+      "pushed_at": "2026-10-26",
+      "logo_url": "https://avatars.githubusercontent.com/u/263785354?v=4",
+      "releases": [
+        {
+          "tag": "v1.2.0",
+          "date": "2026-10-26",
+          "name": "v1.2.0",
+          "assets": [
+            {
+              "name": "hakuX-1.2.0.apk",
+              "url": "https://github.com/rfandango/hakuX/releases/download/v1.2.0/hakuX-1.2.0.apk",
+              "size": 6985705
+            }
+          ]
+        }
+      ],
+      "latest_tag": "v1.2.0",
+      "latest_date": "2026-10-26",
+      "latest_body": "System link, stability and compatibility improvements.\n\n### Network\n- **System link over your network** — Settings → Network → System link → LAN: hakuX devices on the same Wi-Fi network find each other as Xbox consoles on a LAN do. Devices the network's broadcasts don't reach, on another subnet or a VPN such as ZeroTier or Tailscale, are added by address under Other consoles\n- **XLink Kai** — system link over the Internet through an XLink Kai engine running on a computer on your network; its web page picks the game's arena\n- **Console identity** — each console has its own serial number, network address and online key. A device whose hard disk was copied from another one offers to make itself a new identity, since two consoles with one identity can't see each other\n\n\n### Games\n- **Sega GT 2002** — the cars have their paint, reflections and sun highlights\n- **Doom 3** — no longer crashes as its main menu loads\n- **Fatal Frame II** — starts and reads its disc in the order it asks for\n- **AirForce Delta Storm** — answers the controller and the on-screen controls (it ignored all input)\n- **Silent Hill 2** — no longer crashes when it loads a room\n- **Splinter Cell: Double Agent** — no longer closes on boot\n- **Super Monkey Ball Deluxe** — its title movie plays and its movies aren't black\n- **Ultimate Spider-Man** — no longer crashes a second into boot\n- **Grand Theft Auto III** — no longer shows its bad-disc screen\n- **Project Gotham Racing 2** — the attract replay no longer goes black\n- **Dungeons & Dragons Heroes** — the tutorial's prompts show\n- **Sound** — games that hold their voices while the sound engine updates them, or stop a voice as it changes, no longer freeze or play a stopped voice on\n\n### Performance\n- **Fewer stutters with Turnip** — frames reach the screen without a CPU wait in front of each one\n\n### App\n- **Controllers** — only the players with a controller are plugged into the console (player 1 always, for the on-screen controls), and a controller plugs",
+      "latest_apk_name": "hakuX-1.2.0.apk",
+      "latest_apk_url": "https://github.com/rfandango/hakuX/releases/download/v1.2.0/hakuX-1.2.0.apk",
+      "latest_apk_size": 6985705,
+      "homepage": ""
+    },
+    {
+      "id": "orangefox86-hollycast",
+      "name": "Hollycast",
+      "category": "Sega Dreamcast",
+      "channel": "github",
+      "repo": "OrangeFox86/Hollycast",
+      "repo_url": "https://github.com/OrangeFox86/Hollycast",
+      "desc": "社区构建的 Sega Dreamcast / Naomi / Naomi 2 / Atomiswave 多平台模拟器（安卓 APK 随 release 发布）",
+      "source": "github",
+      "official": false,
+      "downloads": 0,
+      "note": "",
+      "stars": 9,
+      "forks": 0,
+      "watchers": 9,
+      "owner": "OrangeFox86",
+      "pushed_at": "2026-10-25",
+      "logo_url": "https://avatars.githubusercontent.com/u/114117446?v=4",
+      "releases": [
+        {
+          "tag": "v1.0",
+          "date": "2026-10-25",
+          "name": "v1.0",
+          "assets": [
+            {
+              "name": "Hollycast-v1.0.apk",
+              "url": "https://github.com/OrangeFox86/Hollycast/releases/download/v1.0/Hollycast-v1.0.apk",
+              "size": 41078803
+            }
+          ]
+        }
+      ],
+      "latest_tag": "v1.0",
+      "latest_date": "2026-10-25",
+      "latest_body": "Initial release with improved [DreamPicoPort](https://github.com/OrangeFox86/DreamPicoPort) and [DreamPotato](https://github.com/RikkiGibson/DreamPotato) support, and improved settings UI\r\n\r\nDemo video: https://www.youtube.com/watch?v=HkwDi5smav4\r\n\r\n> [!TIP]\r\n> DreamPotato is **included in the box** in Windows/macOS/Linux builds! No need to download it separately. Just make sure you keep all the files in the zip together.\r\n\r\n> [!NOTE]\r\n> Android version doesn't have DreamPicoPort or DreamPotato support currently.",
+      "latest_apk_name": "Hollycast-v1.0.apk",
+      "latest_apk_url": "https://github.com/OrangeFox86/Hollycast/releases/download/v1.0/Hollycast-v1.0.apk",
+      "latest_apk_size": 41078803,
+      "homepage": ""
+    },
+    {
+      "id": "samsixx6-brew2droid",
+      "name": "Brew2Droid",
+      "category": "Brew Emulator",
+      "channel": "github",
+      "repo": "samsixx6/Brew2Droid",
+      "repo_url": "https://github.com/samsixx6/Brew2Droid",
+      "desc": "BREW 手机（含 Zeebo）安卓模拟器，活跃开发中",
+      "source": "github",
+      "official": false,
+      "downloads": 0,
+      "note": "无 release 发布，暂无可直链 APK",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 1,
+      "owner": "samsixx6",
+      "pushed_at": "2026-10-27",
+      "logo_url": "https://avatars.githubusercontent.com/u/246085582?v=4",
+      "releases": [],
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "homepage": ""
     }
   ]
 }
