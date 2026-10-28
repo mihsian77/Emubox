@@ -69,7 +69,9 @@ def main():
         e["pushed_at"] = meta.get("pushed_at") or ""
         e["releases"] = rels
         if rels:
-            r0 = rels[0]
+            r0 = next((r for r in rels if not r.get("prerelease") and (r.get("body") or "").strip()), None) \
+                or next((r for r in rels if (r.get("body") or "").strip()), None) \
+                or rels[0]
             e["latest_tag"] = r0["tag"]
             e["latest_date"] = r0["date"]
             e["latest_body"] = (r0.get("body") or "")[:2000]
