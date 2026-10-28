@@ -1,164 +1,164 @@
 {
- "updated_at": "2026-10-27T06:32:56.899Z",
+ "updated_at": "2026-10-28T07:33:10.750Z",
  "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
  "insights": {
   "total_projects": 63,
-  "total_downloads": 64556656,
-  "total_stars": 90030,
+  "total_downloads": 64702251,
+  "total_stars": 90650,
   "trending14": [
    {
     "repo": "the412banner/banners-turnip",
-    "delta": 535852,
-    "date": "2026-10-27"
+    "delta": 565016,
+    "date": "2026-10-28"
    },
    {
     "repo": "brunodev85/winlator",
-    "delta": 312647,
-    "date": "2026-10-27"
+    "delta": 312899,
+    "date": "2026-10-28"
    },
    {
     "repo": "azahar-emu/azahar",
-    "delta": 237088,
-    "date": "2026-10-27"
+    "delta": 234129,
+    "date": "2026-10-28"
    },
    {
     "repo": "k11mch1/adrenotoolsdrivers",
-    "delta": 212632,
-    "date": "2026-10-27"
+    "delta": 229567,
+    "date": "2026-10-28"
    },
    {
     "repo": "stevenmxz/freedreno_turnip-ci",
-    "delta": 114215,
-    "date": "2026-10-27"
-   },
-   {
-    "repo": "armsx2/armsx3",
-    "delta": 89566,
-    "date": "2026-10-27"
+    "delta": 120667,
+    "date": "2026-10-28"
    },
    {
     "repo": "armsx2/armsx2",
-    "delta": 86587,
-    "date": "2026-10-27"
+    "delta": 91344,
+    "date": "2026-10-28"
+   },
+   {
+    "repo": "armsx2/armsx3",
+    "delta": 87657,
+    "date": "2026-10-28"
    },
    {
     "repo": "stevenmxz/winlator-ludashi",
-    "delta": 72049,
-    "date": "2026-10-27"
+    "delta": 71912,
+    "date": "2026-10-28"
    },
    {
     "repo": "utkarshdalal/gamenative",
-    "delta": 68328,
-    "date": "2026-10-27"
+    "delta": 62543,
+    "date": "2026-10-28"
    },
    {
     "repo": "trixarian/nethersx2-patch",
-    "delta": 62192,
-    "date": "2026-10-27"
+    "delta": 62329,
+    "date": "2026-10-28"
    },
    {
     "repo": "producdevity/gamehub-lite",
-    "delta": 60018,
-    "date": "2026-10-27"
+    "delta": 60229,
+    "date": "2026-10-28"
    },
    {
     "repo": "whitebelyash/adrenotoolsdrivers",
-    "delta": 44167,
-    "date": "2026-10-27"
+    "delta": 45218,
+    "date": "2026-10-28"
    },
    {
     "repo": "whitebelyash/freedreno_turnip-ci",
-    "delta": 44167,
-    "date": "2026-10-27"
+    "delta": 45218,
+    "date": "2026-10-28"
    },
    {
     "repo": "the412banner/bannerlator",
-    "delta": 39976,
-    "date": "2026-10-27"
+    "delta": 39444,
+    "date": "2026-10-28"
    },
    {
     "repo": "ashnar2602/x360-mobile---official",
-    "delta": 39701,
-    "date": "2026-10-27"
+    "delta": 39148,
+    "date": "2026-10-28"
    }
   ],
-  "trend_base_date": "2026-10-14",
-  "trend_latest_date": "2026-10-27",
+  "trend_base_date": "2026-10-15",
+  "trend_latest_date": "2026-10-28",
   "category_downloads": [
    {
     "category": "Winlator",
     "label": "Winlator 专区",
-    "downloads": 22688346
+    "downloads": 22725463
    },
    {
     "category": "Nintendo 3DS",
     "label": "任天堂 3DS",
-    "downloads": 17012996
+    "downloads": 17032939
    },
    {
     "category": "Emulator PS2",
     "label": "PS2 模拟",
-    "downloads": 6156076
+    "downloads": 6174181
    },
    {
     "category": "PSVITA",
     "label": "PS Vita",
-    "downloads": 4336349
+    "downloads": 4336940
    },
    {
     "category": "Wii U Emulator",
     "label": "Wii U 模拟",
-    "downloads": 2914033
+    "downloads": 2916696
    },
    {
     "category": "PC Emulator",
     "label": "PC 模拟器",
-    "downloads": 2646218
+    "downloads": 2682739
    },
    {
     "category": "GameHub",
     "label": "GameHub 专区",
-    "downloads": 2563759
+    "downloads": 2573303
    },
    {
     "category": "Emulator PS3",
     "label": "PS3 模拟",
-    "downloads": 2237982
+    "downloads": 2247391
    },
    {
     "category": "GameNative",
     "label": "GameNative 专区",
-    "downloads": 1402377
+    "downloads": 1406297
    },
    {
     "category": "Sega Dreamcast",
     "label": "Dreamcast 模拟",
-    "downloads": 907390
+    "downloads": 909320
    },
    {
     "category": "Xbox",
     "label": "Xbox 模拟",
-    "downloads": 802555
+    "downloads": 807394
    },
    {
     "category": "Nintendo GameCube / Wii",
     "label": "NGC-Wii 模拟",
-    "downloads": 782665
+    "downloads": 783292
    },
    {
     "category": "All In One",
     "label": "聚合前端",
-    "downloads": 101450
+    "downloads": 101814
    },
    {
     "category": "Emulator PS5",
     "label": "PS5 模拟",
-    "downloads": 2784
+    "downloads": 2797
    },
    {
     "category": "GAME",
     "label": "游戏",
-    "downloads": 1676
+    "downloads": 1685
    },
    {
     "category": "Nintendo Switch Emulator",
@@ -442,8 +442,8 @@
    "category": "Winlator",
    "official": true,
    "channel": "stable",
-   "downloads": 16458480,
-   "stars": 19644,
+   "downloads": 16483281,
+   "stars": 19660,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-17T12:17:12Z",
    "homepage": "https://winlator.org",
@@ -703,7 +703,7 @@
      ]
     }
    ],
-   "forks": 1890,
+   "forks": 1891,
    "watchers": 362,
    "created_at": "2023-07-26T13:02:11Z",
    "license": "LGPL-2.1",
@@ -720,8 +720,8 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8914942,
-   "stars": 8479,
+   "downloads": 8932255,
+   "stars": 8491,
    "description": "An open-source 3DS emulator project based on Citra.",
    "pushed_at": "2026-10-25T20:38:34Z",
    "homepage": "https://azahar-emu.org/",
@@ -7830,7 +7830,7 @@
      ]
     }
    ],
-   "forks": 771,
+   "forks": 774,
    "watchers": 149,
    "created_at": "2024-03-04T21:08:59Z",
    "license": "GPL-3.0",
@@ -7847,8 +7847,8 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8098054,
-   "stars": 2762,
+   "downloads": 8100684,
+   "stars": 2764,
    "description": "A Nintendo 3DS Emulator",
    "pushed_at": "2025-11-14T11:04:59Z",
    "homepage": "https://citra-emu.org",
@@ -9771,7 +9771,7 @@
    "category": "PSVITA",
    "official": false,
    "channel": "stable",
-   "downloads": 4336349,
+   "downloads": 4336940,
    "stars": 1665,
    "description": "Public releases and CI for the Vita3K Android app",
    "pushed_at": "2025-02-22T16:30:58Z",
@@ -9964,8 +9964,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 3577783,
-   "stars": 2725,
+   "downloads": 3582498,
+   "stars": 2732,
    "description": "Continuation of NetherSX2 based on AetherSX2 4248",
    "pushed_at": "2026-09-22T04:21:34Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -10254,7 +10254,7 @@
     }
    ],
    "forks": 101,
-   "watchers": 81,
+   "watchers": 80,
    "created_at": "2023-08-22T20:28:33Z",
    "license": "Unlicense",
    "topics": [
@@ -10277,8 +10277,8 @@
    "category": "Wii U Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 2914033,
-   "stars": 1225,
+   "downloads": 2916696,
+   "stars": 1227,
    "description": "Android port for the cemu emulator",
    "pushed_at": "2026-09-12T17:30:42Z",
    "homepage": "https://cemu.info",
@@ -10411,7 +10411,7 @@
      ]
     }
    ],
-   "forks": 93,
+   "forks": 94,
    "watchers": 90,
    "created_at": "2022-11-19T20:04:09Z",
    "license": "MPL-2.0",
@@ -10434,8 +10434,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1618808,
-   "stars": 1282,
+   "downloads": 1624080,
+   "stars": 1284,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-07T21:29:08Z",
    "homepage": "https://winlator.org",
@@ -10915,8 +10915,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 1552423,
-   "stars": 2087,
+   "downloads": 1557109,
+   "stars": 2090,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-07-03T18:28:52Z",
    "homepage": "https://www.emuready.com/",
@@ -11343,7 +11343,7 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1546020,
+   "downloads": 1548162,
    "stars": 1224,
    "description": "Continuation of NetherSX2 based on AetherSX2 3668",
    "pushed_at": "2026-06-29T12:01:14Z",
@@ -11511,10 +11511,10 @@
    "category": "GameNative",
    "official": false,
    "channel": "stable",
-   "downloads": 1402377,
-   "stars": 11569,
+   "downloads": 1406297,
+   "stars": 11585,
    "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
-   "pushed_at": "2026-10-27T04:22:13Z",
+   "pushed_at": "2026-10-27T15:45:48Z",
    "homepage": "https://gamenative.app",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/gamenative.png",
    "releases": [
@@ -12710,7 +12710,7 @@
      ]
     }
    ],
-   "forks": 486,
+   "forks": 487,
    "watchers": 68,
    "created_at": "2025-04-21T11:25:27Z",
    "license": "GPL-3.0",
@@ -12732,10 +12732,10 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1032273,
-   "stars": 2294,
+   "downloads": 1043521,
+   "stars": 2304,
    "description": "ARMSX2 - The Playstation 2 Emulator for ARM64 Platforms",
-   "pushed_at": "2026-10-27T03:16:36Z",
+   "pushed_at": "2026-10-28T04:37:21Z",
    "homepage": "https://armsx2.net/",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/armsx2.png",
    "releases": [
@@ -14875,7 +14875,7 @@
      ]
     }
    ],
-   "forks": 201,
+   "forks": 202,
    "watchers": 48,
    "created_at": "2025-08-11T19:27:45Z",
    "license": "GPL-3.0",
@@ -14892,8 +14892,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1026707,
-   "stars": 548,
+   "downloads": 1026878,
+   "stars": 547,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-01-05T23:43:15Z",
    "homepage": "https://winlator.org",
@@ -15044,7 +15044,7 @@
      ]
     }
    ],
-   "forks": 218,
+   "forks": 217,
    "watchers": 24,
    "created_at": "2024-07-13T16:12:07Z",
    "license": "MIT",
@@ -15061,10 +15061,10 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 975282,
-   "stars": 15015,
+   "downloads": 1010649,
+   "stars": 15538,
    "description": "DroidDeck brings the SteamOS experience to Android",
-   "pushed_at": "2026-10-27T04:23:50Z",
+   "pushed_at": "2026-10-28T04:42:13Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
    "releases": [
@@ -15307,8 +15307,8 @@
      ]
     }
    ],
-   "forks": 768,
-   "watchers": 101,
+   "forks": 794,
+   "watchers": 105,
    "created_at": "2026-09-24T15:14:13Z",
    "license": "GPL-3.0",
    "topics": [],
@@ -15324,10 +15324,10 @@
    "category": "Sega Dreamcast",
    "official": false,
    "channel": "stable",
-   "downloads": 907390,
-   "stars": 2623,
+   "downloads": 909320,
+   "stars": 2628,
    "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
-   "pushed_at": "2026-10-26T13:20:24Z",
+   "pushed_at": "2026-10-27T10:48:03Z",
    "homepage": "https://flycast.se",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/flycast.png",
    "releases": [
@@ -15750,7 +15750,7 @@
      ]
     }
    ],
-   "forks": 394,
+   "forks": 395,
    "watchers": 73,
    "created_at": "2018-04-27T11:14:36Z",
    "license": "GPL-2.0",
@@ -15772,8 +15772,8 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 861245,
-   "stars": 1337,
+   "downloads": 861785,
+   "stars": 1339,
    "description": "",
    "pushed_at": "2026-08-29T13:27:19Z",
    "homepage": "",
@@ -15839,7 +15839,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 854470,
+   "downloads": 855077,
    "stars": 1118,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-12-09T22:36:49Z",
@@ -16100,7 +16100,7 @@
      ]
     }
    ],
-   "forks": 72,
+   "forks": 73,
    "watchers": 44,
    "created_at": "2024-09-08T06:33:44Z",
    "license": "MIT",
@@ -16117,7 +16117,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 825680,
+   "downloads": 825999,
    "stars": 696,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-04-19T02:53:06Z",
@@ -17281,7 +17281,7 @@
    "category": "Nintendo GameCube / Wii",
    "official": false,
    "channel": "stable",
-   "downloads": 782665,
+   "downloads": 783292,
    "stars": 283,
    "description": "A fork of Dolphin MMJR2 - with added VBI Skip hack and further fixes ported over from Dolphin Official.",
    "pushed_at": "2025-08-03T09:27:46Z",
@@ -17474,8 +17474,8 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 766532,
-   "stars": 751,
+   "downloads": 768358,
+   "stars": 752,
    "description": "An experimental Android PS3 emulator, ported and optimized based on RPCS3. ",
    "pushed_at": "2026-10-05T09:08:05Z",
    "homepage": "https://aenu.cc/aps3e",
@@ -17835,7 +17835,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 765633,
+   "downloads": 766186,
    "stars": 752,
    "description": "",
    "pushed_at": "2026-05-04T03:29:50Z",
@@ -18180,8 +18180,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 680977,
-   "stars": 480,
+   "downloads": 684409,
+   "stars": 483,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-22T19:50:30Z",
    "homepage": "https://winlator.org",
@@ -18315,13 +18315,42 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 610205,
+   "downloads": 617248,
    "stars": 0,
    "description": "",
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/armsx3.png",
    "releases": [
+    {
+     "tag": "1.4.1",
+     "name": "ARMSX3 1.4.1 ",
+     "date": "2026-10-27T19:01:57Z",
+     "body": "# ARMSX3 1.4.1\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/4bb1965c-88cc-4425-bc1d-cf659bfa0b85\" />\n\n## Games\n\n- **The Elder Scrolls V: Skyrim runs with fewer hitches**, both the original release and the Legendary Edition.\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/47ef7408-cee6-4793-a83c-3460aa93f658\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/03e84fcd-f4f8-4954-b4a0-1cac2231b314\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/0962b0e2-4f7d-4050-a1e3-655a03d9276c\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f29bfdae-1da7-42c6-8216-1e72984b0ffc\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/6e5a86b7-3587-44e4-bc8b-e8afb9da3d8b\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/53ccc585-b185-419f-89fc-5839fe27ada2\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/13fd4506-027d-4d4b-8557-18cd928",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "ARMSX3-1.4.1-a11-armv8.2-sdk30.apk",
+       "size": 93076836,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.4.1/ARMSX3-1.4.1-a11-armv8.2-sdk30.apk"
+      },
+      {
+       "name": "ARMSX3-1.4.1-a13-armv8.2-sdk33.apk",
+       "size": 92784308,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.4.1/ARMSX3-1.4.1-a13-armv8.2-sdk33.apk"
+      },
+      {
+       "name": "ARMSX3-1.4.1-a15-armv8.2-sdk35.apk",
+       "size": 92742396,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.4.1/ARMSX3-1.4.1-a15-armv8.2-sdk35.apk"
+      },
+      {
+       "name": "ARMSX3-1.4.1-legacy-armv8.1-sdk30.apk",
+       "size": 93075688,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.4.1/ARMSX3-1.4.1-legacy-armv8.1-sdk30.apk"
+      }
+     ]
+    },
     {
      "tag": "1.4",
      "name": "ARMSX3 1.4 ",
@@ -19759,8 +19788,8 @@
    "license": "",
    "topics": [],
    "archived": false,
-   "latestTag": "1.4",
-   "latestDate": "2026-10-25T04:58:31Z"
+   "latestTag": "1.4.1",
+   "latestDate": "2026-10-27T19:01:57Z"
   },
   {
    "id": "ashnar2602-x360-mobile---official",
@@ -19770,7 +19799,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "nightly",
-   "downloads": 573148,
+   "downloads": 576031,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -19940,7 +19969,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 490461,
+   "downloads": 490695,
    "stars": 720,
    "description": "",
    "pushed_at": "2025-02-28T07:48:56Z",
@@ -19993,8 +20022,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 385884,
-   "stars": 560,
+   "downloads": 387332,
+   "stars": 563,
    "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool smali patching.",
    "pushed_at": "2026-09-28T21:24:36Z",
    "homepage": "",
@@ -21141,7 +21170,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 300061,
+   "downloads": 300270,
    "stars": 549,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-03-18T01:28:27Z",
@@ -21229,10 +21258,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 235335,
-   "stars": 180,
+   "downloads": 236617,
+   "stars": 181,
    "description": "ReVanced patches for GameHub — BannerHub features as true ReVanced patches",
-   "pushed_at": "2026-10-26T14:24:52Z",
+   "pushed_at": "2026-10-28T05:56:47Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerhub-v6.png",
    "releases": [
@@ -23567,7 +23596,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 226228,
+   "downloads": 228181,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -23774,13 +23803,42 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 210870,
-   "stars": 468,
+   "downloads": 212859,
+   "stars": 476,
    "description": "Bannerlator — run Windows PC games and apps on Android (Wine + Box64/86). A personal, community-driven continuation of the discontinued Winlator Star Bionic project. GitHub Actions builds + releases.",
-   "pushed_at": "2026-10-27T04:05:54Z",
+   "pushed_at": "2026-10-27T14:53:07Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerlator.png",
    "releases": [
+    {
+     "tag": "3.1.7",
+     "name": "Bannerlator 3.1.7",
+     "date": "2026-10-27T09:01:07Z",
+     "body": "<p align=\"center\">\n<img src=\"https://github.com/The412Banner/Bannerlator/blob/main/logo.jpg?raw=true\" width=\"1500\" height=\"500\" alt=\"Bannerlator\" />\n</p>\n\n# Bannerlator 3.1.7\n\nRun Windows apps and games on Android — no PC and no root required.\n\n<p align=\"center\"><img src=\"https://img.shields.io/badge/release-3.1.7-ff3d8b?style=for-the-badge\" alt=\"3.1.7\" />&nbsp;<img src=\"https://img.shields.io/badge/update-app--side%20%C2%B7%20no%20ImageFS%20reinstall-2dd4bf?style=for-the-badge\" alt=\"app-side update\" />&nbsp;<img src=\"https://img.shields.io/badge/store-Xbox%20%C2%B7%20PC%20Game%20Pass-22c55e?style=for-the-badge\" alt=\"Xbox and PC Game Pass store\" />&nbsp;<img src=\"https://img.shields.io/badge/Xbox-Cloud%20Gaming-22c55e?style=for-the-badge\" alt=\"Xbox Cloud Gaming\" />&nbsp;<img src=\"https://img.shields.io/badge/UI-Deck%20style-22c55e?style=for-the-badge\" alt=\"Deck style\" />&nbsp;<img src=\"https://img.shields.io/badge/controllers-BANNERIN-22c55e?style=for-the-badge\" alt=\"BANNERIN controllers\" />&nbsp;<img src=\"https://img.shields.io/badge/layers-v15-22c55e?style=for-the-badge\" alt=\"layers v15\" /></p>\n\n**3.1.7 adds an Xbox / PC Game Pass store with cloud streaming, finishes the Deck sty",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Bannerlator-3.1.7-antutu.apk",
+       "size": 574582670,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7/Bannerlator-3.1.7-antutu.apk"
+      },
+      {
+       "name": "Bannerlator-3.1.7-ludashi.apk",
+       "size": 574582717,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7/Bannerlator-3.1.7-ludashi.apk"
+      },
+      {
+       "name": "Bannerlator-3.1.7-pubg.apk",
+       "size": 574582504,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7/Bannerlator-3.1.7-pubg.apk"
+      },
+      {
+       "name": "Bannerlator-3.1.7-standard.apk",
+       "size": 574582590,
+       "url": "https://github.com/The412Banner/Bannerlator/releases/download/3.1.7/Bannerlator-3.1.7-standard.apk"
+      }
+     ]
+    },
     {
      "tag": "3.1.7-pre4",
      "name": "Bannerlator 3.1.7-pre4",
@@ -25806,8 +25864,8 @@
    "license": "GPL-3.0",
    "topics": [],
    "archived": false,
-   "latestTag": "3.1.7-pre4",
-   "latestDate": "2026-10-23T15:27:01Z"
+   "latestTag": "3.1.7",
+   "latestDate": "2026-10-27T09:01:07Z"
   },
   {
    "id": "xhyn-ph-exagear-302",
@@ -25817,7 +25875,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 177291,
+   "downloads": 177632,
    "stars": 333,
    "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
    "pushed_at": "2025-02-25T11:41:52Z",
@@ -25873,8 +25931,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 161585,
-   "stars": 726,
+   "downloads": 162958,
+   "stars": 729,
    "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
    "pushed_at": "2026-10-25T14:12:53Z",
    "homepage": "",
@@ -26262,7 +26320,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 149060,
+   "downloads": 149291,
    "stars": 221,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-12T18:19:19Z",
@@ -26977,7 +27035,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 126224,
+   "downloads": 126357,
    "stars": 438,
    "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
    "pushed_at": "2026-10-06T19:44:52Z",
@@ -28662,8 +28720,8 @@
    "category": "All In One",
    "official": false,
    "channel": "stable",
-   "downloads": 101450,
-   "stars": 4438,
+   "downloads": 101814,
+   "stars": 4440,
    "description": "All in one emulator on Android!",
    "pushed_at": "2026-10-16T09:07:56Z",
    "homepage": "https://lemuroid.com",
@@ -29047,7 +29105,7 @@
      ]
     }
    ],
-   "forks": 387,
+   "forks": 388,
    "watchers": 55,
    "created_at": "2019-12-09T13:55:34Z",
    "license": "GPL-3.0",
@@ -29071,7 +29129,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 100198,
+   "downloads": 100220,
    "stars": 1722,
    "description": "Lightweight unofficial Steam client for Android",
    "pushed_at": "2026-02-23T19:23:53Z",
@@ -29184,7 +29242,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 99503,
+   "downloads": 99606,
    "stars": 143,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-06-28T11:07:57Z",
@@ -29298,7 +29356,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 91948,
+   "downloads": 92132,
    "stars": 131,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-09-11T15:09:20Z",
@@ -29581,7 +29639,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 84435,
+   "downloads": 84511,
    "stars": 33,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-05-26T11:10:39Z",
@@ -29691,7 +29749,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 70509,
+   "downloads": 70583,
    "stars": 139,
    "description": "Android application for running Steam games with Proton/Wine and Box86/Box64",
    "pushed_at": "2026-04-29T14:09:07Z",
@@ -29772,7 +29830,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 64381,
+   "downloads": 64399,
    "stars": 156,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-08-24T22:41:56Z",
@@ -29977,272 +30035,6 @@
    "latestDate": "2025-08-24T22:41:56Z"
   },
   {
-   "id": "honkonx-winlator-honkon",
-   "name": "Winlator Honkon",
-   "repo": "Honkonx/winlator-honkon",
-   "repo_url": "https://github.com/Honkonx/winlator-honkon",
-   "category": "Winlator",
-   "official": false,
-   "channel": "stable",
-   "downloads": 30735,
-   "stars": 28,
-   "description": "Android application for running Windows applications with Wine and Box86/Box64",
-   "pushed_at": "2026-03-22T01:01:37Z",
-   "homepage": "https://winlator.org",
-   "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
-   "releases": [
-    {
-     "tag": "V11.1",
-     "name": "Winlator~Honkon v11",
-     "date": "2025-10-19T16:44:57Z",
-     "body": "### VERSION WINLATOR V11 MOD\n\n***Esta versión sigue siendo básica pero trae algunas mejoras en general y otras más específicas para dispositivo mediatek,gpu mali y gpu xclipse.***\n\n### _registro_ _de_ _cambios_\n\n•Todo los cambios de la versión oficial de Bruno.\n•Se agregó el menu de contenido de la versión afeimod(creditos y agradecimiento).\n•Traduje gran parte de la interfaz a español además de cambiar el logo y tema.\n•Se cambió el directorio de donde se descarga el contenido,esto para agregar DXVK parcheado como stripped o sarek para mayor compatibilidad con vulkan 1.1 o 1.2 con pocas extenciones disponibles, también se agregaron varios wined3d para descargar.\n•Se agregaron varías variables en la configuración de box64 para mayor rendimiento y compatibilidad.\n•Se agregaron parches para el rendimiento y compatibilidad.\n•se agregaron complemento necesario para distintos títulos funcionen correctamente.\n•se agregaron distintas variables para rendimiento, compatibilidad y estabilidad.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.honkon_v11.apk",
-       "size": 410786290,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V11.1/Winlator.honkon_v11.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V11",
-     "name": "Winlator~honkon v10.1",
-     "date": "2025-04-21T19:17:23Z",
-     "body": "### vortek+DXVK ya funciona en gpu mali\n\nEsta versión sigue siendo básica pero trae algunas mejoras en general y otras más específicas para dispositivo mediatek,gpu mali y xclipse,más adelante subiré una versión completa :)\n\nAVISO:vortek no funciona en todo los dispositivos con mediatek,esto debido a varios factores lo cuales son driver, versión de vulkan \n,extenciones etc...\nBruno trabajo arduamente para mejorar la compatibilidad y rendimiento de winlator en dispositivos con gpu mali y xclipse.\n\n### Registro de cambios:\n\n1- se uso la versión de afie mod como inspiración,créditos y agradecimiento..\nAquí la versión por si la quieren probar [mod afei](https://github.com/afeimod/winlator-mod/releases/tag/10.0-Amod5fix) \n\n1.1• se elimino la opción de comandos y traduje la opción para agregar contenido...\nTenga en cuenta que algunas cajas y controladores deben instalarse con wine9.16.whp antes de poder usarse,está opción solo es para pruebas, por favor apoya al autor original.\n\n2•Se cambió el directorio de donde se descarga el contenido,esto para agregar DXVK parcheado como stripped o sarek para mayor compatibilidad con vulkan 1.1 o 1.2 con pocas extenciones disponibles, también se agre",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "wine9.16.whp",
-       "size": 41522768,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V11/wine9.16.whp"
-      },
-      {
-       "name": "Winlator_10.1.Honkon.apk",
-       "size": 502777593,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V11/Winlator_10.1.Honkon.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V10",
-     "name": "Winlator~honkon v10",
-     "date": "2025-04-21T03:40:49Z",
-     "body": "•\"vortek+DXVK ya funciona en gpu mali\"\n\n•\"Esta es una versión básica,solo agregué el contenido de winlator v9~honkon más algunas novedades,más adelante subiré una versión completa\" :)\n\n•Se cambió el directorio de donde se descarga el contenido,esto para agregar DXVK parcheado como stripped o sarek para mayor compatibilidad con vulkan 1.1 o 1.2 con pocas extenciones disponibles, también se agregaron varios wined3d para descargar.\n•Se agregaron parches para el rendimiento y compatibilidad.\n•se agregaron complemento necesario para distintos títulos funcionen correctamente.\n•se agregaron distintas variables para rendimiento, compatibilidad y estabilidad=\nBOX64_FPU_MODE=1 \nMESA_NO_DITHER=1\nBOX64_SKIP_SIGSEGV=1\nBOX64_DYNAREC_DIRTY=1",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator_10.0.honkon.apk",
-       "size": 446524727,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V10/Winlator_10.0.honkon.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V9",
-     "name": "Winlator~honkon 9",
-     "date": "2025-01-15T19:40:59Z",
-     "body": "•\"Esta es una versión básica, solo agregué el contenido de winlator v8~honkon,más adelante subiré una versión completa\"  :)\n\n•Se agregaron wined3d en las configuraciones del container,se recomienda entrar con el wined3d por default al crear el container para evitar errores.\n•Se cambió el directorio de donde se descarga el contenido.\n•Se dejó la opción de DXVK,esto para los usuarios Mali que soporten vortek.\n•Se agregaron parches para el rendimiento y compatibilidad.\n•se subió una sola versión que será \"benchmark\",esto para mayor rendimiento pero no interfiere con otras versión de winlator.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator-9.honkon.apk",
-       "size": 493991042,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V9/Winlator-9.honkon.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V8",
-     "name": "Winlator v8.0 R1~Honkon ",
-     "date": "2024-11-22T01:25:07Z",
-     "body": "Registro de cambios\n\n•Se aplicaron los cambios de la versión anterior \"winlator~honkon v8\"\n•Se eliminaron algunos Wined3d y complementos para reducir el peso del apk.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•se subió una sola versión que será \"bench\",esto para mayor rendimiento pero no interfiere con otras versión de winlator.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.honkon.v8-r1_bench.apk",
-       "size": 643947204,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V8/Winlator.honkon.v8-r1_bench.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V7",
-     "name": "Winlator~honkon v7pre-final (gran aumento de rendimiento)",
-     "date": "2024-11-03T00:27:59Z",
-     "body": "Para los amantes de winlator Mali,se volvió a modificar la versión v7 de winlator para dar el mayor rendimiento y compatibilidad posible en dispositivos con gpu Mali,créditos y agradecimiento a BrunoSX.\n\nRegistro de cambios\n\n•Se actualizo el wine 9.2custom,créditos y agradecimiento a coffincolors.\n•Se agrego distintos parches,créditos y agradecimiento a Frost.\n\n• se agregaron Wined3d en las configuraciones del container en el apartado DX wrapper...\nPara evitar errores se recomienda crear el container y abrirlo por primera vez,después ya puede cambiar el Wined3d sin ningún problema.\n\n•se actualizo libvirglrender.so para mayor rendimiento, créditos y agradecimiento a EatingSumo/longjunyu2.\n•Se actualizo mesa VirGL para mayor rendimiento.\n•Se aplicaron los cambios de la versión anteriores honkon.\n•Se eliminaron algunos Wined3d y complementos para reducir el peso del apk.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•se subió una sola versión que será \"bench\",esto para mayor rendimiento pero no interfiere con otras versión de winlator.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.honkon.v7pre-final.apk",
-       "size": 580898289,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V7/Winlator.honkon.v7pre-final.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V6",
-     "name": "Winlator~honkon v8.0",
-     "date": "2024-10-25T16:25:26Z",
-     "body": "### Registro de cambios ### \n\n•Se agregaron los cambios incluidos en la versión de frot,crédito y agradecimiento.\n\n•se remplazo libvirglrender.so y mesa VirGL por el de winlator glibc para mayor rendimiento.\n•Cómo la opción de GLversión en el apartado de mesa VirGL render da error al tener COMPAT se agregó la opción en las variables de entorno.\n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma facil en las variables de entorno,esto se encuentra en las configuraciones del container.\n•***extenciones extras de OpenGL para VirGL***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL,wine gecko,mono offline y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•se subió una sola versión que será \"bench\",esto  para mayor rendimiento pero no interfiere con otras versión de winlator",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.Honkon.v8.0.apk",
-       "size": 697381191,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V6/Winlator.Honkon.v8.0.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V5",
-     "name": "Winlator.v7.1.3 glibc~honkon v2",
-     "date": "2024-10-13T20:00:30Z",
-     "body": "Registro de cambios \n\n• actualización de virglrender.so\n• se agrego parches para mejora la compatibilidad, agradecimiento a afie.\n• correcciones y mejoras.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "glibc.honkon.v3.1.apk",
-       "size": 543589718,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V5/glibc.honkon.v3.1.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V4",
-     "name": "Winlator~honkon v7.1-v3",
-     "date": "2024-10-13T19:42:23Z",
-     "body": "Registro de cambios \n\n• actualización de virglrender.so\n• se agrego parches para mejora la compatibilidad, agradecimiento a afie.\n• correcciones y mejoras.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.honkok.v7.1.v3.antutu.apk",
-       "size": 597564497,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V4/Winlator.honkok.v7.1.v3.antutu.apk"
-      },
-      {
-       "name": "Winlator.honkok.v7.1.v3.apk",
-       "size": 597564495,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V4/Winlator.honkok.v7.1.v3.apk"
-      }
-     ]
-    },
-    {
-     "tag": "V3",
-     "name": "Winlator v7.1.3 glibc~honkon",
-     "date": "2024-10-12T01:44:25Z",
-     "body": "Registro de cambios \n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma fácil en las variables de entorno,esto se encuentra en las configuraciones del container \n\n•***extenciones extras de OpenGL para VirGL***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n\n•dejare los mesa VirGL en formato wcp si los quieren bajar y así los tienen en la configuración del container y no dentro, creditos y agradecimiento a ajay por empaquetarlos.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "glibc.honkon.v3.apk",
-       "size": 453051734,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/glibc.honkon.v3.apk"
-      },
-      {
-       "name": "virgl-22.1.7.wcp",
-       "size": 3121340,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/virgl-22.1.7.wcp"
-      },
-      {
-       "name": "virgl-23.1.9-v2.wcp",
-       "size": 3519363,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/virgl-23.1.9-v2.wcp"
-      },
-      {
-       "name": "virgl-23.1.9.wcp",
-       "size": 2969696,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/virgl-23.1.9.wcp"
-      }
-     ]
-    },
-    {
-     "tag": "V2",
-     "name": "Winlator~honkon v7.1-v2",
-     "date": "2024-10-12T01:13:19Z",
-     "body": "Registro de cambios \n\n• actualización de wine 9.2 custom,se añadido algunos parches y rempaquetado de imagefs,esto para mayor rendimiento y compatibilidad...\nagradecimientos a efei y ajay.\n•Box64-0.3.0 de Winlator v8 ",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.Honkon.v7.1.v2.antutu.apk",
-       "size": 538952767,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V2/Winlator.Honkon.v7.1.v2.antutu.apk"
-      },
-      {
-       "name": "Winlator.Honkon.v7.1.v2.apk",
-       "size": 539595840,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V2/Winlator.Honkon.v7.1.v2.apk"
-      }
-     ]
-    },
-    {
-     "tag": "Winlator_honkon",
-     "name": "Winlator~honkon v7.1",
-     "date": "2024-10-09T13:02:44Z",
-     "body": "Registro de cambios \n\n• se actualizo la carpeta lib para mayor rendimiento,menor tiempo de carga  y compatibilidad con dispositivos que no admiten 32bit,puede no funcionar.\n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma facil en las variables de entorno,esto se encuentra en las configuraciones del container \n\n•***extenciones extras de OpenGL para VirGL,además de reemplazar libGL.so.1.7.0 -64bit por el de glibc para mayor rendimiento, igual se mantiene libGL.so.1.7.0-32bit de winlator V7.1***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•version antutu para mayor rendimiento,puede dar mayor calentamiento dependió del juego, dispositivos y otros factores pero no suele ser un gran problema.\n\n",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.Honkon.v7.1.apk",
-       "size": 656651249,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator_honkon/Winlator.Honkon.v7.1.apk"
-      },
-      {
-       "name": "Winlator.Honkon.v7.1.bench.apk",
-       "size": 648627185,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator_honkon/Winlator.Honkon.v7.1.bench.apk"
-      }
-     ]
-    },
-    {
-     "tag": "Winlator.honkon",
-     "name": "Winlator~honkon v7",
-     "date": "2024-10-09T12:41:35Z",
-     "body": "Registro de cambios \n\n• se remplazo la imagefs por la de winlator v7.1,esto para mayor rendimiento, compatibilidad y solucionar errores con Xinput...\n\n• se actualizo la carpeta lib para mayor rendimiento,menor tiempo de carga  y compatibilidad con dispositivos que no admiten 32bit,puede no funcionar.\n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma facil en las variables de entorno,esto se encuentra en las configuraciones del container \n\n•***extenciones extras de OpenGL para VirGL,además de reemplazar libGL.so.1.7.0 -64bit por el de glibc para mayor rendimiento, igual se mantiene libGL.so.1.7.0-32bit de winlator V7.1***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•version antutu para mayor rendimiento,puede causar mayor calentamiento dependió del juego, dispositivos y otros factores pero no suele ser un gran problema.",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.Honkon.v7.antutu.apk",
-       "size": 636197446,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator.honkon/Winlator.Honkon.v7.antutu.apk"
-      },
-      {
-       "name": "Winlator.Honkon.v7.apk",
-       "size": 636234310,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator.honkon/Winlator.Honkon.v7.apk"
-      }
-     ]
-    },
-    {
-     "tag": "Winlator-honkon",
-     "name": "Winlator~honkon V6.1",
-     "date": "2024-10-08T16:23:49Z",
-     "body": "• **actualización de wine 8.0.2 para mayor rendimiento y compatibilidad, agradecimientos a efei y ajay.**\n• **se reemplazo la carpeta lib para mayor rendimiento,menor tiempo de carga y compatibilidad con dispositivos que no admiten 32bit,puede no funcionar.**\n• **se agregó Wined3d en las configuraciones del container, puede no funcionar.**\n• **se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.**\n• **algunas correcciones y mejoras en el rendimiento.**\n",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "Winlator.honkon.v6.1.apk",
-       "size": 646888761,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator-honkon/Winlator.honkon.v6.1.apk"
-      },
-      {
-       "name": "Winlator.honkon.v6.1.bench.apk",
-       "size": 646888763,
-       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator-honkon/Winlator.honkon.v6.1.bench.apk"
-      }
-     ]
-    }
-   ],
-   "forks": 0,
-   "watchers": 2,
-   "created_at": "2024-10-07T19:44:02Z",
-   "license": "MIT",
-   "topics": [],
-   "archived": false,
-   "latestTag": "V11.1",
-   "latestDate": "2025-10-19T16:44:57Z"
-  },
-  {
    "id": "the412banner-bannerhub-lite",
    "name": "BannerHub Lite (The412Banner)",
    "repo": "The412Banner/Bannerhub-Lite",
@@ -30250,7 +30042,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 30694,
+   "downloads": 30818,
    "stars": 67,
    "description": "BannerHub Lite — BannerHub features patched into GameHub Lite 5.1.4",
    "pushed_at": "2026-05-21T21:17:38Z",
@@ -30794,6 +30586,272 @@
    "latestDate": "2026-05-12T01:24:49Z"
   },
   {
+   "id": "honkonx-winlator-honkon",
+   "name": "Winlator Honkon",
+   "repo": "Honkonx/winlator-honkon",
+   "repo_url": "https://github.com/Honkonx/winlator-honkon",
+   "category": "Winlator",
+   "official": false,
+   "channel": "stable",
+   "downloads": 30758,
+   "stars": 28,
+   "description": "Android application for running Windows applications with Wine and Box86/Box64",
+   "pushed_at": "2026-03-22T01:01:37Z",
+   "homepage": "https://winlator.org",
+   "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
+   "releases": [
+    {
+     "tag": "V11.1",
+     "name": "Winlator~Honkon v11",
+     "date": "2025-10-19T16:44:57Z",
+     "body": "### VERSION WINLATOR V11 MOD\n\n***Esta versión sigue siendo básica pero trae algunas mejoras en general y otras más específicas para dispositivo mediatek,gpu mali y gpu xclipse.***\n\n### _registro_ _de_ _cambios_\n\n•Todo los cambios de la versión oficial de Bruno.\n•Se agregó el menu de contenido de la versión afeimod(creditos y agradecimiento).\n•Traduje gran parte de la interfaz a español además de cambiar el logo y tema.\n•Se cambió el directorio de donde se descarga el contenido,esto para agregar DXVK parcheado como stripped o sarek para mayor compatibilidad con vulkan 1.1 o 1.2 con pocas extenciones disponibles, también se agregaron varios wined3d para descargar.\n•Se agregaron varías variables en la configuración de box64 para mayor rendimiento y compatibilidad.\n•Se agregaron parches para el rendimiento y compatibilidad.\n•se agregaron complemento necesario para distintos títulos funcionen correctamente.\n•se agregaron distintas variables para rendimiento, compatibilidad y estabilidad.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.honkon_v11.apk",
+       "size": 410786290,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V11.1/Winlator.honkon_v11.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V11",
+     "name": "Winlator~honkon v10.1",
+     "date": "2025-04-21T19:17:23Z",
+     "body": "### vortek+DXVK ya funciona en gpu mali\n\nEsta versión sigue siendo básica pero trae algunas mejoras en general y otras más específicas para dispositivo mediatek,gpu mali y xclipse,más adelante subiré una versión completa :)\n\nAVISO:vortek no funciona en todo los dispositivos con mediatek,esto debido a varios factores lo cuales son driver, versión de vulkan \n,extenciones etc...\nBruno trabajo arduamente para mejorar la compatibilidad y rendimiento de winlator en dispositivos con gpu mali y xclipse.\n\n### Registro de cambios:\n\n1- se uso la versión de afie mod como inspiración,créditos y agradecimiento..\nAquí la versión por si la quieren probar [mod afei](https://github.com/afeimod/winlator-mod/releases/tag/10.0-Amod5fix) \n\n1.1• se elimino la opción de comandos y traduje la opción para agregar contenido...\nTenga en cuenta que algunas cajas y controladores deben instalarse con wine9.16.whp antes de poder usarse,está opción solo es para pruebas, por favor apoya al autor original.\n\n2•Se cambió el directorio de donde se descarga el contenido,esto para agregar DXVK parcheado como stripped o sarek para mayor compatibilidad con vulkan 1.1 o 1.2 con pocas extenciones disponibles, también se agre",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "wine9.16.whp",
+       "size": 41522768,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V11/wine9.16.whp"
+      },
+      {
+       "name": "Winlator_10.1.Honkon.apk",
+       "size": 502777593,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V11/Winlator_10.1.Honkon.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V10",
+     "name": "Winlator~honkon v10",
+     "date": "2025-04-21T03:40:49Z",
+     "body": "•\"vortek+DXVK ya funciona en gpu mali\"\n\n•\"Esta es una versión básica,solo agregué el contenido de winlator v9~honkon más algunas novedades,más adelante subiré una versión completa\" :)\n\n•Se cambió el directorio de donde se descarga el contenido,esto para agregar DXVK parcheado como stripped o sarek para mayor compatibilidad con vulkan 1.1 o 1.2 con pocas extenciones disponibles, también se agregaron varios wined3d para descargar.\n•Se agregaron parches para el rendimiento y compatibilidad.\n•se agregaron complemento necesario para distintos títulos funcionen correctamente.\n•se agregaron distintas variables para rendimiento, compatibilidad y estabilidad=\nBOX64_FPU_MODE=1 \nMESA_NO_DITHER=1\nBOX64_SKIP_SIGSEGV=1\nBOX64_DYNAREC_DIRTY=1",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_10.0.honkon.apk",
+       "size": 446524727,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V10/Winlator_10.0.honkon.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V9",
+     "name": "Winlator~honkon 9",
+     "date": "2025-01-15T19:40:59Z",
+     "body": "•\"Esta es una versión básica, solo agregué el contenido de winlator v8~honkon,más adelante subiré una versión completa\"  :)\n\n•Se agregaron wined3d en las configuraciones del container,se recomienda entrar con el wined3d por default al crear el container para evitar errores.\n•Se cambió el directorio de donde se descarga el contenido.\n•Se dejó la opción de DXVK,esto para los usuarios Mali que soporten vortek.\n•Se agregaron parches para el rendimiento y compatibilidad.\n•se subió una sola versión que será \"benchmark\",esto para mayor rendimiento pero no interfiere con otras versión de winlator.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator-9.honkon.apk",
+       "size": 493991042,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V9/Winlator-9.honkon.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V8",
+     "name": "Winlator v8.0 R1~Honkon ",
+     "date": "2024-11-22T01:25:07Z",
+     "body": "Registro de cambios\n\n•Se aplicaron los cambios de la versión anterior \"winlator~honkon v8\"\n•Se eliminaron algunos Wined3d y complementos para reducir el peso del apk.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•se subió una sola versión que será \"bench\",esto para mayor rendimiento pero no interfiere con otras versión de winlator.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.honkon.v8-r1_bench.apk",
+       "size": 643947204,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V8/Winlator.honkon.v8-r1_bench.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V7",
+     "name": "Winlator~honkon v7pre-final (gran aumento de rendimiento)",
+     "date": "2024-11-03T00:27:59Z",
+     "body": "Para los amantes de winlator Mali,se volvió a modificar la versión v7 de winlator para dar el mayor rendimiento y compatibilidad posible en dispositivos con gpu Mali,créditos y agradecimiento a BrunoSX.\n\nRegistro de cambios\n\n•Se actualizo el wine 9.2custom,créditos y agradecimiento a coffincolors.\n•Se agrego distintos parches,créditos y agradecimiento a Frost.\n\n• se agregaron Wined3d en las configuraciones del container en el apartado DX wrapper...\nPara evitar errores se recomienda crear el container y abrirlo por primera vez,después ya puede cambiar el Wined3d sin ningún problema.\n\n•se actualizo libvirglrender.so para mayor rendimiento, créditos y agradecimiento a EatingSumo/longjunyu2.\n•Se actualizo mesa VirGL para mayor rendimiento.\n•Se aplicaron los cambios de la versión anteriores honkon.\n•Se eliminaron algunos Wined3d y complementos para reducir el peso del apk.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•se subió una sola versión que será \"bench\",esto para mayor rendimiento pero no interfiere con otras versión de winlator.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.honkon.v7pre-final.apk",
+       "size": 580898289,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V7/Winlator.honkon.v7pre-final.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V6",
+     "name": "Winlator~honkon v8.0",
+     "date": "2024-10-25T16:25:26Z",
+     "body": "### Registro de cambios ### \n\n•Se agregaron los cambios incluidos en la versión de frot,crédito y agradecimiento.\n\n•se remplazo libvirglrender.so y mesa VirGL por el de winlator glibc para mayor rendimiento.\n•Cómo la opción de GLversión en el apartado de mesa VirGL render da error al tener COMPAT se agregó la opción en las variables de entorno.\n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma facil en las variables de entorno,esto se encuentra en las configuraciones del container.\n•***extenciones extras de OpenGL para VirGL***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL,wine gecko,mono offline y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•se subió una sola versión que será \"bench\",esto  para mayor rendimiento pero no interfiere con otras versión de winlator",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.Honkon.v8.0.apk",
+       "size": 697381191,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V6/Winlator.Honkon.v8.0.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V5",
+     "name": "Winlator.v7.1.3 glibc~honkon v2",
+     "date": "2024-10-13T20:00:30Z",
+     "body": "Registro de cambios \n\n• actualización de virglrender.so\n• se agrego parches para mejora la compatibilidad, agradecimiento a afie.\n• correcciones y mejoras.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "glibc.honkon.v3.1.apk",
+       "size": 543589718,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V5/glibc.honkon.v3.1.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V4",
+     "name": "Winlator~honkon v7.1-v3",
+     "date": "2024-10-13T19:42:23Z",
+     "body": "Registro de cambios \n\n• actualización de virglrender.so\n• se agrego parches para mejora la compatibilidad, agradecimiento a afie.\n• correcciones y mejoras.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.honkok.v7.1.v3.antutu.apk",
+       "size": 597564497,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V4/Winlator.honkok.v7.1.v3.antutu.apk"
+      },
+      {
+       "name": "Winlator.honkok.v7.1.v3.apk",
+       "size": 597564495,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V4/Winlator.honkok.v7.1.v3.apk"
+      }
+     ]
+    },
+    {
+     "tag": "V3",
+     "name": "Winlator v7.1.3 glibc~honkon",
+     "date": "2024-10-12T01:44:25Z",
+     "body": "Registro de cambios \n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma fácil en las variables de entorno,esto se encuentra en las configuraciones del container \n\n•***extenciones extras de OpenGL para VirGL***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n\n•dejare los mesa VirGL en formato wcp si los quieren bajar y así los tienen en la configuración del container y no dentro, creditos y agradecimiento a ajay por empaquetarlos.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "glibc.honkon.v3.apk",
+       "size": 453051734,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/glibc.honkon.v3.apk"
+      },
+      {
+       "name": "virgl-22.1.7.wcp",
+       "size": 3121340,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/virgl-22.1.7.wcp"
+      },
+      {
+       "name": "virgl-23.1.9-v2.wcp",
+       "size": 3519363,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/virgl-23.1.9-v2.wcp"
+      },
+      {
+       "name": "virgl-23.1.9.wcp",
+       "size": 2969696,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V3/virgl-23.1.9.wcp"
+      }
+     ]
+    },
+    {
+     "tag": "V2",
+     "name": "Winlator~honkon v7.1-v2",
+     "date": "2024-10-12T01:13:19Z",
+     "body": "Registro de cambios \n\n• actualización de wine 9.2 custom,se añadido algunos parches y rempaquetado de imagefs,esto para mayor rendimiento y compatibilidad...\nagradecimientos a efei y ajay.\n•Box64-0.3.0 de Winlator v8 ",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.Honkon.v7.1.v2.antutu.apk",
+       "size": 538952767,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V2/Winlator.Honkon.v7.1.v2.antutu.apk"
+      },
+      {
+       "name": "Winlator.Honkon.v7.1.v2.apk",
+       "size": 539595840,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/V2/Winlator.Honkon.v7.1.v2.apk"
+      }
+     ]
+    },
+    {
+     "tag": "Winlator_honkon",
+     "name": "Winlator~honkon v7.1",
+     "date": "2024-10-09T13:02:44Z",
+     "body": "Registro de cambios \n\n• se actualizo la carpeta lib para mayor rendimiento,menor tiempo de carga  y compatibilidad con dispositivos que no admiten 32bit,puede no funcionar.\n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma facil en las variables de entorno,esto se encuentra en las configuraciones del container \n\n•***extenciones extras de OpenGL para VirGL,además de reemplazar libGL.so.1.7.0 -64bit por el de glibc para mayor rendimiento, igual se mantiene libGL.so.1.7.0-32bit de winlator V7.1***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•version antutu para mayor rendimiento,puede dar mayor calentamiento dependió del juego, dispositivos y otros factores pero no suele ser un gran problema.\n\n",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.Honkon.v7.1.apk",
+       "size": 656651249,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator_honkon/Winlator.Honkon.v7.1.apk"
+      },
+      {
+       "name": "Winlator.Honkon.v7.1.bench.apk",
+       "size": 648627185,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator_honkon/Winlator.Honkon.v7.1.bench.apk"
+      }
+     ]
+    },
+    {
+     "tag": "Winlator.honkon",
+     "name": "Winlator~honkon v7",
+     "date": "2024-10-09T12:41:35Z",
+     "body": "Registro de cambios \n\n• se remplazo la imagefs por la de winlator v7.1,esto para mayor rendimiento, compatibilidad y solucionar errores con Xinput...\n\n• se actualizo la carpeta lib para mayor rendimiento,menor tiempo de carga  y compatibilidad con dispositivos que no admiten 32bit,puede no funcionar.\n\n•ahora podrá cambiar ***MESA_GL_VERSION_OVERRIDE y MESA_EXTENSION_MAX_YEAR*** de forma facil en las variables de entorno,esto se encuentra en las configuraciones del container \n\n•***extenciones extras de OpenGL para VirGL,además de reemplazar libGL.so.1.7.0 -64bit por el de glibc para mayor rendimiento, igual se mantiene libGL.so.1.7.0-32bit de winlator V7.1***\n\n• encontrará configuración para distintos juegos en el apartado de Star dentro del container, agradecimiento a Fcharan.\n• se agregó Wined3d en las configuraciones del container, puede no funcionar.\n• se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.\n• algunas correcciones,mejoras en el rendimiento y compatibilidad.\n•version antutu para mayor rendimiento,puede causar mayor calentamiento dependió del juego, dispositivos y otros factores pero no suele ser un gran problema.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.Honkon.v7.antutu.apk",
+       "size": 636197446,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator.honkon/Winlator.Honkon.v7.antutu.apk"
+      },
+      {
+       "name": "Winlator.Honkon.v7.apk",
+       "size": 636234310,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator.honkon/Winlator.Honkon.v7.apk"
+      }
+     ]
+    },
+    {
+     "tag": "Winlator-honkon",
+     "name": "Winlator~honkon V6.1",
+     "date": "2024-10-08T16:23:49Z",
+     "body": "• **actualización de wine 8.0.2 para mayor rendimiento y compatibilidad, agradecimientos a efei y ajay.**\n• **se reemplazo la carpeta lib para mayor rendimiento,menor tiempo de carga y compatibilidad con dispositivos que no admiten 32bit,puede no funcionar.**\n• **se agregó Wined3d en las configuraciones del container, puede no funcionar.**\n• **se agregó box86,box64,Wined3d,mesa VirGL y algunos complementos.**\n• **algunas correcciones y mejoras en el rendimiento.**\n",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator.honkon.v6.1.apk",
+       "size": 646888761,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator-honkon/Winlator.honkon.v6.1.apk"
+      },
+      {
+       "name": "Winlator.honkon.v6.1.bench.apk",
+       "size": 646888763,
+       "url": "https://github.com/Honkonx/winlator-honkon/releases/download/Winlator-honkon/Winlator.honkon.v6.1.bench.apk"
+      }
+     ]
+    }
+   ],
+   "forks": 0,
+   "watchers": 2,
+   "created_at": "2024-10-07T19:44:02Z",
+   "license": "MIT",
+   "topics": [],
+   "archived": false,
+   "latestTag": "V11.1",
+   "latestDate": "2025-10-19T16:44:57Z"
+  },
+  {
    "id": "winlatorbrasil-winlator-brasil",
    "name": "Winlator Brasil",
    "repo": "winlatorbrasil/Winlator-Brasil",
@@ -30874,7 +30932,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 21739,
+   "downloads": 21743,
    "stars": 77,
    "description": "",
    "pushed_at": "2025-06-26T21:09:18Z",
@@ -30969,7 +31027,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 8948,
+   "downloads": 9031,
    "stars": 222,
    "description": "Windows apps/games emulator for standalone OpenXR headsets.",
    "pushed_at": "2026-10-09T17:41:04Z",
@@ -31057,7 +31115,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 8344,
+   "downloads": 8359,
    "stars": 47,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-01-06T21:01:46Z",
@@ -31115,7 +31173,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 7165,
+   "downloads": 7169,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -31836,7 +31894,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable",
-   "downloads": 3179,
+   "downloads": 3182,
    "stars": 17,
    "description": "",
    "pushed_at": "2026-03-08T18:10:12Z",
@@ -31903,7 +31961,7 @@
    "category": "Emulator PS5",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 2784,
+   "downloads": 2797,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -31956,7 +32014,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 2313,
+   "downloads": 2316,
    "stars": 21,
    "description": "APKs of Pipetto-crypto's Winlator Bionic",
    "pushed_at": "2026-05-07T20:44:04Z",
@@ -32931,7 +32989,7 @@
    "category": "GAME",
    "official": false,
    "channel": "stable",
-   "downloads": 1676,
+   "downloads": 1685,
    "stars": 10,
    "description": "Multiplayer",
    "pushed_at": "2026-04-24T23:48:07Z",
@@ -33023,7 +33081,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 542,
+   "downloads": 543,
    "stars": 12,
    "description": "",
    "pushed_at": "2025-10-18T17:16:22Z",

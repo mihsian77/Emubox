@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5153,
+      "stars": 5154,
       "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1067,
+      "stars": 1071,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -205,7 +205,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 869,
+      "stars": 874,
       "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -269,7 +269,7 @@
       "target_emulator": "generic",
       "package_format": "magisk",
       "maturity": "stable",
-      "stars": 220,
+      "stars": 221,
       "description": "Turnip Magisk 模块构建脚本，适合有 root 的用户",
       "notes": "Magisk 模块格式，需要 root",
       "companion": [],
@@ -332,7 +332,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 212,
+      "stars": 213,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -358,10 +358,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-10-27T01:39:43Z",
-      "latest_tag": "v27.0.0-20261027",
-      "latest_date": "2026-10-27T01:39:43Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`69e0bf9`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/69e0bf9e517784abef00ce1fe684400fbe2ad996) |\n| **Commit title** | nir/lower_continue_constructs: preserve SSA dominance across nested exits |\n| **Vulkan version** | Vulkan 1.4.363 |\n| **Date** | 2026-10-26 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :"
+      "updated_at": "2026-10-28T01:58:57Z",
+      "latest_tag": "v27.0.0-20261028",
+      "latest_date": "2026-10-28T01:58:57Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`05cf21b`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/05cf21be7fccc091c31bf07452404faca8368943) |\n| **Commit title** | kraid/validate: Ensure all swizzles are legal after legalize_src_swizzles |\n| **Vulkan version** | Vulkan 1.4.363 |\n| **Date** | 2026-10-28 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -474,7 +474,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 480,
+      "stars": 479,
       "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
       "notes": "",
       "companion": [],
@@ -771,7 +771,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 87,
+      "stars": 88,
       "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
       "notes": "710 用户首选",
       "companion": [],
@@ -842,7 +842,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 78,
+      "stars": 80,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -857,7 +857,7 @@
       "updated_at": "2026-10-27T04:43:43Z",
       "latest_tag": "v3.5",
       "latest_date": "2026-10-27T04:43:43Z",
-      "latest_body": "# PanVK-FristOneRR-V.3.5 (fix 3.0)\r\n\r\n> ⭐ **Always use this driver with [FristOneRR-Wrapper 3.0](https://github.com/FristOneRR-Admin/FristOneRR-Wrapperv1/releases) for the best performance.**\r\n> The wrapper is made for this driver. Other wrappers can load it, but they are slower.\r\n\r\n## What's new\r\n\r\n- **Installs on Android 9 and newer.** The 3.0 package asked for Android 16 by mistake, so many apps refused it.\r\n- **All known bugs from 3.0 fixed**, including wrong lighting and colors.\r\n- **Faster"
+      "latest_body": "# PanVK-FristOneRR-V.3.5\r\n\r\n> ⭐ **Always use this driver with [FristOneRR-Wrapper 3.0](https://github.com/FristOneRR-Admin/FristOneRR-Wrapperv1/releases) for the best performance.**\r\n> The wrapper is made for this driver. Other wrappers can load it, but they are slower.\r\n\r\n> [!IMPORTANT]\r\n> 🔁 **Re-uploaded (Oct 27): `meta.json` fixed.**\r\n> The first 3.5 zip did not work in **Winlator Mali 1.2+**: the driver failed to start because of the `(fix3.0)` in the driver name.\r\n> **If you downloaded 3.5 "
     },
     {
       "id": "luke-g52",
@@ -924,7 +924,7 @@
           "G57"
         ]
       },
-      "updated_at": "2026-10-26T11:13:10Z",
+      "updated_at": "2026-10-28T07:34:50Z",
       "latest_tag": "",
       "latest_date": "",
       "latest_body": ""
@@ -1018,7 +1018,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 85,
+      "stars": 86,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1028,7 +1028,7 @@
           "panfrost"
         ]
       },
-      "updated_at": "2026-10-27T01:40:10Z",
+      "updated_at": "2026-10-28T04:13:30Z",
       "latest_tag": "",
       "latest_date": "",
       "latest_body": ""
@@ -1136,10 +1136,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-27T04:50:29Z",
-      "latest_tag": "v1.1.0",
-      "latest_date": "2026-10-27T04:50:29Z",
-      "latest_body": "**Much faster tessellation on the Mali-G57 and G77, faster barriers on the Mali-G610 and G710, and a tessellation fix for all four.** All four repositories ship the same package, `panvk_faux123_v1.1.0.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.1.0.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on all four GPUs\n\n- Tessellation now draws when the control shader sets each tessellation level from a different thread (for example, each threa"
+      "updated_at": "2026-10-27T22:30:24Z",
+      "latest_tag": "v1.1.2",
+      "latest_date": "2026-10-27T22:30:24Z",
+      "latest_body": "**Fixes Giana Sisters and other DXVK games being closed by Android on the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.1.2.adpkg.zip`, with the same bytes. If you use v1.1.1 on an RG556 or a Retroid Pocket 4 Pro, update to this one.\n\nDownload `panvk_faux123_v1.1.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- In v1.1.0 and v1.1.1, every rendering pass got its"
     },
     {
       "id": "faux123-rg556",
@@ -1170,10 +1170,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-27T04:50:37Z",
-      "latest_tag": "v1.1.0",
-      "latest_date": "2026-10-27T04:50:37Z",
-      "latest_body": "**Much faster tessellation on the Mali-G57 and G77, faster barriers on the Mali-G610 and G710, and a tessellation fix for all four.** All four repositories ship the same package, `panvk_faux123_v1.1.0.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.1.0.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on all four GPUs\n\n- Tessellation now draws when the control shader sets each tessellation level from a different thread (for example, each threa"
+      "updated_at": "2026-10-27T22:30:32Z",
+      "latest_tag": "v1.1.2",
+      "latest_date": "2026-10-27T22:30:32Z",
+      "latest_body": "**Fixes Giana Sisters and other DXVK games being closed by Android on the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.1.2.adpkg.zip`, with the same bytes. If you use v1.1.1 on an RG556 or a Retroid Pocket 4 Pro, update to this one.\n\nDownload `panvk_faux123_v1.1.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- In v1.1.0 and v1.1.1, every rendering pass got its"
     },
     {
       "id": "dkdndje-g720",
@@ -1288,7 +1288,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 35,
+      "stars": 36,
       "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1351,7 +1351,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 95,
+      "stars": 96,
       "description": "WinNative 开发团队构建的 Turnip 驱动合集，更新频繁",
       "notes": "同时提供 Android 包与 Linux 变体",
       "companion": [],
@@ -1413,7 +1413,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 246,
+      "stars": 247,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1447,7 +1447,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 27,
+      "stars": 30,
       "description": "将 Mesa PanVK 移植到 Mali Bifrost（G76/G72/G52），无需 root",
       "notes": "基于 Mesa 26.3，compute 模拟缺失的几何/曲面细分，面向 DXVK",
       "companion": [],
@@ -1611,7 +1611,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 54,
+      "stars": 61,
       "description": "骁龙 865 / Adreno 650 专用 Turnip（Mesa main bffd91947efc），Switch 模拟优化，社区 Z 构建",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1688,10 +1688,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-27T04:50:32Z",
-      "latest_tag": "v1.1.0",
-      "latest_date": "2026-10-27T04:50:32Z",
-      "latest_body": "**Much faster tessellation on the Mali-G57 and G77, faster barriers on the Mali-G610 and G710, and a tessellation fix for all four.** All four repositories ship the same package, `panvk_faux123_v1.1.0.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.1.0.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on all four GPUs\n\n- Tessellation now draws when the control shader sets each tessellation level from a different thread (for example, each threa"
+      "updated_at": "2026-10-27T22:30:27Z",
+      "latest_tag": "v1.1.2",
+      "latest_date": "2026-10-27T22:30:27Z",
+      "latest_body": "**Fixes Giana Sisters and other DXVK games being closed by Android on the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.1.2.adpkg.zip`, with the same bytes. If you use v1.1.1 on an RG556 or a Retroid Pocket 4 Pro, update to this one.\n\nDownload `panvk_faux123_v1.1.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- In v1.1.0 and v1.1.1, every rendering pass got its"
     },
     {
       "id": "faux123-rp4pro",
@@ -1722,10 +1722,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-10-27T04:50:34Z",
-      "latest_tag": "v1.1.0",
-      "latest_date": "2026-10-27T04:50:34Z",
-      "latest_body": "**Much faster tessellation on the Mali-G57 and G77, faster barriers on the Mali-G610 and G710, and a tessellation fix for all four.** All four repositories ship the same package, `panvk_faux123_v1.1.0.adpkg.zip`, with the same bytes.\n\nDownload `panvk_faux123_v1.1.0.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on all four GPUs\n\n- Tessellation now draws when the control shader sets each tessellation level from a different thread (for example, each threa"
+      "updated_at": "2026-10-27T22:30:29Z",
+      "latest_tag": "v1.1.2",
+      "latest_date": "2026-10-27T22:30:29Z",
+      "latest_body": "**Fixes Giana Sisters and other DXVK games being closed by Android on the Mali-G57 and G77.** All four repositories ship the same package, `panvk_faux123_v1.1.2.adpkg.zip`, with the same bytes. If you use v1.1.1 on an RG556 or a Retroid Pocket 4 Pro, update to this one.\n\nDownload `panvk_faux123_v1.1.2.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes on the Mali-G57 and G77 (RG556, Retroid Pocket 4 Pro)\n\n- In v1.1.0 and v1.1.1, every rendering pass got its"
     },
     {
       "id": "lukevalen-kbase",
@@ -1798,7 +1798,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "ci",
-      "stars": 29,
+      "stars": 30,
       "notes": "活跃（2026-10-14）；无 Release，APK/zip 从 Actions 产物获取",
       "companion": [
         "guna-winlatormali"
@@ -1866,7 +1866,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 36,
+      "stars": 37,
       "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
       "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
       "companion": [],
@@ -1960,7 +1960,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 36,
+      "stars": 37,
       "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "notes": "wrappers 标签 2026-08-31（strict 过滤只读该标签，v0.9.x 为 App 本体、drivers_0.9 为三星驱动已收驱动区 companion、community-configs 社区配置不收录）",
       "companion": [
