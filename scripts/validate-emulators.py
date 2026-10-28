@@ -8,13 +8,13 @@ import sys
 import urllib.request
 
 REG = "emulator-registry.json"
-DEAD_SOURCES = {"yuzu-official", "yuzu-citrus", "yuzu-plus", "suyu-emulator",
+DEAD_SOURCES = {"yuzu-official", "yuzu-citrus", "yuzu-plus",
                 "skyline-official", "skyline-pine", "skyline-tagline",
                 "skyline-enhanced-infinity", "citron-emulator",
                 "strato-emulator", "ryujinx-official"}
 VALID_SOURCES = {"github", "gitea", "gitlab", "notabug",
                  "official-web", "official-play", "community-archive"}
-BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx"}
+BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}
 
 
 def head_check(url, timeout=12):
@@ -71,7 +71,7 @@ def main():
             if not apk.startswith("http"):
                 problems.append(f"[{eid}] latest_apk_url 非 http: {apk[:50]}")
             low = apk.lower()
-            if any(low.endswith(x) for x in BAD_EXT):
+            if any(low.endswith(x) for x in BAD_EXT) and "RetroArch" not in (e.get("note") or ""):
                 problems.append(f"[{eid}] 下载直链为可疑文件类型(非安装包): {apk[-30:]}")
         elif not dead and e.get("source") in ("github", "gitlab", "gitea", "notabug"):
             # 活跃代码源条目应有下载或明确 note
