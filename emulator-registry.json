@@ -3,6 +3,33 @@
   "updated_at": "2026-10-27T14:00:00Z",
   "emulators": [
     {
+      "id": "eclipseds-nds",
+      "name": "EclipseDS",
+      "category": "Nintendo DS",
+      "description": "NDS 安卓模拟器。来源：123云盘 UP 主整合资源（目录 NDS/EclipseDS，EclipseDS-v0.1.apks 11.3MB，APKS 多包格式）。未获取原作者/整合UP主授权，暂不提供下载入口。",
+      "owner": "",
+      "repo": "",
+      "homepage": "",
+      "repo_url": "",
+      "official": false,
+      "channel": "beta",
+      "latest_tag": "0.1",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "community-archive",
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+    },
+    {
       "id": "brunodev85-winlator",
       "name": "Winlator BrunoDev",
       "category": "Winlator",
@@ -297,7 +324,7 @@
       "latest_date": "2026-10-08T23:12:19Z",
       "latest_body": "This a minor release for the 2126 branch which primarily addresses a reported security advisory.\r\nIt also includes several newly backported improvements and fixes from the master branch.\r\n\r\nUsers are advised to update as soon as is convenient.\r\n\r\n---\r\n\r\n# Azahar 2126.2 Changelog\r\n\r\n# All\r\n\r\n- Addressed an oversight which allowed specially-crafted CIA files to execute arbitrary code in the host environment when locally installed by a user. | @PabloMK7 #2648 \r\n  - Addresses the following GHSA report: https://github.com/azahar-emu/azahar/security/advisories/GHSA-h74v-5mw8-qg8r\r\n- Fixed an issue where the xBRZ texture filter would be applied incorrectly when using the Vulkan renderer, resulting in an incorrect appearance. | @OpenSauce04 #2647 \r\n- Handling of large HTTP downloads within emulated 3DS applications has been improved, improving memory efficiency and stability. | @PabloMK7 #2515 \r\n   - Fixes downloading large games from the eShop. \r\n- Added a new 3GX loader flag `allow_homebrew_load`, which allows loading 3GX plugins for homebrew apps if the plugin supports it. | @PabloMK7 #2649\r\n\r\n# Desktop\r\n\r\n- Various improvements to GDB and RPC servers, fixing certain issues and improving functionality. | @PabloMK7 #2631, #2640, #2633\r\n  - For additional info, see individual PR descriptions.\r\n  - Script developers will need to update the RPC client as this is a breaking change. \r\n\r\n# Android\r\n\r\n- Fixed a crash which could occur if the `gpu_drivers` directory contained a subdirectory. | @ygordreyer #2592\r\n\r\n# Technical\r\n\r\n- Creating a copy of the kernel shared and config pages using svcMapProcessMemoryEx is now possible.\r\n  - This is a technical accuracy change. Little to no end-user impact.",
       "latest_apk_name": "azahar-android-googleplay-2126.2.apk",
-      "latest_apk_url": "https://api.github.com/repos/azahar-emu/azahar/releases/assets/623253570",
+      "latest_apk_url": "https://github.com/azahar-emu/azahar/releases/download/2126.2/azahar-android-googleplay-2126.2.apk",
       "latest_apk_size": 50187147,
       "pushed_at": "2026-10-25T20:38:34Z",
       "stars": 8479,
@@ -11123,7 +11150,7 @@
       "latest_date": "2026-10-05T09:08:05Z",
       "latest_body": "2.43",
       "latest_apk_name": "2.43.apk",
-      "latest_apk_url": "https://api.github.com/repos/aenu1/aps3e/releases/assets/612062867",
+      "latest_apk_url": "https://github.com/aenu1/aps3e/releases/download/2.43/2.43.apk",
       "latest_apk_size": 40122859,
       "pushed_at": "2026-10-05T09:08:05Z",
       "stars": 751,
@@ -24146,8 +24173,8 @@
       "latest_tag": "latest",
       "latest_date": "2026-10-25T02:59:23Z",
       "latest_body": "## Commits\r\n- 1b79c8b44 Deps: Update to 20261010\r\n- 6a9c29604 Achievements: Extract bucket names out of FullscreenUI\r\n- e468c8084 Achievements: Separate login and credential saving steps\r\n- 3856bf0c3 SettingsInterface: Guard against copying to self\r\n- 8af1da4fc Threading: Add WaitFor() to ConditionVariable\r\n- fdb7e8f7b GameDatabase: Sort disc sets by save title\r\n- 363da8d4f GameList: Don't persist cache map between refreshes\r\n- deaa4a44b GameList: Allow use of external SettingsInterface\r\n- 43cf72faa GameList: Synchronize settings between FullscreenUI and Qt\r\n- b8ce9b4df System: Provide content details to OnSystemStarted()\r\n- de2dd2b68 StringUtil: Fix possible integer overflow in EncodeAndAppendUTF8()\r\n- aa03edcd1 Settings: Add a dedicated key for overlays\r\n- 594155010 Settings: Don't copy controller type to game\r\n- bd44b2a43 Core: Don't reset folders when resetting settings\r\n- 03f731681 FileSystem: Backport additional helper functions\r\n- 1b123c397 FileSystem: Make OpenSharedCFile() wrap OpenCFile() on non-Windows\r\n- 84d511d18 FileSystem: Add error parameter to FTell64()\r\n- 230b4788c FileSystem: Extract find result sorting to function\r\n- 98c25ab78 FileSystem: Use shared file open for ReadBinaryFile/ReadFileToString\r\n- 7d618a582 FileSystem: More RVO optimizations\r\n- f20b39bd0 FileSystem: Add more ReadFileToString() overloads\r\n- a6a22baff CPU/Recompiler: Respect load delays when swapping NOP slots\r\n- 10525f926 CPU/Recompiler: Cancel pending loads on self moves\r\n- 19d507707 CPU/Recompiler: Keep link-register delay slots in order\r\n- 95102c364 CPU/Recompiler: Dispatch interpreter fallback exceptions\r\n- cc6f410b0 CPU/Recompiler: Trap constant signed arithmetic overflow\r\n- 00adf511d CPU/Recompiler: Preserve pending loads on memory exceptions\r\n- 96c75771c CPU/Recompiler: Correct misaligned indirect jump exceptions\r\n- c714922a5 CPU/Recompiler: Fix ARM32 VIXL debug builds\r\n- 501fe22ed CPU/Recompiler: Mask constant variable shift counts on ARM\r\n- 05c811f4e CPU/Recompiler: Trunc",
-      "latest_apk_name": "DuckStation-arm64.AppImage",
-      "latest_apk_url": "https://github.com/stenzek/duckstation/releases/download/preview/DuckStation-arm64.AppImage",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-26T16:54:25Z",
       "stars": 10894,
@@ -26170,7 +26197,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "melonds",
@@ -33758,8 +33786,8 @@
       "latest_tag": "v3.10.0",
       "latest_date": "2026-10-22T07:06:57Z",
       "latest_body": "# Virtual Jaguar v3.10.0\n\n**Controller-friendly TV mode, a more responsive desktop app, multi-disc playlists,\nand optional AI players.**\n\nThis is a feature release for the standalone app on macOS, Windows and Linux.\nIt also includes MMULT and TOM register-readback corrections from AtariAge reports.\nCore options and v17 savestates carry over.\nExperimental emulation threading remains **off by default**.\n\n## Play from the couch\n\n- **TV mode** adds Home, Library and Game details screens and a paused in-game menu\n  designed for a controller. Hold the configured TV-menu button to open it, or use\n  Ctrl/Cmd+Shift+T to toggle TV mode. Initial setup still uses desktop mode.\n  ([#995](https://github.com/libretro/virtualjaguar-libretro/pull/995),\n  [#999](https://github.com/libretro/virtualjaguar-libretro/pull/999),\n  [#1024](https://github.com/libretro/virtualjaguar-libretro/pull/1024))\n- **Desktop library controller navigation**, with per-family and custom button profiles.\n  ([#1030](https://github.com/libretro/virtualjaguar-libretro/pull/1030))\n- **Jaguar Pro Controller support** exposes X, Y, Z, L and R as separate controls.\n  ([#1019](https://github.com/libretro/virtualjaguar-libretro/pull/1019))\n- **Fullscreen menu auto-hide** is optional. Detached tool windows use the native\n  operating-system title bar, without duplicate in-app window controls.\n  ([#1034](https://github.com/libretro/virtualjaguar-libretro/pull/1034))\n\n## Desktop responsiveness\n\nAn optional emulation thread lets the UI keep responding while the core runs.\nRetroAchievements evaluation and link play run on the core owner thread; long operations\nshow a busy indicator. Command ordering, achievements UI access and shutdown races are\ncovered by regression tests, including ThreadSanitizer tests in CI.\n([#1000](https://github.com/libretro/virtualjaguar-libretro/pull/1000),\n[#1031](https://github.com/libretro/virtualjaguar-libretro/pull/1031),\n[#1033](https://github.com/libretro/virtualjaguar-libretro/pull/1033)",
-      "latest_apk_name": "cue2cdi-linux-x86_64",
-      "latest_apk_url": "https://github.com/libretro/virtualjaguar-libretro/releases/download/nightly/cue2cdi-linux-x86_64",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T06:02:53Z",
       "stars": 60,
@@ -39143,7 +39171,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "handylynx",
@@ -40600,8 +40629,8 @@
       "latest_tag": "v1.6.2",
       "latest_date": "2026-01-22T23:33:34Z",
       "latest_body": "- fixed BBS button not opening on iOS\r\n- fixed scopedstorage for BBS games on Android",
-      "latest_apk_name": "pocket8.ipa",
-      "latest_apk_url": "https://github.com/jevonlipsey/pico-ios/releases/download/v1.6.2/pocket8.ipa",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-09-22T06:40:30Z",
       "stars": 179,
@@ -40765,7 +40794,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "melange-brew",
@@ -41620,7 +41650,7 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
       "releases": [],
       "source": "community-archive",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "strato-emulator",
@@ -41648,7 +41678,8 @@
       "releases": [],
       "source": "github",
       "dead": true,
-      "dead_reason": "2024-09 后停更，无官方 release"
+      "dead_reason": "2024-09 后停更，无官方 release",
+      "note": "GitHub release 无安卓 APK 资产（分发渠道见官网/Play）"
     },
     {
       "id": "sudachi-emulator",
@@ -41683,8 +41714,8 @@
       "description": "yuzu 分支：主仓库走 Tor 网络防下架，NotABug 镜像 litucks/torzu，Gitee 镜像 zhouxu_bijie/torzu；无官方 release",
       "owner": "litucks",
       "repo": "litucks/torzu",
-      "homepage": "https://notabug.org/litucks/torzu",
-      "repo_url": "https://notabug.org/litucks/torzu",
+      "homepage": "",
+      "repo_url": "https://gitee.com/clone_github/torzu",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -41700,8 +41731,8 @@
       "downloads": 0,
       "logo_url": "https://github.com/litucks.png",
       "releases": [],
-      "source": "notabug",
-      "note": "NotABug 源，无官方 APK 发布"
+      "source": "gitee",
+      "note": "GitHub mirror 遭 DMCA 屏蔽(451)、NotABug mirror 失效；Gitee 存档仅同步代码无 releases，安卓版经社区渠道发布"
     },
     {
       "id": "suyu-emulator",
@@ -42101,7 +42132,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2023 自愿停更，2026-08 仓库已删",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "skyline-pine",
@@ -42130,7 +42161,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "skyline-tagline",
@@ -42159,7 +42190,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -42188,7 +42219,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "yuzu-official",
@@ -42217,7 +42248,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2024-03 任天堂诉讼停更删库",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "yuzu-citrus",
@@ -42246,7 +42277,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "yuzu-plus",
@@ -42275,7 +42306,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "epsxe",
@@ -43063,7 +43094,7 @@
       "owner": "hrydgard",
       "repo": "hrydgard/ppsspp",
       "latest_tag": "v1.20.4",
-      "latest_apk_url": "https://github.com/hrydgard/ppsspp/releases/download/v1.20.4/org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb",
+      "latest_apk_url": "",
       "pushed_at": "2026-10-26T23:46:23Z",
       "stars": 14757,
       "homepage": "https://www.ppsspp.org",
@@ -43907,10 +43938,12 @@
         }
       ],
       "latest_date": "2026-05-16T12:35:08Z",
-      "latest_apk_name": "org.ppsspp.ppsspp-dev-latest_v1.20.4_iphoneos-arm.deb",
+      "latest_apk_name": "",
       "source": "github",
       "logo_url": "https://github.com/hrydgard.png",
-      "latest_body": "PPSSPP is a cross-platform PSP emulator. Visit PPSSPP [official website](https://ppsspp.org) for a [full changelog](https://ppsspp.org/index.html#news) as well as the [downloads section](https://ppsspp.org/downloads.html) for other platforms."
+      "latest_body": "PPSSPP is a cross-platform PSP emulator. Visit PPSSPP [official website](https://ppsspp.org) for a [full changelog](https://ppsspp.org/index.html#news) as well as the [downloads section](https://ppsspp.org/downloads.html) for other platforms.",
+      "latest_apk_size": 0,
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "retroarch",
@@ -43920,7 +43953,7 @@
       "owner": "libretro",
       "repo": "libretro/RetroArch",
       "latest_tag": "v1.17.0",
-      "latest_apk_url": "https://github.com/libretro/RetroArch/releases/download/v1.22.2/retroarch-sourceonly-1.22.2.tar.xz",
+      "latest_apk_url": "",
       "pushed_at": "2026-10-27T06:38:49Z",
       "stars": 14451,
       "homepage": "https://www.retroarch.com",
@@ -44199,10 +44232,12 @@
         }
       ],
       "latest_date": "2024-02-03T19:48:54Z",
-      "latest_apk_name": "retroarch-sourceonly-1.22.2.tar.xz",
+      "latest_apk_name": "",
       "source": "github",
       "logo_url": "https://github.com/libretro.png",
-      "latest_body": "v1.17.0"
+      "latest_body": "v1.17.0",
+      "latest_apk_size": 0,
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "dolphin",
@@ -44236,7 +44271,7 @@
       "latest_tag": "1.0.8",
       "latest_date": "2026-06-05T11:27:23Z",
       "latest_apk_name": "termux-app_v0.118.0+apt-android-5_arm64-v8a.apk",
-      "latest_apk_url": "https://api.github.com/repos/jiaxinchen-max/termux-app/releases/assets/439243696",
+      "latest_apk_url": "https://github.com/jiaxinchen-max/termux-app/releases/download/1.0.8/termux-app_v0.118.0%2Bapt-android-5_arm64-v8a.apk",
       "releases": [
         {
           "tag": "1.0.8",
@@ -46193,7 +46228,7 @@
       "latest_tag": "v0.118.0",
       "latest_date": "2026-04-13T20:26:17Z",
       "latest_apk_name": "termux-plus-release-0.118.0.apk",
-      "latest_apk_url": "https://api.github.com/repos/thejaustin/TermuxPlus/releases/assets/395658716",
+      "latest_apk_url": "https://github.com/thejaustin/TermuxPlus/releases/download/v0.118.0/termux-plus-release-0.118.0.apk",
       "releases": [
         {
           "tag": "v0.118.0",
@@ -46229,7 +46264,7 @@
       "latest_tag": "Release22",
       "latest_date": "2026-10-25T15:12:39Z",
       "latest_apk_name": "termux-app_apt-android-7-release_arm64-v8a.apk",
-      "latest_apk_url": "https://api.github.com/repos/NIK2703/termux-enhanced/releases/assets/682234750",
+      "latest_apk_url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release22/termux-app_apt-android-7-release_arm64-v8a.apk",
       "releases": [
         {
           "tag": "Release22",
@@ -46551,7 +46586,7 @@
       "latest_tag": "v1000.0.1",
       "latest_date": "2026-10-19T19:28:20Z",
       "latest_apk_name": "termux-aether-app_v1000.0.1+pacman-android-7-github-debug_arm64-v8a.apk",
-      "latest_apk_url": "https://api.github.com/repos/wallentx/termux-aether-app/releases/assets/657219864",
+      "latest_apk_url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.1/termux-aether-app_v1000.0.1%2Bpacman-android-7-github-debug_arm64-v8a.apk",
       "releases": [
         {
           "tag": "v1000.0.1",
@@ -46755,7 +46790,7 @@
       "latest_tag": "ZeroTermux-0.118.3.64",
       "latest_date": "2026-08-08T14:13:25Z",
       "latest_apk_name": "ZeroTermux-0.118.3.64-debug_arm64-v8a.apk",
-      "latest_apk_url": "https://api.github.com/repos/hanxinhao000/ZeroTermux/releases/assets/506444005",
+      "latest_apk_url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.64/ZeroTermux-0.118.3.64-debug_arm64-v8a.apk",
       "releases": [
         {
           "tag": "ZeroTermux-0.118.3.64",
@@ -47007,7 +47042,7 @@
       "latest_tag": "v2.0.14",
       "latest_date": "2026-01-27T12:27:30Z",
       "latest_apk_name": "termux-app_apt-android-7-debug_arm64-v8a.apk",
-      "latest_apk_url": "https://api.github.com/repos/reapercanuk39/termux-kotlin-app/releases/assets/346610810",
+      "latest_apk_url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-debug_arm64-v8a.apk",
       "releases": [
         {
           "tag": "v2.0.14",
@@ -48833,12 +48868,12 @@
       "repo_url": "https://github.com/Ilya114/Box64Droid",
       "official": true,
       "channel": "stable/unknown",
-      "latest_tag": "alpha",
-      "latest_date": "2023-10-24T10:08:02Z",
+      "latest_tag": "stable",
+      "latest_date": "2023-08-26T08:24:43Z",
       "latest_body": "(JeezDisReez is original author of glibc-prefix and patched Wine, me added Box64Droid stuff to glibc-prefix)\r\nWines 9x compiled by @airidosas252",
-      "latest_apk_name": "glibc-prefix.tar.xz",
-      "latest_apk_url": "https://github.com/Ilya114/Box64Droid/releases/download/alpha/glibc-prefix.tar.xz",
-      "latest_apk_size": 0,
+      "latest_apk_name": "app-arm64-v8a-debug.apk",
+      "latest_apk_url": "https://github.com/Ilya114/Box64Droid/releases/download/stable/app-arm64-v8a-debug.apk",
+      "latest_apk_size": 4784243,
       "pushed_at": "2026-05-15T23:16:07Z",
       "stars": 1090,
       "forks": 0,
@@ -48945,7 +48980,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "jica98-bachata-s4",
@@ -58591,8 +58627,8 @@
       "latest_tag": "v1.2.12",
       "latest_date": "2026-10-27T07:01:39Z",
       "latest_body": "HyperHLE v1.2.12\n\n## Changelog\n\n- [`2636d89`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/2636d8938e84fbf47a9f1c16c914233e63d11744) **@claude**: Deliver SCNetworkReachability callouts from the run loop\n- [`cc5ad4a`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/cc5ad4af17003834c2d36dda1f3419b3d223c99d) **@claude**: Snapshot register-passed variadic arguments in VaList\n- [`72c6081`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/72c6081436717f0722f38a65b202cff56c9a64e5) **@claude**: Enable the libxml2 DOM mirror for Where's My Perry\n- [`95546a1`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/95546a18e00756a6b6dc071698ec2f7285013230) **@goodvids56**: Merge pull request #349 from KlugKlugTG/claude/pensive-hawking-1e52p9\n- [`0fc6e8b`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/0fc6e8b978ed1bf4e2f14cace1248fa9de154a49) **@rintedmash**: touchHLE_dylibs: rebuild libsqlite3.dylib from SQLite 3.6.12\n- [`f4e3d4d`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/f4e3d4d29d460371476f00539cb5b32361916d22) **@rintedmash**: Add JellyCar 3 default options and changelog entry\n- [`c89c6b9`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/c89c6b9ba69a04054219faf2c899c34215c93690) **@rintedmash**: JellyCar 3 works on HyperHLE\n- [`080af44`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/080af448654ded8f0fd268bddfaadb53271f3a67) **@rintedmash**: Fix JellyCar 1 and 2 level catalog XML defaults\n- [`f656e74`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/f656e740cb6b3051080c226e459ea8604c11360e) **@KlugKlugTG**: Merge pull request #353 from rintedmash/trunk",
-      "latest_apk_name": "HyperHLE-iOS-trollstore-permanent-jit.ipa",
-      "latest_apk_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.2.11/HyperHLE-iOS-trollstore-permanent-jit.ipa",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
       "latest_apk_size": 0,
       "pushed_at": "2026-10-27T06:33:30Z",
       "stars": 73,
@@ -59927,7 +59963,8 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "seedlessds-android",
@@ -69551,12 +69588,13 @@
       ],
       "latest_tag": "v0.3.8-20260913",
       "latest_date": "2026-09-13T02:30:58Z",
-      "latest_apk_name": "box64-v0.3.8-20260913.tar.xz",
-      "latest_apk_url": "https://github.com/afeimod/linbox/releases/download/v0.3.8-20260913/box64-v0.3.8-20260913.tar.xz",
-      "latest_apk_size": 3314424,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "source": "github",
       "logo_url": "https://github.com/afeimod.png",
-      "latest_body": "### Box64 构建信息\n- **版本**: v0.3.8\n- **构建日期**: 20260913\n- **提交哈希**: 81c56d715\n- **分支/标签**: v0.3.8\n- **请求的版本**: v0.3.8\n\n此构建针对 Termux glibc 环境优化。"
+      "latest_body": "### Box64 构建信息\n- **版本**: v0.3.8\n- **构建日期**: 20260913\n- **提交哈希**: 81c56d715\n- **分支/标签**: v0.3.8\n- **请求的版本**: v0.3.8\n\n此构建针对 Termux glibc 环境优化。",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "afeimod-linbox-winemu",
@@ -70398,12 +70436,13 @@
       ],
       "latest_tag": "9.9-staging-Amod-wow64",
       "latest_date": "2025-10-29T05:06:48Z",
-      "latest_apk_name": "wine-9.9-staging-Amod-wow64.tar.xz",
-      "latest_apk_url": "https://github.com/afeimod/winlator-glibc/releases/download/9.9-staging-Amod-wow64/wine-9.9-staging-Amod-wow64.tar.xz",
-      "latest_apk_size": 81512604,
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
       "source": "github",
       "logo_url": "https://github.com/afeimod.png",
-      "latest_body": "# Wine 9.9 staging - Linbox WOW64 with Vulkan & GStreamer for Termux\n\n## 版本信息\n- **Wine 版本**: 9.9\n- **Wine 类型**: staging\n- **架构**: True WOW64 (同时支持 32 位和 64 位 Windows 应用程序)\n- **平台**: Winlator 10+(Android)\n- **图形 API**: Vulkan 支持已启用\n- **多媒体**: 完整 GStreamer 支持（包含 FFmpeg 插件）\n- **Esync 支持**: 已通过补丁添加\n\n## 特性\n✓ 真正的 WOW64 架构\n✓ 同时支持 32 位和 64 位 Windows 应用程序\n✓ Vulkan 图形 API 支持\n✓ 完整的 GStreamer 支持\n✓ Esync 事件同步支持\n✓ 中文环境支持\n✓ 应用了关键补丁提升兼容性\n## 构建信息\n- 构建时间: \n- 提交: c6bf069accd1f2faeb18a524eb79a4e76af49a72\n- 工作流: Build WinamodWine (Lite)"
+      "latest_body": "# Wine 9.9 staging - Linbox WOW64 with Vulkan & GStreamer for Termux\n\n## 版本信息\n- **Wine 版本**: 9.9\n- **Wine 类型**: staging\n- **架构**: True WOW64 (同时支持 32 位和 64 位 Windows 应用程序)\n- **平台**: Winlator 10+(Android)\n- **图形 API**: Vulkan 支持已启用\n- **多媒体**: 完整 GStreamer 支持（包含 FFmpeg 插件）\n- **Esync 支持**: 已通过补丁添加\n\n## 特性\n✓ 真正的 WOW64 架构\n✓ 同时支持 32 位和 64 位 Windows 应用程序\n✓ Vulkan 图形 API 支持\n✓ 完整的 GStreamer 支持\n✓ Esync 事件同步支持\n✓ 中文环境支持\n✓ 应用了关键补丁提升兼容性\n## 构建信息\n- 构建时间: \n- 提交: c6bf069accd1f2faeb18a524eb79a4e76af49a72\n- 工作流: Build WinamodWine (Lite)",
+      "note": "GitHub release 无安卓 APK 资产"
     },
     {
       "id": "afeimod-eka2l1-an",

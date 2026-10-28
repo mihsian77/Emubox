@@ -9,7 +9,8 @@ emulator-registry.json（官方渠道占位：Termux/PPSSPP/RetroArch/Dolphin/Du
 - stars / pushed_at（活跃度）
 CI 内带 GITHUB_TOKEN 跑；本地无 token 时跳过，保证可重复运行。
 """
-import json, os, sys, time, urllib.request
+import json, os, re, sys, time, urllib.request
+from urllib.parse import quote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(ROOT, "emulator-registry.json")
@@ -28,9 +29,64 @@ def gh(url):
         return json.load(r)
 
 
-def fetch_meta_and_releases(repo):
-    """拉仓库元数据 + 最多 30 条 releases，失败返回 (None, None)"""
+def _norm_releases(rels, platform):
+    """GitLab/Gitea(NotABug) 的 release 结构转统一格式（与 GitHub 对齐）"""
+    out = []
+    for r in rels or []:
+        if platform == "gitlab":
+            out.append({
+                "tag": r.get("tag_name", ""),
+                "name": r.get("name", ""),
+                "date": r.get("released_at", ""),
+                "body": (r.get("description") or "").replace("\r", "")[:1200],
+                "prerelease": False,
+                "assets": [],
+            })
+        else:  # gitea / notabug / gitee
+            out.append({
+                "tag": r.get("tag_name", ""),
+                "name": r.get("name", ""),
+                "date": r.get("published_at") or r.get("created_at") or "",
+                "body": (r.get("body") or "").replace("\r", "")[:1200],
+                "prerelease": bool(r.get("prerelease")),
+                "assets": [{
+                    "name": a["name"],
+                    "size": int(a.get("size") or 0),
+                    "url": a.get("browser_download_url", ""),
+                } for a in (r.get("assets") or []) if a.get("name")],
+            })
+    return out
+
+
+def fetch_meta_and_releases(repo, source="", repo_url=""):
+    """拉仓库元数据 + 最多 30 条 releases（按 source 选平台 API），失败返回 (None, None)"""
     try:
+        if source == "gitee" and "gitee.com" in (repo_url or ""):
+            meta = gh(f"https://gitee.com/api/v5/repos/{repo}")
+            rels = gh(f"https://gitee.com/api/v5/repos/{repo}/releases?per_page=30")
+            if isinstance(meta, dict):
+                meta = {"stargazers_count": int(meta.get("stargazers_count") or 0),
+                        "pushed_at": meta.get("updated_at") or ""}
+            return meta, _norm_releases(rels, "gitea")  # Gitee release 结构近 Gitea
+        if source == "gitlab" or "gitlab.com" in (repo_url or ""):
+            pid = quote(repo, safe="")
+            meta = gh(f"https://gitlab.com/api/v4/projects/{pid}")
+            rels = gh(f"https://gitlab.com/api/v4/projects/{pid}/releases?per_page=30")
+            if isinstance(meta, dict):
+                meta = {"stargazers_count": int(meta.get("star_count") or 0),
+                        "pushed_at": meta.get("last_activity_at") or ""}
+            return meta, _norm_releases(rels, "gitlab")
+        if source in ("gitea", "notabug") and repo_url:
+            host = re.sub(r"^https?://([^/]+)/.*", r"\1", repo_url)
+            if host == "notabug.org":
+                host = "notabug.org"
+            base = f"https://{host}/api/v1/repos/{repo}"
+            meta = gh(f"{base}")
+            rels = gh(f"{base}/releases?limit=30")
+            if isinstance(meta, dict):
+                meta = {"stargazers_count": int(meta.get("stars_count") or 0),
+                        "pushed_at": meta.get("updated_at") or ""}
+            return meta, _norm_releases(rels, "gitea")
         meta = gh(f"https://api.github.com/repos/{repo}")
         rels = gh(f"https://api.github.com/repos/{repo}/releases?per_page=30")
     except Exception as e:
@@ -62,7 +118,7 @@ def main():
         if not repo or "/" not in repo:
             print(f"  跳过（无完整 repo 路径）: {e.get('id')}")
             continue
-        meta, rels = fetch_meta_and_releases(repo)
+        meta, rels = fetch_meta_and_releases(repo, e.get("source", ""), e.get("repo_url", ""))
         if rels is None:
             continue
         e["stars"] = int(meta.get("stargazers_count") or 0)

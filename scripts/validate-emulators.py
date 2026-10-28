@@ -12,7 +12,7 @@ DEAD_SOURCES = {"yuzu-official", "yuzu-citrus", "yuzu-plus",
                 "skyline-official", "skyline-pine", "skyline-tagline",
                 "skyline-enhanced-infinity", "citron-emulator",
                 "strato-emulator", "ryujinx-official"}
-VALID_SOURCES = {"github", "gitea", "gitlab", "notabug",
+VALID_SOURCES = {"github", "gitea", "gitlab", "gitee", "notabug",
                  "official-web", "official-play", "community-archive"}
 BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}
 
