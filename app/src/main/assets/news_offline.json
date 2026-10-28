@@ -1,8 +1,17 @@
 {
   "version": 2,
-  "updated_at": "2026-10-28T08:47:50Z",
+  "updated_at": "2026-10-28T19:42:41Z",
   "source": "ithome+github-releases+winehq-dl",
   "items": [
+    {
+      "id": "d21a0b62",
+      "title": "[VKD3D-Proton] v3.1",
+      "url": "https://github.com/HansKristian-Work/vkd3d-proton/releases/tag/v3.1",
+      "published_at": 1793182794,
+      "category": "component",
+      "type": "VKD3D-Proton",
+      "summary": "This release is mostly just tagged now to facilitate bumping the build version shortly after to 3.2. A ton of important changes will happen for 3.2, so this marks the last \"stable\""
+    },
     {
       "id": "cdef3fd0",
       "title": "[faux123 PanVK] v1.1.2",
@@ -497,6 +506,390 @@
       "type": "Mono",
       "summary": "Mono 官方源码发布（mono-project.com）",
       "low_freq": true
+    },
+    {
+      "id": "80f4dde2",
+      "title": "续航未打折扣：苹果首款触控 MacBook Pro 最长连续播放 24 小时视频",
+      "url": "https://www.ithome.com/1/019/255.htm",
+      "published_at": 1793216297,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，太平洋时间 10 月 28 日上午 10 点（北京时间 10 月 29 日凌晨 1 点）在洛杉矶举行的“Pro and Tell”体验活动中，苹果公司发布配备 PROLED XDR 显示屏的首款触控 MacBook Pro，不过满电续航并未因此打折扣。图源：苹果根据苹果官网公示信息，配"
+    },
+    {
+      "id": "7e07413f",
+      "title": "苹果公布其首款触控 MacBook Pro 官方设计素材",
+      "url": "https://www.ithome.com/1/019/254.htm",
+      "published_at": 1793215409,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果公司今天（10 月 29 日）更新其“Apple 设计资源”门户网站，为首款配备 PROLED XDR 显示屏、支持触控的全新 MacBook Pro 提供官方设计素材。UI / UX 设计师、开发者及内容创作者无需等待第三方模板，即可在官方素材基础上制作适配新机的界面演示、宣传图"
+    },
+    {
+      "id": "11403b95",
+      "title": "苹果首款触控 MacBook Pro 低音下潜增强 50%，首次调教合盖场景音频",
+      "url": "https://www.ithome.com/1/019/253.htm",
+      "published_at": 1793214927,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果公司今天（10 月 29 日）发布新闻稿，宣布在其搭载 PROLED XDR 显示屏的首款触控 MacBook Pro 上，并重点升级其音频系统。官方表示这款 MacBook Pro 采用 6 扬声器音频系统，采用全新低音单元设计，低音下潜增强 50%，声音更深沉、更丰富。而全新高"
+    },
+    {
+      "id": "e39706be",
+      "title": "苹果上架 70W/140W 新款 Mac 电源适配器，采用交流电源接口 2 方案",
+      "url": "https://www.ithome.com/1/019/252.htm",
+      "published_at": 1793214378,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果公司今天（10 月 29 日）发布配备 PROLED XDR 显示屏的首款触控 MacBook Pro 外，还更新推出了 70W 充电器、全球旅行转换器套件等多款配件产品。一、70W 电源适配器（点此前往苹果官网选购）该产品售价为 449 元，IT之家附上官方介绍如下：无论是在家中"
+    },
+    {
+      "id": "43113065",
+      "title": "最高 128GB 统一内存：苹果首款触控 MacBook Pro 可本地运行数千亿参数 AI 模型",
+      "url": "https://www.ithome.com/1/019/251.htm",
+      "published_at": 1793212963,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，苹果公司今天（10 月 29 日）发布配备 PROLED XDR 显示屏的首款触控 MacBook Pro，其核心卖点之一是配备最高 128GB 统一内存，M5 Max 芯片版可本地运行数千亿参数的大语言模型。IT之家附上官方公告内容如下：依托 M5 Max，专业人士可在设备端直接运行"
+    },
+    {
+      "id": "5bcaca98",
+      "title": "外媒现场上手苹果首款触控 MacBook Pro (PROLED XDR 显示屏) 笔记本",
+      "url": "https://www.ithome.com/1/019/250.htm",
+      "published_at": 1793212045,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，太平洋时间 10 月 28 日上午 10 点（北京时间 10 月 29 日凌晨 1 点）在洛杉矶举行的“Pro and Tell”体验活动中，包括 9to5Mac 在内的多家媒体现场体验了苹果首款触控 MacBook Pro (PROLED XDR 显示屏) 笔记本。IT之家附上部分海"
+    },
+    {
+      "id": "e0504da4",
+      "title": "苹果触屏 MacBook Pro 应用适配情况：Lightroom、达芬奇、C4D、Office 等今年晚些时候支持",
+      "url": "https://www.ithome.com/1/019/249.htm",
+      "published_at": 1793211875,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果今日推出首款触控屏 MacBook Pro，定价 22,999 元起。该产品采用双层串联 OLED 面板，HDR 峰值亮度可达 2,000 nits。如今苹果已经公布了这款 MacBook Pro 的第三方应用触控适配情况，IT之家附未来支持名单如下：办公与协作： Notion、C"
+    },
+    {
+      "id": "dadc3653",
+      "title": "苹果 CEO 特努斯：MacBook Pro PROLED XDR 显示屏有多出色，亲手一触就知道",
+      "url": "https://www.ithome.com/1/019/248.htm",
+      "published_at": 1793211713,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，太平洋时间 10 月 28 日上午 10 点（北京时间 10 月 29 日凌晨 1 点）在洛杉矶举行的“Pro and Tell”体验活动中，苹果公司正式推出首款支持触控操作的 MacBook Pro（PROLED XDR 显示屏），国行起售价 22999 元。苹果公司前首席执行官、现"
+    },
+    {
+      "id": "b0beb001",
+      "title": "苹果新 MacBook Pro 最高可选 16TB 存储空间：相比此前 8TB 翻倍，得加 5.25 万元",
+      "url": "https://www.ithome.com/1/019/247.htm",
+      "published_at": 1793210956,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果首款触控屏 MacBook Pro 最高可选 16TB 存储空间，相比此前 MacBook Pro 最高 8TB 翻倍。需要注意的是，新款 MacBook Pro 仅有 M5 Max 机型支持选择 16TB 硬盘。而且要升级这么高的容量，您需要支付 52,500 元（以 2TB →"
+    },
+    {
+      "id": "cd214c07",
+      "title": "苹果上架 512GB 内存版 Mac Studio：较 96GB 配置贵 116250 元",
+      "url": "https://www.ithome.com/1/019/246.htm",
+      "published_at": 1793210045,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，苹果今天（10 月 29 日）正式公布配备 512GB 统一内存的 Mac Studio 售价。该配置仅面向搭载 M5 Ultra 芯片（ 36 核 CPU 与 80 核 GPU）的顶配机型，相比较 96GB 版本价格上涨 116,250 元。IT之家注：512GB 内存版目前仅适用于"
+    },
+    {
+      "id": "4485532d",
+      "title": "苹果首度为 Mac 引入灵动岛：支持显示音乐播放、实时活动等，Siri AI 多了个入口",
+      "url": "https://www.ithome.com/1/019/245.htm",
+      "published_at": 1793209996,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果公司今日推出首款触控屏 MacBook Pro，提供 14 英寸和 16 英寸两种型号。值得注意的是，这款笔记本支持灵动岛，可将实时活动、聚焦搜索和 Siri AI 整合到屏幕上方交互，这也是苹果首次为 Mac 电脑引入灵动岛。IT之家了解到，苹果公司最早在 2022 年 9 月的"
+    },
+    {
+      "id": "e35eee77",
+      "title": "时隔 10 年发光 Logo 回归：苹果首款触控屏 MacBook Pro“苹果标”又会亮了",
+      "url": "https://www.ithome.com/1/019/244.htm",
+      "published_at": 1793209703,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果在今天的特别活动中正式推出了首款触控屏 MacBook Pro（配备 PROLED XDR 显示屏的 MacBook Pro），值得一提的是，该机重新为 A 面带回了发光苹果 Logo。回顾历史，苹果从 1999 年 PowerBook G3 系列开始为笔记本 A 面引入发光苹果 "
+    },
+    {
+      "id": "6d56e89e",
+      "title": "15999 元起，苹果 M6 芯片版 14 英寸 MacBook Pro 开启预购",
+      "url": "https://www.ithome.com/1/019/243.htm",
+      "published_at": 1793209278,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，苹果公司 2026 款 MacBook Pro 已于今天（10 月 29 日）凌晨 1 点 10 分开启预购，起售价 15,999 元，最快 11 月 6 日送达。京东苹果 2026 款 14 英寸 MacBook Pro M6 15999 元直达链接机型芯片起售价14 英寸 M6RM"
+    },
+    {
+      "id": "86da7eb5",
+      "title": "苹果 M6 版 24 英寸 iMac 开启预购，国补后 10999 元起",
+      "url": "https://www.ithome.com/1/019/242.htm",
+      "published_at": 1793209239,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，苹果 24 英寸新款 iMac 现已在京东开启预购，新品升级 M6 芯片，设计与旧款没有差别，定价 12499 元起，国补后到手价 10999 元起。外观方面，新款 iMac 沿袭上一代外观，提供银色、蓝色、绿色、粉色等配色可选。搭载 24 英寸 4.5K 分辨率屏幕，最高亮度 500"
+    },
+    {
+      "id": "755f5727",
+      "title": "5499 元起，苹果 iPad mini（A20 Pro）开启预购（国补后低至 4999 元起）",
+      "url": "https://www.ithome.com/1/019/241.htm",
+      "published_at": 1793208928,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日闪讯速报，苹果旗下 iPad mini（A20 Pro）现已开启预购，该机也就是俗称的“iPad mini 8”。其搭载 8.5 英寸 OLED 屏幕，比上一代薄了 14%，采用 A20 Pro 芯片，11 月 6 日正式发售，定价 5,499 元起（国补后低至 4999 元起）。京东 Ap"
+    },
+    {
+      "id": "9d6a3452",
+      "title": "22999 元起：苹果首款触屏 MacBook Pro 价格公布",
+      "url": "https://www.ithome.com/1/019/239.htm",
+      "published_at": 1793207757,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果公司现已公布 MacBook Pro (PROLED XDR 显示屏) 笔记本的价格：22,999 元起。IT之家从苹果官网获悉，MacBook Pro (PROLED XDR 显示屏) 支持触控，提供 14 英寸和 16 英寸两个尺寸，可选 M5 Pro 和 M5 Max 芯片。"
+    },
+    {
+      "id": "8410a82d",
+      "title": "苹果首款触控屏 MacBook Pro 正式发布：双层串联 OLED、低至 1.38 千克重量，22,999 元起",
+      "url": "https://www.ithome.com/1/019/238.htm",
+      "published_at": 1793207412,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果在今天的特别活动中正式推出了首款触控屏 MacBook Pro（配备 PROLED XDR 显示屏的 MacBook Pro），系列产品 10 月 30 日 9 点接受预购，11 月 6 日发售，22,999 元起，IT之家随附官方商店地址（点此访问）。系列笔记本可选 14.2/1"
+    },
+    {
+      "id": "168aed28",
+      "title": "Artificial Analysis Intelligence Index v5 基准上线，DeepSeek V4.1 Flash 1017 为 FrontierCode 2.0 开源模型最高成绩",
+      "url": "https://www.ithome.com/1/019/237.htm",
+      "published_at": 1793207181,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，Artificial Analysis 昨日发布了 Intelligence Index v5，这是该机构自 2026 年 1 月 v4 上线以来幅度最大的一次基准重构。最直接的变化是，60% 的评测权重首次建立在私有测试集或隐藏答案之上，用于压缩公开题库被模型训练数据“污染”的空间，"
+    },
+    {
+      "id": "1a1dad3d",
+      "title": "苹果线上商城下线维护，预估迎接其首款触控 MacBook Pro",
+      "url": "https://www.ithome.com/1/019/236.htm",
+      "published_at": 1793206743,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，太平洋时间 10 月 28 日上午 10 点（北京时间 10 月 29 日凌晨 1 点）在洛杉矶举行的“Pro and Tell”体验活动开始前几分钟，苹果官网在线商店已临时下线维护，这一动作通常被视为新品即将上架的信号。IT之家访问苹果中国官网在线商店，已经显示为“稍等一下，我们正在"
+    },
+    {
+      "id": "12ddfe43",
+      "title": "华为 Mate 90 系列手机十大黑科技汇总，影像、屏幕、性能与通信多重突破",
+      "url": "https://www.ithome.com/1/019/234.htm",
+      "published_at": 1793203147,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，在今天的华为双十一焕新季 · 全场景新品发布会上，华为董事、终端 BG CEO 何刚登台主讲，揭秘了 Mate 90 系列手机的十大黑科技，实现影像、屏幕、性能与通信多重突破。设计方面，华为 Mate 90 Pro Max 典藏版采用钇晶宝石匠心工艺：稀土配方（45% 钇元素含量）、超"
+    },
+    {
+      "id": "b4ce0879",
+      "title": "索尼推出“Prism Collection”版 DualSense 手柄，半透明设计",
+      "url": "https://www.ithome.com/1/019/233.htm",
+      "published_at": 1793202732,
+      "category": "emulator",
+      "summary": "IT之家 10 月 28 日消息，索尼 PlayStation 今天宣布推出“Prism Collection”系列 DualSense 手柄。新产品提供三种配色，均采用半透明设计。Prism Collection 系列 DualSense 无线控制器提供石墨灰、翡翠绿和烈焰橙三种配色。官方表示，许多玩家一直期待透明外"
+    },
+    {
+      "id": "8e9dd897",
+      "title": "内存涨价致旧手机价格坚挺：99 新二手机成华强北抢手货，苹果 iPhone 15 Pro Max 从去年 3000 多元回涨至 4300 元以上",
+      "url": "https://www.ithome.com/1/019/231.htm",
+      "published_at": 1793202036,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，据央视财经今日报道，深圳华强北二手手机市场均价 4000 元以上产品的占比已超过 68%。一位业内人士对央视记者表示，热销机型一年内降价 20% 本是常态，但受内存涨价影响，今年二手手机价格普遍坚挺，部分热门机型甚至出现加价。他以 iPhone 15 Pro Max 举例：这款机型去年"
+    },
+    {
+      "id": "5c0cdf97",
+      "title": "FCC 再度驳回 TP-LINK 在美国销售 Wi-Fi 8 路由器申请，指其提交虚假文件、部分产品功率超标",
+      "url": "https://www.ithome.com/1/019/229.htm",
+      "published_at": 1793201753,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，据彭博社报道，美国联邦通信委员会（FCC）再度驳回 TP-LINK 在美国销售 Wi-Fi 8 路由器的申请。据报道，FCC 称 TP-LINK 在 4 款路由器的设备认证申请中，提交了虚假或不准确的文件信息。这 4 款受到审查的路由器中，还有 3 款的功率超过法规允许上限。除了功率限"
+    },
+    {
+      "id": "0d7bedc5",
+      "title": "V社详解 Steam 新品节游戏推荐机制：活动刚开始时随机展示，算法会在两天后启用",
+      "url": "https://www.ithome.com/1/019/227.htm",
+      "published_at": 1793201046,
+      "category": "emulator",
+      "summary": "IT之家 10 月 28 日消息，据游戏媒体 VGC 今天报道，Valve 最近在韩国举办 Steam Indie Connect 活动，与游戏开发者交流。有参会者现场抱怨，Steam 新品节的曝光度不佳，并且部分玩家也认为，该活动充斥着大量“AI 垃圾”游戏。Valve 商务团队成员 Marc Wilkinson 对"
+    },
+    {
+      "id": "0799da3d",
+      "title": "186 家科创板公司三季报披露：合计营收超 4266 亿元，同比增长 31.54%",
+      "url": "https://www.ithome.com/1/019/225.htm",
+      "published_at": 1793200443,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，据央视新闻今日报道，上交所最新数据显示，截至 10 月 27 日，共 186 家科创板公司完成三季报披露，合计营收 4266.76 亿元，同比增长 31.54%，合计净利润 389.53 亿元，同比增长 57.39%。其中，14 家科创 50 公司收入、净利润贡献度分别占 29%、47"
+    },
+    {
+      "id": "9d6a1bee",
+      "title": "手机最后一块玻璃也“昆仑”：华为 Mate 90 Pro 系列首发光学昆仑玻璃，耐摔能力提升 20%",
+      "url": "https://www.ithome.com/1/019/224.htm",
+      "published_at": 1793200398,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，在今天下午的华为双十一焕新季 · 全场景新品发布会上，华为董事、终端 BG CEO 何刚宣布，手机最后一块玻璃也“昆仑”了：Mate 90 Pro 系列首发光学昆仑玻璃 —— 对比 Mate 80 Pro Max，摄像头盖板玻璃耐摔能力提升 20 倍。何刚提到，华为 Mate 90 P"
+    },
+    {
+      "id": "798fdae1",
+      "title": "马斯克动用钞能力：美国居民起诉数据中心噪声后，xAI 准备直接收购其房产",
+      "url": "https://www.ithome.com/1/019/222.htm",
+      "published_at": 1793200325,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，据《卫报》今日报道，埃隆 · 马斯克旗下 xAI 正通过子公司 MZX Tech 向美国密西西比州南海文市（Southaven）部分居民提出房屋收购邀约。根据居民收到的信件，房主接受收购后，需要签署协议，放弃与当地发电厂噪声相关的索赔权利，包括参与针对该公司的集体诉讼的权利。一名房地产"
+    },
+    {
+      "id": "3a7cbf09",
+      "title": "《雷曼：传奇再叙》游戏将与《宇宙机器人》联动，PS5 版玩家可获独占服装道具",
+      "url": "https://www.ithome.com/1/019/221.htm",
+      "published_at": 1793200308,
+      "category": "emulator",
+      "summary": "IT之家 10 月 28 日消息，索尼今天在 PlayStation Blog 宣布，育碧新作《雷曼：传奇再叙》将与 Team ASOBI 开发的《宇宙机器人》联动。IT之家了解到，《雷曼：传奇重述版》PS5 版玩家将可以在游戏内的裁缝维克多 · 维洛尔商店，免费获得《宇宙机器人》联动服装。此道具为 PS5 版独占。育"
+    },
+    {
+      "id": "003894cd",
+      "title": "华为 Mate 90 Pro 系列手机第二代灵珑屏技术揭秘：双层 OLED 架构、支持麒麟朱雀双芯协同",
+      "url": "https://www.ithome.com/1/019/219.htm",
+      "published_at": 1793199497,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，在今天下午的华为双十一焕新季 · 全场景新品发布会上，华为董事、终端 BG CEO 何刚揭秘了 Mate 90 Pro 系列手机第二代灵珑屏的技术亮点。核心有三，分别是：双层 OLED 架构、AI Pixel 逐屏逐像素校准，以及麒麟朱雀双芯协同。据介绍，第二代灵珑屏采用双层 OLED"
+    },
+    {
+      "id": "f38cf53c",
+      "title": "曝《艾尔登法环》电影预算近 2 亿美元：剧本至少 180 页，片长或接近 3 小时",
+      "url": "https://www.ithome.com/1/019/214.htm",
+      "published_at": 1793199154,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，据 Deadline 今日报道，由亚历克斯 · 嘉兰（Alex Garland）编剧并执导的《艾尔登法环》真人电影，剧本篇幅至少达到 180 页，且包含大量视觉内容，意味着影片时长可能接近 3 小时（片方尚未公布正式片长）。Deadline 报道称，影片剧情目前仍处于严格保密状态，以避"
+    },
+    {
+      "id": "9d276c0b",
+      "title": "极米记得 AI 记忆眼镜 G1 / 手环 L1 开售，首发价 1299 元 / 599 元起",
+      "url": "https://www.ithome.com/1/019/210.htm",
+      "published_at": 1793199049,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，极米记得 AI 记忆眼镜 G 1 和 AI 记忆手环 L 1 今日开售，首发价 1299 元 / 599 元起，均提供标准版和终身会员版。IT之家附价格如下：AI 记忆手环标准版｜首发价 599 元，补贴到手价 509.15 元终身会员版｜首发价 1059 元，补贴到手价 900.15"
+    },
+    {
+      "id": "d7780f74",
+      "title": "苹果 iOS 27.2 更新照片应用：共享相簿新增四项功能",
+      "url": "https://www.ithome.com/1/019/208.htm",
+      "published_at": 1793198906,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，苹果于当地时间 10 月 26 日发布了最新的 iOS 27.2，为 iPhone 照片应用带来两项新改进，涉及共享相簿功能和 AI 生成或编辑图像的识别能力。据 9to5mac 今日报道，用户现在可以编辑共享相簿中的照片说明和评论、避免重复添加照片，并在相簿即将到期前收到提醒；系统还"
+    },
+    {
+      "id": "5b85b130",
+      "title": "Gartner 调研：仅 3% 企业通过 AI 实现节约成本、提高生产力目标",
+      "url": "https://www.ithome.com/1/019/207.htm",
+      "published_at": 1793198780,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，据科技媒体 TechRadar 今天报道，尽管许多企业预计 AI 将带来深远影响，不惜为此砸下重金。但 Gartner 调研报告显示，仅 3% 企业通过 AI 实现了提高生产力效率、降低运营成本等目标。IT之家从原报道了解到，有四分之三企业领导者预计，AI 将对技术领域产生重大影响。尽"
+    },
+    {
+      "id": "ea088276",
+      "title": "599 美元 → 649 美元，苹果 MacBook Neo 在美国官网教育商店涨价",
+      "url": "https://www.ithome.com/1/019/203.htm",
+      "published_at": 1793197859,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，苹果已在美国官网的教育商店调整 MacBook Neo 笔记本售价，从 599 美元（IT之家注：现汇率约合 4,002 元人民币）涨到 649 美元（现汇率约合 4,336 元人民币）。IT之家注意到，美国高校生、教职人员现在购买这款笔记本仅可享受 50 美元（现汇率约合 334.1"
+    },
+    {
+      "id": "53c62128",
+      "title": "盖世小鸡推出新款 G7 Pro 手柄，《GTA6》色调",
+      "url": "https://www.ithome.com/1/019/202.htm",
+      "published_at": 1793197253,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，盖世小鸡现已在海外市场推出新款 G7 Pro 手柄，售价 89.99 美元（IT之家注：现汇率约合 601.2 元人民币）。从外观来看，虽然官方没有明说，但这款产品的色调显然是致敬了即将开售的《GTA6》。据介绍，这款手柄提供日落大道、海洋微风两种配色，前者是钴蓝色、深粉色等融合在一起"
+    },
+    {
+      "id": "f9e413c4",
+      "title": "小米 REDMI 产品经理胡馨心：内存成本持续走高，过去 12 个月涨了约 5.5 倍",
+      "url": "https://www.ithome.com/1/019/200.htm",
+      "published_at": 1793196777,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，今日，小米 REDMI 产品经理胡馨心透露，过去 12 个月，内存成本持续走高，涨价约 5.5 倍，仅 12+256 规格的价格就逼近 2000 元（第三方机构公开数据），所以今天在手机产品上做对取舍，要求更高、难度更大。IT之家注意到，小米 REDMI K100 手机于昨晚发布，限时"
+    },
+    {
+      "id": "0f1bf45e",
+      "title": "英伟达 RTX 5080 显卡在美国涨到 2000 美元以上，涨幅超过 1 倍",
+      "url": "https://www.ithome.com/1/019/197.htm",
+      "published_at": 1793196396,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，英伟达 RTX 5080 显卡上市于去年 1 月，官方建议零售价 999 美元（IT之家注：现汇率约合 6,674 元人民币）。据科技媒体 Wccftech 今天报道，这款显卡如今在美国已经几乎不可能用原价买到。据报道，RTX 5080 最近在美国涨得十分离谱。例如在新蛋（Newegg"
+    },
+    {
+      "id": "eb8227bb",
+      "title": "一加 Ace 7 系列手机核心亮点公布：第五代骁龙 8 至尊版、电竞三芯、185Hz 东方屏，明晚公布价格",
+      "url": "https://www.ithome.com/1/019/195.htm",
+      "published_at": 1793195752,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，一加中国区总裁李杰今日发文介绍了一加 Ace 7 系列手机。他表示，知道大家很关心价格，但自己更想说的是，一加 Ace 7 Pro 真正的竞争力是其产品力和体验，一定会让大家觉得配得上它的价格。IT之家注意到，李杰还顺势放出了一加 Ace 7 系列手机的核心配置亮点信息，包括第五代骁龙"
+    },
+    {
+      "id": "72f73e30",
+      "title": "被禁四年多后《Free Fire》印度本地化版本回归上线，加入游戏时长限制与消费上限",
+      "url": "https://www.ithome.com/1/019/194.htm",
+      "published_at": 1793195711,
+      "category": "emulator",
+      "summary": "IT之家 10 月 28 日消息，Garena 于当地时间 10 月 28 日在印度正式推出《Free Fire India》，这是热门大逃杀手游《Free Fire》针对印度市场推出的本地化独立版本，面向安卓和 iOS 平台开放下载。根据 Garena 官方公告，《Free Fire India》加入了面向印度玩家的"
+    },
+    {
+      "id": "d2131beb",
+      "title": "TikTok 推出“必吃”餐厅指南，意图挑战 Yelp 和谷歌地图等点评平台",
+      "url": "https://www.ithome.com/1/019/192.htm",
+      "published_at": 1793195125,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，TikTok 今日宣布推出“必吃”（Must Eat）餐厅指南，整合平台内餐饮相关的 4000 万条帖子和评论，为消费者推荐本地优秀餐厅，意图挑战 Yelp 和 Google Maps 等点评平台。据介绍，“必吃”的定位介于 Yelp 和 The Infatuation 之间，分为“日"
+    },
+    {
+      "id": "5d08f52b",
+      "title": "“硬总线”能力升级：《星闪 SLE 3.0 技术标准演进蓝皮书》正式上线，华为、海思等参编",
+      "url": "https://www.ithome.com/1/019/191.htm",
+      "published_at": 1793194801,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，《星闪 SLE3.0 技术标准演进蓝皮书》已在国际星闪联盟官网正式上线。据介绍，该蓝皮书由国家级标准与研究机构、芯片企业、生态企业、高校等 60 余家单位共同编制，系统梳理星闪技术发展历程，描绘星闪技术演进路线与未来发展蓝图。星闪 3.0 阶段将围绕“高速可靠通信、高效测量、高质量组网"
+    },
+    {
+      "id": "6c444e8d",
+      "title": "《使命召唤：现代战争 4》游戏被指使用梨泰院踩踏事故素材，遇难者家属要求动视删除",
+      "url": "https://www.ithome.com/1/019/190.htm",
+      "published_at": 1793193775,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，据游戏媒体 VGC 今天报道，近期部分韩国玩家指出，《使命召唤：现代战争 4》游戏中出现了 2022 年梨泰院踩踏事故的真实画面。当时，大量人群在万圣节期间涌入梨泰院，最终造成 159 人死亡、196 人受伤。IT之家从原报道获悉，本作开场动画的新闻播报配有真实事件影像，其中一段画面显"
+    },
+    {
+      "id": "10f75bce",
+      "title": "浏览器选择联盟新报告：微软为推广 Edge，不惜使用 10 种“暗黑”手段",
+      "url": "https://www.ithome.com/1/019/187.htm",
+      "published_at": 1793192701,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，浏览器选择联盟（Browser Choice Alliance）最近发布 46 页报告，称微软为推广 Edge，不惜使用 10 种“暗黑”手段，逼迫用户选择 Edge 作为默认浏览器。该报告总结了微软的 10 种“暗黑”手段，IT之家附详情如下：当用户在 Edge 上使用必应搜索其他浏"
+    },
+    {
+      "id": "693d27e8",
+      "title": "特努斯预热苹果首款触控屏 MacBook Pro，最快明日凌晨发布",
+      "url": "https://www.ithome.com/1/019/186.htm",
+      "published_at": 1793192699,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，苹果 CEO 约翰 · 特努斯刚刚发布了一条仅有 5 秒的视频，为苹果即将发布的首款触控 MacBook Pro 机型进行预热宣传。在这段视频中，一束聚光灯慢慢照在 MacBook Pro 形状的墙壁上，并映射出苹果 logo。苹果将于太平洋时间 10 月 28 日上午 10 时（IT"
+    },
+    {
+      "id": "614b0c56",
+      "title": "iQOO 双边拉伸手柄 G1 发布：双霍尔配置、自定义按键，499 元",
+      "url": "https://www.ithome.com/1/019/185.htm",
+      "published_at": 1793192070,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，iQOO 双边拉伸手柄 G1 今晚发布，售价 499 元，搭配 iQOO 手机、平板组合购立减 100 元，11 月 4 日开售。据介绍，该产品采用模块化精巧设计，211mm 超宽拉伸距离，适配手机 & 小尺寸平板；自定义迷你肩键，全微动电竞按键；双霍尔配置，包括霍尔摇杆、霍尔线性板机"
+    },
+    {
+      "id": "d72d92e1",
+      "title": "佰维存储 2026 年前三季度归母净利润 87.68 亿元，同比增长 28728.12%",
+      "url": "https://www.ithome.com/1/019/171.htm",
+      "published_at": 1793190637,
+      "category": "general",
+      "summary": "IT之家 10 月 28 日消息，佰维存储今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）及三季度（2026 年 7 月～2026 年 9 月）报告：2026 年前三季度营业总收入：217.17 亿元，同比增长 230.3%毛利润：111.66 亿元，同比增长 1120.88%毛利率：51."
+    },
+    {
+      "id": "6a2169ae",
+      "title": "iQOO 自带线数显移动电源发布：33W 版 / 66W 可选，189 元起",
+      "url": "https://www.ithome.com/1/019/166.htm",
+      "published_at": 1793189936,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，iQOO 自带线数显移动电源今晚发布，66W 版首销价到手 229 元，33W 版到手 189 元，和手机组合购再减 10 元。IT之家从商品页面获悉，新品内置两颗 10000mAh 锂离子聚合物电芯，等效 20000mAh 电池能量。采用多协议智能适配方案，全面兼容主流快充协议，广泛"
+    },
+    {
+      "id": "5f4960fd",
+      "title": "iQOO Neo12 手机发布：第五代骁龙 8 至尊版 + 散热风扇，国补到手价 3149 元起",
+      "url": "https://www.ithome.com/1/019/165.htm",
+      "published_at": 1793189517,
+      "category": "eco",
+      "summary": "IT之家 10 月 28 日消息，iQOO Neo12 手机今晚发布，搭载第五代骁龙 8 至尊版 + 散热风扇，平台补贴价叠加国补到手价 3149 元起。据介绍，新机提供 iQOO 与中国美术学院联合设计全新配色「争锋」，还有「疾影黑」和「霜刃蓝」配色。全新 Deco 设计，横屏游戏握持更加舒适；全新大 R 角设计，长"
     },
     {
       "id": "c347e06c",
@@ -2073,398 +2466,6 @@
       "published_at": 1793066029,
       "category": "general",
       "summary": "IT之家 10 月 27 日消息，2026 英雄联盟全球总决赛于北京时间 10 月 16 日 2:00 开赛，来自六大赛区的顶尖队伍前往美国，争夺 2026 全球总决赛召唤师杯。今日早间，中国大陆赛区 LPL 的“一号种子”—— AL 战队 0:2 不敌来自北美赛区的 TLAW 战队，最终在瑞士轮比赛中以四小场全败的战"
-    },
-    {
-      "id": "a89aedbd",
-      "title": "塔塔通讯将在印度布设 1 万千米 AI 就绪型长途光纤，连接主要 AI 数据中心",
-      "url": "https://www.ithome.com/1/018/246.htm",
-      "published_at": 1793066011,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，Tata Communications（塔塔通讯）当地时间 26 日宣布拟斥资 4~4.5 亿美元（IT之家注：现汇率约合 26.74 ~ 30.08 亿元人民币）在印度建设一条连接关键人工智能数据中心的 AI 就绪型高速率低延迟网络走廊。为实现这一目标，塔塔通讯计划分三阶段在该国境内"
-    },
-    {
-      "id": "59417c17",
-      "title": "Arrowhead 确认《绝地潜兵 3》暂无开发计划：它最大的对手就是《绝地潜兵 2》",
-      "url": "https://www.ithome.com/1/018/245.htm",
-      "published_at": 1793065810,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，《绝地潜兵 2》开发商 Arrowhead 首席创意官约翰 · 皮莱斯泰特称，工作室近期没有开发《绝地潜兵》系列续作的计划。当地时间 23 日，皮莱斯泰特接受 Rock Paper Shotgun 采访时透露，工作室约 95% 的员工仍负责《绝地潜兵 2》的后续更新，只有一支小团队着手"
-    },
-    {
-      "id": "7c850c41",
-      "title": "扩展稳定版微软 Edge 浏览器明年登陆苹果 macOS：最长 8 周延后部署更新",
-      "url": "https://www.ithome.com/1/018/243.htm",
-      "published_at": 1793065576,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，科技媒体 Windows Central 昨日（10 月 26 日）发布博文，报道称微软计划明年在苹果 macOS 平台上，为 Microsoft Edge 浏览器扩展引入“扩展稳定”（Extended Stable）更新通道。IT之家援引博问你介绍，该通道目前已经在 Windows "
-    },
-    {
-      "id": "ab137c66",
-      "title": "苹果 iOS 27.2 正式版国行“最重要专属功能”，可禁止 App 摇一摇跳转",
-      "url": "https://www.ithome.com/1/018/241.htm",
-      "published_at": 1793065297,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果公司今天面向 iPhone 18 Pro 等机型推送 iOS 27.2 正式版更新（内部版本号：24B119），并为其首款折叠 iPhone Duo 推送专属 iOS 27.2 更新（内部版本号：24B91020）。本次更新带来了增强 Siri AI（国内暂未上线）、更新 Appl"
-    },
-    {
-      "id": "c6dadea7",
-      "title": "“拯救《质量效应》”请愿书签名人数突破 20 万，粉丝请求延续系列游戏生命",
-      "url": "https://www.ithome.com/1/018/239.htm",
-      "published_at": 1793065129,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，当地时间 26 日，据外媒 VGC 报道，EA 宣布关闭 BioWare 并取消《质量效应》系列新作后，玩家发起的挽救该系列联署请愿获得超过 20 万人支持。当地时间 22 日，EA 宣布关闭曾开发《龙腾世纪》系列的老牌工作室 BioWare，同时取消下一款《质量效应》游戏。这款新作早"
-    },
-    {
-      "id": "cea744e3",
-      "title": "苹果首款折叠 iPhone Duo 确认缺失 FaceTime“眼神交流”功能",
-      "url": "https://www.ithome.com/1/018/238.htm",
-      "published_at": 1793064851,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，科技媒体 MacRumors 昨日（10 月 26 日）发布博文，指出在苹果首款折叠 iPhone Duo 机型上，其 FaceTime 设置中缺少“眼神交流”（Eye Contact）选项，用户在视频通话时无法获得该功能带来的视线校正效果。图源：苹果IT之家援引博文介绍，“眼神交流”"
-    },
-    {
-      "id": "5141b2b3",
-      "title": "Anthropic 提交 IPO 招股文件，亚洲芯片股走强",
-      "url": "https://www.ithome.com/1/018/237.htm",
-      "published_at": 1793064504,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，据彭博社报道，受 Anthropic PBC 提交 IPO 招股文件的推动，投资者对人工智能交易的热情重新燃起，亚洲半导体板块股票应声大涨。今日早盘交易中，三星电子、SK 海力士股价涨幅均超 5%，带动韩国综合股价指数（Kospi）一度冲高 4.4%。日本日经 225 指数最大涨幅达 "
-    },
-    {
-      "id": "f1b2550c",
-      "title": "应用材料追加对先进封装设备制造商 Besi 投资，持股比例升至 20%",
-      "url": "https://www.ithome.com/1/018/236.htm",
-      "published_at": 1793064389,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Applied Materials（应用材料）美国当地时间本月 26 日宣布将追加对荷兰半导体封装设备制造商 Besi 的投资，使其对后者的持股比例从此前的 9% 约升至 20%。应用材料同时表示，该企业当前无意进一步扩大在 Besi 的持股，也无意寻求 Besi 董事会的席位。两家企"
-    },
-    {
-      "id": "f3e00729",
-      "title": "任天堂英国推出新指南，帮助家长“科学指导”子女玩游戏",
-      "url": "https://www.ithome.com/1/018/235.htm",
-      "published_at": 1793064376,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，据外媒 VGC 报道，任天堂英国分公司推出了一份新指南，帮助对电子游戏了解不多的家长更好地指导孩子玩游戏。任天堂委托开展的最新调查显示，超过三分之二（68%）的英国家长承认，在决定孩子玩什么游戏时，自己并不总能掌握足够的信息。71% 的家长需要孩子为自己解释游戏术语、流行趋势或游戏方面"
-    },
-    {
-      "id": "188954b2",
-      "title": "惠科股份 2026Q1~Q3 归母净利润 25.9 亿元，同比 -12.63%",
-      "url": "https://www.ithome.com/1/018/234.htm",
-      "published_at": 1793064112,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，惠科股份昨日发布 2026 年第 3 季度报告：2026Q3 单季营业总收入：105.97 亿元，同比 +3.48%归母净利润：7.32 亿元，同比 -8.76%扣非净利润：5.75 亿元，同比 -0.72%基本 / 稀释 EPS：0.11 元，同比 -8.33%加权平均净资产收益率："
-    },
-    {
-      "id": "2bf9b5f6",
-      "title": "京东红包今日 10:00 再加码，猜拳至高赢 5 元",
-      "url": "https://www.ithome.com/1/018/232.htm",
-      "published_at": 1793063992,
-      "category": "general",
-      "summary": "今日 10 点京东猜拳有机会赢至高 5 元加码红包，建议先领完日常红包再来参与：点此抽取。猜拳红包玩法：活动会在不同的时间节点，开启“猜拳抢红包”玩法，请随时关注活动提示。活动期间用户可参与猜拳玩法，每人最多 3 次机会，单次机会用户选择石头、剪刀、布任意一个，任意获胜 1 局（石头赢剪刀，剪刀赢布，布赢石头）即可获得"
-    },
-    {
-      "id": "49d4ee99",
-      "title": "AI 造富：Anthropic 七位联合创始人身家均超 130 亿美元",
-      "url": "https://www.ithome.com/1/018/231.htm",
-      "published_at": 1793063835,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Anthropic PBC 当地时间周一披露的 IPO 文件显示，公司七位联合创始人每人大约持有公司 1.4% 的股份，按估值计算，各自身家超过 130 亿美元（IT之家注：现汇率约合 868.89 亿元人民币）。阿莫代伊兄妹这让包括达里奥 · 阿莫代伊（Dario Amodei）、丹"
-    },
-    {
-      "id": "34447948",
-      "title": "菲尔兹奖得主邓煜评论 AI 公司反蒸馏：你不能只在你蒸馏全人类知识时支持蒸馏",
-      "url": "https://www.ithome.com/1/018/230.htm",
-      "published_at": 1793063475,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据潮新闻 10 月 26 日报道，菲尔兹奖得主、芝加哥大学数学系教授邓煜在上周末的“知识分子”“赛先生”论坛上发表主旨演讲，系统阐述了他对 AI 时代数学研究的思考。邓煜表示，AI 相对于人的优势，一方面是 AI 具有无限知识面，另一方面是 AI 具有极低的尝试成本 / 试错成本。但我"
-    },
-    {
-      "id": "08d46b95",
-      "title": "苹果 Siri AI 即日起支持法语、日语、韩语等语言，繁体中文得等到年底前",
-      "url": "https://www.ithome.com/1/018/229.htm",
-      "published_at": 1793063045,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今天（27 日）通过新闻稿宣布，今天发布的 27.2 版本软件更新，进一步扩大新一代 Siri AI 的使用范围，新增支持法语、日语、韩语、葡萄牙语和西班牙语。Siri AI 是全面升级的 Siri，不仅功能更强大，对话也更加自然，还能提供更个性化的服务。根据介绍，其基于 Appl"
-    },
-    {
-      "id": "d1be727a",
-      "title": "Mac 版 Ollama 新增离线生成 AI 语音：数据不出门，速度比原方案最高快 35%",
-      "url": "https://www.ithome.com/1/018/228.htm",
-      "published_at": 1793062825,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，本地运行 AI 模型的开源平台 Ollama 于 10 月 24 日宣布，其 Mac 应用正式支持文本转语音（TTS）生成，Windows 和 Linux 版本也将随后跟进。科技媒体 9to5Mac 认为这是 Ollama 首次加入语音生成能力，让本地 AI 从“能读会写”进一步迈向“"
-    },
-    {
-      "id": "212665ca",
-      "title": "老干妈否认“用 AI 把 600 名工人裁到 48 人”，回应称相关 AI 裁员传闻为不实信息",
-      "url": "https://www.ithome.com/1/018/227.htm",
-      "published_at": 1793062513,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，“老干妈 AI 裁员传闻引争议”话题于 10 月 26 日登上社交平台热搜，据蓝鲸新闻报道，老干妈官方热线工作人员回应称，相关 AI 裁员传闻为不实信息，公司从未发布此类信息，请消费者理性看待。另据观点网报道，老干妈常务副总、首席质量官李鑫在 2026 年贵州省质量发展大会上对外透露，"
-    },
-    {
-      "id": "983ac4af",
-      "title": "美最大运营商 Verizon 称 SpaceX 拥有竞争力需 8 年，马斯克回怼“2-3 年就够”",
-      "url": "https://www.ithome.com/1/018/222.htm",
-      "published_at": 1793061328,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，商场如战场，即便看似胜券在握，也不能轻敌。美国最大的电信运营商 Verizon CEO 丹 · 舒尔曼同样奉行这一原则。据《商业内幕》今天（27 日）凌晨报道，马斯克希望将 SpaceX 旗下星链打造为美国通信网络市场的重要参与者，舒尔曼并不打算低估这一潜在竞争对手。“技术和无线通信行"
-    },
-    {
-      "id": "6c9c252d",
-      "title": "苹果 iOS 27.2 修复 163 个安全漏洞，封堵大部分 iOS 27 完美越狱漏洞",
-      "url": "https://www.ithome.com/1/018/221.htm",
-      "published_at": 1793061177,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今天（10 月 27 日）发布 iOS 27.2 与 iPadOS 27.2 系统更新，一次性修复 163 个安全漏洞（检索 CVE 关键词，显示共有 163 个可追踪漏洞编号），涉及 Apple Intelligence、邮件隐私、浏览器内核及系统底层等关键领域。苹果建议用户尽快"
-    },
-    {
-      "id": "21f8fa6e",
-      "title": "英特尔宣布收购以色列初创企业 Classiq，打造全栈量子计算平台",
-      "url": "https://www.ithome.com/1/018/220.htm",
-      "published_at": 1793060925,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，英特尔公司已经同意收购以色列初创企业 Classiq Technologies Ltd.，以此布局量子计算赛道，抢抓这个仍处在早期阶段、正在寻找商业化落地场景的领域的发展机遇。这家芯片厂商没有披露收购 Classiq 的交易金额。Classiq 的客户包括宝马集团（BMW AG）和美国"
-    },
-    {
-      "id": "8c029f69",
-      "title": "微软 CEO 纳德拉：以前我认为 AI 越强大也会越安全，现在不信了",
-      "url": "https://www.ithome.com/1/018/219.htm",
-      "published_at": 1793060615,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据《商业内幕》今天（27 日）早间报道，微软 CEO 萨提亚 · 纳德拉改变了对 AI“对齐”问题的看法。他过去认为，AI 系统越强大，就越容易让其行为符合人类的价值观和目标，但现在，自己不再相信两者会自然而然地同步发展。在新一期《20VC》播客中，主持人哈里 · 斯特宾斯问纳德拉，过"
-    },
-    {
-      "id": "b421ebc6",
-      "title": "苹果 iOS 27.2 更新汇总：增强 Siri AI，调整 Apple Music 品牌视觉等",
-      "url": "https://www.ithome.com/1/018/218.htm",
-      "published_at": 1793060542,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果公司今天面向 iPhone 18 Pro 等机型推送 iOS 27.2 正式版更新（内部版本号：24B119），并为其首款折叠 iPhone Duo 推送专属 iOS 27.2 更新（内部版本号：24B91020）。IT之家综合 MacRumors 等多家海外媒体报道，汇总梳理本次"
-    },
-    {
-      "id": "07c5f7ba",
-      "title": "微软确认 Win11 26H2 已向 24H2/25H2 用户全面开放，安装耗时不足 5 分钟",
-      "url": "https://www.ithome.com/1/018/207.htm",
-      "published_at": 1793059143,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Windows 11 26H2，也就是 Windows 11 2026 更新，已于 9 月 29 日开始推送，但截至目前并非所有用户都收到了这一年度更新。Windows Latest 今日发现，微软已经确认，26H2 版本现已面向所有运行 25H2 和 24H2 版本的设备开放；再过几"
-    },
-    {
-      "id": "b59f4557",
-      "title": "IT早报 1027：人类史上最大 IPO 之 Anthropic 提交 IPO 申请；5499 元起苹果 iPad mini 8 发布；奥迪中国四环与字母标分家；多所高校将通过数字人民币发工资...",
-      "url": "https://www.ithome.com/1/018/205.htm",
-      "published_at": 1793058859,
-      "category": "general",
-      "summary": "“IT早报”时间，大家好，现在是 2026 年 10 月 27 日星期二，今天的重要科技资讯有：1. 人类史上最大 IPO！Anthropic 提交纳斯达克 IPO 申请，股票代码为“ANT”AI 独角兽 Anthropic 正式递交 S-1 文件冲刺纳斯达克，代码 \"ANT\"。2026 上半年营收同比暴涨 13 倍，"
-    },
-    {
-      "id": "dfef6078",
-      "title": "Instagram 测试 90 分钟横屏长视频，叫板 YouTube",
-      "url": "https://www.ithome.com/1/018/204.htm",
-      "published_at": 1793058034,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，Instagram 已经联合美国部分创作者，开始测试名为 Features 的全新横版视频格式，用于平台上的长内容创作。据《好莱坞报道》消息，这类长视频最长可达 90 分钟，主要面向喜剧博主、播客主播这类创作者。Instagram 还借鉴了 YouTube 的相关视频功能：创作者可以把"
-    },
-    {
-      "id": "9058779d",
-      "title": "OpenAI 宣布斩获三项重大科学突破，涉及数学猜想、计算机算法及千禧年难题",
-      "url": "https://www.ithome.com/1/018/203.htm",
-      "published_at": 1793057837,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，OpenAI 宣布，其 AI 模型在数学、计算机科学和物理学领域取得三项重大突破，展现出 AI 独立发现并证明复杂科学理论的能力，而不只是回答问题或辅助研究。在数学领域，AI 证明了适用于所有维度的局部光滑猜想，并由此解决局部光滑猜想与挂谷猜想。在计算机科学领域，AI 推翻了长期被广泛"
-    },
-    {
-      "id": "46e14e03",
-      "title": "微软 Win11 测试新功能：可在设置、开始菜单里直接开启 Microsoft 365 自动续费",
-      "url": "https://www.ithome.com/1/018/202.htm",
-      "published_at": 1793057649,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，微软于当地时间上周五推送了最新的 Windows 11 预览版系统。除新增内置网速测试等值得关注的改动之外，微软还在测试一项新的内嵌功能，允许订阅用户直接在 Windows 的设置应用里重新开启自动续费。微软表示，这项新功能面向已经拥有 Microsoft 365 订阅、但关闭了自动续"
-    },
-    {
-      "id": "3c86543a",
-      "title": "Anthropic 招股书披露：曾因安全顾虑暂停旗舰 AI 模型训练一个多月",
-      "url": "https://www.ithome.com/1/018/201.htm",
-      "published_at": 1793057311,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Anthropic 在当地时间周一公布的 IPO 招股文件中披露，出于安全方面的顾虑，该公司曾暂停下一代旗舰 AI 模型的训练长达一个多月；另外还有四个 AI 智能体在测试期间突破限制，接入了真实的外部计算机系统。IT之家注意到，这家 Claude 开发企业在文件的风险提示章节中表示，"
-    },
-    {
-      "id": "e112d3cf",
-      "title": "OpenAI 低成本新模型 GPT-6.1 Terra 深夜炸场：每项任务成本仅 Claude Opus 5.5 九分之一，更快更准确",
-      "url": "https://www.ithome.com/1/018/200.htm",
-      "published_at": 1793057179,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，OpenAI 今天（27 日）凌晨宣布推出新模型 GPT-6.1 Terra，主打以更低成本完成复杂的电脑操作任务，尤其擅长需要视觉推理和操作桌面软件的工作。与 GPT-5.6 Terra 相比，新模型在事实准确性和编程能力方面也有大幅提升。Terra 主要面向希望降低自动化成本的企业"
-    },
-    {
-      "id": "67fef3ce",
-      "title": "630 亿美元！华尔街银行与黑石为 Anthropic 采购博通 AI 芯片提供融资",
-      "url": "https://www.ithome.com/1/018/199.htm",
-      "published_at": 1793056826,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，据路透社报道，美国银行（Bank of America）、黑石（Blackstone）、花旗（Citi）和摩根士丹利（Morgan Stanley）将提供 630 亿美元（IT之家注：现汇率约合 4,206.79 亿元人民币）融资，用于为 Anthropic 采购博通（Broadcom"
-    },
-    {
-      "id": "c61a2e9f",
-      "title": "Anthropic 招股书披露生态打法：打造高粘性企业客户体系",
-      "url": "https://www.ithome.com/1/018/198.htm",
-      "published_at": 1793056138,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Anthropic 正在打造一套跨产品生态，正是这类生态让亚马逊、优步等科技企业拥有极强的用户粘性，其 S-1 招股文件显示这套策略已经初见成效。目前，年消费至少十万美元的客户里，超过一半会同时使用 Claude 平台以及 Claude Code、Cowork 这类第一方应用；去年年底"
-    },
-    {
-      "id": "dd9db492",
-      "title": "微软向约 6 万名员工推出自愿离职买断方案，适配 AI 时代人员结构调整",
-      "url": "https://www.ithome.com/1/018/197.htm",
-      "published_at": 1793055441,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，微软于当地时间周一向科技媒体 TechCrunch 证实，公司正向约 6 万名员工提供自愿离职买断方案。此举是微软为削减成本、适配人工智能时代调整人员结构的最新举措。微软首席人力官埃米 · 科尔曼（Amy Coleman）向员工发送了关于本次买断方案的通知，IT之家注意到，这份通知也同"
-    },
-    {
-      "id": "72ee1e21",
-      "title": "苹果回应 iPhone Duo 内屏开裂问题：仅少量设备受影响，可申请换机",
-      "url": "https://www.ithome.com/1/018/196.htm",
-      "published_at": 1793054891,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，iPhone Duo 上市不久，就有部分用户反馈铰链故障，导致内屏出现裂纹。苹果现已在给 MacRumors 的一份声明中回应了相关消息，称受影响的设备数量很少。苹果回应如下：首批用户对 iPhone Duo 的反馈整体非常好，开发者也在快速更新应用，适配这款产品独特的形态，带来了不少"
-    },
-    {
-      "id": "aa0f220a",
-      "title": "Cadence 2026 财年第三财季归母净利润 2.9 亿美元，同比增长 0.91%",
-      "url": "https://www.ithome.com/1/018/193.htm",
-      "published_at": 1793045208,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Cadence 今日发布 2026 财年（2026 年 1 月～2026 年 12 月）第三财季（2026 年 7 月～2026 年 9 月）报告：营业总收入：16.33 亿美元（IT之家注：现汇率约合 109.06 亿元人民币），同比增长 22%毛利润：13.98 亿美元（现汇率约合"
-    },
-    {
-      "id": "bb3156c1",
-      "title": "苹果 iOS / iPadOS 18.7.11 正式版发布：修复越权访问相机等问题",
-      "url": "https://www.ithome.com/1/018/192.htm",
-      "published_at": 1793040244,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 iPhone 和 iPad 用户推送了 iOS / iPadOS 18.7.11 更新（内部版本号：22H384），本次更新距离上次发布正式版间隔 77 天。需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。"
-    },
-    {
-      "id": "265423c1",
-      "title": "苹果 iPadOS 26.7.2 正式版发布",
-      "url": "https://www.ithome.com/1/018/191.htm",
-      "published_at": 1793040244,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 iPad 用户推送了 iPadOS 26.7.2 更新，本次更新距离上次发布正式版间隔 28 天。 需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。IT之家查询苹果官方更新日志，官方发布说明为“此更新为你的"
-    },
-    {
-      "id": "fe95b7d1",
-      "title": "苹果 watchOS 27.2 正式版发布：增强 Siri AI，回归 App 切换器",
-      "url": "https://www.ithome.com/1/018/190.htm",
-      "published_at": 1793040243,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 Apple Watch 用户推送了 watchOS 27.2 更新（内部版本号：24S118），本次更新距离上次发布正式版间隔 27 天。 需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。IT之家查询公开资"
-    },
-    {
-      "id": "624d0212",
-      "title": "苹果 visionOS 27.2 正式版发布：增强 Siri AI 体验",
-      "url": "https://www.ithome.com/1/018/189.htm",
-      "published_at": 1793040243,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 Vision Pro 用户推送了 visionOS 27.2 更新（内部版本号：24N120），本次更新距离上次发布正式版间隔 28 天。 需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。Siri AI 更"
-    },
-    {
-      "id": "2741642b",
-      "title": "苹果 macOS 27.2 正式版发布：增强 Siri AI 体验，调整亮度 / 音量滑块",
-      "url": "https://www.ithome.com/1/018/188.htm",
-      "published_at": 1793040243,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 Mac 电脑用户推送了 macOS 27.2 更新（内部版本号：26B123），本次更新距离上次发布正式版间隔 28 天。 需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。IT之家查询公开资料，附上本次更新"
-    },
-    {
-      "id": "927a0bd9",
-      "title": "苹果 iOS / iPadOS 27.2 正式版发布：增强 Siri AI，更新 Apple Music 品牌视觉",
-      "url": "https://www.ithome.com/1/018/187.htm",
-      "published_at": 1793040242,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 iPhone 和 iPad 用户推送了 iOS / iPadOS 27.2 更新（内部版本号：24B119），本次更新距离上次发布正式版间隔 28 天。 需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。在官"
-    },
-    {
-      "id": "7f001eec",
-      "title": "苹果发布 iPhone Duo 专属 iOS 27.2 更新：支持 Apple Pencil，及面部补光",
-      "url": "https://www.ithome.com/1/018/186.htm",
-      "published_at": 1793040242,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，苹果今日向 iPhone 和 iPad 用户推送了 iOS / iPadOS 27.2 更新（内部版本号：24B91020），本次更新距离上次发布正式版间隔 28 天。 需要注意的是，因苹果各区域节点服务器配置缓存问题，可能有些地方探测到升级更新的时间略有延迟，一般半小时内，不会太久。"
-    },
-    {
-      "id": "b6d89b31",
-      "title": "Steam“尖叫节 V”正式开启：大量恐怖惊悚游戏打折，持续至 11 月 2 日",
-      "url": "https://www.ithome.com/1/018/183.htm",
-      "published_at": 1793037037,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，Valve 第五届 Steam「尖叫节 V」（Steam Scream V）万圣节主题特卖活动现已正式开启，为各类恐怖、惊悚题材游戏带来折扣优惠。本次活动从即刻起持续至太平洋时间 11 月 2 日上午 10 点，即北京时间 11 月 3 日凌晨 1 点。本次特卖覆盖心理恐怖、砍杀、惊悚"
-    },
-    {
-      "id": "94499b1b",
-      "title": "iPad Pro 级配置下放：苹果 iPad mini （A20 Pro）配备自适应原彩闪光灯",
-      "url": "https://www.ithome.com/1/018/179.htm",
-      "published_at": 1793028031,
-      "category": "eco",
-      "summary": "IT之家 10 月 26 日消息，苹果今天发布的 iPad mini （A20 Pro）配备了自适应原彩闪光灯。这项配置原本在 iPad 产品线中由 iPad Pro 独占，如今下放到了 iPad mini。苹果表示，iPad mini 的自适应原彩闪光灯能够改善拍摄效果和文档扫描体验。该平板还带有一颗 1200 万像"
-    },
-    {
-      "id": "8c016923",
-      "title": "苹果 iPad mini （A20 Pro）支持 35W 或更高功率充电头，但包装盒内送的头还是 20W",
-      "url": "https://www.ithome.com/1/018/177.htm",
-      "published_at": 1793026952,
-      "category": "general",
-      "summary": "IT之家 10 月 26 日消息，苹果官网数据显示，iPad mini （A20 Pro）支持快速充电，使用输出功率为 35W 或更高功率的 USB-C 电源适配器时，约 30 分钟最多可充至 50% 电量。IT之家注意到，iPad mini （A20 Pro）包装盒内送的充电器并没有那么高功率。苹果表示，这款平板包装"
-    },
-    {
-      "id": "eee0967b",
-      "title": "苹果暗示本周将陆续推出更多新品：预计明晚推出 M6 款 iMac、后天推出首款触控屏 MacBook Pro",
-      "url": "https://www.ithome.com/1/018/175.htm",
-      "published_at": 1793026224,
-      "category": "eco",
-      "summary": "IT之家 10 月 26 日消息，苹果全球营销高级副总裁格雷格 · 乔斯维亚克（Greg Joswiak）在 X 平台发布了 iPad mini（A20 Pro）的介绍视频，并透露苹果本周还将陆续推出更多新品。综合先前古尔曼爆料，预计苹果将在北京时间明天（10 月 27 日）晚上推出搭载 M6 芯片的 iMac 和 M"
-    },
-    {
-      "id": "93bcc76a",
-      "title": "《影之刃零》游戏入围金摇杆奖",
-      "url": "https://www.ithome.com/1/018/174.htm",
-      "published_at": 1793026179,
-      "category": "general",
-      "summary": "IT之家 10 月 26 日消息，灵游坊开发的国产武侠动作游戏《影之刃零》现已入围 2026 年金摇杆奖年度最佳游戏，投票截止时间为 GMT 10 月 30 日 23:59（北京时间 10 月 31 日 7:59），最终结果将于 11 月 11 日在伦敦举行的颁奖典礼上揭晓。金摇杆奖评选活动始于 1983 年，是最古老"
-    },
-    {
-      "id": "dba437cf",
-      "title": "599 元：苹果推出新款 iPad mini 智能双面夹，采用科技织物材质",
-      "url": "https://www.ithome.com/1/018/173.htm",
-      "published_at": 1793025423,
-      "category": "general",
-      "summary": "IT之家 10 月 26 日消息，苹果现已推出适用于 iPad mini （A20 Pro）的智能双面夹，售价 599 元。该保护壳提供海军蓝、浅褐色两种配色，应用 TechWoven 科技织物。IT之家了解到，这款适用于 iPad mini 的智能双面夹采用轻薄设计，可为设备的正面和背面提供出色保护。它可在一开一合之"
-    },
-    {
-      "id": "6129f2eb",
-      "title": "网易《逆水寒：新世界》将推“自拍模式”，可自定义动作、邀请 AI 门客 NPC 合照",
-      "url": "https://www.ithome.com/1/018/172.htm",
-      "published_at": 1793024546,
-      "category": "general",
-      "summary": "IT之家 10 月 26 日消息，网易《逆水寒：新世界》首个大型资料片【苗疆蛊事】将于 10 月 30 日正式开启，将首次采用双线更新的框架。根据官方今日预热，随着新版本开启，【自拍模式】将正式上线；还有全新【门客站】入驻，让玩家邂逅更多合拍搭子；再搭配全面焕新的【剧组站】升级，帮助玩家随手拍出江湖大片。在【自拍模式】"
-    },
-    {
-      "id": "2efd69e3",
-      "title": "IPO 文件阐述 Anthropic 的野心：AI 有望解决过去几代人未能攻克的难题",
-      "url": "https://www.ithome.com/1/018/171.htm",
-      "published_at": 1793024351,
-      "category": "general",
-      "summary": "IT之家 10 月 26 日消息，Anthropic 已向美国证券交易委员会（SEC）提交 S-1 注册文件，为纳斯达克上市做准备。这家 AI 公司早在今年 6 月就秘密递交了上市申请，此次公开的文件披露了更多细节。据文件所述，Anthropic 今年上半年营收 163 亿美元（IT之家注：现汇率约合 1,088.42"
-    },
-    {
-      "id": "9f98fb9d",
-      "title": "苹果 iPad mini（A20 Pro）仅 512GB 机型配备 6 核中央处理器、双 16 核神经网络引擎",
-      "url": "https://www.ithome.com/1/018/169.htm",
-      "published_at": 1793023989,
-      "category": "eco",
-      "summary": "IT之家 10 月 26 日消息，苹果今天发布了 iPad mini（A20 Pro），也就是俗称的“iPad mini 8”，该机采用 A20 Pro 芯片，10 月 29 日凌晨 1 点 10 分接受预购，11 月 6 日发售，定价 5499 元起。不过IT之家注意到，该机 128GB（5499 元起）/256GB"
     }
   ]
 }
