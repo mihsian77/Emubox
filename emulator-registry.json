@@ -6,7 +6,7 @@
       "id": "eclipseds-nds",
       "name": "EclipseDS",
       "category": "Nintendo DS",
-      "description": "NDS 安卓模拟器。来源：123云盘 UP主dreamboyn81整合（路径 NDS/EclipseDS/，EclipseDS-v0.1.apks 11.3MB，APKS 多包格式）。未获取原作者/整合UP主授权，暂不提供下载入口。",
+      "description": "NDS 安卓模拟器。来源：123云盘 UP 主整合资源（目录 NDS/EclipseDS，EclipseDS-v0.1.apks 11.3MB，APKS 多包格式）。未获取原作者/整合UP主授权，暂不提供下载入口。",
       "owner": "",
       "repo": "",
       "homepage": "",
@@ -27,7 +27,7 @@
       "logo_url": "",
       "releases": [],
       "source": "community-archive",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：NDS/EclipseDS/（EclipseDS-v0.1.apks 11.3MB）。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "brunodev85-winlator",
@@ -41650,7 +41650,7 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
       "releases": [],
       "source": "community-archive",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/Ryujinx（龙神）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "strato-emulator",
@@ -42132,7 +42132,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2023 自愿停更，2026-08 仓库已删",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/Skyline（天际线）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "skyline-pine",
@@ -42161,7 +42161,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/Skyline（天际线）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "skyline-tagline",
@@ -42190,7 +42190,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/Skyline（天际线）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -42219,7 +42219,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/Skyline（天际线）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "yuzu-official",
@@ -42248,7 +42248,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2024-03 任天堂诉讼停更删库",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/yuzu（柚子）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "yuzu-citrus",
@@ -42277,7 +42277,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/yuzu（柚子）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "yuzu-plus",
@@ -42306,7 +42306,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "来源：123云盘 UP主dreamboyn81整合，路径：Switch/模拟器/yuzu（柚子）/。未获原作者/整合UP主授权，暂不提供下载"
+      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
     },
     {
       "id": "epsxe",
