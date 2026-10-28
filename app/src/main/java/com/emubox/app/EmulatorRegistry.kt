@@ -58,7 +58,13 @@ data class EmulatorEntry(
     val source: String = "",
     /** DMCA/停更等失效仓库：UI 不跳转、隐藏下载 */
     val dead: Boolean = false,
-    val deadReason: String = ""
+    val deadReason: String = "",
+    /** UP主网盘直达：123 云盘分享链接（仅社区归档条目） */
+    val mirrorUrl: String = "",
+    /** UP主网盘内分类路径，如 Switch/模拟器/yuzu（柚子）/ */
+    val mirrorPath: String = "",
+    /** 网盘分享提取码 */
+    val mirrorPwd: String = ""
 ) {
     val githubUrl: String
         get() = if (owner.isNotBlank() && repo.isNotBlank()) "https://github.com/$owner/$repo" else ""
@@ -233,7 +239,10 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                         releases = parseReleases(obj),
                         source = obj.optString("source", ""),
                         dead = obj.optBoolean("dead", false),
-                        deadReason = obj.optString("dead_reason", "")
+                        deadReason = obj.optString("dead_reason", ""),
+                        mirrorUrl = obj.optString("mirror_url"),
+                        mirrorPath = obj.optString("mirror_path"),
+                        mirrorPwd = obj.optString("mirror_pwd")
                     )
                 )
             }

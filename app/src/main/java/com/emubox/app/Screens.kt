@@ -11938,6 +11938,53 @@ private fun EmulatorDetailDialog(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+                // UP主网盘直达卡片（社区归档条目）：来源+路径+提取码+打开按钮
+                if (entry.mirrorUrl.isNotBlank()) {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.45f),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    Icons.Default.CloudDownload,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(20.dp),
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(
+                                    "dreamboyn81 的 123 云盘",
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                TextButton(
+                                    onClick = {
+                                        runCatching {
+                                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.mirrorUrl)))
+                                        }
+                                    }
+                                ) {
+                                    Text("打开网盘", style = MaterialTheme.typography.labelMedium)
+                                }
+                            }
+                            Text(
+                                "路径：${entry.mirrorPath}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            if (entry.mirrorPwd.isNotBlank()) {
+                                Text(
+                                    "提取码：${entry.mirrorPwd}（打开后输入）",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                    }
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(
                         emulatorCategoryLabel(entry.category),

@@ -27,7 +27,10 @@
       "logo_url": "",
       "releases": [],
       "source": "community-archive",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-6LoKd?pwd=ymKO",
+      "mirror_path": "NDS/EclipseDS/",
+      "mirror_pwd": "ymKO"
     },
     {
       "id": "brunodev85-winlator",
@@ -41650,7 +41653,10 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
       "releases": [],
       "source": "community-archive",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/Ryujinx（龙神）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "strato-emulator",
@@ -42132,7 +42138,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2023 自愿停更，2026-08 仓库已删",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/Skyline（天际线）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "skyline-pine",
@@ -42161,7 +42170,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/Skyline（天际线）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "skyline-tagline",
@@ -42190,7 +42202,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/Skyline（天际线）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -42219,7 +42234,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/Skyline（天际线）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "yuzu-official",
@@ -42248,7 +42266,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2024-03 任天堂诉讼停更删库",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/yuzu（柚子）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "yuzu-citrus",
@@ -42277,7 +42298,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/yuzu（柚子）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "yuzu-plus",
@@ -42306,7 +42330,10 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "来源：123云盘 UP 主整合资源（未获原作者授权，暂不提供下载；待官方/存档地址确认后恢复）"
+      "note": "来源：dreamboyn81 的 123 云盘（网盘直达见详情页）。未获原作者/整合UP主授权，暂不提供下载",
+      "mirror_url": "https://www.123912.com/s/0kZeVv-nLmKd?pwd=QnvN",
+      "mirror_path": "Switch/模拟器/yuzu（柚子）/",
+      "mirror_pwd": "QnvN"
     },
     {
       "id": "epsxe",
