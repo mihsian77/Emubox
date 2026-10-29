@@ -1,8 +1,26 @@
 {
   "version": 2,
-  "updated_at": "2026-10-29T01:11:18Z",
+  "updated_at": "2026-10-29T08:43:18Z",
   "source": "ithome+github-releases+winehq-dl",
   "items": [
+    {
+      "id": "366bb71f",
+      "title": "[RADV Xclipse] v1.9.0-RC1",
+      "url": "https://github.com/JimVulkan/radv-xclipse/releases/tag/v1.9.0-RC1",
+      "published_at": 1793219354,
+      "category": "driver",
+      "type": "RADV Xclipse",
+      "summary": "RADV for Samsung Xclipse GPUs, release candidate 1. **This is an experimental build.** It contains fixes that passed our tests but haven't been confirmed in the games they're aimed"
+    },
+    {
+      "id": "d21a0b62",
+      "title": "[VKD3D-Proton] v3.1",
+      "url": "https://github.com/HansKristian-Work/vkd3d-proton/releases/tag/v3.1",
+      "published_at": 1793182794,
+      "category": "component",
+      "type": "VKD3D-Proton",
+      "summary": "This release is mostly just tagged now to facilitate bumping the build version shortly after to 3.2. A ton of important changes will happen for 3.2, so this marks the last \"stable\""
+    },
     {
       "id": "cdef3fd0",
       "title": "[faux123 PanVK] v1.1.2",
@@ -497,6 +515,374 @@
       "type": "Mono",
       "summary": "Mono 官方源码发布（mono-project.com）",
       "low_freq": true
+    },
+    {
+      "id": "b6f46827",
+      "title": "微软 2027 财年第一财季从 OpenAI 获 100 亿美元收入，占总营收近 11%",
+      "url": "https://www.ithome.com/1/019/583.htm",
+      "published_at": 1793263193,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，微软在当地时间周三提交的监管文件中表示，在截至 9 月 30 日的这个季度里，公司从与 OpenAI 的商业合作（包含营收分成款项）获得了 100 亿美元（IT之家注：现汇率约合 668.05 亿元人民币）收入。这一金额占到微软该季度总营收 923 亿美元（现汇率约合 6,166.14"
+    },
+    {
+      "id": "597bdb4f",
+      "title": "Momenta CEO 曹旭东首次公开第三个洞察：大模型定义芯片",
+      "url": "https://www.ithome.com/1/019/581.htm",
+      "published_at": 1793263105,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日现场消息，在今天的 XHEART 新芯航途发布会上，Momenta CEO 曹旭东首次公开分享公司的第三个洞察 —— 大模型定义芯片。IT之家了解到，围绕规模化 L4 目标，Momenta 此前形成两个洞察：通过数据驱动解决长尾问题、通过规模量产获得海量数据。2022 年底，Momenta "
+    },
+    {
+      "id": "367b5362",
+      "title": "雷蛇发布《EVA》初号机联名，覆盖鼠标、键盘、音箱、鼠标垫、电竞椅",
+      "url": "https://www.ithome.com/1/019/580.htm",
+      "published_at": 1793262943,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，Razer（雷蛇）今日发布了《新世纪福音战士》(EVA) 初号机联名外设。该系列新品采用标志性的紫-绿配色，包含鼠标、键盘、音箱、鼠标垫、电竞椅。鼠标 - 炼狱蝰蛇 V4 专业版除配套的接收器外，该产品还附赠《新世纪福音战士》主题鼠标展示架。天猫雷蛇 EVA 初号机 鼠标 1399 元"
+    },
+    {
+      "id": "d407b66d",
+      "title": "龙芯中科 2026 年前三季度归母亏损 4.13 亿元",
+      "url": "https://www.ithome.com/1/019/578.htm",
+      "published_at": 1793262682,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，龙芯中科今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）及三季度（2026 年 7 月～2026 年 9 月）报告：2026 年前三季度营业总收入：3.94 亿元，同比增长 12.46%毛利润：1.9 亿元毛利率：48.13%归母净利润：-4.13 亿元扣非"
+    },
+    {
+      "id": "0c81383f",
+      "title": "消息称苹果 iPhone Air 2 已开屏：6.55\"1.5K+120Hz LTPO OLED 面板，48MP 双摄",
+      "url": "https://www.ithome.com/1/019/576.htm",
+      "published_at": 1793262590,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，微博博主 @数码闲聊站 今日发文称，苹果 iPhone Air 2 早已开屏，是常规比例的中尺寸直屏。据介绍，这款手机将采用 6.55 英寸 1.5K+120Hz LTPO OLED 面板，非阔屏。核心升级是 2nm A20 系芯片，配备 4800 万像素双摄影像，加了一颗超广角镜头，"
+    },
+    {
+      "id": "2820c720",
+      "title": "慧荣 2026Q3 营收 5.6 亿美元，环比增长 24%、同比增长 131%",
+      "url": "https://www.ithome.com/1/019/571.htm",
+      "published_at": 1793261324,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，慧荣 (Silicon Motion) 今日宣布其 2026Q3 营业收入达 5.6022 亿美元（IT之家注：现汇率约合 37.43 亿元人民币），连续四个季度创下历史新高，环比增长 24%、同比增长 131%。该企业上一季度毛利率为 54.7%，税后净利润 1.4916 亿美元，营"
+    },
+    {
+      "id": "679bb5c5",
+      "title": "第三方设备首开：博主称成功为小米平板 6S Pro 刷入华为鸿蒙 HarmonyOS 7 系统，后续项目将开源",
+      "url": "https://www.ithome.com/1/019/570.htm",
+      "published_at": 1793261294,
+      "category": "emulator",
+      "summary": "IT之家 10 月 29 日消息，博主 @Dev裴月笙 发文，透露自己成功将鸿蒙 7 移植到了小米平板 6S Pro 上，系“第三方设备第一开鸿蒙OS7”，其使用了华为 MatePad Air 系统包，开发过程使用了 GPT 进行辅助，后期项目会开源。该博主还在评论区透露目前“GPU 已经半好”，预计后续相应系统能够在"
+    },
+    {
+      "id": "bf6eda7d",
+      "title": "中天科技 2026 年前三季度归母净利润 40.01 亿元，同比增长 71.1%",
+      "url": "https://www.ithome.com/1/019/569.htm",
+      "published_at": 1793261241,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，中天科技今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）及三季度（2026 年 7 月～2026 年 9 月）报告：2026 年前三季度营业总收入：484.4 亿元，同比增长 27.56%毛利润：84.04 亿元毛利率：17.35%归母净利润：40.01 亿"
+    },
+    {
+      "id": "d22ffcab",
+      "title": "Anthropic 推出 Claude 智能报告工具，可监控员工使用 AI 的情况与开销",
+      "url": "https://www.ithome.com/1/019/568.htm",
+      "published_at": 1793261106,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，Anthropic 推出了全新的 Claude 统计报告工具，企业管理者可以借此清楚查看员工使用这款 AI 工具的方式与用途。智能报告功能现已面向 Claude Enterprise 付费套餐用户开放，可在组织设置页面开启。据IT之家了解，这项于当地时间周三发布的 Claude 智能报"
+    },
+    {
+      "id": "aab03821",
+      "title": "工业富联 2026 年前三季度归母净利润 403.75 亿元，同比增长 79.55%",
+      "url": "https://www.ithome.com/1/019/567.htm",
+      "published_at": 1793260851,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，工业富联今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）及三季度（2026 年 7 月～2026 年 9 月）报告：2026 年前三季度营业总收入：9414.14 亿元，同比增长 55.88%毛利润：667.10 亿元，同比增长 63.32%毛利率：7.09"
+    },
+    {
+      "id": "7089b250",
+      "title": "智元稚晖君：很多跳舞机器人本质上是闭着眼睛的动作模仿，实时感知响应是靠遥控器无法做到的",
+      "url": "https://www.ithome.com/1/019/566.htm",
+      "published_at": 1793260826,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，据澎湃新闻消息，智元联合创始人、总裁兼 CTO 彭志辉（网名“稚晖君”）今日表示，很多跳舞机器人本质上都是闭着眼睛的动作模仿，实时感知响应是靠遥控器无法做到的。IT之家从原报道获悉，彭志辉透露，大家现在看到的很多跳舞机器人，本质上都是闭着眼睛的 mimic，也就是动作模仿。下一步他们计"
+    },
+    {
+      "id": "6396cd4f",
+      "title": "完美世界 2026 年前三季度归母净利润 3.87 亿元，同比下降 41.83%",
+      "url": "https://www.ithome.com/1/019/565.htm",
+      "published_at": 1793260821,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，完美世界今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）及三季度（2026 年 7 月～2026 年 9 月）报告：2026 年前三季度营业总收入：51.13 亿元，同比下降 5.61%毛利润：35.55 亿元，同比增长 10.72%毛利率：69.53%归母"
+    },
+    {
+      "id": "78e30269",
+      "title": "Anduril 与高通联手推出“美国制造”笔记本 BlueChip，承诺明年上市时本土零部件占比将达 65%",
+      "url": "https://www.ithome.com/1/019/562.htm",
+      "published_at": 1793260433,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，当地时间周二，美国防务承包商安杜里尔公司（Anduril）与芯片厂商高通公司宣布达成合作，计划在美国本土生产笔记本电脑，首款机型 BlueChip 定于 2027 年推出。双方同时提出一项长期目标，推动计算机行业打造一套完整的美国本土供应链。据IT之家了解，一款美国本土制造的笔记本算得"
+    },
+    {
+      "id": "bff55a83",
+      "title": "3699 元，任天堂《塞尔达传说》40 周年纪念版 Switch 2 今日发售",
+      "url": "https://www.ithome.com/1/019/561.htm",
+      "published_at": 1793260280,
+      "category": "emulator",
+      "summary": "IT之家 10 月 29 日消息，任天堂《塞尔达传说》40 周年主题纪念版 Switch 2 限定版主机及 Switch 2 Pro 手柄今日正式开售，香港任天堂自营店显示为 3699 元和 639 元（税前），评价后返 10000 和 1000 京豆。京东任天堂（Nintendo）塞尔达 40 周年限定款 switc"
+    },
+    {
+      "id": "564c2a5e",
+      "title": "苹果 Apple Music 应用 Windows 版更新：图标换了，新增歌词翻译等功能",
+      "url": "https://www.ithome.com/1/019/559.htm",
+      "published_at": 1793260036,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，苹果今日更新 Windows 版 Apple Music（1.1792.39682.0）。本次更新带来了全新图标和品牌视觉。IT之家了解到，本次更新最明显的变化就是将原本的红白色图标改为黑白色图标。应用内的强调色也由红色变为蓝色，界面部分元素也有微调。同时，本次更新还新增了歌词翻译 /"
+    },
+    {
+      "id": "f1d45845",
+      "title": "上汽集团 2026 年第三季度归母净利润 4.86 亿元，同比下降 76.7%",
+      "url": "https://www.ithome.com/1/019/557.htm",
+      "published_at": 1793259957,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，上汽集团今日发布 2026 年前三季度（2026 年 1 月～2026 年 9 月）及三季度（2026 年 7 月～2026 年 9 月）报告：2026 年前三季度营业收入：4496.18 亿元，同比下降 2.52%毛利润：535.76 亿元毛利率：11.92%归母净利润：56.38 "
+    },
+    {
+      "id": "b726ff52",
+      "title": "爱国者推出冰魄 R240PRO 一体式水冷散热器：冷头配备 3.95 英寸磁吸彩屏，三年质保，329 元起",
+      "url": "https://www.ithome.com/1/019/556.htm",
+      "published_at": 1793259773,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，爱国者现已在京东上架冰魄 R240PRO 一体式水冷散热器，该产品提供三年质保，支持漏液包赔与个人送保，其中黑色定价为 329 元，白色定价为 339 元。京东爱国者冰魄 R240PRO 一体式水冷散热器 329 元起直达链接该散热器兼容 Intel LGA1851/1700/1200"
+    },
+    {
+      "id": "9bb30eb2",
+      "title": "海信视像 2026 年第三季度归母净利润 6.49 亿元，同比增长 13.24%",
+      "url": "https://www.ithome.com/1/019/555.htm",
+      "published_at": 1793259728,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，海信视像今日发布 2026 年三季度（2026 年 7 月～2026 年 9 月）及前三季度（2026 年 1 月～2026 年 9 月）报告：2026 年三季度营业总收入：161.77 亿元，同比增长 3.7%归母净利润：6.49 亿元，同比增长 13.24%扣非净利润：5.36 亿"
+    },
+    {
+      "id": "3a1a2a9f",
+      "title": "新芯航途 X7 Ultra 大模型芯片亮相：700 TOPS 算力，量产模型实测 99.99% 对齐",
+      "url": "https://www.ithome.com/1/019/551.htm",
+      "published_at": 1793259166,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日现场消息，在今天的 XHEART 新芯航途发布会上，X7 Ultra 大模型芯片亮相。XHEART 新芯航途 CEO 李宗霖在发布会上阐述了公司的核心技术路线 ——“大模型定义芯片”。随着智能驾驶从多个小模型走向端到端大模型，芯片的设计方式也需要随之改变。这一变化给芯片提出了三道题：算力能否"
+    },
+    {
+      "id": "db6fb30e",
+      "title": "英伟达回应 Vera Rubin 平台规格变更：新版为量产规格，第三方跑分均是按量产版测的",
+      "url": "https://www.ithome.com/1/019/547.htm",
+      "published_at": 1793259102,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，英伟达解释了调整 Vera Rubin 平台规格参数的原因，称更新后的规格能更好地反映该系统在量产时的实际性能表现。几天前有报道称，英伟达悄然修改了 Vera Rubin 平台的规格参数。本次改动主要涉及 HBM4 显存带宽以及第六代 NVLink 互联带宽。英伟达公司一名代表向 Wc"
+    },
+    {
+      "id": "ff10cda1",
+      "title": "英伟达开源最强转录 AI 模型 Nemotron 3.5 Transcribe：支持 40 种语言，8 人抢话也能精准转录",
+      "url": "https://www.ithome.com/1/019/545.htm",
+      "published_at": 1793259089,
+      "category": "emulator",
+      "summary": "IT之家 10 月 29 日消息，英伟达昨日（10 月 28 日）宣布推出开放权重语音转录模型 Nemotron 3.5 Transcribe，并同步公开训练数据管线 Granary v2。Nemotron 3.5 Transcribe 模型整合转录、说话人归属、翻译和音频问答，主要面向会议纪要、课堂录像、访谈整理和多"
+    },
+    {
+      "id": "f4fc3f76",
+      "title": "机械革命无界 14S 2026 轻薄本锐龙 7 H 449 款上市，到手价低至 3909.15 元",
+      "url": "https://www.ithome.com/1/019/530.htm",
+      "published_at": 1793258638,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，机械革命 (Mechrevo) 现已开始销售无界 14S 2026 锐龙版轻薄笔记本电脑的 AMD 锐龙 7 H 449 无 NPU 处理器版本，其中 24GB + 512GB 低配到手价低至 3,909.15 元。无界 14S 2026 锐龙版采用金属机身，在锐龙 7 H 449 处"
+    },
+    {
+      "id": "c6cecbce",
+      "title": "《黑神话：悟空》制作人冯骥自曝：很多年前就认识《影之刃零》梁其伟，第一次见面吃了顿烧烤",
+      "url": "https://www.ithome.com/1/019/529.htm",
+      "published_at": 1793258391,
+      "category": "emulator",
+      "summary": "IT之家 10 月 29 日消息，游戏科学创始人兼 CEO、《黑神话：悟空》制作人冯骥今天在微博发文，为今日发售的国产武侠动作游戏《影之刃零》送上祝福，同时回忆与灵游坊创始人梁其伟的相识过往。冯骥表示，他和梁其伟很多年前就认识，那时大家同为刚创业不久的新人，也都在做手游。他记得第一次见面一起吃了烧烤（或是火锅？），席间"
+    },
+    {
+      "id": "907fd511",
+      "title": "Epic 高管瓦斯默：相比外界对 AI 的质疑，我们更担心进度落后的风险",
+      "url": "https://www.ithome.com/1/019/528.htm",
+      "published_at": 1793258135,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，据外媒 Eurogamer 今天（29 日）凌晨报道，Epic Games 确认将进一步扩大生成式 AI 的应用范围，从《堡垒之夜》到下一代游戏开发引擎虚幻引擎 6 都会用上。Epic 开发执行副总裁马库斯 · 瓦斯默证实，公司使用 AI 开发虚幻引擎的代码和功能，虚幻引擎 6 也不例"
+    },
+    {
+      "id": "3efbd0e1",
+      "title": "距地球约 70 亿公里：太阳系有望迎来第 6 颗国际认证的矮行星",
+      "url": "https://www.ithome.com/1/019/525.htm",
+      "published_at": 1793257847,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，薇拉 ·C· 鲁宾天文台（Vera C. Rubin Observatory，VRO）于 10 月 27 日发布博文，宣布在冥王星轨道之外发现一颗新的矮行星候选体，暂定编号为 2026 ED138。国际天文学联合会小行星中心已于 10 月 27 日发布相关通告。若后续观测确认，它将成为"
+    },
+    {
+      "id": "4bd471f4",
+      "title": "国际原油价格大涨：今晚油价再次实施调控，加满一箱 92 号汽油将多花 13.5 元",
+      "url": "https://www.ithome.com/1/019/524.htm",
+      "published_at": 1793257757,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，国家发展改革委今日宣布，10 月 15 日国内成品油价格调整以来，中东地缘紧张局势升级，国际市场原油价格大幅上涨。为减缓对国内的冲击，国家再次对成品油价格采取调控措施。根据现行价格机制计算，自 10 月 29 日 24 时起，国内汽、柴油（标准品）价格每吨分别应上调 440 元、420"
+    },
+    {
+      "id": "e5225e9b",
+      "title": "X 平台被指强推付费推广功能：发帖时突然弹出一只大手，指向推广按钮",
+      "url": "https://www.ithome.com/1/019/523.htm",
+      "published_at": 1793257274,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，据科技媒体 The Verge 昨天报道，X 平台如今似乎已向部分用户推荐“付费推广”功能，但方式被指不妥当：当你写着推文时，一只手突然伸过屏幕，指向界面的“推广”按钮。许多用户看到这种生硬的推广方式后，纷纷发帖吐槽。博主 Sheel Mohnot 表示：“我从来没有推广过帖子，且非常"
+    },
+    {
+      "id": "61b96905",
+      "title": "美国 FCC 主席布伦丹 · 卡尔：将允许监狱使用手机信号干扰设备",
+      "url": "https://www.ithome.com/1/019/522.htm",
+      "published_at": 1793257220,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，据外媒 The Verge 今天（29 日）凌晨报道，美国联邦通信委员会（FCC）主席布伦丹 · 卡尔宣布，委员会将于 11 月 19 日表决一项新规，允许监狱使用手机信号干扰设备。此前相关法律规定，美国原则上禁止使用无线电信号干扰设备，仅有少数例外。卡尔指出，部分联邦设施获准使用此类"
+    },
+    {
+      "id": "eb61ab81",
+      "title": "华为 WATCH 5 系列、ULTIMATE DESIGN 星钻绽放等手表开启 HarmonyOS 7 花粉 Beta 版招募",
+      "url": "https://www.ithome.com/1/019/521.htm",
+      "published_at": 1793257188,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，华为官网最新显示，HUAWEI WATCH 5 系列、ULTIMATE DESIGN 非凡大师 星钻绽放款开启了鸿蒙 HarmonyOS 7 系统花粉 Beta 版升级尝鲜招募。报名入口如下：华为手机 / 平板：【我的华为 / 服务】APP &gt; 首页 &gt; 升级尝鲜（根据提示"
+    },
+    {
+      "id": "c02a257f",
+      "title": "希捷：2028 年近线机械硬盘产能基本分配完毕，部分客户协议延长至 2030 年",
+      "url": "https://www.ithome.com/1/019/520.htm",
+      "published_at": 1793257111,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，机械硬盘主要制造商之一的 Seagate（希捷）在其当地时间 27 日的 FY2027Q1 电话财报会议上表示，其 2028 日历年的近线机械硬盘产能已基本分配完毕，部分客户的协议延长至 2030 日历年。希捷表示，其按订单生产合同已为明年近线产品出货确定了具体的配置和定价条款。在未来"
+    },
+    {
+      "id": "d9933058",
+      "title": "谷歌向第三方 Android 应用商店开放“一键安装”权限，年审核费 1 万美元",
+      "url": "https://www.ithome.com/1/019/518.htm",
+      "published_at": 1793256512,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，谷歌现已允许第三方 Android 应用商店申请“一键安装”权限。启用后可实现点一下安装 App 和后台自动更新。据介绍，第三方 Android 应用商店开发者若想申请这种权限，必须向谷歌提交完整的应用目录，以及此后发布的每一款应用和更新，以便谷歌持续进行恶意软件扫描。获批的应用商店将"
+    },
+    {
+      "id": "e2a7a423",
+      "title": "AI 冲击初级编程岗位需求，美高校计算机专业入学人数大幅下滑",
+      "url": "https://www.ithome.com/1/019/516.htm",
+      "published_at": 1793256399,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，据彭博社报道，今年秋季，美国高校的计算机与信息科学专业出现了学生大量流失的情况，本科项目入学人数下滑超 12%，研究生项目入学人数降幅超过 10%。美国全国学生信息交换中心当地时间周四发布的秋季入学初步数据显示，这一降幅是去年下跌趋势的延续，此前计算机科学专业多年保持招生增长。近些年人"
+    },
+    {
+      "id": "728c8441",
+      "title": "超 10 万次折叠屏幕和铰链仍然完好：CNET 测试苹果首款折叠 iPhone Duo 耐用性",
+      "url": "https://www.ithome.com/1/019/515.htm",
+      "published_at": 1793256352,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，科技媒体 CNET 昨日（10 月 28 日）发布博文，宣布在折叠耐用性测试中，苹果首款折叠 iPhone Duo 累计折叠次数已突破 10 万次，目前该手机折叠功能一切正常。本次折叠耐用性测试已进入第三天，CNET 团队采用从常规零售渠道购入的 iPhone Duo 测试，测试在美国"
+    },
+    {
+      "id": "2aa20ed3",
+      "title": "乐扩推出 PR51RX3 扩展卡：PCIe Gen4 ×1，提供 USB、RJ-45、SATA",
+      "url": "https://www.ithome.com/1/019/514.htm",
+      "published_at": 1793256289,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，乐扩 (Lekuo) 现已推出 PCIe AIC 新品 PR51RX3。这一扩展卡基于瑞昱 RTL9151 芯片，上行采用 PCIe Gen4 ×1，下行则能拓展出 USB、RJ-45 有线网口、SATA。该扩展卡长 110mm、高 68mm、宽 1 槽，I/O 面板提供 1 个 2."
+    },
+    {
+      "id": "6e1d8904",
+      "title": "小米 MiMo Desktop 会员权益升级：额度加量不加价、新增 DeepSeek 等第三方模型",
+      "url": "https://www.ithome.com/1/019/502.htm",
+      "published_at": 1793256091,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，小米 MiMo 官方今日宣布，Xiaomi MiMo Desktop 会员权益升级。会员额度提升为提升大家的使用体验，我们显著上调了会员用户的总体额度，加量不加价。该调整实时生效，对现有会员及后续新会员订阅均适用。新增多款第三方模型会员用户不再只能选择 MiMo 模型。我们为会员用户优"
+    },
+    {
+      "id": "673a62e3",
+      "title": "大众集团 2026 财年前三季度归母亏损 20.74 亿欧元，同比由盈转亏",
+      "url": "https://www.ithome.com/1/019/490.htm",
+      "published_at": 1793255871,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，大众集团今日发布 2026 财年（2026 年 1 月～2026 年 12 月）前三季度报（2026 年 1 月～2026 年 9 月）及第三财季（2026 年 7 月～2026 年 9 月）报告：2026 财年前三季度营业总收入：2333.78 亿欧元（IT之家注：现汇率约合 1.7"
+    },
+    {
+      "id": "bd604094",
+      "title": "Instagram 负责人莫塞里承认公众普遍反感 AI，预计未来情况还将继续恶化",
+      "url": "https://www.ithome.com/1/019/481.htm",
+      "published_at": 1793255644,
+      "category": "emulator",
+      "summary": "IT之家 10 月 29 日消息，Instagram 负责人亚当 · 莫塞里承认，反感 AI 的人远不止年轻人和创意工作者。在介绍 Instagram 推出的宽屏和长视频功能时，被问及 AI 及大学生在毕业典礼上向科技公司 CEO 喝倒彩的现象。莫塞里认为，尤其在创意行业，人们对 AI 越来越焦虑、不满和愤怒：“情况不"
+    },
+    {
+      "id": "28286915",
+      "title": "Claude Code 2.1.311 上线新环境变量，AI 智能体删文件可以不再问你",
+      "url": "https://www.ithome.com/1/019/476.htm",
+      "published_at": 1793255572,
+      "category": "emulator",
+      "summary": "IT之家 10 月 29 日消息，科技媒体 The Register 昨日（10 月 28 日）发布博文，报道称在 v2.1.311 版 Claude Code 中，Anthropic 加入新的环境变量，用户启用后 AI 智能体执行删除文件等操作时，可以不再逐次征求用户批准。该环境变量全称为 CLAUDE_CODE_E"
+    },
+    {
+      "id": "c9fa9433",
+      "title": "威刚 2026 财年前三季度报归母净利润 325.46 亿新台币",
+      "url": "https://www.ithome.com/1/019/472.htm",
+      "published_at": 1793255494,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，威刚今日发布 2026 财年（2026 年 1 月～2026 年 12 月）前三季度报（2026 年 1 月～2026 年 9 月）报告：营业总收入：1172.36 亿新台币（IT之家注：现汇率约合 241.39 亿元人民币）毛利润：496.15 亿新台币（现汇率约合 102.16 亿"
+    },
+    {
+      "id": "75d20441",
+      "title": "南方电网与华为签署全面深化战略合作协议，聚焦电碳算协同、电力鸿蒙等领域",
+      "url": "https://www.ithome.com/1/019/463.htm",
+      "published_at": 1793255340,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，华为官方今日宣布，10 月 27 日，南方电网公司与华为在深圳签署全面深化战略合作协议。南方电网公司董事长、党组书记钱朝阳与华为副董事长、轮值董事长汪涛一行举行工作会谈，并共同见证签约。根据规划，双方将面向新型能源体系、新型电力系统和新型电网建设，以及“六网”（水网、新型电网、算力网、"
+    },
+    {
+      "id": "23ee194c",
+      "title": "钞能力？应对数据中心周边扰民投诉，SpaceXAI 直接买下当地住宅",
+      "url": "https://www.ithome.com/1/019/442.htm",
+      "published_at": 1793254541,
+      "category": "general",
+      "summary": "IT之家 10 月 29 日消息，据英国《卫报》报道，SpaceXAI 计划收购美国密西西比州绍斯黑文市一座燃气轮机发电厂附近的住宅，但业主必须同意放弃针对公司的噪音集体诉讼索赔权，才能出售房屋。该发电厂负责为 SpaceXAI 的数据中心供电。SpaceXAI 计划收购 418 套住宅，至少 18 名业主同意出售。公"
+    },
+    {
+      "id": "ef5eb05c",
+      "title": "苹果 iPhone Duo 折叠屏手机国内首销期销量曝光，接近 20 万台",
+      "url": "https://www.ithome.com/1/019/439.htm",
+      "published_at": 1793254186,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，据长期关注国内手机市场份额的数码博主 @RD观测 爆料，iPhone Duo 首销期的 SO（销量）接近 200K（20 万）。首销期：首销日 + 后三天iPhone Duo 首销期的 SO 接近 200KPS：第三方数据源，仅供参考。据IT之家此前报道，苹果在 2026 年秋季发布会"
+    },
+    {
+      "id": "cbc8fecc",
+      "title": "Altera 公布 Agilex 2X 系列 FPGA，支持边缘物理 AI 应用",
+      "url": "https://www.ithome.com/1/019/438.htm",
+      "published_at": 1793254147,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，FPGA（现场可编程门阵列）企业 Altera 美国当地时间 28 日公布了其全新产品组合 Agilex 2X。这一系列新品旨在支持包括边缘物理 AI 和为其提供动力的数字 AI 基础设施在内的全方位智能系统。Agilex 2X 基于 Altera 的成熟架构，同时引入了多项关键创新："
+    },
+    {
+      "id": "2bd2582b",
+      "title": "给 AI 芯片“退烧”：国内首款 12 英寸多晶碳化硅衬底在长沙问世，通过台积电认证测试、并给三星送样",
+      "url": "https://www.ithome.com/1/019/437.htm",
+      "published_at": 1793254107,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，湖南泰坦未来科技有限公司本月发布新闻稿，宣布推出国内首款 12 英寸多晶碳化硅衬底，瞄准 AI 芯片与先进封装的散热瓶颈。IT之家查询公开资料，12 英寸多晶碳化硅（SiC）衬底，是一种直径约 300 毫米、由许多微小碳化硅晶粒构成的大尺寸陶瓷基板。该基板主要作为先进封装和高温半导体工"
+    },
+    {
+      "id": "5c0999b4",
+      "title": "宏碁推出暗影骑士 G710 平板电脑：8.8 英寸 3K 165Hz 面板、天玑 8300 处理器，4099 元起",
+      "url": "https://www.ithome.com/1/019/436.htm",
+      "published_at": 1793253847,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，宏碁现已在京东上架暗影骑士 G710 平板电脑，该机配备一块 8.8 英寸 3K 165Hz 面板，定价为 4099 元起，IT之家附产品价格如下：8GB RAM + 256GB 存储：4099 元12GB RAM + 512GB 存储：4999 元京东宏碁暗影骑士 G710 平板电脑"
+    },
+    {
+      "id": "4543cdce",
+      "title": "友达 2026Q3 出现 25 亿新台币归母净亏损，宣布向台积电售厂",
+      "url": "https://www.ithome.com/1/019/428.htm",
+      "published_at": 1793252550,
+      "category": "eco",
+      "summary": "IT之家 10 月 29 日消息，友达 (AUO) 今日发布 2026Q3 及 2026Q1~Q3 财务数据：2026Q3营业总收入：668.8 亿新台币，同比 -4.3%，环比 -5.7%毛利率：10.1%营业净利润：-23.7 亿新台币营业利润率：-3.5%归母净利润：-25 亿新台币，同比扩大 95.31%基本每"
     },
     {
       "id": "ac9831eb",
@@ -2081,390 +2467,6 @@
       "published_at": 1793086901,
       "category": "eco",
       "summary": "IT之家 10 月 27 日消息，综合IT之家读者投稿，索尼旗下 Music Pro 应用于今天正式关闭，该 App 主要面向索尼高端机型，为手机端提供降噪、混响移除和录音棚调音等音乐录制功能。至于关闭原因，索尼没有解释具体背景，只是称“由于各种情况”。外媒 Android Authority 解读认为可能因素包括维护"
-    },
-    {
-      "id": "1d58258d",
-      "title": "《我的世界》任天堂 Switch 2 版本明日发售，eShop 港服定价 235 港币",
-      "url": "https://www.ithome.com/1/018/443.htm",
-      "published_at": 1793085978,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，微软 Mojang Studios 旗下《我的世界（Minecraft）》将于 10 月 28 日（明天）登陆任天堂 Switch 2 平台，以港服为例，本作定价为 235 港币（IT之家注：现汇率约合 200.2 元人民币），IT之家附游戏商品页（https://ec.nintend"
-    },
-    {
-      "id": "dec4cf19",
-      "title": "小米 REDMI 首款耳夹耳机 Clip Neo 官宣与哭喊中心联名，将推限定礼盒套装",
-      "url": "https://www.ithome.com/1/018/442.htm",
-      "published_at": 1793085938,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，今天（27 日）上午，@REDMI红米手机 官微宣布：REDMI Clip Neo 与服装品牌 CryingCenter 哭喊中心联合推出限定礼盒套装，预约同步启动。该套装内含零度黑耳机、专属贴纸、潮流耳机包等物品。据IT之家了解，小米 REDMI 首款耳夹耳机 Clip Neo 将于"
-    },
-    {
-      "id": "e06dbdf1",
-      "title": "投资 30 亿美元：英伟达与 Meta 扩大 Muse 智能助手合作",
-      "url": "https://www.ithome.com/1/018/441.htm",
-      "published_at": 1793085825,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，英伟达今天宣布与 Meta 扩大 Muse 智能助手方向的合作，满足市场对 AI 智能体日益增长的需求。IT之家从官方新闻稿获悉，英伟达和 Meta 还在考虑开展其他技术合作，包括采用英伟达 OpenShell 参考架构增强智能体安全性、利用英伟达 Sentry 监控智能体行为，并处理"
-    },
-    {
-      "id": "3bd8154a",
-      "title": "小米推出米家台式净饮机 3：提供 2100W 功率可实现“3 秒即热”、搭 RISC-V 芯片，1499 元",
-      "url": "https://www.ithome.com/1/018/438.htm",
-      "published_at": 1793085673,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，小米现已在有品上架米家台式净饮机 3（点此访问），该产品提供 2100W 功率，可实现“3 秒即热”，定价为 1499 元，目前处于支付订金状态。该产品配备 6L 容量原废分离大水箱，其中包含 4.2L 原水箱与 1.8L 废水箱，此设计可有效防止废水回流。机身侧边额外设有一个容量为 "
-    },
-    {
-      "id": "c6fc0312",
-      "title": "小米米家智能变压电饭煲 3L 预售：搭载三段变压全沸腾技术，1499 元",
-      "url": "https://www.ithome.com/1/018/434.htm",
-      "published_at": 1793085021,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，小米现已在京东上架米家智能变压电饭煲 3L，该产品采用“三段变压”设计，定价为 1499 元，部分地区国补后低至 1274.15 元，产品将于 10 月 30 日首销。该电饭煲采用深灰色外观，顶部配备触控彩屏，界面采用大字体适老化设计，便于直观操作 27 项内置功能。支持连接米家 Ap"
-    },
-    {
-      "id": "c4764c1a",
-      "title": "便利来华韩国游客，Galaxy 系列手机将支持三星钱包直接扫微信支付码",
-      "url": "https://www.ithome.com/1/018/432.htm",
-      "published_at": 1793084859,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，据三星电子官方新闻稿，三星电子 26 日在深圳腾讯总部与腾讯、韩国友利银行签署合作协议，三方将共同拓展“三星钱包 Money”的海外支付服务，并深化合作。IT之家注：“三星钱包 Money”是三星电子与友利银行合作推出的预充值支付服务。用户可以在三星钱包 App 内充值、付款，消费时还"
-    },
-    {
-      "id": "698f7c8d",
-      "title": "34 英寸带鱼屏显示器 LG 34U620B 发售：144Hz KVM 双控，1799 元",
-      "url": "https://www.ithome.com/1/018/431.htm",
-      "published_at": 1793084734,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，34 英寸的 LG 34U620B 带鱼屏显示器今日开售，京东尊享价 1799 元。京东 LG 34U620B 34 英寸带鱼屏显示器高刷 144Hz KVM 双控 PBP / PIP 21:9 家用办公 电脑游戏显示屏 1799 元直达链接该显示器采用 34 英寸 21:9 WQHD"
-    },
-    {
-      "id": "f8e06a04",
-      "title": "Switch 2 游戏钥匙卡争议再起：任天堂被曝禁止发行商改发实体卡带",
-      "url": "https://www.ithome.com/1/018/430.htm",
-      "published_at": 1793084505,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，加拿大零售商 Video Games Plus 近日发文，解释任天堂 Switch 2 平台的钥匙卡游戏为何不太可能再发行实体卡版本，主要原因在于“任天堂不允许这么做”。该零售商透露，发行商为一款游戏推出钥匙卡后，就不能在以后发行真正的实体卡带版本。这篇帖文发出后，部分实体卡带玩家选择"
-    },
-    {
-      "id": "8abef26a",
-      "title": "一加 Ace 7 系列搭载自研「电竞三芯」：支持 185Hz 刷新率、520Hz 多指触控采样率",
-      "url": "https://www.ithome.com/1/018/429.htm",
-      "published_at": 1793084504,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，一加 Ace 7 系列今日官宣搭载自研「电竞三芯」，灵犀触控芯片 T3、电竞网络芯片 G3、超级显示芯片 P4。据介绍，灵犀触控芯片 T3 支持 520Hz 多指触控采样率、游戏官方联调分区触控；电竞网络芯片 G3，蜂窝游戏卡顿率降低 46%，蜂窝游戏时延降低 17%，WiFi 抢网能"
-    },
-    {
-      "id": "8598b49e",
-      "title": "AOC 推出 31.5\" UHD 180Hz OLED 显示器 U32G5D，配备六边形底座",
-      "url": "https://www.ithome.com/1/018/428.htm",
-      "published_at": 1793084268,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，AOC 本月 21 日推出了 U32G5D 显示器。这一型号采用 31.5\" QD-OLED Penta Tandem 面板，覆盖 AR 防反射涂层，拥有 UHD 分辨率、180Hz 刷新率。U32G5D 符合 VESA DisplayHDR True Black 400 规范，具备 "
-    },
-    {
-      "id": "c1a67ebf",
-      "title": "消息称苹果 iPhone Duo 自带反向无线充电模块：尚未激活，可为 Apple Watch / AirPods 补电",
-      "url": "https://www.ithome.com/1/018/427.htm",
-      "published_at": 1793084055,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，博主 @Kang 发文，透露苹果 iPhone Duo 手机集成了 Apple Watch 手表反冲无线充模块，该模块预计也可以为 AirPods 充电，不过相应功能目前并未激活。IT之家注意到，该博主还在评论区透露相应反冲无线充模块仅 iPhone Duo 独占，iPhone 18 "
-    },
-    {
-      "id": "977cee03",
-      "title": "微星 MAG B850 TOMAHAWK MAX WIFI II 战斧导弹主板发售：14 相 80A 供电 + WiFi 7，1849 元",
-      "url": "https://www.ithome.com/1/018/424.htm",
-      "published_at": 1793083679,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，微星 MAG B850 TOMAHAWK MAX WIFI II 战斧导弹主板已正式开售，京东定价为 1849 元。该主板基于 AMD B850 芯片组、采用 AM5 接口，支持锐龙 9850X3D、9700X、9800X3D 等处理器，采用 ATX 板型与银灰风格散热装甲。京东微星（"
-    },
-    {
-      "id": "64d588cd",
-      "title": "智元发布具身 Agent 框架 Genie Master：机器人能边工作边进化",
-      "url": "https://www.ithome.com/1/018/423.htm",
-      "published_at": 1793083659,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，今日智元正式发布具身 Agent 框架 Genie Master，让机器人在上岗的过程中边解锁新技能。据悉，搭载该框架的精灵 G2，在真实便利店上岗期间，不依赖人工示范与调试，自己定位失败原因、调整策略、沉淀经验，做到了在多个复杂精细任务上持续改进，实现“无人在环”的持续自我进化。这是"
-    },
-    {
-      "id": "2ff21cd2",
-      "title": "1599 元：AOC 推出 34 英寸 21:9 超宽曲面商用显示器 CU34P10H，200Hz Fast VA 面板",
-      "url": "https://www.ithome.com/1/018/422.htm",
-      "published_at": 1793083644,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，AOC 现已推出 34 英寸 21:9 超宽曲面商用显示器 CU34P10H。新品采用 Fast VA 面板，分辨率为 WQHD，支持 200Hz 高刷，售价 1599 元。据IT之家了解，这款显示器采用 21:9 宽屏比例，相比主流 16:9 屏幕多出约三分之一的可视面积，带有 15"
-    },
-    {
-      "id": "2bc006d4",
-      "title": "苹果详解 iPhone Duo 手写笔支持：仅支持 Apple Pencil（USB-C），需使用线缆连接配对",
-      "url": "https://www.ithome.com/1/018/420.htm",
-      "published_at": 1793083432,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，苹果今天推送了 iOS 27.2 正式版，为旗下首款折叠屏手机 iPhone Duo 带来了 Apple Pencil 手写笔支持，目前苹果已发布文档，对相应文档进行介绍。苹果表示，iPhone Duo 仅可搭配单独销售的 Apple Pencil (USB-C) 使用。其他 Appl"
-    },
-    {
-      "id": "58a2a53e",
-      "title": "游戏《宝可梦大集结》宣布全球停运，中国大陆关服时间为 2027 年 1 月 28 日 11:00",
-      "url": "https://www.ithome.com/1/018/419.htm",
-      "published_at": 1793083344,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，《宝可梦大集结》(Pokémon UNITE) 官方今日宣布，这款宝可梦系列轻松竞技游戏将在全球范围内停止运营。其中，中国大陆市场关服时间为北京时间 2027 年 1 月 28 日 11:00，全球其它区域关服时间为协调世界时 2027 年 3 月 23 日 00:00。游戏官方国际大"
-    },
-    {
-      "id": "6e6dad5f",
-      "title": "卡普空 2027 财年半年报归母净利润 430.83 亿日元，同比增长 56.6%",
-      "url": "https://www.ithome.com/1/018/418.htm",
-      "published_at": 1793083317,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，卡普空今日发布 2027 财年（2026 年 4 月～2027 年 3 月）半年报（2026 年 4 月～2026 年 9 月）业绩快报报告：营业总收入：1208.87 亿日元（IT之家注：现汇率约合 51.31 亿元人民币），同比增长 49%毛利润：772.23 亿日元（现汇率约合 "
-    },
-    {
-      "id": "b85647b0",
-      "title": "Anthropic“史上最大 IPO”在即，或为澳大利亚最大银行带来数十亿澳元意外之财",
-      "url": "https://www.ithome.com/1/018/417.htm",
-      "published_at": 1793083055,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据彭博社今天（27 日）午间报道，随着 Anthropic 估值飙升，澳大利亚联邦银行有望借其首次公开募股（IPO），套现一年多前购入的股份。联邦银行是澳大利亚最大的银行，2025 年 3 月曾参与 Anthropic 的 E 轮融资。截至去年 6 月 30 日，这笔投资价值 1.53"
-    },
-    {
-      "id": "ba4010f6",
-      "title": "消息称苹果 iPhone 18e 手机将配备 6.12 英寸 60Hz LTPS OLED 面板，匹配 48Mp 单摄",
-      "url": "https://www.ithome.com/1/018/415.htm",
-      "published_at": 1793082885,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，博主 @数码闲聊站 发文，透露苹果 iPhone 18e 将配备一块 6.12 英寸 60Hz LTPS OLED，搭载 2nm A20 芯片，匹配 48Mp 单摄，前摄可能会升级 24Mp。IT之家注意到，苹果 iPhone 18/18e 手机预计明年春季发布，除了本次曝光的 iPh"
-    },
-    {
-      "id": "ae465d41",
-      "title": "佳能 2026 财年第三财季归母净利润 2464.09 亿日元，同比增长 12.2%",
-      "url": "https://www.ithome.com/1/018/413.htm",
-      "published_at": 1793082741,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，佳能今日发布 2026 财年（2026 年 1 月～2026 年 12 月）第三财季（2026 年 7 月～2026 年 9 月）业绩报告：营业收入：3.43 万亿日元（IT之家注：现汇率约合 1,455.93 亿元人民币），同比增长 4.0%毛利：1.67 万亿日元（现汇率约合 70"
-    },
-    {
-      "id": "60395983",
-      "title": "我国天文学家发现三颗“本不该存在”的行星",
-      "url": "https://www.ithome.com/1/018/411.htm",
-      "published_at": 1793082518,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据新华网报道，近日，云南大学物理与天文学院钱声帮教授团队在国际学术期刊美国《国家科学院学报》发表论文，报告了一项挑战传统认知的观测结果：三颗围绕恒星运行的系外行星，在宿主恒星进入晚年剧烈膨胀之后仍然幸存。据IT之家了解，按照长期以来的主流观点，恒星与太阳类似，依靠核心氢聚变发光发热；当"
-    },
-    {
-      "id": "02cae70a",
-      "title": "Acoustune 推出 AS2200 便携耳放：基于 AK4493SEQ，支持 3.5mm 与 4.4mm 输出",
-      "url": "https://www.ithome.com/1/018/410.htm",
-      "published_at": 1793082235,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，日本音频设备品牌 Acoustune 当地时间 23 日发布了便携式 USB 耳机放大器 AS2200。这一型号基于旭化成的 AK4493SEQ 音频 DAC 芯片，提供 3.5mm 单端与 4.4mm 平衡输出。AS2200 外壳为 CNC 铝合金，集成小型 OLED 信息显示屏。其"
-    },
-    {
-      "id": "0a6829f0",
-      "title": "曝台积电先进封装拟涨价最高 20%，因 AI 需求急剧攀升、产能持续吃紧",
-      "url": "https://www.ithome.com/1/018/409.htm",
-      "published_at": 1793082175,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，据台媒《工商时报》今日援引供应链消息人士报道，台积电正考虑将其先进封装工艺价格上调 10% 至 20%，原因是 AI 需求急剧攀升，导致半导体供应链产能持续吃紧。报道指出，台积电正准备对 CoWoS（Chip on Wafer on Substrate）封装服务实施 10% 至 20%"
-    },
-    {
-      "id": "ec1abb55",
-      "title": "酷冷至尊 MasterFan A120 全铝风扇新增黑金版限定配色，219 元",
-      "url": "https://www.ithome.com/1/018/406.htm",
-      "published_at": 1793081686,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，CoolerMaster（酷码 / 酷冷至尊）现已开始销售 MasterFan A120 全铝散热风扇的黑金版限定配色。这一款式到手价 219 元。MasterFan A120 黑金版尺寸依旧是 12030，铝制上框黑化处理、铝制扇叶则呈现金色。高强度的材质可降低扇叶在高转速下的形变，"
-    },
-    {
-      "id": "3b4fd095",
-      "title": "看了不烧心，红果短剧宣布治理剧集核心设定、人物关系、关键桥段及剧情推进手法高度相似的“换皮”内容",
-      "url": "https://www.ithome.com/1/018/400.htm",
-      "published_at": 1793081513,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，红果短剧官方今日发布关于持续加强低质和同质化内容治理的公告，为维护健康、多元、可持续的创作环境，平台将进一步加大对低质和同质化内容的治理力度，重点治理过度情绪渲染和对微短剧剧情结构、核心设定、关键桥段、人物关系及视听表达要素的同质化使用问题。主要包括以下三种场景：一、刻意渲染矛盾为片面"
-    },
-    {
-      "id": "45593290",
-      "title": "华为将韬定律思想引入基站设计，发布新一代移动通信网产品及解决方案",
-      "url": "https://www.ithome.com/1/018/392.htm",
-      "published_at": 1793080918,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日现场消息，华为今日在上海练秋湖研发中心举行 Decoding China 2026 活动，发布新一代移动通信网产品及解决方案。华为公司副总裁、无线网络业务管理委员会主任方向介绍，通信方式的每次升级，都会推动社会发展质的飞跃。AI 从数字世界走向物理世界，联接规模不断扩大；智能业务也走向全终端"
-    },
-    {
-      "id": "5f75d840",
-      "title": "英特尔多款 \"Raptor Lake Next\" 处理器现身海关舱单记录",
-      "url": "https://www.ithome.com/1/018/390.htm",
-      "published_at": 1793080674,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，Intel（英特尔）目前正在准备桌面端和移动端的 \"Raptor Lake Next\" 处理器作为既有平台的小幅更新。第三方海关舱单记录平台纽佰德 (NBD) 已经记录到了多条相关记录。当前发现的记录集中于 8 月 18~19 两日，采购地均为越南，货物描述中均提到了 \"FCLGA&g"
-    },
-    {
-      "id": "6311e41a",
-      "title": "华强北商家称近期内存价格回调但仍居高位，市场“有价无市”、10 月销量普遍下滑 20% 至 30%",
-      "url": "https://www.ithome.com/1/018/384.htm",
-      "published_at": 1793079843,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据央视财经今日报道，近段时间，A 股存储板块持续出现调整，多家龙头公司股价较年内高点回撤明显，部分公司回撤幅度超过 40%。记者走访广东深圳华强北多家内存柜台发现，目前 16G DDR5 内存条报价普遍在 1400 元至 1600 元，32G 在 2000 元至 3000 多元，1T "
-    },
-    {
-      "id": "6f47b8a0",
-      "title": "Counterpoint：苹果 iPhone 18 Pro 系列上市三周全球销量同比增长 3.1%，主要由中国市场拉动",
-      "url": "https://www.ithome.com/1/018/373.htm",
-      "published_at": 1793079602,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，市场研究机构 Counterpoint Research 的《智能手机周度销量追踪报告》显示，苹果 iPhone 18 Pro 系列 9 月上市三周，全球销量较去年同期的 iPhone 17 Pro 系列增长 3.1%。从各地区表现来看，增长主要由中国市场拉动。iPhone 18 Pr"
-    },
-    {
-      "id": "de00cc6b",
-      "title": "持续 27 天，天文学家发现破纪录伽马射线暴",
-      "url": "https://www.ithome.com/1/018/349.htm",
-      "published_at": 1793077113,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，天文学家发现了一个非同寻常的伽马射线暴（GRB），和同类宇宙爆发相比，其堪称伽马暴里的“绿巨人”。这个伽马射线暴最特别之处在于，驱动这次爆发的中心引擎持续活跃了大约 27 天，在初始爆发之后不断产生 X 射线耀发。这个时长比此前有记录的最长伽马暴还要多出 20 天。据IT之家了解，这次"
-    },
-    {
-      "id": "04192ae9",
-      "title": "微软身份验证器被曝高危安全漏洞，可被任意应用冒充获得账户令牌",
-      "url": "https://www.ithome.com/1/018/347.htm",
-      "published_at": 1793076170,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，网络安全研究员 Ofek Levin 于上周发布报告，披露了 AuthMask 攻击链，成功让微软身份验证器将令牌交给一个没有任何权限的应用。该团队研究发现，一个没有权限的安卓应用可以冒充已安装的微软第一方应用，并让微软身份验证器将该应用的令牌交给它，令牌提供了完整的委托邮箱、文件和日"
-    },
-    {
-      "id": "6be04809",
-      "title": "雷鸟 iO+ 正式官宣：第四代双目全彩 AI 眼镜，搭载超小型全彩光机",
-      "url": "https://www.ithome.com/1/018/346.htm",
-      "published_at": 1793075328,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，10 月 27 日，消费级 AR 品牌雷鸟创新正式公布旗下第四代双目全彩 AI 眼镜 —— 雷鸟 iO+。官方同步释出了演员蒋奇明佩戴该款新品的实拍图，展示了产品的外观设计与形态细节。从目前公开的外观信息来看，雷鸟 iO+ 延续了前代产品雷鸟 iO（整机重 34 克，搭载主动式 AI "
-    },
-    {
-      "id": "0cdeaf32",
-      "title": "救援尝试失败，NASA 正式终止雨燕空间望远镜任务",
-      "url": "https://www.ithome.com/1/018/343.htm",
-      "published_at": 1793075112,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，美国国家航空航天局（NASA）正式宣告雨燕（Swift）空间望远镜任务终结。此前一项大胆的私人卫星救援计划尝试挽救这台老化的航天器，但最终失败。本次救援任务由亚利桑那州企业 Katalyst Space Technologies 牵头，该公司的 LINK 航天器原本计划在今年夏天与雨燕"
-    },
-    {
-      "id": "a169e0ee",
-      "title": "华为 Mate 80 系列、Pura X 等机型游戏助手上新，实装弹幕通知、防误触范围自定义等功能",
-      "url": "https://www.ithome.com/1/018/342.htm",
-      "published_at": 1793074960,
-      "category": "eco",
-      "summary": "IT之家 10 月 27 日消息，华为近日面向 Mate 80 / 70 / 60、Pura 80 / 70 / X 等系列机型推送了最新的鸿蒙 HarmonyOS 7.0.0.111 版本升级，带来了与 iPhone 双机互联，实况窗分享等功能。▲ IT之家开箱：华为 Pura 70 Pro+「光织银」图赏IT之家实"
-    },
-    {
-      "id": "2391e0f4",
-      "title": "《仙剑奇侠传四：重制》游戏官宣 12 月 5 日公布定价、发售时间等信息",
-      "url": "https://www.ithome.com/1/018/340.htm",
-      "published_at": 1793074402,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，方块游戏今日发布公告，《仙剑奇侠传四：重制》的开发工作进展平稳，但作品仍需细细打磨。逢《仙剑奇侠传四》问世十九周年，2026 年 12 月 5 日，方块游戏将在安徽合肥举办“寻仙之夜”仙剑大型嘉年华活动。本次活动免费向玩家开放，活动现场不仅设有制作人对话、舞台演出、沉浸式游园等环节，也"
-    },
-    {
-      "id": "e94a1783",
-      "title": "知情人士：DeepSeek 大举扩充团队，梁文锋长期在北京租房",
-      "url": "https://www.ithome.com/1/018/339.htm",
-      "published_at": 1793074286,
-      "category": "general",
-      "summary": "凤凰网科技讯 10 月 27 日，随着新一轮融资受到关注，DeepSeek 的团队扩张也在加速。多位知情人士向凤凰网科技透露，DeepSeek 近期扩张势头很猛。一位接近 DeepSeek 的人士表示，公司正在向投资人规划新的增长路线，其中包括大举扩充团队。这位接近 DeepSeek 的人士还透露，DeepSeek 的"
-    },
-    {
-      "id": "7b22509b",
-      "title": "消息称日本经产省将发放 1000 亿日元柔性钙钛矿太阳能电池商业化补贴",
-      "url": "https://www.ithome.com/1/018/337.htm",
-      "published_at": 1793074004,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，《日本经济新闻》当地时间昨日报道称，该国经济产业省即将选定向理光和长州产业两家企业合计授予 1,000 亿日元（现汇率约合 42.45 亿元人民币）的补贴，用于支持柔性钙钛矿太阳能电池的商业化。这项补贴持续到 2029 财年（2030 年 3 月底结束），获资助企业至少也要向大规模生产"
-    },
-    {
-      "id": "146bc300",
-      "title": "LG Display 将在广州建设全球首条 111 英寸超大尺寸 OLED 模组线",
-      "url": "https://www.ithome.com/1/018/265.htm",
-      "published_at": 1793069183,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据广州开发区控股集团有限公司昨日公告，该公司近日与 LG Display 再度携手，按同比例向已投企业乐金光电增资 10 亿元，专项用于超大型 OLED 模组技术改造项目建设。IT之家了解到，乐金光电拟新增投资建设超大尺寸 OLED 显示器模组产线，支持 77 英寸、83 英寸、97 "
-    },
-    {
-      "id": "b52f66b2",
-      "title": "“蛟龙”号载人潜水器实现迭代升级，顺利完成 7000 米级海试",
-      "url": "https://www.ithome.com/1/018/263.htm",
-      "published_at": 1793069126,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据新华社今天（27 日）从“深海一号”船了解到，实现第二次迭代升级的“蛟龙”号载人潜水器近日在菲律宾海盆进行了多次 7000 米潜次试验并安全返回，顺利完成国家重点研发计划“蛟龙号关键作业技术能力提升及科学应用”7000 米级海试。此次海试依托中国大洋 100 航次第二航段科学考察，“"
-    },
-    {
-      "id": "145ee8af",
-      "title": "NCASE 带来 SFX 电源：获铂金转换效率认证，至高 1500W",
-      "url": "https://www.ithome.com/1/018/262.htm",
-      "published_at": 1793068526,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，机箱制造商 NCASE 近日推出了 PC 电源产品。其采用标准 SFX 外形规格和全模组线材设计，获得 80 PLUS 铂金转换效率认证，提供 850W / 1200W / 1500W 三个版本。NCASE 的 SFX 电源符合 ATX12V 3.1 规范要求，原生提供 12V-2×6"
-    },
-    {
-      "id": "a3b21896",
-      "title": "国产武侠游戏《影之刃零》开启预下载，PC 需留足 300GB 空间",
-      "url": "https://www.ithome.com/1/018/260.htm",
-      "published_at": 1793068117,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，今日（10 月 27 日）10 点，国产暗黑武侠动作 RPG《影之刃零》正式开启全平台预下载，游戏将于 10 月 29 日正式发售，登陆 PC / PS5 平台，国区数字标准版售价 268 元，数字豪华版售价 328 元。PS5 实体光碟将于 2027 年推出。对于 PC 玩家来说，官"
-    },
-    {
-      "id": "3fe51594",
-      "title": "报告称豆包对抖音的引用权重飙升：每引用 3 条内容，就有 1 条来自抖音",
-      "url": "https://www.ithome.com/1/018/259.htm",
-      "published_at": 1793067754,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，据新榜智汇本月发布的报告，豆包对抖音的引用权重从 5 月的 10.79% 飙升至 8 月的 31.8%；百度在 6 月首次将B站和好看视频纳入信源库，且二者权重之和达到 12%。报告称，视频不再是 AI 引用的“边缘补充”，而是正在成为“主力信源”。IT之家从报告了解到，今年 6 月，"
-    },
-    {
-      "id": "8330a2aa",
-      "title": "芬兰电子竞技俱乐部 ENCE 经营 13 年后宣布申请破产",
-      "url": "https://www.ithome.com/1/018/258.htm",
-      "published_at": 1793067649,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，芬兰俱乐部 ENCE 当地时间 26 日宣布申请破产。这家拥有 13 年历史的电竞组织即将落幕。ENCE 最为知名的是其《反恐精英》分部，曾收获 2019 年 IEM 卡托维兹 Major 亚军、2022 年 PGL 安特卫普 Major 第 3~4 名，赢下了 2018 年 SLi "
-    },
-    {
-      "id": "d8652c18",
-      "title": "为拯救《质量效应》，相关请愿活动登上纽约时代广场大屏广告牌",
-      "url": "https://www.ithome.com/1/018/257.htm",
-      "published_at": 1793067536,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，此前报道称#拯救质量效应（#SaveMassEffect）请愿活动为准备在 EA 总部外投放广告牌，签名数已经突破 17 万。今天这份请愿签名不仅超过 21.6 万，相关广告牌也已经正式登陆纽约的大屏。这次巨型#SaveMassEffect 数字广告牌由 @WeAreMassEffec"
-    },
-    {
-      "id": "cdcf7099",
-      "title": "小米米家高速吹风机 Mini 开售：11 万转 / 分钟高速电机，首销 199.7 元",
-      "url": "https://www.ithome.com/1/018/256.htm",
-      "published_at": 1793067182,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，今天（27 日）上午，小米米家高速吹风机 Mini 正式开售，建议零售价 299 元，首销到手价 199.7 元。京东小米高速吹风机 Mini 券后 199.66 元领 0.9 元券这款新品整机重 270g（不含电源线），适配居家日常、差旅出行、健身通勤等多种场景；搭载 11 万转 /"
-    },
-    {
-      "id": "e6549a4a",
-      "title": "《羊蹄山之魂》开发商 Sucker Punch 裁员 26 人，正筹备新项目",
-      "url": "https://www.ithome.com/1/018/253.htm",
-      "published_at": 1793066948,
-      "category": "emulator",
-      "summary": "IT之家 10 月 27 日消息，《羊蹄山之魂》（Ghost of Yotei）开发商 Sucker Punch，在其上一款游戏发售仅一年多后就裁员了部分员工。据游戏媒体 Aftermath 报道，在《羊蹄山之魂》DLC 与完全版登陆 PS5 仅仅几周后，该工作室裁掉了 26 名员工。目前这家工作室总员工大约 200 "
-    },
-    {
-      "id": "44ef22ea",
-      "title": "蚂蚁灵光 2.0 发布：全新升级“能管事的 AI 助理”，突破单次对话限制",
-      "url": "https://www.ithome.com/1/018/252.htm",
-      "published_at": 1793066724,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，蚂蚁集团今日发布灵光 2.0，推动 AI 助理从被动响应指令、完成单次任务，向主动发现需求、持续管理事务的演进。据蚂蚁集团官方介绍，与传统对话式 AI 及任务型 Agent 相比，灵光 2.0 的一大变化，是将 AI 介入任务的起点进一步前移。过去，用户需要先发现问题、提出需求，再由 "
-    },
-    {
-      "id": "e159cb89",
-      "title": "不再逐个翻邮箱：微软 Win11 新版 Outlook 上线“所有账户”统一收件箱",
-      "url": "https://www.ithome.com/1/018/250.htm",
-      "published_at": 1793066633,
-      "category": "general",
-      "summary": "IT之家 10 月 27 日消息，科技媒体 Windows Latest 今天（10 月 27 日）发布博文，报道称在适用于 Windows 11（原文虽未列出，但 Windows 10 版预估同样支持）的新版 Outlook 上，新增上线“所有账户”统一收件箱。IT之家援引博文介绍，在此前的 Windows 11 新"
     }
   ]
 }
