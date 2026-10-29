@@ -16,7 +16,7 @@
    "ludashi_score": "480872",
    "gpu_equiv": {
     "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
-    "score": 142465,
+    "score": 142564,
     "est": 141151,
     "ratio": 0.294
    }
@@ -53,7 +53,7 @@
    "ludashi_score": "807517",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2060 SUPER 8GB",
-    "score": 331619,
+    "score": 331479,
     "est": 331150,
     "ratio": 0.41
    }
@@ -74,7 +74,7 @@
    "ludashi_score": "1062717",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 Ti 11GB",
-    "score": 540051,
+    "score": 540026,
     "est": 551656,
     "ratio": 0.519
    }
@@ -95,7 +95,7 @@
    "ludashi_score": "1159763",
    "gpu_equiv": {
     "name": "AMD Radeon RX 7700 XT 12GB",
-    "score": 615191,
+    "score": 615021,
     "est": 621881,
     "ratio": 0.536
    }
@@ -115,7 +115,7 @@
    "ludashi_score": "1308603",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3080 12GB",
-    "score": 740200,
+    "score": 739816,
     "est": 730825,
     "ratio": 0.558
    }
@@ -135,7 +135,7 @@
    "ludashi_score": "1385516",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6900 XT 16GB",
-    "score": 817731,
+    "score": 818026,
     "est": 828938,
     "ratio": 0.598
    }
@@ -155,7 +155,7 @@
    "ludashi_score": "1467056",
    "gpu_equiv": {
     "name": "AMD Radeon RX 9070 16GB",
-    "score": 896548,
+    "score": 896415,
     "est": 881797,
     "ratio": 0.601
    }
@@ -174,7 +174,7 @@
    "ludashi_score": "724435",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6600 8GB",
-    "score": 330157,
+    "score": 330146,
     "est": 330779,
     "ratio": 0.457
    }
@@ -193,7 +193,7 @@
    "ludashi_score": "996259",
    "gpu_equiv": {
     "name": "NVIDIA TITAN V 12GB",
-    "score": 518212,
+    "score": 518424,
     "est": 518883,
     "ratio": 0.521
    }
@@ -255,7 +255,7 @@
    "ludashi_score": "602793",
    "gpu_equiv": {
     "name": "AMD Radeon RX 580 2048SP 8GB",
-    "score": 160384,
+    "score": 160365,
     "est": 159224,
     "ratio": 0.264
    }
@@ -275,7 +275,7 @@
    "ludashi_score": "787766",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
-    "score": 347760,
+    "score": 347423,
     "est": 348811,
     "ratio": 0.443
    }
@@ -295,7 +295,7 @@
    "ludashi_score": "922847",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
-    "score": 443247,
+    "score": 443139,
     "est": 444254,
     "ratio": 0.481
    }
@@ -314,8 +314,8 @@
    "antutu_clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
    "ludashi_score": "1114009",
    "gpu_equiv": {
-    "name": "NVIDIA TITAN RTX 24GB",
-    "score": 581852,
+    "name": "NVIDIA GeForce RTX 3070 Ti 8GB",
+    "score": 582092,
     "est": 567267,
     "ratio": 0.509
    }
@@ -334,7 +334,7 @@
    "ludashi_score": "1372822",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 4090 Laptop GPU 16GB",
-    "score": 750463,
+    "score": 752418,
     "est": 753152,
     "ratio": 0.549
    }
@@ -366,8 +366,8 @@
    "antutu_clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
    "ludashi_score": "1114009",
    "gpu_equiv": {
-    "name": "NVIDIA TITAN RTX 24GB",
-    "score": 581852,
+    "name": "NVIDIA GeForce RTX 3070 Ti 8GB",
+    "score": 582092,
     "est": 575385,
     "ratio": 0.516
    }
