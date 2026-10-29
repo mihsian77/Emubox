@@ -11985,6 +11985,14 @@ private fun EmulatorDetailDialog(
     var translatedMap by remember { mutableStateOf<Map<String, String?>>(emptyMap()) }
     var translatingTag by remember { mutableStateOf<String?>(null) }
     var showVersionDiff by remember { mutableStateOf(false) }
+    // EmuReady 社区数据：该模拟器在兼容性数据库的报告数（未命中静默隐藏）
+    var emuReadyInfo by remember { mutableStateOf<EmuReadyEmulator?>(null) }
+    var emuReadyLoading by remember { mutableStateOf(true) }
+    LaunchedEffect(entry.name) {
+        emuReadyLoading = true
+        emuReadyInfo = withContext(Dispatchers.IO) { fetchEmuReadyEmulator(entry.name) }
+        emuReadyLoading = false
+    }
 
     if (showVersionDiff) {
         VersionDiffDialog(
@@ -12053,6 +12061,41 @@ private fun EmulatorDetailDialog(
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                }
+                // EmuReady 社区数据入口（按模拟器名匹配，命中才显示）
+                if (!emuReadyLoading && emuReadyInfo != null && emuReadyInfo!!.listingsCount > 0) {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .clickable {
+                                    runCatching {
+                                        context.startActivity(
+                                            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.emuready.com/emulators"))
+                                        )
+                                    }
+                                }
+                                .padding(horizontal = 12.dp, vertical = 10.dp)
+                        ) {
+                            Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                            Spacer(Modifier.width(10.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text("EmuReady 社区数据", style = MaterialTheme.typography.titleSmall)
+                                Text(
+                                    "该模拟器在 EmuReady 有 ${emuReadyInfo!!.listingsCount} 条兼容性报告 · 点击查看推荐设置",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
                 }
                 // UP主网盘直达卡片（社区归档条目）：来源+路径+提取码+打开按钮
                 if (entry.mirrorUrl.isNotBlank()) {

@@ -902,3 +902,35 @@ suspend fun fetchEmuReadyCompatibility(brand: String, model: String): EmuReadyCo
         )
     } catch (_: Exception) { null }
 }
+
+/** EmuReady 模拟器命中（emulators.get 按名称搜索，含社区报告数） */
+data class EmuReadyEmulator(
+    val name: String,
+    val listingsCount: Int
+)
+
+/** 查询模拟器社区数据：emulators.get 按名称模糊匹配，失败/未命中返回 null 静默降级。 */
+suspend fun fetchEmuReadyEmulator(name: String): EmuReadyEmulator? = withContext(Dispatchers.IO) {
+    try {
+        val q = name.takeIf { it.isNotBlank() } ?: return@withContext null
+        val input = "{\"json\":{\"search\":\"$q\",\"limit\":1}}"
+        val url = "https://www.emuready.com/api/mobile/trpc/emulators.get?input=" +
+            java.net.URLEncoder.encode(input, "UTF-8")
+        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (!resp.isSuccessful) return@withContext null
+            val root = org.json.JSONObject(resp.body?.string().orEmpty())
+            val arr = root.optJSONObject("result")?.optJSONObject("data")?.optJSONArray("json") ?: return@withContext null
+            if (arr.length() == 0) return@withContext null
+            val e = arr.getJSONObject(0)
+            EmuReadyEmulator(
+                name = e.optString("name"),
+                listingsCount = e.optJSONObject("_count")?.optInt("listings") ?: 0
+            )
+        }
+    } catch (_: Exception) { null }
+}
