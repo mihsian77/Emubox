@@ -769,3 +769,44 @@ suspend fun fetchCompareCommits(owner: String, repo: String, from: String, to: S
             }
         }.getOrNull()
     }
+
+/** EmuReady 兼容性数据库设备命中（devices.get 模糊匹配品牌+型号） */
+data class EmuReadyDevice(
+    val modelName: String,
+    val brandName: String,
+    val socName: String,
+    val listingsCount: Int
+)
+
+/** 查询 EmuReady 设备兼容性统计：按品牌+型号搜索，未命中返回 null（网络失败静默降级）。 */
+suspend fun fetchEmuReadyDevice(brand: String, model: String): EmuReadyDevice? = withContext(Dispatchers.IO) {
+    try {
+        val query = listOfNotNull(brand.takeIf { it.isNotBlank() }, model.takeIf { it.isNotBlank() })
+            .joinToString(" ").trim()
+        if (query.isBlank()) return@withContext null
+        val input = "{\"json\":{\"search\":\"$query\",\"limit\":1}}"
+        val url = "https://www.emuready.com/api/mobile/trpc/devices.get?input=" +
+            java.net.URLEncoder.encode(input, "UTF-8")
+        val req = okhttp3.Request.Builder().url(url)
+            .header("User-Agent", "EmuHub-CN")
+            .build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (!resp.isSuccessful) return@withContext null
+            val root = org.json.JSONObject(resp.body?.string().orEmpty())
+            val data = root.optJSONObject("result")?.optJSONObject("data")?.optJSONObject("json") ?: return@withContext null
+            val arr = data.optJSONArray("devices") ?: return@withContext null
+            if (arr.length() == 0) return@withContext null
+            val d = arr.getJSONObject(0)
+            EmuReadyDevice(
+                modelName = d.optString("modelName"),
+                brandName = d.optString("brandName"),
+                socName = d.optString("socName"),
+                listingsCount = d.optInt("listingsCount")
+            )
+        }
+    } catch (_: Exception) { null }
+}

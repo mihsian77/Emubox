@@ -5503,13 +5503,15 @@ private fun WrapperCatalogSection(
             ) {
                 Column(Modifier.padding(12.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            Icons.Default.Eco,
-                            contentDescription = null,
-                            modifier = Modifier.size(16.dp),
-                            tint = MaterialTheme.colorScheme.primary
+                        // 与其他分区卡片一致的作者头像（author 为 GitHub 用户名时显示头像，否则首字母兜底）
+                        ProjectAvatar(
+                            logoUrl = "",
+                            owner = item.author,
+                            fallbackName = item.name,
+                            size = 36.dp,
+                            shape = RoundedCornerShape(10.dp)
                         )
-                        Spacer(Modifier.width(6.dp))
+                        Spacer(Modifier.width(8.dp))
                         Text(
                             displayName,
                             style = MaterialTheme.typography.titleSmall,
@@ -5517,6 +5519,20 @@ private fun WrapperCatalogSection(
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f)
                         )
+                        if (item.version > 0) {
+                            Surface(
+                                shape = RoundedCornerShape(6.dp),
+                                color = MaterialTheme.colorScheme.surface
+                            ) {
+                                Text(
+                                    "v${item.version}",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.padding(horizontal = 5.dp, vertical = 1.dp)
+                                )
+                            }
+                            Spacer(Modifier.width(6.dp))
+                        }
                         // 译文/原文切换（记忆到条目级）
                         Text(
                             if (useZh) "译文" else "原文",
@@ -6318,6 +6334,9 @@ fun DeviceScreen(
         }
 
         if (!isLoading && deviceInfo != null) {
+            item(key = "emuready_compat") {
+                EmuReadyCard(deviceInfo = deviceInfo)
+            }
             item(key = "driver_route") {
                 DriverRecommendationCard(
                     deviceInfo = deviceInfo,
@@ -6650,6 +6669,58 @@ fun DeviceScreen(
             DriverDetectionList(
                 systemDevice = vulkanPayload?.devices?.firstOrNull()
             )
+        }
+    }
+}
+
+/** EmuReady 兼容性数据库卡片：按品牌+型号查询社区兼容性报告数，点击跳 EmuReady 全库。 */
+@Composable
+private fun EmuReadyCard(deviceInfo: DeviceInfo) {
+    val context = LocalContext.current
+    var emuDevice by remember { mutableStateOf<EmuReadyDevice?>(null) }
+    var loading by remember { mutableStateOf(true) }
+    var queried by remember { mutableStateOf(false) }
+    LaunchedEffect(deviceInfo.deviceBrand, deviceInfo.deviceModel) {
+        loading = true
+        val brand = deviceInfo.deviceBrand
+        val model = deviceMarketingName(deviceInfo.deviceModel, context)
+        emuDevice = withContext(Dispatchers.IO) { fetchEmuReadyDevice(brand, model) }
+        loading = false
+        queried = true
+    }
+    Card(
+        onClick = {
+            runCatching {
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.emuready.com/devices")))
+            }
+        },
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f))
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            Spacer(Modifier.width(10.dp))
+            Column(modifier = Modifier.weight(1f)) {
+                Text("EmuReady 兼容性", style = MaterialTheme.typography.titleSmall)
+                val sub = when {
+                    loading -> "查询该设备社区兼容性数据…"
+                    emuDevice != null -> "${emuDevice!!.brandName} ${emuDevice!!.modelName} · ${emuDevice!!.socName} · ${emuDevice!!.listingsCount} 条兼容性报告"
+                    queried -> "该设备暂未收录，点击浏览 EmuReady 全库"
+                    else -> "点击打开 EmuReady 兼容性数据库"
+                }
+                Text(
+                    sub,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
