@@ -810,3 +810,95 @@ suspend fun fetchEmuReadyDevice(brand: String, model: String): EmuReadyDevice? =
         }
     } catch (_: Exception) { null }
 }
+
+/** EmuReady 设备兼容性：设备 + 各模拟器平台的兼容得分（getDeviceCompatibility 结果精简） */
+data class EmuReadySysCompat(
+    val name: String,
+    val score: Int,
+    val confidence: String,
+    val dataSource: String,
+    val totalListings: Int,
+    val uniqueGames: Int,
+    val totalVotes: Int,
+    val bestEmulator: String
+)
+data class EmuReadyCompat(
+    val modelName: String,
+    val brandName: String,
+    val socName: String,
+    val systems: List<EmuReadySysCompat>
+)
+
+/** 两步查询 EmuReady 设备兼容得分：先 devices.get 模糊匹配拿精确型号，再 getDeviceCompatibility 取各平台得分。未命中/网络失败返回 null。 */
+suspend fun fetchEmuReadyCompatibility(brand: String, model: String): EmuReadyCompat? = withContext(Dispatchers.IO) {
+    try {
+        val query = listOfNotNull(brand.takeIf { it.isNotBlank() }, model.takeIf { it.isNotBlank() })
+            .joinToString(" ").trim()
+        if (query.isBlank()) return@withContext null
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        fun getJson(url: String): org.json.JSONObject? {
+            val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+            return client.newCall(req).execute().use { resp ->
+                if (!resp.isSuccessful) null else org.json.JSONObject(resp.body?.string().orEmpty())
+            }
+        }
+        // ① 模糊匹配拿精确型号
+        val searchInput = "{\"json\":{\"search\":\"$query\",\"limit\":1}}"
+        val searchUrl = "https://www.emuready.com/api/mobile/trpc/devices.get?input=" +
+            java.net.URLEncoder.encode(searchInput, "UTF-8")
+        val searchRoot = getJson(searchUrl) ?: return@withContext null
+        val devicesArr = searchRoot.optJSONObject("result")?.optJSONObject("data")
+            ?.optJSONObject("json")?.optJSONArray("devices") ?: return@withContext null
+        if (devicesArr.length() == 0) return@withContext null
+        val dev = devicesArr.getJSONObject(0)
+        val exactModel = dev.optString("modelName")
+        val exactBrand = dev.optString("brandName")
+        // ② 精确型号查兼容得分
+        val compatInput = "{\"json\":{\"deviceBrandName\":\"$exactBrand\",\"deviceModelName\":\"$exactModel\"}}"
+        val compatUrl = "https://www.emuready.com/api/mobile/trpc/catalog.getDeviceCompatibility?input=" +
+            java.net.URLEncoder.encode(compatInput, "UTF-8")
+        val compatRoot = getJson(compatUrl) ?: return@withContext null
+        val json = compatRoot.optJSONObject("result")?.optJSONObject("data")?.optJSONObject("json")
+            ?: return@withContext null
+        val deviceObj = json.optJSONObject("device")
+        val systemsArr = json.optJSONArray("systems") ?: org.json.JSONArray()
+        val systems = buildList {
+            for (i in 0 until systemsArr.length()) {
+                val s = systemsArr.getJSONObject(i)
+                val score = s.optInt("compatibilityScore", -1)
+                if (score < 0) continue
+                val emus = s.optJSONArray("emulators") ?: org.json.JSONArray()
+                var best = ""
+                var bestScore = -1
+                for (j in 0 until emus.length()) {
+                    val e = emus.getJSONObject(j)
+                    val es = e.optInt("avgCompatibilityScore", -1)
+                    if (es > bestScore) { bestScore = es; best = e.optString("name") }
+                }
+                val metrics = s.optJSONObject("metrics")
+                add(
+                    EmuReadySysCompat(
+                        name = s.optString("name"),
+                        score = score,
+                        confidence = s.optString("confidence"),
+                        dataSource = s.optString("dataSource"),
+                        totalListings = metrics?.optInt("totalListings") ?: 0,
+                        uniqueGames = metrics?.optInt("uniqueGames") ?: 0,
+                        totalVotes = metrics?.optInt("totalVotes") ?: 0,
+                        bestEmulator = best
+                    )
+                )
+            }
+        }.sortedByDescending { it.score }.take(5)
+        if (systems.isEmpty()) return@withContext null
+        EmuReadyCompat(
+            modelName = deviceObj?.optString("modelName") ?: exactModel,
+            brandName = deviceObj?.optString("brandName") ?: exactBrand,
+            socName = deviceObj?.optString("socName") ?: dev.optString("socName"),
+            systems = systems
+        )
+    } catch (_: Exception) { null }
+}

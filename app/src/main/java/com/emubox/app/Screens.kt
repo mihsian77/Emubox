@@ -6673,18 +6673,19 @@ fun DeviceScreen(
     }
 }
 
-/** EmuReady 兼容性数据库卡片：按品牌+型号查询社区兼容性报告数，点击跳 EmuReady 全库。 */
+/** EmuReady 兼容性数据库卡片：按品牌+型号查设备各模拟器平台兼容得分（0-100），点击跳 EmuReady 全库。
+ *  查询失败/未收录时静默降级为"浏览全库"入口，不影响设备页其他卡片。 */
 @Composable
 private fun EmuReadyCard(deviceInfo: DeviceInfo) {
     val context = LocalContext.current
-    var emuDevice by remember { mutableStateOf<EmuReadyDevice?>(null) }
+    var compat by remember { mutableStateOf<EmuReadyCompat?>(null) }
     var loading by remember { mutableStateOf(true) }
     var queried by remember { mutableStateOf(false) }
     LaunchedEffect(deviceInfo.deviceBrand, deviceInfo.deviceModel) {
         loading = true
         val brand = deviceInfo.deviceBrand
         val model = deviceMarketingName(deviceInfo.deviceModel, context)
-        emuDevice = withContext(Dispatchers.IO) { fetchEmuReadyDevice(brand, model) }
+        compat = withContext(Dispatchers.IO) { fetchEmuReadyCompatibility(brand, model) }
         loading = false
         queried = true
     }
@@ -6698,29 +6699,73 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f))
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-            Spacer(Modifier.width(10.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text("EmuReady 兼容性", style = MaterialTheme.typography.titleSmall)
-                val sub = when {
-                    loading -> "查询该设备社区兼容性数据…"
-                    emuDevice != null -> "${emuDevice!!.brandName} ${emuDevice!!.modelName} · ${emuDevice!!.socName} · ${emuDevice!!.listingsCount} 条兼容性报告"
-                    queried -> "该设备暂未收录，点击浏览 EmuReady 全库"
-                    else -> "点击打开 EmuReady 兼容性数据库"
+        Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                Spacer(Modifier.width(10.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("EmuReady 兼容性", style = MaterialTheme.typography.titleSmall)
+                    val deviceLine = when {
+                        loading -> "查询该设备社区兼容性数据…"
+                        compat != null -> "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}"
+                        queried -> "该设备暂未收录，点击浏览 EmuReady 全库"
+                        else -> "点击打开 EmuReady 兼容性数据库"
+                    }
+                    Text(
+                        deviceLine,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
-                Text(
-                    sub,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
-                )
+                Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (compat != null && compat!!.systems.isNotEmpty()) {
+                Spacer(Modifier.height(8.dp))
+                compat!!.systems.forEachIndexed { idx, s ->
+                    if (idx > 0) HorizontalDivider(
+                        Modifier.padding(vertical = 6.dp),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                            val srcLabel = if (s.dataSource == "soc") "SoC 同源兜底" else "设备实测"
+                            val confLabel = when (s.confidence) { "high" -> "高置信"; "medium" -> "中置信"; else -> "低置信" }
+                            val extra = listOfNotNull(
+                                s.bestEmulator.takeIf { it.isNotBlank() }?.let { "最佳模拟器 $it" },
+                                "$confLabel · $srcLabel",
+                                "${s.totalListings} 条报告".takeIf { s.totalListings > 0 }
+                            ).joinToString("  ·  ")
+                            Text(
+                                extra,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = when {
+                                s.score >= 80 -> Color(0xFF2E7D32)
+                                s.score >= 60 -> Color(0xFFF9A825)
+                                else -> Color(0xFFC62828)
+                            }
+                        ) {
+                            Text(
+                                "${s.score}",
+                                style = MaterialTheme.typography.labelLarge,
+                                color = Color.White,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
