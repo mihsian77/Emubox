@@ -10595,8 +10595,6 @@ fun EmulatorScreen(
         seen.toList()
     }
     val categoryLabel = categoryOrder.associateWith { emulatorCategoryLabel(it) }
-    // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
-    var collapsedCats by remember(entries) { mutableStateOf(categoryOrder.toSet()) }
 
     val filtered = remember(entries, filterCat, sortMode, searchQuery, onlyFav, favorites) {
         val base = if (filterCat == "all") entries
@@ -10616,7 +10614,6 @@ fun EmulatorScreen(
             else -> searched.sortedByDescending { it.downloads + it.stars * 10L }
         }
     }
-    val grouped = remember(filtered) { filtered.groupBy { it.category } }
 
     // 更新动态：全部条目最新版本按时间倒序
     val newsList = remember(entries) {
@@ -10626,15 +10623,13 @@ fun EmulatorScreen(
             .take(10)
     }
 
-    val flatItems = buildList {
-        categoryOrder.forEach { cat ->
-            val group = grouped[cat].orEmpty()
-            if (group.isNotEmpty()) {
-                add("__header__$cat")
-                if (cat !in collapsedCats) group.forEach { add(it) }
-            }
-        }
+    // 精选大卡：综合热度最高条目（方案 C hero 区）
+    val topEntry = remember(entries) {
+        entries.maxByOrNull { it.downloads + it.stars * 10L }
     }
+
+    // 分类切换在顶部 chips（filterCat），列表直接平铺，不再用折叠区块
+    val flatItems = filtered
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -10704,7 +10699,16 @@ fun EmulatorScreen(
         item(key = "news_releases", span = { GridItemSpan(maxLineSpan) }) {
             NewsReleaseCard(items = newsItems)
         }
-        item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
+                topEntry?.let { hero ->
+            item(key = "emulator_hero", span = { GridItemSpan(maxLineSpan) }) {
+                EmulatorHeroCard(
+                    entry = hero,
+                    categoryLabel = categoryLabel[hero.category].orEmpty(),
+                    onClickDetail = { detailEntry = hero }
+                )
+            }
+        }
+item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Spacer(Modifier.weight(1f))
                 IconToggleButton(
@@ -10859,56 +10863,40 @@ fun EmulatorScreen(
                 }
             }
         }
-        flatItems.forEach { item ->
-            if (item is String) {
-                val cat = item.removePrefix("__header__")
-                item(key = "__header_$cat", span = { GridItemSpan(maxLineSpan) }) {
-                    EmulatorSectionHeader(
-                        label = categoryLabel[cat].orEmpty(),
-                        count = grouped[cat].orEmpty().size,
-                        expanded = cat !in collapsedCats,
-                        onClick = {
-                            collapsedCats = if (cat in collapsedCats) collapsedCats - cat
-                            else collapsedCats + cat
-                        }
+        flatItems.forEach { entry ->
+            item(key = entry.id, span = { GridItemSpan(if (viewMode == "list") maxLineSpan else 1) }) {
+                if (viewMode == "list") {
+                    EmulatorListRow(
+                        entry = entry,
+                        isFavorite = entry.id in favorites,
+                        onToggleFavorite = {
+                            favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
+                            saveEmulatorFavs(context, favorites)
+                        },
+                        inCompare = entry.id in compareIds,
+                        onToggleCompare = {
+                            compareIds = if (entry.id in compareIds) compareIds - entry.id
+                            else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                        },
+                        onClickDetail = { detailEntry = entry },
+                        onDownload = onDownload
                     )
-                }
-            } else {
-                val entry = item as EmulatorEntry
-                item(key = entry.id, span = { GridItemSpan(if (viewMode == "list") maxLineSpan else 1) }) {
-                    if (viewMode == "list") {
-                        EmulatorListRow(
-                            entry = entry,
-                            isFavorite = entry.id in favorites,
-                            onToggleFavorite = {
-                                favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
-                                saveEmulatorFavs(context, favorites)
-                            },
-                            inCompare = entry.id in compareIds,
-                            onToggleCompare = {
-                                compareIds = if (entry.id in compareIds) compareIds - entry.id
-                                else if (compareIds.size < 3) compareIds + entry.id else compareIds
-                            },
-                            onClickDetail = { detailEntry = entry },
-                            onDownload = onDownload
-                        )
-                    } else {
-                        EmulatorCard(
-                            entry = entry,
-                            isFavorite = entry.id in favorites,
-                            onToggleFavorite = {
-                                favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
-                                saveEmulatorFavs(context, favorites)
-                            },
-                            inCompare = entry.id in compareIds,
-                            onToggleCompare = {
-                                compareIds = if (entry.id in compareIds) compareIds - entry.id
-                                else if (compareIds.size < 3) compareIds + entry.id else compareIds
-                            },
-                            onClickDetail = { detailEntry = entry },
-                            onDownload = onDownload
-                        )
-                    }
+                } else {
+                    EmulatorCard(
+                        entry = entry,
+                        isFavorite = entry.id in favorites,
+                        onToggleFavorite = {
+                            favorites = if (entry.id in favorites) favorites - entry.id else favorites + entry.id
+                            saveEmulatorFavs(context, favorites)
+                        },
+                        inCompare = entry.id in compareIds,
+                        onToggleCompare = {
+                            compareIds = if (entry.id in compareIds) compareIds - entry.id
+                            else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                        },
+                        onClickDetail = { detailEntry = entry },
+                        onDownload = onDownload
+                    )
                 }
             }
         }
@@ -11608,6 +11596,91 @@ private fun FusionSearchBar(
                 Text(placeholder, color = Fusion.OnSurfaceDim, fontSize = 14.sp)
             }
             inner()
+        }
+    }
+}
+
+@Composable
+private fun EmulatorHeroCard(
+    entry: EmulatorEntry,
+    categoryLabel: String,
+    onClickDetail: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClickDetail),
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        border = BorderStroke(1.dp, Fusion.BorderAlt)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.linearGradient(colors = listOf(Fusion.HeroStart, Fusion.HeroEnd)))
+                .padding(14.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
+            ProjectAvatar(
+                logoUrl = entry.logoUrl,
+                owner = entry.owner,
+                fallbackName = entry.name,
+                size = 56.dp,
+                shape = RoundedCornerShape(14.dp)
+            )
+            Spacer(Modifier.width(14.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    entry.name,
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Fusion.OnSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    "$categoryLabel · ${entry.latestTag.ifBlank { "latest" }}",
+                    fontSize = 12.sp,
+                    color = Fusion.OnSurfaceDim,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Row(
+                    modifier = Modifier.padding(top = 7.dp),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    Text(
+                        "★ ${entry.stars}",
+                        fontSize = 10.sp,
+                        color = Fusion.Amber,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(Color.White.copy(alpha = 0.14f))
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+                    if (entry.latestApkUrl.isNotBlank()) {
+                        Text(
+                            "Android",
+                            fontSize = 10.sp,
+                            color = Fusion.OnSurfaceDim,
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(Color.White.copy(alpha = 0.14f))
+                                .padding(horizontal = 8.dp, vertical = 3.dp)
+                        )
+                    }
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .size(34.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(Color.White),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("›", color = Fusion.HeroStart, fontSize = 16.sp, fontWeight = FontWeight.Black)
+            }
         }
     }
 }
