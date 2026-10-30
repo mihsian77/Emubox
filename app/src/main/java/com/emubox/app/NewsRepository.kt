@@ -15,13 +15,16 @@ data class NewsItem(
     val publishedAt: Long,   // epoch 秒
     val category: String,    // emulator / driver / component / runtime / eco / general
     val summary: String,
-    val type: String = ""    // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
+    val type: String = "",   // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
+    val body: String = ""    // 全文（IT之家正文 / 官方 release 完整日志），详情弹窗阅读用
 ) {
     /** 分类展示名（随 App 语言由 UI 层映射，此处仅存机器分类） */
     val categoryLabel: String
         get() = when (category) {
             "emulator" -> "模拟器"
             "driver" -> "驱动组件"
+            "component" -> "组件"
+            "runtime" -> "运行库"
             "eco" -> "生态"
             else -> "泛科技"
         }
@@ -61,7 +64,8 @@ object NewsRepository {
                             publishedAt = o.optLong("published_at", 0L),
                             category = o.optString("category", "general"),
                             summary = o.optString("summary", "").trim().take(160),
-                            type = o.optString("type", "")
+                            type = o.optString("type", ""),
+                            body = o.optString("body", "")
                         )
                     )
                 }

@@ -55,15 +55,15 @@ ECO_DROP_WORDS = [
 ]
 
 # 官方组件/运行库源：repo / category / type / mode（release=GitHub release）
+# 分类口径（用户定案）：Wine/Box64/Mono/Gecko/Proton 属组件区；DXVK/VKD3D-Proton 属运行库区。
 # 注：wine 官方公告站（winehq.org）对云服务器 IP 有 Cloudflare 拦截（403，实测），
-# wine-mirror/wine 无 release 对象且 tags API 只能取到 2005 旧 tag；mono/gecko 无
-# 稳定公开 GitHub release 源（发布走 NuGet/官网）——以上均为后续接入项。
+# wine-mirror/wine 无 release 对象；wine 本体小版本改走 dl.winehq.org 源码目录源
+# （见 collect_runtime_extra）；wine-staging 有 GitHub release（补完整日志维度）。
 OFFICIAL_SOURCES = [
-    ("doitsujin/dxvk", "component", "DXVK", "release"),
-    ("HansKristian-Work/vkd3d-proton", "component", "VKD3D-Proton", "release"),
+    ("doitsujin/dxvk", "runtime", "DXVK", "release"),
+    ("HansKristian-Work/vkd3d-proton", "runtime", "VKD3D-Proton", "release"),
     ("ptitSeb/box64", "component", "Box64", "release"),
     ("GloriousEggroll/proton-ge-custom", "component", "Proton-GE", "release"),
-    ("ptitSeb/box64", "runtime", "Box64", "release"),
     # 驱动官方源（driver 分类专属；与 driver-registry.json 同名仓库对齐）
     ("K11MCH1/AdrenoToolsDrivers", "driver", "K11MCH1 AdrenoTools", "release"),
     ("StevenMXZ/Adrenotools-Drivers", "driver", "StevenMXZ Adrenotools", "release"),
@@ -105,6 +105,30 @@ def fetch_rss():
 
 def strip_html(s: str) -> str:
     return re.sub(r"<[^>]+>", "", s).replace("&nbsp;", " ").replace("&amp;", "&").strip()
+
+
+def fetch_ithome_body(url: str) -> str:
+    """抓 IT之家文章正文（post_content 容器 → 纯文本），供 App 内全文阅读；失败返回空串。"""
+    try:
+        html = _fetch_text(url, timeout=15)
+        m = re.search(r'<div[^>]*class="[^"]*post_content[^"]*"[^>]*>(.*?)</div>\s*'
+                      r'(?:<div[^>]*class="[^"]*(?:editor|related)[^"]*"|$)', html, re.S)
+        if not m:
+            return ""
+        body = re.sub(r'<script.*?</script>', '', m.group(1), flags=re.S)
+        body = re.sub(r'<br\s*/?>', '\n', body)
+        body = re.sub(r'</p>', '\n', body)
+        body = re.sub(r'<[^>]+>', '', body)
+        for ent in ("&nbsp;", "&amp;", "&quot;", "&#39;", "&lt;", "&gt;"):
+            body = body.replace(ent, {"&nbsp;": " ", "&amp;": "&", "&quot;": '"',
+                                      "&#39;": "'", "&lt;": "<", "&gt;": ">"}[ent])
+        body = re.sub(r'\n{3,}', '\n\n', body).strip()
+        # 去掉导购/关注引导噪声行
+        body = re.sub(r'(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|'
+                      r'扫描二维码|点击上方|加星标|设为星标|IT之家).*$', '', body)
+        return re.sub(r'\n{2,}', '\n', body).strip()[:4000]
+    except Exception:
+        return ""
 
 
 def parse_rss(xml_text: str):
@@ -166,8 +190,8 @@ def _ver_key(name: str):
     return [int(x) for x in re.findall(r"\d+", name)]
 
 
-def _fetch_text(url: str, timeout: int = 25) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
+def _fetch_text(url: str, timeout: int = 25, ua: str = None) -> str:
+    req = urllib.request.Request(url, headers={"User-Agent": ua or UA})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return resp.read().decode("utf-8", "ignore")
 
@@ -189,19 +213,47 @@ def _head_last_modified(url: str) -> int:
 def collect_runtime_extra():
     """Wine / Wine Mono / Wine Gecko / Mono：官方目录源（补官方 GitHub release 缺口）。
 
-    - Wine：dl.winehq.org/wine/source/ 正式版目录（wine-11.0 等 X.0 + rc）。
-      winehq 主站与 gitlab.winehq.org 对云服务器 IP 均有反爬（Cloudflare/Anubis 实测）；
-      wine-mirror/wine GitHub 镜像 tag 只镜像到 1999（wine-991212 等，不可用）；
-      每周小版本无公开可达渠道，只收正式版（低频）。
-    - Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + 文件 HEAD Last-Modified
-      （winehq 主站被拦但 dl 子域不受 Cloudflare 保护，目录无日期列，用文件头时间）。
+    - Wine：dl.winehq.org/wine/source/{10,11}.x/wine-{v}.tar.xz 小版本源码文件源
+      （winehq 主站被 Cloudflare 拦但 dl 子域可直连；小版本 tar.xz 文件名即版本号，
+      HEAD Last-Modified 为发布时间）——覆盖用户"中间小版本缺失"问题。
+    - Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + 文件 HEAD Last-Modified。
     - Mono：download.mono-project.com 官方源码目录（Apache 行内日期）。
-    低频项目（数月~数年一版）标记 low_freq，不受 180 天窗口过滤，只取最新 2~3 条。"""
+    低频项目（数月~数年一版）标记 low_freq，不受 180 天窗口过滤，只取最新 2~3 条。
+    分类口径（用户定案）：Wine/Mono/Gecko 属组件区（category=component）。"""
     items = []
 
-    # Wine + Wine Mono + Wine Gecko：dl.winehq.org 版本目录 + HEAD 日期
+    # Wine 小版本：10.x / 11.x 系列源码文件（wine-{小版本}.tar.xz），取最近若干条
+    # dl.winehq.org 对非浏览器 UA 有响应延迟/超时，此处用浏览器 UA
+    BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+    try:
+        wine_series = []  # (ver, url)
+        for series in ("11.x", "10.x"):
+            html = _fetch_text(f"https://dl.winehq.org/wine/source/{series}/", timeout=20, ua=BROWSER_UA)
+            # href 在页面里每个文件出现两次（图标+文字），set 去重
+            for m in sorted({m for m in re.findall(r'href="(wine-[0-9]+\.[0-9]+\.tar\.xz)"', html)}):
+                ver = m[len("wine-"):-len(".tar.xz")]
+                wine_series.append((ver, f"https://dl.winehq.org/wine/source/{series}/{m}"))
+        # 系列内按版本排序，11.x 全取（每周开发版），10.x 取最近 2 个
+        v11 = sorted([(v, u) for v, u in wine_series if v.startswith("11.")], key=lambda x: _ver_key(x[0]))
+        v10 = sorted([(v, u) for v, u in wine_series if v.startswith("10.")], key=lambda x: _ver_key(x[0]))
+        for v, u in v11[-12:] + v10[-2:]:
+            ts = _head_last_modified(u)
+            uid = hashlib.md5(f"component:Wine:{v}".encode()).hexdigest()[:8]
+            items.append({
+                "id": uid,
+                "title": f"[Wine] {v}",
+                "url": u,
+                "published_at": ts,
+                "category": "component",
+                "type": "Wine",
+                "summary": f"Wine {v} 开发版源码发布（WineHQ 下载站）",
+                "low_freq": True,
+            })
+    except Exception as e:
+        print(f"  Wine 小版本抓取失败: {e}", file=sys.stderr)
+
+    # Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + HEAD 日期（低频）
     for base, typ, pfx in [
-        ("https://dl.winehq.org/wine/source/", "Wine", "wine"),
         ("https://dl.winehq.org/wine/wine-mono/", "Wine Mono", "wine-mono"),
         ("https://dl.winehq.org/wine/wine-gecko/", "Wine Gecko", "wine-gecko"),
     ]:
@@ -209,7 +261,7 @@ def collect_runtime_extra():
             html = _fetch_text(base)
             vers = sorted({m for m in re.findall(r'href="([0-9.]+(?:-rc[0-9]+)?)/"', html)},
                           key=_ver_key)
-            for v in vers[-3:] if typ == "Wine" else vers[-2:]:
+            for v in vers[-2:]:
                 ts = 0
                 try:
                     vhtml = _fetch_text(base + v + "/", timeout=15)
@@ -218,13 +270,13 @@ def collect_runtime_extra():
                         ts = _head_last_modified(base + v + "/" + files[0])
                 except Exception:
                     ts = 0
-                uid = hashlib.md5(f"runtime:{typ}:{v}".encode()).hexdigest()[:8]
+                uid = hashlib.md5(f"component:{typ}:{v}".encode()).hexdigest()[:8]
                 items.append({
                     "id": uid,
                     "title": f"[{typ}] {v}",
                     "url": base + v + "/",
                     "published_at": ts,
-                    "category": "runtime",
+                    "category": "component",
                     "type": typ,
                     "summary": f"{pfx} {v} 官方发布（WineHQ 下载站）",
                     "low_freq": True,
@@ -232,7 +284,7 @@ def collect_runtime_extra():
         except Exception as e:
             print(f"  {typ} 抓取失败: {e}", file=sys.stderr)
 
-    # 4. Mono：官方源码目录（Apache 行内日期）
+    # 4. Mono：官方源码目录（Apache 行内日期）——归组件区
     try:
         html = _fetch_text("https://download.mono-project.com/sources/mono/")
         rows = re.findall(
@@ -246,13 +298,13 @@ def collect_runtime_extra():
             seen[v] = d
         for v in sorted(seen, key=_ver_key)[-2:]:
             ts = iso_epoch_iso(seen[v] + "T12:00:00Z") if seen[v] else 0
-            uid = hashlib.md5(f"runtime:Mono:{v}".encode()).hexdigest()[:8]
+            uid = hashlib.md5(f"component:Mono:{v}".encode()).hexdigest()[:8]
             items.append({
                 "id": uid,
                 "title": f"[Mono] {v}",
                 "url": f"https://download.mono-project.com/sources/mono/mono-{v}.tar.xz",
                 "published_at": ts,
-                "category": "runtime",
+                "category": "component",
                 "type": "Mono",
                 "summary": "Mono 官方源码发布（mono-project.com）",
                 "low_freq": True,
@@ -287,6 +339,8 @@ def collect_official():
                     "category": cat,
                     "type": typ,
                     "summary": summary,
+                    # 完整 release 正文（详情弹窗全文阅读用，超长截断）
+                    "body": body[:8000],
                 })
         except Exception as e:
             print(f"  {repo} 抓取失败: {e}", file=sys.stderr)
@@ -297,10 +351,21 @@ def collect_official():
 def main():
     fresh_ithome = []
     try:
-        for it in parse_rss(fetch_rss()):
+        rss_items = [it for it in parse_rss(fetch_rss())
+                     if classify(it["title"], it["summary"]) != "drop"]
+        # 正文抓取范围：emulator/eco 全量 + general 最新 20 条（控制 CI 时长与反爬频率）
+        body_targets = [it for it in rss_items
+                        if classify(it["title"], it["summary"]) in ("emulator", "eco")][:60]
+        body_targets += [it for it in rss_items
+                         if classify(it["title"], it["summary"]) == "general"][:20]
+        body_map = {}
+        for it in body_targets:
+            b = fetch_ithome_body(it["url"])
+            if b:
+                body_map[it["url"]] = b
+            time.sleep(0.3)
+        for it in rss_items:
             cat = classify(it["title"], it["summary"])
-            if cat == "drop":
-                continue
             h = hashlib.md5(it["url"].encode()).hexdigest()[:8]
             fresh_ithome.append({
                 "id": h,
@@ -309,6 +374,7 @@ def main():
                 "published_at": iso_epoch(it["pubDate"]),
                 "category": cat,
                 "summary": it["summary"][:160],
+                "body": body_map.get(it["url"], ""),
             })
     except Exception as e:
         print(f"IT之家 RSS 抓取失败（继续用官方源）: {e}", file=sys.stderr)
@@ -331,6 +397,7 @@ def main():
     merged = [
         it for it in merged.values()
         if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史 IT之家杂项误标 driver
+        and not (it.get("type") == "Box64" and it.get("category") == "runtime")  # 用户定案：Box64 归组件，清历史 runtime 重复
         and (it.get("low_freq") or
              (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)))
     ]
@@ -341,7 +408,30 @@ def main():
         it for it in merged
         if not it.get("low_freq") or it["id"] in fresh_extra_ids
     ]
+    # 分类口径迁移：DXVK/VKD3D-Proton 归运行库（历史旧数据标 component 的原地迁移，不丢条目）
+    merged = [
+        {**it, "category": "runtime"} if it.get("type") in ("DXVK", "VKD3D-Proton") else it
+        for it in merged
+    ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
+    # 同 url 去重：历史条目分类迁移（component→runtime）与新抓取因 id 含分类名而
+    # 各自生成一条，同一 release 会重复收录。按 url 去重，body 非空（新抓）优先保留。
+    seen_urls = set()
+    dedup = []
+    for it in merged:
+        u = it.get("url") or ""
+        if not u:
+            dedup.append(it)
+            continue
+        if u in seen_urls:
+            for i, prev in enumerate(dedup):
+                if prev.get("url") == u and not prev.get("body") and it.get("body"):
+                    dedup[i] = it
+                    break
+            continue
+        seen_urls.add(u)
+        dedup.append(it)
+    merged = dedup
     # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限
     # 与 IT之家高频条目挤掉（用户反馈组件/运行库资讯时常为空）
     official_items = [it for it in merged if it.get("type")]
@@ -349,7 +439,7 @@ def main():
     merged = (official_items + other_items)[:300]
 
     data = {
-        "version": 2,
+        "version": 3,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "source": "ithome+github-releases+winehq-dl",
         "items": merged,
