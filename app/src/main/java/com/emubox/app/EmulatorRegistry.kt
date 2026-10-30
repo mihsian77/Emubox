@@ -208,7 +208,13 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                 val relArr = obj.optJSONArray("releases")
                 val latest = if (relArr != null && relArr.length() > 0) relArr.getJSONObject(0) else null
                 val assets = latest?.optJSONArray("assets")
-                val firstAsset = if (assets != null && assets.length() > 0) assets.getJSONObject(0) else null
+                // 下载/版本以顶层 latest_* 为准（refresh 脚本已做 APK 过滤）；releases 仅作详情展示。
+                // 顶层缺失时兜底取 releases 中第一个 .apk 资产，避免 aab/tar.gz/debug 污染下载按钮。
+                val firstApk = if (assets != null) {
+                    (0 until assets.length())
+                        .map { assets.getJSONObject(it) }
+                        .firstOrNull { it.optString("name").lowercase().endsWith(".apk") }
+                } else null
                 val repoFull = obj.optString("repo")
                 val slash = repoFull.indexOf('/')
                 add(
@@ -223,12 +229,12 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                         repoUrl = obj.optString("repo_url"),
                         official = obj.optBoolean("official", false),
                         channel = obj.optString("channel", "stable"),
-                        latestTag = latest?.optString("tag") ?: obj.optString("latest_tag"),
-                        latestDate = latest?.optString("date") ?: obj.optString("latest_date"),
-                        latestBody = latest?.optString("body") ?: obj.optString("latest_body"),
-                        latestApkUrl = firstAsset?.optString("url") ?: obj.optString("latest_apk_url"),
-                        latestApkName = firstAsset?.optString("name") ?: "",
-                        latestApkSize = firstAsset?.optLong("size", 0L) ?: 0L,
+                        latestTag = obj.optString("latest_tag").ifBlank { latest?.optString("tag").orEmpty() },
+                        latestDate = obj.optString("latest_date").ifBlank { latest?.optString("date").orEmpty() },
+                        latestBody = obj.optString("latest_body").ifBlank { latest?.optString("body").orEmpty() },
+                        latestApkUrl = obj.optString("latest_apk_url").ifBlank { firstApk?.optString("url").orEmpty() },
+                        latestApkName = obj.optString("latest_apk_name").ifBlank { firstApk?.optString("name").orEmpty() },
+                        latestApkSize = obj.optLong("latest_apk_size", 0L).takeIf { it > 0 } ?: firstApk?.optLong("size", 0L) ?: 0L,
                         pushedAt = obj.optString("pushed_at"),
                         logoUrl = obj.optString("logoUrl"),
                         note = obj.optString("note"),
@@ -251,7 +257,7 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
 
     suspend fun fetchRemoteRegistry(context: android.content.Context): List<EmulatorEntry> = withContext(Dispatchers.IO) {
         // 本地优先：磁盘缓存秒开，弱网/离线不白屏
-        DiskRegistryCache.read(context, "emulator_registry")?.let { cached ->
+        DiskRegistryCache.read(context, "emulator_registry", maxAgeDays = 1)?.let { cached ->
             parseEmulators(JSONObject(cached))?.let { if (it.isNotEmpty()) return@withContext it }
         }
         val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_REGISTRY_URL)
@@ -264,14 +270,14 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                 if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_registry", json.toString()) }
             }
         }.getOrNull()
-        entries ?: DiskRegistryCache.read(context, "emulator_registry")?.let {
+        entries ?: DiskRegistryCache.read(context, "emulator_registry", maxAgeDays = 1)?.let {
             parseEmulators(JSONObject(it))?.takeIf { p -> p.isNotEmpty() }
         } ?: builtInRegistry()
     }
 
     /** 拉取远程社区排行（下载量/更新日志），本地缓存优先，失败回退内置 */
     suspend fun fetchRemoteRanking(context: android.content.Context): List<EmulatorEntry> = withContext(Dispatchers.IO) {
-        DiskRegistryCache.read(context, "emulator_ranking")?.let { cached ->
+        DiskRegistryCache.read(context, "emulator_ranking", maxAgeDays = 1)?.let { cached ->
             parseEmulators(JSONObject(cached))?.let { if (it.isNotEmpty()) return@withContext it }
         }
         val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_RANKING_URL)
@@ -284,7 +290,7 @@ EmulatorEntry(id = "mame4droid", name = "MAME4droid", category = "Arcade Emulato
                 if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_ranking", json.toString()) }
             }
         }.getOrNull()
-        entries ?: DiskRegistryCache.read(context, "emulator_ranking")?.let {
+        entries ?: DiskRegistryCache.read(context, "emulator_ranking", maxAgeDays = 1)?.let {
             parseEmulators(JSONObject(it))?.takeIf { p -> p.isNotEmpty() }
         } ?: builtInRegistry()
     }

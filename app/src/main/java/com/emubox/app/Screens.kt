@@ -1167,7 +1167,7 @@ private fun ProjectAvatar(
     size: Dp = 26.dp,
     shape: Shape = CircleShape
 ) {
-    val avatar = logoUrl.ifBlank { if (owner.isNotBlank()) "https://github.com/$owner.png?size=64" else null }
+    val avatar = logoUrl.ifBlank { if (owner.isNotBlank()) "https://avatars.githubusercontent.com/$owner?size=64" else null }
     RepoAvatar(avatarUrl = avatar, fallbackName = fallbackName, size = size, shape = shape)
 }
 
@@ -12369,7 +12369,7 @@ private fun EmulatorDetailDialog(
                 }
                 HorizontalDivider()
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    if (entry.githubUrl.isNotBlank()) {
+                    if (entry.githubUrl.isNotBlank() && !(entry.dead && !isArchive)) {
                         OutlinedButton(
                             onClick = {
                                 runCatching {
@@ -12381,7 +12381,7 @@ private fun EmulatorDetailDialog(
                             Text(appString(R.string.emulator_repo), maxLines = 1)
                         }
                     }
-                    if (entry.homepage.isNotBlank()) {
+                    if (entry.homepage.isNotBlank() && !(entry.dead && !isArchive)) {
                         OutlinedButton(
                             onClick = {
                                 runCatching {

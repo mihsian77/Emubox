@@ -133,6 +133,8 @@ def main():
             e["latest_body"] = (r0.get("body") or "")[:2000]
             a0s = r0.get("assets") or []
             apks = [a for a in a0s if a.get("name","").lower().endswith(".apk")]
+            # 优先 release 版（debug/测试版兜底），避免下载按钮给 debug 包
+            apks.sort(key=lambda a: 0 if "release" in a.get("name","").lower() else (1 if "debug" not in a.get("name","").lower() else 2))
             if apks:
                 a0 = apks[0]
                 e["latest_apk_name"] = a0["name"]
