@@ -56,6 +56,8 @@ jobs:
     name: 编译检查
     runs-on: ubuntu-latest
     needs: [i18n-check, lint]
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - name: 设置 JDK 17
@@ -65,10 +67,48 @@ jobs:
           distribution: 'temurin'
       - name: 授予 Gradle 执行权限
         run: chmod +x gradlew
+      - name: 配置签名
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            # build.gradle.kts 从 ~/.emubox/keystore/keystore.properties 读取签名配置
+            mkdir -p ~/.emubox/keystore
+            echo "$KEYSTORE_BASE64" | base64 -d > app/release.jks
+            cat > ~/.emubox/keystore/keystore.properties <<EOF
+          storeFile=app/release.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          EOF
+            echo "使用正式签名"
+          else
+            echo "未配置签名 secret，回退 debug 签名"
+          fi
       - name: 编译 Debug APK
         run: ./gradlew assembleDebug --no-daemon
+      - name: 编译 Release APK
+        run: ./gradlew assembleRelease --no-daemon
       - name: 上传 APK 产物
         uses: actions/upload-artifact@v4
         with:
-          name: emubox-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: emubox-apks
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/release/*.apk
+      - name: 发布预发布（小版本号，Releases 置顶）
+        run: |
+          # 预发布版 = 当前 versionName（如 1.3.6），tag 不带 v 前缀，
+          # 与正式版 tag（v1.4.0）区分开，release.yml 的 v* 不会重复触发。
+          # delete+create 让发布时间保持最新 → Releases 列表置顶显示。
+          VER=$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts)
+          echo "预发布版本号: $VER"
+          gh release delete "$VER" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$VER" --prerelease --title "$VER（预发布）" \
+            --notes "CI 自动构建的预发布版（当前开发中的最新构建）。正式版见 v* tag 发布的 Release。" \
+            app/build/outputs/apk/release/app-release.apk
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
