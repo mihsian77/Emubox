@@ -126,7 +126,7 @@ def fetch_ithome_body(url: str) -> str:
         # 去掉导购/关注引导噪声行
         body = re.sub(r'(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|'
                       r'扫描二维码|点击上方|加星标|设为星标|IT之家).*$', '', body)
-        return re.sub(r'\n{2,}', '\n', body).strip()[:4000]
+        return re.sub(r'\n{2,}', '\n', body).strip()[:8000]
     except Exception:
         return ""
 
