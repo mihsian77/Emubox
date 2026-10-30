@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "updated_at": "2026-10-30T14:39:03Z",
+  "updated_at": "2026-10-30T14:58:48Z",
   "source": "ithome+github-releases+winehq-dl",
   "items": [
     {
@@ -412,11 +412,11 @@
       "low_freq": true
     },
     {
-      "id": "3e7dac5f",
+      "id": "ddb56cc5",
       "title": "[Wine Mono] 11.2.1",
       "url": "https://dl.winehq.org/wine/wine-mono/11.2.1/",
       "published_at": 1788540465,
-      "category": "component",
+      "category": "runtime",
       "type": "Wine Mono",
       "summary": "wine-mono 11.2.1 官方发布（WineHQ 下载站）",
       "low_freq": true
@@ -472,11 +472,11 @@
       "body": "• Turnip Driver Unified MrPurple\n• Unified: A6XX, A7XX, A8XX\n• READ IT before all, please.\n━━━━━━ ×✕× ━━━━━━\n- Driver Version: 26.3.0-devel\n- Version: T-30\n- Vulkan Version: 1.4.359\n- By: Mr_Purple_666\n━━━━━━ ×✕× ━━━━━━\n- Changelog:\n•Upstream to latest Mesa source\n•All T-29 changes\n•Partially dropped A710 and A720 for now (there were several bugs related to these devices)\n•Fixed 6XX and A7XX Support\n•Fixed some weird bugs/problems that have in T29\n•Fixed graphical issues present in the test versions (and T-29).\n•Should be way more stable now\n\n• Eden, Vita3K, YUZU (and forks)(12+)  compatible\n• Check Note :)\n• Android 11+\n\nNOTE:\n•Test and tell me feedback\n•No AYN and RP testers showed up to test it in test phase.\n•Big thanks to DiskDVD\n•Thank you for still being here after so long ❤️\n•Just out of time, hope you like this :)\n• You can support me through Kofi:\n- https://ko-fi.com/mrpurple666\n\nACKNOWLEDGMENTS:\n- DiskDVD\n- Whitebelyash\n- Jose Elisio Neves\n- Moham900900\n- BGaming02\n- SweetKillerNyaaa\n- All testers"
     },
     {
-      "id": "bae7f5a1",
+      "id": "e40214d5",
       "title": "[Wine Mono] 11.3.0",
       "url": "https://dl.winehq.org/wine/wine-mono/11.3.0/",
       "published_at": 1786700100,
-      "category": "component",
+      "category": "runtime",
       "type": "Wine Mono",
       "summary": "wine-mono 11.3.0 官方发布（WineHQ 下载站）",
       "low_freq": true
@@ -632,48 +632,66 @@
       "low_freq": true
     },
     {
-      "id": "8e77c99e",
+      "id": "54f2fbfc",
       "title": "[Wine Gecko] 2.47.4",
       "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4/",
       "published_at": 1745234377,
-      "category": "component",
+      "category": "runtime",
       "type": "Wine Gecko",
       "summary": "wine-gecko 2.47.4 官方发布（WineHQ 下载站）",
       "low_freq": true
     },
     {
-      "id": "f21faff6",
+      "id": "39fd6b1e",
       "title": "[Wine Gecko] 2.47.4-rc1",
       "url": "https://dl.winehq.org/wine/wine-gecko/2.47.4-rc1/",
       "published_at": 1745234373,
-      "category": "component",
+      "category": "runtime",
       "type": "Wine Gecko",
       "summary": "wine-gecko 2.47.4-rc1 官方发布（WineHQ 下载站）",
       "low_freq": true
     },
     {
-      "id": "3767eff9",
+      "id": "5fb78151",
       "title": "[Mono] 6.12.0.199",
       "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.199.tar.xz",
       "published_at": 1690459200,
-      "category": "component",
+      "category": "runtime",
       "type": "Mono",
       "summary": "Mono 官方源码发布（mono-project.com）",
       "low_freq": true
     },
     {
-      "id": "8ce2e7ba",
+      "id": "4a4761b8",
       "title": "[Mono] 6.12.0.182",
       "url": "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz",
       "published_at": 1655208000,
-      "category": "component",
+      "category": "runtime",
       "type": "Mono",
       "summary": "Mono 官方源码发布（mono-project.com）",
       "low_freq": true
     },
     {
+      "id": "705fa187",
+      "title": "雷柏 VT4 V2 系列中尺寸抓握鼠标发售：4 版本可选，199 元起",
+      "url": "https://www.ithome.com/1/020/373.htm",
+      "published_at": 1793371154,
+      "category": "general",
+      "summary": "IT之家 10 月 30 日消息，雷柏 (RAPOO) 今日启动了 VT4 V2 系列鼠标的销售。其采用中尺寸模具，三维 123×65×38 (mm)，横卧点宽度 58mm，针对抓握姿势优化。VT4 V2 系列基于 Nordic nRF54 系列主控，在 USB-C 和 2.4GHz 模式下支持 8kHz 回报率，拥有",
+      "body": ""
+    },
+    {
+      "id": "e9c9d8d9",
+      "title": "华为 Mate 60 Pro 处理器型号官方首次“揭秘”，搭载麒麟 9000S 与 30、40、50、90“同台竞技”",
+      "url": "https://www.ithome.com/1/020/372.htm",
+      "published_at": 1793371111,
+      "category": "eco",
+      "summary": "IT之家 10 月 30 日消息，华为官方公众号今日发文，再次介绍了 Mate 90 系列手机近期优惠活动，包括以旧换新至高 800 元补贴、24 期免息和一年期 200GB 云空间等。华为官方在此篇推文中，还将 Mate 30 / 40 / 50 / 60 Pro 的核心配置铺开，集中与 Mate 90 Pro 进行",
+      "body": ""
+    },
+    {
       "id": "3500dc69",
-      "title": "词元工厂硅基流动港股上市申请获证监会备案：注册用户超千万，年内融资近 29 亿元",
+      "title": "词元工厂硅基流动港股上市申请获证监会备案接收：注册用户超千万，年内融资近 29 亿元",
       "url": "https://www.ithome.com/1/020/369.htm",
       "published_at": 1793370173,
       "category": "eco",

@@ -219,7 +219,8 @@ def collect_runtime_extra():
     - Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + 文件 HEAD Last-Modified。
     - Mono：download.mono-project.com 官方源码目录（Apache 行内日期）。
     低频项目（数月~数年一版）标记 low_freq，不受 180 天窗口过滤，只取最新 2~3 条。
-    分类口径（用户定案）：Wine/Mono/Gecko 属组件区（category=component）。"""
+    分类口径（用户定案）：Wine/Box64/Proton-GE 属组件区（category=component，模拟器主体）；
+    Wine Mono / Wine Gecko / Mono / DXVK / VKD3D-Proton 属运行库区（category=runtime，支撑库）。"""
     items = []
 
     # Wine 小版本：10.x / 11.x 系列源码文件（wine-{小版本}.tar.xz），取最近若干条
@@ -270,13 +271,13 @@ def collect_runtime_extra():
                         ts = _head_last_modified(base + v + "/" + files[0])
                 except Exception:
                     ts = 0
-                uid = hashlib.md5(f"component:{typ}:{v}".encode()).hexdigest()[:8]
+                uid = hashlib.md5(f"runtime:{typ}:{v}".encode()).hexdigest()[:8]
                 items.append({
                     "id": uid,
                     "title": f"[{typ}] {v}",
                     "url": base + v + "/",
                     "published_at": ts,
-                    "category": "component",
+                    "category": "runtime",
                     "type": typ,
                     "summary": f"{pfx} {v} 官方发布（WineHQ 下载站）",
                     "low_freq": True,
@@ -284,7 +285,7 @@ def collect_runtime_extra():
         except Exception as e:
             print(f"  {typ} 抓取失败: {e}", file=sys.stderr)
 
-    # 4. Mono：官方源码目录（Apache 行内日期）——归组件区
+    # 4. Mono：官方源码目录（Apache 行内日期）——归运行库区
     try:
         html = _fetch_text("https://download.mono-project.com/sources/mono/")
         rows = re.findall(
@@ -298,13 +299,13 @@ def collect_runtime_extra():
             seen[v] = d
         for v in sorted(seen, key=_ver_key)[-2:]:
             ts = iso_epoch_iso(seen[v] + "T12:00:00Z") if seen[v] else 0
-            uid = hashlib.md5(f"component:Mono:{v}".encode()).hexdigest()[:8]
+            uid = hashlib.md5(f"runtime:Mono:{v}".encode()).hexdigest()[:8]
             items.append({
                 "id": uid,
                 "title": f"[Mono] {v}",
                 "url": f"https://download.mono-project.com/sources/mono/mono-{v}.tar.xz",
                 "published_at": ts,
-                "category": "component",
+                "category": "runtime",
                 "type": "Mono",
                 "summary": "Mono 官方源码发布（mono-project.com）",
                 "low_freq": True,
@@ -408,9 +409,10 @@ def main():
         it for it in merged
         if not it.get("low_freq") or it["id"] in fresh_extra_ids
     ]
-    # 分类口径迁移：DXVK/VKD3D-Proton 归运行库（历史旧数据标 component 的原地迁移，不丢条目）
+    # 分类口径迁移：DXVK/VKD3D-Proton/Wine Mono/Wine Gecko/Mono 归运行库
+    # （历史旧数据标 component 的原地迁移，不丢条目）
     merged = [
-        {**it, "category": "runtime"} if it.get("type") in ("DXVK", "VKD3D-Proton") else it
+        {**it, "category": "runtime"} if it.get("type") in ("DXVK", "VKD3D-Proton", "Wine Mono", "Wine Gecko", "Mono") else it
         for it in merged
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
