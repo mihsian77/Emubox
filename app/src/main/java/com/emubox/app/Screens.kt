@@ -3514,12 +3514,18 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
-                            // GPU 精确型号（Adreno 740）+ 系统版本
-                            val gpuLine = if (deviceInfo.gpuModel != "unknown") {
-                                "Adreno ${deviceInfo.gpuModel}"
-                            } else if (deviceInfo.adrenoSeries != "unknown") {
-                                "Adreno ${deviceInfo.adrenoSeries}"
-                            } else deviceInfo.gpuRenderer
+                            // GPU 精确型号 + 系统版本。
+                            // detectGpuModel 只返回数字（740/720），Mali/Immortalis 直接拼 Adreno 会误导，
+                            // 故先从 renderer 提取厂商型号（Mali-G720 / Immortalis-G720），其余按 Adreno 数字拼。
+                            val rendererStr = deviceInfo.gpuRenderer.orEmpty()
+                            val maliModel = Regex("(?:Mali|Immortalis)[\\s-]*G\\d{3,4}[A-Z]*", RegexOption.IGNORE_CASE)
+                                .find(rendererStr)?.value?.replaceFirstChar { it.uppercase() }
+                            val gpuLine = when {
+                                maliModel != null -> maliModel
+                                deviceInfo.gpuModel != "unknown" -> "Adreno ${deviceInfo.gpuModel}"
+                                deviceInfo.adrenoSeries != "unknown" -> "Adreno ${deviceInfo.adrenoSeries}"
+                                else -> deviceInfo.gpuRenderer
+                            }
                             Text(
                                 "$gpuLine · Android ${deviceInfo.androidVersion}",
                                 style = MaterialTheme.typography.bodySmall,
