@@ -950,12 +950,30 @@ suspend fun fetchEmuReadyEmulator(name: String): EmuReadyEmulator? = withContext
     } catch (_: Exception) { null }
 }
 
-/** 在线翻译（Google 免费端点）：自动检测 → 中文，失败返回 null（UI 兜底显示原文）。
+/** 在线翻译：MyMemory 免费端点（自动检测→中文，国内可达）优先，Google 备用。
  *  仅对正文前 1500 字符翻译（控制请求体积），适合 release 日志/新闻正文。 */
 suspend fun translateText(text: String): String? = withContext(Dispatchers.IO) {
+    val q = text.trim().take(1500)
+    if (q.isBlank()) return@withContext null
+    // 1) MyMemory（免费、Autodetect→zh-CN、国内可直接访问）
     try {
-        val q = text.trim().take(1500)
-        if (q.isBlank()) return@withContext null
+        val url = "https://api.mymemory.translated.net/get?q=" +
+            java.net.URLEncoder.encode(q, "UTF-8") + "&langpair=Autodetect|zh-CN"
+        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(15, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (resp.isSuccessful) {
+                val obj = org.json.JSONObject(resp.body?.string().orEmpty())
+                val t = obj.optJSONObject("responseData")?.optString("translatedText").orEmpty().trim()
+                if (t.isNotBlank()) return@withContext t
+            }
+        }
+    } catch (_: Exception) { }
+    // 2) Google（备用，部分网络可达）
+    try {
         val url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q=" +
             java.net.URLEncoder.encode(q, "UTF-8")
         val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()

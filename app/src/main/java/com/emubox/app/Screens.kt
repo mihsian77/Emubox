@@ -8532,11 +8532,13 @@ private fun DriverReleaseDialog(item: DriverNewsItem, onDismiss: () -> Unit) {
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     } else {
-                        Text(
-                            showText,
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.verticalScroll(rememberScrollState())
-                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text(showText, style = MaterialTheme.typography.bodyMedium)
+                        }
                     }
                 }
                 Row(
@@ -10139,11 +10141,13 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     } else {
-                        Text(
-                            showText,
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.verticalScroll(rememberScrollState())
-                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text(showText, style = MaterialTheme.typography.bodyMedium)
+                        }
                     }
                 }
                 // 底部操作
@@ -10152,7 +10156,7 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (isOfficial && baseText.isNotBlank()) {
+                    if (baseText.isNotBlank()) {
                         OutlinedButton(
                             onClick = {
                                 if (translated == null) {
