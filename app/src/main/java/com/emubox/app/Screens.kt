@@ -10757,6 +10757,28 @@ fun EmulatorScreen(
         item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
             var dynOpen by remember { mutableStateOf(false) }
             Column {
+                // 英雄卡 + 简介 + 摘要：首屏直接可见（不再折叠）
+                topEntry?.let { hero ->
+                    EmulatorHeroCard(
+                        entry = hero,
+                        categoryLabel = categoryLabel[hero.category].orEmpty(),
+                        onClickDetail = { detailEntry = hero }
+                    )
+                }
+                Text(
+                    appString(R.string.emulator_desc),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(horizontal = 4.dp)
+                )
+                val officialCount = entries.count { it.official }
+                val direct = entries.count { it.latestApkUrl.isNotBlank() }
+                Text(
+                    appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(horizontal = 4.dp)
+                )
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -10773,27 +10795,6 @@ fun EmulatorScreen(
                 AnimatedVisibility(visible = dynOpen) {
                     Column(Modifier.padding(top = 8.dp)) {
                         NewsReleaseCard(items = newsItems)
-                        topEntry?.let { hero ->
-                            EmulatorHeroCard(
-                                entry = hero,
-                                categoryLabel = categoryLabel[hero.category].orEmpty(),
-                                onClickDetail = { detailEntry = hero }
-                            )
-                        }
-                        Text(
-                            appString(R.string.emulator_desc),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(horizontal = 4.dp)
-                        )
-                        val officialCount = entries.count { it.official }
-                        val direct = entries.count { it.latestApkUrl.isNotBlank() }
-                        Text(
-                            appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.padding(horizontal = 4.dp)
-                        )
                         if (insights.totalProjects > 0) {
                             EmulatorInsightsCard(insights = insights)
                         }
@@ -11622,7 +11623,7 @@ private fun EmulatorHeroCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Brush.linearGradient(colors = listOf(Fusion.HeroStart, Fusion.HeroEnd)))
-                .padding(14.dp),
+                .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
@@ -11630,14 +11631,14 @@ private fun EmulatorHeroCard(
                 logoUrl = entry.logoUrl,
                 owner = entry.owner,
                 fallbackName = entry.name,
-                size = 56.dp,
-                shape = RoundedCornerShape(14.dp)
+                size = 48.dp,
+                shape = RoundedCornerShape(12.dp)
             )
-            Spacer(Modifier.width(14.dp))
+            Spacer(Modifier.width(10.dp))
             Column(Modifier.weight(1f)) {
                 Text(
                     entry.name,
-                    fontSize = 17.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.ExtraBold,
                     color = Fusion.OnSurface,
                     maxLines = 1,
