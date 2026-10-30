@@ -1,164 +1,164 @@
 {
- "updated_at": "2026-10-29T07:33:18.935Z",
+ "updated_at": "2026-10-30T07:33:04.160Z",
  "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
  "insights": {
   "total_projects": 63,
-  "total_downloads": 64843407,
-  "total_stars": 91099,
+  "total_downloads": 64998256,
+  "total_stars": 91545,
   "trending14": [
    {
     "repo": "the412banner/banners-turnip",
-    "delta": 560279,
-    "date": "2026-10-29"
+    "delta": 568025,
+    "date": "2026-10-30"
    },
    {
     "repo": "brunodev85/winlator",
-    "delta": 308786,
-    "date": "2026-10-29"
+    "delta": 306701,
+    "date": "2026-10-30"
    },
    {
     "repo": "k11mch1/adrenotoolsdrivers",
-    "delta": 243229,
-    "date": "2026-10-29"
+    "delta": 256809,
+    "date": "2026-10-30"
    },
    {
     "repo": "azahar-emu/azahar",
-    "delta": 228296,
-    "date": "2026-10-29"
+    "delta": 222190,
+    "date": "2026-10-30"
    },
    {
     "repo": "stevenmxz/freedreno_turnip-ci",
-    "delta": 131755,
-    "date": "2026-10-29"
+    "delta": 141527,
+    "date": "2026-10-30"
    },
    {
     "repo": "armsx2/armsx2",
-    "delta": 94433,
-    "date": "2026-10-29"
+    "delta": 96126,
+    "date": "2026-10-30"
    },
    {
     "repo": "armsx2/armsx3",
-    "delta": 87704,
-    "date": "2026-10-29"
+    "delta": 86169,
+    "date": "2026-10-30"
    },
    {
     "repo": "stevenmxz/winlator-ludashi",
-    "delta": 70861,
-    "date": "2026-10-29"
+    "delta": 68771,
+    "date": "2026-10-30"
    },
    {
     "repo": "trixarian/nethersx2-patch",
-    "delta": 61919,
-    "date": "2026-10-29"
+    "delta": 61768,
+    "date": "2026-10-30"
    },
    {
     "repo": "producdevity/gamehub-lite",
-    "delta": 59925,
-    "date": "2026-10-29"
+    "delta": 59440,
+    "date": "2026-10-30"
    },
    {
     "repo": "utkarshdalal/gamenative",
-    "delta": 58575,
-    "date": "2026-10-29"
+    "delta": 55881,
+    "date": "2026-10-30"
    },
    {
     "repo": "whitebelyash/adrenotoolsdrivers",
-    "delta": 45870,
-    "date": "2026-10-29"
+    "delta": 46535,
+    "date": "2026-10-30"
    },
    {
     "repo": "whitebelyash/freedreno_turnip-ci",
-    "delta": 45870,
-    "date": "2026-10-29"
+    "delta": 46535,
+    "date": "2026-10-30"
    },
    {
-    "repo": "the412banner/bannerlator",
-    "delta": 38373,
-    "date": "2026-10-29"
+    "repo": "fcharan/winlatormali",
+    "delta": 37921,
+    "date": "2026-10-30"
    },
    {
     "repo": "ashnar2602/x360-mobile---official",
-    "delta": 38341,
-    "date": "2026-10-29"
+    "delta": 37593,
+    "date": "2026-10-30"
    }
   ],
-  "trend_base_date": "2026-10-16",
-  "trend_latest_date": "2026-10-29",
+  "trend_base_date": "2026-10-17",
+  "trend_latest_date": "2026-10-30",
   "category_downloads": [
    {
     "category": "Winlator",
     "label": "Winlator 专区",
-    "downloads": 22761384
+    "downloads": 22799246
    },
    {
     "category": "Nintendo 3DS",
     "label": "任天堂 3DS",
-    "downloads": 17051904
+    "downloads": 17070538
    },
    {
     "category": "Emulator PS2",
     "label": "PS2 模拟",
-    "downloads": 6191941
+    "downloads": 6210619
    },
    {
     "category": "PSVITA",
     "label": "PS Vita",
-    "downloads": 4337603
+    "downloads": 4338178
    },
    {
     "category": "Wii U Emulator",
     "label": "Wii U 模拟",
-    "downloads": 2919322
+    "downloads": 2922011
    },
    {
     "category": "PC Emulator",
     "label": "PC 模拟器",
-    "downloads": 2717286
+    "downloads": 2761765
    },
    {
     "category": "GameHub",
     "label": "GameHub 专区",
-    "downloads": 2582431
+    "downloads": 2591376
    },
    {
     "category": "Emulator PS3",
     "label": "PS3 模拟",
-    "downloads": 2257607
+    "downloads": 2268446
    },
    {
     "category": "GameNative",
     "label": "GameNative 专区",
-    "downloads": 1410370
+    "downloads": 1414282
    },
    {
     "category": "Sega Dreamcast",
     "label": "Dreamcast 模拟",
-    "downloads": 911122
+    "downloads": 912921
    },
    {
     "category": "Xbox",
     "label": "Xbox 模拟",
-    "downloads": 811921
+    "downloads": 817398
    },
    {
     "category": "Nintendo GameCube / Wii",
     "label": "NGC-Wii 模拟",
-    "downloads": 783861
+    "downloads": 784492
    },
    {
     "category": "All In One",
     "label": "聚合前端",
-    "downloads": 102151
+    "downloads": 102467
    },
    {
     "category": "Emulator PS5",
     "label": "PS5 模拟",
-    "downloads": 2811
+    "downloads": 2815
    },
    {
     "category": "GAME",
     "label": "游戏",
-    "downloads": 1693
+    "downloads": 1702
    },
    {
     "category": "Nintendo Switch Emulator",
@@ -442,8 +442,8 @@
    "category": "Winlator",
    "official": true,
    "channel": "stable",
-   "downloads": 16507027,
-   "stars": 19674,
+   "downloads": 16531856,
+   "stars": 19692,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-17T12:17:12Z",
    "homepage": "https://winlator.org",
@@ -703,8 +703,8 @@
      ]
     }
    ],
-   "forks": 1899,
-   "watchers": 362,
+   "forks": 1903,
+   "watchers": 363,
    "created_at": "2023-07-26T13:02:11Z",
    "license": "LGPL-2.1",
    "topics": [],
@@ -720,10 +720,10 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8948678,
-   "stars": 8495,
+   "downloads": 8964773,
+   "stars": 8502,
    "description": "An open-source 3DS emulator project based on Citra.",
-   "pushed_at": "2026-10-28T23:36:03Z",
+   "pushed_at": "2026-10-29T15:41:07Z",
    "homepage": "https://azahar-emu.org/",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/azahar.png",
    "releases": [
@@ -7830,7 +7830,7 @@
      ]
     }
    ],
-   "forks": 779,
+   "forks": 783,
    "watchers": 150,
    "created_at": "2024-03-04T21:08:59Z",
    "license": "GPL-3.0",
@@ -7847,8 +7847,8 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8103226,
-   "stars": 2765,
+   "downloads": 8105765,
+   "stars": 2766,
    "description": "A Nintendo 3DS Emulator",
    "pushed_at": "2025-11-14T11:04:59Z",
    "homepage": "https://citra-emu.org",
@@ -9771,7 +9771,7 @@
    "category": "PSVITA",
    "official": false,
    "channel": "stable",
-   "downloads": 4337603,
+   "downloads": 4338178,
    "stars": 1665,
    "description": "Public releases and CI for the Vita3K Android app",
    "pushed_at": "2025-02-22T16:30:58Z",
@@ -9964,8 +9964,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 3587866,
-   "stars": 2734,
+   "downloads": 3593449,
+   "stars": 2737,
    "description": "Continuation of NetherSX2 based on AetherSX2 4248",
    "pushed_at": "2026-09-22T04:21:34Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -10253,7 +10253,7 @@
      ]
     }
    ],
-   "forks": 101,
+   "forks": 102,
    "watchers": 79,
    "created_at": "2023-08-22T20:28:33Z",
    "license": "Unlicense",
@@ -10277,8 +10277,8 @@
    "category": "Wii U Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 2919322,
-   "stars": 1229,
+   "downloads": 2922011,
+   "stars": 1230,
    "description": "Android port for the cemu emulator",
    "pushed_at": "2026-09-12T17:30:42Z",
    "homepage": "https://cemu.info",
@@ -10434,8 +10434,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1629475,
-   "stars": 1288,
+   "downloads": 1634675,
+   "stars": 1293,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-07T21:29:08Z",
    "homepage": "https://winlator.org",
@@ -10898,7 +10898,7 @@
      ]
     }
    ],
-   "forks": 107,
+   "forks": 108,
    "watchers": 47,
    "created_at": "2025-08-21T16:37:04Z",
    "license": "MIT",
@@ -10915,8 +10915,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 1561681,
-   "stars": 2091,
+   "downloads": 1566404,
+   "stars": 2094,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-07-03T18:28:52Z",
    "homepage": "https://www.emuready.com/",
@@ -11319,7 +11319,7 @@
      ]
     }
    ],
-   "forks": 69,
+   "forks": 70,
    "watchers": 37,
    "created_at": "2025-11-10T17:41:06Z",
    "license": "",
@@ -11343,7 +11343,7 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1550259,
+   "downloads": 1552307,
    "stars": 1223,
    "description": "Continuation of NetherSX2 based on AetherSX2 3668",
    "pushed_at": "2026-06-29T12:01:14Z",
@@ -11511,10 +11511,10 @@
    "category": "GameNative",
    "official": false,
    "channel": "stable",
-   "downloads": 1410370,
-   "stars": 11601,
+   "downloads": 1414282,
+   "stars": 11612,
    "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
-   "pushed_at": "2026-10-29T04:52:49Z",
+   "pushed_at": "2026-10-30T06:37:52Z",
    "homepage": "https://gamenative.app",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/gamenative.png",
    "releases": [
@@ -12710,8 +12710,8 @@
      ]
     }
    ],
-   "forks": 486,
-   "watchers": 68,
+   "forks": 487,
+   "watchers": 67,
    "created_at": "2025-04-21T11:25:27Z",
    "license": "GPL-3.0",
    "topics": [
@@ -12725,6 +12725,303 @@
    "latestDate": "2026-10-22T15:18:21Z"
   },
   {
+   "id": "droid-deck-droiddeck",
+   "name": "DroidDeck",
+   "repo": "Droid-Deck/DroidDeck",
+   "repo_url": "https://github.com/Droid-Deck/DroidDeck",
+   "category": "PC Emulator",
+   "official": false,
+   "channel": "stable",
+   "downloads": 1087372,
+   "stars": 16268,
+   "description": "DroidDeck brings the SteamOS experience to Android",
+   "pushed_at": "2026-10-30T06:16:28Z",
+   "homepage": "",
+   "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
+   "releases": [
+    {
+     "tag": "0.6.7",
+     "name": "DroidDeck 0.6.7",
+     "date": "2026-10-29T19:37:31Z",
+     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n<!-- Maintainer check: Steam, Proton downloads and the games themselves come from Valve and the stores and are not part of DroidDeck; the intro below only claims DroidDeck's own code and the packs it builds. -->\n\n**DroidDeck is 100% open source. No ads. No telemetry. No source withheld.**\n\nSince 0.6.0, **28 people** sent **210 pull requests**, and **15 of them were first-timers**. 68% of the pull requests came from the community. Thank you to everyone who sent code, translations, device testing and bug reports.\n\n**0.6.7 in 30 seconds**\n\n- **One Library** for every game you own, with a new game page and art-first cards\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.6.7/docs/releases/media/0.6.7/library.gif\" width=\"50%\" alt=\"The Library switching source chips, changing the card size and opening the Filter menu\">\n\n- **Handhelds that feel like a native SteamOS install:** Steam’s brightness and volume sliders control the device, volume buttons show Steam’s in",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.6.7-antutu.apk",
+       "size": 76067902,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.7/DroidDeck-0.6.7-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.6.7-ludashi.apk",
+       "size": 76067902,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.7/DroidDeck-0.6.7-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.6.7-pubg.apk",
+       "size": 76067902,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.7/DroidDeck-0.6.7-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.6.7.apk",
+       "size": 76067902,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.7/DroidDeck-0.6.7.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.7/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.6.0",
+     "name": "DroidDeck 0.6.0",
+     "date": "2026-10-22T21:17:26Z",
+     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n<!-- Maintainer check: Steam, Proton downloads and the games themselves come from Valve and the stores and are not part of DroidDeck; the intro below only claims DroidDeck's own code and the packs it builds. -->\n\n> **DroidDeck is 100% open source. No ads. No telemetry. No source withheld.**\n>\n> DroidDeck is a community project in the truest sense. Because all of its code is public, the people who use it can read it, fix it and improve it, and in 0.6.0 you all sure did:\n>\n> **153 pull requests · 23 contributors · 10 first-timers · 73% of the pull requests came from the community.**\n>\n> Thank you to everyone who sent code, translations, device testing and bug reports. Here’s everything we did together for this release:\n\n### Features\n\n<!-- GIF: stores-capsules -->\n<img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.6.0/docs/releases/media/0.6.0/stores-capsules.gif\" width=\"50%\" alt=\"The Epic library switching from cards to the capsule view, the Xbox library, an itch",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.6.0-antutu.apk",
+       "size": 67721071,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.6.0-ludashi.apk",
+       "size": 67721071,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.6.0-pubg.apk",
+       "size": 67721071,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.6.0.apk",
+       "size": 67721071,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.5.0",
+     "name": "DroidDeck 0.5.0",
+     "date": "2026-10-18T15:39:08Z",
+     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n### Features\n\n- Added **SteamVR on Meta Quest 3 and 3S** from the standard APK. Quest headsets are detected automatically and get their own driver defaults. Immersive SteamVR runs through a native OpenXR activity with headset tracking, Touch controllers and haptics, and SteamVR's dashboard and Steam library work in VR. (@xXJSONDeruloXx, @Jagger15, [#642](https://github.com/Droid-Deck/DroidDeck/pull/642), [#910](https://github.com/Droid-Deck/DroidDeck/pull/910), [#733](https://github.com/Droid-Deck/DroidDeck/pull/733), [#853](https://github.com/Droid-Deck/DroidDeck/pull/853), [#905](https://github.com/Droid-Deck/DroidDeck/pull/905))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.5.0/docs/releases/media/0.5.0/quest-steamvr.gif\" width=\"50%\" alt=\"On a Quest 3: DroidDeck in passthrough, Steam Big Picture in the headset, the SteamVR dashboard with a Touch controller, then playing Thumper in VR\">\n\n  <details>\n  <summary>Flat games on Quest with hand tracking</s",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.5.0-antutu.apk",
+       "size": 105925476,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.5.0-ludashi.apk",
+       "size": 105925476,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.5.0-pubg.apk",
+       "size": 105925476,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.5.0.apk",
+       "size": 105925476,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.4.0",
+     "name": "DroidDeck 0.4.0",
+     "date": "2026-10-12T15:07:49Z",
+     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n> **TL;DR for Mr. Sujano specifically**\n>\n> And speaking about the coolest thing since sliced bread, next up here we're talking about DroidDeck.\n>\n> For those who are unaware, DroidDeck brings the SteamOS experience to Android on your Snapdragon powered handheld, and DroidDeck just got a brand new update. Now, they just released version 0.4.0, and taking a look at this update, it seems to be a pretty big one.\n>\n> It says here they've added GOG, Epic Games and Amazon Games integration, with cloud saves for GOG and Epic. On top of that here, they've implemented a fully featured SteamOS-style KDE Plasma desktop with a working \"Return to Gaming Mode.\"\n>\n> Steam's own Steam Link touch controller, with community layouts that back up to Steam Cloud. Support for connecting up to four controllers for local co-op. Native support for the new Steam Controller. And the built-in controls can now pretend to be a Steam Deck, Steam Controller, Xbox 360, DualShock 4 or DualSense.\n>\n> If you're ",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.4.0-antutu.apk",
+       "size": 46558141,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.4.0-ludashi.apk",
+       "size": 46558141,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.4.0-pubg.apk",
+       "size": 46558141,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.4.0.apk",
+       "size": 46558141,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.3.2",
+     "name": "DroidDeck 0.3.2",
+     "date": "2026-10-08T14:59:14Z",
+     "body": "\n### Features\n\n- Added **Keep downloads running** toggle, so Steam downloads can continue when Android sleeps. (@jmarti326, @xXJSONDeruloXx, [#335](https://github.com/Droid-Deck/DroidDeck/pull/335))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.2/docs/releases/media/0.3.2/keep-downloads-running.gif\" width=\"50%\" alt=\"Closing the handheld mid-download and opening it again: Steam's download keeps going while asleep and finishes with the lid shut\">\n\n- Added **Native Steam sleep** with dynamic cloud save and wake movie support. (@xXJSONDeruloXx, [#291](https://github.com/Droid-Deck/DroidDeck/pull/291))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.2/docs/releases/media/0.3.2/native-steam-sleep.gif\" width=\"50%\" alt=\"Octopath Traveler II on the title screen, the device going to sleep, then waking to Steam's wake movie and landing back in the game\">\n\n- Added **Adreno 6xx support**, including Adreno 650 (eg: Retroid Pocket 5). (@unbelievableflavour, @jmarti326, [#320](https://github.com/Droid-Deck/DroidDeck/pull/320), [#326](https://github.com/Droid-Deck/DroidDeck/pull/326))\n- SD cards and external drives can now be used as full **Steam li",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.3.2-antutu.apk",
+       "size": 38253215,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.2-ludashi.apk",
+       "size": 38253215,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.2-pubg.apk",
+       "size": 38253215,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.2.apk",
+       "size": 38253215,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.3.1",
+     "name": "DroidDeck 0.3.1",
+     "date": "2026-10-05T11:53:50Z",
+     "body": "### Steam\n\n- Decky plugins can be imported from ZIP files, with remote binaries verified and installed copies of the same plugin replaced. (@xXJSONDeruloXx, [#79](https://github.com/Droid-Deck/DroidDeck/pull/79))\n- Steam's Internet page shows Android Wi-Fi and cellular connections. Optional Wi-Fi discovery adds network names and nearby networks with Android's Location permission. (@xXJSONDeruloXx, [#150](https://github.com/Droid-Deck/DroidDeck/pull/150))\n- Paste text from the Android clipboard into Steam sessions. (@xXJSONDeruloXx, [#151](https://github.com/Droid-Deck/DroidDeck/pull/151))\n- The Proton selected in Components stays in sync with Steam's default compatibility tool, and runnable builds are marked **Compatible**. Windows titles with a Valve recommendation use that default unless you choose another compatible tool for the game. (@maxjivi05, [#197](https://github.com/Droid-Deck/DroidDeck/pull/197), [#224](https://github.com/Droid-Deck/DroidDeck/pull/224))\n\n### Compatibility and performance\n\n- Choose **esync**, **fsync**, experimental **ntsync**, or **wineserver** for Proton games. These sync options work around Android's missing kernel support, with esync as the default fo",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.3.1-antutu.apk",
+       "size": 36977762,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.1-ludashi.apk",
+       "size": 36977762,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.1-pubg.apk",
+       "size": 36977762,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.1.apk",
+       "size": 36977762,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.3.0",
+     "name": "DroidDeck 0.3.0",
+     "date": "2026-10-02T05:47:51Z",
+     "body": "<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n### Steam, as on a Steam Deck\nSteam's performance overlay goes from level 1 to 4 in Quick Access and shows GPU and CPU load, clocks, temperatures, VRAM and battery. Quick Access shows battery life and time to full, along with all the per game controls a Steam deck has. Decky loader can be installed for plugins and customization. \n\n![Performance overlay at level 4 over Alan Wake's American Nightmare](https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.0/docs/releases/media/0.3.0/mangohud-level4.jpg)\n\n### A Steam Deck controller\nIn Steam sessions the client reads your pad as a Steam Deck controller, with a real Quick Access button and your device's gyro. Games get Steam Input's virtual pads, so your Steam Input layouts reach them. On a dual-screen handheld, the second screen can be the Deck's back grips and trackpads.\n\n<p>\n<img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.0/docs/releases/media/0.3.0/deck-controller.gif\" width=\"60%\" alt=\"Steam's Steam Dec",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.3.0-antutu.apk",
+       "size": 31384620,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.0-ludashi.apk",
+       "size": 31384620,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.0-pubg.apk",
+       "size": 31384620,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.3.0.apk",
+       "size": 31384620,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/SHA256SUMS.txt"
+      }
+     ]
+    },
+    {
+     "tag": "0.2.0",
+     "name": "DroidDeck 0.2.0 (beta)",
+     "date": "2026-09-28T03:20:01Z",
+     "body": "**Valve's native ARM64 Steam client on your Android handheld.** Windows games run through Valve's ARM64 Proton and FEX, and an optional Linux desktop brings emulators along.\n\n![Tapping DroidDeck on the Android home screen and landing in Steam Big Picture](https://raw.githubusercontent.com/Droid-Deck/DroidDeck/main/docs/releases/media/0.2.0/launch-into-steam.gif)\n\n**Needs:** Android 9+, Adreno 730 or newer (or 8xx), ~3 GB free for the runtime (+1.1 GB for Desktop & apps).\n\nThis is the first release from the [Droid-Deck](https://github.com/Droid-Deck) org, so it covers everything DroidDeck does, not just what changed since 0.1.7. `legacy#N` links go to pull requests in [The412Banner/DroidDeck](https://github.com/The412Banner/DroidDeck), from before the move.\n\n---\n\n## Highlights\n\n### Steam, running natively\nThe real Steam client in Big Picture, fetched from Valve on your device. Turn on **Run Steam when DroidDeck starts** and the app icon takes you straight in, as above.\n\n### A launcher made for handhelds\nYour Steam library as a capsule wall, and a Games tab with per-game settings.\n\n<p>\n<img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/main/docs/releases/media/0.2.0/lau",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "DroidDeck-0.2.0-antutu.apk",
+       "size": 30458018,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0-antutu.apk"
+      },
+      {
+       "name": "DroidDeck-0.2.0-ludashi.apk",
+       "size": 30458018,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0-ludashi.apk"
+      },
+      {
+       "name": "DroidDeck-0.2.0-pubg.apk",
+       "size": 30458018,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0-pubg.apk"
+      },
+      {
+       "name": "DroidDeck-0.2.0.apk",
+       "size": 30458018,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0.apk"
+      },
+      {
+       "name": "SHA256SUMS.txt",
+       "size": 364,
+       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/SHA256SUMS.txt"
+      }
+     ]
+    }
+   ],
+   "forks": 841,
+   "watchers": 106,
+   "created_at": "2026-09-24T15:14:13Z",
+   "license": "GPL-3.0",
+   "topics": [],
+   "archived": false,
+   "latestTag": "0.6.7",
+   "latestDate": "2026-10-29T19:37:31Z"
+  },
+  {
    "id": "armsx2-armsx2",
    "name": "ARMSX2",
    "repo": "ARMSX2/ARMSX2",
@@ -12732,13 +13029,62 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1053816,
-   "stars": 2320,
+   "downloads": 1064863,
+   "stars": 2333,
    "description": "ARMSX2 - The Playstation 2 Emulator for ARM64 Platforms",
-   "pushed_at": "2026-10-29T02:54:11Z",
+   "pushed_at": "2026-10-29T19:22:19Z",
    "homepage": "https://armsx2.net/",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/armsx2.png",
    "releases": [
+    {
+     "tag": "nightly-20261029",
+     "name": "ARMSX2 nightly 20261029 (aa52a1fdc7)",
+     "date": "2026-10-29T13:29:45Z",
+     "body": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64-4K-pages.AppImage on most distros, or the 16K one on Asahi Linux and other Apple Silicon kernels (run getconf PAGESIZE if unsure)\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst, a 4K-page build\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst, a 4K-page build (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-Android-arm64.apk",
+       "size": 70635948,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-Android-arm64.apk"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-iOS-arm64.ipa",
+       "size": 40543149,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-iOS-arm64.ipa"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-16K-pages.AppImage",
+       "size": 62953992,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-16K-pages.AppImage"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-4K-pages.AppImage",
+       "size": 62974472,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-4K-pages.AppImage"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-libretro-core.tar.zst",
+       "size": 14344880,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-libretro-core.tar.zst"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-SDL-handheld.tar.zst",
+       "size": 105282938,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-Linux-arm64-SDL-handheld.tar.zst"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-macOS-arm64.tar.xz",
+       "size": 35226164,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-macOS-arm64.tar.xz"
+      },
+      {
+       "name": "ARMSX2-nightly-20261029-aa52a1fdc7-Windows-arm64.zip",
+       "size": 48221969,
+       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261029/ARMSX2-nightly-20261029-aa52a1fdc7-Windows-arm64.zip"
+      }
+     ]
+    },
     {
      "tag": "2.9.1",
      "name": "ARMSX2 2.9.1",
@@ -13103,55 +13449,6 @@
        "name": "ARMSX2-nightly-20261019-83fe4e293f-Windows-arm64.zip",
        "size": 48160208,
        "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261019/ARMSX2-nightly-20261019-83fe4e293f-Windows-arm64.zip"
-      }
-     ]
-    },
-    {
-     "tag": "nightly-20261018",
-     "name": "ARMSX2 nightly 20261018 (0d525e4bdb)",
-     "date": "2026-10-18T14:27:28Z",
-     "body": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64-4K-pages.AppImage on most distros, or the 16K one on Asahi Linux and other Apple Silicon kernels (run getconf PAGESIZE if unsure)\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst, a 4K-page build\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst, a 4K-page build (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly",
-     "prerelease": true,
-     "assets": [
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-Android-arm64.apk",
-       "size": 70680892,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-Android-arm64.apk"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-iOS-arm64.ipa",
-       "size": 40304220,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-iOS-arm64.ipa"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-16K-pages.AppImage",
-       "size": 62638600,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-16K-pages.AppImage"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-4K-pages.AppImage",
-       "size": 62630408,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-4K-pages.AppImage"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-libretro-core.tar.zst",
-       "size": 14237905,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-libretro-core.tar.zst"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-SDL-handheld.tar.zst",
-       "size": 103596974,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-Linux-arm64-SDL-handheld.tar.zst"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-macOS-arm64.tar.xz",
-       "size": 35145036,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-macOS-arm64.tar.xz"
-      },
-      {
-       "name": "ARMSX2-nightly-20261018-0d525e4bdb-Windows-arm64.zip",
-       "size": 48099796,
-       "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261018/ARMSX2-nightly-20261018-0d525e4bdb-Windows-arm64.zip"
       }
      ]
     },
@@ -14900,277 +15197,14 @@
      ]
     }
    ],
-   "forks": 205,
-   "watchers": 48,
+   "forks": 210,
+   "watchers": 47,
    "created_at": "2025-08-11T19:27:45Z",
    "license": "GPL-3.0",
    "topics": [],
    "archived": false,
-   "latestTag": "2.9.1",
-   "latestDate": "2026-10-28T21:26:14Z"
-  },
-  {
-   "id": "droid-deck-droiddeck",
-   "name": "DroidDeck",
-   "repo": "Droid-Deck/DroidDeck",
-   "repo_url": "https://github.com/Droid-Deck/DroidDeck",
-   "category": "PC Emulator",
-   "official": false,
-   "channel": "stable",
-   "downloads": 1044125,
-   "stars": 15911,
-   "description": "DroidDeck brings the SteamOS experience to Android",
-   "pushed_at": "2026-10-29T04:18:10Z",
-   "homepage": "",
-   "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
-   "releases": [
-    {
-     "tag": "0.6.0",
-     "name": "DroidDeck 0.6.0",
-     "date": "2026-10-22T21:17:26Z",
-     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n<!-- Maintainer check: Steam, Proton downloads and the games themselves come from Valve and the stores and are not part of DroidDeck; the intro below only claims DroidDeck's own code and the packs it builds. -->\n\n> **DroidDeck is 100% open source. No ads. No telemetry. No source withheld.**\n>\n> DroidDeck is a community project in the truest sense. Because all of its code is public, the people who use it can read it, fix it and improve it, and in 0.6.0 you all sure did:\n>\n> **153 pull requests · 23 contributors · 10 first-timers · 73% of the pull requests came from the community.**\n>\n> Thank you to everyone who sent code, translations, device testing and bug reports. Here’s everything we did together for this release:\n\n### Features\n\n<!-- GIF: stores-capsules -->\n<img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.6.0/docs/releases/media/0.6.0/stores-capsules.gif\" width=\"50%\" alt=\"The Epic library switching from cards to the capsule view, the Xbox library, an itch",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.6.0-antutu.apk",
-       "size": 67721071,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.6.0-ludashi.apk",
-       "size": 67721071,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.6.0-pubg.apk",
-       "size": 67721071,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.6.0.apk",
-       "size": 67721071,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/DroidDeck-0.6.0.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.6.0/SHA256SUMS.txt"
-      }
-     ]
-    },
-    {
-     "tag": "0.5.0",
-     "name": "DroidDeck 0.5.0",
-     "date": "2026-10-18T15:39:08Z",
-     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n### Features\n\n- Added **SteamVR on Meta Quest 3 and 3S** from the standard APK. Quest headsets are detected automatically and get their own driver defaults. Immersive SteamVR runs through a native OpenXR activity with headset tracking, Touch controllers and haptics, and SteamVR's dashboard and Steam library work in VR. (@xXJSONDeruloXx, @Jagger15, [#642](https://github.com/Droid-Deck/DroidDeck/pull/642), [#910](https://github.com/Droid-Deck/DroidDeck/pull/910), [#733](https://github.com/Droid-Deck/DroidDeck/pull/733), [#853](https://github.com/Droid-Deck/DroidDeck/pull/853), [#905](https://github.com/Droid-Deck/DroidDeck/pull/905))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.5.0/docs/releases/media/0.5.0/quest-steamvr.gif\" width=\"50%\" alt=\"On a Quest 3: DroidDeck in passthrough, Steam Big Picture in the headset, the SteamVR dashboard with a Touch controller, then playing Thumper in VR\">\n\n  <details>\n  <summary>Flat games on Quest with hand tracking</s",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.5.0-antutu.apk",
-       "size": 105925476,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.5.0-ludashi.apk",
-       "size": 105925476,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.5.0-pubg.apk",
-       "size": 105925476,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.5.0.apk",
-       "size": 105925476,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/DroidDeck-0.5.0.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.5.0/SHA256SUMS.txt"
-      }
-     ]
-    },
-    {
-     "tag": "0.4.0",
-     "name": "DroidDeck 0.4.0",
-     "date": "2026-10-12T15:07:49Z",
-     "body": "\n<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n> **TL;DR for Mr. Sujano specifically**\n>\n> And speaking about the coolest thing since sliced bread, next up here we're talking about DroidDeck.\n>\n> For those who are unaware, DroidDeck brings the SteamOS experience to Android on your Snapdragon powered handheld, and DroidDeck just got a brand new update. Now, they just released version 0.4.0, and taking a look at this update, it seems to be a pretty big one.\n>\n> It says here they've added GOG, Epic Games and Amazon Games integration, with cloud saves for GOG and Epic. On top of that here, they've implemented a fully featured SteamOS-style KDE Plasma desktop with a working \"Return to Gaming Mode.\"\n>\n> Steam's own Steam Link touch controller, with community layouts that back up to Steam Cloud. Support for connecting up to four controllers for local co-op. Native support for the new Steam Controller. And the built-in controls can now pretend to be a Steam Deck, Steam Controller, Xbox 360, DualShock 4 or DualSense.\n>\n> If you're ",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.4.0-antutu.apk",
-       "size": 46558141,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.4.0-ludashi.apk",
-       "size": 46558141,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.4.0-pubg.apk",
-       "size": 46558141,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.4.0.apk",
-       "size": 46558141,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/DroidDeck-0.4.0.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.4.0/SHA256SUMS.txt"
-      }
-     ]
-    },
-    {
-     "tag": "0.3.2",
-     "name": "DroidDeck 0.3.2",
-     "date": "2026-10-08T14:59:14Z",
-     "body": "\n### Features\n\n- Added **Keep downloads running** toggle, so Steam downloads can continue when Android sleeps. (@jmarti326, @xXJSONDeruloXx, [#335](https://github.com/Droid-Deck/DroidDeck/pull/335))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.2/docs/releases/media/0.3.2/keep-downloads-running.gif\" width=\"50%\" alt=\"Closing the handheld mid-download and opening it again: Steam's download keeps going while asleep and finishes with the lid shut\">\n\n- Added **Native Steam sleep** with dynamic cloud save and wake movie support. (@xXJSONDeruloXx, [#291](https://github.com/Droid-Deck/DroidDeck/pull/291))\n\n  <img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.2/docs/releases/media/0.3.2/native-steam-sleep.gif\" width=\"50%\" alt=\"Octopath Traveler II on the title screen, the device going to sleep, then waking to Steam's wake movie and landing back in the game\">\n\n- Added **Adreno 6xx support**, including Adreno 650 (eg: Retroid Pocket 5). (@unbelievableflavour, @jmarti326, [#320](https://github.com/Droid-Deck/DroidDeck/pull/320), [#326](https://github.com/Droid-Deck/DroidDeck/pull/326))\n- SD cards and external drives can now be used as full **Steam li",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.3.2-antutu.apk",
-       "size": 38253215,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.2-ludashi.apk",
-       "size": 38253215,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.2-pubg.apk",
-       "size": 38253215,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.2.apk",
-       "size": 38253215,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/DroidDeck-0.3.2.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.2/SHA256SUMS.txt"
-      }
-     ]
-    },
-    {
-     "tag": "0.3.1",
-     "name": "DroidDeck 0.3.1",
-     "date": "2026-10-05T11:53:50Z",
-     "body": "### Steam\n\n- Decky plugins can be imported from ZIP files, with remote binaries verified and installed copies of the same plugin replaced. (@xXJSONDeruloXx, [#79](https://github.com/Droid-Deck/DroidDeck/pull/79))\n- Steam's Internet page shows Android Wi-Fi and cellular connections. Optional Wi-Fi discovery adds network names and nearby networks with Android's Location permission. (@xXJSONDeruloXx, [#150](https://github.com/Droid-Deck/DroidDeck/pull/150))\n- Paste text from the Android clipboard into Steam sessions. (@xXJSONDeruloXx, [#151](https://github.com/Droid-Deck/DroidDeck/pull/151))\n- The Proton selected in Components stays in sync with Steam's default compatibility tool, and runnable builds are marked **Compatible**. Windows titles with a Valve recommendation use that default unless you choose another compatible tool for the game. (@maxjivi05, [#197](https://github.com/Droid-Deck/DroidDeck/pull/197), [#224](https://github.com/Droid-Deck/DroidDeck/pull/224))\n\n### Compatibility and performance\n\n- Choose **esync**, **fsync**, experimental **ntsync**, or **wineserver** for Proton games. These sync options work around Android's missing kernel support, with esync as the default fo",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.3.1-antutu.apk",
-       "size": 36977762,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.1-ludashi.apk",
-       "size": 36977762,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.1-pubg.apk",
-       "size": 36977762,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.1.apk",
-       "size": 36977762,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/DroidDeck-0.3.1.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.1/SHA256SUMS.txt"
-      }
-     ]
-    },
-    {
-     "tag": "0.3.0",
-     "name": "DroidDeck 0.3.0",
-     "date": "2026-10-02T05:47:51Z",
-     "body": "<p align=\"center\"><a href=\"https://discord.gg/JRGAvawjsm\"><img src=\"https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?logo=discord&logoColor=white\" alt=\"Join the DroidDeck Discord\"></a></p>\n\n### Steam, as on a Steam Deck\nSteam's performance overlay goes from level 1 to 4 in Quick Access and shows GPU and CPU load, clocks, temperatures, VRAM and battery. Quick Access shows battery life and time to full, along with all the per game controls a Steam deck has. Decky loader can be installed for plugins and customization. \n\n![Performance overlay at level 4 over Alan Wake's American Nightmare](https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.0/docs/releases/media/0.3.0/mangohud-level4.jpg)\n\n### A Steam Deck controller\nIn Steam sessions the client reads your pad as a Steam Deck controller, with a real Quick Access button and your device's gyro. Games get Steam Input's virtual pads, so your Steam Input layouts reach them. On a dual-screen handheld, the second screen can be the Deck's back grips and trackpads.\n\n<p>\n<img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/0.3.0/docs/releases/media/0.3.0/deck-controller.gif\" width=\"60%\" alt=\"Steam's Steam Dec",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.3.0-antutu.apk",
-       "size": 31384620,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.0-ludashi.apk",
-       "size": 31384620,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.0-pubg.apk",
-       "size": 31384620,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.3.0.apk",
-       "size": 31384620,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/DroidDeck-0.3.0.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.3.0/SHA256SUMS.txt"
-      }
-     ]
-    },
-    {
-     "tag": "0.2.0",
-     "name": "DroidDeck 0.2.0 (beta)",
-     "date": "2026-09-28T03:20:01Z",
-     "body": "**Valve's native ARM64 Steam client on your Android handheld.** Windows games run through Valve's ARM64 Proton and FEX, and an optional Linux desktop brings emulators along.\n\n![Tapping DroidDeck on the Android home screen and landing in Steam Big Picture](https://raw.githubusercontent.com/Droid-Deck/DroidDeck/main/docs/releases/media/0.2.0/launch-into-steam.gif)\n\n**Needs:** Android 9+, Adreno 730 or newer (or 8xx), ~3 GB free for the runtime (+1.1 GB for Desktop & apps).\n\nThis is the first release from the [Droid-Deck](https://github.com/Droid-Deck) org, so it covers everything DroidDeck does, not just what changed since 0.1.7. `legacy#N` links go to pull requests in [The412Banner/DroidDeck](https://github.com/The412Banner/DroidDeck), from before the move.\n\n---\n\n## Highlights\n\n### Steam, running natively\nThe real Steam client in Big Picture, fetched from Valve on your device. Turn on **Run Steam when DroidDeck starts** and the app icon takes you straight in, as above.\n\n### A launcher made for handhelds\nYour Steam library as a capsule wall, and a Games tab with per-game settings.\n\n<p>\n<img src=\"https://raw.githubusercontent.com/Droid-Deck/DroidDeck/main/docs/releases/media/0.2.0/lau",
-     "prerelease": false,
-     "assets": [
-      {
-       "name": "DroidDeck-0.2.0-antutu.apk",
-       "size": 30458018,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0-antutu.apk"
-      },
-      {
-       "name": "DroidDeck-0.2.0-ludashi.apk",
-       "size": 30458018,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0-ludashi.apk"
-      },
-      {
-       "name": "DroidDeck-0.2.0-pubg.apk",
-       "size": 30458018,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0-pubg.apk"
-      },
-      {
-       "name": "DroidDeck-0.2.0.apk",
-       "size": 30458018,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/DroidDeck-0.2.0.apk"
-      },
-      {
-       "name": "SHA256SUMS.txt",
-       "size": 364,
-       "url": "https://github.com/Droid-Deck/DroidDeck/releases/download/0.2.0/SHA256SUMS.txt"
-      }
-     ]
-    }
-   ],
-   "forks": 821,
-   "watchers": 104,
-   "created_at": "2026-09-24T15:14:13Z",
-   "license": "GPL-3.0",
-   "topics": [],
-   "archived": false,
-   "latestTag": "0.6.0",
-   "latestDate": "2026-10-22T21:17:26Z"
+   "latestTag": "nightly-20261029",
+   "latestDate": "2026-10-29T13:29:45Z"
   },
   {
    "id": "longjunyu2-winlator",
@@ -15180,7 +15214,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1027066,
+   "downloads": 1027273,
    "stars": 547,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-01-05T23:43:15Z",
@@ -15349,10 +15383,10 @@
    "category": "Sega Dreamcast",
    "official": false,
    "channel": "stable",
-   "downloads": 911122,
-   "stars": 2629,
+   "downloads": 912921,
+   "stars": 2632,
    "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
-   "pushed_at": "2026-10-28T13:41:21Z",
+   "pushed_at": "2026-10-29T10:17:34Z",
    "homepage": "https://flycast.se",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/flycast.png",
    "releases": [
@@ -15797,8 +15831,8 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 862371,
-   "stars": 1340,
+   "downloads": 862986,
+   "stars": 1343,
    "description": "",
    "pushed_at": "2026-08-29T13:27:19Z",
    "homepage": "",
@@ -15864,7 +15898,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 855681,
+   "downloads": 856311,
    "stars": 1119,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-12-09T22:36:49Z",
@@ -16125,7 +16159,7 @@
      ]
     }
    ],
-   "forks": 73,
+   "forks": 74,
    "watchers": 44,
    "created_at": "2024-09-08T06:33:44Z",
    "license": "MIT",
@@ -16142,7 +16176,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 826232,
+   "downloads": 826541,
    "stars": 696,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-04-19T02:53:06Z",
@@ -17306,7 +17340,7 @@
    "category": "Nintendo GameCube / Wii",
    "official": false,
    "channel": "stable",
-   "downloads": 783861,
+   "downloads": 784492,
    "stars": 283,
    "description": "A fork of Dolphin MMJR2 - with added VBI Skip hack and further fixes ported over from Dolphin Official.",
    "pushed_at": "2025-08-03T09:27:46Z",
@@ -17499,7 +17533,7 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 770113,
+   "downloads": 771695,
    "stars": 752,
    "description": "An experimental Android PS3 emulator, ported and optimized based on RPCS3. ",
    "pushed_at": "2026-10-05T09:08:05Z",
@@ -17843,7 +17877,7 @@
      ]
     }
    ],
-   "forks": 73,
+   "forks": 72,
    "watchers": 24,
    "created_at": "2025-06-03T03:43:05Z",
    "license": "",
@@ -17860,7 +17894,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 766678,
+   "downloads": 767260,
    "stars": 752,
    "description": "",
    "pushed_at": "2026-05-04T03:29:50Z",
@@ -18205,13 +18239,37 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 687809,
-   "stars": 485,
+   "downloads": 691753,
+   "stars": 489,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
-   "pushed_at": "2026-10-22T19:50:30Z",
+   "pushed_at": "2026-10-29T08:14:08Z",
    "homepage": "https://winlator.org",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
    "releases": [
+    {
+     "tag": "bionic-mali-1.2.1",
+     "name": "Winlator Mali Bionic 1.2.1",
+     "date": "2026-10-29T08:08:48Z",
+     "body": "# Winlator Mali Bionic 1.2.1\n\nA fixes-and-polish update to 1.2.\n\n## ⚠️ Reinstall Required!\nUninstall the old version and install 1.2.1 fresh. Back up your game saves first (Save Manager, or copy them out of your container). Containers made on 1.2 are not carried over.\n\n## Fixes for 1.2 user reports\n- Fixed a reboot on some MediaTek Mali phones (JM Mali).\n- Fixed a crash when opening a shortcut.\n- Fixed the controller binding editor.\n- Fixed the stutter when holding D-pad right.\n- Fixed File Manager not opening (it needed `libcdio.dll`), and File Manager hanging on x86_64 Wine (replaced with Bannerlator's newer `wfm.exe` / `winhandler.exe`).\n\n## Graphics and performance\n- **Fullscreen modes:** Fit, Stretch, Fill and Integer, plus screen alignment (Center, Top, Bottom half), set per container or per game and changeable live in Display & Session.\n- **EGL stripes fixed:** CPU writes into the window buffer are flushed per X batch.\n- **ZeroFG:** the default multiplier is capped at the display refresh rate (40 fps on a 60 Hz screen now gives 1.5x instead of 2x with dropped frames).\n- **Gladio:** refuses OpenGL contexts above 3.3 again; libGL stripped of debug info (1.48 MB to 488 KB).\n- *",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_Mali_1.2.1_Bionic_AnTuTu.apk",
+       "size": 445108313,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2.1/Winlator_Mali_1.2.1_Bionic_AnTuTu.apk"
+      },
+      {
+       "name": "Winlator_Mali_1.2.1_Bionic_Ludashi.apk",
+       "size": 445108312,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2.1/Winlator_Mali_1.2.1_Bionic_Ludashi.apk"
+      },
+      {
+       "name": "Winlator_Mali_1.2.1_Bionic_Standard.apk",
+       "size": 445108291,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2.1/Winlator_Mali_1.2.1_Bionic_Standard.apk"
+      }
+     ]
+    },
     {
      "tag": "bionic-mali-1.2",
      "name": "Winlator Mali Bionic 1.2",
@@ -18323,14 +18381,14 @@
      ]
     }
    ],
-   "forks": 40,
+   "forks": 41,
    "watchers": 36,
    "created_at": "2024-07-19T14:24:18Z",
    "license": "MIT",
    "topics": [],
    "archived": false,
-   "latestTag": "bionic-mali-1.2",
-   "latestDate": "2026-10-22T19:34:17Z"
+   "latestTag": "bionic-mali-1.2.1",
+   "latestDate": "2026-10-29T08:08:48Z"
   },
   {
    "id": "armsx2-armsx3",
@@ -18340,13 +18398,42 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 625123,
+   "downloads": 633765,
    "stars": 0,
    "description": "",
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/armsx3.png",
    "releases": [
+    {
+     "tag": "1.5",
+     "name": "ARMSX3 1.5",
+     "date": "2026-10-29T22:25:40Z",
+     "body": "# ARMSX3 1.5\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/38765cdb-b774-440a-9fe3-36e39356b508\" />\n\n## The new RSX, by @kd-11\n\n<img width=\"4000\" height=\"1848\" alt=\"image\" src=\"https://github.com/user-attachments/assets/f8dac8d6-7c25-44f6-a2df-6cffec58eb28\" />\n\nThe RSX is the PS3's graphics chip, and everything you see in a game goes through RPCS3's emulation of it. kd-11 has spent about two years redesigning that emulation from the ground up, and his rewrite landed in RPCS3 this week: 88 changes and more than 13,000 lines of code. ARMSX3 1.5 runs on it.\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/85568ef9-8c18-4551-9418-5fec95afb205\" />\n\n### What changed\n\n- **One giant piece became clear separate parts.** Most of the RSX used to live in a single file that had collected years of unrelated code. It is now split the way the hardware works: one part reads the game's stream of graphics commands, one handles the display (frames, timing and the vblank signal games wait on), and one is the renderer that actually draws, on Vulkan or OpenGL.\n- **The PS3's side and the phone's side are kept apart.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "ARMSX3-1.5-a11-armv8.2-sdk30.apk",
+       "size": 83342668,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.5/ARMSX3-1.5-a11-armv8.2-sdk30.apk"
+      },
+      {
+       "name": "ARMSX3-1.5-a13-armv8.2-sdk33.apk",
+       "size": 83242104,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.5/ARMSX3-1.5-a13-armv8.2-sdk33.apk"
+      },
+      {
+       "name": "ARMSX3-1.5-a15-armv8.2-sdk35.apk",
+       "size": 83216360,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.5/ARMSX3-1.5-a15-armv8.2-sdk35.apk"
+      },
+      {
+       "name": "ARMSX3-1.5-legacy-armv8.1-sdk30.apk",
+       "size": 83342600,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.5/ARMSX3-1.5-legacy-armv8.1-sdk30.apk"
+      }
+     ]
+    },
     {
      "tag": "1.4.2",
      "name": "ARMSX3 1.4.2 ",
@@ -19842,8 +19929,8 @@
    "license": "",
    "topics": [],
    "archived": false,
-   "latestTag": "1.4.2",
-   "latestDate": "2026-10-28T16:39:36Z"
+   "latestTag": "1.5",
+   "latestDate": "2026-10-29T22:25:40Z"
   },
   {
    "id": "ashnar2602-x360-mobile---official",
@@ -19853,7 +19940,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "nightly",
-   "downloads": 578698,
+   "downloads": 581874,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -20023,8 +20110,8 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 490926,
-   "stars": 720,
+   "downloads": 491193,
+   "stars": 721,
    "description": "",
    "pushed_at": "2025-02-28T07:48:56Z",
    "homepage": "",
@@ -20076,8 +20163,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 388774,
-   "stars": 562,
+   "downloads": 390268,
+   "stars": 561,
    "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool smali patching.",
    "pushed_at": "2026-09-28T21:24:36Z",
    "homepage": "",
@@ -21207,7 +21294,7 @@
      ]
     }
    ],
-   "forks": 28,
+   "forks": 29,
    "watchers": 10,
    "created_at": "2026-03-12T11:14:26Z",
    "license": "",
@@ -21224,8 +21311,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 300478,
-   "stars": 550,
+   "downloads": 300674,
+   "stars": 551,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-03-18T01:28:27Z",
    "homepage": "https://winlator.org",
@@ -21312,10 +21399,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 237869,
+   "downloads": 239071,
    "stars": 181,
    "description": "ReVanced patches for GameHub — BannerHub features as true ReVanced patches",
-   "pushed_at": "2026-10-28T23:19:53Z",
+   "pushed_at": "2026-10-29T21:52:22Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerhub-v6.png",
    "releases": [
@@ -23650,7 +23737,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 230036,
+   "downloads": 232333,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -23857,10 +23944,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 214556,
-   "stars": 479,
+   "downloads": 215968,
+   "stars": 485,
    "description": "Bannerlator — run Windows PC games and apps on Android (Wine + Box64/86). A personal, community-driven continuation of the discontinued Winlator Star Bionic project. GitHub Actions builds + releases.",
-   "pushed_at": "2026-10-28T23:33:06Z",
+   "pushed_at": "2026-10-29T18:39:08Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerlator.png",
    "releases": [
@@ -25912,7 +25999,7 @@
      ]
     }
    ],
-   "forks": 60,
+   "forks": 61,
    "watchers": 14,
    "created_at": "2026-06-18T23:19:14Z",
    "license": "GPL-3.0",
@@ -25929,7 +26016,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 177965,
+   "downloads": 178325,
    "stars": 333,
    "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
    "pushed_at": "2025-02-25T11:41:52Z",
@@ -25965,7 +26052,7 @@
      ]
     }
    ],
-   "forks": 18,
+   "forks": 19,
    "watchers": 14,
    "created_at": "2023-06-11T05:58:23Z",
    "license": "",
@@ -25985,8 +26072,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 164172,
-   "stars": 731,
+   "downloads": 165537,
+   "stars": 735,
    "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
    "pushed_at": "2026-10-25T14:12:53Z",
    "homepage": "",
@@ -26374,7 +26461,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 149471,
+   "downloads": 149738,
    "stars": 222,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-12T18:19:19Z",
@@ -27089,7 +27176,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 126511,
+   "downloads": 126765,
    "stars": 440,
    "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
    "pushed_at": "2026-10-06T19:44:52Z",
@@ -28774,8 +28861,8 @@
    "category": "All In One",
    "official": false,
    "channel": "stable",
-   "downloads": 102151,
-   "stars": 4444,
+   "downloads": 102467,
+   "stars": 4450,
    "description": "All in one emulator on Android!",
    "pushed_at": "2026-10-16T09:07:56Z",
    "homepage": "https://lemuroid.com",
@@ -29159,7 +29246,7 @@
      ]
     }
    ],
-   "forks": 390,
+   "forks": 394,
    "watchers": 55,
    "created_at": "2019-12-09T13:55:34Z",
    "license": "GPL-3.0",
@@ -29183,7 +29270,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 100232,
+   "downloads": 100246,
    "stars": 1722,
    "description": "Lightweight unofficial Steam client for Android",
    "pushed_at": "2026-02-23T19:23:53Z",
@@ -29276,7 +29363,7 @@
     }
    ],
    "forks": 52,
-   "watchers": 40,
+   "watchers": 41,
    "created_at": "2024-10-06T00:09:06Z",
    "license": "GPL-3.0",
    "topics": [
@@ -29296,7 +29383,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 99713,
+   "downloads": 99860,
    "stars": 143,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-06-28T11:07:57Z",
@@ -29410,7 +29497,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 92303,
+   "downloads": 92510,
    "stars": 131,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-09-11T15:09:20Z",
@@ -29693,7 +29780,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 84567,
+   "downloads": 84622,
    "stars": 33,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-05-26T11:10:39Z",
@@ -29803,7 +29890,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 70679,
+   "downloads": 70767,
    "stars": 139,
    "description": "Android application for running Steam games with Proton/Wine and Box86/Box64",
    "pushed_at": "2026-04-29T14:09:07Z",
@@ -29884,7 +29971,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 64435,
+   "downloads": 64464,
    "stars": 156,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-08-24T22:41:56Z",
@@ -30096,7 +30183,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 30982,
+   "downloads": 31089,
    "stars": 67,
    "description": "BannerHub Lite — BannerHub features patched into GameHub Lite 5.1.4",
    "pushed_at": "2026-05-21T21:17:38Z",
@@ -30647,7 +30734,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 30777,
+   "downloads": 30796,
    "stars": 28,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-03-22T01:01:37Z",
@@ -30986,7 +31073,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 21746,
+   "downloads": 21755,
    "stars": 77,
    "description": "",
    "pushed_at": "2025-06-26T21:09:18Z",
@@ -31081,7 +31168,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 9136,
+   "downloads": 9246,
    "stars": 222,
    "description": "Windows apps/games emulator for standalone OpenXR headsets.",
    "pushed_at": "2026-10-09T17:41:04Z",
@@ -31169,7 +31256,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 8360,
+   "downloads": 8366,
    "stars": 47,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-01-06T21:01:46Z",
@@ -31227,7 +31314,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 7170,
+   "downloads": 7172,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -31948,7 +32035,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable",
-   "downloads": 3187,
+   "downloads": 3191,
    "stars": 17,
    "description": "",
    "pushed_at": "2026-03-08T18:10:12Z",
@@ -32015,7 +32102,7 @@
    "category": "Emulator PS5",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 2811,
+   "downloads": 2815,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -32068,7 +32155,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 2324,
+   "downloads": 2326,
    "stars": 21,
    "description": "APKs of Pipetto-crypto's Winlator Bionic",
    "pushed_at": "2026-05-07T20:44:04Z",
@@ -32541,7 +32628,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1769,
+   "downloads": 1770,
    "stars": 11,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-17T23:18:19Z",
@@ -33043,7 +33130,7 @@
    "category": "GAME",
    "official": false,
    "channel": "stable",
-   "downloads": 1693,
+   "downloads": 1702,
    "stars": 10,
    "description": "Multiplayer",
    "pushed_at": "2026-04-24T23:48:07Z",
@@ -33096,7 +33183,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 718,
+   "downloads": 719,
    "stars": 2,
    "description": "This version of Gamehub Lite aims to reduce Input Latency and add Interpolated Frames for overall smoothness.",
    "pushed_at": "2026-02-26T13:11:42Z",
@@ -33135,7 +33222,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 543,
+   "downloads": 544,
    "stars": 12,
    "description": "",
    "pushed_at": "2025-10-18T17:16:22Z",

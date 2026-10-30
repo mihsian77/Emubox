@@ -26,7 +26,7 @@
         ]
       },
       "updatedAt": 1792791931000,
-      "stars": 1089
+      "stars": 1100
     },
     {
       "id": "whitebelyash",
@@ -49,7 +49,7 @@
         ]
       },
       "updatedAt": 1789825064000,
-      "stars": 482
+      "stars": 481
     },
     {
       "id": "k11mch1",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5155
+      "stars": 5157
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 879
+      "stars": 880
     },
     {
       "id": "banner",
@@ -123,8 +123,8 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1793243688000,
-      "stars": 215
+      "updatedAt": 1793326725000,
+      "stars": 217
     },
     {
       "id": "s1mptom",
@@ -214,7 +214,7 @@
         ]
       },
       "updatedAt": 1792898915000,
-      "stars": 92
+      "stars": 93
     },
     {
       "id": "panvk-g720",
@@ -234,7 +234,7 @@
         ]
       },
       "updatedAt": 1790289737000,
-      "stars": 46
+      "stars": 45
     }
   ],
   "qualcommSources": [
@@ -247,7 +247,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1089,
+      "stars": 1100,
       "updatedAt": 1792791931000
     },
     {
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5155,
+      "stars": 5157,
       "updatedAt": 1768398883000
     },
     {
@@ -283,7 +283,7 @@
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1793181402000
+      "updatedAt": 1793268324000
     },
     {
       "id": "xnick",
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1793181076000
+      "updatedAt": 1793268739000
     },
     {
       "id": "banner-components",
