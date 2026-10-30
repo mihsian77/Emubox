@@ -3406,15 +3406,10 @@ private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
             )
             Spacer(Modifier.width(10.dp))
             Text(
-                AnnotatedString(
-                    title,
-                    spanStyle = SpanStyle(
-                        brush = Brush.linearGradient(
-                            colors = listOf(Fusion.GradientStart, Fusion.GradientEnd)
-                        )
-                    )
-                ),
-                style = MaterialTheme.typography.titleLarge
+                title,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Fusion.OnSurface
             )
         }
         if (remote != null) {
@@ -9529,15 +9524,10 @@ fun RuntimeLibraryScreen(
         ) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
-                    text = AnnotatedString(
-                        appString(R.string.runtime_title),
-                        spanStyle = SpanStyle(
-                            brush = Brush.linearGradient(
-                                colors = listOf(Fusion.GradientStart, Fusion.GradientEnd)
-                            )
-                        )
-                    ),
-                    style = MaterialTheme.typography.headlineSmall
+                    text = appString(R.string.runtime_title),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Fusion.OnSurface
                 )
                 Text(
                     text = appString(R.string.runtime_subtitle),
@@ -10641,14 +10631,24 @@ fun EmulatorScreen(
         item(key = "emulator_region_header", span = { GridItemSpan(maxLineSpan) }) {
             Column {
                 // 融合风渐变标题
-                Text(
-                    appString(R.string.emulator_region),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Black,
-                    color = Fusion.OnSurface,
-                    modifier = Modifier.padding(horizontal = 2.dp)
-                )
-                Spacer(Modifier.height(10.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 2.dp)
+                ) {
+                    Text(
+                        appString(R.string.emulator_region),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Fusion.OnSurface,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        "${entries.size} 款",
+                        fontSize = 12.sp,
+                        color = Fusion.OnSurfaceFainter
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
                 // 渐变搜索条（方案 C）
                 Row(
                     modifier = Modifier
@@ -10693,102 +10693,6 @@ fun EmulatorScreen(
                             modifier = Modifier.clickable { searchQuery = "" }
                         )
                     }
-                }
-            }
-        }
-        item(key = "news_releases", span = { GridItemSpan(maxLineSpan) }) {
-            NewsReleaseCard(items = newsItems)
-        }
-                topEntry?.let { hero ->
-            item(key = "emulator_hero", span = { GridItemSpan(maxLineSpan) }) {
-                EmulatorHeroCard(
-                    entry = hero,
-                    categoryLabel = categoryLabel[hero.category].orEmpty(),
-                    onClickDetail = { detailEntry = hero }
-                )
-            }
-        }
-item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Spacer(Modifier.weight(1f))
-                IconToggleButton(
-                    checked = onlyFav,
-                    onCheckedChange = { onlyFav = it },
-                    modifier = Modifier.clip(RoundedCornerShape(14.dp))
-                ) {
-                    Icon(
-                        if (onlyFav) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        contentDescription = null,
-                        tint = if (onlyFav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-                IconButton(onClick = { viewMode = if (viewMode == "grid") "list" else "grid" }) {
-                    Icon(
-                        if (viewMode == "grid") Icons.Default.List else Icons.Default.GridView,
-                        contentDescription = null
-                    )
-                }
-            }
-        }
-        if (compareIds.isNotEmpty()) {
-            val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
-            if (compareEntries.isNotEmpty()) {
-                item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
-                    CompareBar(
-                        projects = compareEntries,
-                        onOpen = { showCompare = true },
-                        onClear = { compareIds = emptyList() }
-                    )
-                }
-            }
-        }
-        item(key = "emulator_desc", span = { GridItemSpan(maxLineSpan) }) {
-            Text(
-                appString(R.string.emulator_desc),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
-        }
-        item(key = "emulator_summary", span = { GridItemSpan(maxLineSpan) }) {
-            val officialCount = entries.count { it.official }
-            val direct = entries.count { it.latestApkUrl.isNotBlank() }
-            Text(
-                appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
-        }
-        if (insights.totalProjects > 0) {
-            item(key = "emulator_insights", span = { GridItemSpan(maxLineSpan) }) {
-                EmulatorInsightsCard(insights = insights)
-            }
-            val news = newsList
-            if (news.isNotEmpty()) {
-                item(key = "emulator_news", span = { GridItemSpan(maxLineSpan) }) {
-                    EmulatorNewsCard(news = news, onOpen = { detailEntry = it })
-                }
-            }
-            if (insights.trending14.isNotEmpty()) {
-                item(key = "emulator_trending", span = { GridItemSpan(maxLineSpan) }) {
-                    EmulatorTrendingCard(
-                        trending = insights.trending14,
-                        baseDate = insights.trendBaseDate,
-                        latestDate = insights.trendLatestDate,
-                        entries = entries,
-                        onOpen = { detailEntry = it }
-                    )
-                }
-            }
-            if (insights.categoryDownloads.size > 1) {
-                item(key = "emulator_cat_share", span = { GridItemSpan(maxLineSpan) }) {
-                    EmulatorCategoryShareCard(categories = insights.categoryDownloads)
-                }
-            }
-            if (insights.recipes.isNotEmpty()) {
-                item(key = "emulator_recipes", span = { GridItemSpan(maxLineSpan) }) {
-                    EmulatorRecipesCard(recipes = insights.recipes)
                 }
             }
         }
@@ -10850,6 +10754,106 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             }
         }
         if (flatItems.isEmpty()) {
+        item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
+            var dynOpen by remember { mutableStateOf(false) }
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Fusion.SurfaceAlt)
+                        .border(1.dp, Fusion.BorderAlt, RoundedCornerShape(12.dp))
+                        .clickable { dynOpen = !dynOpen }
+                        .padding(horizontal = 14.dp, vertical = 11.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("更新动态", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Fusion.OnSurface, modifier = Modifier.weight(1f))
+                    Text(if (dynOpen) "收起" else "展开", fontSize = 11.sp, color = Fusion.OnSurfaceFainter)
+                }
+                AnimatedVisibility(visible = dynOpen) {
+                    Column(Modifier.padding(top = 8.dp)) {
+                        NewsReleaseCard(items = newsItems)
+                        topEntry?.let { hero ->
+                            EmulatorHeroCard(
+                                entry = hero,
+                                categoryLabel = categoryLabel[hero.category].orEmpty(),
+                                onClickDetail = { detailEntry = hero }
+                            )
+                        }
+                        Text(
+                            appString(R.string.emulator_desc),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 4.dp)
+                        )
+                        val officialCount = entries.count { it.official }
+                        val direct = entries.count { it.latestApkUrl.isNotBlank() }
+                        Text(
+                            appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(horizontal = 4.dp)
+                        )
+                        if (insights.totalProjects > 0) {
+                            EmulatorInsightsCard(insights = insights)
+                        }
+                        val news = newsList
+                        if (news.isNotEmpty()) {
+                            EmulatorNewsCard(news = news, onOpen = { detailEntry = it })
+                        }
+                        if (insights.trending14.isNotEmpty()) {
+                            EmulatorTrendingCard(
+                                trending = insights.trending14,
+                                baseDate = insights.trendBaseDate,
+                                latestDate = insights.trendLatestDate,
+                                entries = entries,
+                                onOpen = { detailEntry = it }
+                            )
+                        }
+                        if (insights.categoryDownloads.size > 1) {
+                            EmulatorCategoryShareCard(categories = insights.categoryDownloads)
+                        }
+                        if (insights.recipes.isNotEmpty()) {
+                            EmulatorRecipesCard(recipes = insights.recipes)
+                        }
+                    }
+                }
+            }
+        }
+item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(Modifier.weight(1f))
+                IconToggleButton(
+                    checked = onlyFav,
+                    onCheckedChange = { onlyFav = it },
+                    modifier = Modifier.clip(RoundedCornerShape(14.dp))
+                ) {
+                    Icon(
+                        if (onlyFav) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = null,
+                        tint = if (onlyFav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                IconButton(onClick = { viewMode = if (viewMode == "grid") "list" else "grid" }) {
+                    Icon(
+                        if (viewMode == "grid") Icons.Default.List else Icons.Default.GridView,
+                        contentDescription = null
+                    )
+                }
+            }
+        }
+        if (compareIds.isNotEmpty()) {
+            val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
+            if (compareEntries.isNotEmpty()) {
+                item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
+                    CompareBar(
+                        projects = compareEntries,
+                        onOpen = { showCompare = true },
+                        onClear = { compareIds = emptyList() }
+                    )
+                }
+            }
+        }
             item(key = "emulator_loading", span = { GridItemSpan(maxLineSpan) }) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
