@@ -6691,7 +6691,9 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
         loading = true
         val brand = deviceInfo.deviceBrand
         val model = deviceMarketingName(deviceInfo.deviceModel, context)
-        compat = withContext(Dispatchers.IO) { fetchEmuReadyCompatibility(brand, model) }
+        compat = withContext(Dispatchers.IO) {
+            fetchEmuReadyCompatibility(brand, model, deviceInfo.socName)
+        }
         loading = false
         queried = true
     }
@@ -8371,6 +8373,7 @@ private fun DriverNewsCard(
     onRefresh: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
+    var detailItem by remember { mutableStateOf<DriverNewsItem?>(null) }
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -8408,7 +8411,8 @@ private fun DriverNewsCard(
                 shown.forEach { item ->
                     val context = LocalContext.current
                     Row(
-                        modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
+                        modifier = Modifier.fillMaxWidth().clickable { detailItem = item }
+                            .padding(vertical = 5.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         val ownerAvatar = githubOwnerAvatar(item.apiUrl)
@@ -8484,8 +8488,101 @@ private fun DriverNewsCard(
             }
         }
     }
+    detailItem?.let { item ->
+        DriverReleaseDialog(item = item, onDismiss = { detailItem = null })
+    }
 }
 
+/** 驱动 release 日志弹窗（近全屏）：release 标题 + 日期 + 完整更新日志。
+ *  日志英文时点"翻译"自动译成中文，可随时切回原文；"查看原文"跳 GitHub release 页。 */
+@Composable
+private fun DriverReleaseDialog(item: DriverNewsItem, onDismiss: () -> Unit) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var translated by remember { mutableStateOf<String?>(null) }
+    var translating by remember { mutableStateOf(false) }
+    val baseText = item.body.trim()
+    val showText = translated ?: baseText
+    Dialog(onDismissRequest = onDismiss) {
+        Surface(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f),
+            shape = RoundedCornerShape(28.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Column(Modifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 14.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        "${item.sourceName} · ${item.tag}",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    IconButton(onClick = onDismiss) {
+                        Icon(Icons.Default.Close, contentDescription = appString(R.string.cancel))
+                    }
+                }
+                Text(
+                    formatRelativeTime(item.date),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(10.dp))
+                Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                    if (showText.isBlank()) {
+                        Text(
+                            appString(R.string.driver_news_no_log),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else {
+                        Text(
+                            showText,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.verticalScroll(rememberScrollState())
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    if (baseText.isNotBlank()) {
+                        OutlinedButton(
+                            onClick = {
+                                if (translated == null) {
+                                    translating = true
+                                    scope.launch {
+                                        translated = translateText(baseText)
+                                        translating = false
+                                    }
+                                } else {
+                                    translated = null
+                                }
+                            },
+                            enabled = !translating
+                        ) {
+                            Text(
+                                when {
+                                    translating -> appString(R.string.translating)
+                                    translated != null -> appString(R.string.show_original)
+                                    else -> appString(R.string.translate)
+                                }
+                            )
+                        }
+                    }
+                    OutlinedButton(onClick = { openNewsLink(context, item.apiUrl) }) {
+                        Text(appString(R.string.view_original))
+                    }
+                    Spacer(Modifier.weight(1f))
+                    TextButton(onClick = onDismiss) { Text(appString(R.string.close)) }
+                }
+            }
+        }
+    }
+}
 /** 驱动对比入口卡：汇总可用驱动来源数，进入双选对比弹窗 */
 @Composable
 private fun DriverCompareEntryCard(driverCount: Int, onClick: () -> Unit) {
@@ -9930,13 +10027,15 @@ private fun newsCategoryColor(category: String): Color = when (category) {
     else -> Color(0xFF64748B)
 }
 
-/** 新闻条目行：分类标签 + 标题 + 摘要 + 来源·时间 */
+/** 新闻条目行（瘦身版）：分类标签 + 标题 + 一行摘要 + 时间。
+ *  点击打开 App 内全文弹窗（不再跳外链，不暴露来源站名）。
+ *  时间用相对时间，来源名（IT之家等）一律不展示。 */
 @Composable
 private fun NewsRowItem(item: NewsItem) {
-    val context = LocalContext.current
+    var showDetail by remember { mutableStateOf(false) }
     Row(
-        modifier = Modifier.fillMaxWidth().clickable { openNewsLink(context, item.url) }
-            .padding(vertical = 6.dp),
+        modifier = Modifier.fillMaxWidth().clickable { showDetail = true }
+            .padding(vertical = 5.dp),
         verticalAlignment = Alignment.Top
     ) {
         Box(
@@ -9960,22 +10059,236 @@ private fun NewsRowItem(item: NewsItem) {
                 overflow = TextOverflow.Ellipsis
             )
             if (item.summary.isNotBlank()) {
-                Spacer(Modifier.height(2.dp))
+                Spacer(Modifier.height(1.dp))
                 Text(
                     item.summary,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            Spacer(Modifier.height(2.dp))
+            Spacer(Modifier.height(1.dp))
             Text(
-                appString(R.string.news_source_ithome) + " · " +
-                    formatRelativeTimeMs(item.publishedAt * 1000L),
+                formatRelativeTimeMs(item.publishedAt * 1000L),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+        }
+    }
+    if (showDetail) {
+        NewsDetailDialog(item = item, onDismiss = { showDetail = false })
+    }
+}
+
+/** 新闻全文弹窗（近全屏，仿指南窗口）：标题 + 分类 + 时间 + 正文。
+ *  正文优先用 data.body（IT之家正文 / release 完整日志），无全文时回退摘要。
+ *  官方组件/运行库/驱动条目（type 非空）提供"翻译"与"查看原文"按钮；
+ *  IT之家类条目不暴露外链（来源站名不出现在任何位置）。 */
+@Composable
+private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var translated by remember { mutableStateOf<String?>(null) }
+    var translating by remember { mutableStateOf(false) }
+    val isOfficial = item.type.isNotBlank()
+    val baseText = item.body.takeIf { it.isNotBlank() } ?: item.summary
+    val showText = translated ?: baseText
+    Dialog(onDismissRequest = onDismiss) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.92f),
+            shape = RoundedCornerShape(28.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp, vertical = 14.dp)
+            ) {
+                // 顶栏：分类 + 标题 + 关闭
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(newsCategoryColor(item.category).copy(alpha = 0.13f))
+                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            item.categoryLabel,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = newsCategoryColor(item.category)
+                        )
+                    }
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        item.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f),
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    IconButton(onClick = onDismiss) {
+                        Icon(Icons.Default.Close, contentDescription = appString(R.string.cancel))
+                    }
+                }
+                Text(
+                    formatRelativeTimeMs(item.publishedAt * 1000L),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(10.dp))
+                // 正文（可滚动）
+                Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                    if (showText.isBlank()) {
+                        Text(
+                            appString(if (isOfficial) R.string.news_no_body_official else R.string.news_no_body),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else {
+                        Text(
+                            showText,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.verticalScroll(rememberScrollState())
+                        )
+                    }
+                }
+                // 底部操作
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    if (isOfficial && baseText.isNotBlank()) {
+                        OutlinedButton(
+                            onClick = {
+                                if (translated == null) {
+                                    translating = true
+                                    scope.launch {
+                                        translated = translateText(baseText)
+                                        translating = false
+                                    }
+                                } else {
+                                    translated = null
+                                }
+                            },
+                            enabled = !translating
+                        ) {
+                            Text(
+                                when {
+                                    translating -> appString(R.string.translating)
+                                    translated != null -> appString(R.string.show_original)
+                                    else -> appString(R.string.translate)
+                                }
+                            )
+                        }
+                        OutlinedButton(onClick = { openNewsLink(context, item.url) }) {
+                            Text(appString(R.string.view_original))
+                        }
+                    }
+                    Spacer(Modifier.weight(1f))
+                    TextButton(onClick = onDismiss) { Text(appString(R.string.close)) }
+                }
+            }
+        }
+    }
+}
+
+/** 新闻列表弹窗（近全屏）：某分区的完整新闻列表。
+ *  类型筛选 chips（官方组件/运行库）与分页（8/页）都在此弹窗内，
+ *  分区卡片本体只保留 3 条预览，避免占用页面空间。 */
+@Composable
+private fun NewsListDialog(
+    title: String,
+    items: List<NewsItem>,
+    category: String,
+    typeFilter: Boolean,
+    onDismiss: () -> Unit
+) {
+    val catItemsAll = items.filter { it.category == category }
+    val typeOptions = if (typeFilter) {
+        buildList {
+            add("")
+            addAll(catItemsAll.mapNotNull { it.type.takeIf { t -> t.isNotBlank() } }.distinct())
+        }
+    } else emptyList()
+    var selectedType by remember(category, typeFilter) { mutableStateOf("") }
+    var page by remember { mutableStateOf(0) }
+    val catItems = if (selectedType.isNotBlank()) {
+        catItemsAll.filter { it.type == selectedType }
+    } else catItemsAll
+    Dialog(onDismissRequest = onDismiss) {
+        Surface(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f),
+            shape = RoundedCornerShape(28.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 14.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Default.Article, contentDescription = null, modifier = Modifier.size(18.dp),
+                        tint = MaterialTheme.colorScheme.primary)
+                    Spacer(Modifier.width(6.dp))
+                    Text(title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
+                    IconButton(onClick = onDismiss) {
+                        Icon(Icons.Default.Close, contentDescription = appString(R.string.cancel))
+                    }
+                }
+                Spacer(Modifier.height(4.dp))
+                if (typeOptions.size > 1) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        typeOptions.forEach { t ->
+                            val label = if (t.isBlank()) appString(R.string.news_type_all) else t
+                            val selected = t == selectedType
+                            SuggestionChip(
+                                onClick = { selectedType = t; page = 0 },
+                                label = { Text(label, style = MaterialTheme.typography.labelSmall) },
+                                colors = SuggestionChipDefaults.suggestionChipColors(
+                                    containerColor = if (selected) {
+                                        MaterialTheme.colorScheme.primaryContainer
+                                    } else {
+                                        MaterialTheme.colorScheme.surfaceVariant
+                                    },
+                                    labelColor = if (selected) {
+                                        MaterialTheme.colorScheme.onPrimaryContainer
+                                    } else {
+                                        MaterialTheme.colorScheme.onSurfaceVariant
+                                    }
+                                )
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(4.dp))
+                }
+                if (catItems.isEmpty()) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        appString(R.string.news_empty),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                } else {
+                    val pageSize = 8
+                    val maxPage = ((catItems.size + pageSize - 1) / pageSize).coerceAtMost(20)
+                    val current = page.coerceIn(0, maxPage - 1)
+                    val from = current * pageSize
+                    val to = ((current + 1) * pageSize).coerceAtMost(catItems.size)
+                    LazyColumn(modifier = Modifier.weight(1f)) {
+                        items(catItems.subList(from, to), key = { it.id }) { item ->
+                            NewsRowItem(item)
+                            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                        }
+                    }
+                    NewsPager(total = catItems.size, page = current, pageSize = pageSize, onPage = { page = it })
+                }
+            }
         }
     }
 }
@@ -10035,12 +10348,6 @@ private fun NewsZoneCard(
     /** 官方组件/运行库条目按 type 筛选（组件类型 chips） */
     typeFilter: Boolean = false
 ) {
-    // 来源标签：组件/运行库/驱动资讯来自各官方 GitHub releases，不再统一标"IT之家"
-    val sourceLabel = if (category in setOf("component", "runtime", "driver")) {
-        appString(R.string.news_source_official)
-    } else {
-        appString(R.string.news_source_ithome)
-    }
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -10050,7 +10357,7 @@ private fun NewsZoneCard(
                 Text(title, style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Text(
-                    sourceLabel,
+                    "共 ${items?.count { it.category == category } ?: 0} 条",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -10075,52 +10382,11 @@ private fun NewsZoneCard(
                     )
                 }
                 else -> {
-                    val pageSize = 8
+                    // 卡片内只展示 3 条预览（瘦身，不再整页铺 8 条 + 分页条），
+                    // 完整列表/类型筛选/分页都在"查看全部"打开的列表弹窗里。
                     val catItemsAll = items.filter { it.category == category }
-                    // 官方组件/运行库：组件类型筛选 chips（全部 + 各 type）
-                    val typeOptions = if (typeFilter) {
-                        buildList {
-                            add("")
-                            addAll(catItemsAll.mapNotNull { it.type.takeIf { t -> t.isNotBlank() } }.distinct())
-                        }
-                    } else emptyList()
-                    var selectedType by remember(category, typeFilter) { mutableStateOf("") }
-                    val catItems = if (selectedType.isNotBlank()) {
-                        catItemsAll.filter { it.type == selectedType }
-                    } else catItemsAll
-                    var page by remember { mutableStateOf(0) }
-                    if (typeFilter && typeOptions.size > 1) {
-                        // 类型筛选行：横向滚动 chips
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .horizontalScroll(rememberScrollState()),
-                            horizontalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            typeOptions.forEach { t ->
-                                val label = if (t.isBlank()) appString(R.string.news_type_all) else t
-                                val selected = t == selectedType
-                                SuggestionChip(
-                                    onClick = { selectedType = t; page = 0 },
-                                    label = { Text(label, style = MaterialTheme.typography.labelSmall) },
-                                    colors = SuggestionChipDefaults.suggestionChipColors(
-                                        containerColor = if (selected) {
-                                            MaterialTheme.colorScheme.primaryContainer
-                                        } else {
-                                            MaterialTheme.colorScheme.surfaceVariant
-                                        },
-                                        labelColor = if (selected) {
-                                            MaterialTheme.colorScheme.onPrimaryContainer
-                                        } else {
-                                            MaterialTheme.colorScheme.onSurfaceVariant
-                                        }
-                                    )
-                                )
-                            }
-                        }
-                        Spacer(Modifier.height(4.dp))
-                    }
-                    if (catItems.isEmpty()) {
+                    var showList by remember(category, typeFilter) { mutableStateOf(false) }
+                    if (catItemsAll.isEmpty()) {
                         Spacer(Modifier.height(8.dp))
                         Text(
                             appString(R.string.news_empty),
@@ -10128,23 +10394,43 @@ private fun NewsZoneCard(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     } else {
-                        val maxPage = ((catItems.size + pageSize - 1) / pageSize).coerceAtMost(20)
-                        val current = page.coerceIn(0, maxPage - 1)
-                        catItems.subList(current * pageSize, ((current + 1) * pageSize).coerceAtMost(catItems.size))
-                            .forEachIndexed { i, item ->
-                                NewsRowItem(item)
-                                if (i != catItems.subList(current * pageSize, ((current + 1) * pageSize).coerceAtMost(catItems.size)).lastIndex) {
-                                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
-                                }
+                        val preview = catItemsAll.take(3)
+                        preview.forEachIndexed { i, item ->
+                            NewsRowItem(item)
+                            if (i != preview.lastIndex) {
+                                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
                             }
-                        NewsPager(total = catItems.size, page = current, pageSize = pageSize, onPage = { page = it })
-                        if (catItems.size > maxPage * pageSize) {
-                            Text(
-                                "已展示前 ${maxPage * pageSize} 条（共 ${catItems.size} 条）",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
                         }
+                        if (catItemsAll.size > 3) {
+                            Spacer(Modifier.height(2.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth().clickable { showList = true }
+                                    .padding(vertical = 6.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    "查看全部 ${catItemsAll.size} 条",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                Icon(
+                                    Icons.Default.ExpandMore,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                    }
+                    if (showList) {
+                        NewsListDialog(
+                            title = title,
+                            items = items,
+                            category = category,
+                            typeFilter = typeFilter,
+                            onDismiss = { showList = false }
+                        )
                     }
                     if (showGeneralFold) {
                         var generalExpanded by remember { mutableStateOf(false) }
@@ -10185,6 +10471,7 @@ private fun NewsZoneCard(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             } else {
+                                val pageSize = 8
                                 val gMax = ((gItems.size + pageSize - 1) / pageSize).coerceAtMost(20)
                                 val gCur = gPage.coerceIn(0, gMax - 1)
                                 gItems.subList(gCur * pageSize, ((gCur + 1) * pageSize).coerceAtMost(gItems.size))
@@ -10231,11 +10518,44 @@ private fun NewsReleaseCard(items: List<NewsItem>?) {
                     )
                 }
                 else -> {
-                    items.filter { it.category == "emulator" }.take(5).forEachIndexed { i, item ->
+                    val emuItems = items.filter { it.category == "emulator" }
+                    var showList by remember { mutableStateOf(false) }
+                    val preview = emuItems.take(3)
+                    preview.forEachIndexed { i, item ->
                         NewsRowItem(item)
-                        if (i != 4) {
+                        if (i != preview.lastIndex) {
                             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
                         }
+                    }
+                    if (emuItems.size > 3) {
+                        Spacer(Modifier.height(2.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth().clickable { showList = true }
+                                .padding(vertical = 6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "查看全部 ${emuItems.size} 条",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.weight(1f)
+                            )
+                            Icon(
+                                Icons.Default.ExpandMore,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
+                    if (showList) {
+                        NewsListDialog(
+                            title = appString(R.string.news_new_releases),
+                            items = items,
+                            category = "emulator",
+                            typeFilter = false,
+                            onDismiss = { showList = false }
+                        )
                     }
                 }
             }
@@ -10304,11 +10624,6 @@ fun EmulatorScreen(
             .filter { it.latestDate.isNotBlank() && it.latestTag.isNotBlank() }
             .sortedByDescending { it.latestDate }
             .take(10)
-    }
-
-    // 精选大卡：综合热度最高条目（方案 C hero 区）
-    val topEntry = remember(entries) {
-        entries.maxByOrNull { it.downloads + it.stars * 10L }
     }
 
     val flatItems = buildList {
@@ -10388,15 +10703,6 @@ fun EmulatorScreen(
         }
         item(key = "news_releases", span = { GridItemSpan(maxLineSpan) }) {
             NewsReleaseCard(items = newsItems)
-        }
-        topEntry?.let { hero ->
-            item(key = "emulator_hero", span = { GridItemSpan(maxLineSpan) }) {
-                EmulatorHeroCard(
-                    entry = hero,
-                    categoryLabel = categoryLabel[hero.category].orEmpty(),
-                    onClickDetail = { detailEntry = hero }
-                )
-            }
         }
         item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -11302,91 +11608,6 @@ private fun FusionSearchBar(
                 Text(placeholder, color = Fusion.OnSurfaceDim, fontSize = 14.sp)
             }
             inner()
-        }
-    }
-}
-
-@Composable
-private fun EmulatorHeroCard(
-    entry: EmulatorEntry,
-    categoryLabel: String,
-    onClickDetail: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClickDetail),
-        shape = RoundedCornerShape(18.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-        border = BorderStroke(1.dp, Fusion.BorderAlt)
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Brush.linearGradient(colors = listOf(Fusion.HeroStart, Fusion.HeroEnd)))
-                .padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // 项目图标统一链路：App 徽标（logoUrl）→ 作者头像 → 首字母兜底
-            ProjectAvatar(
-                logoUrl = entry.logoUrl,
-                owner = entry.owner,
-                fallbackName = entry.name,
-                size = 56.dp,
-                shape = RoundedCornerShape(14.dp)
-            )
-            Spacer(Modifier.width(14.dp))
-            Column(Modifier.weight(1f)) {
-                Text(
-                    entry.name,
-                    fontSize = 17.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Fusion.OnSurface,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Text(
-                    "$categoryLabel · ${entry.latestTag.ifBlank { "latest" }}",
-                    fontSize = 12.sp,
-                    color = Fusion.OnSurfaceDim,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Row(
-                    modifier = Modifier.padding(top = 7.dp),
-                    horizontalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    Text(
-                        "★ ${entry.stars}",
-                        fontSize = 10.sp,
-                        color = Fusion.Amber,
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(6.dp))
-                            .background(Color.White.copy(alpha = 0.14f))
-                            .padding(horizontal = 8.dp, vertical = 3.dp)
-                    )
-                    if (entry.latestApkUrl.isNotBlank()) {
-                        Text(
-                            "Android",
-                            fontSize = 10.sp,
-                            color = Fusion.OnSurfaceDim,
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(6.dp))
-                                .background(Color.White.copy(alpha = 0.14f))
-                                .padding(horizontal = 8.dp, vertical = 3.dp)
-                        )
-                    }
-                }
-            }
-            Box(
-                modifier = Modifier
-                    .size(34.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(Color.White),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("›", color = Fusion.HeroStart, fontSize = 16.sp, fontWeight = FontWeight.Black)
-            }
         }
     }
 }

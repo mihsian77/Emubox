@@ -713,4 +713,11 @@
     <string name="ui_scale_standard">标准</string>
     <string name="ui_scale_large">大</string>
     <string name="ui_scale_xlarge">特大</string>
+
+    <string name="translate">翻译</string>
+    <string name="translating">翻译中…</string>
+    <string name="view_original">查看原文</string>
+    <string name="news_no_body">暂无全文，仅提供摘要</string>
+    <string name="news_no_body_official">该版本暂无更新日志</string>
+    <string name="driver_news_no_log">该版本暂无更新日志</string>
 </resources>

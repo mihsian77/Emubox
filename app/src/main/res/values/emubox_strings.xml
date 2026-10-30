@@ -716,4 +716,11 @@ How to verify in emulator:
     <string name="ui_scale_standard">Standard</string>
     <string name="ui_scale_large">Large</string>
     <string name="ui_scale_xlarge">Extra Large</string>
+
+    <string name="translate">Translate</string>
+    <string name="translating">Translating…</string>
+    <string name="view_original">View Original</string>
+    <string name="news_no_body">Full text unavailable, showing summary</string>
+    <string name="news_no_body_official">No release notes for this version</string>
+    <string name="driver_news_no_log">No release notes for this version</string>
 </resources>
