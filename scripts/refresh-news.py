@@ -55,15 +55,15 @@ ECO_DROP_WORDS = [
 ]
 
 # 官方组件/运行库源：repo / category / type / mode（release=GitHub release）
-# 分类口径（用户定案）：Wine/Box64/Mono/Gecko/Proton 属组件区；DXVK/VKD3D-Proton 属运行库区。
+# 分类口径：DXVK/VKD3D-Proton 属组件区；Wine/Box64/Proton-GE/Wine Mono/Wine Gecko/Mono 属运行库区。
 # 注：wine 官方公告站（winehq.org）对云服务器 IP 有 Cloudflare 拦截（403，实测），
 # wine-mirror/wine 无 release 对象；wine 本体小版本改走 dl.winehq.org 源码目录源
 # （见 collect_runtime_extra）；wine-staging 有 GitHub release（补完整日志维度）。
 OFFICIAL_SOURCES = [
-    ("doitsujin/dxvk", "runtime", "DXVK", "release"),
-    ("HansKristian-Work/vkd3d-proton", "runtime", "VKD3D-Proton", "release"),
-    ("ptitSeb/box64", "component", "Box64", "release"),
-    ("GloriousEggroll/proton-ge-custom", "component", "Proton-GE", "release"),
+    ("doitsujin/dxvk", "component", "DXVK", "release"),
+    ("HansKristian-Work/vkd3d-proton", "component", "VKD3D-Proton", "release"),
+    ("ptitSeb/box64", "runtime", "Box64", "release"),
+    ("GloriousEggroll/proton-ge-custom", "runtime", "Proton-GE", "release"),
     # 驱动官方源（driver 分类专属；与 driver-registry.json 同名仓库对齐）
     ("K11MCH1/AdrenoToolsDrivers", "driver", "K11MCH1 AdrenoTools", "release"),
     ("StevenMXZ/Adrenotools-Drivers", "driver", "StevenMXZ Adrenotools", "release"),
@@ -219,8 +219,8 @@ def collect_runtime_extra():
     - Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + 文件 HEAD Last-Modified。
     - Mono：download.mono-project.com 官方源码目录（Apache 行内日期）。
     低频项目（数月~数年一版）标记 low_freq，不受 180 天窗口过滤，只取最新 2~3 条。
-    分类口径（用户定案）：Wine/Box64/Proton-GE 属组件区（category=component，模拟器主体）；
-    Wine Mono / Wine Gecko / Mono / DXVK / VKD3D-Proton 属运行库区（category=runtime，支撑库）。"""
+    分类口径：DXVK/VKD3D-Proton 属组件区（category=component，App 组件 Tab 推荐必备组件）；
+    Wine / Box64 / Proton-GE / Wine Mono / Wine Gecko / Mono 属运行库区（category=runtime，App 运行库 Tab + 支撑库）。"""
     items = []
 
     # Wine 小版本：10.x / 11.x 系列源码文件（wine-{小版本}.tar.xz），取最近若干条
@@ -239,7 +239,7 @@ def collect_runtime_extra():
         v10 = sorted([(v, u) for v, u in wine_series if v.startswith("10.")], key=lambda x: _ver_key(x[0]))
         for v, u in v11[-12:] + v10[-2:]:
             ts = _head_last_modified(u)
-            uid = hashlib.md5(f"component:Wine:{v}".encode()).hexdigest()[:8]
+            uid = hashlib.md5(f"runtime:Wine:{v}".encode()).hexdigest()[:8]
             items.append({
                 "id": uid,
                 "title": f"[Wine] {v}",
@@ -398,7 +398,7 @@ def main():
     merged = [
         it for it in merged.values()
         if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史 IT之家杂项误标 driver
-        and not (it.get("type") == "Box64" and it.get("category") == "runtime")  # 用户定案：Box64 归组件，清历史 runtime 重复
+        and not (it.get("type") == "Box64" and it.get("category") == "component")  # Box64 归运行库，清历史 component 重复
         and (it.get("low_freq") or
              (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)))
     ]
@@ -409,10 +409,11 @@ def main():
         it for it in merged
         if not it.get("low_freq") or it["id"] in fresh_extra_ids
     ]
-    # 分类口径迁移：DXVK/VKD3D-Proton/Wine Mono/Wine Gecko/Mono 归运行库
-    # （历史旧数据标 component 的原地迁移，不丢条目）
+    # 分类口径迁移：DXVK/VKD3D-Proton 归组件；Wine/Box64/Proton-GE/Wine Mono/Wine Gecko/Mono 归运行库
+    # （历史旧数据原地迁移，不丢条目）
     merged = [
-        {**it, "category": "runtime"} if it.get("type") in ("DXVK", "VKD3D-Proton", "Wine Mono", "Wine Gecko", "Mono") else it
+        {**it, "category": "component"} if it.get("type") in ("DXVK", "VKD3D-Proton") else
+        {**it, "category": "runtime"} if it.get("type") in ("Wine", "Box64", "Proton-GE", "Wine Mono", "Wine Gecko", "Mono") else it
         for it in merged
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
