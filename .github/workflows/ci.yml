@@ -88,6 +88,18 @@ jobs:
           else
             echo "未配置签名 secret，回退 debug 签名"
           fi
+      - name: 生成递增预发布版本号
+        run: |
+          # 每次构建预发布小版本号 +1（读固定 tag 现有 APK 名推断上次值），写入 gradle 参与编译，
+          # 这样 App 内版本号和 APK 文件名都是 1.3.0-pre.N，能区分每次构建。
+          # 标签固定用 v1.3.0-pre（长期不换），发布阶段只更新 asset，不重建 release。
+          TAG="v1.3.0-pre"
+          LAST_N=$(gh release view "$TAG" --json assets -q '.assets[].name' 2>/dev/null | grep -oP '1\.3\.0-pre\.\K[0-9]+' | head -1)
+          N=$(( ${LAST_N:-0} + 1 ))
+          sed -i "s/versionName = \"1.3.0-pre\"/versionName = \"1.3.0-pre.$N\"/" app/build.gradle.kts
+          echo "本次预发布版本号: 1.3.0-pre.$N"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 编译 Debug APK
         run: ./gradlew assembleDebug --no-daemon
       - name: 编译 Release APK
@@ -99,19 +111,25 @@ jobs:
           path: |
             app/build/outputs/apk/debug/*.apk
             app/build/outputs/apk/release/*.apk
-      - name: 发布预发布（固定预发布版本号，Releases 置顶）
+      - name: 发布预发布（固定标签，asset 递增覆盖）
         run: |
-          # 预发布版本号固定取 versionName（当前 1.3.0-pre，不超过正式版 v1.3.0），
-          # tag 不带 v 前缀，与正式版 tag（v1.x.y）区分开，release.yml 的 v* 不会重复触发。
-          # delete+create 让发布时间保持最新 → Releases 列表置顶显示。
+          # 标签固定 v1.3.0-pre（长期用），每次构建版本号递增（1.3.0-pre.N）由前一步写入 gradle。
+          # release 已存在则只换 asset（清旧传新），不存在才创建 → 标签不变、发布时间不漂移。
           # 旧版 1.3.6 预发布标签一次性清理（幂等）。
+          TAG="v1.3.0-pre"
           VER=$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts)
           echo "预发布版本号: $VER"
           gh release delete "1.3.6" --yes --cleanup-tag 2>/dev/null || true
-          gh release delete "$VER" --yes --cleanup-tag 2>/dev/null || true
           cp app/build/outputs/apk/release/app-release.apk "EmuBox-${VER}.apk"
-          gh release create "$VER" --prerelease --title "$VER（预发布）" \
-            --notes "CI 自动构建的预发布版（当前开发中的最新构建）。正式版见 v* tag 发布的 Release。" \
-            "EmuBox-${VER}.apk"
+          if gh release view "$TAG" --json id >/dev/null 2>&1; then
+            for old in $(gh release view "$TAG" --json assets -q '.assets[].name' 2>/dev/null); do
+              gh release delete-asset "$TAG" "$old" --yes 2>/dev/null || true
+            done
+            gh release upload "$TAG" "EmuBox-${VER}.apk" --clobber
+          else
+            gh release create "$TAG" --prerelease --title "$TAG（预发布）" \
+              --notes "CI 自动构建的预发布版（每次构建版本号递增）。正式版见 v* tag 发布的 Release。" \
+              "EmuBox-${VER}.apk"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
