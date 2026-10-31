@@ -108,8 +108,16 @@ def strip_html(s: str) -> str:
 
 
 def hide_source(s: str) -> str:
-    """展示文本统一去掉来源站名（作为隐藏源，不在标题/摘要/正文暴露）。"""
-    return s.replace("IT之家 ", "").replace("IT之家", "").strip()
+    """展示文本统一去掉来源站名（含带空格的写法，作为隐藏源不暴露）。"""
+    return re.sub(r"IT\s*之家\s*", "", s).strip()
+
+
+PROMO_SPLIT = re.compile(r"直达链接|点此抽红包|点此领券|券后|无门槛红包|领券|红包")
+
+
+def trim_promo(s: str) -> str:
+    """摘要里的促销导购片段（直达链接/红包/领券等）之后的文字去掉，保留有效信息。"""
+    return PROMO_SPLIT.split(s)[0].strip().rstrip("：:。 ")
 
 
 def fetch_news_body(url: str) -> str:
@@ -151,7 +159,9 @@ def fetch_news_body(url: str) -> str:
         seg = re.sub(r"\n{3,}", "\n\n", seg).strip()
         # 去掉投稿致谢/关注引导等模板噪声行（非正文内容）
         seg = re.sub(r"(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|"
-                     r"扫描二维码|点击上方|加星标|设为星标|感谢\S*网友|.*直达链接).*$", "", seg)
+                     r"扫描二维码|点击上方|加星标|设为星标|感谢\S*网友|.*直达链接|.*广告声明.*|"
+                     r"京东.*(券|红包)|淘宝.*红包|.*点此抽红包|.*券后.*|.*点击(下方卡片|宝贝|弹出页面).*|"
+                     r".*点此领券.*|.*领券.*)$", "", seg)
         return hide_source(re.sub(r"\n{2,}", "\n", seg).strip())
     except Exception:
         return ""
@@ -471,6 +481,12 @@ def main():
             if b:
                 it["body"] = b
                 it["summary"] = it.get("summary") or b[:180]
+    # 历史条目标题/摘要可能是旧解析器未清洗的，统一再清洗一次来源站名字样，
+    # 摘要里促销导购片段（直达链接/红包/领券）截掉。
+    for it in merged:
+        if "ithome.com" in it.get("url", ""):
+            it["title"] = hide_source(it.get("title", ""))
+            it["summary"] = trim_promo(hide_source(it.get("summary", "")))
     # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限
     # 与高频资讯条目挤掉（用户反馈组件/运行库资讯时常为空）
     official_items = [it for it in merged if it.get("type")]
