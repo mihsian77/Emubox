@@ -6301,7 +6301,7 @@ fun DeviceScreen(
             NewsZoneCard(
                 title = appString(R.string.news_eco_title),
                 items = deviceNewsItems,
-                category = "eco",
+                category = "device",
                 showGeneralFold = true
             )
         }
@@ -10015,8 +10015,11 @@ private fun openNewsLink(context: Context, url: String) {
 private fun newsCategoryColor(category: String): Color = when (category) {
     "emulator" -> Color(0xFF059669)
     "driver" -> Color(0xFFEA580C)
+    "runtime" -> Color(0xFF7C3AED)
+    "component" -> Color(0xFF0D9488)
+    "device" -> Color(0xFF2563EB)
     "eco" -> Color(0xFF2563EB)
-    else -> Color(0xFF64748B)
+    else -> Color(0xFF64748B)   // tech 泛科技
 }
 
 /** 新闻条目行（瘦身版）：分类标签 + 标题 + 一行摘要 + 时间。
@@ -10028,8 +10031,19 @@ private fun NewsRowItem(item: NewsItem) {
     Row(
         modifier = Modifier.fillMaxWidth().clickable { showDetail = true }
             .padding(vertical = 5.dp),
-        verticalAlignment = Alignment.Top
+        verticalAlignment = Alignment.CenterVertically
     ) {
+        if (item.image.isNotBlank()) {
+            AsyncImage(
+                model = item.image,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(width = 88.dp, height = 56.dp)
+                    .clip(RoundedCornerShape(6.dp))
+            )
+            Spacer(Modifier.width(8.dp))
+        }
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(6.dp))
@@ -10061,11 +10075,21 @@ private fun NewsRowItem(item: NewsItem) {
                 )
             }
             Spacer(Modifier.height(1.dp))
-            Text(
-                formatRelativeTimeMs(item.publishedAt * 1000L),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    formatRelativeTimeMs(item.publishedAt * 1000L),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                if (item.commentCount > 0) {
+                    Spacer(Modifier.width(6.dp))
+                    Text(
+                        "· ${item.commentCount}评",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
         }
     }
     if (showDetail) {
@@ -10442,7 +10466,7 @@ private fun NewsZoneCard(
                                 modifier = Modifier.weight(1f)
                             )
                             Text(
-                                "共 ${items.count { it.category == "general" }} 条",
+                                "共 ${items.count { it.category in setOf("general", "tech") }} 条",
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -10455,7 +10479,7 @@ private fun NewsZoneCard(
                             )
                         }
                         if (generalExpanded) {
-                            val gItems = items.filter { it.category == "general" }
+                            val gItems = items.filter { it.category in setOf("general", "tech") }
                             var gPage by remember { mutableStateOf(0) }
                             if (gItems.isEmpty()) {
                                 Spacer(Modifier.height(8.dp))

@@ -10,6 +10,7 @@
   { version, updated_at, source, items: [{id, title, url, published_at, category, type?, summary}] }
 """
 import hashlib
+import datetime
 import json
 import os
 import re
@@ -24,7 +25,199 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO_ROOT, "news-data.json")
 OFFLINE = os.path.join(REPO_ROOT, "app", "src", "main", "assets", "news_offline.json")
 UA = "EmuHub-CN news-refresh/1.3 (+https://github.com/mihsian77/EmuHub-CN)"
-RSS_URL = "https://www.ithome.com/rss/"
+
+# ===== IT之家 官方 JSON 接口（资讯主源，Option A）=====
+# 全站分页 newslistpageget：每页实返 25 条，page 递增；字段带 cid/sid（栏目ID）、
+# image/imagelist（首图）、description（摘要）、commentcount（评论数）、isad（广告标记）。
+# 注：接口不按栏目筛选（cid/sortId/channelId 参数全无效），只能抓全站后按 cid 本地分组；
+# 且当前全站只覆盖 13 个 cid 栏目（业界/网络/微软/科学/数码之家/软件之家/苹果/智能时代/智车/促销/Win11）。
+ITHOME_API = "https://m.ithome.com/api/news/newslistpageget"
+API_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) Mobile/15E148"
+
+# cid（栏目ID）→ 一级栏目（XX之家）：接口内容随最新滚动变化，cid 全集不固定，
+# 每次抓取仅覆盖当前有更新的栏目；未在此表/未命中标题的条目走标题 fallback 兜底。
+CID_CHANNEL = {
+    31: "业界", 32: "网络", 49: "微软", 81: "科学探索",
+    100: "数码之家", 103: "数码之家", 109: "软件之家", 150: "苹果",
+    158: "智能时代", 160: "智车之家", 166: "数码之家", 183: "Win11", 192: "智车之家",
+    34: "智能时代", 93: "数码之家", 99: "数码之家", 178: "数码之家", 82: "科学探索",
+}
+# 一级栏目 → 分区：device 设备 / emulator 模拟器宽覆盖 / tech 泛科技
+CHANNEL_SECTION = {
+    "数码之家": "device",
+    "软件之家": "emulator", "Win11": "emulator", "微软": "emulator",
+    "Linux": "emulator", "游戏电竞": "emulator", "Windows": "emulator",
+    "苹果": "tech", "智能时代": "tech", "智车之家": "tech",
+    "业界": "tech", "网络": "tech", "科学探索": "tech",
+    "手机": "device", "数码": "device", "穿戴": "device", "VR": "device",
+    "汽车": "tech",
+}
+# 标题关键词 → 分区 fallback（未映射 cid / 无 cid 时用；模拟器宽覆盖：游戏/Linux/软件工具都收）
+SECTION_WORDS = [
+    ("emulator", ["模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu", "Dolphin", "PCSX2",
+                  "PPSSPP", "RPCS3", "Xenia", "Citra", "MAME", "DuckStation", "AetherSX2", "Vita3K",
+                  "Skyline", "Winlator", "Wine", "Box64", "Proton", "DXVK", "VKD3D", "Mesa", "Rufus",
+                  "Linux"]),
+    ("device", ["手机", "安卓", "Android", "电脑", "平板", "折叠屏", "芯片", "骁龙", "天玑", "麒麟",
+                "SoC", "GPU", "显卡", "处理器", "VR", "耳机", "显示器"]),
+]
+
+
+def section_by_title(text: str) -> str:
+    t = text.lower()
+    for sec, words in SECTION_WORDS:
+        if any(w.lower() in t for w in words):
+            return sec
+    return "tech"
+
+
+def parse_ithome_time(s) -> int:
+    """IT之家 postdate/orderdate 为 ISO 字符串（'2026-10-31T15:32:29.743'），转 epoch 秒。
+    接口内容随最新滚动变化，cid 全集不稳定，未映射栏目一律走标题 fallback。"""
+    if not s:
+        return 0
+    if isinstance(s, (int, float)):
+        return int(s)
+    t = str(s)[:19]
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+        try:
+            return int(datetime.datetime.strptime(t, fmt).timestamp())
+        except Exception:
+            pass
+    return 0
+
+
+def fetch_ithome_api(max_pages: int = 12) -> list:
+    """IT之家 官方 JSON 接口：翻页全站拉新闻，按 cid 分栏目/分区，带图/评论数/广告过滤。"""
+    items = []
+    for page in range(1, max_pages + 1):
+        url = f"{ITHOME_API}?page={page}&pageSize=25"
+        req = urllib.request.Request(url, headers={"User-Agent": API_UA, "Referer": "https://m.ithome.com/"})
+        try:
+            d = json.loads(urllib.request.urlopen(req, timeout=15).read())
+        except Exception:
+            break
+        if not d.get("Success"):
+            break
+        for it in d.get("Result", []):
+            if it.get("isad"):  # 官方广告标记直接丢弃
+                continue
+            title = hide_source((it.get("title") or "").strip())
+            if not title or is_promo(title):
+                continue
+            cid = it.get("cid")
+            channel = CID_CHANNEL.get(cid, "")
+            u = (it.get("url") or it.get("WapNewsUrl") or "").strip()
+            if u.startswith("//"):
+                u = "https:" + u
+            elif u.startswith("/"):
+                u = "https://www.ithome.com" + u
+            if not u or "ithome.com" not in u:
+                continue
+            img = it.get("image") or ""
+            if not img and it.get("imagelist"):
+                il = it["imagelist"]
+                img = il[0] if isinstance(il, list) and il else ""
+            if img.startswith("//"):
+                img = "https:" + img
+            section = CHANNEL_SECTION.get(channel, "") or section_by_title(title + " " + (it.get("description") or ""))
+            ts = parse_ithome_time(it.get("postdate"))
+            uid = hashlib.md5(u.encode()).hexdigest()[:8]
+            items.append({
+                "id": uid,
+                "title": title[:120],
+                "url": u,
+                "published_at": ts,
+                "category": section,          # 分区：device / emulator / tech
+                "section": section, "channel": channel, "cid": cid,
+                "summary": hide_source((it.get("description") or "")[:160]),
+                "image": img,
+                "commentcount": it.get("commentcount", 0),
+            })
+        time.sleep(0.3)
+    return items
+
+# 模拟器区补全：官方 JSON 接口只返回最新 25 条（翻页/多次抓取全无效），且当前
+# 不含软件/Linux/游戏栏目；模拟器新作区用栏目页数据补全（用户确认，只补模拟器区）。
+SOFT_COLUMNS = {
+    "soft": "软件之家",
+    "linux": "Linux",
+    "game": "游戏电竞",
+    "win11": "Windows",
+    "microsoft": "微软",
+    "apple": "苹果",
+    "phone": "手机",
+    "digi": "数码",
+    "auto": "汽车",
+    "wearable": "穿戴",
+    "vr": "VR",
+}
+
+
+def _soft_time(s: str, now: datetime.datetime) -> int:
+    """栏目页时间转 epoch：支持“10月24日”“12:04”“昨日 23:00”。
+    无年份按当前年，日期在未来则回退一年；解析失败返 0。"""
+    s = (s or "").strip()
+    mm = re.match(r"(\d{1,2})月(\d{1,2})日", s)
+    if mm:
+        y, mo, d = now.year, int(mm.group(1)), int(mm.group(2))
+        dt = datetime.datetime(y, mo, d)
+        if dt > now:
+            dt = datetime.datetime(y - 1, mo, d)
+        return int(dt.timestamp())
+    yd = re.match(r"昨日\s*(\d{1,2}):(\d{1,2})", s)
+    if yd:
+        yt = now - datetime.timedelta(days=1)
+        dt = datetime.datetime(yt.year, yt.month, yt.day, int(yd.group(1)), int(yd.group(2)))
+        return int(dt.timestamp())
+    hm = re.match(r"(\d{1,2}):(\d{1,2})", s)
+    if hm:
+        dt = datetime.datetime(now.year, now.month, now.day, int(hm.group(1)), int(hm.group(2)))
+        return int(dt.timestamp())
+    return 0
+
+
+def fetch_ithome_soft() -> list:
+    """抓 IT之家 模拟器相关栏目页，解析文章归入 emulator 区（带图/时间/评论数）。"""
+    items = []
+    now = datetime.datetime.now()
+    for col, label in SOFT_COLUMNS.items():
+        url = f"https://m.ithome.com/{col}/"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": API_UA, "Referer": "https://m.ithome.com/"})
+            raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")
+        except Exception as e:
+            print(f"{label} 栏目抓取失败: {e}", file=sys.stderr)
+            continue
+        for m in re.finditer(r'data-news-id="(\d+)"', raw):
+            end = raw.find("</a>", m.end())
+            if end < 0:
+                continue
+            block = raw[m.start():end + 4]
+            hm = re.search(r'href="(https://m\.ithome\.com/html/\d+\.htm)"', block)
+            tm = re.search(r'class="plc-title">(.*?)</p>', block, re.S)
+            if not hm or not tm:
+                continue
+            title = re.sub(r"<[^>]+>", "", tm.group(1)).strip()
+            if not title or is_promo(title):
+                continue
+            u = hm.group(1)
+            im = re.search(r'data-original="([^"]+)"', block)
+            tmt = re.search(r'class="post-time">(.*?)</span>', block)
+            rm = re.search(r'class="review-num">(\d+)', block)
+            sec = CHANNEL_SECTION.get(label, "tech")
+            items.append({
+                "id": hashlib.md5(u.encode()).hexdigest()[:8],
+                "title": title[:120],
+                "url": u,
+                "published_at": _soft_time(tmt.group(1) if tmt else "", now),
+                "category": sec,
+                "section": sec, "channel": label, "cid": None,
+                "summary": "", "image": im.group(1) if im else "",
+                "commentcount": int(rm.group(1)) if rm else 0,
+            })
+        time.sleep(0.3)
+    return items
 
 # 明确无关分类：命中即丢弃（汽车/家电与项目完全无关）
 DROP_WORDS = [
@@ -426,33 +619,19 @@ def collect_official():
 def main():
     fresh_news = []
     try:
-        rss_items = [it for it in parse_rss(fetch_rss())
-                     if classify(it["title"], it["summary"]) != "drop"]
-        # 正文抓取范围：emulator/eco 全量 + general 最新 20 条（控制 CI 时长与反爬频率）
-        body_targets = [it for it in rss_items
-                        if classify(it["title"], it["summary"]) in ("emulator", "eco")][:60]
-        body_targets += [it for it in rss_items
-                         if classify(it["title"], it["summary"]) == "general"][:20]
+        api_items = fetch_ithome_api(max_pages=12) + fetch_ithome_soft()
+        # 正文抓取范围：emulator/device 全量 + tech 最新 20 条（控制 CI 时长与反爬频率）
+        body_targets = [it for it in api_items if it["category"] in ("emulator", "device")][:60]
+        body_targets += [it for it in api_items if it["category"] == "tech"][:20]
         body_map = {}
         for it in body_targets:
             b = fetch_news_body(it["url"])
             if b:
                 body_map[it["url"]] = b
             time.sleep(0.3)
-        for it in rss_items:
-            cat = classify(it["title"], it["summary"])
-            h = hashlib.md5(it["url"].encode()).hexdigest()[:8]
-            fresh_news.append({
-                "id": h,
-                "title": it["title"][:120],
-                "url": it["url"],
-                "published_at": iso_epoch(it["pubDate"]),
-                "category": cat,
-                "summary": it["summary"][:160],
-                "body": body_map.get(it["url"], ""),
-            })
+        fresh_news = [{**it, "body": body_map.get(it["url"], "")} for it in api_items]
     except Exception as e:
-        print(f"资讯 RSS 抓取失败（继续用官方源）: {e}", file=sys.stderr)
+        print(f"资讯官方接口抓取失败（继续用官方源）: {e}", file=sys.stderr)
 
     fresh_official = collect_official()
     fresh_extra = collect_runtime_extra()
@@ -468,7 +647,9 @@ def main():
     # 资讯列表随网络波动反复清空。
     old_official = [it for it in old if it.get("type")]
     official_now = {it["id"]: it for it in old_official + fresh_official}.values()
-    merged = {it["id"]: it for it in old + fresh_news + list(official_now) + fresh_extra}
+    # 资讯源已切换官方接口：历史 RSS 资讯（无 type、无 section/cid）口径不符且无栏目，丢弃；
+    # 历史官方组件/运行库（type 条目）与 fresh_official 合并保留。
+    merged = {it["id"]: it for it in fresh_news + list(official_now) + fresh_extra}
     merged = [
         it for it in merged.values()
         if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史杂项误标 driver
@@ -491,18 +672,8 @@ def main():
         for it in merged
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
-    # 历史资讯条目按当前词表重新分类：旧词表（NS/PS5/Switch/手游/移植等泛词）把
-    # 大量游戏发售、硬件、系统新闻误标进模拟器区，重跑只影响资讯（无 type）条目。
-    reclassified = []
-    for it in merged:
-        if "ithome.com" in it.get("url", "") and not it.get("type"):
-            c = classify(it.get("title", ""), it.get("summary", ""))
-            if c == "drop":
-                continue
-            reclassified.append({**it, "category": c})
-        else:
-            reclassified.append(it)
-    merged = reclassified
+    # 资讯来自官方接口，已按 cid 分好 section/category；不再用旧词表 classify 重分类，
+    # 否则智车之家（归泛科技）等栏目会被 DROP_WORDS 误删。
     # 同 url 去重：历史条目分类迁移（component→runtime）与新抓取因 id 含分类名而
     # 各自生成一条，同一 release 会重复收录。按 url 去重，body 非空（新抓）优先保留。
     seen_urls = set()

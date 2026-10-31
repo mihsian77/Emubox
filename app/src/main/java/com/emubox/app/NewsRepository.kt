@@ -17,7 +17,11 @@ data class NewsItem(
     val summary: String,
     val type: String = "",   // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
     val body: String = "",   // 全文（资讯正文 / 官方 release 完整日志），详情弹窗阅读用
-    val tag: String = ""     // 资讯具体主题标签（脚本按标题提取：系统/芯片/手机/游戏/AI 等）
+    val tag: String = "",    // 资讯具体主题标签（脚本按标题提取：系统/芯片/手机/游戏/AI 等）
+    val image: String = "",  // 缩略图 URL（IT之家 img.ithome.com，卡片列表用）
+    val commentCount: Int = 0, // 评论数（官方接口 commentcount / 栏目页 review-num）
+    val section: String = "",  // 分区（emulator / device / tech），App 分区过滤用
+    val channel: String = ""   // 一级栏目（软件之家 / Linux / Windows / 数码之家 等）
 ) {
     /** 分类展示名：资讯条目优先显示具体主题标签（tag），无 tag（官方条目）回退大类名 */
     val categoryLabel: String
@@ -26,6 +30,7 @@ data class NewsItem(
             "driver" -> "驱动组件"
             "component" -> "组件"
             "runtime" -> "运行库"
+            "device" -> "数码"
             "eco" -> "生态"
             else -> "泛科技"
         } }
@@ -36,9 +41,9 @@ data class NewsItem(
 object NewsRepository {
 
     private const val NEWS_URL_PRIMARY =
-        "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/news-data.json"
+        "https://raw.githubusercontent.com/mihsian77/Emubox/main/news-data.json"
     private const val NEWS_URL_JSDELIVR =
-        "https://cdn.jsdelivr.net/gh/mihsian77/EmuHub-CN@main/news-data.json"
+        "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/news-data.json"
     private const val OFFLINE_ASSET = "news_offline.json"
 
     @Volatile
@@ -67,7 +72,11 @@ object NewsRepository {
                             summary = o.optString("summary", "").trim().take(160),
                             type = o.optString("type", ""),
                             body = o.optString("body", ""),
-                            tag = o.optString("tag", "")
+                            tag = o.optString("tag", ""),
+                            image = o.optString("image", ""),
+                            commentCount = o.optInt("commentcount", 0),
+                            section = o.optString("section", ""),
+                            channel = o.optString("channel", "")
                         )
                     )
                 }
