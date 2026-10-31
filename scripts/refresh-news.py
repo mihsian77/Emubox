@@ -93,6 +93,31 @@ CATS = {
     "runtime": "运行库", "eco": "生态", "general": "泛科技",
 }
 
+# 资讯具体主题标签（App 新闻卡显示用，替代大类名；按顺序首个命中为准）
+TAG_RULES = [
+    ("模拟器", ["模拟器", "RetroArch", "Cemu", "Ryujinx", "Yuzu", "Dolphin", "PCSX2", "PPSSPP",
+                "RPCS3", "Xenia", "Citra", "MAME", "DuckStation", "AetherSX2", "Vita3K", "Winlator"]),
+    ("系统", ["Windows", "Win11", "Win10", "预览版", "鸿蒙", "HarmonyOS", "iOS", "Android", "系统更新"]),
+    ("芯片", ["骁龙", "天玑", "麒麟", "Exynos", "Tensor", "芯片", "处理器", "SoC", "工艺",
+              "制程", "RISC-V", "CPU", "晶圆", "光刻"]),
+    ("GPU", ["GPU", "显卡", "Vulkan", "Mesa", "图形", "渲染"]),
+    ("手机", ["手机", "iPhone", "折叠屏", "平板", "首发", "开售"]),
+    ("游戏", ["游戏", "PS5", "Switch", "Xbox", "任天堂", "Steam", "Epic", "手游", "主机"]),
+    ("AI", ["AI", "大模型", "智能", "机器人", "机器学习", "生成式"]),
+    ("安全", ["安全", "漏洞", "攻击", "勒索", "泄露", "钓鱼"]),
+    ("应用", ["应用", "App", "软件", "会员", "云服务"]),
+    ("硬件", ["硬盘", "内存", "机箱", "外设", "显示器", "耳机", "路由器", "键盘", "鼠标", "充电器"]),
+]
+
+
+def extract_tag(title: str, summary: str) -> str:
+    """按标题+摘要提取具体主题标签（无命中归"科技"）。"""
+    text = (title + " " + summary).lower()
+    for tag, words in TAG_RULES:
+        if any(w.lower() in text for w in words):
+            return tag
+    return "科技"
+
 
 def classify(title: str, summary: str) -> str:
     text = (title + " " + summary).lower()
@@ -512,11 +537,13 @@ def main():
         if not ("ithome.com" in it.get("url", "") and is_promo(it.get("title", "")))
     ]
     # 历史条目标题/摘要可能是旧解析器未清洗的，统一再清洗一次来源站名字样，
-    # 摘要里促销导购片段（直达链接/红包/领券）截掉。
+    # 摘要里促销导购片段（直达链接/红包/领券）截掉；资讯条目加具体主题标签（tag）。
     for it in merged:
         if "ithome.com" in it.get("url", ""):
             it["title"] = hide_source(it.get("title", ""))
             it["summary"] = trim_promo(hide_source(it.get("summary", "")))
+            if not it.get("type"):
+                it["tag"] = extract_tag(it.get("title", ""), it.get("summary", ""))
     # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限
     # 与高频资讯条目挤掉（用户反馈组件/运行库资讯时常为空）
     official_items = [it for it in merged if it.get("type")]

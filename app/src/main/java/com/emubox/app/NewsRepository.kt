@@ -16,18 +16,19 @@ data class NewsItem(
     val category: String,    // emulator / driver / component / runtime / eco / general
     val summary: String,
     val type: String = "",   // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
-    val body: String = ""    // 全文（资讯正文 / 官方 release 完整日志），详情弹窗阅读用
+    val body: String = "",   // 全文（资讯正文 / 官方 release 完整日志），详情弹窗阅读用
+    val tag: String = ""     // 资讯具体主题标签（脚本按标题提取：系统/芯片/手机/游戏/AI 等）
 ) {
-    /** 分类展示名（随 App 语言由 UI 层映射，此处仅存机器分类） */
+    /** 分类展示名：资讯条目优先显示具体主题标签（tag），无 tag（官方条目）回退大类名 */
     val categoryLabel: String
-        get() = when (category) {
+        get() = tag.ifBlank { when (category) {
             "emulator" -> "模拟器"
             "driver" -> "驱动组件"
             "component" -> "组件"
             "runtime" -> "运行库"
             "eco" -> "生态"
             else -> "泛科技"
-        }
+        } }
 }
 
 /** 新闻仓库：远程加载 news-data.json（GitHub raw + jsDelivr），失败兜底内置离线副本。
@@ -65,7 +66,8 @@ object NewsRepository {
                             category = o.optString("category", "general"),
                             summary = o.optString("summary", "").trim().take(160),
                             type = o.optString("type", ""),
-                            body = o.optString("body", "")
+                            body = o.optString("body", ""),
+                            tag = o.optString("tag", "")
                         )
                     )
                 }
