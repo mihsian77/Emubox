@@ -16,7 +16,7 @@ data class NewsItem(
     val category: String,    // emulator / driver / component / runtime / eco / general
     val summary: String,
     val type: String = "",   // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
-    val body: String = ""    // 全文（IT之家正文 / 官方 release 完整日志），详情弹窗阅读用
+    val body: String = ""    // 全文（资讯正文 / 官方 release 完整日志），详情弹窗阅读用
 ) {
     /** 分类展示名（随 App 语言由 UI 层映射，此处仅存机器分类） */
     val categoryLabel: String

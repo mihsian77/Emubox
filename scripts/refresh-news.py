@@ -1,7 +1,7 @@
-"""刷新 news-data.json：IT之家（模拟器/生态/泛科技）+ 组件与运行库官方 GitHub releases。
+"""刷新 news-data.json：资讯源（模拟器/生态/泛科技）+ 组件与运行库官方 GitHub releases。
 
 数据源：
-- IT之家 RSS：仅供 emulator / eco / general。IT之家几乎不报道 DXVK/Wine 类生态，
+- 资讯 RSS：仅供 emulator / eco / general。该源几乎不报道 DXVK/Wine 类生态，
   组件与运行库分类不再依赖关键词猜测——之前正是这样导致组件/运行库资讯空/错分。
 - 各组件类型官方 GitHub releases：DXVK / VKD3D-Proton / Box64 / Wine / Proton-GE /
   Mesa / Mono / glibc，条目带 type 字段，App 端按组件类型筛选 + 多页面展示。
@@ -87,7 +87,7 @@ def classify(title: str, summary: str) -> str:
         return "drop"
     if any(w.lower() in text for w in EMU_WORDS):
         return "emulator"
-    # 注意：不再从 IT之家 RSS 产生 driver 分类（词表过宽会把散热器/耳机等
+    # 注意：不再从资讯 RSS 产生 driver 分类（词表过宽会把散热器/耳机等
     # 消费电子杂项误分进驱动资讯）；driver 分类只由下方 OFFICIAL_SOURCES 官方源产生。
     # 生态命中但属整机/外设/显示类 → 归泛科技，避免"芯片与设备"要点混入消费电子
     if any(w.lower() in text for w in ECO_WORDS):
@@ -107,26 +107,52 @@ def strip_html(s: str) -> str:
     return re.sub(r"<[^>]+>", "", s).replace("&nbsp;", " ").replace("&amp;", "&").strip()
 
 
-def fetch_ithome_body(url: str) -> str:
-    """抓 IT之家文章正文（post_content 容器 → 纯文本），供 App 内全文阅读；失败返回空串。"""
+def hide_source(s: str) -> str:
+    """展示文本统一去掉来源站名（作为隐藏源，不在标题/摘要/正文暴露）。"""
+    return s.replace("IT之家 ", "").replace("IT之家", "").strip()
+
+
+def fetch_news_body(url: str) -> str:
+    """抓文章正文（post_content 容器 → 纯文本，div 深度计数取完整容器），供 App 内全文阅读；失败返回空串。"""
     try:
         html = _fetch_text(url, timeout=15)
-        m = re.search(r'<div[^>]*class="[^"]*post_content[^"]*"[^>]*>(.*?)</div>\s*'
-                      r'(?:<div[^>]*class="[^"]*(?:editor|related)[^"]*"|$)', html, re.S)
-        if not m:
+        i = html.find('class="post_content')
+        if i < 0:
             return ""
-        body = re.sub(r'<script.*?</script>', '', m.group(1), flags=re.S)
-        body = re.sub(r'<br\s*/?>', '\n', body)
-        body = re.sub(r'</p>', '\n', body)
-        body = re.sub(r'<[^>]+>', '', body)
+        start = html.rfind("<div", 0, i + 1)
+        if start < 0:
+            start = i
+        # div 深度计数：正文容器可能内嵌 div（如投稿致谢行），按深度取到容器真正闭合
+        depth = 0
+        p = start
+        seg = html[start:]
+        while p < len(html):
+            nxt = re.search(r"<div[\s>]|</div>", html[p:])
+            if not nxt:
+                break
+            tag = html[p + nxt.start():p + nxt.end()]
+            if tag.startswith("</"):
+                depth -= 1
+                if depth == 0:
+                    seg = html[start:p + nxt.end()]
+                    break
+            else:
+                depth += 1
+            p += nxt.end()
+        seg = re.sub(r"<script.*?</script>", "", seg, flags=re.S)
+        seg = re.sub(r"<style.*?</style>", "", seg, flags=re.S)
+        seg = re.sub(r"<!--.*?-->", "", seg, flags=re.S)
+        seg = re.sub(r"<br\s*/?>", "\n", seg)
+        seg = re.sub(r"</p>", "\n", seg)
+        seg = re.sub(r"<[^>]+>", "", seg)
         for ent in ("&nbsp;", "&amp;", "&quot;", "&#39;", "&lt;", "&gt;"):
-            body = body.replace(ent, {"&nbsp;": " ", "&amp;": "&", "&quot;": '"',
-                                      "&#39;": "'", "&lt;": "<", "&gt;": ">"}[ent])
-        body = re.sub(r'\n{3,}', '\n\n', body).strip()
-        # 去掉导购/关注引导噪声行
-        body = re.sub(r'(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|'
-                      r'扫描二维码|点击上方|加星标|设为星标|IT之家).*$', '', body)
-        return re.sub(r'\n{2,}', '\n', body).strip()[:8000]
+            seg = seg.replace(ent, {"&nbsp;": " ", "&amp;": "&", "&quot;": '"',
+                                    "&#39;": "'", "&lt;": "<", "&gt;": ">"}[ent])
+        seg = re.sub(r"\n{3,}", "\n\n", seg).strip()
+        # 去掉投稿致谢/关注引导等模板噪声行（非正文内容）
+        seg = re.sub(r"(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|"
+                     r"扫描二维码|点击上方|加星标|设为星标|感谢\S*网友|.*直达链接).*$", "", seg)
+        return hide_source(re.sub(r"\n{2,}", "\n", seg).strip())
     except Exception:
         return ""
 
@@ -141,7 +167,7 @@ def parse_rss(xml_text: str):
         pub = item.findtext("pubDate") or ""
         if not t or not link:
             continue
-        items.append({"title": t.strip(), "url": link.strip(), "summary": desc, "pubDate": pub})
+        items.append({"title": hide_source(t.strip()), "url": link.strip(), "summary": hide_source(desc), "pubDate": pub})
     return items
 
 
@@ -340,8 +366,8 @@ def collect_official():
                     "category": cat,
                     "type": typ,
                     "summary": summary,
-                    # 完整 release 正文（详情弹窗全文阅读用，超长截断）
-                    "body": body[:8000],
+                    # 完整 release 正文（详情弹窗全文阅读用，不截断）
+                    "body": body,
                 })
         except Exception as e:
             print(f"  {repo} 抓取失败: {e}", file=sys.stderr)
@@ -350,7 +376,7 @@ def collect_official():
 
 
 def main():
-    fresh_ithome = []
+    fresh_news = []
     try:
         rss_items = [it for it in parse_rss(fetch_rss())
                      if classify(it["title"], it["summary"]) != "drop"]
@@ -361,14 +387,14 @@ def main():
                          if classify(it["title"], it["summary"]) == "general"][:20]
         body_map = {}
         for it in body_targets:
-            b = fetch_ithome_body(it["url"])
+            b = fetch_news_body(it["url"])
             if b:
                 body_map[it["url"]] = b
             time.sleep(0.3)
         for it in rss_items:
             cat = classify(it["title"], it["summary"])
             h = hashlib.md5(it["url"].encode()).hexdigest()[:8]
-            fresh_ithome.append({
+            fresh_news.append({
                 "id": h,
                 "title": it["title"][:120],
                 "url": it["url"],
@@ -378,12 +404,12 @@ def main():
                 "body": body_map.get(it["url"], ""),
             })
     except Exception as e:
-        print(f"IT之家 RSS 抓取失败（继续用官方源）: {e}", file=sys.stderr)
+        print(f"资讯 RSS 抓取失败（继续用官方源）: {e}", file=sys.stderr)
 
     fresh_official = collect_official()
     fresh_extra = collect_runtime_extra()
 
-    # 与历史合并去重（url/repo+tag 指纹）；窗口：ithome 7 天，官方 release 180 天，
+    # 与历史合并去重（url/repo+tag 指纹）；窗口：资讯 7 天，官方 release 180 天，
     # 目录/tag 低频源（low_freq）不过滤（Wine 每周、Wine Mono/Gecko/Mono 数月~数年一版）。
     old = []
     if os.path.exists(OUT):
@@ -394,10 +420,10 @@ def main():
     # 资讯列表随网络波动反复清空。
     old_official = [it for it in old if it.get("type")]
     official_now = {it["id"]: it for it in old_official + fresh_official}.values()
-    merged = {it["id"]: it for it in old + fresh_ithome + list(official_now) + fresh_extra}
+    merged = {it["id"]: it for it in old + fresh_news + list(official_now) + fresh_extra}
     merged = [
         it for it in merged.values()
-        if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史 IT之家杂项误标 driver
+        if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史杂项误标 driver
         and not (it.get("type") == "Box64" and it.get("category") == "component")  # Box64 归运行库，清历史 component 重复
         and (it.get("low_freq") or
              (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)))
@@ -435,8 +461,18 @@ def main():
         seen_urls.add(u)
         dedup.append(it)
     merged = dedup
+    # 历史资讯条目曾因旧解析器（嵌套 div 提前截断）抓不到正文，这里对 body 为空的
+    # 资讯条目补抓一次完整正文（增量：已非空的跳过）。
+    missing = [it for it in merged if "ithome.com" in it.get("url", "") and not it.get("body")]
+    if missing:
+        print(f"补抓 {len(missing)} 条资讯正文（历史条目旧解析器未抓到）…", file=sys.stderr)
+        for it in missing:
+            b = fetch_news_body(it["url"])
+            if b:
+                it["body"] = b
+                it["summary"] = it.get("summary") or b[:180]
     # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限
-    # 与 IT之家高频条目挤掉（用户反馈组件/运行库资讯时常为空）
+    # 与高频资讯条目挤掉（用户反馈组件/运行库资讯时常为空）
     official_items = [it for it in merged if it.get("type")]
     other_items = [it for it in merged if not it.get("type")]
     merged = (official_items + other_items)[:300]
@@ -444,13 +480,13 @@ def main():
     data = {
         "version": 3,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "source": "ithome+github-releases+winehq-dl",
+        "source": "aggregated",
         "items": merged,
     }
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     json.dump(data, open(OFFLINE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
-    print(f"ithome {len(fresh_ithome)} 条 + 官方 {len(fresh_official)} 条 + 目录源 {len(fresh_extra)} 条，合并后 {len(merged)} 条")
+    print(f"资讯 {len(fresh_news)} 条 + 官方 {len(fresh_official)} 条 + 目录源 {len(fresh_extra)} 条，合并后 {len(merged)} 条")
     print("分类分布:", dict(Counter(it["category"] for it in merged)))
     types = Counter(it.get("type") for it in merged if it.get("type"))
     print("官方类型分布:", dict(types))

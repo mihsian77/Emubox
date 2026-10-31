@@ -3198,7 +3198,7 @@ fun DriverHubScreen(
 
     var showDriverCompare by remember { mutableStateOf(false) }
 
-    // 驱动资讯：IT之家 driver 类新闻（行业级，与 registry 更新提示互补）
+    // 驱动资讯：driver 类新闻（行业级，与 registry 更新提示互补）
     var driverNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     val driverNewsContext = LocalContext.current
     LaunchedEffect(Unit) {
@@ -3268,7 +3268,7 @@ fun DriverHubScreen(
             )
         }
 
-        item(key = "driver_news_ithome") {
+        item(key = "driver_news_source") {
             NewsZoneCard(
                 title = appString(R.string.news_driver_title),
                 items = driverNewsItems,
@@ -6254,7 +6254,7 @@ fun DeviceScreen(
     var benchmarkLoading by remember { mutableStateOf(false) }
     var benchmarkError by remember { mutableStateOf<String?>(null) }
     var showDeviceGuide by remember { mutableStateOf(false) }
-    // 生态动态：IT之家 eco 类新闻（芯片/手机/安卓，与设备检测呼应）
+    // 生态动态：eco 类新闻（芯片/手机/安卓，与设备检测呼应）
     var deviceNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     val deviceNewsContext = LocalContext.current
     LaunchedEffect(Unit) {
@@ -9280,7 +9280,7 @@ fun ComponentScreen(
     onOpenGuide: () -> Unit = {}
 ) {
     val preferredComponentOrder = listOf("Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK")
-    // 组件资讯：IT之家 component 类新闻（DXVK/VKD3D 等转换层上游）
+    // 组件资讯：component 类新闻（DXVK/VKD3D 等转换层上游）
     var componentNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     val componentNewsContext = LocalContext.current
     LaunchedEffect(Unit) {
@@ -9449,7 +9449,7 @@ fun RuntimeLibraryScreen(
     var components by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var loadError by remember { mutableStateOf(false) }
-    // 运行库资讯：IT之家 runtime 类新闻（Wine/Box64/Proton 运行时）
+    // 运行库资讯：runtime 类新闻（Wine/Box64/Proton 运行时）
     var runtimeNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     val runtimeNewsContext = LocalContext.current
     LaunchedEffect(Unit) {
@@ -10021,7 +10021,7 @@ private fun newsCategoryColor(category: String): Color = when (category) {
 
 /** 新闻条目行（瘦身版）：分类标签 + 标题 + 一行摘要 + 时间。
  *  点击打开 App 内全文弹窗（不再跳外链，不暴露来源站名）。
- *  时间用相对时间，来源名（IT之家等）一律不展示。 */
+ *  时间用相对时间，来源名一律不展示。 */
 @Composable
 private fun NewsRowItem(item: NewsItem) {
     var showDetail by remember { mutableStateOf(false) }
@@ -10074,9 +10074,9 @@ private fun NewsRowItem(item: NewsItem) {
 }
 
 /** 新闻全文弹窗（近全屏，仿指南窗口）：标题 + 分类 + 时间 + 正文。
- *  正文优先用 data.body（IT之家正文 / release 完整日志），无全文时回退摘要。
+ *  正文优先用 data.body（资讯正文 / release 完整日志），无全文时回退摘要。
  *  官方组件/运行库/驱动条目（type 非空）提供"翻译"与"查看原文"按钮；
- *  IT之家类条目不暴露外链（来源站名不出现在任何位置）。 */
+ *  资讯类条目不暴露外链（来源站名不出现在任何位置）。 */
 @Composable
 private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
     val context = LocalContext.current
@@ -10331,7 +10331,7 @@ private fun NewsPager(
     }
 }
 
-/** 分区新闻卡：按固定分类展示 IT之家新闻（无筛选，分区即分类）。
+/** 分区新闻卡：按固定分类展示资讯新闻（无筛选，分区即分类）。
  *  @param showGeneralFold 是否在底部折叠展示泛科技资讯（保底不丢 IT 无关新闻）。 */
 @Composable
 private fun NewsZoneCard(
@@ -10566,7 +10566,7 @@ fun EmulatorScreen(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    // 新闻模块：IT之家业界动态（CI 每日刷新 news-data.json，无网走内置离线副本）
+    // 新闻模块：业界动态（CI 每日刷新 news-data.json，无网走内置离线副本）
     var newsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     LaunchedEffect(Unit) {
         newsItems = NewsRepository.loadNews(context)
