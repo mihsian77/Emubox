@@ -31,12 +31,25 @@ DROP_WORDS = [
     "汽车", "车", "新能源车", "电动车", "自动驾驶", "特斯拉", "比亚迪", "蔚来", "理想汽车", "小米汽车",
     "家电", "冰箱", "洗衣机", "空调", "电视", "扫地机", "智能家居", "厨电", "烤箱",
 ]
-# 模拟器 / 新作发布（专有词，避免"游戏/显卡"等宽词误命中游戏本/外设新闻）
+# 模拟器相关（只保留模拟器本身/知名模拟器名，避免"NS/PS5/Switch/手游"等
+# 主机名与泛词把游戏发售、硬件、系统新闻误标进模拟器区）
 EMU_WORDS = [
     "模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu", "Dolphin", "PCSX2", "PPSSPP",
-    "PS5", "PS4", "PS3", "PS2", "Switch", "任天堂", "掌机", "游戏机", "NS", "3DS", "NDS",
-    "Winlator", "移植", "手游",
+    "RPCS3", "Xenia", "Citra", "MAME", "DuckStation", "AetherSX2", "Vita3K", "Skyline", "Mupen",
+    "Winlator",
 ]
+# 纯促销导购条目：标题特征命中即整条丢弃（红包/秒杀/价格对比/国补价等）
+PROMO_DROP_RE = re.compile(
+    r"(红包|秒杀|速抢|蹲点|券后|领券|抽红包|免费领取|直降|返场|新低|黑五|11\.11|双 ?11)"
+    r"|(联合会员|PLUS会员|超级会员).*\d+\s*元"
+    r"|^\d+\s*[→\-]\s*\d+\s*元"
+    r"|^国补后?\s*\d+"
+)
+
+
+def is_promo(title: str) -> bool:
+    """纯促销导购标题判定：命中即不入资讯池。"""
+    return bool(PROMO_DROP_RE.search(title))
 # 驱动（GPU 驱动 / Vulkan / Mesa 上游）
 DRV_WORDS = [
     "驱动", "Vulkan", "Mesa", "Turnip", "PanVK", "RADV", "OpenGL", "渲染",
@@ -453,6 +466,18 @@ def main():
         for it in merged
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
+    # 历史资讯条目按当前词表重新分类：旧词表（NS/PS5/Switch/手游/移植等泛词）把
+    # 大量游戏发售、硬件、系统新闻误标进模拟器区，重跑只影响资讯（无 type）条目。
+    reclassified = []
+    for it in merged:
+        if "ithome.com" in it.get("url", "") and not it.get("type"):
+            c = classify(it.get("title", ""), it.get("summary", ""))
+            if c == "drop":
+                continue
+            reclassified.append({**it, "category": c})
+        else:
+            reclassified.append(it)
+    merged = reclassified
     # 同 url 去重：历史条目分类迁移（component→runtime）与新抓取因 id 含分类名而
     # 各自生成一条，同一 release 会重复收录。按 url 去重，body 非空（新抓）优先保留。
     seen_urls = set()
@@ -481,6 +506,11 @@ def main():
             if b:
                 it["body"] = b
                 it["summary"] = it.get("summary") or b[:180]
+    # 纯促销导购标题（红包/秒杀/价格对比/国补价等）整条丢弃，不占资讯位
+    merged = [
+        it for it in merged
+        if not ("ithome.com" in it.get("url", "") and is_promo(it.get("title", "")))
+    ]
     # 历史条目标题/摘要可能是旧解析器未清洗的，统一再清洗一次来源站名字样，
     # 摘要里促销导购片段（直达链接/红包/领券）截掉。
     for it in merged:
