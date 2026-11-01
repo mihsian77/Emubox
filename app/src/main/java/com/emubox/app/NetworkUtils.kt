@@ -21,7 +21,17 @@ data class GithubRelease(
     val prerelease: Boolean = false
 )
 
-data class GithubAsset(val name: String, val downloadUrl: String, val sizeBytes: Long)
+data class GithubAsset(
+    val name: String,
+    val downloadUrl: String,
+    val sizeBytes: Long,
+    /**
+     * 发布方提供的文件指纹，形如 "sha256:abcdef..."。
+     * GitHub Release 接口会带回该字段，下载完成后据此校验文件是否被篡改或损坏。
+     * 空字符串表示发布方未提供，此时跳过校验（保持原有行为，不阻断下载）。
+     */
+    val digest: String = ""
+)
 
 /**
  * 组件文件大小（字节）缓存：url -> size。
@@ -173,11 +183,12 @@ private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
         val assetsArray = obj.optJSONArray("assets") ?: JSONArray()
         val assets = (0 until assetsArray.length()).map { assetIdx ->
             val asset = assetsArray.getJSONObject(assetIdx)
-            GithubAsset(
-                name = asset.optString("name"),
-                downloadUrl = asset.optString("browser_download_url"),
-                sizeBytes = asset.optLong("size", 0L)
-            )
+                           GithubAsset(
+                    name = asset.optString("name"),
+                    downloadUrl = asset.optString("browser_download_url"),
+                    sizeBytes = asset.optLong("size", 0L),
+                    digest = asset.optString("digest", "")
+                )
         }.filter { it.name.isNotBlank() && it.downloadUrl.isNotBlank() }
 
         GithubRelease(

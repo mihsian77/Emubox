@@ -19,6 +19,16 @@ object DriverExtractor {
 
     private const val DRIVERS_DIR = "drivers"
 
+    /**
+     * 单个驱动包的安全上限。
+     * 正常 Turnip / PanVK 驱动包解压后一般几十 MB，512MB 足够覆盖；
+     * 超过即判定为异常包（zip bomb），中止并清理，避免撑爆用户存储。
+     */
+    private const val MAX_TOTAL_BYTES = 512L * 1024 * 1024
+
+    /** meta.json 体积上限：正常只有几百字节，超过视为异常包 */
+    private const val MAX_META_BYTES = 64 * 1024
+
     /** 驱动提取后的根目录：filesDir/drivers/ */
     fun driversRoot(context: Context): File = File(context.filesDir, DRIVERS_DIR)
 
@@ -39,8 +49,8 @@ object DriverExtractor {
         if (metaFile.exists()) {
             try {
                 val meta = JSONObject(metaFile.readText())
-                val libraryName = meta.optString("libraryName", "")
-                if (libraryName.isNotEmpty()) {
+                val libraryName = sanitizeLibraryName(meta.optString("libraryName", ""))
+                if (libraryName != null) {
                     val so = File(dir, libraryName)
                     if (so.exists()) return so
                 }
@@ -64,6 +74,8 @@ object DriverExtractor {
 
         var libraryName: String? = null
         var soFile: File? = null
+        // 已解压字节累计，用于拦截 zip bomb
+        var totalWritten = 0L
 
         try {
             context.contentResolver.openInputStream(zipUri)?.use { input ->
@@ -73,21 +85,26 @@ object DriverExtractor {
                         val name = entry.name.substringAfterLast('/')
 
                         if (name == "meta.json") {
-                            val metaText = zip.readBytes().toString(Charsets.UTF_8)
+                            // 限长读取：防止异常包用超大 meta.json 占满内存
+                            val metaText = readLimited(zip, MAX_META_BYTES).toString(Charsets.UTF_8)
                             File(dir, "meta.json").writeText(metaText)
                             try {
                                 val meta = JSONObject(metaText)
-                                libraryName = meta.optString("libraryName", "").ifEmpty { null }
+                                libraryName = sanitizeLibraryName(meta.optString("libraryName", ""))
                             } catch (_: Exception) { }
                         } else if (name.endsWith(".so")) {
-                            val outFile = File(dir, name)
-                            FileOutputStream(outFile).use { out ->
-                                zip.copyTo(out)
+                            // 文件名同样净化：只允许单层文件名，避免路径穿越
+                            val safeName = sanitizeLibraryName(name)
+                            if (safeName != null) {
+                                val outFile = File(dir, safeName)
+                                FileOutputStream(outFile).use { out ->
+                                    totalWritten = copyLimited(zip, out, totalWritten)
+                                }
+                                // 设置可执行权限（native dlopen 需要）
+                                outFile.setReadable(true, false)
+                                outFile.setExecutable(true, false)
+                                soFile = outFile
                             }
-                            // 设置可执行权限（native dlopen 需要）
-                            outFile.setReadable(true, false)
-                            outFile.setExecutable(true, false)
-                            soFile = outFile
                         }
 
                         zip.closeEntry()
@@ -103,10 +120,12 @@ object DriverExtractor {
         }
 
         // 如果 meta.json 指定了 libraryName 但提取的 .so 文件名不同，重命名
-        if (libraryName != null && soFile != null && soFile!!.name != libraryName) {
-            val renamed = File(dir, libraryName!!)
-            soFile!!.renameTo(renamed)
-            soFile = renamed
+        val targetName = libraryName
+        val extracted = soFile
+        if (targetName != null && extracted != null && extracted.name != targetName) {
+            val renamed = File(dir, targetName)
+            // 重命名失败时保留原文件，避免把 soFile 指向不存在的路径
+            if (extracted.renameTo(renamed)) soFile = renamed
         }
 
         return soFile
@@ -124,5 +143,56 @@ object DriverExtractor {
 
     private fun sanitizeId(id: String): String {
         return id.replace(Regex("[^a-zA-Z0-9._-]"), "_").take(120)
+    }
+
+    /**
+     * 净化驱动包内的文件名（meta.json 的 libraryName、.so 条目名）。
+     *
+     * 驱动包来自第三方分发，meta.json 内容不可信：
+     * 若直接 File(dir, libraryName)，传入 "../../shared_prefs/xxx.xml"
+     * 会写到应用私有目录之外。这里只允许单层文件名。
+     *
+     * @return 合法文件名；无法净化（空、只有 . 或 ..、仍含上跳语义）时返回 null
+     */
+    private fun sanitizeLibraryName(name: String): String? {
+        val base = name.substringAfterLast('/').substringAfterLast('\\').trim()
+        if (base.isEmpty() || base == "." || base == "..") return null
+        val cleaned = base.replace(Regex("[^a-zA-Z0-9._-]"), "_").take(120)
+        return cleaned.takeUnless { it.isEmpty() || it.contains("..") }
+    }
+
+    /** 限长读取：最多读 [limit] 字节，超出立即抛异常（防御超大 meta.json） */
+    private fun readLimited(input: java.io.InputStream, limit: Int): ByteArray {
+        val out = java.io.ByteArrayOutputStream()
+        val buffer = ByteArray(8 * 1024)
+        var total = 0L
+        while (true) {
+            val read = input.read(buffer)
+            if (read <= 0) break
+            total += read
+            if (total > limit) throw java.io.IOException("meta.json 异常：超过 $limit 字节")
+            out.write(buffer, 0, read)
+        }
+        return out.toByteArray()
+    }
+
+    /** 边复制边累计解压总量，超过 [MAX_TOTAL_BYTES] 立即抛异常（防御 zip bomb） */
+    private fun copyLimited(
+        input: java.io.InputStream,
+        output: java.io.OutputStream,
+        alreadyWritten: Long
+    ): Long {
+        val buffer = ByteArray(64 * 1024)
+        var total = alreadyWritten
+        while (true) {
+            val read = input.read(buffer)
+            if (read <= 0) break
+            total += read
+            if (total > MAX_TOTAL_BYTES) {
+                throw java.io.IOException("驱动包解压内容超过 ${MAX_TOTAL_BYTES / 1024 / 1024}MB 上限，已中止")
+            }
+            output.write(buffer, 0, read)
+        }
+        return total
     }
 }
