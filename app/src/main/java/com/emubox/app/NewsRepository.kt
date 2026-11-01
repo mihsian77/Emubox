@@ -65,13 +65,13 @@ object NewsRepository {
                     add(
                         NewsItem(
                             id = o.optString("id"),
-                            title = o.optString("title", "").trim().take(140),
+                            title = decodeHtmlEntities(o.optString("title", "")).trim().take(140),
                             url = o.optString("url"),
                             publishedAt = o.optLong("published_at", 0L),
                             category = o.optString("category", "general"),
-                            summary = o.optString("summary", "").trim().take(160),
+                            summary = decodeHtmlEntities(o.optString("summary", "")).trim().take(160),
                             type = o.optString("type", ""),
-                            body = o.optString("body", ""),
+                            body = decodeHtmlEntities(o.optString("body", "")),
                             tag = o.optString("tag", ""),
                             image = o.optString("image", ""),
                             commentCount = o.optInt("commentcount", 0),
@@ -134,5 +134,39 @@ object NewsRepository {
 
     fun clearCache() {
         cached = null
+    }
+}
+
+/**
+ * 解码新闻文本里的 HTML 实体。
+ *
+ * IT之家接口与栏目页会直接返回 `&#183;`（·）、`&#165;`（¥）、`&quot;` 这类实体；
+ * 脚本侧只替换了 6 个常见实体，其余的会原样落库，而 Compose 的 Text 不做 HTML 解析，
+ * 界面上就会直接看见「酷狗音乐 22 周年 &#183; 鸿蒙特别版」。这里统一兜底。
+ */
+private val HTML_ENTITY = Regex("&(#[0-9]{1,7}|#[xX][0-9a-fA-F]{1,6}|[a-zA-Z][a-zA-Z0-9]{1,9});")
+
+private val NAMED_ENTITIES = mapOf(
+    "amp" to "&", "lt" to "<", "gt" to ">", "quot" to "\"", "apos" to "'",
+    "nbsp" to " ", "middot" to "·", "hellip" to "…", "mdash" to "—", "ndash" to "–",
+    "ldquo" to "“", "rdquo" to "”", "lsquo" to "‘", "rsquo" to "’", "times" to "×"
+)
+
+internal fun decodeHtmlEntities(raw: String): String {
+    if (raw.isEmpty() || '&' !in raw) return raw
+    return HTML_ENTITY.replace(raw) { m ->
+        val token = m.groupValues[1]
+        if (token.startsWith("#")) {
+            val code = if (token.length > 1 && (token[1] == 'x' || token[1] == 'X')) {
+                token.substring(2).toIntOrNull(16)
+            } else {
+                token.substring(1).toIntOrNull()
+            }
+            // 过滤代理区（0xD800–0xDFFF）与越界码点，避免造出非法字符
+            code?.takeIf { it in 1..0x10FFFF && it !in 0xD800..0xDFFF }
+                ?.let { String(Character.toChars(it)) } ?: m.value
+        } else {
+            NAMED_ENTITIES[token.lowercase()] ?: m.value
+        }
     }
 }
