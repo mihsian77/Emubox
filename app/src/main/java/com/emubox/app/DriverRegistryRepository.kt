@@ -264,7 +264,10 @@ object DriverRegistryRepository {
                     }
                     if (modelMatched) {
                         score += 100
-                        reasons.add("精确匹配 ${entry.gpuModels.joinToString("/")}")
+                        // 只报命中的型号：整串支持列表从 610 开始，830 机型会把它误读成
+                        // "匹配了 610"。命中值 + 支持总数，信息量不减又不误导。
+                        val hitModel = if (vendorKey == "mali") maliModel else deviceInfo.gpuModel
+                        reasons.add("精确匹配本机 GPU $hitModel（该源共支持 ${entry.gpuModels.size} 个型号）")
                     } else {
                         score -= 20
                         reasons.add("支持 ${entry.gpuModels.joinToString("/")}（非本机型号）")

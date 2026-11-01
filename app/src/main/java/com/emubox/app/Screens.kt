@@ -1214,6 +1214,18 @@ private fun formatRelativeTime(iso: String): String {
     }
 }
 
+/**
+ * ISO 时间戳截到日期："2026-08-19T11:06:00Z" → "2026-08-19"。
+ * 解析失败时取前 10 位兜底，不抛出。
+ */
+private fun shortDate(iso: String): String {
+    if (iso.isBlank()) return ""
+    return runCatching {
+        val instant = java.time.Instant.parse(iso)
+        SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(instant.toEpochMilli()))
+    }.getOrElse { iso.take(10) }
+}
+
 /** 基于 epoch 毫秒的相对时间（组件源仓库更新时间用） */
 private fun formatRelativeTimeMs(epochMs: Long): String {
     val diffMs = System.currentTimeMillis() - epochMs
@@ -3233,8 +3245,9 @@ fun DriverHubScreen(
     // 在慢网/限流下常为空，用户侧表现为"驱动专区没有更新提示"）。
     var driverNews by remember { mutableStateOf<List<DriverNewsItem>>(emptyList()) }
     var driverNewsLoading by remember { mutableStateOf(false) }
-    fun buildDriverNewsFromRegistry(): List<DriverNewsItem> {
-        val entries = DriverRegistryRepository.loadFromAssets(driverNewsContext) ?: return emptyList()
+    // 刷新按钮要真的去拉远程注册表，所以需要一个协程作用域
+    val driverNewsScope = rememberCoroutineScope()
+    fun buildDriverNews(entries: List<DriverRegistryEntry>): List<DriverNewsItem> {
         return entries
             .filter { it.latestTag.isNotBlank() && it.latestDate > 0L }
             .sortedByDescending { it.latestDate }
@@ -3256,7 +3269,10 @@ fun DriverHubScreen(
     }
     LaunchedEffect(Unit) {
         driverNewsLoading = true
-        driverNews = buildDriverNewsFromRegistry()
+        // 首次进页面先读内置快照，断网也能立刻看到内容
+        driverNews = buildDriverNews(
+            DriverRegistryRepository.loadFromAssets(driverNewsContext).orEmpty()
+        )
         driverNewsLoading = false
     }
 
@@ -3283,9 +3299,30 @@ fun DriverHubScreen(
                 items = driverNews,
                 loading = driverNewsLoading,
                 onRefresh = {
-                    driverNewsLoading = true
-                    driverNews = buildDriverNewsFromRegistry()
-                    driverNewsLoading = false
+                    if (!driverNewsLoading) {
+                        driverNewsScope.launch {
+                            driverNewsLoading = true
+                            // 真正拉一次：GitHub raw → jsDelivr → 内置快照。
+                            // 旧实现只是重读 assets（还会命中内存缓存），点多少次都不会出现新版本。
+                            val fresh = DriverRegistryRepository.load(
+                                forceRefresh = true,
+                                context = driverNewsContext
+                            )
+                            driverNews = buildDriverNews(fresh)
+                            driverNewsLoading = false
+                            Toast.makeText(
+                                driverNewsContext,
+                                appStringFor(
+                                    driverNewsContext,
+                                    SettingsManager.getAppLanguage(),
+                                    R.string.driver_news_refreshed,
+                                    driverNews.size,
+                                    DriverRegistryRepository.lastLoadSource
+                                ),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             )
         }
@@ -3515,7 +3552,9 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            maxLines = 1,
+                            // 两行：411dp 宽度下一行放不下 "Qualcomm Snapdragon 8 Elite"
+                            // 这类英文全名，会被截成 "Qualcomm Snapdragon …"
+                            maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
                         if (deviceInfo != null) {
@@ -3638,16 +3677,43 @@ private fun socBrandIconRes(brandName: String): Int? = when (brandName) {
     else -> null
 }
 
+/**
+ * 设备代号→营销名映射表只解析一次。
+ *
+ * 原实现把 assets 读取写在 deviceMarketingName() 里，而该函数在 DeviceSummaryCard
+ * 的 Text 参数里调用——每次重组（滚动、切主题、进度刷新）都会读一遍文件。
+ * 设备页一屏至少重组成百次，等于每帧一次磁盘 IO。
+ */
+private object DeviceModelNameStore {
+    @Volatile
+    private var map: Map<String, String>? = null
+
+    fun lookup(context: Context, model: String): String {
+        val table = map ?: synchronized(this) {
+            map ?: runCatching {
+                val root = org.json.JSONObject(
+                    context.assets.open("device_models.json").bufferedReader().use { it.readText() }
+                )
+                val models = root.optJSONObject("models")
+                buildMap<String, String> {
+                    if (models != null) {
+                        val keys = models.keys()
+                        while (keys.hasNext()) {
+                            val k = keys.next()
+                            put(k, models.optString(k))
+                        }
+                    }
+                }
+            }.getOrDefault(emptyMap()).also { map = it }
+        }
+        return table[model]?.takeIf { it.isNotBlank() } ?: model
+    }
+}
+
 /** 设备代号→营销名识别（vivo V2338A → iQOO Neo9）。映射表 assets/device_models.json，未收录返回原代号。 */
 private fun deviceMarketingName(model: String, context: Context): String {
     if (model.isBlank()) return ""
-    return runCatching {
-        val root = org.json.JSONObject(
-            context.assets.open("device_models.json").bufferedReader().use { it.readText() }
-        )
-        val models = root.optJSONObject("models") ?: return@runCatching ""
-        models.optString(model).ifBlank { model }
-    }.getOrDefault(model)
+    return DeviceModelNameStore.lookup(context, model)
 }
 
 /** 厂商徽章英文官方原名：高通→Qualcomm、联发科→MediaTek、三星→Samsung、华为→Huawei、谷歌→Google。 */
@@ -9082,7 +9148,7 @@ fun DriverScreen(
                         }
                     }
                 },
-                placeholder = appString(R.string.search_hint)
+                placeholder = appString(R.string.driver_search_hint)
             )
         }
 
@@ -9471,6 +9537,9 @@ fun RuntimeLibraryScreen(
     var components by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var loadError by remember { mutableStateOf(false) }
+    // 重试令牌：LaunchedEffect 的 key。原来重试只改状态、不换 key，
+    // 副作用不会重跑，点"重试"后永远停在转圈。
+    var reloadToken by remember { mutableStateOf(0) }
     // 运行库资讯：runtime 类新闻（Wine/Box64/Proton 运行时）
     var runtimeNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     val runtimeNewsContext = LocalContext.current
@@ -9498,7 +9567,7 @@ fun RuntimeLibraryScreen(
         )
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(reloadToken) {
         isLoading = true
         loadError = false
         val result = withContext(Dispatchers.IO) { RuntimeLibraryRepository.load() }
@@ -9617,8 +9686,8 @@ fun RuntimeLibraryScreen(
             }
         } else if (loadError) {
             RuntimeEmptyState(onRetry = {
-                isLoading = true
-                loadError = false
+                // 换 key 触发上面那个 LaunchedEffect 真正重新拉一次
+                reloadToken++
             })
         } else {
             // 推荐下载置顶区块（搜索时隐藏，聚焦搜索结果）
@@ -10764,32 +10833,55 @@ fun EmulatorScreen(
                     }
                 }
                 Spacer(Modifier.height(8.dp))
+                // 排序原来是 4 个 emoji 按钮（🔥 ★ ⑂ 🕒），含义全靠猜；
+                // 换成带文字的下拉，当前排序直接可读。
+                var sortMenuOpen by remember { mutableStateOf(false) }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        when (sortMode) {
-                            "stars" -> appString(R.string.emulator_sort_stars)
-                            "recent" -> appString(R.string.emulator_sort_recent)
-                            "forks" -> appString(R.string.emulator_sort_forks)
-                            else -> appString(R.string.emulator_sort_popular)
-                        },
+                        appString(R.string.emulator_sort_by),
                         style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.primary
+                        color = Fusion.OnSurfaceDim
                     )
-                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        listOf("popular", "stars", "forks", "recent").forEach { s ->
-                            TextButton(onClick = { sortMode = s }) {
-                                Text(
-                                    when (s) {
-                                        "stars" -> "★"
-                                        "recent" -> "🕒"
-                                        "forks" -> "⑂"
-                                        else -> "🔥"
+                    Spacer(Modifier.weight(1f))
+                    Box {
+                        TextButton(onClick = { sortMenuOpen = true }) {
+                            Text(
+                                when (sortMode) {
+                                    "stars" -> appString(R.string.emulator_sort_stars)
+                                    "recent" -> appString(R.string.emulator_sort_recent)
+                                    "forks" -> appString(R.string.emulator_sort_forks)
+                                    else -> appString(R.string.emulator_sort_popular)
+                                },
+                                style = MaterialTheme.typography.labelMedium
+                            )
+                            Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+                        }
+                        DropdownMenu(
+                            expanded = sortMenuOpen,
+                            onDismissRequest = { sortMenuOpen = false }
+                        ) {
+                            listOf("popular", "stars", "recent", "forks").forEach { s ->
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(
+                                            when (s) {
+                                                "stars" -> appString(R.string.emulator_sort_stars)
+                                                "recent" -> appString(R.string.emulator_sort_recent)
+                                                "forks" -> appString(R.string.emulator_sort_forks)
+                                                else -> appString(R.string.emulator_sort_popular)
+                                            },
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = if (s == sortMode) MaterialTheme.colorScheme.primary
+                                            else MaterialTheme.colorScheme.onSurface
+                                        )
                                     },
-                                    style = MaterialTheme.typography.labelLarge
+                                    onClick = {
+                                        sortMode = s
+                                        sortMenuOpen = false
+                                    }
                                 )
                             }
                         }
@@ -10803,7 +10895,8 @@ fun EmulatorScreen(
                 )
             }
         }
-        if (flatItems.isEmpty()) {
+        // 概览区（英雄卡 / 简介 / 统计 / 更新动态）与工具栏在列表非空时同样显示。
+        // 旧实现把整块包在 flatItems.isEmpty() 里，真实数据一到位就全部消失。
         item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
             var dynOpen by remember { mutableStateOf(false) }
             Column {
@@ -10873,6 +10966,11 @@ fun EmulatorScreen(
         }
 item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    appString(R.string.emulator_result_count, flatItems.size),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = Fusion.OnSurfaceDim
+                )
                 Spacer(Modifier.weight(1f))
                 IconToggleButton(
                     checked = onlyFav,
@@ -10905,15 +11003,47 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                 }
             }
         }
-            item(key = "emulator_loading", span = { GridItemSpan(maxLineSpan) }) {
+        // 空态：区分"清单还没拉回来"与"筛选没命中"，后者给出清除筛选入口。
+        // 旧实现两种情况都显示"正在加载模拟器列表…"，搜索无结果时用户会一直等。
+        if (flatItems.isEmpty()) {
+            item(key = "emulator_empty_state", span = { GridItemSpan(maxLineSpan) }) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(28.dp)
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(containerColor = Fusion.Surface)
                 ) {
                     Column(Modifier.padding(20.dp)) {
-                        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-                        Spacer(Modifier.height(12.dp))
-                        Text(appString(R.string.emulator_loading))
+                        if (entries.isEmpty()) {
+                            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                            Spacer(Modifier.height(12.dp))
+                            Text(appString(R.string.emulator_loading))
+                        } else {
+                            Text(
+                                appString(R.string.emulator_filter_empty),
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                            Spacer(Modifier.height(6.dp))
+                            Text(
+                                appString(
+                                    R.string.emulator_filter_detail,
+                                    searchQuery.ifBlank { appString(R.string.emulator_cat_all) },
+                                    if (onlyFav) appString(R.string.emulator_fav_only) else ""
+                                ),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Fusion.OnSurfaceDim
+                            )
+                            Spacer(Modifier.height(10.dp))
+                            FilledTonalButton(
+                                onClick = {
+                                    searchQuery = ""
+                                    filterCat = "all"
+                                    onlyFav = false
+                                },
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Text(appString(R.string.clear_filters))
+                            }
+                        }
                     }
                 }
             }
@@ -10930,8 +11060,22 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                         },
                         inCompare = entry.id in compareIds,
                         onToggleCompare = {
-                            compareIds = if (entry.id in compareIds) compareIds - entry.id
-                            else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                            if (entry.id in compareIds) {
+                                compareIds = compareIds - entry.id
+                            } else if (compareIds.size < 3) {
+                                compareIds = compareIds + entry.id
+                            } else {
+                                // 选满 3 个后再点原来毫无反应，用户以为按钮坏了
+                                Toast.makeText(
+                                    context,
+                                    appStringFor(
+                                    context,
+                                    SettingsManager.getAppLanguage(),
+                                    R.string.compare_limit_hint
+                                ),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         },
                         onClickDetail = { detailEntry = entry },
                         onDownload = onDownload
@@ -10946,8 +11090,22 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                         },
                         inCompare = entry.id in compareIds,
                         onToggleCompare = {
-                            compareIds = if (entry.id in compareIds) compareIds - entry.id
-                            else if (compareIds.size < 3) compareIds + entry.id else compareIds
+                            if (entry.id in compareIds) {
+                                compareIds = compareIds - entry.id
+                            } else if (compareIds.size < 3) {
+                                compareIds = compareIds + entry.id
+                            } else {
+                                // 选满 3 个后再点原来毫无反应，用户以为按钮坏了
+                                Toast.makeText(
+                                    context,
+                                    appStringFor(
+                                    context,
+                                    SettingsManager.getAppLanguage(),
+                                    R.string.compare_limit_hint
+                                ),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         },
                         onClickDetail = { detailEntry = entry },
                         onDownload = onDownload
@@ -11627,7 +11785,9 @@ private fun FusionSearchBar(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
-            .background(Brush.linearGradient(colors = listOf(Fusion.SurfaceAlt, Color(0xFF1C2030))))
+            // 副色原先写死深色 0xFF1C2030：亮色主题下搜索条右半截会变成一块深灰板，
+            // 与浅色页面完全割裂。改为跟随当前色板的 surface，亮/暗两套都自洽。
+            .background(Brush.linearGradient(colors = listOf(Fusion.SurfaceAlt, Fusion.Surface)))
             .border(1.dp, Fusion.BorderAlt, RoundedCornerShape(14.dp))
             .padding(horizontal = 14.dp, vertical = 11.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -11731,10 +11891,17 @@ private fun EmulatorHeroCard(
                 modifier = Modifier
                     .size(34.dp)
                     .clip(RoundedCornerShape(10.dp))
-                    .background(Color.White),
+                    // 浅色主题下 HeroStart 是 #DDE6FF，白底白字等于看不见箭头。
+                    // 改用 primary/onPrimary，深浅两套主题都保证对比度。
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
-                Text("›", color = Fusion.HeroStart, fontSize = 16.sp, fontWeight = FontWeight.Black)
+                Text(
+                    "›",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Black
+                )
             }
         }
     }
@@ -11819,7 +11986,9 @@ private fun EmulatorCard(
             if (entry.latestTag.isNotBlank()) {
                 Spacer(Modifier.height(3.dp))
                 Text(
-                    "${entry.latestTag} · ${entry.latestDate}",
+                    // 只显示日期：原始值为 "2026-08-19T11:06:00Z"，在卡片里被截成
+                    // "…2026-08-19T11:06…"，末尾一截毫秒毫无信息量。
+                    "${entry.latestTag} · ${shortDate(entry.latestDate)}",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,

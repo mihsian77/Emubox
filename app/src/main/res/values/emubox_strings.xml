@@ -203,6 +203,13 @@
     <string name="emulator_website">Official site</string>
     <string name="emulator_repo">Repo</string>
     <string name="emulator_loading">Loading emulator list…</string>
+    <string name="emulator_result_count">%1$d results</string>
+    <string name="emulator_filter_empty">No emulators match the current filters</string>
+    <string name="emulator_filter_detail">Query: %1$s%2$s</string>
+    <string name="emulator_fav_only"> · favorites only</string>
+    <string name="clear_filters">Clear filters</string>
+    <string name="emulator_sort_by">Sort</string>
+    <string name="compare_limit_hint">Up to 3 items can be compared</string>
     <string name="emulator_cat_windows">Windows 转译</string>
     <string name="emulator_cat_console">主机模拟</string>
     <string name="emulator_cat_multi">多机种</string>
@@ -425,6 +432,7 @@
     <string name="driver_news_title">Driver updates</string>
     <string name="driver_news_empty">No update records yet. Tap refresh to fetch the latest releases.</string>
     <string name="driver_news_more">Show %1$d more</string>
+    <string name="driver_news_refreshed">Refreshed: %1$d updates · source %2$s</string>
     <string name="driver_family_turnip">Turnip</string>
     <string name="driver_family_panvk">PanVK</string>
     <string name="driver_family_qualcomm">Qualcomm</string>
@@ -651,6 +659,7 @@ How to verify in emulator:
     <string name="file_time">Downloaded</string>
     <string name="file_path">Path</string>
     <string name="emulator_updated_prefix">Updated </string>
+    <string name="driver_search_hint">Search driver sources</string>
     <string name="search_hint">Search emulators</string>
     <string name="runtime_search_hint">Search runtimes</string>
 
