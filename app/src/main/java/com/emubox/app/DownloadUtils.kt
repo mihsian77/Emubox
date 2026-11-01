@@ -156,7 +156,14 @@ suspend fun downloadAsset(context: Context, release: GithubRelease, asset: Githu
     )
     if (ensureFileNotExists(context, desiredName, "Drivers")) return
     val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, "Drivers", originalUrl = asset.downloadUrl)
+    downloadFileWithProgress(
+        context.applicationContext,
+        acceleratedUrl,
+        desiredName,
+        "Drivers",
+        originalUrl = asset.downloadUrl,
+        expectedSha256 = asset.digest
+    )
 }
 
 suspend fun downloadComponent(context: Context, component: Component) {
@@ -218,7 +225,14 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
                             return@forEach
                         }
                         val acceleratedUrl = Accelerator.rewriteUrl(asset.downloadUrl)
-                        downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath, originalUrl = asset.downloadUrl)
+                        downloadFileWithProgress(
+                            context.applicationContext,
+                            acceleratedUrl,
+                            desiredName,
+                            subPath,
+                            originalUrl = asset.downloadUrl,
+                            expectedSha256 = asset.digest
+                        )
                         success += rawName
                     } catch (e: Exception) {
                         failed += rawName
@@ -687,6 +701,43 @@ private fun parseContentRangeTotal(contentRange: String?): Long {
     return totalPart.toLongOrNull()?.coerceAtLeast(0L) ?: 0L
 }
 
+// ── 下载完整性校验 ────────────────────────────────────────────
+// 背景：App 的下载流量会经过第三方加速节点，文件在传输途中存在被替换/损坏的可能。
+// 发布方（GitHub Release）会提供 sha256 指纹，下载完成后比对一次即可发现异常。
+// 未提供指纹时跳过校验，保持原有行为，不影响任何旧数据源。
+
+/** 校验失败专用异常：内容本身不对，重试同一份也没有意义，调用方据此跳过自动重试 */
+private class IntegrityMismatchException(val fileName: String) : Exception("文件完整性校验失败：$fileName")
+
+/**
+ * 把发布方给的指纹规范化为 64 位小写十六进制。
+ * 兼容 "sha256:abcd..."、"SHA256:ABCD..."、"abcd..." 三种写法；
+ * 格式不认识时返回 null（视为"未提供"，不阻断下载）。
+ */
+private fun normalizeSha256(digest: String?): String? {
+    val text = digest?.trim().orEmpty().lowercase()
+    if (text.isBlank()) return null
+    val hex = if (text.startsWith("sha256:")) text.removePrefix("sha256:") else text
+    if (hex.length != 64) return null
+    return hex.takeIf { value -> value.all { it in '0'..'9' || it in 'a'..'f' } }
+}
+
+/** 计算已落盘文件的 SHA-256（十六进制小写）；读取失败返回 null */
+private fun sha256Of(context: Context, uri: Uri): String? = runCatching {
+    val md = java.security.MessageDigest.getInstance("SHA-256")
+    val input = context.contentResolver.openInputStream(uri) ?: return null
+    input.use { stream ->
+        val buffer = ByteArray(64 * 1024)
+        while (true) {
+            val read = stream.read(buffer)
+            if (read <= 0) break
+            md.update(buffer, 0, read)
+        }
+    }
+    md.digest().joinToString("") { byte -> "%02x".format(byte) }
+}.getOrNull()
+
+
 private fun outputPath(uri: Uri): String {
     return if (uri.scheme == "content") {
         uri.toString()
@@ -718,7 +769,9 @@ private suspend fun transferExistingDownload(
     context: Context,
     state: DownloadsManager.ActiveDownload,
     resume: Boolean,
-    urlOverride: String? = null
+    urlOverride: String? = null,
+    /** 发布方提供的 sha256（"sha256:..." 或裸十六进制）；为空表示不校验 */
+    expectedSha256: String? = null
 ): Boolean = withContext(Dispatchers.IO) transfer@{
     val fileName = state.fileName
     val outputUri = state.outputUri.takeIf { it.isNotBlank() }?.let(Uri::parse)
@@ -832,6 +885,32 @@ private suspend fun transferExistingDownload(
             if (control.cancelled) throw CancellationException("Download cancelled")
             if (control.paused) throw DownloadPausedException()
 
+            // ── 完整性校验（仅在发布方提供 sha256 时执行）──
+            // 放在"写完 → 发布到媒体库"之间：此时文件完整、尚未标记成功，
+            // 校验不通过可直接删掉，用户不会看到"下载完成"后又消失。
+            val expected = normalizeSha256(expectedSha256)
+            if (expected != null) {
+                val actual = sha256Of(context, outputUri)
+                if (actual == null || !actual.equals(expected, ignoreCase = true)) {
+                    Log.e(TAG, "完整性校验失败 fileName=$fileName expected=$expected actual=$actual")
+                    deletePartialOutput(context, outputUri)
+                    withContext(Dispatchers.Main) {
+                        DownloadsManager.failDownload(fileName)
+                        DownloadsManager.setLastError(
+                            fileName,
+                            "文件校验失败：内容与发布方指纹不一致，可能被篡改或传输损坏，已删除"
+                        )
+                        Toast.makeText(
+                            context,
+                            "校验失败，已删除：$fileName",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    throw IntegrityMismatchException(fileName)
+                }
+                Log.i(TAG, "完整性校验通过：$fileName")
+            }
+
             publishMediaStoreFile(context, outputUri, state.usesMediaStore)
             withContext(Dispatchers.Main) {
                 runCatching {
@@ -872,6 +951,10 @@ private suspend fun transferExistingDownload(
         }
     } catch (error: Exception) {
         when {
+            // 完整性校验失败：文件与状态已在写入完成处清理，这里向上抛出，
+            // 由 downloadFileWithProgress 识别并跳过自动重试（重下同一份没有意义）
+            error is IntegrityMismatchException -> throw error
+
             control.paused -> {
                 withContext(NonCancellable + Dispatchers.Main) {
                     DownloadsManager.pauseDownload(fileName)
@@ -911,7 +994,9 @@ private suspend fun downloadFileWithProgress(
     url: String,
     originalDesiredName: String,
     subPath: String,
-    originalUrl: String? = null
+    originalUrl: String? = null,
+    /** 发布方提供的 sha256；为空表示该来源不提供指纹，跳过校验 */
+    expectedSha256: String? = null
 ) = withContext(Dispatchers.IO) download@{
     val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
     val uniqueFileName = getUniqueFileName(context, folderUri, originalDesiredName, subPath)
@@ -985,12 +1070,20 @@ private suspend fun downloadFileWithProgress(
 
         // 第 1 次全新下载；失败后保留 partial，后续轮次续传
         val forceFresh = forceFreshResume[uniqueFileName] == true
-        success = transferExistingDownload(
-            context,
-            current,
-            resume = attempt > 1 && !forceFresh,
-            urlOverride = targetUrl
-        )
+        success = try {
+            transferExistingDownload(
+                context,
+                current,
+                resume = attempt > 1 && !forceFresh,
+                urlOverride = targetUrl,
+                expectedSha256 = expectedSha256
+            )
+        } catch (_: IntegrityMismatchException) {
+            // 指纹不一致：文件内容本身有问题，换节点/重试都只会重复下载同一份错误内容。
+            // 文件与状态已由 transferExistingDownload 清理并标记失败，这里直接结束。
+            Log.w(TAG, "完整性校验失败，跳过重试：$uniqueFileName")
+            return@download
+        }
         if (success) break
 
         // 网络失败且本轮用的是加速节点 → 本轮内轮换下一个节点；
