@@ -5,6 +5,7 @@ import android.net.Uri
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.util.zip.ZipInputStream
 
 /**
@@ -28,6 +29,9 @@ object DriverExtractor {
 
     /** meta.json 体积上限：正常只有几百字节，超过视为异常包 */
     private const val MAX_META_BYTES = 64 * 1024
+
+    /** 条目数上限：正常驱动包 10~50 个条目，一万条足够覆盖，超出视为异常包 */
+    private const val MAX_ENTRIES = 10_000
 
     /** 驱动提取后的根目录：filesDir/drivers/ */
     fun driversRoot(context: Context): File = File(context.filesDir, DRIVERS_DIR)
@@ -81,7 +85,12 @@ object DriverExtractor {
             context.contentResolver.openInputStream(zipUri)?.use { input ->
                 ZipInputStream(input).use { zip ->
                     var entry = zip.nextEntry
+                    var entryCount = 0
                     while (entry != null) {
+                        // 条目数上限：总字节数拦截拦不住"百万个 0 字节条目"的包
+                        if (++entryCount > MAX_ENTRIES) {
+                            throw IOException("驱动包条目数超限（>$MAX_ENTRIES），已中止")
+                        }
                         val name = entry.name.substringAfterLast('/')
 
                         if (name == "meta.json") {
@@ -162,16 +171,32 @@ object DriverExtractor {
     }
 
     /** 限长读取：最多读 [limit] 字节，超出立即抛异常（防御超大 meta.json） */
+    /**
+     * 限长读取当前 zip 条目。
+     *
+     * 语义分三档：
+     * - 未超限：完整返回；
+     * - 略超限但仍在硬上限内：**截断返回**，并把 entry 剩余字节读完（否则会打乱 ZipInputStream 的流位置，
+     *   导致后续条目解析失败、整个驱动包被判为损坏）；
+     * - 超过硬上限：视为恶意包，抛异常由调用方整体拒绝。
+     */
     private fun readLimited(input: java.io.InputStream, limit: Int): ByteArray {
         val out = java.io.ByteArrayOutputStream()
         val buffer = ByteArray(8 * 1024)
         var total = 0L
+        // 硬上限：留出 8 倍余量，超过说明不是正常元数据而是攻击载荷
+        val hardLimit = limit.toLong() * 8
         while (true) {
             val read = input.read(buffer)
             if (read <= 0) break
             total += read
-            if (total > limit) throw java.io.IOException("meta.json 异常：超过 $limit 字节")
-            out.write(buffer, 0, read)
+            if (total > hardLimit) {
+                throw java.io.IOException("meta.json 异常：超过 $hardLimit 字节")
+            }
+            if (out.size() < limit) {
+                out.write(buffer, 0, minOf(limit - out.size(), read))
+            }
+            // 超出 limit 的部分丢弃，但继续读空当前条目
         }
         return out.toByteArray()
     }

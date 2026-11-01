@@ -76,6 +76,16 @@ android {
     buildFeatures {
         compose = true
     }
+    testOptions {
+        // Robolectric 需要读取 res/assets 才能构造真实的 Context
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+        // 界面截图录制开关：让 Roborazzi 在 JVM 上把 Compose 画成 PNG
+        unitTests.all {
+            it.systemProperty("roborazzi.test.record", "true")
+            it.systemProperty("roborazzi.test.verify", "false")
+        }
+    }
     lint {
         // 本项目为多语言但不保证全覆盖的社区项目，MissingTranslation 由
         // scripts/check-i18n.py 自定义脚本保证中英一致性，此处关闭 Lint 检查
@@ -95,6 +105,15 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
+    // 在 JVM 上模拟 Android 环境（Context / Uri / ContentResolver），无需真机
+    testImplementation("org.robolectric:robolectric:4.17")
+    testImplementation("androidx.test:core:1.7.0")
+    testImplementation("androidx.test.ext:junit:1.2.1")
+    // Compose 界面在电脑上真实渲染成图片（无需模拟器/真机）
+    testImplementation("androidx.compose.ui:ui-test-junit4")
+    testImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation("io.github.takahirom.roborazzi:roborazzi:1.77.0")
+    testImplementation("io.github.takahirom.roborazzi:roborazzi-compose:1.77.0")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

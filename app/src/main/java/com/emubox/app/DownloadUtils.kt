@@ -352,10 +352,10 @@ private suspend fun ensureFileNotExists(context: Context, desiredName: String, s
 }
 
 /** 下载目录中是否已存在同名文件（SAF 树 / MediaStore / 普通目录三种路径）。UI 下载按钮据此显示"已下载" */
-fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Boolean {
+fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Boolean = runCatching {
     val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
     val defaultRelativePath = "$DEFAULT_ROOT_FOLDER/$subPath"
-    return if (folderUri != null && DocumentsContract.isTreeUri(folderUri)) {
+    if (folderUri != null && DocumentsContract.isTreeUri(folderUri)) {
         val rootDoc = DocumentFile.fromTreeUri(context, folderUri)
         val subDoc = if (subPath.isBlank()) rootDoc else rootDoc?.let { findSubDirectory(it, subPath) }
         subDoc?.findFile(desiredName) != null
@@ -382,7 +382,9 @@ fun fileExistsOnDisk(context: Context, desiredName: String, subPath: String): Bo
         val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         File(File(downloadsDir, "$DEFAULT_ROOT_FOLDER/$subPath"), desiredName).exists()
     }
-}
+    // 这段跑在 Compose 组合里：权限查询 / SAF / MediaStore 任一环节抛异常
+    // 都会把整页 UI 打崩。查不到就当作"没下载过"，让按钮保持可点，由下载器去兜底。
+}.getOrDefault(false)
 
 /** 本地输出文件的实际字节数（content:// 或 File 路径） */
 private fun outputFileSize(context: Context, uri: Uri?): Long {

@@ -206,7 +206,7 @@ object DriverMetaParser {
         if (!file.exists()) return null
         ZipFile(file).use { zip ->
             val entry = zip.getEntry("meta.json") ?: return null
-            zip.getInputStream(entry).bufferedReader().use { return it.readText() }
+            zip.getInputStream(entry).bufferedReader().use { return it.readLimitedText() }
         }
     }
 
@@ -214,9 +214,12 @@ object DriverMetaParser {
         context.contentResolver.openInputStream(uri)?.use { input ->
             ZipInputStream(input).use { zis ->
                 var entry = zis.nextEntry
+                var scanned = 0
                 while (entry != null) {
+                    // 条目数上限：zip 炸弹可以用海量空条目拖死扫描
+                    if (++scanned > MAX_SCAN_ENTRIES) return null
                     if (entry.name.endsWith("meta.json") || entry.name == "meta.json") {
-                        return zis.bufferedReader().readText()
+                        return zis.bufferedReader().readLimitedText()
                     }
                     entry = zis.nextEntry
                 }
@@ -224,4 +227,25 @@ object DriverMetaParser {
         }
         return null
     }
+}
+
+/** meta.json 正常情况下只有几百字节；超大条目视为异常包，只读前 64KB，避免 OOM */
+private const val MAX_META_CHARS = 64 * 1024
+
+/** 扫描 zip 条目时的上限（防御海量空条目） */
+private const val MAX_SCAN_ENTRIES = 10_000
+
+/**
+ * 限长读取：最多读 [limit] 个字符就返回，剩余内容不读。
+ * 与 DriverExtractor 的 readLimited 一致，保持两条路径的安全水位相同。
+ */
+private fun java.io.Reader.readLimitedText(limit: Int = MAX_META_CHARS): String {
+    val sb = StringBuilder()
+    val buf = CharArray(4096)
+    while (sb.length < limit) {
+        val n = read(buf, 0, minOf(buf.size, limit - sb.length))
+        if (n < 0) break
+        sb.append(buf, 0, n)
+    }
+    return sb.toString()
 }

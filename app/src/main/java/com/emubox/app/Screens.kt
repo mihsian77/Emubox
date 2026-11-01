@@ -530,11 +530,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                 ) {
                                     FilledTonalButton(
                                         onClick = {
-                                            val uri = if (file.filePath.startsWith("content://")) {
-                                                Uri.parse(file.filePath)
-                                            } else {
-                                                Uri.fromFile(File(file.filePath))
-                                            }
+                                            val uri = exportFileUri(context, file.filePath)
                                             val intent = Intent(Intent.ACTION_VIEW).apply {
                                                 // 按扩展名推断 MIME：像系统文件管理器一样，
                                                 // 让"打开方式"自动展开可打开该类型的所有应用
@@ -571,17 +567,22 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
 
                                     OutlinedButton(
                                         onClick = {
-                                            val uri = if (file.filePath.startsWith("content://")) {
-                                                Uri.parse(file.filePath)
-                                            } else {
-                                                Uri.fromFile(File(file.filePath))
-                                            }
+                                            val uri = exportFileUri(context, file.filePath)
                                             val shareIntent = Intent(Intent.ACTION_SEND).apply {
                                                 type = "application/octet-stream"
                                                 putExtra(Intent.EXTRA_STREAM, uri)
                                                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                             }
-                                            context.startActivity(Intent.createChooser(shareIntent, shareChooserLabel))
+                                            // 包一层：没有能接收分享的 App 时给提示，不再直接崩
+                                            runCatching {
+                                                context.startActivity(Intent.createChooser(shareIntent, shareChooserLabel))
+                                            }.onFailure {
+                                                Toast.makeText(
+                                                    context,
+                                                    appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
                                         },
                                         modifier = Modifier.weight(1f),
                                         shape = RoundedCornerShape(16.dp)
@@ -850,6 +851,27 @@ private fun filePurposeHint(fileName: String): String {
         n.endsWith(".zip") || n.endsWith(".adpkg") -> "驱动/组件压缩包（含驱动本体与 meta.json）"
         else -> "已下载文件（${fileName.substringAfterLast('.', "").uppercase().ifEmpty { "未知" }} 格式）"
     }
+}
+
+/**
+ * 把下载记录里的文件路径转成可以安全交给其他 App 的 Uri。
+ *
+ * - content:// ：原样返回（MediaStore / SAF 授权目录记录的就是这种）；
+ * - 绝对路径  ：走 FileProvider 转成 content://。Android 7.0（API 24）起，
+ *   把 file:// 的 Uri 交给其他 App 会抛 FileUriExposedException，必须先转；
+ * - 只有路径不在 FileProvider 白名单内（极端情况）才退回 file://，
+ *   调用方需自行 try/catch。
+ */
+private fun exportFileUri(context: android.content.Context, filePath: String): Uri {
+    if (filePath.startsWith("content://")) return Uri.parse(filePath)
+    val file = File(filePath)
+    return runCatching {
+        androidx.core.content.FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.fileprovider",
+            file
+        )
+    }.getOrElse { Uri.fromFile(file) }
 }
 
 /** 压缩包扫描结果：条目总数 + 关键 .so / 可执行文件 + 组件类型推断 */
