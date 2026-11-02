@@ -6762,23 +6762,33 @@ fun DeviceScreen(
     }
 }
 
-/** EmuReady 兼容性数据库卡片：按品牌+型号查设备各模拟器平台兼容得分（0-100），点击跳 EmuReady 全库。
- *  查询失败/未收录时静默降级为"浏览全库"入口，不影响设备页其他卡片。 */
+/** EmuReady 兼容性卡片：本地目录精确匹配本机型号 → 按 deviceId 查各平台兼容得分（0-100）。
+ *
+ *  旧实现直接拿"品牌+型号"联网模糊搜，上游按包含匹配返回、首条常是别的机型
+ *  （搜 Xiaomi 15 给 Xiaomi 15T Pro），SoC 兜底也从未命中，所以卡片长期空着。
+ *  现在先在 assets 目录里匹配型号，命中才请求；本机未收录时用同 SoC 代表机型参考，
+ *  并明确标注"同芯片参考"，不冒充本机实测。 */
 @Composable
 private fun EmuReadyCard(deviceInfo: DeviceInfo) {
     val context = LocalContext.current
     var compat by remember { mutableStateOf<EmuReadyCompat?>(null) }
+    var match by remember { mutableStateOf<EmuReadyMatch?>(null) }
     var loading by remember { mutableStateOf(true) }
-    var queried by remember { mutableStateOf(false) }
-    LaunchedEffect(deviceInfo.deviceBrand, deviceInfo.deviceModel) {
+    var showAll by remember { mutableStateOf(false) }
+    LaunchedEffect(deviceInfo.deviceBrand, deviceInfo.deviceModel, deviceInfo.socName) {
         loading = true
-        val brand = deviceInfo.deviceBrand
-        val model = deviceMarketingName(deviceInfo.deviceModel, context)
-        compat = withContext(Dispatchers.IO) {
-            fetchEmuReadyCompatibility(brand, model, deviceInfo.socName)
+        val marketing = deviceMarketingName(deviceInfo.deviceModel, context)
+        // 候选名：系统营销名（PJZ110 → OnePlus 13）优先，其次代号映射表结果、最后 Build.MODEL
+        val models = (EmuReadyStore.systemMarketNames() + listOf(marketing, deviceInfo.deviceModel))
+            .map { it.trim() }.filter { it.isNotBlank() }.distinct()
+        val hit = withContext(Dispatchers.IO) {
+            EmuReadyStore.match(context, deviceInfo.deviceBrand, models, deviceInfo.socName)
         }
+        match = hit
+        compat = if (hit != null) {
+            withContext(Dispatchers.IO) { fetchEmuReadyCompatibility(hit.device) }
+        } else null
         loading = false
-        queried = true
     }
     Card(
         onClick = {
@@ -6797,24 +6807,49 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text("EmuReady 兼容性", style = MaterialTheme.typography.titleSmall)
                     val deviceLine = when {
-                        loading -> "查询该设备社区兼容性数据…"
+                        loading -> "匹配本机型号与社区数据…"
+                        compat != null && match?.isSocFallback == true ->
+                            "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}（参考机型）"
                         compat != null -> "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}"
-                        queried -> "该设备暂未收录，点击浏览 EmuReady 全库"
-                        else -> "点击打开 EmuReady 兼容性数据库"
+                        match != null -> "${match!!.device.brandName} ${match!!.device.modelName} · 暂无该机型兼容报告"
+                        else -> "该机型未收录，点击浏览 EmuReady 全库"
                     }
                     Text(
                         deviceLine,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
                 Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
+
+            // 匹配方式徽章：让用户一眼看出这份分数是不是本机的
+            val how = match?.how
+            if (how != null && !loading) {
+                Spacer(Modifier.height(6.dp))
+                val (label, tint) = when (how) {
+                    "exact" -> "本机型号命中" to MaterialTheme.colorScheme.primary
+                    "prefix" -> "型号近似匹配" to MaterialTheme.colorScheme.tertiary
+                    "brand-soc" -> "同品牌同芯片参考" to MaterialTheme.colorScheme.secondary
+                    else -> "同芯片参考机型" to MaterialTheme.colorScheme.secondary
+                }
+                Surface(shape = RoundedCornerShape(6.dp), color = tint.copy(alpha = 0.14f)) {
+                    Text(
+                        label,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = tint,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+            }
+
             if (compat != null && compat!!.systems.isNotEmpty()) {
+                val all = compat!!.systems
+                val shown = if (showAll) all else all.take(6)
                 Spacer(Modifier.height(8.dp))
-                compat!!.systems.forEachIndexed { idx, s ->
+                shown.forEachIndexed { idx, s ->
                     if (idx > 0) HorizontalDivider(
                         Modifier.padding(vertical = 6.dp),
                         thickness = 0.5.dp,
@@ -6823,12 +6858,12 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                            val srcLabel = if (s.dataSource == "soc") "SoC 同源兜底" else "设备实测"
+                            val srcLabel = if (s.dataSource == "soc") "SoC 同源" else "设备实测"
                             val confLabel = when (s.confidence) { "high" -> "高置信"; "medium" -> "中置信"; else -> "低置信" }
                             val extra = listOfNotNull(
-                                s.bestEmulator.takeIf { it.isNotBlank() }?.let { "最佳模拟器 $it" },
+                                s.bestEmulator.takeIf { it.isNotBlank() }?.let { "最佳 $it" },
                                 "$confLabel · $srcLabel",
-                                "${s.totalListings} 条报告".takeIf { s.totalListings > 0 }
+                                "${s.uniqueGames} 游戏/${s.totalListings} 条报告".takeIf { s.totalListings > 0 }
                             ).joinToString("  ·  ")
                             Text(
                                 extra,
@@ -6855,6 +6890,19 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                             )
                         }
                     }
+                }
+                if (all.size > 6) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        if (showAll) "收起" else "展开全部 ${all.size} 个平台",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { showAll = !showAll }
+                            .padding(vertical = 4.dp),
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }
