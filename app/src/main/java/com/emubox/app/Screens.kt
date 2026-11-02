@@ -3629,10 +3629,17 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     } else {
-                        // 主标题：处理器英文官方原名（Snapdragon 8 Gen 2）
-                        val socPrimary = deviceInfo?.socName
+                        // 芯片名只在这里出现一次。中文营销名优先（用户认这个），
+                        // 没有中文映射时退回英文原名，两者相同则不再重复。
+                        val rawSoc = deviceInfo?.socName
                             ?.takeIf { it.isNotBlank() && !it.contains("未知") }
-                            ?: appString(R.string.hardware_unavailable)
+                        val cnName = deviceInfo?.let { socChineseName(it, context) }.orEmpty()
+                        val codeName = deviceInfo?.socName?.let { SocNameMapper.lookupCode(it) }.orEmpty()
+                        val socPrimary = when {
+                            cnName.isNotBlank() && cnName != rawSoc -> cnName
+                            rawSoc != null -> rawSoc
+                            else -> appString(R.string.hardware_unavailable)
+                        }
                         Text(
                             socPrimary,
                             style = MaterialTheme.typography.titleLarge,
@@ -3643,35 +3650,16 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
-                        if (deviceInfo != null) {
-                            // 中文名 + 芯片代号（SM8550）：socChineseName 与 soc_name_map 代号兜底
-                            val cnName = socChineseName(deviceInfo, context)
-                            val codeName = SocNameMapper.lookupCode(deviceInfo.socName).orEmpty()
-                            if (cnName.isNotBlank() && cnName != socPrimary) {
-                                Text(
-                                    if (codeName.isNotBlank()) "$cnName · $codeName" else cnName,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            }
-                            // GPU 精确型号 + 系统版本。
-                            // detectGpuModel 只返回数字（740/720），Mali/Immortalis 直接拼 Adreno 会误导，
-                            // 故先从 renderer 提取厂商型号（Mali-G720 / Immortalis-G720），其余按 Adreno 数字拼。
-                            val rendererStr = deviceInfo.gpuRenderer.orEmpty()
-                            val maliModel = Regex("(?:Mali|Immortalis)[\\s-]*G\\d{3,4}[A-Z]*", RegexOption.IGNORE_CASE)
-                                .find(rendererStr)?.value?.replaceFirstChar { it.uppercase() }
-                            val gpuLine = when {
-                                maliModel != null -> maliModel
-                                deviceInfo.gpuModel != "unknown" -> "Adreno ${deviceInfo.gpuModel}"
-                                deviceInfo.adrenoSeries != "unknown" -> "Adreno ${deviceInfo.adrenoSeries}"
-                                else -> deviceInfo.gpuRenderer
-                            }
+                        // 英文原名 + 代号并作一行灰字，中文名与原名相同时不重复
+                        val socSecondary = listOfNotNull(
+                            rawSoc?.takeIf { it != socPrimary },
+                            codeName.takeIf { it.isNotBlank() }
+                        ).joinToString(" · ")
+                        if (socSecondary.isNotBlank()) {
                             Text(
-                                "$gpuLine · Android ${deviceInfo.androidVersion}",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f),
+                                socSecondary,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -3714,41 +3702,41 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         modifier = Modifier.weight(1f)
                     )
                     DeviceStat(
-                        icon = Icons.Default.Info,
-                        label = appString(R.string.soc_label),
-                        value = socChineseName(deviceInfo, context),
-                        modifier = Modifier.weight(2f)
+                        icon = Icons.Default.Memory,
+                        label = appString(R.string.gpu_label),
+                        value = gpuDisplayName(deviceInfo),
+                        modifier = Modifier.weight(1f)
                     )
                 }
-                // 厂商徽章行：高通 / 联发科…（官方图形 + 品牌名）
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
+                // 厂商徽章：代号已并入标题副行，这里只留厂商，不再重复芯片型号
+                if (brandIconRes != null) {
+                    Spacer(Modifier.height(8.dp))
                     SocBrandBadge(
                         brand = socBrand,
                         // 厂商徽章显示英文官方原名（Qualcomm / MediaTek），与顶部官方图形一致
                         text = socBrandEnglishName(socBrand.name)
                     )
-                    SocNameMapper.lookupCode(deviceInfo.socName)?.let { code ->
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.72f)
-                        ) {
-                            Text(
-                                code,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
-                                maxLines = 1
-                            )
-                        }
-                    }
                 }
             }
         }
+    }
+}
+
+/**
+ * GPU 显示名。
+ *
+ * detectGpuModel 只返回数字（740/720），Mali、Immortalis 直接拼 "Adreno" 会误导，
+ * 所以先从 renderer 里取完整型号（Mali-G720 / Immortalis-G720），取不到再按 Adreno 数字拼。
+ */
+private fun gpuDisplayName(info: DeviceInfo): String {
+    val renderer = info.gpuRenderer.orEmpty()
+    Regex("(?:Mali|Immortalis)[\\s-]*G\\d{3,4}[A-Z]*", RegexOption.IGNORE_CASE)
+        .find(renderer)?.value?.replaceFirstChar { it.uppercase() }
+        ?.let { return it }
+    return when {
+        info.gpuModel != "unknown" -> "Adreno ${info.gpuModel}"
+        info.adrenoSeries != "unknown" -> "Adreno ${info.adrenoSeries}"
+        else -> renderer.ifBlank { "—" }
     }
 }
 
@@ -4042,61 +4030,25 @@ private fun DriverRecommendationCard(
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 }
                 else -> {
+                    val scope = rememberCoroutineScope()
                     matches.forEach { match ->
-                        val entry = match.entry
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Column(Modifier.weight(1f)) {
-                                Text(
-                                    entry.name,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer
-                                )
-                                Text(
-                                    buildString {
-                                        append(match.matchReason)
-                                        entry.targetEmulator.takeIf { it.isNotBlank() && it != "generic" }?.let {
-                                            append(" · 适配 $it")
+                        key(match.entry.id) {
+                            DriverRecommendRow(
+                                match = match,
+                                onOpenDriverFiles = onOpenDriverFiles,
+                                onDownload = { asset ->
+                                    scope.launch {
+                                        runCatching {
+                                            downloadDriverAsset(
+                                                context,
+                                                match.entry.name,
+                                                asset.downloadUrl,
+                                                asset.name
+                                            )
                                         }
-                                    },
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                                // 来源简介（注册表中文描述）：一行说明维护者/构建类型
-                                if (entry.description.isNotBlank()) {
-                                    Text(
-                                        entry.description,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f),
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
+                                    }
                                 }
-                            }
-                            if (match.recommended) {
-                                Surface(
-                                    shape = RoundedCornerShape(8.dp),
-                                    color = MaterialTheme.colorScheme.primary
-                                ) {
-                                    Text(
-                                        appString(R.string.category_recommended),
-                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onPrimary
-                                    )
-                                }
-                            }
-                            if (onOpenDriverFiles != null) {
-                                Spacer(Modifier.width(8.dp))
-                                TextButton(onClick = { onOpenDriverFiles(entry.id) }) {
-                                    Text("查看驱动文件", style = MaterialTheme.typography.labelMedium)
-                                }
-                            }
+                            )
                         }
                     }
                 }
@@ -4115,6 +4067,172 @@ private fun DriverRecommendationCard(
             }
         }
     }
+}
+
+/**
+ * 单个推荐驱动：上面一行来源说明，下面直接摊开最近两个 release 的可下载文件。
+ *
+ * 原实现只给一个「查看驱动文件」按钮，点进去还要再翻一层才知道该下哪个。
+ * 这里把文件列表摊开，最新一个非预发布版打上推荐标记，点文件即下载。
+ */
+@Composable
+private fun DriverRecommendRow(
+    match: DriverMatchResult,
+    onOpenDriverFiles: ((String) -> Unit)?,
+    onDownload: (GithubAsset) -> Unit
+) {
+    val entry = match.entry
+    var releases by remember(entry.id) { mutableStateOf<List<GithubRelease>?>(null) }
+    LaunchedEffect(entry.id) {
+        releases = runCatching { fetchGithubReleasesFromUrl(entry.apiUrl) }
+            .getOrDefault(emptyList())
+    }
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    entry.name,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                )
+                Text(
+                    buildString {
+                        append(match.matchReason)
+                        entry.targetEmulator.takeIf { it.isNotBlank() && it != "generic" }?.let {
+                            append(" · 适配 $it")
+                        }
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                // 来源简介（注册表中文描述）：一行说明维护者/构建类型
+                if (entry.description.isNotBlank()) {
+                    Text(
+                        entry.description,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+            if (match.recommended) {
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.primary
+                ) {
+                    Text(
+                        appString(R.string.category_recommended),
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+            }
+        }
+
+        val list = releases
+        when {
+            list == null -> LinearProgressIndicator(
+                modifier = Modifier.fillMaxWidth().height(2.dp)
+            )
+            list.isEmpty() -> Text(
+                "没取到版本列表，可进驱动专区查看",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+            )
+            else -> {
+                // 最新一个非预发布版算推荐版本
+                val recommendedTag = list.firstOrNull { !it.prerelease }?.tagName
+                list.take(2).forEach { release ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            release.tagName,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                        )
+                        if (release.tagName == recommendedTag) {
+                            Spacer(Modifier.width(6.dp))
+                            Surface(
+                                shape = RoundedCornerShape(6.dp),
+                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f)
+                            ) {
+                                Text(
+                                    appString(R.string.category_recommended),
+                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                        Spacer(Modifier.weight(1f))
+                        if (release.publishedAt.length >= 10) {
+                            Text(
+                                release.publishedAt.take(10),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.5f)
+                            )
+                        }
+                    }
+                    release.assets
+                        .filter { isDownloadableAsset(it.name) }
+                        .take(3)
+                        .forEach { asset ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .clickable { onDownload(asset) }
+                                    .padding(horizontal = 10.dp, vertical = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    Icons.Default.Download,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f)
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(
+                                    asset.name,
+                                    modifier = Modifier.weight(1f),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                                if (asset.sizeBytes > 0) {
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(
+                                        formatBytes(asset.sizeBytes),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+                                    )
+                                }
+                            }
+                        }
+                }
+                if (onOpenDriverFiles != null) {
+                    TextButton(onClick = { onOpenDriverFiles(entry.id) }) {
+                        Text("全部版本与说明", style = MaterialTheme.typography.labelMedium)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 驱动 release 里值得列出的文件：安装包、压缩包、驱动 bin */
+private fun isDownloadableAsset(name: String): Boolean {
+    val lower = name.lowercase()
+    return lower.endsWith(".zip") || lower.endsWith(".apk") || lower.endsWith(".7z") ||
+        lower.endsWith(".tar.gz") || lower.endsWith(".so") || lower.endsWith(".adpkg") ||
+        lower.endsWith(".wcp")
 }
 
 @Composable
