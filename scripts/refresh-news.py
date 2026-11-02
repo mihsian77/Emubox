@@ -11,12 +11,14 @@
 """
 import hashlib
 import datetime
+import html as htmllib
 import json
 import os
 import re
 import subprocess
 import sys
 import time
+import unicodedata
 import urllib.request
 import xml.etree.ElementTree as ET
 from collections import Counter
@@ -50,7 +52,8 @@ CHANNEL_SECTION = {
     "苹果": "tech", "智能时代": "tech", "智车之家": "tech",
     "业界": "tech", "网络": "tech", "科学探索": "tech",
     "手机": "device", "数码": "device", "穿戴": "device", "VR": "device",
-    "汽车": "tech",
+    "安卓": "device",
+    "汽车": "tech", "鸿蒙": "tech",
 }
 # 标题关键词 → 分区 fallback（未映射 cid / 无 cid 时用；模拟器宽覆盖：游戏/Linux/软件工具都收）
 SECTION_WORDS = [
@@ -102,7 +105,7 @@ def fetch_ithome_api(max_pages: int = 12) -> list:
         for it in d.get("Result", []):
             if it.get("isad"):  # 官方广告标记直接丢弃
                 continue
-            title = hide_source((it.get("title") or "").strip())
+            title = hide_source(clean_text(it.get("title")))
             if not title or is_promo(title):
                 continue
             cid = it.get("cid")
@@ -130,7 +133,7 @@ def fetch_ithome_api(max_pages: int = 12) -> list:
                 "published_at": ts,
                 "category": section,          # 分区：device / emulator / tech
                 "section": section, "channel": channel, "cid": cid,
-                "summary": hide_source((it.get("description") or "")[:160]),
+                "summary": hide_source(clean_text(it.get("description"))[:160]),
                 "image": img,
                 "commentcount": it.get("commentcount", 0),
             })
@@ -139,6 +142,12 @@ def fetch_ithome_api(max_pages: int = 12) -> list:
 
 # 模拟器区补全：官方 JSON 接口只返回最新 25 条（翻页/多次抓取全无效），且当前
 # 不含软件/Linux/游戏栏目；模拟器新作区用栏目页数据补全（用户确认，只补模拟器区）。
+# 2026-11-02 全站栏目清点（移动版 27 tab 实测 19 个栏目页可抓）后重筛：
+# - 移除 auto（智能汽车）：栏目内容全是智车/新车资讯，与模拟器/驱动项目无关；
+# - 新增 android（安卓）、harmonyos（鸿蒙）：安卓系统层动态与模拟器强相关，
+#   鸿蒙归泛科技生态参考；
+# - 其余可用栏目（science/discovery 科普、internet 网络焦点、it 行业前沿、ai、
+#   pc 电脑等）与项目无关，不抓。
 SOFT_COLUMNS = {
     "soft": "软件之家",
     "linux": "Linux",
@@ -148,7 +157,8 @@ SOFT_COLUMNS = {
     "apple": "苹果",
     "phone": "手机",
     "digi": "数码",
-    "auto": "汽车",
+    "android": "安卓",
+    "harmonyos": "鸿蒙",
     "wearable": "穿戴",
     "vr": "VR",
 }
@@ -198,7 +208,7 @@ def fetch_ithome_soft() -> list:
             tm = re.search(r'class="plc-title">(.*?)</p>', block, re.S)
             if not hm or not tm:
                 continue
-            title = re.sub(r"<[^>]+>", "", tm.group(1)).strip()
+            title = clean_text(tm.group(1))
             if not title or is_promo(title):
                 continue
             u = hm.group(1)
@@ -232,11 +242,18 @@ EMU_WORDS = [
     "Winlator",
 ]
 # 纯促销导购条目：标题特征命中即整条丢弃（红包/秒杀/价格对比/国补价等）
+# 后三条是补漏：实测「京东自营 46.9 元：卡夫多款洗发水 12.9 元/斤闭眼囤」被归进
+# device/数码之家，成了设备页「芯片与设备动态」的第一条；「无糖速度囤：屈臣氏
+# 电解质水 480ml 官方 1.5 元」同款。原来只管红包/秒杀那类字眼，不管「囤、好价、
+# 到手价」这类写法。要求促销词与价格同现，避免误伤「新机发布 369 元」这类报道。
 PROMO_DROP_RE = re.compile(
     r"(红包|秒杀|速抢|蹲点|券后|领券|抽红包|免费领取|直降|返场|新低|黑五|11\.11|双 ?11)"
     r"|(联合会员|PLUS会员|超级会员).*\d+\s*元"
     r"|^\d+\s*[→\-]\s*\d+\s*元"
     r"|^国补后?\s*\d+"
+    r"|(京东自营|到手价|折合|折算).{0,20}\d+(\.\d+)?\s*元"
+    r"|\d+(\.\d+)?\s*元\s*/\s*(斤|克|千克|瓶|盒|包|件|袋)"
+    r"|(囤|好价|闭眼|凑单|满减|包邮|特价|清仓|百亿补贴).{0,24}\d+(\.\d+)?\s*元"
 )
 
 
@@ -277,6 +294,7 @@ OFFICIAL_SOURCES = [
     ("faux123/turnip-faux123-driver", "driver", "faux123 Turnip", "release"),
     ("faux123/panvk-faux123-driver-ace", "driver", "faux123 PanVK", "release"),
     ("xodiosx/mesa-panvk-g57", "driver", "xodiosx PanVK", "release"),
+    ("adesyaefull/panvk-kbase-android-g925-mesa27", "driver", "adesyaefull PanVK G925", "release"),
     ("isygold/panDXVK", "driver", "panDXVK", "release"),
     ("JimVulkan/radv-xclipse", "driver", "RADV Xclipse", "release"),
 ]
@@ -335,7 +353,35 @@ def fetch_rss():
 
 
 def strip_html(s: str) -> str:
-    return re.sub(r"<[^>]+>", "", s).replace("&nbsp;", " ").replace("&amp;", "&").strip()
+    """去标签并解码 HTML 实体（`&#183;` → `·`、`&nbsp;` → 空格）。
+
+    原来只硬编码替换 &nbsp;/&amp; 两个，其余实体（`&#183;`、`&#165;`、`&quot;`）
+    会原样落库，App 的 Text 又不做 HTML 解析，界面上直接露出「酷狗音乐 22 周年
+    &#183; 鸿蒙特别版」这种字符串。统一走 html.unescape，脚本端不再维护实体表。
+    """
+    return htmllib.unescape(re.sub(r"<[^>]+>", "", s)).replace("\u00a0", " ").strip()
+
+
+def clean_text(s: str) -> str:
+    """标题 / 摘要通用清洗：去标签、解 HTML 实体、折叠空白。
+
+    接口和栏目页返回的标题都带实体（`&#165;` 是 ¥、`&#183;` 是 ·），原来只做
+    strip()，实体直接落库。App 端虽然也解了一遍，但数据本身干净更好排障，
+    而且 is_promo / norm_title 都依赖标题文本，带实体容易漏判。
+    """
+    s = re.sub(r"<[^>]+>", "", s or "")
+    return re.sub(r"\s+", " ", htmllib.unescape(s)).strip()
+
+
+def norm_title(t: str) -> str:
+    """标题归一化，只用于判重：全角转半角、去空白与标点、统一小写。
+
+    同一篇稿子被「数码之家」「手机」等多个栏目收录时 url 不同，而 id = md5(url)[:8]，
+    于是同一条新闻会各存一份（「荣耀 WIN2 联名款」在设备页出现两次就是这么来的）。
+    按 url 去重挡不住，需要按标题再收一遍。
+    """
+    s = unicodedata.normalize("NFKC", t or "").lower()
+    return re.sub(r"[\W_]+", "", s)
 
 
 def hide_source(s: str) -> str:
@@ -355,7 +401,11 @@ def fetch_news_body(url: str) -> str:
     """抓文章正文（post_content 容器 → 纯文本，div 深度计数取完整容器），供 App 内全文阅读；失败返回空串。"""
     try:
         html = _fetch_text(url, timeout=15)
+        # IT之家移动版改版后正文容器由 post_content 改为 news-content，
+        # 旧类名找不到导致所有新文章正文全空、每次运行都全量重抓。两个都试。
         i = html.find('class="post_content')
+        if i < 0:
+            i = html.find('class="news-content')
         if i < 0:
             return ""
         start = html.rfind("<div", 0, i + 1)
@@ -384,9 +434,7 @@ def fetch_news_body(url: str) -> str:
         seg = re.sub(r"<br\s*/?>", "\n", seg)
         seg = re.sub(r"</p>", "\n", seg)
         seg = re.sub(r"<[^>]+>", "", seg)
-        for ent in ("&nbsp;", "&amp;", "&quot;", "&#39;", "&lt;", "&gt;"):
-            seg = seg.replace(ent, {"&nbsp;": " ", "&amp;": "&", "&quot;": '"',
-                                    "&#39;": "'", "&lt;": "<", "&gt;": ">"}[ent])
+        seg = htmllib.unescape(seg).replace("\u00a0", " ")
         seg = re.sub(r"\n{3,}", "\n\n", seg).strip()
         # 去掉投稿致谢/关注引导等模板噪声行（非正文内容）
         seg = re.sub(r"(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|"
@@ -692,8 +740,45 @@ def main():
         seen_urls.add(u)
         dedup.append(it)
     merged = dedup
+    # 标题级二级去重：不同栏目收录同一篇稿子时 url 不同，上面那层挡不住。
+    # 保留「正文更全 → 时间更新」的那条；官方 release 条目不参与（同名 tag 会误杀）。
+    best_by_title = {}
+    for it in merged:
+        if it.get("type"):
+            continue
+        key = norm_title(it.get("title", ""))
+        if not key:
+            continue
+        prev = best_by_title.get(key)
+        if prev is None:
+            best_by_title[key] = it
+        elif (bool(it.get("body")), it.get("published_at", 0)) > (bool(prev.get("body")), prev.get("published_at", 0)):
+            best_by_title[key] = it
+    before = len(merged)
+    merged = [
+        it for it in merged
+        if it.get("type")
+        or not norm_title(it.get("title", ""))
+        or best_by_title.get(norm_title(it.get("title", ""))) is it
+    ]
+    if before != len(merged):
+        print(f"标题级去重：{before} → {len(merged)} 条（-{before - len(merged)}）", file=sys.stderr)
     # 历史资讯条目曾因旧解析器（嵌套 div 提前截断）抓不到正文，这里对 body 为空的
     # 资讯条目补抓一次完整正文（增量：已非空的跳过）。
+    # 旧库同 id（= 同 url）条目已抓到的正文直接继承：merged 每次以 fresh_news
+    # 重建，旧条目的 body 不会自动带过来；不继承的话每次运行都要全量重抓一遍。
+    old_body = {it["id"]: it["body"] for it in old
+                if it.get("body") and "ithome.com" in it.get("url", "")}
+    inherited = 0
+    for it in merged:
+        if not it.get("body") and it["id"] in old_body:
+            b = old_body[it["id"]]
+            it["body"] = b
+            it["summary"] = it.get("summary") or b[:180]
+            inherited += 1
+    if inherited:
+        print(f"从旧库继承正文 {inherited} 条", file=sys.stderr)
+    # 剩余仍无正文的（新文章或正文源变了）才补抓一次。
     missing = [it for it in merged if "ithome.com" in it.get("url", "") and not it.get("body")]
     if missing:
         print(f"补抓 {len(missing)} 条资讯正文（历史条目旧解析器未抓到）…", file=sys.stderr)
@@ -707,12 +792,27 @@ def main():
         it for it in merged
         if not ("ithome.com" in it.get("url", "") and is_promo(it.get("title", "")))
     ]
+    # 汽车/家电类整条丢弃：栏目页已移除 auto（智车），但全站接口流与鸿蒙等栏目
+    # 仍会带进车企战报/家电稿（实测「北汽新能源享界汽车战报」混进鸿蒙栏目）。
+    # 命中无关词但同时命中模拟器词的保留，避免误杀赛车游戏/模拟器相关稿。
+    def _car_drop(it) -> bool:
+        if "ithome.com" not in it.get("url", "") or it.get("type"):
+            return False
+        title = it.get("title", "")
+        if any(w.lower() in title.lower() for w in EMU_WORDS):
+            return False
+        return any(w in title for w in DROP_WORDS)
+    dropped = sum(1 for it in merged if _car_drop(it))
+    if dropped:
+        print(f"汽车/家电无关稿丢弃 {dropped} 条", file=sys.stderr)
+    merged = [it for it in merged if not _car_drop(it)]
     # 历史条目标题/摘要可能是旧解析器未清洗的，统一再清洗一次来源站名字样，
     # 摘要里促销导购片段（直达链接/红包/领券）截掉；资讯条目加具体主题标签（tag）。
     for it in merged:
         if "ithome.com" in it.get("url", ""):
-            it["title"] = hide_source(it.get("title", ""))
-            it["summary"] = trim_promo(hide_source(it.get("summary", "")))
+            # 最后一道兜底：历史条目可能带着旧解析器留下的实体或标签
+            it["title"] = hide_source(clean_text(it.get("title", "")))
+            it["summary"] = trim_promo(hide_source(clean_text(it.get("summary", ""))))
             if not it.get("type"):
                 it["tag"] = extract_tag(it.get("title", ""), it.get("summary", ""))
     # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限

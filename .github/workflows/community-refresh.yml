@@ -1,0 +1,41 @@
+name: 每日刷新社区情报
+
+on:
+  schedule:
+    # UTC 03:00 ≈ 北京时间 11:00，错开新闻（02:30）与注册表（05:00）刷新
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-community:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # B站登录态：可选 secret，缺失时纯 Python/浏览器无登录通道照跑（风控概率略高）
+      - name: 抓取 B站UP主 / 123云盘 / gitee 动态
+        env:
+          BILI_SESSDATA: ${{ secrets.BILI_SESSDATA }}
+        run: python3 scripts/refresh-community.py
+
+      - name: 有变化则提交
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! git diff --quiet -- community-data.json app/src/main/assets/community_offline.json community/; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add community-data.json app/src/main/assets/community_offline.json community/
+            git commit -m "chore: 刷新社区情报数据"
+            git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+            git push origin HEAD:main
+          else
+            echo "无变化，跳过提交"
+          fi

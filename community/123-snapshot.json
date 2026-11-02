@@ -1,0 +1,341 @@
+{
+ "微软/PC": [
+  "D:PC",
+  "D:PC/Winlator",
+  "D:PC/Winlator-Bionic",
+  "D:PC/更多...",
+  "F:PC/赞赏码.png (145KB)"
+ ],
+ "微软/WP": [
+  "D:WinPhone",
+  "D:WinPhone/老版本",
+  "F:WinPhone/WPR-v0.1.04-汉化版.apk (156.6MB)",
+  "F:WinPhone/WPR-v0.1.06-汉化版.apk (116.5MB)"
+ ],
+ "微软/Xbox": [
+  "D:Xbox",
+  "D:Xbox/hakuX",
+  "D:Xbox/X-OG Mobile",
+  "D:Xbox/X1 BOX",
+  "D:Xbox/Xenra"
+ ],
+ "微软/Xbox360": [
+  "D:Xbox360",
+  "D:Xbox360/aX360e",
+  "D:Xbox360/X360 Mobile",
+  "D:Xbox360/XenDroid"
+ ],
+ "微软/idSoftware": [
+  "D:Id Software",
+  "D:Id Software/idTech4A++",
+  "D:Id Software/Open Touch",
+  "D:Id Software/引擎集合",
+  "F:Id Software/赞赏码.png (145KB)"
+ ],
+ "索尼/PS5": [
+  "D:PS5",
+  "D:PS5/CapyPS5",
+  "D:PS5/Console Five Pro",
+  "D:PS5/KytyPS5",
+  "D:PS5/Lumen-emu",
+  "D:PS5/SharpDroid",
+  "D:PS5/SharpEmu"
+ ],
+ "索尼/PS4": [
+  "D:PS4",
+  "D:PS4/BachataS4",
+  "D:PS4/onRps4",
+  "D:PS4/rpPS4"
+ ],
+ "索尼/PS3": [
+  "D:PS3",
+  "D:PS3/黑商店",
+  "D:PS3/模拟器",
+  "F:PS3/赞赏码.png (145KB)"
+ ],
+ "索尼/PS2": [
+  "D:PCSX2",
+  "D:PCSX2/分支版",
+  "D:PCSX2/官方版",
+  "F:PCSX2/赞赏码.png (156KB)"
+ ],
+ "索尼/PS1": [
+  "D:PS1",
+  "D:PS1/ARMSX1",
+  "D:PS1/DuckStation",
+  "D:PS1/DukeStation",
+  "D:PS1/EmuCoreR",
+  "D:PS1/ePSXe",
+  "D:PS1/FPse",
+  "D:PS1/ScePSX",
+  "F:PS1/PS1_Bios文件.rar (858KB)",
+  "F:PS1/赞赏码.png (145KB)"
+ ],
+ "索尼/PSV": [
+  "D:Vita3K",
+  "D:Vita3K/固件",
+  "D:Vita3K/黑商店",
+  "D:Vita3K/模拟器",
+  "F:Vita3K/赞赏码.png (145KB)"
+ ],
+ "索尼/PSP": [
+  "D:PSP",
+  "D:PSP/EmuCoreA",
+  "D:PSP/PPSSPP"
+ ],
+ "任天堂/NS1": [
+  "D:NS",
+  "D:NS/固件和密钥",
+  "D:NS/模拟器",
+  "D:NS/模组和工具",
+  "F:NS/赞赏码.png (145KB)"
+ ],
+ "任天堂/3DS": [
+  "D:Citra",
+  "D:Citra/模拟器",
+  "D:Citra/字库和密钥",
+  "F:Citra/笔记.txt (0KB)",
+  "F:Citra/赞赏码.png (145KB)"
+ ],
+ "任天堂/WiiU": [
+  "D:Cemu",
+  "D:Cemu/分支版",
+  "D:Cemu/官方版",
+  "D:Cemu/其它",
+  "F:Cemu/赞赏码.png (145KB)"
+ ],
+ "任天堂/Wii": [
+  "D:海豚",
+  "D:海豚/mmjr2",
+  "D:海豚/MMJ版",
+  "D:海豚/官方版",
+  "F:海豚/赞赏码.png (145KB)"
+ ],
+ "任天堂/NDS": [
+  "D:NDS",
+  "D:NDS/DraStic",
+  "D:NDS/EclipseDS",
+  "D:NDS/LiteDS",
+  "D:NDS/melonDS",
+  "D:NDS/SeedlessDS",
+  "F:NDS/赞赏码.png (145KB)"
+ ],
+ "任天堂/N64": [
+  "D:N64",
+  "D:N64/Gopher64",
+  "D:N64/M64Plus AE",
+  "D:N64/M64Plus FZ",
+  "D:N64/M64Plus Turnip",
+  "D:N64/Nin64",
+  "F:N64/赞赏码.png (145KB)"
+ ],
+ "任天堂/GBA": [
+  "D:GBA",
+  "D:GBA/GBA.emu",
+  "D:GBA/GoGBA",
+  "D:GBA/GSE",
+  "D:GBA/John GBA",
+  "D:GBA/Linkboy",
+  "D:GBA/mGBA",
+  "D:GBA/My Boy",
+  "D:GBA/Pizza Boy A",
+  "D:GBA/SkyEmu",
+  "D:GBA/Unity Boy",
+  "D:GBA/VBA-M",
+  "F:GBA/gba_bios文件.zip (13KB)",
+  "F:GBA/赞赏码.png (145KB)"
+ ],
+ "任天堂/GBC": [
+  "D:GBC",
+  "D:GBC/GBC.emu",
+  "D:GBC/GBCC",
+  "D:GBC/John GBC",
+  "D:GBC/My OldBoy",
+  "D:GBC/Pizza Boy C",
+  "F:GBC/gbc_bios.zip (2KB)",
+  "F:GBC/gb_bios.zip (0KB)",
+  "F:GBC/赞赏码.png (145KB)"
+ ],
+ "任天堂/SFC": [
+  "D:SFC",
+  "D:SFC/SUPER ZSNES",
+  "F:SFC/emu系列.txt (0KB)"
+ ],
+ "任天堂/FC": [
+  "D:FC",
+  "D:FC/John NESS",
+  "D:FC/NES.emu",
+  "D:FC/NostalgiaNes",
+  "F:FC/磁碟机BIOS.rar (6KB)",
+  "F:FC/赞赏码.png (145KB)"
+ ],
+ "世嘉/Model3": [
+  "D:Model3",
+  "D:Model3/老版本",
+  "F:Model3/SUPER3-v1.2.1汉化版.apk (9.3MB)"
+ ],
+ "世嘉/DC": [
+  "D:DC",
+  "D:DC/EmuCoreH",
+  "D:DC/Flycast",
+  "D:DC/Hollycast",
+  "D:DC/Redream",
+  "F:DC/BIOS.rar (12.9MB)",
+  "F:DC/赞赏码.png (145KB)"
+ ],
+ "世嘉/SS": [
+  "D:SS",
+  "D:SS/Retro Saturn",
+  "D:SS/Saturn.emu",
+  "D:SS/Yaba Sanshiro",
+  "F:SS/BIOS.rar (792KB)",
+  "F:SS/赞赏码.png (145KB)"
+ ],
+ "世嘉/MD": [
+  "D:MD、SMS、GG",
+  "D:MD、SMS、GG/MD.emu",
+  "D:MD、SMS、GG/Pizza Boy SC",
+  "D:MD、SMS、GG/仅MS-GG",
+  "F:MD、SMS、GG/赞赏码.png (145KB)"
+ ],
+ "苹果/iOS": [
+  "D:touchHLE",
+  "D:touchHLE/分支版",
+  "D:touchHLE/主线版",
+  "F:touchHLE/问题反馈.txt (0KB)",
+  "F:touchHLE/赞赏码.png (145KB)"
+ ],
+ "梦系列/EMU合集": [
+  "D:梦系列",
+  "D:梦系列/分支版",
+  "D:梦系列/汉化版",
+  "F:梦系列/BIOS.7z (4.6MB)"
+ ],
+ "诺基亚/塞班": [
+  "D:EKA2L1",
+  "D:EKA2L1/模拟器",
+  "D:EKA2L1/预配置包",
+  "D:EKA2L1/杂项",
+  "F:EKA2L1/赞赏码.png (145KB)"
+ ],
+ "诺基亚/Java": [
+  "D:Java",
+  "D:Java/其它",
+  "F:Java/J2ME-Loader-v1.8.2-dev-1962.apk (5.1MB)",
+  "F:Java/JL-Mod-v0.87.1-20260411.apk (5.0MB)"
+ ],
+ "其它1/皮克敏": [
+  "D:皮克敏1",
+  "D:皮克敏1/数据包",
+  "F:皮克敏1/Open-Nectar-v0.8.5.apk (19.7MB)"
+ ],
+ "其它1/索尼克": [
+  "D:索尼克释放",
+  "D:索尼克释放/老版本",
+  "D:索尼克释放/其它",
+  "F:索尼克释放/索尼克释放：重编译版-v0.5.3汉化版.apk (63.9MB)"
+ ],
+ "其它1/丝之歌": [
+  "D:丝之歌",
+  "F:丝之歌/Hollow Knight Silksong - 1.0.1.0.apk (2.2GB)",
+  "F:丝之歌/丝之歌-20260726-Sirox.apk (2.1GB)"
+ ],
+ "其它1/无尽之剑": [
+  "D:无尽之剑",
+  "D:无尽之剑/无尽之剑1",
+  "D:无尽之剑/无尽之剑2",
+  "D:无尽之剑/无尽之剑3"
+ ],
+ "其它1/空洞骑士": [
+  "D:移植1",
+  "D:移植1/茶杯头",
+  "D:移植1/空洞骑士",
+  "F:移植1/赞赏码.png (145KB)"
+ ],
+ "其它1/王国之心": [
+  "D:王国之心",
+  "D:王国之心/游戏",
+  "D:王国之心/资源包",
+  "F:王国之心/Melon-Mix-v1.1.1.apk (13.4MB)"
+ ],
+ "其它1/丁果掌机": [
+  "D:丁果",
+  "D:丁果/模拟器",
+  "D:丁果/游戏"
+ ],
+ "其它1/开源驱动": [
+  "D:安卓驱动",
+  "D:安卓驱动/高通",
+  "D:安卓驱动/玛丽",
+  "F:安卓驱动/赞赏码.png (145KB)"
+ ],
+ "其它1/复古街机": [
+  "D:街机",
+  "D:街机/aFBN",
+  "D:街机/FbneoMod",
+  "D:街机/FBN街机",
+  "D:街机/Kawaks",
+  "D:街机/MAME4droid",
+  "D:街机/NEO.emu",
+  "D:街机/NGP.emu",
+  "D:街机/嘻嘻哈哈",
+  "D:街机/鹦鹉",
+  "F:街机/赞赏码.png (145KB)"
+ ],
+ "其它1/游戏键盘": [
+  "D:游戏键盘",
+  "D:游戏键盘/IB键盘",
+  "D:游戏键盘/XB直连手柄",
+  "D:游戏键盘/虚拟手柄",
+  "D:游戏键盘/游戏键盘+",
+  "F:游戏键盘/赞赏码.png (145KB)"
+ ],
+ "其它1/格式转换": [
+  "D:CHDBOY",
+  "F:CHDBOY/CHDBOY_v1.0.0汉化版.apk (5.5MB)"
+ ],
+ "其它2/Pocket8": [
+  "D:Pico-8",
+  "F:Pico-8/Pocket8-v1.5汉化版.apk (16.5MB)",
+  "F:Pico-8/Pocket8-v1.6.2汉化版.apk (7.8MB)"
+ ],
+ "其它2/Termux": [
+  "D:Termux",
+  "D:Termux/Termux 主程序",
+  "D:Termux/Termux+T-X11 整合版",
+  "D:Termux/Termux-X11 显示端"
+ ],
+ "其它2/Brew": [
+  "D:Brew",
+  "D:Brew/Melange"
+ ],
+ "其它2/3DO": [
+  "D:3DO",
+  "D:3DO/模拟器",
+  "F:3DO/BIOS.7z (1.0MB)",
+  "F:3DO/赞赏码.png (145KB)"
+ ],
+ "其它2/雅达利": [
+  "D:雅达利",
+  "D:雅达利/2600",
+  "D:雅达利/5200",
+  "D:雅达利/7800",
+  "D:雅达利/Atari Jaguar",
+  "D:雅达利/Atari Lynx",
+  "F:雅达利/赞赏码.png (145KB)"
+ ],
+ "其它2/NSZ解包器": [
+  "D:NSZ",
+  "F:NSZ/Andro-NSZ 解包器-v1.2汉化版.apk (3.0MB)",
+  "F:NSZ/prod.keys (14KB)"
+ ],
+ "其它2/FinalROM": [
+  "D:Final ROM",
+  "F:Final ROM/Final ROM-v1.1.0.apk (24.6MB)",
+  "F:Final ROM/密钥.zip (8KB)"
+ ],
+ "其它2/PKHeX": [
+  "D:PKHeX",
+  "F:PKHeX/PKHeX.MAUI-2026.05.13.apk (35.7MB)"
+ ]
+}
