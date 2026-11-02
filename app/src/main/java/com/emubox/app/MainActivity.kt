@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -155,13 +156,15 @@ class MainActivity : ComponentActivity() {
                 val downloadScope = rememberCoroutineScope()
                 val appContext = applicationContext
 
-                var currentScreen by remember { mutableStateOf(AppScreen.DEVICE) }
+                // 记忆当前分区 / 指南来源：转屏、系统深浅色切换会重建 Activity，
+                // 用 rememberSaveable 保住，避免用户被弹回「设备」页
+                var currentScreen by rememberSaveable { mutableStateOf(AppScreen.DEVICE) }
                 var globalSearchOpen by remember { mutableStateOf(false) }
                 // 设备页推荐卡 → 驱动专区文件级跳转：待展开的驱动仓库 id（registry entry id）
                 var pendingDriverRepo by remember { mutableStateOf<String?>(null) }
-                var guideReturnTab by remember { mutableStateOf(AppScreen.DEVICE) }
-                var guideTopic by remember { mutableStateOf<String?>(null) }
-                var guideDriverMode by remember { mutableStateOf(false) }
+                var guideReturnTab by rememberSaveable { mutableStateOf(AppScreen.DEVICE) }
+                var guideTopic by rememberSaveable { mutableStateOf<String?>(null) }
+                var guideDriverMode by rememberSaveable { mutableStateOf(false) }
                 var refreshTrigger by remember { mutableIntStateOf(0) }
                 var deviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }
                 var cachedDeviceInfo by remember { mutableStateOf<DeviceInfo?>(null) }

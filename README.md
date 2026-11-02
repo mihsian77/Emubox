@@ -35,6 +35,17 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 从 [Releases](https://github.com/mihsian77/Emubox/releases) 获取最新 APK。最低系统要求 Android 9.0（API 28）。
 
+想拿最新构建（可能未正式发布）时，直接拉 `preview` 预发布标签——每次 push main 由 CI 自动覆盖更新。
+
+## 版本
+
+版本分正式版与预发布：
+
+- **正式版** — `x.y.0`（如 1.4.0），`y` 代表功能批次，每完成一批改动定稿发布；带 Latest 徽标，Release notes 从 [CHANGELOG.md](CHANGELOG.md) 生成。
+- **预发布** — `x.y.z`（z > 0，如 1.3.6），开发中的中间构建，push main 后由 CI 自动发布，带 "Pre-release" 徽标并置顶显示；想尝鲜最新改动就下它，正式列表不乱。
+
+Releases 页面：顶部 Latest 框 = 最新正式版；列表第一行 = 最新预发布构建。
+
 ## 构建
 
 环境：JDK 17、Android SDK（compileSdk 37、NDK 用于 native Vulkan 采集）。
@@ -57,7 +68,7 @@ python3 scripts/check-i18n.py
 
 ## CI
 
-push / PR 到 main 时，`ci.yml` 依次执行 i18n 校验、Android Lint、Debug 编译，并上传 Lint 报告与 APK。
+push / PR 到 main 时，`ci.yml` 依次执行 i18n 校验、Android Lint、Debug/Release 编译，上传 Lint 报告与 APK，并把 Release APK 覆盖更新到 `preview` 预发布标签（最新构建入口）。正式发布走 tag `v*` 触发的 `release.yml`。
 
 ## 项目结构
 
