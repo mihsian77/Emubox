@@ -1,0 +1,31 @@
+name: PR 改动摘要
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      # 脚本随 PR 一起提交，首版只能取 head；脚本进 main 之后同样可用。
+      # 事件是 pull_request，token 只有只读代码 + 写评论两项，
+      # fork 来的 PR 拿不到 secrets，跑 PR 里的脚本不会扩大权限。
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: 生成并更新摘要评论
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/pr-digest.py \
+            "${{ github.event.pull_request.base.sha }}" \
+            "${{ github.event.pull_request.head.sha }}" \
+            "${{ github.event.pull_request.number }}" \
+            "${{ github.repository }}"
