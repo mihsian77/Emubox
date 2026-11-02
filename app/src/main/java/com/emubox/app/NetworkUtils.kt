@@ -623,86 +623,8 @@ private fun naturalVersionCompare(v1: String, v2: String): Int {
     return v1.compareTo(v2, ignoreCase = true)
 }
 
-/** 更新日志在线翻译缓存：原文 → 译文（TTL 24h，避免重复请求） */
-private val translationCache = ConcurrentHashMap<String, CacheEntry<String>>()
-private const val TRANSLATION_TTL_MS = 24 * 60 * 60 * 1000L
-
-/**
- * 调用 MyMemory 免费翻译 API（无需 key，按文本长度有每日限额）把英文日志译成中文。
- * MyMemory 单请求 q 参数约 500 字符上限：长文本按行分块（每块 ≤450 字符）逐块翻译后合并，
- * 单块失败回退原文，保证整段不丢内容。失败或超时返回 null，调用方回退原文。
- */
-suspend fun translateReleaseNotes(text: String): String? = withContext(Dispatchers.IO) {
-    if (text.isBlank()) return@withContext null
-    translationCache[text]?.let {
-        if (System.currentTimeMillis() - it.timestamp < TRANSLATION_TTL_MS) return@withContext it.data
-    }
-    try {
-        // 按行边界分块，每块 ≤ 450 字符（留 50 字符余量给 URL 编码膨胀）
-        val chunks = mutableListOf<String>()
-        val buf = StringBuilder()
-        for (line in text.split("\n")) {
-            if (buf.isNotEmpty() && buf.length + line.length > 450) {
-                chunks += buf.toString()
-                buf.setLength(0)
-            }
-            buf.append(line).append('\n')
-        }
-        if (buf.isNotEmpty()) chunks += buf.toString()
-        if (chunks.size <= 1) {
-            // 短文本单次请求
-            val encoded = java.net.URLEncoder.encode(text, "UTF-8")
-            val url = "https://api.mymemory.translated.net/get?q=$encoded&langpair=en|zh-CN"
-            val request = Request.Builder().url(url).build()
-            githubClient.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return@withContext null
-                val root = org.json.JSONObject(response.body?.string().orEmpty())
-                val translated = root.optJSONObject("responseData")?.optString("translatedText")
-                if (translated.isNullOrBlank() || translated.equals("MYMEMORY WARNING", ignoreCase = true)) null
-                else {
-                    translationCache[text] = CacheEntry(translated, System.currentTimeMillis())
-                    translated
-                }
-            }
-        } else {
-            // 长文本分块翻译合并
-            val out = StringBuilder()
-            var anySuccess = false
-            for (chunk in chunks) {
-                val translatedChunk = try {
-                    val encoded = java.net.URLEncoder.encode(chunk, "UTF-8")
-                    val url = "https://api.mymemory.translated.net/get?q=$encoded&langpair=en|zh-CN"
-                    val request = Request.Builder().url(url).build()
-                    githubClient.newCall(request).execute().use { response ->
-                        if (!response.isSuccessful) null
-                        else {
-                            val root = org.json.JSONObject(response.body?.string().orEmpty())
-                            val t = root.optJSONObject("responseData")?.optString("translatedText")
-                            if (t.isNullOrBlank() || t.equals("MYMEMORY WARNING", ignoreCase = true)) null else t
-                        }
-                    }
-                } catch (_: Exception) {
-                    null
-                }
-                if (translatedChunk != null) {
-                    out.append(translatedChunk)
-                    anySuccess = true
-                } else {
-                    out.append(chunk)
-                }
-                out.append('\n')
-            }
-            if (!anySuccess) null
-            else {
-                val merged = out.toString().trim()
-                translationCache[text] = CacheEntry(merged, System.currentTimeMillis())
-                merged
-            }
-        }
-    } catch (_: Exception) {
-        null
-    }
-}
+/** 更新日志翻译：长文本按语义切块逐段翻译，实现与切块策略见 [TranslationEngine]。 */
+suspend fun translateReleaseNotes(text: String): String? = TranslationEngine.translate(text)
 
 private val componentLogCache = ConcurrentHashMap<String, CacheEntry<String>>()
 private const val COMPONENT_LOG_TTL_MS = 30 * 60 * 1000L
@@ -961,46 +883,6 @@ suspend fun fetchEmuReadyEmulator(name: String): EmuReadyEmulator? = withContext
     } catch (_: Exception) { null }
 }
 
-/** 在线翻译：MyMemory 免费端点（自动检测→中文，国内可达）优先，Google 备用。
- *  仅对正文前 1500 字符翻译（控制请求体积），适合 release 日志/新闻正文。 */
-suspend fun translateText(text: String): String? = withContext(Dispatchers.IO) {
-    val q = text.trim().take(1500)
-    if (q.isBlank()) return@withContext null
-    // 1) MyMemory（免费、Autodetect→zh-CN、国内可直接访问）
-    try {
-        val url = "https://api.mymemory.translated.net/get?q=" +
-            java.net.URLEncoder.encode(q, "UTF-8") + "&langpair=Autodetect|zh-CN"
-        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
-        val client = okhttp3.OkHttpClient.Builder()
-            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
-            .readTimeout(15, java.util.concurrent.TimeUnit.SECONDS)
-            .build()
-        client.newCall(req).execute().use { resp ->
-            if (resp.isSuccessful) {
-                val obj = org.json.JSONObject(resp.body?.string().orEmpty())
-                val t = obj.optJSONObject("responseData")?.optString("translatedText").orEmpty().trim()
-                if (t.isNotBlank()) return@withContext t
-            }
-        }
-    } catch (_: Exception) { }
-    // 2) Google（备用，部分网络可达）
-    try {
-        val url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q=" +
-            java.net.URLEncoder.encode(q, "UTF-8")
-        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
-        val client = okhttp3.OkHttpClient.Builder()
-            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
-            .readTimeout(15, java.util.concurrent.TimeUnit.SECONDS)
-            .build()
-        client.newCall(req).execute().use { resp ->
-            if (!resp.isSuccessful) return@withContext null
-            val root = org.json.JSONArray(resp.body?.string().orEmpty())
-            val sb = StringBuilder()
-            for (i in 0 until root.length()) {
-                val seg = root.optJSONArray(i) ?: continue
-                if (seg.length() > 0) sb.append(seg.optString(0))
-            }
-            sb.toString().trim().takeIf { it.isNotBlank() }
-        }
-    } catch (_: Exception) { null }
-}
+/** 正文翻译：自动识别源语言，长文本同样走分块管线，不再截断到 1500 字符。 */
+suspend fun translateText(text: String): String? =
+    TranslationEngine.translate(text, preferAutoDetect = true)

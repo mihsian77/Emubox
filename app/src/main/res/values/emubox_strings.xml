@@ -732,4 +732,18 @@ How to verify in emulator:
     <string name="news_no_body">Full text unavailable, showing summary</string>
     <string name="news_no_body_official">No release notes for this version</string>
     <string name="driver_news_no_log">No release notes for this version</string>
+    <string name="translate_section">Translation</string>
+    <string name="translate_section_desc">Release notes and news bodies are machine translated. Free engines have daily limits; a key gives better quality.</string>
+    <string name="translate_engine">Engine</string>
+    <string name="translate_engine_mymemory">MyMemory (free)</string>
+    <string name="translate_engine_deepseek">DeepSeek (key required)</string>
+    <string name="translate_engine_mymemory_note">Free, 5000 characters per device per day. Works in China without a VPN.</string>
+    <string name="translate_engine_deepseek_note">Far better quality and no per-character cost issue. Needs your own API key; falls back to MyMemory on failure.</string>
+    <string name="translate_email">MyMemory email (optional)</string>
+    <string name="translate_email_desc">Filling in a contact email raises the daily free quota from 5000 to 50000 characters, as the provider recommends.</string>
+    <string name="translate_email_hint">you@example.com</string>
+    <string name="translate_deepseek_key">DeepSeek API key</string>
+    <string name="translate_deepseek_key_desc">Stored only on this device and sent solely to api.deepseek.com.</string>
+    <string name="translate_deepseek_hint">sk-...</string>
+    <string name="translate_saved">Saved</string>
 </resources>
