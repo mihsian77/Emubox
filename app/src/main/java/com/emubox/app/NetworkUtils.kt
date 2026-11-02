@@ -21,7 +21,17 @@ data class GithubRelease(
     val prerelease: Boolean = false
 )
 
-data class GithubAsset(val name: String, val downloadUrl: String, val sizeBytes: Long)
+data class GithubAsset(
+    val name: String,
+    val downloadUrl: String,
+    val sizeBytes: Long,
+    /**
+     * 发布方提供的文件指纹，形如 "sha256:abcdef..."。
+     * GitHub Release 接口会带回该字段，下载完成后据此校验文件是否被篡改或损坏。
+     * 空字符串表示发布方未提供，此时跳过校验（保持原有行为，不阻断下载）。
+     */
+    val digest: String = ""
+)
 
 /**
  * 组件文件大小（字节）缓存：url -> size。
@@ -173,11 +183,12 @@ private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
         val assetsArray = obj.optJSONArray("assets") ?: JSONArray()
         val assets = (0 until assetsArray.length()).map { assetIdx ->
             val asset = assetsArray.getJSONObject(assetIdx)
-            GithubAsset(
-                name = asset.optString("name"),
-                downloadUrl = asset.optString("browser_download_url"),
-                sizeBytes = asset.optLong("size", 0L)
-            )
+                           GithubAsset(
+                    name = asset.optString("name"),
+                    downloadUrl = asset.optString("browser_download_url"),
+                    sizeBytes = asset.optLong("size", 0L),
+                    digest = asset.optString("digest", "")
+                )
         }.filter { it.name.isNotBlank() && it.downloadUrl.isNotBlank() }
 
         GithubRelease(
@@ -769,3 +780,227 @@ suspend fun fetchCompareCommits(owner: String, repo: String, from: String, to: S
             }
         }.getOrNull()
     }
+
+/** EmuReady 兼容性数据库设备命中（devices.get 模糊匹配品牌+型号） */
+data class EmuReadyDevice(
+    val modelName: String,
+    val brandName: String,
+    val socName: String,
+    val listingsCount: Int
+)
+
+/** 查询 EmuReady 设备兼容性统计：按品牌+型号搜索，未命中返回 null（网络失败静默降级）。 */
+suspend fun fetchEmuReadyDevice(brand: String, model: String): EmuReadyDevice? = withContext(Dispatchers.IO) {
+    try {
+        val query = listOfNotNull(brand.takeIf { it.isNotBlank() }, model.takeIf { it.isNotBlank() })
+            .joinToString(" ").trim()
+        if (query.isBlank()) return@withContext null
+        val input = "{\"json\":{\"search\":\"$query\",\"limit\":1}}"
+        val url = "https://www.emuready.com/api/mobile/trpc/devices.get?input=" +
+            java.net.URLEncoder.encode(input, "UTF-8")
+        val req = okhttp3.Request.Builder().url(url)
+            .header("User-Agent", "EmuHub-CN")
+            .build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (!resp.isSuccessful) return@withContext null
+            val root = org.json.JSONObject(resp.body?.string().orEmpty())
+            val data = root.optJSONObject("result")?.optJSONObject("data")?.optJSONObject("json") ?: return@withContext null
+            val arr = data.optJSONArray("devices") ?: return@withContext null
+            if (arr.length() == 0) return@withContext null
+            val d = arr.getJSONObject(0)
+            EmuReadyDevice(
+                modelName = d.optString("modelName"),
+                brandName = d.optString("brandName"),
+                socName = d.optString("socName"),
+                listingsCount = d.optInt("listingsCount")
+            )
+        }
+    } catch (_: Exception) { null }
+}
+
+/** EmuReady 设备兼容性：设备 + 各模拟器平台的兼容得分（getDeviceCompatibility 结果精简） */
+data class EmuReadySysCompat(
+    val name: String,
+    val score: Int,
+    val confidence: String,
+    val dataSource: String,
+    val totalListings: Int,
+    val uniqueGames: Int,
+    val totalVotes: Int,
+    val bestEmulator: String
+)
+data class EmuReadyCompat(
+    val modelName: String,
+    val brandName: String,
+    val socName: String,
+    val systems: List<EmuReadySysCompat>
+)
+
+/** 两步查询 EmuReady 设备兼容得分：先 devices.get 多关键词模糊匹配拿精确型号，
+ *  再 getDeviceCompatibility 取各平台得分。未命中/网络失败返回 null。
+ *  多关键词顺序：品牌+型号 → 纯型号 → socName（SM8xxx/Dimensity xxxx，国内机型常按
+ *  SoC 收录）→ 品牌+SoC；任一命中即用其精确型号，解决"识别不出处理器型号"。 */
+suspend fun fetchEmuReadyCompatibility(
+    brand: String,
+    model: String,
+    socName: String = ""
+): EmuReadyCompat? = withContext(Dispatchers.IO) {
+    try {
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        fun getJson(url: String): org.json.JSONObject? {
+            val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+            return client.newCall(req).execute().use { resp ->
+                if (!resp.isSuccessful) null else org.json.JSONObject(resp.body?.string().orEmpty())
+            }
+        }
+        // ① 多关键词依次模糊匹配拿精确型号
+        val queries = buildList {
+            add(listOfNotNull(brand.takeIf { it.isNotBlank() }, model.takeIf { it.isNotBlank() })
+                .joinToString(" ").trim())
+            add(model.trim())
+            add(socName.trim())
+            add(listOfNotNull(brand.takeIf { it.isNotBlank() }, socName.takeIf { it.isNotBlank() })
+                .joinToString(" ").trim())
+        }.filter { it.isNotBlank() }.distinct()
+        var dev: org.json.JSONObject? = null
+        for (q in queries) {
+            val searchInput = "{\"json\":{\"search\":\"$q\",\"limit\":1}}"
+            val searchUrl = "https://www.emuready.com/api/mobile/trpc/devices.get?input=" +
+                java.net.URLEncoder.encode(searchInput, "UTF-8")
+            val searchRoot = getJson(searchUrl) ?: continue
+            val devicesArr = searchRoot.optJSONObject("result")?.optJSONObject("data")
+                ?.optJSONObject("json")?.optJSONArray("devices") ?: continue
+            if (devicesArr.length() > 0) { dev = devicesArr.getJSONObject(0); break }
+        }
+        if (dev == null) return@withContext null
+        val exactModel = dev!!.optString("modelName")
+        val exactBrand = dev!!.optString("brandName")
+        // ② 精确型号查兼容得分
+        val compatInput = "{\"json\":{\"deviceBrandName\":\"$exactBrand\",\"deviceModelName\":\"$exactModel\"}}"
+        val compatUrl = "https://www.emuready.com/api/mobile/trpc/catalog.getDeviceCompatibility?input=" +
+            java.net.URLEncoder.encode(compatInput, "UTF-8")
+        val compatRoot = getJson(compatUrl) ?: return@withContext null
+        val json = compatRoot.optJSONObject("result")?.optJSONObject("data")?.optJSONObject("json")
+            ?: return@withContext null
+        val deviceObj = json.optJSONObject("device")
+        val systemsArr = json.optJSONArray("systems") ?: org.json.JSONArray()
+        val systems = buildList {
+            for (i in 0 until systemsArr.length()) {
+                val s = systemsArr.getJSONObject(i)
+                val score = s.optInt("compatibilityScore", -1)
+                if (score < 0) continue
+                val emus = s.optJSONArray("emulators") ?: org.json.JSONArray()
+                var best = ""
+                var bestScore = -1
+                for (j in 0 until emus.length()) {
+                    val e = emus.getJSONObject(j)
+                    val es = e.optInt("avgCompatibilityScore", -1)
+                    if (es > bestScore) { bestScore = es; best = e.optString("name") }
+                }
+                val metrics = s.optJSONObject("metrics")
+                add(
+                    EmuReadySysCompat(
+                        name = s.optString("name"),
+                        score = score,
+                        confidence = s.optString("confidence"),
+                        dataSource = s.optString("dataSource"),
+                        totalListings = metrics?.optInt("totalListings") ?: 0,
+                        uniqueGames = metrics?.optInt("uniqueGames") ?: 0,
+                        totalVotes = metrics?.optInt("totalVotes") ?: 0,
+                        bestEmulator = best
+                    )
+                )
+            }
+        }.sortedByDescending { it.score }.take(5)
+        if (systems.isEmpty()) return@withContext null
+        EmuReadyCompat(
+            modelName = deviceObj?.optString("modelName") ?: exactModel,
+            brandName = deviceObj?.optString("brandName") ?: exactBrand,
+            socName = deviceObj?.optString("socName") ?: dev!!.optString("socName"),
+            systems = systems
+        )
+    } catch (_: Exception) { null }
+}
+
+/** EmuReady 模拟器命中（emulators.get 按名称搜索，含社区报告数） */
+data class EmuReadyEmulator(
+    val name: String,
+    val listingsCount: Int
+)
+
+/** 查询模拟器社区数据：emulators.get 按名称模糊匹配，失败/未命中返回 null 静默降级。 */
+suspend fun fetchEmuReadyEmulator(name: String): EmuReadyEmulator? = withContext(Dispatchers.IO) {
+    try {
+        val q = name.takeIf { it.isNotBlank() } ?: return@withContext null
+        val input = "{\"json\":{\"search\":\"$q\",\"limit\":1}}"
+        val url = "https://www.emuready.com/api/mobile/trpc/emulators.get?input=" +
+            java.net.URLEncoder.encode(input, "UTF-8")
+        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (!resp.isSuccessful) return@withContext null
+            val root = org.json.JSONObject(resp.body?.string().orEmpty())
+            val arr = root.optJSONObject("result")?.optJSONObject("data")?.optJSONArray("json") ?: return@withContext null
+            if (arr.length() == 0) return@withContext null
+            val e = arr.getJSONObject(0)
+            EmuReadyEmulator(
+                name = e.optString("name"),
+                listingsCount = e.optJSONObject("_count")?.optInt("listings") ?: 0
+            )
+        }
+    } catch (_: Exception) { null }
+}
+
+/** 在线翻译：MyMemory 免费端点（自动检测→中文，国内可达）优先，Google 备用。
+ *  仅对正文前 1500 字符翻译（控制请求体积），适合 release 日志/新闻正文。 */
+suspend fun translateText(text: String): String? = withContext(Dispatchers.IO) {
+    val q = text.trim().take(1500)
+    if (q.isBlank()) return@withContext null
+    // 1) MyMemory（免费、Autodetect→zh-CN、国内可直接访问）
+    try {
+        val url = "https://api.mymemory.translated.net/get?q=" +
+            java.net.URLEncoder.encode(q, "UTF-8") + "&langpair=Autodetect|zh-CN"
+        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(15, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (resp.isSuccessful) {
+                val obj = org.json.JSONObject(resp.body?.string().orEmpty())
+                val t = obj.optJSONObject("responseData")?.optString("translatedText").orEmpty().trim()
+                if (t.isNotBlank()) return@withContext t
+            }
+        }
+    } catch (_: Exception) { }
+    // 2) Google（备用，部分网络可达）
+    try {
+        val url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q=" +
+            java.net.URLEncoder.encode(q, "UTF-8")
+        val req = okhttp3.Request.Builder().url(url).header("User-Agent", "EmuHub-CN").build()
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(15, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+        client.newCall(req).execute().use { resp ->
+            if (!resp.isSuccessful) return@withContext null
+            val root = org.json.JSONArray(resp.body?.string().orEmpty())
+            val sb = StringBuilder()
+            for (i in 0 until root.length()) {
+                val seg = root.optJSONArray(i) ?: continue
+                if (seg.length() > 0) sb.append(seg.optString(0))
+            }
+            sb.toString().trim().takeIf { it.isNotBlank() }
+        }
+    } catch (_: Exception) { null }
+}

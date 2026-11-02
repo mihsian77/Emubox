@@ -504,7 +504,9 @@ object DownloadsManager {
             }
         }.onFailure {
             android.util.Log.w("DownloadsManager", "scanExistingFiles failed", it)
-            diagnostic = "扫描失败：${it.message ?: it.javaClass.simpleName}"
+            // 异常原文（如 "Index 0 out of bounds for length 0"）对用户没有意义，
+            // 只在日志里保留完整堆栈；界面给一句能看懂的说明。
+            diagnostic = "本次扫描未完成（系统限制或目录不可读），已保留本地记录"
         }
 
         val added = existing.count { d ->
