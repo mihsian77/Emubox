@@ -146,8 +146,6 @@
     <string name="guide_step_proton_3">Proton generally handles Steam games better; its bundled DXVK version changes together with the component.</string>
     <string name="download_hub">Download hub</string>
     <string name="download_hub_desc">Choose a category to open its downloads.</string>
-    <string name="live_sources">Live sources</string>
-    <string name="fallback_sources">Fallback sources</string>
     <string name="fetching_latest">Fetching the latest drivers, components and source catalog…</string>
     <string name="driver_region">Drivers</string>
     <string name="component_region">Components</string>
@@ -221,6 +219,7 @@
     <string name="soc_cpu_cores">Cores / Max Freq</string>
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">Benchmark (Antutu V10)</string>
+    <string name="soc_score_unknown">Not recorded</string>
 
     <string name="bench_engine_title">Bench Engine</string>
     <string name="bench_no_data">No benchmark data for this SoC yet</string>
@@ -264,6 +263,9 @@
     <string name="turnip_desc_generic">Mesa Turnip graphics drivers for Adreno GPUs.</string>
     <string name="driver_source">Driver source</string>
     <string name="download_turnip">Download Turnip</string>
+    <string name="download_panvk">Download PanVK</string>
+    <string name="download_xclipse">Download Xclipse</string>
+    <string name="download_wrapper">Download Wrapper</string>
     <string name="qualcomm_driver">Qualcomm Driver</string>
     <string name="qualcomm_driver_desc">Qualcomm proprietary graphics-driver packages. Try these when a game behaves better with the vendor driver.</string>
     <string name="download_type">Download %1$s</string>
@@ -272,7 +274,6 @@
     <string name="experimental">Experimental</string>
     <string name="source_archived">Archived</string>
     <string name="change_source">Change source</string>
-    <string name="only_source_available">Only source available</string>
     <string name="choose_source">Choose source</string>
     <string name="choose_source_desc">Pick the provider EmuBox should use for this category. Your choice is remembered.</string>
     <string name="from_source">From %1$s</string>
