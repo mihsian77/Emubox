@@ -729,4 +729,18 @@
     <string name="news_no_body">暂无全文，仅提供摘要</string>
     <string name="news_no_body_official">该版本暂无更新日志</string>
     <string name="driver_news_no_log">该版本暂无更新日志</string>
+    <string name="translate_section">翻译</string>
+    <string name="translate_section_desc">更新日志与新闻正文走机器翻译。免费引擎有每日额度，填 Key 可换更高质量。</string>
+    <string name="translate_engine">翻译引擎</string>
+    <string name="translate_engine_mymemory">MyMemory（免费）</string>
+    <string name="translate_engine_deepseek">DeepSeek（需 Key）</string>
+    <string name="translate_engine_mymemory_note">免费，每台设备每天 5000 字符，国内直连不需要梯子。</string>
+    <string name="translate_engine_deepseek_note">质量明显更好，按量计费极便宜。需要你自己的 API Key；失败时自动回退 MyMemory。</string>
+    <string name="translate_email">MyMemory 联系邮箱（可选）</string>
+    <string name="translate_email_desc">按官方建议填一个邮箱，每日免费额度从 5000 字符提到 50000 字符。</string>
+    <string name="translate_email_hint">you@example.com</string>
+    <string name="translate_deepseek_key">DeepSeek API Key</string>
+    <string name="translate_deepseek_key_desc">只存在本机，只会发往 api.deepseek.com。</string>
+    <string name="translate_deepseek_hint">sk-...</string>
+    <string name="translate_saved">已保存</string>
 </resources>

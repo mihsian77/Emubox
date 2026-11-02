@@ -56,6 +56,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -1275,6 +1276,9 @@ fun SettingsScreen(
     var displayPath by remember { mutableStateOf<String?>(null) }
     var sourceCatalogUrl by remember { mutableStateOf(SettingsManager.getSourceCatalogUrl()) }
     var matchDriversByDevice by remember { mutableStateOf(SettingsManager.getMatchDriversByDevice()) }
+    var translateEngine by remember { mutableStateOf(SettingsManager.getTranslateEngine()) }
+    var translateEmail by remember { mutableStateOf(SettingsManager.getTranslateEmail()) }
+    var deepSeekKey by remember { mutableStateOf(SettingsManager.getDeepSeekKey()) }
 
     val folderPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocumentTree(),
@@ -1387,6 +1391,88 @@ fun SettingsScreen(
                         selected = colorTheme,
                         onSelected = onColorThemeChange
                     )
+                }
+            }
+
+            item {
+                SettingsSectionHeader(
+                    icon = Icons.Default.Translate,
+                    title = appString(R.string.translate_section),
+                    subtitle = appString(R.string.translate_section_desc)
+                )
+            }
+
+            item {
+                SettingsCard(title = appString(R.string.translate_engine)) {
+                    val isMyMemory = translateEngine != "deepseek"
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(
+                            selected = isMyMemory,
+                            onClick = {
+                                translateEngine = "mymemory"
+                                SettingsManager.setTranslateEngine("mymemory")
+                            },
+                            label = { Text(appString(R.string.translate_engine_mymemory)) }
+                        )
+                        FilterChip(
+                            selected = !isMyMemory,
+                            onClick = {
+                                translateEngine = "deepseek"
+                                SettingsManager.setTranslateEngine("deepseek")
+                            },
+                            label = { Text(appString(R.string.translate_engine_deepseek)) }
+                        )
+                    }
+                    Spacer(Modifier.height(10.dp))
+                    Text(
+                        text = appString(
+                            if (isMyMemory) R.string.translate_engine_mymemory_note
+                            else R.string.translate_engine_deepseek_note
+                        ),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    if (isMyMemory) {
+                        OutlinedTextField(
+                            value = translateEmail,
+                            onValueChange = {
+                                translateEmail = it
+                                SettingsManager.setTranslateEmail(it)
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            label = { Text(appString(R.string.translate_email)) },
+                            placeholder = { Text(appString(R.string.translate_email_hint)) },
+                            singleLine = true,
+                            shape = RoundedCornerShape(18.dp)
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            text = appString(R.string.translate_email_desc),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else {
+                        OutlinedTextField(
+                            value = deepSeekKey,
+                            onValueChange = {
+                                deepSeekKey = it
+                                SettingsManager.setDeepSeekKey(it)
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            label = { Text(appString(R.string.translate_deepseek_key)) },
+                            placeholder = { Text(appString(R.string.translate_deepseek_hint)) },
+                            singleLine = true,
+                            visualTransformation = PasswordVisualTransformation(),
+                            shape = RoundedCornerShape(18.dp)
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            text = appString(R.string.translate_deepseek_key_desc),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
             }
 
