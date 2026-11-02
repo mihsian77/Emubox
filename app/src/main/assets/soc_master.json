@@ -160,6 +160,7 @@
    "antutu": "390207",
    "antutu_cpu": "260763",
    "antutu_gpu": "129444",
+   "devices": "Galaxy S10+",
    "form": "phone",
    "src": "socpk"
   },
@@ -186,6 +187,7 @@
    "antutu": "305096",
    "antutu_cpu": "216161",
    "antutu_gpu": "88935",
+   "devices": "Galaxy S9、Galaxy S9+",
    "form": "phone",
    "src": "socpk"
   },
@@ -372,6 +374,7 @@
    "antutu_cpu": "385167",
    "antutu_gpu": "157654",
    "ludashi": "449109",
+   "devices": "Mate 60、Mate 60 Pro、Mate 60 Pro+",
    "form": "phone",
    "src": "socpk"
   },
@@ -431,6 +434,7 @@
    "antutu_cpu": "351895",
    "antutu_gpu": "179452",
    "ludashi": "524847",
+   "devices": "Mate 40",
    "form": "phone",
    "src": "socpk"
   },
@@ -610,6 +614,7 @@
    "antutu": "196655",
    "antutu_cpu": "161490",
    "antutu_gpu": "35165",
+   "devices": "Mate 10、Mate 10 Pro、P20、P20 Pro",
    "form": "phone",
    "src": "socpk"
   },
@@ -776,6 +781,7 @@
    "antutu_cpu": "1178051",
    "antutu_gpu": "1832719",
    "ludashi": "1395529",
+   "devices": "18 Fold、Pad 9 Pro Max",
    "form": "phone",
    "src": "socpk"
   },
@@ -1137,6 +1143,7 @@
    "antutu_cpu": "1038120",
    "antutu_gpu": "1261743",
    "ludashi": "1372822",
+   "devices": "Find X9 Pro、Find X9",
    "form": "phone",
    "src": "socpk"
   },
@@ -1345,6 +1352,7 @@
    "year": "2022",
    "tier": "mid",
    "ludashi": "481306",
+   "devices": "GT 20 Pro、13T、Reno11、V30 Pro",
    "form": "phone",
    "src": "socpk"
   },
@@ -1429,6 +1437,7 @@
    "antutu_cpu": "394300",
    "antutu_gpu": "134794",
    "ludashi": "454995",
+   "devices": "Mi 11T、XP Plus、Nord 2、X70",
    "form": "phone",
    "src": "socpk"
   },
@@ -1459,6 +1468,7 @@
    "antutu_cpu": "378961",
    "antutu_gpu": "137870",
    "ludashi": "404661",
+   "devices": "Pocket 4 Pro",
    "form": "phone",
    "src": "socpk"
   },
@@ -1573,6 +1583,7 @@
    "antutu": "401747",
    "antutu_cpu": "324565",
    "antutu_gpu": "77182",
+   "devices": "Galaxy A34 5G、10 Pro+、Redmi Note 12 Pro 5G",
    "form": "phone",
    "src": "socpk"
   },
@@ -1601,6 +1612,7 @@
    "antutu": "357755",
    "antutu_cpu": "284803",
    "antutu_gpu": "72952",
+   "devices": "9 Pro+",
    "form": "phone",
    "src": "socpk"
   },
@@ -1712,6 +1724,7 @@
    "antutu": "303441",
    "antutu_cpu": "248641",
    "antutu_gpu": "54800",
+   "devices": "7 5G",
    "form": "phone",
    "src": "socpk"
   },
@@ -1770,6 +1783,7 @@
    "antutu": "276704",
    "antutu_cpu": "236164",
    "antutu_gpu": "40540",
+   "devices": "Galaxy A22 5G、Galaxy A13 5G、Redmi Note 10 5G",
    "form": "phone",
    "src": "socpk"
   },
@@ -1893,6 +1907,7 @@
    "antutu": "179900",
    "antutu_cpu": "153844",
    "antutu_gpu": "26056",
+   "devices": "Galaxy A32 4G",
    "form": "phone",
    "src": "socpk"
   },
@@ -2028,6 +2043,7 @@
    "antutu": "110931",
    "antutu_cpu": "99737",
    "antutu_gpu": "11194",
+   "devices": "Galaxy A03s、Galaxy A04、Galaxy A12",
    "form": "phone",
    "src": "socpk"
   },
@@ -2051,6 +2067,7 @@
    "gpu": "Maxwell 256 CUDA",
    "year": "2015",
    "tier": "flagship",
+   "devices": "SHIELD TV、Switch Lite",
    "form": "phone",
    "src": "socpk"
   },
@@ -2133,6 +2150,7 @@
    "gpu": "Apple GPU",
    "year": "2024",
    "tier": "flagship",
+   "devices": "iPad Pro 7th Gen 16GB、iPad Pro 7th Gen 8GB",
    "form": "phone",
    "src": "socpk"
   },
@@ -2193,6 +2211,7 @@
    "gpu": "Apple GPU",
    "year": "2020",
    "tier": "flagship",
+   "devices": "iPad Air 5th generation",
    "form": "phone",
    "src": "socpk"
   },
@@ -2213,6 +2232,7 @@
    "gpu": "Apple GPU",
    "year": "2025",
    "tier": "flagship",
+   "devices": "iPhone 17 Pro、iPhone 17 Pro Max、iPhone Air",
    "form": "phone",
    "src": "socpk"
   },
@@ -2233,6 +2253,7 @@
    "gpu": "Apple GPU",
    "year": "2025",
    "tier": "sub-flagship",
+   "devices": "iPhone 17",
    "form": "phone",
    "src": "socpk"
   },
@@ -2253,6 +2274,7 @@
    "gpu": "Apple GPU",
    "year": "2024",
    "tier": "sub-flagship",
+   "devices": "iPhone 16 Pro Max",
    "form": "phone",
    "src": "socpk"
   },
@@ -2293,6 +2315,7 @@
    "gpu": "Apple GPU",
    "year": "2023",
    "tier": "sub-flagship",
+   "devices": "iPhone 15 Pro Max、iPhone 15 Pro",
    "form": "phone",
    "src": "socpk"
   },
@@ -2753,6 +2776,7 @@
    "antutu_cpu": "1137283",
    "antutu_gpu": "1367745",
    "ludashi": "1308603",
+   "devices": "11 Pro、15、Galaxy S26 Ultra、S26 Ultra",
    "form": "phone",
    "src": "socpk"
   },
@@ -2813,6 +2837,7 @@
    "antutu_cpu": "958707",
    "antutu_gpu": "969946",
    "ludashi": "1040495",
+   "devices": "15R、iQOO 15R",
    "form": "phone",
    "src": "socpk"
   },
@@ -2934,6 +2959,7 @@
    "antutu_cpu": "564964",
    "antutu_gpu": "266287",
    "ludashi": "696306",
+   "devices": "Poco F5 Pro、ROG Phone 6、Phone 2、11R",
    "form": "phone",
    "src": "socpk"
   },
@@ -2991,6 +3017,7 @@
    "antutu_cpu": "455978",
    "antutu_gpu": "205998",
    "ludashi": "469329",
+   "devices": "Moto G200、X70 Pro+",
    "form": "phone",
    "src": "socpk"
   },
@@ -3078,6 +3105,7 @@
    "antutu_cpu": "402864",
    "antutu_gpu": "182988",
    "ludashi": "457579",
+   "devices": "Galaxy Note 20 Ultra、Galaxy Tab S7+、Galaxy Tab S7、Legion Phone Duel",
    "form": "phone",
    "src": "socpk"
   },
@@ -3254,6 +3282,7 @@
    "gpu_key": "adreno530",
    "year": "2016",
    "tier": "flagship",
+   "devices": "Pixel、G6、3T",
    "form": "phone",
    "src": "socpk"
   },
@@ -3358,6 +3387,7 @@
    "antutu_cpu": "568831",
    "antutu_gpu": "425728",
    "ludashi": "718859",
+   "devices": "Pad 7",
    "form": "phone",
    "src": "socpk"
   },
@@ -3445,6 +3475,7 @@
    "antutu": "462426",
    "antutu_cpu": "354429",
    "antutu_gpu": "107997",
+   "devices": "90、Edge 50",
    "form": "phone",
    "src": "socpk"
   },
@@ -3473,6 +3504,7 @@
    "antutu_cpu": "337605",
    "antutu_gpu": "111471",
    "ludashi": "405080",
+   "devices": "iQOO Z7、Nord CE3",
    "form": "phone",
    "src": "socpk"
   },
@@ -3640,6 +3672,7 @@
    "antutu": "296139",
    "antutu_cpu": "246726",
    "antutu_gpu": "49413",
+   "devices": "Pixel 4a",
    "form": "phone",
    "src": "socpk"
   },
@@ -3667,6 +3700,7 @@
    "antutu": "206611",
    "antutu_cpu": "168156",
    "antutu_gpu": "38455",
+   "devices": "Mi 9 Lite",
    "form": "phone",
    "src": "socpk"
   },
@@ -3751,6 +3785,7 @@
    "antutu": "233275",
    "antutu_cpu": "205686",
    "antutu_gpu": "27589",
+   "devices": "Redmi 10C、Galaxy A05s、X7b、Redmi Note 11",
    "form": "phone",
    "src": "socpk"
   },
@@ -3805,6 +3840,7 @@
    "antutu": "166731",
    "antutu_cpu": "143650",
    "antutu_gpu": "23081",
+   "devices": "Xperia 10 II、S1 Pro",
    "form": "phone",
    "src": "socpk"
   },
@@ -3832,6 +3868,7 @@
    "antutu": "166633",
    "antutu_cpu": "154683",
    "antutu_gpu": "23625",
+   "devices": "Air X、Galaxy Tab A7、AIR Y",
    "form": "phone",
    "src": "socpk"
   },
@@ -3859,6 +3896,7 @@
    "antutu": "169306",
    "antutu_cpu": "149507",
    "antutu_gpu": "19799",
+   "devices": "Redmi Note 7",
    "form": "phone",
    "src": "socpk"
   },
@@ -3886,6 +3924,7 @@
    "antutu": "150507",
    "antutu_cpu": "132995",
    "antutu_gpu": "17512",
+   "devices": "Redmi Note 6 Pro",
    "form": "phone",
    "src": "socpk"
   },
@@ -4074,6 +4113,7 @@
    "antutu_cpu": "1161762",
    "antutu_gpu": "1750402",
    "ludashi": "1467056",
+   "devices": "Signature 27、Magic9 Pro Max、16、12 Pro+",
    "form": "phone",
    "src": "antutu"
   },
@@ -4423,6 +4463,7 @@
    "antutu_cpu": "672403",
    "antutu_gpu": "628394",
    "ludashi": "894941",
+   "devices": "Poco X8 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -4445,6 +4486,7 @@
    "antutu": "1288409",
    "antutu_cpu": "687559",
    "antutu_gpu": "600850",
+   "devices": "Galaxy Z Flip7、Galaxy S26 FE",
    "form": "phone",
    "src": "antutu"
   },
@@ -4488,6 +4530,7 @@
    "antutu_cpu": "665278",
    "antutu_gpu": "562016",
    "ludashi": "821779",
+   "devices": "Poco X7 Pro、Redmi Turbo 4",
    "form": "phone",
    "src": "antutu"
   },
@@ -4524,6 +4567,7 @@
    "antutu_cpu": "619264",
    "antutu_gpu": "471140",
    "ludashi": "767415",
+   "devices": "Reno12 Pro、iQOO Neo 8 Pro、13T Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -4545,6 +4589,7 @@
    "antutu": "965049",
    "antutu_cpu": "486715",
    "antutu_gpu": "478334",
+   "devices": "GT 30 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -4567,6 +4612,7 @@
    "antutu_cpu": "492051",
    "antutu_gpu": "402826",
    "ludashi": "656326",
+   "devices": "Poco X6 Pro、14T",
    "form": "phone",
    "src": "antutu"
   },
@@ -4605,6 +4651,7 @@
    "antutu_cpu": "473825",
    "antutu_gpu": "473705",
    "ludashi": "668007",
+   "devices": "Edge 60 Pro、Xiaoxin Pad Pro 2025",
    "form": "phone",
    "src": "antutu"
   },
@@ -4627,6 +4674,7 @@
    "antutu_cpu": "474107",
    "antutu_gpu": "324490",
    "ludashi": "522528",
+   "devices": "V80",
    "form": "phone",
    "src": "antutu"
   },
@@ -4667,6 +4715,7 @@
    "antutu_cpu": "451357",
    "antutu_gpu": "230551",
    "ludashi": "568961",
+   "devices": "Reno12",
    "form": "phone",
    "src": "antutu"
   },
@@ -4884,6 +4933,7 @@
    "antutu_cpu": "366328",
    "antutu_gpu": "139148",
    "ludashi": "472925",
+   "devices": "Nord 2T",
    "form": "phone",
    "src": "antutu"
   },
@@ -4925,6 +4975,7 @@
    "antutu_cpu": "355714",
    "antutu_gpu": "139839",
    "ludashi": "396870",
+   "devices": "GT 10 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -4946,6 +4997,7 @@
    "antutu": "492875",
    "antutu_cpu": "373770",
    "antutu_gpu": "119105",
+   "devices": "Poco X8 Power",
    "form": "phone",
    "src": "antutu"
   },
@@ -4964,6 +5016,7 @@
    "antutu": "486451",
    "antutu_cpu": "304126",
    "antutu_gpu": "182325",
+   "devices": "70 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -4985,6 +5038,7 @@
    "antutu": "477986",
    "antutu_cpu": "378823",
    "antutu_gpu": "99163",
+   "devices": "Magic 8 Lite",
    "form": "phone",
    "src": "antutu"
   },
@@ -5070,6 +5124,7 @@
    "antutu": "451423",
    "antutu_cpu": "346400",
    "antutu_gpu": "105023",
+   "devices": "Edge 30、Phone 1、70",
    "form": "phone",
    "src": "antutu"
   },
@@ -5092,6 +5147,7 @@
    "antutu_cpu": "345311",
    "antutu_gpu": "97052",
    "ludashi": "394591",
+   "devices": "Redmi Note 15 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -5156,6 +5212,7 @@
    "antutu": "423021",
    "antutu_cpu": "340877",
    "antutu_gpu": "82144",
+   "devices": "Poco X8",
    "form": "phone",
    "src": "antutu"
   },
@@ -5324,6 +5381,7 @@
    "antutu": "382424",
    "antutu_cpu": "289659",
    "antutu_gpu": "92765",
+   "devices": "Phone 2 Pro、Edge 60 Fusion、Redmi Note 14 Pro、KT R2 3:2",
    "form": "phone",
    "src": "antutu"
   },
@@ -5346,6 +5404,7 @@
    "antutu": "381081",
    "antutu_cpu": "292643",
    "antutu_gpu": "88438",
+   "devices": "Galaxy A35 5G、Galaxy A54 5G、Galaxy Tab S9 FE、Galaxy Tab S9 FE+",
    "form": "phone",
    "src": "antutu"
   },
@@ -5382,6 +5441,7 @@
    "antutu": "365693",
    "antutu_cpu": "289801",
    "antutu_gpu": "75892",
+   "devices": "11 Pro、P1、Reno10、12 Pro+",
    "form": "phone",
    "src": "antutu"
   },
@@ -5402,6 +5462,7 @@
    "antutu": "359100",
    "antutu_cpu": "288714",
    "antutu_gpu": "70386",
+   "devices": "Pocket 4、Nord CE2",
    "form": "phone",
    "src": "antutu"
   },
@@ -5458,6 +5519,7 @@
    "antutu": "352225",
    "antutu_cpu": "293841",
    "antutu_gpu": "58384",
+   "devices": "Redmi 15 5G",
    "form": "phone",
    "src": "antutu"
   },
@@ -5598,6 +5660,7 @@
    "antutu": "298709",
    "antutu_cpu": "248438",
    "antutu_gpu": "50271",
+   "devices": "Moto G51",
    "form": "phone",
    "src": "antutu"
   },
@@ -5617,6 +5680,7 @@
    "antutu": "290969",
    "antutu_cpu": "234428",
    "antutu_gpu": "56541",
+   "devices": "Nord N10、Xperia 10 III",
    "form": "phone",
    "src": "antutu"
   },
@@ -5725,6 +5789,7 @@
    "antutu": "280758",
    "antutu_cpu": "234698",
    "antutu_gpu": "46060",
+   "devices": "Hot 50 4G、Hot 50 Pro、Hot 50 Pro Plus",
    "form": "phone",
    "src": "antutu"
   },
@@ -5747,6 +5812,7 @@
    "antutu": "279887",
    "antutu_cpu": "211418",
    "antutu_gpu": "68469",
+   "devices": "Galaxy A25 5G、Galaxy A33 5G、Galaxy A53 5G、Galaxy M33 5G",
    "form": "phone",
    "src": "antutu"
   },
@@ -5769,6 +5835,7 @@
    "antutu": "276263",
    "antutu_cpu": "234160",
    "antutu_gpu": "42103",
+   "devices": "Galaxy A14 5G",
    "form": "phone",
    "src": "antutu"
   },
@@ -5805,6 +5872,7 @@
    "antutu": "272447",
    "antutu_cpu": "230218",
    "antutu_gpu": "42229",
+   "devices": "Galaxy A15 5G",
    "form": "phone",
    "src": "antutu"
   },
@@ -5846,6 +5914,7 @@
    "antutu": "261749",
    "antutu_cpu": "214198",
    "antutu_gpu": "47551",
+   "devices": "Note 50 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -5918,6 +5987,7 @@
    "antutu": "254586",
    "antutu_cpu": "198067",
    "antutu_gpu": "56519",
+   "devices": "Poco M5s、XP、8",
    "form": "phone",
    "src": "antutu"
   },
@@ -5960,6 +6030,7 @@
    "antutu": "252310",
    "antutu_cpu": "206117",
    "antutu_gpu": "46193",
+   "devices": "Redmi Note 14 4G、RS4",
    "form": "phone",
    "src": "antutu"
   },
@@ -6064,6 +6135,7 @@
    "antutu": "229931",
    "antutu_cpu": "150910",
    "antutu_gpu": "79021",
+   "devices": "Note 40 5G",
    "form": "phone",
    "src": "antutu"
   },
@@ -6140,6 +6212,7 @@
    "antutu": "191333",
    "antutu_cpu": "157131",
    "antutu_gpu": "34202",
+   "devices": "Galaxy Tab S5e、Pixel 3a、Pixel 3a XL",
    "form": "phone",
    "src": "antutu"
   },
@@ -6237,6 +6310,7 @@
    "antutu": "174994",
    "antutu_cpu": "151008",
    "antutu_gpu": "23986",
+   "devices": "Redmi 14C",
    "form": "phone",
    "src": "antutu"
   },
@@ -6278,6 +6352,7 @@
    "antutu": "170286",
    "antutu_cpu": "146784",
    "antutu_gpu": "23502",
+   "devices": "C25",
    "form": "phone",
    "src": "antutu"
   },
@@ -6329,6 +6404,7 @@
    "antutu": "168805",
    "antutu_cpu": "142109",
    "antutu_gpu": "26696",
+   "devices": "Hot 30、Redmi 12、C55",
    "form": "phone",
    "src": "antutu"
   },
@@ -6535,6 +6611,7 @@
    "antutu": "114963",
    "antutu_cpu": "96961",
    "antutu_gpu": "18002",
+   "devices": "Galaxy A12 Nacho",
    "form": "phone",
    "src": "antutu"
   },
@@ -6803,6 +6880,7 @@
    "antutu": "81960",
    "antutu_cpu": "76679",
    "antutu_gpu": "5281",
+   "devices": "Galaxy J6",
    "form": "phone",
    "src": "antutu"
   },
@@ -7193,6 +7271,7 @@
    "antutu": "795875",
    "antutu_cpu": "318111",
    "antutu_gpu": "477764",
+   "devices": "Pocket DS、Pocket S、Pocket Evo、Pocket DMG",
    "form": "embedded",
    "src": "antutu"
   },
@@ -7230,6 +7309,7 @@
    "antutu": "561033",
    "antutu_cpu": "162630",
    "antutu_gpu": "398403",
+   "devices": "Quest 3、Quest 3S",
    "form": "embedded",
    "src": "antutu"
   },
@@ -7961,6 +8041,7 @@
    "name_en": "Snapdragon 730",
    "brand": "高通",
    "year": "2019",
+   "devices": "Mi 9T、Redmi K20",
    "form": "phone",
    "src": "code"
   },
@@ -8100,6 +8181,7 @@
    "name": "Helio G200 Ultimate",
    "name_en": "MediaTek Helio G200 Ultimate",
    "brand": "联发科",
+   "devices": "XPAD 30 Pro",
    "form": "phone"
   },
   {
@@ -8361,6 +8443,7 @@
    "name": "Dimensity 7500-Turbo",
    "name_en": "MediaTek Dimensity 7500-Turbo",
    "brand": "联发科",
+   "devices": "T5 5G",
    "form": "phone"
   },
   {
@@ -8662,6 +8745,7 @@
    "name": "Helio P22T",
    "name_en": "MediaTek Helio P22T",
    "brand": "联发科",
+   "devices": "Galaxy Tab A7 Lite",
    "form": "phone"
   },
   {
@@ -8770,6 +8854,7 @@
    "name": "Exynos 2600",
    "name_en": "Samsung Exynos 2600",
    "brand": "三星",
+   "devices": "Galaxy S26、Galaxy S26+",
    "form": "phone"
   },
   {

@@ -579,7 +579,43 @@ def main():
             s['codes'].append(k)
             added_code += 1
 
-    # ---- 常见机型：从 soc_knowledge 合并（接口没有这个字段） ----
+    # ---- 常见机型：手写知识库 + EmuReady 设备目录 ----
+    # 极客湾与安兔兔都不给机型，只有 soc_knowledge 的 58 条带，覆盖太窄。
+    # EmuReady 目录里有 803 台设备的 socName + 机型名，正好补这一段。
+    name_idx = {}
+    for s in socs:
+        for n in [s.get('name', ''), s.get('name_en', '')] + s['names']:
+            if n:
+                name_idx.setdefault(normalize(n), s)
+    emu = load_json(os.path.join(ASSETS, 'emuready-catalog.json'), {})
+    by_soc = {}
+    for d in emu.get('devices', []):
+        soc_name = (d.get('socName') or '').strip()
+        model = (d.get('modelName') or '').strip()
+        if not soc_name or not model:
+            continue
+        key = normalize(soc_name)
+        if key not in name_idx:
+            continue
+        by_soc.setdefault(key, []).append((int(d.get('listingsCount') or 0), model))
+    emu_devices = 0
+    for key, items in by_soc.items():
+        s = name_idx[key]
+        if s.get('devices'):
+            continue
+        items.sort(key=lambda x: -x[0])
+        names = []
+        for _, m in items:
+            # 机型名里常带芯片副标题：「KONKR Pocket FIT (G3 Gen 3)」，只留机型
+            m = re.sub(r'\s*[（(][^)）]*[)）]\s*$', '', m).strip()
+            if m and m not in names:
+                names.append(m)
+            if len(names) >= 4:
+                break
+        if names:
+            s['devices'] = '、'.join(names)
+            emu_devices += 1
+
     kd = {}
     for e in knowledge.get('socs', []):
         for k in e.get('keys', []):
@@ -644,6 +680,7 @@ def main():
     print(f'芯片 {len(uniq)} 条，有代号 {coded} 条，代号索引 exact={len(exact)} loose={len(loose)}，平台 {len(platforms)} 条')
     print(f'跑分挂接：安兔兔 {sum(1 for s in uniq if s["antutu"])} 条，鲁大师 {sum(1 for s in uniq if s["ludashi"])} 条')
     print(f'新增：安兔兔补 {added_ant} 条，部件号表补 {added_part} 条，映射表挂码 {added_code} 条')
+    print(f'常见机型：EmuReady 补 {emu_devices} 条，有 devices 共 {sum(1 for s in uniq if s["devices"])} 条')
     if conflicts:
         print(f'代号冲突 {len(conflicts)} 条（保留先到，未覆盖）：')
         for k, a, b in conflicts[:20]:
