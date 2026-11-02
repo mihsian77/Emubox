@@ -298,12 +298,12 @@ suspend fun fetchTurnipReleases(source: TurnipSource, adrenoSeries: String): Lis
 
 suspend fun fetchQualcommReleases(source: QualcommSource): List<GithubRelease> {
     val releases = fetchGithubReleasesFromUrl(source.apiUrl)
-    // 与 Turnip 一致：只保留 zip/adpkg 驱动包资产，其余文件不进入下载
+    // 与 Turnip 一致：只保留可安装的驱动包资产（zip/adpkg 为主，个别源发 .so），
+    // 说明文档、校验文件与源码包不进入下载
     val zipOnly = releases
         .map { release ->
             release.copy(assets = release.assets.filter { asset ->
-                asset.name.endsWith(".zip", ignoreCase = true) ||
-                    asset.name.endsWith(".adpkg", ignoreCase = true)
+                DRIVER_ASSET_EXTS.any { asset.name.endsWith(it, ignoreCase = true) }
             })
         }
         .filter { it.assets.isNotEmpty() }

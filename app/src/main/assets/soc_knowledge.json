@@ -1,11 +1,11 @@
 {
- "version": "1.0.0",
- "note": "参考跑分为安兔兔 v10 大致区间，仅作性能量级参考；工艺/架构为公开规格。",
+ "version": "1.1.0",
+ "note": "芯片规格知识库。keys 为匹配键，形态须与设备上报的 SoC 名一致：去空格、去横线，英文厂牌已换成中文（snapdragon→骁龙）；Mali 型号键写成 mali+数字（gpuModel 不带 G 前缀）。score 是安兔兔 V10 口径的参考总分，暂无可核实数据的留空，界面显示「未收录」。",
  "socs": [
   {
    "keys": [
-    "snapdragon 8 elite",
-    "8 elite",
+    "骁龙8elite",
+    "8elite",
     "sm8750",
     "sun",
     "adreno830"
@@ -20,8 +20,8 @@
   },
   {
    "keys": [
-    "snapdragon 8 gen 3",
-    "8 gen 3",
+    "骁龙8gen3",
+    "8gen3",
     "sm8650",
     "pineapple",
     "adreno750"
@@ -36,8 +36,8 @@
   },
   {
    "keys": [
-    "snapdragon 8 gen 2",
-    "8 gen 2",
+    "骁龙8gen2",
+    "8gen2",
     "sm8550",
     "kalama",
     "adreno740"
@@ -52,8 +52,8 @@
   },
   {
    "keys": [
-    "snapdragon 8s gen 3",
-    "8s gen 3",
+    "骁龙8sgen3",
+    "8sgen3",
     "sm8635",
     "adreno735"
    ],
@@ -67,8 +67,8 @@
   },
   {
    "keys": [
-    "snapdragon 8 gen 1",
-    "8 gen 1",
+    "骁龙8gen1",
+    "8gen1",
     "sm8450",
     "taro",
     "adreno730"
@@ -83,7 +83,7 @@
   },
   {
    "keys": [
-    "snapdragon 888",
+    "骁龙888",
     "888",
     "sm8350",
     "lahaina",
@@ -99,7 +99,7 @@
   },
   {
    "keys": [
-    "snapdragon 870",
+    "骁龙870",
     "870",
     "sm8250",
     "adreno650"
@@ -114,7 +114,7 @@
   },
   {
    "keys": [
-    "snapdragon 865",
+    "骁龙865",
     "865",
     "sm8250",
     "kona",
@@ -130,8 +130,8 @@
   },
   {
    "keys": [
-    "snapdragon 7+ gen 2",
-    "7+ gen 2",
+    "骁龙7+gen2",
+    "7+gen2",
     "sm7475",
     "adreno725"
    ],
@@ -145,8 +145,8 @@
   },
   {
    "keys": [
-    "snapdragon 7 gen 3",
-    "7 gen 3",
+    "骁龙7gen3",
+    "7gen3",
     "sm7550",
     "adreno720"
    ],
@@ -160,8 +160,8 @@
   },
   {
    "keys": [
-    "snapdragon 6 gen 1",
-    "6 gen 1",
+    "骁龙6gen1",
+    "6gen1",
     "sm6450",
     "adreno710"
    ],
@@ -175,7 +175,7 @@
   },
   {
    "keys": [
-    "snapdragon 778g",
+    "骁龙778g",
     "778g",
     "sm7325",
     "adreno642l"
@@ -190,7 +190,7 @@
   },
   {
    "keys": [
-    "snapdragon 695",
+    "骁龙695",
     "695",
     "sm6375",
     "adreno619"
@@ -205,10 +205,10 @@
   },
   {
    "keys": [
-    "dimensity 9300",
+    "天玑9300",
     "9300",
     "mt6989",
-    "malig720"
+    "mali720"
    ],
    "name": "天玑 9300",
    "process": "4nm",
@@ -220,10 +220,10 @@
   },
   {
    "keys": [
-    "dimensity 9200",
+    "天玑9200",
     "9200",
     "mt6985",
-    "malig715"
+    "mali715"
    ],
    "name": "天玑 9200",
    "process": "4nm",
@@ -235,10 +235,10 @@
   },
   {
    "keys": [
-    "dimensity 9000",
+    "天玑9000",
     "9000",
     "mt6983",
-    "malig710"
+    "mali710"
    ],
    "name": "天玑 9000",
    "process": "4nm",
@@ -250,10 +250,10 @@
   },
   {
    "keys": [
-    "dimensity 8300",
+    "天玑8300",
     "8300",
     "mt6897",
-    "malig615"
+    "mali615"
    ],
    "name": "天玑 8300",
    "process": "4nm",
@@ -265,10 +265,10 @@
   },
   {
    "keys": [
-    "dimensity 8100",
+    "天玑8100",
     "8100",
     "mt6895",
-    "malig610"
+    "mali610"
    ],
    "name": "天玑 8100",
    "process": "5nm",
@@ -280,10 +280,10 @@
   },
   {
    "keys": [
-    "dimensity 7200",
+    "天玑7200",
     "7200",
     "mt6886",
-    "malig610"
+    "mali610"
    ],
    "name": "天玑 7200",
    "process": "4nm",
@@ -295,10 +295,10 @@
   },
   {
    "keys": [
-    "dimensity 6100",
+    "天玑6100",
     "6100",
     "mt6835",
-    "malig57"
+    "mali57"
    ],
    "name": "天玑 6100",
    "process": "6nm",
@@ -310,9 +310,8 @@
   },
   {
    "keys": [
-    "kirin 9100",
-    "9100",
-    "kirin9100"
+    "麒麟9100",
+    "9100"
    ],
    "name": "麒麟 9100",
    "process": "5nm",
@@ -324,7 +323,7 @@
   },
   {
    "keys": [
-    "kirin 9010",
+    "麒麟9010",
     "9010"
    ],
    "name": "麒麟 9010",
@@ -337,9 +336,8 @@
   },
   {
    "keys": [
-    "kirin 9000",
-    "9000",
-    "kirin9000"
+    "麒麟9000",
+    "9000"
    ],
    "name": "麒麟 9000",
    "process": "5nm",
@@ -351,9 +349,8 @@
   },
   {
    "keys": [
-    "kirin 990",
-    "990",
-    "kirin990"
+    "麒麟990",
+    "990"
    ],
    "name": "麒麟 990",
    "process": "7nm",
@@ -365,7 +362,7 @@
   },
   {
    "keys": [
-    "exynos 2400",
+    "exynos2400",
     "2400"
    ],
    "name": "Exynos 2400",
@@ -378,7 +375,7 @@
   },
   {
    "keys": [
-    "exynos 2200",
+    "exynos2200",
     "2200"
    ],
    "name": "Exynos 2200",
@@ -391,9 +388,8 @@
   },
   {
    "keys": [
-    "tensor g5",
-    "tensor g5",
-    "malig953"
+    "tensorg5",
+    "mali953"
    ],
    "name": "Tensor G5",
    "process": "3nm",
@@ -405,9 +401,8 @@
   },
   {
    "keys": [
-    "tensor g4",
-    "tensor g4",
-    "malig715"
+    "tensorg4",
+    "mali715"
    ],
    "name": "Tensor G4",
    "process": "4nm",
@@ -419,9 +414,8 @@
   },
   {
    "keys": [
-    "tensor g3",
-    "tensor g3",
-    "malig715"
+    "tensorg3",
+    "mali715"
    ],
    "name": "Tensor G3",
    "process": "4nm",
@@ -433,9 +427,9 @@
   },
   {
    "keys": [
-    "helio g99",
+    "heliog99",
     "g99",
-    "malig57"
+    "mali57"
    ],
    "name": "Helio G99",
    "process": "6nm",
@@ -447,9 +441,9 @@
   },
   {
    "keys": [
-    "helio g96",
+    "heliog96",
     "g96",
-    "malig57"
+    "mali57"
    ],
    "name": "Helio G96",
    "process": "12nm",
@@ -461,9 +455,9 @@
   },
   {
    "keys": [
-    "helio g85",
+    "heliog85",
     "g85",
-    "malig52"
+    "mali52"
    ],
    "name": "Helio G85",
    "process": "12nm",
@@ -475,8 +469,8 @@
   },
   {
    "keys": [
-    "snapdragon 8s gen 4",
-    "8s gen 4",
+    "骁龙8sgen4",
+    "8sgen4",
     "sm8735",
     "adreno825"
    ],
@@ -490,8 +484,8 @@
   },
   {
    "keys": [
-    "snapdragon 7s gen 3",
-    "7s gen 3",
+    "骁龙7sgen3",
+    "7sgen3",
     "sm7635",
     "adreno710"
    ],
@@ -505,8 +499,8 @@
   },
   {
    "keys": [
-    "snapdragon 7s gen 2",
-    "7s gen 2",
+    "骁龙7sgen2",
+    "7sgen2",
     "sm7435",
     "adreno710"
    ],
@@ -520,8 +514,8 @@
   },
   {
    "keys": [
-    "snapdragon 6 gen 3",
-    "6 gen 3",
+    "骁龙6gen3",
+    "6gen3",
     "sm6475",
     "adreno710"
    ],
@@ -535,8 +529,8 @@
   },
   {
    "keys": [
-    "snapdragon 4 gen 2",
-    "4 gen 2",
+    "骁龙4gen2",
+    "4gen2",
     "sm4450",
     "adreno613"
    ],
@@ -550,10 +544,10 @@
   },
   {
    "keys": [
-    "dimensity 9400",
+    "天玑9400",
     "9400",
     "mt6991",
-    "immortalis-g925",
+    "immortalisg925",
     "g925"
    ],
    "name": "天玑 9400",
@@ -566,9 +560,9 @@
   },
   {
    "keys": [
-    "dimensity 9400+",
+    "天玑9400+",
     "9400+",
-    "immortalis-g925"
+    "immortalisg925"
    ],
    "name": "天玑 9400+",
    "process": "3nm",
@@ -580,10 +574,10 @@
   },
   {
    "keys": [
-    "dimensity 9300+",
+    "天玑9300+",
     "9300+",
     "mt6989",
-    "immortalis-g720"
+    "immortalisg720"
    ],
    "name": "天玑 9300+",
    "process": "4nm",
@@ -595,10 +589,10 @@
   },
   {
    "keys": [
-    "dimensity 8400",
+    "天玑8400",
     "8400",
     "mt6990",
-    "mali-g720"
+    "mali720"
    ],
    "name": "天玑 8400",
    "process": "4nm",
@@ -610,9 +604,9 @@
   },
   {
    "keys": [
-    "kirin 9020",
+    "麒麟9020",
     "9020",
-    "maleoon 920"
+    "maleoon920"
    ],
    "name": "麒麟 9020",
    "process": "6nm",
@@ -624,9 +618,9 @@
   },
   {
    "keys": [
-    "exynos 1580",
+    "exynos1580",
     "1580",
-    "xclipse 540"
+    "xclipse540"
    ],
    "name": "Exynos 1580",
    "process": "4nm",
@@ -638,9 +632,9 @@
   },
   {
    "keys": [
-    "exynos 1480",
+    "exynos1480",
     "1480",
-    "xclipse 530"
+    "xclipse530"
    ],
    "name": "Exynos 1480",
    "process": "4nm",
@@ -652,10 +646,9 @@
   },
   {
    "keys": [
-    "tensor g2",
-    "tensor g2",
+    "tensorg2",
     "gs201",
-    "mali-g710"
+    "mali710"
    ],
    "name": "Tensor G2",
    "process": "4nm",
@@ -664,6 +657,188 @@
    "gpu_arch": "mali",
    "score": "约 90 万",
    "devices": "Pixel 7、Pixel 7 Pro"
+  },
+  {
+   "keys": [
+    "骁龙855",
+    "sm8150",
+    "adreno640"
+   ],
+   "name": "骁龙 855",
+   "process": "7nm",
+   "cpu": "1×A76 2.84 + 3×A76 2.42 + 4×A55 1.78",
+   "gpu": "Adreno 640",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "小米 9、一加 7 Pro、Redmi K20 Pro"
+  },
+  {
+   "keys": [
+    "骁龙855plus",
+    "骁龙855+",
+    "sm8150ac",
+    "adreno640"
+   ],
+   "name": "骁龙 855+",
+   "process": "7nm",
+   "cpu": "1×A76 2.96 + 3×A76 2.42 + 4×A55 1.78",
+   "gpu": "Adreno 640",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版"
+  },
+  {
+   "keys": [
+    "骁龙845",
+    "sdm845",
+    "adreno630"
+   ],
+   "name": "骁龙 845",
+   "process": "10nm",
+   "cpu": "4×A75 2.8 + 4×A55 1.8",
+   "gpu": "Adreno 630",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "小米 8、一加 6、坚果 R1"
+  },
+  {
+   "keys": [
+    "骁龙835",
+    "msm8998",
+    "adreno540"
+   ],
+   "name": "骁龙 835",
+   "process": "10nm",
+   "cpu": "4×A73 2.45 + 4×A53 1.9",
+   "gpu": "Adreno 540",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "小米 6、一加 5、三星 Galaxy S8"
+  },
+  {
+   "keys": [
+    "骁龙765g",
+    "sm7250",
+    "adreno620"
+   ],
+   "name": "骁龙 765G",
+   "process": "7nm",
+   "cpu": "1×A76 2.4 + 1×A76 2.2 + 6×A55 1.8",
+   "gpu": "Adreno 620",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "Redmi K30 5G、OPPO Reno3 Pro"
+  },
+  {
+   "keys": [
+    "骁龙750g",
+    "sm7225",
+    "adreno619"
+   ],
+   "name": "骁龙 750G",
+   "process": "8nm",
+   "cpu": "2×A77 2.2 + 6×A55 1.8",
+   "gpu": "Adreno 619",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "Redmi Note 9 Pro 5G、小米 10T Lite"
+  },
+  {
+   "keys": [
+    "骁龙720g",
+    "sm7125",
+    "adreno618"
+   ],
+   "name": "骁龙 720G",
+   "process": "8nm",
+   "cpu": "2×A76 2.3 + 6×A55 1.8",
+   "gpu": "Adreno 618",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "Redmi Note 9 Pro、realme 6 Pro"
+  },
+  {
+   "keys": [
+    "骁龙480",
+    "sm4350",
+    "adreno619"
+   ],
+   "name": "骁龙 480",
+   "process": "8nm",
+   "cpu": "2×A76 2.0 + 6×A55 1.8",
+   "gpu": "Adreno 619",
+   "gpu_arch": "adreno",
+   "score": "",
+   "devices": "Redmi Note 10、POCO M3"
+  },
+  {
+   "keys": [
+    "天玑1000l",
+    "mt6885",
+    "mali77"
+   ],
+   "name": "天玑 1000L",
+   "process": "7nm",
+   "cpu": "4×A77 2.2 + 4×A55 2.0",
+   "gpu": "Mali-G77 MC7",
+   "gpu_arch": "mali",
+   "score": "",
+   "devices": "Redmi K30i 5G"
+  },
+  {
+   "keys": [
+    "exynos990",
+    "mali77"
+   ],
+   "name": "Exynos 990",
+   "process": "7nm",
+   "cpu": "2×M5 2.73 + 2×A76 2.5 + 4×A55 2.0",
+   "gpu": "Mali-G77 MP11",
+   "gpu_arch": "mali",
+   "score": "",
+   "devices": "三星 Galaxy S20 系列、Note 20"
+  },
+  {
+   "keys": [
+    "exynos2100",
+    "mali78"
+   ],
+   "name": "Exynos 2100",
+   "process": "5nm",
+   "cpu": "1×X1 2.9 + 3×A78 2.8 + 4×A55 2.2",
+   "gpu": "Mali-G78 MP14",
+   "gpu_arch": "mali",
+   "score": "",
+   "devices": "三星 Galaxy S21 系列"
+  },
+  {
+   "keys": [
+    "heliog90t",
+    "g90t",
+    "mt6785",
+    "mali76"
+   ],
+   "name": "Helio G90T",
+   "process": "12nm",
+   "cpu": "2×A76 2.05 + 6×A55 2.0",
+   "gpu": "Mali-G76 MC4",
+   "gpu_arch": "mali",
+   "score": "",
+   "devices": "Redmi Note 8 Pro"
+  },
+  {
+   "keys": [
+    "麒麟980",
+    "kirin980",
+    "mali76"
+   ],
+   "name": "麒麟 980",
+   "process": "7nm",
+   "cpu": "2×A76 2.6 + 2×A76 1.92 + 4×A55 1.8",
+   "gpu": "Mali-G76 MP10",
+   "gpu_arch": "mali",
+   "score": "",
+   "devices": "华为 P30 系列、Mate 20 系列"
   }
  ]
 }
