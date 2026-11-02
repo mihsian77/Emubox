@@ -77,6 +77,17 @@ class SocResolverTest {
     }
 
     @Test
+    fun `冲突代号不落到被拒条目`() {
+        // SM8450 归 8 Gen1、SM8475 归 8+ Gen1；冲突时被拒的那条不能还留着别人的号
+        val gen1 = resolve("SM8450")
+        val gen1Plus = resolve("SM8475")
+        assertEquals("骁龙 8 Gen1", gen1?.name)
+        assertEquals("骁龙 8+ Gen1", gen1Plus?.name)
+        assertTrue("8 Gen1 不该带 SM8475：${gen1?.codes}", gen1?.codes?.none { it.contains("8475") } == true)
+        assertTrue("8+ Gen1 不该带 SM8450：${gen1Plus?.codes}", gen1Plus?.codes?.none { it.contains("8450") } == true)
+    }
+
+    @Test
     fun `5G 后缀不影响识别`() {
         // 主表里同芯可能写作「骁龙 780G」或「骁龙 780G 5G」，归一化要能合并
         assertEquals("骁龙 780G", resolve(hint = "高通 骁龙780G 5G")?.name)

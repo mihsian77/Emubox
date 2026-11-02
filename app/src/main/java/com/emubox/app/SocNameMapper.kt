@@ -127,9 +127,13 @@ object SocNameMapper {
      * 用 GPU 反查补全到具体芯片官方名，保证规格库/跑分引擎能精确命中。
      * 优先级：SOC 映射 → HARDWARE 映射 → GPU 反查 → SOC/HARDWARE 原值 → "未知"
      */
-    fun getCurrentSocName(context: Context, gpuModel: String = ""): String {
+    fun getCurrentSocName(
+        context: Context,
+        gpuModel: String = "",
+        gpuIsAdreno: Boolean = false
+    ): String {
         // 先走部件号主表（soc_master.json）：Getprop 拿到的是代号，只有主表认得出市场名
-        runCatching { SocResolver.resolveCurrent(context, gpuModel) }
+        runCatching { SocResolver.resolveCurrent(context, gpuModel, gpuIsAdreno = gpuIsAdreno) }
             .getOrNull()
             ?.let { if (it.displayName.isNotBlank()) return it.displayName }
         init(context)

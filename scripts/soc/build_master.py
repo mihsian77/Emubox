@@ -649,6 +649,11 @@ def main():
         seen[s['id']] = s
         uniq.append(s)
 
+    # 冲突时 assign_code 拒绝了后到的挂载，但 code 还留在那条记录的 codes 里，
+    # 会让「骁龙 8 Gen1」显示成 SM8450（其实归了 8+ Gen1）。这里按最终归属清一遍。
+    for s in uniq:
+        s['codes'] = [c for c in s['codes'] if assigned.get(code_exact(c)) == s['id']]
+
     for idx in (exact, loose):
         for k in idx:
             idx[k] = sorted(set(idx[k]))

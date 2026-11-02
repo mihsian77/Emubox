@@ -3601,12 +3601,18 @@ private fun RegionHeader(title: String, icon: ImageVector) {
 @Composable
 private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
     val context = LocalContext.current
-    val socName = remember { SocNameMapper.getCurrentSocName(context) }
+    val gpuIsAdreno = deviceInfo?.gpuVendor == GpuVendor.ADRENO
+    val socName = remember(gpuIsAdreno) {
+        SocNameMapper.getCurrentSocName(
+            context, deviceInfo?.gpuModel.orEmpty(), gpuIsAdreno
+        )
+    }
     // 主表解析一次，代号与厂商徽章都复用；拿不到时为 null，退回旧映射
-    val resolvedSoc = remember(deviceInfo?.gpuModel, deviceInfo?.socName) {
+    val resolvedSoc = remember(deviceInfo?.gpuModel, deviceInfo?.socName, gpuIsAdreno) {
         runCatching {
             SocResolver.resolveCurrent(
-                context, deviceInfo?.gpuModel.orEmpty(), deviceInfo?.socName.orEmpty()
+                context, deviceInfo?.gpuModel.orEmpty(), deviceInfo?.socName.orEmpty(),
+                gpuIsAdreno
             )
         }.getOrNull()
     }
@@ -13198,7 +13204,8 @@ private fun SocKnowledgeCard(
             SocResolver.resolveCurrent(context, gpuModel, socHint, gpuIsAdreno)
         }.getOrNull()
     }
-    val socName = resolved?.displayName ?: SocNameMapper.getCurrentSocName(context, gpuModel)
+    val socName = resolved?.displayName
+        ?: SocNameMapper.getCurrentSocName(context, gpuModel, gpuIsAdreno)
     val knowledge = remember(resolved, socName, gpuModel) {
         if (resolved != null) SocKnowledge(
             name = resolved.displayName,
@@ -13235,8 +13242,13 @@ private fun SocKnowledgeCard(
         if (knowledge == null) {
             // 认不出型号也要认到厂：展锐上报 ums9230、华为上报 kirin9020，
             // 直接显示裸代号对用户没有信息量，显示「紫光展锐 · 型号未收录（ums9230）」才有。
+            // 取「真正能定位到厂商」的那个字段：有些 ROM 把 ro.soc.model 写成 unknown，
+            // 此时厂商是从 ro.board.platform 认出来的，代号就该显示 platform
             val rawCode = remember(gpuModel, socHint) {
-                SocNameMapper.getRawIdentity().let { it.socModel.ifBlank { it.platform } }
+                val id = SocNameMapper.getRawIdentity()
+                listOf(id.socModel, id.platform, id.hardware)
+                    .firstOrNull { it.isNotBlank() && !it.equals("unknown", true) }
+                    .orEmpty()
             }
             val vendor = remember(rawCode) {
                 runCatching {
