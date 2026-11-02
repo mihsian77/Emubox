@@ -214,6 +214,32 @@ object SettingsManager {
         prefs.edit().putString(preferenceKey("component", selectionKey), version).apply()
     }
 
+    // ---------------- 翻译引擎 ----------------
+    // 默认 MyMemory（免费、国内直连，匿名每 IP 每天 5000 字符）。
+    // 填了邮箱走官方 de 参数 → 50000 字符/天；填了 DeepSeek Key 则优先走 DeepSeek。
+
+    fun getTranslateEngine(): String = prefs.getString("translate_engine", "mymemory") ?: "mymemory"
+
+    fun setTranslateEngine(engine: String) {
+        prefs.edit().putString("translate_engine", engine).apply()
+        TranslationEngine.clearCache()
+    }
+
+    fun getDeepSeekKey(): String = prefs.getString("translate_deepseek_key", "") ?: ""
+
+    fun setDeepSeekKey(key: String) {
+        prefs.edit().putString("translate_deepseek_key", key.trim()).apply()
+        TranslationEngine.clearCache()
+    }
+
+    /** MyMemory 提升配额的邮箱（官方 de 参数，可留空）。 */
+    fun getTranslateEmail(): String = prefs.getString("translate_email", "") ?: ""
+
+    fun setTranslateEmail(email: String) {
+        prefs.edit().putString("translate_email", email.trim()).apply()
+        TranslationEngine.clearCache()
+    }
+
     private fun preferenceKey(type: String, value: String): String =
         "download_selection_${type}_${value}"
 
