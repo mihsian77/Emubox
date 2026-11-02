@@ -258,6 +258,24 @@ object Accelerator {
     }
 
     /**
+     * 校验远程下发的代理节点域名，合法返回规范化域名，非法返回 null。
+     *
+     * active-nodes.json 属于外部内容（第三方仓库 + 网络传输），若原样拼进
+     * "https://${domain}/$原始URL"，一条畸形的 domain 就能把下载请求引到别处。
+     * 这里只放行字母 / 数字 / 点 / 横线，且必须形如 a.b，不含端口、路径、协议。
+     */
+    internal fun isValidProxyDomain(raw: String): String? {
+        val domain = raw.trim().lowercase()
+        if (domain.length !in 4..253) return null
+        if (!domain.contains('.')) return null
+        if (!domain.all { it in 'a'..'z' || it in '0'..'9' || it == '.' || it == '-' }) return null
+        if (domain.startsWith('.') || domain.endsWith('.')) return null
+        if (domain.startsWith('-') || domain.endsWith('-')) return null
+        if (domain.contains("..")) return null
+        return domain
+    }
+
+    /**
      * 如果 URL 被重写到第三方代理域名，移除 Authorization 头，
      * 防止 GitHub token 泄露给第三方代理。
      * 返回 (最终URL, 是否需要移除Authorization)
@@ -289,10 +307,12 @@ object Accelerator {
                 if (!response.isSuccessful) return@withContext false
                 val json = response.body?.string() ?: return@withContext false
                 val obj = org.json.JSONObject(json)
-                // 验证来源
+                // 验证来源：不匹配说明这份 JSON 不是 MirrorHub 发的，整份丢弃，
+                // 回退内置节点列表（只打日志就继续用等于没校验）
                 val source = obj.optString("source", "")
                 if (source != MIRRORHUB_SOURCE) {
-                    Log.w(TAG, "远程节点来源不匹配: $source，期望 $MIRRORHUB_SOURCE")
+                    Log.w(TAG, "远程节点来源不匹配: $source，期望 $MIRRORHUB_SOURCE，已丢弃该份清单")
+                    return@withContext false
                 }
                 val license = obj.optString("license", "")
                 val updatedAt = obj.optString("updated_at", "未知")
@@ -302,13 +322,15 @@ object Accelerator {
                         val nodeObj = array.getJSONObject(i)
                         val id = nodeObj.optString("id").takeIf { it.isNotBlank() } ?: continue
                         val name = nodeObj.optString("name", id)
-                        val domain = nodeObj.optString("domain").takeIf { it.isNotBlank() } ?: continue
+                        val domain = nodeObj.optString("domain").let { isValidProxyDomain(it) }
+                            ?: continue
                         val category = nodeObj.optString("category", "universal_proxy")
-                        // 根据分类推断支持的流量类型
+                        // 根据分类推断支持的流量类型。未知分类一律跳过：
+                        // 宁可少一个节点，也不让写错/写怪的分类拿到"全部流量"的权限
                         val kinds = when (category) {
                             "cdn_raw" -> setOf(TrafficKind.RAW_FILE)
-                            "clone_specialized" -> continue  // 跳过，仅用于 clone
-                            else -> emptySet()  // universal_proxy / web_mirror 支持所有
+                            "universal_proxy", "web_mirror" -> emptySet()  // 支持所有类型
+                            else -> continue  // clone_specialized 及未知分类
                         }
                         add(ProxyNode(id, name, domain, kinds))
                     }
