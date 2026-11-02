@@ -3602,6 +3602,14 @@ private fun RegionHeader(title: String, icon: ImageVector) {
 private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
     val context = LocalContext.current
     val socName = remember { SocNameMapper.getCurrentSocName(context) }
+    // 主表解析一次，代号与厂商徽章都复用；拿不到时为 null，退回旧映射
+    val resolvedSoc = remember(deviceInfo?.gpuModel, deviceInfo?.socName) {
+        runCatching {
+            SocResolver.resolveCurrent(
+                context, deviceInfo?.gpuModel.orEmpty(), deviceInfo?.socName.orEmpty()
+            )
+        }.getOrNull()
+    }
     // 厂商徽章（官方图形大图版）：作用域须在 Column/Row lambda 之外，供各分支复用
     val socBrand = detectSocBrand(deviceInfo?.socName.orEmpty())
     val brandIconRes = remember(socBrand.name) { socBrandIconRes(socBrand.name) }
@@ -3657,7 +3665,9 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         val rawSoc = deviceInfo?.socName
                             ?.takeIf { it.isNotBlank() && !it.contains("未知") }
                         val cnName = deviceInfo?.let { socChineseName(it, context) }.orEmpty()
-                        val codeName = deviceInfo?.socName?.let { SocNameMapper.lookupCode(it) }.orEmpty()
+                        // 代号从主表取：此时 socName 已是中文营销名，旧的反查表只认英文名，查不到
+                        val codeName = resolvedSoc?.codes?.firstOrNull()
+                            ?: deviceInfo?.socName?.let { SocNameMapper.lookupCode(it) }.orEmpty()
                         val socPrimary = when {
                             cnName.isNotBlank() && cnName != rawSoc -> cnName
                             rawSoc != null -> rawSoc
@@ -6649,7 +6659,11 @@ fun DeviceScreen(
                 )
             }
             item(key = "soc_knowledge") {
-                SocKnowledgeCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
+                SocKnowledgeCard(
+                    context = LocalContext.current,
+                    gpuModel = deviceInfo.gpuModel,
+                    socHint = deviceInfo.socName
+                )
             }
             item(key = "bench_engine") {
                 BenchEngineCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
@@ -13140,13 +13154,63 @@ private fun EmulatorDetailDialog(
     }
 }
 
-/** 芯片知识卡：识别当前 SoC，展示工艺/CPU/GPU/参考跑分/常见机型 */
+/** 主表分数（纯数字）→ 万位展示；非数字原样返回 */
+private fun socScoreText(raw: String): String {
+    val v = raw.toLongOrNull() ?: return raw
+    return if (v >= 10_000) String.format("%.1f万", v / 10_000.0) else raw
+}
+
+/** 制程写法转中文：TSMC N3E → 台积电 3nm，Samsung 4LPP+ → 三星 4nm。 */
+private fun formatProcess(raw: String): String {
+    if (raw.isBlank()) return raw
+    var s = raw.replace("TSMC", "台积电").replace("Samsung", "三星")
+        .replace("SMIC", "中芯国际").replace("Intel", "英特尔")
+    Regex("N(\\d)([A-Z]*)").find(s)?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
+    Regex("(\\d+)LPP\\+?").find(s)?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
+    Regex("(\\d+)LP\\+?").find(s)?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
+    return s.trim()
+}
+
+private fun gpuArchOf(gpuKey: String): String = when {
+    gpuKey.startsWith("adreno") -> "adreno"
+    gpuKey.startsWith("mali") -> "mali"
+    gpuKey.startsWith("xclipse") -> "xclipse"
+    else -> ""
+}
+
+/** 芯片知识卡：按部件号识别当前 SoC，展示工艺/CPU/GPU/参考跑分/常见机型 */
 @Composable
-private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
-    val socName = remember { SocNameMapper.getCurrentSocName(context) }
-    val knowledge = remember(socName, gpuModel) { SocKnowledgeStore.find(socName, gpuModel, context) }
-    // 实测规格（安兔兔天梯 clusters）：命中时优先展示含频率的 CPU 明细
-    val spec = remember(socName) { SocSpecStore.find(socName, context) }
+private fun SocKnowledgeCard(context: Context, gpuModel: String = "", socHint: String = "") {
+    // 主表按部件号识别（SM8750-AB / MT6989 / sun）。拿不到时整段退回旧知识库，
+    // 旧链路只认营销名，遇到厂商级代号（qcom）会显示未收录，但不会误报。
+    val resolved = remember(gpuModel, socHint) {
+        runCatching { SocResolver.resolveCurrent(context, gpuModel, socHint) }.getOrNull()
+    }
+    val socName = resolved?.displayName ?: SocNameMapper.getCurrentSocName(context, gpuModel)
+    val knowledge = remember(resolved, socName, gpuModel) {
+        if (resolved != null) SocKnowledge(
+            name = resolved.displayName,
+            process = formatProcess(resolved.process),
+            cpu = resolved.cpu,
+            gpu = resolved.gpu,
+            gpuArch = gpuArchOf(resolved.gpuKey),
+            score = socScoreText(resolved.antutu),
+            devices = resolved.devices
+        ) else SocKnowledgeStore.find(socName, gpuModel, context)
+    }
+    // 实测规格（安兔兔 clusters）：主表有核心构成时直接用，省一次 JSON 查找
+    val spec = remember(resolved, socName) {
+        if (resolved != null && resolved.cores > 0) {
+            SocSpec(
+                cpuSummary = resolved.cpu,
+                totalCores = resolved.cores,
+                maxFreqGhZ = resolved.maxGhz,
+                cpuScore = resolved.antutuCpu,
+                gpuScore = resolved.antutuGpu,
+                totalScore = resolved.antutu
+            )
+        } else SocSpecStore.find(socName, context)
+    }
     // 跑分引擎命中时隐藏知识库文案分数，避免与真实跑分冲突
     val benchInfo = remember(socName, gpuModel) { BenchEngine.resolve(socName, gpuModel, context) }
     val hasBenchScore = benchInfo?.antutuTotal != null || benchInfo?.ludashiScore != null
@@ -13221,16 +13285,24 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                             value = knowledge.score.ifBlank { appString(R.string.soc_score_unknown) }
                         )
                     }
-                    InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
-                    InfoRow(label = appString(R.string.soc_cpu), value = spec?.cpuSummary ?: knowledge.cpu)
-                    if (spec != null) {
-                        InfoRow(
-                            label = appString(R.string.soc_cpu_cores),
-                            value = "${spec.totalCores} 核 · 最高 ${formatFreq(spec.maxFreqGhZ)}"
-                        )
+                    // 主表有的芯片工艺/常见机型为空（极客湾未填），空值行会显示成一条横线，直接不画
+                    if (knowledge.process.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
                     }
-                    InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)
-                    InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)
+                    val cpuText = spec?.cpuSummary?.takeIf { it.isNotBlank() } ?: knowledge.cpu
+                    if (cpuText.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_cpu), value = cpuText)
+                    }
+                    if (spec != null && spec.totalCores > 0) {
+                        val freq = if (spec.maxFreqGhZ > 0) " · 最高 ${formatFreq(spec.maxFreqGhZ)}" else ""
+                        InfoRow(label = appString(R.string.soc_cpu_cores), value = "${spec.totalCores} 核$freq")
+                    }
+                    if (knowledge.gpu.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)
+                    }
+                    if (knowledge.devices.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)
+                    }
                     Spacer(Modifier.height(6.dp))
                     Text(
                         appString(R.string.soc_source_note),
