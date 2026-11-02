@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
-  "updated_at": "2026-10-23T15:20:00Z",
+  "updated_at": "2026-11-02T00:00:00Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -1435,28 +1435,42 @@
       "api_url": "https://api.github.com/repos/JimVulkan/mali-panvk/releases",
       "gpu_vendor": "mali",
       "gpu_arch": [
-        "bifrost"
+        "bifrost",
+        "valhall",
+        "csf"
       ],
       "gpu_models": [
-        "G76",
+        "G31",
+        "G51",
+        "G52",
+        "G71",
         "G72",
-        "G52"
+        "G76",
+        "G57",
+        "G68",
+        "G77",
+        "G78",
+        "G610",
+        "G710",
+        "G615",
+        "G715",
+        "G720"
       ],
       "driver_type": "panvk",
       "frontend": "kbase",
       "target_emulator": "winlator",
       "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 40,
-      "description": "将 Mesa PanVK 移植到 Mali Bifrost（G76/G72/G52），无需 root",
-      "notes": "基于 Mesa 26.3，compute 模拟缺失的几何/曲面细分，面向 DXVK",
+      "maturity": "beta",
+      "stars": 41,
+      "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
+      "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
       "filters": {
         "default": [
           "PanVK"
         ]
       },
-      "updated_at": "2026-10-25T21:14:36Z",
+      "updated_at": "2026-11-02T00:00:00Z",
       "latest_tag": "v1.4.0",
       "latest_date": "2026-10-25T21:14:36Z",
       "latest_body": "# mali-panvk r8\r\n\r\nPanVK for Arm Mali GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel driver the\r\nphone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Now based on Mesa\r\n27.0.0-devel, and no longer Bifrost only: this release adds Valhall.\r\n\r\n`mali-panvk-27.0.0-devel-r8.zip`, sha256\r\n`d82d8f2dd4a368770b9b43566f7b5295d205060cb6ffd536b07afc33914858a1`. Built from `d896b0a`.\r\n\r\n## Supported GPUs\r\n\r\n| Architecture | GPUs | Vulkan | Status |\r\n|---|---|---|---|"
@@ -1713,7 +1727,7 @@
       "package_format": "adpkg",
       "maturity": "stable",
       "stars": 11,
-      "notes": "按 GPU 型号分发；活跃（2026-10-10 v0.15.0）",
+      "notes": "v1.0.0 起与 ace/pixel7/rg556 四仓发布同一 adpkg 包（同名同字节），四设备全部实测；活跃（2026-10-29 v1.1.3 修 WWE 12 掉 GPU）",
       "companion": [
         "faux123-ace",
         "faux123-rg556",
@@ -2027,6 +2041,34 @@
       "latest_tag": "rutabaga-drivers-v1",
       "latest_date": "2026-10-13T03:33:30Z",
       "latest_body": "Rutabaga Turnip (Mesa freedreno) Vulkan drivers for Adreno, repackaged from GameHub as AdrenoTools zips (meta.json + libvulkan_freedreno.so).\n\n- **Rutabaga-26.10.10**: Mesa 26.3.0-devel git-b00479181d. Newest: Uncharted A6xx/A7xx compat + SSBO emulation, Assassin's Creed IV work, indexed-draw hang workaround (witcher3-hdr branch).\n- **Rutabaga-26.09.24**: Mesa 26.3.0-devel git-511bc6093f. First Rutabaga build (R33): Uncharted + Onimusha profiles, Wave32 option, mesh-shader opt-out.\n- **Rutabaga-"
+    },
+    {
+      "id": "adesyaefull-g925",
+      "name": "adesyaefull PanVK kbase (G925 CSF)",
+      "owner": "adesyaefull",
+      "repo": "panvk-kbase-android-g925-mesa27",
+      "api_url": "https://api.github.com/repos/adesyaefull/panvk-kbase-android-g925-mesa27/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "valhall-v13"
+      ],
+      "gpu_models": [
+        "G925"
+      ],
+      "driver_type": "panvk",
+      "frontend": "CSF",
+      "target_emulator": "generic",
+      "package_format": "adpkg",
+      "maturity": "experimental",
+      "stars": 2,
+      "description": "Mali-G925 / Immortalis MC11 专用 Mesa PanVK（Mesa 27.0.0-devel，Kbase CSF 后端，Vulkan 1.4 报告值）",
+      "notes": "zenithblue kbase 上游的 G925 实验分支（fork，PAN_ARCH=13 仅 CSF）；实验性质无 Vulkan 一致性，图像残留可能；DXVK 硬性要求 56/56、vkd3d 24/24 通过",
+      "companion": [],
+      "filters": {
+        "default": [
+          "panvk"
+        ]
+      }
     }
   ]
 }
