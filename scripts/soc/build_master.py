@@ -183,6 +183,14 @@ def make_id(base):
     return slug
 
 
+def soc_id(codes, name):
+    """条目 id。多值代号（ums9230 挂四颗）不能当主键——按 id 去重时会把
+    T606/T612/T616/T7250 并成一条，名字只剩先到的那个。这类改用名字做 id。"""
+    if codes and code_exact(codes[0]) in MULTI_CODES:
+        return make_id(name)
+    return make_id(codes[0] if codes else name)
+
+
 def bare_code(c):
     """完整料号 → 设备实际可能上报的裸号：MT6765V/CA → MT6765，S5E9945 → S5E9945。
 
@@ -196,16 +204,30 @@ def bare_code(c):
     return ''
 
 
+# 允许「一个号挂多颗芯片」的代号：展锐 T606/T612/T616/T7250 共用 ums9230，
+# 设备侧只能报出 ums9230_6h10，谁也无法进一步区分。由 part_numbers 里的
+# "multi": true 填充。
+MULTI_CODES = set()
+
+
 def assign_code(code, soc_id, exact, loose, assigned, conflicts):
     """挂一个代号。同一代号指向两颗不同芯片时不覆盖先到的，只记冲突。
 
     典型冲突：SM8150-AC 既是骁龙 855+ 也是 860（同芯改名），
     MT6899 被极客湾记为天玑 8400 而某些第三方表写成 8200。
     先到的是极客湾（规格源），后到的让步——错挂比不挂更糟。
+
+    例外是 MULTI_CODES：展锐把 T606/T612/T616/T7250 全放在 ums9230 这一个
+    平台值下，设备侧拿到的就是同一个串，谁也分不出来。这类号按多值挂，
+    界面显示「T606 / T612 等 4 款」比随便挑一颗诚实。
     """
     k = code_exact(code)
     prev = assigned.get(k)
     if prev and prev != soc_id:
+        if k in MULTI_CODES:
+            exact.setdefault(k, []).append(soc_id)
+            loose.setdefault(code_loose(code), []).append(soc_id)
+            return True
         conflicts.append((k, prev, soc_id))
         return False
     assigned[k] = soc_id
@@ -328,6 +350,10 @@ def main():
         for n in (e.get('name'), e.get('name_en')):
             if n:
                 part_by_name.setdefault(normalize(n), e)
+                # 「展锐 T612」与主表的「T612」要去厂牌后才能对上
+                part_by_name.setdefault(strip_vendor(n), e)
+        if e.get('multi'):
+            MULTI_CODES.update(code_exact(c) for c in (e.get('codes') or []))
     # 优先读 bench-data（CI 里刚抓的最新结果），本地没有时退回 assets 里的副本
     bench_data = os.path.join(ROOT, 'bench-data')
     antutu = load_json(os.path.join(bench_data, 'antutu_soc.json'), {}) \
@@ -360,6 +386,10 @@ def main():
     assigned, conflicts = {}, []
     for brand_block in chips.get('brands', []):
         brand = brand_block.get('brand', '')
+        # 苹果 24 颗对安卓端毫无用处：设备侧永远不会上报 A17 Pro，
+        # 留着只会撑大表、拉低「有代号」比例，也让冲突检测多跑 24 轮。
+        if brand == '苹果':
+            continue
         for c in brand_block.get('chips', []):
             m = c.get('meta') or {}
             codes = split_codenames(m.get('codenames'))
@@ -372,9 +402,22 @@ def main():
                             r'^(SM\d|MT\d|S5E\d|SDM\d|MSM\d|GS\d{3}|KIRIN\d|V\d{4})', k, re.I):
                         codes.append(k)
             # part_numbers 补的正是极客湾没给号的那一段（三星 Exynos、麒麟、老骁龙）
-            pe = part_by_name.get(normalize(name)) or part_by_name.get(normalize(name_en))
+            pe = part_by_name.get(normalize(name)) or part_by_name.get(normalize(name_en)) \
+                or part_by_name.get(strip_vendor(name)) or part_by_name.get(strip_vendor(name_en))
             if pe:
                 codes = list(dict.fromkeys(codes + pe['codes']))
+
+            # 华为：极客湾 19 颗一颗代号都不给，但华为设备的 ro.board.platform
+            # 就是「kirin + 型号数字」（kirin970 / kirin8000 / kirin990），
+            # 名字自带数字，可直接推导——这是不靠厂商对照表也能补的一支。
+            # 已被别的芯片占用的号（麒麟 9000WL 与 9000 同平台）不重复挂。
+            if not codes and brand == '华为':
+                km = re.search(r'(?:kirin|麒麟)\s*([0-9]{2,5}[a-z0-9]{0,3})',
+                               name_en or name, re.I)
+                if km:
+                    cand = 'kirin' + km.group(1).lower()
+                    if cand not in assigned:
+                        codes.append(cand)
 
             # 跑分：先按名直连，再用人工覆盖表桥接
             ant = ant_index.get(normalize(name)) or ant_index.get(strip_vendor(name_en)) \
@@ -388,7 +431,7 @@ def main():
 
             gpu = (m.get('gpu') or {}).get('name', '')
             soc = {
-                'id': make_id(codes[0] if codes else (name_en or name)),
+                'id': soc_id(codes, name or name_en),
                 'codes': codes,
                 'names': list(dict.fromkeys(
                     [x for n in (name, name_en) for x in split_alias(n) if x])),
@@ -482,7 +525,7 @@ def main():
         display = main_name
         gpu = sp.get('gpu', '')
         soc = {
-            'id': make_id(codes[0] if codes else display),
+            'id': soc_id(codes, display),
             'codes': codes,
             'names': list(dict.fromkeys([name] + aliases)),
             'name': display,
@@ -510,6 +553,40 @@ def main():
         for a in aliases:
             known_names.add(normalize(a))
         added_ant += 1
+
+    # ---- 兜底补码：名字本身可推导的设备上报值 ----
+    # 三个数据源都有「有名字没代号」的条目，而设备只报代号，这些条目在真机上
+    # 永远命中不了。两类可以零风险推导：
+    #   1. 名字就是部件号（MT6750 / MT8781）——直接拿名字当 code；
+    #   2. 华为（麒麟 990E / 9000S1 / 65x）——平台值恒为 kirin+型号，极客湾 19 颗
+    #      一颗代号都不给，但名字自带答案。
+    # 推导出的号若已被占用就跳过，不覆盖先到的芯片。
+    added_derive = 0
+    for s in socs:
+        if s['codes']:
+            continue
+        cand = ''
+        nm = (s['name_en'] or s['name']).strip()
+        if re.match(r'^(MT|SM|MSM|SDM|S5E|S5P|APQ)\d{3,4}[A-Z]?$', nm, re.I):
+            cand = nm.upper()
+        elif s['brand'] == '华为':
+            km = re.search(r'(?:kirin|麒麟)\s*([0-9]{2,5}[a-z0-9]{0,3})', nm, re.I)
+            if km:
+                cand = 'kirin' + km.group(1).lower()
+        if cand and cand not in assigned:
+            s['codes'] = [cand]
+            assign_code(cand, s['id'], exact, loose, assigned, conflicts)
+            added_derive += 1
+
+    # 部件号大小写去重（part_numbers 用小写、极客湾用大写，同一颗会出现 MT6771/mt6771）
+    for s in socs:
+        seen, uniq = set(), []
+        for c in s['codes']:
+            if c.upper() in seen:
+                continue
+            seen.add(c.upper())
+            uniq.append(c)
+        s['codes'] = uniq
 
     # ---- 平台代号（sun/kalama/mt6989）：来自 soc_name_map 的小写键 ----
     platforms = {}
@@ -541,7 +618,7 @@ def main():
         if any(normalize(n) in name_to_soc for n in names):
             continue
         soc = {
-            'id': make_id((e.get('codes') or [e['name']])[0]),
+            'id': soc_id(e.get('codes') or [], e['name']),
             'codes': list(e.get('codes') or []),
             'names': names, 'name': display_name(e['name']), 'name_en': e.get('name_en', ''),
             'brand': e.get('brand', '') or brand_of(e['name']),
@@ -652,7 +729,10 @@ def main():
     # 冲突时 assign_code 拒绝了后到的挂载，但 code 还留在那条记录的 codes 里，
     # 会让「骁龙 8 Gen1」显示成 SM8450（其实归了 8+ Gen1）。这里按最终归属清一遍。
     for s in uniq:
-        s['codes'] = [c for c in s['codes'] if assigned.get(code_exact(c)) == s['id']]
+        # 多值代号（UMS9230 挂四颗）assigned 里只记先到者，不能据此清掉同组的其它条目
+        s['codes'] = [c for c in s['codes']
+                      if assigned.get(code_exact(c)) == s['id']
+                      or s['id'] in exact.get(code_exact(c), [])]
 
     for idx in (exact, loose):
         for k in idx:
@@ -684,7 +764,8 @@ def main():
     coded = sum(1 for s in uniq if s['codes'])
     print(f'芯片 {len(uniq)} 条，有代号 {coded} 条，代号索引 exact={len(exact)} loose={len(loose)}，平台 {len(platforms)} 条')
     print(f'跑分挂接：安兔兔 {sum(1 for s in uniq if s["antutu"])} 条，鲁大师 {sum(1 for s in uniq if s["ludashi"])} 条')
-    print(f'新增：安兔兔补 {added_ant} 条，部件号表补 {added_part} 条，映射表挂码 {added_code} 条')
+    print(f'新增：安兔兔补 {added_ant} 条，部件号表补 {added_part} 条，映射表挂码 {added_code} 条，'
+          f'名字推导补码 {added_derive} 条')
     print(f'常见机型：EmuReady 补 {emu_devices} 条，有 devices 共 {sum(1 for s in uniq if s["devices"])} 条')
     if conflicts:
         print(f'代号冲突 {len(conflicts)} 条（保留先到，未覆盖）：')

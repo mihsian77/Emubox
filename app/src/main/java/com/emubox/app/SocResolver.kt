@@ -47,7 +47,12 @@ data class ResolvedSoc(
     val alternates: List<String> = emptyList()
 ) {
     val displayName: String
-        get() = if (ambiguous && alternates.size > 1) alternates.joinToString(" / ") else name
+        get() = when {
+            !ambiguous || alternates.size < 2 -> name
+            // 展锐 ums9230 横跨 T606/T612/T616/T7250，四五个名字全列出来会把卡片撑爆
+            alternates.size <= 3 -> alternates.joinToString(" / ")
+            else -> alternates.take(2).joinToString(" / ") + " 等 ${alternates.size} 款"
+        }
 }
 
 /** 设备上报的原始标识：全部是代号，没有一个是市场名。 */
@@ -123,6 +128,16 @@ object SocResolver {
     }
 
     private fun codeKey(s: String) = s.uppercase().replace(Regex("[\\s_]"), "")
+
+    /** 展锐把板级后缀拼进平台值：ums9230_6h10 / ums9620_2h10 / s9863a1h10。
+     *  下划线、点之后全是主板型号，不是芯片的一部分，先截掉。 */
+    private fun boardKey(s: String): String {
+        val t = s.trim().lowercase()
+        val head = t.substringBefore('_').substringBefore('.')
+        // 「mt_6989」「zuma_pro」是拿下划线当分隔符的老写法，截完只剩 mt/zuma。
+        // 只有前半段本身像芯片号（≥5 位且带数字）才认定是主板后缀。
+        return if (head.length >= 5 && head.any { it.isDigit() }) head else t
+    }
 
     /** 剥到平台级：SM8650-Q-AB→SM8650，MT6769V/CB→MT6769；-AB/-AC 不剥（865+ 与 870 靠它区分）。 */
     private fun looseKey(s: String): String {
@@ -274,13 +289,27 @@ object SocResolver {
         val codeCandidates = listOf(identity.socModel, identity.platform, socNameHint)
             .filter { it.isNotBlank() }
         for (raw in codeCandidates) {
-            t.exact[codeKey(raw)]?.let { return t.pick(it, SocConfidence.CODE_EXACT, gpuModel) }
+            t.exact[codeKey(boardKey(raw))]?.let { return t.pick(it, SocConfidence.CODE_EXACT, gpuModel) }
+        }
+        // 板级后缀没有分隔符时直接拼在芯片号后面（s9863a1h10 = SC9863A + 主板号）。
+        // 用 5~8 位前缀回查精确表：芯片号最短 5 位（SM8xxx 6 位、MT 6 位、SC 6 位），
+        // 命中即认，长度差不超过 4 位，避免把 SM8650AB 认成别的。
+        for (raw in codeCandidates) {
+            val k = codeKey(boardKey(raw))
+            if (k.length >= 7) {
+                for (len in minOf(8, k.length) downTo 5) {
+                    if (k.length - len > 4) break
+                    t.exact[k.substring(0, len)]?.let {
+                        return t.pick(it, SocConfidence.CODE_LOOSE, gpuModel)
+                    }
+                }
+            }
         }
         for (raw in codeCandidates) {
-            t.loose[looseKey(raw)]?.let { return t.pick(it, SocConfidence.CODE_LOOSE, gpuModel) }
+            t.loose[looseKey(boardKey(raw))]?.let { return t.pick(it, SocConfidence.CODE_LOOSE, gpuModel) }
         }
         for (raw in codeCandidates) {
-            t.platforms[raw.lowercase()]?.let { id ->
+            t.platforms[boardKey(raw)]?.let { id ->
                 return t.socs[id]?.copy(confidence = SocConfidence.PLATFORM)
             }
         }

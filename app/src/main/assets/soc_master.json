@@ -1,7 +1,7 @@
 {
  "version": "1.1.0",
  "note": "芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。",
- "generated": "2026-11-02",
+ "generated": "2026-11-03",
  "socs": [
   {
    "id": "s5e9945",
@@ -86,8 +86,10 @@
    "src": "socpk"
   },
   {
-   "id": "samsung-exynos-1080",
-   "codes": [],
+   "id": "s5e9815",
+   "codes": [
+    "s5e9815"
+   ],
    "names": [
     "Exynos 1080",
     "Samsung Exynos 1080"
@@ -192,8 +194,10 @@
    "src": "socpk"
   },
   {
-   "id": "samsung-exynos-980",
-   "codes": [],
+   "id": "s5e9630",
+   "codes": [
+    "s5e9630"
+   ],
    "names": [
     "Exynos 980",
     "Samsung Exynos 980"
@@ -294,8 +298,7 @@
   {
    "id": "kirin9020",
    "codes": [
-    "KIRIN9020",
-    "kirin9020"
+    "KIRIN9020"
    ],
    "names": [
     "麒麟 9020",
@@ -323,8 +326,7 @@
   {
    "id": "kirin9010",
    "codes": [
-    "KIRIN9010",
-    "kirin9010"
+    "KIRIN9010"
    ],
    "names": [
     "麒麟 9010",
@@ -352,8 +354,7 @@
   {
    "id": "kirin9000s",
    "codes": [
-    "KIRIN9000S",
-    "kirin9000s"
+    "KIRIN9000S"
    ],
    "names": [
     "麒麟 9000S",
@@ -381,8 +382,7 @@
   {
    "id": "kirin9000",
    "codes": [
-    "KIRIN9000",
-    "kirin9000"
+    "KIRIN9000"
    ],
    "names": [
     "麒麟 9000",
@@ -411,8 +411,7 @@
   {
    "id": "kirin9000e",
    "codes": [
-    "KIRIN9000E",
-    "kirin9000e"
+    "KIRIN9000E"
    ],
    "names": [
     "麒麟 9000E",
@@ -439,8 +438,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-9000wl",
-   "codes": [],
+   "id": "kirin9000wl",
+   "codes": [
+    "kirin9000wl"
+   ],
    "names": [
     "麒麟 9000WL",
     "HiSilicon Kirin 9000WL"
@@ -460,8 +461,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-9000sl",
-   "codes": [],
+   "id": "kirin9000sl",
+   "codes": [
+    "kirin9000sl"
+   ],
    "names": [
     "麒麟 9000SL",
     "HiSilicon Kirin 9000SL",
@@ -484,8 +487,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-9000wm",
-   "codes": [],
+   "id": "kirin9000wm",
+   "codes": [
+    "kirin9000wm"
+   ],
    "names": [
     "麒麟 9000WM",
     "HiSilicon Kirin 9000WM"
@@ -567,8 +572,7 @@
   {
    "id": "kirin985",
    "codes": [
-    "KIRIN985",
-    "kirin985"
+    "KIRIN985"
    ],
    "names": [
     "麒麟 985",
@@ -593,8 +597,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-970",
-   "codes": [],
+   "id": "kirin970",
+   "codes": [
+    "kirin970"
+   ],
    "names": [
     "麒麟 970",
     "HiSilicon Kirin 970",
@@ -646,8 +652,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-950",
-   "codes": [],
+   "id": "kirin950",
+   "codes": [
+    "kirin950"
+   ],
    "names": [
     "麒麟 950",
     "HiSilicon Kirin 950",
@@ -670,8 +678,10 @@
    "src": "socpk"
   },
   {
-   "id": "soc-9ba829eb",
-   "codes": [],
+   "id": "kirin8000",
+   "codes": [
+    "kirin8000"
+   ],
    "names": [
     "麒麟 8000",
     "麒麟8000"
@@ -689,8 +699,7 @@
   {
    "id": "kirin820",
    "codes": [
-    "KIRIN820",
-    "kirin820"
+    "KIRIN820"
    ],
    "names": [
     "麒麟 820",
@@ -717,8 +726,7 @@
   {
    "id": "kirin810",
    "codes": [
-    "KIRIN810",
-    "kirin810"
+    "KIRIN810"
    ],
    "names": [
     "麒麟 810",
@@ -743,8 +751,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-710f",
-   "codes": [],
+   "id": "kirin710f",
+   "codes": [
+    "kirin710f"
+   ],
    "names": [
     "麒麟 710F",
     "HiSilicon Kirin 710F"
@@ -764,7 +774,7 @@
    "src": "socpk"
   },
   {
-   "id": "xiaomi-xring-o3",
+   "id": "o3",
    "codes": [],
    "names": [
     "玄戒 O3",
@@ -786,7 +796,7 @@
    "src": "socpk"
   },
   {
-   "id": "xiaomi-xring-o1",
+   "id": "o1",
    "codes": [],
    "names": [
     "玄戒 O1",
@@ -834,7 +844,7 @@
    "src": "socpk"
   },
   {
-   "id": "amlogic-s922x",
+   "id": "s922x",
    "codes": [],
    "names": [
     "S922X",
@@ -855,7 +865,7 @@
    "src": "socpk"
   },
   {
-   "id": "broadcom-bcm2711-raspberry-pi-4b",
+   "id": "bcm2711-4b",
    "codes": [],
    "names": [
     "BCM2711(树莓派4B)",
@@ -875,8 +885,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-t820",
-   "codes": [],
+   "id": "t820",
+   "codes": [
+    "ums9620"
+   ],
    "names": [
     "展锐 T820",
     "UNISOC T820",
@@ -900,7 +912,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t770",
+   "id": "t770",
    "codes": [],
    "names": [
     "展锐 T770",
@@ -925,8 +937,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t760",
-   "codes": [],
+   "id": "t760",
+   "codes": [
+    "ums9620"
+   ],
    "names": [
     "展锐 T760",
     "UNISOC Tanggula T760",
@@ -950,7 +964,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t765",
+   "id": "t765",
    "codes": [],
    "names": [
     "展锐 T765",
@@ -975,7 +989,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t740",
+   "id": "t740",
    "codes": [],
    "names": [
     "展锐 T740",
@@ -995,7 +1009,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t618",
+   "id": "t618",
    "codes": [],
    "names": [
     "展锐 T618",
@@ -1020,8 +1034,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t616",
-   "codes": [],
+   "id": "t616",
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "展锐 T616",
     "UNISOC Tiger T616",
@@ -1045,7 +1061,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t610",
+   "id": "t610",
    "codes": [],
    "names": [
     "展锐 T610",
@@ -1070,8 +1086,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t606",
-   "codes": [],
+   "id": "t606",
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "展锐 T606",
     "UNISOC Tiger T606",
@@ -1095,8 +1113,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-sc9863a",
-   "codes": [],
+   "id": "s9863a",
+   "codes": [
+    "s9863a"
+   ],
    "names": [
     "展锐 SC9863A",
     "UNISOC SC9863A",
@@ -1992,12 +2012,15 @@
   {
    "id": "mt6771",
    "codes": [
-    "MT6771"
+    "MT6771",
+    "mt6771"
    ],
    "names": [
-    "曦力 P60",
+    "Helio P60",
+    "Helio P70",
     "MediaTek Helio P60",
-    "Helio P60"
+    "曦力 P60",
+    "联发科技 Helio P70"
    ],
    "name": "曦力 P60",
    "name_en": "MediaTek Helio P60",
@@ -2091,491 +2114,6 @@
    "gpu": "Kepler 192 CUDA",
    "year": "2014",
    "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m6",
-   "codes": [],
-   "names": [
-    "M6",
-    "Apple M6"
-   ],
-   "name": "M6",
-   "name_en": "Apple M6",
-   "brand": "苹果",
-   "process": "TSMC N2",
-   "cpu": "2×Super + 4×Performance + 6×Efficiency",
-   "cores": 12,
-   "gpu": "Apple GPU",
-   "year": "2026",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m5",
-   "codes": [],
-   "names": [
-    "M5",
-    "Apple M5"
-   ],
-   "name": "M5",
-   "name_en": "Apple M5",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "4×Everest (V4) 4.51GHz + 6×Sawtooth (V4) 2.89GHz",
-   "cores": 10,
-   "max_ghz": 4.51,
-   "gpu": "Apple GPU",
-   "year": "2025",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m4",
-   "codes": [],
-   "names": [
-    "M4",
-    "Apple M4"
-   ],
-   "name": "M4",
-   "name_en": "Apple M4",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "4×Everest (V3) 4.51GHz + 6×Sawtooth (V3) 2.89GHz",
-   "cores": 10,
-   "max_ghz": 4.51,
-   "gpu": "Apple GPU",
-   "year": "2024",
-   "tier": "flagship",
-   "devices": "iPad Pro 7th Gen 16GB、iPad Pro 7th Gen 8GB",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m3",
-   "codes": [],
-   "names": [
-    "M3",
-    "Apple M3"
-   ],
-   "name": "M3",
-   "name_en": "Apple M3",
-   "brand": "苹果",
-   "process": "TSMC N3B",
-   "cpu": "4×Everest (V2) 4.05GHz + 4×Sawtooth (V2) 2.75GHz",
-   "cores": 8,
-   "max_ghz": 4.05,
-   "gpu": "Apple GPU",
-   "year": "2023",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m2",
-   "codes": [],
-   "names": [
-    "M2",
-    "Apple M2"
-   ],
-   "name": "M2",
-   "name_en": "Apple M2",
-   "brand": "苹果",
-   "process": "TSMC N5P",
-   "cpu": "4×Avalanche 3.49GHz + 4×Blizzard 2.42GHz",
-   "cores": 8,
-   "max_ghz": 3.49,
-   "gpu": "Apple GPU",
-   "year": "2022",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m1",
-   "codes": [],
-   "names": [
-    "M1",
-    "Apple M1"
-   ],
-   "name": "M1",
-   "name_en": "Apple M1",
-   "brand": "苹果",
-   "process": "TSMC N5",
-   "cpu": "4×Firestorm 3.20GHz + 4×Icestorm 2.06GHz",
-   "cores": 8,
-   "max_ghz": 3.2,
-   "gpu": "Apple GPU",
-   "year": "2020",
-   "tier": "flagship",
-   "devices": "iPad Air 5th generation",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a19-pro",
-   "codes": [],
-   "names": [
-    "A19 Pro",
-    "Apple A19 Pro"
-   ],
-   "name": "A19 Pro",
-   "name_en": "Apple A19 Pro",
-   "brand": "苹果",
-   "process": "TSMC N3P",
-   "cpu": "2×4.26GHz + 4×2.60GHz",
-   "cores": 6,
-   "max_ghz": 4.26,
-   "gpu": "Apple GPU",
-   "year": "2025",
-   "tier": "flagship",
-   "devices": "iPhone 17 Pro、iPhone 17 Pro Max、iPhone Air",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a19",
-   "codes": [],
-   "names": [
-    "A19",
-    "Apple A19"
-   ],
-   "name": "A19",
-   "name_en": "Apple A19",
-   "brand": "苹果",
-   "process": "TSMC N3P",
-   "cpu": "2×4.26GHz + 4×2.60GHz",
-   "cores": 6,
-   "max_ghz": 4.26,
-   "gpu": "Apple GPU",
-   "year": "2025",
-   "tier": "sub-flagship",
-   "devices": "iPhone 17",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a18-pro",
-   "codes": [],
-   "names": [
-    "A18 Pro",
-    "Apple A18 Pro"
-   ],
-   "name": "A18 Pro",
-   "name_en": "Apple A18 Pro",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "2×4.04GHz + 4×2.42GHz",
-   "cores": 6,
-   "max_ghz": 4.04,
-   "gpu": "Apple GPU",
-   "year": "2024",
-   "tier": "sub-flagship",
-   "devices": "iPhone 16 Pro Max",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a18",
-   "codes": [],
-   "names": [
-    "A18",
-    "Apple A18"
-   ],
-   "name": "A18",
-   "name_en": "Apple A18",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "2×4.04GHz + 4×2.42GHz",
-   "cores": 6,
-   "max_ghz": 4.04,
-   "gpu": "Apple GPU",
-   "year": "2024",
-   "tier": "sub-flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a17-pro",
-   "codes": [],
-   "names": [
-    "A17 Pro",
-    "Apple A17 Pro"
-   ],
-   "name": "A17 Pro",
-   "name_en": "Apple A17 Pro",
-   "brand": "苹果",
-   "process": "TSMC N3",
-   "cpu": "2×Everest 3.78GHz + 4×Sawtooth 2.11GHz",
-   "cores": 6,
-   "max_ghz": 3.78,
-   "gpu": "Apple GPU",
-   "year": "2023",
-   "tier": "sub-flagship",
-   "devices": "iPhone 15 Pro Max、iPhone 15 Pro",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a16-bionic",
-   "codes": [],
-   "names": [
-    "A16",
-    "Apple A16 Bionic"
-   ],
-   "name": "A16",
-   "name_en": "Apple A16 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N4",
-   "cpu": "2×Everest 3.46GHz + 4×Sawtooth 2.02GHz",
-   "cores": 6,
-   "max_ghz": 3.46,
-   "gpu": "Apple GPU",
-   "year": "2022",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a12z-bionic",
-   "codes": [],
-   "names": [
-    "A12Z",
-    "Apple A12Z Bionic"
-   ],
-   "name": "A12Z",
-   "name_en": "Apple A12Z Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7",
-   "cpu": "4×Vortex 2.49GHz + 4×Tempest 1.59GHz",
-   "cores": 8,
-   "max_ghz": 2.49,
-   "gpu": "Apple GPU",
-   "year": "2020",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a12x-bionic",
-   "codes": [],
-   "names": [
-    "A12X",
-    "Apple A12X Bionic"
-   ],
-   "name": "A12X",
-   "name_en": "Apple A12X Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7",
-   "cpu": "4×Vortex 2.49GHz + 4×Tempest 1.59GHz",
-   "cores": 8,
-   "max_ghz": 2.49,
-   "gpu": "Apple GPU",
-   "year": "2018",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a15-bionic",
-   "codes": [],
-   "names": [
-    "A15",
-    "Apple A15 Bionic"
-   ],
-   "name": "A15",
-   "name_en": "Apple A15 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N5P",
-   "cpu": "2×Avalanche 2.93GHz + 4×Blizzard 2.02GHz",
-   "cores": 6,
-   "max_ghz": 2.93,
-   "gpu": "Apple GPU",
-   "year": "2021",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a14-bionic",
-   "codes": [],
-   "names": [
-    "A14",
-    "Apple A14 Bionic"
-   ],
-   "name": "A14",
-   "name_en": "Apple A14 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N5",
-   "cpu": "2×Firestorm 2.99GHz + 4×Icestorm 1.82GHz",
-   "cores": 6,
-   "max_ghz": 2.99,
-   "gpu": "Apple GPU",
-   "year": "2020",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a13-bionic",
-   "codes": [],
-   "names": [
-    "A13",
-    "Apple A13 Bionic"
-   ],
-   "name": "A13",
-   "name_en": "Apple A13 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7P",
-   "cpu": "2×Lightning 2.65GHz + 4×Thunder 1.80GHz",
-   "cores": 6,
-   "max_ghz": 2.65,
-   "gpu": "Apple GPU",
-   "year": "2019",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a12-bionic",
-   "codes": [],
-   "names": [
-    "A12",
-    "Apple A12 Bionic"
-   ],
-   "name": "A12",
-   "name_en": "Apple A12 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7",
-   "cpu": "2×Vortex 2.49GHz + 4×Tempest 1.59GHz",
-   "cores": 6,
-   "max_ghz": 2.49,
-   "gpu": "Apple GPU",
-   "year": "2018",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a11-bionic",
-   "codes": [],
-   "names": [
-    "A11",
-    "Apple A11 Bionic"
-   ],
-   "name": "A11",
-   "name_en": "Apple A11 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N10",
-   "cpu": "2×Monsoon 2.39GHz + 4×Mistral",
-   "cores": 6,
-   "max_ghz": 2.39,
-   "gpu": "Apple GPU",
-   "year": "2017",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a10x-fusion",
-   "codes": [],
-   "names": [
-    "A10X",
-    "Apple A10X Fusion"
-   ],
-   "name": "A10X",
-   "name_en": "Apple A10X Fusion",
-   "brand": "苹果",
-   "process": "TSMC N10",
-   "cpu": "3×Hurricane 2.39GHz + 3×Zephyr 1.30GHz",
-   "cores": 6,
-   "max_ghz": 2.39,
-   "gpu": "PowerVR GT7600 Plus",
-   "year": "2017",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a10-fusion",
-   "codes": [],
-   "names": [
-    "A10",
-    "Apple A10 Fusion"
-   ],
-   "name": "A10",
-   "name_en": "Apple A10 Fusion",
-   "brand": "苹果",
-   "process": "TSMC N16",
-   "cpu": "2×Hurricane 2.34GHz + 2×Zephyr 1.09GHz",
-   "cores": 4,
-   "max_ghz": 2.34,
-   "gpu": "PowerVR GT7600 Plus",
-   "year": "2016",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a9",
-   "codes": [],
-   "names": [
-    "A9",
-    "Apple A9"
-   ],
-   "name": "A9",
-   "name_en": "Apple A9",
-   "brand": "苹果",
-   "process": "TSMC N16 / Samsung 14LPE",
-   "cpu": "2×Twister 1.85GHz",
-   "cores": 2,
-   "max_ghz": 1.85,
-   "gpu": "PowerVR GT7600",
-   "year": "2015",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a8",
-   "codes": [],
-   "names": [
-    "A8",
-    "Apple A8"
-   ],
-   "name": "A8",
-   "name_en": "Apple A8",
-   "brand": "苹果",
-   "process": "TSMC N20",
-   "cpu": "2×Typhoon 1.4GHz",
-   "cores": 2,
-   "max_ghz": 1.4,
-   "gpu": "PowerVR GX6450",
-   "year": "2014",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a7",
-   "codes": [],
-   "names": [
-    "A7",
-    "Apple A7"
-   ],
-   "name": "A7",
-   "name_en": "Apple A7",
-   "brand": "苹果",
-   "process": "Samsung 28nm",
-   "cpu": "2×Cyclone 1.3GHz",
-   "cores": 2,
-   "max_ghz": 1.3,
-   "gpu": "PowerVR G6430",
-   "year": "2013",
-   "tier": "low",
    "form": "phone",
    "src": "socpk"
   },
@@ -3341,7 +2879,7 @@
    "src": "socpk"
   },
   {
-   "id": "microsoft-sq1",
+   "id": "sq1",
    "codes": [],
    "names": [
     "微软 SQ1",
@@ -4721,7 +4259,9 @@
   },
   {
    "id": "9020a",
-   "codes": [],
+   "codes": [
+    "kirin9020a"
+   ],
    "names": [
     "海思 麒麟9020A",
     "麒麟9020A"
@@ -4859,7 +4399,9 @@
   },
   {
    "id": "9010e",
-   "codes": [],
+   "codes": [
+    "kirin9010e"
+   ],
    "names": [
     "海思 麒麟9010E",
     "麒麟9010E"
@@ -4879,7 +4421,9 @@
   },
   {
    "id": "9010l",
-   "codes": [],
+   "codes": [
+    "kirin9010l"
+   ],
    "names": [
     "海思 麒麟9010L",
     "麒麟9010L"
@@ -4898,7 +4442,9 @@
   },
   {
    "id": "9000s1",
-   "codes": [],
+   "codes": [
+    "kirin9000s1"
+   ],
    "names": [
     "海思 麒麟9000S1",
     "麒麟9000S1"
@@ -5218,7 +4764,9 @@
   },
   {
    "id": "990e",
-   "codes": [],
+   "codes": [
+    "kirin990e"
+   ],
    "names": [
     "海思 麒麟990E",
     "麒麟990E"
@@ -5486,7 +5034,9 @@
   },
   {
    "id": "8000a",
-   "codes": [],
+   "codes": [
+    "kirin8000a"
+   ],
    "names": [
     "海思 麒麟8000A",
     "麒麟8000A"
@@ -5525,7 +5075,9 @@
   },
   {
    "id": "820e",
-   "codes": [],
+   "codes": [
+    "kirin820e"
+   ],
    "names": [
     "海思 麒麟820E",
     "麒麟820E"
@@ -6218,7 +5770,9 @@
   },
   {
    "id": "t7250",
-   "codes": [],
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "紫光展锐 T7250",
     "T7250"
@@ -6229,6 +5783,7 @@
    "cpu": "2×1.8GHz Cortex-A75 + 6×1.6GHz Cortex-A55",
    "cores": 8,
    "max_ghz": 1.8,
+   "year": "2023",
    "antutu": "190707",
    "antutu_cpu": "169607",
    "antutu_gpu": "21100",
@@ -6315,25 +5870,6 @@
    "src": "antutu"
   },
   {
-   "id": "helio-p70",
-   "codes": [],
-   "names": [
-    "联发科技 Helio P70",
-    "Helio P70"
-   ],
-   "name": "Helio P70",
-   "name_en": "联发科技 Helio P70",
-   "brand": "联发科",
-   "cpu": "4×2.1GHz Cortex-A73 + 4×2.0GHz Cortex-A53",
-   "cores": 8,
-   "max_ghz": 2.1,
-   "antutu": "171134",
-   "antutu_cpu": "145086",
-   "antutu_gpu": "26048",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
    "id": "helio-g70",
    "codes": [],
    "names": [
@@ -6410,7 +5946,9 @@
   },
   {
    "id": "t612",
-   "codes": [],
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "紫光展锐 T612",
     "T612"
@@ -6421,6 +5959,7 @@
    "cpu": "2×1.8GHz Cortex-A75 + 6×1.8GHz Cortex-A55",
    "cores": 8,
    "max_ghz": 1.8,
+   "year": "2022",
    "antutu": "163883",
    "antutu_cpu": "140897",
    "antutu_gpu": "22986",
@@ -6576,8 +6115,10 @@
    "src": "antutu"
   },
   {
-   "id": "t310",
-   "codes": [],
+   "id": "ums312",
+   "codes": [
+    "ums312"
+   ],
    "names": [
     "紫光展锐 T310",
     "T310"
@@ -6588,6 +6129,7 @@
    "cpu": "1×2.0GHz Cortex-A75 + 3×1.8GHz Cortex-A55",
    "cores": 4,
    "max_ghz": 2.0,
+   "year": "2019",
    "antutu": "118736",
    "antutu_cpu": "110172",
    "antutu_gpu": "8564",
@@ -6595,8 +6137,10 @@
    "src": "antutu"
   },
   {
-   "id": "exynos-850",
-   "codes": [],
+   "id": "s5e3830",
+   "codes": [
+    "s5e3830"
+   ],
    "names": [
     "三星 Exynos 850",
     "Exynos 850"
@@ -6676,8 +6220,10 @@
    "src": "antutu"
   },
   {
-   "id": "helio-p25",
-   "codes": [],
+   "id": "mt6757cd",
+   "codes": [
+    "mt6757cd"
+   ],
    "names": [
     "联发科技 Helio P25",
     "Helio P25"
@@ -7087,7 +6633,9 @@
   },
   {
    "id": "65x",
-   "codes": [],
+   "codes": [
+    "kirin65x"
+   ],
    "names": [
     "海思 麒麟65x",
     "麒麟65x"
@@ -7206,8 +6754,10 @@
    "src": "antutu"
   },
   {
-   "id": "801ac",
-   "codes": [],
+   "id": "msm8974ac",
+   "codes": [
+    "msm8974ac"
+   ],
    "names": [
     "高通 骁龙801AC",
     "骁龙801AC"
@@ -7218,6 +6768,7 @@
    "cpu": "4×2.45GHz Krait 400",
    "cores": 4,
    "max_ghz": 2.45,
+   "year": "2014",
    "antutu": "28762",
    "antutu_cpu": "13690",
    "antutu_gpu": "15072",
@@ -8899,6 +8450,9 @@
    "S5E9840": [
     "s5e9840"
    ],
+   "S5E9815": [
+    "s5e9815"
+   ],
    "S5E9830": [
     "s5e9830"
    ],
@@ -8907,6 +8461,9 @@
    ],
    "S5E9810": [
     "s5e9810"
+   ],
+   "S5E9630": [
+    "s5e9630"
    ],
    "S5E8895": [
     "s5e8895"
@@ -8932,6 +8489,15 @@
    "KIRIN9000E": [
     "kirin9000e"
    ],
+   "KIRIN9000WL": [
+    "kirin9000wl"
+   ],
+   "KIRIN9000SL": [
+    "kirin9000sl"
+   ],
+   "KIRIN9000WM": [
+    "kirin9000wm"
+   ],
    "KIRIN990": [
     "kirin990"
    ],
@@ -8941,8 +8507,17 @@
    "KIRIN985": [
     "kirin985"
    ],
+   "KIRIN970": [
+    "kirin970"
+   ],
    "HI3660": [
     "hi3660"
+   ],
+   "KIRIN950": [
+    "kirin950"
+   ],
+   "KIRIN8000": [
+    "kirin8000"
    ],
    "KIRIN820": [
     "kirin820"
@@ -8950,8 +8525,24 @@
    "KIRIN810": [
     "kirin810"
    ],
+   "KIRIN710F": [
+    "kirin710f"
+   ],
    "V670": [
     "v670"
+   ],
+   "UMS9620": [
+    "t760",
+    "t820"
+   ],
+   "UMS9230": [
+    "t606",
+    "t612",
+    "t616",
+    "t7250"
+   ],
+   "S9863A": [
+    "s9863a"
    ],
    "MT6993": [
     "mt6993"
@@ -9388,8 +8979,17 @@
    "S5E7904": [
     "s5e7904"
    ],
+   "UMS312": [
+    "ums312"
+   ],
+   "S5E3830": [
+    "s5e3830"
+   ],
    "SDM630": [
     "sdm630"
+   ],
+   "MT6757CD": [
+    "mt6757cd"
    ],
    "MT6763": [
     "mt6763"
@@ -9436,8 +9036,35 @@
    "MSM8940": [
     "msm8940"
    ],
+   "MSM8974AC": [
+    "msm8974ac"
+   ],
    "MSM8917": [
     "msm8917"
+   ],
+   "KIRIN9020A": [
+    "9020a"
+   ],
+   "KIRIN9010E": [
+    "9010e"
+   ],
+   "KIRIN9010L": [
+    "9010l"
+   ],
+   "KIRIN9000S1": [
+    "9000s1"
+   ],
+   "KIRIN990E": [
+    "990e"
+   ],
+   "KIRIN8000A": [
+    "8000a"
+   ],
+   "KIRIN820E": [
+    "820e"
+   ],
+   "KIRIN65X": [
+    "65x"
    ],
    "SM7150-AA": [
     "sm7150-aa"
@@ -10104,6 +9731,9 @@
    "S5E9840": [
     "s5e9840"
    ],
+   "S5E9815": [
+    "s5e9815"
+   ],
    "S5E9830": [
     "s5e9830"
    ],
@@ -10112,6 +9742,9 @@
    ],
    "S5E9810": [
     "s5e9810"
+   ],
+   "S5E9630": [
+    "s5e9630"
    ],
    "S5E8895": [
     "s5e8895"
@@ -10137,6 +9770,15 @@
    "KIRIN9000E": [
     "kirin9000e"
    ],
+   "KIRIN9000WL": [
+    "kirin9000wl"
+   ],
+   "KIRIN9000SL": [
+    "kirin9000sl"
+   ],
+   "KIRIN9000WM": [
+    "kirin9000wm"
+   ],
    "KIRIN990": [
     "kirin990"
    ],
@@ -10146,8 +9788,17 @@
    "KIRIN985": [
     "kirin985"
    ],
+   "KIRIN970": [
+    "kirin970"
+   ],
    "HI3660": [
     "hi3660"
+   ],
+   "KIRIN950": [
+    "kirin950"
+   ],
+   "KIRIN8000": [
+    "kirin8000"
    ],
    "KIRIN820": [
     "kirin820"
@@ -10155,8 +9806,24 @@
    "KIRIN810": [
     "kirin810"
    ],
+   "KIRIN710F": [
+    "kirin710f"
+   ],
    "V670": [
     "v670"
+   ],
+   "UMS9620": [
+    "t760",
+    "t820"
+   ],
+   "UMS9230": [
+    "t606",
+    "t612",
+    "t616",
+    "t7250"
+   ],
+   "S9863A": [
+    "s9863a"
    ],
    "MT6993": [
     "mt6993"
@@ -10577,8 +10244,17 @@
    "S5E7904": [
     "s5e7904"
    ],
+   "UMS312": [
+    "ums312"
+   ],
+   "S5E3830": [
+    "s5e3830"
+   ],
    "SDM630": [
     "sdm630"
+   ],
+   "MT6757CD": [
+    "mt6757cd"
    ],
    "MT6763": [
     "mt6763"
@@ -10625,8 +10301,35 @@
    "MSM8940": [
     "msm8940"
    ],
+   "MSM8974AC": [
+    "msm8974ac"
+   ],
    "MSM8917": [
     "msm8917"
+   ],
+   "KIRIN9020A": [
+    "9020a"
+   ],
+   "KIRIN9010E": [
+    "9010e"
+   ],
+   "KIRIN9010L": [
+    "9010l"
+   ],
+   "KIRIN9000S1": [
+    "9000s1"
+   ],
+   "KIRIN990E": [
+    "990e"
+   ],
+   "KIRIN8000A": [
+    "8000a"
+   ],
+   "KIRIN820E": [
+    "820e"
+   ],
+   "KIRIN65X": [
+    "65x"
    ],
    "SM7150-AA": [
     "sm7150-aa"
