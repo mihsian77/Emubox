@@ -12,6 +12,9 @@
 数据来源：
   codenames/规格  socpk.com/api/chips（极客湾公开接口，157 颗，96 颗带代号）
   规格补充         soc_name_map.json（三星/华为代号补齐）
+  覆盖面           antutu_soc.json 全集（271 条手机 SoC，从骁龙 425 到 2026 新品）
+  CPU/频率         soc_specs.json（安兔兔 clusters 解析，215 条有核心构成）
+  部件号           part_numbers.json（极客湾不收的老款与变体：骁龙 Plus、Helio P/G）
   跑分             antutu_soc.json（V10 总分/CPU/GPU）、ludashi.json（SoC 榜）
   人工覆盖         bench_meta.json 的 aliases（安兔兔译名与本站不一致的旗舰）
   常见机型         soc_knowledge.json 的 devices
@@ -48,6 +51,7 @@ SYNONYMS = [
     ('联发科技', 'mediatek'), ('联发科', 'mediatek'),
     ('高通', 'qualcomm'), ('三星', 'samsung'), ('华为', 'hisilicon'), ('海思', 'hisilicon'),
     ('曦力', 'helio'), ('迅鲲', 'kompanio'), ('谷歌', 'google'),
+    ('紫光展锐', 'unisoc'), ('展锐', 'unisoc'), ('联发科技', 'mediatek'),
     ('小米', 'xiaomi'), ('玄戒', 'xring'), ('澎湃', 'pinecone'), ('苹果', 'apple'),
 ]
 # Pixel 手机代号，不是芯片代号。旧映射表把它们指向「谷歌 Pixel」，
@@ -66,7 +70,12 @@ VENDOR_WORDS = {
 def normalize(s):
     s = (s or '').lower()
     s = re.sub(r'[()（）\[\]{}、,，/\\:：]', ' ', s)
-    s = re.sub(r'[\s\-_+*]', '', s)
+    # 「+」不能直接删：删了之后「骁龙 8+ Gen1」与「骁龙 8 Gen1」归一化结果完全一样，
+    # 865+ / 888+ / 765G 这些 Plus 型号会被并进基础款，主键就串了。
+    s = s.replace('+', 'plus')
+    s = re.sub(r'[\s\-_*]', '', s)
+    # 「骁龙 780G 5G」「天玑 7200 5G」的 5G 是冗余后缀，留着会与不带 5G 的同名条目分家
+    s = re.sub(r'5g$', '', s)
     for a, b in SYNONYMS:
         s = s.replace(a, b)
     return s
@@ -167,6 +176,52 @@ def make_id(base):
     return slug or 'soc-' + hashlib.md5((base or '').encode('utf-8')).hexdigest()[:8]
 
 
+def bare_code(c):
+    """完整料号 → 设备实际可能上报的裸号：MT6765V/CA → MT6765，S5E9945 → S5E9945。
+
+    只对符合这个规律的联发科/三星料号生效。高通 -AB/-AC 是不同芯片
+    （SM8250=865、-AB=865+、-AC=870），剥了会把三颗并成一颗，所以不派生。
+    """
+    t = code_exact(c)
+    m = re.match(r'^(MT\d{4})[A-Z]?(?:/[A-Z]{1,2})?$', t)
+    if m:
+        return m.group(1)
+    return ''
+
+
+def assign_code(code, soc_id, exact, loose, assigned, conflicts):
+    """挂一个代号。同一代号指向两颗不同芯片时不覆盖先到的，只记冲突。
+
+    典型冲突：SM8150-AC 既是骁龙 855+ 也是 860（同芯改名），
+    MT6899 被极客湾记为天玑 8400 而某些第三方表写成 8200。
+    先到的是极客湾（规格源），后到的让步——错挂比不挂更糟。
+    """
+    k = code_exact(code)
+    prev = assigned.get(k)
+    if prev and prev != soc_id:
+        conflicts.append((k, prev, soc_id))
+        return False
+    assigned[k] = soc_id
+    exact.setdefault(k, []).append(soc_id)
+    loose.setdefault(code_loose(code), []).append(soc_id)
+    return True
+
+
+def split_alias(name):
+    """安兔兔把同平台不同调频写成一行：'天玑 8200/8200 Ultra'，拆成两个可匹配的名字。"""
+    if '/' not in (name or ''):
+        return [name]
+    head = name.split('/')[0].strip()
+    prefix = head.split()[0] if head.split() else ''
+    out = [head]
+    for part in name.split('/')[1:]:
+        part = part.strip()
+        if not part:
+            continue
+        out.append(part if part.lower().startswith(prefix.lower()) or not prefix else f'{prefix} {part}')
+    return out
+
+
 def clusters_text(clusters):
     """[{count, label}] → '2×4.32GHz + 6×3.53GHz'，label 里已含架构名与频率。"""
     parts = []
@@ -202,6 +257,42 @@ def gpu_key(name):
     return ''
 
 
+# 名称前缀 → 厂商。原料只有名字时用它归厂（安兔兔的条目没有 brand 字段）。
+# 顺序敏感：Tensor 必须先于 T，否则谷歌会被判成紫光。
+BRAND_PREFIXES = [
+    ('骁龙', '高通'), ('高通', '高通'), ('Qualcomm', '高通'),
+    ('天玑', '联发科'), ('曦力', '联发科'), ('Helio', '联发科'), ('联发科技', '联发科'),
+    ('MediaTek', '联发科'), ('MT', '联发科'),
+    ('麒麟', '华为'), ('海思', '华为'), ('HiSilicon', '华为'),
+    ('Exynos', '三星'), ('三星', '三星'), ('Samsung', '三星'),
+    ('紫光展锐', '紫光展锐'), ('展锐', '紫光展锐'), ('Unisoc', '紫光展锐'),
+    ('迅鲲', '联发科'), ('玄戒', '小米'), ('XRing', '小米'),
+    ('Tensor', '谷歌'), ('Google', '谷歌'),
+    ('瑞芯微', '瑞芯微'), ('RK', '瑞芯微'),
+    ('晶晨', '晶晨'), ('Amlogic', '晶晨'), ('全志', '全志'), ('Allwinner', '全志'),
+    ('瓴盛', '瓴盛科技'), ('杰发', '杰发科技'), ('Synaptics', 'Synaptics'),
+]
+
+
+def display_name(name):
+    """去掉首词厂牌：'MediaTek Helio G96' → 'Helio G96'，'紫光展锐 T8200' → 'T8200'。
+
+    界面有厂商徽章，名字里再带一遍厂牌是重复；全名仍保留在 names 里供匹配。
+    """
+    words = (name or '').split(' ', 1)
+    if len(words) == 2 and normalize(words[0]) in VENDOR_WORDS:
+        return words[1].strip()
+    return name
+
+
+def brand_of(name):
+    n = (name or '').strip()
+    for p, b in BRAND_PREFIXES:
+        if n.lower().startswith(p.lower()):
+            return b
+    return ''
+
+
 def main():
     fetch = '--fetch' in sys.argv
     chips = None if fetch else load_json(CACHE)
@@ -215,6 +306,12 @@ def main():
                 return 1
             print(f'抓取极客湾失败，改用本地缓存：{e}', file=sys.stderr)
     namemap = load_json(os.path.join(ASSETS, 'soc_name_map.json'), {})
+    part = load_json(os.path.join(ROOT, 'scripts', 'soc', 'part_numbers.json'), {})
+    part_by_name = {}
+    for e in part.get('entries', []):
+        for n in (e.get('name'), e.get('name_en')):
+            if n:
+                part_by_name.setdefault(normalize(n), e)
     # 优先读 bench-data（CI 里刚抓的最新结果），本地没有时退回 assets 里的副本
     bench_data = os.path.join(ROOT, 'bench-data')
     antutu = load_json(os.path.join(bench_data, 'antutu_soc.json'), {}) \
@@ -244,6 +341,7 @@ def main():
 
     # ---- 主表 ----
     socs, exact, loose = [], {}, {}
+    assigned, conflicts = {}, []
     for brand_block in chips.get('brands', []):
         brand = brand_block.get('brand', '')
         for c in brand_block.get('chips', []):
@@ -257,6 +355,10 @@ def main():
                     if v.lower() == name_en.lower() and re.match(
                             r'^(SM\d|MT\d|S5E\d|SDM\d|MSM\d|GS\d{3}|KIRIN\d|V\d{4})', k, re.I):
                         codes.append(k)
+            # part_numbers 补的正是极客湾没给号的那一段（三星 Exynos、麒麟、老骁龙）
+            pe = part_by_name.get(normalize(name)) or part_by_name.get(normalize(name_en))
+            if pe:
+                codes = list(dict.fromkeys(codes + pe['codes']))
 
             # 跑分：先按名直连，再用人工覆盖表桥接
             ant = ant_index.get(normalize(name)) or ant_index.get(strip_vendor(name_en)) \
@@ -272,8 +374,9 @@ def main():
             soc = {
                 'id': make_id(codes[0] if codes else (name_en or name)),
                 'codes': codes,
-                'names': [n for n in (name, name_en) if n],
-                'name': name,
+                'names': list(dict.fromkeys(
+                    [x for n in (name, name_en) for x in split_alias(n) if x])),
+                'name': display_name(name),
                 'name_en': name_en,
                 'brand': brand,
                 'process': m.get('process', ''),
@@ -282,18 +385,98 @@ def main():
                 'max_ghz': max_freq(m.get('clusters')),
                 'gpu': gpu,
                 'gpu_key': gpu_key(gpu),
-                'year': m.get('year', ''),
+                'year': str(m.get('year', '') or ''),
                 'tier': m.get('tier', ''),
                 'antutu': (ant or {}).get('total_score', ''),
                 'antutu_cpu': (ant or {}).get('cpu_score', ''),
                 'antutu_gpu': (ant or {}).get('gpu_score', ''),
                 'ludashi': (lud or {}).get('score', ''),
                 'devices': '',
+                'form': 'phone',
+                'src': 'socpk',
             }
             socs.append(soc)
             for code in codes:
-                exact.setdefault(code_exact(code), []).append(soc['id'])
-                loose.setdefault(code_loose(code), []).append(soc['id'])
+                assign_code(code, soc['id'], exact, loose, assigned, conflicts)
+
+    # ---- 补齐安兔兔全集 ----
+    # 极客湾只收 157 颗且偏新机，骁龙 4xx/6xx、Helio P/G、紫光 T 系列整段不在表里，
+    # 而这些正是二手老机与低端机用户手里的芯片。安兔兔从骁龙 425 一直排到 2026 新品，
+    # 拿它当覆盖面基线，缺的条目按名字建（有部件号就挂上，没有也先能认出名字）。
+    known_names = set()
+    for s in socs:
+        for n in s['names'] + s['codes']:
+            known_names.add(normalize(n))
+
+    specs = load_json(os.path.join(ASSETS, 'bench', 'soc_specs.json'), {}).get('socs', {})
+    spec_index = {}
+    for k, v in specs.items():
+        spec_index.setdefault(normalize(k), v)
+        spec_index.setdefault(strip_vendor(k), v)
+
+    l2 = {r.get('rank'): r for r in antutu.get('level2', [])}
+    ant_rows = [(r, (l2.get(r.get('rank')) or {}).get('name', ''), 'phone', 'level1')
+                for r in antutu.get('level1', [])]
+    # level3 是平板/车机/XR/IoT（QCM/QCS/G3x/瑞芯微/全志），同样收，但标 form 便于界面区分
+    ant_rows += [(r, '', 'embedded', 'level3') for r in antutu.get('level3', [])]
+
+    def spec_of(name, aliases):
+        for a in [name] + aliases:
+            sp = spec_index.get(normalize(a)) or spec_index.get(strip_vendor(a))
+            if sp:
+                return sp
+        return {}
+
+    added_ant = 0
+    for r, name_en, form, level in ant_rows:
+        name = (r.get('name') or '').strip()
+        # 安兔兔偶发把分数列当名称抓进来（'25673 分'）：没有字母、或只剩「分」字的一律丢
+        if not name or not re.search(r'[A-Za-z]', name) and not re.search(r'[\u4e00-\u9fa5]', name.replace('分', '')):
+            continue
+        aliases = split_alias(name)
+        if any(normalize(a) in known_names or strip_vendor(a) in known_names for a in aliases):
+            continue
+        pe = None
+        for a in aliases:
+            pe = part_by_name.get(normalize(a)) or part_by_name.get(strip_vendor(a))
+            if pe:
+                break
+        sp = spec_of(name, aliases)
+        codes = list(pe['codes']) if pe else []
+        main_name = aliases[0]
+        # 极客湾名字不带厂牌（天玑 8400），安兔兔带（联发科技 天玑8400-Max）。
+        # 界面已有厂商徽章，这里统一去掉首词厂牌，全名保留在 names 里供匹配。
+        display = display_name(main_name)
+        gpu = sp.get('gpu', '')
+        soc = {
+            'id': make_id(codes[0] if codes else display),
+            'codes': codes,
+            'names': list(dict.fromkeys([main_name, display] + aliases)),
+            'name': display,
+            'name_en': name_en or (pe or {}).get('name_en', ''),
+            'brand': (pe or {}).get('brand') or brand_of(name),
+            'process': sp.get('process', ''),
+            'cpu': sp.get('cpu_summary', ''),
+            'cores': sp.get('total_cores', 0),
+            'max_ghz': sp.get('max_freq_ghz', 0),
+            'gpu': gpu,
+            'gpu_key': gpu_key(gpu),
+            'year': str(sp.get('year') or (pe or {}).get('year') or ''),
+            'tier': '',
+            'antutu': r.get('total_score', ''),
+            'antutu_cpu': r.get('cpu_score', ''),
+            'antutu_gpu': r.get('gpu_score', ''),
+            'ludashi': (lud_index.get(normalize(name)) or {}).get('score', ''),
+            'devices': '',
+            'form': form,
+            'src': 'antutu',
+        }
+        socs.append(soc)
+        for code in codes:
+            assign_code(code, soc['id'], exact, loose, assigned, conflicts)
+        for a in aliases:
+            known_names.add(normalize(a))
+        added_ant += 1
 
     # ---- 平台代号（sun/kalama/mt6989）：来自 soc_name_map 的小写键 ----
     platforms = {}
@@ -309,23 +492,59 @@ def main():
                 platforms[k] = s['id']
                 break
 
-    # ---- 补充只有代号没有市场名的平台（极客湾未收录） ----
-    known_names = {s['name_en'].lower() for s in socs} | {s['name'].lower() for s in socs}
+    # ---- 映射表里的料号全部挂上 ----
+    # 关键：名字已经在表里时也要把代号挂过去（MT6765V/CA → 曦力 P35）。
+    # 旧逻辑遇到同名直接跳过，导致 200 多条联发科料号一条都没进索引，
+    # 设备上报 MT6765 时只能落到「未收录」。
+    name_to_soc = {}
+    for s in socs:
+        for n in s['names']:
+            name_to_soc.setdefault(normalize(n), s)
+            name_to_soc.setdefault(strip_vendor(n), s)
+
+    added_part = 0
+    for e in part.get('entries', []):
+        names = [n for n in (e.get('name'), e.get('name_en')) if n]
+        if any(normalize(n) in name_to_soc for n in names):
+            continue
+        soc = {
+            'id': make_id((e.get('codes') or [e['name']])[0]),
+            'codes': list(e.get('codes') or []),
+            'names': names, 'name': display_name(e['name']), 'name_en': e.get('name_en', ''),
+            'brand': e.get('brand', '') or brand_of(e['name']),
+            'process': '', 'cpu': '', 'cores': 0, 'max_ghz': 0,
+            'gpu': '', 'gpu_key': '', 'year': str(e.get('year') or ''),
+            'tier': '', 'antutu': '', 'antutu_cpu': '', 'antutu_gpu': '',
+            'ludashi': '', 'devices': '', 'form': 'phone', 'src': 'code',
+        }
+        socs.append(soc)
+        for n in names:
+            name_to_soc[normalize(n)] = soc
+            name_to_soc[strip_vendor(n)] = soc
+        for code in soc['codes']:
+            assign_code(code, soc['id'], exact, loose, assigned, conflicts)
+        added_part += 1
+
+    added_code = 0
     for k, v in namemap.items():
-        if not re.match(r'^(SM\d{4}|MT\d{4}|S5E\d{4}|SDM\d{3,4}|MSM\d{3,4}|GS\d{3}|KIRIN\d{3,4}|V\d{4})$', k, re.I):
+        if not re.match(r'^(SM\d{3,5}|MT\d{3,5}|S5E\d{4}|SDM\d{3,4}|MSM\d{3,4}|APQ\d{4}'
+                        r'|GS\d{3}|KIRIN\d{3,4}|S5P\d{4})([A-Z0-9/_\-]*)$', k, re.I):
             continue
-        if v.lower() in known_names:
-            continue
-        socs.append({
-            'id': re.sub(r'[^a-z0-9]+', '-', k.lower()).strip('-'),
-            'codes': [k], 'names': [v], 'name': v, 'name_en': v, 'brand': '',
-            'process': '', 'cpu': '', 'cores': 0, 'max_ghz': 0, 'gpu': '', 'gpu_key': '',
-            'year': '', 'tier': '', 'antutu': '', 'antutu_cpu': '', 'antutu_gpu': '',
-            'ludashi': '', 'devices': '',
-        })
-        known_names.add(v.lower())
-        exact.setdefault(code_exact(k), []).append(socs[-1]['id'])
-        loose.setdefault(code_loose(k), []).append(socs[-1]['id'])
+        s = name_to_soc.get(normalize(v))
+        if s is None:
+            s = {
+                'id': make_id(code_exact(k)),
+                'codes': [], 'names': [v], 'name': display_name(v), 'name_en': v,
+                'brand': brand_of(v), 'process': '', 'cpu': '', 'cores': 0, 'max_ghz': 0,
+                'gpu': '', 'gpu_key': '', 'year': '', 'tier': '', 'antutu': '',
+                'antutu_cpu': '', 'antutu_gpu': '', 'ludashi': '', 'devices': '', 'form': 'phone',
+            }
+            socs.append(s)
+            name_to_soc[normalize(v)] = s
+            name_to_soc[strip_vendor(v)] = s
+        if k not in s['codes'] and assign_code(k, s['id'], exact, loose, assigned, conflicts):
+            s['codes'].append(k)
+            added_code += 1
 
     # ---- 常见机型：从 soc_knowledge 合并（接口没有这个字段） ----
     kd = {}
@@ -365,25 +584,37 @@ def main():
         for k in idx:
             idx[k] = sorted(set(idx[k]))
 
+    # 空字段不写进 JSON：412 条里有三成条目没有工艺/GPU（安兔兔不提供），
+    # 全写空串会让文件多 45KB。Kotlin 侧 optString/optInt 都有默认值，缺字段安全。
+    keep = {'id', 'name', 'names', 'codes', 'brand', 'src', 'form'}
+    slim = [{k: v for k, v in s.items() if k in keep or v not in ('', 0, None, [])} for s in uniq]
+
     out = {
-        'version': '1.0.0',
+        'version': '1.1.0',
         'note': '芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——'
                 '同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，'
                 '安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。'
                 '匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。'
                 'loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。',
         'generated': __import__('datetime').date.today().isoformat(),
-        'socs': uniq,
+        'socs': slim,
         'match': {'exact': exact, 'loose': loose},
         'platforms': platforms,
+        'vendors': part.get('vendor_platforms', {}),
     }
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
         f.write('\n')
 
+    ById = {s['id']: s for s in uniq}
     coded = sum(1 for s in uniq if s['codes'])
     print(f'芯片 {len(uniq)} 条，有代号 {coded} 条，代号索引 exact={len(exact)} loose={len(loose)}，平台 {len(platforms)} 条')
     print(f'跑分挂接：安兔兔 {sum(1 for s in uniq if s["antutu"])} 条，鲁大师 {sum(1 for s in uniq if s["ludashi"])} 条')
+    print(f'新增：安兔兔补 {added_ant} 条，部件号表补 {added_part} 条，映射表挂码 {added_code} 条')
+    if conflicts:
+        print(f'代号冲突 {len(conflicts)} 条（保留先到，未覆盖）：')
+        for k, a, b in conflicts[:20]:
+            print(f'  {k}: {ById[a]["name"]} ← 丢弃 {ById[b]["name"]}')
     multi = {k: v for k, v in loose.items() if len(v) > 1}
     print(f'一码多名（loose）：{len(multi)} 组，例：' + ', '.join(f'{k}→{len(v)}' for k, v in list(multi.items())[:6]))
 

@@ -3664,7 +3664,10 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         // 没有中文映射时退回英文原名，两者相同则不再重复。
                         val rawSoc = deviceInfo?.socName
                             ?.takeIf { it.isNotBlank() && !it.contains("未知") }
-                        val cnName = deviceInfo?.let { socChineseName(it, context) }.orEmpty()
+                        // 主表优先：旧知识库只有 58 条，且带 GPU 模糊匹配，
+                        // 展锐设备（Mali-G57）会被它判成天玑 6100
+                        val cnName = (resolvedSoc?.displayName?.takeIf { it.isNotBlank() }
+                            ?: deviceInfo?.let { socChineseName(it, context) }).orEmpty()
                         // 代号从主表取：此时 socName 已是中文营销名，旧的反查表只认英文名，查不到
                         val codeName = resolvedSoc?.codes?.firstOrNull()
                             ?: deviceInfo?.socName?.let { SocNameMapper.lookupCode(it) }.orEmpty()
@@ -3685,7 +3688,8 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
                         )
                         // 英文原名 + 代号并作一行灰字，中文名与原名相同时不重复
                         val socSecondary = listOfNotNull(
-                            rawSoc?.takeIf { it != socPrimary },
+                            // 「紫光展锐 T760」与「T760」不算两个名字，只差厂牌前缀
+                            rawSoc?.takeIf { it != socPrimary && !it.endsWith(socPrimary) },
                             codeName.takeIf { it.isNotBlank() }
                         ).joinToString(" · ")
                         if (socSecondary.isNotBlank()) {
@@ -6662,7 +6666,8 @@ fun DeviceScreen(
                 SocKnowledgeCard(
                     context = LocalContext.current,
                     gpuModel = deviceInfo.gpuModel,
-                    socHint = deviceInfo.socName
+                    socHint = deviceInfo.socName,
+                    gpuIsAdreno = deviceInfo.gpuVendor == GpuVendor.ADRENO
                 )
             }
             item(key = "bench_engine") {
@@ -13180,11 +13185,18 @@ private fun gpuArchOf(gpuKey: String): String = when {
 
 /** 芯片知识卡：按部件号识别当前 SoC，展示工艺/CPU/GPU/参考跑分/常见机型 */
 @Composable
-private fun SocKnowledgeCard(context: Context, gpuModel: String = "", socHint: String = "") {
+private fun SocKnowledgeCard(
+    context: Context,
+    gpuModel: String = "",
+    socHint: String = "",
+    gpuIsAdreno: Boolean = false
+) {
     // 主表按部件号识别（SM8750-AB / MT6989 / sun）。拿不到时整段退回旧知识库，
     // 旧链路只认营销名，遇到厂商级代号（qcom）会显示未收录，但不会误报。
-    val resolved = remember(gpuModel, socHint) {
-        runCatching { SocResolver.resolveCurrent(context, gpuModel, socHint) }.getOrNull()
+    val resolved = remember(gpuModel, socHint, gpuIsAdreno) {
+        runCatching {
+            SocResolver.resolveCurrent(context, gpuModel, socHint, gpuIsAdreno)
+        }.getOrNull()
     }
     val socName = resolved?.displayName ?: SocNameMapper.getCurrentSocName(context, gpuModel)
     val knowledge = remember(resolved, socName, gpuModel) {
@@ -13221,6 +13233,16 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "", socHint: S
             icon = Icons.Default.Memory,
         )
         if (knowledge == null) {
+            // 认不出型号也要认到厂：展锐上报 ums9230、华为上报 kirin9020，
+            // 直接显示裸代号对用户没有信息量，显示「紫光展锐 · 型号未收录（ums9230）」才有。
+            val rawCode = remember(gpuModel, socHint) {
+                SocNameMapper.getRawIdentity().let { it.socModel.ifBlank { it.platform } }
+            }
+            val vendor = remember(rawCode) {
+                runCatching {
+                    SocResolver.vendorOf(context, SocNameMapper.getRawIdentity())
+                }.getOrDefault("")
+            }
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(28.dp),
@@ -13229,15 +13251,27 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "", socHint: S
                 )
             ) {
                 Column(Modifier.padding(16.dp)) {
-                    Text(
-                        socName.ifBlank { "SOC: unknown" },
-                        style = MaterialTheme.typography.titleSmall,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        val brand = detectSocBrand(vendor.ifBlank { socName })
+                        if (brand.name != "SoC") {
+                            SocBrandBadge(brand = brand, text = brand.name)
+                            Spacer(Modifier.width(8.dp))
+                        }
+                        Text(
+                            vendor.ifBlank { socName.ifBlank { "SOC: unknown" } },
+                            style = MaterialTheme.typography.titleSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        appString(R.string.soc_knowledge_not_found),
+                        if (vendor.isNotBlank() && rawCode.isNotBlank()) {
+                            appString(R.string.soc_vendor_only, rawCode)
+                        } else {
+                            appString(R.string.soc_knowledge_not_found)
+                        },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

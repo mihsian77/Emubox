@@ -214,6 +214,7 @@
     <string name="emulator_cat_terminal">终端环境</string>
     <string name="soc_knowledge_title">SoC Knowledge</string>
     <string name="soc_knowledge_not_found">No record for this chip yet.</string>
+    <string name="soc_vendor_only">Model not recorded (%1$s)</string>
     <string name="soc_process">Process</string>
     <string name="soc_cpu">CPU</string>
     <string name="soc_cpu_cores">Cores / Max Freq</string>
