@@ -286,7 +286,9 @@ object SocResolver {
     ): ResolvedSoc? {
         val t = load(context)
 
-        val codeCandidates = listOf(identity.socModel, identity.platform, socNameHint)
+        // hardware 放最后：多数机器是 "qcom" / "mt6769" 这种厂级值，只作补位；
+        // 三星例外——Galaxy 的 Build.HARDWARE 是 samsungexyos7870，正是芯片名。
+        val codeCandidates = listOf(identity.socModel, identity.platform, identity.hardware, socNameHint)
             .filter { it.isNotBlank() }
         for (raw in codeCandidates) {
             t.exact[codeKey(boardKey(raw))]?.let { return t.pick(it, SocConfidence.CODE_EXACT, gpuModel) }

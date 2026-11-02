@@ -194,6 +194,14 @@ class SocResolverTest {
     }
 
     @Test
+    fun `三星用 exynos 平台名而非 s5e 料号`() {
+        // 实测：Galaxy Tab A 2016 报 samsungexyos7870（HARDWARE）/ exynos7870（platform），
+        // 与 S5E7870 那套料号完全不搭，只挂 s5e 号会永远认不出。
+        assertEquals("Exynos 7870", resolve("", "exynos7870")?.name)
+        assertEquals("Exynos 7870", resolve("samsungexynos7870")?.name)
+    }
+
+    @Test
     fun `无代号条目不超过上限`() {
         val text = context.assets.open("soc_master.json").bufferedReader().use { it.readText() }
         val arr = JSONObject(text).getJSONArray("socs")
@@ -204,6 +212,6 @@ class SocResolverTest {
         }
         // 剩下的应只有 IoT/车机/电视盒子（QCM/QCS/全志/瑞芯微）与展锐未公开号的变体。
         // 超过 105 说明整批芯片又失去代号，设备上会退回「型号未收录」。
-        assertTrue("无代号条目 $noCode 条，超出上限", noCode <= 105)
+        assertTrue("无代号条目 $noCode 条，超出上限", noCode <= 90)
     }
 }

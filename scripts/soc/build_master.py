@@ -578,6 +578,32 @@ def main():
             assign_code(cand, s['id'], exact, loose, assigned, conflicts)
             added_derive += 1
 
+    # ---- 三星：设备侧根本不报 s5e 料号 ----
+    # 实测（deviceinfohw 设备库）Galaxy Tab A 2016 的 soc.model 是
+    # samsungexyos7870、board.platform 是 exynos7870，与 S5E7870 那套料号毫无关系。
+    # 名字里的数字就是平台号，两种写法都补上（已有 s5e 号不影响，共存即可）。
+    for s in socs:
+        if s['brand'] != '三星':
+            continue
+        nm = s['name_en'] or s['name']
+        n = ''
+        m = re.search(r'exynos\s*([0-9]{4,5})', nm, re.I)
+        if m:
+            n = m.group(1)
+        else:
+            # 「Exynos 7 Octa 7870」这类老写法，数字不在 exynos 后面，取全名里唯一的四/五位数
+            digits = set(re.findall(r'\b([0-9]{4,5})\b', nm))
+            if len(digits) == 1:
+                n = digits.pop()
+        if not n:
+            continue
+        for cand in ('exynos' + n, 'samsungexynos' + n):
+            if cand.upper() in {c.upper() for c in s['codes']}:
+                continue
+            if assign_code(cand, s['id'], exact, loose, assigned, conflicts):
+                s['codes'].append(cand)
+                added_derive += 1
+
     # 部件号大小写去重（part_numbers 用小写、极客湾用大写，同一颗会出现 MT6771/mt6771）
     for s in socs:
         seen, uniq = set(), []

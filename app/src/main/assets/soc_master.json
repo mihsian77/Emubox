@@ -6,7 +6,9 @@
   {
    "id": "s5e9945",
    "codes": [
-    "S5E9945"
+    "S5E9945",
+    "exynos2400",
+    "samsungexynos2400"
    ],
    "names": [
     "Exynos 2400",
@@ -34,7 +36,9 @@
   {
    "id": "s5e9925",
    "codes": [
-    "S5E9925"
+    "S5E9925",
+    "exynos2200",
+    "samsungexynos2200"
    ],
    "names": [
     "Exynos 2200",
@@ -61,7 +65,9 @@
   {
    "id": "s5e9840",
    "codes": [
-    "S5E9840"
+    "S5E9840",
+    "exynos2100",
+    "samsungexynos2100"
    ],
    "names": [
     "Exynos 2100",
@@ -88,7 +94,9 @@
   {
    "id": "s5e9815",
    "codes": [
-    "s5e9815"
+    "s5e9815",
+    "exynos1080",
+    "samsungexynos1080"
    ],
    "names": [
     "Exynos 1080",
@@ -142,7 +150,9 @@
   {
    "id": "s5e9820",
    "codes": [
-    "S5E9820"
+    "S5E9820",
+    "exynos9820",
+    "samsungexynos9820"
    ],
    "names": [
     "Exynos 9820",
@@ -169,7 +179,9 @@
   {
    "id": "s5e9810",
    "codes": [
-    "S5E9810"
+    "S5E9810",
+    "exynos9810",
+    "samsungexynos9810"
    ],
    "names": [
     "Exynos 9810",
@@ -222,7 +234,9 @@
   {
    "id": "s5e8895",
    "codes": [
-    "S5E8895"
+    "S5E8895",
+    "exynos8895",
+    "samsungexynos8895"
    ],
    "names": [
     "Exynos 8895",
@@ -248,7 +262,9 @@
   {
    "id": "s5e8890",
    "codes": [
-    "S5E8890"
+    "S5E8890",
+    "exynos8890",
+    "samsungexynos8890"
    ],
    "names": [
     "Exynos 8890",
@@ -273,7 +289,9 @@
   {
    "id": "s5e7420",
    "codes": [
-    "S5E7420"
+    "S5E7420",
+    "exynos7420",
+    "samsungexynos7420"
    ],
    "names": [
     "Exynos 7420",
@@ -4008,6 +4026,8 @@
   {
    "id": "exynos-2500",
    "codes": [
+    "exynos2500",
+    "samsungexynos2500",
     "S5E9955"
    ],
    "names": [
@@ -4303,6 +4323,8 @@
   {
    "id": "exynos-1480",
    "codes": [
+    "exynos1480",
+    "samsungexynos1480",
     "S5E8845"
    ],
    "names": [
@@ -4828,7 +4850,9 @@
   {
    "id": "s5e9825",
    "codes": [
-    "S5E9825"
+    "S5E9825",
+    "exynos9825",
+    "samsungexynos9825"
    ],
    "names": [
     "三星 Exynos 9825",
@@ -4936,6 +4960,8 @@
   {
    "id": "exynos-1380",
    "codes": [
+    "exynos1380",
+    "samsungexynos1380",
     "S5E8835"
    ],
    "names": [
@@ -5348,6 +5374,8 @@
   {
    "id": "exynos-1280",
    "codes": [
+    "exynos1280",
+    "samsungexynos1280",
     "S5E8825"
    ],
    "names": [
@@ -5371,6 +5399,8 @@
   {
    "id": "exynos-1330",
    "codes": [
+    "exynos1330",
+    "samsungexynos1330",
     "S5E8535"
    ],
    "names": [
@@ -6010,7 +6040,9 @@
   {
    "id": "s5e9611",
    "codes": [
-    "S5E9611"
+    "S5E9611",
+    "exynos9611",
+    "samsungexynos9611"
    ],
    "names": [
     "三星 Exynos 9611",
@@ -6032,7 +6064,9 @@
   {
    "id": "s5e9610",
    "codes": [
-    "S5E9610"
+    "S5E9610",
+    "exynos9610",
+    "samsungexynos9610"
    ],
    "names": [
     "三星 Exynos 9610",
@@ -6073,7 +6107,9 @@
   {
    "id": "s5e7885",
    "codes": [
-    "S5E7885"
+    "S5E7885",
+    "exynos7885",
+    "samsungexynos7885"
    ],
    "names": [
     "三星 Exynos 7885",
@@ -6095,7 +6131,9 @@
   {
    "id": "s5e7904",
    "codes": [
-    "S5E7904"
+    "S5E7904",
+    "exynos7904",
+    "samsungexynos7904"
    ],
    "names": [
     "三星 Exynos 7904",
@@ -6243,7 +6281,10 @@
   },
   {
    "id": "exynos-7880",
-   "codes": [],
+   "codes": [
+    "exynos7880",
+    "samsungexynos7880"
+   ],
    "names": [
     "三星 Exynos 7880",
     "Exynos 7880"
@@ -6411,7 +6452,10 @@
   },
   {
    "id": "exynos-7870",
-   "codes": [],
+   "codes": [
+    "exynos7870",
+    "samsungexynos7870"
+   ],
    "names": [
     "三星 Exynos 7870",
     "Exynos 7870"
@@ -6511,7 +6555,10 @@
   },
   {
    "id": "exynos-7872",
-   "codes": [],
+   "codes": [
+    "exynos7872",
+    "samsungexynos7872"
+   ],
    "names": [
     "三星 Exynos 7872",
     "Exynos 7872"
@@ -6655,7 +6702,9 @@
   {
    "id": "s5e7570",
    "codes": [
-    "S5E7570"
+    "S5E7570",
+    "exynos7570",
+    "samsungexynos7570"
    ],
    "names": [
     "三星 Exynos 7570",
@@ -6677,7 +6726,9 @@
   {
    "id": "s5e7580",
    "codes": [
-    "S5E7580"
+    "S5E7580",
+    "exynos7580",
+    "samsungexynos7580"
    ],
    "names": [
     "三星 Exynos 7580",
@@ -9066,6 +9117,150 @@
    "KIRIN65X": [
     "65x"
    ],
+   "EXYNOS2400": [
+    "s5e9945"
+   ],
+   "SAMSUNGEXYNOS2400": [
+    "s5e9945"
+   ],
+   "EXYNOS2200": [
+    "s5e9925"
+   ],
+   "SAMSUNGEXYNOS2200": [
+    "s5e9925"
+   ],
+   "EXYNOS2100": [
+    "s5e9840"
+   ],
+   "SAMSUNGEXYNOS2100": [
+    "s5e9840"
+   ],
+   "EXYNOS1080": [
+    "s5e9815"
+   ],
+   "SAMSUNGEXYNOS1080": [
+    "s5e9815"
+   ],
+   "EXYNOS9820": [
+    "s5e9820"
+   ],
+   "SAMSUNGEXYNOS9820": [
+    "s5e9820"
+   ],
+   "EXYNOS9810": [
+    "s5e9810"
+   ],
+   "SAMSUNGEXYNOS9810": [
+    "s5e9810"
+   ],
+   "EXYNOS8895": [
+    "s5e8895"
+   ],
+   "SAMSUNGEXYNOS8895": [
+    "s5e8895"
+   ],
+   "EXYNOS8890": [
+    "s5e8890"
+   ],
+   "SAMSUNGEXYNOS8890": [
+    "s5e8890"
+   ],
+   "EXYNOS7420": [
+    "s5e7420"
+   ],
+   "SAMSUNGEXYNOS7420": [
+    "s5e7420"
+   ],
+   "EXYNOS2500": [
+    "exynos-2500"
+   ],
+   "SAMSUNGEXYNOS2500": [
+    "exynos-2500"
+   ],
+   "EXYNOS1480": [
+    "exynos-1480"
+   ],
+   "SAMSUNGEXYNOS1480": [
+    "exynos-1480"
+   ],
+   "EXYNOS9825": [
+    "s5e9825"
+   ],
+   "SAMSUNGEXYNOS9825": [
+    "s5e9825"
+   ],
+   "EXYNOS1380": [
+    "exynos-1380"
+   ],
+   "SAMSUNGEXYNOS1380": [
+    "exynos-1380"
+   ],
+   "EXYNOS1280": [
+    "exynos-1280"
+   ],
+   "SAMSUNGEXYNOS1280": [
+    "exynos-1280"
+   ],
+   "EXYNOS1330": [
+    "exynos-1330"
+   ],
+   "SAMSUNGEXYNOS1330": [
+    "exynos-1330"
+   ],
+   "EXYNOS9611": [
+    "s5e9611"
+   ],
+   "SAMSUNGEXYNOS9611": [
+    "s5e9611"
+   ],
+   "EXYNOS9610": [
+    "s5e9610"
+   ],
+   "SAMSUNGEXYNOS9610": [
+    "s5e9610"
+   ],
+   "EXYNOS7885": [
+    "s5e7885"
+   ],
+   "SAMSUNGEXYNOS7885": [
+    "s5e7885"
+   ],
+   "EXYNOS7904": [
+    "s5e7904"
+   ],
+   "SAMSUNGEXYNOS7904": [
+    "s5e7904"
+   ],
+   "EXYNOS7880": [
+    "exynos-7880"
+   ],
+   "SAMSUNGEXYNOS7880": [
+    "exynos-7880"
+   ],
+   "EXYNOS7870": [
+    "exynos-7870"
+   ],
+   "SAMSUNGEXYNOS7870": [
+    "exynos-7870"
+   ],
+   "EXYNOS7872": [
+    "exynos-7872"
+   ],
+   "SAMSUNGEXYNOS7872": [
+    "exynos-7872"
+   ],
+   "EXYNOS7570": [
+    "s5e7570"
+   ],
+   "SAMSUNGEXYNOS7570": [
+    "s5e7570"
+   ],
+   "EXYNOS7580": [
+    "s5e7580"
+   ],
+   "SAMSUNGEXYNOS7580": [
+    "s5e7580"
+   ],
    "SM7150-AA": [
     "sm7150-aa"
    ],
@@ -10330,6 +10525,150 @@
    ],
    "KIRIN65X": [
     "65x"
+   ],
+   "EXYNOS2400": [
+    "s5e9945"
+   ],
+   "SAMSUNGEXYNOS2400": [
+    "s5e9945"
+   ],
+   "EXYNOS2200": [
+    "s5e9925"
+   ],
+   "SAMSUNGEXYNOS2200": [
+    "s5e9925"
+   ],
+   "EXYNOS2100": [
+    "s5e9840"
+   ],
+   "SAMSUNGEXYNOS2100": [
+    "s5e9840"
+   ],
+   "EXYNOS1080": [
+    "s5e9815"
+   ],
+   "SAMSUNGEXYNOS1080": [
+    "s5e9815"
+   ],
+   "EXYNOS9820": [
+    "s5e9820"
+   ],
+   "SAMSUNGEXYNOS9820": [
+    "s5e9820"
+   ],
+   "EXYNOS9810": [
+    "s5e9810"
+   ],
+   "SAMSUNGEXYNOS9810": [
+    "s5e9810"
+   ],
+   "EXYNOS8895": [
+    "s5e8895"
+   ],
+   "SAMSUNGEXYNOS8895": [
+    "s5e8895"
+   ],
+   "EXYNOS8890": [
+    "s5e8890"
+   ],
+   "SAMSUNGEXYNOS8890": [
+    "s5e8890"
+   ],
+   "EXYNOS7420": [
+    "s5e7420"
+   ],
+   "SAMSUNGEXYNOS7420": [
+    "s5e7420"
+   ],
+   "EXYNOS2500": [
+    "exynos-2500"
+   ],
+   "SAMSUNGEXYNOS2500": [
+    "exynos-2500"
+   ],
+   "EXYNOS1480": [
+    "exynos-1480"
+   ],
+   "SAMSUNGEXYNOS1480": [
+    "exynos-1480"
+   ],
+   "EXYNOS9825": [
+    "s5e9825"
+   ],
+   "SAMSUNGEXYNOS9825": [
+    "s5e9825"
+   ],
+   "EXYNOS1380": [
+    "exynos-1380"
+   ],
+   "SAMSUNGEXYNOS1380": [
+    "exynos-1380"
+   ],
+   "EXYNOS1280": [
+    "exynos-1280"
+   ],
+   "SAMSUNGEXYNOS1280": [
+    "exynos-1280"
+   ],
+   "EXYNOS1330": [
+    "exynos-1330"
+   ],
+   "SAMSUNGEXYNOS1330": [
+    "exynos-1330"
+   ],
+   "EXYNOS9611": [
+    "s5e9611"
+   ],
+   "SAMSUNGEXYNOS9611": [
+    "s5e9611"
+   ],
+   "EXYNOS9610": [
+    "s5e9610"
+   ],
+   "SAMSUNGEXYNOS9610": [
+    "s5e9610"
+   ],
+   "EXYNOS7885": [
+    "s5e7885"
+   ],
+   "SAMSUNGEXYNOS7885": [
+    "s5e7885"
+   ],
+   "EXYNOS7904": [
+    "s5e7904"
+   ],
+   "SAMSUNGEXYNOS7904": [
+    "s5e7904"
+   ],
+   "EXYNOS7880": [
+    "exynos-7880"
+   ],
+   "SAMSUNGEXYNOS7880": [
+    "exynos-7880"
+   ],
+   "EXYNOS7870": [
+    "exynos-7870"
+   ],
+   "SAMSUNGEXYNOS7870": [
+    "exynos-7870"
+   ],
+   "EXYNOS7872": [
+    "exynos-7872"
+   ],
+   "SAMSUNGEXYNOS7872": [
+    "exynos-7872"
+   ],
+   "EXYNOS7570": [
+    "s5e7570"
+   ],
+   "SAMSUNGEXYNOS7570": [
+    "s5e7570"
+   ],
+   "EXYNOS7580": [
+    "s5e7580"
+   ],
+   "SAMSUNGEXYNOS7580": [
+    "s5e7580"
    ],
    "SM7150-AA": [
     "sm7150-aa"
