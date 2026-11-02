@@ -1,4 +1,4 @@
-name: 每日刷新 IT之家新闻数据
+name: 每日刷新新闻数据
 
 on:
   schedule:
@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 抓取 IT之家 RSS 并分类落位
+      - name: 抓取资讯 RSS 并分类落位
         run: |
           python3 scripts/refresh-news.py
 
@@ -31,7 +31,7 @@ jobs:
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add news-data.json app/src/main/assets/news_offline.json
-            git commit -m "chore: 刷新 IT之家新闻数据"
+            git commit -m "chore: 刷新新闻数据"
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             git push origin HEAD:main
           else

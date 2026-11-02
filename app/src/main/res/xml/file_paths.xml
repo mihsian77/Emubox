@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FileProvider 可对外暴露的路径白名单。
+  仅覆盖 App 自己的下载目录（Download/EmuBox 与旧版 Download/EmuHub-CN），
+  不开放整个外部存储。
+
+  背景：Android 7.0（API 24）起，把 file:// 的 Uri 通过 Intent 交给其他 App
+  会抛 FileUriExposedException。下载库的「打开 / 分享」必须改用 FileProvider
+  生成的 content:// Uri。
+-->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="emubox_downloads" path="Download/EmuBox/" />
+    <external-path name="emuhub_legacy_downloads" path="Download/EmuHub-CN/" />
+    <external-files-path name="emubox_external_files" path="." />
+</paths>
