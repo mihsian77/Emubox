@@ -291,6 +291,19 @@ suspend fun downloadEmulatorAsset(context: Context, emulatorName: String, url: S
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, safe, category, originalUrl = url)
 }
 
+/** 下载驱动 release 里的资产，按驱动名存入 Download/Drivers/<驱动名>/ */
+suspend fun downloadDriverAsset(context: Context, driverName: String, url: String, fileName: String) {
+    if (url.isBlank()) return
+    val safe = sanitizeFileName(
+        Uri.decode(fileName.substringAfterLast("/").substringBefore("?"))
+            .ifBlank { "${driverName}_asset" }
+    )
+    val category = "Drivers/${sanitizeFileName(driverName)}"
+    if (ensureFileNotExists(context, safe, category)) return
+    val acceleratedUrl = Accelerator.rewriteUrl(url)
+    downloadFileWithProgress(context.applicationContext, acceleratedUrl, safe, category, originalUrl = url)
+}
+
 suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
     val url = entry.latestApkUrl.ifBlank { return }
     val fileName = sanitizeFileName(
