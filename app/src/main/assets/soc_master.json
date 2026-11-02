@@ -1,0 +1,5825 @@
+{
+ "version": "1.0.0",
+ "note": "芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。",
+ "generated": "2026-11-02",
+ "socs": [
+  {
+   "id": "s5e9945",
+   "codes": [
+    "S5E9945"
+   ],
+   "names": [
+    "Exynos 2400",
+    "Samsung Exynos 2400"
+   ],
+   "name": "Exynos 2400",
+   "name_en": "Samsung Exynos 2400",
+   "brand": "三星",
+   "process": "Samsung 4LPP",
+   "cpu": "1×Cortex-X4 3.21GHz + 2×Cortex-A720 2.90GHz + 3×Cortex-A720 2.60GHz + 4×Cortex-A520 1.95GHz",
+   "cores": 10,
+   "max_ghz": 3.21,
+   "gpu": "Xclipse 940（AMD RDNA 3）",
+   "gpu_key": "xclipse940",
+   "year": 2023,
+   "tier": "flagship",
+   "antutu": "935838",
+   "antutu_cpu": "559029",
+   "antutu_gpu": "376809",
+   "ludashi": "684785",
+   "devices": "三星 S24 系列"
+  },
+  {
+   "id": "s5e9925",
+   "codes": [
+    "S5E9925"
+   ],
+   "names": [
+    "Exynos 2200",
+    "Samsung Exynos 2200"
+   ],
+   "name": "Exynos 2200",
+   "name_en": "Samsung Exynos 2200",
+   "brand": "三星",
+   "process": "Samsung 4LPE",
+   "cpu": "1×Cortex-X2 2.80GHz + 3×Cortex-A710 2.52GHz + 4×Cortex-A510 1.82GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Xclipse 920（AMD RDNA 2）",
+   "gpu_key": "xclipse920",
+   "year": 2022,
+   "tier": "flagship",
+   "antutu": "773051",
+   "antutu_cpu": "420123",
+   "antutu_gpu": "352928",
+   "ludashi": "",
+   "devices": "三星 S22 系列"
+  },
+  {
+   "id": "s5e9840",
+   "codes": [
+    "S5E9840"
+   ],
+   "names": [
+    "Exynos 2100",
+    "Samsung Exynos 2100"
+   ],
+   "name": "Exynos 2100",
+   "name_en": "Samsung Exynos 2100",
+   "brand": "三星",
+   "process": "Samsung 5LPE",
+   "cpu": "1×Cortex-X1 2.91GHz + 3×Cortex-A78 2.81GHz + 4×Cortex-A55 2.21GHz",
+   "cores": 8,
+   "max_ghz": 2.91,
+   "gpu": "Mali-G78 MP14",
+   "gpu_key": "mali78",
+   "year": 2021,
+   "tier": "flagship",
+   "antutu": "485315",
+   "antutu_cpu": "296974",
+   "antutu_gpu": "188341",
+   "ludashi": "",
+   "devices": "三星 Galaxy S21 系列"
+  },
+  {
+   "id": "samsung-exynos-1080",
+   "codes": [],
+   "names": [
+    "Exynos 1080",
+    "Samsung Exynos 1080"
+   ],
+   "name": "Exynos 1080",
+   "name_en": "Samsung Exynos 1080",
+   "brand": "三星",
+   "process": "Samsung 5LPE",
+   "cpu": "1×Cortex-A78 2.80GHz + 3×Cortex-A78 2.60GHz + 4×Cortex-A55 2.00GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Mali-G78 MP10",
+   "gpu_key": "mali78",
+   "year": 2020,
+   "tier": "sub-flagship",
+   "antutu": "496915",
+   "antutu_cpu": "358342",
+   "antutu_gpu": "138573",
+   "ludashi": "436695",
+   "devices": ""
+  },
+  {
+   "id": "s5e9830",
+   "codes": [
+    "S5E9830"
+   ],
+   "names": [
+    "Exynos 990",
+    "Samsung Exynos 990"
+   ],
+   "name": "Exynos 990",
+   "name_en": "Samsung Exynos 990",
+   "brand": "三星",
+   "process": "Samsung 7LPP",
+   "cpu": "2×Exynos M5 2.73GHz + 2×Cortex-A76 2.50GHz + 4×Cortex-A55 2.00GHz",
+   "cores": 8,
+   "max_ghz": 2.73,
+   "gpu": "Mali-G77 MP11",
+   "gpu_key": "mali77",
+   "year": 2019,
+   "tier": "flagship",
+   "antutu": "457632",
+   "antutu_cpu": "300684",
+   "antutu_gpu": "156948",
+   "ludashi": "",
+   "devices": "三星 Galaxy S20 系列、Note 20"
+  },
+  {
+   "id": "s5e9820",
+   "codes": [
+    "S5E9820"
+   ],
+   "names": [
+    "Exynos 9820",
+    "Samsung Exynos 9820"
+   ],
+   "name": "Exynos 9820",
+   "name_en": "Samsung Exynos 9820",
+   "brand": "三星",
+   "process": "Samsung 8LPP",
+   "cpu": "2×Exynos M4 2.73GHz + 2×Cortex-A75 2.31GHz + 4×Cortex-A55 1.95GHz",
+   "cores": 8,
+   "max_ghz": 2.73,
+   "gpu": "Mali-G76 MP12",
+   "gpu_key": "mali76",
+   "year": 2018,
+   "tier": "flagship",
+   "antutu": "390207",
+   "antutu_cpu": "260763",
+   "antutu_gpu": "129444",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e9810",
+   "codes": [
+    "S5E9810"
+   ],
+   "names": [
+    "Exynos 9810",
+    "Samsung Exynos 9810"
+   ],
+   "name": "Exynos 9810",
+   "name_en": "Samsung Exynos 9810",
+   "brand": "三星",
+   "process": "Samsung 10LPP",
+   "cpu": "4×Exynos M3 2.90GHz + 4×Cortex-A55 1.90GHz",
+   "cores": 8,
+   "max_ghz": 2.9,
+   "gpu": "Mali-G72 MP18",
+   "gpu_key": "mali72",
+   "year": 2018,
+   "tier": "flagship",
+   "antutu": "305096",
+   "antutu_cpu": "216161",
+   "antutu_gpu": "88935",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "samsung-exynos-980",
+   "codes": [],
+   "names": [
+    "Exynos 980",
+    "Samsung Exynos 980"
+   ],
+   "name": "Exynos 980",
+   "name_en": "Samsung Exynos 980",
+   "brand": "三星",
+   "process": "Samsung 8LPP",
+   "cpu": "2×Cortex-A77 2.20GHz + 6×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G76 MP5",
+   "gpu_key": "mali76",
+   "year": 2019,
+   "tier": "mid",
+   "antutu": "327561",
+   "antutu_cpu": "267789",
+   "antutu_gpu": "59772",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8895",
+   "codes": [
+    "S5E8895"
+   ],
+   "names": [
+    "Exynos 8895",
+    "Samsung Exynos 8895"
+   ],
+   "name": "Exynos 8895",
+   "name_en": "Samsung Exynos 8895",
+   "brand": "三星",
+   "process": "Samsung 10LPE",
+   "cpu": "4×Exynos M2 2.31GHz + 4×Cortex-A53 1.69GHz",
+   "cores": 8,
+   "max_ghz": 2.31,
+   "gpu": "Mali-G71 MP20",
+   "gpu_key": "mali71",
+   "year": 2017,
+   "tier": "flagship",
+   "antutu": "237394",
+   "antutu_cpu": "165434",
+   "antutu_gpu": "71960",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8890",
+   "codes": [
+    "S5E8890"
+   ],
+   "names": [
+    "Exynos 8890",
+    "Samsung Exynos 8890"
+   ],
+   "name": "Exynos 8890",
+   "name_en": "Samsung Exynos 8890",
+   "brand": "三星",
+   "process": "Samsung 14LPP",
+   "cpu": "4×Exynos M1 2.30GHz + 4×Cortex-A53 1.59GHz",
+   "cores": 8,
+   "max_ghz": 2.3,
+   "gpu": "Mali-T880 MP12",
+   "gpu_key": "",
+   "year": 2016,
+   "tier": "flagship",
+   "antutu": "190282",
+   "antutu_cpu": "148082",
+   "antutu_gpu": "42200",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e7420",
+   "codes": [
+    "S5E7420"
+   ],
+   "names": [
+    "Exynos 7420",
+    "Samsung Exynos 7420"
+   ],
+   "name": "Exynos 7420",
+   "name_en": "Samsung Exynos 7420",
+   "brand": "三星",
+   "process": "Samsung 14LPE",
+   "cpu": "4×Cortex-A57 2.10GHz + 4×Cortex-A53 1.50GHz",
+   "cores": 8,
+   "max_ghz": 2.1,
+   "gpu": "Mali-T760 MP8",
+   "gpu_key": "",
+   "year": 2015,
+   "tier": "flagship",
+   "antutu": "168199",
+   "antutu_cpu": "139950",
+   "antutu_gpu": "28249",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "kirin9020",
+   "codes": [
+    "KIRIN9020"
+   ],
+   "names": [
+    "麒麟 9020",
+    "HiSilicon Kirin 9020"
+   ],
+   "name": "麒麟 9020",
+   "name_en": "HiSilicon Kirin 9020",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "1×泰山大核 2.50GHz + 3×泰山中核 2.15GHz + 4×自研小核 1.60GHz",
+   "cores": 8,
+   "max_ghz": 2.5,
+   "gpu": "马良 Maleoon 920",
+   "gpu_key": "",
+   "year": 2024,
+   "tier": "flagship",
+   "antutu": "680418",
+   "antutu_cpu": "455084",
+   "antutu_gpu": "225334",
+   "ludashi": "574810",
+   "devices": "华为 Mate 70 Pro、Mate 70 Pro+"
+  },
+  {
+   "id": "kirin9010",
+   "codes": [
+    "KIRIN9010"
+   ],
+   "names": [
+    "麒麟 9010",
+    "HiSilicon Kirin 9010"
+   ],
+   "name": "麒麟 9010",
+   "name_en": "HiSilicon Kirin 9010",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "1×泰山大核 2.30GHz + 3×泰山中核 2.18GHz + 4×Cortex-A510 1.55GHz",
+   "cores": 8,
+   "max_ghz": 2.3,
+   "gpu": "马良 Maleoon 910",
+   "gpu_key": "",
+   "year": 2024,
+   "tier": "flagship",
+   "antutu": "573577",
+   "antutu_cpu": "419285",
+   "antutu_gpu": "154292",
+   "ludashi": "519231",
+   "devices": "Pura 70 系列"
+  },
+  {
+   "id": "kirin9000s",
+   "codes": [
+    "KIRIN9000S"
+   ],
+   "names": [
+    "麒麟 9000S",
+    "HiSilicon Kirin 9000S"
+   ],
+   "name": "麒麟 9000S",
+   "name_en": "HiSilicon Kirin 9000S",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "1×泰山大核 2.62GHz + 3×泰山中核 2.15GHz + 4×Cortex-A510 1.53GHz",
+   "cores": 8,
+   "max_ghz": 2.62,
+   "gpu": "马良 Maleoon 910",
+   "gpu_key": "",
+   "year": 2023,
+   "tier": "flagship",
+   "antutu": "542821",
+   "antutu_cpu": "385167",
+   "antutu_gpu": "157654",
+   "ludashi": "449109",
+   "devices": ""
+  },
+  {
+   "id": "kirin9000",
+   "codes": [
+    "KIRIN9000"
+   ],
+   "names": [
+    "麒麟 9000",
+    "HiSilicon Kirin 9000"
+   ],
+   "name": "麒麟 9000",
+   "name_en": "HiSilicon Kirin 9000",
+   "brand": "华为",
+   "process": "TSMC N5",
+   "cpu": "1×Cortex-A77 3.13GHz + 3×Cortex-A77 2.54GHz + 4×Cortex-A55 2.05GHz",
+   "cores": 8,
+   "max_ghz": 3.13,
+   "gpu": "Mali-G78 MP24",
+   "gpu_key": "mali78",
+   "year": 2020,
+   "tier": "flagship",
+   "antutu": "539852",
+   "antutu_cpu": "354708",
+   "antutu_gpu": "185144",
+   "ludashi": "501172",
+   "devices": "Mate 40 Pro、P50 Pro"
+  },
+  {
+   "id": "kirin9000e",
+   "codes": [
+    "KIRIN9000E"
+   ],
+   "names": [
+    "麒麟 9000E",
+    "HiSilicon Kirin 9000E"
+   ],
+   "name": "麒麟 9000E",
+   "name_en": "HiSilicon Kirin 9000E",
+   "brand": "华为",
+   "process": "TSMC N5",
+   "cpu": "1×Cortex-A77 3.13GHz + 3×Cortex-A77 2.54GHz + 4×Cortex-A55 2.05GHz",
+   "cores": 8,
+   "max_ghz": 3.13,
+   "gpu": "Mali-G78 MP22",
+   "gpu_key": "mali78",
+   "year": 2020,
+   "tier": "flagship",
+   "antutu": "531347",
+   "antutu_cpu": "351895",
+   "antutu_gpu": "179452",
+   "ludashi": "524847",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-9000wl",
+   "codes": [],
+   "names": [
+    "麒麟 9000WL",
+    "HiSilicon Kirin 9000WL"
+   ],
+   "name": "麒麟 9000WL",
+   "name_en": "HiSilicon Kirin 9000WL",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "1×泰山大核 2.49GHz + 3×泰山中核 2.15GHz + 4×Cortex-A510 1.53GHz",
+   "cores": 8,
+   "max_ghz": 2.49,
+   "gpu": "马良 Maleoon 910",
+   "gpu_key": "",
+   "year": 2024,
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "462803",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-9000sl",
+   "codes": [],
+   "names": [
+    "麒麟 9000SL",
+    "HiSilicon Kirin 9000SL"
+   ],
+   "name": "麒麟 9000SL",
+   "name_en": "HiSilicon Kirin 9000SL",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "1×泰山大核 2.35GHz + 2×泰山中核 2.15GHz + 3×Cortex-A510 1.53GHz",
+   "cores": 6,
+   "max_ghz": 2.35,
+   "gpu": "马良 Maleoon 910",
+   "gpu_key": "",
+   "year": 2023,
+   "tier": "sub-flagship",
+   "antutu": "475243",
+   "antutu_cpu": "346570",
+   "antutu_gpu": "128673",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-9000wm",
+   "codes": [],
+   "names": [
+    "麒麟 9000WM",
+    "HiSilicon Kirin 9000WM"
+   ],
+   "name": "麒麟 9000WM",
+   "name_en": "HiSilicon Kirin 9000WM",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "1×泰山大核 2.35GHz + 2×泰山中核 2.15GHz + 3×Cortex-A510 1.53GHz",
+   "cores": 6,
+   "max_ghz": 2.35,
+   "gpu": "马良 Maleoon 910",
+   "gpu_key": "",
+   "year": 2024,
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-990-5g",
+   "codes": [],
+   "names": [
+    "麒麟 990 5G",
+    "HiSilicon Kirin 990 5G"
+   ],
+   "name": "麒麟 990 5G",
+   "name_en": "HiSilicon Kirin 990 5G",
+   "brand": "华为",
+   "process": "TSMC N7+",
+   "cpu": "2×Cortex-A76 2.86GHz + 2×Cortex-A76 2.36GHz + 4×Cortex-A55 1.95GHz",
+   "cores": 8,
+   "max_ghz": 2.86,
+   "gpu": "Mali-G76 MP16",
+   "gpu_key": "mali76",
+   "year": 2019,
+   "tier": "flagship",
+   "antutu": "480231",
+   "antutu_cpu": "338761",
+   "antutu_gpu": "141470",
+   "ludashi": "449854",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-990-4g",
+   "codes": [],
+   "names": [
+    "麒麟 990",
+    "HiSilicon Kirin 990 (4G)"
+   ],
+   "name": "麒麟 990",
+   "name_en": "HiSilicon Kirin 990 (4G)",
+   "brand": "华为",
+   "process": "TSMC N7",
+   "cpu": "2×Cortex-A76 2.86GHz + 2×Cortex-A76 2.09GHz + 4×Cortex-A55 1.86GHz",
+   "cores": 8,
+   "max_ghz": 2.86,
+   "gpu": "Mali-G76 MP16",
+   "gpu_key": "mali76",
+   "year": 2019,
+   "tier": "flagship",
+   "antutu": "462066",
+   "antutu_cpu": "321548",
+   "antutu_gpu": "140518",
+   "ludashi": "466448",
+   "devices": "Mate 30 Pro、P40 Pro、nova 6"
+  },
+  {
+   "id": "kirin980",
+   "codes": [
+    "KIRIN980"
+   ],
+   "names": [
+    "麒麟 980",
+    "HiSilicon Kirin 980"
+   ],
+   "name": "麒麟 980",
+   "name_en": "HiSilicon Kirin 980",
+   "brand": "华为",
+   "process": "TSMC N7",
+   "cpu": "2×Cortex-A76 2.60GHz + 2×Cortex-A76 1.92GHz + 4×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.6,
+   "gpu": "Mali-G76 MP10",
+   "gpu_key": "mali76",
+   "year": 2018,
+   "tier": "flagship",
+   "antutu": "359415",
+   "antutu_cpu": "283330",
+   "antutu_gpu": "76085",
+   "ludashi": "",
+   "devices": "华为 P30 系列、Mate 20 系列"
+  },
+  {
+   "id": "kirin985",
+   "codes": [
+    "KIRIN985"
+   ],
+   "names": [
+    "麒麟 985",
+    "HiSilicon Kirin 985"
+   ],
+   "name": "麒麟 985",
+   "name_en": "HiSilicon Kirin 985",
+   "brand": "华为",
+   "process": "TSMC N7",
+   "cpu": "1×Cortex-A76 2.58GHz + 3×Cortex-A76 2.40GHz + 4×Cortex-A55 1.84GHz",
+   "cores": 8,
+   "max_ghz": 2.58,
+   "gpu": "Mali-G77 MP8",
+   "gpu_key": "mali77",
+   "year": 2020,
+   "tier": "sub-flagship",
+   "antutu": "379052",
+   "antutu_cpu": "300347",
+   "antutu_gpu": "78705",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-970",
+   "codes": [],
+   "names": [
+    "麒麟 970",
+    "HiSilicon Kirin 970"
+   ],
+   "name": "麒麟 970",
+   "name_en": "HiSilicon Kirin 970",
+   "brand": "华为",
+   "process": "TSMC N10",
+   "cpu": "4×Cortex-A73 2.40GHz + 4×Cortex-A53 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Mali-G72 MP12",
+   "gpu_key": "mali72",
+   "year": 2017,
+   "tier": "flagship",
+   "antutu": "196655",
+   "antutu_cpu": "161490",
+   "antutu_gpu": "35165",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-960",
+   "codes": [],
+   "names": [
+    "麒麟 960",
+    "HiSilicon Kirin 960"
+   ],
+   "name": "麒麟 960",
+   "name_en": "HiSilicon Kirin 960",
+   "brand": "华为",
+   "process": "TSMC N16",
+   "cpu": "4×Cortex-A73 2.40GHz + 4×Cortex-A53 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Mali-G71 MP8",
+   "gpu_key": "mali71",
+   "year": 2016,
+   "tier": "flagship",
+   "antutu": "170423",
+   "antutu_cpu": "134229",
+   "antutu_gpu": "36194",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-950",
+   "codes": [],
+   "names": [
+    "麒麟 950",
+    "HiSilicon Kirin 950"
+   ],
+   "name": "麒麟 950",
+   "name_en": "HiSilicon Kirin 950",
+   "brand": "华为",
+   "process": "TSMC N16",
+   "cpu": "4×Cortex-A72 2.30GHz + 4×Cortex-A53 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.3,
+   "gpu": "Mali-T880 MP4",
+   "gpu_key": "",
+   "year": 2015,
+   "tier": "flagship",
+   "antutu": "92650",
+   "antutu_cpu": "68429",
+   "antutu_gpu": "24221",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "8000",
+   "codes": [],
+   "names": [
+    "麒麟 8000"
+   ],
+   "name": "麒麟 8000",
+   "name_en": "",
+   "brand": "华为",
+   "process": "SMIC N+2",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0.0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": 2023,
+   "tier": "",
+   "antutu": "380706",
+   "antutu_cpu": "270123",
+   "antutu_gpu": "110583",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "kirin820",
+   "codes": [
+    "KIRIN820"
+   ],
+   "names": [
+    "麒麟 820",
+    "HiSilicon Kirin 820"
+   ],
+   "name": "麒麟 820",
+   "name_en": "HiSilicon Kirin 820",
+   "brand": "华为",
+   "process": "TSMC N7",
+   "cpu": "1×Cortex-A76 2.36GHz + 3×Cortex-A76 2.22GHz + 4×Cortex-A55 1.84GHz",
+   "cores": 8,
+   "max_ghz": 2.36,
+   "gpu": "Mali-G57 MP6",
+   "gpu_key": "mali57",
+   "year": 2020,
+   "tier": "mid",
+   "antutu": "363465",
+   "antutu_cpu": "290121",
+   "antutu_gpu": "73344",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "kirin810",
+   "codes": [
+    "KIRIN810"
+   ],
+   "names": [
+    "麒麟 810",
+    "HiSilicon Kirin 810"
+   ],
+   "name": "麒麟 810",
+   "name_en": "HiSilicon Kirin 810",
+   "brand": "华为",
+   "process": "TSMC N7",
+   "cpu": "2×Cortex-A76 2.27GHz + 6×Cortex-A55 1.88GHz",
+   "cores": 8,
+   "max_ghz": 2.27,
+   "gpu": "Mali-G52 MP6",
+   "gpu_key": "mali52",
+   "year": 2019,
+   "tier": "mid",
+   "antutu": "323604",
+   "antutu_cpu": "265666",
+   "antutu_gpu": "57938",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "hisilicon-kirin-710f",
+   "codes": [],
+   "names": [
+    "麒麟 710F",
+    "HiSilicon Kirin 710F"
+   ],
+   "name": "麒麟 710F",
+   "name_en": "HiSilicon Kirin 710F",
+   "brand": "华为",
+   "process": "TSMC N12",
+   "cpu": "4×Cortex-A73 2.20GHz + 4×Cortex-A53 1.70GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G51 MP4",
+   "gpu_key": "mali51",
+   "year": 2019,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "xiaomi-xring-o3",
+   "codes": [],
+   "names": [
+    "玄戒 O3",
+    "Xiaomi XRING O3"
+   ],
+   "name": "玄戒 O3",
+   "name_en": "Xiaomi XRING O3",
+   "brand": "小米",
+   "process": "TSMC N3P",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0.0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": 2026,
+   "tier": "flagship",
+   "antutu": "3010770",
+   "antutu_cpu": "1178051",
+   "antutu_gpu": "1832719",
+   "ludashi": "1395529",
+   "devices": ""
+  },
+  {
+   "id": "xiaomi-xring-o1",
+   "codes": [],
+   "names": [
+    "玄戒 O1",
+    "Xiaomi XRING O1"
+   ],
+   "name": "玄戒 O1",
+   "name_en": "Xiaomi XRING O1",
+   "brand": "小米",
+   "process": "TSMC N3E",
+   "cpu": "2×Cortex-X925 3.90GHz + 4×Cortex-A725 3.40GHz + 2×Cortex-A725 1.90GHz + 2×Cortex-A520 1.80GHz",
+   "cores": 10,
+   "max_ghz": 3.9,
+   "gpu": "Immortalis-G925 MC16",
+   "gpu_key": "mali925",
+   "year": "2025",
+   "tier": "flagship",
+   "antutu": "1957221",
+   "antutu_cpu": "1002180",
+   "antutu_gpu": "955041",
+   "ludashi": "1289600",
+   "devices": ""
+  },
+  {
+   "id": "v670",
+   "codes": [
+    "V670"
+   ],
+   "names": [
+    "澎湃 S1",
+    "Xiaomi Surge S1"
+   ],
+   "name": "澎湃 S1",
+   "name_en": "Xiaomi Surge S1",
+   "brand": "小米",
+   "process": "TSMC 28nm",
+   "cpu": "4×Cortex-A53 2.20GHz + 4×Cortex-A53 1.40GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-T860 MP4",
+   "gpu_key": "",
+   "year": "2017",
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "amlogic-s922x",
+   "codes": [],
+   "names": [
+    "S922X",
+    "Amlogic S922X"
+   ],
+   "name": "S922X",
+   "name_en": "Amlogic S922X",
+   "brand": "晶晨",
+   "process": "12nm",
+   "cpu": "4×Cortex-A73 2.20GHz + 2×Cortex-A53 1.80GHz",
+   "cores": 6,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G52 MP6",
+   "gpu_key": "mali52",
+   "year": "2019",
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "broadcom-bcm2711-raspberry-pi-4b",
+   "codes": [],
+   "names": [
+    "BCM2711(树莓派4B)",
+    "Broadcom BCM2711 (Raspberry Pi 4B)"
+   ],
+   "name": "BCM2711(树莓派4B)",
+   "name_en": "Broadcom BCM2711 (Raspberry Pi 4B)",
+   "brand": "树莓派（博通）",
+   "process": "TSMC N28",
+   "cpu": "4×Cortex-A72 1.50GHz",
+   "cores": 4,
+   "max_ghz": 1.5,
+   "gpu": "VideoCore VI",
+   "gpu_key": "",
+   "year": 2019,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-t820",
+   "codes": [],
+   "names": [
+    "展锐 T820",
+    "UNISOC T820"
+   ],
+   "name": "展锐 T820",
+   "name_en": "UNISOC T820",
+   "brand": "紫光",
+   "process": "TSMC N6",
+   "cpu": "1×Cortex-A76 2.70GHz + 3×Cortex-A76 2.30GHz + 4×Cortex-A55 2.10GHz",
+   "cores": 8,
+   "max_ghz": 2.7,
+   "gpu": "Mali-G57 MC4",
+   "gpu_key": "mali57",
+   "year": 2022,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tanggula-t770",
+   "codes": [],
+   "names": [
+    "展锐 T770",
+    "UNISOC Tanggula T770"
+   ],
+   "name": "展锐 T770",
+   "name_en": "UNISOC Tanggula T770",
+   "brand": "紫光",
+   "process": "TSMC N6",
+   "cpu": "1×Cortex-A76 2.50GHz + 3×Cortex-A76 2.20GHz + 4×Cortex-A55 2.00GHz",
+   "cores": 8,
+   "max_ghz": 2.5,
+   "gpu": "Mali-G57 MP4",
+   "gpu_key": "mali57",
+   "year": 2021,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tanggula-t760",
+   "codes": [],
+   "names": [
+    "展锐 T760",
+    "UNISOC Tanggula T760"
+   ],
+   "name": "展锐 T760",
+   "name_en": "UNISOC Tanggula T760",
+   "brand": "紫光",
+   "process": "TSMC N6",
+   "cpu": "4×Cortex-A76 2.20GHz + 4×Cortex-A55 2.00GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G57 MP4",
+   "gpu_key": "mali57",
+   "year": 2021,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tanggula-t765",
+   "codes": [],
+   "names": [
+    "展锐 T765",
+    "UNISOC Tanggula T765"
+   ],
+   "name": "展锐 T765",
+   "name_en": "UNISOC Tanggula T765",
+   "brand": "紫光",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A76 2.30GHz + 6×Cortex-A55 2.10GHz",
+   "cores": 8,
+   "max_ghz": 2.3,
+   "gpu": "Mali-G57 MC2",
+   "gpu_key": "mali57",
+   "year": 2024,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tanggula-t740",
+   "codes": [],
+   "names": [
+    "展锐 T740",
+    "UNISOC Tanggula T740"
+   ],
+   "name": "展锐 T740",
+   "name_en": "UNISOC Tanggula T740",
+   "brand": "紫光",
+   "process": "TSMC N12",
+   "cpu": "4×Cortex-A75 1.80GHz + 4×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 1.8,
+   "gpu": "PowerVR GM9446",
+   "gpu_key": "",
+   "year": 2020,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tiger-t618",
+   "codes": [],
+   "names": [
+    "展锐 T618",
+    "UNISOC Tiger T618"
+   ],
+   "name": "展锐 T618",
+   "name_en": "UNISOC Tiger T618",
+   "brand": "紫光",
+   "process": "TSMC N12",
+   "cpu": "2×Cortex-A75 2.00GHz + 6×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G52 MC2 (3EE)",
+   "gpu_key": "mali52",
+   "year": 2019,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tiger-t616",
+   "codes": [],
+   "names": [
+    "展锐 T616",
+    "UNISOC Tiger T616"
+   ],
+   "name": "展锐 T616",
+   "name_en": "UNISOC Tiger T616",
+   "brand": "紫光",
+   "process": "TSMC N12",
+   "cpu": "2×Cortex-A75 2.00GHz + 6×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G57 MC1",
+   "gpu_key": "mali57",
+   "year": 2021,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tiger-t610",
+   "codes": [],
+   "names": [
+    "展锐 T610",
+    "UNISOC Tiger T610"
+   ],
+   "name": "展锐 T610",
+   "name_en": "UNISOC Tiger T610",
+   "brand": "紫光",
+   "process": "TSMC N12",
+   "cpu": "2×Cortex-A75 1.80GHz + 6×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 1.8,
+   "gpu": "Mali-G52 MC2 (3EE)",
+   "gpu_key": "mali52",
+   "year": 2019,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-tiger-t606",
+   "codes": [],
+   "names": [
+    "展锐 T606",
+    "UNISOC Tiger T606"
+   ],
+   "name": "展锐 T606",
+   "name_en": "UNISOC Tiger T606",
+   "brand": "紫光",
+   "process": "TSMC N12",
+   "cpu": "2×Cortex-A75 1.60GHz + 6×Cortex-A55 1.60GHz",
+   "cores": 8,
+   "max_ghz": 1.6,
+   "gpu": "Mali-G57 MC1",
+   "gpu_key": "mali57",
+   "year": 2021,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "unisoc-sc9863a",
+   "codes": [],
+   "names": [
+    "展锐 SC9863A",
+    "UNISOC SC9863A"
+   ],
+   "name": "展锐 SC9863A",
+   "name_en": "UNISOC SC9863A",
+   "brand": "紫光",
+   "process": "TSMC N28",
+   "cpu": "4×Cortex-A55 1.60GHz + 4×Cortex-A55 1.20GHz",
+   "cores": 8,
+   "max_ghz": 1.6,
+   "gpu": "PowerVR GE8322",
+   "gpu_key": "",
+   "year": 2018,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6993",
+   "codes": [
+    "MT6993"
+   ],
+   "names": [
+    "天玑 9500",
+    "MediaTek Dimensity 9500"
+   ],
+   "name": "天玑 9500",
+   "name_en": "MediaTek Dimensity 9500",
+   "brand": "联发科",
+   "process": "TSMC N3P",
+   "cpu": "1×Arm C1-Ultra 4.21GHz + 3×Arm C1-Premium 3.5GHz + 4×Arm C1-Pro 2.7GHz",
+   "cores": 8,
+   "max_ghz": 4.21,
+   "gpu": "Mali-G1 Ultra",
+   "gpu_key": "",
+   "year": "2025",
+   "tier": "flagship",
+   "antutu": "2299863",
+   "antutu_cpu": "1038120",
+   "antutu_gpu": "1261743",
+   "ludashi": "1372822",
+   "devices": ""
+  },
+  {
+   "id": "mt6991",
+   "codes": [
+    "MT6991"
+   ],
+   "names": [
+    "天玑 9400",
+    "MediaTek Dimensity 9400"
+   ],
+   "name": "天玑 9400",
+   "name_en": "MediaTek Dimensity 9400",
+   "brand": "联发科",
+   "process": "TSMC N3E",
+   "cpu": "1×Cortex-X925 3.62GHz + 3×Cortex-X4 3.3GHz + 4×Cortex-A720 2.4GHz",
+   "cores": 8,
+   "max_ghz": 3.62,
+   "gpu": "Immortalis-G925 MC12",
+   "gpu_key": "mali925",
+   "year": "2024",
+   "tier": "flagship",
+   "antutu": "1835027",
+   "antutu_cpu": "887236",
+   "antutu_gpu": "947791",
+   "ludashi": "1114009",
+   "devices": "vivo X200 Pro、OPPO Find X8 Pro"
+  },
+  {
+   "id": "mt6989",
+   "codes": [
+    "MT6989"
+   ],
+   "names": [
+    "天玑 9300",
+    "MediaTek Dimensity 9300"
+   ],
+   "name": "天玑 9300",
+   "name_en": "MediaTek Dimensity 9300",
+   "brand": "联发科",
+   "process": "TSMC N4P",
+   "cpu": "1×Cortex-X4 3.25GHz + 3×Cortex-X4 2.85GHz + 4×Cortex-A720 2.0GHz",
+   "cores": 8,
+   "max_ghz": 3.25,
+   "gpu": "Immortalis-G720 MC12",
+   "gpu_key": "mali720",
+   "year": "2023",
+   "tier": "flagship",
+   "antutu": "1452612",
+   "antutu_cpu": "740355",
+   "antutu_gpu": "712257",
+   "ludashi": "922847",
+   "devices": "红米 K70 Ultra、真我 GT6"
+  },
+  {
+   "id": "mt6985",
+   "codes": [
+    "MT6985"
+   ],
+   "names": [
+    "天玑 9200",
+    "MediaTek Dimensity 9200"
+   ],
+   "name": "天玑 9200",
+   "name_en": "MediaTek Dimensity 9200",
+   "brand": "联发科",
+   "process": "TSMC N4P",
+   "cpu": "1×Cortex-X3 3.05GHz + 3×Cortex-A715 2.85GHz + 4×Cortex-A510 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.05,
+   "gpu": "Immortalis-G715 MC11",
+   "gpu_key": "mali715",
+   "year": "2022",
+   "tier": "flagship",
+   "antutu": "1090404",
+   "antutu_cpu": "619264",
+   "antutu_gpu": "471140",
+   "ludashi": "787766",
+   "devices": "vivo X90、OPPO Find X6"
+  },
+  {
+   "id": "mt6983",
+   "codes": [
+    "MT6983"
+   ],
+   "names": [
+    "天玑 9000",
+    "MediaTek Dimensity 9000"
+   ],
+   "name": "天玑 9000",
+   "name_en": "MediaTek Dimensity 9000",
+   "brand": "联发科",
+   "process": "TSMC N4",
+   "cpu": "1×Cortex-X2 3.05GHz + 3×Cortex-A710 2.85GHz + 4×Cortex-A510 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.05,
+   "gpu": "Mali-G710 MC10",
+   "gpu_key": "mali710",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "793927",
+   "antutu_cpu": "596694",
+   "antutu_gpu": "197233",
+   "ludashi": "602793",
+   "devices": "红米 K50 Pro、vivo X80"
+  },
+  {
+   "id": "mt6899",
+   "codes": [
+    "MT6899"
+   ],
+   "names": [
+    "天玑 8400",
+    "MediaTek Dimensity 8400"
+   ],
+   "name": "天玑 8400",
+   "name_en": "MediaTek Dimensity 8400",
+   "brand": "联发科",
+   "process": "TSMC N4P",
+   "cpu": "1×Cortex-A725 3.25GHz + 3×Cortex-A725 3.0GHz + 4×Cortex-A725 2.1GHz",
+   "cores": 8,
+   "max_ghz": 3.25,
+   "gpu": "Mali-G720 MC7",
+   "gpu_key": "mali720",
+   "year": "2024",
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "852108",
+   "devices": "红米 Turbo 4、OPPO K13"
+  },
+  {
+   "id": "mt6897",
+   "codes": [
+    "MT6897"
+   ],
+   "names": [
+    "天玑 8300",
+    "MediaTek Dimensity 8300"
+   ],
+   "name": "天玑 8300",
+   "name_en": "MediaTek Dimensity 8300",
+   "brand": "联发科",
+   "process": "TSMC N4P",
+   "cpu": "1×Cortex-A715 3.35GHz + 3×Cortex-A715 3.2GHz + 4×Cortex-A510 2.2GHz",
+   "cores": 8,
+   "max_ghz": 3.35,
+   "gpu": "Mali-G615 MC6",
+   "gpu_key": "mali615",
+   "year": "2023",
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "579868",
+   "devices": "红米 K70E、iQOO Z8"
+  },
+  {
+   "id": "mt6896",
+   "codes": [
+    "MT6896"
+   ],
+   "names": [
+    "天玑 8200",
+    "MediaTek Dimensity 8200"
+   ],
+   "name": "天玑 8200",
+   "name_en": "MediaTek Dimensity 8200",
+   "brand": "联发科",
+   "process": "TSMC N4",
+   "cpu": "1×Cortex-A78 3.1GHz + 3×Cortex-A78 3.0GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 3.1,
+   "gpu": "Mali-G610 MC6",
+   "gpu_key": "mali610",
+   "year": "2022",
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "481306",
+   "devices": ""
+  },
+  {
+   "id": "mt6895",
+   "codes": [
+    "MT6895"
+   ],
+   "names": [
+    "天玑 8100",
+    "MediaTek Dimensity 8100"
+   ],
+   "name": "天玑 8100",
+   "name_en": "MediaTek Dimensity 8100",
+   "brand": "联发科",
+   "process": "TSMC N5",
+   "cpu": "4×Cortex-A78 2.85GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.85,
+   "gpu": "Mali-G610 MC6",
+   "gpu_key": "mali610",
+   "year": "2022",
+   "tier": "mid",
+   "antutu": "599131",
+   "antutu_cpu": "413235",
+   "antutu_gpu": "185896",
+   "ludashi": "530761",
+   "devices": "红米 K50、一加 Ace"
+  },
+  {
+   "id": "mt8797",
+   "codes": [
+    "MT8797"
+   ],
+   "names": [
+    "迅鲲 1300T",
+    "MediaTek Kompanio 1300T"
+   ],
+   "name": "迅鲲 1300T",
+   "name_en": "MediaTek Kompanio 1300T",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "1×Cortex-A78 3.0GHz + 3×Cortex-A78 2.6GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 3.0,
+   "gpu": "Mali-G77 MC9",
+   "gpu_key": "mali77",
+   "year": "2021",
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6893",
+   "codes": [
+    "MT6893"
+   ],
+   "names": [
+    "天玑 1200",
+    "MediaTek Dimensity 1200"
+   ],
+   "name": "天玑 1200",
+   "name_en": "MediaTek Dimensity 1200",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "1×Cortex-A78 3.0GHz + 3×Cortex-A78 2.6GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 3.0,
+   "gpu": "Mali-G77 MC9",
+   "gpu_key": "mali77",
+   "year": "2021",
+   "tier": "sub-flagship",
+   "antutu": "529094",
+   "antutu_cpu": "394300",
+   "antutu_gpu": "134794",
+   "ludashi": "454995",
+   "devices": ""
+  },
+  {
+   "id": "mt6891",
+   "codes": [
+    "MT6891"
+   ],
+   "names": [
+    "天玑 1100",
+    "MediaTek Dimensity 1100"
+   ],
+   "name": "天玑 1100",
+   "name_en": "MediaTek Dimensity 1100",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "4×Cortex-A78 2.6GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.6,
+   "gpu": "Mali-G77 MC9",
+   "gpu_key": "mali77",
+   "year": "2021",
+   "tier": "sub-flagship",
+   "antutu": "516831",
+   "antutu_cpu": "378961",
+   "antutu_gpu": "137870",
+   "ludashi": "404661",
+   "devices": ""
+  },
+  {
+   "id": "mt6889",
+   "codes": [
+    "MT6889"
+   ],
+   "names": [
+    "天玑 1000+",
+    "MediaTek Dimensity 1000 Plus"
+   ],
+   "name": "天玑 1000+",
+   "name_en": "MediaTek Dimensity 1000 Plus",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "4×Cortex-A77 2.6GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.6,
+   "gpu": "Mali-G77 MC9",
+   "gpu_key": "mali77",
+   "year": "2020",
+   "tier": "flagship",
+   "antutu": "457336",
+   "antutu_cpu": "330072",
+   "antutu_gpu": "127264",
+   "ludashi": "392119",
+   "devices": ""
+  },
+  {
+   "id": "mt6885",
+   "codes": [
+    "MT6885"
+   ],
+   "names": [
+    "天玑 1000L",
+    "MediaTek Dimensity 1000L"
+   ],
+   "name": "天玑 1000L",
+   "name_en": "MediaTek Dimensity 1000L",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "4×Cortex-A77 2.2GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G77 MC7",
+   "gpu_key": "mali77",
+   "year": "2019",
+   "tier": "mid",
+   "antutu": "439761",
+   "antutu_cpu": "315023",
+   "antutu_gpu": "124738",
+   "ludashi": "",
+   "devices": "Redmi K30i 5G"
+  },
+  {
+   "id": "mt6886",
+   "codes": [
+    "MT6886"
+   ],
+   "names": [
+    "天玑 7200",
+    "MediaTek Dimensity 7200"
+   ],
+   "name": "天玑 7200",
+   "name_en": "MediaTek Dimensity 7200",
+   "brand": "联发科",
+   "process": "TSMC N4",
+   "cpu": "2×Cortex-A715 2.8GHz + 6×Cortex-A510 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Mali-G610 MC4",
+   "gpu_key": "mali610",
+   "year": "2023",
+   "tier": "low",
+   "antutu": "499269",
+   "antutu_cpu": "389401",
+   "antutu_gpu": "109868",
+   "ludashi": "",
+   "devices": "红米 Note 13 Pro+"
+  },
+  {
+   "id": "mt6877v",
+   "codes": [
+    "MT6877V"
+   ],
+   "names": [
+    "天玑 1080",
+    "MediaTek Dimensity 1080"
+   ],
+   "name": "天玑 1080",
+   "name_en": "MediaTek Dimensity 1080",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A78 2.6GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.6,
+   "gpu": "Mali-G68 MC4",
+   "gpu_key": "mali68",
+   "year": "2022",
+   "tier": "low",
+   "antutu": "401747",
+   "antutu_cpu": "324565",
+   "antutu_gpu": "77182",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6877t",
+   "codes": [
+    "MT6877T"
+   ],
+   "names": [
+    "天玑 920",
+    "MediaTek Dimensity 920"
+   ],
+   "name": "天玑 920",
+   "name_en": "MediaTek Dimensity 920",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A78 2.5GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.5,
+   "gpu": "Mali-G68 MC4",
+   "gpu_key": "mali68",
+   "year": "2021",
+   "tier": "low",
+   "antutu": "357755",
+   "antutu_cpu": "284803",
+   "antutu_gpu": "72952",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6875",
+   "codes": [
+    "MT6875"
+   ],
+   "names": [
+    "天玑 820",
+    "MediaTek Dimensity 820"
+   ],
+   "name": "天玑 820",
+   "name_en": "MediaTek Dimensity 820",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "1×Cortex-A76 2.6GHz + 3×Cortex-A76 2.0GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.6,
+   "gpu": "Mali-G57 MC5",
+   "gpu_key": "mali57",
+   "year": "2020",
+   "tier": "mid",
+   "antutu": "378811",
+   "antutu_cpu": "296900",
+   "antutu_gpu": "81911",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6833p",
+   "codes": [
+    "MT6833P",
+    "MT6833V/PNZA"
+   ],
+   "names": [
+    "天玑 810",
+    "MediaTek Dimensity 810"
+   ],
+   "name": "天玑 810",
+   "name_en": "MediaTek Dimensity 810",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A76 2.4GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Mali-G57",
+   "gpu_key": "mali57",
+   "year": "2021",
+   "tier": "low",
+   "antutu": "285452",
+   "antutu_cpu": "238994",
+   "antutu_gpu": "46458",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6873",
+   "codes": [
+    "MT6873"
+   ],
+   "names": [
+    "天玑 800",
+    "MediaTek Dimensity 800"
+   ],
+   "name": "天玑 800",
+   "name_en": "MediaTek Dimensity 800",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "4×Cortex-A76 2.0GHz + 4×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G57 MC4",
+   "gpu_key": "mali57",
+   "year": "2020",
+   "tier": "mid",
+   "antutu": "329516",
+   "antutu_cpu": "264699",
+   "antutu_gpu": "64817",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6853t",
+   "codes": [
+    "MT6853T",
+    "MT6853V/TNZA",
+    "MT6853V/TZA"
+   ],
+   "names": [
+    "天玑 800U",
+    "MediaTek Dimensity 800U"
+   ],
+   "name": "天玑 800U",
+   "name_en": "MediaTek Dimensity 800U",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "2×Cortex-A76 2.4GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Mali-G57 MC3",
+   "gpu_key": "mali57",
+   "year": "2020",
+   "tier": "low",
+   "antutu": "303441",
+   "antutu_cpu": "248641",
+   "antutu_gpu": "54800",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6853v-za",
+   "codes": [
+    "MT6853V/ZA"
+   ],
+   "names": [
+    "天玑 720",
+    "MediaTek Dimensity 720"
+   ],
+   "name": "天玑 720",
+   "name_en": "MediaTek Dimensity 720",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "2×Cortex-A76 2.0GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G57 MC3",
+   "gpu_key": "mali57",
+   "year": "2020",
+   "tier": "low",
+   "antutu": "230095",
+   "antutu_cpu": "184497",
+   "antutu_gpu": "45598",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6833",
+   "codes": [
+    "MT6833"
+   ],
+   "names": [
+    "天玑 700",
+    "MediaTek Dimensity 700"
+   ],
+   "name": "天玑 700",
+   "name_en": "MediaTek Dimensity 700",
+   "brand": "联发科",
+   "process": "TSMC N7",
+   "cpu": "2×Cortex-A76 2.2GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G57 MC2",
+   "gpu_key": "mali57",
+   "year": "2020",
+   "tier": "low",
+   "antutu": "276704",
+   "antutu_cpu": "236164",
+   "antutu_gpu": "40540",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6789",
+   "codes": [
+    "MT6789"
+   ],
+   "names": [
+    "曦力 G99",
+    "MediaTek Helio G99"
+   ],
+   "name": "曦力 G99",
+   "name_en": "MediaTek Helio G99",
+   "brand": "联发科",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A76 2.2GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Mali-G57 MC2",
+   "gpu_key": "mali57",
+   "year": "2022",
+   "tier": "low",
+   "antutu": "277949",
+   "antutu_cpu": "232363",
+   "antutu_gpu": "45586",
+   "ludashi": "",
+   "devices": "红米 Note 13、真我 11"
+  },
+  {
+   "id": "mt6785v-cc",
+   "codes": [
+    "MT6785V/CC"
+   ],
+   "names": [
+    "曦力 G90T",
+    "MediaTek Helio G90T"
+   ],
+   "name": "曦力 G90T",
+   "name_en": "MediaTek Helio G90T",
+   "brand": "联发科",
+   "process": "TSMC 12nm",
+   "cpu": "2×Cortex-A76 2.05GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.05,
+   "gpu": "Mali-G76 MC4",
+   "gpu_key": "mali76",
+   "year": "2019",
+   "tier": "mid",
+   "antutu": "268567",
+   "antutu_cpu": "221982",
+   "antutu_gpu": "46585",
+   "ludashi": "",
+   "devices": "Redmi Note 8 Pro"
+  },
+  {
+   "id": "mt6769z",
+   "codes": [
+    "MT6769Z",
+    "MT6769V/CZ"
+   ],
+   "names": [
+    "曦力 G85",
+    "MediaTek Helio G85"
+   ],
+   "name": "曦力 G85",
+   "name_en": "MediaTek Helio G85",
+   "brand": "联发科",
+   "process": "TSMC 12nm",
+   "cpu": "2×Cortex-A75 2.0GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G52 MC2",
+   "gpu_key": "mali52",
+   "year": "2020",
+   "tier": "low",
+   "antutu": "178306",
+   "antutu_cpu": "151513",
+   "antutu_gpu": "26793",
+   "ludashi": "",
+   "devices": "红米 12C、Note 11"
+  },
+  {
+   "id": "mt6769t",
+   "codes": [
+    "MT6769T",
+    "MT6769V/CU"
+   ],
+   "names": [
+    "曦力 G80",
+    "MediaTek Helio G80"
+   ],
+   "name": "曦力 G80",
+   "name_en": "MediaTek Helio G80",
+   "brand": "联发科",
+   "process": "TSMC 12nm",
+   "cpu": "2×Cortex-A75 2.0GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G52 MC2",
+   "gpu_key": "mali52",
+   "year": "2020",
+   "tier": "low",
+   "antutu": "179900",
+   "antutu_cpu": "153844",
+   "antutu_gpu": "26056",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6799",
+   "codes": [
+    "MT6799"
+   ],
+   "names": [
+    "曦力 X30",
+    "MediaTek Helio X30"
+   ],
+   "name": "曦力 X30",
+   "name_en": "MediaTek Helio X30",
+   "brand": "联发科",
+   "process": "TSMC 10nm",
+   "cpu": "2×Cortex-A73 2.6GHz + 4×Cortex-A53 2.2GHz + 4×Cortex-A35 1.9GHz",
+   "cores": 10,
+   "max_ghz": 2.6,
+   "gpu": "PowerVR GT7400 Plus (7XTP-MT4)",
+   "gpu_key": "",
+   "year": "2017",
+   "tier": "flagship",
+   "antutu": "132180",
+   "antutu_cpu": "72100",
+   "antutu_gpu": "60080",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6797",
+   "codes": [
+    "MT6797"
+   ],
+   "names": [
+    "曦力 X20",
+    "MediaTek Helio X20"
+   ],
+   "name": "曦力 X20",
+   "name_en": "MediaTek Helio X20",
+   "brand": "联发科",
+   "process": "TSMC 20nm",
+   "cpu": "2×Cortex-A72 2.1GHz + 4×Cortex-A53 1.85GHz + 4×Cortex-A53 1.4GHz",
+   "cores": 10,
+   "max_ghz": 2.1,
+   "gpu": "Mali-T880 MP4",
+   "gpu_key": "",
+   "year": "2016",
+   "tier": "flagship",
+   "antutu": "54852",
+   "antutu_cpu": "47977",
+   "antutu_gpu": "6875",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6779",
+   "codes": [
+    "MT6779"
+   ],
+   "names": [
+    "曦力 P90",
+    "MediaTek Helio P90"
+   ],
+   "name": "曦力 P90",
+   "name_en": "MediaTek Helio P90",
+   "brand": "联发科",
+   "process": "TSMC 12nm",
+   "cpu": "2×Cortex-A75 2.2GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "PowerVR GM9446",
+   "gpu_key": "",
+   "year": "2018",
+   "tier": "mid",
+   "antutu": "219136",
+   "antutu_cpu": "187970",
+   "antutu_gpu": "31166",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6771",
+   "codes": [
+    "MT6771"
+   ],
+   "names": [
+    "曦力 P60",
+    "MediaTek Helio P60"
+   ],
+   "name": "曦力 P60",
+   "name_en": "MediaTek Helio P60",
+   "brand": "联发科",
+   "process": "TSMC 12nm",
+   "cpu": "4×Cortex-A73 2.0GHz + 4×Cortex-A53 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Mali-G72 MP3",
+   "gpu_key": "mali72",
+   "year": "2018",
+   "tier": "mid",
+   "antutu": "165107",
+   "antutu_cpu": "142756",
+   "antutu_gpu": "22351",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6765",
+   "codes": [
+    "MT6765"
+   ],
+   "names": [
+    "曦力 P35",
+    "MediaTek Helio P35"
+   ],
+   "name": "曦力 P35",
+   "name_en": "MediaTek Helio P35",
+   "brand": "联发科",
+   "process": "TSMC 12nm",
+   "cpu": "4×Cortex-A53 2.3GHz + 4×Cortex-A53 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.3,
+   "gpu": "PowerVR GE8320",
+   "gpu_key": "",
+   "year": "2018",
+   "tier": "low",
+   "antutu": "110931",
+   "antutu_cpu": "99737",
+   "antutu_gpu": "11194",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "t210-erista",
+   "codes": [
+    "T210 Erista",
+    "Erista"
+   ],
+   "names": [
+    "Tegra X1",
+    "NVIDIA Tegra X1"
+   ],
+   "name": "Tegra X1",
+   "name_en": "NVIDIA Tegra X1",
+   "brand": "英伟达",
+   "process": "TSMC N20",
+   "cpu": "4×Cortex-A57 1.90GHz + 4×Cortex-A53",
+   "cores": 8,
+   "max_ghz": 1.9,
+   "gpu": "Maxwell 256 CUDA",
+   "gpu_key": "",
+   "year": 2015,
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "t124-logan",
+   "codes": [
+    "T124 Logan",
+    "Logan"
+   ],
+   "names": [
+    "Tegra K1",
+    "NVIDIA Tegra K1"
+   ],
+   "name": "Tegra K1",
+   "name_en": "NVIDIA Tegra K1",
+   "brand": "英伟达",
+   "process": "TSMC N28",
+   "cpu": "4×Cortex-A15 2.30GHz",
+   "cores": 4,
+   "max_ghz": 2.3,
+   "gpu": "Kepler 192 CUDA",
+   "gpu_key": "",
+   "year": 2014,
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-m6",
+   "codes": [],
+   "names": [
+    "M6",
+    "Apple M6"
+   ],
+   "name": "M6",
+   "name_en": "Apple M6",
+   "brand": "苹果",
+   "process": "TSMC N2",
+   "cpu": "2×Super + 4×Performance + 6×Efficiency",
+   "cores": 12,
+   "max_ghz": 0.0,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": "2026",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-m5",
+   "codes": [],
+   "names": [
+    "M5",
+    "Apple M5"
+   ],
+   "name": "M5",
+   "name_en": "Apple M5",
+   "brand": "苹果",
+   "process": "TSMC N3E",
+   "cpu": "4×Everest (V4) 4.51GHz + 6×Sawtooth (V4) 2.89GHz",
+   "cores": 10,
+   "max_ghz": 4.51,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": "2025",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-m4",
+   "codes": [],
+   "names": [
+    "M4",
+    "Apple M4"
+   ],
+   "name": "M4",
+   "name_en": "Apple M4",
+   "brand": "苹果",
+   "process": "TSMC N3E",
+   "cpu": "4×Everest (V3) 4.51GHz + 6×Sawtooth (V3) 2.89GHz",
+   "cores": 10,
+   "max_ghz": 4.51,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": "2024",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-m3",
+   "codes": [],
+   "names": [
+    "M3",
+    "Apple M3"
+   ],
+   "name": "M3",
+   "name_en": "Apple M3",
+   "brand": "苹果",
+   "process": "TSMC N3B",
+   "cpu": "4×Everest (V2) 4.05GHz + 4×Sawtooth (V2) 2.75GHz",
+   "cores": 8,
+   "max_ghz": 4.05,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": "2023",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-m2",
+   "codes": [],
+   "names": [
+    "M2",
+    "Apple M2"
+   ],
+   "name": "M2",
+   "name_en": "Apple M2",
+   "brand": "苹果",
+   "process": "TSMC N5P",
+   "cpu": "4×Avalanche 3.49GHz + 4×Blizzard 2.42GHz",
+   "cores": 8,
+   "max_ghz": 3.49,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": "2022",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-m1",
+   "codes": [],
+   "names": [
+    "M1",
+    "Apple M1"
+   ],
+   "name": "M1",
+   "name_en": "Apple M1",
+   "brand": "苹果",
+   "process": "TSMC N5",
+   "cpu": "4×Firestorm 3.20GHz + 4×Icestorm 2.06GHz",
+   "cores": 8,
+   "max_ghz": 3.2,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": "2020",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a19-pro",
+   "codes": [],
+   "names": [
+    "A19 Pro",
+    "Apple A19 Pro"
+   ],
+   "name": "A19 Pro",
+   "name_en": "Apple A19 Pro",
+   "brand": "苹果",
+   "process": "TSMC N3P",
+   "cpu": "2×4.26GHz + 4×2.60GHz",
+   "cores": 6,
+   "max_ghz": 4.26,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2025,
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a19",
+   "codes": [],
+   "names": [
+    "A19",
+    "Apple A19"
+   ],
+   "name": "A19",
+   "name_en": "Apple A19",
+   "brand": "苹果",
+   "process": "TSMC N3P",
+   "cpu": "2×4.26GHz + 4×2.60GHz",
+   "cores": 6,
+   "max_ghz": 4.26,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2025,
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a18-pro",
+   "codes": [],
+   "names": [
+    "A18 Pro",
+    "Apple A18 Pro"
+   ],
+   "name": "A18 Pro",
+   "name_en": "Apple A18 Pro",
+   "brand": "苹果",
+   "process": "TSMC N3E",
+   "cpu": "2×4.04GHz + 4×2.42GHz",
+   "cores": 6,
+   "max_ghz": 4.04,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2024,
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a18",
+   "codes": [],
+   "names": [
+    "A18",
+    "Apple A18"
+   ],
+   "name": "A18",
+   "name_en": "Apple A18",
+   "brand": "苹果",
+   "process": "TSMC N3E",
+   "cpu": "2×4.04GHz + 4×2.42GHz",
+   "cores": 6,
+   "max_ghz": 4.04,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2024,
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a17-pro",
+   "codes": [],
+   "names": [
+    "A17 Pro",
+    "Apple A17 Pro"
+   ],
+   "name": "A17 Pro",
+   "name_en": "Apple A17 Pro",
+   "brand": "苹果",
+   "process": "TSMC N3",
+   "cpu": "2×Everest 3.78GHz + 4×Sawtooth 2.11GHz",
+   "cores": 6,
+   "max_ghz": 3.78,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2023,
+   "tier": "sub-flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a16-bionic",
+   "codes": [],
+   "names": [
+    "A16",
+    "Apple A16 Bionic"
+   ],
+   "name": "A16",
+   "name_en": "Apple A16 Bionic",
+   "brand": "苹果",
+   "process": "TSMC N4",
+   "cpu": "2×Everest 3.46GHz + 4×Sawtooth 2.02GHz",
+   "cores": 6,
+   "max_ghz": 3.46,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2022,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a12z-bionic",
+   "codes": [],
+   "names": [
+    "A12Z",
+    "Apple A12Z Bionic"
+   ],
+   "name": "A12Z",
+   "name_en": "Apple A12Z Bionic",
+   "brand": "苹果",
+   "process": "TSMC N7",
+   "cpu": "4×Vortex 2.49GHz + 4×Tempest 1.59GHz",
+   "cores": 8,
+   "max_ghz": 2.49,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2020,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a12x-bionic",
+   "codes": [],
+   "names": [
+    "A12X",
+    "Apple A12X Bionic"
+   ],
+   "name": "A12X",
+   "name_en": "Apple A12X Bionic",
+   "brand": "苹果",
+   "process": "TSMC N7",
+   "cpu": "4×Vortex 2.49GHz + 4×Tempest 1.59GHz",
+   "cores": 8,
+   "max_ghz": 2.49,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2018,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a15-bionic",
+   "codes": [],
+   "names": [
+    "A15",
+    "Apple A15 Bionic"
+   ],
+   "name": "A15",
+   "name_en": "Apple A15 Bionic",
+   "brand": "苹果",
+   "process": "TSMC N5P",
+   "cpu": "2×Avalanche 2.93GHz + 4×Blizzard 2.02GHz",
+   "cores": 6,
+   "max_ghz": 2.93,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2021,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a14-bionic",
+   "codes": [],
+   "names": [
+    "A14",
+    "Apple A14 Bionic"
+   ],
+   "name": "A14",
+   "name_en": "Apple A14 Bionic",
+   "brand": "苹果",
+   "process": "TSMC N5",
+   "cpu": "2×Firestorm 2.99GHz + 4×Icestorm 1.82GHz",
+   "cores": 6,
+   "max_ghz": 2.99,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2020,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a13-bionic",
+   "codes": [],
+   "names": [
+    "A13",
+    "Apple A13 Bionic"
+   ],
+   "name": "A13",
+   "name_en": "Apple A13 Bionic",
+   "brand": "苹果",
+   "process": "TSMC N7P",
+   "cpu": "2×Lightning 2.65GHz + 4×Thunder 1.80GHz",
+   "cores": 6,
+   "max_ghz": 2.65,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2019,
+   "tier": "mid",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a12-bionic",
+   "codes": [],
+   "names": [
+    "A12",
+    "Apple A12 Bionic"
+   ],
+   "name": "A12",
+   "name_en": "Apple A12 Bionic",
+   "brand": "苹果",
+   "process": "TSMC N7",
+   "cpu": "2×Vortex 2.49GHz + 4×Tempest 1.59GHz",
+   "cores": 6,
+   "max_ghz": 2.49,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2018,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a11-bionic",
+   "codes": [],
+   "names": [
+    "A11",
+    "Apple A11 Bionic"
+   ],
+   "name": "A11",
+   "name_en": "Apple A11 Bionic",
+   "brand": "苹果",
+   "process": "TSMC N10",
+   "cpu": "2×Monsoon 2.39GHz + 4×Mistral",
+   "cores": 6,
+   "max_ghz": 2.39,
+   "gpu": "Apple GPU",
+   "gpu_key": "",
+   "year": 2017,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a10x-fusion",
+   "codes": [],
+   "names": [
+    "A10X",
+    "Apple A10X Fusion"
+   ],
+   "name": "A10X",
+   "name_en": "Apple A10X Fusion",
+   "brand": "苹果",
+   "process": "TSMC N10",
+   "cpu": "3×Hurricane 2.39GHz + 3×Zephyr 1.30GHz",
+   "cores": 6,
+   "max_ghz": 2.39,
+   "gpu": "PowerVR GT7600 Plus",
+   "gpu_key": "",
+   "year": 2017,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a10-fusion",
+   "codes": [],
+   "names": [
+    "A10",
+    "Apple A10 Fusion"
+   ],
+   "name": "A10",
+   "name_en": "Apple A10 Fusion",
+   "brand": "苹果",
+   "process": "TSMC N16",
+   "cpu": "2×Hurricane 2.34GHz + 2×Zephyr 1.09GHz",
+   "cores": 4,
+   "max_ghz": 2.34,
+   "gpu": "PowerVR GT7600 Plus",
+   "gpu_key": "",
+   "year": 2016,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a9",
+   "codes": [],
+   "names": [
+    "A9",
+    "Apple A9"
+   ],
+   "name": "A9",
+   "name_en": "Apple A9",
+   "brand": "苹果",
+   "process": "TSMC N16 / Samsung 14LPE",
+   "cpu": "2×Twister 1.85GHz",
+   "cores": 2,
+   "max_ghz": 1.85,
+   "gpu": "PowerVR GT7600",
+   "gpu_key": "",
+   "year": 2015,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a8",
+   "codes": [],
+   "names": [
+    "A8",
+    "Apple A8"
+   ],
+   "name": "A8",
+   "name_en": "Apple A8",
+   "brand": "苹果",
+   "process": "TSMC N20",
+   "cpu": "2×Typhoon 1.4GHz",
+   "cores": 2,
+   "max_ghz": 1.4,
+   "gpu": "PowerVR GX6450",
+   "gpu_key": "",
+   "year": 2014,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "apple-a7",
+   "codes": [],
+   "names": [
+    "A7",
+    "Apple A7"
+   ],
+   "name": "A7",
+   "name_en": "Apple A7",
+   "brand": "苹果",
+   "process": "Samsung 28nm",
+   "cpu": "2×Cyclone 1.3GHz",
+   "cores": 2,
+   "max_ghz": 1.3,
+   "gpu": "PowerVR G6430",
+   "gpu_key": "",
+   "year": 2013,
+   "tier": "low",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "malibu",
+   "codes": [
+    "Malibu"
+   ],
+   "names": [
+    "Tensor G6",
+    "Google Tensor G6"
+   ],
+   "name": "Tensor G6",
+   "name_en": "Google Tensor G6",
+   "brand": "谷歌",
+   "process": "TSMC N3P",
+   "cpu": "1×Arm C1-Ultra 4.11GHz + 4×Arm C1-Pro 3.38GHz + 2×Arm C1-Pro 2.65GHz",
+   "cores": 7,
+   "max_ghz": 4.11,
+   "gpu": "PowerVR CXTP-48-1536",
+   "gpu_key": "",
+   "year": "2026",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "gs501-laguna",
+   "codes": [
+    "GS501 Laguna",
+    "GS501",
+    "Laguna"
+   ],
+   "names": [
+    "Tensor G5",
+    "Google Tensor G5"
+   ],
+   "name": "Tensor G5",
+   "name_en": "Google Tensor G5",
+   "brand": "谷歌",
+   "process": "TSMC N3E",
+   "cpu": "1×Cortex-X4 3.78GHz + 5×Cortex-A725 3.05GHz + 2×Cortex-A520 2.25GHz",
+   "cores": 8,
+   "max_ghz": 3.78,
+   "gpu": "PowerVR DXT-48-1536",
+   "gpu_key": "",
+   "year": "2025",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "829798",
+   "devices": "Pixel 10 系列"
+  },
+  {
+   "id": "gs401-zuma-pro-s5p9875",
+   "codes": [
+    "GS401 Zuma Pro (S5P9875)",
+    "Zuma Pro",
+    "GS401",
+    "S5P9875"
+   ],
+   "names": [
+    "Tensor G4",
+    "Google Tensor G4"
+   ],
+   "name": "Tensor G4",
+   "name_en": "Google Tensor G4",
+   "brand": "谷歌",
+   "process": "Samsung 4LPP+",
+   "cpu": "1×Cortex-X4 3.1GHz + 3×Cortex-A720 2.6GHz + 4×Cortex-A510 1.92GHz",
+   "cores": 8,
+   "max_ghz": 3.1,
+   "gpu": "Mali-G715 MP7",
+   "gpu_key": "mali715",
+   "year": "2024",
+   "tier": "flagship",
+   "antutu": "925515",
+   "antutu_cpu": "521122",
+   "antutu_gpu": "404393",
+   "ludashi": "",
+   "devices": "Pixel 9 系列"
+  },
+  {
+   "id": "gs301-zuma-s5p9865",
+   "codes": [
+    "GS301 Zuma (S5P9865)",
+    "GS301",
+    "Zuma",
+    "S5P9865"
+   ],
+   "names": [
+    "Tensor G3",
+    "Google Tensor G3"
+   ],
+   "name": "Tensor G3",
+   "name_en": "Google Tensor G3",
+   "brand": "谷歌",
+   "process": "Samsung 4LPP",
+   "cpu": "1×Cortex-X3 2.91GHz + 4×Cortex-A715 2.37GHz + 4×Cortex-A510 1.70GHz",
+   "cores": 9,
+   "max_ghz": 2.91,
+   "gpu": "Mali-G715 MP7",
+   "gpu_key": "mali715",
+   "year": "2023",
+   "tier": "flagship",
+   "antutu": "800832",
+   "antutu_cpu": "441836",
+   "antutu_gpu": "358996",
+   "ludashi": "",
+   "devices": "Pixel 8 系列"
+  },
+  {
+   "id": "gs201-cloudripper-s5p9855",
+   "codes": [
+    "GS201 Cloudripper (S5P9855)",
+    "GS201",
+    "Cloudripper",
+    "S5P9855"
+   ],
+   "names": [
+    "Tensor G2",
+    "Google Tensor G2"
+   ],
+   "name": "Tensor G2",
+   "name_en": "Google Tensor G2",
+   "brand": "谷歌",
+   "process": "Samsung 5LPE",
+   "cpu": "2×Cortex-X1 2.86GHz + 2×Cortex-A78 2.35GHz + 4×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.86,
+   "gpu": "Mali-G710 MP7",
+   "gpu_key": "mali710",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "644730",
+   "antutu_cpu": "380887",
+   "antutu_gpu": "263843",
+   "ludashi": "",
+   "devices": "Pixel 7、Pixel 7 Pro"
+  },
+  {
+   "id": "gs101-whitechapel-s5p9845",
+   "codes": [
+    "GS101 Whitechapel (S5P9845)",
+    "GS101",
+    "Whitechapel",
+    "S5P9845"
+   ],
+   "names": [
+    "Tensor",
+    "Google Tensor"
+   ],
+   "name": "Tensor",
+   "name_en": "Google Tensor",
+   "brand": "谷歌",
+   "process": "Samsung 5LPE",
+   "cpu": "2×Cortex-X1 2.80GHz + 2×Cortex-A76 2.25GHz + 4×Cortex-A55 1.80GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Mali-G78 MP20",
+   "gpu_key": "mali78",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "511865",
+   "antutu_cpu": "371525",
+   "antutu_gpu": "140340",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm8850-ac",
+   "codes": [
+    "SM8850-AC",
+    "SM8850-1-AD",
+    "SM8850-5-AC"
+   ],
+   "names": [
+    "骁龙 8 Elite Gen5",
+    "Qualcomm Snapdragon 8 Elite Gen 5"
+   ],
+   "name": "骁龙 8 Elite Gen5",
+   "name_en": "Qualcomm Snapdragon 8 Elite Gen 5",
+   "brand": "高通",
+   "process": "TSMC N3P",
+   "cpu": "2×Oryon L (v3) 4.6GHz + 6×Oryon M (v3) 3.62GHz",
+   "cores": 8,
+   "max_ghz": 4.6,
+   "gpu": "Adreno 840",
+   "gpu_key": "adreno840",
+   "year": "2025Q3",
+   "tier": "flagship",
+   "antutu": "2449060",
+   "antutu_cpu": "1137283",
+   "antutu_gpu": "1367745",
+   "ludashi": "1308603",
+   "devices": ""
+  },
+  {
+   "id": "sm8750-ab",
+   "codes": [
+    "SM8750-AB",
+    "SM8750-AC",
+    "SM8750-3-AB"
+   ],
+   "names": [
+    "骁龙 8 Elite",
+    "Qualcomm Snapdragon 8 Elite"
+   ],
+   "name": "骁龙 8 Elite",
+   "name_en": "Qualcomm Snapdragon 8 Elite",
+   "brand": "高通",
+   "process": "TSMC N3E",
+   "cpu": "2×Oryon L (v2) 4.32GHz + 6×Oryon M (v2) 3.53GHz",
+   "cores": 8,
+   "max_ghz": 4.32,
+   "gpu": "Adreno 830",
+   "gpu_key": "adreno830",
+   "year": "2024Q4",
+   "tier": "flagship",
+   "antutu": "2086572",
+   "antutu_cpu": "967722",
+   "antutu_gpu": "1118850",
+   "ludashi": "1159763",
+   "devices": "小米 15、iQOO 13、一加 13、荣耀 Magic7"
+  },
+  {
+   "id": "sm8845",
+   "codes": [
+    "SM8845"
+   ],
+   "names": [
+    "骁龙 8 Gen5",
+    "Qualcomm Snapdragon 8 Gen 5"
+   ],
+   "name": "骁龙 8 Gen5",
+   "name_en": "Qualcomm Snapdragon 8 Gen 5",
+   "brand": "高通",
+   "process": "TSMC N3P",
+   "cpu": "2×Oryon L (v2) 3.8GHz + 6×Oryon M (v2) 3.32GHz",
+   "cores": 8,
+   "max_ghz": 3.8,
+   "gpu": "Adreno 829",
+   "gpu_key": "adreno829",
+   "year": "2025Q4",
+   "tier": "sub-flagship",
+   "antutu": "1928653",
+   "antutu_cpu": "958707",
+   "antutu_gpu": "969946",
+   "ludashi": "1040495",
+   "devices": ""
+  },
+  {
+   "id": "sm8650-ab",
+   "codes": [
+    "SM8650-AB",
+    "SM8650-AC",
+    "SM8650-Q-AA",
+    "SM8650-Q-AB"
+   ],
+   "names": [
+    "骁龙 8 Gen3",
+    "Qualcomm Snapdragon 8 Gen 3"
+   ],
+   "name": "骁龙 8 Gen3",
+   "name_en": "Qualcomm Snapdragon 8 Gen 3",
+   "brand": "高通",
+   "process": "TSMC N4P",
+   "cpu": "1×Cortex-X4 3.3GHz + 3×Cortex-A720 3.15GHz + 2×Cortex-A720 2.96GHz + 2×Cortex-A520 2.27GHz",
+   "cores": 8,
+   "max_ghz": 3.3,
+   "gpu": "Adreno 750",
+   "gpu_key": "adreno750",
+   "year": "2023Q4",
+   "tier": "flagship",
+   "antutu": "1473128",
+   "antutu_cpu": "708427",
+   "antutu_gpu": "764701",
+   "ludashi": "945923",
+   "devices": "小米 14、iQOO 12、一加 12、三星 S24"
+  },
+  {
+   "id": "sm8635",
+   "codes": [
+    "SM8635"
+   ],
+   "names": [
+    "骁龙 8s Gen3",
+    "Qualcomm Snapdragon 8s Gen 3"
+   ],
+   "name": "骁龙 8s Gen3",
+   "name_en": "Qualcomm Snapdragon 8s Gen 3",
+   "brand": "高通",
+   "process": "TSMC N4",
+   "cpu": "1×Cortex-X4 3.0GHz + 4×Cortex-A720 2.8GHz + 3×Cortex-A520 2.0GHz",
+   "cores": 8,
+   "max_ghz": 3.0,
+   "gpu": "Adreno 735",
+   "gpu_key": "adreno735",
+   "year": "2024",
+   "tier": "sub-flagship",
+   "antutu": "1061206",
+   "antutu_cpu": "576655",
+   "antutu_gpu": "484551",
+   "ludashi": "724435",
+   "devices": "红米 K70 Ultra、iQOO Z9 Turbo+"
+  },
+  {
+   "id": "sm8550-ab",
+   "codes": [
+    "SM8550-AB",
+    "SM8550-AC"
+   ],
+   "names": [
+    "骁龙 8 Gen2",
+    "Qualcomm Snapdragon 8 Gen 2"
+   ],
+   "name": "骁龙 8 Gen2",
+   "name_en": "Qualcomm Snapdragon 8 Gen 2",
+   "brand": "高通",
+   "process": "TSMC N4",
+   "cpu": "1×Cortex-X3 3.2GHz + 2×Cortex-A715 2.8GHz + 2×Cortex-A710 2.8GHz + 3×Cortex-A510 2.0GHz",
+   "cores": 8,
+   "max_ghz": 3.2,
+   "gpu": "Adreno 740",
+   "gpu_key": "adreno740",
+   "year": "2022Q4",
+   "tier": "flagship",
+   "antutu": "1034945",
+   "antutu_cpu": "610530",
+   "antutu_gpu": "424415",
+   "ludashi": "807517",
+   "devices": "小米 13、iQOO Neo9、一加 11、红魔 8"
+  },
+  {
+   "id": "sm8475",
+   "codes": [
+    "SM8475"
+   ],
+   "names": [
+    "骁龙 8+ Gen1",
+    "Qualcomm Snapdragon 8+ Gen 1"
+   ],
+   "name": "骁龙 8+ Gen1",
+   "name_en": "Qualcomm Snapdragon 8+ Gen 1",
+   "brand": "高通",
+   "process": "TSMC N4",
+   "cpu": "1×Cortex-X2 3.2GHz + 3×Cortex-A710 2.75GHz + 4×Cortex-A510 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.2,
+   "gpu": "Adreno 730",
+   "gpu_key": "adreno730",
+   "year": "2022",
+   "tier": "flagship",
+   "antutu": "831251",
+   "antutu_cpu": "564964",
+   "antutu_gpu": "266287",
+   "ludashi": "696306",
+   "devices": "小米 12、一加 10 Pro、iQOO 9"
+  },
+  {
+   "id": "sm8450",
+   "codes": [
+    "SM8450"
+   ],
+   "names": [
+    "骁龙 8 Gen1",
+    "Qualcomm Snapdragon 8 Gen 1"
+   ],
+   "name": "骁龙 8 Gen1",
+   "name_en": "Qualcomm Snapdragon 8 Gen 1",
+   "brand": "高通",
+   "process": "Samsung 4LPX",
+   "cpu": "1×Cortex-X2 3.0GHz + 3×Cortex-A710 2.5GHz + 4×Cortex-A510 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.0,
+   "gpu": "Adreno 730",
+   "gpu_key": "adreno730",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "831251",
+   "antutu_cpu": "564964",
+   "antutu_gpu": "266287",
+   "ludashi": "696306",
+   "devices": "小米 12、一加 10 Pro、iQOO 9"
+  },
+  {
+   "id": "sm8350-ac",
+   "codes": [
+    "SM8350-AC"
+   ],
+   "names": [
+    "骁龙 888+",
+    "Qualcomm Snapdragon 888+"
+   ],
+   "name": "骁龙 888+",
+   "name_en": "Qualcomm Snapdragon 888+",
+   "brand": "高通",
+   "process": "Samsung 5LPE",
+   "cpu": "1×Kryo 680 Prime (Cortex-X1) 3.0GHz + 3×Kryo 680 Gold (Cortex-A78) 2.42GHz + 4×Kryo 680 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.0,
+   "gpu": "Adreno 660",
+   "gpu_key": "adreno660",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "646030",
+   "antutu_cpu": "456399",
+   "antutu_gpu": "189631",
+   "ludashi": "480872",
+   "devices": "小米 11、一加 9、iQOO 7"
+  },
+  {
+   "id": "sm8350",
+   "codes": [
+    "SM8350"
+   ],
+   "names": [
+    "骁龙 888",
+    "Qualcomm Snapdragon 888"
+   ],
+   "name": "骁龙 888",
+   "name_en": "Qualcomm Snapdragon 888",
+   "brand": "高通",
+   "process": "Samsung 5LPE",
+   "cpu": "1×Kryo 680 Prime (Cortex-X1) 2.84GHz + 3×Kryo 680 Gold (Cortex-A78) 2.42GHz + 4×Kryo 680 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.84,
+   "gpu": "Adreno 660",
+   "gpu_key": "adreno660",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "646030",
+   "antutu_cpu": "456399",
+   "antutu_gpu": "189631",
+   "ludashi": "480872",
+   "devices": "小米 11、一加 9、iQOO 7"
+  },
+  {
+   "id": "sm8250-ac",
+   "codes": [
+    "SM8250-AC"
+   ],
+   "names": [
+    "骁龙 870",
+    "Qualcomm Snapdragon 870"
+   ],
+   "name": "骁龙 870",
+   "name_en": "Qualcomm Snapdragon 870",
+   "brand": "高通",
+   "process": "TSMC N7P",
+   "cpu": "1×Kryo 585 Prime (Cortex-A77) 3.2GHz + 3×Kryo 585 Gold (Cortex-A77) 2.42GHz + 4×Kryo 585 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.2,
+   "gpu": "Adreno 650",
+   "gpu_key": "adreno650",
+   "year": "2021",
+   "tier": "flagship",
+   "antutu": "592893",
+   "antutu_cpu": "425093",
+   "antutu_gpu": "167800",
+   "ludashi": "489973",
+   "devices": "红米 K40、iQOO Neo5、小米 10S"
+  },
+  {
+   "id": "sm8250-ab",
+   "codes": [
+    "SM8250-AB"
+   ],
+   "names": [
+    "骁龙 865+",
+    "Qualcomm Snapdragon 865+"
+   ],
+   "name": "骁龙 865+",
+   "name_en": "Qualcomm Snapdragon 865+",
+   "brand": "高通",
+   "process": "TSMC N7P",
+   "cpu": "1×Kryo 585 Prime (Cortex-A77) 3.1GHz + 3×Kryo 585 Gold (Cortex-A77) 2.42GHz + 4×Kryo 585 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.1,
+   "gpu": "Adreno 650",
+   "gpu_key": "adreno650",
+   "year": "2020",
+   "tier": "flagship",
+   "antutu": "578228",
+   "antutu_cpu": "445934",
+   "antutu_gpu": "132294",
+   "ludashi": "471571",
+   "devices": "小米 10、一加 8、三星 S20"
+  },
+  {
+   "id": "sm8250",
+   "codes": [
+    "SM8250"
+   ],
+   "names": [
+    "骁龙 865",
+    "Qualcomm Snapdragon 865"
+   ],
+   "name": "骁龙 865",
+   "name_en": "Qualcomm Snapdragon 865",
+   "brand": "高通",
+   "process": "TSMC N7P",
+   "cpu": "1×Kryo 585 Prime (Cortex-A77) 2.84GHz + 3×Kryo 585 Gold (Cortex-A77) 2.42GHz + 4×Kryo 585 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.84,
+   "gpu": "Adreno 650",
+   "gpu_key": "adreno650",
+   "year": "2020",
+   "tier": "flagship",
+   "antutu": "578228",
+   "antutu_cpu": "445934",
+   "antutu_gpu": "132294",
+   "ludashi": "471571",
+   "devices": "小米 10、一加 8、三星 S20"
+  },
+  {
+   "id": "sm8150-ac",
+   "codes": [
+    "SM8150-AC"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 855+",
+    "Qualcomm Snapdragon 860",
+    "骁龙 855+",
+    "骁龙 860"
+   ],
+   "name": "骁龙 860",
+   "name_en": "Qualcomm Snapdragon 860",
+   "brand": "高通",
+   "process": "TSMC N7",
+   "cpu": "1×Kryo 485 Prime (Cortex-A76) 2.96GHz + 3×Kryo 485 Gold (Cortex-A76) 2.42GHz + 4×Kryo 485 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.96,
+   "gpu": "Adreno 640",
+   "gpu_key": "adreno640",
+   "year": "2021",
+   "tier": "sub-flagship",
+   "antutu": "465807",
+   "antutu_cpu": "338527",
+   "antutu_gpu": "127280",
+   "ludashi": "392648",
+   "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版"
+  },
+  {
+   "id": "sm8150",
+   "codes": [
+    "SM8150"
+   ],
+   "names": [
+    "骁龙 855",
+    "Qualcomm Snapdragon 855"
+   ],
+   "name": "骁龙 855",
+   "name_en": "Qualcomm Snapdragon 855",
+   "brand": "高通",
+   "process": "TSMC N7",
+   "cpu": "1×Kryo 485 Prime (Cortex-A76) 2.84GHz + 3×Kryo 485 Gold (Cortex-A76) 2.42GHz + 4×Kryo 485 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.84,
+   "gpu": "Adreno 640",
+   "gpu_key": "adreno640",
+   "year": "2019",
+   "tier": "flagship",
+   "antutu": "477548",
+   "antutu_cpu": "354692",
+   "antutu_gpu": "122856",
+   "ludashi": "",
+   "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版"
+  },
+  {
+   "id": "sdm845",
+   "codes": [
+    "SDM845"
+   ],
+   "names": [
+    "骁龙 845",
+    "Qualcomm Snapdragon 845"
+   ],
+   "name": "骁龙 845",
+   "name_en": "Qualcomm Snapdragon 845",
+   "brand": "高通",
+   "process": "Samsung 10LPP",
+   "cpu": "4×Kryo 385 Gold (Cortex-A75) 2.8GHz + 4×Kryo 385 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Adreno 630",
+   "gpu_key": "adreno630",
+   "year": "2018",
+   "tier": "flagship",
+   "antutu": "317455",
+   "antutu_cpu": "223667",
+   "antutu_gpu": "93788",
+   "ludashi": "",
+   "devices": "小米 8、一加 6、坚果 R1"
+  },
+  {
+   "id": "msm8998",
+   "codes": [
+    "MSM8998"
+   ],
+   "names": [
+    "骁龙 835",
+    "Qualcomm Snapdragon 835"
+   ],
+   "name": "骁龙 835",
+   "name_en": "Qualcomm Snapdragon 835",
+   "brand": "高通",
+   "process": "Samsung 10LPE",
+   "cpu": "4×Kryo 280 (Cortex-A73) 2.45GHz + 4×Kryo 280 (Cortex-A53) 1.9GHz",
+   "cores": 8,
+   "max_ghz": 2.45,
+   "gpu": "Adreno 540",
+   "gpu_key": "adreno540",
+   "year": "2017",
+   "tier": "flagship",
+   "antutu": "274835",
+   "antutu_cpu": "208071",
+   "antutu_gpu": "66764",
+   "ludashi": "",
+   "devices": "小米 6、一加 5、三星 Galaxy S8"
+  },
+  {
+   "id": "msm8996-pro",
+   "codes": [
+    "MSM8996 Pro",
+    "MSM8996 Pro-AB",
+    "MSM8996",
+    "MSM8996 Lite"
+   ],
+   "names": [
+    "骁龙 821 / 820",
+    "Qualcomm Snapdragon 821 / 820"
+   ],
+   "name": "骁龙 821 / 820",
+   "name_en": "Qualcomm Snapdragon 821 / 820",
+   "brand": "高通",
+   "process": "Samsung 14LPP",
+   "cpu": "2×Kryo 2.34GHz + 2×Kryo 2.19GHz",
+   "cores": 4,
+   "max_ghz": 2.34,
+   "gpu": "Adreno 530",
+   "gpu_key": "adreno530",
+   "year": "2016",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "msm8994",
+   "codes": [
+    "MSM8994"
+   ],
+   "names": [
+    "骁龙 810",
+    "Qualcomm Snapdragon 810"
+   ],
+   "name": "骁龙 810",
+   "name_en": "Qualcomm Snapdragon 810",
+   "brand": "高通",
+   "process": "TSMC 20nm",
+   "cpu": "4×Cortex-A57 2.0GHz + 4×Cortex-A53 1.55GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 430",
+   "gpu_key": "adreno430",
+   "year": "2015",
+   "tier": "flagship",
+   "antutu": "58338",
+   "antutu_cpu": "38765",
+   "antutu_gpu": "19573",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "msm8992",
+   "codes": [
+    "MSM8992"
+   ],
+   "names": [
+    "骁龙 808",
+    "Qualcomm Snapdragon 808"
+   ],
+   "name": "骁龙 808",
+   "name_en": "Qualcomm Snapdragon 808",
+   "brand": "高通",
+   "process": "TSMC 20nm",
+   "cpu": "2×Cortex-A57 2.0GHz + 4×Cortex-A53 1.44GHz",
+   "cores": 6,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 418",
+   "gpu_key": "adreno418",
+   "year": "2015",
+   "tier": "flagship",
+   "antutu": "71432",
+   "antutu_cpu": "46473",
+   "antutu_gpu": "24959",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "microsoft-sq1",
+   "codes": [],
+   "names": [
+    "微软 SQ1",
+    "Microsoft SQ1"
+   ],
+   "name": "微软 SQ1",
+   "name_en": "Microsoft SQ1",
+   "brand": "高通",
+   "process": "TSMC N7",
+   "cpu": "4×Kryo 495 Gold (Cortex-A76) 3.0GHz + 4×Kryo 495 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 3.0,
+   "gpu": "Adreno 685",
+   "gpu_key": "adreno685",
+   "year": "2019",
+   "tier": "flagship",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm7675-ab",
+   "codes": [
+    "SM7675-AB"
+   ],
+   "names": [
+    "骁龙 7+ Gen3",
+    "Qualcomm Snapdragon 7+ Gen 3"
+   ],
+   "name": "骁龙 7+ Gen3",
+   "name_en": "Qualcomm Snapdragon 7+ Gen 3",
+   "brand": "高通",
+   "process": "TSMC N4P",
+   "cpu": "1×Cortex-X4 2.8GHz + 4×Cortex-A720 2.6GHz + 3×Cortex-A520 1.9GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Adreno 732",
+   "gpu_key": "adreno732",
+   "year": "2024",
+   "tier": "mid",
+   "antutu": "994559",
+   "antutu_cpu": "568831",
+   "antutu_gpu": "425728",
+   "ludashi": "718859",
+   "devices": "小米 Civi 4 Pro、荣耀 200"
+  },
+  {
+   "id": "sm7475-ab",
+   "codes": [
+    "SM7475-AB"
+   ],
+   "names": [
+    "骁龙 7+ Gen2",
+    "Qualcomm Snapdragon 7+ Gen 2"
+   ],
+   "name": "骁龙 7+ Gen2",
+   "name_en": "Qualcomm Snapdragon 7+ Gen 2",
+   "brand": "高通",
+   "process": "TSMC N4",
+   "cpu": "1×Cortex-X2 2.91GHz + 3×Cortex-A710 2.49GHz + 4×Cortex-A510 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.91,
+   "gpu": "Adreno 725",
+   "gpu_key": "adreno725",
+   "year": "2023",
+   "tier": "mid",
+   "antutu": "782853",
+   "antutu_cpu": "549589",
+   "antutu_gpu": "233264",
+   "ludashi": "636545",
+   "devices": "红米 Note 12 Turbo、真我 GT Neo5 SE"
+  },
+  {
+   "id": "sm7435-ab",
+   "codes": [
+    "SM7435-AB"
+   ],
+   "names": [
+    "骁龙 7s Gen 2",
+    "Qualcomm Snapdragon 7s Gen 2"
+   ],
+   "name": "骁龙 7s Gen 2",
+   "name_en": "Qualcomm Snapdragon 7s Gen 2",
+   "brand": "高通",
+   "process": "Samsung 4LPX",
+   "cpu": "4×Cortex-A78 2.4GHz + 4×Cortex-A55 1.95GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Adreno 710",
+   "gpu_key": "adreno710",
+   "year": "2023",
+   "tier": "mid",
+   "antutu": "434658",
+   "antutu_cpu": "344673",
+   "antutu_gpu": "89985",
+   "ludashi": "",
+   "devices": "红米 Note 13 Pro、小米 Civi 3"
+  },
+  {
+   "id": "sm7450-ab",
+   "codes": [
+    "SM7450-AB"
+   ],
+   "names": [
+    "骁龙 7 Gen 1",
+    "Qualcomm Snapdragon 7 Gen 1"
+   ],
+   "name": "骁龙 7 Gen 1",
+   "name_en": "Qualcomm Snapdragon 7 Gen 1",
+   "brand": "高通",
+   "process": "Samsung 4LPX",
+   "cpu": "1×Cortex-A710 2.52GHz + 1×Cortex-A710 2.36GHz + 1×Cortex-A510 1.8GHz",
+   "cores": 3,
+   "max_ghz": 2.52,
+   "gpu": "Adreno 644",
+   "gpu_key": "adreno644",
+   "year": "2022",
+   "tier": "mid",
+   "antutu": "462426",
+   "antutu_cpu": "354429",
+   "antutu_gpu": "107997",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm7325-af",
+   "codes": [
+    "SM7325-AF"
+   ],
+   "names": [
+    "骁龙 782G",
+    "Qualcomm Snapdragon 782G"
+   ],
+   "name": "骁龙 782G",
+   "name_en": "Qualcomm Snapdragon 782G",
+   "brand": "高通",
+   "process": "TSMC N6",
+   "cpu": "1×Cortex-A78 2.7GHz + 3×Cortex-A78 2.4GHz + 4×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.7,
+   "gpu": "Adreno 642L",
+   "gpu_key": "adreno642",
+   "year": "2022",
+   "tier": "mid",
+   "antutu": "449076",
+   "antutu_cpu": "337605",
+   "antutu_gpu": "111471",
+   "ludashi": "405080",
+   "devices": ""
+  },
+  {
+   "id": "sm7350-ab",
+   "codes": [
+    "SM7350-AB"
+   ],
+   "names": [
+    "骁龙 780G",
+    "Qualcomm Snapdragon 780G"
+   ],
+   "name": "骁龙 780G",
+   "name_en": "Qualcomm Snapdragon 780G",
+   "brand": "高通",
+   "process": "Samsung 5LPE",
+   "cpu": "1×Cortex-A78 2.4GHz + 3×Cortex-A78 2.2GHz + 4×Cortex-A55 1.9GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Adreno 642",
+   "gpu_key": "adreno642",
+   "year": "2021",
+   "tier": "mid",
+   "antutu": "463818",
+   "antutu_cpu": "359944",
+   "antutu_gpu": "103874",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm7325",
+   "codes": [
+    "SM7325"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 778G",
+    "Qualcomm Snapdragon 778G 5G",
+    "骁龙 778G"
+   ],
+   "name": "骁龙 778G",
+   "name_en": "Qualcomm Snapdragon 778G",
+   "brand": "高通",
+   "process": "TSMC N6",
+   "cpu": "1×Cortex-A78 2.4GHz + 3×Cortex-A78 2.2GHz + 4×Cortex-A55 1.9GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Adreno 642L",
+   "gpu_key": "adreno642",
+   "year": "2021",
+   "tier": "mid",
+   "antutu": "431328",
+   "antutu_cpu": "333944",
+   "antutu_gpu": "97384",
+   "ludashi": "",
+   "devices": "荣耀 60、小米 Civi 2"
+  },
+  {
+   "id": "sm7250-ac",
+   "codes": [
+    "SM7250-AC"
+   ],
+   "names": [
+    "骁龙 768G",
+    "Qualcomm Snapdragon 768G"
+   ],
+   "name": "骁龙 768G",
+   "name_en": "Qualcomm Snapdragon 768G",
+   "brand": "高通",
+   "process": "Samsung 7LPP",
+   "cpu": "1×Cortex-A76 2.8GHz + 1×Cortex-A76 2.4GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.8,
+   "gpu": "Adreno 620",
+   "gpu_key": "adreno620",
+   "year": "2020",
+   "tier": "mid",
+   "antutu": "338393",
+   "antutu_cpu": "270690",
+   "antutu_gpu": "67703",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm7250-ab",
+   "codes": [
+    "SM7250-AB"
+   ],
+   "names": [
+    "骁龙 765G",
+    "Qualcomm Snapdragon 765G"
+   ],
+   "name": "骁龙 765G",
+   "name_en": "Qualcomm Snapdragon 765G",
+   "brand": "高通",
+   "process": "Samsung 7LPP",
+   "cpu": "1×Cortex-A76 2.4GHz + 1×Cortex-A76 2.2GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Adreno 620",
+   "gpu_key": "adreno620",
+   "year": "2019",
+   "tier": "mid",
+   "antutu": "333085",
+   "antutu_cpu": "271057",
+   "antutu_gpu": "62028",
+   "ludashi": "",
+   "devices": "Redmi K30 5G、OPPO Reno3 Pro"
+  },
+  {
+   "id": "sm7225",
+   "codes": [
+    "SM7225"
+   ],
+   "names": [
+    "骁龙 750G",
+    "Qualcomm Snapdragon 750G"
+   ],
+   "name": "骁龙 750G",
+   "name_en": "Qualcomm Snapdragon 750G",
+   "brand": "高通",
+   "process": "Samsung 8LPP",
+   "cpu": "2×Cortex-A77 2.2GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 619",
+   "gpu_key": "adreno619",
+   "year": "2020",
+   "tier": "mid",
+   "antutu": "275764",
+   "antutu_cpu": "222795",
+   "antutu_gpu": "52969",
+   "ludashi": "",
+   "devices": "Redmi Note 9 Pro 5G、小米 10T Lite"
+  },
+  {
+   "id": "sm7150-ab",
+   "codes": [
+    "SM7150-AB"
+   ],
+   "names": [
+    "骁龙 730G",
+    "Qualcomm Snapdragon 730G"
+   ],
+   "name": "骁龙 730G",
+   "name_en": "Qualcomm Snapdragon 730G",
+   "brand": "高通",
+   "process": "Samsung 8LPP",
+   "cpu": "2×Cortex-A76 2.2GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 618",
+   "gpu_key": "adreno618",
+   "year": "2019",
+   "tier": "mid",
+   "antutu": "296139",
+   "antutu_cpu": "246726",
+   "antutu_gpu": "49413",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sdm710",
+   "codes": [
+    "SDM710"
+   ],
+   "names": [
+    "骁龙 710",
+    "Qualcomm Snapdragon 710"
+   ],
+   "name": "骁龙 710",
+   "name_en": "Qualcomm Snapdragon 710",
+   "brand": "高通",
+   "process": "Samsung 10LPP",
+   "cpu": "2×Kryo 360 Gold (Cortex-A75) 2.2GHz + 6×Kryo 360 Silver (Cortex-A55) 1.7GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 616",
+   "gpu_key": "adreno616",
+   "year": "2018",
+   "tier": "mid",
+   "antutu": "206611",
+   "antutu_cpu": "168156",
+   "antutu_gpu": "38455",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6450",
+   "codes": [
+    "SM6450"
+   ],
+   "names": [
+    "骁龙 6 Gen 1",
+    "Qualcomm Snapdragon 6 Gen 1"
+   ],
+   "name": "骁龙 6 Gen 1",
+   "name_en": "Qualcomm Snapdragon 6 Gen 1",
+   "brand": "高通",
+   "process": "Samsung 4LPX",
+   "cpu": "4×Cortex-A78 2.2GHz + 4×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 710",
+   "gpu_key": "adreno710",
+   "year": "2022",
+   "tier": "mid",
+   "antutu": "377676",
+   "antutu_cpu": "303665",
+   "antutu_gpu": "74011",
+   "ludashi": "",
+   "devices": "红米 Note 13 Pro、荣耀 X50"
+  },
+  {
+   "id": "sm6375",
+   "codes": [
+    "SM6375"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 695",
+    "Qualcomm Snapdragon 695 5G",
+    "骁龙 695"
+   ],
+   "name": "骁龙 695",
+   "name_en": "Qualcomm Snapdragon 695",
+   "brand": "高通",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A78 2.2GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 619",
+   "gpu_key": "adreno619",
+   "year": "2021",
+   "tier": "low",
+   "antutu": "325217",
+   "antutu_cpu": "267992",
+   "antutu_gpu": "57225",
+   "ludashi": "",
+   "devices": "红米 Note 12、iQOO Z7"
+  },
+  {
+   "id": "sm6225",
+   "codes": [
+    "SM6225"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 680",
+    "Qualcomm Snapdragon 6s Gen 3",
+    "骁龙 680"
+   ],
+   "name": "骁龙 680",
+   "name_en": "Qualcomm Snapdragon 680",
+   "brand": "高通",
+   "process": "TSMC N6",
+   "cpu": "4×Kryo 265 (Cortex-A73) 2.4GHz + 4×Kryo 265 (Cortex-A53) 1.9GHz",
+   "cores": 8,
+   "max_ghz": 2.4,
+   "gpu": "Adreno 610",
+   "gpu_key": "adreno610",
+   "year": "2021",
+   "tier": "low",
+   "antutu": "233275",
+   "antutu_cpu": "205686",
+   "antutu_gpu": "27589",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6150",
+   "codes": [
+    "SM6150"
+   ],
+   "names": [
+    "骁龙 675",
+    "Qualcomm Snapdragon 675"
+   ],
+   "name": "骁龙 675",
+   "name_en": "Qualcomm Snapdragon 675",
+   "brand": "高通",
+   "process": "Samsung 11LPP",
+   "cpu": "2×Kryo 460 (Cortex-A76) 2.0GHz + 6×Kryo 460 (Cortex-A55) 1.7GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 612",
+   "gpu_key": "adreno612",
+   "year": "2018",
+   "tier": "low",
+   "antutu": "232113",
+   "antutu_cpu": "203239",
+   "antutu_gpu": "28874",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6125",
+   "codes": [
+    "SM6125"
+   ],
+   "names": [
+    "骁龙 665",
+    "Qualcomm Snapdragon 665"
+   ],
+   "name": "骁龙 665",
+   "name_en": "Qualcomm Snapdragon 665",
+   "brand": "高通",
+   "process": "Samsung 11LPP",
+   "cpu": "4×Kryo 260 (Cortex-A73) 2.0GHz + 4×Kryo 260 (Cortex-A53) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 610",
+   "gpu_key": "adreno610",
+   "year": "2019",
+   "tier": "low",
+   "antutu": "166731",
+   "antutu_cpu": "143650",
+   "antutu_gpu": "23081",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6115",
+   "codes": [
+    "SM6115"
+   ],
+   "names": [
+    "骁龙 662",
+    "Qualcomm Snapdragon 662"
+   ],
+   "name": "骁龙 662",
+   "name_en": "Qualcomm Snapdragon 662",
+   "brand": "高通",
+   "process": "Samsung 11LPP",
+   "cpu": "4×Kryo 260 (Cortex-A73) 2.0GHz + 4×Kryo 260 (Cortex-A53) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 610",
+   "gpu_key": "adreno610",
+   "year": "2020",
+   "tier": "low",
+   "antutu": "166633",
+   "antutu_cpu": "154683",
+   "antutu_gpu": "23625",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sdm660",
+   "codes": [
+    "SDM660"
+   ],
+   "names": [
+    "骁龙 660",
+    "Qualcomm Snapdragon 660"
+   ],
+   "name": "骁龙 660",
+   "name_en": "Qualcomm Snapdragon 660",
+   "brand": "高通",
+   "process": "Samsung 14LPP",
+   "cpu": "4×Kryo 260 Gold (Cortex-A73) 2.2GHz + 4×Kryo 260 Silver (Cortex-A53) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 512",
+   "gpu_key": "adreno512",
+   "year": "2017",
+   "tier": "mid",
+   "antutu": "169306",
+   "antutu_cpu": "149507",
+   "antutu_gpu": "19799",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sdm636",
+   "codes": [
+    "SDM636"
+   ],
+   "names": [
+    "骁龙 636",
+    "Qualcomm Snapdragon 636"
+   ],
+   "name": "骁龙 636",
+   "name_en": "Qualcomm Snapdragon 636",
+   "brand": "高通",
+   "process": "Samsung 14LPP",
+   "cpu": "4×Kryo 260 (Cortex-A73) 1.8GHz + 4×Kryo 260 (Cortex-A53) 1.6GHz",
+   "cores": 8,
+   "max_ghz": 1.8,
+   "gpu": "Adreno 509",
+   "gpu_key": "adreno509",
+   "year": "2018",
+   "tier": "mid",
+   "antutu": "150507",
+   "antutu_cpu": "132995",
+   "antutu_gpu": "17512",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "msm8953",
+   "codes": [
+    "MSM8953"
+   ],
+   "names": [
+    "骁龙 625",
+    "Qualcomm Snapdragon 625"
+   ],
+   "name": "骁龙 625",
+   "name_en": "Qualcomm Snapdragon 625",
+   "brand": "高通",
+   "process": "Samsung 14LPP",
+   "cpu": "8×Cortex-A53 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 506",
+   "gpu_key": "adreno506",
+   "year": "2016",
+   "tier": "mid",
+   "antutu": "54314",
+   "antutu_cpu": "43808",
+   "antutu_gpu": "10506",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm4450",
+   "codes": [
+    "SM4450"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 4 Gen 2",
+    "Qualcomm Snapdragon 4 Gen 2/4",
+    "骁龙 4 Gen 2"
+   ],
+   "name": "骁龙 4 Gen 2",
+   "name_en": "Qualcomm Snapdragon 4 Gen 2",
+   "brand": "高通",
+   "process": "Samsung 4LPX",
+   "cpu": "2×Cortex-A78 2.2GHz + 6×Cortex-A55 2.0GHz",
+   "cores": 8,
+   "max_ghz": 2.2,
+   "gpu": "Adreno 613",
+   "gpu_key": "adreno613",
+   "year": "2023",
+   "tier": "low",
+   "antutu": "306688",
+   "antutu_cpu": "272404",
+   "antutu_gpu": "34284",
+   "ludashi": "",
+   "devices": "红米 12、真我 Note 50"
+  },
+  {
+   "id": "sm4375",
+   "codes": [
+    "SM4375"
+   ],
+   "names": [
+    "骁龙 4 Gen 1",
+    "Qualcomm Snapdragon 4 Gen 1"
+   ],
+   "name": "骁龙 4 Gen 1",
+   "name_en": "Qualcomm Snapdragon 4 Gen 1",
+   "brand": "高通",
+   "process": "TSMC N6",
+   "cpu": "2×Cortex-A78 2.0GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 619",
+   "gpu_key": "adreno619",
+   "year": "2022",
+   "tier": "low",
+   "antutu": "303999",
+   "antutu_cpu": "254817",
+   "antutu_gpu": "49182",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm4350",
+   "codes": [
+    "SM4350"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 480",
+    "Qualcomm Snapdragon 480 5G",
+    "骁龙 480"
+   ],
+   "name": "骁龙 480",
+   "name_en": "Qualcomm Snapdragon 480",
+   "brand": "高通",
+   "process": "Samsung 8LPP",
+   "cpu": "2×Cortex-A76 2.0GHz + 6×Cortex-A55 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.0,
+   "gpu": "Adreno 619",
+   "gpu_key": "adreno619",
+   "year": "2021",
+   "tier": "low",
+   "antutu": "292212",
+   "antutu_cpu": "243222",
+   "antutu_gpu": "48990",
+   "ludashi": "",
+   "devices": "Redmi Note 10、POCO M3"
+  },
+  {
+   "id": "sdm439",
+   "codes": [
+    "SDM439"
+   ],
+   "names": [
+    "骁龙 439",
+    "Qualcomm Snapdragon 439"
+   ],
+   "name": "骁龙 439",
+   "name_en": "Qualcomm Snapdragon 439",
+   "brand": "高通",
+   "process": "TSMC 12FFC",
+   "cpu": "4×Cortex-A53 1.95GHz + 4×Cortex-A53 1.45GHz",
+   "cores": 8,
+   "max_ghz": 1.95,
+   "gpu": "Adreno 505",
+   "gpu_key": "adreno505",
+   "year": "2018",
+   "tier": "low",
+   "antutu": "95471",
+   "antutu_cpu": "85039",
+   "antutu_gpu": "10432",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "msm8937",
+   "codes": [
+    "MSM8937"
+   ],
+   "names": [
+    "骁龙 430",
+    "Qualcomm Snapdragon 430"
+   ],
+   "name": "骁龙 430",
+   "name_en": "Qualcomm Snapdragon 430",
+   "brand": "高通",
+   "process": "TSMC 28LP",
+   "cpu": "4×Cortex-A53 1.4GHz + 4×Cortex-A53 1.1GHz",
+   "cores": 8,
+   "max_ghz": 1.4,
+   "gpu": "Adreno 505",
+   "gpu_key": "adreno505",
+   "year": "2015",
+   "tier": "low",
+   "antutu": "34599",
+   "antutu_cpu": "30362",
+   "antutu_gpu": "4237",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt6781",
+   "codes": [
+    "MT6781"
+   ],
+   "names": [
+    "MediaTek Helio G96"
+   ],
+   "name": "MediaTek Helio G96",
+   "name_en": "MediaTek Helio G96",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt8766",
+   "codes": [
+    "MT8766"
+   ],
+   "names": [
+    "MediaTek MT8766"
+   ],
+   "name": "MediaTek MT8766",
+   "name_en": "MediaTek MT8766",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt8786",
+   "codes": [
+    "MT8786"
+   ],
+   "names": [
+    "MediaTek Helio G88"
+   ],
+   "name": "MediaTek Helio G88",
+   "name_en": "MediaTek Helio G88",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt8791",
+   "codes": [
+    "MT8791"
+   ],
+   "names": [
+    "MediaTek MT8791"
+   ],
+   "name": "MediaTek MT8791",
+   "name_en": "MediaTek MT8791",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt9669",
+   "codes": [
+    "MT9669"
+   ],
+   "names": [
+    "MediaTek MT9669"
+   ],
+   "name": "MediaTek MT9669",
+   "name_en": "MediaTek MT9669",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "mt9679",
+   "codes": [
+    "MT9679"
+   ],
+   "names": [
+    "MediaTek MT9679"
+   ],
+   "name": "MediaTek MT9679",
+   "name_en": "MediaTek MT9679",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e5515",
+   "codes": [
+    "S5E5515"
+   ],
+   "names": [
+    "Samsung Exynos W920/W930"
+   ],
+   "name": "Samsung Exynos W920/W930",
+   "name_en": "Samsung Exynos W920/W930",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8535",
+   "codes": [
+    "S5E8535"
+   ],
+   "names": [
+    "Samsung Exynos 1330"
+   ],
+   "name": "Samsung Exynos 1330",
+   "name_en": "Samsung Exynos 1330",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8825",
+   "codes": [
+    "S5E8825"
+   ],
+   "names": [
+    "Samsung Exynos 1280"
+   ],
+   "name": "Samsung Exynos 1280",
+   "name_en": "Samsung Exynos 1280",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8835",
+   "codes": [
+    "S5E8835"
+   ],
+   "names": [
+    "Samsung Exynos 1380"
+   ],
+   "name": "Samsung Exynos 1380",
+   "name_en": "Samsung Exynos 1380",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8845",
+   "codes": [
+    "S5E8845"
+   ],
+   "names": [
+    "Samsung Exynos 1480"
+   ],
+   "name": "Samsung Exynos 1480",
+   "name_en": "Samsung Exynos 1480",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8855",
+   "codes": [
+    "S5E8855"
+   ],
+   "names": [
+    "Samsung Exynos 1580"
+   ],
+   "name": "Samsung Exynos 1580",
+   "name_en": "Samsung Exynos 1580",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e8865",
+   "codes": [
+    "S5E8865"
+   ],
+   "names": [
+    "Samsung Exynos 1680"
+   ],
+   "name": "Samsung Exynos 1680",
+   "name_en": "Samsung Exynos 1680",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e9955",
+   "codes": [
+    "S5E9955"
+   ],
+   "names": [
+    "Samsung Exynos 2500"
+   ],
+   "name": "Samsung Exynos 2500",
+   "name_en": "Samsung Exynos 2500",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "s5e9965",
+   "codes": [
+    "S5E9965"
+   ],
+   "names": [
+    "Samsung Exynos 2600"
+   ],
+   "name": "Samsung Exynos 2600",
+   "name_en": "Samsung Exynos 2600",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sdm670",
+   "codes": [
+    "SDM670"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 670"
+   ],
+   "name": "Qualcomm Snapdragon 670",
+   "name_en": "Qualcomm Snapdragon 670",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm4635",
+   "codes": [
+    "SM4635"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 4s Gen 2"
+   ],
+   "name": "Qualcomm Snapdragon 4s Gen 2",
+   "name_en": "Qualcomm Snapdragon 4s Gen 2",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm4850",
+   "codes": [
+    "SM4850"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 4 Gen 5"
+   ],
+   "name": "Qualcomm Snapdragon 4 Gen 5",
+   "name_en": "Qualcomm Snapdragon 4 Gen 5",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6435",
+   "codes": [
+    "SM6435"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 6s Gen 4"
+   ],
+   "name": "Qualcomm Snapdragon 6s Gen 4",
+   "name_en": "Qualcomm Snapdragon 6s Gen 4",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6475",
+   "codes": [
+    "SM6475"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 6 Gen 3"
+   ],
+   "name": "Qualcomm Snapdragon 6 Gen 3",
+   "name_en": "Qualcomm Snapdragon 6 Gen 3",
+   "brand": "",
+   "process": "4nm",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "Adreno 710",
+   "gpu_key": "adreno710",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": "iQOO Z9x、荣耀 X60 Pro"
+  },
+  {
+   "id": "sm6650",
+   "codes": [
+    "SM6650"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 6 Gen 4"
+   ],
+   "name": "Qualcomm Snapdragon 6 Gen 4",
+   "name_en": "Qualcomm Snapdragon 6 Gen 4",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm6850",
+   "codes": [
+    "SM6850"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 6 Gen 5"
+   ],
+   "name": "Qualcomm Snapdragon 6 Gen 5",
+   "name_en": "Qualcomm Snapdragon 6 Gen 5",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm7125",
+   "codes": [
+    "SM7125"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 720G"
+   ],
+   "name": "Qualcomm Snapdragon 720G",
+   "name_en": "Qualcomm Snapdragon 720G",
+   "brand": "",
+   "process": "8nm",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "Adreno 618",
+   "gpu_key": "adreno618",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": "Redmi Note 9 Pro、realme 6 Pro"
+  },
+  {
+   "id": "sm7350",
+   "codes": [
+    "SM7350"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 780G 5G"
+   ],
+   "name": "Qualcomm Snapdragon 780G 5G",
+   "name_en": "Qualcomm Snapdragon 780G 5G",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm7550",
+   "codes": [
+    "SM7550"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 7 Gen 3"
+   ],
+   "name": "Qualcomm Snapdragon 7 Gen 3",
+   "name_en": "Qualcomm Snapdragon 7 Gen 3",
+   "brand": "",
+   "process": "4nm",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "Adreno 720",
+   "gpu_key": "adreno720",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": "小米 Civi 4 Pro、荣耀 200"
+  },
+  {
+   "id": "sm7750",
+   "codes": [
+    "SM7750"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 7 Gen 4"
+   ],
+   "name": "Qualcomm Snapdragon 7 Gen 4",
+   "name_en": "Qualcomm Snapdragon 7 Gen 4",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm8735",
+   "codes": [
+    "SM8735"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 8s Gen 4"
+   ],
+   "name": "Qualcomm Snapdragon 8s Gen 4",
+   "name_en": "Qualcomm Snapdragon 8s Gen 4",
+   "brand": "",
+   "process": "4nm",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "Adreno 825",
+   "gpu_key": "adreno825",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": "一加 Ace5 Pro、iQOO Z10 Turbo+"
+  },
+  {
+   "id": "sm8975",
+   "codes": [
+    "SM8975"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 8 Gen 6 Pro"
+   ],
+   "name": "Qualcomm Snapdragon 8 Gen 6 Pro",
+   "name_en": "Qualcomm Snapdragon 8 Gen 6 Pro",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "kirin990",
+   "codes": [
+    "KIRIN990"
+   ],
+   "names": [
+    "HiSilicon Kirin 990"
+   ],
+   "name": "HiSilicon Kirin 990",
+   "name_en": "HiSilicon Kirin 990",
+   "brand": "",
+   "process": "7nm",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "Mali-G76 MP16",
+   "gpu_key": "mali76",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": "Mate 30 Pro、P40 Pro、nova 6"
+  },
+  {
+   "id": "mt6835",
+   "codes": [
+    "mt6835"
+   ],
+   "names": [
+    "MediaTek Dimensity 6100"
+   ],
+   "name": "MediaTek Dimensity 6100",
+   "name_en": "MediaTek Dimensity 6100",
+   "brand": "",
+   "process": "6nm",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "Mali-G57 MC2",
+   "gpu_key": "mali57",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": "红米 Note 13、荣耀 Play50"
+  },
+  {
+   "id": "sm7320",
+   "codes": [
+    "SM7320"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 778G+ 5G"
+   ],
+   "name": "Qualcomm Snapdragon 778G+ 5G",
+   "name_en": "Qualcomm Snapdragon 778G+ 5G",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  },
+  {
+   "id": "sm4250",
+   "codes": [
+    "SM4250"
+   ],
+   "names": [
+    "Qualcomm Snapdragon 460"
+   ],
+   "name": "Qualcomm Snapdragon 460",
+   "name_en": "Qualcomm Snapdragon 460",
+   "brand": "",
+   "process": "",
+   "cpu": "",
+   "cores": 0,
+   "max_ghz": 0,
+   "gpu": "",
+   "gpu_key": "",
+   "year": "",
+   "tier": "",
+   "antutu": "",
+   "antutu_cpu": "",
+   "antutu_gpu": "",
+   "ludashi": "",
+   "devices": ""
+  }
+ ],
+ "match": {
+  "exact": {
+   "S5E9945": [
+    "s5e9945"
+   ],
+   "S5E9925": [
+    "s5e9925"
+   ],
+   "S5E9840": [
+    "s5e9840"
+   ],
+   "S5E9830": [
+    "s5e9830"
+   ],
+   "S5E9820": [
+    "s5e9820"
+   ],
+   "S5E9810": [
+    "s5e9810"
+   ],
+   "S5E8895": [
+    "s5e8895"
+   ],
+   "S5E8890": [
+    "s5e8890"
+   ],
+   "S5E7420": [
+    "s5e7420"
+   ],
+   "KIRIN9020": [
+    "kirin9020"
+   ],
+   "KIRIN9010": [
+    "kirin9010"
+   ],
+   "KIRIN9000S": [
+    "kirin9000s"
+   ],
+   "KIRIN9000": [
+    "kirin9000"
+   ],
+   "KIRIN9000E": [
+    "kirin9000e"
+   ],
+   "KIRIN980": [
+    "kirin980"
+   ],
+   "KIRIN985": [
+    "kirin985"
+   ],
+   "KIRIN820": [
+    "kirin820"
+   ],
+   "KIRIN810": [
+    "kirin810"
+   ],
+   "V670": [
+    "v670"
+   ],
+   "MT6993": [
+    "mt6993"
+   ],
+   "MT6991": [
+    "mt6991"
+   ],
+   "MT6989": [
+    "mt6989"
+   ],
+   "MT6985": [
+    "mt6985"
+   ],
+   "MT6983": [
+    "mt6983"
+   ],
+   "MT6899": [
+    "mt6899"
+   ],
+   "MT6897": [
+    "mt6897"
+   ],
+   "MT6896": [
+    "mt6896"
+   ],
+   "MT6895": [
+    "mt6895"
+   ],
+   "MT8797": [
+    "mt8797"
+   ],
+   "MT6893": [
+    "mt6893"
+   ],
+   "MT6891": [
+    "mt6891"
+   ],
+   "MT6889": [
+    "mt6889"
+   ],
+   "MT6885": [
+    "mt6885"
+   ],
+   "MT6886": [
+    "mt6886"
+   ],
+   "MT6877V": [
+    "mt6877v"
+   ],
+   "MT6877T": [
+    "mt6877t"
+   ],
+   "MT6875": [
+    "mt6875"
+   ],
+   "MT6833P": [
+    "mt6833p"
+   ],
+   "MT6833V/PNZA": [
+    "mt6833p"
+   ],
+   "MT6873": [
+    "mt6873"
+   ],
+   "MT6853T": [
+    "mt6853t"
+   ],
+   "MT6853V/TNZA": [
+    "mt6853t"
+   ],
+   "MT6853V/TZA": [
+    "mt6853t"
+   ],
+   "MT6853V/ZA": [
+    "mt6853v-za"
+   ],
+   "MT6833": [
+    "mt6833"
+   ],
+   "MT6789": [
+    "mt6789"
+   ],
+   "MT6785V/CC": [
+    "mt6785v-cc"
+   ],
+   "MT6769Z": [
+    "mt6769z"
+   ],
+   "MT6769V/CZ": [
+    "mt6769z"
+   ],
+   "MT6769T": [
+    "mt6769t"
+   ],
+   "MT6769V/CU": [
+    "mt6769t"
+   ],
+   "MT6799": [
+    "mt6799"
+   ],
+   "MT6797": [
+    "mt6797"
+   ],
+   "MT6779": [
+    "mt6779"
+   ],
+   "MT6771": [
+    "mt6771"
+   ],
+   "MT6765": [
+    "mt6765"
+   ],
+   "T210ERISTA": [
+    "t210-erista"
+   ],
+   "ERISTA": [
+    "t210-erista"
+   ],
+   "T124LOGAN": [
+    "t124-logan"
+   ],
+   "LOGAN": [
+    "t124-logan"
+   ],
+   "MALIBU": [
+    "malibu"
+   ],
+   "GS501LAGUNA": [
+    "gs501-laguna"
+   ],
+   "GS501": [
+    "gs501-laguna"
+   ],
+   "LAGUNA": [
+    "gs501-laguna"
+   ],
+   "GS401ZUMAPRO(S5P9875)": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "ZUMAPRO": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "GS401": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "S5P9875": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "GS301ZUMA(S5P9865)": [
+    "gs301-zuma-s5p9865"
+   ],
+   "GS301": [
+    "gs301-zuma-s5p9865"
+   ],
+   "ZUMA": [
+    "gs301-zuma-s5p9865"
+   ],
+   "S5P9865": [
+    "gs301-zuma-s5p9865"
+   ],
+   "GS201CLOUDRIPPER(S5P9855)": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "GS201": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "CLOUDRIPPER": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "S5P9855": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "GS101WHITECHAPEL(S5P9845)": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "GS101": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "WHITECHAPEL": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "S5P9845": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "SM8850-AC": [
+    "sm8850-ac"
+   ],
+   "SM8850-1-AD": [
+    "sm8850-ac"
+   ],
+   "SM8850-5-AC": [
+    "sm8850-ac"
+   ],
+   "SM8750-AB": [
+    "sm8750-ab"
+   ],
+   "SM8750-AC": [
+    "sm8750-ab"
+   ],
+   "SM8750-3-AB": [
+    "sm8750-ab"
+   ],
+   "SM8845": [
+    "sm8845"
+   ],
+   "SM8650-AB": [
+    "sm8650-ab"
+   ],
+   "SM8650-AC": [
+    "sm8650-ab"
+   ],
+   "SM8650-Q-AA": [
+    "sm8650-ab"
+   ],
+   "SM8650-Q-AB": [
+    "sm8650-ab"
+   ],
+   "SM8635": [
+    "sm8635"
+   ],
+   "SM8550-AB": [
+    "sm8550-ab"
+   ],
+   "SM8550-AC": [
+    "sm8550-ab"
+   ],
+   "SM8475": [
+    "sm8475"
+   ],
+   "SM8450": [
+    "sm8450"
+   ],
+   "SM8350-AC": [
+    "sm8350-ac"
+   ],
+   "SM8350": [
+    "sm8350"
+   ],
+   "SM8250-AC": [
+    "sm8250-ac"
+   ],
+   "SM8250-AB": [
+    "sm8250-ab"
+   ],
+   "SM8250": [
+    "sm8250"
+   ],
+   "SM8150-AC": [
+    "sm8150-ac"
+   ],
+   "SM8150": [
+    "sm8150"
+   ],
+   "SDM845": [
+    "sdm845"
+   ],
+   "MSM8998": [
+    "msm8998"
+   ],
+   "MSM8996PRO": [
+    "msm8996-pro"
+   ],
+   "MSM8996PRO-AB": [
+    "msm8996-pro"
+   ],
+   "MSM8996": [
+    "msm8996-pro"
+   ],
+   "MSM8996LITE": [
+    "msm8996-pro"
+   ],
+   "MSM8994": [
+    "msm8994"
+   ],
+   "MSM8992": [
+    "msm8992"
+   ],
+   "SM7675-AB": [
+    "sm7675-ab"
+   ],
+   "SM7475-AB": [
+    "sm7475-ab"
+   ],
+   "SM7435-AB": [
+    "sm7435-ab"
+   ],
+   "SM7450-AB": [
+    "sm7450-ab"
+   ],
+   "SM7325-AF": [
+    "sm7325-af"
+   ],
+   "SM7350-AB": [
+    "sm7350-ab"
+   ],
+   "SM7325": [
+    "sm7325"
+   ],
+   "SM7250-AC": [
+    "sm7250-ac"
+   ],
+   "SM7250-AB": [
+    "sm7250-ab"
+   ],
+   "SM7225": [
+    "sm7225"
+   ],
+   "SM7150-AB": [
+    "sm7150-ab"
+   ],
+   "SDM710": [
+    "sdm710"
+   ],
+   "SM6450": [
+    "sm6450"
+   ],
+   "SM6375": [
+    "sm6375"
+   ],
+   "SM6225": [
+    "sm6225"
+   ],
+   "SM6150": [
+    "sm6150"
+   ],
+   "SM6125": [
+    "sm6125"
+   ],
+   "SM6115": [
+    "sm6115"
+   ],
+   "SDM660": [
+    "sdm660"
+   ],
+   "SDM636": [
+    "sdm636"
+   ],
+   "MSM8953": [
+    "msm8953"
+   ],
+   "SM4450": [
+    "sm4450"
+   ],
+   "SM4375": [
+    "sm4375"
+   ],
+   "SM4350": [
+    "sm4350"
+   ],
+   "SDM439": [
+    "sdm439"
+   ],
+   "MSM8937": [
+    "msm8937"
+   ],
+   "MT6781": [
+    "mt6781"
+   ],
+   "MT8766": [
+    "mt8766"
+   ],
+   "MT8786": [
+    "mt8786"
+   ],
+   "MT8791": [
+    "mt8791"
+   ],
+   "MT9669": [
+    "mt9669"
+   ],
+   "MT9679": [
+    "mt9679"
+   ],
+   "S5E5515": [
+    "s5e5515"
+   ],
+   "S5E8535": [
+    "s5e8535"
+   ],
+   "S5E8825": [
+    "s5e8825"
+   ],
+   "S5E8835": [
+    "s5e8835"
+   ],
+   "S5E8845": [
+    "s5e8845"
+   ],
+   "S5E8855": [
+    "s5e8855"
+   ],
+   "S5E8865": [
+    "s5e8865"
+   ],
+   "S5E9955": [
+    "s5e9955"
+   ],
+   "S5E9965": [
+    "s5e9965"
+   ],
+   "SDM670": [
+    "sdm670"
+   ],
+   "SM4635": [
+    "sm4635"
+   ],
+   "SM4850": [
+    "sm4850"
+   ],
+   "SM6435": [
+    "sm6435"
+   ],
+   "SM6475": [
+    "sm6475"
+   ],
+   "SM6650": [
+    "sm6650"
+   ],
+   "SM6850": [
+    "sm6850"
+   ],
+   "SM7125": [
+    "sm7125"
+   ],
+   "SM7350": [
+    "sm7350"
+   ],
+   "SM7550": [
+    "sm7550"
+   ],
+   "SM7750": [
+    "sm7750"
+   ],
+   "SM8735": [
+    "sm8735"
+   ],
+   "SM8975": [
+    "sm8975"
+   ],
+   "KIRIN990": [
+    "kirin990"
+   ],
+   "MT6835": [
+    "mt6835"
+   ],
+   "SM7320": [
+    "sm7320"
+   ],
+   "SM4250": [
+    "sm4250"
+   ]
+  },
+  "loose": {
+   "S5E9945": [
+    "s5e9945"
+   ],
+   "S5E9925": [
+    "s5e9925"
+   ],
+   "S5E9840": [
+    "s5e9840"
+   ],
+   "S5E9830": [
+    "s5e9830"
+   ],
+   "S5E9820": [
+    "s5e9820"
+   ],
+   "S5E9810": [
+    "s5e9810"
+   ],
+   "S5E8895": [
+    "s5e8895"
+   ],
+   "S5E8890": [
+    "s5e8890"
+   ],
+   "S5E7420": [
+    "s5e7420"
+   ],
+   "KIRIN9020": [
+    "kirin9020"
+   ],
+   "KIRIN9010": [
+    "kirin9010"
+   ],
+   "KIRIN9000S": [
+    "kirin9000s"
+   ],
+   "KIRIN9000": [
+    "kirin9000"
+   ],
+   "KIRIN9000E": [
+    "kirin9000e"
+   ],
+   "KIRIN980": [
+    "kirin980"
+   ],
+   "KIRIN985": [
+    "kirin985"
+   ],
+   "KIRIN820": [
+    "kirin820"
+   ],
+   "KIRIN810": [
+    "kirin810"
+   ],
+   "V670": [
+    "v670"
+   ],
+   "MT6993": [
+    "mt6993"
+   ],
+   "MT6991": [
+    "mt6991"
+   ],
+   "MT6989": [
+    "mt6989"
+   ],
+   "MT6985": [
+    "mt6985"
+   ],
+   "MT6983": [
+    "mt6983"
+   ],
+   "MT6899": [
+    "mt6899"
+   ],
+   "MT6897": [
+    "mt6897"
+   ],
+   "MT6896": [
+    "mt6896"
+   ],
+   "MT6895": [
+    "mt6895"
+   ],
+   "MT8797": [
+    "mt8797"
+   ],
+   "MT6893": [
+    "mt6893"
+   ],
+   "MT6891": [
+    "mt6891"
+   ],
+   "MT6889": [
+    "mt6889"
+   ],
+   "MT6885": [
+    "mt6885"
+   ],
+   "MT6886": [
+    "mt6886"
+   ],
+   "MT6877V": [
+    "mt6877v"
+   ],
+   "MT6877T": [
+    "mt6877t"
+   ],
+   "MT6875": [
+    "mt6875"
+   ],
+   "MT6833P": [
+    "mt6833p"
+   ],
+   "MT6833V/PNZA": [
+    "mt6833p"
+   ],
+   "MT6873": [
+    "mt6873"
+   ],
+   "MT6853T": [
+    "mt6853t"
+   ],
+   "MT6853V/TNZA": [
+    "mt6853t"
+   ],
+   "MT6853V/TZA": [
+    "mt6853t"
+   ],
+   "MT6853": [
+    "mt6853v-za"
+   ],
+   "MT6833": [
+    "mt6833"
+   ],
+   "MT6789": [
+    "mt6789"
+   ],
+   "MT6785": [
+    "mt6785v-cc"
+   ],
+   "MT6769Z": [
+    "mt6769z"
+   ],
+   "MT6769": [
+    "mt6769t",
+    "mt6769z"
+   ],
+   "MT6769T": [
+    "mt6769t"
+   ],
+   "MT6799": [
+    "mt6799"
+   ],
+   "MT6797": [
+    "mt6797"
+   ],
+   "MT6779": [
+    "mt6779"
+   ],
+   "MT6771": [
+    "mt6771"
+   ],
+   "MT6765": [
+    "mt6765"
+   ],
+   "T210ERISTA": [
+    "t210-erista"
+   ],
+   "ERISTA": [
+    "t210-erista"
+   ],
+   "T124LOGAN": [
+    "t124-logan"
+   ],
+   "LOGAN": [
+    "t124-logan"
+   ],
+   "MALIBU": [
+    "malibu"
+   ],
+   "GS501LAGUNA": [
+    "gs501-laguna"
+   ],
+   "GS501": [
+    "gs501-laguna"
+   ],
+   "LAGUNA": [
+    "gs501-laguna"
+   ],
+   "GS401ZUMAPRO(S5P9875)": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "ZUMAPRO": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "GS401": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "S5P9875": [
+    "gs401-zuma-pro-s5p9875"
+   ],
+   "GS301ZUMA(S5P9865)": [
+    "gs301-zuma-s5p9865"
+   ],
+   "GS301": [
+    "gs301-zuma-s5p9865"
+   ],
+   "ZUMA": [
+    "gs301-zuma-s5p9865"
+   ],
+   "S5P9865": [
+    "gs301-zuma-s5p9865"
+   ],
+   "GS201CLOUDRIPPER(S5P9855)": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "GS201": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "CLOUDRIPPER": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "S5P9855": [
+    "gs201-cloudripper-s5p9855"
+   ],
+   "GS101WHITECHAPEL(S5P9845)": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "GS101": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "WHITECHAPEL": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "S5P9845": [
+    "gs101-whitechapel-s5p9845"
+   ],
+   "SM8850-AC": [
+    "sm8850-ac"
+   ],
+   "SM8850": [
+    "sm8850-ac"
+   ],
+   "SM8750-AB": [
+    "sm8750-ab"
+   ],
+   "SM8750-AC": [
+    "sm8750-ab"
+   ],
+   "SM8750": [
+    "sm8750-ab"
+   ],
+   "SM8845": [
+    "sm8845"
+   ],
+   "SM8650-AB": [
+    "sm8650-ab"
+   ],
+   "SM8650-AC": [
+    "sm8650-ab"
+   ],
+   "SM8650": [
+    "sm8650-ab"
+   ],
+   "SM8635": [
+    "sm8635"
+   ],
+   "SM8550-AB": [
+    "sm8550-ab"
+   ],
+   "SM8550-AC": [
+    "sm8550-ab"
+   ],
+   "SM8475": [
+    "sm8475"
+   ],
+   "SM8450": [
+    "sm8450"
+   ],
+   "SM8350-AC": [
+    "sm8350-ac"
+   ],
+   "SM8350": [
+    "sm8350"
+   ],
+   "SM8250-AC": [
+    "sm8250-ac"
+   ],
+   "SM8250-AB": [
+    "sm8250-ab"
+   ],
+   "SM8250": [
+    "sm8250"
+   ],
+   "SM8150-AC": [
+    "sm8150-ac"
+   ],
+   "SM8150": [
+    "sm8150"
+   ],
+   "SDM845": [
+    "sdm845"
+   ],
+   "MSM8998": [
+    "msm8998"
+   ],
+   "MSM8996PRO": [
+    "msm8996-pro"
+   ],
+   "MSM8996PRO-AB": [
+    "msm8996-pro"
+   ],
+   "MSM8996": [
+    "msm8996-pro"
+   ],
+   "MSM8996LITE": [
+    "msm8996-pro"
+   ],
+   "MSM8994": [
+    "msm8994"
+   ],
+   "MSM8992": [
+    "msm8992"
+   ],
+   "SM7675-AB": [
+    "sm7675-ab"
+   ],
+   "SM7475-AB": [
+    "sm7475-ab"
+   ],
+   "SM7435-AB": [
+    "sm7435-ab"
+   ],
+   "SM7450-AB": [
+    "sm7450-ab"
+   ],
+   "SM7325-AF": [
+    "sm7325-af"
+   ],
+   "SM7350-AB": [
+    "sm7350-ab"
+   ],
+   "SM7325": [
+    "sm7325"
+   ],
+   "SM7250-AC": [
+    "sm7250-ac"
+   ],
+   "SM7250-AB": [
+    "sm7250-ab"
+   ],
+   "SM7225": [
+    "sm7225"
+   ],
+   "SM7150-AB": [
+    "sm7150-ab"
+   ],
+   "SDM710": [
+    "sdm710"
+   ],
+   "SM6450": [
+    "sm6450"
+   ],
+   "SM6375": [
+    "sm6375"
+   ],
+   "SM6225": [
+    "sm6225"
+   ],
+   "SM6150": [
+    "sm6150"
+   ],
+   "SM6125": [
+    "sm6125"
+   ],
+   "SM6115": [
+    "sm6115"
+   ],
+   "SDM660": [
+    "sdm660"
+   ],
+   "SDM636": [
+    "sdm636"
+   ],
+   "MSM8953": [
+    "msm8953"
+   ],
+   "SM4450": [
+    "sm4450"
+   ],
+   "SM4375": [
+    "sm4375"
+   ],
+   "SM4350": [
+    "sm4350"
+   ],
+   "SDM439": [
+    "sdm439"
+   ],
+   "MSM8937": [
+    "msm8937"
+   ],
+   "MT6781": [
+    "mt6781"
+   ],
+   "MT8766": [
+    "mt8766"
+   ],
+   "MT8786": [
+    "mt8786"
+   ],
+   "MT8791": [
+    "mt8791"
+   ],
+   "MT9669": [
+    "mt9669"
+   ],
+   "MT9679": [
+    "mt9679"
+   ],
+   "S5E5515": [
+    "s5e5515"
+   ],
+   "S5E8535": [
+    "s5e8535"
+   ],
+   "S5E8825": [
+    "s5e8825"
+   ],
+   "S5E8835": [
+    "s5e8835"
+   ],
+   "S5E8845": [
+    "s5e8845"
+   ],
+   "S5E8855": [
+    "s5e8855"
+   ],
+   "S5E8865": [
+    "s5e8865"
+   ],
+   "S5E9955": [
+    "s5e9955"
+   ],
+   "S5E9965": [
+    "s5e9965"
+   ],
+   "SDM670": [
+    "sdm670"
+   ],
+   "SM4635": [
+    "sm4635"
+   ],
+   "SM4850": [
+    "sm4850"
+   ],
+   "SM6435": [
+    "sm6435"
+   ],
+   "SM6475": [
+    "sm6475"
+   ],
+   "SM6650": [
+    "sm6650"
+   ],
+   "SM6850": [
+    "sm6850"
+   ],
+   "SM7125": [
+    "sm7125"
+   ],
+   "SM7350": [
+    "sm7350"
+   ],
+   "SM7550": [
+    "sm7550"
+   ],
+   "SM7750": [
+    "sm7750"
+   ],
+   "SM8735": [
+    "sm8735"
+   ],
+   "SM8975": [
+    "sm8975"
+   ],
+   "KIRIN990": [
+    "kirin990"
+   ],
+   "MT6835": [
+    "mt6835"
+   ],
+   "SM7320": [
+    "sm7320"
+   ],
+   "SM4250": [
+    "sm4250"
+   ]
+  }
+ },
+ "platforms": {
+  "kalama": "sm8550-ab",
+  "taro": "sm8450",
+  "lahaina": "sm8350",
+  "kona": "sm8250",
+  "pineapple": "sm8650-ab",
+  "sun": "sm8750-ab",
+  "mt6983": "mt6983",
+  "mt6985": "mt6985",
+  "mt6989": "mt6989",
+  "mt6895": "mt6895",
+  "mt6897": "mt6897",
+  "mt6886": "mt6886"
+ }
+}
