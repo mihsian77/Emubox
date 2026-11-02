@@ -146,8 +146,6 @@
     <string name="guide_step_proton_3">Proton 对 Steam 游戏兼容性更好，其捆绑的 DXVK 版本随组件一起变化。</string>
     <string name="download_hub">下载中心</string>
     <string name="download_hub_desc">选择一个类别以打开其下载。</string>
-    <string name="live_sources">实时来源</string>
-    <string name="fallback_sources">备用来源</string>
     <string name="fetching_latest">正在获取最新驱动、组件和资源目录…</string>
     <string name="driver_region">驱动专区</string>
     <string name="component_region">组件专区</string>
@@ -221,6 +219,7 @@
     <string name="soc_cpu_cores">核心数 / 最高频率</string>
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">性能跑分（安兔兔 V10）</string>
+    <string name="soc_score_unknown">未收录</string>
 
     <string name="bench_engine_title">SoC 跑分引擎</string>
     <string name="bench_no_data">该芯片暂无跑分数据</string>
@@ -264,6 +263,9 @@
     <string name="turnip_desc_generic">适用于 Adreno GPU 的 Mesa Turnip 图形驱动。</string>
     <string name="driver_source">驱动来源</string>
     <string name="download_turnip">下载 Turnip</string>
+    <string name="download_panvk">下载 PanVK</string>
+    <string name="download_xclipse">下载 Xclipse 驱动</string>
+    <string name="download_wrapper">下载 Wrapper</string>
     <string name="qualcomm_driver">高通驱动</string>
     <string name="qualcomm_driver_desc">高通专有图形驱动包。当游戏在厂商驱动下表现更好时尝试这些。</string>
     <string name="download_type">下载 %1$s</string>
@@ -272,7 +274,6 @@
     <string name="experimental">实验版</string>
     <string name="source_archived">已停更</string>
     <string name="change_source">更换来源</string>
-    <string name="only_source_available">仅有可用来源</string>
     <string name="choose_source">选择来源</string>
     <string name="choose_source_desc">选择 EmuBox 在此类别中使用的提供商。你的选择会被记住。</string>
     <string name="from_source">来自 %1$s</string>

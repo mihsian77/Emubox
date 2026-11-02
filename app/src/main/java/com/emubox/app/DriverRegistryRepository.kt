@@ -39,7 +39,9 @@ data class DriverRegistryEntry(
     val filters: Map<String, List<String>>,
     /** 严格过滤：只按 filters 精确匹配 release，禁用 turnip/mesa fallback 兜底与全量兜底
      *  （wrapper 类来源专用：仓库混装多种内容 release，如 winlator-contents / WinXclipse） */
-    val strictFilter: Boolean = false
+    val strictFilter: Boolean = false,
+    /** 已停更：仓库长期无推送，UI 标「已停更」，不再作为默认推荐源 */
+    val archived: Boolean = false
 )
 
 /** 匹配结果 */
@@ -213,7 +215,8 @@ object DriverRegistryRepository {
                                 (0 until ja.length()).map { ja.getString(it) }
                             } ?: emptyList(),
                             filters = filters,
-                            strictFilter = o.optBoolean("strict_filter", false)
+                            strictFilter = o.optBoolean("strict_filter", false),
+                            archived = o.optBoolean("archived", false)
                         )
                     }.getOrNull()
                     if (entry != null) add(entry)
@@ -425,12 +428,12 @@ object DriverRegistryRepository {
             // 等混装 release 全量误入 Xclipse 区。无 filters 的源仍不过滤避免版本丢失。
             filters = if (entry.filters.isNotEmpty()) entry.filters else emptyMap(),
             strictFilter = entry.strictFilter,
-            // wrapper 包装层资产为 tzst 压缩包，需保留；驱动源保持 zip/adpkg 默认
-            assetExts = if (entry.driverType == "wrapper")
-                setOf(".zip", ".adpkg", ".tzst") else setOf(".zip", ".adpkg"),
+            // 可下载资产：zip/adpkg/wcp/tzst/so 一律放行；Winlator 整包分支再多收 .apk
+            assetExts = if (entry.targetEmulator == "winlator") WINLATOR_ASSET_EXTS else DRIVER_ASSET_EXTS,
             targetEmulator = entry.targetEmulator,
             stars = entry.stars.toLong(),
-            updatedAt = entry.updatedAt
+            updatedAt = entry.updatedAt,
+            archived = entry.archived
         )
     }
 

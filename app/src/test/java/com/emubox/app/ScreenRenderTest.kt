@@ -241,7 +241,6 @@ class ScreenRenderTest {
                             wrapperSources = emptyList(),
                             wrapperReleases = emptyList(),
                             wrapperItems = emptyList(),
-                            sourceCatalogRemote = false,
                             onTurnipSourceChange = {},
                             onPanvkSourceChange = {},
                             onQualcommSourceChange = {},

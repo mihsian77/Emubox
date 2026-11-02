@@ -3376,7 +3376,6 @@ fun DriverHubScreen(
             RegionHeader(
                 title = appString(R.string.driver_region),
                 icon = Icons.Default.Memory,
-                remote = sourceCatalogRemote
             )
         }
 
@@ -3490,7 +3489,8 @@ fun DriverHubScreen(
                     updatedAtMap = driverSourceUpdatedAt,
                     remoteStars = driverSourceStars,
                     title = "PanVK 驱动专区",
-                    description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持"
+                    description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持",
+                    downloadLabel = appString(R.string.download_panvk)
                 )
             }
         }
@@ -3534,44 +3534,67 @@ fun DriverHubScreen(
     }
 }
 
-/** 专区大标题（驱动专区 / 组件专区） */
+/**
+ * 折叠状态的来源提示：来源名 + 距上次发布的时间。
+ *
+ * 驱动区分区默认折叠，一屏要放五六个分区。折叠时只留这两项，
+ * 换源后不展开也能看出这个源多久没发新版。一周内发布的用主题色强调，
+ * 更早的用次要色，避免满屏都在喊「新」。
+ */
 @Composable
-private fun RegionHeader(title: String, icon: ImageVector, remote: Boolean?) {
+private fun CollapsedSourceHint(name: String, latestPublishedAt: String?) {
+    Text(
+        name,
+        style = MaterialTheme.typography.labelSmall,
+        color = MaterialTheme.colorScheme.primary,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.padding(end = 6.dp)
+    )
+    if (!latestPublishedAt.isNullOrBlank()) {
+        Spacer(Modifier.width(2.dp))
+        val relTime = formatRelativeTime(latestPublishedAt)
+        // formatRelativeTime 返回「刚刚 / N 分钟前 / N 小时前 / N 天前 / N 个月前」
+        val fresh = relTime == "刚刚" || (relTime.endsWith("前") && !relTime.contains("天")
+            && !relTime.contains("个月"))
+        Text(
+            "· $relTime",
+            style = MaterialTheme.typography.labelSmall,
+            color = if (fresh) MaterialTheme.colorScheme.tertiary
+                    else MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+}
+
+/**
+ * 专区大标题（驱动专区 / 组件专区）。
+ *
+ * 曾经右侧挂一个「实时来源 / 内置兜底」的 chip：数据来自远端还是内置。
+ * 这个信息对用户没有决策价值——内置源同样是可用来源，看到「内置兜底」
+ * 反而以为是降级状态。来源与更新时间已经在各分区的来源选择器里能查到，
+ * 标题行只留标题本身。
+ */
+@Composable
+private fun RegionHeader(title: String, icon: ImageVector) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                icon,
-                contentDescription = null,
-                modifier = Modifier.size(26.dp),
-                tint = MaterialTheme.colorScheme.primary
-            )
-            Spacer(Modifier.width(10.dp))
-            Text(
-                title,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Fusion.OnSurface
-            )
-        }
-        if (remote != null) {
-            SuggestionChip(
-                onClick = {},
-                label = {
-                    Text(if (remote) appString(R.string.live_sources) else appString(R.string.fallback_sources))
-                },
-                icon = {
-                    Icon(
-                        if (remote) Icons.Default.CloudDone else Icons.Default.CloudOff,
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp)
-                    )
-                }
-            )
-        }
+        Icon(
+            icon,
+            contentDescription = null,
+            modifier = Modifier.size(26.dp),
+            tint = MaterialTheme.colorScheme.primary
+        )
+        Spacer(Modifier.width(10.dp))
+        Text(
+            title,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = Fusion.OnSurface
+        )
     }
 }
 
@@ -4380,7 +4403,9 @@ fun TurnipDriverSection(
     description: String? = null,
     expandTrigger: String? = null,
     catalogItems: List<WrapperItem> = emptyList(),
-    onCatalogDownload: ((WrapperItem) -> Unit)? = null
+    onCatalogDownload: ((WrapperItem) -> Unit)? = null,
+    /** 下载按钮文案：Turnip / PanVK / Xclipse / Wrapper 各用各的，不共用「下载 Turnip」 */
+    downloadLabel: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
     // 区块默认折叠：与组件专区一致，一屏可浏览全部驱动大区
@@ -4444,29 +4469,10 @@ fun TurnipDriverSection(
                     }
                 }
                 if (!expanded && currentSource != null) {
-                    Text(
-                        currentSource.name,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(end = 6.dp)
+                    CollapsedSourceHint(
+                        name = currentSource.name,
+                        latestPublishedAt = releases.firstOrNull()?.publishedAt
                     )
-                    // 更新通知：折叠状态也显示"距上次更新 N 天"，有新版发布一眼可见
-                    val latestPub = releases.firstOrNull()?.publishedAt
-                    if (latestPub != null) {
-                        Spacer(Modifier.width(2.dp))
-                        val relTime = formatRelativeTime(latestPub)
-                        val fresh = relTime.endsWith("前") && !relTime.contains("天") || relTime == "刚刚"
-                        Text(
-                            "· $relTime",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = if (fresh) MaterialTheme.colorScheme.tertiary
-                                    else MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
                 }
                 Icon(
                     if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
@@ -4487,6 +4493,7 @@ fun TurnipDriverSection(
                     currentName = currentSource.name,
                     currentDescription = currentSource.description,
                     currentExperimental = currentSource.experimental,
+                    currentArchived = currentSource.archived,
                     currentCategory = currentCategory,
                     avatarUrl = currentSource?.apiUrl?.let { githubOwnerAvatar(it) },
                     currentUpdatedHint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
@@ -4497,6 +4504,7 @@ fun TurnipDriverSection(
                             name = source.name,
                             description = source.description,
                             experimental = source.experimental,
+                            archived = source.archived,
                             category = turnipCategoryOf(source, adrenoSeries),
                             updatedHint = (updatedAtMap[source.id] ?: source.updatedAt)
                                 .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) },
@@ -4524,7 +4532,7 @@ fun TurnipDriverSection(
                     releases = releases,
                     selectionKey = selectionKey,
                     onDownload = onDownload,
-                    buttonLabel = appString(R.string.download_turnip)
+                    buttonLabel = downloadLabel ?: appString(R.string.download_turnip)
                 )
             }
             }
@@ -4685,14 +4693,16 @@ private fun SourcePickerCard(
                 }
             }
 
-            FilledTonalButton(
-                onClick = { showSheet = true },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = options.size > 1
-            ) {
-                Icon(Icons.Default.SwapHoriz, contentDescription = null)
-                Spacer(Modifier.width(8.dp))
-                Text(if (options.size > 1) appString(R.string.change_source) else appString(R.string.only_source_available))
+            // 只有一个源时不显示换源按钮：禁用态仍占一整行，看着像坏了
+            if (options.size > 1) {
+                FilledTonalButton(
+                    onClick = { showSheet = true },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(Icons.Default.SwapHoriz, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.change_source))
+                }
             }
         }
     }
@@ -5280,9 +5290,10 @@ title: String,
                     }
                 }
                 if (!expanded && currentSource != null) {
-                    Text(currentSource.name, style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary, maxLines = 1, overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(end = 6.dp))
+                    CollapsedSourceHint(
+                        name = currentSource.name,
+                        latestPublishedAt = releases.firstOrNull()?.publishedAt
+                    )
                 }
                 Icon(if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
                     contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -6649,7 +6660,6 @@ fun DeviceScreen(
             RegionHeader(
                 title = appString(R.string.vulkan_title),
                 icon = Icons.Default.Memory,
-                remote = null
             )
         }
 
@@ -6904,7 +6914,6 @@ fun DeviceScreen(
             RegionHeader(
                 title = appString(R.string.benchmark_title),
                 icon = Icons.Default.Memory,
-                remote = null
             )
         }
 
@@ -6954,7 +6963,6 @@ fun DeviceScreen(
             RegionHeader(
                 title = appString(R.string.driver_detection_title),
                 icon = Icons.Default.Memory,
-                remote = null
             )
         }
 
@@ -9246,7 +9254,6 @@ fun DriverScreen(
     wrapperSources: List<TurnipSource>,
     wrapperReleases: List<GithubRelease>,
     wrapperItems: List<WrapperItem> = emptyList(),
-    sourceCatalogRemote: Boolean,
     onTurnipSourceChange: (String) -> Unit,
     onPanvkSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
@@ -9382,7 +9389,6 @@ fun DriverScreen(
             RegionHeader(
                 title = appString(R.string.driver_region),
                 icon = Icons.Default.Memory,
-                remote = sourceCatalogRemote
             )
         }
 
@@ -9467,7 +9473,8 @@ fun DriverScreen(
                     remoteStars = driverSourceStars,
                     expandTrigger = expandTrigger?.takeIf { it.startsWith("panvk:") },
                     title = "PanVK 驱动专区",
-                    description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持"
+                    description = "Mesa Panfrost 开源 Mali 驱动（G57–G720 全系），在 Winlator/Eden 等模拟器中为 Mali 设备提供 Vulkan 支持",
+                    downloadLabel = appString(R.string.download_panvk)
                 )
             }
         }
@@ -9514,7 +9521,8 @@ fun DriverScreen(
                     remoteStars = driverSourceStars,
                     expandTrigger = expandTrigger?.takeIf { it.startsWith("xclipse:") },
                     title = "三星 Xclipse 驱动专区",
-                    description = "Mesa RADV / WinXclipse 驱动，为三星 Exynos（RDNA Xclipse GPU）在 Winlator 等模拟器提供 Vulkan 支持"
+                    description = "Mesa RADV / WinXclipse 驱动，为三星 Exynos（RDNA Xclipse GPU）在 Winlator 等模拟器提供 Vulkan 支持",
+                    downloadLabel = appString(R.string.download_xclipse)
                 )
             }
         }
@@ -9542,6 +9550,7 @@ fun DriverScreen(
                     expandTrigger = expandTrigger?.takeIf { it.startsWith("wrapper:") },
                     title = "Wrapper",
                     description = "Vulkan/GL 包装层与兼容层（wmali-wrapper、compat-bcn、gamenative、FristOneRR、WinXclipse 等），配合对应驱动使用提升兼容性",
+                    downloadLabel = appString(R.string.download_wrapper),
                     catalogItems = wrapperItems,
                     onCatalogDownload = { item ->
                         val fileName = item.url.substringAfterLast('/')
@@ -9681,7 +9690,6 @@ fun ComponentScreen(
             RegionHeader(
                 title = appString(R.string.component_region),
                 icon = Icons.Default.Extension,
-                remote = null
             )
         }
 
@@ -13147,7 +13155,6 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
         RegionHeader(
             title = appString(R.string.soc_knowledge_title),
             icon = Icons.Default.Memory,
-            remote = null
         )
         if (knowledge == null) {
             Card(
@@ -13192,7 +13199,7 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f)
                         )
-                        if (!hasBenchScore) {
+                        if (!hasBenchScore && knowledge.score.isNotBlank()) {
                             Surface(
                                 shape = RoundedCornerShape(8.dp),
                                 color = MaterialTheme.colorScheme.primaryContainer
@@ -13209,7 +13216,10 @@ private fun SocKnowledgeCard(context: Context, gpuModel: String = "") {
                     }
                     Spacer(Modifier.height(10.dp))
                     if (!hasBenchScore) {
-                        InfoRow(label = appString(R.string.soc_score_label), value = knowledge.score)
+                        InfoRow(
+                            label = appString(R.string.soc_score_label),
+                            value = knowledge.score.ifBlank { appString(R.string.soc_score_unknown) }
+                        )
                     }
                     InfoRow(label = appString(R.string.soc_process), value = knowledge.process)
                     InfoRow(label = appString(R.string.soc_cpu), value = spec?.cpuSummary ?: knowledge.cpu)
@@ -13246,7 +13256,6 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
         RegionHeader(
             title = appString(R.string.bench_engine_title),
             icon = Icons.Default.TrendingUp,
-            remote = null
         )
         if (info == null) {
             Card(
