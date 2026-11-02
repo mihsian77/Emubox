@@ -12,9 +12,15 @@ jobs:
   digest:
     runs-on: ubuntu-latest
     steps:
+      # 只 checkout base：pull_request 事件默认取的是 PR 合并后的代码，
+      # 直接跑里面的脚本等于让外部 PR 决定执行什么。固定到 base，脚本来源可信。
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.base.sha }}
           fetch-depth: 0
+
+      - name: 取 PR 的提交对象
+        run: git fetch --no-tags origin "+refs/pull/${{ github.event.pull_request.number }}/head:refs/remotes/pr/head"
 
       - name: 生成并更新摘要评论
         env:
