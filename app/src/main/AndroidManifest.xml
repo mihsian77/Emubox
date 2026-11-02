@@ -14,7 +14,7 @@
         tools:ignore="ScopedStorage" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -35,6 +35,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 下载库「打开 / 分享」用：把 file:// 转成 content:// 交给其他 App。
+             Android 7.0+ 直接传递 file:// 会抛 FileUriExposedException；
+             授权范围仅限 App 自己的下载目录（见 res/xml/file_paths.xml）。 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <!-- 独立进程驱动实测：系统全新启动，进程内无系统 Vulkan/GPU 状态，
              adrenotools 加载 turnip/panvk 时 GPU 状态干净（vktest 同构），
