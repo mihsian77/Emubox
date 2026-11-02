@@ -45,6 +45,35 @@ object SocNameMapper {
         }
     }
 
+    /**
+     * 读取系统属性（ro.soc.model 等）。SystemProperties 是非 SDK 接口，
+     * 部分 ROM 会拦反射，所以全程 runCatching，失败返回空串由调用方降级。
+     */
+    private fun readProp(key: String): String = runCatching {
+        val cls = Class.forName("android.os.SystemProperties")
+        val get = cls.getDeclaredMethod("get", String::class.java).apply { isAccessible = true }
+        (get.invoke(null, key) as? String).orEmpty().trim()
+    }.getOrDefault("")
+
+    /**
+     * 设备上报的原始标识。三者全是代号，没有一个是市场名：
+     * 高通 SM8750-AB / 平台代号 sun，三星 S5E9945，联发科 MT6989，谷歌 zuma。
+     * 三星与 OPPO 把芯片写在 ro.board.platform，小米写在 ro.soc.model，
+     * 所以要两处都读，不能只依赖 Build.SOC（API 31 以下没有该字段）。
+     */
+    fun getRawIdentity(): SocIdentity {
+        val soc = readProp("ro.soc.model").ifBlank {
+            runCatching { Build::class.java.getField("SOC").get(null) as? String ?: "" }
+                .getOrDefault("")
+        }
+        val platform = readProp("ro.board.platform").ifBlank { readProp("ro.product.board") }
+        return SocIdentity(
+            socModel = soc.trim(),
+            platform = platform.trim().lowercase(),
+            hardware = Build.HARDWARE.orEmpty().trim()
+        )
+    }
+
     /** 查询 SOC 友好名称，找不到返回 null；精确未命中时按小写键兜底（防 QCOM/qcom 大小写不一致） */
     fun lookup(soc: String): String? {
         return nameMap?.get(soc) ?: lowerMap?.get(soc.lowercase())
@@ -99,6 +128,10 @@ object SocNameMapper {
      * 优先级：SOC 映射 → HARDWARE 映射 → GPU 反查 → SOC/HARDWARE 原值 → "未知"
      */
     fun getCurrentSocName(context: Context, gpuModel: String = ""): String {
+        // 先走部件号主表（soc_master.json）：Getprop 拿到的是代号，只有主表认得出市场名
+        runCatching { SocResolver.resolveCurrent(context, gpuModel) }
+            .getOrNull()
+            ?.let { if (it.displayName.isNotBlank()) return it.displayName }
         init(context)
         val soc = try {
             Build::class.java.getField("SOC").get(null) as? String ?: ""
