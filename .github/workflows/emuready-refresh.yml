@@ -1,0 +1,36 @@
+name: 每日刷新 EmuReady 目录
+
+on:
+  schedule:
+    # UTC 18:40 ≈ 北京时间 02:40，避开新闻/社区任务
+    - cron: "40 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-emuready:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 只用标准库，无需装依赖
+      - name: 抓取设备/平台/模拟器目录
+        run: python3 scripts/refresh-emuready.py
+
+      - name: 有变化则提交
+        run: |
+          if ! git diff --quiet -- app/src/main/assets/emuready-catalog.json; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add app/src/main/assets/emuready-catalog.json
+            git commit -m "chore: 刷新 EmuReady 设备目录"
+            git push
+          else
+            echo "无变化，跳过提交"
+          fi
