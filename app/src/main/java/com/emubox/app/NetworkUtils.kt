@@ -781,46 +781,6 @@ suspend fun fetchCompareCommits(owner: String, repo: String, from: String, to: S
         }.getOrNull()
     }
 
-/** EmuReady 兼容性数据库设备命中（devices.get 模糊匹配品牌+型号） */
-data class EmuReadyDevice(
-    val modelName: String,
-    val brandName: String,
-    val socName: String,
-    val listingsCount: Int
-)
-
-/** 查询 EmuReady 设备兼容性统计：按品牌+型号搜索，未命中返回 null（网络失败静默降级）。 */
-suspend fun fetchEmuReadyDevice(brand: String, model: String): EmuReadyDevice? = withContext(Dispatchers.IO) {
-    try {
-        val query = listOfNotNull(brand.takeIf { it.isNotBlank() }, model.takeIf { it.isNotBlank() })
-            .joinToString(" ").trim()
-        if (query.isBlank()) return@withContext null
-        val input = "{\"json\":{\"search\":\"$query\",\"limit\":1}}"
-        val url = "https://www.emuready.com/api/mobile/trpc/devices.get?input=" +
-            java.net.URLEncoder.encode(input, "UTF-8")
-        val req = okhttp3.Request.Builder().url(url)
-            .header("User-Agent", "EmuHub-CN")
-            .build()
-        val client = okhttp3.OkHttpClient.Builder()
-            .connectTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
-            .readTimeout(8, java.util.concurrent.TimeUnit.SECONDS)
-            .build()
-        client.newCall(req).execute().use { resp ->
-            if (!resp.isSuccessful) return@withContext null
-            val root = org.json.JSONObject(resp.body?.string().orEmpty())
-            val data = root.optJSONObject("result")?.optJSONObject("data")?.optJSONObject("json") ?: return@withContext null
-            val arr = data.optJSONArray("devices") ?: return@withContext null
-            if (arr.length() == 0) return@withContext null
-            val d = arr.getJSONObject(0)
-            EmuReadyDevice(
-                modelName = d.optString("modelName"),
-                brandName = d.optString("brandName"),
-                socName = d.optString("socName"),
-                listingsCount = d.optInt("listingsCount")
-            )
-        }
-    } catch (_: Exception) { null }
-}
 
 /** EmuReady 设备兼容性：设备 + 各模拟器平台的兼容得分（getDeviceCompatibility 结果精简） */
 data class EmuReadySysCompat(
@@ -831,7 +791,8 @@ data class EmuReadySysCompat(
     val totalListings: Int,
     val uniqueGames: Int,
     val totalVotes: Int,
-    val bestEmulator: String
+    val bestEmulator: String,
+    val lastUpdated: String = ""
 )
 data class EmuReadyCompat(
     val modelName: String,
@@ -840,15 +801,16 @@ data class EmuReadyCompat(
     val systems: List<EmuReadySysCompat>
 )
 
-/** 两步查询 EmuReady 设备兼容得分：先 devices.get 多关键词模糊匹配拿精确型号，
- *  再 getDeviceCompatibility 取各平台得分。未命中/网络失败返回 null。
- *  多关键词顺序：品牌+型号 → 纯型号 → socName（SM8xxx/Dimensity xxxx，国内机型常按
- *  SoC 收录）→ 品牌+SoC；任一命中即用其精确型号，解决"识别不出处理器型号"。 */
-suspend fun fetchEmuReadyCompatibility(
-    brand: String,
-    model: String,
-    socName: String = ""
-): EmuReadyCompat? = withContext(Dispatchers.IO) {
+/** 按 deviceId 查询 EmuReady 兼容得分：设备已由 [EmuReadyStore] 在本地目录精确匹配。
+ *
+ *  为什么不再联网模糊搜设备名：devices.get 是包含匹配且按上游内部顺序返回——
+ *  搜「Xiaomi 15」首条给的是「Xiaomi 15T Pro」，旧实现就把别的机器的分数当本机显示；
+ *  搜 SoC 名更是 0 命中，所谓 SoC 兜底从未生效。上游也没有"按 SoC 查兼容性"的接口，
+ *  所以兜底只能在本地目录里挑同芯片代表机型（见 [EmuReadyMatch.isSocFallback]）。
+ *
+ *  一次请求即可，失败返回 null 由界面静默降级。 */
+suspend fun fetchEmuReadyCompatibility(device: EmuReadyCatalogDevice): EmuReadyCompat? =
+    withContext(Dispatchers.IO) {
     try {
         val client = okhttp3.OkHttpClient.Builder()
             .connectTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
@@ -860,30 +822,7 @@ suspend fun fetchEmuReadyCompatibility(
                 if (!resp.isSuccessful) null else org.json.JSONObject(resp.body?.string().orEmpty())
             }
         }
-        // ① 多关键词依次模糊匹配拿精确型号
-        val queries = buildList {
-            add(listOfNotNull(brand.takeIf { it.isNotBlank() }, model.takeIf { it.isNotBlank() })
-                .joinToString(" ").trim())
-            add(model.trim())
-            add(socName.trim())
-            add(listOfNotNull(brand.takeIf { it.isNotBlank() }, socName.takeIf { it.isNotBlank() })
-                .joinToString(" ").trim())
-        }.filter { it.isNotBlank() }.distinct()
-        var dev: org.json.JSONObject? = null
-        for (q in queries) {
-            val searchInput = "{\"json\":{\"search\":\"$q\",\"limit\":1}}"
-            val searchUrl = "https://www.emuready.com/api/mobile/trpc/devices.get?input=" +
-                java.net.URLEncoder.encode(searchInput, "UTF-8")
-            val searchRoot = getJson(searchUrl) ?: continue
-            val devicesArr = searchRoot.optJSONObject("result")?.optJSONObject("data")
-                ?.optJSONObject("json")?.optJSONArray("devices") ?: continue
-            if (devicesArr.length() > 0) { dev = devicesArr.getJSONObject(0); break }
-        }
-        if (dev == null) return@withContext null
-        val exactModel = dev!!.optString("modelName")
-        val exactBrand = dev!!.optString("brandName")
-        // ② 精确型号查兼容得分
-        val compatInput = "{\"json\":{\"deviceBrandName\":\"$exactBrand\",\"deviceModelName\":\"$exactModel\"}}"
+        val compatInput = "{\"json\":{\"deviceId\":\"${device.id}\"}}"
         val compatUrl = "https://www.emuready.com/api/mobile/trpc/catalog.getDeviceCompatibility?input=" +
             java.net.URLEncoder.encode(compatInput, "UTF-8")
         val compatRoot = getJson(compatUrl) ?: return@withContext null
@@ -914,16 +853,17 @@ suspend fun fetchEmuReadyCompatibility(
                         totalListings = metrics?.optInt("totalListings") ?: 0,
                         uniqueGames = metrics?.optInt("uniqueGames") ?: 0,
                         totalVotes = metrics?.optInt("totalVotes") ?: 0,
-                        bestEmulator = best
+                        bestEmulator = best,
+                        lastUpdated = s.optString("lastUpdated")
                     )
                 )
             }
-        }.sortedByDescending { it.score }.take(5)
+        }.sortedByDescending { it.score }
         if (systems.isEmpty()) return@withContext null
         EmuReadyCompat(
-            modelName = deviceObj?.optString("modelName") ?: exactModel,
-            brandName = deviceObj?.optString("brandName") ?: exactBrand,
-            socName = deviceObj?.optString("socName") ?: dev!!.optString("socName"),
+            modelName = deviceObj?.optString("modelName") ?: device.modelName,
+            brandName = deviceObj?.optString("brandName") ?: device.brandName,
+            socName = deviceObj?.optString("socName") ?: device.socName,
             systems = systems
         )
     } catch (_: Exception) { null }
