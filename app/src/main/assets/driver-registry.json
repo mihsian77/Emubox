@@ -44,7 +44,7 @@
       "package_format": "adpkg",
       "maturity": "stable",
       "stars": 5162,
-      "description": "最权威的 Adrenotools 驱动仓库，Skyline/Strato/Vita3K/Yuzu 兼容",
+      "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
       "filters": {
@@ -150,12 +150,13 @@
       "package_format": "zip",
       "maturity": "stable",
       "stars": 22,
-      "description": "Public collection of Adrenotools drivers（高通官方提取驱动 zip 合集）",
+      "description": "Adrenotools 驱动合集（zip），2026-01 后未再推送",
       "updated_at": "2026-01-05T10:36:05Z",
       "companion": [],
       "latest_tag": "v849",
       "latest_date": "2026-01-05T10:36:05Z",
-      "latest_body": "for adreno a8xx devices only"
+      "latest_body": "for adreno a8xx devices only",
+      "archived": true
     },
     {
       "id": "mrpurple",
@@ -206,7 +207,7 @@
       "package_format": "adpkg",
       "maturity": "stable",
       "stars": 889,
-      "description": "最热门的第三方 Turnip 编译，统一支持 A6xx/A7xx/A8xx",
+      "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
       "filters": {
@@ -410,9 +411,9 @@
       "frontend": null,
       "target_emulator": "generic",
       "package_format": "magisk",
-      "maturity": "stable",
+      "maturity": "ci",
       "stars": 166,
-      "description": "Turnip Magisk 模块 CI 构建",
+      "description": "Magisk 模块形态的 Turnip CI 构建，每两周自动发布",
       "notes": "Magisk 模块格式，需要 root",
       "companion": [],
       "filters": {
@@ -473,9 +474,9 @@
       "frontend": null,
       "target_emulator": "generic",
       "package_format": "adpkg",
-      "maturity": "beta",
+      "maturity": "experimental",
       "stars": 483,
-      "description": "Mainline/Stable Turnip 构建，广泛 Adreno 支持",
+      "description": "作者自述为不稳定构建（sloppy），主要改善 A8xx；除非明确知道要它，否则别当默认选项",
       "notes": "",
       "companion": [],
       "filters": {
@@ -603,7 +604,7 @@
       "package_format": "adpkg",
       "maturity": "stable",
       "stars": 25,
-      "description": "Adrenotools Turnip 驱动集合",
+      "description": "按日期打快照的 Turnip 包，文件名带 Mesa 与 Vulkan 版本号，最近一次为 2026-08",
       "notes": "",
       "companion": [],
       "filters": {
@@ -704,7 +705,7 @@
       "package_format": "adpkg",
       "maturity": "beta",
       "stars": 47,
-      "description": "whitebelyash fork，A810/A829 额外补丁，积极维护",
+      "description": "whitebelyash 的分支，补 A810 / A829，同时提供 Magisk 模块",
       "notes": "",
       "companion": [],
       "filters": {
@@ -772,7 +773,7 @@
       "package_format": "adpkg",
       "maturity": "stable",
       "stars": 103,
-      "description": "710/720/722 成熟 Turnip 构建，含 Winlator glibc 专用版",
+      "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
       "filters": {
@@ -878,7 +879,7 @@
       "package_format": "zip",
       "maturity": "alpha",
       "stars": 31,
-      "description": "Mali-G52 PanVK 驱动，alpha 阶段",
+      "description": "Mali-G52（Bifrost JM）PanVK，V7 起支持几何着色器，仍是 alpha",
       "notes": "G52 早期支持，可能不稳定",
       "companion": [
         "pandxvk"
@@ -948,7 +949,7 @@
       "package_format": "adpkg",
       "maturity": "experimental",
       "stars": 1,
-      "description": "Mali-G57 Valhall kbase JM 实验性 PanVK",
+      "description": "panvcake 原版构建（未打补丁），基于 Mesa 26.3.0，供 AdrenoTools 加载",
       "notes": "实测最新 release（panvk-test3 panvcake_vanilla_26.3.0.R2.zip）含 meta.json + libvulkan_panfrost.so，合规；旧 build release 为 Termux tar.gz 不适用",
       "companion": [
         "pandxvk"
@@ -1225,9 +1226,9 @@
       "frontend": "JM",
       "target_emulator": "generic",
       "package_format": "zip",
-      "maturity": "beta",
+      "maturity": "alpha",
       "stars": 1,
-      "description": "Mali-G77 MC9 PanVK（Mesa 26.2.0-dev）",
+      "description": "Mali Bifrost 系 Panfrost Vulkan，基于 Mesa 24.0.5，2026-06 后未再推送",
       "notes": "实测 meta.json：PanVK-MaliG77 MC9，minApi 27，zip 含 meta.json 合规",
       "companion": [],
       "filters": {
@@ -1256,7 +1257,7 @@
       "package_format": "wcp",
       "maturity": "beta",
       "stars": 13,
-      "description": "PanVK 专用 DXVK，BC→ASTC 纹理转码，Mali GPU 运行 PC 游戏必需",
+      "description": "panDXVK：把 BC 纹理转成 ASTC，让 Mali 跑 D3D11/D3D12 游戏；发 .wcp 与 zip 两种包",
       "notes": "Mali 用户玩 D3D9-11 游戏必选，.wcp 一键安装；归入组件专区 DXVK 分类",
       "companion": [],
       "filters": {
@@ -1289,7 +1290,7 @@
       "package_format": "adpkg",
       "maturity": "experimental",
       "stars": 43,
-      "description": "JimVulkan radv-xclipse：Mesa3D RADV 移植到三星 Xclipse GPU（活跃维护）",
+      "description": "JimVulkan 的 radv-xclipse：把 Mesa RADV 移植到三星 Xclipse GPU",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
       "filters": {
@@ -1352,7 +1353,7 @@
       "package_format": "adpkg",
       "maturity": "beta",
       "stars": 97,
-      "description": "WinNative 开发团队构建的 Turnip 驱动合集，更新频繁",
+      "description": "WinNative 团队构建的 Turnip 合集，按设备分批发布",
       "notes": "同时提供 Android 包与 Linux 变体",
       "companion": [],
       "filters": {
@@ -1526,7 +1527,7 @@
       "package_format": "adpkg",
       "maturity": "beta",
       "stars": 1,
-      "description": "Mali-G615 eden 专用 PanVK（mesa 26.3.0-devel，含 kraid/adaptive-tiler/fast-submit 补丁）",
+      "description": "Mali-G615 的 eden 专用 PanVK，按 V1 / V2 / V3 三代迭代，基于 Mesa 26.3.0",
       "notes": "实测 zip 含 meta.json + libvulkan_panfrost.so 合规；release 命名 EDEN-EMULATOR；活跃（2026-10-07）",
       "companion": [],
       "filters": {
@@ -1626,7 +1627,7 @@
       "package_format": "zip",
       "maturity": "experimental",
       "stars": 66,
-      "description": "骁龙 865 / Adreno 650 专用 Turnip（Mesa main bffd91947efc），Switch 模拟优化，社区 Z 构建",
+      "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
       "filters": {
@@ -1645,7 +1646,7 @@
       "name": "Weab-chan Turnip CI",
       "owner": "Weab-chan",
       "repo": "freedreno_turnip-CI",
-      "description": "Weab-chan Turnip 驱动 CI 构建（每两周 GitHub Actions 自动构建 adrenotool 包）",
+      "description": "Weab-chan 的 Turnip CI 构建，每两周自动出一版 AdrenoTools 包",
       "api_url": "https://api.github.com/repos/Weab-chan/freedreno_turnip-CI/releases",
       "gpu_vendor": "adreno",
       "gpu_arch": [
@@ -1669,7 +1670,8 @@
       "updated_at": "2025-10-11T23:54:12Z",
       "latest_tag": "25.3.0-devel_bbdd688",
       "latest_date": "2025-10-11T23:54:12Z",
-      "latest_body": "### Base commit : [bbdd688](https://gitlab.freedesktop.org/mesa/mesa/-/commit/bbdd688)\r\n## Upstreams / Patches\r\nThese have not been merged by Mesa officially yet and may introduce bugs or\r\nwe revert stuff that breaks games but still got merged in (see --reverse)\r\n- force_sysmem_no_autotuner, ../../patches/force_sysmem_no_autotuner.patch, \r\n\r\n_Upstreams / Patches are only applied to the patched version (\\_patched.zip)_\r\n_If a patch is not present anymore, it's most likely because it got merged, i"
+      "latest_body": "### Base commit : [bbdd688](https://gitlab.freedesktop.org/mesa/mesa/-/commit/bbdd688)\r\n## Upstreams / Patches\r\nThese have not been merged by Mesa officially yet and may introduce bugs or\r\nwe revert stuff that breaks games but still got merged in (see --reverse)\r\n- force_sysmem_no_autotuner, ../../patches/force_sysmem_no_autotuner.patch, \r\n\r\n_Upstreams / Patches are only applied to the patched version (\\_patched.zip)_\r\n_If a patch is not present anymore, it's most likely because it got merged, i",
+      "archived": true
     },
     {
       "id": "faux123-pixel7",
@@ -1691,7 +1693,7 @@
       "frontend": null,
       "target_emulator": "generic",
       "package_format": "adpkg",
-      "maturity": "stable",
+      "maturity": "experimental",
       "stars": 5,
       "notes": "faux123 全家桶之一：Ace/RG556/RP4Pro/Pixel7 按 GPU 型号分发；活跃（2026-10-13 v0.10.0）",
       "companion": [
@@ -1725,7 +1727,7 @@
       "frontend": null,
       "target_emulator": "generic",
       "package_format": "adpkg",
-      "maturity": "stable",
+      "maturity": "experimental",
       "stars": 11,
       "notes": "v1.0.0 起与 ace/pixel7/rg556 四仓发布同一 adpkg 包（同名同字节），四设备全部实测；活跃（2026-10-29 v1.1.3 修 WWE 12 掉 GPU）",
       "companion": [
@@ -1996,9 +1998,9 @@
       "name": "Rutabaga（GPU 虚拟化）",
       "driver_type": "component",
       "owner": "magma-gpu",
-      "repo": "magma-gpu/rutabaga_gfx",
+      "repo": "rutabaga_gfx",
       "api_url": "https://api.github.com/repos/magma-gpu/rutabaga_gfx/releases",
-      "description": "跨平台开源 Rust 版 GPU paravirtualization 驱动（★72，活跃）：供 Android 模拟器/AVD（Cuttlefish 等）使用。注：用户提及的 The412Banner Rutabaga fork 经 GitHub 60 仓库全量核查不存在，已收录官方上游源。",
+      "description": "Rutabaga GPU 虚拟化库（Rust），供 Cuttlefish 等虚拟设备使用；仓库只发源码，没有驱动包",
       "pushed_at": "2026-10-20",
       "updated_at": "2026-08-06T14:16:04Z",
       "stars": 74,
@@ -2008,7 +2010,11 @@
       "gpu_vendor": "any",
       "gpu_arch": [],
       "gpu_models": [],
-      "companion": []
+      "companion": [],
+      "package_format": "none",
+      "target_emulator": "generic",
+      "maturity": "experimental",
+      "archived": true
     },
     {
       "id": "reg-rutabaga-drivers",

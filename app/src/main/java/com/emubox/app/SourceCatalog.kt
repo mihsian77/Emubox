@@ -10,6 +10,26 @@ import org.json.JSONObject
 const val DEFAULT_SOURCE_CATALOG_URL =
     "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/catalog/catalog.json"
 
+/**
+ * 驱动/组件源可下载资产的扩展名白名单。
+ *
+ * 只列「装进模拟器就能用」的产物，说明文档（txt/md）、校验文件（md5sums）、
+ * 截图（png/jpg）与源码包（tar.gz）仍被挡在卡片外。
+ *
+ * - .zip/.adpkg  AdrenoTools 驱动包（含 meta.json），主流格式
+ * - .wcp         Wrapper Component Package，panDXVK 与 Wrapper 目录的主格式
+ * - .tzst        Wrapper 包装层压缩包（banner/fristoner/winx 三家）
+ * - .so          裸驱动库；部分 standalone PanVK 源只发这个，配合 zip 一起给
+ */
+val DRIVER_ASSET_EXTS: Set<String> = setOf(".zip", ".adpkg", ".wcp", ".tzst", ".so")
+
+/**
+ * Winlator 整包分支额外收 .apk：WinXclipse 这类仓库把驱动和改好的
+ * Winlator 安装包发在同一个 release 里，只给驱动反而不完整。
+ * 其他目标（eden / termux / generic）不放行，避免驱动列表里混进 APK。
+ */
+val WINLATOR_ASSET_EXTS: Set<String> = DRIVER_ASSET_EXTS + ".apk"
+
 data class TurnipSource(
     val id: String,
     val name: String,
@@ -34,8 +54,10 @@ data class TurnipSource(
     val updatedAt: Long = 0L,
     /** 严格过滤：只按 filters 匹配，禁用 fallback 兜底（wrapper 混装仓库专用） */
     val strictFilter: Boolean = false,
-    /** 可下载资产扩展名白名单（wrapper 源含 .tzst 包装层包） */
-    val assetExts: Set<String> = setOf(".zip", ".adpkg")
+    /** 可下载资产扩展名白名单；默认覆盖驱动包、wrapper 包与裸 .so */
+    val assetExts: Set<String> = DRIVER_ASSET_EXTS,
+    /** 已停更：半年无推送或作者明确放弃，UI 标「已停更」且不参与默认推荐 */
+    val archived: Boolean = false
 )
 
 data class QualcommSource(

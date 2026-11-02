@@ -810,7 +810,6 @@ class MainActivity : ComponentActivity() {
                                                 .map { DriverRegistryRepository.toTurnipSource(it) },
                                             wrapperReleases = wrapperReleases,
                                             wrapperItems = wrapperItems,
-                                            sourceCatalogRemote = sourceCatalog.isRemote,
                                             onTurnipSourceChange = { sourceId ->
                                                 turnipSourceId = sourceId
                                                 SettingsManager.setTurnipSource(sourceId)

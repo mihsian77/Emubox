@@ -336,7 +336,7 @@
  "SM8250AC": "Qualcomm Snapdragon 870",
  "SM8350": "Qualcomm Snapdragon 888",
  "SM7325": "Qualcomm Snapdragon 778G 5G",
- "SM7225": "Qualcomm Snapdragon 778G 4G",
+ "SM7225": "Qualcomm Snapdragon 750G",
  "KIRIN810": "HiSilicon Kirin 810",
  "KIRIN820": "HiSilicon Kirin 820",
  "KIRIN985": "HiSilicon Kirin 985",
@@ -388,5 +388,11 @@
  "bluejay": "谷歌 Pixel",
  "panther": "谷歌 Pixel",
  "cheetah": "谷歌 Pixel",
- "lynx": "谷歌 Pixel"
+ "lynx": "谷歌 Pixel",
+ "MSM8998": "Qualcomm Snapdragon 835",
+ "SM7250": "Qualcomm Snapdragon 765G",
+ "SM7250-AB": "Qualcomm Snapdragon 765G",
+ "MT6785": "MediaTek Helio G90T",
+ "MT6885": "MediaTek Dimensity 1000L",
+ "KIRIN980": "HiSilicon Kirin 980"
 }

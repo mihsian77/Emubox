@@ -64,6 +64,10 @@ object SocKnowledgeStore {
      * GPU 型号兜底：SOC 识别链路（Build.SOC → 映射 → 匹配）任一环断裂时，
      * 用渲染器解析出的 GPU 型号（如 "740" → "adreno740"）直接命中，保证
      * Adreno/Mali 常见芯片一定能显示知识卡。
+     *
+     * 命中多个条目时取「命中键最长」的那个：设备上报 "Snapdragon 855 Plus" 时
+     * 同时满足 "骁龙855" 与 "骁龙855plus"，按条目顺序取先出现的会错认成 855，
+     * 只有比键长才能稳定区分 Plus / 非 Plus、Gen 3 / Gen 3s 这类派生型号。
      */
     fun find(socName: String, gpuModel: String, context: Context): SocKnowledge? {
         val haystacks = buildList {
@@ -80,10 +84,16 @@ object SocKnowledgeStore {
         }
         if (haystacks.isEmpty()) return null
         val entries = load(context)
-        // GPU 兜底优先（adreno740 类唯一性强）；再按 SoC 名 contains 匹配（key 需足够长，防厂商粒度名误命中）
-        return entries.firstOrNull { (keys, _) ->
-            keys.any { k -> haystacks.any { h -> h.contains(k) && k.length >= 5 } }
-        }?.second
+        return entries
+            .mapNotNull { (keys, soc) ->
+                // key 至少 5 个字符，避免 "855" 这类片段把厂商粒度名也命中
+                val best = keys
+                    .filter { k -> k.length >= 5 && haystacks.any { h -> h.contains(k) } }
+                    .maxOfOrNull { it.length }
+                if (best != null) best to soc else null
+            }
+            .maxByOrNull { it.first }
+            ?.second
     }
 }
 

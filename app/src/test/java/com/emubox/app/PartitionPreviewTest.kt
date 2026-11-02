@@ -151,7 +151,7 @@ class PartitionPreviewTest {
         val filtered = if (patterns.isEmpty()) all
         else all.filter { r -> patterns.any { searchable(r).contains(it, ignoreCase = true) } }
         return filtered
-            .map { r -> r.copy(assets = r.assets.filter { it.name.endsWith(".zip", true) || it.name.endsWith(".adpkg", true) }) }
+            .map { r -> r.copy(assets = r.assets.filter { a -> DRIVER_ASSET_EXTS.any { a.name.endsWith(it, true) } }) }
             .filter { it.assets.isNotEmpty() }
     }
 
@@ -307,7 +307,6 @@ class PartitionPreviewTest {
                             wrapperSources = emptyList(),
                             wrapperReleases = emptyList(),
                             wrapperItems = emptyList(),
-                            sourceCatalogRemote = true,
                             onTurnipSourceChange = {},
                             onPanvkSourceChange = {},
                             onQualcommSourceChange = {},
@@ -327,6 +326,182 @@ class PartitionPreviewTest {
         }
         settle(2)
         save("p2-drivers.png")
+    }
+
+    /** Mali 设备：按设备匹配时 PanVK 分区才会出现（骁龙设备默认隐藏 Mali 专用驱动） */
+    private fun pixel7() = DeviceInfo(
+        androidVersion = "15 (SDK 35)",
+        ram = "12 GB",
+        gpuRenderer = "Mali-G710",
+        adrenoSeries = "",
+        gpuModel = "710",
+        gpuVendor = GpuVendor.MALI,
+        deviceBrand = "Google",
+        deviceModel = "Pixel 7",
+        socName = "Google Tensor G2"
+    )
+
+    /**
+     * PanVK 分区：panDXVK 只发 .wcp 与 zip，验证这两类资产能进版本卡。
+     *
+     * 改之前白名单只有 .zip/.adpkg，.wcp 全被挡在卡片外——Mali 用户点开这个源
+     * 看到的是「没取到版本列表」，实际 release 里躺着 41 个 .wcp。
+     */
+    @Test
+    fun p2bPanvkFiles() {
+        val panvkSrc = TurnipSource(
+            id = "reg-pandxvk",
+            name = "panDXVK",
+            apiUrl = "https://api.github.com/repos/isygold/panDXVK/releases",
+            description = "panDXVK：把 BC 纹理转成 ASTC，让 Mali 跑 D3D11/D3D12 游戏；发 .wcp 与 zip 两种包（Beta）",
+            experimental = true,
+            supportedSeries = emptySet(),
+            requiredVendor = "mali",
+            filters = mapOf("default" to listOf("pandxvk")),
+            targetEmulator = "winlator",
+            stars = 13L,
+            updatedAt = 1_792_540_800_000L
+        )
+        val panvkRel = listOf(
+            GithubRelease(
+                tagName = "v01",
+                name = "panDXVK v01",
+                assets = listOf(
+                    GithubAsset(
+                        name = "pandxvk-v01.wcp",
+                        downloadUrl = "https://github.com/isygold/panDXVK/releases/download/v01/pandxvk-v01.wcp",
+                        sizeBytes = 9_646_080L,
+                        digest = ""
+                    ),
+                    GithubAsset(
+                        name = "merged.zip",
+                        downloadUrl = "https://github.com/isygold/panDXVK/releases/download/v01/merged.zip",
+                        sizeBytes = 10_171_187L,
+                        digest = ""
+                    )
+                ),
+                publishedAt = "2026-10-23T09:12:00Z",
+                body = "v01 是兼容性优先的构建，附带稳定性修复。",
+                prerelease = false
+            )
+        )
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DriverScreen(
+                            deviceInfo = pixel7(),
+                            isLoading = false,
+                            turnipSourceId = "",
+                            turnipSources = emptyList(),
+                            turnipReleases = emptyList(),
+                            panvkSourceId = panvkSrc.id,
+                            panvkSources = listOf(panvkSrc),
+                            panvkReleases = panvkRel,
+                            qualcommSourceId = "",
+                            qualcommSources = emptyList(),
+                            qualcommReleases = emptyList(),
+                            xclipseSourceId = "",
+                            xclipseSources = emptyList(),
+                            xclipseReleases = emptyList(),
+                            wrapperSourceId = "",
+                            wrapperSources = emptyList(),
+                            wrapperReleases = emptyList(),
+                            wrapperItems = emptyList(),
+                            onTurnipSourceChange = {},
+                            onPanvkSourceChange = {},
+                            onQualcommSourceChange = {},
+                            onXclipseSourceChange = {},
+                            onWrapperSourceChange = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        settle(6)
+        runCatching {
+            compose.onNodeWithText("PanVK 驱动专区").performClick()
+            compose.waitForIdle()
+        }
+        settle(2)
+        save("p2b-panvk-wcp.png")
+        compose.onNodeWithText("pandxvk-v01.wcp", substring = true).assertExists()
+    }
+
+    /**
+     * 高通分区的折叠头：来源名 + 距上次发布多久。
+     *
+     * 改之前只有 Turnip 分区的折叠头带时间，高通分区只有一个来源名，
+     * 用户要判断「这个源还活着吗」必须点开来源选择器。
+     */
+    @Test
+    fun p2cQualcommCollapsedHint() {
+        val qcSrc = QualcommSource(
+            id = "k11mch1-qualcomm",
+            name = "K11MCH1",
+            apiUrl = "https://api.github.com/repos/K11MCH1/AdrenoToolsDrivers/releases",
+            description = "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
+            experimental = false,
+            filters = listOf("Qualcomm"),
+            stars = 5163L,
+            updatedAt = 1_792_540_800_000L
+        )
+        val qcRel = listOf(
+            GithubRelease(
+                tagName = "v840",
+                name = "Qualcomm drivers v840",
+                assets = listOf(
+                    GithubAsset(
+                        name = "Qualcomm_v840.zip",
+                        downloadUrl = "https://github.com/K11MCH1/AdrenoToolsDrivers/releases/download/v840/Qualcomm_v840.zip",
+                        sizeBytes = 8_388_608L,
+                        digest = ""
+                    )
+                ),
+                publishedAt = "2026-10-28T13:54:43Z",
+                body = "Qualcomm drivers v840 extracted from Meta Ray-Ban Glasses.",
+                prerelease = false
+            )
+        )
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DriverScreen(
+                            deviceInfo = onePlus13(),
+                            isLoading = false,
+                            turnipSourceId = "",
+                            turnipSources = emptyList(),
+                            turnipReleases = emptyList(),
+                            panvkSourceId = "",
+                            panvkSources = emptyList(),
+                            panvkReleases = emptyList(),
+                            qualcommSourceId = qcSrc.id,
+                            qualcommSources = listOf(qcSrc),
+                            qualcommReleases = qcRel,
+                            xclipseSourceId = "",
+                            xclipseSources = emptyList(),
+                            xclipseReleases = emptyList(),
+                            wrapperSourceId = "",
+                            wrapperSources = emptyList(),
+                            wrapperReleases = emptyList(),
+                            wrapperItems = emptyList(),
+                            onTurnipSourceChange = {},
+                            onPanvkSourceChange = {},
+                            onQualcommSourceChange = {},
+                            onXclipseSourceChange = {},
+                            onWrapperSourceChange = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p2c-qualcomm-collapsed.png")
+        // 折叠态就能看到「· N 天前」，不用展开
+        compose.onNodeWithText("天前", substring = true).assertExists()
     }
 
     @Test
