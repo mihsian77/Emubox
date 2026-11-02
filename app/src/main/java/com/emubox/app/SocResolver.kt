@@ -78,14 +78,15 @@ object SocResolver {
         "高通" to "qualcomm", "三星" to "samsung", "华为" to "hisilicon",
         "海思" to "hisilicon", "曦力" to "helio", "迅鲲" to "kompanio",
         "谷歌" to "google", "小米" to "xiaomi", "玄戒" to "xring",
-        "澎湃" to "pinecone", "苹果" to "apple"
+        "澎湃" to "pinecone", "苹果" to "apple",
+        "紫光展锐" to "unisoc", "展锐" to "unisoc", "联发科技" to "mediatek"
     )
     private val VENDOR_WORDS = setOf(
         "qualcomm", "mediatek", "samsung", "hisilicon", "google", "xiaomi", "apple",
         "unisoc", "arm", "amd", "nvidia", "broadcom", "amlogic", "allwinner", "rockchip"
     )
     private val SEP = Regex("[()（）\\[\\]{}、,，/\\\\:：]")
-    private val DROP = Regex("[\\s\\-_+*]")
+    private val DROP = Regex("[\\s\\-_*]")
     private val QCOM_TAIL = Regex("(-Q-[A-Z]{2}|-\\d(-[A-Z]{2})?)$")
     private val MTK_TAIL = Regex("^(MT\\d{4})[A-Z]?(/[A-Z]{1,2})?$")
 
@@ -95,7 +96,9 @@ object SocResolver {
         val loose: Map<String, List<String>>,
         val platforms: Map<String, String>,
         val byGpuNum: Map<String, List<String>>,
-        val byName: Map<String, List<String>>
+        val byName: Map<String, List<String>>,
+        val vendors: Map<String, String>,
+        val src: Map<String, String>
     )
 
     private var table: Table? = null
@@ -103,7 +106,11 @@ object SocResolver {
     private fun normalize(s: String): String {
         var t = s.lowercase()
         t = SEP.replace(t, " ")
+        // 「+」不能直接删：删了之后「骁龙 8+ Gen1」与「骁龙 8 Gen1」结果相同，
+        // 865+ / 888+ / 765G 会被并进基础款。与 build_master.py 保持同构。
+        t = t.replace("+", "plus")
         t = DROP.replace(t, "")
+        t = Regex("5g$").replace(t, "")
         for ((a, b) in SYNONYMS) t = t.replace(a, b)
         return t
     }
@@ -139,6 +146,8 @@ object SocResolver {
             val platforms = HashMap<String, String>()
             val byGpuNum = HashMap<String, MutableList<String>>()
             val byName = HashMap<String, MutableList<String>>()
+            val srcMap = HashMap<String, String>()
+            val vendors = HashMap<String, String>()
             runCatching {
                 val text = context.assets.open("soc_master.json")
                     .bufferedReader().use { it.readText() }
@@ -170,6 +179,7 @@ object SocResolver {
                         confidence = SocConfidence.NAME
                     )
                     socs[s.id] = s
+                    srcMap[s.id] = o.optString("src")
                     // GPU 兜底只按数字建索引：detectGpuModel 对 Adreno 与 Mali 都只返回数字，
                     // 前缀靠不住，数字在两家之间不重叠（Adreno 6xx-8xx / Mali G5x-G9x）
                     val num = s.gpuKey.filter { it.isDigit() }
@@ -194,8 +204,16 @@ object SocResolver {
                         platforms[k.lowercase()] = o.getString(k)
                     }
                 }
+                root.optJSONObject("vendors")?.let { o ->
+                    val keys = o.keys()
+                    while (keys.hasNext()) {
+                        val k = keys.next()
+                        if (k.startsWith("_")) continue
+                        vendors[k.lowercase()] = o.optString(k)
+                    }
+                }
             }
-            val t = Table(socs, exact, loose, platforms, byGpuNum, byName)
+            val t = Table(socs, exact, loose, platforms, byGpuNum, byName, vendors, srcMap)
             table = t
             return t
         }
@@ -227,7 +245,11 @@ object SocResolver {
         val byGpuRows = if (gpuModel.isNotBlank()) {
             rows.filter { it.gpuKey.filter { c -> c.isDigit() } == gpuModel }
         } else emptyList()
-        val chosen = byGpuRows.firstOrNull() ?: rows.first()
+        // 一码多名时优先极客湾那一条：它的名字是官方写法，安兔兔那边
+        // 会拆成「天玑8400-Max / 8400-Ultra / 8400-Turbo」好几行
+        val ranked = (if (byGpuRows.isNotEmpty()) byGpuRows else rows)
+            .sortedBy { if (src[it.id] == "socpk") 0 else 1 }
+        val chosen = ranked.first()
         val names = (if (byGpuRows.isNotEmpty()) byGpuRows else rows).map { it.name }.distinct()
         return chosen.copy(
             confidence = confidence,
@@ -244,7 +266,8 @@ object SocResolver {
         context: Context,
         identity: SocIdentity,
         gpuModel: String = "",
-        socNameHint: String = ""
+        socNameHint: String = "",
+        gpuIsAdreno: Boolean = false
     ): ResolvedSoc? {
         val t = load(context)
 
@@ -261,29 +284,61 @@ object SocResolver {
                 return t.socs[id]?.copy(confidence = SocConfidence.PLATFORM)
             }
         }
-        val gpuNum = gpuModel.filter { it.isDigit() }
-        if (gpuNum.isNotEmpty()) {
-            t.byGpuNum[gpuNum]?.let { ids ->
-                // GPU 型号只在唯一对应一颗芯片时才敢用：Adreno 750 → 8 Gen 3
-                if (ids.size == 1) {
-                    return t.socs[ids[0]]?.copy(confidence = SocConfidence.GPU)
-                }
-            }
-        }
         for (raw in codeCandidates) {
             t.byName[normalize(raw)]?.let { return t.pick(it, SocConfidence.NAME, gpuModel) }
             t.byName[stripVendor(raw)]?.let { return t.pick(it, SocConfidence.NAME, gpuModel) }
         }
+        // GPU 兜底放最后，且只认 Adreno。
+        //
+        // 原因：Mali 与 Adreno 的型号数字会撞车（Mali-G610 与 Adreno 610），
+        // 而一颗 Mali 往往对应几十款 SoC（G57 覆盖天玑 700/810/930…）。
+        // 主表恰好只收了一颗时「全表唯一」是假象——展锐设备曾因此被判成天玑 6100。
+        // Adreno 由高通独占，且 6xx 以上基本一对一，才敢用来兜底。
+        val gpuNum = gpuModel.filter { it.isDigit() }
+        if (gpuIsAdreno && gpuNum.isNotEmpty()) {
+            t.byGpuNum[gpuNum]?.let { ids ->
+                if (ids.size == 1 && t.socs[ids[0]]?.brand == "高通") {
+                    return t.socs[ids[0]]?.copy(confidence = SocConfidence.GPU)
+                }
+            }
+        }
         return null
+    }
+
+    /**
+     * 只认出厂商、认不出型号时返回厂商名。
+     *
+     * 展锐设备上报 ums9230、华为上报 kirin9020、联发科老平台上报 mt6765，
+     * 这三类没有公开的完整料号表，硬猜型号不如老实说「紫光展锐 · 型号未收录」。
+     * 前缀按长度倒序匹配，避免 'm' 这种短前缀抢先。
+     */
+    fun vendorOf(context: Context, identity: SocIdentity): String {
+        val t = load(context)
+        val raws = listOf(identity.socModel, identity.platform, identity.hardware)
+            .map { it.trim().lowercase() }
+            .filter { it.isNotEmpty() }
+        for (raw in raws) {
+            t.vendors.entries
+                .filter { raw.startsWith(it.key) }
+                .maxByOrNull { it.key.length }
+                ?.let { return it.value }
+        }
+        return ""
     }
 
     /** 便捷入口：直接从当前设备读原始标识再解析。 */
     fun resolveCurrent(
         context: Context,
         gpuModel: String = "",
-        socHint: String = ""
+        socHint: String = "",
+        gpuIsAdreno: Boolean = false
     ): ResolvedSoc? {
         val id = SocNameMapper.getRawIdentity()
-        return resolve(context, id, gpuModel = gpuModel, socNameHint = socHint)
+        return resolve(
+            context, id,
+            gpuModel = gpuModel,
+            socNameHint = socHint,
+            gpuIsAdreno = gpuIsAdreno
+        )
     }
 }

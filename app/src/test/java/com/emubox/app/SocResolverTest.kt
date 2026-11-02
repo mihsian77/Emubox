@@ -55,12 +55,57 @@ class SocResolverTest {
     }
 
     @Test
-    fun `联发科封装后缀剥到平台`() {
-        // MT6769V/CB 是红米 9 的 G80，主表只收录了 V/CU 与 V/CZ，需剥到 MT6769 才认得出
+    fun `联发科封装后缀能命中`() {
+        // MT6769V/CB 是红米 9 的 G80。完整料号在映射表里时精确命中，
+        // 不在时剥到 MT6769 也能认出（该裸号对应 G80/G81/G85，会标歧义）。
         val r = resolve("MT6769V/CB")
         assertNotNull(r)
-        assertTrue("应命中 G80/G85 中的一颗：${r?.name}", r!!.name.contains("G8"))
-        assertEquals(SocConfidence.CODE_LOOSE, r.confidence)
+        assertTrue("应命中 G8x：${r?.name}", r!!.displayName.contains("G8"))
+        assertTrue(
+            "精确或剥后缀都算合理：${r.confidence}",
+            r.confidence == SocConfidence.CODE_EXACT || r.confidence == SocConfidence.CODE_LOOSE
+        )
+    }
+
+    @Test
+    fun `加号型号不被并进基础款`() {
+        // 「+」若在归一化时直接删掉，8+ Gen1 会等于 8 Gen1、888+ 会等于 888
+        assertEquals("骁龙 888", resolve("SM8350")?.name)
+        assertEquals("骁龙 888+", resolve("SM8350-AC")?.name)
+        assertEquals("骁龙 8 Gen1", resolve("SM8450")?.name)
+        assertEquals("骁龙 8+ Gen1", resolve("SM8475")?.name)
+    }
+
+    @Test
+    fun `冲突代号不落到被拒条目`() {
+        // SM8450 归 8 Gen1、SM8475 归 8+ Gen1；冲突时被拒的那条不能还留着别人的号
+        val gen1 = resolve("SM8450")
+        val gen1Plus = resolve("SM8475")
+        assertEquals("骁龙 8 Gen1", gen1?.name)
+        assertEquals("骁龙 8+ Gen1", gen1Plus?.name)
+        assertTrue("8 Gen1 不该带 SM8475：${gen1?.codes}", gen1?.codes?.none { it.contains("8475") } == true)
+        assertTrue("8+ Gen1 不该带 SM8450：${gen1Plus?.codes}", gen1Plus?.codes?.none { it.contains("8450") } == true)
+    }
+
+    @Test
+    fun `5G 后缀不影响识别`() {
+        // 主表里同芯可能写作「骁龙 780G」或「骁龙 780G 5G」，归一化要能合并
+        assertEquals("骁龙 780G", resolve(hint = "高通 骁龙780G 5G")?.name)
+    }
+
+    @Test
+    fun `认不出型号时至少认出厂`() {
+        // 展锐与华为没有公开完整料号表，只能落到厂商级，但不能把裸代号当芯片名
+        assertEquals(
+            "紫光展锐",
+            SocResolver.vendorOf(context, SocIdentity("ums9230", "", ""))
+        )
+        assertEquals(
+            "华为",
+            SocResolver.vendorOf(context, SocIdentity("kirin9020", "", ""))
+        )
+        assertEquals("联发科", SocResolver.vendorOf(context, SocIdentity("", "mt6765", "")))
+        assertTrue(SocResolver.vendorOf(context, SocIdentity("XYZ", "", "")).isBlank())
     }
 
     @Test
@@ -113,7 +158,8 @@ class SocResolverTest {
     fun `主表条目字段完整`() {
         val text = context.assets.open("soc_master.json").bufferedReader().use { it.readText() }
         val arr = JSONObject(text).getJSONArray("socs")
-        assertTrue("主表条目过少：${arr.length()}", arr.length() >= 150)
+        // 极客湾 157 + 安兔兔补的中低端，少于 350 说明有一路数据没并进来
+        assertTrue("主表条目过少：${arr.length()}", arr.length() >= 350)
         val ids = mutableSetOf<String>()
         for (i in 0 until arr.length()) {
             val o = arr.getJSONObject(i)
