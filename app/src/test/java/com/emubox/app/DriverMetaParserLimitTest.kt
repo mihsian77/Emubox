@@ -60,4 +60,14 @@ class DriverMetaParserLimitTest {
         assertNull(meta)
         assert(elapsed < 5000) { "限长读取应快速返回，实际耗时 ${elapsed}ms" }
     }
+
+    @Test
+    fun `截断后仍是完整 JSON 的超限 meta 也要拒收`() {
+        // 完整对象在前，padding 在后：旧实现只读前 64KB，读到的部分 JSON 可解析，
+        // 超限包会被当成正常包；修复后超限即整体拒收，无论截断点在哪儿
+        val head = """{"name":"伪装包","driverVersion":"v9.9.9","author":"x"}"""
+        val json = head + " ".repeat(70 * 1024) + "END"
+        val meta = DriverMetaParser.parse(context, makeDriverZip(json).absolutePath)
+        assertNull(meta)
+    }
 }

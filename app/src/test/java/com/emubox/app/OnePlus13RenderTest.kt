@@ -51,6 +51,21 @@ class OnePlus13RenderTest {
         socName = "Qualcomm Snapdragon 8 Elite"
     )
 
+    /**
+     * 等各卡片的异步数据（注册表匹配 / EmuReady 查询 / 生态动态）落地后再截图。
+     * 原来固定 44×500ms（22 秒/用例）；改成「主线程空闲 + 连续稳定」就提前退出，
+     * 数据快的用例一两秒结束，上限 20 秒兜底，避免真有慢数据时截空图。
+     */
+    private fun settle(rounds: Int = 30) {
+        // Robolectric paused 模式拿不到 scheduler，没有可靠的异步就绪信号；
+        // 固定轮次驱动帧时钟，窗口从 44×500ms 压到 30×200ms（22s → 6s）
+        repeat(rounds) {
+            Thread.sleep(200)
+            compose.waitForIdle()
+            compose.mainClock.advanceTimeByFrame()
+        }
+    }
+
     /** 截图目录：默认 build/screenshots，可用 -Dscreenshot.dir=... 覆盖（不写死绝对路径） */
     private fun save(name: String) {
         val dir = File(System.getProperty("screenshot.dir") ?: "build/screenshots")
@@ -73,10 +88,7 @@ class OnePlus13RenderTest {
             }
         }
         // 等各卡片的异步数据（注册表匹配 / EmuReady 查询 / 生态动态）落地后再截图
-        repeat(44) {
-            Thread.sleep(500)
-            compose.mainClock.advanceTimeByFrame()
-        }
+        settle()
         save("11-oneplus13-device.png")
     }
 
@@ -93,10 +105,7 @@ class OnePlus13RenderTest {
                 }
             }
         }
-        repeat(44) {
-            Thread.sleep(500)
-            compose.mainClock.advanceTimeByFrame()
-        }
+        settle()
         save("12-oneplus13-device-tall.png")
     }
 }

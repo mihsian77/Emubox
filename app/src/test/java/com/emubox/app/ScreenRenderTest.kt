@@ -79,6 +79,7 @@ class ScreenRenderTest {
         official = o.optBoolean("official"),
         channel = o.optString("channel", "stable"),
         latestTag = o.optString("latest_tag"),
+        latestApkUrl = o.optString("latest_apk_url"),
         latestApkName = o.optString("latest_apk_name"),
         latestApkSize = o.optLong("latest_apk_size"),
         pushedAt = o.optString("pushed_at"),
