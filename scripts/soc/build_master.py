@@ -171,9 +171,16 @@ def split_codenames(raw):
 
 
 def make_id(base):
-    """代号优先做 id；纯中文名（如「麒麟 8000」没有英文名）落到哈希，避免 id 为空。"""
+    """代号优先做 id；纯中文名落到哈希。
+
+    注意「天玑8000」「麒麟 8000」这类名字去掉汉字后只剩数字，
+    若直接当 id 会和别的芯片撞车——去重时按 id 合并，麒麟 8000 曾被天玑 8000 吞掉。
+    所以纯数字一律走哈希。
+    """
     slug = re.sub(r'[^a-z0-9]+', '-', (base or '').lower()).strip('-')
-    return slug or 'soc-' + hashlib.md5((base or '').encode('utf-8')).hexdigest()[:8]
+    if not slug or slug.isdigit():
+        return 'soc-' + hashlib.md5((base or '').encode('utf-8')).hexdigest()[:8]
+    return slug
 
 
 def bare_code(c):
@@ -208,17 +215,26 @@ def assign_code(code, soc_id, exact, loose, assigned, conflicts):
 
 
 def split_alias(name):
-    """安兔兔把同平台不同调频写成一行：'天玑 8200/8200 Ultra'，拆成两个可匹配的名字。"""
+    """安兔兔把同平台不同调频写成一行：'天玑 8200/8200 Ultra'，拆成两个可匹配的名字。
+
+    前缀只取到型号数字之前（'天玑'、'骁龙'、'MediaTek Dimensity'），
+    不能拿整个第一段当前缀——'天玑8200' 当前缀会拼出 '天玑8200 8200 Ultra'。
+    """
     if '/' not in (name or ''):
         return [name]
-    head = name.split('/')[0].strip()
-    prefix = head.split()[0] if head.split() else ''
+    parts = name.split('/')
+    head = parts[0].strip()
+    m = re.match(r'^([^\d]+)', head)
+    prefix = m.group(1).strip() if m else ''
     out = [head]
-    for part in name.split('/')[1:]:
+    for part in parts[1:]:
         part = part.strip()
         if not part:
             continue
-        out.append(part if part.lower().startswith(prefix.lower()) or not prefix else f'{prefix} {part}')
+        if prefix and part.lower().startswith(prefix.lower()):
+            out.append(part)
+        else:
+            out.append(f'{prefix} {part}'.strip())
     return out
 
 
@@ -404,9 +420,11 @@ def main():
     # 而这些正是二手老机与低端机用户手里的芯片。安兔兔从骁龙 425 一直排到 2026 新品，
     # 拿它当覆盖面基线，缺的条目按名字建（有部件号就挂上，没有也先能认出名字）。
     known_names = set()
+    known_index = {}
     for s in socs:
         for n in s['names'] + s['codes']:
             known_names.add(normalize(n))
+            known_index.setdefault(normalize(n), s)
 
     specs = load_json(os.path.join(ASSETS, 'bench', 'soc_specs.json'), {}).get('socs', {})
     spec_index = {}
@@ -433,8 +451,23 @@ def main():
         # 安兔兔偶发把分数列当名称抓进来（'25673 分'）：没有字母、或只剩「分」字的一律丢
         if not name or not re.search(r'[A-Za-z]', name) and not re.search(r'[\u4e00-\u9fa5]', name.replace('分', '')):
             continue
-        aliases = split_alias(name)
-        if any(normalize(a) in known_names or strip_vendor(a) in known_names for a in aliases):
+        # 先去掉「联发科技 / 高通」前缀再拆斜杠：否则「联发科技 天玑8200/8200 Ultra」
+        # 拆出来是带厂牌的一整串，归一化后对不上主表
+        base_name = display_name(name)
+        aliases = split_alias(base_name)
+        # 已经在表里的同芯别名（「天玑8200/8200 Ultra」对「天玑 8200」）补进 names，
+        # 否则用户看到的名字对不上、按名字也查不到
+        # 用原全名一起查：极客湾写「展锐 T770」、安兔兔写「紫光展锐 T770」，
+        # 去掉厂牌后都剩型号，但只拿去厂牌结果查会漏掉带厂牌的那条
+        hit = None
+        for a in [name] + aliases:
+            hit = known_index.get(normalize(a)) or known_index.get(strip_vendor(a))
+            if hit:
+                break
+        if hit:
+            for a in aliases:
+                if a not in hit['names']:
+                    hit['names'].append(a)
             continue
         pe = None
         for a in aliases:
@@ -446,12 +479,12 @@ def main():
         main_name = aliases[0]
         # 极客湾名字不带厂牌（天玑 8400），安兔兔带（联发科技 天玑8400-Max）。
         # 界面已有厂商徽章，这里统一去掉首词厂牌，全名保留在 names 里供匹配。
-        display = display_name(main_name)
+        display = main_name
         gpu = sp.get('gpu', '')
         soc = {
             'id': make_id(codes[0] if codes else display),
             'codes': codes,
-            'names': list(dict.fromkeys([main_name, display] + aliases)),
+            'names': list(dict.fromkeys([name] + aliases)),
             'name': display,
             'name_en': name_en or (pe or {}).get('name_en', ''),
             'brand': (pe or {}).get('brand') or brand_of(name),

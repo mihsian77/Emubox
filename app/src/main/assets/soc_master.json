@@ -297,7 +297,8 @@
    ],
    "names": [
     "麒麟 9020",
-    "HiSilicon Kirin 9020"
+    "HiSilicon Kirin 9020",
+    "麒麟9020"
    ],
    "name": "麒麟 9020",
    "name_en": "HiSilicon Kirin 9020",
@@ -325,7 +326,8 @@
    ],
    "names": [
     "麒麟 9010",
-    "HiSilicon Kirin 9010"
+    "HiSilicon Kirin 9010",
+    "麒麟9010"
    ],
    "name": "麒麟 9010",
    "name_en": "HiSilicon Kirin 9010",
@@ -353,7 +355,8 @@
    ],
    "names": [
     "麒麟 9000S",
-    "HiSilicon Kirin 9000S"
+    "HiSilicon Kirin 9000S",
+    "麒麟9000s"
    ],
    "name": "麒麟 9000S",
    "name_en": "HiSilicon Kirin 9000S",
@@ -380,7 +383,8 @@
    ],
    "names": [
     "麒麟 9000",
-    "HiSilicon Kirin 9000"
+    "HiSilicon Kirin 9000",
+    "麒麟9000"
    ],
    "name": "麒麟 9000",
    "name_en": "HiSilicon Kirin 9000",
@@ -409,7 +413,8 @@
    ],
    "names": [
     "麒麟 9000E",
-    "HiSilicon Kirin 9000E"
+    "HiSilicon Kirin 9000E",
+    "麒麟9000E"
    ],
    "name": "麒麟 9000E",
    "name_en": "HiSilicon Kirin 9000E",
@@ -455,7 +460,8 @@
    "codes": [],
    "names": [
     "麒麟 9000SL",
-    "HiSilicon Kirin 9000SL"
+    "HiSilicon Kirin 9000SL",
+    "麒麟9000SL"
    ],
    "name": "麒麟 9000SL",
    "name_en": "HiSilicon Kirin 9000SL",
@@ -503,7 +509,9 @@
     "HiSilicon Kirin 990 (4G)",
     "HiSilicon Kirin 990 5G",
     "麒麟 990",
-    "麒麟 990 5G"
+    "麒麟 990 5G",
+    "麒麟990",
+    "麒麟990 5G"
    ],
    "name": "麒麟 990 5G",
    "name_en": "HiSilicon Kirin 990 5G",
@@ -531,7 +539,8 @@
    ],
    "names": [
     "麒麟 980",
-    "HiSilicon Kirin 980"
+    "HiSilicon Kirin 980",
+    "麒麟980"
    ],
    "name": "麒麟 980",
    "name_en": "HiSilicon Kirin 980",
@@ -559,7 +568,8 @@
    ],
    "names": [
     "麒麟 985",
-    "HiSilicon Kirin 985"
+    "HiSilicon Kirin 985",
+    "麒麟985"
    ],
    "name": "麒麟 985",
    "name_en": "HiSilicon Kirin 985",
@@ -583,7 +593,8 @@
    "codes": [],
    "names": [
     "麒麟 970",
-    "HiSilicon Kirin 970"
+    "HiSilicon Kirin 970",
+    "麒麟970"
    ],
    "name": "麒麟 970",
    "name_en": "HiSilicon Kirin 970",
@@ -609,7 +620,8 @@
    ],
    "names": [
     "麒麟 960",
-    "HiSilicon Kirin 960"
+    "HiSilicon Kirin 960",
+    "麒麟960"
    ],
    "name": "麒麟 960",
    "name_en": "HiSilicon Kirin 960",
@@ -633,7 +645,8 @@
    "codes": [],
    "names": [
     "麒麟 950",
-    "HiSilicon Kirin 950"
+    "HiSilicon Kirin 950",
+    "麒麟950"
    ],
    "name": "麒麟 950",
    "name_en": "HiSilicon Kirin 950",
@@ -652,14 +665,11 @@
    "src": "socpk"
   },
   {
-   "id": "8000",
-   "codes": [
-    "MT6895Z/CZA"
-   ],
+   "id": "soc-9ba829eb",
+   "codes": [],
    "names": [
-    "天玑8000",
-    "联发科技 天玑8000",
-    "麒麟 8000"
+    "麒麟 8000",
+    "麒麟8000"
    ],
    "name": "麒麟 8000",
    "brand": "华为",
@@ -679,7 +689,8 @@
    ],
    "names": [
     "麒麟 820",
-    "HiSilicon Kirin 820"
+    "HiSilicon Kirin 820",
+    "麒麟820"
    ],
    "name": "麒麟 820",
    "name_en": "HiSilicon Kirin 820",
@@ -706,7 +717,8 @@
    ],
    "names": [
     "麒麟 810",
-    "HiSilicon Kirin 810"
+    "HiSilicon Kirin 810",
+    "麒麟810"
    ],
    "name": "麒麟 810",
    "name_en": "HiSilicon Kirin 810",
@@ -751,7 +763,8 @@
    "codes": [],
    "names": [
     "玄戒 O3",
-    "Xiaomi XRING O3"
+    "Xiaomi XRING O3",
+    "玄戒O3"
    ],
    "name": "玄戒 O3",
    "name_en": "Xiaomi XRING O3",
@@ -771,7 +784,8 @@
    "codes": [],
    "names": [
     "玄戒 O1",
-    "Xiaomi XRING O1"
+    "Xiaomi XRING O1",
+    "玄戒O1"
    ],
    "name": "玄戒 O1",
    "name_en": "Xiaomi XRING O1",
@@ -859,7 +873,8 @@
    "codes": [],
    "names": [
     "展锐 T820",
-    "UNISOC T820"
+    "UNISOC T820",
+    "T820"
    ],
    "name": "T820",
    "name_en": "UNISOC T820",
@@ -883,7 +898,8 @@
    "codes": [],
    "names": [
     "展锐 T770",
-    "UNISOC Tanggula T770"
+    "UNISOC Tanggula T770",
+    "T770"
    ],
    "name": "T770",
    "name_en": "UNISOC Tanggula T770",
@@ -907,7 +923,8 @@
    "codes": [],
    "names": [
     "展锐 T760",
-    "UNISOC Tanggula T760"
+    "UNISOC Tanggula T760",
+    "T760"
    ],
    "name": "T760",
    "name_en": "UNISOC Tanggula T760",
@@ -931,7 +948,8 @@
    "codes": [],
    "names": [
     "展锐 T765",
-    "UNISOC Tanggula T765"
+    "UNISOC Tanggula T765",
+    "T765"
    ],
    "name": "T765",
    "name_en": "UNISOC Tanggula T765",
@@ -975,7 +993,8 @@
    "codes": [],
    "names": [
     "展锐 T618",
-    "UNISOC Tiger T618"
+    "UNISOC Tiger T618",
+    "T618"
    ],
    "name": "T618",
    "name_en": "UNISOC Tiger T618",
@@ -999,7 +1018,8 @@
    "codes": [],
    "names": [
     "展锐 T616",
-    "UNISOC Tiger T616"
+    "UNISOC Tiger T616",
+    "T616"
    ],
    "name": "T616",
    "name_en": "UNISOC Tiger T616",
@@ -1023,7 +1043,8 @@
    "codes": [],
    "names": [
     "展锐 T610",
-    "UNISOC Tiger T610"
+    "UNISOC Tiger T610",
+    "T610"
    ],
    "name": "T610",
    "name_en": "UNISOC Tiger T610",
@@ -1047,7 +1068,8 @@
    "codes": [],
    "names": [
     "展锐 T606",
-    "UNISOC Tiger T606"
+    "UNISOC Tiger T606",
+    "T606"
    ],
    "name": "T606",
    "name_en": "UNISOC Tiger T606",
@@ -1071,7 +1093,8 @@
    "codes": [],
    "names": [
     "展锐 SC9863A",
-    "UNISOC SC9863A"
+    "UNISOC SC9863A",
+    "SC9863A"
    ],
    "name": "SC9863A",
    "name_en": "UNISOC SC9863A",
@@ -1097,7 +1120,8 @@
    ],
    "names": [
     "天玑 9500",
-    "MediaTek Dimensity 9500"
+    "MediaTek Dimensity 9500",
+    "天玑9500"
    ],
    "name": "天玑 9500",
    "name_en": "MediaTek Dimensity 9500",
@@ -1126,7 +1150,8 @@
    ],
    "names": [
     "天玑 9400",
-    "MediaTek Dimensity 9400"
+    "MediaTek Dimensity 9400",
+    "天玑9400"
    ],
    "name": "天玑 9400",
    "name_en": "MediaTek Dimensity 9400",
@@ -1157,7 +1182,8 @@
    ],
    "names": [
     "天玑 9300",
-    "MediaTek Dimensity 9300"
+    "MediaTek Dimensity 9300",
+    "天玑9300"
    ],
    "name": "天玑 9300",
    "name_en": "MediaTek Dimensity 9300",
@@ -1187,7 +1213,8 @@
    ],
    "names": [
     "天玑 9200",
-    "MediaTek Dimensity 9200"
+    "MediaTek Dimensity 9200",
+    "天玑9200"
    ],
    "name": "天玑 9200",
    "name_en": "MediaTek Dimensity 9200",
@@ -1218,7 +1245,8 @@
    ],
    "names": [
     "天玑 9000",
-    "MediaTek Dimensity 9000"
+    "MediaTek Dimensity 9000",
+    "天玑9000"
    ],
    "name": "天玑 9000",
    "name_en": "MediaTek Dimensity 9000",
@@ -1301,7 +1329,9 @@
    ],
    "names": [
     "天玑 8200",
-    "MediaTek Dimensity 8200"
+    "MediaTek Dimensity 8200",
+    "天玑8200",
+    "天玑 8200 Ultra"
    ],
    "name": "天玑 8200",
    "name_en": "MediaTek Dimensity 8200",
@@ -1328,7 +1358,8 @@
    ],
    "names": [
     "天玑 8100",
-    "MediaTek Dimensity 8100"
+    "MediaTek Dimensity 8100",
+    "天玑8100"
    ],
    "name": "天玑 8100",
    "name_en": "MediaTek Dimensity 8100",
@@ -1380,7 +1411,8 @@
    ],
    "names": [
     "天玑 1200",
-    "MediaTek Dimensity 1200"
+    "MediaTek Dimensity 1200",
+    "天玑1200"
    ],
    "name": "天玑 1200",
    "name_en": "MediaTek Dimensity 1200",
@@ -1409,7 +1441,8 @@
    ],
    "names": [
     "天玑 1100",
-    "MediaTek Dimensity 1100"
+    "MediaTek Dimensity 1100",
+    "天玑1100"
    ],
    "name": "天玑 1100",
    "name_en": "MediaTek Dimensity 1100",
@@ -1436,7 +1469,8 @@
    ],
    "names": [
     "天玑 1000+",
-    "MediaTek Dimensity 1000 Plus"
+    "MediaTek Dimensity 1000 Plus",
+    "天玑1000+"
    ],
    "name": "天玑 1000+",
    "name_en": "MediaTek Dimensity 1000 Plus",
@@ -1464,7 +1498,8 @@
    ],
    "names": [
     "天玑 1000L",
-    "MediaTek Dimensity 1000L"
+    "MediaTek Dimensity 1000L",
+    "天玑1000L"
    ],
    "name": "天玑 1000L",
    "name_en": "MediaTek Dimensity 1000L",
@@ -1493,7 +1528,8 @@
    ],
    "names": [
     "天玑 7200",
-    "MediaTek Dimensity 7200"
+    "MediaTek Dimensity 7200",
+    "天玑7200"
    ],
    "name": "天玑 7200",
    "name_en": "MediaTek Dimensity 7200",
@@ -1520,7 +1556,8 @@
    ],
    "names": [
     "天玑 1080",
-    "MediaTek Dimensity 1080"
+    "MediaTek Dimensity 1080",
+    "天玑1080"
    ],
    "name": "天玑 1080",
    "name_en": "MediaTek Dimensity 1080",
@@ -1547,7 +1584,8 @@
    ],
    "names": [
     "天玑 920",
-    "MediaTek Dimensity 920"
+    "MediaTek Dimensity 920",
+    "天玑920"
    ],
    "name": "天玑 920",
    "name_en": "MediaTek Dimensity 920",
@@ -1573,7 +1611,8 @@
    ],
    "names": [
     "天玑 820",
-    "MediaTek Dimensity 820"
+    "MediaTek Dimensity 820",
+    "天玑820"
    ],
    "name": "天玑 820",
    "name_en": "MediaTek Dimensity 820",
@@ -1600,7 +1639,8 @@
    ],
    "names": [
     "天玑 810",
-    "MediaTek Dimensity 810"
+    "MediaTek Dimensity 810",
+    "天玑810"
    ],
    "name": "天玑 810",
    "name_en": "MediaTek Dimensity 810",
@@ -1626,7 +1666,8 @@
    ],
    "names": [
     "天玑 800",
-    "MediaTek Dimensity 800"
+    "MediaTek Dimensity 800",
+    "天玑800"
    ],
    "name": "天玑 800",
    "name_en": "MediaTek Dimensity 800",
@@ -1654,7 +1695,8 @@
    ],
    "names": [
     "天玑 800U",
-    "MediaTek Dimensity 800U"
+    "MediaTek Dimensity 800U",
+    "天玑800U"
    ],
    "name": "天玑 800U",
    "name_en": "MediaTek Dimensity 800U",
@@ -1682,7 +1724,8 @@
    ],
    "names": [
     "天玑 720",
-    "MediaTek Dimensity 720"
+    "MediaTek Dimensity 720",
+    "天玑720"
    ],
    "name": "天玑 720",
    "name_en": "MediaTek Dimensity 720",
@@ -1710,7 +1753,8 @@
    ],
    "names": [
     "天玑 700",
-    "MediaTek Dimensity 700"
+    "MediaTek Dimensity 700",
+    "天玑700"
    ],
    "name": "天玑 700",
    "name_en": "MediaTek Dimensity 700",
@@ -1738,7 +1782,8 @@
    ],
    "names": [
     "曦力 G99",
-    "MediaTek Helio G99"
+    "MediaTek Helio G99",
+    "Helio G99"
    ],
    "name": "曦力 G99",
    "name_en": "MediaTek Helio G99",
@@ -1767,7 +1812,8 @@
    ],
    "names": [
     "曦力 G90T",
-    "MediaTek Helio G90T"
+    "MediaTek Helio G90T",
+    "Helio G90T"
    ],
    "name": "曦力 G90T",
    "name_en": "MediaTek Helio G90T",
@@ -1798,7 +1844,8 @@
    ],
    "names": [
     "曦力 G85",
-    "MediaTek Helio G85"
+    "MediaTek Helio G85",
+    "曦力G85"
    ],
    "name": "曦力 G85",
    "name_en": "MediaTek Helio G85",
@@ -1829,7 +1876,8 @@
    ],
    "names": [
     "曦力 G80",
-    "MediaTek Helio G80"
+    "MediaTek Helio G80",
+    "Helio G80"
    ],
    "name": "曦力 G80",
    "name_en": "MediaTek Helio G80",
@@ -1855,7 +1903,8 @@
    ],
    "names": [
     "曦力 X30",
-    "MediaTek Helio X30"
+    "MediaTek Helio X30",
+    "Helio X30"
    ],
    "name": "曦力 X30",
    "name_en": "MediaTek Helio X30",
@@ -1880,7 +1929,8 @@
    ],
    "names": [
     "曦力 X20",
-    "MediaTek Helio X20"
+    "MediaTek Helio X20",
+    "Helio X20"
    ],
    "name": "曦力 X20",
    "name_en": "MediaTek Helio X20",
@@ -1905,7 +1955,8 @@
    ],
    "names": [
     "曦力 P90",
-    "MediaTek Helio P90"
+    "MediaTek Helio P90",
+    "Helio P90"
    ],
    "name": "曦力 P90",
    "name_en": "MediaTek Helio P90",
@@ -1930,7 +1981,8 @@
    ],
    "names": [
     "曦力 P60",
-    "MediaTek Helio P60"
+    "MediaTek Helio P60",
+    "Helio P60"
    ],
    "name": "曦力 P60",
    "name_en": "MediaTek Helio P60",
@@ -1960,7 +2012,8 @@
    ],
    "names": [
     "曦力 P35",
-    "MediaTek Helio P35"
+    "MediaTek Helio P35",
+    "Helio P35"
    ],
    "name": "曦力 P35",
    "name_en": "MediaTek Helio P35",
@@ -2682,7 +2735,8 @@
    ],
    "names": [
     "骁龙 8 Elite Gen5",
-    "Qualcomm Snapdragon 8 Elite Gen 5"
+    "Qualcomm Snapdragon 8 Elite Gen 5",
+    "骁龙8 至尊版 Gen5"
    ],
    "name": "骁龙 8 Elite Gen5",
    "name_en": "Qualcomm Snapdragon 8 Elite Gen 5",
@@ -2712,7 +2766,8 @@
    ],
    "names": [
     "骁龙 8 Elite",
-    "Qualcomm Snapdragon 8 Elite"
+    "Qualcomm Snapdragon 8 Elite",
+    "骁龙8 至尊版"
    ],
    "name": "骁龙 8 Elite",
    "name_en": "Qualcomm Snapdragon 8 Elite",
@@ -2740,7 +2795,8 @@
    ],
    "names": [
     "骁龙 8 Gen5",
-    "Qualcomm Snapdragon 8 Gen 5"
+    "Qualcomm Snapdragon 8 Gen 5",
+    "骁龙8 Gen 5"
    ],
    "name": "骁龙 8 Gen5",
    "name_en": "Qualcomm Snapdragon 8 Gen 5",
@@ -2771,7 +2827,8 @@
    ],
    "names": [
     "骁龙 8 Gen3",
-    "Qualcomm Snapdragon 8 Gen 3"
+    "Qualcomm Snapdragon 8 Gen 3",
+    "骁龙8 Gen 3"
    ],
    "name": "骁龙 8 Gen3",
    "name_en": "Qualcomm Snapdragon 8 Gen 3",
@@ -2799,7 +2856,8 @@
    ],
    "names": [
     "骁龙 8s Gen3",
-    "Qualcomm Snapdragon 8s Gen 3"
+    "Qualcomm Snapdragon 8s Gen 3",
+    "骁龙8s Gen 3"
    ],
    "name": "骁龙 8s Gen3",
    "name_en": "Qualcomm Snapdragon 8s Gen 3",
@@ -2829,7 +2887,8 @@
    ],
    "names": [
     "骁龙 8 Gen2",
-    "Qualcomm Snapdragon 8 Gen 2"
+    "Qualcomm Snapdragon 8 Gen 2",
+    "骁龙8 Gen 2"
    ],
    "name": "骁龙 8 Gen2",
    "name_en": "Qualcomm Snapdragon 8 Gen 2",
@@ -2857,7 +2916,8 @@
    ],
    "names": [
     "骁龙 8+ Gen1",
-    "Qualcomm Snapdragon 8+ Gen 1"
+    "Qualcomm Snapdragon 8+ Gen 1",
+    "骁龙8+ Gen 1"
    ],
    "name": "骁龙 8+ Gen1",
    "name_en": "Qualcomm Snapdragon 8+ Gen 1",
@@ -2884,7 +2944,8 @@
    ],
    "names": [
     "骁龙 8 Gen1",
-    "Qualcomm Snapdragon 8 Gen 1"
+    "Qualcomm Snapdragon 8 Gen 1",
+    "骁龙8 Gen 1"
    ],
    "name": "骁龙 8 Gen1",
    "name_en": "Qualcomm Snapdragon 8 Gen 1",
@@ -2912,7 +2973,8 @@
    ],
    "names": [
     "骁龙 888+",
-    "Qualcomm Snapdragon 888+"
+    "Qualcomm Snapdragon 888+",
+    "骁龙888 Plus"
    ],
    "name": "骁龙 888+",
    "name_en": "Qualcomm Snapdragon 888+",
@@ -2939,7 +3001,8 @@
    ],
    "names": [
     "骁龙 888",
-    "Qualcomm Snapdragon 888"
+    "Qualcomm Snapdragon 888",
+    "骁龙888"
    ],
    "name": "骁龙 888",
    "name_en": "Qualcomm Snapdragon 888",
@@ -2968,7 +3031,8 @@
    ],
    "names": [
     "骁龙 870",
-    "Qualcomm Snapdragon 870"
+    "Qualcomm Snapdragon 870",
+    "骁龙870"
    ],
    "name": "骁龙 870",
    "name_en": "Qualcomm Snapdragon 870",
@@ -2996,7 +3060,8 @@
    ],
    "names": [
     "骁龙 865+",
-    "Qualcomm Snapdragon 865+"
+    "Qualcomm Snapdragon 865+",
+    "骁龙865 Plus"
    ],
    "name": "骁龙 865+",
    "name_en": "Qualcomm Snapdragon 865+",
@@ -3023,7 +3088,8 @@
    ],
    "names": [
     "骁龙 865",
-    "Qualcomm Snapdragon 865"
+    "Qualcomm Snapdragon 865",
+    "骁龙865"
    ],
    "name": "骁龙 865",
    "name_en": "Qualcomm Snapdragon 865",
@@ -3054,7 +3120,9 @@
     "Qualcomm Snapdragon 855+",
     "Qualcomm Snapdragon 860",
     "骁龙 855+",
-    "骁龙 860"
+    "骁龙 860",
+    "骁龙855 Plus",
+    "骁龙860"
    ],
    "name": "骁龙 860",
    "name_en": "Qualcomm Snapdragon 860",
@@ -3082,7 +3150,8 @@
    ],
    "names": [
     "骁龙 855",
-    "Qualcomm Snapdragon 855"
+    "Qualcomm Snapdragon 855",
+    "骁龙855"
    ],
    "name": "骁龙 855",
    "name_en": "Qualcomm Snapdragon 855",
@@ -3109,7 +3178,8 @@
    ],
    "names": [
     "骁龙 845",
-    "Qualcomm Snapdragon 845"
+    "Qualcomm Snapdragon 845",
+    "骁龙845"
    ],
    "name": "骁龙 845",
    "name_en": "Qualcomm Snapdragon 845",
@@ -3136,7 +3206,8 @@
    ],
    "names": [
     "骁龙 835",
-    "Qualcomm Snapdragon 835"
+    "Qualcomm Snapdragon 835",
+    "骁龙835"
    ],
    "name": "骁龙 835",
    "name_en": "Qualcomm Snapdragon 835",
@@ -3168,7 +3239,9 @@
     "骁龙 821",
     "骁龙 820",
     "Qualcomm Snapdragon 821",
-    "Qualcomm 820"
+    "Qualcomm Snapdragon 820",
+    "骁龙821",
+    "骁龙820"
    ],
    "name": "骁龙 821 / 820",
    "name_en": "Qualcomm Snapdragon 821 / 820",
@@ -3191,7 +3264,8 @@
    ],
    "names": [
     "骁龙 810",
-    "Qualcomm Snapdragon 810"
+    "Qualcomm Snapdragon 810",
+    "骁龙810"
    ],
    "name": "骁龙 810",
    "name_en": "Qualcomm Snapdragon 810",
@@ -3217,7 +3291,8 @@
    ],
    "names": [
     "骁龙 808",
-    "Qualcomm Snapdragon 808"
+    "Qualcomm Snapdragon 808",
+    "骁龙808"
    ],
    "name": "骁龙 808",
    "name_en": "Qualcomm Snapdragon 808",
@@ -3265,7 +3340,8 @@
    ],
    "names": [
     "骁龙 7+ Gen3",
-    "Qualcomm Snapdragon 7+ Gen 3"
+    "Qualcomm Snapdragon 7+ Gen 3",
+    "骁龙7+ Gen 3"
    ],
    "name": "骁龙 7+ Gen3",
    "name_en": "Qualcomm Snapdragon 7+ Gen 3",
@@ -3293,7 +3369,8 @@
    ],
    "names": [
     "骁龙 7+ Gen2",
-    "Qualcomm Snapdragon 7+ Gen 2"
+    "Qualcomm Snapdragon 7+ Gen 2",
+    "骁龙7+ Gen 2"
    ],
    "name": "骁龙 7+ Gen2",
    "name_en": "Qualcomm Snapdragon 7+ Gen 2",
@@ -3322,7 +3399,8 @@
    ],
    "names": [
     "骁龙 7s Gen 2",
-    "Qualcomm Snapdragon 7s Gen 2"
+    "Qualcomm Snapdragon 7s Gen 2",
+    "骁龙7s Gen 2"
    ],
    "name": "骁龙 7s Gen 2",
    "name_en": "Qualcomm Snapdragon 7s Gen 2",
@@ -3350,7 +3428,8 @@
    ],
    "names": [
     "骁龙 7 Gen 1",
-    "Qualcomm Snapdragon 7 Gen 1"
+    "Qualcomm Snapdragon 7 Gen 1",
+    "骁龙7 Gen 1"
    ],
    "name": "骁龙 7 Gen 1",
    "name_en": "Qualcomm Snapdragon 7 Gen 1",
@@ -3376,7 +3455,8 @@
    ],
    "names": [
     "骁龙 782G",
-    "Qualcomm Snapdragon 782G"
+    "Qualcomm Snapdragon 782G",
+    "骁龙782G"
    ],
    "name": "骁龙 782G",
    "name_en": "Qualcomm Snapdragon 782G",
@@ -3404,7 +3484,8 @@
    ],
    "names": [
     "骁龙 780G",
-    "Qualcomm Snapdragon 780G"
+    "Qualcomm Snapdragon 780G",
+    "骁龙780G"
    ],
    "name": "骁龙 780G",
    "name_en": "Qualcomm Snapdragon 780G",
@@ -3430,7 +3511,8 @@
    ],
    "names": [
     "骁龙 778G",
-    "Qualcomm Snapdragon 778G"
+    "Qualcomm Snapdragon 778G",
+    "骁龙778G"
    ],
    "name": "骁龙 778G",
    "name_en": "Qualcomm Snapdragon 778G",
@@ -3457,7 +3539,8 @@
    ],
    "names": [
     "骁龙 768G",
-    "Qualcomm Snapdragon 768G"
+    "Qualcomm Snapdragon 768G",
+    "骁龙768G"
    ],
    "name": "骁龙 768G",
    "name_en": "Qualcomm Snapdragon 768G",
@@ -3484,7 +3567,8 @@
    ],
    "names": [
     "骁龙 765G",
-    "Qualcomm Snapdragon 765G"
+    "Qualcomm Snapdragon 765G",
+    "骁龙765G"
    ],
    "name": "骁龙 765G",
    "name_en": "Qualcomm Snapdragon 765G",
@@ -3511,7 +3595,8 @@
    ],
    "names": [
     "骁龙 750G",
-    "Qualcomm Snapdragon 750G"
+    "Qualcomm Snapdragon 750G",
+    "骁龙750G"
    ],
    "name": "骁龙 750G",
    "name_en": "Qualcomm Snapdragon 750G",
@@ -3538,7 +3623,8 @@
    ],
    "names": [
     "骁龙 730G",
-    "Qualcomm Snapdragon 730G"
+    "Qualcomm Snapdragon 730G",
+    "骁龙730G"
    ],
    "name": "骁龙 730G",
    "name_en": "Qualcomm Snapdragon 730G",
@@ -3564,7 +3650,8 @@
    ],
    "names": [
     "骁龙 710",
-    "Qualcomm Snapdragon 710"
+    "Qualcomm Snapdragon 710",
+    "骁龙710"
    ],
    "name": "骁龙 710",
    "name_en": "Qualcomm Snapdragon 710",
@@ -3591,7 +3678,8 @@
    ],
    "names": [
     "骁龙 6 Gen 1",
-    "Qualcomm Snapdragon 6 Gen 1"
+    "Qualcomm Snapdragon 6 Gen 1",
+    "骁龙6 Gen 1"
    ],
    "name": "骁龙 6 Gen 1",
    "name_en": "Qualcomm Snapdragon 6 Gen 1",
@@ -3618,7 +3706,8 @@
    ],
    "names": [
     "骁龙 695",
-    "Qualcomm Snapdragon 695"
+    "Qualcomm Snapdragon 695",
+    "骁龙695"
    ],
    "name": "骁龙 695",
    "name_en": "Qualcomm Snapdragon 695",
@@ -3645,7 +3734,8 @@
    ],
    "names": [
     "骁龙 680",
-    "Qualcomm Snapdragon 680"
+    "Qualcomm Snapdragon 680",
+    "骁龙680"
    ],
    "name": "骁龙 680",
    "name_en": "Qualcomm Snapdragon 680",
@@ -3671,7 +3761,8 @@
    ],
    "names": [
     "骁龙 675",
-    "Qualcomm Snapdragon 675"
+    "Qualcomm Snapdragon 675",
+    "骁龙675"
    ],
    "name": "骁龙 675",
    "name_en": "Qualcomm Snapdragon 675",
@@ -3697,7 +3788,8 @@
    ],
    "names": [
     "骁龙 665",
-    "Qualcomm Snapdragon 665"
+    "Qualcomm Snapdragon 665",
+    "骁龙665"
    ],
    "name": "骁龙 665",
    "name_en": "Qualcomm Snapdragon 665",
@@ -3723,7 +3815,8 @@
    ],
    "names": [
     "骁龙 662",
-    "Qualcomm Snapdragon 662"
+    "Qualcomm Snapdragon 662",
+    "骁龙662"
    ],
    "name": "骁龙 662",
    "name_en": "Qualcomm Snapdragon 662",
@@ -3749,7 +3842,8 @@
    ],
    "names": [
     "骁龙 660",
-    "Qualcomm Snapdragon 660"
+    "Qualcomm Snapdragon 660",
+    "骁龙660"
    ],
    "name": "骁龙 660",
    "name_en": "Qualcomm Snapdragon 660",
@@ -3775,7 +3869,8 @@
    ],
    "names": [
     "骁龙 636",
-    "Qualcomm Snapdragon 636"
+    "Qualcomm Snapdragon 636",
+    "骁龙636"
    ],
    "name": "骁龙 636",
    "name_en": "Qualcomm Snapdragon 636",
@@ -3801,7 +3896,8 @@
    ],
    "names": [
     "骁龙 625",
-    "Qualcomm Snapdragon 625"
+    "Qualcomm Snapdragon 625",
+    "骁龙625"
    ],
    "name": "骁龙 625",
    "name_en": "Qualcomm Snapdragon 625",
@@ -3828,7 +3924,8 @@
    "names": [
     "Qualcomm Snapdragon 4 Gen 2",
     "Qualcomm Snapdragon 4 Gen 2/4",
-    "骁龙 4 Gen 2"
+    "骁龙 4 Gen 2",
+    "骁龙4 Gen 2"
    ],
    "name": "骁龙 4 Gen 2",
    "name_en": "Qualcomm Snapdragon 4 Gen 2",
@@ -3856,7 +3953,8 @@
    ],
    "names": [
     "骁龙 4 Gen 1",
-    "Qualcomm Snapdragon 4 Gen 1"
+    "Qualcomm Snapdragon 4 Gen 1",
+    "骁龙4 Gen 1"
    ],
    "name": "骁龙 4 Gen 1",
    "name_en": "Qualcomm Snapdragon 4 Gen 1",
@@ -3882,7 +3980,8 @@
    ],
    "names": [
     "骁龙 480",
-    "Qualcomm Snapdragon 480"
+    "Qualcomm Snapdragon 480",
+    "骁龙480"
    ],
    "name": "骁龙 480",
    "name_en": "Qualcomm Snapdragon 480",
@@ -3909,7 +4008,8 @@
    ],
    "names": [
     "骁龙 439",
-    "Qualcomm Snapdragon 439"
+    "Qualcomm Snapdragon 439",
+    "骁龙439"
    ],
    "name": "骁龙 439",
    "name_en": "Qualcomm Snapdragon 439",
@@ -3935,7 +4035,8 @@
    ],
    "names": [
     "骁龙 430",
-    "Qualcomm Snapdragon 430"
+    "Qualcomm Snapdragon 430",
+    "骁龙430"
    ],
    "name": "骁龙 430",
    "name_en": "Qualcomm Snapdragon 430",
@@ -4068,7 +4169,7 @@
    "src": "antutu"
   },
   {
-   "id": "9400",
+   "id": "soc-42b561ed",
    "codes": [
     "MT6991Z/TCZA",
     "MT6991Z/TCZB"
@@ -4141,7 +4242,7 @@
    "src": "antutu"
   },
   {
-   "id": "9300",
+   "id": "soc-a324d056",
    "codes": [
     "MT6989W/TCZA",
     "MT8796W/TNZA"
@@ -4251,7 +4352,7 @@
    "src": "antutu"
   },
   {
-   "id": "8450",
+   "id": "soc-bc03baec",
    "codes": [
     "MT6899Z_D/ZA",
     "MT6899_D/ZA"
@@ -4271,13 +4372,11 @@
    "src": "antutu"
   },
   {
-   "id": "8500",
+   "id": "soc-dbbc923e",
    "codes": [],
    "names": [
-    "天玑8500 满血版",
-    "天玑8500 竞速版",
-    "联发科技 天玑8500 满血版",
-    "联发科技 天玑8500 竞速版"
+    "联发科技 天玑8500 竞速版",
+    "天玑8500 竞速版"
    ],
    "name": "天玑8500 竞速版",
    "name_en": "联发科技 天玑8500 竞速版",
@@ -4285,6 +4384,22 @@
    "antutu": "1321684",
    "antutu_cpu": "602298",
    "antutu_gpu": "719386",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-ae81a5df",
+   "codes": [],
+   "names": [
+    "联发科技 天玑8500 满血版",
+    "天玑8500 满血版"
+   ],
+   "name": "天玑8500 满血版",
+   "name_en": "联发科技 天玑8500 满血版",
+   "brand": "联发科",
+   "antutu": "1302780",
+   "antutu_cpu": "661699",
+   "antutu_gpu": "641081",
    "ludashi": "889373",
    "form": "phone",
    "src": "antutu"
@@ -4377,7 +4492,7 @@
    "src": "antutu"
   },
   {
-   "id": "8400",
+   "id": "soc-a797ad47",
    "codes": [],
    "names": [
     "联发科技 天玑8400 满血版",
@@ -4394,7 +4509,7 @@
    "src": "antutu"
   },
   {
-   "id": "9200",
+   "id": "soc-1091d24c",
    "codes": [
     "MT6985W/TCZA"
    ],
@@ -4475,7 +4590,7 @@
    "src": "antutu"
   },
   {
-   "id": "8350",
+   "id": "soc-4f474ad4",
    "codes": [
     "MT6897Z_D/ZA"
    ],
@@ -4516,7 +4631,7 @@
    "src": "antutu"
   },
   {
-   "id": "9000",
+   "id": "soc-57ebde8f",
    "codes": [
     "MT6983W/CZA",
     "MT6983Z/TCZA",
@@ -4537,7 +4652,7 @@
    "src": "antutu"
   },
   {
-   "id": "8250",
+   "id": "soc-f22c90b8",
    "codes": [
     "MT6896Z_C/CZA"
    ],
@@ -4650,7 +4765,7 @@
    "src": "antutu"
   },
   {
-   "id": "7500",
+   "id": "soc-0f1e40d3",
    "codes": [],
    "names": [
     "联发科技 天玑7500 满血版",
@@ -4754,7 +4869,7 @@
    "src": "antutu"
   },
   {
-   "id": "1300",
+   "id": "soc-c7087581",
    "codes": [
     "MT6893Z_Z/CZA"
    ],
@@ -4795,7 +4910,7 @@
    "src": "antutu"
   },
   {
-   "id": "8050",
+   "id": "soc-9eaeebbc",
    "codes": [
     "MT6893Z_T/CZA"
    ],
@@ -4831,6 +4946,24 @@
    "antutu": "492875",
    "antutu_cpu": "373770",
    "antutu_gpu": "119105",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-969a84a5",
+   "codes": [
+    "MT6895Z/CZA"
+   ],
+   "names": [
+    "联发科技 天玑8000",
+    "天玑8000"
+   ],
+   "name": "天玑8000",
+   "name_en": "联发科技 天玑8000",
+   "brand": "联发科",
+   "antutu": "486451",
+   "antutu_cpu": "304126",
+   "antutu_gpu": "182325",
    "form": "phone",
    "src": "antutu"
   },
@@ -4877,7 +5010,7 @@
    "src": "antutu"
   },
   {
-   "id": "7400",
+   "id": "soc-50de5fd7",
    "codes": [
     "MT6878V/TZA",
     "MT8775V/TAZA"
@@ -4963,7 +5096,7 @@
    "src": "antutu"
   },
   {
-   "id": "8020",
+   "id": "soc-15f3e44a",
    "codes": [
     "MT6891Z_T/CZA",
     "MT6891Z_Z/CZA"
@@ -5177,7 +5310,7 @@
    "src": "antutu"
   },
   {
-   "id": "7300",
+   "id": "soc-37a41d42",
    "codes": [
     "MT8775V/NAZA"
    ],
@@ -5217,7 +5350,7 @@
    "src": "antutu"
   },
   {
-   "id": "7030",
+   "id": "soc-c3b8becc",
    "codes": [
     "MT6879V_T/ZA"
    ],
@@ -5235,7 +5368,7 @@
    "src": "antutu"
   },
   {
-   "id": "7050",
+   "id": "soc-595348b8",
    "codes": [
     "MT6877V_T/TTZA"
    ],
@@ -5273,7 +5406,7 @@
    "src": "antutu"
   },
   {
-   "id": "1050",
+   "id": "soc-049c64e2",
    "codes": [
     "MT6879V/ZA"
    ],
@@ -5388,7 +5521,7 @@
    "src": "antutu"
   },
   {
-   "id": "930",
+   "id": "soc-b70aa3c6",
    "codes": [
     "MT6855V/AZA"
    ],
@@ -5428,7 +5561,7 @@
    "src": "antutu"
   },
   {
-   "id": "7025",
+   "id": "soc-ab7062b6",
    "codes": [
     "MT6855V/ATZA",
     "MT6855V_A/ATZA"
@@ -5640,7 +5773,7 @@
    "src": "antutu"
   },
   {
-   "id": "6080",
+   "id": "soc-4e66e50b",
    "codes": [
     "MT6833GP"
    ],
@@ -5658,7 +5791,7 @@
    "src": "antutu"
   },
   {
-   "id": "6100",
+   "id": "soc-74edade1",
    "codes": [
     "MT6835V/ZA"
    ],
@@ -5676,7 +5809,7 @@
    "src": "antutu"
   },
   {
-   "id": "6300",
+   "id": "soc-b13e87d6",
    "codes": [
     "MT6835V/TZB"
    ],
@@ -5853,7 +5986,7 @@
    "src": "antutu"
   },
   {
-   "id": "6020",
+   "id": "soc-159c4cd9",
    "codes": [
     "MT6833G"
    ],
@@ -5917,7 +6050,7 @@
    "src": "antutu"
   },
   {
-   "id": "7020",
+   "id": "soc-ac89308f",
    "codes": [
     "MT6855G"
    ],
@@ -7156,7 +7289,7 @@
    "src": "antutu"
   },
   {
-   "id": "1200",
+   "id": "soc-05e498e1",
    "codes": [],
    "names": [
     "联发科技 迅鲲1200",
@@ -9384,10 +9517,10 @@
     "mt6789x"
    ],
    "MT6833G": [
-    "6020"
+    "soc-159c4cd9"
    ],
    "MT6833GP": [
-    "6080"
+    "soc-4e66e50b"
    ],
    "MT6833V/NZA": [
     "mt6833"
@@ -9411,28 +9544,28 @@
     "mt6835v-ttzb"
    ],
    "MT6835V/TZB": [
-    "6300"
+    "soc-b13e87d6"
    ],
    "MT6835V/ZA": [
-    "6100"
+    "soc-74edade1"
    ],
    "MT6853V/NZA": [
     "mt6853v-za"
    ],
    "MT6855G": [
-    "7020"
+    "soc-ac89308f"
    ],
    "MT6855V/ATZA": [
-    "7025"
+    "soc-ab7062b6"
    ],
    "MT6855V/AZA": [
-    "930"
+    "soc-b70aa3c6"
    ],
    "MT6855V/TTZA": [
     "mt6855v-ttza"
    ],
    "MT6855VA/ATZA": [
-    "7025"
+    "soc-ab7062b6"
    ],
    "MT6858V/TZA": [
     "7300e"
@@ -9450,7 +9583,7 @@
     "mt6877"
    ],
    "MT6877VT/TTZA": [
-    "7050"
+    "soc-595348b8"
    ],
    "MT6878V/FTZA": [
     "mt6878v-ftza"
@@ -9462,7 +9595,7 @@
     "mt6878v-ftza"
    ],
    "MT6878V/TZA": [
-    "7400"
+    "soc-50de5fd7"
    ],
    "MT6878V/UFZA": [
     "mt6878v-ufza"
@@ -9507,10 +9640,10 @@
     "7360-super"
    ],
    "MT6879V/ZA": [
-    "1050"
+    "soc-049c64e2"
    ],
    "MT6879VT/ZA": [
-    "7030"
+    "soc-c3b8becc"
    ],
    "MT6881V/ZA": [
     "mt6881v-za"
@@ -9543,10 +9676,10 @@
     "mt6891"
    ],
    "MT6891ZT/CZA": [
-    "8020"
+    "soc-15f3e44a"
    ],
    "MT6891ZZ/CZA": [
-    "8020"
+    "soc-15f3e44a"
    ],
    "MT6893Z/CZ": [
     "mt6893"
@@ -9564,13 +9697,13 @@
     "mt6893zd-cza"
    ],
    "MT6893ZT/CZA": [
-    "8050"
+    "soc-9eaeebbc"
    ],
    "MT6893ZZ/CZA": [
-    "1300"
+    "soc-c7087581"
    ],
    "MT6895Z/CZA": [
-    "8000"
+    "soc-969a84a5"
    ],
    "MT6895Z/TCZA": [
     "mt6895"
@@ -9594,7 +9727,7 @@
     "mt6896zb-cza"
    ],
    "MT6896ZC/CZA": [
-    "8250"
+    "soc-f22c90b8"
    ],
    "MT6897Z/ZA": [
     "mt6897"
@@ -9606,7 +9739,7 @@
     "8350-ultimate"
    ],
    "MT6897ZD/ZA": [
-    "8350"
+    "soc-4f474ad4"
    ],
    "MT6897ZE/ZA": [
     "mt6897ze-za"
@@ -9636,7 +9769,7 @@
     "mt6899zc-za"
    ],
    "MT6899ZD/ZA": [
-    "8450"
+    "soc-bc03baec"
    ],
    "MT6899ZE/ZA": [
     "mt6899ze-za"
@@ -9663,22 +9796,22 @@
     "mt6899zc-za"
    ],
    "MT6899D/ZA": [
-    "8450"
+    "soc-bc03baec"
    ],
    "MT6983W/CZA": [
-    "9000"
+    "soc-57ebde8f"
    ],
    "MT6983Z/CZA": [
     "mt6983"
    ],
    "MT6983Z/TCZA": [
-    "9000"
+    "soc-57ebde8f"
    ],
    "MT6985W/CZA": [
     "mt6985"
    ],
    "MT6985W/TCZA": [
-    "9200"
+    "soc-1091d24c"
    ],
    "MT6989TE": [
     "9400e"
@@ -9687,7 +9820,7 @@
     "mt6989"
    ],
    "MT6989W/TCZA": [
-    "9300"
+    "soc-a324d056"
    ],
    "MT6991W/CZA": [
     "mt6991"
@@ -9705,10 +9838,10 @@
     "9500s"
    ],
    "MT6991Z/TCZA": [
-    "9400"
+    "soc-42b561ed"
    ],
    "MT6991Z/TCZB": [
-    "9400"
+    "soc-42b561ed"
    ],
    "MT8766": [
     "mt8766"
@@ -9726,10 +9859,10 @@
     "mt8768ct"
    ],
    "MT8775V/NAZA": [
-    "7300"
+    "soc-37a41d42"
    ],
    "MT8775V/TAZA": [
-    "7400"
+    "soc-50de5fd7"
    ],
    "MT8781J": [
     "g100-ultimate"
@@ -9768,13 +9901,13 @@
     "mt6989"
    ],
    "MT8796W/TNZA": [
-    "9300"
+    "soc-a324d056"
    ],
    "MT8798Z/CNZA": [
     "mt6983"
    ],
    "MT8798Z/TNZA": [
-    "9000"
+    "soc-57ebde8f"
    ],
    "MT8910Z/TNZB": [
     "mt6993"
@@ -9958,9 +10091,9 @@
    "MT6899": [
     "8400-max",
     "8400-ultra",
-    "8450",
     "mt6899",
-    "mt6899zc-za"
+    "mt6899zc-za",
+    "soc-bc03baec"
    ],
    "MT6897": [
     "mt6897"
@@ -10498,10 +10631,10 @@
     "mt6789x"
    ],
    "MT6833G": [
-    "6020"
+    "soc-159c4cd9"
    ],
    "MT6833GP": [
-    "6080"
+    "soc-4e66e50b"
    ],
    "MT6833V/NZA": [
     "mt6833"
@@ -10522,29 +10655,29 @@
     "mt6835v-ttzb"
    ],
    "MT6835V/TZB": [
-    "6300"
+    "soc-b13e87d6"
    ],
    "MT6835": [
-    "6100",
-    "mt6835"
+    "mt6835",
+    "soc-74edade1"
    ],
    "MT6853V/NZA": [
     "mt6853v-za"
    ],
    "MT6855G": [
-    "7020"
+    "soc-ac89308f"
    ],
    "MT6855V/ATZA": [
-    "7025"
+    "soc-ab7062b6"
    ],
    "MT6855V/AZA": [
-    "930"
+    "soc-b70aa3c6"
    ],
    "MT6855V/TTZA": [
     "mt6855v-ttza"
    ],
    "MT6855VA/ATZA": [
-    "7025"
+    "soc-ab7062b6"
    ],
    "MT6858V/TZA": [
     "7300e"
@@ -10559,7 +10692,7 @@
     "mt6877t"
    ],
    "MT6877VT/TTZA": [
-    "7050"
+    "soc-595348b8"
    ],
    "MT6878V/FTZA": [
     "mt6878v-ftza"
@@ -10571,7 +10704,7 @@
     "mt6878v-ftza"
    ],
    "MT6878V/TZA": [
-    "7400"
+    "soc-50de5fd7"
    ],
    "MT6878V/UFZA": [
     "mt6878v-ufza"
@@ -10616,10 +10749,10 @@
     "7360-super"
    ],
    "MT6879": [
-    "1050"
+    "soc-049c64e2"
    ],
    "MT6879VT/ZA": [
-    "7030"
+    "soc-c3b8becc"
    ],
    "MT6881": [
     "mt6881v-za"
@@ -10649,10 +10782,10 @@
     "mt6891"
    ],
    "MT6891ZT/CZA": [
-    "8020"
+    "soc-15f3e44a"
    ],
    "MT6891ZZ/CZA": [
-    "8020"
+    "soc-15f3e44a"
    ],
    "MT6893ZA/CZA": [
     "mt6893za-cza"
@@ -10667,13 +10800,13 @@
     "mt6893zd-cza"
    ],
    "MT6893ZT/CZA": [
-    "8050"
+    "soc-9eaeebbc"
    ],
    "MT6893ZZ/CZA": [
-    "1300"
+    "soc-c7087581"
    ],
    "MT6895Z/CZA": [
-    "8000"
+    "soc-969a84a5"
    ],
    "MT6895Z/TCZA": [
     "mt6895"
@@ -10697,7 +10830,7 @@
     "mt6896zb-cza"
    ],
    "MT6896ZC/CZA": [
-    "8250"
+    "soc-f22c90b8"
    ],
    "MT6897ZA/ZA": [
     "8300-ultra"
@@ -10706,7 +10839,7 @@
     "8350-ultimate"
    ],
    "MT6897ZD/ZA": [
-    "8350"
+    "soc-4f474ad4"
    ],
    "MT6897ZE/ZA": [
     "mt6897ze-za"
@@ -10733,7 +10866,7 @@
     "mt6899zc-za"
    ],
    "MT6899ZD/ZA": [
-    "8450"
+    "soc-bc03baec"
    ],
    "MT6899ZE/ZA": [
     "mt6899ze-za"
@@ -10751,19 +10884,19 @@
     "8550-super"
    ],
    "MT6983W/CZA": [
-    "9000"
+    "soc-57ebde8f"
    ],
    "MT6983Z/CZA": [
     "mt6983"
    ],
    "MT6983Z/TCZA": [
-    "9000"
+    "soc-57ebde8f"
    ],
    "MT6985W/CZA": [
     "mt6985"
    ],
    "MT6985W/TCZA": [
-    "9200"
+    "soc-1091d24c"
    ],
    "MT6989TE": [
     "9400e"
@@ -10772,7 +10905,7 @@
     "mt6989"
    ],
    "MT6989W/TCZA": [
-    "9300"
+    "soc-a324d056"
    ],
    "MT6991W/CZA": [
     "mt6991"
@@ -10790,10 +10923,10 @@
     "9500s"
    ],
    "MT6991Z/TCZA": [
-    "9400"
+    "soc-42b561ed"
    ],
    "MT6991Z/TCZB": [
-    "9400"
+    "soc-42b561ed"
    ],
    "MT8766": [
     "mt8766"
@@ -10811,10 +10944,10 @@
     "mt8768ct"
    ],
    "MT8775V/NAZA": [
-    "7300"
+    "soc-37a41d42"
    ],
    "MT8775V/TAZA": [
-    "7400"
+    "soc-50de5fd7"
    ],
    "MT8781J": [
     "g100-ultimate"
@@ -10846,13 +10979,13 @@
     "mt6989"
    ],
    "MT8796W/TNZA": [
-    "9300"
+    "soc-a324d056"
    ],
    "MT8798Z/CNZA": [
     "mt6983"
    ],
    "MT8798Z/TNZA": [
-    "9000"
+    "soc-57ebde8f"
    ],
    "MT8910Z/TNZB": [
     "mt6993"
