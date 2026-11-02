@@ -1,0 +1,964 @@
+{
+ "_note": "部件号/平台代号 → 市场名。极客湾只收 157 颗，且三星/华为不给代号；安兔兔有名字没有号。这张表补的是「设备上报得出、但机器读不到市场名」的那一段，只收公开且确定对应关系的号，不确定的宁可不写——错的映射比未收录更糟。",
+ "_sources": "高通/联发科/三星官方型号页与发布会资料；Android 设备 ro.soc.model / ro.board.platform 实测值。",
+ "entries": [
+  {
+   "codes": [
+    "MSM8917"
+   ],
+   "name": "骁龙 425",
+   "name_en": "Snapdragon 425",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8937"
+   ],
+   "name": "骁龙 430",
+   "name_en": "Snapdragon 430",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8940"
+   ],
+   "name": "骁龙 435",
+   "name_en": "Snapdragon 435",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8952"
+   ],
+   "name": "骁龙 617",
+   "name_en": "Snapdragon 617",
+   "brand": "高通",
+   "year": "2015"
+  },
+  {
+   "codes": [
+    "MSM8953"
+   ],
+   "name": "骁龙 625",
+   "name_en": "Snapdragon 625",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8953PRO"
+   ],
+   "name": "骁龙 626",
+   "name_en": "Snapdragon 626",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8956"
+   ],
+   "name": "骁龙 650",
+   "name_en": "Snapdragon 650",
+   "brand": "高通",
+   "year": "2015"
+  },
+  {
+   "codes": [
+    "MSM8976"
+   ],
+   "name": "骁龙 652",
+   "name_en": "Snapdragon 652",
+   "brand": "高通",
+   "year": "2015"
+  },
+  {
+   "codes": [
+    "MSM8976PRO"
+   ],
+   "name": "骁龙 653",
+   "name_en": "Snapdragon 653",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8996"
+   ],
+   "name": "骁龙 820",
+   "name_en": "Snapdragon 820",
+   "brand": "高通",
+   "year": "2015"
+  },
+  {
+   "codes": [
+    "MSM8996PRO"
+   ],
+   "name": "骁龙 821",
+   "name_en": "Snapdragon 821",
+   "brand": "高通",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MSM8998"
+   ],
+   "name": "骁龙 835",
+   "name_en": "Snapdragon 835",
+   "brand": "高通",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "SDM450"
+   ],
+   "name": "骁龙 450",
+   "name_en": "Snapdragon 450",
+   "brand": "高通",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "SDM630"
+   ],
+   "name": "骁龙 630",
+   "name_en": "Snapdragon 630",
+   "brand": "高通",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "SDM632"
+   ],
+   "name": "骁龙 632",
+   "name_en": "Snapdragon 632",
+   "brand": "高通",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "SDM636"
+   ],
+   "name": "骁龙 636",
+   "name_en": "Snapdragon 636",
+   "brand": "高通",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "SDM660"
+   ],
+   "name": "骁龙 660",
+   "name_en": "Snapdragon 660",
+   "brand": "高通",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "SDM670"
+   ],
+   "name": "骁龙 670",
+   "name_en": "Snapdragon 670",
+   "brand": "高通",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "SDM710"
+   ],
+   "name": "骁龙 710",
+   "name_en": "Snapdragon 710",
+   "brand": "高通",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "SDM712"
+   ],
+   "name": "骁龙 712",
+   "name_en": "Snapdragon 712",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM4250"
+   ],
+   "name": "骁龙 460",
+   "name_en": "Snapdragon 460",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM4350"
+   ],
+   "name": "骁龙 480",
+   "name_en": "Snapdragon 480",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM4350-AC"
+   ],
+   "name": "骁龙 480+",
+   "name_en": "Snapdragon 480+",
+   "brand": "高通",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "SM4375"
+   ],
+   "name": "骁龙 4 Gen 1",
+   "name_en": "Snapdragon 4 Gen 1",
+   "brand": "高通",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "SM4450"
+   ],
+   "name": "骁龙 4 Gen 2",
+   "name_en": "Snapdragon 4 Gen 2",
+   "brand": "高通",
+   "year": "2023"
+  },
+  {
+   "codes": [
+    "SM6115"
+   ],
+   "name": "骁龙 662",
+   "name_en": "Snapdragon 662",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM6125"
+   ],
+   "name": "骁龙 665",
+   "name_en": "Snapdragon 665",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM6150"
+   ],
+   "name": "骁龙 675",
+   "name_en": "Snapdragon 675",
+   "brand": "高通",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "SM6225"
+   ],
+   "name": "骁龙 680",
+   "name_en": "Snapdragon 680",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM6350"
+   ],
+   "name": "骁龙 690",
+   "name_en": "Snapdragon 690",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM6375"
+   ],
+   "name": "骁龙 695",
+   "name_en": "Snapdragon 695",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM6450"
+   ],
+   "name": "骁龙 6 Gen 1",
+   "name_en": "Snapdragon 6 Gen 1",
+   "brand": "高通",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "SM7125"
+   ],
+   "name": "骁龙 720G",
+   "name_en": "Snapdragon 720G",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM7150-AA"
+   ],
+   "name": "骁龙 730",
+   "name_en": "Snapdragon 730",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM7150-AB"
+   ],
+   "name": "骁龙 730G",
+   "name_en": "Snapdragon 730G",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM7150-AC"
+   ],
+   "name": "骁龙 732G",
+   "name_en": "Snapdragon 732G",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM7250-AB"
+   ],
+   "name": "骁龙 765G",
+   "name_en": "Snapdragon 765G",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM7325"
+   ],
+   "name": "骁龙 778G",
+   "name_en": "Snapdragon 778G",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM7325-AE"
+   ],
+   "name": "骁龙 778G+",
+   "name_en": "Snapdragon 778G+",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM7350"
+   ],
+   "name": "骁龙 780G",
+   "name_en": "Snapdragon 780G",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM7435"
+   ],
+   "name": "骁龙 7s Gen 2",
+   "name_en": "Snapdragon 7s Gen 2",
+   "brand": "高通",
+   "year": "2023"
+  },
+  {
+   "codes": [
+    "SM7635"
+   ],
+   "name": "骁龙 7s Gen 3",
+   "name_en": "Snapdragon 7s Gen 3",
+   "brand": "高通",
+   "year": "2024"
+  },
+  {
+   "codes": [
+    "SM8150"
+   ],
+   "name": "骁龙 855",
+   "name_en": "Snapdragon 855",
+   "brand": "高通",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "SM8150-AC"
+   ],
+   "name": "骁龙 855+",
+   "name_en": "Snapdragon 855+",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM8250"
+   ],
+   "name": "骁龙 865",
+   "name_en": "Snapdragon 865",
+   "brand": "高通",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "SM8250-AB"
+   ],
+   "name": "骁龙 865+",
+   "name_en": "Snapdragon 865+",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM8250-AC"
+   ],
+   "name": "骁龙 870",
+   "name_en": "Snapdragon 870",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM8350"
+   ],
+   "name": "骁龙 888",
+   "name_en": "Snapdragon 888",
+   "brand": "高通",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "SM8350-AC"
+   ],
+   "name": "骁龙 888+",
+   "name_en": "Snapdragon 888+",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM8450"
+   ],
+   "name": "骁龙 8 Gen 1",
+   "name_en": "Snapdragon 8 Gen 1",
+   "brand": "高通",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "SM8475"
+   ],
+   "name": "骁龙 8+ Gen 1",
+   "name_en": "Snapdragon 8+ Gen 1",
+   "brand": "高通",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "SM8550"
+   ],
+   "name": "骁龙 8 Gen 2",
+   "name_en": "Snapdragon 8 Gen 2",
+   "brand": "高通",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "SM8650"
+   ],
+   "name": "骁龙 8 Gen 3",
+   "name_en": "Snapdragon 8 Gen 3",
+   "brand": "高通",
+   "year": "2023"
+  },
+  {
+   "codes": [
+    "SM8750"
+   ],
+   "name": "骁龙 8 Elite",
+   "name_en": "Snapdragon 8 Elite",
+   "brand": "高通",
+   "year": "2024"
+  },
+  {
+   "codes": [
+    "SM8850"
+   ],
+   "name": "骁龙 8 Elite Gen 5",
+   "name_en": "Snapdragon 8 Elite Gen 5",
+   "brand": "高通",
+   "year": "2025"
+  },
+  {
+   "codes": [
+    "MT6755"
+   ],
+   "name": "曦力 P10",
+   "name_en": "Helio P10",
+   "brand": "联发科",
+   "year": "2015"
+  },
+  {
+   "codes": [
+    "MT6757"
+   ],
+   "name": "曦力 P20",
+   "name_en": "Helio P20",
+   "brand": "联发科",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MT6761"
+   ],
+   "name": "曦力 A22",
+   "name_en": "Helio A22",
+   "brand": "联发科",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "MT6762"
+   ],
+   "name": "曦力 P22",
+   "name_en": "Helio P22",
+   "brand": "联发科",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "MT6763"
+   ],
+   "name": "曦力 P23",
+   "name_en": "Helio P23",
+   "brand": "联发科",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "MT6765"
+   ],
+   "name": "曦力 P35",
+   "name_en": "Helio P35",
+   "brand": "联发科",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "MT6771"
+   ],
+   "name": "曦力 P60",
+   "name_en": "Helio P60",
+   "brand": "联发科",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "MT6779"
+   ],
+   "name": "曦力 P90",
+   "name_en": "Helio P90",
+   "brand": "联发科",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "MT6785"
+   ],
+   "name": "曦力 G90T",
+   "name_en": "Helio G90T",
+   "brand": "联发科",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "MT6789"
+   ],
+   "name": "曦力 G99",
+   "name_en": "Helio G99",
+   "brand": "联发科",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "MT6797"
+   ],
+   "name": "曦力 X20",
+   "name_en": "Helio X20",
+   "brand": "联发科",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MT6797X"
+   ],
+   "name": "曦力 X25",
+   "name_en": "Helio X25",
+   "brand": "联发科",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "MT6833"
+   ],
+   "name": "天玑 700",
+   "name_en": "Dimensity 700",
+   "brand": "联发科",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "MT6833P"
+   ],
+   "name": "天玑 810",
+   "name_en": "Dimensity 810",
+   "brand": "联发科",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "MT6853"
+   ],
+   "name": "天玑 720",
+   "name_en": "Dimensity 720",
+   "brand": "联发科",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "MT6873"
+   ],
+   "name": "天玑 800",
+   "name_en": "Dimensity 800",
+   "brand": "联发科",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "MT6875"
+   ],
+   "name": "天玑 820",
+   "name_en": "Dimensity 820",
+   "brand": "联发科",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "MT6877"
+   ],
+   "name": "天玑 900",
+   "name_en": "Dimensity 900",
+   "brand": "联发科",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "MT6885"
+   ],
+   "name": "天玑 1000L",
+   "name_en": "Dimensity 1000L",
+   "brand": "联发科",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "MT6889"
+   ],
+   "name": "天玑 1000+",
+   "name_en": "Dimensity 1000+",
+   "brand": "联发科",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "MT6893"
+   ],
+   "name": "天玑 1200",
+   "name_en": "Dimensity 1200",
+   "brand": "联发科",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "MT6983"
+   ],
+   "name": "天玑 9000",
+   "name_en": "Dimensity 9000",
+   "brand": "联发科",
+   "year": "2021"
+  },
+  {
+   "codes": [
+    "MT6985"
+   ],
+   "name": "天玑 9200",
+   "name_en": "Dimensity 9200",
+   "brand": "联发科",
+   "year": "2022"
+  },
+  {
+   "codes": [
+    "MT6989"
+   ],
+   "name": "天玑 9300",
+   "name_en": "Dimensity 9300",
+   "brand": "联发科",
+   "year": "2023"
+  },
+  {
+   "codes": [
+    "MT6991"
+   ],
+   "name": "天玑 9400",
+   "name_en": "Dimensity 9400",
+   "brand": "联发科",
+   "year": "2024"
+  },
+  {
+   "codes": [
+    "S5E7570"
+   ],
+   "name": "Exynos 7570",
+   "name_en": "Exynos 7570",
+   "brand": "三星",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "S5E7580"
+   ],
+   "name": "Exynos 7580",
+   "name_en": "Exynos 7580",
+   "brand": "三星",
+   "year": "2015"
+  },
+  {
+   "codes": [
+    "S5E7885"
+   ],
+   "name": "Exynos 7885",
+   "name_en": "Exynos 7885",
+   "brand": "三星",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "S5E7904"
+   ],
+   "name": "Exynos 7904",
+   "name_en": "Exynos 7904",
+   "brand": "三星",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "S5E8895"
+   ],
+   "name": "Exynos 8895",
+   "name_en": "Exynos 8895",
+   "brand": "三星",
+   "year": "2017"
+  },
+  {
+   "codes": [
+    "S5E9610"
+   ],
+   "name": "Exynos 9610",
+   "name_en": "Exynos 9610",
+   "brand": "三星",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "S5E9611"
+   ],
+   "name": "Exynos 9611",
+   "name_en": "Exynos 9611",
+   "brand": "三星",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "S5E9810"
+   ],
+   "name": "Exynos 9810",
+   "name_en": "Exynos 9810",
+   "brand": "三星",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "S5E9820"
+   ],
+   "name": "Exynos 9820",
+   "name_en": "Exynos 9820",
+   "brand": "三星",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "S5E9825"
+   ],
+   "name": "Exynos 9825",
+   "name_en": "Exynos 9825",
+   "brand": "三星",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "S5E880"
+   ],
+   "name": "Exynos 880",
+   "name_en": "Exynos 880",
+   "brand": "三星",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "hi3660"
+   ],
+   "name": "麒麟 960",
+   "name_en": "Kirin 960",
+   "brand": "华为",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "hi6250"
+   ],
+   "name": "麒麟 650",
+   "name_en": "Kirin 650",
+   "brand": "华为",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "kirin710"
+   ],
+   "name": "麒麟 710",
+   "name_en": "Kirin 710",
+   "brand": "华为",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "kirin710a"
+   ],
+   "name": "麒麟 710A",
+   "name_en": "Kirin 710A",
+   "brand": "华为",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "kirin810"
+   ],
+   "name": "麒麟 810",
+   "name_en": "Kirin 810",
+   "brand": "华为",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "kirin820"
+   ],
+   "name": "麒麟 820",
+   "name_en": "Kirin 820",
+   "brand": "华为",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "kirin985"
+   ],
+   "name": "麒麟 985",
+   "name_en": "Kirin 985",
+   "brand": "华为",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "kirin990"
+   ],
+   "name": "麒麟 990",
+   "name_en": "Kirin 990",
+   "brand": "华为",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "kirin9000"
+   ],
+   "name": "麒麟 9000",
+   "name_en": "Kirin 9000",
+   "brand": "华为",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "kirin9000e"
+   ],
+   "name": "麒麟 9000E",
+   "name_en": "Kirin 9000E",
+   "brand": "华为",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "kirin9000s"
+   ],
+   "name": "麒麟 9000S",
+   "name_en": "Kirin 9000S",
+   "brand": "华为",
+   "year": "2023"
+  },
+  {
+   "codes": [
+    "kirin9010"
+   ],
+   "name": "麒麟 9010",
+   "name_en": "Kirin 9010",
+   "brand": "华为",
+   "year": "2024"
+  },
+  {
+   "codes": [
+    "kirin9020"
+   ],
+   "name": "麒麟 9020",
+   "name_en": "Kirin 9020",
+   "brand": "华为",
+   "year": "2024"
+  }
+ ],
+ "vendor_platforms": {
+  "_note": "平台代号前缀 → 厂商。型号解析不出来时至少不显示成 qcom/ums9230 这种原始串。",
+  "sm": "高通",
+  "msm": "高通",
+  "sdm": "高通",
+  "apq": "高通",
+  "qsd": "高通",
+  "qcm": "高通",
+  "qcs": "高通",
+  "mt": "联发科",
+  "mtk": "联发科",
+  "s5e": "三星",
+  "exynos": "三星",
+  "universal": "三星",
+  "kirin": "华为",
+  "hi": "华为",
+  "ums": "紫光展锐",
+  "sc": "紫光展锐",
+  "rk": "瑞芯微",
+  "gs": "谷歌",
+  "zuma": "谷歌"
+ }
+}

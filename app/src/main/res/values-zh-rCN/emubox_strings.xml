@@ -214,6 +214,7 @@
     <string name="emulator_cat_terminal">终端环境</string>
     <string name="soc_knowledge_title">芯片知识</string>
     <string name="soc_knowledge_not_found">暂未收录该芯片信息。</string>
+    <string name="soc_vendor_only">型号未收录（%1$s）</string>
     <string name="soc_process">工艺</string>
     <string name="soc_cpu">CPU</string>
     <string name="soc_cpu_cores">核心数 / 最高频率</string>

@@ -92,6 +92,46 @@ class OnePlus13RenderTest {
         save("11-oneplus13-device.png")
     }
 
+    /**
+     * 展锐设备：型号认不出，但必须认到厂。
+     *
+     * 展锐没有公开的完整料号表（设备只报 ums9230 这类平台代号），
+     * 直接显示裸串对用户没信息量；这张图验证降级路径是
+     * 「紫光展锐 · 型号未收录（ums9230）」而不是「SOC: unknown」。
+     */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h1200dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun renderUnisocUnknownModel() {
+        // Robolectric 的 Build 没有 SOC 字段，改用系统属性注入（真机对应 ro.soc.model）
+        org.robolectric.shadows.ShadowSystemProperties.override("ro.soc.model", "ums9230")
+        try {
+            val info = DeviceInfo(
+                androidVersion = "13 (SDK 33)",
+                ram = "8 GB",
+                gpuRenderer = "Mali-G57 MC2",
+                adrenoSeries = "",
+                gpuModel = "57",
+                gpuVendor = GpuVendor.MALI,
+                deviceBrand = "Unisoc",
+                deviceModel = "ums9230",
+                socName = "紫光展锐 T760"
+            )
+            compose.setContent {
+                ProvideAppLanguage(AppLanguage.CHINESE) {
+                    EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                        Surface(Modifier.fillMaxSize()) {
+                            DeviceScreen(deviceInfo = info, isLoading = false)
+                        }
+                    }
+                }
+            }
+            settle()
+            save("13-unisoc-unknown.png")
+        } finally {
+            org.robolectric.shadows.ShadowSystemProperties.reset()
+        }
+    }
+
     /** 加长视口：把首屏之下的芯片知识 / 跑分引擎 / Vulkan 标题一并带出来（长图，非一屏） */
     @Test
     @Config(sdk = [35], qualifiers = "w411dp-h1900dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
