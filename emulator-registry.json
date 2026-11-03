@@ -1,6 +1,6 @@
 {
   "version": "1.2.1",
-  "updated_at": "2026-11-03T09:08:38Z",
+  "updated_at": "2026-11-03T09:22:50Z",
   "emulators": [
     {
       "id": "eclipseds-nds",
@@ -27,7 +27,7 @@
       "logo_url": "",
       "releases": [],
       "source": "community-archive",
-      "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
+      "note": "社区改名 DS 模拟器；GitHub 搜 \"EclipseDS\" 14 个结果全为同名无关项目",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
@@ -35,7 +35,13 @@
       "platforms": [
         "nds"
       ],
-      "status": "community"
+      "status": "community",
+      "community_sources": [
+        {
+          "repo": "(无 GitHub 仓库)",
+          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+        }
+      ]
     },
     {
       "id": "brunodev85-winlator",
@@ -28502,7 +28508,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "dead",
+      "community_sources": [
+        {
+          "repo": "snapekk/sumi-emu",
+          "note": "镜像，1★，2026-02-17"
+        }
+      ]
     },
     {
       "id": "ghaelv-lemon-project",
@@ -47230,7 +47242,7 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
       "releases": [],
       "source": "community-archive",
-      "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
+      "note": "Ryujinx 被删库后的社区改名版；GitHub 搜 \"Ryujinx Benji\" 0 命中",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
@@ -47238,7 +47250,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "community"
+      "status": "community",
+      "community_sources": [
+        {
+          "repo": "(无 GitHub 仓库)",
+          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+        }
+      ]
     },
     {
       "id": "strato-emulator",
@@ -47342,7 +47360,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "dead",
+      "community_sources": [
+        {
+          "repo": "pkgforge-dev/Torzu-AppImage",
+          "note": "第三方 AppImage，22★，2026-10-07"
+        }
+      ]
     },
     {
       "id": "suyu-emulator",
@@ -47826,7 +47850,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
+      "note": "Skyline 停更后的社区改名版；GitHub 搜 \"Skyline Tagline\" 0 命中",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
@@ -47834,7 +47858,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "community",
+      "community_sources": [
+        {
+          "repo": "(无 GitHub 仓库)",
+          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+        }
+      ]
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -47863,7 +47893,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游停更，社区归档",
-      "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
+      "note": "Skyline 停更后的社区改名版；GitHub 搜同名 0 命中",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
@@ -47871,7 +47901,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "community",
+      "community_sources": [
+        {
+          "repo": "(无 GitHub 仓库)",
+          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+        }
+      ]
     },
     {
       "id": "yuzu-official",
@@ -47936,7 +47972,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
+      "note": "yuzu 2024-03 被删库后社区改名重打包版；GitHub 搜 \"CitruS yuzu\" 0 命中，无任何公开源码或构建仓库",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
@@ -47944,7 +47980,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "community",
+      "community_sources": [
+        {
+          "repo": "(无 GitHub 仓库)",
+          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+        }
+      ]
     },
     {
       "id": "yuzu-plus",
@@ -47973,7 +48015,7 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
+      "note": "yuzu 被删库后的社区改名版；GitHub 搜 \"Yuzu Plus\" 仅 1 个无关仓库，无公开构建",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
@@ -47981,7 +48023,13 @@
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "community",
+      "community_sources": [
+        {
+          "repo": "(无 GitHub 仓库)",
+          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+        }
+      ]
     },
     {
       "id": "epsxe",
@@ -48016,7 +48064,13 @@
       "platforms": [
         "ps1"
       ],
-      "status": "active"
+      "status": "active",
+      "community_sources": [
+        {
+          "repo": "pkgforge-dev/ePSXe-AppImage",
+          "note": "Linux AppImage 打包，5★，2026-10-18"
+        }
+      ]
     },
     {
       "id": "fpse",
@@ -48086,7 +48140,17 @@
       "platforms": [
         "nds"
       ],
-      "status": "active"
+      "status": "active",
+      "community_sources": [
+        {
+          "repo": "R-YaTian/DraStic_rev_i18n",
+          "note": "汉化重打包，367★，2026-10-20 活跃"
+        },
+        {
+          "repo": "trngaje/advanced_drastic",
+          "note": "进阶版，48★，2026-11-01"
+        }
+      ]
     },
     {
       "id": "pizzaboy",
