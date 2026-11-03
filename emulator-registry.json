@@ -1,6 +1,6 @@
 {
   "version": "1.2.1",
-  "updated_at": "2026-11-03T06:58:02Z",
+  "updated_at": "2026-11-03T09:08:38Z",
   "emulators": [
     {
       "id": "eclipseds-nds",
@@ -29,7 +29,13 @@
       "source": "community-archive",
       "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
       "skip": "no_repo",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "nds"
+      ],
+      "status": "community"
     },
     {
       "id": "brunodev85-winlator",
@@ -310,7 +316,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "azahar-emu-azahar",
@@ -4263,7 +4275,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "weihuoya-citra",
@@ -5136,7 +5154,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "vita3k-vita3k-android",
@@ -5332,7 +5356,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "psvita"
+      ],
+      "status": "stale"
     },
     {
       "id": "trixarian-nethersx2-patch",
@@ -5641,7 +5671,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active"
     },
     {
       "id": "ssimco-cemu",
@@ -5795,7 +5831,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "wii"
+      ],
+      "status": "active"
     },
     {
       "id": "gunacharanteja-winlatormali",
@@ -5965,7 +6007,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "faux123-gamenative-mali",
@@ -6007,7 +6055,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "stevenmxz-winlator-ludashi",
@@ -6491,7 +6545,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "trixarian-nethersx2-classic",
@@ -6655,7 +6715,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active"
     },
     {
       "id": "producdevity-gamehub-lite",
@@ -7079,7 +7145,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "utkarshdalal-gamenative",
@@ -7587,7 +7659,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "longjunyu2-winlator",
@@ -7759,7 +7837,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "armsx2-armsx2",
@@ -8747,7 +8831,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active"
     },
     {
       "id": "flyinghead-flycast",
@@ -9201,7 +9291,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "dreamcast"
+      ],
+      "status": "active"
     },
     {
       "id": "rpcsx-rpcsx-ui-android",
@@ -9649,7 +9745,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "coffincolors-winlator",
@@ -9955,7 +10057,13 @@
       ],
       "source": "github",
       "note": "release 首资产为图片说明（PNG），真实 APK 位于同一 release 的 cmod_*.apk，需手动选取；无稳定直链",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-winlator-mod",
@@ -10654,7 +10762,13 @@
       ],
       "source": "github",
       "note": "GitHub release 自动映射",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "medard22-dolphin-mmjr2-vbi",
@@ -10850,7 +10964,15 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gamecube",
+        "wii",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "xodiosx-xodos",
@@ -11207,7 +11329,13 @@
       ],
       "source": "github",
       "note": "GitHub release 自动映射",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "aenu1-aps3e",
@@ -11571,7 +11699,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "fcharan-winlatormali",
@@ -11741,7 +11875,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "ashnar2602-x360-mobile---official",
@@ -11933,7 +12073,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "armsx2-armsx3",
@@ -12831,7 +12977,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "horizonemuteam-horizon-emu",
@@ -12887,7 +13039,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "stale"
     },
     {
       "id": "the412banner-bannerhub",
@@ -14038,7 +14196,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "droid-deck-droiddeck",
@@ -14609,7 +14773,13 @@
           ]
         }
       ],
-      "source": "github"
+      "source": "github",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "winebox64-winlator",
@@ -14701,7 +14871,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "stale"
     },
     {
       "id": "the412banner-bannerhub-revanced",
@@ -16724,7 +16900,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "rfandango-xendroid",
@@ -16934,7 +17116,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "the412banner-bannerlator",
@@ -17882,7 +18070,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "xhyn-ph-exagear-302",
@@ -17938,7 +18132,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "stale"
     },
     {
       "id": "stredohori-winlator-cmod",
@@ -18457,7 +18657,13 @@
       "source": "github",
       "note": "GitHub release 自动映射",
       "repo_status": "archived",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "archived"
     },
     {
       "id": "winnative-emu-winnative",
@@ -18842,7 +19048,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "winlatorbrasil-gamehub-brasil",
@@ -18870,7 +19082,13 @@
       "releases": [],
       "source": "github",
       "repo_status": "404",
-      "note": "原仓库已删，社区镜像"
+      "note": "原仓库已删，社区镜像",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "dead"
     },
     {
       "id": "jacojayy-star",
@@ -19187,7 +19405,13 @@
       ],
       "source": "github",
       "note": "GitHub release 自动映射",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "kreitinnsoftware-micewine-application",
@@ -19213,7 +19437,13 @@
       "downloads": 115614,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/micewine.png",
       "releases": [],
-      "source": "github"
+      "source": "github",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "oxters168-pluvia",
@@ -19325,7 +19555,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "ajay9634-winlator-ajay",
@@ -19443,7 +19679,13 @@
       ],
       "source": "github",
       "repo_status": "archived",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "archived"
     },
     {
       "id": "swordfish90-lemuroid",
@@ -19904,7 +20146,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "frontend",
+      "runtime": "android-native",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active"
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
@@ -20191,7 +20439,13 @@
       ],
       "source": "github",
       "repo_status": "archived",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "archived"
     },
     {
       "id": "juris-x-winlator_x",
@@ -20304,7 +20558,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "slaker222-steamlator",
@@ -20388,7 +20648,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "jhinzuo-winlator",
@@ -20603,7 +20869,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "honkonx-winlator-honkon",
@@ -20872,7 +21144,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "the412banner-bannerhub-lite",
@@ -21426,7 +21704,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "winlatorbrasil-winlator-brasil",
@@ -21454,7 +21738,13 @@
       "releases": [],
       "source": "github",
       "note": "原仓库已删，社区镜像",
-      "repo_status": "404"
+      "repo_status": "404",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "dead"
     },
     {
       "id": "jaycore-mobox-patched",
@@ -21552,7 +21842,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "itzdfplayer-gamehub-lite",
@@ -21613,7 +21909,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "winlatorxr-winlatorxr",
@@ -21697,7 +21999,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "windroidemulation-winnative",
@@ -22421,7 +22729,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
@@ -22491,7 +22805,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "edeegg-sharpemu-arm64",
@@ -22547,7 +22867,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "alexoqool-winlator-bionic-build",
@@ -22996,7 +23322,13 @@
       ],
       "source": "github",
       "repo_status": "archived",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "archived"
     },
     {
       "id": "duckyduckg-winlator",
@@ -23444,7 +23776,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
@@ -23500,7 +23838,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "j4mcu-builds-gamehub-lite-redmagic",
@@ -23542,7 +23886,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "deivid22srk-winlator-xmod",
@@ -23612,7 +23962,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "maxjivi05-gamenative-performance",
@@ -23640,7 +23996,13 @@
       "releases": [],
       "source": "github",
       "note": "原仓库已删；同类增强版见社区 fork",
-      "repo_status": "404"
+      "repo_status": "404",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "dead"
     },
     {
       "id": "winlator-releases",
@@ -23666,8 +24028,16 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/winlator.png",
       "releases": [],
       "source": "official-web",
-      "note": "官方 winlator.org 分发，无 winlator/releases 仓库",
-      "distribution": "official-site"
+      "note": "官方站，含 Download 页",
+      "distribution": "official-site",
+      "download_url": "https://winlator.org/",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "eden-emulator-releases",
@@ -26061,7 +26431,13 @@
       ],
       "source": "gitea",
       "distribution": "gitea-release",
-      "note": "官方自建 Gitea（git.eden-emu.dev）分发，GitHub 仅镜像；非 GitHub 404"
+      "note": "官方自建 Gitea（git.eden-emu.dev）分发，GitHub 仅镜像；非 GitHub 404",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "eden-ci-nightly",
@@ -27823,7 +28199,13 @@
       ],
       "source": "gitea",
       "distribution": "gitea-nightly",
-      "note": "每夜构建发布在 git.eden-emu.dev/eden-ci/nightly"
+      "note": "每夜构建发布在 git.eden-emu.dev/eden-ci/nightly",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "citron-emulator",
@@ -28079,7 +28461,13 @@
       "source": "github",
       "dead": true,
       "dead_reason": "2024-09 因 DMCA 移除",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "ovsky-sumi-emu",
@@ -28108,7 +28496,13 @@
       "source": "official-web",
       "repo_status": "451",
       "distribution": "official-site",
-      "note": "GitHub 仓库 451（法律原因不可用），官网仍在"
+      "note": "GitHub 仓库 451（法律原因不可用），官网仍在",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "ghaelv-lemon-project",
@@ -28508,7 +28902,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "kenji-nx-android-releases",
@@ -28537,7 +28937,13 @@
       "source": "official-web",
       "repo_status": "451",
       "distribution": "official-site",
-      "note": "GitHub 仓库因 DMCA 返回 451，构建仍从 kenjinx.com 分发"
+      "note": "GitHub 仓库因 DMCA 返回 451，构建仍从 kenjinx.com 分发",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "duckstation",
@@ -30581,7 +30987,13 @@
       "note": "官方 Play 版；GitHub release 仅桌面构建",
       "download_url": "https://play.google.com/store/apps/details?id=com.github.stenzek.duckstation",
       "download_kind": "play",
-      "distribution": "play"
+      "distribution": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps1"
+      ],
+      "status": "active"
     },
     {
       "id": "melonds",
@@ -31239,7 +31651,15 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "官网发布 Android 版，GitHub release 仅桌面 AppImage",
+      "download_url": "https://melonds.kuribo64.net/",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "status": "active"
     },
     {
       "id": "mgba",
@@ -33327,7 +33747,17 @@
         }
       ],
       "source": "github",
-      "note": "安卓版经 Google Play 分发；GitHub release 仅桌面版"
+      "note": "官网发布 Android 版，GitHub release 仅桌面包",
+      "download_url": "https://mgba.io/",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gba",
+        "gb",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "skyemu",
@@ -33520,7 +33950,15 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gba",
+        "gb",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "m64plusae",
@@ -33746,7 +34184,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "fbneo",
@@ -33881,7 +34325,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "arcade"
+      ],
+      "status": "active"
     },
     {
       "id": "eka2l1",
@@ -33996,7 +34446,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "symbian"
+      ],
+      "status": "active"
     },
     {
       "id": "j2meloader",
@@ -34444,7 +34900,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "java-me"
+      ],
+      "status": "active"
     },
     {
       "id": "touchhle",
@@ -34652,7 +35114,13 @@
       "note": "release 仅源码/安装包，无安卓 APK",
       "download_url": "https://github.com/touchHLE/touchHLE/releases/download/v0.3.0/touchHLE_v0.3.0_Android_AArch64.zip",
       "download_kind": "zip",
-      "distribution": "release-zip"
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ios"
+      ],
+      "status": "active"
     },
     {
       "id": "opennectar",
@@ -35405,7 +35873,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "gamecube"
+      ],
+      "status": "active"
     },
     {
       "id": "unleashedrecomp",
@@ -35609,7 +36083,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "gamecube"
+      ],
+      "status": "active"
     },
     {
       "id": "silksongandroid",
@@ -35833,7 +36313,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "metroidprimeport",
@@ -37251,7 +37737,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "gamecube"
+      ],
+      "status": "active"
     },
     {
       "id": "raport-redalert",
@@ -37278,7 +37770,13 @@
       "logo_url": "https://github.com/dk8827.png",
       "releases": [],
       "source": "github",
-      "note": "RetroArch 内核，无独立 APK"
+      "note": "RetroArch 内核，无独立 APK",
+      "kind": "port",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "nfs3recompiled",
@@ -37334,7 +37832,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "dk64recomp",
@@ -37428,7 +37932,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "snes9xexplus",
@@ -37545,12 +38055,20 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "EX-Emulators.zip 95.8MB 含全套 APK（解压得 apk，非直链）",
+      "download_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases/download/Pre-release/EX-Emulators.zip",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "snes"
+      ],
+      "status": "active"
     },
     {
       "id": "supermodel3",
       "name": "Supermodel 3",
-      "category": "Sega Model 3 Emulator",
+      "category": "桌面模拟器",
       "description": "Sega Model 3 街机模拟器，2026-10 活跃更新",
       "owner": "trzy",
       "repo": "trzy/Supermodel",
@@ -38293,7 +38811,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "model3"
+      ],
+      "status": "active"
     },
     {
       "id": "freej2me",
@@ -38320,7 +38844,13 @@
       "logo_url": "https://github.com/hex007.png",
       "releases": [],
       "source": "github",
-      "note": "RetroArch 内核，无独立 APK"
+      "note": "RetroArch 内核，无独立 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "java-me"
+      ],
+      "status": "active"
     },
     {
       "id": "virtualjaguar",
@@ -44061,7 +44591,13 @@
         }
       ],
       "source": "github",
-      "note": "GitHub release 无安卓 APK 资产"
+      "note": "GitHub release 无安卓 APK 资产",
+      "kind": "emulator",
+      "runtime": "libretro",
+      "platforms": [
+        "atari-jaguar"
+      ],
+      "status": "active"
     },
     {
       "id": "handylynx",
@@ -44088,7 +44624,13 @@
       "logo_url": "https://github.com/libretro.png",
       "releases": [],
       "source": "github",
-      "note": "RetroArch 内核，无独立 APK"
+      "note": "RetroArch 内核，无独立 APK",
+      "kind": "emulator",
+      "runtime": "libretro",
+      "platforms": [
+        "atari"
+      ],
+      "status": "active"
     },
     {
       "id": "mame2003plus",
@@ -44124,12 +44666,18 @@
         }
       ],
       "source": "github",
-      "note": "RetroArch 内核，无独立 APK"
+      "note": "RetroArch 内核，无独立 APK",
+      "kind": "emulator",
+      "runtime": "libretro",
+      "platforms": [
+        "arcade"
+      ],
+      "status": "active"
     },
     {
       "id": "khmelonmix",
       "name": "KH Melon Mix",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "王国之心 358/2 Days 重实现（NDS 游戏，vitor251093）",
       "owner": "vitor251093",
       "repo": "vitor251093/KHMelonMix",
@@ -45502,7 +46050,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "gba"
+      ],
+      "status": "active"
     },
     {
       "id": "pocket8",
@@ -45684,7 +46238,13 @@
         }
       ],
       "source": "github",
-      "note": "GitHub release 无安卓 APK 资产"
+      "note": "GitHub release 无安卓 APK 资产",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "pico-8"
+      ],
+      "status": "active"
     },
     {
       "id": "melange-brew",
@@ -45711,8 +46271,16 @@
       "logo_url": "https://github.com/usernameak.png",
       "releases": [],
       "source": "gitlab",
-      "note": "主仓库在 GitLab，GitHub 无同名仓库",
-      "distribution": "gitlab-release"
+      "note": "真实分发在 GitLab，GitHub 记录有误",
+      "distribution": "gitlab-release",
+      "download_url": "https://gitlab.com/usernameak/melange",
+      "download_kind": "official-web",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "brew"
+      ],
+      "status": "active"
     },
     {
       "id": "zenith-panprobe",
@@ -46084,7 +46652,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "zenith-panplay",
@@ -46553,7 +47127,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "producdevity-gamehub",
@@ -46581,7 +47161,13 @@
       "source": "official-web",
       "note": "原 GitHub 仓库已不可见，现存分发为官网/社区包",
       "repo_status": "404",
-      "distribution": "official-site"
+      "distribution": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "dead"
     },
     {
       "id": "ryujinx-official",
@@ -46611,7 +47197,13 @@
       "dead": true,
       "dead_reason": "2024-10 因 DMCA 停更",
       "repo_status": "404",
-      "note": "上游 2024-10 停止分发并归档，官方域名已失效"
+      "note": "上游 2024-10 停止分发并归档，官方域名已失效",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "ryujinx-benji-sc",
@@ -46640,7 +47232,13 @@
       "source": "community-archive",
       "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
       "skip": "no_repo",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "community"
     },
     {
       "id": "strato-emulator",
@@ -46669,7 +47267,13 @@
       "source": "github",
       "dead": true,
       "dead_reason": "2024-09 后停更，无官方 release",
-      "note": "GitHub release 无安卓 APK 资产（分发渠道见官网/Play）"
+      "note": "GitHub release 无安卓 APK 资产（分发渠道见官网/Play）",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "sudachi-emulator",
@@ -46697,7 +47301,13 @@
       "releases": [],
       "source": "official-web",
       "repo_status": "404",
-      "note": "上游遭 DMCA 下架，无官方仓库与构建"
+      "note": "上游遭 DMCA 下架，无官方仓库与构建",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "torzu-emulator",
@@ -46726,7 +47336,13 @@
       "source": "gitee",
       "note": "GitHub 451，主仓在 Gitee 镜像",
       "repo_status": "451",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "suyu-emulator",
@@ -47071,7 +47687,13 @@
       "dead": false,
       "dead_reason": "2024 停止开发，GitHub 已因 DMCA 删除",
       "note": "社区整合资源未经原作者授权，暂不提供下载；待官方/存档地址确认后恢复",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "ryubing-emulator",
@@ -47098,7 +47720,13 @@
       "logo_url": "https://github.com/Ryubing.png",
       "releases": [],
       "source": "github",
-      "note": "无官方 APK 发布"
+      "note": "无官方 APK 发布",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "skyline-official",
@@ -47127,7 +47755,13 @@
       "source": "community-archive",
       "dead": true,
       "dead_reason": "2023 自愿停更，2026-08 仓库已删",
-      "note": "来源：社区归档整理。未获原作者授权，暂不提供下载。"
+      "note": "来源：社区归档整理。未获原作者授权，暂不提供下载。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "skyline-pine",
@@ -47157,7 +47791,13 @@
       "dead": true,
       "dead_reason": "上游停更，社区归档",
       "note": "原仓库已删，仅社区归档",
-      "repo_status": "404"
+      "repo_status": "404",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "skyline-tagline",
@@ -47188,7 +47828,13 @@
       "dead_reason": "上游停更，社区归档",
       "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
       "skip": "no_repo",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "skyline-enhanced-infinity",
@@ -47219,7 +47865,13 @@
       "dead_reason": "上游停更，社区归档",
       "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
       "skip": "no_repo",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "yuzu-official",
@@ -47249,7 +47901,13 @@
       "dead": true,
       "dead_reason": "2024-03 任天堂诉讼停更删库",
       "note": "2024-03 与任天堂和解后下架，仅社区归档",
-      "repo_status": "404"
+      "repo_status": "404",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "yuzu-citrus",
@@ -47280,7 +47938,13 @@
       "dead_reason": "上游 yuzu 停更，分支归档",
       "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
       "skip": "no_repo",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "yuzu-plus",
@@ -47311,7 +47975,13 @@
       "dead_reason": "上游 yuzu 停更，分支归档",
       "note": "无公开仓库，仅社区改名包/网盘分发；无法溯源到源码与 CI 构建",
       "skip": "no_repo",
-      "distribution": "community-archive"
+      "distribution": "community-archive",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "dead"
     },
     {
       "id": "epsxe",
@@ -47338,7 +48008,15 @@
       "releases": [],
       "source": "official-web",
       "distribution": "official-site",
-      "note": "闭源商业软件，仅官网与 Play 分发，无源码仓库"
+      "note": "闭源商业，官网分发",
+      "download_url": "https://epsxe.com/android/",
+      "download_kind": "official-web",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps1"
+      ],
+      "status": "active"
     },
     {
       "id": "fpse",
@@ -47365,7 +48043,15 @@
       "releases": [],
       "source": "official-web",
       "distribution": "official-site",
-      "note": "闭源商业软件，仅官网分发"
+      "note": "闭源，官网服务器返回 500",
+      "download_url": "https://www.fpsece.net/",
+      "download_kind": "official-web",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps1"
+      ],
+      "status": "active"
     },
     {
       "id": "drastic",
@@ -47392,7 +48078,15 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源，Play 已下架（2025-02），现存版本只能靠镜像"
+      "note": "闭源，2025-02 已从 Play 下架，官网域名失效",
+      "download_url": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
+      "download_kind": "official-play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "status": "active"
     },
     {
       "id": "pizzaboy",
@@ -47419,7 +48113,17 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源付费（Robert Broglia），仅 Play 分发"
+      "note": "闭源付费；原记录包名 com.fastemulation.gba 错误，真实为 it.dbtecno.pizzaboygbapro（开发者 dbtecno）",
+      "download_url": "https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygbapro",
+      "download_kind": "official-play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gba",
+        "gb",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "myboy",
@@ -47446,7 +48150,17 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源付费（Fast Emulation），仅 Play 分发"
+      "note": "闭源付费（Fast Emulation）；原记录域名 fastemulation.com 已 NXDOMAIN",
+      "download_url": "https://play.google.com/store/apps/details?id=com.fastemulation.myboy",
+      "download_kind": "official-play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gba",
+        "gb",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "myoldboy",
@@ -47473,7 +48187,17 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源付费（Fast Emulation），仅 Play 分发"
+      "note": "闭源付费（Fast Emulation）；原记录域名 fastemulation.com 已 NXDOMAIN",
+      "download_url": "https://play.google.com/store/apps/details?id=com.fastemulation.myoldboy",
+      "download_kind": "official-play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gbc",
+        "gb",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "m64plusfz",
@@ -47502,7 +48226,13 @@
       "source": "official-web",
       "download_url": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita",
       "download_kind": "play",
-      "distribution": "play"
+      "distribution": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "stale"
     },
     {
       "id": "mame4droid",
@@ -47530,7 +48260,13 @@
       "releases": [],
       "source": "github",
       "note": "原 seleuco/mame4droid 不存在，实际仓库为 MAME4droid-Current",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "arcade"
+      ],
+      "status": "active"
     },
     {
       "id": "termux",
@@ -48103,7 +48839,13 @@
       "latest_apk_size": 25429417,
       "forks": 8163,
       "watchers": 1690,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "ppsspp",
@@ -48967,7 +49709,13 @@
       "watchers": 517,
       "download_url": "https://www.ppsspp.org/files/1_20_4/ppsspp.apk",
       "download_kind": "official-site",
-      "distribution": "official-site"
+      "distribution": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "psp"
+      ],
+      "status": "active"
     },
     {
       "id": "retroarch",
@@ -49261,9 +50009,17 @@
       "logo_url": "https://github.com/libretro.png",
       "latest_body": "v1.17.0",
       "latest_apk_size": 0,
-      "note": "GitHub release 无安卓 APK 资产",
+      "note": "安卓版走官网与 Play，GitHub release 仅源码包",
       "forks": 2337,
-      "watchers": 333
+      "watchers": 333,
+      "download_url": "https://www.retroarch.com/",
+      "download_kind": "official-site",
+      "kind": "frontend",
+      "runtime": "libretro",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active"
     },
     {
       "id": "dolphin",
@@ -49281,10 +50037,20 @@
       "repo_url": "https://github.com/dolphin-emu/dolphin",
       "releases": [],
       "source": "github",
-      "note": "经 Google Play/官网分发，无 GitHub APK",
+      "note": "安卓版走官网与 Play，GitHub 零 release",
       "logo_url": "https://github.com/dolphin-emu.png",
       "forks": 3376,
-      "watchers": 468
+      "watchers": 468,
+      "download_url": "https://dolphin-emu.org/",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "gamecube",
+        "wii",
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-jiaxinchen",
@@ -49911,7 +50677,13 @@
       "owner": "jiaxinchen-max",
       "forks": 11,
       "watchers": 1,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-ghostty",
@@ -51249,7 +52021,13 @@
       "owner": "mrndstvndv",
       "forks": 5,
       "watchers": 0,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-plus",
@@ -51289,7 +52067,13 @@
       "owner": "thejaustin",
       "forks": 0,
       "watchers": 1,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-enhanced",
@@ -52042,7 +52826,13 @@
       "owner": "NIK2703",
       "forks": 3,
       "watchers": 1,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-aether",
@@ -52309,7 +53099,13 @@
       "owner": "wallentx",
       "forks": 0,
       "watchers": 0,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-zero",
@@ -52735,7 +53531,13 @@
       "owner": "hanxinhao000",
       "forks": 242,
       "watchers": 18,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "termux-kotlin",
@@ -53781,12 +54583,18 @@
       "owner": "reapercanuk39",
       "forks": 11,
       "watchers": 6,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "terminal"
+      ],
+      "status": "active"
     },
     {
       "id": "shadps4-emu-shadps4",
       "name": "ShadPS4",
-      "category": "Emulator PS4",
+      "category": "桌面模拟器",
       "description": "PlayStation 4 emulator for Windows, Linux, macOS and FreeBSD",
       "owner": "shadps4-emu",
       "repo": "shadps4-emu/shadPS4",
@@ -54603,12 +55411,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps4"
+      ],
+      "status": "active"
     },
     {
       "id": "kytyps5-kytyps5",
       "name": "KytyPS5",
-      "category": "Emulator PS5",
+      "category": "桌面模拟器",
       "description": "PlayStation 5 translation layer for Windows, Linux and macOS",
       "owner": "KytyPS5",
       "repo": "KytyPS5/KytyPS5",
@@ -55316,7 +56130,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "ilya114-box64droid",
@@ -55443,7 +56263,13 @@
       ],
       "source": "github",
       "note": "GitHub release 无安卓 APK 资产",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "jica98-bachata-s4",
@@ -55574,7 +56400,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps4"
+      ],
+      "status": "active"
     },
     {
       "id": "n3xox1-nxemu",
@@ -55689,7 +56521,13 @@
       "note": "release 仅源码/安装包，无安卓 APK",
       "download_url": "https://nightly.link/N3xoX1/nxemu/workflows/android.yml/main/NxEmu-android-arm64.zip",
       "download_kind": "nightly",
-      "distribution": "nightly"
+      "distribution": "nightly",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "maxjivi05-ps3native",
@@ -55887,7 +56725,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "dev-ali2008-onrps4-android",
@@ -55957,12 +56801,18 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps4"
+      ],
+      "status": "active"
     },
     {
       "id": "harbourmasters-shipwright",
       "name": "Ship of Harkinian",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "Ship of Harkinian is a free and open source PC port of The Legend of Zelda: Ocarina of Time",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/Shipwright",
@@ -56900,12 +57750,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "2ship2harkinian-2ship2harkinian",
       "name": "2Ship2Harkinian",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "2 Ship 2 Harkinian is a PC port of The Legend of Zelda: Majora's Mask",
       "owner": "2ship2harkinian",
       "repo": "2ship2harkinian/2ship2harkinian",
@@ -57312,7 +58168,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "linkzenic-2ship2harkinian-android",
@@ -57650,12 +58512,18 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "zelda64recomp-zelda64recomp",
       "name": "Zelda64 Recompiled",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "Static recompilation of Majora's Mask (and soon Ocarina of Time)",
       "owner": "Zelda64Recomp",
       "repo": "Zelda64Recomp/Zelda64Recomp",
@@ -57876,12 +58744,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "harbourmasters-ghostship",
       "name": "Ghostship",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "HarbourMasters 版 Super Mario 64，反编译移植 PC 版（整理站描述）",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/Ghostship",
@@ -58037,12 +58911,18 @@
       "note": "release 仅源码/安装包，无安卓 APK",
       "download_url": "https://github.com/HarbourMasters/Ghostship/releases/download/3.0.0/Nautilus-Alfa-Android.zip",
       "download_kind": "zip",
-      "distribution": "release-zip"
+      "distribution": "release-zip",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "harbourmasters-spaghettikart",
       "name": "SpaghettiKart",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "Native PC port of Mario Kart 64",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/SpaghettiKart",
@@ -58137,12 +59017,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "banjorecomp-banjorecomp",
       "name": "Banjo: Recompiled",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "PC Port of Banjo-Kazooie made using N64: Recompiled",
       "owner": "BanjoRecomp",
       "repo": "BanjoRecomp/BanjoRecomp",
@@ -58262,12 +59148,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "rainchus-dk64-rekongpiled",
       "name": "DK64 Rekongpiled",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "Donkey Kong 64 静态重编译 PC 移植（整理站描述）",
       "owner": "Rainchus",
       "repo": "Rainchus/Donkey-Kong-64-Recompiled",
@@ -58426,7 +59318,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "jackandbeans-snap64recomp",
@@ -59137,7 +60035,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "twilitrealm-dusklight",
@@ -60026,7 +60930,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active"
     },
     {
       "id": "zorkats-g-diffuser",
@@ -60228,12 +61138,18 @@
       ],
       "source": "github",
       "note": "release 仅源码/安装包，无安卓 APK",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active"
     },
     {
       "id": "mchughalex-skate3recomp",
       "name": "Skate3recomp",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "A native recompilation of Skate 3 for Windows, Linux, and macOS",
       "owner": "mchughalex",
       "repo": "mchughalex/skate3recomp",
@@ -60467,12 +61383,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "felipeprado0-spartanport",
       "name": "SpartanPort",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "SpartanPort: unofficial PC port of God of War III Remastered",
       "owner": "FelipePrado0",
       "repo": "FelipePrado0/SpartanPort",
@@ -61101,12 +62023,18 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "supermedo-bloodborne-pc",
       "name": "Bloodborne PC",
-      "category": "Game Port",
+      "category": "PC 移植",
       "description": "Bloodborne running natively on Windows 10/11: launcher and reverse engineering project",
       "owner": "supermedo",
       "repo": "supermedo/bloodborne_pc",
@@ -61521,7 +62449,13 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "release 仅源码/安装包，无安卓 APK",
+      "kind": "port",
+      "runtime": "winlator",
+      "platforms": [
+        "ps4"
+      ],
+      "status": "active"
     },
     {
       "id": "mircowuffwuff-sharpdroid",
@@ -61661,7 +62595,13 @@
       ],
       "logo_url": "https://github.com/mircowuffwuff.png",
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "ghael-v-capyps5",
@@ -61745,7 +62685,13 @@
       ],
       "logo_url": "https://github.com/Ghael-V.png",
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "pocket2droid-android",
@@ -61835,7 +62781,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-mobile"
+      ],
+      "status": "active"
     },
     {
       "id": "dukeps3-android",
@@ -61862,7 +62814,13 @@
       "logo_url": "https://github.com/thecrixux.png",
       "releases": [],
       "source": "github",
-      "note": "无官方 APK 发布"
+      "note": "无官方 APK 发布",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "emucorev-android",
@@ -62365,7 +63323,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "psvita"
+      ],
+      "status": "active"
     },
     {
       "id": "zeebx-zeebo",
@@ -63362,7 +64326,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "zeebo"
+      ],
+      "status": "active"
     },
     {
       "id": "nexium-switch1",
@@ -63392,12 +64362,18 @@
       "note": "无官方 APK 发布",
       "download_url": "https://github.com/nexium-emu/nexium-nightly/releases/download/nightly/nexium-android-arm64.apk",
       "download_kind": "official-site",
-      "distribution": "official-site"
+      "distribution": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "anyps5-porting-tool",
       "name": "AnyPS5",
-      "category": "PS5 Porting Tool",
+      "category": "移植工具",
       "description": "Tool for automatic PS5 executables porting to Linux and Windows",
       "owner": "boykopovar",
       "repo": "boykopovar/AnyPS5",
@@ -63740,7 +64716,13 @@
         }
       ],
       "source": "github",
-      "note": "PS5 移植工具（Linux），release 无安卓 APK"
+      "note": "PS5 移植工具（Linux），release 无安卓 APK",
+      "kind": "tool",
+      "runtime": "desktop",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "prosperoeden-ps5",
@@ -64096,7 +65078,15 @@
         }
       ],
       "source": "github",
-      "note": "release 仅源码/安装包，无安卓 APK"
+      "note": "zip 运行包，非 apk 直链",
+      "download_url": "https://github.com/Swordpdf/ProsperoEden/releases/download/v1.005.000/ProsperoEden-v1.005.000.zip",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "hyperhle",
@@ -65572,7 +66562,13 @@
       "note": "无官方 APK 发布",
       "download_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.5/HyperHLE_Android_AArch64.zip",
       "download_kind": "zip",
-      "distribution": "release-zip"
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ios"
+      ],
+      "status": "active"
     },
     {
       "id": "hyperhle-reborn",
@@ -67048,7 +68044,13 @@
       "note": "GitHub release 无安卓 APK 资产",
       "download_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.5/HyperHLE_Android_AArch64.zip",
       "download_kind": "zip",
-      "distribution": "release-zip"
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ios"
+      ],
+      "status": "active"
     },
     {
       "id": "seedlessds-android",
@@ -67118,7 +68120,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "status": "active"
     },
     {
       "id": "watermelonds-android",
@@ -67621,7 +68629,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "status": "active"
     },
     {
       "id": "seedlessds-cn-fork",
@@ -67679,7 +68693,13 @@
       ],
       "source": "github",
       "note": "release 资产为文档（CREDITS.md），无 APK",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "status": "active"
     },
     {
       "id": "wpr-wp7-8",
@@ -67726,7 +68746,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-mobile"
+      ],
+      "status": "stale"
     },
     {
       "id": "xendroid-plus",
@@ -68174,7 +69200,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "dukestation-ps1",
@@ -68201,7 +69233,13 @@
       "logo_url": "https://github.com/thecrixux.png",
       "releases": [],
       "source": "github",
-      "note": "经 Google Play 分发，无 GitHub APK"
+      "note": "经 Google Play 分发，无 GitHub APK",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps1"
+      ],
+      "status": "active"
     },
     {
       "id": "emucorex-android",
@@ -68799,7 +69837,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active"
     },
     {
       "id": "emucoreh-android",
@@ -69055,7 +70099,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "dreamcast"
+      ],
+      "status": "active"
     },
     {
       "id": "emucorea-android",
@@ -69311,7 +70361,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "psp"
+      ],
+      "status": "active"
     },
     {
       "id": "emucorep-android",
@@ -69382,7 +70438,13 @@
       ],
       "source": "github",
       "repo_status": "archived",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "archived"
     },
     {
       "id": "armsx1-ps1",
@@ -69774,7 +70836,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps1"
+      ],
+      "status": "active"
     },
     {
       "id": "ax360e-android",
@@ -69804,7 +70872,13 @@
       "note": "无官方 APK 发布",
       "download_url": "https://play.google.com/store/apps/details?id=aenu.ax360e.free",
       "download_kind": "play",
-      "distribution": "play"
+      "distribution": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "dingooemu-android",
@@ -70146,7 +71220,13 @@
       "note": "release 仅源码/安装包，无安卓 APK",
       "download_url": "https://nightly.link/AloysHF/DingooEmu/workflows/ci.yml/main/dingoo-emu-android.zip",
       "download_kind": "nightly",
-      "distribution": "nightly"
+      "distribution": "nightly",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active"
     },
     {
       "id": "azaharplus-android",
@@ -70176,7 +71256,13 @@
       "note": "Play 分发（README 标注）",
       "download_url": "https://play.google.com/store/apps/details?id=io.github.lime3ds.android",
       "download_kind": "play",
-      "distribution": "play"
+      "distribution": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "nin64-android",
@@ -70206,7 +71292,13 @@
       "note": "经 Google Play 分发，无 GitHub APK",
       "download_url": "https://play.google.com/store/apps/details?id=com.izzy2lost.nin64",
       "download_kind": "play",
-      "distribution": "play"
+      "distribution": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     },
     {
       "id": "pockethle-android",
@@ -70354,7 +71446,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-mobile"
+      ],
+      "status": "active"
     },
     {
       "id": "mandarineneo-3ds",
@@ -70582,7 +71680,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "panda3ds-3ds",
@@ -70831,7 +71935,13 @@
       "note": "release 仅源码/安装包，无安卓 APK",
       "download_url": "https://github.com/wheremyfoodat/Panda3DS/releases/download/v0.9/android-arm64.zip",
       "download_kind": "zip",
-      "distribution": "release-zip"
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "wie-skvm",
@@ -72591,7 +73701,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "java-me"
+      ],
+      "status": "active"
     },
     {
       "id": "lime3ds-3ds",
@@ -72619,7 +73735,13 @@
       "releases": [],
       "source": "github",
       "note": "无官方 APK 发布",
-      "repo_status": "archived"
+      "repo_status": "archived",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "archived"
     },
     {
       "id": "borked3ds-3ds",
@@ -74712,7 +75834,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "stale"
     },
     {
       "id": "redream-dc",
@@ -74739,7 +75867,15 @@
       "logo_url": "https://github.com/inolen.png",
       "releases": [],
       "source": "github",
-      "note": "经官网/商店分发，无 GitHub APK"
+      "note": "闭源，GitHub 仅 issue 板，官网仍在分发",
+      "download_url": "https://redream.io/download",
+      "download_kind": "official-site",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "dreamcast"
+      ],
+      "status": "stale"
     },
     {
       "id": "md.emu-sms",
@@ -74769,7 +75905,13 @@
       "note": "经 Google Play 分发，无 GitHub APK",
       "download_url": "https://play.google.com/store/apps/details?id=Robert",
       "download_kind": "play",
-      "distribution": "play"
+      "distribution": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "mega-drive"
+      ],
+      "status": "stale"
     },
     {
       "id": "emucorec-ps3",
@@ -74892,7 +76034,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active"
     },
     {
       "id": "myps2-ps2",
@@ -74923,7 +76071,13 @@
       "distribution": "play",
       "note": "闭源，仅 Google Play 分发（kr.co.iefriends.myps2）",
       "download_url": "https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2",
-      "download_kind": "play"
+      "download_kind": "play",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active"
     },
     {
       "id": "azahartrigger-3ds",
@@ -75717,7 +76871,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "azaharplus-main",
@@ -76312,7 +77472,13 @@
         }
       ],
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-linbox",
@@ -76853,7 +78019,13 @@
       "latest_body": "### Box64 构建信息\n- **版本**: v0.3.8\n- **构建日期**: 20260913\n- **提交哈希**: 81c56d715\n- **分支/标签**: v0.3.8\n- **请求的版本**: v0.3.8\n\n此构建针对 Termux glibc 环境优化。\n",
       "note": "GitHub release 无安卓 APK 资产",
       "forks": 6,
-      "watchers": 3
+      "watchers": 3,
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-linbox-winemu",
@@ -77054,7 +78226,13 @@
       "latest_body": "新ui测试版！\r\n<img width=\"1080\" height=\"1348\" alt=\"1783668273890\" src=\"https://github.com/user-attachments/assets/68208736-8156-42ce-97f1-537bf876b1ba\" />\r\n",
       "forks": 4,
       "watchers": 2,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-nesstation",
@@ -77221,7 +78399,13 @@
       "latest_body": "新增wiiu psp switch等核心\r\n优化在线游戏体验\r\n内置浏览器功能(点击在线游戏即可进入浏览器)\r\n修复部分核心的问题",
       "forks": 2,
       "watchers": 0,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "frontend",
+      "runtime": "android-native",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-gamehtml",
@@ -77318,7 +78502,13 @@
       "latest_body": "修复大多数swf游戏的中文文本问题，比如奥库兹和拳皇等对话文本，修复部分网页问题，目前下载swf文件超过100m的有概率闪退，后面修复，\r\n小技巧，4399等网页flash游戏开始游戏不能玩可以直接点全屏按钮直接播放，\r\n小技巧，一些网页游戏可以在历史记录里进入实现真全屏",
       "forks": 4,
       "watchers": 0,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "web"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-winlator-glibc",
@@ -77712,7 +78902,13 @@
       "latest_body": "# Wine 9.9 staging - Linbox WOW64 with Vulkan & GStreamer for Termux\n\n## 版本信息\n- **Wine 版本**: 9.9\n- **Wine 类型**: staging\n- **架构**: True WOW64 (同时支持 32 位和 64 位 Windows 应用程序)\n- **平台**: Winlator 10+(Android)\n- **图形 API**: Vulkan 支持已启用\n- **多媒体**: 完整 GStreamer 支持（包含 FFmpeg 插件）\n- **Esync 支持**: 已通过补丁添加\n\n## 特性\n✓ 真正的 WOW64 架构\n✓ 同时支持 32 位和 64 位 Windows 应用程序\n✓ Vulkan 图形 API 支持\n✓ 完整的 GStreamer 支持\n✓ Esync 事件同步支持\n✓ 中文环境支持\n✓ 应用了关键补丁提升兼容性\n## 构建信息\n- 构建时间: \n- 提交: c6bf069accd1f2faeb18a524eb79a4e76af49a72\n- 工作流: Build WinamodWine (Lite)\n",
       "note": "GitHub release 无安卓 APK 资产",
       "forks": 3,
-      "watchers": 4
+      "watchers": 4,
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-eka2l1-an",
@@ -77753,7 +78949,13 @@
       "latest_body": "添加游戏界面自由布局设置，兼容安卓15！\r\n加入摇杆方便玩游戏移动\r\n加入按键颜色透明度调节\r\n修复虚拟按键吸附问题\r\n修复虚拟按键编辑键位后保存再进乱跑的问题\r\n修复一部分bug",
       "forks": 0,
       "watchers": 0,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "symbian"
+      ],
+      "status": "active"
     },
     {
       "id": "afeimod-eden-an",
@@ -77827,7 +79029,13 @@
       "latest_body": "新增游戏独立按键配置。可保存和读取\r\n修复默认布局小的问题，\r\n拉伸全屏方法是自由布局打开随便动一下，然后开关自由布局立刻全屏\r\n修复部分游戏卡0fps",
       "forks": 0,
       "watchers": 1,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "symbian"
+      ],
+      "status": "active"
     },
     {
       "id": "maxi000q-consolefivepro",
@@ -78084,7 +79292,13 @@
           ]
         }
       ],
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active"
     },
     {
       "id": "rfandango-hakux",
@@ -78254,7 +79468,13 @@
       "latest_apk_size": 7146114,
       "homepage": "",
       "description": "xbox emulator for Android",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active"
     },
     {
       "id": "orangefox86-hollycast",
@@ -78313,7 +79533,13 @@
       "latest_apk_size": 41078803,
       "homepage": "",
       "description": "Hollycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "dreamcast"
+      ],
+      "status": "active"
     },
     {
       "id": "samsixx6-brew2droid",
@@ -78362,7 +79588,13 @@
       "latest_apk_size": 18337523,
       "homepage": "",
       "description": "BREW cellphone and Zeebo emulator for Android",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "brew"
+      ],
+      "status": "active"
     },
     {
       "id": "eden-sx2a-moceure",
@@ -78470,7 +79702,13 @@
       "latest_apk_url": "https://git.eden-emu.dev/moceure/eden-nx2-android/releases/download/nx2-android-v0.3.1/eden-sx2a-v0.3.1.apk",
       "latest_apk_size": 32874519,
       "distribution": "gitea-release",
-      "note": "维护者在 Eden 自建 Gitea 发布，非 GitHub"
+      "note": "维护者在 Eden 自建 Gitea 发布，非 GitHub",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "eden-ns2-android-vivsi",
@@ -78511,7 +79749,13 @@
       "logo_url": "https://avatars.githubusercontent.com/u/77776748?v=4",
       "forks": 2,
       "watchers": 1,
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "mamcjr-botwrecompandroid",
@@ -78537,7 +79781,13 @@
       "downloads": 0,
       "logo_url": "https://avatars.githubusercontent.com/u/26612066?v=4",
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
     },
     {
       "id": "mamcjr-totkdroid",
@@ -78563,7 +79813,317 @@
       "downloads": 0,
       "logo_url": "https://avatars.githubusercontent.com/u/26612066?v=4",
       "source": "github",
-      "distribution": "release-apk"
+      "distribution": "release-apk",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "linkzenic-shipwright-ports",
+      "name": "Shipwright-Ports（时之笛 Android/iOS 移植）",
+      "category": "Game Port",
+      "description": "Ship of Harkinian 官方 PC 移植的第三方 Android/iOS 移植版，同时提供 APK 与 iOS 包，按上游版本号发布",
+      "owner": "linkzenic",
+      "repo": "linkzenic/Shipwright-Ports",
+      "homepage": "",
+      "repo_url": "https://github.com/linkzenic/Shipwright-Ports",
+      "official": false,
+      "channel": "stable/unknown",
+      "latest_tag": "v9.3.1-ports.2",
+      "latest_date": "2026-10-30T03:13:30Z",
+      "latest_body": "## Android\n\n- Fixes ocarina controls across the new touch layouts, including Fairy/C-up.\n- Allows buttons assigned to Manual Jump to play notes while using the ocarina.\n- Keeps the N64 touch right stick dedicated to Free Camera.\n- Adds a GameCube C-stick choice between C-buttons and camera, with ocarina playback following the general setting.\n- Keeps Modern right-stick input routed through general controller mappings.\n- Prevents an idle touch stick from overriding physical-controller input.\n\n**Updating:** Install over your existing app. Saves, settings, and graphic packs are retained.\n\n## iOS\n\n- Includes the same ocarina, Fairy/C-up, Manual Jump, and right-stick fixes described above.\n\n**Signing:** Install using your usual signing method. iCloud features require appropriate provisioning; see the [Apple signing guide](https://github.com/linkzenic/Shipwright-Ports/blob/apple-platform-parity/docs/APPLE_CLOUD_SIGNING.md).\n\n## tvOS\n\n- Unchanged from the previous release; included for convenience.\n",
+      "latest_apk_name": "soh_release_v9.3.1-android.4.apk",
+      "latest_apk_url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.2/soh_release_v9.3.1-android.4.apk",
+      "latest_apk_size": 58858918,
+      "pushed_at": "2026-10-30T03:13:30Z",
+      "stars": 92,
+      "forks": 9,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/270810195?v=4",
+      "releases": [
+        {
+          "tag": "v9.3.1-ports.2",
+          "name": "Ship of Harkinian — Touch Controls Hotfix",
+          "date": "2026-10-30T03:13:30Z",
+          "body": "## Android\n\n- Fixes ocarina controls across the new touch layouts, including Fairy/C-up.\n- Allows buttons assigned to Manual Jump to play notes while using the ocarina.\n- Keeps the N64 touch right stick dedicated to Free Camera.\n- Adds a GameCube C-stick choice between C-buttons and camera, with ocarina playback following the general setting.\n- Keeps Modern right-stick input routed through general controller mappings.\n- Prevents an idle touch stick from overriding physical-controller input.\n\n**Updating:** Install over your existing app. Saves, settings, and graphic packs are retained.\n\n## iOS\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Ship-of-Harkinian-9.3.1-iOS-unsigned.ipa",
+              "size": 38954590,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.2/Ship-of-Harkinian-9.3.1-iOS-unsigned.ipa"
+            },
+            {
+              "name": "Ship-of-Harkinian-9.3.1-tvOS-unsigned.ipa",
+              "size": 38930008,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.2/Ship-of-Harkinian-9.3.1-tvOS-unsigned.ipa"
+            },
+            {
+              "name": "soh_release_v9.3.1-android.4.apk",
+              "size": 58792077,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.2/soh_release_v9.3.1-android.4.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v9.3.1-ports.1",
+          "name": "Ship of Harkinian — Android, iOS, and tvOS",
+          "date": "2026-10-29T06:37:09Z",
+          "body": "Brings all three ports together in one repository.\r\n\r\n## Android\r\n\r\n- Adds customizable Classic, N64, GameCube, and Modern touch layouts.\r\n- Adds a layout editor with movable, resizable, and individually hideable controls.\r\n- Adds independent touch assignments, manual-jump options, extra item buttons,\r\n  modifier assignments, and floating-stick controls.\r\n- Integrates item icons, contextual actions, Fairy, and Map controls into the touch layouts.\r\n\r\n**Updating:** Install over your existing standard Ship of Harkinian app.\r\n\r\n## iOS\r\n\r\n- Adds customizable Classic, N64, GameCube, and Modern touch",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Ship-of-Harkinian-9.3.1-iOS-unsigned.ipa",
+              "size": 38958652,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.1/Ship-of-Harkinian-9.3.1-iOS-unsigned.ipa"
+            },
+            {
+              "name": "Ship-of-Harkinian-9.3.1-tvOS-unsigned.ipa",
+              "size": 38930008,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.1/Ship-of-Harkinian-9.3.1-tvOS-unsigned.ipa"
+            },
+            {
+              "name": "soh_release_v9.3.1-android.3.apk",
+              "size": 58787089,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-ports.1/soh_release_v9.3.1-android.3.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v9.3.1-android.2",
+          "name": "Ship of Harkinian Android 9.3.1 Hotfix",
+          "date": "2026-10-19T02:50:46Z",
+          "body": "**Ship of Harkinian Android 9.3.1 — Hotfix**\r\n\r\n- Fixes a startup crash \r\n- Speeds up data-folder preparation by retaining unchanged extractor files during updates.\r\n- Still includes experimental manual jump release.\r\n\r\n**Updating:** Install over your existing Ship of Harkinian app. Saves, settings, and graphic packs are retained. This hotfix does not force ROM re-extraction.\r\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "soh_release_v9.3.1-android.2.apk",
+              "size": 57982355,
+              "url": "https://github.com/linkzenic/Shipwright-Ports/releases/download/v9.3.1-android.2/soh_release_v9.3.1-android.2.apk"
+            }
+          ]
+        }
+      ],
+      "source": "github",
+      "distribution": "release-apk",
+      "note": "社区移植，非 HarbourMasters 官方；上游为 HarbourMasters/Shipwright",
+      "community_port": true,
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "waterdish-shipwright-android",
+      "name": "Shipwright-Android（时之笛 Android 老分支）",
+      "category": "Game Port",
+      "description": "Ship of Harkinian 最知名的 Android 移植分支，累计 APK 下载 13.8 万次",
+      "owner": "Waterdish",
+      "repo": "Waterdish/Shipwright-Android",
+      "homepage": "",
+      "repo_url": "https://github.com/Waterdish/Shipwright-Android",
+      "official": false,
+      "channel": "stable/unknown",
+      "latest_tag": "v9.0.2P2",
+      "latest_date": "2025-07-11T06:03:00Z",
+      "latest_body": "Fix for touch controls, physical controller, and Android back button not working. (J-Rios)\r\nApp will now stay awake while setting files up.",
+      "latest_apk_name": "soh.apk",
+      "latest_apk_url": "https://github.com/Waterdish/Shipwright-Android/releases/download/v9.0.2P2/soh.apk",
+      "latest_apk_size": 40265318,
+      "pushed_at": "2025-07-11T06:03:00Z",
+      "stars": 650,
+      "forks": 56,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/24773224?v=4",
+      "releases": [
+        {
+          "tag": "v9.0.2P2",
+          "name": "9.0.2 Patch 2",
+          "date": "2025-07-11T06:03:00Z",
+          "body": "Fix for touch controls, physical controller, and Android back button not working. (J-Rios)\r\nApp will now stay awake while setting files up.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "soh.apk",
+              "size": 40283660,
+              "url": "https://github.com/Waterdish/Shipwright-Android/releases/download/v9.0.2P2/soh.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v9.0.2P1",
+          "name": "9.0.2 Patch 1",
+          "date": "2025-06-20T04:58:19Z",
+          "body": "Updated assets used for extracting rom. Fixes some crashes.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "soh.apk",
+              "size": 132415416,
+              "url": "https://github.com/Waterdish/Shipwright-Android/releases/download/v9.0.2P1/soh.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v9.0.2",
+          "name": "9.0.2",
+          "date": "2025-06-14T08:09:57Z",
+          "body": "Merged upstream SOH 9.0.2\r\nUpdated naming scheme to reflect upstream SOH version\r\n\r\nMoved files to root of storage\r\nFixed touch screen controls getting cut off (J-Rios)\r\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "soh.apk",
+              "size": 128626909,
+              "url": "https://github.com/Waterdish/Shipwright-Android/releases/download/v9.0.2/soh.apk"
+            }
+          ]
+        }
+      ],
+      "source": "github",
+      "distribution": "release-apk",
+      "note": "社区移植；2025-07 后停更，版本落后上游约一年，可用但非最新",
+      "community_port": true,
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "frostie77-tooie-recompiled",
+      "name": "Tooie-Recompiled（Banjo-Tooie 安卓原生移植）",
+      "category": "Game Port",
+      "description": "Banjo-Tooie 的原生安卓移植，arm64 APK，作者注明与 BanjoRecomp 官方无关联",
+      "owner": "Frostie77",
+      "repo": "Frostie77/Tooie-Recompiled",
+      "homepage": "",
+      "repo_url": "https://github.com/Frostie77/Tooie-Recompiled",
+      "official": false,
+      "channel": "stable/unknown",
+      "latest_tag": "v1.2.0",
+      "latest_date": "2026-11-02T03:32:18Z",
+      "latest_body": "# v1.2.0 adds save management, more aspect ratios and separate flight controls, alongside camera, HUD and graphics fixes.\r\n\r\n### Added\r\n\r\n- **Save Management** under **Settings → General**: export/import base-game save backups and export an earlier retained save for recovery. Debug → Release save import has been tested on Odin 2 Portal. Backups contain game saves; ROMs, mods and app settings are separate. Use Save Management from the launcher after saving and exiting gameplay.\r\n- **Invert Flight y-axis**: a separate setting for flight steering and airborne aiming, independent of stationary Breegull Blaster aiming.\r\n- **Swap Joystick Aiming Controls**: swap the sticks during stationary aiming. Normal stick controls return when you leave aiming.\r\n- **Four additional game aspect ratios** under **Settings → Graphics**: **16:9, 16:10, 3:2 and 21:9**, alongside Original and Expand.\r\n- **Manual resolution scaling** with quarter-step choices for finer control over rendering resolution.\r\n- Added compatibility with more Android devices.\r\n\r\n### Changed\r\n\r\n- Renamed **Aspect Ratio** to **Game Aspect Ratio**, with **Expand** first. The launcher and settings continue filling the display.\r\n- HUD Placement choices are now **Auto**, **Classic 4:3** and **16:9**. Auto follows the selected game image; Classic 4:3 keeps the original, more central positions; 16:9 limits the HUD spread within wider images. Auto is the default for new settings, while existing saved choices are preserved.\r\n- Put **D",
+      "latest_apk_name": "Tooie-Recompiled-v1.2.0-Android-arm64.apk",
+      "latest_apk_url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.2.0/Tooie-Recompiled-v1.2.0-Android-arm64.apk",
+      "latest_apk_size": 14483456,
+      "pushed_at": "2026-11-02T06:53:45Z",
+      "stars": 13,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/341010133?v=4",
+      "releases": [
+        {
+          "tag": "v1.2.0",
+          "name": "Tooie Recompiled v1.2.0",
+          "date": "2026-11-02T03:32:18Z",
+          "body": "# v1.2.0 adds save management, more aspect ratios and separate flight controls, alongside camera, HUD and graphics fixes.\r\n\r\n### Added\r\n\r\n- **Save Management** under **Settings → General**: export/import base-game save backups and export an earlier retained save for recovery. Debug → Release save import has been tested on Odin 2 Portal. Backups contain game saves; ROMs, mods and app settings are separate. Use Save Management from the launcher after saving and exiting gameplay.\r\n- **Invert Flight y-axis**: a separate setting for flight steering and airborne aiming, independent of stationary Bre",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "SHA256SUMS",
+              "size": 108,
+              "url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.2.0/SHA256SUMS"
+            },
+            {
+              "name": "Tooie-Recompiled-v1.2.0-Android-arm64.apk",
+              "size": 14423702,
+              "url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.2.0/Tooie-Recompiled-v1.2.0-Android-arm64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.1.0",
+          "name": "Tooie Recompiled v1.1.0",
+          "date": "2026-10-26T01:46:52Z",
+          "body": "# v1.1.0 adds configurable touch controls, optional graphics drivers and fixes for audio and log sharing.\r\n\r\n### Added\r\n\r\n- **Customisable touch controls** under **Settings → Touch**: floating joystick, N64 buttons, adjustable button/joystick sizes, opacity and positions, plus Auto/On/Off visibility.\r\n- **Graphics-driver selection** under **Settings → Graphics**: import a compatible Turnip driver ZIP, select an imported driver or reset to System Default. Save your progress and restart the game to apply changes.\r\n- A startup/recovery screen for choosing a driver before starting the game. It app",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "SHA256SUMS",
+              "size": 108,
+              "url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.1.0/SHA256SUMS"
+            },
+            {
+              "name": "Tooie-Recompiled-v1.1.0-Android-arm64.apk",
+              "size": 14362262,
+              "url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.1.0/Tooie-Recompiled-v1.1.0-Android-arm64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.1",
+          "name": "Tooie Recompiled v1.0.1",
+          "date": "2026-10-24T05:32:16Z",
+          "body": "# Tooie Recompiled — v1.0.1\r\n\r\nLatest release **v1.0.1**, bringing automatic update notifications to Tooie Recompiled on Android!\r\n\r\n### What’s new\r\n\r\n- **Automatic startup checks** for newer compatible releases.\r\n- **Settings → Updates**, with a manual update check and a saved automatic-check toggle.\r\n- **View Release / Later** when a newer version is available.\r\n- Clear offline messages and recovery when your connection returns, while normal play remains available.\r\n\r\n## Known issues\r\n\r\n- Minor visual lines during the Jiggy challenge.\r\n- A brief screen shift when dialogue animation begins.\r\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "SHA256SUMS",
+              "size": 108,
+              "url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.0.1/SHA256SUMS"
+            },
+            {
+              "name": "Tooie-Recompiled-v1.0.1-Android-arm64.apk",
+              "size": 14005109,
+              "url": "https://github.com/Frostie77/Tooie-Recompiled/releases/download/v1.0.1/Tooie-Recompiled-v1.0.1-Android-arm64.apk"
+            }
+          ]
+        }
+      ],
+      "source": "github",
+      "distribution": "release-apk",
+      "note": "社区移植，仅 arm64；上游 BanjoRecomp 官方只发桌面包",
+      "community_port": true,
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "8cee-banjorecomp-android",
+      "name": "BanjoRecomp-Android（Banjo-Kazooie 安卓移植）",
+      "category": "Game Port",
+      "description": "Banjo-Kazooie 的 Android 移植，基于 N64: Recompiled，仅通过 CI 产出调试版 APK",
+      "owner": "8cee",
+      "repo": "8cee/BanjoRecomp-Android",
+      "homepage": "",
+      "repo_url": "https://github.com/8cee/BanjoRecomp-Android",
+      "official": false,
+      "channel": "stable/unknown",
+      "latest_tag": "v0.1.0-ci",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "BanjoRecomp-android-0.1.0-android-139-runtime-debug.apk",
+      "latest_apk_url": "https://nightly.link/8cee/BanjoRecomp-Android/actions/runs/36445175325/artifacts/10980418963",
+      "latest_apk_size": 10380902,
+      "pushed_at": "2026-09-28T15:38:50Z",
+      "stars": 3,
+      "forks": 1,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/20696568?v=4",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-apk",
+      "note": "社区移植；仓库无 release，仅 CI artifact 且为 debug 构建（未过期），成熟度低",
+      "community_port": true,
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active"
     }
   ]
 }
