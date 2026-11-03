@@ -33,8 +33,20 @@ data class ResolvedSoc(
     val cpu: String,
     val cores: Int,
     val maxGhz: Double,
+    /** 缓存构成，如「L2 24MB · SLC 8MB」；极客湾只有旗舰标，多数为空 */
+    val caches: String,
+    /** 内存，如「LPDDR5X 10667MT/s」 */
+    val memory: String,
     val gpu: String,
     val gpuKey: String,
+    /** GPU 频率，如「1200MHz」 */
+    val gpuClock: String,
+    /** GPU 核心/着色器数，如「1536ALUs」 */
+    val gpuCores: String,
+    /** 集成功能：基带 / Wi-Fi / 蓝牙 / NPU */
+    val features: String,
+    val gb6Single: Int,
+    val gb6Multi: Int,
     val year: String,
     val tier: String,
     val antutu: String,
@@ -182,8 +194,15 @@ object SocResolver {
                         cpu = o.optString("cpu"),
                         cores = o.optInt("cores"),
                         maxGhz = o.optDouble("max_ghz", 0.0),
+                        caches = o.optString("caches"),
+                        memory = o.optString("memory"),
                         gpu = o.optString("gpu"),
                         gpuKey = o.optString("gpu_key"),
+                        gpuClock = o.optString("gpu_clock"),
+                        gpuCores = o.optString("gpu_cores"),
+                        features = o.optString("features"),
+                        gb6Single = o.optInt("gb6s"),
+                        gb6Multi = o.optInt("gb6m"),
                         year = o.optString("year"),
                         tier = o.optString("tier"),
                         antutu = o.optString("antutu"),

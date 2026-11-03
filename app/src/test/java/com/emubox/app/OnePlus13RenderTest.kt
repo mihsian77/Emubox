@@ -148,4 +148,41 @@ class OnePlus13RenderTest {
         settle()
         save("12-oneplus13-device-tall.png")
     }
+
+    /**
+     * 骁龙 8 Elite Gen5（SM8850-AC）：验证芯片卡把极客湾新抓的
+     * 缓存 / 内存 / GPU 频率与 ALUs / 基带与 NPU / GB6 / 型号名称全部画出来。
+     * 这一条对应「手机性能排行」截图里的骁龙 8 Elite Gen5 详情页。
+     */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h1900dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun renderSnapdragon8EliteGen5() {
+        org.robolectric.shadows.ShadowSystemProperties.override("ro.soc.model", "SM8850-AC")
+        try {
+            val info = DeviceInfo(
+                androidVersion = "16 (SDK 36)",
+                ram = "16 GB",
+                gpuRenderer = "Adreno (TM) 840",
+                adrenoSeries = "8xx",
+                gpuModel = "840",
+                gpuVendor = GpuVendor.ADRENO,
+                deviceBrand = "HONOR",
+                deviceModel = "WIN 2",
+                socName = "Qualcomm Snapdragon 8 Elite Gen 5"
+            )
+            compose.setContent {
+                ProvideAppLanguage(AppLanguage.CHINESE) {
+                    EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                        Surface(Modifier.fillMaxSize()) {
+                            DeviceScreen(deviceInfo = info, isLoading = false)
+                        }
+                    }
+                }
+            }
+            settle()
+            save("14-snapdragon-8-elite-gen5.png")
+        } finally {
+            org.robolectric.shadows.ShadowSystemProperties.reset()
+        }
+    }
 }

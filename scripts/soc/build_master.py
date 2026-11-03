@@ -429,7 +429,22 @@ def main():
             lud = lud_index.get(normalize(name)) or lud_index.get(strip_vendor(name)) \
                 or lud_index.get(normalize(name_en)) or lud_index.get(strip_vendor(name_en))
 
-            gpu = (m.get('gpu') or {}).get('name', '')
+            # 极客湾把 GPU 从字符串升级成了对象：{name, clock, cores(ALUs)}
+            gpu_obj = m.get('gpu') or {}
+            if isinstance(gpu_obj, dict):
+                gpu = gpu_obj.get('name', '')
+            else:
+                gpu, gpu_obj = str(gpu_obj), {}
+            # 缓存：L2 24MB · SLC 8MB（只有旗舰标，34% 有值）
+            caches = ' · '.join(
+                f"{x.get('name')} {x.get('value')}" for x in (m.get('caches') or [])
+                if x.get('name') and x.get('value'))
+            # 内存：LPDDR5X 10667MT/s（94% 有值）
+            mem = m.get('memory') or {}
+            memory = ' '.join(x for x in (mem.get('type', ''), mem.get('speed', '')) if x)
+            # GB6 单/多核（极客湾只给 7 颗，其余靠安兔兔/本地补）
+            bench6 = next((b for b in (m.get('benchmarks') or [])
+                           if str(b.get('id', '')).lower() == 'gb6'), {})
             soc = {
                 'id': soc_id(codes, name or name_en),
                 'codes': codes,
@@ -442,8 +457,15 @@ def main():
                 'cpu': clusters_text(m.get('clusters')),
                 'cores': sum((x.get('count') or 0) for x in (m.get('clusters') or [])),
                 'max_ghz': max_freq(m.get('clusters')),
+                'caches': caches,
+                'memory': memory,
                 'gpu': gpu,
                 'gpu_key': gpu_key(gpu),
+                'gpu_clock': gpu_obj.get('clock', ''),
+                'gpu_cores': gpu_obj.get('cores', ''),
+                'features': (m.get('features') or '').strip(),
+                'gb6s': bench6.get('single', ''),
+                'gb6m': bench6.get('multi', ''),
                 'year': str(m.get('year', '') or ''),
                 'tier': m.get('tier', ''),
                 'antutu': (ant or {}).get('total_score', ''),
