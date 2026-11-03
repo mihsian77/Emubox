@@ -1,0 +1,138 @@
+{
+  "_comment": "人工核验后的发布渠道纠正：GitHub 之外的分发源、闭源项目、已消失仓库。apply_overrides.py 读取。",
+  "items": {
+    "eden-emulator-releases": {
+      "source": "gitea",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "gitea-release",
+      "note": "官方自建 Gitea（git.eden-emu.dev）分发，GitHub 仅镜像；非 GitHub 404"
+    },
+    "eden-ci-nightly": {
+      "source": "gitea",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "gitea-nightly",
+      "note": "每夜构建发布在 git.eden-emu.dev/eden-ci/nightly"
+    },
+    "eden-sx2a-moceure": {
+      "source": "gitea",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "gitea-release",
+      "note": "维护者在 Eden 自建 Gitea 发布，非 GitHub"
+    },
+    "melange-brew": {
+      "source": "gitlab",
+      "repo": "usernameak/melange",
+      "repo_status": "",
+      "distribution": "gitlab-release",
+      "note": "主仓库在 GitLab，GitHub 无同名仓库"
+    },
+    "epsxe": {
+      "source": "official-web",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "official-site",
+      "note": "闭源商业软件，仅官网与 Play 分发，无源码仓库"
+    },
+    "fpse": {
+      "source": "official-web",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "official-site",
+      "note": "闭源商业软件，仅官网分发"
+    },
+    "drastic": {
+      "source": "official-play",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "play",
+      "note": "闭源，Play 已下架（2025-02），现存版本只能靠镜像"
+    },
+    "pizzaboy": {
+      "source": "official-play",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "play",
+      "note": "闭源付费（Robert Broglia），仅 Play 分发"
+    },
+    "myboy": {
+      "source": "official-play",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "play",
+      "note": "闭源付费（Fast Emulation），仅 Play 分发"
+    },
+    "myoldboy": {
+      "source": "official-play",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "play",
+      "note": "闭源付费（Fast Emulation），仅 Play 分发"
+    },
+    "mame4droid": {
+      "source": "github",
+      "repo": "seleuco/MAME4droid-Current",
+      "repo_url": "https://github.com/seleuco/MAME4droid-Current",
+      "repo_status": "",
+      "note": "原 seleuco/mame4droid 不存在，实际仓库为 MAME4droid-Current"
+    },
+    "winlator-releases": {
+      "source": "official-web",
+      "repo": "",
+      "repo_status": "",
+      "distribution": "official-site",
+      "note": "官方 winlator.org 分发，无 winlator/releases 仓库"
+    },
+    "producdevity-gamehub": {
+      "repo": "",
+      "repo_status": "404",
+      "distribution": "official-site",
+      "note": "原 GitHub 仓库已不可见，现存分发为官网/社区包"
+    },
+    "winlatorbrasil-gamehub-brasil": {
+      "repo_status": "404",
+      "note": "原仓库已删，社区镜像"
+    },
+    "winlatorbrasil-winlator-brasil": {
+      "repo_status": "404",
+      "note": "原仓库已删，社区镜像"
+    },
+    "maxjivi05-gamenative-performance": {
+      "repo_status": "404",
+      "note": "原仓库已删；同类增强版见社区 fork"
+    },
+    "skyline-pine": {
+      "repo_status": "404",
+      "note": "原仓库已删，仅社区归档"
+    },
+    "sudachi-emulator": {
+      "repo_status": "404",
+      "note": "上游遭 DMCA 下架，无官方仓库与构建"
+    },
+    "ryujinx-official": {
+      "repo_status": "404",
+      "note": "上游 2024-10 停止分发并归档，官方域名已失效"
+    },
+    "yuzu-official": {
+      "repo_status": "404",
+      "note": "2024-03 与任天堂和解后下架，仅社区归档"
+    },
+    "kenji-nx-android-releases": {
+      "repo_status": "451",
+      "distribution": "official-site",
+      "note": "GitHub 仓库因 DMCA 返回 451，构建仍从 kenjinx.com 分发"
+    },
+    "ovsky-sumi-emu": {
+      "repo_status": "451",
+      "distribution": "official-site",
+      "note": "GitHub 仓库 451（法律原因不可用），官网仍在"
+    },
+    "torzu-emulator": {
+      "repo_status": "451",
+      "distribution": "community-archive",
+      "note": "GitHub 451，主仓在 Gitee 镜像"
+    }
+  }
+}

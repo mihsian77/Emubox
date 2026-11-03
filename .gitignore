@@ -40,3 +40,7 @@ scripts/__pycache__/
 local-monitor/
 community-data.json
 community/
+
+# 审计中间产物（可重跑生成）
+audit-report.json
+resolve-report.json
