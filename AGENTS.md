@@ -2,6 +2,7 @@
 
 ## 提交信息
 
+- 标题格式 `type(scope): 祈使句`。type 取 `feat|fix|data|docs|chore|refactor|ci`；scope 取模块名，如 `registry`、`driver-registry`、`soc`、`ui`、`news`。
 - 一句话说清改了什么，不超过 50 字。不做 `A + B + C` 式罗列。
 - 一个提交只做一件事；数据刷新与代码改动分开提交。
 - 只写结果，不写过程：不写排查心路、不写「顺手」「另外」「最大头」。
