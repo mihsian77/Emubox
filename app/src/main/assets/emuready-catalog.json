@@ -1,10 +1,10 @@
 {
  "version": 1,
- "generated_at": "2026-11-03T23:40:14Z",
+ "generated_at": "2026-11-04T23:55:27Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
-  "devices": 803,
+  "devices": 804,
   "brands": 56,
   "socs": 209,
   "systems": 20,
@@ -187,7 +187,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1615,
+   "listingsCount": 1614,
    "keys": [
     "thormax",
     "aynthormax"
@@ -209,7 +209,7 @@
    "modelName": "11 Pro",
    "brandName": "RedMagic",
    "socName": "Snapdragon 8 Elite Gen 5",
-   "listingsCount": 1490,
+   "listingsCount": 1492,
    "keys": [
     "11pro",
     "redmagic11pro"
@@ -231,7 +231,7 @@
    "modelName": "Pocket 5",
    "brandName": "Retroid",
    "socName": "Snapdragon 865",
-   "listingsCount": 1189,
+   "listingsCount": 1187,
    "keys": [
     "pocket5",
     "retroidpocket5"
@@ -396,7 +396,7 @@
    "modelName": "Poco X7 Pro",
    "brandName": "Xiaomi",
    "socName": "Dimensity 8400 Ultra",
-   "listingsCount": 141,
+   "listingsCount": 140,
    "keys": [
     "pocox7pro",
     "xiaomipocox7pro"
@@ -484,7 +484,7 @@
    "modelName": "Poco F7",
    "brandName": "Xiaomi",
    "socName": "Snapdragon 8s Gen 4",
-   "listingsCount": 96,
+   "listingsCount": 95,
    "keys": [
     "pocof7",
     "xiaomipocof7"
@@ -506,7 +506,7 @@
    "modelName": "RG477M",
    "brandName": "Anbernic",
    "socName": "Dimensity 8300",
-   "listingsCount": 87,
+   "listingsCount": 86,
    "keys": [
     "rg477m",
     "anbernicrg477m"
@@ -579,17 +579,6 @@
    ]
   },
   {
-   "id": "569af207-81fe-4fde-a655-beb50d75337b",
-   "modelName": "Galaxy Z Fold 7",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 8 Elite",
-   "listingsCount": 69,
-   "keys": [
-    "galaxyzfold7",
-    "samsunggalaxyzfold7"
-   ]
-  },
-  {
    "id": "3c17d3fb-ddf0-41b2-ba9e-bd3644a512ad",
    "modelName": "RG557",
    "brandName": "Anbernic",
@@ -598,6 +587,17 @@
    "keys": [
     "rg557",
     "anbernicrg557"
+   ]
+  },
+  {
+   "id": "569af207-81fe-4fde-a655-beb50d75337b",
+   "modelName": "Galaxy Z Fold 7",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 8 Elite",
+   "listingsCount": 68,
+   "keys": [
+    "galaxyzfold7",
+    "samsunggalaxyzfold7"
    ]
   },
   {
@@ -649,18 +649,7 @@
    "modelName": "Galaxy S25  (SD)",
    "brandName": "Samsung",
    "socName": "Snapdragon 8 Elite",
-   "listingsCount": 61,
-   "keys": [
-    "galaxys25",
-    "samsunggalaxys25"
-   ]
-  },
-  {
-   "id": "66d3a75d-c157-40c3-b1fe-65a87e20500c",
-   "modelName": "Galaxy S25+ (SD)",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 8 Elite",
-   "listingsCount": 59,
+   "listingsCount": 60,
    "keys": [
     "galaxys25",
     "samsunggalaxys25"
@@ -678,11 +667,22 @@
    ]
   },
   {
+   "id": "66d3a75d-c157-40c3-b1fe-65a87e20500c",
+   "modelName": "Galaxy S25+ (SD)",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 8 Elite",
+   "listingsCount": 58,
+   "keys": [
+    "galaxys25",
+    "samsunggalaxys25"
+   ]
+  },
+  {
    "id": "533b2bda-7d55-4168-a6fe-668082736141",
    "modelName": "Galaxy A15 5G",
    "brandName": "Samsung",
    "socName": "Dimensity 6100+",
-   "listingsCount": 55,
+   "listingsCount": 54,
    "keys": [
     "galaxya155g",
     "samsunggalaxya155g"
@@ -726,7 +726,7 @@
    "modelName": "Redmi 10C",
    "brandName": "Xiaomi",
    "socName": "Snapdragon 680",
-   "listingsCount": 49,
+   "listingsCount": 48,
    "keys": [
     "redmi10c",
     "xiaomiredmi10c"
@@ -766,17 +766,6 @@
    ]
   },
   {
-   "id": "a7dbaf98-1fab-4b02-880b-c6f305669d9f",
-   "modelName": "Galaxy A05s",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 680",
-   "listingsCount": 43,
-   "keys": [
-    "galaxya05s",
-    "samsunggalaxya05s"
-   ]
-  },
-  {
    "id": "a5381eb0-ae46-4377-8dab-de7f98d8312d",
    "modelName": "Legion Y700 Gen 4",
    "brandName": "Lenovo",
@@ -785,6 +774,17 @@
    "keys": [
     "legiony700gen4",
     "lenovolegiony700gen4"
+   ]
+  },
+  {
+   "id": "a7dbaf98-1fab-4b02-880b-c6f305669d9f",
+   "modelName": "Galaxy A05s",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 680",
+   "listingsCount": 42,
+   "keys": [
+    "galaxya05s",
+    "samsunggalaxya05s"
    ]
   },
   {
@@ -821,17 +821,6 @@
    ]
   },
   {
-   "id": "31bfb234-1d7b-4503-8c4f-e175b174b8cf",
-   "modelName": "Galaxy S24",
-   "brandName": "Samsung",
-   "socName": "Exynos 2400",
-   "listingsCount": 40,
-   "keys": [
-    "galaxys24",
-    "samsunggalaxys24"
-   ]
-  },
-  {
    "id": "e1f532eb-53c5-4ada-a43b-0352dbb2cb86",
    "modelName": "Galaxy S24+  (SD)",
    "brandName": "Samsung",
@@ -862,6 +851,17 @@
    "keys": [
     "12",
     "oneplus12"
+   ]
+  },
+  {
+   "id": "31bfb234-1d7b-4503-8c4f-e175b174b8cf",
+   "modelName": "Galaxy S24",
+   "brandName": "Samsung",
+   "socName": "Exynos 2400",
+   "listingsCount": 38,
+   "keys": [
+    "galaxys24",
+    "samsunggalaxys24"
    ]
   },
   {
@@ -902,7 +902,7 @@
    "modelName": "E13",
    "brandName": "Motorola",
    "socName": "Tiger T606",
-   "listingsCount": 35,
+   "listingsCount": 34,
    "keys": [
     "e13",
     "motorolae13"
@@ -997,17 +997,6 @@
    ]
   },
   {
-   "id": "5435ebbd-a943-4406-a3eb-4bdb7ca7b008",
-   "modelName": "Galaxy A52s 5G",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 778G",
-   "listingsCount": 29,
-   "keys": [
-    "galaxya52s5g",
-    "samsunggalaxya52s5g"
-   ]
-  },
-  {
    "id": "39dd5045-3fe1-430e-aabe-19ef0b78a078",
    "modelName": "Galaxy S21 Ultra",
    "brandName": "Samsung",
@@ -1038,6 +1027,17 @@
    "keys": [
     "edge5g",
     "razeredge5g"
+   ]
+  },
+  {
+   "id": "5435ebbd-a943-4406-a3eb-4bdb7ca7b008",
+   "modelName": "Galaxy A52s 5G",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 778G",
+   "listingsCount": 28,
+   "keys": [
+    "galaxya52s5g",
+    "samsunggalaxya52s5g"
    ]
   },
   {
@@ -1294,17 +1294,6 @@
    ]
   },
   {
-   "id": "9fb26c93-e8e1-4532-a29a-4ccc66b7117f",
-   "modelName": "X7b",
-   "brandName": "Honor",
-   "socName": "Snapdragon 680",
-   "listingsCount": 19,
-   "keys": [
-    "x7b",
-    "honorx7b"
-   ]
-  },
-  {
    "id": "c1f7bbdc-db7f-407c-9c30-427d5471ea2c",
    "modelName": "GT 20 Pro",
    "brandName": "Infinix",
@@ -1371,14 +1360,14 @@
    ]
   },
   {
-   "id": "8ab65276-3acf-4852-ac20-15b40e9279ec",
-   "modelName": "Hot 30",
-   "brandName": "Infinix",
-   "socName": "Helio G88",
+   "id": "9fb26c93-e8e1-4532-a29a-4ccc66b7117f",
+   "modelName": "X7b",
+   "brandName": "Honor",
+   "socName": "Snapdragon 680",
    "listingsCount": 18,
    "keys": [
-    "hot30",
-    "infinixhot30"
+    "x7b",
+    "honorx7b"
    ]
   },
   {
@@ -1401,6 +1390,17 @@
    "keys": [
     "pocox3pro",
     "xiaomipocox3pro"
+   ]
+  },
+  {
+   "id": "8ab65276-3acf-4852-ac20-15b40e9279ec",
+   "modelName": "Hot 30",
+   "brandName": "Infinix",
+   "socName": "Helio G88",
+   "listingsCount": 17,
+   "keys": [
+    "hot30",
+    "infinixhot30"
    ]
   },
   {
@@ -1800,17 +1800,6 @@
    ]
   },
   {
-   "id": "6870d306-8f0f-4b84-81f6-168a86056213",
-   "modelName": "Poco X5 Pro",
-   "brandName": "Xiaomi",
-   "socName": "Snapdragon 778G",
-   "listingsCount": 13,
-   "keys": [
-    "pocox5pro",
-    "xiaomipocox5pro"
-   ]
-  },
-  {
    "id": "9b6fdb8f-e48e-463d-8046-02924b922ccb",
    "modelName": "Redmi Note 11",
    "brandName": "Xiaomi",
@@ -1888,14 +1877,14 @@
    ]
   },
   {
-   "id": "b3e462f3-49d3-4c1c-bed7-d20525467bae",
-   "modelName": "Redmi Note 7",
+   "id": "6870d306-8f0f-4b84-81f6-168a86056213",
+   "modelName": "Poco X5 Pro",
    "brandName": "Xiaomi",
-   "socName": "Snapdragon 660",
+   "socName": "Snapdragon 778G",
    "listingsCount": 12,
    "keys": [
-    "redminote7",
-    "xiaomiredminote7"
+    "pocox5pro",
+    "xiaomipocox5pro"
    ]
   },
   {
@@ -1984,6 +1973,17 @@
    "keys": [
     "redminote13pro",
     "xiaomiredminote13pro"
+   ]
+  },
+  {
+   "id": "b3e462f3-49d3-4c1c-bed7-d20525467bae",
+   "modelName": "Redmi Note 7",
+   "brandName": "Xiaomi",
+   "socName": "Snapdragon 660",
+   "listingsCount": 11,
+   "keys": [
+    "redminote7",
+    "xiaomiredminote7"
    ]
   },
   {
@@ -2185,17 +2185,6 @@
    ]
   },
   {
-   "id": "3455a5cf-1f53-40cf-9598-3aad84fbcf11",
-   "modelName": "Moto G Stylus 5G (2023)",
-   "brandName": "Motorola",
-   "socName": "Helio G85",
-   "listingsCount": 9,
-   "keys": [
-    "motogstylus5g",
-    "motorolamotogstylus5g"
-   ]
-  },
-  {
    "id": "3f4e1abb-2941-4e34-ac07-24c3683243dc",
    "modelName": "Phone 2",
    "brandName": "Nothing",
@@ -2237,17 +2226,6 @@
    "keys": [
     "findx3",
     "oppofindx3"
-   ]
-  },
-  {
-   "id": "120e6054-2108-4e17-91bf-1de5dbf720bd",
-   "modelName": "12 Pro",
-   "brandName": "Realme",
-   "socName": "Snapdragon 6 Gen 1",
-   "listingsCount": 9,
-   "keys": [
-    "12pro",
-    "realme12pro"
    ]
   },
   {
@@ -2369,6 +2347,17 @@
    "keys": [
     "legiongo",
     "lenovolegiongo"
+   ]
+  },
+  {
+   "id": "3455a5cf-1f53-40cf-9598-3aad84fbcf11",
+   "modelName": "Moto G Stylus 5G (2023)",
+   "brandName": "Motorola",
+   "socName": "Helio G85",
+   "listingsCount": 8,
+   "keys": [
+    "motogstylus5g",
+    "motorolamotogstylus5g"
    ]
   },
   {
@@ -2636,6 +2625,17 @@
    ]
   },
   {
+   "id": "f3b95d58-5ec6-4f98-8f3f-a8783f178cfe",
+   "modelName": "Edge 60 Fusion",
+   "brandName": "Motorola",
+   "socName": "Dimensity 7300",
+   "listingsCount": 7,
+   "keys": [
+    "edge60fusion",
+    "motorolaedge60fusion"
+   ]
+  },
+  {
    "id": "7af455e3-fde3-4d1c-9085-8ef5defa3719",
    "modelName": "Phone 2 Pro",
    "brandName": "Nothing",
@@ -2820,17 +2820,6 @@
    "keys": [
     "200pro",
     "honor200pro"
-   ]
-  },
-  {
-   "id": "f3b95d58-5ec6-4f98-8f3f-a8783f178cfe",
-   "modelName": "Edge 60 Fusion",
-   "brandName": "Motorola",
-   "socName": "Dimensity 7300",
-   "listingsCount": 6,
-   "keys": [
-    "edge60fusion",
-    "motorolaedge60fusion"
    ]
   },
   {
@@ -3208,17 +3197,6 @@
    ]
   },
   {
-   "id": "e9a1be18-0a7a-4c9c-a619-e44b38acb929",
-   "modelName": "C25",
-   "brandName": "Realme",
-   "socName": "Helio G70",
-   "listingsCount": 5,
-   "keys": [
-    "c25",
-    "realmec25"
-   ]
-  },
-  {
    "id": "37c84250-d487-4122-84e9-15c0ffbd9661",
    "modelName": "9S Pro",
    "brandName": "RedMagic",
@@ -3494,17 +3472,6 @@
    ]
   },
   {
-   "id": "5942f0c8-8880-42bd-bac8-b475b996b9d9",
-   "modelName": "Edge+ (2020)",
-   "brandName": "Motorola",
-   "socName": "Snapdragon 865",
-   "listingsCount": 4,
-   "keys": [
-    "edge",
-    "motorolaedge"
-   ]
-  },
-  {
    "id": "c002eaa6-dd5e-47f4-84df-3fad51b46aa3",
    "modelName": "Phone 1",
    "brandName": "Nothing",
@@ -3546,6 +3513,17 @@
    "keys": [
     "reno7",
     "opporeno7"
+   ]
+  },
+  {
+   "id": "e9a1be18-0a7a-4c9c-a619-e44b38acb929",
+   "modelName": "C25",
+   "brandName": "Realme",
+   "socName": "Helio G70",
+   "listingsCount": 4,
+   "keys": [
+    "c25",
+    "realmec25"
    ]
   },
   {
@@ -3634,17 +3612,6 @@
    "keys": [
     "galaxyzfold4",
     "samsunggalaxyzfold4"
-   ]
-  },
-  {
-   "id": "844b5af4-4d87-4b4c-b3fc-9ed057870b74",
-   "modelName": "Playstation 3",
-   "brandName": "Sony",
-   "socName": "Cell Broadband Engine",
-   "listingsCount": 4,
-   "keys": [
-    "playstation3",
-    "sonyplaystation3"
    ]
   },
   {
@@ -3945,6 +3912,17 @@
    ]
   },
   {
+   "id": "120e6054-2108-4e17-91bf-1de5dbf720bd",
+   "modelName": "12 Pro",
+   "brandName": "Realme",
+   "socName": "Snapdragon 6 Gen 1",
+   "listingsCount": 3,
+   "keys": [
+    "12pro",
+    "realme12pro"
+   ]
+  },
+  {
    "id": "5d98e9d6-acf6-498a-8a3e-9169a0554811",
    "modelName": "8 Pro",
    "brandName": "Realme",
@@ -4088,17 +4066,6 @@
    ]
   },
   {
-   "id": "d38ef494-f105-4a63-b6e3-10764866d94c",
-   "modelName": "Galaxy Tab S7+",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 865+",
-   "listingsCount": 3,
-   "keys": [
-    "galaxytabs7",
-    "samsunggalaxytabs7"
-   ]
-  },
-  {
    "id": "d0e31e8f-4766-42f8-a7a4-0fe6914e48f2",
    "modelName": "Galaxy Z Fold 3",
    "brandName": "Samsung",
@@ -4107,6 +4074,17 @@
    "keys": [
     "galaxyzfold3",
     "samsunggalaxyzfold3"
+   ]
+  },
+  {
+   "id": "844b5af4-4d87-4b4c-b3fc-9ed057870b74",
+   "modelName": "Playstation 3",
+   "brandName": "Sony",
+   "socName": "Cell Broadband Engine",
+   "listingsCount": 3,
+   "keys": [
+    "playstation3",
+    "sonyplaystation3"
    ]
   },
   {
@@ -4495,6 +4473,17 @@
    ]
   },
   {
+   "id": "5942f0c8-8880-42bd-bac8-b475b996b9d9",
+   "modelName": "Edge+ (2020)",
+   "brandName": "Motorola",
+   "socName": "Snapdragon 865",
+   "listingsCount": 2,
+   "keys": [
+    "edge",
+    "motorolaedge"
+   ]
+  },
+  {
    "id": "39f3a85c-03dd-4889-a2ec-2851e5b125e5",
    "modelName": "G67 Power 5G",
    "brandName": "Motorola",
@@ -4781,6 +4770,17 @@
    ]
   },
   {
+   "id": "d38ef494-f105-4a63-b6e3-10764866d94c",
+   "modelName": "Galaxy Tab S7+",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 865+",
+   "listingsCount": 2,
+   "keys": [
+    "galaxytabs7",
+    "samsunggalaxytabs7"
+   ]
+  },
+  {
    "id": "22c8ff1f-2170-4cef-957f-a0b8320e6231",
    "modelName": "Galaxy Tab S8 Ultra",
    "brandName": "Samsung",
@@ -5053,17 +5053,6 @@
    "keys": [
     "rgvitapro",
     "anbernicrgvitapro"
-   ]
-  },
-  {
-   "id": "a96b2543-a00f-4856-acd4-7a5481ca8ec5",
-   "modelName": "WIN600 (3050e)",
-   "brandName": "Anbernic",
-   "socName": "Athlon Silver 3050e",
-   "listingsCount": 1,
-   "keys": [
-    "win600",
-    "anbernicwin600"
    ]
   },
   {
@@ -5625,17 +5614,6 @@
    "keys": [
     "galaxys26",
     "samsunggalaxys26"
-   ]
-  },
-  {
-   "id": "75c7de5d-f8f9-4359-a80f-547e8ec787a7",
-   "modelName": "Galaxy S4 Mini Value Edition",
-   "brandName": "Samsung",
-   "socName": "",
-   "listingsCount": 1,
-   "keys": [
-    "galaxys4minivalueedition",
-    "samsunggalaxys4minivalueedition"
    ]
   },
   {
@@ -6208,6 +6186,17 @@
    "keys": [
     "rgdsplus",
     "anbernicrgdsplus"
+   ]
+  },
+  {
+   "id": "a96b2543-a00f-4856-acd4-7a5481ca8ec5",
+   "modelName": "WIN600 (3050e)",
+   "brandName": "Anbernic",
+   "socName": "Athlon Silver 3050e",
+   "listingsCount": 0,
+   "keys": [
+    "win600",
+    "anbernicwin600"
    ]
   },
   {
@@ -7322,6 +7311,17 @@
    ]
   },
   {
+   "id": "759dd2d4-beba-4964-857a-b04ed52c5ab5",
+   "modelName": "Edge 70 Fusion",
+   "brandName": "Motorola",
+   "socName": "Snapdragon 7s Gen 3",
+   "listingsCount": 0,
+   "keys": [
+    "edge70fusion",
+    "motorolaedge70fusion"
+   ]
+  },
+  {
    "id": "dd0f3c27-946d-419b-a161-c14d9293bd45",
    "modelName": "Moto G Stylus 5G (2021)",
    "brandName": "Motorola",
@@ -8202,6 +8202,17 @@
    ]
   },
   {
+   "id": "75c7de5d-f8f9-4359-a80f-547e8ec787a7",
+   "modelName": "Galaxy S4 Mini Value Edition",
+   "brandName": "Samsung",
+   "socName": "",
+   "listingsCount": 0,
+   "keys": [
+    "galaxys4minivalueedition",
+    "samsunggalaxys4minivalueedition"
+   ]
+  },
+  {
    "id": "8789535b-e64e-40c2-ae65-898ae25c73e3",
    "modelName": "Galaxy S5",
    "brandName": "Samsung",
@@ -9016,7 +9027,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 6262,
+   "listings": 6250,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9029,7 +9040,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3426,
+   "listings": 3418,
    "description": ""
   },
   {
@@ -9068,7 +9079,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1851,
+   "listings": 1850,
    "description": ""
   },
   {
@@ -9081,7 +9092,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 714,
+   "listings": 713,
    "description": ""
   },
   {
@@ -9095,7 +9106,7 @@
     "nintendo_gamecube",
     "nintendo_wii"
    ],
-   "listings": 378,
+   "listings": 377,
    "description": ""
   },
   {
@@ -9252,7 +9263,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 85,
+   "listings": 84,
    "description": ""
   },
   {
@@ -9321,7 +9332,7 @@
     "sony_playstation_portable",
     "sony_playstation"
    ],
-   "listings": 40,
+   "listings": 39,
    "description": ""
   },
   {
@@ -9334,7 +9345,7 @@
    "systems": [
     "sony_playstation_3"
    ],
-   "listings": 31,
+   "listings": 30,
    "description": ""
   },
   {
@@ -9373,7 +9384,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 24,
+   "listings": 20,
    "description": ""
   },
   {
@@ -9432,19 +9443,6 @@
    "description": ""
   },
   {
-   "id": "1a99c78b-8f8f-4805-90c9-9d4076b2c761",
-   "name": "MiceWine",
-   "logo": "micewine.png",
-   "repositoryUrl": "",
-   "officialUrl": "",
-   "androidRepoUrl": "",
-   "systems": [
-    "microsoft_windows"
-   ],
-   "listings": 6,
-   "description": ""
-  },
-  {
    "id": "d887dca2-3217-4e79-ae7f-35f876935271",
    "name": "ARMSX3",
    "logo": "",
@@ -9481,6 +9479,19 @@
     "sega_dreamcast"
    ],
    "listings": 6,
+   "description": ""
+  },
+  {
+   "id": "1a99c78b-8f8f-4805-90c9-9d4076b2c761",
+   "name": "MiceWine",
+   "logo": "micewine.png",
+   "repositoryUrl": "",
+   "officialUrl": "",
+   "androidRepoUrl": "",
+   "systems": [
+    "microsoft_windows"
+   ],
+   "listings": 5,
    "description": ""
   },
   {
