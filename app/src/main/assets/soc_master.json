@@ -1,12 +1,14 @@
 {
  "version": "1.1.0",
  "note": "芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。",
- "generated": "2026-11-02",
+ "generated": "2026-11-03",
  "socs": [
   {
    "id": "s5e9945",
    "codes": [
-    "S5E9945"
+    "S5E9945",
+    "exynos2400",
+    "samsungexynos2400"
    ],
    "names": [
     "Exynos 2400",
@@ -19,8 +21,10 @@
    "cpu": "1×Cortex-X4 3.21GHz + 2×Cortex-A720 2.90GHz + 3×Cortex-A720 2.60GHz + 4×Cortex-A520 1.95GHz",
    "cores": 10,
    "max_ghz": 3.21,
+   "memory": "LPDDR5X",
    "gpu": "Xclipse 940（AMD RDNA 3）",
    "gpu_key": "xclipse940",
+   "features": "三星 4nm（4LPP+）工艺，FOWLP 扇出型晶圆级封装",
    "year": "2023",
    "tier": "flagship",
    "antutu": "935838",
@@ -34,7 +38,9 @@
   {
    "id": "s5e9925",
    "codes": [
-    "S5E9925"
+    "S5E9925",
+    "exynos2200",
+    "samsungexynos2200"
    ],
    "names": [
     "Exynos 2200",
@@ -47,8 +53,10 @@
    "cpu": "1×Cortex-X2 2.80GHz + 3×Cortex-A710 2.52GHz + 4×Cortex-A510 1.82GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "memory": "LPDDR5",
    "gpu": "Xclipse 920（AMD RDNA 2）",
    "gpu_key": "xclipse920",
+   "features": "三星 4nm（4LPE）工艺",
    "year": "2022",
    "tier": "flagship",
    "antutu": "773051",
@@ -61,7 +69,9 @@
   {
    "id": "s5e9840",
    "codes": [
-    "S5E9840"
+    "S5E9840",
+    "exynos2100",
+    "samsungexynos2100"
    ],
    "names": [
     "Exynos 2100",
@@ -74,8 +84,10 @@
    "cpu": "1×Cortex-X1 2.91GHz + 3×Cortex-A78 2.81GHz + 4×Cortex-A55 2.21GHz",
    "cores": 8,
    "max_ghz": 2.91,
+   "memory": "LPDDR5",
    "gpu": "Mali-G78 MP14",
    "gpu_key": "mali78",
+   "features": "三星 5nm（5LPE）工艺",
    "year": "2021",
    "tier": "flagship",
    "antutu": "485315",
@@ -86,8 +98,12 @@
    "src": "socpk"
   },
   {
-   "id": "samsung-exynos-1080",
-   "codes": [],
+   "id": "s5e9815",
+   "codes": [
+    "s5e9815",
+    "exynos1080",
+    "samsungexynos1080"
+   ],
    "names": [
     "Exynos 1080",
     "Samsung Exynos 1080"
@@ -99,8 +115,10 @@
    "cpu": "1×Cortex-A78 2.80GHz + 3×Cortex-A78 2.60GHz + 4×Cortex-A55 2.00GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "memory": "LPDDR5 / LPDDR4X",
    "gpu": "Mali-G78 MP10",
    "gpu_key": "mali78",
+   "features": "三星 5nm（5LPE）工艺",
    "year": "2020",
    "tier": "sub-flagship",
    "antutu": "496915",
@@ -126,8 +144,10 @@
    "cpu": "2×Exynos M5 2.73GHz + 2×Cortex-A76 2.50GHz + 4×Cortex-A55 2.00GHz",
    "cores": 8,
    "max_ghz": 2.73,
+   "memory": "LPDDR5",
    "gpu": "Mali-G77 MP11",
    "gpu_key": "mali77",
+   "features": "三星 7nm EUV（7LPP）工艺",
    "year": "2019",
    "tier": "flagship",
    "antutu": "457632",
@@ -140,7 +160,9 @@
   {
    "id": "s5e9820",
    "codes": [
-    "S5E9820"
+    "S5E9820",
+    "exynos9820",
+    "samsungexynos9820"
    ],
    "names": [
     "Exynos 9820",
@@ -153,8 +175,10 @@
    "cpu": "2×Exynos M4 2.73GHz + 2×Cortex-A75 2.31GHz + 4×Cortex-A55 1.95GHz",
    "cores": 8,
    "max_ghz": 2.73,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G76 MP12",
    "gpu_key": "mali76",
+   "features": "三星 8nm（8LPP）工艺",
    "year": "2018",
    "tier": "flagship",
    "antutu": "390207",
@@ -167,7 +191,9 @@
   {
    "id": "s5e9810",
    "codes": [
-    "S5E9810"
+    "S5E9810",
+    "exynos9810",
+    "samsungexynos9810"
    ],
    "names": [
     "Exynos 9810",
@@ -180,8 +206,10 @@
    "cpu": "4×Exynos M3 2.90GHz + 4×Cortex-A55 1.90GHz",
    "cores": 8,
    "max_ghz": 2.9,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G72 MP18",
    "gpu_key": "mali72",
+   "features": "三星 10nm（10LPP）工艺",
    "year": "2018",
    "tier": "flagship",
    "antutu": "305096",
@@ -192,8 +220,10 @@
    "src": "socpk"
   },
   {
-   "id": "samsung-exynos-980",
-   "codes": [],
+   "id": "s5e9630",
+   "codes": [
+    "s5e9630"
+   ],
    "names": [
     "Exynos 980",
     "Samsung Exynos 980"
@@ -205,8 +235,10 @@
    "cpu": "2×Cortex-A77 2.20GHz + 6×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G76 MP5",
    "gpu_key": "mali76",
+   "features": "三星 8nm（8LPP）工艺，集成 5G 基带",
    "year": "2019",
    "tier": "mid",
    "antutu": "327561",
@@ -218,7 +250,9 @@
   {
    "id": "s5e8895",
    "codes": [
-    "S5E8895"
+    "S5E8895",
+    "exynos8895",
+    "samsungexynos8895"
    ],
    "names": [
     "Exynos 8895",
@@ -231,8 +265,10 @@
    "cpu": "4×Exynos M2 2.31GHz + 4×Cortex-A53 1.69GHz",
    "cores": 8,
    "max_ghz": 2.31,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G71 MP20",
    "gpu_key": "mali71",
+   "features": "三星 10nm（10LPE）工艺",
    "year": "2017",
    "tier": "flagship",
    "antutu": "237394",
@@ -244,7 +280,9 @@
   {
    "id": "s5e8890",
    "codes": [
-    "S5E8890"
+    "S5E8890",
+    "exynos8890",
+    "samsungexynos8890"
    ],
    "names": [
     "Exynos 8890",
@@ -257,7 +295,9 @@
    "cpu": "4×Exynos M1 2.30GHz + 4×Cortex-A53 1.59GHz",
    "cores": 8,
    "max_ghz": 2.3,
+   "memory": "LPDDR4",
    "gpu": "Mali-T880 MP12",
+   "features": "三星 14nm（14LPP）工艺",
    "year": "2016",
    "tier": "flagship",
    "antutu": "190282",
@@ -269,7 +309,9 @@
   {
    "id": "s5e7420",
    "codes": [
-    "S5E7420"
+    "S5E7420",
+    "exynos7420",
+    "samsungexynos7420"
    ],
    "names": [
     "Exynos 7420",
@@ -282,7 +324,9 @@
    "cpu": "4×Cortex-A57 2.10GHz + 4×Cortex-A53 1.50GHz",
    "cores": 8,
    "max_ghz": 2.1,
+   "memory": "LPDDR4",
    "gpu": "Mali-T760 MP8",
+   "features": "三星 14nm（14LPE）工艺",
    "year": "2015",
    "tier": "flagship",
    "antutu": "168199",
@@ -294,8 +338,7 @@
   {
    "id": "kirin9020",
    "codes": [
-    "KIRIN9020",
-    "kirin9020"
+    "KIRIN9020"
    ],
    "names": [
     "麒麟 9020",
@@ -310,6 +353,8 @@
    "cores": 8,
    "max_ghz": 2.5,
    "gpu": "马良 Maleoon 920",
+   "gpu_cores": "4CU / 1024ALUs",
+   "features": "大/中核支持 SMT，共 8 核 12 线程；自研 NPU；集成 5G 基带",
    "year": "2024",
    "tier": "flagship",
    "antutu": "680418",
@@ -323,8 +368,7 @@
   {
    "id": "kirin9010",
    "codes": [
-    "KIRIN9010",
-    "kirin9010"
+    "KIRIN9010"
    ],
    "names": [
     "麒麟 9010",
@@ -339,6 +383,9 @@
    "cores": 8,
    "max_ghz": 2.3,
    "gpu": "马良 Maleoon 910",
+   "gpu_clock": "750MHz",
+   "gpu_cores": "4CU / 1024ALUs",
+   "features": "大/中核支持 SMT，共 8 核 12 线程；自研 NPU；集成 5G 基带",
    "year": "2024",
    "tier": "flagship",
    "antutu": "573577",
@@ -352,8 +399,7 @@
   {
    "id": "kirin9000s",
    "codes": [
-    "KIRIN9000S",
-    "kirin9000s"
+    "KIRIN9000S"
    ],
    "names": [
     "麒麟 9000S",
@@ -367,7 +413,11 @@
    "cpu": "1×泰山大核 2.62GHz + 3×泰山中核 2.15GHz + 4×Cortex-A510 1.53GHz",
    "cores": 8,
    "max_ghz": 2.62,
+   "memory": "LPDDR5 5500MT/s",
    "gpu": "马良 Maleoon 910",
+   "gpu_clock": "750MHz",
+   "gpu_cores": "4CU / 1024ALUs",
+   "features": "大/中核支持 SMT，共 8 核 12 线程；自研 NPU；集成 5G 基带",
    "year": "2023",
    "tier": "flagship",
    "antutu": "542821",
@@ -381,8 +431,7 @@
   {
    "id": "kirin9000",
    "codes": [
-    "KIRIN9000",
-    "kirin9000"
+    "KIRIN9000"
    ],
    "names": [
     "麒麟 9000",
@@ -396,8 +445,11 @@
    "cpu": "1×Cortex-A77 3.13GHz + 3×Cortex-A77 2.54GHz + 4×Cortex-A55 2.05GHz",
    "cores": 8,
    "max_ghz": 3.13,
+   "memory": "LPDDR5/LPDDR4X",
    "gpu": "Mali-G78 MP24",
    "gpu_key": "mali78",
+   "gpu_cores": "24核",
+   "features": "达芬奇 NPU（2 大核 + 1 微核）；集成巴龙 5000 5G 基带",
    "year": "2020",
    "tier": "flagship",
    "antutu": "539852",
@@ -411,8 +463,7 @@
   {
    "id": "kirin9000e",
    "codes": [
-    "KIRIN9000E",
-    "kirin9000e"
+    "KIRIN9000E"
    ],
    "names": [
     "麒麟 9000E",
@@ -426,8 +477,11 @@
    "cpu": "1×Cortex-A77 3.13GHz + 3×Cortex-A77 2.54GHz + 4×Cortex-A55 2.05GHz",
    "cores": 8,
    "max_ghz": 3.13,
+   "memory": "LPDDR5/LPDDR4X",
    "gpu": "Mali-G78 MP22",
    "gpu_key": "mali78",
+   "gpu_cores": "22核",
+   "features": "达芬奇 NPU（1 大核 + 1 微核）；集成巴龙 5000 5G 基带",
    "year": "2020",
    "tier": "flagship",
    "antutu": "531347",
@@ -439,8 +493,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-9000wl",
-   "codes": [],
+   "id": "kirin9000wl",
+   "codes": [
+    "kirin9000wl"
+   ],
    "names": [
     "麒麟 9000WL",
     "HiSilicon Kirin 9000WL"
@@ -453,6 +509,8 @@
    "cores": 8,
    "max_ghz": 2.49,
    "gpu": "马良 Maleoon 910",
+   "gpu_clock": "750MHz",
+   "features": "大/中核支持 SMT，共 8 核 12 线程",
    "year": "2024",
    "tier": "sub-flagship",
    "ludashi": "462803",
@@ -460,8 +518,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-9000sl",
-   "codes": [],
+   "id": "kirin9000sl",
+   "codes": [
+    "kirin9000sl"
+   ],
    "names": [
     "麒麟 9000SL",
     "HiSilicon Kirin 9000SL",
@@ -475,6 +535,8 @@
    "cores": 6,
    "max_ghz": 2.35,
    "gpu": "马良 Maleoon 910",
+   "gpu_clock": "750MHz",
+   "features": "大/中核支持 SMT，共 6 核 9 线程；集成 5G 基带",
    "year": "2023",
    "tier": "sub-flagship",
    "antutu": "475243",
@@ -484,8 +546,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-9000wm",
-   "codes": [],
+   "id": "kirin9000wm",
+   "codes": [
+    "kirin9000wm"
+   ],
    "names": [
     "麒麟 9000WM",
     "HiSilicon Kirin 9000WM"
@@ -498,6 +562,8 @@
    "cores": 6,
    "max_ghz": 2.35,
    "gpu": "马良 Maleoon 910",
+   "gpu_clock": "750MHz",
+   "features": "大/中核支持 SMT，共 6 核 9 线程",
    "year": "2024",
    "tier": "sub-flagship",
    "form": "phone",
@@ -524,8 +590,11 @@
    "cpu": "2×Cortex-A76 2.86GHz + 2×Cortex-A76 2.36GHz + 4×Cortex-A55 1.95GHz",
    "cores": 8,
    "max_ghz": 2.86,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G76 MP16",
    "gpu_key": "mali76",
+   "gpu_cores": "16核",
+   "features": "达芬奇 NPU（2 大核 + 1 微核）；集成巴龙 5000 5G 基带",
    "year": "2019",
    "tier": "flagship",
    "antutu": "480231",
@@ -553,8 +622,12 @@
    "cpu": "2×Cortex-A76 2.60GHz + 2×Cortex-A76 1.92GHz + 4×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 2.6,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G76 MP10",
    "gpu_key": "mali76",
+   "gpu_clock": "720MHz",
+   "gpu_cores": "10核",
+   "features": "双核 NPU；4G LTE（5G 需外挂巴龙 5000）",
    "year": "2018",
    "tier": "flagship",
    "antutu": "359415",
@@ -567,8 +640,7 @@
   {
    "id": "kirin985",
    "codes": [
-    "KIRIN985",
-    "kirin985"
+    "KIRIN985"
    ],
    "names": [
     "麒麟 985",
@@ -582,8 +654,11 @@
    "cpu": "1×Cortex-A76 2.58GHz + 3×Cortex-A76 2.40GHz + 4×Cortex-A55 1.84GHz",
    "cores": 8,
    "max_ghz": 2.58,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G77 MP8",
    "gpu_key": "mali77",
+   "gpu_cores": "8核",
+   "features": "达芬奇 NPU（1 大核 + 1 微核）；集成 5G 基带",
    "year": "2020",
    "tier": "sub-flagship",
    "antutu": "379052",
@@ -593,8 +668,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-970",
-   "codes": [],
+   "id": "kirin970",
+   "codes": [
+    "kirin970"
+   ],
    "names": [
     "麒麟 970",
     "HiSilicon Kirin 970",
@@ -607,8 +684,11 @@
    "cpu": "4×Cortex-A73 2.40GHz + 4×Cortex-A53 1.80GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G72 MP12",
    "gpu_key": "mali72",
+   "gpu_cores": "12核",
+   "features": "首款集成独立 NPU 的手机 SoC（寒武纪 1A）；4G LTE",
    "year": "2017",
    "tier": "flagship",
    "antutu": "196655",
@@ -635,8 +715,11 @@
    "cpu": "4×Cortex-A73 2.40GHz + 4×Cortex-A53 1.80GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4",
    "gpu": "Mali-G71 MP8",
    "gpu_key": "mali71",
+   "gpu_cores": "8核",
+   "features": "4G LTE",
    "year": "2016",
    "tier": "flagship",
    "antutu": "170423",
@@ -646,8 +729,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-950",
-   "codes": [],
+   "id": "kirin950",
+   "codes": [
+    "kirin950"
+   ],
    "names": [
     "麒麟 950",
     "HiSilicon Kirin 950",
@@ -660,7 +745,11 @@
    "cpu": "4×Cortex-A72 2.30GHz + 4×Cortex-A53 1.80GHz",
    "cores": 8,
    "max_ghz": 2.3,
+   "memory": "LPDDR4",
    "gpu": "Mali-T880 MP4",
+   "gpu_clock": "900MHz",
+   "gpu_cores": "4核",
+   "features": "4G LTE；i5 协处理器",
    "year": "2015",
    "tier": "flagship",
    "antutu": "92650",
@@ -670,8 +759,10 @@
    "src": "socpk"
   },
   {
-   "id": "soc-9ba829eb",
-   "codes": [],
+   "id": "kirin8000",
+   "codes": [
+    "kirin8000"
+   ],
    "names": [
     "麒麟 8000",
     "麒麟8000"
@@ -689,8 +780,7 @@
   {
    "id": "kirin820",
    "codes": [
-    "KIRIN820",
-    "kirin820"
+    "KIRIN820"
    ],
    "names": [
     "麒麟 820",
@@ -704,8 +794,11 @@
    "cpu": "1×Cortex-A76 2.36GHz + 3×Cortex-A76 2.22GHz + 4×Cortex-A55 1.84GHz",
    "cores": 8,
    "max_ghz": 2.36,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G57 MP6",
    "gpu_key": "mali57",
+   "gpu_cores": "6核",
+   "features": "达芬奇 NPU；集成 5G 基带",
    "year": "2020",
    "tier": "mid",
    "antutu": "363465",
@@ -717,8 +810,7 @@
   {
    "id": "kirin810",
    "codes": [
-    "KIRIN810",
-    "kirin810"
+    "KIRIN810"
    ],
    "names": [
     "麒麟 810",
@@ -732,8 +824,11 @@
    "cpu": "2×Cortex-A76 2.27GHz + 6×Cortex-A55 1.88GHz",
    "cores": 8,
    "max_ghz": 2.27,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G52 MP6",
    "gpu_key": "mali52",
+   "gpu_cores": "6核",
+   "features": "达芬奇 NPU；4G LTE",
    "year": "2019",
    "tier": "mid",
    "antutu": "323604",
@@ -743,8 +838,10 @@
    "src": "socpk"
   },
   {
-   "id": "hisilicon-kirin-710f",
-   "codes": [],
+   "id": "kirin710f",
+   "codes": [
+    "kirin710f"
+   ],
    "names": [
     "麒麟 710F",
     "HiSilicon Kirin 710F"
@@ -756,15 +853,18 @@
    "cpu": "4×Cortex-A73 2.20GHz + 4×Cortex-A53 1.70GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G51 MP4",
    "gpu_key": "mali51",
+   "gpu_cores": "4核",
+   "features": "4G LTE",
    "year": "2019",
    "tier": "low",
    "form": "phone",
    "src": "socpk"
   },
   {
-   "id": "xiaomi-xring-o3",
+   "id": "o3",
    "codes": [],
    "names": [
     "玄戒 O3",
@@ -786,7 +886,7 @@
    "src": "socpk"
   },
   {
-   "id": "xiaomi-xring-o1",
+   "id": "o1",
    "codes": [],
    "names": [
     "玄戒 O1",
@@ -800,8 +900,12 @@
    "cpu": "2×Cortex-X925 3.90GHz + 4×Cortex-A725 3.40GHz + 2×Cortex-A725 1.90GHz + 2×Cortex-A520 1.80GHz",
    "cores": 10,
    "max_ghz": 3.9,
+   "memory": "LPDDR5X 9600MT/s",
    "gpu": "Immortalis-G925 MC16",
    "gpu_key": "mali925",
+   "gpu_clock": "1392MHz",
+   "gpu_cores": "16 Cores",
+   "features": "MediaTek T800 外挂基带",
    "year": "2025",
    "tier": "flagship",
    "antutu": "1957221",
@@ -827,6 +931,7 @@
    "cpu": "4×Cortex-A53 2.20GHz + 4×Cortex-A53 1.40GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR3",
    "gpu": "Mali-T860 MP4",
    "year": "2017",
    "tier": "mid",
@@ -834,7 +939,7 @@
    "src": "socpk"
   },
   {
-   "id": "amlogic-s922x",
+   "id": "s922x",
    "codes": [],
    "names": [
     "S922X",
@@ -849,13 +954,15 @@
    "max_ghz": 2.2,
    "gpu": "Mali-G52 MP6",
    "gpu_key": "mali52",
+   "gpu_clock": "800MHz",
+   "gpu_cores": "6核",
    "year": "2019",
    "tier": "mid",
    "form": "phone",
    "src": "socpk"
   },
   {
-   "id": "broadcom-bcm2711-raspberry-pi-4b",
+   "id": "bcm2711-4b",
    "codes": [],
    "names": [
     "BCM2711(树莓派4B)",
@@ -868,15 +975,20 @@
    "cpu": "4×Cortex-A72 1.50GHz",
    "cores": 4,
    "max_ghz": 1.5,
+   "memory": "LPDDR4 3200MT/s",
    "gpu": "VideoCore VI",
+   "gpu_clock": "500MHz",
+   "features": "4K@60fps H.265 解码；双 micro-HDMI 输出；PCIe 2.0（USB 3.0 经 VLI 主控）",
    "year": "2019",
    "tier": "mid",
    "form": "phone",
    "src": "socpk"
   },
   {
-   "id": "unisoc-t820",
-   "codes": [],
+   "id": "t820",
+   "codes": [
+    "ums9620"
+   ],
    "names": [
     "展锐 T820",
     "UNISOC T820",
@@ -889,8 +1001,13 @@
    "cpu": "1×Cortex-A76 2.70GHz + 3×Cortex-A76 2.30GHz + 4×Cortex-A55 2.10GHz",
    "cores": 8,
    "max_ghz": 2.7,
+   "caches": "L3 3MB",
+   "memory": "LPDDR4X",
    "gpu": "Mali-G57 MC4",
    "gpu_key": "mali57",
+   "gpu_clock": "850MHz",
+   "gpu_cores": "4核",
+   "features": "集成 5G 全模基带（SA/NSA）；UFS 3.1；金融级安全方案",
    "year": "2022",
    "tier": "mid",
    "antutu": "317066",
@@ -900,7 +1017,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t770",
+   "id": "t770",
    "codes": [],
    "names": [
     "展锐 T770",
@@ -914,8 +1031,12 @@
    "cpu": "1×Cortex-A76 2.50GHz + 3×Cortex-A76 2.20GHz + 4×Cortex-A55 2.00GHz",
    "cores": 8,
    "max_ghz": 2.5,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G57 MP4",
    "gpu_key": "mali57",
+   "gpu_clock": "780MHz",
+   "gpu_cores": "4核",
+   "features": "马卡鲁 IVY510 5G 基带（SA/NSA）",
    "year": "2021",
    "tier": "mid",
    "antutu": "325906",
@@ -925,8 +1046,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t760",
-   "codes": [],
+   "id": "t760",
+   "codes": [
+    "ums9620"
+   ],
    "names": [
     "展锐 T760",
     "UNISOC Tanggula T760",
@@ -939,8 +1062,12 @@
    "cpu": "4×Cortex-A76 2.20GHz + 4×Cortex-A55 2.00GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MP4",
    "gpu_key": "mali57",
+   "gpu_clock": "650MHz",
+   "gpu_cores": "4核",
+   "features": "马卡鲁 IVY510 5G 基带（SA/NSA）",
    "year": "2021",
    "tier": "mid",
    "antutu": "308508",
@@ -950,7 +1077,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t765",
+   "id": "t765",
    "codes": [],
    "names": [
     "展锐 T765",
@@ -964,8 +1091,12 @@
    "cpu": "2×Cortex-A76 2.30GHz + 6×Cortex-A55 2.10GHz",
    "cores": 8,
    "max_ghz": 2.3,
+   "memory": "LPDDR4X",
    "gpu": "Mali-G57 MC2",
    "gpu_key": "mali57",
+   "gpu_clock": "850MHz",
+   "gpu_cores": "2核",
+   "features": "5G 基带（SA/NSA）",
    "year": "2024",
    "tier": "mid",
    "antutu": "257842",
@@ -975,7 +1106,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tanggula-t740",
+   "id": "t740",
    "codes": [],
    "names": [
     "展锐 T740",
@@ -988,14 +1119,17 @@
    "cpu": "4×Cortex-A75 1.80GHz + 4×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 1.8,
+   "memory": "LPDDR4/LPDDR4X 3733MT/s",
    "gpu": "PowerVR GM9446",
+   "gpu_clock": "800MHz",
+   "features": "搭配春藤 510 5G 基带（组合型号 T7510）",
    "year": "2020",
    "tier": "mid",
    "form": "phone",
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t618",
+   "id": "t618",
    "codes": [],
    "names": [
     "展锐 T618",
@@ -1009,8 +1143,12 @@
    "cpu": "2×Cortex-A75 2.00GHz + 6×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Mali-G52 MC2 (3EE)",
    "gpu_key": "mali52",
+   "gpu_clock": "850MHz",
+   "gpu_cores": "2核",
+   "features": "4G LTE",
    "year": "2019",
    "tier": "low",
    "antutu": "180314",
@@ -1020,8 +1158,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t616",
-   "codes": [],
+   "id": "t616",
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "展锐 T616",
     "UNISOC Tiger T616",
@@ -1034,8 +1174,12 @@
    "cpu": "2×Cortex-A75 2.00GHz + 6×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Mali-G57 MC1",
    "gpu_key": "mali57",
+   "gpu_clock": "750MHz",
+   "gpu_cores": "1核",
+   "features": "4G LTE",
    "year": "2021",
    "tier": "low",
    "antutu": "164049",
@@ -1045,7 +1189,7 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t610",
+   "id": "t610",
    "codes": [],
    "names": [
     "展锐 T610",
@@ -1059,8 +1203,12 @@
    "cpu": "2×Cortex-A75 1.80GHz + 6×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 1.8,
+   "memory": "LPDDR4X 3200MT/s",
    "gpu": "Mali-G52 MC2 (3EE)",
    "gpu_key": "mali52",
+   "gpu_clock": "614MHz",
+   "gpu_cores": "2核",
+   "features": "4G LTE",
    "year": "2019",
    "tier": "low",
    "antutu": "163439",
@@ -1070,8 +1218,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-tiger-t606",
-   "codes": [],
+   "id": "t606",
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "展锐 T606",
     "UNISOC Tiger T606",
@@ -1084,8 +1234,12 @@
    "cpu": "2×Cortex-A75 1.60GHz + 6×Cortex-A55 1.60GHz",
    "cores": 8,
    "max_ghz": 1.6,
+   "memory": "LPDDR4X 3200MT/s",
    "gpu": "Mali-G57 MC1",
    "gpu_key": "mali57",
+   "gpu_clock": "650MHz",
+   "gpu_cores": "1核",
+   "features": "4G LTE",
    "year": "2021",
    "tier": "low",
    "antutu": "146938",
@@ -1095,8 +1249,10 @@
    "src": "socpk"
   },
   {
-   "id": "unisoc-sc9863a",
-   "codes": [],
+   "id": "s9863a",
+   "codes": [
+    "s9863a"
+   ],
    "names": [
     "展锐 SC9863A",
     "UNISOC SC9863A",
@@ -1109,7 +1265,10 @@
    "cpu": "4×Cortex-A55 1.60GHz + 4×Cortex-A55 1.20GHz",
    "cores": 8,
    "max_ghz": 1.6,
+   "memory": "LPDDR3/LPDDR4X 1866MT/s",
    "gpu": "PowerVR GE8322",
+   "gpu_clock": "550MHz",
+   "features": "4G LTE（Cat 7）",
    "year": "2018",
    "tier": "low",
    "antutu": "89580",
@@ -1136,7 +1295,12 @@
    "cpu": "1×Arm C1-Ultra 4.21GHz + 3×Arm C1-Premium 3.5GHz + 4×Arm C1-Pro 2.7GHz",
    "cores": 8,
    "max_ghz": 4.21,
+   "caches": "L3 16MB · SLC 10MB",
+   "memory": "LPDDR5X 10667MT/s",
    "gpu": "Mali-G1 Ultra",
+   "gpu_clock": "1716MHz",
+   "gpu_cores": "12 cores",
+   "features": "NPU 990 / Wi-Fi 7 / Bluetooth 6.0",
    "year": "2025",
    "tier": "flagship",
    "antutu": "2299863",
@@ -1167,8 +1331,13 @@
    "cpu": "1×Cortex-X925 3.62GHz + 3×Cortex-X4 3.3GHz + 4×Cortex-A720 2.4GHz",
    "cores": 8,
    "max_ghz": 3.62,
+   "caches": "L3 12MB · SLC 10MB",
+   "memory": "LPDDR5X 10667MT/s",
    "gpu": "Immortalis-G925 MC12",
    "gpu_key": "mali925",
+   "gpu_clock": "1612MHz",
+   "gpu_cores": "12 Cores",
+   "features": "NPU 890 / Wi-Fi 7 / Bluetooth 5.4",
    "year": "2024",
    "tier": "flagship",
    "antutu": "1795254",
@@ -1199,8 +1368,13 @@
    "cpu": "1×Cortex-X4 3.25GHz + 3×Cortex-X4 2.85GHz + 4×Cortex-A720 2.0GHz",
    "cores": 8,
    "max_ghz": 3.25,
+   "caches": "L3 8MB · SLC 10MB",
+   "memory": "LPDDR5T 9600MT/s",
    "gpu": "Immortalis-G720 MC12",
    "gpu_key": "mali720",
+   "gpu_clock": "1300MHz",
+   "gpu_cores": "12 Cores",
+   "features": "Wi-Fi 7 / Bluetooth 5.4",
    "year": "2023",
    "tier": "flagship",
    "antutu": "1414180",
@@ -1230,8 +1404,13 @@
    "cpu": "1×Cortex-X3 3.05GHz + 3×Cortex-A715 2.85GHz + 4×Cortex-A510 1.8GHz",
    "cores": 8,
    "max_ghz": 3.05,
+   "caches": "L3 8MB · SLC 6MB",
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "Immortalis-G715 MC11",
    "gpu_key": "mali715",
+   "gpu_clock": "981MHz",
+   "gpu_cores": "11 Cores",
+   "features": "Wi-Fi 7 / Bluetooth 5.3",
    "year": "2022",
    "tier": "flagship",
    "antutu": "1066849",
@@ -1262,8 +1441,13 @@
    "cpu": "1×Cortex-X2 3.05GHz + 3×Cortex-A710 2.85GHz + 4×Cortex-A510 1.8GHz",
    "cores": 8,
    "max_ghz": 3.05,
+   "caches": "L3 8MB · SLC 6MB",
+   "memory": "LPDDR5X 7500MT/s",
    "gpu": "Mali-G710 MC10",
    "gpu_key": "mali710",
+   "gpu_clock": "848MHz",
+   "gpu_cores": "10 Cores",
+   "features": "Wi-Fi 6E / Bluetooth 5.3",
    "year": "2021",
    "tier": "flagship",
    "antutu": "759904",
@@ -1291,8 +1475,13 @@
    "cpu": "1×Cortex-A725 3.25GHz + 3×Cortex-A725 3.0GHz + 4×Cortex-A725 2.1GHz",
    "cores": 8,
    "max_ghz": 3.25,
+   "caches": "L3 6MB · SLC 5MB",
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "Mali-G720 MC7",
    "gpu_key": "mali720",
+   "gpu_clock": "1300MHz",
+   "gpu_cores": "7 Cores",
+   "features": "Wi-Fi 6E / Bluetooth 6.0",
    "year": "2024",
    "tier": "mid",
    "ludashi": "852108",
@@ -1319,8 +1508,13 @@
    "cpu": "1×Cortex-A715 3.35GHz + 3×Cortex-A715 3.2GHz + 4×Cortex-A510 2.2GHz",
    "cores": 8,
    "max_ghz": 3.35,
+   "caches": "L3 4MB",
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "Mali-G615 MC6",
    "gpu_key": "mali615",
+   "gpu_clock": "1400MHz",
+   "gpu_cores": "6 Cores",
+   "features": "Wi-Fi 6E / Bluetooth 5.4",
    "year": "2023",
    "tier": "mid",
    "ludashi": "579868",
@@ -1347,8 +1541,13 @@
    "cpu": "1×Cortex-A78 3.1GHz + 3×Cortex-A78 3.0GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 3.1,
+   "caches": "L3 4MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Mali-G610 MC6",
    "gpu_key": "mali610",
+   "gpu_clock": "950MHz",
+   "gpu_cores": "6 Cores",
+   "features": "Wi-Fi 6E / Bluetooth 5.3",
    "year": "2022",
    "tier": "mid",
    "ludashi": "481306",
@@ -1376,8 +1575,13 @@
    "cpu": "4×Cortex-A78 2.85GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.85,
+   "caches": "L3 4MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Mali-G610 MC6",
    "gpu_key": "mali610",
+   "gpu_clock": "860MHz",
+   "gpu_cores": "6 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.3",
    "year": "2022",
    "tier": "mid",
    "antutu": "599131",
@@ -1404,8 +1608,12 @@
    "cpu": "1×Cortex-A78 3.0GHz + 3×Cortex-A78 2.6GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 3.0,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G77 MC9",
    "gpu_key": "mali77",
+   "gpu_clock": "886MHz",
+   "gpu_cores": "9 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.2",
    "year": "2021",
    "tier": "sub-flagship",
    "form": "phone",
@@ -1429,8 +1637,13 @@
    "cpu": "1×Cortex-A78 3.0GHz + 3×Cortex-A78 2.6GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 3.0,
+   "caches": "L3 8MB",
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G77 MC9",
    "gpu_key": "mali77",
+   "gpu_clock": "886MHz",
+   "gpu_cores": "9 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.2",
    "year": "2021",
    "tier": "sub-flagship",
    "antutu": "529094",
@@ -1460,8 +1673,13 @@
    "cpu": "4×Cortex-A78 2.6GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.6,
+   "caches": "L3 8MB",
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G77 MC9",
    "gpu_key": "mali77",
+   "gpu_clock": "836MHz",
+   "gpu_cores": "9 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.2",
    "year": "2021",
    "tier": "sub-flagship",
    "antutu": "516831",
@@ -1489,8 +1707,12 @@
    "cpu": "4×Cortex-A77 2.6GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.6,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Mali-G77 MC9",
    "gpu_key": "mali77",
+   "gpu_clock": "836MHz",
+   "gpu_cores": "9 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.1",
    "year": "2020",
    "tier": "flagship",
    "antutu": "457336",
@@ -1518,8 +1740,12 @@
    "cpu": "4×Cortex-A77 2.2GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Mali-G77 MC7",
    "gpu_key": "mali77",
+   "gpu_clock": "695MHz",
+   "gpu_cores": "7 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.1",
    "year": "2019",
    "tier": "mid",
    "antutu": "439761",
@@ -1548,8 +1774,12 @@
    "cpu": "2×Cortex-A715 2.8GHz + 6×Cortex-A510 2.0GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Mali-G610 MC4",
    "gpu_key": "mali610",
+   "gpu_clock": "1130MHz",
+   "gpu_cores": "4 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.3",
    "year": "2023",
    "tier": "low",
    "antutu": "499269",
@@ -1576,8 +1806,12 @@
    "cpu": "2×Cortex-A78 2.6GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.6,
+   "memory": "LPDDR5 5500MT/s",
    "gpu": "Mali-G68 MC4",
    "gpu_key": "mali68",
+   "gpu_clock": "800MHz",
+   "gpu_cores": "4 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.2",
    "year": "2022",
    "tier": "low",
    "antutu": "401747",
@@ -1605,8 +1839,11 @@
    "cpu": "2×Cortex-A78 2.5GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.5,
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Mali-G68 MC4",
    "gpu_key": "mali68",
+   "gpu_cores": "4 Cores",
+   "features": "Wi-Fi 6 / Bluetooth 5.2",
    "year": "2021",
    "tier": "low",
    "antutu": "357755",
@@ -1633,8 +1870,11 @@
    "cpu": "1×Cortex-A76 2.6GHz + 3×Cortex-A76 2.0GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.6,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MC5",
    "gpu_key": "mali57",
+   "gpu_cores": "5 Cores",
+   "features": "Wi-Fi 5 / Bluetooth 5.1",
    "year": "2020",
    "tier": "mid",
    "antutu": "378811",
@@ -1661,8 +1901,12 @@
    "cpu": "2×Cortex-A76 2.4GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57",
    "gpu_key": "mali57",
+   "gpu_clock": "1068MHz",
+   "gpu_cores": "2 Cores",
+   "features": "Wi-Fi 5 / Bluetooth 5.1",
    "year": "2021",
    "tier": "low",
    "antutu": "285452",
@@ -1688,8 +1932,11 @@
    "cpu": "4×Cortex-A76 2.0GHz + 4×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MC4",
    "gpu_key": "mali57",
+   "gpu_cores": "4 Cores",
+   "features": "Wi-Fi 5 / Bluetooth 5.1",
    "year": "2020",
    "tier": "mid",
    "antutu": "329516",
@@ -1717,8 +1964,11 @@
    "cpu": "2×Cortex-A76 2.4GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MC3",
    "gpu_key": "mali57",
+   "gpu_cores": "3 Cores",
+   "features": "Wi-Fi 5 / Bluetooth 5.1",
    "year": "2020",
    "tier": "low",
    "antutu": "303441",
@@ -1747,8 +1997,12 @@
    "cpu": "2×Cortex-A76 2.0GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MC3",
    "gpu_key": "mali57",
+   "gpu_clock": "730MHz",
+   "gpu_cores": "3 Cores",
+   "features": "Wi-Fi 5 / Bluetooth 5.1",
    "year": "2020",
    "tier": "low",
    "antutu": "230095",
@@ -1776,8 +2030,12 @@
    "cpu": "2×Cortex-A76 2.2GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MC2",
    "gpu_key": "mali57",
+   "gpu_clock": "950MHz",
+   "gpu_cores": "2 Cores",
+   "features": "Wi-Fi 5 / Bluetooth 5.1",
    "year": "2020",
    "tier": "low",
    "antutu": "276704",
@@ -1806,8 +2064,12 @@
    "cpu": "2×Cortex-A76 2.2GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G57 MC2",
    "gpu_key": "mali57",
+   "gpu_clock": "1000MHz",
+   "gpu_cores": "2 Cores",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.2",
    "year": "2022",
    "tier": "low",
    "antutu": "277949",
@@ -1836,8 +2098,12 @@
    "cpu": "2×Cortex-A76 2.05GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.05,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Mali-G76 MC4",
    "gpu_key": "mali76",
+   "gpu_clock": "800MHz",
+   "gpu_cores": "4 Cores",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.0",
    "year": "2019",
    "tier": "mid",
    "antutu": "268567",
@@ -1868,8 +2134,12 @@
    "cpu": "2×Cortex-A75 2.0GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3600MT/s",
    "gpu": "Mali-G52 MC2",
    "gpu_key": "mali52",
+   "gpu_clock": "1000MHz",
+   "gpu_cores": "2 Cores",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.0",
    "year": "2020",
    "tier": "low",
    "antutu": "178306",
@@ -1900,8 +2170,12 @@
    "cpu": "2×Cortex-A75 2.0GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3600MT/s",
    "gpu": "Mali-G52 MC2",
    "gpu_key": "mali52",
+   "gpu_clock": "950MHz",
+   "gpu_cores": "2 Cores",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.0",
    "year": "2020",
    "tier": "low",
    "antutu": "179900",
@@ -1928,7 +2202,11 @@
    "cpu": "2×Cortex-A73 2.6GHz + 4×Cortex-A53 2.2GHz + 4×Cortex-A35 1.9GHz",
    "cores": 10,
    "max_ghz": 2.6,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "PowerVR GT7400 Plus (7XTP-MT4)",
+   "gpu_clock": "800MHz",
+   "gpu_cores": "4 CU",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.0",
    "year": "2017",
    "tier": "flagship",
    "antutu": "132180",
@@ -1954,7 +2232,11 @@
    "cpu": "2×Cortex-A72 2.1GHz + 4×Cortex-A53 1.85GHz + 4×Cortex-A53 1.4GHz",
    "cores": 10,
    "max_ghz": 2.1,
+   "memory": "LPDDR3 1600MT/s",
    "gpu": "Mali-T880 MP4",
+   "gpu_clock": "780MHz",
+   "gpu_cores": "4 Cores",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 4.2",
    "year": "2016",
    "tier": "flagship",
    "antutu": "54852",
@@ -1980,7 +2262,11 @@
    "cpu": "2×Cortex-A75 2.2GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "PowerVR GM9446",
+   "gpu_clock": "970MHz",
+   "gpu_cores": "1 CU",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.0",
    "year": "2018",
    "tier": "mid",
    "antutu": "219136",
@@ -1992,12 +2278,15 @@
   {
    "id": "mt6771",
    "codes": [
-    "MT6771"
+    "MT6771",
+    "mt6771"
    ],
    "names": [
-    "曦力 P60",
+    "Helio P60",
+    "Helio P70",
     "MediaTek Helio P60",
-    "Helio P60"
+    "曦力 P60",
+    "联发科技 Helio P70"
    ],
    "name": "曦力 P60",
    "name_en": "MediaTek Helio P60",
@@ -2006,8 +2295,12 @@
    "cpu": "4×Cortex-A73 2.0GHz + 4×Cortex-A53 2.0GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3600MT/s",
    "gpu": "Mali-G72 MP3",
    "gpu_key": "mali72",
+   "gpu_clock": "800MHz",
+   "gpu_cores": "3 Cores",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 4.2",
    "year": "2018",
    "tier": "mid",
    "antutu": "165107",
@@ -2037,7 +2330,11 @@
    "cpu": "4×Cortex-A53 2.3GHz + 4×Cortex-A53 1.8GHz",
    "cores": 8,
    "max_ghz": 2.3,
+   "memory": "LPDDR4X 3200MT/s",
    "gpu": "PowerVR GE8320",
+   "gpu_clock": "680MHz",
+   "gpu_cores": "2 CU",
+   "features": "4G LTE / Wi-Fi 5 / Bluetooth 5.0",
    "year": "2018",
    "tier": "low",
    "antutu": "110931",
@@ -2064,7 +2361,11 @@
    "cpu": "4×Cortex-A57 1.90GHz + 4×Cortex-A53",
    "cores": 8,
    "max_ghz": 1.9,
+   "memory": "LPDDR3/LPDDR4",
    "gpu": "Maxwell 256 CUDA",
+   "gpu_clock": "1000MHz",
+   "gpu_cores": "256 CUDA核心",
+   "features": "4K@60fps H.265/VP9 解码",
    "year": "2015",
    "tier": "flagship",
    "devices": "SHIELD TV、Switch Lite",
@@ -2088,494 +2389,13 @@
    "cpu": "4×Cortex-A15 2.30GHz",
    "cores": 4,
    "max_ghz": 2.3,
+   "memory": "LPDDR3/DDR3L",
    "gpu": "Kepler 192 CUDA",
+   "gpu_clock": "950MHz",
+   "gpu_cores": "192 CUDA核心",
+   "features": "4-PLUS-1（4×A15 + 1 节电伴核）；桌面级 Kepler GPU 架构，支持 OpenGL 4.4",
    "year": "2014",
    "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m6",
-   "codes": [],
-   "names": [
-    "M6",
-    "Apple M6"
-   ],
-   "name": "M6",
-   "name_en": "Apple M6",
-   "brand": "苹果",
-   "process": "TSMC N2",
-   "cpu": "2×Super + 4×Performance + 6×Efficiency",
-   "cores": 12,
-   "gpu": "Apple GPU",
-   "year": "2026",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m5",
-   "codes": [],
-   "names": [
-    "M5",
-    "Apple M5"
-   ],
-   "name": "M5",
-   "name_en": "Apple M5",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "4×Everest (V4) 4.51GHz + 6×Sawtooth (V4) 2.89GHz",
-   "cores": 10,
-   "max_ghz": 4.51,
-   "gpu": "Apple GPU",
-   "year": "2025",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m4",
-   "codes": [],
-   "names": [
-    "M4",
-    "Apple M4"
-   ],
-   "name": "M4",
-   "name_en": "Apple M4",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "4×Everest (V3) 4.51GHz + 6×Sawtooth (V3) 2.89GHz",
-   "cores": 10,
-   "max_ghz": 4.51,
-   "gpu": "Apple GPU",
-   "year": "2024",
-   "tier": "flagship",
-   "devices": "iPad Pro 7th Gen 16GB、iPad Pro 7th Gen 8GB",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m3",
-   "codes": [],
-   "names": [
-    "M3",
-    "Apple M3"
-   ],
-   "name": "M3",
-   "name_en": "Apple M3",
-   "brand": "苹果",
-   "process": "TSMC N3B",
-   "cpu": "4×Everest (V2) 4.05GHz + 4×Sawtooth (V2) 2.75GHz",
-   "cores": 8,
-   "max_ghz": 4.05,
-   "gpu": "Apple GPU",
-   "year": "2023",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m2",
-   "codes": [],
-   "names": [
-    "M2",
-    "Apple M2"
-   ],
-   "name": "M2",
-   "name_en": "Apple M2",
-   "brand": "苹果",
-   "process": "TSMC N5P",
-   "cpu": "4×Avalanche 3.49GHz + 4×Blizzard 2.42GHz",
-   "cores": 8,
-   "max_ghz": 3.49,
-   "gpu": "Apple GPU",
-   "year": "2022",
-   "tier": "flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-m1",
-   "codes": [],
-   "names": [
-    "M1",
-    "Apple M1"
-   ],
-   "name": "M1",
-   "name_en": "Apple M1",
-   "brand": "苹果",
-   "process": "TSMC N5",
-   "cpu": "4×Firestorm 3.20GHz + 4×Icestorm 2.06GHz",
-   "cores": 8,
-   "max_ghz": 3.2,
-   "gpu": "Apple GPU",
-   "year": "2020",
-   "tier": "flagship",
-   "devices": "iPad Air 5th generation",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a19-pro",
-   "codes": [],
-   "names": [
-    "A19 Pro",
-    "Apple A19 Pro"
-   ],
-   "name": "A19 Pro",
-   "name_en": "Apple A19 Pro",
-   "brand": "苹果",
-   "process": "TSMC N3P",
-   "cpu": "2×4.26GHz + 4×2.60GHz",
-   "cores": 6,
-   "max_ghz": 4.26,
-   "gpu": "Apple GPU",
-   "year": "2025",
-   "tier": "flagship",
-   "devices": "iPhone 17 Pro、iPhone 17 Pro Max、iPhone Air",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a19",
-   "codes": [],
-   "names": [
-    "A19",
-    "Apple A19"
-   ],
-   "name": "A19",
-   "name_en": "Apple A19",
-   "brand": "苹果",
-   "process": "TSMC N3P",
-   "cpu": "2×4.26GHz + 4×2.60GHz",
-   "cores": 6,
-   "max_ghz": 4.26,
-   "gpu": "Apple GPU",
-   "year": "2025",
-   "tier": "sub-flagship",
-   "devices": "iPhone 17",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a18-pro",
-   "codes": [],
-   "names": [
-    "A18 Pro",
-    "Apple A18 Pro"
-   ],
-   "name": "A18 Pro",
-   "name_en": "Apple A18 Pro",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "2×4.04GHz + 4×2.42GHz",
-   "cores": 6,
-   "max_ghz": 4.04,
-   "gpu": "Apple GPU",
-   "year": "2024",
-   "tier": "sub-flagship",
-   "devices": "iPhone 16 Pro Max",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a18",
-   "codes": [],
-   "names": [
-    "A18",
-    "Apple A18"
-   ],
-   "name": "A18",
-   "name_en": "Apple A18",
-   "brand": "苹果",
-   "process": "TSMC N3E",
-   "cpu": "2×4.04GHz + 4×2.42GHz",
-   "cores": 6,
-   "max_ghz": 4.04,
-   "gpu": "Apple GPU",
-   "year": "2024",
-   "tier": "sub-flagship",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a17-pro",
-   "codes": [],
-   "names": [
-    "A17 Pro",
-    "Apple A17 Pro"
-   ],
-   "name": "A17 Pro",
-   "name_en": "Apple A17 Pro",
-   "brand": "苹果",
-   "process": "TSMC N3",
-   "cpu": "2×Everest 3.78GHz + 4×Sawtooth 2.11GHz",
-   "cores": 6,
-   "max_ghz": 3.78,
-   "gpu": "Apple GPU",
-   "year": "2023",
-   "tier": "sub-flagship",
-   "devices": "iPhone 15 Pro Max、iPhone 15 Pro",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a16-bionic",
-   "codes": [],
-   "names": [
-    "A16",
-    "Apple A16 Bionic"
-   ],
-   "name": "A16",
-   "name_en": "Apple A16 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N4",
-   "cpu": "2×Everest 3.46GHz + 4×Sawtooth 2.02GHz",
-   "cores": 6,
-   "max_ghz": 3.46,
-   "gpu": "Apple GPU",
-   "year": "2022",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a12z-bionic",
-   "codes": [],
-   "names": [
-    "A12Z",
-    "Apple A12Z Bionic"
-   ],
-   "name": "A12Z",
-   "name_en": "Apple A12Z Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7",
-   "cpu": "4×Vortex 2.49GHz + 4×Tempest 1.59GHz",
-   "cores": 8,
-   "max_ghz": 2.49,
-   "gpu": "Apple GPU",
-   "year": "2020",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a12x-bionic",
-   "codes": [],
-   "names": [
-    "A12X",
-    "Apple A12X Bionic"
-   ],
-   "name": "A12X",
-   "name_en": "Apple A12X Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7",
-   "cpu": "4×Vortex 2.49GHz + 4×Tempest 1.59GHz",
-   "cores": 8,
-   "max_ghz": 2.49,
-   "gpu": "Apple GPU",
-   "year": "2018",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a15-bionic",
-   "codes": [],
-   "names": [
-    "A15",
-    "Apple A15 Bionic"
-   ],
-   "name": "A15",
-   "name_en": "Apple A15 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N5P",
-   "cpu": "2×Avalanche 2.93GHz + 4×Blizzard 2.02GHz",
-   "cores": 6,
-   "max_ghz": 2.93,
-   "gpu": "Apple GPU",
-   "year": "2021",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a14-bionic",
-   "codes": [],
-   "names": [
-    "A14",
-    "Apple A14 Bionic"
-   ],
-   "name": "A14",
-   "name_en": "Apple A14 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N5",
-   "cpu": "2×Firestorm 2.99GHz + 4×Icestorm 1.82GHz",
-   "cores": 6,
-   "max_ghz": 2.99,
-   "gpu": "Apple GPU",
-   "year": "2020",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a13-bionic",
-   "codes": [],
-   "names": [
-    "A13",
-    "Apple A13 Bionic"
-   ],
-   "name": "A13",
-   "name_en": "Apple A13 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7P",
-   "cpu": "2×Lightning 2.65GHz + 4×Thunder 1.80GHz",
-   "cores": 6,
-   "max_ghz": 2.65,
-   "gpu": "Apple GPU",
-   "year": "2019",
-   "tier": "mid",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a12-bionic",
-   "codes": [],
-   "names": [
-    "A12",
-    "Apple A12 Bionic"
-   ],
-   "name": "A12",
-   "name_en": "Apple A12 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N7",
-   "cpu": "2×Vortex 2.49GHz + 4×Tempest 1.59GHz",
-   "cores": 6,
-   "max_ghz": 2.49,
-   "gpu": "Apple GPU",
-   "year": "2018",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a11-bionic",
-   "codes": [],
-   "names": [
-    "A11",
-    "Apple A11 Bionic"
-   ],
-   "name": "A11",
-   "name_en": "Apple A11 Bionic",
-   "brand": "苹果",
-   "process": "TSMC N10",
-   "cpu": "2×Monsoon 2.39GHz + 4×Mistral",
-   "cores": 6,
-   "max_ghz": 2.39,
-   "gpu": "Apple GPU",
-   "year": "2017",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a10x-fusion",
-   "codes": [],
-   "names": [
-    "A10X",
-    "Apple A10X Fusion"
-   ],
-   "name": "A10X",
-   "name_en": "Apple A10X Fusion",
-   "brand": "苹果",
-   "process": "TSMC N10",
-   "cpu": "3×Hurricane 2.39GHz + 3×Zephyr 1.30GHz",
-   "cores": 6,
-   "max_ghz": 2.39,
-   "gpu": "PowerVR GT7600 Plus",
-   "year": "2017",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a10-fusion",
-   "codes": [],
-   "names": [
-    "A10",
-    "Apple A10 Fusion"
-   ],
-   "name": "A10",
-   "name_en": "Apple A10 Fusion",
-   "brand": "苹果",
-   "process": "TSMC N16",
-   "cpu": "2×Hurricane 2.34GHz + 2×Zephyr 1.09GHz",
-   "cores": 4,
-   "max_ghz": 2.34,
-   "gpu": "PowerVR GT7600 Plus",
-   "year": "2016",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a9",
-   "codes": [],
-   "names": [
-    "A9",
-    "Apple A9"
-   ],
-   "name": "A9",
-   "name_en": "Apple A9",
-   "brand": "苹果",
-   "process": "TSMC N16 / Samsung 14LPE",
-   "cpu": "2×Twister 1.85GHz",
-   "cores": 2,
-   "max_ghz": 1.85,
-   "gpu": "PowerVR GT7600",
-   "year": "2015",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a8",
-   "codes": [],
-   "names": [
-    "A8",
-    "Apple A8"
-   ],
-   "name": "A8",
-   "name_en": "Apple A8",
-   "brand": "苹果",
-   "process": "TSMC N20",
-   "cpu": "2×Typhoon 1.4GHz",
-   "cores": 2,
-   "max_ghz": 1.4,
-   "gpu": "PowerVR GX6450",
-   "year": "2014",
-   "tier": "low",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "apple-a7",
-   "codes": [],
-   "names": [
-    "A7",
-    "Apple A7"
-   ],
-   "name": "A7",
-   "name_en": "Apple A7",
-   "brand": "苹果",
-   "process": "Samsung 28nm",
-   "cpu": "2×Cyclone 1.3GHz",
-   "cores": 2,
-   "max_ghz": 1.3,
-   "gpu": "PowerVR G6430",
-   "year": "2013",
-   "tier": "low",
    "form": "phone",
    "src": "socpk"
   },
@@ -2596,7 +2416,11 @@
    "cpu": "1×Arm C1-Ultra 4.11GHz + 4×Arm C1-Pro 3.38GHz + 2×Arm C1-Pro 2.65GHz",
    "cores": 7,
    "max_ghz": 4.11,
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "PowerVR CXTP-48-1536",
+   "gpu_clock": "1286MHz",
+   "gpu_cores": "6 CU",
+   "features": "MediaTek M90 基带 / Bluetooth 6.0",
    "year": "2026",
    "tier": "flagship",
    "form": "phone",
@@ -2620,7 +2444,11 @@
    "cpu": "1×Cortex-X4 3.78GHz + 5×Cortex-A725 3.05GHz + 2×Cortex-A520 2.25GHz",
    "cores": 8,
    "max_ghz": 3.78,
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "PowerVR DXT-48-1536",
+   "gpu_clock": "940MHz",
+   "gpu_cores": "6 CU",
+   "features": "Samsung Exynos 5400 外挂基带 / Bluetooth 6.0",
    "year": "2025",
    "tier": "flagship",
    "ludashi": "829798",
@@ -2647,8 +2475,12 @@
    "cpu": "1×Cortex-X4 3.1GHz + 3×Cortex-A720 2.6GHz + 4×Cortex-A510 1.92GHz",
    "cores": 8,
    "max_ghz": 3.1,
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "Mali-G715 MP7",
    "gpu_key": "mali715",
+   "gpu_clock": "940MHz",
+   "gpu_cores": "7 Cores",
+   "features": "Samsung Exynos 5400 外挂基带 / Bluetooth 5.3",
    "year": "2024",
    "tier": "flagship",
    "antutu": "925515",
@@ -2677,8 +2509,13 @@
    "cpu": "1×Cortex-X3 2.91GHz + 4×Cortex-A715 2.37GHz + 4×Cortex-A510 1.70GHz",
    "cores": 9,
    "max_ghz": 2.91,
+   "caches": "L3 8MB · SLC 16MB",
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "Mali-G715 MP7",
    "gpu_key": "mali715",
+   "gpu_clock": "890MHz",
+   "gpu_cores": "7 Cores",
+   "features": "Samsung Exynos 5300 外挂基带 / Bluetooth 5.3",
    "year": "2023",
    "tier": "flagship",
    "antutu": "800832",
@@ -2707,8 +2544,13 @@
    "cpu": "2×Cortex-X1 2.86GHz + 2×Cortex-A78 2.35GHz + 4×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 2.86,
+   "caches": "L3 4MB · SLC 8MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Mali-G710 MP7",
    "gpu_key": "mali710",
+   "gpu_clock": "848MHz",
+   "gpu_cores": "7 Cores",
+   "features": "Samsung Exynos Modem 5300 外挂基带 / Bluetooth 5.2",
    "year": "2021",
    "tier": "flagship",
    "antutu": "644730",
@@ -2737,8 +2579,13 @@
    "cpu": "2×Cortex-X1 2.80GHz + 2×Cortex-A76 2.25GHz + 4×Cortex-A55 1.80GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "caches": "L3 4MB · SLC 8MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Mali-G78 MP20",
    "gpu_key": "mali78",
+   "gpu_clock": "848MHz",
+   "gpu_cores": "20 Cores",
+   "features": "Samsung Exynos Modem 5123 外挂基带 / Bluetooth 5.2",
    "year": "2021",
    "tier": "flagship",
    "antutu": "511865",
@@ -2768,8 +2615,15 @@
    "cpu": "2×Oryon L (v3) 4.6GHz + 6×Oryon M (v3) 3.62GHz",
    "cores": 8,
    "max_ghz": 4.6,
+   "caches": "L2 24MB · SLC 8MB",
+   "memory": "LPDDR5X 10667MT/s",
    "gpu": "Adreno 840",
    "gpu_key": "adreno840",
+   "gpu_clock": "1200MHz",
+   "gpu_cores": "1536ALUs",
+   "features": "NPU: Hexagon AI Engine / X85 5G Modem / FastConnect 7900 Wi-Fi 7 / Bluetooth 6.0",
+   "gb6s": 3836,
+   "gb6m": 12352,
    "year": "2025Q3",
    "tier": "flagship",
    "antutu": "2449060",
@@ -2800,8 +2654,15 @@
    "cpu": "2×Oryon L (v2) 4.32GHz + 6×Oryon M (v2) 3.53GHz",
    "cores": 8,
    "max_ghz": 4.32,
+   "caches": "L2 24MB · SLC 8MB",
+   "memory": "LPDDR5X 10667MT/s",
    "gpu": "Adreno 830",
    "gpu_key": "adreno830",
+   "gpu_clock": "1100MHz",
+   "gpu_cores": "1536ALUs",
+   "features": "NPU: AI Engine / Bluetooth 6.0 / X80 5G Modem",
+   "gb6s": 3245,
+   "gb6m": 10234,
    "year": "2024Q4",
    "tier": "flagship",
    "antutu": "2086572",
@@ -2829,8 +2690,15 @@
    "cpu": "2×Oryon L (v2) 3.8GHz + 6×Oryon M (v2) 3.32GHz",
    "cores": 8,
    "max_ghz": 3.8,
+   "caches": "L2 16MB · SLC 8MB",
+   "memory": "LPDDR5X 9600MT/s",
    "gpu": "Adreno 829",
    "gpu_key": "adreno829",
+   "gpu_clock": "1200MHz",
+   "gpu_cores": "1024ALUs",
+   "features": "NPU: Hexagon AI Engine / X80 5G Modem / FastConnect 7900 Wi-Fi 7 / Bluetooth 6.0",
+   "gb6s": 2969,
+   "gb6m": 10037,
    "year": "2025Q4",
    "tier": "sub-flagship",
    "antutu": "1928653",
@@ -2862,8 +2730,15 @@
    "cpu": "1×Cortex-X4 3.3GHz + 3×Cortex-A720 3.15GHz + 2×Cortex-A720 2.96GHz + 2×Cortex-A520 2.27GHz",
    "cores": 8,
    "max_ghz": 3.3,
+   "caches": "L3 12MB · SLC 6MB",
+   "memory": "LPDDR5X 9600MT/s",
    "gpu": "Adreno 750",
    "gpu_key": "adreno750",
+   "gpu_clock": "903MHz",
+   "gpu_cores": "1536ALUs",
+   "features": "NPU: Hexagon AI Engine / X75 5G Modem / FastConnect 7800 Wi-Fi 7 / Bluetooth 5.4",
+   "gb6s": 2213,
+   "gb6m": 7466,
    "year": "2023Q4",
    "tier": "flagship",
    "antutu": "1473128",
@@ -2891,8 +2766,13 @@
    "cpu": "1×Cortex-X4 3.0GHz + 4×Cortex-A720 2.8GHz + 3×Cortex-A520 2.0GHz",
    "cores": 8,
    "max_ghz": 3.0,
+   "caches": "L3 4MB · SLC 3.5MB",
+   "memory": "LPDDR5X 8533MT/s",
    "gpu": "Adreno 735",
    "gpu_key": "adreno735",
+   "gpu_clock": "1100MHz",
+   "gpu_cores": "768ALUs",
+   "features": "NPU: Hexagon AI Engine / X70 5G Modem / FastConnect 7800 Wi-Fi 7 / Bluetooth 5.4",
    "year": "2024",
    "tier": "sub-flagship",
    "antutu": "1061206",
@@ -2922,8 +2802,15 @@
    "cpu": "1×Cortex-X3 3.2GHz + 2×Cortex-A715 2.8GHz + 2×Cortex-A710 2.8GHz + 3×Cortex-A510 2.0GHz",
    "cores": 8,
    "max_ghz": 3.2,
+   "caches": "L3 8MB",
+   "memory": "LPDDR5X 8400MT/s",
    "gpu": "Adreno 740",
    "gpu_key": "adreno740",
+   "gpu_clock": "680MHz",
+   "gpu_cores": "1536ALUs",
+   "features": "NPU: Hexagon AI Engine / X70 5G Modem / FastConnect 7800 Wi-Fi 7 / Bluetooth 5.3",
+   "gb6s": 2036,
+   "gb6m": 5697,
    "year": "2022Q4",
    "tier": "flagship",
    "antutu": "1034945",
@@ -2951,8 +2838,13 @@
    "cpu": "1×Cortex-X2 3.2GHz + 3×Cortex-A710 2.75GHz + 4×Cortex-A510 1.8GHz",
    "cores": 8,
    "max_ghz": 3.2,
+   "caches": "L3 6MB · SLC 4MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 730",
    "gpu_key": "adreno730",
+   "gpu_clock": "900MHz",
+   "gpu_cores": "1024ALUs",
+   "features": "NPU: Hexagon AI Engine / X65 5G Modem / FastConnect 6900 Wi-Fi 6E / Bluetooth 5.3",
    "year": "2022",
    "tier": "flagship",
    "antutu": "831251",
@@ -2980,8 +2872,13 @@
    "cpu": "1×Cortex-X2 3.0GHz + 3×Cortex-A710 2.5GHz + 4×Cortex-A510 1.8GHz",
    "cores": 8,
    "max_ghz": 3.0,
+   "caches": "L3 6MB · SLC 4MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 730",
    "gpu_key": "adreno730",
+   "gpu_clock": "818MHz",
+   "gpu_cores": "1024ALUs",
+   "features": "NPU: Hexagon AI Engine / X65 5G Modem / FastConnect 6900 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2021",
    "tier": "flagship",
    "antutu": "720239",
@@ -3009,8 +2906,13 @@
    "cpu": "1×Kryo 680 Prime (Cortex-X1) 3.0GHz + 3×Kryo 680 Gold (Cortex-A78) 2.42GHz + 4×Kryo 680 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 3.0,
+   "caches": "L3 4MB · SLC 3MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 660",
    "gpu_key": "adreno660",
+   "gpu_clock": "840MHz",
+   "gpu_cores": "768ALUs",
+   "features": "NPU: Hexagon 780 / X60 5G Modem / FastConnect 6900 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2021",
    "tier": "flagship",
    "antutu": "661976",
@@ -3038,8 +2940,13 @@
    "cpu": "1×Kryo 680 Prime (Cortex-X1) 2.84GHz + 3×Kryo 680 Gold (Cortex-A78) 2.42GHz + 4×Kryo 680 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.84,
+   "caches": "L3 4MB · SLC 3MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 660",
    "gpu_key": "adreno660",
+   "gpu_clock": "840MHz",
+   "gpu_cores": "768ALUs",
+   "features": "NPU: Hexagon 780 / X60 5G Modem / FastConnect 6900 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2021",
    "tier": "flagship",
    "antutu": "646030",
@@ -3068,8 +2975,15 @@
    "cpu": "1×Kryo 585 Prime (Cortex-A77) 3.2GHz + 3×Kryo 585 Gold (Cortex-A77) 2.42GHz + 4×Kryo 585 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 3.2,
+   "caches": "L3 4MB · SLC 3MB",
+   "memory": "LPDDR5 5500MT/s",
    "gpu": "Adreno 650",
    "gpu_key": "adreno650",
+   "gpu_clock": "670MHz",
+   "gpu_cores": "768ALUs",
+   "features": "外挂 X55 5G Modem / Bluetooth 5.1",
+   "gb6s": 1282,
+   "gb6m": 3437,
    "year": "2021",
    "tier": "flagship",
    "antutu": "592893",
@@ -3097,8 +3011,13 @@
    "cpu": "1×Kryo 585 Prime (Cortex-A77) 3.1GHz + 3×Kryo 585 Gold (Cortex-A77) 2.42GHz + 4×Kryo 585 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 3.1,
+   "caches": "L3 4MB · SLC 3MB",
+   "memory": "LPDDR5 5500MT/s",
    "gpu": "Adreno 650",
    "gpu_key": "adreno650",
+   "gpu_clock": "670MHz",
+   "gpu_cores": "768ALUs",
+   "features": "外挂 X55 5G Modem / Bluetooth 5.2",
    "year": "2020",
    "tier": "flagship",
    "antutu": "585852",
@@ -3126,8 +3045,15 @@
    "cpu": "1×Kryo 585 Prime (Cortex-A77) 2.84GHz + 3×Kryo 585 Gold (Cortex-A77) 2.42GHz + 4×Kryo 585 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.84,
+   "caches": "L3 4MB · SLC 3MB",
+   "memory": "LPDDR5 5500MT/s",
    "gpu": "Adreno 650",
    "gpu_key": "adreno650",
+   "gpu_clock": "587MHz",
+   "gpu_cores": "768ALUs",
+   "features": "外挂 X55 5G Modem / Bluetooth 5.1",
+   "gb6s": 1150,
+   "gb6m": 3352,
    "year": "2020",
    "tier": "flagship",
    "antutu": "578228",
@@ -3159,8 +3085,13 @@
    "cpu": "1×Kryo 485 Prime (Cortex-A76) 2.96GHz + 3×Kryo 485 Gold (Cortex-A76) 2.42GHz + 4×Kryo 485 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.96,
+   "caches": "L3 2MB",
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 640",
    "gpu_key": "adreno640",
+   "gpu_clock": "672MHz",
+   "gpu_cores": "768ALUs",
+   "features": "X24 LTE Modem / Bluetooth 5.0",
    "year": "2021",
    "tier": "sub-flagship",
    "antutu": "465807",
@@ -3188,8 +3119,13 @@
    "cpu": "1×Kryo 485 Prime (Cortex-A76) 2.84GHz + 3×Kryo 485 Gold (Cortex-A76) 2.42GHz + 4×Kryo 485 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.84,
+   "caches": "L3 2MB",
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 640",
    "gpu_key": "adreno640",
+   "gpu_clock": "585MHz",
+   "gpu_cores": "768ALUs",
+   "features": "X24 LTE Modem（可外挂 X50 5G）/ Bluetooth 5.0",
    "year": "2019",
    "tier": "flagship",
    "antutu": "477548",
@@ -3216,8 +3152,13 @@
    "cpu": "4×Kryo 385 Gold (Cortex-A75) 2.8GHz + 4×Kryo 385 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "caches": "L3 2MB · SLC 3MB",
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 630",
    "gpu_key": "adreno630",
+   "gpu_clock": "710MHz",
+   "gpu_cores": "512ALUs",
+   "features": "X20 LTE Modem / Bluetooth 5.0",
    "year": "2018",
    "tier": "flagship",
    "antutu": "317455",
@@ -3244,8 +3185,12 @@
    "cpu": "4×Kryo 280 (Cortex-A73) 2.45GHz + 4×Kryo 280 (Cortex-A53) 1.9GHz",
    "cores": 8,
    "max_ghz": 2.45,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 540",
    "gpu_key": "adreno540",
+   "gpu_clock": "710MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X16 LTE Modem / Bluetooth 5.0",
    "year": "2017",
    "tier": "flagship",
    "antutu": "274835",
@@ -3278,8 +3223,11 @@
    "cpu": "2×Kryo 2.34GHz + 2×Kryo 2.19GHz",
    "cores": 4,
    "max_ghz": 2.34,
+   "memory": "LPDDR4 3733MT/s",
    "gpu": "Adreno 530",
    "gpu_key": "adreno530",
+   "gpu_clock": "652MHz",
+   "gpu_cores": "256ALUs",
    "year": "2016",
    "tier": "flagship",
    "devices": "Pixel、G6、3T",
@@ -3303,8 +3251,11 @@
    "cpu": "4×Cortex-A57 2.0GHz + 4×Cortex-A53 1.55GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4 3200MT/s",
    "gpu": "Adreno 430",
    "gpu_key": "adreno430",
+   "gpu_clock": "630MHz",
+   "gpu_cores": "192ALUs",
    "year": "2015",
    "tier": "flagship",
    "antutu": "58338",
@@ -3330,8 +3281,11 @@
    "cpu": "2×Cortex-A57 2.0GHz + 4×Cortex-A53 1.44GHz",
    "cores": 6,
    "max_ghz": 2.0,
+   "memory": "LPDDR3 1866MT/s",
    "gpu": "Adreno 418",
    "gpu_key": "adreno418",
+   "gpu_clock": "600MHz",
+   "gpu_cores": "128ALUs",
    "year": "2015",
    "tier": "flagship",
    "antutu": "71432",
@@ -3341,7 +3295,7 @@
    "src": "socpk"
   },
   {
-   "id": "microsoft-sq1",
+   "id": "sq1",
    "codes": [],
    "names": [
     "微软 SQ1",
@@ -3354,8 +3308,11 @@
    "cpu": "4×Kryo 495 Gold (Cortex-A76) 3.0GHz + 4×Kryo 495 Silver (Cortex-A55) 1.8GHz",
    "cores": 8,
    "max_ghz": 3.0,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 685",
    "gpu_key": "adreno685",
+   "gpu_clock": "590MHz",
+   "gpu_cores": "1536ALUs",
    "year": "2019",
    "tier": "flagship",
    "form": "phone",
@@ -3379,8 +3336,12 @@
    "cpu": "1×Cortex-X4 2.8GHz + 4×Cortex-A720 2.6GHz + 3×Cortex-A520 1.9GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "memory": "LPDDR5X 8400MT/s",
    "gpu": "Adreno 732",
    "gpu_key": "adreno732",
+   "gpu_clock": "950MHz",
+   "gpu_cores": "768ALUs",
+   "features": "X63 5G Modem / FastConnect 7800 Wi-Fi 7 / Bluetooth 5.4",
    "year": "2024",
    "tier": "mid",
    "antutu": "994559",
@@ -3409,8 +3370,13 @@
    "cpu": "1×Cortex-X2 2.91GHz + 3×Cortex-A710 2.49GHz + 4×Cortex-A510 1.8GHz",
    "cores": 8,
    "max_ghz": 2.91,
+   "caches": "SLC 2MB",
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 725",
    "gpu_key": "adreno725",
+   "gpu_clock": "580MHz",
+   "gpu_cores": "1024ALUs",
+   "features": "X62 5G Modem / FastConnect 6900 Wi-Fi 6E / Bluetooth 5.3",
    "year": "2023",
    "tier": "mid",
    "antutu": "782853",
@@ -3439,8 +3405,12 @@
    "cpu": "4×Cortex-A78 2.4GHz + 4×Cortex-A55 1.95GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR5 / LPDDR4X 6400MT/s / 4266MT/s",
    "gpu": "Adreno 710",
    "gpu_key": "adreno710",
+   "gpu_clock": "940MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X62 5G Modem / FastConnect 6700 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2023",
    "tier": "mid",
    "antutu": "434658",
@@ -3468,8 +3438,12 @@
    "cpu": "1×Cortex-A710 2.52GHz + 1×Cortex-A710 2.36GHz + 1×Cortex-A510 1.8GHz",
    "cores": 3,
    "max_ghz": 2.52,
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 644",
    "gpu_key": "adreno644",
+   "gpu_clock": "442MHz",
+   "gpu_cores": "768ALUs",
+   "features": "X62 5G Modem / FastConnect 6700 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2022",
    "tier": "mid",
    "antutu": "462426",
@@ -3496,8 +3470,12 @@
    "cpu": "1×Cortex-A78 2.7GHz + 3×Cortex-A78 2.4GHz + 4×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.7,
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 642L",
    "gpu_key": "adreno642",
+   "gpu_clock": "719MHz",
+   "gpu_cores": "512ALUs",
+   "features": "X53 5G Modem / FastConnect 6700 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2022",
    "tier": "mid",
    "antutu": "449076",
@@ -3526,8 +3504,11 @@
    "cpu": "1×Cortex-A78 2.4GHz + 3×Cortex-A78 2.2GHz + 4×Cortex-A55 1.9GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 642",
    "gpu_key": "adreno642",
+   "gpu_clock": "490MHz",
+   "gpu_cores": "768ALUs",
    "year": "2021",
    "tier": "mid",
    "antutu": "463818",
@@ -3553,8 +3534,12 @@
    "cpu": "1×Cortex-A78 2.4GHz + 3×Cortex-A78 2.2GHz + 4×Cortex-A55 1.9GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR5 6400MT/s",
    "gpu": "Adreno 642L",
    "gpu_key": "adreno642",
+   "gpu_clock": "550MHz",
+   "gpu_cores": "512ALUs",
+   "features": "X53 5G Modem / FastConnect 6700 Wi-Fi 6E / Bluetooth 5.2",
    "year": "2021",
    "tier": "mid",
    "antutu": "431328",
@@ -3581,8 +3566,12 @@
    "cpu": "1×Cortex-A76 2.8GHz + 1×Cortex-A76 2.4GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.8,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 620",
    "gpu_key": "adreno620",
+   "gpu_clock": "750MHz",
+   "gpu_cores": "384ALUs",
+   "features": "X52 5G Modem / FastConnect 6200 Wi-Fi 6 / Bluetooth 5.2",
    "year": "2020",
    "tier": "mid",
    "antutu": "338393",
@@ -3609,8 +3598,12 @@
    "cpu": "1×Cortex-A76 2.4GHz + 1×Cortex-A76 2.2GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 620",
    "gpu_key": "adreno620",
+   "gpu_clock": "625MHz",
+   "gpu_cores": "384ALUs",
+   "features": "X52 5G Modem / FastConnect 6200 Wi-Fi 6 / Bluetooth 5.0",
    "year": "2019",
    "tier": "mid",
    "antutu": "333085",
@@ -3637,8 +3630,12 @@
    "cpu": "2×Cortex-A77 2.2GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 619",
    "gpu_key": "adreno619",
+   "gpu_clock": "800MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X52 5G Modem / FastConnect 6200 / Bluetooth 5.1",
    "year": "2020",
    "tier": "mid",
    "antutu": "275764",
@@ -3665,8 +3662,12 @@
    "cpu": "2×Cortex-A76 2.2GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 618",
    "gpu_key": "adreno618",
+   "gpu_clock": "700MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X15 LTE Modem / Bluetooth 5.0",
    "year": "2019",
    "tier": "mid",
    "antutu": "296139",
@@ -3693,8 +3694,12 @@
    "cpu": "2×Kryo 360 Gold (Cortex-A75) 2.2GHz + 6×Kryo 360 Silver (Cortex-A55) 1.7GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 616",
    "gpu_key": "adreno616",
+   "gpu_clock": "504MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X15 LTE Modem / Bluetooth 5.0",
    "year": "2018",
    "tier": "mid",
    "antutu": "206611",
@@ -3722,8 +3727,12 @@
    "cpu": "4×Cortex-A78 2.2GHz + 4×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR5 5500MT/s",
    "gpu": "Adreno 710",
    "gpu_key": "adreno710",
+   "gpu_clock": "676MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X62 5G Modem / FastConnect 6700 Wi-Fi 6E / Bluetooth 5.1",
    "year": "2022",
    "tier": "mid",
    "antutu": "377676",
@@ -3750,8 +3759,12 @@
    "cpu": "2×Cortex-A78 2.2GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 619",
    "gpu_key": "adreno619",
+   "gpu_clock": "840MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X51 5G Modem / FastConnect 6200 / Bluetooth 5.2",
    "year": "2021",
    "tier": "low",
    "antutu": "325217",
@@ -3778,8 +3791,12 @@
    "cpu": "4×Kryo 265 (Cortex-A73) 2.4GHz + 4×Kryo 265 (Cortex-A53) 1.9GHz",
    "cores": 8,
    "max_ghz": 2.4,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 610",
    "gpu_key": "adreno610",
+   "gpu_clock": "1114MHz",
+   "gpu_cores": "128ALUs",
+   "features": "X11 LTE Modem / Bluetooth 5.1",
    "year": "2021",
    "tier": "low",
    "antutu": "233275",
@@ -3806,8 +3823,12 @@
    "cpu": "2×Kryo 460 (Cortex-A76) 2.0GHz + 6×Kryo 460 (Cortex-A55) 1.7GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 612",
    "gpu_key": "adreno612",
+   "gpu_clock": "845MHz",
+   "gpu_cores": "128ALUs",
+   "features": "X12 LTE Modem / Bluetooth 5.0",
    "year": "2018",
    "tier": "low",
    "antutu": "232113",
@@ -3833,8 +3854,12 @@
    "cpu": "4×Kryo 260 (Cortex-A73) 2.0GHz + 4×Kryo 260 (Cortex-A53) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 610",
    "gpu_key": "adreno610",
+   "gpu_clock": "600MHz",
+   "gpu_cores": "128ALUs",
+   "features": "X12 LTE Modem / Bluetooth 5.0",
    "year": "2019",
    "tier": "low",
    "antutu": "166731",
@@ -3861,8 +3886,12 @@
    "cpu": "4×Kryo 260 (Cortex-A73) 2.0GHz + 4×Kryo 260 (Cortex-A53) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X / LPDDR3 3733MT/s / 1866MT/s",
    "gpu": "Adreno 610",
    "gpu_key": "adreno610",
+   "gpu_clock": "950MHz",
+   "gpu_cores": "128ALUs",
+   "features": "X11 LTE Modem / FastConnect 6100 Wi-Fi 6 / Bluetooth 5.1",
    "year": "2020",
    "tier": "low",
    "antutu": "166633",
@@ -3889,8 +3918,12 @@
    "cpu": "4×Kryo 260 Gold (Cortex-A73) 2.2GHz + 4×Kryo 260 Silver (Cortex-A53) 1.8GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR4X 3733MT/s",
    "gpu": "Adreno 512",
    "gpu_key": "adreno512",
+   "gpu_clock": "650MHz",
+   "gpu_cores": "128ALUs",
+   "features": "Bluetooth 5.0",
    "year": "2017",
    "tier": "mid",
    "antutu": "169306",
@@ -3917,8 +3950,12 @@
    "cpu": "4×Kryo 260 (Cortex-A73) 1.8GHz + 4×Kryo 260 (Cortex-A53) 1.6GHz",
    "cores": 8,
    "max_ghz": 1.8,
+   "memory": "LPDDR4X 2666MT/s",
    "gpu": "Adreno 509",
    "gpu_key": "adreno509",
+   "gpu_clock": "430MHz",
+   "gpu_cores": "128ALUs",
+   "features": "X12 LTE Modem / Bluetooth 5.0",
    "year": "2018",
    "tier": "mid",
    "antutu": "150507",
@@ -3945,8 +3982,12 @@
    "cpu": "8×Cortex-A53 2.0GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR3 1866MT/s",
    "gpu": "Adreno 506",
    "gpu_key": "adreno506",
+   "gpu_clock": "650MHz",
+   "gpu_cores": "48ALUs",
+   "features": "X9 LTE Modem / Bluetooth 4.2",
    "year": "2016",
    "tier": "mid",
    "antutu": "54314",
@@ -3973,8 +4014,12 @@
    "cpu": "2×Cortex-A78 2.2GHz + 6×Cortex-A55 2.0GHz",
    "cores": 8,
    "max_ghz": 2.2,
+   "memory": "LPDDR5X / LPDDR4X 6400MT/s / 4266MT/s",
    "gpu": "Adreno 613",
    "gpu_key": "adreno613",
+   "gpu_clock": "955MHz",
+   "gpu_cores": "128ALUs",
+   "features": "X61 5G Modem / Bluetooth 5.1",
    "year": "2023",
    "tier": "low",
    "antutu": "306688",
@@ -4002,8 +4047,12 @@
    "cpu": "2×Cortex-A78 2.0GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 619",
    "gpu_key": "adreno619",
+   "gpu_clock": "700MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X51 5G Modem / FastConnect 6200 / Bluetooth 5.2",
    "year": "2022",
    "tier": "low",
    "antutu": "303999",
@@ -4029,8 +4078,12 @@
    "cpu": "2×Cortex-A76 2.0GHz + 6×Cortex-A55 1.8GHz",
    "cores": 8,
    "max_ghz": 2.0,
+   "memory": "LPDDR4X 4266MT/s",
    "gpu": "Adreno 619",
    "gpu_key": "adreno619",
+   "gpu_clock": "650MHz",
+   "gpu_cores": "256ALUs",
+   "features": "X51 5G Modem / Bluetooth 5.1",
    "year": "2021",
    "tier": "low",
    "antutu": "292212",
@@ -4057,8 +4110,12 @@
    "cpu": "4×Cortex-A53 1.95GHz + 4×Cortex-A53 1.45GHz",
    "cores": 8,
    "max_ghz": 1.95,
+   "memory": "LPDDR3 1866MT/s",
    "gpu": "Adreno 505",
    "gpu_key": "adreno505",
+   "gpu_clock": "650MHz",
+   "gpu_cores": "48ALUs",
+   "features": "X6 LTE Modem / Bluetooth 5.0",
    "year": "2018",
    "tier": "low",
    "antutu": "95471",
@@ -4084,8 +4141,12 @@
    "cpu": "4×Cortex-A53 1.4GHz + 4×Cortex-A53 1.1GHz",
    "cores": 8,
    "max_ghz": 1.4,
+   "memory": "LPDDR3 1600MT/s",
    "gpu": "Adreno 505",
    "gpu_key": "adreno505",
+   "gpu_clock": "450MHz",
+   "gpu_cores": "48ALUs",
+   "features": "X6 LTE Modem / Bluetooth 4.1",
    "year": "2015",
    "tier": "low",
    "antutu": "34599",
@@ -4470,6 +4531,8 @@
   {
    "id": "exynos-2500",
    "codes": [
+    "exynos2500",
+    "samsungexynos2500",
     "S5E9955"
    ],
    "names": [
@@ -4721,7 +4784,9 @@
   },
   {
    "id": "9020a",
-   "codes": [],
+   "codes": [
+    "kirin9020a"
+   ],
    "names": [
     "海思 麒麟9020A",
     "麒麟9020A"
@@ -4763,6 +4828,8 @@
   {
    "id": "exynos-1480",
    "codes": [
+    "exynos1480",
+    "samsungexynos1480",
     "S5E8845"
    ],
    "names": [
@@ -4859,7 +4926,9 @@
   },
   {
    "id": "9010e",
-   "codes": [],
+   "codes": [
+    "kirin9010e"
+   ],
    "names": [
     "海思 麒麟9010E",
     "麒麟9010E"
@@ -4879,7 +4948,9 @@
   },
   {
    "id": "9010l",
-   "codes": [],
+   "codes": [
+    "kirin9010l"
+   ],
    "names": [
     "海思 麒麟9010L",
     "麒麟9010L"
@@ -4898,7 +4969,9 @@
   },
   {
    "id": "9000s1",
-   "codes": [],
+   "codes": [
+    "kirin9000s1"
+   ],
    "names": [
     "海思 麒麟9000S1",
     "麒麟9000S1"
@@ -5218,7 +5291,9 @@
   },
   {
    "id": "990e",
-   "codes": [],
+   "codes": [
+    "kirin990e"
+   ],
    "names": [
     "海思 麒麟990E",
     "麒麟990E"
@@ -5280,7 +5355,9 @@
   {
    "id": "s5e9825",
    "codes": [
-    "S5E9825"
+    "S5E9825",
+    "exynos9825",
+    "samsungexynos9825"
    ],
    "names": [
     "三星 Exynos 9825",
@@ -5388,6 +5465,8 @@
   {
    "id": "exynos-1380",
    "codes": [
+    "exynos1380",
+    "samsungexynos1380",
     "S5E8835"
    ],
    "names": [
@@ -5486,7 +5565,9 @@
   },
   {
    "id": "8000a",
-   "codes": [],
+   "codes": [
+    "kirin8000a"
+   ],
    "names": [
     "海思 麒麟8000A",
     "麒麟8000A"
@@ -5525,7 +5606,9 @@
   },
   {
    "id": "820e",
-   "codes": [],
+   "codes": [
+    "kirin820e"
+   ],
    "names": [
     "海思 麒麟820E",
     "麒麟820E"
@@ -5796,6 +5879,8 @@
   {
    "id": "exynos-1280",
    "codes": [
+    "exynos1280",
+    "samsungexynos1280",
     "S5E8825"
    ],
    "names": [
@@ -5819,6 +5904,8 @@
   {
    "id": "exynos-1330",
    "codes": [
+    "exynos1330",
+    "samsungexynos1330",
     "S5E8535"
    ],
    "names": [
@@ -6218,7 +6305,9 @@
   },
   {
    "id": "t7250",
-   "codes": [],
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "紫光展锐 T7250",
     "T7250"
@@ -6229,6 +6318,7 @@
    "cpu": "2×1.8GHz Cortex-A75 + 6×1.6GHz Cortex-A55",
    "cores": 8,
    "max_ghz": 1.8,
+   "year": "2023",
    "antutu": "190707",
    "antutu_cpu": "169607",
    "antutu_gpu": "21100",
@@ -6315,25 +6405,6 @@
    "src": "antutu"
   },
   {
-   "id": "helio-p70",
-   "codes": [],
-   "names": [
-    "联发科技 Helio P70",
-    "Helio P70"
-   ],
-   "name": "Helio P70",
-   "name_en": "联发科技 Helio P70",
-   "brand": "联发科",
-   "cpu": "4×2.1GHz Cortex-A73 + 4×2.0GHz Cortex-A53",
-   "cores": 8,
-   "max_ghz": 2.1,
-   "antutu": "171134",
-   "antutu_cpu": "145086",
-   "antutu_gpu": "26048",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
    "id": "helio-g70",
    "codes": [],
    "names": [
@@ -6410,7 +6481,9 @@
   },
   {
    "id": "t612",
-   "codes": [],
+   "codes": [
+    "ums9230"
+   ],
    "names": [
     "紫光展锐 T612",
     "T612"
@@ -6421,6 +6494,7 @@
    "cpu": "2×1.8GHz Cortex-A75 + 6×1.8GHz Cortex-A55",
    "cores": 8,
    "max_ghz": 1.8,
+   "year": "2022",
    "antutu": "163883",
    "antutu_cpu": "140897",
    "antutu_gpu": "22986",
@@ -6471,7 +6545,9 @@
   {
    "id": "s5e9611",
    "codes": [
-    "S5E9611"
+    "S5E9611",
+    "exynos9611",
+    "samsungexynos9611"
    ],
    "names": [
     "三星 Exynos 9611",
@@ -6493,7 +6569,9 @@
   {
    "id": "s5e9610",
    "codes": [
-    "S5E9610"
+    "S5E9610",
+    "exynos9610",
+    "samsungexynos9610"
    ],
    "names": [
     "三星 Exynos 9610",
@@ -6534,7 +6612,9 @@
   {
    "id": "s5e7885",
    "codes": [
-    "S5E7885"
+    "S5E7885",
+    "exynos7885",
+    "samsungexynos7885"
    ],
    "names": [
     "三星 Exynos 7885",
@@ -6556,7 +6636,9 @@
   {
    "id": "s5e7904",
    "codes": [
-    "S5E7904"
+    "S5E7904",
+    "exynos7904",
+    "samsungexynos7904"
    ],
    "names": [
     "三星 Exynos 7904",
@@ -6576,8 +6658,10 @@
    "src": "antutu"
   },
   {
-   "id": "t310",
-   "codes": [],
+   "id": "ums312",
+   "codes": [
+    "ums312"
+   ],
    "names": [
     "紫光展锐 T310",
     "T310"
@@ -6588,6 +6672,7 @@
    "cpu": "1×2.0GHz Cortex-A75 + 3×1.8GHz Cortex-A55",
    "cores": 4,
    "max_ghz": 2.0,
+   "year": "2019",
    "antutu": "118736",
    "antutu_cpu": "110172",
    "antutu_gpu": "8564",
@@ -6595,8 +6680,10 @@
    "src": "antutu"
   },
   {
-   "id": "exynos-850",
-   "codes": [],
+   "id": "s5e3830",
+   "codes": [
+    "s5e3830"
+   ],
    "names": [
     "三星 Exynos 850",
     "Exynos 850"
@@ -6676,8 +6763,10 @@
    "src": "antutu"
   },
   {
-   "id": "helio-p25",
-   "codes": [],
+   "id": "mt6757cd",
+   "codes": [
+    "mt6757cd"
+   ],
    "names": [
     "联发科技 Helio P25",
     "Helio P25"
@@ -6697,7 +6786,10 @@
   },
   {
    "id": "exynos-7880",
-   "codes": [],
+   "codes": [
+    "exynos7880",
+    "samsungexynos7880"
+   ],
    "names": [
     "三星 Exynos 7880",
     "Exynos 7880"
@@ -6865,7 +6957,10 @@
   },
   {
    "id": "exynos-7870",
-   "codes": [],
+   "codes": [
+    "exynos7870",
+    "samsungexynos7870"
+   ],
    "names": [
     "三星 Exynos 7870",
     "Exynos 7870"
@@ -6965,7 +7060,10 @@
   },
   {
    "id": "exynos-7872",
-   "codes": [],
+   "codes": [
+    "exynos7872",
+    "samsungexynos7872"
+   ],
    "names": [
     "三星 Exynos 7872",
     "Exynos 7872"
@@ -7087,7 +7185,9 @@
   },
   {
    "id": "65x",
-   "codes": [],
+   "codes": [
+    "kirin65x"
+   ],
    "names": [
     "海思 麒麟65x",
     "麒麟65x"
@@ -7107,7 +7207,9 @@
   {
    "id": "s5e7570",
    "codes": [
-    "S5E7570"
+    "S5E7570",
+    "exynos7570",
+    "samsungexynos7570"
    ],
    "names": [
     "三星 Exynos 7570",
@@ -7129,7 +7231,9 @@
   {
    "id": "s5e7580",
    "codes": [
-    "S5E7580"
+    "S5E7580",
+    "exynos7580",
+    "samsungexynos7580"
    ],
    "names": [
     "三星 Exynos 7580",
@@ -7206,8 +7310,10 @@
    "src": "antutu"
   },
   {
-   "id": "801ac",
-   "codes": [],
+   "id": "msm8974ac",
+   "codes": [
+    "msm8974ac"
+   ],
    "names": [
     "高通 骁龙801AC",
     "骁龙801AC"
@@ -7218,6 +7324,7 @@
    "cpu": "4×2.45GHz Krait 400",
    "cores": 4,
    "max_ghz": 2.45,
+   "year": "2014",
    "antutu": "28762",
    "antutu_cpu": "13690",
    "antutu_gpu": "15072",
@@ -8899,6 +9006,9 @@
    "S5E9840": [
     "s5e9840"
    ],
+   "S5E9815": [
+    "s5e9815"
+   ],
    "S5E9830": [
     "s5e9830"
    ],
@@ -8907,6 +9017,9 @@
    ],
    "S5E9810": [
     "s5e9810"
+   ],
+   "S5E9630": [
+    "s5e9630"
    ],
    "S5E8895": [
     "s5e8895"
@@ -8932,6 +9045,15 @@
    "KIRIN9000E": [
     "kirin9000e"
    ],
+   "KIRIN9000WL": [
+    "kirin9000wl"
+   ],
+   "KIRIN9000SL": [
+    "kirin9000sl"
+   ],
+   "KIRIN9000WM": [
+    "kirin9000wm"
+   ],
    "KIRIN990": [
     "kirin990"
    ],
@@ -8941,8 +9063,17 @@
    "KIRIN985": [
     "kirin985"
    ],
+   "KIRIN970": [
+    "kirin970"
+   ],
    "HI3660": [
     "hi3660"
+   ],
+   "KIRIN950": [
+    "kirin950"
+   ],
+   "KIRIN8000": [
+    "kirin8000"
    ],
    "KIRIN820": [
     "kirin820"
@@ -8950,8 +9081,24 @@
    "KIRIN810": [
     "kirin810"
    ],
+   "KIRIN710F": [
+    "kirin710f"
+   ],
    "V670": [
     "v670"
+   ],
+   "UMS9620": [
+    "t760",
+    "t820"
+   ],
+   "UMS9230": [
+    "t606",
+    "t612",
+    "t616",
+    "t7250"
+   ],
+   "S9863A": [
+    "s9863a"
    ],
    "MT6993": [
     "mt6993"
@@ -9388,8 +9535,17 @@
    "S5E7904": [
     "s5e7904"
    ],
+   "UMS312": [
+    "ums312"
+   ],
+   "S5E3830": [
+    "s5e3830"
+   ],
    "SDM630": [
     "sdm630"
+   ],
+   "MT6757CD": [
+    "mt6757cd"
    ],
    "MT6763": [
     "mt6763"
@@ -9436,8 +9592,179 @@
    "MSM8940": [
     "msm8940"
    ],
+   "MSM8974AC": [
+    "msm8974ac"
+   ],
    "MSM8917": [
     "msm8917"
+   ],
+   "KIRIN9020A": [
+    "9020a"
+   ],
+   "KIRIN9010E": [
+    "9010e"
+   ],
+   "KIRIN9010L": [
+    "9010l"
+   ],
+   "KIRIN9000S1": [
+    "9000s1"
+   ],
+   "KIRIN990E": [
+    "990e"
+   ],
+   "KIRIN8000A": [
+    "8000a"
+   ],
+   "KIRIN820E": [
+    "820e"
+   ],
+   "KIRIN65X": [
+    "65x"
+   ],
+   "EXYNOS2400": [
+    "s5e9945"
+   ],
+   "SAMSUNGEXYNOS2400": [
+    "s5e9945"
+   ],
+   "EXYNOS2200": [
+    "s5e9925"
+   ],
+   "SAMSUNGEXYNOS2200": [
+    "s5e9925"
+   ],
+   "EXYNOS2100": [
+    "s5e9840"
+   ],
+   "SAMSUNGEXYNOS2100": [
+    "s5e9840"
+   ],
+   "EXYNOS1080": [
+    "s5e9815"
+   ],
+   "SAMSUNGEXYNOS1080": [
+    "s5e9815"
+   ],
+   "EXYNOS9820": [
+    "s5e9820"
+   ],
+   "SAMSUNGEXYNOS9820": [
+    "s5e9820"
+   ],
+   "EXYNOS9810": [
+    "s5e9810"
+   ],
+   "SAMSUNGEXYNOS9810": [
+    "s5e9810"
+   ],
+   "EXYNOS8895": [
+    "s5e8895"
+   ],
+   "SAMSUNGEXYNOS8895": [
+    "s5e8895"
+   ],
+   "EXYNOS8890": [
+    "s5e8890"
+   ],
+   "SAMSUNGEXYNOS8890": [
+    "s5e8890"
+   ],
+   "EXYNOS7420": [
+    "s5e7420"
+   ],
+   "SAMSUNGEXYNOS7420": [
+    "s5e7420"
+   ],
+   "EXYNOS2500": [
+    "exynos-2500"
+   ],
+   "SAMSUNGEXYNOS2500": [
+    "exynos-2500"
+   ],
+   "EXYNOS1480": [
+    "exynos-1480"
+   ],
+   "SAMSUNGEXYNOS1480": [
+    "exynos-1480"
+   ],
+   "EXYNOS9825": [
+    "s5e9825"
+   ],
+   "SAMSUNGEXYNOS9825": [
+    "s5e9825"
+   ],
+   "EXYNOS1380": [
+    "exynos-1380"
+   ],
+   "SAMSUNGEXYNOS1380": [
+    "exynos-1380"
+   ],
+   "EXYNOS1280": [
+    "exynos-1280"
+   ],
+   "SAMSUNGEXYNOS1280": [
+    "exynos-1280"
+   ],
+   "EXYNOS1330": [
+    "exynos-1330"
+   ],
+   "SAMSUNGEXYNOS1330": [
+    "exynos-1330"
+   ],
+   "EXYNOS9611": [
+    "s5e9611"
+   ],
+   "SAMSUNGEXYNOS9611": [
+    "s5e9611"
+   ],
+   "EXYNOS9610": [
+    "s5e9610"
+   ],
+   "SAMSUNGEXYNOS9610": [
+    "s5e9610"
+   ],
+   "EXYNOS7885": [
+    "s5e7885"
+   ],
+   "SAMSUNGEXYNOS7885": [
+    "s5e7885"
+   ],
+   "EXYNOS7904": [
+    "s5e7904"
+   ],
+   "SAMSUNGEXYNOS7904": [
+    "s5e7904"
+   ],
+   "EXYNOS7880": [
+    "exynos-7880"
+   ],
+   "SAMSUNGEXYNOS7880": [
+    "exynos-7880"
+   ],
+   "EXYNOS7870": [
+    "exynos-7870"
+   ],
+   "SAMSUNGEXYNOS7870": [
+    "exynos-7870"
+   ],
+   "EXYNOS7872": [
+    "exynos-7872"
+   ],
+   "SAMSUNGEXYNOS7872": [
+    "exynos-7872"
+   ],
+   "EXYNOS7570": [
+    "s5e7570"
+   ],
+   "SAMSUNGEXYNOS7570": [
+    "s5e7570"
+   ],
+   "EXYNOS7580": [
+    "s5e7580"
+   ],
+   "SAMSUNGEXYNOS7580": [
+    "s5e7580"
    ],
    "SM7150-AA": [
     "sm7150-aa"
@@ -10104,6 +10431,9 @@
    "S5E9840": [
     "s5e9840"
    ],
+   "S5E9815": [
+    "s5e9815"
+   ],
    "S5E9830": [
     "s5e9830"
    ],
@@ -10112,6 +10442,9 @@
    ],
    "S5E9810": [
     "s5e9810"
+   ],
+   "S5E9630": [
+    "s5e9630"
    ],
    "S5E8895": [
     "s5e8895"
@@ -10137,6 +10470,15 @@
    "KIRIN9000E": [
     "kirin9000e"
    ],
+   "KIRIN9000WL": [
+    "kirin9000wl"
+   ],
+   "KIRIN9000SL": [
+    "kirin9000sl"
+   ],
+   "KIRIN9000WM": [
+    "kirin9000wm"
+   ],
    "KIRIN990": [
     "kirin990"
    ],
@@ -10146,8 +10488,17 @@
    "KIRIN985": [
     "kirin985"
    ],
+   "KIRIN970": [
+    "kirin970"
+   ],
    "HI3660": [
     "hi3660"
+   ],
+   "KIRIN950": [
+    "kirin950"
+   ],
+   "KIRIN8000": [
+    "kirin8000"
    ],
    "KIRIN820": [
     "kirin820"
@@ -10155,8 +10506,24 @@
    "KIRIN810": [
     "kirin810"
    ],
+   "KIRIN710F": [
+    "kirin710f"
+   ],
    "V670": [
     "v670"
+   ],
+   "UMS9620": [
+    "t760",
+    "t820"
+   ],
+   "UMS9230": [
+    "t606",
+    "t612",
+    "t616",
+    "t7250"
+   ],
+   "S9863A": [
+    "s9863a"
    ],
    "MT6993": [
     "mt6993"
@@ -10577,8 +10944,17 @@
    "S5E7904": [
     "s5e7904"
    ],
+   "UMS312": [
+    "ums312"
+   ],
+   "S5E3830": [
+    "s5e3830"
+   ],
    "SDM630": [
     "sdm630"
+   ],
+   "MT6757CD": [
+    "mt6757cd"
    ],
    "MT6763": [
     "mt6763"
@@ -10625,8 +11001,179 @@
    "MSM8940": [
     "msm8940"
    ],
+   "MSM8974AC": [
+    "msm8974ac"
+   ],
    "MSM8917": [
     "msm8917"
+   ],
+   "KIRIN9020A": [
+    "9020a"
+   ],
+   "KIRIN9010E": [
+    "9010e"
+   ],
+   "KIRIN9010L": [
+    "9010l"
+   ],
+   "KIRIN9000S1": [
+    "9000s1"
+   ],
+   "KIRIN990E": [
+    "990e"
+   ],
+   "KIRIN8000A": [
+    "8000a"
+   ],
+   "KIRIN820E": [
+    "820e"
+   ],
+   "KIRIN65X": [
+    "65x"
+   ],
+   "EXYNOS2400": [
+    "s5e9945"
+   ],
+   "SAMSUNGEXYNOS2400": [
+    "s5e9945"
+   ],
+   "EXYNOS2200": [
+    "s5e9925"
+   ],
+   "SAMSUNGEXYNOS2200": [
+    "s5e9925"
+   ],
+   "EXYNOS2100": [
+    "s5e9840"
+   ],
+   "SAMSUNGEXYNOS2100": [
+    "s5e9840"
+   ],
+   "EXYNOS1080": [
+    "s5e9815"
+   ],
+   "SAMSUNGEXYNOS1080": [
+    "s5e9815"
+   ],
+   "EXYNOS9820": [
+    "s5e9820"
+   ],
+   "SAMSUNGEXYNOS9820": [
+    "s5e9820"
+   ],
+   "EXYNOS9810": [
+    "s5e9810"
+   ],
+   "SAMSUNGEXYNOS9810": [
+    "s5e9810"
+   ],
+   "EXYNOS8895": [
+    "s5e8895"
+   ],
+   "SAMSUNGEXYNOS8895": [
+    "s5e8895"
+   ],
+   "EXYNOS8890": [
+    "s5e8890"
+   ],
+   "SAMSUNGEXYNOS8890": [
+    "s5e8890"
+   ],
+   "EXYNOS7420": [
+    "s5e7420"
+   ],
+   "SAMSUNGEXYNOS7420": [
+    "s5e7420"
+   ],
+   "EXYNOS2500": [
+    "exynos-2500"
+   ],
+   "SAMSUNGEXYNOS2500": [
+    "exynos-2500"
+   ],
+   "EXYNOS1480": [
+    "exynos-1480"
+   ],
+   "SAMSUNGEXYNOS1480": [
+    "exynos-1480"
+   ],
+   "EXYNOS9825": [
+    "s5e9825"
+   ],
+   "SAMSUNGEXYNOS9825": [
+    "s5e9825"
+   ],
+   "EXYNOS1380": [
+    "exynos-1380"
+   ],
+   "SAMSUNGEXYNOS1380": [
+    "exynos-1380"
+   ],
+   "EXYNOS1280": [
+    "exynos-1280"
+   ],
+   "SAMSUNGEXYNOS1280": [
+    "exynos-1280"
+   ],
+   "EXYNOS1330": [
+    "exynos-1330"
+   ],
+   "SAMSUNGEXYNOS1330": [
+    "exynos-1330"
+   ],
+   "EXYNOS9611": [
+    "s5e9611"
+   ],
+   "SAMSUNGEXYNOS9611": [
+    "s5e9611"
+   ],
+   "EXYNOS9610": [
+    "s5e9610"
+   ],
+   "SAMSUNGEXYNOS9610": [
+    "s5e9610"
+   ],
+   "EXYNOS7885": [
+    "s5e7885"
+   ],
+   "SAMSUNGEXYNOS7885": [
+    "s5e7885"
+   ],
+   "EXYNOS7904": [
+    "s5e7904"
+   ],
+   "SAMSUNGEXYNOS7904": [
+    "s5e7904"
+   ],
+   "EXYNOS7880": [
+    "exynos-7880"
+   ],
+   "SAMSUNGEXYNOS7880": [
+    "exynos-7880"
+   ],
+   "EXYNOS7870": [
+    "exynos-7870"
+   ],
+   "SAMSUNGEXYNOS7870": [
+    "exynos-7870"
+   ],
+   "EXYNOS7872": [
+    "exynos-7872"
+   ],
+   "SAMSUNGEXYNOS7872": [
+    "exynos-7872"
+   ],
+   "EXYNOS7570": [
+    "s5e7570"
+   ],
+   "SAMSUNGEXYNOS7570": [
+    "s5e7570"
+   ],
+   "EXYNOS7580": [
+    "s5e7580"
+   ],
+   "SAMSUNGEXYNOS7580": [
+    "s5e7580"
    ],
    "SM7150-AA": [
     "sm7150-aa"
