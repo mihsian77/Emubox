@@ -13339,12 +13339,44 @@ private fun SocKnowledgeCard(
                     if (cpuText.isNotBlank()) {
                         InfoRow(label = appString(R.string.soc_cpu), value = cpuText)
                     }
+                    // 缓存（L2/SLC）：极客湾只有旗舰标，有值才画
+                    if (resolved != null && resolved.caches.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_caches), value = resolved.caches)
+                    }
                     if (spec != null && spec.totalCores > 0) {
                         val freq = if (spec.maxFreqGhZ > 0) " · 最高 ${formatFreq(spec.maxFreqGhZ)}" else ""
                         InfoRow(label = appString(R.string.soc_cpu_cores), value = "${spec.totalCores} 核$freq")
                     }
-                    if (knowledge.gpu.isNotBlank()) {
-                        InfoRow(label = appString(R.string.soc_gpu), value = knowledge.gpu)
+                    // GPU 规格合成一行：Adreno 840 · 1536ALUs · 1200MHz
+                    val gpuSpec = if (resolved != null) {
+                        listOfNotNull(
+                            knowledge.gpu.takeIf { it.isNotBlank() },
+                            resolved.gpuCores.takeIf { it.isNotBlank() },
+                            resolved.gpuClock.takeIf { it.isNotBlank() }
+                        ).joinToString(" · ")
+                    } else knowledge.gpu
+                    if (gpuSpec.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_gpu_spec), value = gpuSpec)
+                    }
+                    if (resolved != null && resolved.memory.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_memory), value = resolved.memory)
+                    }
+                    // 集成功能：基带 / Wi-Fi / 蓝牙 / NPU（极客湾 features 串）
+                    if (resolved != null && resolved.features.isNotBlank()) {
+                        InfoRow(label = appString(R.string.soc_features), value = resolved.features)
+                    }
+                    if (resolved != null && resolved.gb6Single > 0) {
+                        InfoRow(
+                            label = appString(R.string.soc_gb6),
+                            value = "${resolved.gb6Single} / ${resolved.gb6Multi}"
+                        )
+                    }
+                    // 型号名称：设备上报的那个部件号，用户最需要核对的字段
+                    if (resolved != null && resolved.codes.isNotEmpty()) {
+                        InfoRow(
+                            label = appString(R.string.soc_model_name),
+                            value = resolved.codes.first()
+                        )
                     }
                     if (knowledge.devices.isNotBlank()) {
                         InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)

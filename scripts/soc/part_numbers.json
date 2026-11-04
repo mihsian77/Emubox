@@ -1,6 +1,6 @@
 {
- "_note": "部件号/平台代号 → 市场名。极客湾只收 157 颗，且三星/华为不给代号；安兔兔有名字没有号。这张表补的是「设备上报得出、但机器读不到市场名」的那一段，只收公开且确定对应关系的号，不确定的宁可不写——错的映射比未收录更糟。",
- "_sources": "高通/联发科/三星官方型号页与发布会资料；Android 设备 ro.soc.model / ro.board.platform 实测值。",
+ "_note": "部件号/平台代号 → 市场名。极客湾只收 157 颗，且三星/华为不给代号；安兔兔有名字没有号。这张表补的是「设备上报得出、但机器读不到市场名」的那一段，只收公开且确定对应关系的号，不确定的宁可不写——错的映射比未收录更糟。 展锐的号由 deviceinfohw.ru 设备库反查（?cpu=型号 取真实 PLATFORM 值）：T310→ums312、T760/T820→ums9620、T606/T612/T616/T7250 共用 ums9230，故标 multi。",
+ "_sources": "高通/联发科/三星官方型号页与发布会资料；Android 设备 ro.soc.model / ro.board.platform 实测值。 三星 s5e9815/s5e3830 由 deviceinfohw.ru 设备库实测平台值反查（vivo V2046A/V2134A、Galaxy A14 5G）；华为 kirin* 由 Build 平台值推导。",
  "entries": [
   {
    "codes": [
@@ -937,6 +937,138 @@
    "name_en": "Kirin 9020",
    "brand": "华为",
    "year": "2024"
+  },
+  {
+   "codes": [
+    "s5e9815"
+   ],
+   "name": "Exynos 1080",
+   "name_en": "Exynos 1080",
+   "brand": "三星",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "s5e9630"
+   ],
+   "name": "Exynos 980",
+   "name_en": "Exynos 980",
+   "brand": "三星",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "s5e3830"
+   ],
+   "name": "Exynos 850",
+   "name_en": "Exynos 850",
+   "brand": "三星",
+   "year": "2020"
+  },
+  {
+   "codes": [
+    "mt6757cd"
+   ],
+   "name": "Helio P25",
+   "name_en": "Helio P25",
+   "brand": "联发科",
+   "year": "2016"
+  },
+  {
+   "codes": [
+    "mt6771"
+   ],
+   "name": "Helio P70",
+   "name_en": "Helio P70",
+   "brand": "联发科",
+   "year": "2018"
+  },
+  {
+   "codes": [
+    "msm8974ac"
+   ],
+   "name": "骁龙 801AC",
+   "name_en": "Snapdragon 801AC",
+   "brand": "高通",
+   "year": "2014"
+  },
+  {
+   "codes": [
+    "ums312"
+   ],
+   "name": "展锐 T310",
+   "name_en": "Unisoc T310",
+   "brand": "紫光展锐",
+   "year": "2019"
+  },
+  {
+   "codes": [
+    "ums9230"
+   ],
+   "name": "展锐 T606",
+   "name_en": "Unisoc T606",
+   "brand": "紫光展锐",
+   "year": "2021",
+   "multi": true
+  },
+  {
+   "codes": [
+    "ums9230"
+   ],
+   "name": "展锐 T612",
+   "name_en": "Unisoc T612",
+   "brand": "紫光展锐",
+   "year": "2022",
+   "multi": true
+  },
+  {
+   "codes": [
+    "ums9230"
+   ],
+   "name": "展锐 T616",
+   "name_en": "Unisoc T616",
+   "brand": "紫光展锐",
+   "year": "2021",
+   "multi": true
+  },
+  {
+   "codes": [
+    "ums9230"
+   ],
+   "name": "展锐 T7250",
+   "name_en": "Unisoc T7250",
+   "brand": "紫光展锐",
+   "year": "2023",
+   "multi": true
+  },
+  {
+   "codes": [
+    "ums9620"
+   ],
+   "name": "展锐 T760",
+   "name_en": "Unisoc T760",
+   "brand": "紫光展锐",
+   "year": "2021",
+   "multi": true
+  },
+  {
+   "codes": [
+    "ums9620"
+   ],
+   "name": "展锐 T820",
+   "name_en": "Unisoc T820",
+   "brand": "紫光展锐",
+   "year": "2022",
+   "multi": true
+  },
+  {
+   "codes": [
+    "s9863a"
+   ],
+   "name": "SC9863A",
+   "name_en": "SC9863A",
+   "brand": "紫光展锐",
+   "year": "2018"
   }
  ],
  "vendor_platforms": {

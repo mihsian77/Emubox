@@ -221,6 +221,12 @@
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">Benchmark (Antutu V10)</string>
     <string name="soc_score_unknown">Not recorded</string>
+    <string name="soc_model_name">Model</string>
+    <string name="soc_caches">Cache</string>
+    <string name="soc_memory">Memory</string>
+    <string name="soc_gpu_spec">GPU spec</string>
+    <string name="soc_features">Network / AI</string>
+    <string name="soc_gb6">Geekbench 6</string>
 
     <string name="bench_engine_title">Bench Engine</string>
     <string name="bench_no_data">No benchmark data for this SoC yet</string>

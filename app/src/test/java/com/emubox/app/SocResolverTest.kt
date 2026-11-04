@@ -168,4 +168,50 @@ class SocResolverTest {
             assertTrue("name 为空", o.getString("name").isNotBlank())
         }
     }
+
+    @Test
+    fun `展锐板级后缀不影响识别`() {
+        // 展锐把主板型号拼在平台值里：ums9230_6h10、ums9620_2h10，下划线前才是芯片号。
+        // 这四种形式在 deviceinfohw 设备库里都是实测值，不是造出来的。
+        val a = resolve("", "ums9230_6h10")
+        assertNotNull("ums9230 未命中", a)
+        assertEquals("紫光", a!!.brand)
+        assertTrue("一码多名应给族名而不是猜一颗：${a.displayName}", a.displayName.contains("T6"))
+        assertEquals("Exynos 1080", resolve("", "s5e9815")?.name)
+    }
+
+    @Test
+    fun `展锐无分隔符后缀靠前缀命中`() {
+        // s9863a1h10 = SC9863A + 1h10，没有下划线可截，只能按前缀回查
+        assertEquals("SC9863A", resolve("s9863a1h10")?.name)
+    }
+
+    @Test
+    fun `华为平台名即型号`() {
+        // 华为不公开部件号，但 ro.board.platform 恒为 kirin+型号，主表按名字推导
+        assertEquals("麒麟 970", resolve("kirin970")?.name)
+        assertEquals("麒麟 8000", resolve("", "kirin8000")?.name)
+    }
+
+    @Test
+    fun `三星用 exynos 平台名而非 s5e 料号`() {
+        // 实测：Galaxy Tab A 2016 报 samsungexyos7870（HARDWARE）/ exynos7870（platform），
+        // 与 S5E7870 那套料号完全不搭，只挂 s5e 号会永远认不出。
+        assertEquals("Exynos 7870", resolve("", "exynos7870")?.name)
+        assertEquals("Exynos 7870", resolve("samsungexynos7870")?.name)
+    }
+
+    @Test
+    fun `无代号条目不超过上限`() {
+        val text = context.assets.open("soc_master.json").bufferedReader().use { it.readText() }
+        val arr = JSONObject(text).getJSONArray("socs")
+        var noCode = 0
+        for (i in 0 until arr.length()) {
+            val codes = arr.getJSONObject(i).optJSONArray("codes")
+            if (codes == null || codes.length() == 0) noCode++
+        }
+        // 剩下的应只有 IoT/车机/电视盒子（QCM/QCS/全志/瑞芯微）与展锐未公开号的变体。
+        // 超过 105 说明整批芯片又失去代号，设备上会退回「型号未收录」。
+        assertTrue("无代号条目 $noCode 条，超出上限", noCode <= 90)
+    }
 }
