@@ -1,164 +1,164 @@
 {
- "updated_at": "2026-11-03T08:33:10.715Z",
+ "updated_at": "2026-11-04T07:33:05.325Z",
  "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
  "insights": {
   "total_projects": 63,
-  "total_downloads": 65570149,
-  "total_stars": 93172,
+  "total_downloads": 65676907,
+  "total_stars": 93471,
   "trending14": [
    {
     "repo": "the412banner/banners-turnip",
-    "delta": 566085,
-    "date": "2026-11-03"
+    "delta": 565058,
+    "date": "2026-11-04"
    },
    {
     "repo": "brunodev85/winlator",
-    "delta": 310651,
-    "date": "2026-11-03"
+    "delta": 312233,
+    "date": "2026-11-04"
    },
    {
     "repo": "k11mch1/adrenotoolsdrivers",
-    "delta": 291029,
-    "date": "2026-11-03"
+    "delta": 298437,
+    "date": "2026-11-04"
    },
    {
     "repo": "azahar-emu/azahar",
-    "delta": 205314,
-    "date": "2026-11-03"
+    "delta": 202133,
+    "date": "2026-11-04"
    },
    {
     "repo": "stevenmxz/freedreno_turnip-ci",
-    "delta": 178165,
-    "date": "2026-11-03"
+    "delta": 181453,
+    "date": "2026-11-04"
    },
    {
     "repo": "armsx2/armsx2",
-    "delta": 87494,
-    "date": "2026-11-03"
+    "delta": 92184,
+    "date": "2026-11-04"
    },
    {
     "repo": "armsx2/armsx3",
-    "delta": 78244,
-    "date": "2026-11-03"
+    "delta": 79283,
+    "date": "2026-11-04"
    },
    {
     "repo": "stevenmxz/winlator-ludashi",
-    "delta": 66217,
-    "date": "2026-11-03"
+    "delta": 65739,
+    "date": "2026-11-04"
    },
    {
     "repo": "trixarian/nethersx2-patch",
-    "delta": 59759,
-    "date": "2026-11-03"
+    "delta": 59789,
+    "date": "2026-11-04"
    },
    {
     "repo": "producdevity/gamehub-lite",
-    "delta": 58955,
-    "date": "2026-11-03"
-   },
-   {
-    "repo": "whitebelyash/adrenotoolsdrivers",
-    "delta": 45258,
-    "date": "2026-11-03"
-   },
-   {
-    "repo": "whitebelyash/freedreno_turnip-ci",
-    "delta": 45258,
-    "date": "2026-11-03"
-   },
-   {
-    "repo": "utkarshdalal/gamenative",
-    "delta": 44740,
-    "date": "2026-11-03"
+    "delta": 58685,
+    "date": "2026-11-04"
    },
    {
     "repo": "fcharan/winlatormali",
-    "delta": 44675,
-    "date": "2026-11-03"
+    "delta": 45974,
+    "date": "2026-11-04"
+   },
+   {
+    "repo": "whitebelyash/adrenotoolsdrivers",
+    "delta": 44972,
+    "date": "2026-11-04"
+   },
+   {
+    "repo": "whitebelyash/freedreno_turnip-ci",
+    "delta": 44972,
+    "date": "2026-11-04"
+   },
+   {
+    "repo": "utkarshdalal/gamenative",
+    "delta": 42306,
+    "date": "2026-11-04"
    },
    {
     "repo": "ashnar2602/x360-mobile---official",
-    "delta": 38338,
-    "date": "2026-11-03"
+    "delta": 40871,
+    "date": "2026-11-04"
    }
   ],
-  "trend_base_date": "2026-10-21",
-  "trend_latest_date": "2026-11-03",
+  "trend_base_date": "2026-10-22",
+  "trend_latest_date": "2026-11-04",
   "category_downloads": [
    {
     "category": "Winlator",
     "label": "Winlator 专区",
-    "downloads": 22956713
+    "downloads": 22989309
    },
    {
     "category": "Nintendo 3DS",
     "label": "任天堂 3DS",
-    "downloads": 17140819
+    "downloads": 17154688
    },
    {
     "category": "Emulator PS2",
     "label": "PS2 模拟",
-    "downloads": 6261052
+    "downloads": 6271317
    },
    {
     "category": "PSVITA",
     "label": "PS Vita",
-    "downloads": 4340370
+    "downloads": 4340836
    },
    {
     "category": "PC Emulator",
     "label": "PC 模拟器",
-    "downloads": 2941836
+    "downloads": 2965999
    },
    {
     "category": "Wii U Emulator",
     "label": "Wii U 模拟",
-    "downloads": 2925674
+    "downloads": 2926318
    },
    {
     "category": "GameHub",
     "label": "GameHub 专区",
-    "downloads": 2628145
+    "downloads": 2635174
    },
    {
     "category": "Emulator PS3",
     "label": "PS3 模拟",
-    "downloads": 2297043
+    "downloads": 2303795
    },
    {
     "category": "GameNative",
     "label": "GameNative 专区",
-    "downloads": 1422548
+    "downloads": 1424127
    },
    {
     "category": "Sega Dreamcast",
     "label": "Dreamcast 模拟",
-    "downloads": 918118
+    "downloads": 919170
    },
    {
     "category": "Xbox",
     "label": "Xbox 模拟",
-    "downloads": 841687
+    "downloads": 849066
    },
    {
     "category": "Nintendo GameCube / Wii",
     "label": "NGC-Wii 模拟",
-    "downloads": 787655
+    "downloads": 788311
    },
    {
     "category": "All In One",
     "label": "聚合前端",
-    "downloads": 103904
+    "downloads": 104197
    },
    {
     "category": "Emulator PS5",
     "label": "PS5 模拟",
-    "downloads": 2857
+    "downloads": 2867
    },
    {
     "category": "GAME",
     "label": "游戏",
-    "downloads": 1728
+    "downloads": 1733
    },
    {
     "category": "Nintendo Switch Emulator",
@@ -442,8 +442,8 @@
    "category": "Winlator",
    "official": true,
    "channel": "stable",
-   "downloads": 16636368,
-   "stars": 19786,
+   "downloads": 16658343,
+   "stars": 19807,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-11-02T17:21:07Z",
    "homepage": "https://winlator.org",
@@ -703,8 +703,8 @@
      ]
     }
    ],
-   "forks": 1928,
-   "watchers": 363,
+   "forks": 1932,
+   "watchers": 364,
    "created_at": "2023-07-26T13:02:11Z",
    "license": "LGPL-2.1",
    "topics": [],
@@ -720,10 +720,10 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 9025353,
-   "stars": 8539,
+   "downloads": 9037324,
+   "stars": 8548,
    "description": "An open-source 3DS emulator project based on Citra.",
-   "pushed_at": "2026-11-01T15:59:10Z",
+   "pushed_at": "2026-11-03T16:37:58Z",
    "homepage": "https://azahar-emu.org/",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/azahar.png",
    "releases": [
@@ -7954,8 +7954,8 @@
      ]
     }
    ],
-   "forks": 792,
-   "watchers": 152,
+   "forks": 794,
+   "watchers": 151,
    "created_at": "2024-03-04T21:08:59Z",
    "license": "GPL-3.0",
    "topics": [],
@@ -7971,8 +7971,8 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads": 8115466,
-   "stars": 2769,
+   "downloads": 8117364,
+   "stars": 2770,
    "description": "A Nintendo 3DS Emulator",
    "pushed_at": "2025-11-14T11:04:59Z",
    "homepage": "https://citra-emu.org",
@@ -9895,7 +9895,7 @@
    "category": "PSVITA",
    "official": false,
    "channel": "stable",
-   "downloads": 4340370,
+   "downloads": 4340836,
    "stars": 1664,
    "description": "Public releases and CI for the Vita3K Android app",
    "pushed_at": "2025-02-22T16:30:58Z",
@@ -10088,8 +10088,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 3612312,
-   "stars": 2745,
+   "downloads": 3616306,
+   "stars": 2748,
    "description": "Continuation of NetherSX2 based on AetherSX2 4248",
    "pushed_at": "2026-09-22T04:21:34Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -10377,7 +10377,7 @@
      ]
     }
    ],
-   "forks": 103,
+   "forks": 102,
    "watchers": 80,
    "created_at": "2023-08-22T20:28:33Z",
    "license": "Unlicense",
@@ -10401,8 +10401,8 @@
    "category": "Wii U Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 2925674,
-   "stars": 1233,
+   "downloads": 2926318,
+   "stars": 1234,
    "description": "Android port for the cemu emulator",
    "pushed_at": "2026-09-12T17:30:42Z",
    "homepage": "https://cemu.info",
@@ -10535,7 +10535,7 @@
      ]
     }
    ],
-   "forks": 101,
+   "forks": 102,
    "watchers": 90,
    "created_at": "2022-11-19T20:04:09Z",
    "license": "MPL-2.0",
@@ -10558,8 +10558,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1655707,
-   "stars": 1297,
+   "downloads": 1659875,
+   "stars": 1302,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-07T21:29:08Z",
    "homepage": "https://winlator.org",
@@ -11039,7 +11039,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 1585224,
+   "downloads": 1589094,
    "stars": 2100,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-07-03T18:28:52Z",
@@ -11467,8 +11467,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1560631,
-   "stars": 1223,
+   "downloads": 1562288,
+   "stars": 1224,
    "description": "Continuation of NetherSX2 based on AetherSX2 3668",
    "pushed_at": "2026-06-29T12:01:14Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -11635,10 +11635,10 @@
    "category": "GameNative",
    "official": false,
    "channel": "stable",
-   "downloads": 1422548,
-   "stars": 11703,
+   "downloads": 1424127,
+   "stars": 11715,
    "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
-   "pushed_at": "2026-11-03T07:41:06Z",
+   "pushed_at": "2026-11-04T07:20:14Z",
    "homepage": "https://gamenative.app",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/gamenative.png",
    "releases": [
@@ -12834,7 +12834,7 @@
      ]
     }
    ],
-   "forks": 495,
+   "forks": 497,
    "watchers": 67,
    "created_at": "2025-04-21T11:25:27Z",
    "license": "GPL-3.0",
@@ -12856,10 +12856,10 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 1261616,
-   "stars": 17532,
+   "downloads": 1284607,
+   "stars": 17735,
    "description": "DroidDeck brings the SteamOS experience to Android",
-   "pushed_at": "2026-11-03T05:04:21Z",
+   "pushed_at": "2026-11-04T07:16:46Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
    "releases": [
@@ -13170,7 +13170,7 @@
      ]
     }
    ],
-   "forks": 901,
+   "forks": 904,
    "watchers": 110,
    "created_at": "2026-09-24T15:14:13Z",
    "license": "GPL-3.0",
@@ -13187,10 +13187,10 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads": 1088109,
-   "stars": 2369,
+   "downloads": 1092723,
+   "stars": 2387,
    "description": "ARMSX2 - The Playstation 2 Emulator for ARM64 Platforms",
-   "pushed_at": "2026-11-02T04:27:54Z",
+   "pushed_at": "2026-11-04T02:26:46Z",
    "homepage": "https://armsx2.net/",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/armsx2.png",
    "releases": [
@@ -15350,8 +15350,8 @@
      ]
     }
    ],
-   "forks": 217,
-   "watchers": 48,
+   "forks": 219,
+   "watchers": 47,
    "created_at": "2025-08-11T19:27:45Z",
    "license": "GPL-3.0",
    "topics": [],
@@ -15367,8 +15367,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 1028117,
-   "stars": 547,
+   "downloads": 1028259,
+   "stars": 548,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-01-05T23:43:15Z",
    "homepage": "https://winlator.org",
@@ -15536,7 +15536,7 @@
    "category": "Sega Dreamcast",
    "official": false,
    "channel": "stable",
-   "downloads": 918118,
+   "downloads": 919170,
    "stars": 2636,
    "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
    "pushed_at": "2026-11-02T13:59:58Z",
@@ -15962,7 +15962,7 @@
      ]
     }
    ],
-   "forks": 399,
+   "forks": 401,
    "watchers": 74,
    "created_at": "2018-04-27T11:14:36Z",
    "license": "GPL-2.0",
@@ -15984,7 +15984,7 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 864605,
+   "downloads": 865047,
    "stars": 1341,
    "description": "",
    "pushed_at": "2026-08-29T13:27:19Z",
@@ -16034,7 +16034,7 @@
      ]
     }
    ],
-   "forks": 211,
+   "forks": 210,
    "watchers": 75,
    "created_at": "2025-04-01T14:44:07Z",
    "license": "GPL-2.0",
@@ -16051,7 +16051,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 858366,
+   "downloads": 858755,
    "stars": 1119,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-12-09T22:36:49Z",
@@ -16312,7 +16312,7 @@
      ]
     }
    ],
-   "forks": 75,
+   "forks": 76,
    "watchers": 44,
    "created_at": "2024-09-08T06:33:44Z",
    "license": "MIT",
@@ -16329,7 +16329,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 827992,
+   "downloads": 828342,
    "stars": 697,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-04-19T02:53:06Z",
@@ -17493,7 +17493,7 @@
    "category": "Nintendo GameCube / Wii",
    "official": false,
    "channel": "stable",
-   "downloads": 787655,
+   "downloads": 788311,
    "stars": 283,
    "description": "A fork of Dolphin MMJR2 - with added VBI Skip hack and further fixes ported over from Dolphin Official.",
    "pushed_at": "2025-08-03T09:27:46Z",
@@ -17686,8 +17686,8 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads": 773554,
-   "stars": 754,
+   "downloads": 773890,
+   "stars": 757,
    "description": "An experimental Android PS3 emulator, ported and optimized based on RPCS3. ",
    "pushed_at": "2026-10-05T09:08:05Z",
    "homepage": "https://aenu.cc/aps3e",
@@ -18047,8 +18047,8 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 769778,
-   "stars": 755,
+   "downloads": 770316,
+   "stars": 756,
    "description": "",
    "pushed_at": "2026-05-04T03:29:50Z",
    "homepage": "",
@@ -18392,8 +18392,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 707388,
-   "stars": 505,
+   "downloads": 710432,
+   "stars": 508,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-31T22:06:38Z",
    "homepage": "https://winlator.org",
@@ -18551,13 +18551,42 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 658884,
+   "downloads": 664858,
    "stars": 0,
    "description": "",
    "pushed_at": "",
    "homepage": "",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/armsx3.png",
    "releases": [
+    {
+     "tag": "1.6.2",
+     "name": "ARMSX3 1.6.2",
+     "date": "2026-11-03T15:27:00Z",
+     "body": "# ARMSX3 1.6.2\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/3f67dbbc-b6cf-47d2-85a8-a22a7ea2b77b\" />\n\n## XMB Mode: Music\n\n- **The Music column is a full music player.** Your albums under their covers, songs that play on through their album, and Now Playing with the console's own control panel: previous, pause, next, stop, repeat, shuffle and volume, with the time bar and the play mode.\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/0b371348-0a0b-4988-8945-199660933589\" />\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/16a48872-9eff-4db2-ba66-d909c4a2b0c5\" />\n\n- **The console's visualizers in Now Playing**, from your own firmware:\n  - **Waves**: the XMB's wave in the look the console's music player gives it, moving with your music.\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/624ae2b3-6f30-4ecb-88dd-45fdea116e26\" />\n\n - **Valley**: the console's canyon, the land rising row by row from your music through the console's own presets.\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "ARMSX3-1.6.2-a11-armv8.2-sdk30.apk",
+       "size": 79308409,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.6.2/ARMSX3-1.6.2-a11-armv8.2-sdk30.apk"
+      },
+      {
+       "name": "ARMSX3-1.6.2-a13-armv8.2-sdk33.apk",
+       "size": 79197257,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.6.2/ARMSX3-1.6.2-a13-armv8.2-sdk33.apk"
+      },
+      {
+       "name": "ARMSX3-1.6.2-a15-armv8.2-sdk35.apk",
+       "size": 79175417,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.6.2/ARMSX3-1.6.2-a15-armv8.2-sdk35.apk"
+      },
+      {
+       "name": "ARMSX3-1.6.2-legacy-armv8.1-sdk30.apk",
+       "size": 79309289,
+       "url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.6.2/ARMSX3-1.6.2-legacy-armv8.1-sdk30.apk"
+      }
+     ]
+    },
     {
      "tag": "1.6.1",
      "name": "ARMSX3 1.6.1 ",
@@ -20198,8 +20227,8 @@
    "license": "",
    "topics": [],
    "archived": false,
-   "latestTag": "1.6.1",
-   "latestDate": "2026-11-02T15:42:57Z"
+   "latestTag": "1.6.2",
+   "latestDate": "2026-11-03T15:27:00Z"
   },
   {
    "id": "ashnar2602-x360-mobile---official",
@@ -20209,13 +20238,32 @@
    "category": "Xbox",
    "official": false,
    "channel": "nightly",
-   "downloads": 596272,
+   "downloads": 601204,
    "stars": 0,
    "description": "",
    "pushed_at": "",
    "homepage": "https://www.x360mobile.com",
    "logoUrl": "https://t3st31.github.io/Ranking-Emulators-Download/logos/x360-mobile.png",
    "releases": [
+    {
+     "tag": "v0.6.4+f398ad183.11113",
+     "name": "X360 Mobile 0.6.4 — Hotfix 2",
+     "date": "2026-11-03T22:33:59Z",
+     "body": "# X360 Mobile 0.6.4 — Hotfix 2\n\nThis update brings general correctness, graphics, stability and efficiency improvements, developed and evaluated using **Split/Second** as a reference game. These are improvements to the emulator itself rather than fixes restricted to one title. Other games may also benefit, but broader compatibility and performance testing is still limited.\n\n## Improvements\n\n- Improved handling of demanding graphics workloads and reduced avoidable processing overhead.\n- Corrected visual consistency and resource-handling issues, including an issue affecting frame interpolation.\n- Improved the reliability of the touch-control layout editor.\n- Added optional independent auto-hide for the Menu button.\n- Reorganized Settings with fewer main categories and clearer access to game content, patches and advanced tools.\n\n## Split/Second: still experimental\n\nOn the tested **Snapdragon 8 Gen 2** setup, Split/Second currently fluctuates around **8–18 FPS**, depending on the scene and the selected experimental settings. The game **still requires extensive further work to become playable on this SoC**. Occasional pauses and remaining graphical issues are still under investigation.\n",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "x360-companion-0.1.0.apk",
+       "size": 9486485,
+       "url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL/releases/download/v0.6.4%2Bf398ad183.11113/x360-companion-0.1.0.apk"
+      },
+      {
+       "name": "x360-mobile-0.6.4+f398ad183.11113.apk",
+       "size": 47724780,
+       "url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL/releases/download/v0.6.4%2Bf398ad183.11113/x360-mobile-0.6.4%2Bf398ad183.11113.apk"
+      }
+     ]
+    },
     {
      "tag": "v0.6.4+f398ad183.11108",
      "name": "X360 Mobile 0.6.4 — Hotfix 1",
@@ -20406,8 +20454,8 @@
    "license": "",
    "topics": [],
    "archived": false,
-   "latestTag": "v0.6.4+f398ad183.11108",
-   "latestDate": "2026-11-02T08:56:36Z"
+   "latestTag": "v0.6.4+f398ad183.11113",
+   "latestDate": "2026-11-03T22:33:59Z"
   },
   {
    "id": "horizonemuteam-horizon-emu",
@@ -20417,7 +20465,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 492593,
+   "downloads": 492818,
    "stars": 721,
    "description": "",
    "pushed_at": "2025-02-28T07:48:56Z",
@@ -20470,8 +20518,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 395857,
-   "stars": 564,
+   "downloads": 396957,
+   "stars": 567,
    "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool smali patching.",
    "pushed_at": "2026-09-28T21:24:36Z",
    "homepage": "",
@@ -21618,8 +21666,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 301674,
-   "stars": 556,
+   "downloads": 301881,
+   "stars": 557,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-03-18T01:28:27Z",
    "homepage": "https://winlator.org",
@@ -21706,10 +21754,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 243934,
-   "stars": 182,
+   "downloads": 244819,
+   "stars": 183,
    "description": "ReVanced patches for GameHub — BannerHub features as true ReVanced patches",
-   "pushed_at": "2026-11-03T01:40:02Z",
+   "pushed_at": "2026-11-03T23:30:05Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerhub-v6.png",
    "releases": [
@@ -24044,7 +24092,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 242209,
+   "downloads": 244655,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -24251,10 +24299,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 222800,
-   "stars": 499,
+   "downloads": 223851,
+   "stars": 506,
    "description": "Bannerlator — run Windows PC games and apps on Android (Wine + Box64/86). A personal, community-driven continuation of the discontinued Winlator Star Bionic project. GitHub Actions builds + releases.",
-   "pushed_at": "2026-11-03T05:01:57Z",
+   "pushed_at": "2026-11-04T05:51:19Z",
    "homepage": "",
    "logoUrl": "https://the412banner.github.io/emulator-ranking/logos/bannerlator.png",
    "releases": [
@@ -26369,7 +26417,7 @@
      ]
     }
    ],
-   "forks": 63,
+   "forks": 64,
    "watchers": 15,
    "created_at": "2026-06-18T23:19:14Z",
    "license": "GPL-3.0",
@@ -26386,8 +26434,8 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 180156,
-   "stars": 335,
+   "downloads": 180550,
+   "stars": 336,
    "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
    "pushed_at": "2025-02-25T11:41:52Z",
    "homepage": "",
@@ -26442,8 +26490,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 170819,
-   "stars": 738,
+   "downloads": 171999,
+   "stars": 740,
    "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
    "pushed_at": "2026-11-02T13:31:16Z",
    "homepage": "",
@@ -26831,7 +26879,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 150704,
+   "downloads": 150930,
    "stars": 223,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-12T18:19:19Z",
@@ -27546,8 +27594,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 128712,
-   "stars": 441,
+   "downloads": 129097,
+   "stars": 442,
    "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
    "pushed_at": "2026-11-02T15:28:32Z",
    "homepage": "https://winhub-emu.vercel.app/",
@@ -29231,8 +29279,8 @@
    "category": "All In One",
    "official": false,
    "channel": "stable",
-   "downloads": 103904,
-   "stars": 4476,
+   "downloads": 104197,
+   "stars": 4477,
    "description": "All in one emulator on Android!",
    "pushed_at": "2026-10-16T09:07:56Z",
    "homepage": "https://lemuroid.com",
@@ -29616,7 +29664,7 @@
      ]
     }
    ],
-   "forks": 405,
+   "forks": 408,
    "watchers": 54,
    "created_at": "2019-12-09T13:55:34Z",
    "license": "GPL-3.0",
@@ -29640,7 +29688,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 100361,
+   "downloads": 100450,
    "stars": 143,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-06-28T11:07:57Z",
@@ -29754,7 +29802,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 100290,
+   "downloads": 100301,
    "stars": 1721,
    "description": "Lightweight unofficial Steam client for Android",
    "pushed_at": "2026-02-23T19:23:53Z",
@@ -29867,7 +29915,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 93258,
+   "downloads": 93386,
    "stars": 131,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-09-11T15:09:20Z",
@@ -30150,7 +30198,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 85028,
+   "downloads": 85101,
    "stars": 34,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-05-26T11:10:39Z",
@@ -30260,7 +30308,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 71257,
+   "downloads": 71350,
    "stars": 140,
    "description": "Android application for running Steam games with Proton/Wine and Box86/Box64",
    "pushed_at": "2026-04-29T14:09:07Z",
@@ -30341,7 +30389,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 64555,
+   "downloads": 64609,
    "stars": 156,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-08-24T22:41:56Z",
@@ -30553,7 +30601,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 31735,
+   "downloads": 31852,
    "stars": 66,
    "description": "BannerHub Lite — BannerHub features patched into GameHub Lite 5.1.4",
    "pushed_at": "2026-05-21T21:17:38Z",
@@ -31104,7 +31152,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 30865,
+   "downloads": 30882,
    "stars": 28,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-03-22T01:01:37Z",
@@ -31443,7 +31491,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads": 21789,
+   "downloads": 21793,
    "stars": 77,
    "description": "",
    "pushed_at": "2025-06-26T21:09:18Z",
@@ -31538,7 +31586,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 9627,
+   "downloads": 9699,
    "stars": 223,
    "description": "Windows apps/games emulator for standalone OpenXR headsets.",
    "pushed_at": "2026-10-09T17:41:04Z",
@@ -31626,7 +31674,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads": 8385,
+   "downloads": 8391,
    "stars": 47,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-01-06T21:01:46Z",
@@ -31684,7 +31732,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 7192,
+   "downloads": 7194,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -32405,7 +32453,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable",
-   "downloads": 3206,
+   "downloads": 3207,
    "stars": 17,
    "description": "",
    "pushed_at": "2026-03-08T18:10:12Z",
@@ -32472,7 +32520,7 @@
    "category": "Emulator PS5",
    "official": false,
    "channel": "stable/unknown",
-   "downloads": 2857,
+   "downloads": 2867,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -32525,7 +32573,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads": 2363,
+   "downloads": 2365,
    "stars": 21,
    "description": "APKs of Pipetto-crypto's Winlator Bionic",
    "pushed_at": "2026-05-07T20:44:04Z",
@@ -33500,7 +33548,7 @@
    "category": "GAME",
    "official": false,
    "channel": "stable",
-   "downloads": 1728,
+   "downloads": 1733,
    "stars": 11,
    "description": "Multiplayer",
    "pushed_at": "2026-04-24T23:48:07Z",

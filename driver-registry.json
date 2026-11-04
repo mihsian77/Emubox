@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1134,
+      "stars": 1142,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 891,
+      "stars": 895,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -333,7 +333,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 226,
+      "stars": 227,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-03T01:29:23Z",
-      "latest_tag": "v27.0.0-20261103",
-      "latest_date": "2026-11-03T01:29:23Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ The **Wayland** build of **A6xx / A7xx** didn't build this run. Its X11 zip is fine.\n\n> ❌ The **Wayland** build of **A8xx** didn't build this run. Its X11 zip is fine.\n\n> ❌ The **Wayland** build of **A710 / A720 / A722** didn't build this run. Its X11 zip is fine.\n\n> ❌ The **Wayland** build of **8 Gen 2 One UI** didn't build this run. Its X11 zip is fine.\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`a1c054"
+      "updated_at": "2026-11-04T02:52:45Z",
+      "latest_tag": "v27.0.0-20261104-r3",
+      "latest_date": "2026-11-04T02:52:45Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`ae47f65`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/ae47f65f7de25c3d1f3035fcefacfc57a1156202) |\n| **Commit title** | intel/compiler: Archive shader binaries as separate MDA objects |\n| **Vulkan version** | Vulkan 1.4.367 |\n| **Date** | 2026-11-04 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :---"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 103,
+      "stars": 104,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 108,
+      "stars": 118,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 106,
+      "stars": 109,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1256,7 +1256,7 @@
       "target_emulator": "winlator",
       "package_format": "wcp",
       "maturity": "beta",
-      "stars": 13,
+      "stars": 14,
       "description": "panDXVK：把 BC 纹理转成 ASTC，让 Mali 跑 D3D11/D3D12 游戏；发 .wcp 与 zip 两种包",
       "notes": "Mali 用户玩 D3D9-11 游戏必选，.wcp 一键安装；归入组件专区 DXVK 分类",
       "companion": [],
@@ -1414,7 +1414,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 259,
+      "stars": 263,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1462,7 +1462,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 42,
+      "stars": 48,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1471,10 +1471,10 @@
           "PanVK"
         ]
       },
-      "updated_at": "2026-10-25T21:14:36Z",
-      "latest_tag": "v1.4.0",
-      "latest_date": "2026-10-25T21:14:36Z",
-      "latest_body": "# mali-panvk r8\r\n\r\nPanVK for Arm Mali GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel driver the\r\nphone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Now based on Mesa\r\n27.0.0-devel, and no longer Bifrost only: this release adds Valhall.\r\n\r\n`mali-panvk-27.0.0-devel-r8.zip`, sha256\r\n`d82d8f2dd4a368770b9b43566f7b5295d205060cb6ffd536b07afc33914858a1`. Built from `d896b0a`.\r\n\r\n## Supported GPUs\r\n\r\n| Architecture | GPUs | Vulkan | Status |\r\n|---|---|---|---|"
+      "updated_at": "2026-11-03T23:54:29Z",
+      "latest_tag": "v1.5.0",
+      "latest_date": "2026-11-03T23:54:29Z",
+      "latest_body": "# mali-panvk r9\r\n\r\nPanVK for Arm Mali GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel driver the\r\nphone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Based on Mesa\r\n27.0.0-devel.\r\n\r\n`mali-panvk-27.0.0-devel-r9.zip`, sha256\r\n`04d82e2f35e4e80138f9a407ec4222e40908b32196eb7484355993e6c5fdc376`. Built from `6dc24ce`.\r\n\r\n## Supported GPUs\r\n\r\n| Architecture | GPUs | Vulkan | Status |\r\n|---|---|---|---|\r\n| Bifrost | Mali-G31, G51, G52, G71, G72, G76 | 1.4 (1.3 "
     },
     {
       "id": "apexspan-panvk-g57",
@@ -1626,7 +1626,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 70,
+      "stars": 73,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1853,7 +1853,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 7,
+      "stars": 8,
       "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
       "companion": [
         "ghaelv-lemon-project"
@@ -1882,7 +1882,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 42,
+      "stars": 41,
       "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
       "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
       "companion": [],
@@ -1943,7 +1943,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 16,
+      "stars": 18,
       "description": "FristOneRR Vulkan wrapper，配合 FristOneRR PanVK on Mali (kbase) 使用",
       "notes": "v3.0 2026-10-20；含 SHA256SUMS",
       "companion": [
@@ -1976,7 +1976,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 42,
+      "stars": 41,
       "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "notes": "wrappers 标签 2026-08-31（strict 过滤只读该标签，v0.9.x 为 App 本体、drivers_0.9 为三星驱动已收驱动区 companion、community-configs 社区配置不收录）",
       "companion": [
@@ -2105,10 +2105,10 @@
           "winlator"
         ]
       },
-      "updated_at": "2026-11-03T02:19:52Z",
-      "latest_tag": "vkd3d-3.1.0-gamesir",
-      "latest_date": "2026-11-03T02:19:52Z",
-      "latest_body": "VKD3D 3.1.0 GameSir — Winlator\r\n\r\nCustom VKD3D 3.1.0 GameSir build packaged extracted from gamehub for installation through the Winlator Components Manager."
+      "updated_at": "2026-11-03T02:25:45Z",
+      "latest_tag": "turnip-gamehub-26.3-dd-gmem-pwrmax",
+      "latest_date": "2026-11-03T02:25:45Z",
+      "latest_body": "### Turnip GameHub 26.3 — Experimental\r\n\r\n**Features & Improvements**\r\n- GameHub Turnip 26.3 base.\r\n- GMEM autotuning optimization (11 → 10).\r\n- KGSL PWR_MAX power management patches.\r\n- Periodic GPU power refresh.\r\n- \r\n**Notes:** Experimental release. Performance and stability improvements are not guaranteed.\r\n\r\n**Credits:** Mesa3D, GameHub, DroidDeck"
     }
   ]
 }
