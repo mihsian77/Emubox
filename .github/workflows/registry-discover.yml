@@ -1,0 +1,81 @@
+name: 生态发现与草稿
+
+# 做什么：每周扫一遍 GitHub + 中文关键词，把候选项目自动抓成「填好的记录」，
+# 提交成 PR 供人工过目。
+#
+# 不做什么：
+#   - 不直接改 emulator-registry.json（草稿在 drafts/ 下，人审后手工合并）
+#   - 不自动合并 PR
+#   - 不抓 APK 内容（要下载大文件，跑在 runner 上成本高，留给本地）
+#
+# 为什么开 PR 而不是直推：收录判定的误判率还压不到 5%（实测候选池里
+# 混着 LingChat、LocationSpoofer 这类同名不同物的项目），直推等于把误判
+# 固化进 main。
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"      # 每周一 09:00 (UTC+8)
+  workflow_dispatch:
+    inputs:
+      top:
+        description: "提取条数上限"
+        default: "15"
+        required: false
+      min_score:
+        description: "候选分数门槛"
+        default: "85"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 扫描候选池
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          export EMUBOX_OUT="$RUNNER_TEMP/pool"
+          python3 scripts/discover_candidates.py --limit 60
+        continue-on-error: true   # 搜索 API 偶发限速，失败不阻断后续
+
+      - name: 抓取候选详情
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          export EMUBOX_POOL="$RUNNER_TEMP/pool/候选池-$(date +%Y%m%d).json"
+          python3 scripts/batch_extract.py \
+            --top "${{ github.event.inputs.top || 15 }}" \
+            --min-score "${{ github.event.inputs.min_score || 85 }}"
+
+      - name: 开 PR（仅草稿，不动主库）
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ai/discover
+          delete-branch: true
+          title: "生态候选草稿 $(date +%Y-%m-%d)"
+          commit-message: "drafts: 生态候选自动提取"
+          body: |
+            自动生成，**未合并进主库**。
+
+            `drafts/*/report.md` 里每条都有判定证据（玩什么 / 怎么跑 / 跑在哪）。
+            重点看标了「需人工确认」的条目，其余可直接采纳。
+
+            合并步骤：
+            1. 从 `drafts.json` 里删掉不该收的
+            2. 把 `_dup: true` 的跳过
+            3. 补 `note` 字段说明收录理由
+            4. 跑 `python3 scripts/validate-emulators.py`
+          add-paths: |
+            drafts/**
