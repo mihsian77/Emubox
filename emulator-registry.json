@@ -1922,7 +1922,9 @@
         "ps3",
         "vulkan"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "download_url": "https://rpcs3.net/download",
+      "download_kind": "official-site"
     },
     {
       "id": "brunodev85-winlator",
@@ -20153,7 +20155,9 @@
         "multiplatform",
         "rpg-engine"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "download_url": "https://www.scummvm.org/downloads/",
+      "download_kind": "official-site"
     },
     {
       "id": "weihuoya-citra",
@@ -42018,7 +42022,9 @@
       "topics": [
         "libretro"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "download_url": "https://github.com/AZO234/NP2kai",
+      "download_kind": "official-site"
     },
     {
       "id": "n3xox1-nxemu",
@@ -42629,7 +42635,9 @@
       "builds": [],
       "license": null,
       "topics": [],
-      "needs_review": false
+      "needs_review": false,
+      "download_url": "https://github.com/FCare/Kronos/releases",
+      "download_kind": "official-site"
     },
     {
       "id": "wpr-wp7-8",
@@ -86738,9 +86746,11 @@
       "forks": null,
       "watchers": null,
       "downloads": null,
-      "latest_apk_url": null,
+      "latest_apk_url": "",
       "latest_apk_name": null,
-      "latest_apk_size": null
+      "latest_apk_size": null,
+      "download_url": "https://emulicious.net/downloads/",
+      "download_kind": "official-site"
     },
     {
       "id": "epsxe",
@@ -86864,9 +86874,11 @@
       "forks": null,
       "watchers": null,
       "downloads": null,
-      "latest_apk_url": null,
+      "latest_apk_url": "",
       "latest_apk_name": null,
-      "latest_apk_size": null
+      "latest_apk_size": null,
+      "download_url": "https://fuse-emulator.sourceforge.net/",
+      "download_kind": "official-site"
     },
     {
       "id": "kenji-nx-android-releases",
@@ -87045,9 +87057,11 @@
       "forks": null,
       "watchers": null,
       "downloads": null,
-      "latest_apk_url": null,
+      "latest_apk_url": "",
       "latest_apk_name": null,
-      "latest_apk_size": null
+      "latest_apk_size": null,
+      "download_url": "https://mednafen.github.io/releases/",
+      "download_kind": "official-site"
     },
     {
       "id": "myboy",
@@ -87567,9 +87581,11 @@
       "forks": null,
       "watchers": null,
       "downloads": null,
-      "latest_apk_url": null,
+      "latest_apk_url": "",
       "latest_apk_name": null,
-      "latest_apk_size": null
+      "latest_apk_size": null,
+      "download_url": "https://vice-emu.sourceforge.io/",
+      "download_kind": "official-site"
     },
     {
       "id": "winlator-releases",
