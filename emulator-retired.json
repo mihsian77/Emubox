@@ -1,0 +1,173 @@
+[
+  {
+    "id": "eclipseds-nds",
+    "name": "EclipseDS",
+    "category": "Nintendo DS",
+    "description": "NDS 安卓模拟器，自研新项目（包名 com.eclipseds.app，v0.1），非任何既有项目的改名版。仅第三方下载页收录，无源码仓库",
+    "owner": "",
+    "repo": "",
+    "homepage": "",
+    "repo_url": "",
+    "official": false,
+    "channel": "beta",
+    "latest_tag": "0.1",
+    "latest_date": "",
+    "latest_body": "",
+    "latest_apk_name": "",
+    "latest_apk_url": "",
+    "latest_apk_size": 0,
+    "pushed_at": "",
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "downloads": 0,
+    "logo_url": "",
+    "releases": [],
+    "source": "community-archive",
+    "note": "2026-11-04 复核：6 个候选域名（eclipseds.com/.org/.app/.net/.dev/.cn）均无站点，com 返回 Site Not Found；公开检索无「官网」「Mega Update」记录。确认无一手仓库、无官网，仅第三方下载页收录（包名 com.eclipseds.app，v0.1）",
+    "skip": "no_repo",
+    "distribution": "community-archive",
+    "kind": "emulator",
+    "runtime": "android-native",
+    "platforms": [
+      "nds"
+    ],
+    "status": "community",
+    "community_sources": [
+      {
+        "repo": "(无公开源码仓库)",
+        "note": "包名 com.eclipseds.app，GitHub 检索零命中；仅第三方下载页收录，包体未经安全验证"
+      }
+    ]
+  },
+  {
+    "id": "ovsky-sumi-emu",
+    "name": "Sumi Emulator",
+    "category": "Nintendo Switch Emulator",
+    "description": "Sumi Emulator：原 GitHub 仓库 ovsky/sumi-emu 已被任天堂 DMCA 屏蔽（2026-03-31）；官网域名已落入停放商，无有效下载",
+    "owner": "ovsky",
+    "repo": "ovsky/sumi-emu",
+    "homepage": "https://sumi-emu.org",
+    "repo_url": "https://sumi-emu.org",
+    "official": true,
+    "channel": "stable/unknown",
+    "latest_tag": "",
+    "latest_date": "",
+    "latest_body": "",
+    "latest_apk_name": "",
+    "latest_apk_url": "",
+    "latest_apk_size": 0,
+    "pushed_at": "",
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "downloads": 0,
+    "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sumi.png",
+    "releases": [],
+    "source": "official-web",
+    "repo_status": "451",
+    "distribution": "official-site",
+    "note": "2026-11-04 复核：GitHub ovsky/sumi-emu 仍可见元数据（★592，已归档，最后推送 2026-03-20），但自 2026-03-31 起被 DMCA 封锁（451）；官网 sumi-emu.org 为域名停放页。AtomGit 有代码镜像（atomgit.com/ovsky/sumi-emu），查不到 Release。作者新项目 ovsky/compound 无 Release、无站点，与 Sumi 的承接关系未证实",
+    "kind": "emulator",
+    "runtime": "desktop",
+    "platforms": [
+      "switch"
+    ],
+    "status": "dead",
+    "community_sources": [
+      {
+        "repo": "https://atomgit.com/ovsky/sumi-emu",
+        "note": "代码镜像，无 Release"
+      },
+      {
+        "repo": "https://github.com/ovsky/compound",
+        "note": "同作者新项目，仅源码，无发布"
+      }
+    ],
+    "dead": true,
+    "dead_reason": "原 GitHub 仓库 451 DMCA，官网域名已落入停放商"
+  },
+  {
+    "id": "skyline-tagline",
+    "name": "Skyline Tagline",
+    "category": "Nintendo Switch Emulator",
+    "description": "Skyline 停更后的社区改名版。经 GitHub/Gitee/GitLab/Wayback 全网检索，未发现任何一手来源",
+    "owner": "",
+    "repo": "",
+    "homepage": "",
+    "repo_url": "",
+    "official": false,
+    "channel": "stable",
+    "latest_tag": "",
+    "latest_date": "",
+    "latest_body": "",
+    "latest_apk_name": "",
+    "latest_apk_url": "",
+    "latest_apk_size": 0,
+    "pushed_at": "",
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "downloads": 0,
+    "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
+    "releases": [],
+    "source": "community-archive",
+    "note": "2026-11-04 复核：仍无一手来源。Gitee 镜像 mirrors/Skyline-EMU（★30，2026-11-01 有推送）只有 ftx1 一个分支、0 tag、0 release，是 Skyline 基座而非 Tagline 构建；9K9K、525566 等站的「Skyline 2.0.0」包名为 skyline.purple，是原版改名，不是 Tagline。另：skyline-emu/skyline 仍在线（★70，34 MB，2026-08-18 推送），并非「已被清空」",
+    "skip": "no_repo",
+    "distribution": "community-archive",
+    "kind": "emulator",
+    "runtime": "android-native",
+    "platforms": [
+      "switch"
+    ],
+    "status": "community",
+    "community_sources": [
+      {
+        "repo": "(全网无一手来源)",
+        "note": "多平台零命中证据，无法提供可跳转分发地址"
+      }
+    ]
+  },
+  {
+    "id": "skyline-enhanced-infinity",
+    "name": "Skyline Enhanced Infinity",
+    "category": "Nintendo Switch Emulator",
+    "description": "Skyline 分支 Enhanced Infinity（原上游已 DMCA 下架，仅历史版本可考）",
+    "owner": "Ishan0981",
+    "repo": "Ishan0981/Skyline-Enhanced-Infinity",
+    "homepage": "",
+    "repo_url": "https://github.com/Ishan0981/Skyline-Enhanced-Infinity",
+    "official": false,
+    "channel": "stable",
+    "latest_tag": "v1.2.0",
+    "latest_date": "",
+    "latest_body": "",
+    "latest_apk_name": "",
+    "latest_apk_url": "",
+    "latest_apk_size": 0,
+    "pushed_at": "",
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "downloads": 0,
+    "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
+    "releases": [],
+    "source": "github",
+    "note": "2026-11-04 复核：Ishan0981/Skyline-Enhanced-Infinity 存在（★22，MPL-2.0，最后推送 2023-11-15），但自 2026-02-17 起被 DMCA 封锁（GitHub 返回 451，block.reason=dmca），网页与 API 均不可访问。无官网，仅网盘流传 v1.2.0",
+    "skip": "",
+    "distribution": "community-archive",
+    "kind": "emulator",
+    "runtime": "android-native",
+    "platforms": [
+      "switch"
+    ],
+    "status": "archived",
+    "community_sources": [
+      {
+        "repo": "https://github.com/Ishan0981/Skyline-Enhanced-Infinity",
+        "note": "已下架，★22 MPL-2.0"
+      }
+    ],
+    "repo_status": "451"
+  }
+]
