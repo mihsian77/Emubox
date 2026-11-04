@@ -2553,7 +2553,7 @@ data class ComboRec(val combo: List<Pair<String, String>>, val count: Int, val s
 
 /** 远程聚合配置源：CI 每日聚合两社区仓库后提交，App 远程拉取优先、内置资产兜底 */
 private const val RECIPES_REMOTE_URL =
-    "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/app/src/main/assets/winlator-recipes.json"
+    "https://raw.githubusercontent.com/mihsian77/Emubox/main/app/src/main/assets/winlator-recipes.json"
 
 fun loadWinlatorRecipes(context: Context): Pair<Map<String, List<ComboRec>>, Map<String, List<ComboRec>>> {
     return try {
@@ -11880,7 +11880,7 @@ private fun EmulatorTrendingCard(
             if (expanded) {
                 Spacer(Modifier.height(6.dp))
                 trending.take(8).forEachIndexed { idx, t ->
-                    val entry = entries.firstOrNull { it.repo.equals(t.repo, ignoreCase = true) || it.githubUrl.contains(t.repo, ignoreCase = true) }
+                    val entry = entries.firstOrNull { it.repo.equals(t.repo, ignoreCase = true) || it.repoLink.contains(t.repo, ignoreCase = true) }
                     val name = entry?.name ?: t.repo.substringAfter('/')
                     Row(
                         modifier = Modifier.fillMaxWidth().clickable(enabled = entry != null) { entry?.let(onOpen) }.padding(vertical = 5.dp),
@@ -12217,7 +12217,7 @@ private fun EmulatorCard(
     // DMCA/停更仓库：社区归档（123盘历史包）保留下载，其余不跳仓库、隐藏下载
     val isArchive = entry.source == "community-archive"
     val canDownload = entry.latestApkUrl.isNotBlank() && !(entry.dead && !isArchive)
-    val websiteUrl = if (entry.dead && !isArchive) "" else entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
+    val websiteUrl = if (entry.dead && !isArchive) "" else entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.repoLink } }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -12634,7 +12634,7 @@ private fun EmulatorListRow(
     }
     val canDownload = entry.latestApkUrl.isNotBlank()
     // 官网优先 homepage，无则回退仓库（模拟器专区为社区排行榜，保留仓库跳转）
-    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.githubUrl } }
+    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.repoLink } }
     Card(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onClickDetail),
         shape = RoundedCornerShape(16.dp)
@@ -12944,12 +12944,12 @@ private fun EmulatorDetailDialog(
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
-                            if (entry.githubUrl.isNotBlank() && !(entry.dead && !isArchive)) {
+                            if (entry.repoLink.isNotBlank() && !(entry.dead && !isArchive)) {
                                 Spacer(Modifier.height(8.dp))
                                 OutlinedButton(
                                     onClick = {
                                         runCatching {
-                                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.githubUrl)))
+                                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.repoLink)))
                                         }
                                     },
                                     shape = RoundedCornerShape(12.dp)
@@ -13131,11 +13131,11 @@ private fun EmulatorDetailDialog(
                 }
                 HorizontalDivider()
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    if (entry.githubUrl.isNotBlank() && !(entry.dead && !isArchive)) {
+                    if (entry.repoLink.isNotBlank() && !(entry.dead && !isArchive)) {
                         OutlinedButton(
                             onClick = {
                                 runCatching {
-                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.githubUrl)))
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(entry.repoLink)))
                                 }
                             },
                             shape = RoundedCornerShape(12.dp)

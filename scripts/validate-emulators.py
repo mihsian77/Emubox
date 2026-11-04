@@ -8,13 +8,19 @@ import sys
 import urllib.request
 
 REG = "emulator-registry.json"
-DEAD_SOURCES = {"yuzu-official", "yuzu-citrus", "yuzu-plus",
-                "skyline-official", "skyline-pine", "skyline-tagline",
-                "skyline-enhanced-infinity", "citron-emulator",
-                "strato-emulator", "ryujinx-official"}
+DEAD_SOURCES = {"yuzu-official", "citron-emulator",
+                "strato-emulator", "ryujinx-official",
+                "ovsky-sumi-emu", "skyline-official", "drastic"}
 VALID_SOURCES = {"github", "gitea", "gitlab", "gitee", "notabug",
                  "official-web", "official-play", "community-archive"}
 BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}
+# 已知的自建 Gitea / Forgejo 实例。source=gitea 的 repo_url 必须落在其一。
+GITEA_HOSTS = ("git.eden-emu.dev", "git.ryujinx.app")
+# 桌面 / libretro 条目的分发物本就是 zip / tar.gz / AppImage / exe，
+# 对它们套用「安卓安装包」扩展名黑名单属于误判。
+DESKTOP_RUNTIMES = {"desktop", "libretro"}
+DESKTOP_OK_EXT = (".zip", ".tar.gz", ".tar.xz", ".tgz", ".7z", ".exe", ".dmg",
+                  ".deb", ".appimage", ".ipa", ".tar", ".xz")
 
 
 def head_check(url, timeout=12):
@@ -55,8 +61,8 @@ def main():
                 problems.append(f"[{eid}] source=github 但 repo_url 非 GitHub: {url[:60]}")
             if src == "gitlab" and "gitlab.com" not in url:
                 problems.append(f"[{eid}] source=gitlab 但 repo_url 非 GitLab: {url[:60]}")
-            if src == "gitea" and "git.eden" not in url:
-                problems.append(f"[{eid}] source=gitea 但 repo_url 非 Gitea: {url[:60]}")
+            if src == "gitea" and not any(h in url for h in GITEA_HOSTS):
+                problems.append(f"[{eid}] source=gitea 但 repo_url 非已知 Gitea 实例: {url[:60]}")
 
         dead = e.get("dead", False)
         if dead and eid not in DEAD_SOURCES:
@@ -71,7 +77,11 @@ def main():
             if not apk.startswith("http"):
                 problems.append(f"[{eid}] latest_apk_url 非 http: {apk[:50]}")
             low = apk.lower()
-            if any(low.endswith(x) for x in BAD_EXT) and "RetroArch" not in (e.get("note") or ""):
+            if e.get("runtime") in DESKTOP_RUNTIMES:
+                # 桌面条目：只要不是明显不可执行的文件（json/md/txt）即视为合法分发物
+                if low.endswith((".json", ".md", ".txt")):
+                    problems.append(f"[{eid}] 桌面分发物不应是文档文件: {apk[-30:]}")
+            elif any(low.endswith(x) for x in BAD_EXT) and "RetroArch" not in (e.get("note") or ""):
                 problems.append(f"[{eid}] 下载直链为可疑文件类型(非安装包): {apk[-30:]}")
         elif not dead and e.get("source") in ("github", "gitlab", "gitea", "notabug"):
             # 活跃代码源条目应有下载或明确 note
