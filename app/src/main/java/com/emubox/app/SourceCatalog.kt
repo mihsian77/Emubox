@@ -8,7 +8,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 const val DEFAULT_SOURCE_CATALOG_URL =
-    "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/catalog/catalog.json"
+    "https://raw.githubusercontent.com/mihsian77/Emubox/main/catalog/catalog.json"
 
 /**
  * 驱动/组件源可下载资产的扩展名白名单。
