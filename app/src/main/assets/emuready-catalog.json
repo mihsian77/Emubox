@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-02T09:03:46Z",
+ "generated_at": "2026-11-03T23:40:14Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -187,7 +187,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1614,
+   "listingsCount": 1615,
    "keys": [
     "thormax",
     "aynthormax"
@@ -209,7 +209,7 @@
    "modelName": "11 Pro",
    "brandName": "RedMagic",
    "socName": "Snapdragon 8 Elite Gen 5",
-   "listingsCount": 1487,
+   "listingsCount": 1490,
    "keys": [
     "11pro",
     "redmagic11pro"
@@ -275,7 +275,7 @@
    "modelName": "Pocket 6",
    "brandName": "Retroid",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 377,
+   "listingsCount": 378,
    "keys": [
     "pocket6",
     "retroidpocket6"
@@ -396,7 +396,7 @@
    "modelName": "Poco X7 Pro",
    "brandName": "Xiaomi",
    "socName": "Dimensity 8400 Ultra",
-   "listingsCount": 140,
+   "listingsCount": 141,
    "keys": [
     "pocox7pro",
     "xiaomipocox7pro"
@@ -4231,6 +4231,17 @@
    ]
   },
   {
+   "id": "2883694b-ff49-4d71-97a1-19603253886c",
+   "modelName": "Air",
+   "brandName": "AYANEO",
+   "socName": "Ryzen 5 5560U",
+   "listingsCount": 2,
+   "keys": [
+    "air",
+    "ayaneoair"
+   ]
+  },
+  {
    "id": "703cf4a0-725e-42ba-ad34-daf96cb3f954",
    "modelName": "Geek",
    "brandName": "AYANEO",
@@ -4481,6 +4492,17 @@
    "keys": [
     "claw",
     "msiclaw"
+   ]
+  },
+  {
+   "id": "39f3a85c-03dd-4889-a2ec-2851e5b125e5",
+   "modelName": "G67 Power 5G",
+   "brandName": "Motorola",
+   "socName": "Snapdragon 7s Gen 2",
+   "listingsCount": 2,
+   "keys": [
+    "g67power5g",
+    "motorolag67power5g"
    ]
   },
   {
@@ -4954,17 +4976,6 @@
    "keys": [
     "2",
     "ayaneo2"
-   ]
-  },
-  {
-   "id": "2883694b-ff49-4d71-97a1-19603253886c",
-   "modelName": "Air",
-   "brandName": "AYANEO",
-   "socName": "Ryzen 5 5560U",
-   "listingsCount": 1,
-   "keys": [
-    "air",
-    "ayaneoair"
    ]
   },
   {
@@ -7311,17 +7322,6 @@
    ]
   },
   {
-   "id": "39f3a85c-03dd-4889-a2ec-2851e5b125e5",
-   "modelName": "G67 Power 5G",
-   "brandName": "Motorola",
-   "socName": "Snapdragon 7s Gen 2",
-   "listingsCount": 0,
-   "keys": [
-    "g67power5g",
-    "motorolag67power5g"
-   ]
-  },
-  {
    "id": "dd0f3c27-946d-419b-a161-c14d9293bd45",
    "modelName": "Moto G Stylus 5G (2021)",
    "brandName": "Motorola",
@@ -9016,7 +9016,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 6258,
+   "listings": 6262,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9029,7 +9029,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3425,
+   "listings": 3426,
    "description": ""
   },
   {
@@ -9055,7 +9055,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1917,
+   "listings": 1918,
    "description": "Citron - Nintendo Homebrew Emulator 🍋 Welcome to Citron, a cutting-edge Nintendo Homebrew emulator designed to deliver an optimized experience for playing your favorite games and exploring new ones. Citron is a high-performance and easy-to-use emulator, tailored for enthusiasts a"
   },
   {
@@ -9068,7 +9068,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1850,
+   "listings": 1851,
    "description": ""
   },
   {
@@ -9295,6 +9295,19 @@
    "description": "ARMSX2 is a new open source emulator for the PS2, it is based on the PCSX2 emulator and aims to be the next step in PS2 emulation on Android, as well as cross platform support for iOS and other ARM Platforms."
   },
   {
+   "id": "a03b2d59-af87-45dd-ad5e-a1fbd2ea74b5",
+   "name": "melonDS",
+   "logo": "melonds.png",
+   "repositoryUrl": "",
+   "officialUrl": "",
+   "androidRepoUrl": "",
+   "systems": [
+    "nintendo_ds"
+   ],
+   "listings": 41,
+   "description": ""
+  },
+  {
    "id": "237f2975-2c89-4e8f-9df4-70f267b60ee9",
    "name": "RetroArch",
    "logo": "retroarch.png",
@@ -9307,19 +9320,6 @@
     "nintendo_ds",
     "sony_playstation_portable",
     "sony_playstation"
-   ],
-   "listings": 40,
-   "description": ""
-  },
-  {
-   "id": "a03b2d59-af87-45dd-ad5e-a1fbd2ea74b5",
-   "name": "melonDS",
-   "logo": "melonds.png",
-   "repositoryUrl": "",
-   "officialUrl": "",
-   "androidRepoUrl": "",
-   "systems": [
-    "nintendo_ds"
    ],
    "listings": 40,
    "description": ""
@@ -9445,6 +9445,19 @@
    "description": ""
   },
   {
+   "id": "d887dca2-3217-4e79-ae7f-35f876935271",
+   "name": "ARMSX3",
+   "logo": "",
+   "repositoryUrl": "https://github.com/ARMSX2/ARMSX3",
+   "officialUrl": "https://github.com/ARMSX2/ARMSX3",
+   "androidRepoUrl": "https://github.com/ARMSX2/ARMSX3",
+   "systems": [
+    "sony_playstation_3"
+   ],
+   "listings": 6,
+   "description": ""
+  },
+  {
    "id": "65e56103-7407-46d6-8a34-9327ca5c04b6",
    "name": "DraStic",
    "logo": "drastic.png",
@@ -9479,19 +9492,6 @@
    "androidRepoUrl": "",
    "systems": [
     "nintendo_3ds"
-   ],
-   "listings": 5,
-   "description": ""
-  },
-  {
-   "id": "d887dca2-3217-4e79-ae7f-35f876935271",
-   "name": "ARMSX3",
-   "logo": "",
-   "repositoryUrl": "https://github.com/ARMSX2/ARMSX3",
-   "officialUrl": "https://github.com/ARMSX2/ARMSX3",
-   "androidRepoUrl": "https://github.com/ARMSX2/ARMSX3",
-   "systems": [
-    "sony_playstation_3"
    ],
    "listings": 5,
    "description": ""

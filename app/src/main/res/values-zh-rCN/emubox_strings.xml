@@ -221,6 +221,12 @@
     <string name="soc_gpu">GPU</string>
     <string name="soc_score_label">性能跑分（安兔兔 V10）</string>
     <string name="soc_score_unknown">未收录</string>
+    <string name="soc_model_name">型号名称</string>
+    <string name="soc_caches">缓存</string>
+    <string name="soc_memory">内存</string>
+    <string name="soc_gpu_spec">GPU 规格</string>
+    <string name="soc_features">网络 / AI</string>
+    <string name="soc_gb6">Geekbench 6</string>
 
     <string name="bench_engine_title">SoC 跑分引擎</string>
     <string name="bench_no_data">该芯片暂无跑分数据</string>
