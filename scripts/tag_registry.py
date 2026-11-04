@@ -54,7 +54,9 @@ PLATFORM_MAP = [
     ("web/flash", "web"),
     ("atari", "atari"),
     ("sega model 3", "model3"),
-    ("game", "windows-pc"),
+    ("game port", "windows-pc"),
+    ("game emulator", "windows-pc"),
+    ("pc 移植", "windows-pc"),
 ]
 
 # 逐条指定目标平台（category 推不出来的）
@@ -122,6 +124,48 @@ PLATFORM_FIX = {
     "termux": ["terminal"], "termux-plus": ["terminal"], "termux-enhanced": ["terminal"],
     "termux-ghostty": ["terminal"], "termux-kotlin": ["terminal"], "termux-aether": ["terminal"],
     "termux-zero": ["terminal"], "termux-jiaxinchen": ["terminal"],
+}
+
+# 显式覆盖：自动推断对以下条目会算错（分发物形态特殊、或品类词有歧义）。
+# 覆盖优先级最高，四个维度都以此为准。
+TAG_OVERRIDE = {
+    # 桌面分支 / 续作：分发物是 zip / tar.gz / AppImage，不是安卓安装包
+    "ruzu-emu":              {"kind": "emulator", "runtime": "desktop",    "platforms": ["switch"]},
+    "eden-nx2-zuan":         {"kind": "emulator", "runtime": "desktop",    "platforms": ["switch"]},
+    "prospero-eden-encore":  {"kind": "emulator", "runtime": "desktop",    "platforms": ["switch"]},
+    "ryubing-canary":        {"kind": "emulator", "runtime": "desktop",    "platforms": ["switch"]},
+    "melonx-ios":            {"kind": "emulator", "runtime": "desktop",    "platforms": ["switch", "ios"]},
+    "ryudeck-steamdeck":     {"kind": "emulator", "runtime": "desktop",    "platforms": ["switch"]},
+    "ryujinx-canary-ademola": {"kind": "emulator", "runtime": "desktop",  "platforms": ["switch"]},
+    "flycast-dojo":          {"kind": "emulator", "runtime": "desktop",    "platforms": ["dreamcast"]},
+    "snes9x-z":              {"kind": "emulator", "runtime": "libretro",   "platforms": ["snes"]},
+    "dosbox-staging":        {"kind": "emulator", "runtime": "desktop",    "platforms": ["windows-pc", "multi"]},
+    "dosbox-x":              {"kind": "emulator", "runtime": "desktop",    "platforms": ["windows-pc", "multi"]},
+    "dosbox-pure":           {"kind": "emulator", "runtime": "libretro",   "platforms": ["windows-pc", "multi"]},
+    "mupen64plus-ae-fzurita": {"kind": "emulator", "runtime": "desktop",   "platforms": ["n64"]},
+    # Forgejo 上的社区续接项目
+    "ryubing-emulator":       {"kind": "emulator", "runtime": "desktop",   "platforms": ["switch"]},
+    "ryujinx-benji-sc":      {"kind": "emulator", "runtime": "desktop",   "platforms": ["switch"]},
+    "kenji-nx-android-releases": {"kind": "emulator", "runtime": "android-native", "platforms": ["switch"]},
+    "yuzu-citrus":           {"kind": "emulator", "runtime": "desktop",   "platforms": ["switch"]},
+    "torzu-emulator":        {"kind": "emulator", "runtime": "desktop",   "platforms": ["switch"]},
+    # 商店版无 APK 直链，runtime 由 Play 分发决定
+    "m64plusfz":             {"kind": "emulator", "runtime": "android-native", "platforms": ["n64"]},
+    "drastic":               {"kind": "emulator", "runtime": "android-native", "platforms": ["nds"]},
+    "myps2-ps2":             {"kind": "emulator", "runtime": "android-native", "platforms": ["ps2"]},
+    "epsxe":                 {"kind": "emulator", "runtime": "android-native", "platforms": ["ps1"]},
+    "fpse":                  {"kind": "emulator", "runtime": "android-native", "platforms": ["ps1"]},
+    "sudachi-emulator":      {"kind": "emulator", "runtime": "android-native", "platforms": ["switch"]},
+    "ovsky-sumi-emu":        {"kind": "emulator", "runtime": "desktop",   "platforms": ["switch"]},
+    "ryujinx-official":      {"kind": "emulator", "runtime": "desktop",   "platforms": ["switch"]},
+    "producdevity-gamehub":  {"kind": "emulator", "runtime": "android-native", "platforms": ["windows-pc"]},
+    "winlator-releases":     {"kind": "emulator", "runtime": "android-native", "platforms": ["windows-pc"]},
+    # 社区归档：无一手来源，仅群内分发
+    "eclipseds-nds":         {"kind": "emulator", "runtime": "android-native", "platforms": ["nds"]},
+    "skyline-tagline":       {"kind": "emulator", "runtime": "android-native", "platforms": ["switch"]},
+    "skyline-enhanced-infinity": {"kind": "emulator", "runtime": "android-native", "platforms": ["switch"]},
+    "yuzu-plus":             {"kind": "emulator", "runtime": "android-native", "platforms": ["switch"]},
+    "skyline-pine":          {"kind": "emulator", "runtime": "android-native", "platforms": ["switch"]},
 }
 
 # runtime 判定
@@ -213,6 +257,9 @@ def main():
         e["runtime"] = runtime_of(e)
         e["platforms"] = platforms_of(e)
         e["status"] = status_of(e)
+        ov = TAG_OVERRIDE.get(e.get("id"))
+        if ov:
+            e.update(ov)
         n += 1
     d["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     json.dump(d, open(REG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
