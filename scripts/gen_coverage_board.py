@@ -22,7 +22,7 @@ GROUPS = [
               "wonderswan", "virtual-boy", "pico-8", "zeebo"]),
     ("电脑 / 街机", ["windows-pc", "pc-98", "msx", "dos", "c64", "amiga", "zx-spectrum",
                      "arcade", "model3", "brew", "java-me", "symbian", "windows-mobile"]),
-    ("运行环境（跨平台）", ["adventure", "visual-novel", "multi", "web", "terminal", "ios", "atari"]),
+    ("运行环境（跨平台）", ["adventure", "visual-novel", "multi", "web", "terminal", "ios"]),
 ]
 
 CN = {
@@ -39,6 +39,7 @@ CN = {
     "model3": "Model3", "brew": "BREW", "java-me": "J2ME", "symbian": "Symbian",
     "windows-mobile": "WM", "adventure": "AVG 引擎", "visual-novel": "视觉小说",
     "multi": "综合", "web": "Web/Flash", "terminal": "终端", "ios": "iOS",
+    "atari-lynx": "Lynx", "atari-jaguar": "Jaguar",
 }
 
 
