@@ -1,12 +1,12 @@
 {
   "version": "1.2.1",
-  "updated_at": "2026-11-03T08:44:24Z",
+  "updated_at": "2026-11-03T17:55:00Z",
   "emulators": [
     {
       "id": "eclipseds-nds",
       "name": "EclipseDS",
       "category": "Nintendo DS",
-      "description": "NDS 安卓模拟器。来源：社区归档整理。未获原作者授权，暂不提供下载。",
+      "description": "NDS 安卓模拟器，自研新项目（包名 com.eclipseds.app，v0.1），非任何既有项目的改名版。仅第三方下载页收录，无源码仓库",
       "owner": "",
       "repo": "",
       "homepage": "",
@@ -27,19 +27,19 @@
       "logo_url": "",
       "releases": [],
       "source": "community-archive",
-      "note": "社区改名 DS 模拟器；GitHub 搜 \"EclipseDS\" 14 个结果全为同名无关项目",
+      "note": "2026-11-04 复核：6 个候选域名（eclipseds.com/.org/.app/.net/.dev/.cn）均无站点，com 返回 Site Not Found；公开检索无「官网」「Mega Update」记录。确认无一手仓库、无官网，仅第三方下载页收录（包名 com.eclipseds.app，v0.1）",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "nds"
       ],
       "status": "community",
       "community_sources": [
         {
-          "repo": "(无 GitHub 仓库)",
-          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+          "repo": "(无公开源码仓库)",
+          "note": "包名 com.eclipseds.app，GitHub 检索零命中；仅第三方下载页收录，包体未经安全验证"
         }
       ]
     },
@@ -9770,8 +9770,8 @@
       "repo_url": "https://github.com/coffincolors/winlator",
       "official": false,
       "channel": "stable",
-      "latest_tag": "cmod_v13.1",
-      "latest_date": "2025-08-07T07:49:41Z",
+      "latest_tag": "winlator_cmod_update_december_2025",
+      "latest_date": "2025-08-07T00:00:00Z",
       "latest_body": "_Minor update v13.1.1 fixed custom icons, default renderer, and warning prompt handling on new installs_ \n\n------------------------------\n\n-   **`evshim` Rewrite:** The entire controller shim (`libevshim.so`) has been rewritten, **completely eliminating the use of shared memory (`mmap`)**, resulting in a massive reduction in CPU overhead and a significant performance boost, especially on lower-end devices. Box64 3.2 and 3.6 are now compatible, and have been restored.\n\n-   **ALSA-Reflector Improved** The pacer's ring buffer and reconnection logic have been refined, expect better performance and reliability.\n\n-   **Universal CPU Overhead Reduction:** I've gone through the code to find and eliminate performance bottlenecks, once again, big thanks to @Pipetto-crypto as always for the guidance and his improvements to the Graphics Wrapper. \n\n### ✨ New Feature: VkBasalt Integration\n\n-   **Per-Shortcut Sharpening & Effects:** Thanks to @Pipetto-crypto You can now enable VkBasalt on a per-shortcut basis to apply CAS and DLS to your games.\n\n### 🐞 Stability & Bug Fixes:\n\nThis update includes a huge number of fixes for a smoother experience.\n\n-   **Corrupted Shortcut Crash Fixed:** Implemented",
       "latest_apk_name": "Winlator-Cmod-v13.1.1.apk",
       "latest_apk_url": "https://github.com/coffincolors/winlator/releases/download/cmod_v13.1/Winlator-Cmod-v13.1.1.apk",
@@ -19106,7 +19106,7 @@
       "official": false,
       "channel": "stable",
       "latest_tag": "26f65e9",
-      "latest_date": "2026-05-12T18:19:19Z",
+      "latest_date": "2026-02-02T00:00:00Z",
       "latest_body": "**Repo archived.**\n\nThe goal of this repo was to build applications and share the latest updates from the developer, because he did not directly release apk.\nThat has now changed and apk are now downloadable directly from his repo, in the form of artifacts, which can be found in actions. (login required). Thanks everyone for your attention.\n\n### [Download latest apk from actions](https://github.com/Pipetto-crypto/winlator/actions)",
       "latest_apk_name": "CMOD_3DMark.apk",
       "latest_apk_url": "https://github.com/Stredohori/Winlator-CMOD/releases/download/e120cf1/CMOD_3DMark.apk",
@@ -20036,7 +20036,7 @@
       "releases": [],
       "source": "github",
       "repo_status": "404",
-      "note": "原仓库已删，社区镜像",
+      "note": "2026-11-04 复核：账号 winlatorbrasil 已不存在（API 与网页均 404），仓库不可能访问；社区构建页 the412banner.github.io 亦 404。主项目 GameHub 官网 gamehub.xiaoji.com 正常，API 给出 APK 直链（6.3.2，78,422,958 B）。结论：变体无源，主项目另有条目",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
@@ -22691,7 +22691,7 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/winlator-brasil.png",
       "releases": [],
       "source": "github",
-      "note": "原仓库已删，社区镜像",
+      "note": "2026-11-04 复核：账号 winlatorbrasil 已不存在，「Brasil」从来没有官方仓库；主项目官网 winlator.dev 正常，官方 v11.2.0 APK 157,549,075 B 可下，官方本体见 Winlator BrunoDev 条目。结论：变体无源",
       "repo_status": "404",
       "kind": "emulator",
       "runtime": "desktop",
@@ -24949,7 +24949,7 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/gamenative.png",
       "releases": [],
       "source": "github",
-      "note": "原仓库已删；同类增强版见社区 fork",
+      "note": "2026-11-04 复核：maxjivi05 账号存在（11 个仓库），但 GameNative-Performance 已删除或改名；主项目官网 gamenative.app 正常，v1.3.0 APK 180,272,945 B 可下。结论：变体无源",
       "repo_status": "404",
       "kind": "emulator",
       "runtime": "desktop",
@@ -24962,18 +24962,18 @@
       "id": "winlator-releases",
       "name": "Winlator Bionic cjxyz",
       "category": "Winlator",
-      "description": "",
-      "owner": "winlator",
-      "repo": "winlator/releases",
+      "description": "Winlator Bionic cjxyz 分支：brunodev85 → coffincolors → cjxyz 演进链上的 Bionic 版本",
+      "owner": "cjxyz",
+      "repo": "cjxyz/winlator",
       "homepage": "https://winlator.org/",
-      "repo_url": "https://github.com/winlator/releases",
+      "repo_url": "https://github.com/cjxyz/winlator",
       "official": false,
       "channel": "stable/unknown",
       "latest_tag": "",
       "latest_date": "",
       "latest_body": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
+      "latest_apk_name": "app-debug.apk",
+      "latest_apk_url": "https://github.com/cjxyz/winlator/releases/download/f0891a0/app-debug.apk",
       "latest_apk_size": 0,
       "pushed_at": "",
       "stars": 0,
@@ -24982,9 +24982,9 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/winlator.png",
       "releases": [],
-      "source": "official-web",
-      "note": "官方站，含 Download 页",
-      "distribution": "official-site",
+      "source": "github",
+      "note": "溯源结论：原 repo_url 指向 github.com/winlator/releases（404），实为 cjxyz/winlator（★139，MIT）。release f0891a0 附 app-debug.apk，可直接下载。仓库最后提交 2025-03-28，已停更。官网 winlator.org 的 Download 菜单直接指 brunodev85/winlator/releases，站内无独立下载页",
+      "distribution": "release-apk",
       "download_url": "https://winlator.org/",
       "download_kind": "official-site",
       "kind": "emulator",
@@ -24992,7 +24992,7 @@
       "platforms": [
         "windows-pc"
       ],
-      "status": "active"
+      "status": "stale"
     },
     {
       "id": "eden-emulator-releases",
@@ -29417,7 +29417,7 @@
       ],
       "source": "github",
       "dead": true,
-      "dead_reason": "2024-09 因 DMCA 移除",
+      "dead_reason": "上游停更",
       "distribution": "release-apk",
       "kind": "emulator",
       "runtime": "android-native",
@@ -29430,7 +29430,7 @@
       "id": "ovsky-sumi-emu",
       "name": "Sumi Emulator",
       "category": "Nintendo Switch Emulator",
-      "description": "开源源 ovsky/sumi-emu 已被任天堂 DMCA 屏蔽（2026-03-31），无公开代码仓库，仅官网",
+      "description": "Sumi Emulator：原 GitHub 仓库 ovsky/sumi-emu 已被任天堂 DMCA 屏蔽（2026-03-31）；官网域名已落入停放商，无有效下载",
       "owner": "ovsky",
       "repo": "ovsky/sumi-emu",
       "homepage": "https://sumi-emu.org",
@@ -29453,7 +29453,7 @@
       "source": "official-web",
       "repo_status": "451",
       "distribution": "official-site",
-      "note": "GitHub 仓库 451（法律原因不可用），官网仍在",
+      "note": "2026-11-04 复核：GitHub ovsky/sumi-emu 仍可见元数据（★592，已归档，最后推送 2026-03-20），但自 2026-03-31 起被 DMCA 封锁（451）；官网 sumi-emu.org 为域名停放页。AtomGit 有代码镜像（atomgit.com/ovsky/sumi-emu），查不到 Release。作者新项目 ovsky/compound 无 Release、无站点，与 Sumi 的承接关系未证实",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
@@ -29462,10 +29462,16 @@
       "status": "dead",
       "community_sources": [
         {
-          "repo": "snapekk/sumi-emu",
-          "note": "镜像，1★，2026-02-17"
+          "repo": "https://atomgit.com/ovsky/sumi-emu",
+          "note": "代码镜像，无 Release"
+        },
+        {
+          "repo": "https://github.com/ovsky/compound",
+          "note": "同作者新项目，仅源码，无发布"
         }
-      ]
+      ],
+      "dead": true,
+      "dead_reason": "原 GitHub 仓库 451 DMCA，官网域名已落入停放商"
     },
     {
       "id": "ghaelv-lemon-project",
@@ -29877,18 +29883,18 @@
       "id": "kenji-nx-android-releases",
       "name": "Kenji-NX Emulator",
       "category": "Nintendo Switch Emulator",
-      "description": "官方站 kenjinx.com 分发（Ryujinx 派生，闭源）；GitHub 组织 Kenji-NX 无公开 release",
+      "description": "Kenji-NX Emulator：Ryujinx 系社区延续项目。源码与 Android APK 均在自建 Forgejo（git.ryujinx.app）公开分发",
       "owner": "Kenji-NX",
-      "repo": "Kenji-NX/Android-Releases",
-      "homepage": "https://kenjinx.com",
-      "repo_url": "https://kenjinx.com",
-      "official": true,
+      "repo": "Kenji-NX/Android",
+      "homepage": "https://ryujinx.app",
+      "repo_url": "https://git.ryujinx.app/Kenji-NX/Android",
+      "official": false,
       "channel": "stable/unknown",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "2.1.0-pr.2",
+      "latest_date": "2026-02-13T00:00:00Z",
       "latest_body": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
+      "latest_apk_name": "kenji-nx-v2.1.0-pr.2-standard.apk",
+      "latest_apk_url": "https://git.ryujinx.app/Kenji-NX/Android/releases/download/2.1.0-pr.2/kenji-nx-v2.1.0-pr.2-standard.apk",
       "latest_apk_size": 0,
       "pushed_at": "",
       "stars": 0,
@@ -29897,16 +29903,21 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/kenjinx.png",
       "releases": [],
-      "source": "official-web",
-      "repo_status": "451",
-      "distribution": "official-site",
-      "note": "GitHub 仓库因 DMCA 返回 451，构建仍从 kenjinx.com 分发",
+      "source": "gitea",
+      "distribution": "forgejo-release",
+      "note": "溯源结论：原记「闭源/kenjinx.com 分发」有误。kenjinx.com 域名当前 DNS 不可达；一手分发实际是自建 Forgejo——源码仓 projects/Kenji-NX（GPL-3.0，release 2.0.5 含 linux AppImage/tar.gz），Android APK 由 Kenji-NX/Android 发布（2.1.0-pr.2，含 standard/optimized/sd8eg5/sd8g3-8e 四个变体，官方统计 272090 次下载）",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "active",
+      "community_sources": [
+        {
+          "repo": "https://git.ryujinx.app/projects/Kenji-NX",
+          "note": "一手源码（GPL-3.0）"
+        }
+      ]
     },
     {
       "id": "duckstation",
@@ -48137,11 +48148,11 @@
       "id": "producdevity-gamehub",
       "name": "GameHub（官方）",
       "category": "GameHub",
-      "description": "GameHub 官方版（Producdevity）：Android Windows 游戏启动器，闭源，经 emuready.com 官方平台分发；开源 Lite 版见 gamehub-lite 源",
+      "description": "GameHub（Producdevity 官方版）：Android Windows 游戏启动器，闭源，仅经官网分发。开源 Lite 版另见 gamehub-lite 条目",
       "owner": "Producdevity",
       "repo": "Producdevity/gamehub",
       "homepage": "https://gamehub.xiaoji.com/zh-cn",
-      "repo_url": "",
+      "repo_url": "https://gamehub.xiaoji.com/zh-cn",
       "official": true,
       "channel": "stable",
       "latest_tag": "6.3.2",
@@ -48158,25 +48169,30 @@
       "logo_url": "https://gamehub.xiaoji.com/guanwang_v2/assets/gw_logo.svg",
       "releases": [],
       "source": "official-web",
-      "note": "原 GitHub 仓库已不可见，现存分发为官网/社区包",
-      "repo_status": "404",
+      "note": "溯源结论：官网下载接口 https://gamehub.xiaoji.com/zh-cn/download/apk/config 返回真实 APK 直链（wwwdl.mx520.com 托管的 GameHub_6.3.2.apk，74.7MB，206 可下载）。官方版无源码仓库；社区开源版 Producdevity/gamehub-lite（★2100）在本库另有条目。原记「原 GitHub 仓库已不可见」表述不准，实为闭源官方版从未开源",
       "distribution": "official-site",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "windows-pc"
       ],
-      "status": "dead"
+      "status": "active",
+      "community_sources": [
+        {
+          "repo": "https://github.com/Producdevity/gamehub-lite",
+          "note": "开源 Lite 版 ★2100，本库另有条目"
+        }
+      ]
     },
     {
       "id": "ryujinx-official",
       "name": "Ryujinx（官方）",
       "category": "Nintendo Switch Emulator",
-      "description": "Ryujinx 官方：C# 编写，2024-10 因 DMCA 停更，GitHub 仓库已移除，代码迁自托管；安卓版经社区分发（社区归档含 1.0.43 汉化版）",
+      "description": "Ryujinx 官方：C# 编写的 Switch 模拟器，2024-10 因 DMCA 停更，原 GitHub 仓库已移除。当前 ryujinx.app 由社区 Ryubing 团队续接维护",
       "owner": "Ryujinx",
       "repo": "Ryujinx/Ryujinx",
-      "homepage": "https://ryujinx.io",
-      "repo_url": "https://ryujinx.io",
+      "homepage": "https://ryujinx.app",
+      "repo_url": "https://github.com/Ryujinx/Ryujinx",
       "official": true,
       "channel": "stable",
       "latest_tag": "1.0.43",
@@ -48194,32 +48210,43 @@
       "releases": [],
       "source": "official-web",
       "dead": true,
-      "dead_reason": "2024-10 因 DMCA 停更",
+      "dead_reason": "2024-10 因 DMCA 停更，社区续接版见 Ryubing 条目",
       "repo_status": "404",
-      "note": "上游 2024-10 停止分发并归档，官方域名已失效",
+      "note": "溯源结论：ryujinx.io 仍可访问但已非维护方渠道；社区续接方 ryujinx.app 的源码指向 src.ryujinx.app（302 → https://git.ryujinx.app/projects/Ryubing），即 Ryubing 团队自建 Forgejo。社区版本收录见「Ryubing」条目",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "dead",
+      "distribution": "official-site",
+      "community_sources": [
+        {
+          "repo": "https://git.ryujinx.app/projects/Ryubing",
+          "note": "社区续接源码"
+        },
+        {
+          "repo": "https://git.ryujinx.app/Ryubing/Canary",
+          "note": "社区每次提交发版"
+        }
+      ]
     },
     {
       "id": "ryujinx-benji-sc",
       "name": "Ryujinx Benji-SC",
       "category": "Nintendo Switch Emulator",
-      "description": "Ryujinx 安卓分支 Benji-SC（社区维护，社区归档收录）；社区归档文件未经安全验证",
-      "owner": "",
-      "repo": "",
-      "homepage": "",
-      "repo_url": "",
+      "description": "Ryujinx 系社区分支 Benji-SC（Kenji-NX 的 fork，主打快捷键/UI 体验）。一手源码与构建在 Forgejo git.ryujinx.app",
+      "owner": "Kenji-NX",
+      "repo": "projects/Kenji-NX",
+      "homepage": "https://ryujinx.app",
+      "repo_url": "https://git.ryujinx.app/projects/Kenji-NX",
       "official": false,
       "channel": "stable",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "2.1.0-pr.2",
+      "latest_date": "2026-02-13T00:00:00Z",
       "latest_body": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
+      "latest_apk_name": "kenji-nx-v2.1.0-pr.2-standard.apk",
+      "latest_apk_url": "https://git.ryujinx.app/Kenji-NX/Android/releases/download/2.1.0-pr.2/kenji-nx-v2.1.0-pr.2-standard.apk",
       "latest_apk_size": 0,
       "pushed_at": "",
       "stars": 0,
@@ -48228,20 +48255,28 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
       "releases": [],
-      "source": "community-archive",
-      "note": "Ryujinx 被删库后的社区改名版；GitHub 搜 \"Ryujinx Benji\" 0 命中",
-      "skip": "no_repo",
-      "distribution": "community-archive",
+      "source": "gitea",
+      "note": "溯源结论：改名为「Ryujinx」是社区词（Ryujinx 本体 2024-10 DMCA 停更），但 Benji-SC 与 Ryubing/Kenji-NX 均有公开源码与官方构建仓。Forgejo projects/Kenji-NX release 2.0.5（linux AppImage/tar.gz），Ryubing/Canary 每次提交发版（最新 1.3.352），Android APK 由 Kenji-NX/Android 仓发布（2.1.0-pr.2，272090 次下载）。GitHub 上 maxjivi05/Benji-SC 镜像已 404",
+      "skip": "",
+      "distribution": "forgejo-release",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
         "switch"
       ],
-      "status": "community",
+      "status": "active",
       "community_sources": [
         {
-          "repo": "(无 GitHub 仓库)",
-          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+          "repo": "https://git.ryujinx.app/projects/Kenji-NX",
+          "note": "一手源码（GPL-3.0）"
+        },
+        {
+          "repo": "https://git.ryujinx.app/Ryubing/Canary",
+          "note": "每次提交自动发版构建仓"
+        },
+        {
+          "repo": "https://git.ryujinx.app/Kenji-NX/Android",
+          "note": "Android APK release 仓"
         }
       ]
     },
@@ -48271,7 +48306,7 @@
       "releases": [],
       "source": "github",
       "dead": true,
-      "dead_reason": "2024-09 后停更，无官方 release",
+      "dead_reason": "上游停更",
       "note": "GitHub release 无安卓 APK 资产（分发渠道见官网/Play）",
       "kind": "emulator",
       "runtime": "desktop",
@@ -48284,11 +48319,11 @@
       "id": "sudachi-emulator",
       "name": "Sudachi",
       "category": "Nintendo Switch Emulator",
-      "description": "yuzu 分支：官网 sudachi-emulator.com 分发（2026 活跃），GitHub 已下线；2026-02 DMCA 后开发者建议转 Eden；社区归档含 v1.0.15 汉化版；社区归档文件未经安全验证",
+      "description": "Sudachi：Switch 模拟器。官网四个平台下载按钮全部指向 archive.org 存档分发",
       "owner": "suda-cz",
-      "repo": "suda-cz/sudachi",
-      "homepage": "https://sudachi-emulator.com/",
-      "repo_url": "https://sudachi-emulator.com/",
+      "repo": "",
+      "homepage": "https://sudachi-emulator.com",
+      "repo_url": "https://sudachi-emulator.com",
       "official": true,
       "channel": "stable",
       "latest_tag": "v1.0.15",
@@ -48305,25 +48340,29 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sudachi.png",
       "releases": [],
       "source": "official-web",
-      "repo_status": "404",
-      "note": "上游遭 DMCA 下架，无官方仓库与构建",
+      "repo_status": "none",
+      "note": "2026-11-04 复核：官网 sudachi-emulator.com 可开（200），四个平台按钮全部指向 archive.org 的 sudachiemulator-apk.apk（v1.0.16）；GitHub 组织 sudachi-emu 已不存在，全站检索只剩日语分词库 Sudachi，确认无一手源码仓库。本沙箱连不通 archive.org，未校验文件本体",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "stale",
+      "download_url": "https://archive.org/download/sudachiemulator-apk/sudachiemulator-apk.apk",
+      "download_kind": "archive-org",
+      "distribution": "official-site",
+      "community_sources": []
     },
     {
       "id": "torzu-emulator",
       "name": "Torzu",
       "category": "Nintendo Switch Emulator",
-      "description": "yuzu 分支：主仓库走 Tor 网络防下架，NotABug 镜像 litucks/torzu，Gitee 镜像 zhouxu_bijie/torzu；无官方 release",
+      "description": "Torzu：Switch 模拟器。主仓在 Tor 隐藏服务，明网镜像随时可能下架，官方不发布二进制",
       "owner": "litucks",
       "repo": "litucks/torzu",
-      "homepage": "",
-      "repo_url": "https://gitee.com/clone_github/torzu",
-      "official": false,
+      "homepage": "https://notabug.org/litucks/torzu",
+      "repo_url": "https://notabug.org/litucks/torzu",
+      "official": true,
       "channel": "stable",
       "latest_tag": "",
       "latest_date": "",
@@ -48338,22 +48377,30 @@
       "downloads": 0,
       "logo_url": "https://github.com/litucks.png",
       "releases": [],
-      "source": "gitee",
-      "note": "GitHub 451，主仓在 Gitee 镜像",
-      "repo_status": "451",
-      "distribution": "community-archive",
+      "source": "notabug",
+      "note": "2026-11-04 复核：源码只在 Tor 隐藏服务；明网 NotABug 镜像 404，GitHub litucks/torzu（★501）自 2024-07-09 起被 DMCA 封锁（451），free-git.org 返回 530。官方不发布安卓包；桌面端可用第三方 pkgforge-dev/Torzu-AppImage 构建",
+      "distribution": "source-only",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
         "switch"
       ],
-      "status": "dead",
+      "status": "community",
       "community_sources": [
         {
-          "repo": "pkgforge-dev/Torzu-AppImage",
-          "note": "第三方 AppImage，22★，2026-10-07"
+          "repo": "https://github.com/pkgforge-dev/Torzu-AppImage",
+          "note": "★22，2026-10-07，aarch64/x86_64 AppImage；仅桌面，无安卓"
+        },
+        {
+          "repo": "https://github.com/leonewton253/torzu",
+          "note": "社区编译分发，第三方构建"
+        },
+        {
+          "repo": "https://github.com/ong19th/Torzu",
+          "note": "社区编译分发，第三方构建"
         }
-      ]
+      ],
+      "skip": ""
     },
     {
       "id": "suyu-emulator",
@@ -48710,15 +48757,15 @@
       "id": "ryubing-emulator",
       "name": "Ryubing",
       "category": "Nintendo Switch Emulator",
-      "description": "Ryujinx 桌面分支：与 Kenji-NX 合作共享代码，主仓库自托管（GitHub 仅 Website/Issues 等辅助仓库）；官网 ryubing.ca",
-      "owner": "Ryubing",
-      "repo": "Ryubing/Website",
-      "homepage": "https://ryubing.ca",
-      "repo_url": "https://github.com/Ryubing/Website",
+      "description": "Ryubing：Ryujinx 的社区续接版本（Ryujinx 本体 2024-10 因 DMCA 停更后由社区接管维护）",
+      "owner": "projects",
+      "repo": "projects/Ryubing",
+      "homepage": "https://ryujinx.app",
+      "repo_url": "https://git.ryujinx.app/projects/Ryubing",
       "official": false,
       "channel": "stable",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "1.3.3",
+      "latest_date": "2025-10-11T00:00:00Z",
       "latest_body": "",
       "latest_apk_name": "",
       "latest_apk_url": "",
@@ -48730,20 +48777,31 @@
       "downloads": 0,
       "logo_url": "https://github.com/Ryubing.png",
       "releases": [],
-      "source": "github",
-      "note": "无官方 APK 发布",
+      "source": "gitea",
+      "note": "溯源结论：原 repo_url 指向 github.com/Ryubing/Website（只是网站仓，非源码）。一手源码在自建 Forgejo https://git.ryujinx.app/projects/Ryubing（2026-11-02 仍提交），release 1.3.3 附 linux/macOS 包；日常 canary 构建由 Ryubing/Canary 仓每次提交发布（最新 1.3.352）。官网 ryujinx.app 的 src 链接即 302 到该 Forgejo 仓",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
         "switch"
       ],
-      "status": "active"
+      "status": "active",
+      "distribution": "forgejo-release",
+      "community_sources": [
+        {
+          "repo": "https://git.ryujinx.app/Ryubing/Canary",
+          "note": "每次提交发版，最新 1.3.352"
+        },
+        {
+          "repo": "https://git.ryujinx.app/archive/ryujinx-mirror",
+          "note": "ryujinx-mirror 归档"
+        }
+      ]
     },
     {
       "id": "skyline-official",
       "name": "Skyline（官方）",
       "category": "Nintendo Switch Emulator",
-      "description": "Skyline 官方：安卓 Switch 模拟器，2023 年自愿停更，2026-08 GitHub 全系 29 仓库遭 DMCA 清除；社区归档含官方版汉化包（v01-v10/加速版）；社区归档文件未经安全验证",
+      "description": "Skyline（官方）：安卓 Switch 模拟器。仓库 README 已自述开发终止，源码已从所有 owner 分支与 tag 移除，仅作历史记录",
       "owner": "skyline-emu",
       "repo": "skyline-emu/skyline",
       "homepage": "https://skyline-emu.one",
@@ -48763,33 +48821,42 @@
       "downloads": 0,
       "logo_url": "https://github.com/skyline-emu.png",
       "releases": [],
-      "source": "community-archive",
+      "source": "github",
       "dead": true,
-      "dead_reason": "2023 自愿停更，2026-08 仓库已删",
-      "note": "来源：社区归档整理。未获原作者授权，暂不提供下载。",
+      "dead_reason": "2026-08 仓库自述开发终止，源码已移除，官网不可达",
+      "note": "溯源结论：仓库未删除，但 README 明确写明因任天堂要求已从所有 owner 分支和 tag 移除源码、不再分发。仓库 70★，最后提交 2026-08-18，零 release、零 tag。官网 skyline-emu.one 当前不可达",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "archived",
+      "skip": "",
+      "distribution": "archived-repo",
+      "community_sources": [
+        {
+          "repo": "https://github.com/skyline-emu/skyline",
+          "note": "历史记录仓库，源码已移除"
+        }
+      ],
+      "repo_status": "archived"
     },
     {
       "id": "skyline-pine",
       "name": "Skyline Pine",
       "category": "Nintendo Switch Emulator",
-      "description": "Skyline 分支 Pine（社区 fork）：社区归档含 944/961/v2.1.1 汉化版（2025-11 更新）；社区归档文件未经安全验证",
-      "owner": "pavelbarabanov777",
-      "repo": "pavelbarabanov777/pine",
+      "description": "Skyline 分支 Pine，社区中文分支 pine_CN 存活并持续发版（含 APK）",
+      "owner": "xmy953538104",
+      "repo": "xmy953538104/pine_CN",
       "homepage": "",
-      "repo_url": "https://github.com/pavelbarabanov777/pine",
+      "repo_url": "https://github.com/xmy953538104/pine_CN",
       "official": false,
       "channel": "stable",
-      "latest_tag": "2.1.1",
-      "latest_date": "2025-11-22T00:00:00Z",
+      "latest_tag": "v2.1.2-diagnostics-v1.3",
+      "latest_date": "2026-10-17T00:00:00Z",
       "latest_body": "",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
+      "latest_apk_name": "app-full-debug.apk",
+      "latest_apk_url": "https://github.com/xmy953538104/pine_CN/releases/download/v2.1.2-diagnostics-v1.3/app-full-debug.apk",
       "latest_apk_size": 0,
       "pushed_at": "2025-11-22T00:00:00Z",
       "stars": 0,
@@ -48798,23 +48865,32 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
       "releases": [],
-      "source": "community-archive",
-      "dead": true,
-      "dead_reason": "上游停更，社区归档",
-      "note": "原仓库已删，仅社区归档",
-      "repo_status": "404",
+      "source": "github",
+      "note": "溯源结论：上游 ishan09811/pine 已于 DMCA 后下架（GitHub API MISSING），社区分支 xmy953538104/pine_CN 存活，2026-10-23 仍活跃，GPL-3.0，release 直接附 APK（app-full-debug.apk），versionName 2.1.1 与本库记录吻合",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "switch"
       ],
-      "status": "dead"
+      "status": "active",
+      "skip": "",
+      "distribution": "release-apk",
+      "community_sources": [
+        {
+          "repo": "https://github.com/xmy953538104/pine_CN",
+          "note": "存活社区分支，release 含 APK"
+        },
+        {
+          "repo": "https://github.com/ishan09811/pine",
+          "note": "已下架的上游"
+        }
+      ]
     },
     {
       "id": "skyline-tagline",
       "name": "Skyline Tagline",
       "category": "Nintendo Switch Emulator",
-      "description": "Skyline 分支 Tagline：社区归档含汉化最终版 APK；社区归档文件未经安全验证",
+      "description": "Skyline 停更后的社区改名版。经 GitHub/Gitee/GitLab/Wayback 全网检索，未发现任何一手来源",
       "owner": "",
       "repo": "",
       "homepage": "",
@@ -48835,21 +48911,19 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
       "releases": [],
       "source": "community-archive",
-      "dead": true,
-      "dead_reason": "上游停更，社区归档",
-      "note": "Skyline 停更后的社区改名版；GitHub 搜 \"Skyline Tagline\" 0 命中",
+      "note": "2026-11-04 复核：仍无一手来源。Gitee 镜像 mirrors/Skyline-EMU（★30，2026-11-01 有推送）只有 ftx1 一个分支、0 tag、0 release，是 Skyline 基座而非 Tagline 构建；9K9K、525566 等站的「Skyline 2.0.0」包名为 skyline.purple，是原版改名，不是 Tagline。另：skyline-emu/skyline 仍在线（★70，34 MB，2026-08-18 推送），并非「已被清空」",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "switch"
       ],
       "status": "community",
       "community_sources": [
         {
-          "repo": "(无 GitHub 仓库)",
-          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+          "repo": "(全网无一手来源)",
+          "note": "多平台零命中证据，无法提供可跳转分发地址"
         }
       ]
     },
@@ -48857,11 +48931,11 @@
       "id": "skyline-enhanced-infinity",
       "name": "Skyline Enhanced Infinity",
       "category": "Nintendo Switch Emulator",
-      "description": "Skyline 社区增强版（Enhanced Infinity）：社区归档含 v1.2.0 汉化/加速版 APK；社区归档文件未经安全验证",
-      "owner": "",
-      "repo": "",
+      "description": "Skyline 分支 Enhanced Infinity（原上游已 DMCA 下架，仅历史版本可考）",
+      "owner": "Ishan0981",
+      "repo": "Ishan0981/Skyline-Enhanced-Infinity",
       "homepage": "",
-      "repo_url": "",
+      "repo_url": "https://github.com/Ishan0981/Skyline-Enhanced-Infinity",
       "official": false,
       "channel": "stable",
       "latest_tag": "v1.2.0",
@@ -48877,24 +48951,23 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/skyline.png",
       "releases": [],
-      "source": "community-archive",
-      "dead": true,
-      "dead_reason": "上游停更，社区归档",
-      "note": "Skyline 停更后的社区改名版；GitHub 搜同名 0 命中",
-      "skip": "no_repo",
+      "source": "github",
+      "note": "2026-11-04 复核：Ishan0981/Skyline-Enhanced-Infinity 存在（★22，MPL-2.0，最后推送 2023-11-15），但自 2026-02-17 起被 DMCA 封锁（GitHub 返回 451，block.reason=dmca），网页与 API 均不可访问。无官网，仅网盘流传 v1.2.0",
+      "skip": "",
       "distribution": "community-archive",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "switch"
       ],
-      "status": "community",
+      "status": "archived",
       "community_sources": [
         {
-          "repo": "(无 GitHub 仓库)",
-          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+          "repo": "https://github.com/Ishan0981/Skyline-Enhanced-Infinity",
+          "note": "已下架，★22 MPL-2.0"
         }
-      ]
+      ],
+      "repo_status": "451"
     },
     {
       "id": "yuzu-official",
@@ -48922,7 +48995,7 @@
       "releases": [],
       "source": "community-archive",
       "dead": true,
-      "dead_reason": "2024-03 任天堂诉讼停更删库",
+      "dead_reason": "2024-03 与任天堂和解后删库",
       "note": "2024-03 与任天堂和解后下架，仅社区归档",
       "repo_status": "404",
       "kind": "emulator",
@@ -48936,11 +49009,11 @@
       "id": "yuzu-citrus",
       "name": "CitruS",
       "category": "Nintendo Switch Emulator",
-      "description": "yuzu 分支 CitruS（社区维护）：社区归档收录；社区归档文件未经安全验证",
-      "owner": "",
-      "repo": "",
-      "homepage": "",
-      "repo_url": "",
+      "description": "yuzu 的社区续作 CitruS / citron。一手源码在 Forgejo git.ryujinx.app/archive/citron，另有 Gitee fanwenjie/citrus 源码树",
+      "owner": "archive",
+      "repo": "archive/citron",
+      "homepage": "https://gitee.com/fanwenjie/citrus",
+      "repo_url": "https://git.ryujinx.app/archive/citron",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -48956,12 +49029,10 @@
       "downloads": 0,
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/yuzu.png",
       "releases": [],
-      "source": "community-archive",
-      "dead": true,
-      "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "yuzu 2024-03 被删库后社区改名重打包版；GitHub 搜 \"CitruS yuzu\" 0 命中，无任何公开源码或构建仓库",
-      "skip": "no_repo",
-      "distribution": "community-archive",
+      "source": "gitea",
+      "note": "溯源结论：不是「无来源的改名包」。Forgejo archive/citron 是真实 yuzu 源码树（提交历史 28198 条），其历史可查 2013-09-13「renamed project to 'citrus'」、13 天后「renamed from citrus to citra」—— Citra 本名即 Citrus，CitruS 属该血脉延续。Gitee fanwenjie/citrus（GPL-3.0，带 wiki）为另一份活跃源码树，但 README 链接仍指向已失效的 yuzu 官网，暂无有效下载页",
+      "skip": "",
+      "distribution": "forgejo-release",
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
@@ -48970,8 +49041,12 @@
       "status": "community",
       "community_sources": [
         {
-          "repo": "(无 GitHub 仓库)",
-          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+          "repo": "https://git.ryujinx.app/archive/citron",
+          "note": "一手 yuzu 源码树，GPL-3.0"
+        },
+        {
+          "repo": "https://gitee.com/fanwenjie/citrus",
+          "note": "Gitee 源码树 + wiki，无下载页"
         }
       ]
     },
@@ -48979,19 +49054,19 @@
       "id": "yuzu-plus",
       "name": "Yuzu+",
       "category": "Nintendo Switch Emulator",
-      "description": "yuzu 增强版 Yuzu+（社区维护，优化帧率）：社区归档收录；社区归档文件未经安全验证",
+      "description": "yuzu 删库后的社区改名包（包名 org.yuzu.yuzu_plus，v4.0.1）。无一手来源，仅第三方应用市场与网盘分发",
       "owner": "",
       "repo": "",
-      "homepage": "",
+      "homepage": "https://www.9k9k.com/app/91506.html",
       "repo_url": "",
       "official": false,
       "channel": "stable",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "4.0.1",
+      "latest_date": "2025-11-19T00:00:00Z",
       "latest_body": "",
-      "latest_apk_name": "",
+      "latest_apk_name": "org.yuzu.yuzu_plus_c993bc78.apk",
       "latest_apk_url": "",
-      "latest_apk_size": 0,
+      "latest_apk_size": 40294331,
       "pushed_at": "",
       "stars": 0,
       "forks": 0,
@@ -49000,23 +49075,27 @@
       "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/yuzu.png",
       "releases": [],
       "source": "community-archive",
-      "dead": true,
-      "dead_reason": "上游 yuzu 停更，分支归档",
-      "note": "yuzu 被删库后的社区改名版；GitHub 搜 \"Yuzu Plus\" 仅 1 个无关仓库，无公开构建",
+      "note": "2026-11-04 复核：9K9K 详情页确认 v4.0.1、包名 org.yuzu.yuzu_plus、38.43 MB、2025-11-19 更新。已下载实包校验：40,294,331 B，版本名「Yuzu+ Beta v4.0.1」，v2 签名，sha256 8a7f33e737e88c4c295047f62e59989cc434efd3b2b448c9787b65e998d88ab6；直链需 Referer，非官方发布",
       "skip": "no_repo",
       "distribution": "community-archive",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "android-native",
       "platforms": [
         "switch"
       ],
       "status": "community",
       "community_sources": [
         {
-          "repo": "(无 GitHub 仓库)",
-          "note": "GitHub 搜索 0 命中，仅网盘/Telegram 分发"
+          "repo": "https://www.9k9k.com/app/91506.html",
+          "note": "第三方应用市场页，v4.0.1"
+        },
+        {
+          "repo": "https://down.huangt.cn/youxi/b/35/org.yuzu.yuzu_plus_c993bc78.apk",
+          "note": "实包直链（需 Referer，否则 403）；40,294,331 B；sha256 8a7f33e7…88ab6"
         }
-      ]
+      ],
+      "download_url": "https://www.9k9k.com/app/91506.html",
+      "download_kind": "market-page"
     },
     {
       "id": "epsxe",
@@ -49026,7 +49105,7 @@
       "owner": "epsxe",
       "repo": "epsxe/epsxe",
       "homepage": "https://epsxe.com/android/",
-      "repo_url": "",
+      "repo_url": "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -49043,9 +49122,9 @@
       "logo_url": "https://aka.doubaocdn.com/s/s9rL8NCyk1",
       "releases": [],
       "source": "official-web",
-      "distribution": "official-site",
-      "note": "闭源商业，官网分发",
-      "download_url": "https://epsxe.com/android/",
+      "distribution": "official-play",
+      "note": "溯源结论：官网 android 页仅链接 Play，不自持 APK。Play 包名 com.epsxe.ePSXe，v2.0.19。无公开源码仓库",
+      "download_url": "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe",
       "download_kind": "official-web",
       "kind": "emulator",
       "runtime": "android-native",
@@ -49055,8 +49134,8 @@
       "status": "active",
       "community_sources": [
         {
-          "repo": "pkgforge-dev/ePSXe-AppImage",
-          "note": "Linux AppImage 打包，5★，2026-10-18"
+          "repo": "https://github.com/pkgforge-dev/ePSXe-AppImage",
+          "note": "第三方 Linux AppImage 打包，★5，2026-10-18；非官方渠道"
         }
       ]
     },
@@ -49067,8 +49146,8 @@
       "description": "PS1 模拟器（付费闭源，Play 商店）",
       "owner": "fpsece",
       "repo": "fpsece/fpse",
-      "homepage": "https://play.google.com/store/apps/details?id=com.fpsece.fpse",
-      "repo_url": "",
+      "homepage": "https://www.fpsece.net/download.html",
+      "repo_url": "https://play.google.com/store/apps/details?id=com.emulator.fpse",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -49085,9 +49164,9 @@
       "logo_url": "https://aka.doubaocdn.com/s/SnysbGJvwC",
       "releases": [],
       "source": "official-web",
-      "distribution": "official-site",
-      "note": "闭源，官网服务器返回 500",
-      "download_url": "https://www.fpsece.net/",
+      "distribution": "official-play",
+      "note": "溯源结论：官网首页 500，但 /download.html 存活且明确写「Need go to Market place」。现行 Play 包名为 com.emulator.fpse（原记录 com.fpsece.fpse 不存在），另有 FPseNG 变体 com.emulator.fpse64。无公开源码仓库",
+      "download_url": "https://play.google.com/store/apps/details?id=com.emulator.fpse",
       "download_kind": "official-web",
       "kind": "emulator",
       "runtime": "android-native",
@@ -49100,10 +49179,10 @@
       "id": "drastic",
       "name": "DraStic",
       "category": "Nintendo DS Emulator",
-      "description": "NDS 模拟器（已停更，Play 在售，经典口碑）",
+      "description": "DraStic（Exophase）：闭源 NDS 模拟器。2025-02 已从 Google Play 自行下架，作者承诺开源但至今未发布。官方一手渠道已失效",
       "owner": "dsemu",
       "repo": "dsemu/drastic",
-      "homepage": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
+      "homepage": "",
       "repo_url": "",
       "official": false,
       "channel": "stable",
@@ -49121,8 +49200,8 @@
       "logo_url": "https://github.com/dsemu.png",
       "releases": [],
       "source": "official-play",
-      "distribution": "play",
-      "note": "闭源，2025-02 已从 Play 下架，官网域名失效",
+      "distribution": "no-official-channel",
+      "note": "溯源结论：Play 条目 com.dsemu.drastic 已下架；drasticemulator.com / drasticds.com / drastic-ds.com 三个域名均非官方（第三方 SEO 站 / ROM 引流站 / GoDaddy 停放），不可作为官方来源。末版 r2.6.0.4a (build 109)。作者 Exophase 曾表示将开源源码，迄今未兑现。任何第三方包体均非官方，不予收录为可下载分发",
       "download_url": "https://play.google.com/store/apps/details?id=com.dsemu.drastic",
       "download_kind": "official-play",
       "kind": "emulator",
@@ -49130,17 +49209,10 @@
       "platforms": [
         "nds"
       ],
-      "status": "active",
-      "community_sources": [
-        {
-          "repo": "R-YaTian/DraStic_rev_i18n",
-          "note": "汉化重打包，367★，2026-10-20 活跃"
-        },
-        {
-          "repo": "trngaje/advanced_drastic",
-          "note": "进阶版，48★，2026-11-01"
-        }
-      ]
+      "status": "dead",
+      "community_sources": [],
+      "dead": true,
+      "dead_reason": "2025-02 开发者自行下架，承诺开源未兑现，无官方分发渠道"
     },
     {
       "id": "pizzaboy",
@@ -49149,8 +49221,8 @@
       "description": "GBA 模拟器（付费闭源，Play 商店）",
       "owner": "fastemulation",
       "repo": "fastemulation/gba",
-      "homepage": "https://play.google.com/store/apps/details?id=com.fastemulation.gba",
-      "repo_url": "",
+      "homepage": "https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygba",
+      "repo_url": "https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygba",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -49168,15 +49240,14 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源付费；原记录包名 com.fastemulation.gba 错误，真实为 it.dbtecno.pizzaboygbapro（开发者 dbtecno）",
-      "download_url": "https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygbapro",
+      "note": "溯源结论：Play 包名为 it.dbtecno.pizzaboygba（原记录误写 com.fastemulator.pizza_boy）。v2.3.24 / 2026-10-28，下载量 330 万+",
+      "download_url": "https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygba",
       "download_kind": "official-play",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "gba",
-        "gb",
-        "windows-pc"
+        "gb"
       ],
       "status": "active"
     },
@@ -49187,8 +49258,8 @@
       "description": "GBA 模拟器（付费闭源，Play 商店）",
       "owner": "fastemulation",
       "repo": "fastemulation/myboy",
-      "homepage": "https://play.google.com/store/apps/details?id=com.fastemulation.myboy",
-      "repo_url": "",
+      "homepage": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
+      "repo_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -49206,15 +49277,14 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源付费（Fast Emulation）；原记录域名 fastemulation.com 已 NXDOMAIN",
-      "download_url": "https://play.google.com/store/apps/details?id=com.fastemulation.myboy",
+      "note": "溯源结论：Play 包名为 com.fastemulator.gba（原记录 com.fastemulation.gba 拼写有误）",
+      "download_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gba",
       "download_kind": "official-play",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "gba",
-        "gb",
-        "windows-pc"
+        "gb"
       ],
       "status": "active"
     },
@@ -49225,8 +49295,8 @@
       "description": "GBC 模拟器（付费闭源，Play 商店）",
       "owner": "fastemulation",
       "repo": "fastemulation/myoldboy",
-      "homepage": "https://play.google.com/store/apps/details?id=com.fastemulation.myoldboy",
-      "repo_url": "",
+      "homepage": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
+      "repo_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -49244,15 +49314,14 @@
       "releases": [],
       "source": "official-play",
       "distribution": "play",
-      "note": "闭源付费（Fast Emulation）；原记录域名 fastemulation.com 已 NXDOMAIN",
-      "download_url": "https://play.google.com/store/apps/details?id=com.fastemulation.myoldboy",
+      "note": "溯源结论：Play 包名为 com.fastemulator.gbc（原记录 com.fastemulation.myoldboy 不存在）",
+      "download_url": "https://play.google.com/store/apps/details?id=com.fastemulator.gbc",
       "download_kind": "official-play",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "gbc",
-        "gb",
-        "windows-pc"
+        "gb"
       ],
       "status": "active"
     },
@@ -49260,11 +49329,11 @@
       "id": "m64plusfz",
       "name": "M64Plus FZ",
       "category": "Nintendo 64 Emulator",
-      "description": "N64 模拟器（闭源免费，Play 商店，fzurita 维护）",
+      "description": "M64Plus FZ（Mupen64Plus AE 前端）：闭源商店版，但核心为开源 GPL-3.0",
       "owner": "fzurita",
       "repo": "fzurita/mupen64plus-ae",
       "homepage": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita",
-      "repo_url": "",
+      "repo_url": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita",
       "official": false,
       "channel": "stable",
       "latest_tag": "",
@@ -49283,13 +49352,24 @@
       "source": "official-web",
       "download_url": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita",
       "download_kind": "play",
-      "distribution": "play",
+      "distribution": "official-play",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "n64"
       ],
-      "status": "stale"
+      "status": "active",
+      "note": "溯源结论：现行 Play 包名为 org.mupen64plusae.v3.fzurita（原记录 org.mupen64plus.android.fz 是旧包名）。核心源码公开：fzurita/mupen64plus-ae（★27，GPL-3.0），其上游 mupen64plus-ae/mupen64plus-ae（★504）持续维护至 2026-08",
+      "community_sources": [
+        {
+          "repo": "https://github.com/fzurita/mupen64plus-ae",
+          "note": "一手核心源码 ★27 GPL-3.0"
+        },
+        {
+          "repo": "https://github.com/mupen64plus-ae/mupen64plus-ae",
+          "note": "上游 ★504，2026-08 仍活跃"
+        }
+      ]
     },
     {
       "id": "mame4droid",
@@ -51106,7 +51186,7 @@
       "name": "Termux 增强镜像",
       "repo": "jiaxinchen-max/termux-app",
       "category": "terminal",
-      "homepage": "https://f-droid.org/en/packages/com.termux",
+      "homepage": "https://f-droid.org/packages/com.termux/",
       "logoUrl": "https://avatars.githubusercontent.com/u/103731829?v=4",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
       "stars": 71,
@@ -51720,17 +51800,20 @@
       ],
       "source": "official-web",
       "logo_url": "https://raw.githubusercontent.com/termux/termux-app/master/icon.png",
-      "repo_url": "https://github.com/jiaxinchen-max/termux-app",
+      "repo_url": "https://github.com/termux/termux-app",
       "latest_body": "Refactor the app, changing the X11 display service from an Activity to a reusable view component. Optimize the user experience. Fix the virtual button scaling misalignment issue in portrait mode. Optimize the floating ball experience.\n",
       "latest_apk_size": 33863327,
       "owner": "jiaxinchen-max",
-      "distribution": "release-apk",
+      "distribution": "f-droid",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "terminal"
       ],
-      "status": "active"
+      "status": "active",
+      "download_url": "https://f-droid.org/packages/com.termux/",
+      "download_kind": "f-droid",
+      "note": "溯源结论：本条为 Termux 官方本体（非「增强镜像」）。官方 F-Droid 包 com.termux，源码 termux/termux-app（★64007），GitHub release v0.119.0-beta.3 附 15 个 APK 资产"
     },
     {
       "id": "termux-ghostty",
@@ -53079,7 +53162,7 @@
       "name": "TermuxPlus",
       "repo": "thejaustin/TermuxPlus",
       "category": "terminal",
-      "homepage": "https://f-droid.org/en/packages/com.termux",
+      "homepage": "https://github.com/thejaustin/TermuxPlus",
       "logoUrl": "https://avatars.githubusercontent.com/u/10579902?v=4",
       "description": "Termux fork：基于 0.118 主线独立维护并发布 APK",
       "stars": 21,
@@ -53116,14 +53199,17 @@
       "platforms": [
         "terminal"
       ],
-      "status": "active"
+      "status": "active",
+      "download_url": "https://github.com/thejaustin/TermuxPlus/releases/download/v0.118.0/termux-plus-release-0.118.0.apk",
+      "download_kind": "github-release",
+      "note": "溯源结论：原记录错指 F-Droid 的 com.termux（那是官方本体）。TermuxPlus 自有仓库 thejaustin/TermuxPlus（★21，fork of termux/termux-app），release v0.118.0 附 APK"
     },
     {
       "id": "termux-enhanced",
       "name": "Termux Enhanced",
       "repo": "NIK2703/termux-enhanced",
       "category": "terminal",
-      "homepage": "https://f-droid.org/en/packages/com.termux",
+      "homepage": "https://github.com/NIK2703/termux-enhanced",
       "logoUrl": "https://avatars.githubusercontent.com/u/44705381?v=4",
       "description": "Termux fork：持续发布增强版 Release，APK 与官方并行",
       "stars": 24,
@@ -53873,7 +53959,10 @@
       "platforms": [
         "terminal"
       ],
-      "status": "active"
+      "status": "active",
+      "download_url": "https://github.com/NIK2703/termux-enhanced/releases/download/Release22/termux-app_apt-android-7-release_arm64-v8a.apk",
+      "download_kind": "github-release",
+      "note": "溯源结论：原记录错指 F-Droid 的 com.termux。自有仓库 NIK2703/termux-enhanced（★24），release Release22 附 8 个 APK 资产（含 arm64-v8a）"
     },
     {
       "id": "termux-aether",
@@ -54132,7 +54221,7 @@
           ]
         }
       ],
-      "source": "official-web",
+      "source": "github",
       "logo_url": "https://raw.githubusercontent.com/termux/termux-app/master/icon.png",
       "repo_url": "https://github.com/wallentx/termux-aether-app",
       "latest_body": "Adds ShizukuPlus compatibility to Aether while retaining stock Shizuku support.\n\n- Discovers supported managers in the current Android user and verifies Binder callbacks against the manager UID.\n- Bundles independently verified stock and Plus rish loaders, preserves verified manager selection, and supports an explicit RISH_BACKEND override.\n- Uses Termux's shared libexec path and handles Android bind aliases by directory identity.\n\nUse the matching Aether API 1000.0.2 companion for its ShizukuPlus diagnostics and reconnection support. The coordinated suite includes both verified APKs and the existing verified native packages.\n\nUpdating a shared-UID Termux APK can end active sessions. Complete active work before installing. The separately signed Aether Steam/probe app is not included in this release.\n",
@@ -54144,7 +54233,10 @@
       "platforms": [
         "terminal"
       ],
-      "status": "active"
+      "status": "active",
+      "download_url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.2/termux-app-aether-v1000.0.2-arm64-v8a.apk",
+      "download_kind": "github-release",
+      "note": "溯源结论：原记录 source 标 official-web 且错指 F-Droid。实际自有仓库 wallentx/termux-aether-app（★9，fork of termux/termux-app），release v1000.0.2 附 APK 与源码 tarball"
     },
     {
       "id": "termux-zero",
@@ -54562,7 +54654,7 @@
           ]
         }
       ],
-      "source": "official-web",
+      "source": "github",
       "logo_url": "https://raw.githubusercontent.com/termux/termux-app/master/icon.png",
       "repo_url": "https://github.com/hanxinhao000/ZeroTermux",
       "latest_body": "1.优化定时任务，稳定性修复\n2.移动AI智能体到右侧栏，优化AI智能体功能，移除旧的AI智能体\n3.优化设置排版\n4.新增 JAVA C PY LSP功能，优化代码写作能力\n5.智能体加入skills功能\n6.优化翻译\n7.新增维修模式\n8.优化打断提示功能\n9.优化左侧栏目排版\n\n----------------------\n\n1. Optimized scheduled tasks and improved stability.\n2. Moved the AI ​​agent to the right sidebar, enhanced AI agent functionality, and removed the legacy AI agent.\n3. Optimized the settings layout.\n4. Added support for Java, C, Python, and LSP; improved code generation capabilities.\n5. Added \"skills\" functionality to the AI ​​agent.\n6. Optimized translation features.\n7. Added a maintenance mode.\n8. Optimized the interruption prompt feature.\n9. Optimized the left sidebar layout.\n\n<img width=\"1716\" height=\"1920\" alt=\"image\" src=\"https://github.com/user-attachments/assets/6512f55e-7c6c-4f0e-96b1-d630a63527bf\" />\n\n<img width=\"1716\" height=\"1920\" alt=\"image\" src=\"https://github.com/user-attachments/assets/8016de21-4871-41c8-9392-81bd8840127a\" />\n\n",
@@ -54574,7 +54666,10 @@
       "platforms": [
         "terminal"
       ],
-      "status": "active"
+      "status": "active",
+      "download_url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.64/termux-app_apt-android-7-release_arm64-v8a.apk",
+      "download_kind": "github-release",
+      "note": "溯源结论：原记录 source 标 official-web 且错指 F-Droid。实际自有仓库 hanxinhao000/ZeroTermux（★3099），release ZeroTermux-0.118.3.64 附 4 个 APK；官方镜像 https://od.ixcmstudio.cn/repository/main/ZeroTermux/"
     },
     {
       "id": "termux-kotlin",
@@ -55612,7 +55707,7 @@
           ]
         }
       ],
-      "source": "official-web",
+      "source": "github",
       "logo_url": "https://raw.githubusercontent.com/termux/termux-app/master/icon.png",
       "repo_url": "https://github.com/reapercanuk39/termux-kotlin-app",
       "latest_body": "## What's Changed\n\n- Merge pull request #21 from reapercanuk39/dependabot/github_actions/lewagon/wait-on-check-action-1.5.0\n- Changed: Bump lewagon/wait-on-check-action from 1.4.1 to 1.5.0\n- docs: Update build documentation [skip ci]\n\n**Full Changelog**: https://github.com/reapercanuk39/termux-kotlin-app/compare/v2.0.13...v2.0.14\n",
@@ -55624,7 +55719,10 @@
       "platforms": [
         "terminal"
       ],
-      "status": "active"
+      "status": "active",
+      "download_url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-release_arm64-v8a.apk",
+      "download_kind": "github-release",
+      "note": "溯源结论：原记录 source 标 official-web 且错指 F-Droid。实际自有仓库 reapercanuk39/termux-kotlin-app（★72），release v2.0.14 附 10 个 APK 资产"
     },
     {
       "id": "shadps4-emu-shadps4",
@@ -57185,7 +57283,7 @@
       "official": true,
       "channel": "stable/unknown",
       "latest_tag": "alpha",
-      "latest_date": "2023-10-24T10:08:02Z",
+      "latest_date": "2023-08-26T00:00:00Z",
       "latest_body": "(JeezDisReez is original author of glibc-prefix and patched Wine, me added Box64Droid stuff to glibc-prefix)\nWines 9x compiled by @airidosas252\n",
       "latest_apk_name": "app-arm64-v8a-debug.apk",
       "latest_apk_url": "https://github.com/Ilya114/Box64Droid/releases/download/stable/app-arm64-v8a-debug.apk",
@@ -77144,11 +77242,11 @@
       "id": "myps2-ps2",
       "name": "MYPS2",
       "category": "PlayStation 2",
-      "description": "安卓 PS2 模拟器（韩国 iefriends 开发，Google Play 上架，包名 kr.co.iefriends.myps2）：全新开发的 PS2 模拟方案；无公开 GitHub 仓库，官方经 Play 商店分发，APKPure 等第三方镜像有收录（镜像需校验签名）。",
+      "description": "MYPS2（iefriends）：闭源 PS2 模拟器，仅 Google Play 分发。2026-08 仍在更新",
       "owner": "iefriends",
       "repo": "",
-      "homepage": "https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2",
-      "repo_url": "",
+      "homepage": "",
+      "repo_url": "https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2",
       "official": true,
       "channel": "stable",
       "latest_tag": "",
@@ -77166,16 +77264,17 @@
       "releases": [],
       "source": "official-play",
       "skip": "no_repo",
-      "distribution": "play",
-      "note": "闭源，仅 Google Play 分发（kr.co.iefriends.myps2）",
+      "distribution": "official-play",
+      "note": "溯源结论：Play 条目存活，v2.6 / 2026-08-26 仍更新。原官网 iefriends.modoo.at 已关停（Naver modoo 服务 2025-06-26 下线）。无源码仓库，底层基于 pontos2024/PCSX2_ARM64",
       "download_url": "https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2",
-      "download_kind": "play",
+      "download_kind": "google-play",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "ps2"
       ],
-      "status": "active"
+      "status": "active",
+      "community_sources": []
     },
     {
       "id": "azahartrigger-3ds",
@@ -80664,12 +80763,12 @@
           ]
         }
       ],
-      "latest_tag": "1.0",
-      "latest_date": "2026-10-28T19:22:20Z",
+      "latest_tag": "1.1",
+      "latest_date": "2026-11-03T00:00:00Z",
       "latest_body": "Brew2Droid 1.0 release notes\n\n- BREW cellphone and Zeebo controls, including customizable key layouts and separate mappings.\n- A button layout editor that fills the available area in portrait and landscape, with a translucent size slider shown over the canvas when a key is selected.\n- A native game library, shared-storage access and per-game display settings.\n- Shared graphics, audio and compatibility improvements.\n- The latest renderer fix reached about 30.3 FPS in the measured Raging Thunder 2 race on a Galaxy S25 Ultra with sound active. Results vary by game and device.\n\nGames, firmware and SoundFont banks are not included. The proposed fallback game-cover artwork is not included either. Compatibility is still in development.",
-      "latest_apk_name": "Brew2Droid-1.0-arm64.apk",
-      "latest_apk_url": "https://github.com/samsixx6/Brew2Droid/releases/download/1.0/Brew2Droid-1.0-arm64.apk",
-      "latest_apk_size": 18337523,
+      "latest_apk_name": "Brew2Droid-1.1-arm64.apk",
+      "latest_apk_url": "https://github.com/samsixx6/Brew2Droid/releases/download/1.1/Brew2Droid-1.1-arm64.apk",
+      "latest_apk_size": 19920402,
       "homepage": "",
       "description": "BREW cellphone and Zeebo emulator for Android",
       "distribution": "release-apk",
@@ -80780,11 +80879,11 @@
           ]
         }
       ],
-      "latest_tag": "nx2-android-v0.3.1",
+      "latest_tag": "nx2-android-v0.3.2",
       "latest_date": "2026-11-01T21:18:05+01:00",
       "latest_body": "Unofficial, experimental build. Not Eden, not supported by the Eden team. Written largely with an AI coding assistant (Claude), tested by hand on one phone.\n\n## v0.3.1\n\n- Latest [PokeDinner](https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork) fixes (audio, shaders).\n- Two small speedups from [Zortos' Eglantine](https://github.com/zortos293/Eglantine).\n- Installs over v0.3.0; settings and saves are kept.\n\nThis is an experiment, not an actively maintained project: updates may stop at any time. Feel free to fork it and to contribute to the original emulator projects ([Eden](https://git.eden-emu.dev/eden-emu/eden), [PokeDinner](https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork), [Eglantine](https://github.com/Djihads80/Eglantine), [Eden-NS2](https://github.com/0x2593/Eden-NS2), [Takoroka's eden-nx2](https://git.eden-emu.dev/Takoroka/eden-nx2)), and give them a star.\n\nNo games, keys or firmware included. GPLv3 or later. The bundled Turnip driver is Mesa (MIT licence), unmodified from its official release.\n\n\nSHA-256 (`eden-sx2a-v0.3.1.apk`): `cef958ada9931e62890f4d5798392b6b2abf059debadd15fe18d0db25200b538`\n",
-      "latest_apk_name": "eden-sx2a-v0.3.1.apk",
-      "latest_apk_url": "https://git.eden-emu.dev/moceure/eden-nx2-android/releases/download/nx2-android-v0.3.1/eden-sx2a-v0.3.1.apk",
+      "latest_apk_name": "eden-sx2a-v0.3.2.apk",
+      "latest_apk_url": "https://git.eden-emu.dev/moceure/eden-nx2-android/releases/download/nx2-android-v0.3.2/eden-sx2a-v0.3.2.apk",
       "latest_apk_size": 32874519,
       "distribution": "gitea-release",
       "note": "维护者在 Eden 自建 Gitea 发布，非 GitHub",
@@ -81207,6 +81306,554 @@
         "n64"
       ],
       "status": "active"
+    },
+    {
+      "id": "ryubing-canary",
+      "name": "Ryubing Canary",
+      "category": "Nintendo Switch Emulator",
+      "description": "Ryubing 社区每次提交自动发版的 canary 构建通道",
+      "owner": "Ryubing",
+      "repo": "Ryubing/Canary",
+      "homepage": "https://ryujinx.app",
+      "repo_url": "https://git.ryujinx.app/Ryubing/Canary",
+      "official": false,
+      "channel": "canary",
+      "latest_tag": "1.3.352",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "ryujinx-canary-1.3.352-arm64.AppImage",
+      "latest_apk_url": "https://git.ryujinx.app/Ryubing/Canary/releases/download/1.3.352/ryujinx-canary-1.3.352-arm64.AppImage",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
+      "releases": [],
+      "source": "gitea",
+      "distribution": "forgejo-release",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "note": "Ryujinx 本体 2024-10 DMCA 停更后，社区 Ryubing 团队在自建 Forgejo 接管维护。本仓每次提交自动发版，含 arm64 AppImage / linux tar.gz / macOS 包。属正式 release 之外的补充通道"
+    },
+    {
+      "id": "melonx-ios",
+      "name": "MeloNX",
+      "category": "Nintendo Switch Emulator",
+      "description": "MeloNX：Ryujinx 的 iOS/iPadOS 移植，release 直接附 IPA",
+      "owner": "projects",
+      "repo": "projects/MeloNX",
+      "homepage": "https://ryujinx.app",
+      "repo_url": "https://git.ryujinx.app/projects/MeloNX",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "2.6",
+      "latest_date": "2026-08-26T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "MeloNX.ipa",
+      "latest_apk_url": "https://git.ryujinx.app/projects/MeloNX/releases/download/2.6/MeloNX.ipa",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-08-26T00:00:00Z",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/ryujinx.png",
+      "releases": [],
+      "source": "gitea",
+      "distribution": "forgejo-release",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch",
+        "ios"
+      ],
+      "status": "active",
+      "note": "Ryujinx 系 iOS 移植，release 附 MeloNX.ipa（2.6 / 2026-08-26）。iOS 侧签名需自行处理，非安卓渠道"
+    },
+    {
+      "id": "ruzu-emu",
+      "name": "Ruzu",
+      "category": "Nintendo Switch Emulator",
+      "description": "Ruzu：用 Rust 重写的 Switch 模拟器，实验性但独立实现、跨平台",
+      "owner": "vricosti",
+      "repo": "vricosti/ruzu-emu",
+      "homepage": "",
+      "repo_url": "https://github.com/vricosti/ruzu-emu",
+      "official": false,
+      "channel": "rc",
+      "latest_tag": "v0.1.1-rc8",
+      "latest_date": "2026-10-28T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "Ruzu-Linux-v0.1.1-rc8-x86_64.AppImage",
+      "latest_apk_url": "https://github.com/vricosti/ruzu-emu/releases/download/v0.1.1-rc8/Ruzu-Linux-v0.1.1-rc8-x86_64.AppImage",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-10-28T00:00:00Z",
+      "stars": 198,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "note": "Rust 从零实现的 Switch 模拟器，非任何既有项目 fork，是独立技术路线。★198，GPL-3.0，2026-10-28 仍发版。release 附 linux AppImage / macOS zip / deb / SteamDeck 变体。成熟度仍为 rc"
+    },
+    {
+      "id": "eden-nx2-zuan",
+      "name": "Eden NX2 (ZuanCrisp)",
+      "category": "Nintendo Switch Emulator",
+      "description": "Eden 的 Switch 2 实验分支，release 附 Windows 构建与校验和",
+      "owner": "ZuanCrisp",
+      "repo": "ZuanCrisp/Eden-NX2",
+      "homepage": "",
+      "repo_url": "https://github.com/ZuanCrisp/Eden-NX2",
+      "official": false,
+      "channel": "experimental",
+      "latest_tag": "nx2-2026-10-29",
+      "latest_date": "2026-10-31T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "Eden-Windows-nx2-2026-10-29-amd64-msvc-standard.zip",
+      "latest_apk_url": "https://github.com/ZuanCrisp/Eden-NX2/releases/download/nx2-2026-10-29/Eden-Windows-nx2-2026-10-29-amd64-msvc-standard.zip",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 40,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "note": "Switch 2 实验支持分支，与本库已有的 Eden SX2A（安卓侧）路线不同，本条为 Windows 桌面分支。★40，GPL-3.0，release 附 SHA256SUMS"
+    },
+    {
+      "id": "prospero-eden-encore",
+      "name": "ProsperoEden Encore",
+      "category": "PS5 Port",
+      "description": "ProsperoEden Encore：Eden 的 Switch 1 + Switch 2 实验分支",
+      "owner": "niakw",
+      "repo": "niakw/ProsperoEden-Encore",
+      "homepage": "",
+      "repo_url": "https://github.com/niakw/ProsperoEden-Encore",
+      "official": false,
+      "channel": "experimental",
+      "latest_tag": "encore-R1-56293953",
+      "latest_date": "2026-10-30T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-03T00:00:00Z",
+      "stars": 79,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "note": "★79，2026-11-03 仍活跃。release 附可运行构建。与本库已有 ProsperoEden（Android 移植）同源不同目标平台"
+    },
+    {
+      "id": "dosbox-staging",
+      "name": "DOSBox Staging",
+      "category": "桌面模拟器",
+      "description": "DOSBox 的官方现代化延续分支（modern continuation），多平台原生构建",
+      "owner": "dosbox-staging",
+      "repo": "dosbox-staging/dosbox-staging",
+      "homepage": "https://dosbox-staging.org/",
+      "repo_url": "https://github.com/dosbox-staging/dosbox-staging",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.83.0",
+      "latest_date": "2026-08-27T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "dosbox-staging-windows-x64-v0.83.0-setup.exe",
+      "latest_apk_url": "https://github.com/dosbox-staging/dosbox-staging/releases/download/v0.83.0/dosbox-staging-windows-x64-v0.83.0-setup.exe",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-03T00:00:00Z",
+      "stars": 1834,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc",
+        "multi"
+      ],
+      "status": "active",
+      "note": "DOSBox 官方承认的现代延续分支，★1834，2026-11-03 仍提交。正式版 v0.83.0 附 Windows/Linux/macOS 原生包，dev-latest 通道附每日构建"
+    },
+    {
+      "id": "dosbox-x",
+      "name": "DOSBox-X",
+      "category": "桌面模拟器",
+      "description": "DOSBox-X：老牌增强分支，支持 DOS 盒装游戏长期保存与多系统扩展",
+      "owner": "joncampbell123",
+      "repo": "joncampbell123/dosbox-x",
+      "homepage": "https://dosbox-x.com/",
+      "repo_url": "https://github.com/joncampbell123/dosbox-x",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "dosbox-x-v2026.10.01",
+      "latest_date": "2026-10-02T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "dosbox-x-mingw32-2026.10.01-portable.zip",
+      "latest_apk_url": "https://github.com/joncampbell123/dosbox-x/releases/download/dosbox-x-v2026.10.01/dosbox-x-mingw32-2026.10.01-portable.zip",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-10-29T00:00:00Z",
+      "stars": 3804,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "windows-pc",
+        "multi"
+      ],
+      "status": "active",
+      "note": "★3804，2026-10-29 仍提交。release 附 Windows/macOS/Linux 可移植包"
+    },
+    {
+      "id": "dosbox-pure",
+      "name": "DOSBox Pure",
+      "category": "桌面模拟器",
+      "description": "DOSBox Pure：专为 libretro/RetroArch 打造的重写版，含 Android arm64 核心包",
+      "owner": "schellingb",
+      "repo": "schellingb/dosbox-pure",
+      "homepage": "",
+      "repo_url": "https://github.com/schellingb/dosbox-pure",
+      "official": false,
+      "channel": "preview",
+      "latest_tag": "1.0-preview6",
+      "latest_date": "2026-07-14T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "dosbox_pure_libretro-android_arm64-1.0-preview6.zip",
+      "latest_apk_url": "https://github.com/schellingb/dosbox-pure/releases/download/1.0-preview6/dosbox_pure_libretro-android_arm64-1.0-preview6.zip",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-10-06T00:00:00Z",
+      "stars": 1185,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "libretro",
+      "platforms": [
+        "windows-pc",
+        "multi"
+      ],
+      "status": "active",
+      "note": "★1185，GPL-2.0。非 fork 而是重写，专为 RetroArch/libretro 后端设计。release 1.0-preview6 附 android arm32/arm64 核心包，可直接供安卓端 RetroArch 使用"
+    },
+    {
+      "id": "flycast-dojo",
+      "name": "Flycast Dojo",
+      "category": "Sega Dreamcast",
+      "description": "Flycast Dojo：Flycast 的社区增强分支，持续维护",
+      "owner": "blueminder",
+      "repo": "blueminder/flycast-dojo",
+      "homepage": "",
+      "repo_url": "https://github.com/blueminder/flycast-dojo",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "dojo-7.9",
+      "latest_date": "2026-10-24T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "flycast-dojo-windows.zip",
+      "latest_apk_url": "https://github.com/blueminder/flycast-dojo/releases/download/dojo-7.9/flycast-dojo-windows.zip",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-10-24T00:00:00Z",
+      "stars": 246,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "dreamcast"
+      ],
+      "status": "active",
+      "note": "★246，2026-10-24 仍发版。release 附 Windows/macOS/Linux 包。属 Dreamcast 方向的高价值活跃分支"
+    },
+    {
+      "id": "snes9x-z",
+      "name": "Snes9x-Z",
+      "category": "Super Nintendo Emulator",
+      "description": "Snes9x-Z：Snes9x 的性能优化分支，提供 libretro 核心（含安卓 arm64）",
+      "owner": "andrezaiats",
+      "repo": "andrezaiats/snes9x-Z",
+      "homepage": "",
+      "repo_url": "https://github.com/andrezaiats/snes9x-Z",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "v1.63-z1",
+      "latest_date": "2026-09-11T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "snes9x-Z_libretro_android-arm64-v8a.zip",
+      "latest_apk_url": "https://github.com/andrezaiats/snes9x-Z/releases/download/v1.63-z1/snes9x-Z_libretro_android-arm64-v8a.zip",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-09-14T00:00:00Z",
+      "stars": 103,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "libretro",
+      "platforms": [
+        "snes"
+      ],
+      "status": "active",
+      "note": "★103。基于 Snes9x v1.63 的性能优化 fork，release 直接提供 libretro 核心包，含 android arm64-v8a 与 armeabi-v7a"
+    },
+    {
+      "id": "mupen64plus-ae-fzurita",
+      "name": "Mupen64Plus AE (fzurita)",
+      "category": "Nintendo 64 Emulator",
+      "description": "Mupen64Plus AE 的 fzurita 分支，安卓端 M64Plus FZ 商店版所对应的开源核心",
+      "owner": "fzurita",
+      "repo": "fzurita/mupen64plus-ae",
+      "homepage": "",
+      "repo_url": "https://github.com/fzurita/mupen64plus-ae",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2024-04-02T00:00:00Z",
+      "stars": 27,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "source-only",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "n64"
+      ],
+      "status": "stale",
+      "note": "★27，GPL-3.0。Play 商店版 M64Plus FZ（包名 org.mupen64plusae.v3.fzurita）对应的开源核心仓，本仓无 release，需自行编译。fork 自 mupen64plus-ae/mupen64plus-ae（★504）"
+    },
+    {
+      "id": "ryudeck-steamdeck",
+      "name": "Ryujinx Ryudeck",
+      "category": "Nintendo Switch Emulator",
+      "description": "Ryudeck：面向 Steam Deck 原生的 Ryujinx 分支，针对掌机做适配",
+      "owner": "deucebucket",
+      "repo": "deucebucket/ryudeck",
+      "homepage": "",
+      "repo_url": "https://github.com/deucebucket/ryudeck",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "v0.1.24",
+      "latest_date": "2026-07-15T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "ryudeck-v0.1.24-linux_x64.tar.gz",
+      "latest_apk_url": "https://github.com/deucebucket/ryudeck/releases/download/v0.1.24/ryudeck-v0.1.24-linux_x64.tar.gz",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-07-19T00:00:00Z",
+      "stars": 11,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "note": "★11，MIT。Steam Deck 原生 Ryujinx 分支，release 附 linux tar.gz。低热度但方向独特（掌机原生适配），予以收录"
+    },
+    {
+      "id": "ryujinx-canary-ademola",
+      "name": "Ryujinx Canary Builds (ADEMOLA200)",
+      "category": "Nintendo Switch Emulator",
+      "description": "Ryujinx 的社区 canary 构建仓，每次提交编译发布",
+      "owner": "ADEMOLA200",
+      "repo": "ADEMOLA200/Ryujinx-Canary-Builds",
+      "homepage": "",
+      "repo_url": "https://github.com/ADEMOLA200/Ryujinx-Canary-Builds",
+      "official": false,
+      "channel": "canary",
+      "latest_tag": "1.3.31",
+      "latest_date": "2025-04-17T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "ryujinx-canary-1.3.31-arm64.AppImage",
+      "latest_apk_url": "https://github.com/ADEMOLA200/Ryujinx-Canary-Builds/releases/download/1.3.31/ryujinx-canary-1.3.31-arm64.AppImage",
+      "latest_apk_size": 0,
+      "pushed_at": "2025-04-17T00:00:00Z",
+      "stars": 21,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-zip",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "stale",
+      "note": "★21，MIT。Ryujinx 本体停更前的社区 canary 构建仓，最后发版 2025-04-17，已停更。当前活跃的 canary 通道是 Forgejo 上的 Ryubing/Canary"
+    },
+    {
+      "id": "melonds-android",
+      "name": "melonDS Android",
+      "category": "Nintendo DS Emulator",
+      "description": "melonDS 的第三方 Android 移植（独立 App，非官方团队发布），支持杜比/高分渲染与自定义布局",
+      "owner": "rafaelvcaetano",
+      "repo": "rafaelvcaetano/melonDS-android",
+      "homepage": "https://play.google.com/store/apps/details?id=me.magnum.melonds",
+      "repo_url": "https://github.com/rafaelvcaetano/melonDS-android",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "2.0.1",
+      "latest_date": "2026-05-06T00:03:15Z",
+      "latest_body": "",
+      "latest_apk_name": "app-gitHub-prod-release.apk",
+      "latest_apk_url": "https://github.com/rafaelvcaetano/melonDS-android/releases/download/2.0.1/app-gitHub-prod-release.apk",
+      "latest_apk_size": 21061910,
+      "pushed_at": "2026-09-12T15:29:47Z",
+      "stars": 1735,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://github.com/rafaelvcaetano.png",
+      "releases": [],
+      "source": "github",
+      "distribution": "release-apk",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "status": "active",
+      "note": "★1735，GPL-3.0，非 fork。README 自述「Android port of melonDS」，官方 melonDS 下载页只列桌面 1.1、未链接本项目，故标为第三方移植。2.0.1（2026-05-06）附 app-gitHub-prod-release.apk（21,061,910 B），另有 Google Play 版 me.magnum.melonds"
+    },
+    {
+      "id": "es-de-frontend",
+      "name": "ES-DE Frontend",
+      "category": "Frontend",
+      "description": "跨平台游戏前端（EmulationStation Desktop Edition），安卓版为付费应用，经 Patreon / 三星 Galaxy Store / 华为 AppGallery 购买",
+      "owner": "es-de",
+      "repo": "es-de/emulationstation-de",
+      "homepage": "https://es-de.org",
+      "repo_url": "https://gitlab.com/es-de/emulationstation-de",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v3.5.0",
+      "latest_date": "2026-09-30T00:00:00Z",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-01T12:41:52Z",
+      "stars": 251,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "",
+      "releases": [],
+      "source": "gitlab",
+      "distribution": "official-site",
+      "kind": "frontend",
+      "runtime": "android-native",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active",
+      "note": "GitLab ★251，2026-11-01 仍活跃。ANDROID.md 明确：Android APK 需通过 Patreon、Galaxy Store（org.es_de.frontend.galaxy）或 AppGallery（C111315115）购买，无免费公开包；源码为 GPL-3.0，桌面版可直接构建"
+    },
+    {
+      "id": "citra-mirror",
+      "name": "Citra Mirror",
+      "category": "Nintendo 3DS Emulator",
+      "description": "Citra 的非官方镜像分支，2024-03 后停更，无 Release 产物",
+      "owner": "citra-mirror",
+      "repo": "citra-mirror/citra",
+      "homepage": "https://sourceforge.net/projects/citra.mirror/",
+      "repo_url": "https://github.com/citra-mirror/citra",
+      "official": false,
+      "channel": "stable",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2024-03-05T05:53:09Z",
+      "stars": 83,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": 0,
+      "logo_url": "https://github.com/citra-mirror.png",
+      "releases": [],
+      "source": "github",
+      "distribution": "source-only",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "3ds"
+      ],
+      "status": "archived",
+      "note": "2026-11-04 复核：★83，GPL-2.0，最后推送 2024-03-05，0 个 Release；SourceForge 项目页 citra.mirror 仍可访问。仅作存档镜像收录，不提供安装包"
     }
   ]
 }

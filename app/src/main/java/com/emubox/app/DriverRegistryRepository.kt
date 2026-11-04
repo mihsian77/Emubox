@@ -63,9 +63,9 @@ data class DriverMatchResult(
 object DriverRegistryRepository {
 
     private const val REGISTRY_URL_PRIMARY =
-        "https://raw.githubusercontent.com/mihsian77/EmuHub-CN/main/driver-registry.json"
+        "https://raw.githubusercontent.com/mihsian77/Emubox/main/driver-registry.json"
     private const val REGISTRY_URL_JSDELIVR =
-        "https://cdn.jsdelivr.net/gh/mihsian77/EmuHub-CN@main/driver-registry.json"
+        "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/driver-registry.json"
     private const val ASSETS_REGISTRY = "driver-registry.json"
 
     /** 成熟度排序权重，越小越优先 */
