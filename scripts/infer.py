@@ -264,11 +264,14 @@ GUEST_RULES = [
     ("3ds", [r"\b3ds\b", r"\bcitra\b", r"\bazahar\b", r"\bnintendo\s*3ds\b"]),
     ("nds", [r"\bnds\b", r"\bds\b", r"\bdesmume\b", r"\bmelonds\b", r"\bdraStic\b"]),
     ("gamecube", [r"\bgamecube\b", r"\bdolphin\b", r"\bgcn?\b"]),
-    ("wii", [r"\bwii\b"]),
+    ("wiiu", [r"\bwii\s*u\b", r"\bcemu\b"]),
+    ("wii", [r"\bwii\b(?!\s*u)"]),
     ("n64", [r"\bn64\b", r"\bmupen\b", r"\bproject64\b"]),
     ("gba", [r"\bgba\b", r"\bmgba\b"]),
     ("gbc", [r"\bgbc\b", r"\bgame\s*boy\s*color\b"]),
-    ("snes", [r"\bsnes\b", r"\bsuper\s*nintendo\b"]),
+    ("snes", [r"\bsnes\b", r"\bsuper\s*nintendo\b", r"\bares\b"]),
+    ("nes", [r"\bnes\b", r"\bfamicom\b", r"\bfceux\b", r"\bmesen\b",
+             r"nintendo\s*entertainment\s*system"]),
     ("dreamcast", [r"\bdreamcast\b", r"\bflycast\b"]),
     ("saturn", [r"\bsaturn\b", r"\byabause\b"]),
     ("mega-drive", [r"\bmega\s*drive\b", r"\bgenesis\b"]),
@@ -281,6 +284,16 @@ GUEST_RULES = [
     ("java-me", [r"\bj2me\b", r"\bjava\s*(me|emulator)\b", r"\bsymbian\b"]),
     ("android-app", [r"\bandroid\s*app\b", r"\bapk\s*runner\b"]),
     ("dos", [r"\bdosbox\b", r"\bdos\b", r"\b86box\b", r"\bpcem\b"]),
+    # ── 复古电脑与冷门平台：库里此前一条都没有，全靠这些词兜住 ──
+    ("pc-98", [r"pc-?98", r"\bnp2k", r"pc98"]),
+    ("msx", [r"\bmsx\b"]),
+    ("atari-2600", [r"atari\s*2600", r"\bstella\b"]),
+    ("amiga", [r"\bamiga\b", r"\bfs-uae\b"]),
+    ("c64", [r"\bc64\b", r"commodore\s*64", r"\bvice\b"]),
+    ("3do", [r"\b3do\b"]),
+    ("wonderswan", [r"\bwonderswan\b"]),
+    ("neo-geo", [r"neo\s*geo", r"\bngp\b"]),
+    ("adventure", [r"\bscummvm\b", r"point[-\s]and[-\s]click", r"\badventure\s+game"]),
 ]
 
 

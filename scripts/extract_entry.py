@@ -93,13 +93,20 @@ def make_id(repo):
 
 
 def pick_name(meta, rels, repo):
-    """优先用 release 标题，其次 repo 名。'Xyz v1.2.3' 这种尾巴去掉。"""
+    """项目名优先取 repo 名，release 标题只在「看起来像项目名」时采用。
+
+    实测踩坑：xemu 的 release 标题是「Latest Development Build」，fceux 是
+    「fceux-」，Kronos 是「Release」——直接采信会把项目名写成这些垃圾串。
+    """
+    fallback = (repo.split("/")[-1]).replace("-", " ").replace("_", " ").strip()
     if rels:
         n = (rels[0].get("name") or "").strip()
         n = re.sub(r"\s*[vV]?\d+(\.\d+)+.*$", "", n).strip()
-        if n and len(n) <= 40:
+        generic = re.search(r"\b(release|build|nightly|latest|pre-?release|dev|"
+                            r"snapshot|stable|beta|alpha|update|ci)\b", n, re.I)
+        if n and len(n) <= 40 and not generic:
             return n
-    return (repo.split("/")[-1]).replace("-", " ").replace("_", " ").strip()
+    return fallback
 
 
 def status_of(meta):
