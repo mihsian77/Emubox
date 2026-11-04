@@ -1840,6 +1840,91 @@
       "needs_review": false
     },
     {
+      "id": "rpcs3",
+      "name": "RPCS3",
+      "category": "Emulator PS3",
+      "description": "PlayStation 3 emulator and debugger",
+      "owner": "RPCS3",
+      "repo": "RPCS3/rpcs3",
+      "homepage": "https://rpcs3.net/",
+      "repo_url": "https://github.com/RPCS3/rpcs3",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.0.43",
+      "latest_date": "2026-09-30T22:12:32Z",
+      "latest_body": "_Please note that our version increases are landmarks and not stable builds_\r\n**Always download the latest build from https://rpcs3.net/download**\r\n\r\n**Note:** These are **NOT** stable builds. RPCS3 is a rolling release software without stable builds. These are random tags we do from time to time. Do **NOT** use the branch from these tags to package RPCS3.\r\n\r\n---\r\n\r\n## What's Changed\r\n* fix emulator crash on crashed game window closure by @digant73 in https://github.com/RPCS3/rpcs3/pull/19122\r\n* rsx/copypasta: Fix reversed 2-sided lighting input registers for FS stage by @digant73 in https://github.com/RPCS3/rpcs3/pull/19123\r\n* Update FAudio to 26.08 by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19125\r\n* qt: reduce lines of code in settings_dialog by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19130\r\n* Fix vm::writer_lock deadlock-inducing usage on PPU by @elad335 in https://github.com/RPCS3/rpcs3/pull/19132\r\n* Fix recording with fallback encoders by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19136\r\n* cmake: fix Windows/MSVC build issues with zlib path and wolfSSL TLS1.3 by @Alasonga in https://github.com/RPCS3/rpcs3/pull/19137\r\n* Ancient emulation bug fixes by @elad335 in https://github.com/RPCS3/rpcs3/pull/19141\r\n* VSH fixup by @elad335 in https://github.com/RPCS3/rpcs3/pull/19146\r\n* msvc: fix libprotobuf-lite debug dependency by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19147\r\n* msvc: fix openal debug build by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19148\r\n* Fix infinite ensure recursion in debug builds by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19149\r\n* fix alpha test by @digant73 in https://github.com/RPCS3/rpcs3/pull/19101\r\n* rsx: fix exception data_heap in debug builds by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19150\r\n* .github: Improve regression issue template by @AniLeo in https://github.com/RPCS3/rpcs3/pull/19145\r\n* Update SDL to 3.4.14 by @sanjay900 in https://github.com/RPCS3/rpcs3/pull/19154\r\n* ",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-03T16:02:38Z",
+      "stars": 20328,
+      "forks": 2572,
+      "watchers": 20328,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/8070735?v=4",
+      "releases": [
+        {
+          "tag": "v0.0.43",
+          "name": "v0.0.43 Alpha",
+          "date": "2026-09-30T22:12:32Z",
+          "body": "_Please note that our version increases are landmarks and not stable builds_\r\n**Always download the latest build from https://rpcs3.net/download**\r\n\r\n**Note:** These are **NOT** stable builds. RPCS3 is a rolling release software without stable builds. These are random tags we do from time to time. Do **NOT** use the branch from these tags to package RPCS3.\r\n\r\n---\r\n\r\n## What's Changed\r\n* fix emulator crash on crashed game window closure by @digant73 in https://github.com/RPCS3/rpcs3/pull/19122\r\n* rsx/copypasta: Fix reversed 2-sided lighting input registers for FS stage by @digant73 in https://github.com/RPCS3/rpcs3/pull/19123\r\n* Update FAudio to 26.08 by @Megamouse in https://github.com/RPCS3/rpcs3/pull/19125\r\n* qt: reduce lines of code in settings_dialog by @Megamouse in https://github.com"
+        },
+        {
+          "tag": "v0.0.42",
+          "name": "v0.0.42 Alpha",
+          "date": "2026-07-31T18:15:12Z",
+          "body": "_Please note that our version increases are landmarks and not stable builds_\r\n**Always download the latest build from https://rpcs3.net/download**\r\n\r\n**Note:** These are **NOT** stable builds. RPCS3 is a rolling release software without stable builds. These are random tags we do from time to time. Do **NOT** use the branch from these tags to package RPCS3.\r\n\r\n---\r\n\r\n## What's Changed\r\n* Remove duplicated code in VKShaderInterpreter.cpp by @digant73 in https://github.com/RPCS3/rpcs3/pull/18832\r\n* Add \"Enable Mouse-based Gyro\" setting to I/O config by @Windsurf7 in https://github.com/RPCS3/rpcs3/pull/18835\r\n* SPU LLVM: Use 128-bit SVE2 for FMS by @Whatcookie in https://github.com/RPCS3/rpcs3/pull/18837\r\n* SPU LLVM: Idiomatic FSM implementation for ARM64 by @Whatcookie in https://github.com/R"
+        },
+        {
+          "tag": "v0.0.41",
+          "name": "v0.0.41 Alpha",
+          "date": "2026-06-04T00:59:57Z",
+          "body": "_Please note that our version increases are landmarks and not stable builds_\r\n**Always download the latest build from https://rpcs3.net/download**\r\n\r\n**Note:** These are **NOT** stable builds. RPCS3 is a rolling release software without stable builds. These are random tags we do from time to time. Do **NOT** use the branch from these tags to package RPCS3.\r\n\r\n---\r\n\r\n## What's Changed\r\n* Improve vertex cache compatiblity by @diazalvi in https://github.com/RPCS3/rpcs3/pull/18243\r\n* rsx: Fix random crash in texture utils by @kd-11 in https://github.com/RPCS3/rpcs3/pull/18269\r\n* cellGem: Fix deadlock in cellGemUpdateStart/cellGemUpdateFinish by @Megamouse in https://github.com/RPCS3/rpcs3/pull/18271\r\n* Fix mac build by @RipleyTom in https://github.com/RPCS3/rpcs3/pull/18270\r\n* Qt: Do not check"
+        },
+        {
+          "tag": "v0.0.40",
+          "name": "v0.0.40 Alpha",
+          "date": "2026-03-03T12:17:19Z",
+          "body": "_Please note that our version increases are landmarks and not stable builds_\r\n**Always download the latest build from https://rpcs3.net/download**\r\n\r\n**Note:** These are **NOT** stable builds. RPCS3 is a rolling release software without stable builds. These are random tags we do from time to time. Do **NOT** use the branch from these tags to package RPCS3.\r\n\r\n---\r\n\r\n## What's Changed\r\n* Update submodules by @Megamouse in https://github.com/RPCS3/rpcs3/pull/17847\r\n* Refactor camera code to support different camera handlers by @Megamouse in https://github.com/RPCS3/rpcs3/pull/17948\r\n* [BSD] Use FreeBSD 14.3 vm by @qurious-pixel in https://github.com/RPCS3/rpcs3/pull/17947\r\n* [TEST] vk: Disable VK_EXT_attachment_feedback_loop_layout support for adrenalin driver by @kd-11 in https://github.com"
+        },
+        {
+          "tag": "v0.0.39",
+          "name": "v0.0.39 Alpha",
+          "date": "2025-12-31T22:54:19Z",
+          "body": "_Please note that our version increases are landmarks and not stable builds_\r\n**Always download the latest build from https://rpcs3.net/download**\r\n\r\n**Note:** These are **NOT** stable builds. RPCS3 is a rolling release software without stable builds. These are random tags we do from time to time. Do **NOT** use the branch from these tags to package RPCS3.\r\n\r\n---\r\n\r\n## What's Changed\r\n* Win32/vm_native.cpp: Improve sparse memory file mapping robustness by @elad335 in https://github.com/RPCS3/rpcs3/pull/17547\r\n* Config: Implement 128-bit setting entry type by @elad335 in https://github.com/RPCS3/rpcs3/pull/17548\r\n* Update submodules by @Megamouse in https://github.com/RPCS3/rpcs3/pull/17550\r\n* Generate random OpenPSID upon config initalisation by @derole1 in https://github.com/RPCS3/rpcs3/p"
+        }
+      ],
+      "source": "github",
+      "note": "PS3 模拟器，GitHub release 不带附件，发布走官网 rpcs3.net 与 AppImage 源。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps3"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [],
+      "license": "GPL-2.0",
+      "topics": [
+        "assembly-language",
+        "c",
+        "cpp",
+        "emulation",
+        "emulator",
+        "llvm",
+        "multiplatform",
+        "opengl",
+        "ps3",
+        "vulkan"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "brunodev85-winlator",
       "name": "Winlator BrunoDev",
       "category": "Winlator",
@@ -3654,6 +3739,114 @@
       "needs_review": false
     },
     {
+      "id": "pcsx2",
+      "name": "PCSX2",
+      "category": "Emulator PS2",
+      "description": "PCSX2 - The Playstation 2 Emulator",
+      "owner": "PCSX2",
+      "repo": "PCSX2/pcsx2",
+      "homepage": "https://pcsx2.net",
+      "repo_url": "https://github.com/PCSX2/pcsx2",
+      "official": true,
+      "channel": "prerelease",
+      "latest_tag": "v2.9.153",
+      "latest_date": "2026-11-03T16:18:22Z",
+      "latest_body": "- [GameDB: Add missing JP-codes & Fix few game titles.](https://github.com/PCSX2/pcsx2/pull/15156)\n",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-04T13:23:25Z",
+      "stars": 15990,
+      "forks": 2402,
+      "watchers": 15990,
+      "downloads": 23349,
+      "logo_url": "https://avatars.githubusercontent.com/u/6278711?v=4",
+      "releases": [
+        {
+          "tag": "v2.9.153",
+          "name": "v2.9.153",
+          "date": "2026-11-03T16:18:22Z",
+          "body": "- [GameDB: Add missing JP-codes & Fix few game titles.](https://github.com/PCSX2/pcsx2/pull/15156)\n"
+        },
+        {
+          "tag": "v2.9.152",
+          "name": "v2.9.152",
+          "date": "2026-11-01T06:19:19Z",
+          "body": "- [GS: Fix OOB memory accesses when loading replacement textures](https://github.com/PCSX2/pcsx2/pull/15146)\n"
+        },
+        {
+          "tag": "v2.9.151",
+          "name": "v2.9.151",
+          "date": "2026-10-31T16:43:46Z",
+          "body": "- [3rdparty: Update LZMA/7zipSDK to 26.05](https://github.com/PCSX2/pcsx2/pull/15131)\n"
+        },
+        {
+          "tag": "v2.9.150",
+          "name": "v2.9.150",
+          "date": "2026-10-30T22:15:50Z",
+          "body": "- [ImGui: Add visual vibration intensity indicator to OSD](https://github.com/PCSX2/pcsx2/pull/14230)\n"
+        },
+        {
+          "tag": "v2.9.149",
+          "name": "v2.9.149",
+          "date": "2026-10-30T18:13:19Z",
+          "body": "- [Debugger improvements](https://github.com/PCSX2/pcsx2/pull/15128)\n"
+        }
+      ],
+      "source": "github",
+      "note": "PS2 官方模拟器，Qt 版 v2.9 每日构建；提供 Windows/macOS/Linux(AppImage/Flatpak) 三端包。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "7z",
+          "name": "pcsx2-v2.9.153-windows-x64-Qt.7z",
+          "size": 31699802,
+          "url": "https://github.com/PCSX2/pcsx2/releases/download/v2.9.153/pcsx2-v2.9.153-windows-x64-Qt.7z",
+          "downloads": 17854,
+          "tag": "v2.9.153"
+        },
+        {
+          "host": "macos",
+          "format": "xz",
+          "name": "pcsx2-v2.9.153-macos-Qt.tar.xz",
+          "size": 24526140,
+          "url": "https://github.com/PCSX2/pcsx2/releases/download/v2.9.153/pcsx2-v2.9.153-macos-Qt.tar.xz",
+          "downloads": 968,
+          "tag": "v2.9.153"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "pcsx2-v2.9.153-linux-appimage-x64-Qt.AppImage",
+          "size": 60434936,
+          "url": "https://github.com/PCSX2/pcsx2/releases/download/v2.9.153/pcsx2-v2.9.153-linux-appimage-x64-Qt.AppImage",
+          "downloads": 4378,
+          "tag": "v2.9.153"
+        }
+      ],
+      "license": "GPL-3.0",
+      "topics": [
+        "cpp",
+        "emulation",
+        "emulator",
+        "pcsx2",
+        "ps2"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "dolphin",
       "name": "Dolphin",
       "category": "Nintendo GameCube / Wii",
@@ -4544,7 +4737,7 @@
       "logo_url": "https://github.com/hrydgard.png",
       "latest_body": "PPSSPP is a cross-platform PSP emulator. Visit PPSSPP [official website](https://ppsspp.org) for a [full changelog](https://ppsspp.org/index.html#news) as well as the [downloads section](https://ppsspp.org/downloads.html) for other platforms.\n",
       "latest_apk_size": 0,
-      "note": "GitHub release 无安卓 APK 资产",
+      "note": "GitHub release 无安卓 APK 资产 安卓版经 Google Play 与官网 APK 分发，GitHub release 仅含桌面端。",
       "download_url": "https://www.ppsspp.org/files/1_20_4/ppsspp.apk",
       "download_kind": "official-site",
       "distribution": "official-site",
@@ -4556,6 +4749,7 @@
       "status": "active",
       "method": "emulation",
       "hosts": [
+        "android",
         "windows",
         "macos",
         "linux",
@@ -8249,6 +8443,116 @@
           "downloads": 68,
           "tag": "KytyPS5-2026-11-04-94094c6"
         }
+      ],
+      "needs_review": false
+    },
+    {
+      "id": "cemu",
+      "name": "Cemu",
+      "category": "Wii U Emulator",
+      "description": "Cemu - Wii U emulator",
+      "owner": "cemu-project",
+      "repo": "cemu-project/Cemu",
+      "homepage": "https://cemu.info",
+      "repo_url": "https://github.com/cemu-project/Cemu",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v2.6",
+      "latest_date": "2025-02-06T13:18:18Z",
+      "latest_body": "**Changelog:**\r\n- Exporting saves via the title manager no longer crashes when the export path contains unicode characters\r\n- Fixed a regression in DS Virtual Console titles (#1440)\r\n- Fixed a bug where the debug shader dumping option would try to write files to the wrong directory\r\n- Added a right-click context menu to the PPC debugger disassembly view and fixed some smaller bugs in the debugger\r\n- Use libusb as the backend for HID/USB devices on Windows (#1471)\r\n- Reduce amount of Vulkan sampler objects that are created. Reduces memory usage slightly and avoids crashes on drivers that have a low limit on sampler objects\r\n- Improved index data caching on Vulkan. This may provide a very small performance benefit in some games\r\n- The `--force-interpreter` command line option now always uses single-threaded CPU emulation like originally intended",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-01T16:04:50Z",
+      "stars": 10086,
+      "forks": 1051,
+      "watchers": 10086,
+      "downloads": 4093974,
+      "logo_url": "https://avatars.githubusercontent.com/u/40145098?v=4",
+      "releases": [
+        {
+          "tag": "v2.6",
+          "name": "Cemu 2.6",
+          "date": "2025-02-06T13:18:18Z",
+          "body": "**Changelog:**\r\n- Exporting saves via the title manager no longer crashes when the export path contains unicode characters\r\n- Fixed a regression in DS Virtual Console titles (#1440)\r\n- Fixed a bug where the debug shader dumping option would try to write files to the wrong directory\r\n- Added a right-click context menu to the PPC debugger disassembly view and fixed some smaller bugs in the debugger\r\n- Use libusb as the backend for HID/USB devices on Windows (#1471)\r\n- Reduce amount of Vulkan sampler objects that are created. Reduces memory usage slightly and avoids crashes on drivers that have a low limit on sampler objects\r\n- Improved index data caching on Vulkan. This may provide a very small performance benefit in some games\r\n- The `--force-interpreter` command line option now always uses"
+        },
+        {
+          "tag": "v2.5",
+          "name": "Cemu 2.5",
+          "date": "2024-12-07T13:54:15Z",
+          "body": "**Changelog:**\r\n- Upscaling and downscaling options in the graphics settings now work correctly on Vulkan. Previously, the hermite and bicubic scaling options would only work on OpenGL and silently fall back to bilinear filtering on Vulkan\r\n- Graphic pack support for custom scaling shaders has been reworked and is now functional on Vulkan, with fixes carrying over to OpenGL. If you are a graphic pack developer see #1392 for details\r\n- Cemu will now show an error if the MLC directory is not writeable\r\n- Added a workaround for graphic driver crashes seen in the eShop versions of Fatal Frame. These are caused by the game shipping with shaders that contain infinite loops. The actual hardware has an escape mechanism for this that we don't yet emulate\r\n- Added support for connecting Wiimotes via"
+        },
+        {
+          "tag": "v2.4",
+          "name": "Cemu 2.4",
+          "date": "2024-11-13T07:41:29Z",
+          "body": "**Changelog:**\r\n- Added emulated Dimensions Toypad\r\n- Fixed a corruption bug which could occur when reading from titles in .app/.wud/.wux format under rare circumstances\r\n- Cemu will now validate all reads for .app/.wud/.wux format titles and log any detected errors to log.txt. In the future we will also show these errors on screen\r\n- Reworked the Wii U error dialog implementation (ErrEula) for better accuracy. This should fix the bug where sometimes the error dialog was unskippable in some games\r\n- Fixed a bug in the HLE implementation of proc_ui.ProcUIRegisterCallback/ProcUIRegisterBackgroundCallback"
+        },
+        {
+          "tag": "v2.3",
+          "name": "Cemu 2.3",
+          "date": "2024-11-01T23:29:00Z",
+          "body": "**Changelog:**\r\n- Vulkan: Fixed a race condition where uniform data could get corrupted. Most commonly this would cause polygon corruptions in BotW or XCX but in theory could affect every game\r\n- Vulkan: Changes to how frame display is handled to reduce input latency\r\n- Input: Fixed a crash that could occur when closing the add controller dialog while a controller search was still active\r\n- Amiibo: Fixed an issue where Amiibo were not detected in Mario Kart 8\r\n- Online: SpotPass functionality now respects the proxy_server option in settings.xml\r\n- Windows: In portable mode shortcut save icons will now be stored to the Cemu directory instead of %appdata%\r\n- Misc: Fixed a crash that could occur when invalid command line parameters were passed to Cemu"
+        },
+        {
+          "tag": "v2.2",
+          "name": "Cemu 2.2",
+          "date": "2024-09-08T17:02:48Z",
+          "body": "**Changelog:**\r\n- Handle null timeout in `nsysnet.select`. Fixes a crash in Skylanders SuperChargers and Imaginators\r\n- Fixed an issue where changing the `Receive untested updates` option would have no effect\r\n- The Linux appimage version will use the system `libstdc++.so.6` if it is newer than the bundled file\r\n- Updated French, Korean and Simplified Chinese translations"
+        }
+      ],
+      "source": "github",
+      "note": "Wii U 官方模拟器 v2.6，Windows/macOS/Linux 三端；另有第三方安卓移植（ssimco-cemu 条目）。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "wiiu"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "cemu-2.6-windows-x64.zip",
+          "size": 26374093,
+          "url": "https://github.com/cemu-project/Cemu/releases/download/v2.6/cemu-2.6-windows-x64.zip",
+          "downloads": 2917423,
+          "tag": "v2.6"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "cemu-2.6-macos-12-x64.dmg",
+          "size": 36588188,
+          "url": "https://github.com/cemu-project/Cemu/releases/download/v2.6/cemu-2.6-macos-12-x64.dmg",
+          "downloads": 396234,
+          "tag": "v2.6"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "Cemu-2.6-x86_64.AppImage",
+          "size": 61423960,
+          "url": "https://github.com/cemu-project/Cemu/releases/download/v2.6/Cemu-2.6-x86_64.AppImage",
+          "downloads": 718725,
+          "tag": "v2.6"
+        }
+      ],
+      "license": "MPL-2.0",
+      "topics": [
+        "cemu",
+        "cemu-emulator",
+        "cpp",
+        "emulation",
+        "emulator",
+        "nintendo",
+        "wiiu"
       ],
       "needs_review": false
     },
@@ -18903,6 +19207,114 @@
       "needs_review": false
     },
     {
+      "id": "xemu",
+      "name": "xemu",
+      "category": "Xbox",
+      "description": "Original Xbox Emulator for Windows, macOS, and Linux (Active Development)",
+      "owner": "xemu-project",
+      "repo": "xemu-project/xemu",
+      "homepage": "https://xemu.app",
+      "repo_url": "https://github.com/xemu-project/xemu",
+      "official": true,
+      "channel": "prerelease",
+      "latest_tag": "pre-release",
+      "latest_date": "2026-11-02T20:08:37Z",
+      "latest_body": "## Pull Requests\n\n* #3147 - CONTRIBUTING.md: Add 'Good First Issue' guidance (@mborgerson)\n* #3138 - nv2a: Use rgba swizzles for color values in generated GLSL (@DatenpflegeNordHL)\n* #3146 - meson: Bump VulkanMemoryAllocator to v3.5.0 (@xemu-robot)\n* #3133 - Fix missing dirty bitmap on render and image blit (@abaire)\n* #3128 - nv2a: Remove erroneous signed conversion for SZ_R6G5B5 textures (@abaire)\n\n## Issues Fixed\n\n* #3115 - Update GLSL swizzles dealing with color to use `rgba` instead of `xyzw`\n* #859 - The Godfather The Game: graphical issue\n* #1951 - 007 From Russia With Love: Distortion artefact\n* #3126 - R6G5B5 texture format is erroneously treated as signed\n\n## Affected Titles\n\nThe following titles had issues fixed in this release:\n\n* [007: From Russia with Love](https://xemu.app/titles/45410079) (#1951)\n* [The Godfather](https://xemu.app/titles/4541007d) (#859)\n\n**Full Changelog**: https://github.com/xemu-project/xemu/compare/v0.8.139...6095054b7d02dfac25fdc4a8ba9300358046e860",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-02T20:08:36Z",
+      "stars": 4231,
+      "forks": 622,
+      "watchers": 4231,
+      "downloads": 674,
+      "logo_url": "https://avatars.githubusercontent.com/u/61253676?v=4",
+      "releases": [
+        {
+          "tag": "pre-release",
+          "name": "Latest Development Build",
+          "date": "2026-11-02T20:08:37Z",
+          "body": "## Pull Requests\n\n* #3147 - CONTRIBUTING.md: Add 'Good First Issue' guidance (@mborgerson)\n* #3138 - nv2a: Use rgba swizzles for color values in generated GLSL (@DatenpflegeNordHL)\n* #3146 - meson: Bump VulkanMemoryAllocator to v3.5.0 (@xemu-robot)\n* #3133 - Fix missing dirty bitmap on render and image blit (@abaire)\n* #3128 - nv2a: Remove erroneous signed conversion for SZ_R6G5B5 textures (@abaire)\n\n## Issues Fixed\n\n* #3115 - Update GLSL swizzles dealing with color to use `rgba` instead of `xyzw`\n* #859 - The Godfather The Game: graphical issue\n* #1951 - 007 From Russia With Love: Distortion artefact\n* #3126 - R6G5B5 texture format is erroneously treated as signed\n\n## Affected Titles\n\nThe following titles had issues fixed in this release:\n\n* [007: From Russia with Love](https://xemu.app/t"
+        },
+        {
+          "tag": "v0.8.139",
+          "name": "v0.8.139",
+          "date": "2026-10-21T21:43:18Z",
+          "body": "## Pull Requests\n\n* #3088 - Fix 1852 nv2a vsh cpu based register carryover (@abaire)\n\n## Issues Fixed\n\n* #1602 - FIFA 2004, 2005, Euro 2004, World Cup 2002 black menu screen (due to unimplemented VSH register carryover)\n* #1852 - Some game shadows are the Incorrect colour (due to unimplemented VSH register carryover)\n* #2198 - American Chopper 2: Full Throttle tank texturing issue due to lack of `VSH register carryover`\n* #2642 - Sensible Soccer 2006 Graphical Issue (due to unimplemented VSH register carryover)\n\n## Affected Titles\n\nThe following titles had issues fixed in this release:\n\n* [Blade II](https://xemu.app/titles/41560005) (#1852)\n* [American Chopper](https://xemu.app/titles/4156003d) (#2198)\n* [American Chopper 2: Full Throttle](https://xemu.app/titles/4156004f) (#2198)\n* [Sensi"
+        },
+        {
+          "tag": "v0.8.138",
+          "name": "v0.8.138",
+          "date": "2026-10-20T08:53:09Z",
+          "body": "## Pull Requests\n\n* #3125 - Improve compatibility with older versions of Vulkan (@mborgerson)\n* #2968 - Fix 2906 memory leak in slow vga path (@abaire)\n* #3124 - nv2a/vk: Support Vulkan 1.4 (@mborgerson)\n* #3123 - nv2a/vk: Select SPIR-V target from renderer state at compile time (@mborgerson)\n* #3000 - nv2a/vk: compile SPIR-V for the version the device supports (@jessedye)\n* #2453 - debug: Log GL errors during assertions in debug mode (@abaire)\n* #2211 - nv2a: Resolve overlapped dirty draws during 2d blit ops (@abaire)\n* #2456 - Adds menu item to create a GitHub title issue (@abaire)\n* #3114 - ci: Use the host's GLib in the AppImage (@mborgerson)\n* #3056 - nv2a: Enable clear handling for X1A7 formats (@abaire)\n* #2720 - nv2a: Fix R12 input in paired/multiout ops writing to oPos (@abaire)\n*"
+        },
+        {
+          "tag": "v0.8.137",
+          "name": "v0.8.137",
+          "date": "2026-10-16T19:27:01Z",
+          "body": "## Pull Requests\n\n* #3089 - meson: Bump sdl3 to release-3.4.18 (@xemu-robot)\n* #3090 - meson: Bump SPIRV-Reflect to vulkan-sdk-1.4.363.0 (@xemu-robot)\n* #3069 - doc: Add scope and design philosophy (@abaire)\n* #3049 - meson: Bump glslang to 16.6.0 (@xemu-robot)\n* #3035 - nv2a: Fix rounding issue in timer scheduling (@abaire)\n* #3045 - docs: Add style exception for variable declaration location (@abaire)\n* #3042 - meson: Bump sdl3 to release-3.4.16 (@xemu-robot)\n* #3041 - meson: Bump nlohmann_json to v3.12.0 (@xemu-robot)\n* #3039 - meson: Track nlohmann_json with a git wrap (@mborgerson)\n* #3038 - meson: Track SDL3 with a git wrap (@mborgerson)\n* #3040 - docs: Drop watermark item in agent pre-submission checklist (@mborgerson)\n* #3031 - docs: Add instructions for autonomous agents (@abaire)"
+        },
+        {
+          "tag": "v0.8.136",
+          "name": "v0.8.136",
+          "date": "2026-06-08T05:54:34Z",
+          "body": "## Pull Requests\n\n* #2892 - ci: Update Windows build toolchain image SHA (@mborgerson)\n* #2891 - ubuntu-win64-cross: Bump mxe, GCC toolchain (@mborgerson)\n* #2890 - Enable x86-64-v3 optimizations for release builds (@mborgerson)\n* #2882 - Bump SDL3 subproject to 3.4.10 (@mborgerson)\n* #2823 - hw/xbox: Clean up use of `assert(false)`  (@Reedzit)\n* #2867 - ui: Account for pixel density and display scaling (@mborgerson)\n* #2866 - ui: Set SDL_HINT_VIDEO_DRIVER to wayland,x11 (@mborgerson)\n\n## Issues Fixed\n\n* #1485 - build.sh should not hardcode IvyBridge target for macOS x86-64 builds\n* #1492 - Enable additional architectural optimizations in release\n\n**Full Changelog**: https://github.com/xemu-project/xemu/compare/v0.8.135...v0.8.136"
+        }
+      ],
+      "source": "github",
+      "note": "初代 Xbox 模拟器（不是 Xbox 360）。release 为每夜构建，含 Windows/macOS/Linux 与 arm64 包。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "xbox"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "xemu-0.8.139-9-g6095054b7d-dbg-windows-x86_64.zip",
+          "size": 11814727,
+          "url": "https://github.com/xemu-project/xemu/releases/download/pre-release/xemu-0.8.139-9-g6095054b7d-dbg-windows-x86_64.zip",
+          "downloads": 45,
+          "tag": "pre-release"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "xemu-0.8.139-9-g6095054b7d-dbg-macos-universal-unsigned.zip",
+          "size": 25772282,
+          "url": "https://github.com/xemu-project/xemu/releases/download/pre-release/xemu-0.8.139-9-g6095054b7d-dbg-macos-universal-unsigned.zip",
+          "downloads": 29,
+          "tag": "pre-release"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "xemu-0.8.139-9-g6095054b7d-x86_64.AppImage",
+          "size": 17971704,
+          "url": "https://github.com/xemu-project/xemu/releases/download/pre-release/xemu-0.8.139-9-g6095054b7d-x86_64.AppImage",
+          "downloads": 82,
+          "tag": "pre-release"
+        }
+      ],
+      "license": "NOASSERTION",
+      "topics": [
+        "emulation",
+        "emulator",
+        "hacktoberfest",
+        "original-xbox",
+        "xbox"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "touchhle",
       "name": "touchHLE",
       "category": "iOS Emulator",
@@ -19181,8 +19593,8 @@
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
-        "windows-pc",
-        "multi"
+        "dos",
+        "windows-pc"
       ],
       "status": "active",
       "note": "★3804，2026-10-29 仍提交。release 附 Windows/macOS/Linux 可移植包",
@@ -19659,6 +20071,87 @@
           "downloads": 4795,
           "tag": "ZeroTermux-0.118.3.64"
         }
+      ],
+      "needs_review": false
+    },
+    {
+      "id": "scummvm",
+      "name": "ScummVM",
+      "category": "Adventure Engine",
+      "description": "ScummVM main repository",
+      "owner": "scummvm",
+      "repo": "scummvm/scummvm",
+      "homepage": "https://www.scummvm.org",
+      "repo_url": "https://github.com/scummvm/scummvm",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v2026.4.0",
+      "latest_date": "2026-10-11T18:04:33Z",
+      "latest_body": "It is hard to believe, but a quarter-century and a couple of days ago, the ScummVM Project saw its first public commit by Ludvig Strigeus aka ludde.\r\n\r\nSo many things have changed, and we continue to follow our new release cadence. Without further ado, let's discuss what is coming with the 2026.4.0 release.\r\n\r\n## New games:\r\n   - Added support for Mortadelo y Filemón: Una Aventura de Cine Edición Original.\r\n   - Added support for Mortadelo y Filemón: Dos vaqueros chapuceros.\r\n   - Added support for Mortadelo y Filemón: Terror, Espanto y Pavor.\r\n   - Added support for Mortadelo y Filemón: La Sexta Secta.\r\n   - Added support for Mortadelo y Filemón: Operación Moscú.\r\n   - Added support for Mortadelo y Filemón: El Escarabajo de Cleopatra.\r\n   - Added support for Mortadelo y Filemón: La Banda de Corvino.\r\n   - Added support for Mortadelo y Filemón: Balones y Patadones.\r\n   - Added support for Mortadelo y Filemón: Mamelucos a la Romana.\r\n   - Added support for Dracula: Resurrection.\r\n   - Added support for Dracula 2: The Last Sanctuary.\r\n   - Added support for Amerzone: The Explorer's Legacy.\r\n   - Added support for The Cameron Files: The Secret at Loch Ness.\r\n   - Added support for The Messenger / Louvre: The Final Curse.\r\n   - Added support for Nancy Drew: The Secret of Shadow Ranch.\r\n   - Added support for Nancy Drew: Curse of Blackmoor Manor.\r\n   - Added support for Nancy Drew: Secret of the Old Clock.\r\n   - Added support for Nancy Drew: Last Train to Blue Moon Canyon.\r\n   - Added support for Nancy Drew: Danger by Design.\r\n   - Added support for Nancy Drew: The Creature of Kapu Cave.\r\n   - Added support for Chamber of the Sci-Mutant Priestess.\r\n   - Added support for Star Wars: Rebel Assault.\r\n   - Added support for Star Wars: Rebel Assault II: The Hidden Empire.\r\n   - Added support for Dragonsphere.\r\n   - Added support for Return of the Phantom.\r\n   - Added support for Once Upon a Forest.\r\n   - Added support for Alpha Polaris.\r\n   - Added support for Art of Murder: ",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-04T13:25:46Z",
+      "stars": 2879,
+      "forks": 1475,
+      "watchers": 2879,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/365181?v=4",
+      "releases": [
+        {
+          "tag": "v2026.4.0",
+          "name": "ScummVM 2026.4.0 \"Never-slop\"",
+          "date": "2026-10-11T18:04:33Z",
+          "body": "It is hard to believe, but a quarter-century and a couple of days ago, the ScummVM Project saw its first public commit by Ludvig Strigeus aka ludde.\r\n\r\nSo many things have changed, and we continue to follow our new release cadence. Without further ado, let's discuss what is coming with the 2026.4.0 release.\r\n\r\n## New games:\r\n   - Added support for Mortadelo y Filemón: Una Aventura de Cine Edición Original.\r\n   - Added support for Mortadelo y Filemón: Dos vaqueros chapuceros.\r\n   - Added support for Mortadelo y Filemón: Terror, Espanto y Pavor.\r\n   - Added support for Mortadelo y Filemón: La Sexta Secta.\r\n   - Added support for Mortadelo y Filemón: Operación Moscú.\r\n   - Added support for Mortadelo y Filemón: El Escarabajo de Cleopatra.\r\n   - Added support for Mortadelo y Filemón: La Banda "
+        },
+        {
+          "tag": "v2026.3.0",
+          "name": "ScummVM 2026.3.0: \"Carousels & Killer Whales\"",
+          "date": "2026-06-20T21:03:57Z",
+          "body": "ScummVM 2026.3.0 \"Carousels & Killer Whales\" comes to fruition. So far, we are able to keep the release cadence. This quarter, the team is bringing you a set of new and old, all exciting features!\r\n\r\n## Newly Supported Games:\r\n* _Nancy Drew: The Haunted Carousel_\r\n* _Nancy Drew: Danger on Deception Island_\r\n* _Noctropolis_\r\n* _Cartoon Carnival_\r\n* _Alfred Pelrock: En Busca de un Sueño_\r\n* _Pilot Brothers: On the Track of Striped Elephant_\r\n* _Pilot Brothers: The Case of Serial Maniac_ and 5 more games on the same engine\r\n\r\nBut wait, that's not everything!\r\n\r\n# Changelog\r\n## New games:\r\n   - Added support for Nancy Drew: The Haunted Carousel.\r\n   - Added support for Nancy Drew: Danger on Deception Island.\r\n   - Added support for Noctropolis.\r\n   - Added support for Cartoon Carnival.\r\n   - A"
+        },
+        {
+          "tag": "v2026.2.0",
+          "name": "ScummVM 2026.2.0: \"Railmonicon\"",
+          "date": "2026-03-28T21:27:36Z",
+          "body": "Three months have passed since the last release, and here we are again, with our new release approach. We are both worried and excited, but hope that in the current reality of the absence of pre-release testing, with more frequent releases, we will be able to deliver critical fixes faster.\r\n\r\nLet's talk about the release scope. Three months have passed, but the amount of new features is _very_ noticeable.\r\n\r\n## Newly Supported Games:\r\n* _Necronomicon: The Dawning of Darkness_\r\n* _Crime Patrol_\r\n* _Crime Patrol 2: Drug Wars_\r\n* _The Last Bounty Hunter_\r\n* _Mad Dog McCree_\r\n* _Mad Dog II: The Lost Gold_\r\n* _Space Pirates_\r\n* _Who Shot Johnny Rock?_\r\n\r\nAnd - as usual - there are a couple of \"one more things\"!\r\n\r\n# Changelog\r\n## New games:\r\n   - Added support for Necronomicon: The Dawning of D"
+        },
+        {
+          "tag": "v2026.1.0",
+          "name": "ScummVM 2026.1.0: \"Like a version\"",
+          "date": "2026-01-31T18:38:54Z",
+          "body": "Another year has gone by, therefore we are releasing a new ScummVM version. As you may notice right away, we are changing our version numbering schema, but that’s not all! We are also planning on more frequent releases!, which you can read about on [sev’s blog](https://www.patreon.com/posts/new-milestone-in-149535385).\r\n\r\nThis could be the biggest release we have made so far in terms of the added features and engines. If I count correctly, we have added 12 new engines to our compatibility page. Not games, engines. In terms of games, it is challenging to count, since two of the engines, SLUDGE and WAGE are authoring tools, but if you count games in our detection tables, that adds up to at least 194 titles!\r\n\r\nAnd there is so much more...\r\n\r\n# Changelog\r\n\r\n## New games:\r\n   - Added support f"
+        },
+        {
+          "tag": "v2.9.1",
+          "name": "ScummVM 2.9.1: \"Slappin da BASS\"",
+          "date": "2025-05-25T14:33:34Z",
+          "body": "Get ready to jam and slap da BASS!\r\n\r\nYes, it is this time of the year again! Please welcome the first ScummVM release of the year: ScummVM 2.9.1.\r\n\r\nThis maintenance release mainly focused on fixing bugs that our developers and users have uncovered since our last stable release.\r\n\r\n# AGI:\r\n   - Added support for early version of Christmas Card 1986 with advertisements\r\n     for Tandy hardware.\r\n   - Fixed many graphics bugs and improved responsiveness in Mickey's Space\r\n     Adventure, Winnie The Pooh In The Hundred Acre Wood, and Troll's Tale.\r\n   - Save games in Mickey's Space Adventure now restore to the planet they\r\n     were saved on instead of Earth.\r\n\r\n# AGS:\r\n   - Added official support for Old Skies and Rosewater.\r\n   - Added support for sound clip speed variation, used in some g"
+        }
+      ],
+      "source": "github",
+      "note": "冒险游戏引擎重实现，不是模拟器：直接跑 SCUMM/Sierra/AGI 等引擎的游戏数据，官方提供全平台包。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "adventure"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux",
+        "android",
+        "ios"
+      ],
+      "method": "emulation",
+      "builds": [],
+      "license": "GPL-3.0",
+      "topics": [
+        "adventure-engine",
+        "adventure-games",
+        "multiplatform",
+        "rpg-engine"
       ],
       "needs_review": false
     },
@@ -22441,6 +22934,104 @@
       "needs_review": false
     },
     {
+      "id": "mesen2",
+      "name": "Mesen",
+      "category": "All In One",
+      "description": "Multi-system emulator (NES, SNES, GB, GBA, PCE, SMS/GG, WS) for Windows, Linux and macOS",
+      "owner": "SourMesen",
+      "repo": "SourMesen/Mesen2",
+      "homepage": "https://nightly.link/SourMesen/Mesen2/workflows/build/master/Mesen%20%28Windows%20-%20net8.0%20-%20AoT%29.zip",
+      "repo_url": "https://github.com/SourMesen/Mesen2",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "2.1.1",
+      "latest_date": "2025-07-06T07:32:33Z",
+      "latest_body": "Requirements\r\n-\r\nFor the **macOS** and **Linux** builds, **SDL2** must be manually installed first.\r\n\r\nChangelog\r\n-\r\nThis release mostly contains bug fixes and accuracy improvements.\r\n\r\n- GBA: Several accuracy improvements (based on test roms)\r\n- GBC: Fixed broken menu graphics in NASCAR 2000\r\n- NES: Minor accuracy improvements for rare/unlikely edge cases (based on test roms)\r\n- NES: Fixed some issues with the Rainbow mapper implementation\r\n- NES: Fixed freeze in Mighty Bomb Jack's original release (mapper 185)\r\n- NES: Fixed NSF file playback in a rare scenario that caused no audio to be played\r\n- NES: Added support for mapper 552 (fixed version of mapper 82)\r\n- PCE: CD-ROM - Added support for CD+G disc playback\r\n- PCE: CD-ROM - Fixed freeze in intro sequence in Hyper Dyne Sidearms Special\r\n- PCE: CD-ROM - Fixed broken intro sequence in Princess Maker 1 and 2\r\n- PCE: Minor CPU accuracy fixes/improvements\r\n- SNES: Added support for homebrew SNES rumble controller\r\n- WS: Minor accuracy improvements (based on test roms)\r\n- Linux: Fixed crash on startup for some systems when using Wayland\r\n- Linux: Fixed freeze on some systems when closing debugger tools\r\n- Linux/macOS: Fixed crash when SDL2 is not found (display an error message instead)\r\n- Misc: Disabled log output to console (use --enableStdout to manually enable this behavior)",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-06-04T09:31:24Z",
+      "stars": 2416,
+      "forks": 389,
+      "watchers": 2416,
+      "downloads": 387481,
+      "logo_url": "https://avatars.githubusercontent.com/u/21093973?v=4",
+      "releases": [
+        {
+          "tag": "2.1.1",
+          "name": "Mesen 2.1.1",
+          "date": "2025-07-06T07:32:33Z",
+          "body": "Requirements\r\n-\r\nFor the **macOS** and **Linux** builds, **SDL2** must be manually installed first.\r\n\r\nChangelog\r\n-\r\nThis release mostly contains bug fixes and accuracy improvements.\r\n\r\n- GBA: Several accuracy improvements (based on test roms)\r\n- GBC: Fixed broken menu graphics in NASCAR 2000\r\n- NES: Minor accuracy improvements for rare/unlikely edge cases (based on test roms)\r\n- NES: Fixed some issues with the Rainbow mapper implementation\r\n- NES: Fixed freeze in Mighty Bomb Jack's original release (mapper 185)\r\n- NES: Fixed NSF file playback in a rare scenario that caused no audio to be played\r\n- NES: Added support for mapper 552 (fixed version of mapper 82)\r\n- PCE: CD-ROM - Added support for CD+G disc playback\r\n- PCE: CD-ROM - Fixed freeze in intro sequence in Hyper Dyne Sidearms Specia"
+        },
+        {
+          "tag": "2.1.0",
+          "name": "Mesen 2.1.0",
+          "date": "2025-05-16T13:44:19Z",
+          "body": "Requirements\r\n-\r\nFor the **macOS** and **Linux** builds, **SDL2** must be manually installed first.\r\n\r\nChangelog\r\n-\r\nA lot has been improved or added since the first release of 2.0.0 over 2 years ago.\r\nThis is a short summary of the most notable changes.\r\n\r\n- Support for more consoles:\r\n  - Game Boy Advance\r\n  - Game Gear\r\n  - Master System (including support for the SG-1000 and ColecoVision)\r\n  - Wonder Swan and Wonder Swan Color\r\n- Accuracy improvements for all consoles\r\n- Various bug fixes\r\n- macOS support\r\n- New features and improvements for the debugger:\r\n  - Forbid breakpoints\r\n  - Step back single scanline/frame\r\n  - Undo ROM/RAM changes\r\n  - Integration with more compilers/assemblers (HuCC, PCEAS, SDCC, devkitARM)\r\n- Console-specific improvements/fixes:\r\n  - NES: Support for EPSM a"
+        }
+      ],
+      "source": "github",
+      "note": "高精度多平台模拟器：NES/Famicom、SNES、GB/GBC、GBA、PC Engine、WonderSwan 等，以准确性见长。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "nes",
+        "snes",
+        "gb",
+        "gba",
+        "wonderswan"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Mesen_2.1.1_Windows.zip",
+          "size": 34058170,
+          "url": "https://github.com/SourMesen/Mesen2/releases/download/2.1.1/Mesen_2.1.1_Windows.zip",
+          "downloads": 321926,
+          "tag": "2.1.1"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "Mesen_2.1.1_macOS_x64_Intel.zip",
+          "size": 80042690,
+          "url": "https://github.com/SourMesen/Mesen2/releases/download/2.1.1/Mesen_2.1.1_macOS_x64_Intel.zip",
+          "downloads": 5147,
+          "tag": "2.1.1"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "Mesen_2.1.1_Linux_x64.zip",
+          "size": 39534900,
+          "url": "https://github.com/SourMesen/Mesen2/releases/download/2.1.1/Mesen_2.1.1_Linux_x64.zip",
+          "downloads": 46039,
+          "tag": "2.1.1"
+        }
+      ],
+      "license": "GPL-3.0",
+      "topics": [
+        "emulator",
+        "game-gear",
+        "gameboy",
+        "gba",
+        "master-system",
+        "nes",
+        "pc-engine",
+        "snes",
+        "wonderswan"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "armsx2-armsx2",
       "name": "ARMSX2",
       "category": "Emulator PS2",
@@ -24311,6 +24902,114 @@
       "needs_review": false
     },
     {
+      "id": "ares",
+      "name": "ares",
+      "category": "All In One",
+      "description": "ares is a cross-platform, open source, multi-system emulator, focusing on accuracy and preservation.",
+      "owner": "ares-emulator",
+      "repo": "ares-emulator/ares",
+      "homepage": "https://ares-emu.net",
+      "repo_url": "https://github.com/ares-emulator/ares",
+      "official": true,
+      "channel": "prerelease",
+      "latest_tag": "nightly",
+      "latest_date": "2024-12-30T00:38:03Z",
+      "latest_body": "sfc: add Super Multitap support",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-03T15:34:23Z",
+      "stars": 1854,
+      "forks": 239,
+      "watchers": 1854,
+      "downloads": 1659,
+      "logo_url": "https://avatars.githubusercontent.com/u/88543911?v=4",
+      "releases": [
+        {
+          "tag": "nightly",
+          "name": "ares nightly 2026-09-23",
+          "date": "2024-12-30T00:38:03Z",
+          "body": "sfc: add Super Multitap support"
+        },
+        {
+          "tag": "v148",
+          "name": "ares v148",
+          "date": "2026-05-30T13:17:23Z",
+          "body": "ares v148 has now been released.\r\n\r\nThis release includes big improvements to a number of ares cores. Highlights include rewrites to the N64 CPU & RSP JITs resulting in significant performance gains across the N64 library, additional implementation & accuracy improvements to the PlayStation core, fixes to the GBA core, and support for the Famicom data recorder & Dendy. \r\n\r\nAdditionally, there have been many updates to the core ares application across all platforms. Per-core input configuration has been added, updated video, audio, & input drivers are available, bug fixes, additional options have been added, and core dependencies have been updated. \r\n\r\nSince v147, 20 contributors have created 300 commits to the ares codebase.\r\n\r\nAs always, if you wish to see the full changelog in a per-comm"
+        },
+        {
+          "tag": "v147",
+          "name": "ares v147",
+          "date": "2025-12-23T08:57:00Z",
+          "body": "This is ares v147, released on 2025-12-23."
+        },
+        {
+          "tag": "v146",
+          "name": "ares v146",
+          "date": "2025-08-26T19:30:09Z",
+          "body": "This is ares v146, released on 2025-08-26."
+        },
+        {
+          "tag": "v145",
+          "name": "ares v145",
+          "date": "2025-07-09T17:16:51Z",
+          "body": "ares v145 has now been released.\r\n\r\nThis release contains hefty improvements to a number of ares components. Highlights include Real Time Clock support for the Game Boy Advance, improvements to the experimental PlayStation core, Sega SC-3000 support, important fixes to the Game Boy Color, as well as core improvements to the ares application itself that should improve performance and responsiveness.\r\n\r\nSince v144, 8 contributors have created 90 commits to the ares codebase.\r\n\r\nAs always, if you wish to see the full changelog in a per-commit format along with their authors, you can do so on GitHub [here](https://github.com/ares-emulator/ares/compare/v144...v145).\r\n\r\n**ARM7TDMI (Game Boy Advance CPU, ST018 Super Famicom coprocessor)**\r\n\r\n- Implemented many undocumented instruction encodings\r\n"
+        }
+      ],
+      "source": "github",
+      "note": "多平台高精度模拟器（原 higan 团队），覆盖 SNES/NES/GB/GBA/Mega Drive/MSX/Neo Geo Pocket/WonderSwan 等。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "snes",
+        "nes",
+        "gb",
+        "gba",
+        "mega-drive",
+        "msx",
+        "neo-geo",
+        "wonderswan"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "ares-windows-x64.zip",
+          "size": 65248770,
+          "url": "https://github.com/ares-emulator/ares/releases/download/nightly/ares-windows-x64.zip",
+          "downloads": 1224,
+          "tag": "nightly"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "ares-macos-universal.zip",
+          "size": 80762850,
+          "url": "https://github.com/ares-emulator/ares/releases/download/nightly/ares-macos-universal.zip",
+          "downloads": 165,
+          "tag": "nightly"
+        }
+      ],
+      "license": "NOASSERTION",
+      "topics": [
+        "console",
+        "emulation",
+        "emulator",
+        "game",
+        "hacktoberfest",
+        "higan",
+        "near"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "dosbox-staging",
       "name": "DOSBox Staging",
       "category": "桌面模拟器",
@@ -24339,8 +25038,8 @@
       "kind": "emulator",
       "runtime": "desktop",
       "platforms": [
-        "windows-pc",
-        "multi"
+        "dos",
+        "windows-pc"
       ],
       "status": "active",
       "note": "DOSBox 官方承认的现代延续分支，★1834，2026-11-03 仍提交。正式版 v0.83.0 附 Windows/Linux/macOS 原生包，dev-latest 通道附每日构建",
@@ -25062,6 +25761,99 @@
           "tag": "v12"
         }
       ],
+      "needs_review": false
+    },
+    {
+      "id": "fceux",
+      "name": "FCEUX",
+      "category": "NES Emulator",
+      "description": "FCEUX, a NES Emulator",
+      "owner": "TASEmulators",
+      "repo": "TASEmulators/fceux",
+      "homepage": "http://fceux.com",
+      "repo_url": "https://github.com/TASEmulators/fceux",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "fceux-2.7.0",
+      "latest_date": "2026-10-14T01:18:01Z",
+      "latest_body": "The 2.7.0 release introduces several new features and improvements focused on build system enhancements, media codec support, and developer tooling. Profiling and debugging capabilities have been significantly improved, with support for FFmpeg 9 and enhanced platform compatibility.\r\nNote: The tag on this release was bumped once due to a major bug being found shortly after initial release. It has been corrected and new builds are generated, sorry for the inconvenience.",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-02T02:48:28Z",
+      "stars": 1579,
+      "forks": 319,
+      "watchers": 1579,
+      "downloads": 2367,
+      "logo_url": "https://avatars.githubusercontent.com/u/11743303?v=4",
+      "releases": [
+        {
+          "tag": "fceux-2.7.0",
+          "name": "fceux-2.7.0",
+          "date": "2026-10-14T01:18:01Z",
+          "body": "The 2.7.0 release introduces several new features and improvements focused on build system enhancements, media codec support, and developer tooling. Profiling and debugging capabilities have been significantly improved, with support for FFmpeg 9 and enhanced platform compatibility.\r\nNote: The tag on this release was bumped once due to a major bug being found shortly after initial release. It has been corrected and new builds are generated, sorry for the inconvenience."
+        },
+        {
+          "tag": "v2.6.6",
+          "name": "fceux-2.6.6",
+          "date": "2023-08-27T20:39:49Z",
+          "body": "The 2.6.6 release is mainly a maintenance update for the mappers and emulation core with a few new features added in.\r\nSome of these new features apply only to the Qt/SDL version of the GUI."
+        },
+        {
+          "tag": "v2.6.5",
+          "name": "fceux-2.6.5",
+          "date": "2023-02-08T23:46:51Z",
+          "body": "The 2.6.5 release is a maintenance update that contains various fixes from a back log of bugs and feature requests over the past year. "
+        },
+        {
+          "tag": "interim-build",
+          "name": "interim-build",
+          "date": "2025-11-10T12:01:07Z",
+          "body": "Interim Builds - Latest auto builds off master branch - commit: 8cc753da0b8e6924089ed76ce6a2a93997492264\nDate: 2026-11-02T02:48:24.0000000Z"
+        },
+        {
+          "tag": "fceux-2.6.4",
+          "name": "fceux-2.6.4",
+          "date": "2022-03-24T00:45:41Z",
+          "body": "The 2.6.4 release is a maintenance update that fixes a couple bugs for Qt/SDL port. "
+        }
+      ],
+      "source": "github",
+      "note": "NES/Famicom 模拟器，带调试器与 Lua 脚本，长期维护的 TAS 工具链。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "nes"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "fceux-2.7.0-win64-QtSDL.zip",
+          "size": 96884928,
+          "url": "https://github.com/TASEmulators/fceux/releases/download/fceux-2.7.0/fceux-2.7.0-win64-QtSDL.zip",
+          "downloads": 321,
+          "tag": "fceux-2.7.0"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "fceux-2.7.0-macos-arm64.dmg",
+          "size": 51321431,
+          "url": "https://github.com/TASEmulators/fceux/releases/download/fceux-2.7.0/fceux-2.7.0-macos-arm64.dmg",
+          "downloads": 224,
+          "tag": "fceux-2.7.0"
+        }
+      ],
+      "license": "GPL-2.0",
+      "topics": [],
       "needs_review": false
     },
     {
@@ -27218,7 +28010,7 @@
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
-        "wii"
+        "wiiu"
       ],
       "status": "active",
       "method": "emulation",
@@ -27453,8 +28245,8 @@
       "kind": "emulator",
       "runtime": "libretro",
       "platforms": [
-        "windows-pc",
-        "multi"
+        "dos",
+        "windows-pc"
       ],
       "status": "active",
       "note": "★1185，GPL-2.0。非 fork 而是重写，专为 RetroArch/libretro 后端设计。release 1.0-preview6 附 android arm32/arm64 核心包，可直接供安卓端 RetroArch 使用",
@@ -29162,6 +29954,116 @@
       "_pool_score": 95,
       "_dup": false,
       "distribution": null
+    },
+    {
+      "id": "stella",
+      "name": "Stella",
+      "category": "Atari Emulator",
+      "description": "A multi-platform Atari 2600 Emulator",
+      "owner": "stella-emu",
+      "repo": "stella-emu/stella",
+      "homepage": "https://stella-emu.github.io",
+      "repo_url": "https://github.com/stella-emu/stella",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "7.0",
+      "latest_date": "2024-10-05T20:40:48Z",
+      "latest_body": "A new major release of Stella is now available; first time in over two years!  Here are some of the changes:\r\n\r\n  * Enhanced ROM launcher to allow multiple images per ROM.\r\n\r\n  * Made heaps of additional images available for the ROM launcher.\r\n\r\n  * Added searching by filename for ROM launcher images.\r\n\r\n  * Added option to start random ROM.\r\n\r\n  * Added automatically enabled phosphor modes.\r\n\r\n  * Enhanced Game Properties dialog for multigame ROMs.\r\n\r\n  * Added 2nd UI theme and hotkey for toggling UI theme.\r\n\r\n  * Added bezel support (incl. Sinden Lightgun).\r\n\r\n  * Added optional type format detection based on colors used.\r\n\r\n  * Added Joy2B+ controller support.\r\n\r\n  * Added auto detection for QuadTari attached controllers.\r\n\r\n  * Enhanced Kid Vid support to play tape audio.\r\n\r\n  * Added port selection, used for controller default mapping.\r\n\r\n  * Added missing PlusROM support for E7 bankswitching.\r\n\r\n  * Enhanced movie cart (MVC) support.\r\n\r\n  * Accelerated emulation up to ~15% (ARM).\r\n\r\n  * Added limited GameLine Master Module bankswitching support.\r\n\r\n  * Added 03E0 bankswitching for Brazilian Parker Bros ROMs.\r\n\r\n  * Added WF8 bankswitching used by some certain Coleco white carts.\r\n\r\n  * Added JANE bankswitching used by Coleco's Tarzan prototype.\r\n\r\n  * Added ELF mapper for Mattress Monkeys.\r\n\r\n  * Added BUS bankswitching support for some older demos.\r\n\r\n  * Fixed broken 7800 pause key support.\r\n\r\n  * Added developer option for random hotspot peek values.\r\n\r\n  * Added user defined CPU cycle timers to debugger.\r\n\r\n  * Removed 'launcherroms' option, since it was causing some issues.\r\n\r\n  * Codebase now uses C++20 features, which means a minimum of gcc-11\r\n    or clang-10 for Linux/Mac, and Visual Studio 2022 for Windows.\r\n\r\n-Have fun!",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-04T02:04:39Z",
+      "stars": 774,
+      "forks": 149,
+      "watchers": 774,
+      "downloads": 93226,
+      "logo_url": "https://avatars.githubusercontent.com/u/24813348?v=4",
+      "releases": [
+        {
+          "tag": "7.0",
+          "name": "Stella 7.0 released",
+          "date": "2024-10-05T20:40:48Z",
+          "body": "A new major release of Stella is now available; first time in over two years!  Here are some of the changes:\r\n\r\n  * Enhanced ROM launcher to allow multiple images per ROM.\r\n\r\n  * Made heaps of additional images available for the ROM launcher.\r\n\r\n  * Added searching by filename for ROM launcher images.\r\n\r\n  * Added option to start random ROM.\r\n\r\n  * Added automatically enabled phosphor modes.\r\n\r\n  * Enhanced Game Properties dialog for multigame ROMs.\r\n\r\n  * Added 2nd UI theme and hotkey for toggling UI theme.\r\n\r\n  * Added bezel support (incl. Sinden Lightgun).\r\n\r\n  * Added optional type format detection based on colors used.\r\n\r\n  * Added Joy2B+ controller support.\r\n\r\n  * Added auto detection for QuadTari attached controllers.\r\n\r\n  * Enhanced Kid Vid support to play tape audio.\r\n\r\n  * Added "
+        },
+        {
+          "tag": "6.7.1",
+          "name": "Stella 6.7.1 released",
+          "date": "2024-01-15T23:21:32Z",
+          "body": "Just a minor bugfix release; the big 7.0 release is coming soon in 2024:\r\n  * Fixed broken mouse and Stelladaptor input for Driving Controller.\r\n\r\n  * For UNIX systems: Now defaults to using system-installed libsqlite3 when available, and fixes delay on exiting app experienced on some systems."
+        },
+        {
+          "tag": "6.7",
+          "name": "Stella 6.7 released",
+          "date": "2022-06-13T22:25:59Z",
+          "body": "This is a new semi-major release, with the following changes:\r\n  * IMPORTANT NOTES:\r\n    - Because of fixes to JSON handling, all remappings will be reset to defaults; if you had custom mappings, they will need to be re-entered again.\r\n    - Because of internal changes, all state files are now invalid.\r\n\r\n  * Completely reworked the file launcher:\r\n    - Redesigned user interface\r\n    - Added tracking of user favorites, recently played and most popular games\r\n    - Added virtual directories for selecting tracked games\r\n    - Added quick path navigation\r\n    - Added navigation history\r\n    - Added icons for files and directories\r\n    - Added option to show/hide file extensions\r\n    - Extended context menu and shortcuts\r\n    - Fixed sluggish behaviour when reading large and/or invalid files\r"
+        },
+        {
+          "tag": "6.6",
+          "name": "Stella 6.6 released",
+          "date": "2021-11-16T21:46:38Z",
+          "body": "This is a new semi-major release, with the following changes:\r\n  * Added preliminary PlusROM support for saving high scores.\r\n\r\n  * Added preliminary support for 'MVC' bankswitching scheme by Rob Bairos.\r\n\r\n  * Added web links for many games.\r\n\r\n  * Added dead zone and linearity settings for analog controllers.\r\n\r\n  * Added 'Check for Update' button to Help dialog.\r\n\r\n  * Added different mask patterns for scanline emulation.\r\n\r\n  * Fixed MindLink controller.\r\n\r\n  * Fixed SaveKey not working with QuadTari.\r\n\r\n  * Added TIA randomization on startup option.\r\n\r\n  * Added different debug color luminances for player and missile copies.\r\n\r\n  * Added hotkeys for TV roll speed and toggling 'Developer settings' sets.\r\n\r\n  * Debugger: enhanced prompt's auto complete and history.\r\n\r\n  * Debugger: adde"
+        },
+        {
+          "tag": "6.5.3",
+          "name": "Stella 6.5.3 released",
+          "date": "2021-04-20T23:19:49Z",
+          "body": "Just another quick bugfix release for the 6.5 series. Changes as follows:\r\n  * Added context-sensitive help.\r\n\r\n  * Improved support of multiple monitors with different resolutions.\r\n\r\n  * Improved analog input reading (Paddles, Keyboards...).\r\n\r\n  * Fixed QuadTari support for controller types other than Joysticks.\r\n\r\n  * Fixed palette and TV effects saving for Retron77.\r\n\r\n  * Fixed immediate disassembling when switching options in debugger.\r\n"
+        }
+      ],
+      "source": "github",
+      "note": "Atari 2600 模拟器，带调试器；同时支持 Atari 7800（部分版本）。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "atari-2600"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Stella-7.0c-windows.zip",
+          "size": 4255411,
+          "url": "https://github.com/stella-emu/stella/releases/download/7.0/Stella-7.0c-windows.zip",
+          "downloads": 25729,
+          "tag": "7.0"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "Stella-7.0-macos.dmg",
+          "size": 10554991,
+          "url": "https://github.com/stella-emu/stella/releases/download/7.0/Stella-7.0-macos.dmg",
+          "downloads": 10983,
+          "tag": "7.0"
+        },
+        {
+          "host": "linux",
+          "format": "deb",
+          "name": "stella_7.0_amd64.deb",
+          "size": 3059858,
+          "url": "https://github.com/stella-emu/stella/releases/download/7.0/stella_7.0_amd64.deb",
+          "downloads": 6914,
+          "tag": "7.0"
+        }
+      ],
+      "license": "GPL-2.0",
+      "topics": [
+        "2600",
+        "atari",
+        "atari-2600",
+        "atari2600",
+        "emulation",
+        "emulator",
+        "emulators"
+      ],
+      "needs_review": false
     },
     {
       "id": "xodiosx-xodos",
@@ -36918,6 +37820,118 @@
       "needs_review": false
     },
     {
+      "id": "openmsx",
+      "name": "openMSX",
+      "category": "MSX Emulator",
+      "description": "the MSX emulator that aims for perfection",
+      "owner": "openMSX",
+      "repo": "openMSX/openMSX",
+      "homepage": "http://openmsx.org",
+      "repo_url": "https://github.com/openMSX/openMSX",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "RELEASE_22_0",
+      "latest_date": "2026-10-28T09:59:28Z",
+      "latest_body": "Release Notes for openMSX 22.0 (2026-10-28)\r\n===========================================\r\n\r\nThanks to many contributors (who make good use of modern AI tools), we\r\nhave a very long list of changes again. Major features are found in the\r\ndebugger GUI, with a new Raster Beam Viewer and Tracer functionality. We also\r\nhave the Quick Setup Editor, for one-window access to all major setup\r\nsettings.\r\n\r\nThen AI hit us with dozens of Pull Requests with new and improved\r\nfunctionality... Not all purely AI-generated, but also using AI to analyse\r\nbulk measurements. This led to many VDP accuracy improvements and emulation of\r\nnew devices like plotters, Panasonic FS-JH1 Joy Handle steering wheel (that\r\ncame with Konami's A1 Spirit), light guns, Franky, Makoto, SD Mapper V1 and\r\nSM-X WiFi. There's even a synthetic TCP/IP UNAPI device to be able to try out\r\nnetwork programs in openMSX.\r\n\r\nAnd many, many more things...\r\n\r\nSpecial thanks to all the contributors of this release who are not in the core\r\nteam! Keep those pull requests coming!\r\n\r\nHere's the list with all highlights and details:\r\n\r\nMSX device support:\r\n- fixed Yamanooto SCC register visibility\r\n- added emulation of the Sony PRN-C41 (like) plotters, including a viewer in the\r\n  GUI\r\n- fixed details on the turboR's FDC emulation, so that now FastCopy 3.0\r\n  properly detects it, including the correct number of drives\r\n- added MSX Light Gun emulation, controlled with the mouse on the host:\r\n  - MHT GUN-STICK\r\n  - ASCII Plus-X Terminator Laser\r\n- added Korean 128-in-1 mapper type\r\n- added Namco mapper type (A13-not-connected 16kB cartridges)\r\n- added ASCII8-R (reversed) mapper type\r\n- fixed details of MSX kanji ROM emulation, adding specific behaviour in many\r\n  machines and devices\r\n- added Panasonic FS-JH1 Joy Handle (belongs with Konami's A1 Spirit),\r\n  including configuration window\r\n- added SuperSoniqs Franky emulation (allows playing Sega Master System games\r\n  on MSX)\r\n- added SuperSoniqs Makoto emulation (OPNA sound ",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-11-02T20:14:28Z",
+      "stars": 569,
+      "forks": 147,
+      "watchers": 569,
+      "downloads": 2164,
+      "logo_url": "https://avatars.githubusercontent.com/u/12670808?v=4",
+      "releases": [
+        {
+          "tag": "RELEASE_22_0",
+          "name": "openMSX 22.0",
+          "date": "2026-10-28T09:59:28Z",
+          "body": "Release Notes for openMSX 22.0 (2026-10-28)\r\n===========================================\r\n\r\nThanks to many contributors (who make good use of modern AI tools), we\r\nhave a very long list of changes again. Major features are found in the\r\ndebugger GUI, with a new Raster Beam Viewer and Tracer functionality. We also\r\nhave the Quick Setup Editor, for one-window access to all major setup\r\nsettings.\r\n\r\nThen AI hit us with dozens of Pull Requests with new and improved\r\nfunctionality... Not all purely AI-generated, but also using AI to analyse\r\nbulk measurements. This led to many VDP accuracy improvements and emulation of\r\nnew devices like plotters, Panasonic FS-JH1 Joy Handle steering wheel (that\r\ncame with Konami's A1 Spirit), light guns, Franky, Makoto, SD Mapper V1 and\r\nSM-X WiFi. There's even"
+        },
+        {
+          "tag": "RELEASE_22_0_RC2",
+          "name": "openMSX 22.0-RC2",
+          "date": "2026-10-25T23:16:25Z",
+          "body": "Release Notes for openMSX 22.0-RC2 (2026-10-25)\r\n===============================================\r\n\r\nThanks to many contributors (who make good use of modern AI tools), we\r\nhave a very long list of changes again. Major features are found in the\r\ndebugger GUI, with a new Raster Beam Viewer and Tracer functionality. We also\r\nhave the Quick Setup Editor, for one-window access to all major setup\r\nsettings.\r\n\r\nThen AI hit us with dozens of Pull Requests with new and improved\r\nfunctionality... Not all purely AI-generated, but also using AI to analyse\r\nbulk measurements. This led to many VDP accuracy improvements and emulation of\r\nnew devices like plotters, Panasonic FS-JH1 Joy Handle steering wheel (that\r\ncame with Konami's A1 Spirit), light guns, Franky, Makoto, SD Mapper V1 and\r\nSM-X WiFi. Ther"
+        },
+        {
+          "tag": "RELEASE_21_0",
+          "name": "openMSX 21.0",
+          "date": "2025-09-26T20:50:20Z",
+          "body": "openMSX 21.0 has many improvements on the new GUI introduced in openMSX 20.0 (especially the debugger) and several other smaller features. It also introduces the \"setups\" concept, which enables you to define an MSX setup (e.g. a Philips VG 8020 with an external disk drive and a joystick, data recorder and printer connected). These can be created, loaded, and automatically started. They can also be saved automatically when you exit.\r\n\r\nFurthermore, flash chip emulation has become a lot more accurate, thanks to Laurens Holst."
+        },
+        {
+          "tag": "RELEASE_20_0",
+          "name": "openMSX 20.0",
+          "date": "2024-09-22T09:26:06Z",
+          "body": "openMSX 20.0—Autumn Spring—is a major release, in which we introduce the new Graphical User Interface, replacing the OSD menu. A faster and more powerful debugger is now included in openMSX itself. Configuration for MSX joystick/JoyMega has been improved drastically using the new GUI. If you still want to use Catapult, you can use the Catapult release that came with openMSX 19.0. Please [read the release notes](https://raw.githubusercontent.com/openMSX/openMSX/RELEASE_20_0/doc/release-notes.txt) for details of the openMSX changes.\r\n\r\nAs always, special thanks to all the contributors of this release who are not in the core team! Keep these pull requests coming!\r\n\r\nPlease note that as of now, a system with OpenGL 2 support is required to run openMSX. "
+        },
+        {
+          "tag": "RELEASE_19_1",
+          "name": "openMSX 19.1",
+          "date": "2023-08-30T20:54:08Z",
+          "body": "openMSX 19.1—Reflection—is a bug fix release for openMSX 19.0, as we found some rather nasty issues after releasing, mostly that LaserDisc support was broken. No new Catapult will be released, as it has no changes.  Please [read the release notes](https://raw.githubusercontent.com/openMSX/openMSX/RELEASE_19_1/doc/release-notes.txt) for details of the openMSX changes.\r\n\r\nThanks for those who gave us the feedback so that we found out about these issues.\r\n\r\nPlease note that this will be the last openMSX release that supports systems without OpenGL 2 or higher."
+        }
+      ],
+      "source": "github",
+      "note": "MSX/MSX2/MSX2+/turboR 模拟器，带调试器与 Tcl 脚本接口。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "msx"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "openmsx-22.0-windows-vc-x64-pdb.zip",
+          "size": 35805798,
+          "url": "https://github.com/openMSX/openMSX/releases/download/RELEASE_22_0/openmsx-22.0-windows-vc-x64-pdb.zip",
+          "downloads": 61,
+          "tag": "RELEASE_22_0"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "openmsx-22.0-mac-x86_64-bin.dmg",
+          "size": 9687423,
+          "url": "https://github.com/openMSX/openMSX/releases/download/RELEASE_22_0/openmsx-22.0-mac-x86_64-bin.dmg",
+          "downloads": 202,
+          "tag": "RELEASE_22_0"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "openmsx-22.0-linux-x86_64-bin.zip",
+          "size": 10932054,
+          "url": "https://github.com/openMSX/openMSX/releases/download/RELEASE_22_0/openmsx-22.0-linux-x86_64-bin.zip",
+          "downloads": 224,
+          "tag": "RELEASE_22_0"
+        }
+      ],
+      "license": null,
+      "topics": [
+        "emulator",
+        "emulator-programming",
+        "msx",
+        "msx-computers",
+        "msx-documentation",
+        "msx-emulator",
+        "msx2",
+        "msx2plus",
+        "msxturbor"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "rainchus-dk64-rekongpiled",
       "name": "DK64 Rekongpiled",
       "category": "PC 移植",
@@ -37120,6 +38134,111 @@
           "downloads": 419,
           "tag": "v1.0.3"
         }
+      ],
+      "needs_review": false
+    },
+    {
+      "id": "fs-uae",
+      "name": "FS-UAE",
+      "category": "Amiga Emulator",
+      "description": "Cross-platform Amiga emulator with a slight focus on gaming, but also with solid support for productivity apps including just-in-time (JIT) compilation.",
+      "owner": "FrodeSolheim",
+      "repo": "FrodeSolheim/fs-uae",
+      "homepage": "https://fs-uae.net/",
+      "repo_url": "https://github.com/FrodeSolheim/fs-uae",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v3.2.35",
+      "latest_date": "2025-09-07T12:30:43Z",
+      "latest_body": "Version 3.2.35:\r\n\r\n* Fix crash caused when opening the \"More...\" input menu.\r\n\r\nVersion 3.2.x:\r\n\r\n* Disable cpu governor warning on Linux.\r\n* Allow overriding device names for hard drive directories.\r\n* Upgrade libslirp to version 4.6.1.\r\n* Backported builtin slirp from FS-UAE 4 (fixes A2065 instability).\r\n* Use g_get_monotonic_time() for high-resolution time on Windows as well.",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2025-09-13T09:37:10Z",
+      "stars": 565,
+      "forks": 113,
+      "watchers": 565,
+      "downloads": 124962,
+      "logo_url": "https://avatars.githubusercontent.com/u/4447840?v=4",
+      "releases": [
+        {
+          "tag": "v3.2.35",
+          "name": "3.2.35",
+          "date": "2025-09-07T12:30:43Z",
+          "body": "Version 3.2.35:\r\n\r\n* Fix crash caused when opening the \"More...\" input menu.\r\n\r\nVersion 3.2.x:\r\n\r\n* Disable cpu governor warning on Linux.\r\n* Allow overriding device names for hard drive directories.\r\n* Upgrade libslirp to version 4.6.1.\r\n* Backported builtin slirp from FS-UAE 4 (fixes A2065 instability).\r\n* Use g_get_monotonic_time() for high-resolution time on Windows as well."
+        },
+        {
+          "tag": "v3.1.66",
+          "name": "3.1.66",
+          "date": "2021-12-19T13:35:25Z",
+          "body": "- Updated bundled SDL version to 2.0.18\r\n- Updated controller mappings\r\n"
+        },
+        {
+          "tag": "v3.1.64",
+          "name": "3.1.64",
+          "date": "2021-12-19T08:52:09Z",
+          "body": ""
+        },
+        {
+          "tag": "v3.1.35",
+          "name": "3.1.35",
+          "date": "2021-10-11T14:11:36Z",
+          "body": "Version 3.1:\r\n\r\n* Fix device helper for xinput devices with recent SDL2 versions.\r\n* Support for multiple mice disabled by default on macOS due to security\r\n  warning. Use option multiple_mice = 1 to enable.\r\n* Disable expect_version option (no longer synchronized with launcher).\r\n* Added support for more physical keys (when using rawinput).\r\n* Compilation fixes for Apple M1 hardware.\r\n* Netplay desync fixes related to file system (directory hard drives).\r\n* Better virtual memory reservation algorithm.\r\n* Option to automatically pause on menu screen [mrsilver76].\r\n* Use RTLD_DEEPBIND with dlopen on Linux when loading plugins.\r\n* Changes to how plugins are looked up.\r\n* Ide patch.\r\n* SCP floppy image doesn't wrap to revolution #0 cleanly [keirf].\r\n* Fixed crash in nname_to_aname [PowderedTo"
+        },
+        {
+          "tag": "v2.6.1",
+          "name": "2.6.1",
+          "date": "2015-09-20T21:14:16Z",
+          "body": ""
+        }
+      ],
+      "source": "github",
+      "note": "Amiga 模拟器，基于 WinUAE 的跨平台重构，带 Launcher 前端与在线游戏库。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "amiga"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "windows",
+          "format": "exe",
+          "name": "FS-UAE_3.2.35_Windows_x86-64.exe",
+          "size": 81009856,
+          "url": "https://github.com/FrodeSolheim/fs-uae/releases/download/v3.2.35/FS-UAE_3.2.35_Windows_x86-64.exe",
+          "downloads": 21927,
+          "tag": "v3.2.35"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "FS-UAE_3.2.35_macOS_x86-64.dmg",
+          "size": 8735340,
+          "url": "https://github.com/FrodeSolheim/fs-uae/releases/download/v3.2.35/FS-UAE_3.2.35_macOS_x86-64.dmg",
+          "downloads": 6617,
+          "tag": "v3.2.35"
+        },
+        {
+          "host": "linux",
+          "format": "xz",
+          "name": "FS-UAE_3.2.35_Linux_x86-64.tar.xz",
+          "size": 7108828,
+          "url": "https://github.com/FrodeSolheim/fs-uae/releases/download/v3.2.35/FS-UAE_3.2.35_Linux_x86-64.tar.xz",
+          "downloads": 8759,
+          "tag": "v3.2.35"
+        }
+      ],
+      "license": "GPL-2.0",
+      "topics": [
+        "amiga",
+        "emulator"
       ],
       "needs_review": false
     },
@@ -38352,8 +39471,8 @@
         }
       ],
       "source": "github",
-      "note": "定位是 Galgame 管理中心，不含引擎（这点与 Tyranor/Aether 不同），但能力密度很高：类 Steam 的时长记录与好友动态、NextMoe/Hikarinagi 账号绑定、内置 OCR 翻译(基于 MoeTranslate)、5 个刮削源(NextMoe/VNDB/Bangumi/月幕/Hikarinagi)、3D 展厅与多人在线展厅、可导入 Playnite/PotatoVN/Vnite/LunaBox、支持 GameHub 快捷方式与自定义启动项。需搭配引擎使用。",
-      "kind": "tool",
+      "note": "管理前端 + 自维护的 RFVP(FVP) 引擎 Android 移植：rfvp-build/ 下 22 个引擎级补丁（加法混合、遮罩溶解、文字缩放/取消、JIS 隧道、WMV 解码、音频单元、系统调用语义等）。另集成 OCR 翻译(MoeTranslate)、5 个刮削源(NextMoe/VNDB/Bangumi/月幕/Hikarinagi)、类 Steam 时长与好友动态、3D 展厅、可导入 Playnite/PotatoVN/Vnite/LunaBox。Kirikiri 等其它格式走外部引擎/模拟器入口。",
+      "kind": "engine",
       "runtime": "android-native",
       "platforms": [
         "visual-novel"
@@ -38362,7 +39481,7 @@
       "hosts": [
         "android"
       ],
-      "method": null,
+      "method": "engine",
       "builds": [
         {
           "host": "android",
@@ -40856,6 +41975,52 @@
       "needs_review": false
     },
     {
+      "id": "np2kai",
+      "name": "NP2kai",
+      "category": "PC-98 Emulator",
+      "description": "Neko Project II kai",
+      "owner": "AZO234",
+      "repo": "AZO234/NP2kai",
+      "homepage": "http://domisan.sakura.ne.jp/article/np2kai/np2kai.html",
+      "repo_url": "https://github.com/AZO234/NP2kai",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-09-05T10:40:50Z",
+      "stars": 438,
+      "forks": 115,
+      "watchers": 438,
+      "downloads": 0,
+      "logo_url": "https://avatars.githubusercontent.com/u/5128629?v=4",
+      "releases": [],
+      "source": "github",
+      "note": "PC-98 模拟器（Neko Project II 系），可运行大量 90 年代日式 PC 游戏；libretro core 亦可。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "pc-98"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux",
+        "android"
+      ],
+      "method": "emulation",
+      "builds": [],
+      "license": "MIT",
+      "topics": [
+        "libretro"
+      ],
+      "needs_review": false
+    },
+    {
       "id": "n3xox1-nxemu",
       "name": "NxEmu",
       "category": "Nintendo Switch Emulator",
@@ -41390,6 +42555,80 @@
           "tag": "v1.2.2"
         }
       ],
+      "needs_review": false
+    },
+    {
+      "id": "kronos",
+      "name": "Kronos",
+      "category": "Sega Saturn",
+      "description": "Kronos is a Sega Saturn emulator.",
+      "owner": "FCare",
+      "repo": "FCare/Kronos",
+      "homepage": "http://fcare.github.io",
+      "repo_url": "https://github.com/FCare/Kronos",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "2.7.0_official_release",
+      "latest_date": "2025-01-16T07:35:49Z",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": 0,
+      "pushed_at": "2026-07-18T07:07:59Z",
+      "stars": 308,
+      "forks": 38,
+      "watchers": 308,
+      "downloads": 4740,
+      "logo_url": "https://avatars.githubusercontent.com/u/14252808?v=4",
+      "releases": [
+        {
+          "tag": "2.7.0_official_release",
+          "name": "Release 2.7.0_official_release",
+          "date": "2025-01-16T07:35:49Z",
+          "body": ""
+        },
+        {
+          "tag": "2.6.2_official_release",
+          "name": "Release 2.6.2_official_release",
+          "date": "2024-09-29T08:41:31Z",
+          "body": ""
+        },
+        {
+          "tag": "2.6.1_official_release",
+          "name": "Release 2.6.1_official_release",
+          "date": "2023-12-28T08:08:13Z",
+          "body": ""
+        },
+        {
+          "tag": "2.6.0_fix_official_release",
+          "name": "Release 2.6.0_fix_official_release",
+          "date": "2023-12-24T15:49:33Z",
+          "body": ""
+        },
+        {
+          "tag": "2.6.0_official_release",
+          "name": "Release 2.6.0_official_release",
+          "date": "2023-12-22T23:41:18Z",
+          "body": ""
+        }
+      ],
+      "source": "github",
+      "note": "Sega Saturn 模拟器（Yabause 衍生），支持 ST-V 街机；安卓版为主要分发渠道之一。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "saturn"
+      ],
+      "status": "active",
+      "hosts": [
+        "windows",
+        "linux",
+        "android"
+      ],
+      "method": "emulation",
+      "builds": [],
+      "license": null,
+      "topics": [],
       "needs_review": false
     },
     {
@@ -79358,7 +80597,7 @@
       "kind": "emulator",
       "runtime": "libretro",
       "platforms": [
-        "atari"
+        "atari-lynx"
       ],
       "status": "active",
       "method": "emulation",
@@ -85463,6 +86702,47 @@
       "needs_review": false
     },
     {
+      "id": "emulicious",
+      "name": "Emulicious",
+      "category": "All In One",
+      "description": "Game Boy / Game Boy Color / Master System / Game Gear / SG-1000 模拟器，带调试器与 TAS 工具。",
+      "owner": "",
+      "repo": "",
+      "homepage": "https://emulicious.net/",
+      "repo_url": "https://emulicious.net/",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "",
+      "latest_date": "",
+      "stars": 0,
+      "platforms": [
+        "gb",
+        "gbc",
+        "master-system",
+        "game-gear"
+      ],
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "status": "active",
+      "source": "official-web",
+      "needs_review": false,
+      "builds": [],
+      "license": null,
+      "note": "覆盖 Master System / Game Gear 此前空白；GBC 兼容性与调试器是其主要卖点。",
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "latest_apk_url": null,
+      "latest_apk_name": null,
+      "latest_apk_size": null
+    },
+    {
       "id": "epsxe",
       "name": "ePSXe",
       "category": "PlayStation 1 Emulator",
@@ -85549,6 +86829,44 @@
         "android"
       ],
       "needs_review": false
+    },
+    {
+      "id": "fuse",
+      "name": "Fuse",
+      "category": "ZX Spectrum",
+      "description": "ZX Spectrum 系列模拟器（16K/48K/128/+2/+3/Next 部分支持）。",
+      "owner": "",
+      "repo": "",
+      "homepage": "https://fuse-emulator.sourceforge.net/",
+      "repo_url": "https://fuse-emulator.sourceforge.net/",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "1.6.0",
+      "latest_date": "2026-05-01T00:00:00Z",
+      "stars": 0,
+      "platforms": [
+        "zx-spectrum"
+      ],
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "status": "active",
+      "source": "official-web",
+      "needs_review": false,
+      "builds": [],
+      "license": "GPL-2.0",
+      "note": "ZX Spectrum 老牌模拟器，支持磁带/磁盘镜像与调试器。",
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "latest_apk_url": null,
+      "latest_apk_name": null,
+      "latest_apk_size": null
     },
     {
       "id": "kenji-nx-android-releases",
@@ -85683,6 +87001,53 @@
         "android"
       ],
       "needs_review": false
+    },
+    {
+      "id": "mednafen",
+      "name": "Mednafen",
+      "category": "All In One",
+      "description": "多平台高精度模拟器：PC Engine/TurboGrafx-16、Virtual Boy、WonderSwan、Neo Geo Pocket、Saturn、PS1、NES、SNES、GB 等。",
+      "owner": "",
+      "repo": "",
+      "homepage": "https://mednafen.github.io/",
+      "repo_url": "https://mednafen.github.io/",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "1.32.1",
+      "latest_date": "2026-09-01T00:00:00Z",
+      "stars": 0,
+      "platforms": [
+        "pc-engine",
+        "virtual-boy",
+        "wonderswan",
+        "neo-geo",
+        "saturn",
+        "ps1",
+        "nes",
+        "snes",
+        "gb",
+        "gba"
+      ],
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "status": "active",
+      "source": "official-web",
+      "needs_review": false,
+      "builds": [],
+      "license": "GPL-2.0",
+      "note": "命令行核心，无图形界面；常作为前端（Mednaffe 等）后端。一条覆盖 PC Engine / Virtual Boy / WonderSwan / NGP / Saturn 等多个此前空白的平台。",
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "latest_apk_url": null,
+      "latest_apk_name": null,
+      "latest_apk_size": null
     },
     {
       "id": "myboy",
@@ -86167,6 +87532,44 @@
         "macos"
       ],
       "needs_review": false
+    },
+    {
+      "id": "vice",
+      "name": "VICE",
+      "category": "Commodore 64",
+      "description": "Commodore 64 / C128 / VIC-20 / Plus/4 / PET 模拟器，最完整的 C64 实现。",
+      "owner": "",
+      "repo": "",
+      "homepage": "https://vice-emu.sourceforge.io/",
+      "repo_url": "https://vice-emu.sourceforge.io/",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "3.10",
+      "latest_date": "2026-06-01T00:00:00Z",
+      "stars": 0,
+      "platforms": [
+        "c64"
+      ],
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "method": "emulation",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "status": "active",
+      "source": "official-web",
+      "needs_review": false,
+      "builds": [],
+      "license": "GPL-2.0",
+      "note": "C64 事实标准实现，附带 C128/VIC-20/Plus4/PET；有 RetroArch core。",
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "latest_apk_url": null,
+      "latest_apk_name": null,
+      "latest_apk_size": null
     },
     {
       "id": "winlator-releases",
