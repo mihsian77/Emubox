@@ -18,7 +18,7 @@ import re
 
 # ── 枚举 ──────────────────────────────────────────────────────────────
 METHODS = {"emulation", "translation", "recomp", "engine", "virtualization"}
-HOSTS = {"android", "windows", "linux", "macos", "ios", "harmonyos"}
+HOSTS = {"android", "windows", "linux", "macos", "ios", "harmonyos", "ps5"}
 
 # ── method 关键词 ─────────────────────────────────────────────────────
 # 顺序即优先级：先判更具体的，再落到 emulation。
