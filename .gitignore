@@ -35,3 +35,12 @@ google-services.json
 *.hprof
 .kotlin/
 scripts/__pycache__/
+
+# 本地社区监控产物（他人内容，禁止入库/分发）
+local-monitor/
+community-data.json
+community/
+
+# 审计中间产物（可重跑生成）
+audit-report.json
+resolve-report.json
