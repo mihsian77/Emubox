@@ -1,11 +1,11 @@
 {
-  "version": "1.2.1",
+  "version": "1.3.0",
   "updated_at": "2026-11-03T17:55:00Z",
   "emulators": [
     {
       "id": "termux",
       "name": "Termux",
-      "category": "terminal",
+      "category": "前端与工具",
       "description": "Termux 官方：Android 终端模拟器 + Linux 环境，无需 root，APT 包管理",
       "owner": "termux",
       "repo": "termux/termux-app",
@@ -593,12 +593,17 @@
           "tag": "v0.119.0-beta.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "anyps5-porting-tool",
       "name": "AnyPS5",
-      "category": "移植工具",
+      "category": "前端与工具",
       "description": "Tool for automatic PS5 executables porting to Linux and Windows",
       "owner": "boykopovar",
       "repo": "boykopovar/AnyPS5",
@@ -973,12 +978,17 @@
           "tag": "v0.1.4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "anyps5-porting-tool",
+      "family_label": "AnyPS5",
+      "_section_evidence": "kind=tool",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "shadps4-emu-shadps4",
       "name": "ShadPS4",
-      "category": "桌面模拟器",
+      "category": "主机模拟",
       "description": "PlayStation 4 emulator for Windows, Linux, macOS and FreeBSD",
       "owner": "shadps4-emu",
       "repo": "shadps4-emu/shadPS4",
@@ -1837,12 +1847,17 @@
           "tag": "Pre-release-shadPS4-2026-11-04-5d65f4a81fc90b1fab0b5d56972bd8d8053912fb"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "shadps4-emu-shadps4",
+      "family_label": "ShadPS4",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "rpcs3",
       "name": "RPCS3",
-      "category": "Emulator PS3",
+      "category": "主机模拟",
       "description": "PlayStation 3 emulator and debugger",
       "owner": "RPCS3",
       "repo": "RPCS3/rpcs3",
@@ -1924,12 +1939,17 @@
       ],
       "needs_review": false,
       "download_url": "https://rpcs3.net/download",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "rpcs3",
+      "family_label": "RPCS3 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /rpcs3/"
     },
     {
       "id": "brunodev85-winlator",
       "name": "Winlator BrunoDev",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "brunodev85",
       "repo": "brunodev85/winlator",
@@ -2227,12 +2247,17 @@
           "tag": "v11.2.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "droid-deck-droiddeck",
       "name": "DroidDeck",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "DroidDeck brings the SteamOS experience to Android",
       "owner": "Droid-Deck",
       "repo": "Droid-Deck/DroidDeck",
@@ -3738,12 +3763,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "droid-deck-droiddeck",
+      "family_label": "DroidDeck",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "pcsx2",
       "name": "PCSX2",
-      "category": "Emulator PS2",
+      "category": "主机模拟",
       "description": "PCSX2 - The Playstation 2 Emulator",
       "owner": "PCSX2",
       "repo": "PCSX2/pcsx2",
@@ -3846,12 +3876,17 @@
         "pcsx2",
         "ps2"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pcsx2",
+      "family_label": "PCSX2 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /pcsx2/"
     },
     {
       "id": "dolphin",
       "name": "Dolphin",
-      "category": "Nintendo GameCube / Wii",
+      "category": "主机模拟",
       "description": "GameCube/Wii 模拟器，安卓端 Vulkan 支持成熟",
       "owner": "dolphin-emu",
       "repo": "dolphin-emu/dolphin",
@@ -3880,12 +3915,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dolphin",
+      "family_label": "Dolphin 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /dolphin/"
     },
     {
       "id": "ppsspp",
       "name": "PPSSPP",
-      "category": "PSP",
+      "category": "主机模拟",
       "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
       "owner": "hrydgard",
       "repo": "hrydgard/ppsspp",
@@ -4795,12 +4835,17 @@
           "tag": "v1.20.4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ppsspp",
+      "family_label": "PPSSPP 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ppsspp/"
     },
     {
       "id": "retroarch",
       "name": "RetroArch",
-      "category": "All In One",
+      "category": "前端与工具",
       "description": "多机种聚合模拟器前端，内置大量核心（核心通过在线下载），支持 Vulkan 渲染",
       "owner": "libretro",
       "repo": "libretro/RetroArch",
@@ -5105,12 +5150,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "retroarch",
+      "family_label": "RetroArch 系",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "名称/仓库命中 /retroarch/"
     },
     {
       "id": "utkarshdalal-gamenative",
       "name": "GameNative",
-      "category": "GameNative",
+      "category": "Windows 兼容层",
       "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
       "owner": "utkarshdalal",
       "repo": "utkarshdalal/GameNative",
@@ -5635,12 +5685,17 @@
           "tag": "v1.4.0-prerelease"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamenative",
+      "family_label": "GameNative 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamenative/"
     },
     {
       "id": "duckstation",
       "name": "DuckStation",
-      "category": "PlayStation 1 Emulator",
+      "category": "主机模拟",
       "description": "PlayStation 1 模拟器（x86-64/AArch64），开源活跃；安卓版经 Google Play 分发",
       "owner": "stenzek",
       "repo": "stenzek/duckstation",
@@ -7711,12 +7766,17 @@
           "tag": "preview"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "duckstation",
+      "family_label": "DuckStation 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /duckstation/"
     },
     {
       "id": "kytyps5-kytyps5",
       "name": "KytyPS5",
-      "category": "桌面模拟器",
+      "category": "主机模拟",
       "description": "PlayStation 5 translation layer for Windows, Linux and macOS",
       "owner": "KytyPS5",
       "repo": "KytyPS5/KytyPS5",
@@ -8446,12 +8506,17 @@
           "tag": "KytyPS5-2026-11-04-94094c6"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "kytyps5-kytyps5",
+      "family_label": "KytyPS5",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "cemu",
       "name": "Cemu",
-      "category": "Wii U Emulator",
+      "category": "主机模拟",
       "description": "Cemu - Wii U emulator",
       "owner": "cemu-project",
       "repo": "cemu-project/Cemu",
@@ -8556,12 +8621,17 @@
         "nintendo",
         "wiiu"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "cemu",
+      "family_label": "Cemu 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /cemu/"
     },
     {
       "id": "azahar-emu-azahar",
       "name": "Azahar",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "An open-source 3DS emulator project based on Citra.",
       "owner": "azahar-emu",
       "repo": "azahar-emu/azahar",
@@ -12571,12 +12641,17 @@
           "tag": "2127.0-alpha4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "azahar",
+      "family_label": "Azahar 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /azahar/"
     },
     {
       "id": "zelda64recomp-zelda64recomp",
       "name": "Zelda64 Recompiled",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "Static recompilation of Majora's Mask (and soon Ocarina of Time)",
       "owner": "Zelda64Recomp",
       "repo": "Zelda64Recomp/Zelda64Recomp",
@@ -12839,12 +12914,17 @@
           "tag": "v1.2.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "zelda64recomp-zelda64recomp",
+      "family_label": "Zelda64 Recompiled",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mgba",
       "name": "mGBA",
-      "category": "Game Boy Advance Emulator",
+      "category": "主机模拟",
       "description": "GBA 模拟器，跨平台开源（安卓版经 Google Play 分发）",
       "owner": "mgba-emu",
       "repo": "mgba-emu/mgba",
@@ -14973,12 +15053,17 @@
           "tag": "0.10.5"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mgba",
+      "family_label": "mGBA",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "twilitrealm-dusklight",
       "name": "Dusklight",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Dusklight brings a classic adventure to PC and mobile platforms",
       "owner": "TwilitRealm",
       "repo": "TwilitRealm/dusklight",
@@ -15924,12 +16009,17 @@
           "tag": "v2.0.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "twilitrealm-dusklight",
+      "family_label": "Dusklight",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "harbourmasters-shipwright",
       "name": "Ship of Harkinian",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "Ship of Harkinian is a free and open source PC port of The Legend of Zelda: Ocarina of Time",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/Shipwright",
@@ -16899,12 +16989,17 @@
           "tag": "9.3.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "harbourmasters-shipwright",
+      "family_label": "Ship of Harkinian",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "melonds",
       "name": "melonDS",
-      "category": "Nintendo DS Emulator",
+      "category": "主机模拟",
       "description": "任天堂 DS 模拟器，活跃开源项目（安卓构建见 3DS 分支/AppImage）",
       "owner": "melonDS-emu",
       "repo": "melonDS-emu/melonDS",
@@ -17601,12 +17696,17 @@
           "tag": "1.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "melonds",
+      "family_label": "melonDS 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<!water)melonds/"
     },
     {
       "id": "supermedo-bloodborne-pc",
       "name": "Bloodborne PC",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "Bloodborne running natively on Windows 10/11: launcher and reverse engineering project",
       "owner": "supermedo",
       "repo": "supermedo/bloodborne_pc",
@@ -18043,12 +18143,17 @@
           "tag": "windows-v1.9.7"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "supermedo-bloodborne-pc",
+      "family_label": "Bloodborne PC",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "felipeprado0-spartanport",
       "name": "SpartanPort",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "SpartanPort: unofficial PC port of God of War III Remastered",
       "owner": "FelipePrado0",
       "repo": "FelipePrado0/SpartanPort",
@@ -18723,12 +18828,17 @@
           "tag": "windows-v3.0.0-launcher-test1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "felipeprado0-spartanport",
+      "family_label": "SpartanPort",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "swordfish90-lemuroid",
       "name": "Lemuroid",
-      "category": "All In One",
+      "category": "前端与工具",
       "description": "All in one emulator on Android!",
       "owner": "Swordfish90",
       "repo": "Swordfish90/Lemuroid",
@@ -19206,12 +19316,17 @@
           "tag": "1.17.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "swordfish90-lemuroid",
+      "family_label": "Lemuroid",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "xemu",
       "name": "xemu",
-      "category": "Xbox",
+      "category": "主机模拟",
       "description": "Original Xbox Emulator for Windows, macOS, and Linux (Active Development)",
       "owner": "xemu-project",
       "repo": "xemu-project/xemu",
@@ -19314,12 +19429,17 @@
         "original-xbox",
         "xbox"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xemu",
+      "family_label": "xemu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "touchhle",
       "name": "touchHLE",
-      "category": "iOS Emulator",
+      "category": "主机模拟",
       "description": "早期 iOS 应用高级模拟器（touchHLE），Android 包含于 zip",
       "owner": "touchHLE",
       "repo": "touchHLE/touchHLE",
@@ -19564,12 +19684,17 @@
           "tag": "v0.3.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "touchhle",
+      "family_label": "touchHLE",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "dosbox-x",
       "name": "DOSBox-X",
-      "category": "桌面模拟器",
+      "category": "主机模拟",
       "description": "DOSBox-X：老牌增强分支，支持 DOS 盒装游戏长期保存与多系统扩展",
       "owner": "joncampbell123",
       "repo": "joncampbell123/dosbox-x",
@@ -19625,13 +19750,18 @@
           "tag": "dosbox-x-v2026.10.01-osfree"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dosbox",
+      "family_label": "DOSBox 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /dosbox/"
     },
     {
       "id": "termux-zero",
       "name": "ZeroTermux",
       "repo": "hanxinhao000/ZeroTermux",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "https://github.com/hanxinhao000/ZeroTermux",
       "logoUrl": "https://avatars.githubusercontent.com/u/23556571?v=4",
       "description": "Termux 知名 fork（3k+ star）：集成增强功能，独立版本线持续发布 APK",
@@ -20074,12 +20204,17 @@
           "tag": "ZeroTermux-0.118.3.64"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "scummvm",
       "name": "ScummVM",
-      "category": "Adventure Engine",
+      "category": "主机模拟",
       "description": "ScummVM main repository",
       "owner": "scummvm",
       "repo": "scummvm/scummvm",
@@ -20157,12 +20292,17 @@
       ],
       "needs_review": false,
       "download_url": "https://www.scummvm.org/downloads/",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "scummvm",
+      "family_label": "ScummVM 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /scummvm/"
     },
     {
       "id": "weihuoya-citra",
       "name": "Citra (weihuoya)",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "A Nintendo 3DS Emulator",
       "owner": "weihuoya",
       "repo": "weihuoya/citra",
@@ -21052,12 +21192,17 @@
           "tag": "20251112"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "citra",
+      "family_label": "Citra 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /citra/"
     },
     {
       "id": "trixarian-nethersx2-patch",
       "name": "NetherSX2 Patch",
-      "category": "Emulator PS2",
+      "category": "主机模拟",
       "description": "Continuation of NetherSX2 based on AetherSX2 4248",
       "owner": "Trixarian",
       "repo": "Trixarian/NetherSX2-patch",
@@ -21383,12 +21528,17 @@
           "tag": "2.2n"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pcsx2",
+      "family_label": "PCSX2 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /nethersx2/"
     },
     {
       "id": "j2meloader",
       "name": "J2ME-Loader",
-      "category": "Java Emulator",
+      "category": "主机模拟",
       "description": "Java（J2ME）手机游戏模拟器，开源经典",
       "owner": "nikita36078",
       "repo": "nikita36078/J2ME-Loader",
@@ -21853,12 +22003,17 @@
           "tag": "continuous"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "j2meloader",
+      "family_label": "J2ME-Loader",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "flyinghead-flycast",
       "name": "Flycast",
-      "category": "Sega Dreamcast",
+      "category": "主机模拟",
       "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
       "owner": "flyinghead",
       "repo": "flyinghead/flycast",
@@ -22359,12 +22514,17 @@
           "tag": "v2.7"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "flycast",
+      "family_label": "Flycast 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /flycast/"
     },
     {
       "id": "harbourmasters-spaghettikart",
       "name": "SpaghettiKart",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "Native PC port of Mario Kart 64",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/SpaghettiKart",
@@ -22491,12 +22651,17 @@
           "tag": "1.0.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "harbourmasters-spaghettikart",
+      "family_label": "SpaghettiKart",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "2ship2harkinian-2ship2harkinian",
       "name": "2Ship2Harkinian",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "2 Ship 2 Harkinian is a PC port of The Legend of Zelda: Majora's Mask",
       "owner": "2ship2harkinian",
       "repo": "2ship2harkinian/2ship2harkinian",
@@ -22935,12 +23100,17 @@
           "tag": "5.0.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "2ship2harkinian-2ship2harkinian",
+      "family_label": "2Ship2Harkinian",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mesen2",
       "name": "Mesen",
-      "category": "All In One",
+      "category": "主机模拟",
       "description": "Multi-system emulator (NES, SNES, GB, GBA, PCE, SMS/GG, WS) for Windows, Linux and macOS",
       "owner": "SourMesen",
       "repo": "SourMesen/Mesen2",
@@ -23033,12 +23203,17 @@
         "snes",
         "wonderswan"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mesen2",
+      "family_label": "Mesen",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "armsx2-armsx2",
       "name": "ARMSX2",
-      "category": "Emulator PS2",
+      "category": "主机模拟",
       "description": "ARMSX2 - The Playstation 2 Emulator for ARM64 Platforms",
       "owner": "ARMSX2",
       "repo": "ARMSX2/ARMSX2",
@@ -24073,12 +24248,17 @@
           "tag": "nightly-20261031"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pcsx2",
+      "family_label": "PCSX2 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /armsx2/"
     },
     {
       "id": "strato-emulator",
       "name": "Strato",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Skyline 继任者（strato-emu/strato），2348★，2024-09 后停更，无官方 release；社区经 社区归档分发",
       "owner": "strato-emu",
       "repo": "strato-emu/strato",
@@ -24113,12 +24293,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "strato-emulator",
+      "family_label": "Strato",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "banjorecomp-banjorecomp",
       "name": "Banjo: Recompiled",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "PC Port of Banjo-Kazooie made using N64: Recompiled",
       "owner": "BanjoRecomp",
       "repo": "BanjoRecomp/BanjoRecomp",
@@ -24280,12 +24465,17 @@
           "tag": "v1.0.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "banjorecomp-banjorecomp",
+      "family_label": "Banjo: Recompiled",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "producdevity-gamehub-lite",
       "name": "GameHub Lite (Producdevity)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
       "owner": "Producdevity",
       "repo": "Producdevity/gamehub-lite",
@@ -24726,12 +24916,17 @@
           "tag": "v5.1.8"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamehub",
+      "family_label": "GameHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamehub/"
     },
     {
       "id": "eka2l1",
       "name": "EKA2L1",
-      "category": "Symbian Emulator",
+      "category": "主机模拟",
       "description": "Symbian OS / N-Gage 模拟器，活跃开源",
       "owner": "EKA2L1",
       "repo": "EKA2L1/EKA2L1",
@@ -24903,12 +25098,17 @@
           "tag": "continous"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ekA2l1",
+      "family_label": "EKA2L1 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /eka2l1/"
     },
     {
       "id": "ares",
       "name": "ares",
-      "category": "All In One",
+      "category": "主机模拟",
       "description": "ares is a cross-platform, open source, multi-system emulator, focusing on accuracy and preservation.",
       "owner": "ares-emulator",
       "repo": "ares-emulator/ares",
@@ -25011,12 +25211,17 @@
         "higan",
         "near"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ares",
+      "family_label": "ares",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "dosbox-staging",
       "name": "DOSBox Staging",
-      "category": "桌面模拟器",
+      "category": "主机模拟",
       "description": "DOSBox 的官方现代化延续分支（modern continuation），多平台原生构建",
       "owner": "dosbox-staging",
       "repo": "dosbox-staging/dosbox-staging",
@@ -25082,12 +25287,17 @@
           "tag": "dev-latest"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dosbox",
+      "family_label": "DOSBox 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /dosbox/"
     },
     {
       "id": "mchughalex-skate3recomp",
       "name": "Skate3recomp",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "A native recompilation of Skate 3 for Windows, Linux, and macOS",
       "owner": "mchughalex",
       "repo": "mchughalex/skate3recomp",
@@ -25363,12 +25573,17 @@
           "tag": "v2.0.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "mchughalex-skate3recomp",
+      "family_label": "Skate3recomp",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "melonds-android",
       "name": "melonDS Android",
-      "category": "Nintendo DS Emulator",
+      "category": "主机模拟",
       "description": "melonDS 的第三方 Android 移植（独立 App，非官方团队发布），支持杜比/高分渲染与自定义布局",
       "owner": "rafaelvcaetano",
       "repo": "rafaelvcaetano/melonDS-android",
@@ -25413,12 +25628,17 @@
           "tag": "nightly-release"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "melonds",
+      "family_label": "melonDS 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<!water)melonds/"
     },
     {
       "id": "oxters168-pluvia",
       "name": "Pluvia",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "Lightweight unofficial Steam client for Android",
       "owner": "oxters168",
       "repo": "oxters168/Pluvia",
@@ -25547,12 +25767,17 @@
           "tag": "v1.3.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "oxters168-pluvia",
+      "family_label": "Pluvia",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "vita3k-vita3k-android",
       "name": "Vita3K Android",
-      "category": "PSVITA",
+      "category": "主机模拟",
       "description": "Public releases and CI for the Vita3K Android app",
       "owner": "Vita3K",
       "repo": "Vita3K/Vita3K-Android",
@@ -25765,12 +25990,17 @@
           "tag": "v12"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "vita3k",
+      "family_label": "Vita3K 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /vita3k/"
     },
     {
       "id": "fceux",
       "name": "FCEUX",
-      "category": "NES Emulator",
+      "category": "主机模拟",
       "description": "FCEUX, a NES Emulator",
       "owner": "TASEmulators",
       "repo": "TASEmulators/fceux",
@@ -25858,12 +26088,17 @@
       ],
       "license": "GPL-2.0",
       "topics": [],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "fceux",
+      "family_label": "FCEUX",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "fbneo",
       "name": "FBNeo",
-      "category": "Arcade Emulator",
+      "category": "主机模拟",
       "description": "街机/家用机多平台模拟器（FinalBurn Neo），每日更新",
       "owner": "finalburnneo",
       "repo": "finalburnneo/FBNeo",
@@ -26025,12 +26260,17 @@
           "tag": "latest"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "fbneo",
+      "family_label": "FBNeo",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "panda3ds-3ds",
       "name": "Panda3DS",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "HLE 3DS 模拟器（★1413，持续开发中）：完整 HLE 架构、独立实现，Android 构建经 CI 分发；GitHub 最新 release v0.9（2024-12），APK 见 CI 产物（直链待核）。",
       "owner": "wheremyfoodat",
       "repo": "wheremyfoodat/Panda3DS",
@@ -26326,12 +26566,17 @@
           "tag": "v0.9"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "panda3ds-3ds",
+      "family_label": "Panda3DS",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "azaharplus-main",
       "name": "AzaharPlus",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "Azahar 3DS 模拟器主流增强 fork（★1352，2026-10 活跃）：恢复 3DS 文件直接支持、官方服务器下载系统文件等特性，社区规模远超同名小 fork；本体为 AzaharTrigger 等分支的上游。",
       "owner": "AzaharPlus",
       "repo": "AzaharPlus/AzaharPlus",
@@ -26963,12 +27208,17 @@
           "tag": "AZAHAR_PLUS_2126_2_A"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "azahar",
+      "family_label": "Azahar 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /azahar/"
     },
     {
       "id": "skyemu",
       "name": "SkyEmu",
-      "category": "Game Boy Advance Emulator",
+      "category": "主机模拟",
       "description": "GBA/GB/GBC/DS 多机种模拟器，活跃更新",
       "owner": "skylersaleh",
       "repo": "skylersaleh/SkyEmu",
@@ -27220,12 +27470,17 @@
           "tag": "v5"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "skyemu",
+      "family_label": "SkyEmu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "stevenmxz-winlator-ludashi",
       "name": "Winlator Ludashi",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "StevenMXZ",
       "repo": "StevenMXZ/Winlator-Ludashi",
@@ -27726,12 +27981,17 @@
           "tag": "v4.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "snes9xexplus",
       "name": "Snes9x EX+ / NostalgiaNes",
-      "category": "Super Nintendo Emulator",
+      "category": "主机模拟",
       "description": "SFC(NostalgiaNes 内置 NES) 模拟器，emu-ex-plus-alpha 同源全家桶",
       "owner": "Rakashazi",
       "repo": "Rakashazi/emu-ex-plus-alpha",
@@ -27856,12 +28116,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "snes9xexplus",
+      "family_label": "Snes9x EX+ / NostalgiaNes",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ssimco-cemu",
       "name": "Cemu（安卓移植）",
-      "category": "Wii U Emulator",
+      "category": "主机模拟",
       "description": "Android port for the cemu emulator",
       "owner": "SSimco",
       "repo": "SSimco/Cemu",
@@ -28032,12 +28297,17 @@
           "tag": "0.5"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "cemu",
+      "family_label": "Cemu 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /cemu/"
     },
     {
       "id": "trixarian-nethersx2-classic",
       "name": "NetherSX2 Classic",
-      "category": "Emulator PS2",
+      "category": "主机模拟",
       "description": "Continuation of NetherSX2 based on AetherSX2 3668",
       "owner": "Trixarian",
       "repo": "Trixarian/NetherSX2-classic",
@@ -28218,12 +28488,17 @@
           "tag": "2.2n"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pcsx2",
+      "family_label": "PCSX2 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /nethersx2/"
     },
     {
       "id": "dosbox-pure",
       "name": "DOSBox Pure",
-      "category": "桌面模拟器",
+      "category": "主机模拟",
       "description": "DOSBox Pure：专为 libretro/RetroArch 打造的重写版，含 Android arm64 核心包",
       "owner": "schellingb",
       "repo": "schellingb/dosbox-pure",
@@ -28261,12 +28536,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dosbox",
+      "family_label": "DOSBox 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /dosbox/"
     },
     {
       "id": "coffincolors-winlator",
       "name": "Winlator Coffincolors",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "coffincolors",
       "repo": "coffincolors/winlator",
@@ -28578,12 +28858,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "ilya114-box64droid",
       "name": "Box64Droid",
-      "category": "PC Emulator",
+      "category": "Windows 兼容层",
       "description": "Running x86_64 applications on Android",
       "owner": "Ilya114",
       "repo": "Ilya114/Box64Droid",
@@ -28727,12 +29012,17 @@
           "tag": "alpha"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "ilya114-box64droid",
+      "family_label": "Box64Droid",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "armsx2-armsx3",
       "name": "ARMSX3",
-      "category": "Emulator PS3",
+      "category": "主机模拟",
       "description": "Android port of RPCS3 for ARM64 devices. From one of the founders of ARMSX2: jpolo1224",
       "owner": "ARMSX2",
       "repo": "ARMSX2/ARMSX3",
@@ -29647,12 +29937,17 @@
           "tag": "1.6.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "rpcs3",
+      "family_label": "RPCS3 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /armsx3/"
     },
     {
       "id": "harbourmasters-ghostship",
       "name": "Ghostship",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "HarbourMasters 版 Super Mario 64，反编译移植 PC 版（整理站描述）",
       "owner": "HarbourMasters",
       "repo": "HarbourMasters/Ghostship",
@@ -29860,12 +30155,17 @@
           "tag": "3.0.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "harbourmasters-ghostship",
+      "family_label": "Ghostship",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "weiss-ultimatesavior-tyranor-next",
       "name": "Tyranor Next",
-      "category": "Visual Novel Engine",
+      "category": "视觉小说引擎",
       "description": "多引擎视觉小说（Galgame）聚合启动器，面向 Android 平台。内置 Kirikiri / ONScripter / Tyrano / Artemis / Siglus / FVP 六套引擎运行环境，并支持 Ren'Py、RPG Maker RGSS 外置 APK 引擎模块与 PSP / Nintendo Switch 外置模拟器跳转（PPSSPP / Eden），可识别和启动多类游戏，提供游戏库管理、封面获取、存档镜像、引擎参数调节等一体化体验。",
       "owner": "Weiss-UltimateSavior",
       "repo": "Weiss-UltimateSavior/Tyranor-Next",
@@ -29957,12 +30257,17 @@
       "needs_review": false,
       "_pool_score": 95,
       "_dup": false,
-      "distribution": null
+      "distribution": null,
+      "section": "vn-engine",
+      "family": "weiss-ultimatesavior-tyranor-next",
+      "family_label": "Tyranor Next",
+      "_section_evidence": "method=engine",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "stella",
       "name": "Stella",
-      "category": "Atari Emulator",
+      "category": "主机模拟",
       "description": "A multi-platform Atari 2600 Emulator",
       "owner": "stella-emu",
       "repo": "stella-emu/stella",
@@ -30067,12 +30372,17 @@
         "emulator",
         "emulators"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "stella",
+      "family_label": "Stella",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "xodiosx-xodos",
       "name": "XoDos",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "",
       "owner": "xodiosx",
       "repo": "xodiosx/XoDos",
@@ -30435,12 +30745,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xodiosx-xodos",
+      "family_label": "XoDos",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "aenu1-aps3e",
       "name": "APS3e",
-      "category": "Emulator PS3",
+      "category": "主机模拟",
       "description": "An experimental Android PS3 emulator, ported and optimized based on RPCS3. ",
       "owner": "aenu1",
       "repo": "aenu1/aps3e",
@@ -30821,12 +31136,17 @@
           "tag": "2.43"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "aenu1-aps3e",
+      "family_label": "APS3e",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mandarineneo-3ds",
       "name": "mandarine-neo",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "A Citra fork with new features and hacks which are experimental and may not be present in Azahar. Continuation of Mandarine 3DS emulator.",
       "owner": "ptyfyre",
       "repo": "ptyfyre/mandarine-neo",
@@ -31101,12 +31421,17 @@
           "tag": "r1.3.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mandarineneo-3ds",
+      "family_label": "mandarine-neo",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "winnative-emu-winnative",
       "name": "WinNative",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
       "owner": "WinNative-Emu",
       "repo": "WinNative-Emu/WinNative",
@@ -31508,12 +31833,17 @@
           "tag": "v0.8.0-beta"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winnative",
+      "family_label": "WinNative 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winnative/"
     },
     {
       "id": "horizonemuteam-horizon-emu",
       "name": "Horizon Emu",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "",
       "owner": "HorizonEmuTeam",
       "repo": "HorizonEmuTeam/Horizon-Emu",
@@ -31586,12 +31916,17 @@
           "tag": "v4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "horizonemuteam-horizon-emu",
+      "family_label": "Horizon Emu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "rfandango-hakux",
       "name": "HakuX",
-      "category": "Xbox",
+      "category": "主机模拟",
       "channel": "github",
       "repo": "rfandango/hakuX",
       "repo_url": "https://github.com/rfandango/hakuX",
@@ -31778,12 +32113,17 @@
           "tag": "v1.3.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "rfandango-hakux",
+      "family_label": "HakuX",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "afeimod-winlator-mod",
       "name": "Winlator Afei",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "afeimod",
       "repo": "afeimod/winlator-mod",
@@ -32499,12 +32839,17 @@
           "tag": "10.1hotfix-Amod3fix2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "freej2me",
       "name": "FreeJ2ME",
-      "category": "Java Emulator",
+      "category": "主机模拟",
       "description": "免费 J2ME 模拟器（libretro/awt/sdl2），开源活跃",
       "owner": "hex007",
       "repo": "hex007/freej2me",
@@ -32539,12 +32884,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "freej2me",
+      "family_label": "FreeJ2ME",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "supermodel3",
       "name": "Supermodel 3",
-      "category": "桌面模拟器",
+      "category": "主机模拟",
       "description": "Sega Model 3 街机模拟器，2026-10 活跃更新",
       "owner": "trzy",
       "repo": "trzy/Supermodel",
@@ -33329,12 +33679,17 @@
           "tag": "v0.3a-20261029-git-ee27353"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "supermodel3",
+      "family_label": "Supermodel 3",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "waterdish-shipwright-android",
       "name": "Shipwright-Android（时之笛 Android 老分支）",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Ship of Harkinian 最知名的 Android 移植分支，累计 APK 下载 13.8 万次",
       "owner": "Waterdish",
       "repo": "Waterdish/Shipwright-Android",
@@ -33423,12 +33778,17 @@
           "tag": "v9.0.2P2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "waterdish-shipwright-android",
+      "family_label": "Shipwright-Android（时之笛 Android 老分支）",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "khmelonmix",
       "name": "KH Melon Mix",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "王国之心 358/2 Days 重实现（NDS 游戏，vitor251093）",
       "owner": "vitor251093",
       "repo": "vitor251093/KHMelonMix",
@@ -34843,12 +35203,17 @@
           "tag": "v0.9.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "khmelonmix",
+      "family_label": "KH Melon Mix",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "watermelonds-android",
       "name": "WatermelonDS",
-      "category": "Nintendo DS Emulator",
+      "category": "主机模拟",
       "description": "NDS 安卓模拟器（SapphireRhodonite 制作组）：基于 melonDS 内核，界面与交互大幅重构，为带实体按键的安卓掌机（双屏设备）设计；SeedlessDS 为同组的姊妹项目（DraStic 内核重构）。",
       "owner": "SapphireRhodonite",
       "repo": "SapphireRhodonite/WatermelonDS",
@@ -35368,12 +35733,17 @@
           "tag": "0.8.0.rc3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "watermelonds-android",
+      "family_label": "WatermelonDS",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "metroidprimeport",
       "name": "MetroidPrimePort",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "银河战士 Prime（GC）原生移植：Linux/Windows/Android",
       "owner": "Odrannnn",
       "repo": "Odrannnn/MetroidPrimePort",
@@ -36883,12 +37253,17 @@
           "tag": "v0.40.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "metroidprimeport",
+      "family_label": "MetroidPrimePort",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "citron-emulator",
       "name": "Citron Emulator",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "官方 GitHub：citron-neo/emulator（稳定版 2026-04-27）+ citron-neo/CI（每夜版，2026-10-12 活跃）；官网 citronneo.org 分发",
       "owner": "citron-neo",
       "repo": "citron-neo/emulator",
@@ -37191,12 +37566,17 @@
           "tag": "2026-04-27"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "citron-emulator",
+      "family_label": "Citron Emulator",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "suyu-emulator",
       "name": "Suyu",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "yuzu 继任者：2024 停止开发，GitHub 仓库已因 DMCA 删除；社区归档收录历史版本",
       "owner": "suyu-emu",
       "repo": "suyu-emu/suyu-main",
@@ -37588,12 +37968,17 @@
           "tag": "v14.1.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "suyu-emulator",
+      "family_label": "Suyu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ashnar2602-x360-mobile---official",
       "name": "X360 Mobile",
-      "category": "Xbox",
+      "category": "主机模拟",
       "description": "This repository will contain all future releases of the experimental Xbox 360 emulator",
       "owner": "Ashnar2602",
       "repo": "Ashnar2602/X360-Mobile---OFFICIAL",
@@ -37821,12 +38206,17 @@
           "tag": "v0.6.4+f398ad183.11113"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ashnar2602-x360-mobile---official",
+      "family_label": "X360 Mobile",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "openmsx",
       "name": "openMSX",
-      "category": "MSX Emulator",
+      "category": "主机模拟",
       "description": "the MSX emulator that aims for perfection",
       "owner": "openMSX",
       "repo": "openMSX/openMSX",
@@ -37933,12 +38323,17 @@
         "msx2plus",
         "msxturbor"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "openmsx",
+      "family_label": "openMSX",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "rainchus-dk64-rekongpiled",
       "name": "DK64 Rekongpiled",
-      "category": "PC 移植",
+      "category": "原生移植",
       "description": "Donkey Kong 64 静态重编译 PC 移植（整理站描述）",
       "owner": "Rainchus",
       "repo": "Rainchus/Donkey-Kong-64-Recompiled",
@@ -38139,12 +38534,17 @@
           "tag": "v1.0.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "rainchus-dk64-rekongpiled",
+      "family_label": "DK64 Rekongpiled",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "fs-uae",
       "name": "FS-UAE",
-      "category": "Amiga Emulator",
+      "category": "主机模拟",
       "description": "Cross-platform Amiga emulator with a slight focus on gaming, but also with solid support for productivity apps including just-in-time (JIT) compilation.",
       "owner": "FrodeSolheim",
       "repo": "FrodeSolheim/fs-uae",
@@ -38244,12 +38644,17 @@
         "amiga",
         "emulator"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "fs-uae",
+      "family_label": "FS-UAE",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "the412banner-bannerhub",
       "name": "BannerHub (The412Banner)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool sm",
       "owner": "The412Banner",
       "repo": "The412Banner/bannerhub",
@@ -39417,12 +39822,17 @@
           "tag": "v3.8.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "bannerhub",
+      "family_label": "BannerHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /bannerhub/"
     },
     {
       "id": "xm486-yukihub",
       "name": "YukiHub",
-      "category": "Visual Novel Manager",
+      "category": "视觉小说引擎",
       "description": "YukiHub is a Galgame management tool for Android that supports synchronization of local games, shortcuts, and play records. The project uses the GPL-3.0 open-source license.",
       "owner": "xm486",
       "repo": "xm486/YukiHub",
@@ -39502,12 +39912,17 @@
       "needs_review": false,
       "_pool_score": 95,
       "_dup": false,
-      "distribution": null
+      "distribution": null,
+      "section": "vn-engine",
+      "family": "xm486-yukihub",
+      "family_label": "YukiHub",
+      "_section_evidence": "method=engine",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "winebox64-winlator",
       "name": "Wb64dev",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "winebox64",
       "repo": "winebox64/winlator",
@@ -39616,12 +40031,17 @@
           "tag": "v10.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "longjunyu2-winlator",
       "name": "Winlator Glibc",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "longjunyu2",
       "repo": "longjunyu2/winlator",
@@ -39810,12 +40230,17 @@
           "tag": "v7.1.5"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "rfandango-xendroid",
       "name": "XenDroid",
-      "category": "Xbox",
+      "category": "主机模拟",
       "description": "",
       "owner": "rfandango",
       "repo": "rfandango/XenDroid",
@@ -40042,12 +40467,17 @@
           "tag": "XenDroid-c4f6863"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xendroid",
+      "family_label": "XenDroid 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /xendroid/"
     },
     {
       "id": "fcharan-winlatormali",
       "name": "Winlator Mali",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "Fcharan",
       "repo": "Fcharan/WinlatorMali",
@@ -40223,12 +40653,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "gunacharanteja-winlatormali",
       "name": "Winlator Mali",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Mali GPU 专用 Winlator 分支（bionic），含 Antutu/Ludashi 变体，446★",
       "owner": "GunaCharanTeja",
       "repo": "GunaCharanTeja/WinlatorMali",
@@ -40404,12 +40839,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "m64plusae",
       "name": "Mupen64Plus AE",
-      "category": "Nintendo 64 Emulator",
+      "category": "主机模拟",
       "description": "N64 模拟器 Android 版（Mupen64Plus AE 前端），活跃维护",
       "owner": "mupen64plus-ae",
       "repo": "mupen64plus-ae/mupen64plus-ae",
@@ -40641,12 +41081,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mupen64plus",
+      "family_label": "Mupen64Plus 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /mupen64plus/"
     },
     {
       "id": "the412banner-bannerlator",
       "name": "Bannerlator (The412Banner)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "Bannerlator — run Windows PC games and apps on Android (Wine + Box64/86). A personal, community-driven continuation of the discontinued Winlator Star Bionic pro",
       "owner": "The412Banner",
       "repo": "The412Banner/Bannerlator",
@@ -41611,12 +42056,17 @@
           "tag": "3.1.8-mali-pre1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "bannerhub",
+      "family_label": "BannerHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /bannerlator/"
     },
     {
       "id": "mamcjr-botwrecompandroid",
       "name": "BOTW Recomp Android",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "塞尔达传说：旷野之息 原生重编译移植（Switch 1.0.0/1.6.0/1.8.2/1.9.0，NVN→Vulkan），需自行提供游戏文件",
       "owner": "mamcjr",
       "repo": "BOTWRecompAndroid",
@@ -41648,12 +42098,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "mamcjr-botwrecompandroid",
+      "family_label": "BOTW Recomp Android",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "jacojayy-star",
       "name": "Star (fork)",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
       "owner": "jacojayy",
       "repo": "jacojayy/star",
@@ -41976,12 +42431,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "jacojayy-star",
+      "family_label": "Star (fork)",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "np2kai",
       "name": "NP2kai",
-      "category": "PC-98 Emulator",
+      "category": "主机模拟",
       "description": "Neko Project II kai",
       "owner": "AZO234",
       "repo": "AZO234/NP2kai",
@@ -42024,12 +42484,17 @@
       ],
       "needs_review": false,
       "download_url": "https://github.com/AZO234/NP2kai",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "np2kai",
+      "family_label": "NP2kai",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "n3xox1-nxemu",
       "name": "NxEmu",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "NxEmu is a free, open-source Nintendo Switch emulator for Windows, written in C++",
       "owner": "N3xoX1",
       "repo": "N3xoX1/nxemu",
@@ -42150,12 +42615,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "n3xox1-nxemu",
+      "family_label": "NxEmu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "redream-dc",
       "name": "redream",
-      "category": "Sega Dreamcast",
+      "category": "主机模拟",
       "description": "Dreamcast 模拟器（★343）：GitHub 源码为 WIP 分支（2023 后停更），正式版经官网 redream.io 分发（免费/付费授权）；Android 版见官网下载。",
       "owner": "inolen",
       "repo": "inolen/redream",
@@ -42190,12 +42660,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "redream-dc",
+      "family_label": "redream",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "xhyn-ph-exagear-302",
       "name": "ExaGear 302",
-      "category": "PC Emulator",
+      "category": "Windows 兼容层",
       "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
       "owner": "XHYN-PH",
       "repo": "XHYN-PH/exagear-302",
@@ -42268,12 +42743,17 @@
           "tag": "v3.0.2.2-egw"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "xhyn-ph-exagear-302",
+      "family_label": "ExaGear 302",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "zorkats-g-diffuser",
       "name": "G-Diffuser",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Unofficial PC Port of F-Zero X based on the decompilation",
       "owner": "Zorkats",
       "repo": "Zorkats/G-Diffuser",
@@ -42561,12 +43041,17 @@
           "tag": "v1.2.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "zorkats-g-diffuser",
+      "family_label": "G-Diffuser",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "kronos",
       "name": "Kronos",
-      "category": "Sega Saturn",
+      "category": "主机模拟",
       "description": "Kronos is a Sega Saturn emulator.",
       "owner": "FCare",
       "repo": "FCare/Kronos",
@@ -42637,12 +43122,17 @@
       "topics": [],
       "needs_review": false,
       "download_url": "https://github.com/FCare/Kronos/releases",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "kronos",
+      "family_label": "Kronos",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "wpr-wp7-8",
       "name": "WPR",
-      "category": "Windows Mobile",
+      "category": "主机模拟",
       "description": "Windows Phone 7/8 APP 运行器（安卓端）：可运行部分 WP7/8 应用；上游 2022 年停更（release 停在 0.0.1-alpha），中文社区有延续汉化版（如 v0.1.0x 系列，经网盘分发）。",
       "owner": "8212369",
       "repo": "8212369/WPR",
@@ -42706,12 +43196,17 @@
           "tag": "0.0.1-alpha"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "wpr-wp7-8",
+      "family_label": "WPR",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "opennectar",
       "name": "Open-Nectar",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "皮克敏 1 原生移植（PC/移动端），活跃更新",
       "owner": "SSunnKing",
       "repo": "SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port",
@@ -43501,12 +43996,17 @@
           "tag": "1.1.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "opennectar",
+      "family_label": "Open-Nectar",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "armsx1-ps1",
       "name": "ARMSX1",
-      "category": "PlayStation 1 Emulator",
+      "category": "主机模拟",
       "description": "New PS1 Emulator from the Founders of ARMSX2 ",
       "owner": "ARMSX2",
       "repo": "ARMSX2/ARMSX1",
@@ -43915,12 +44415,17 @@
           "tag": "0.1.4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "armsx1-ps1",
+      "family_label": "ARMSX1",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ghaelv-lemon-project",
       "name": "Lemon Project",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Android-only Switch 模拟器（Adreno GPU），2026 活跃：标准版 / Lite / Lite-Spoofed",
       "owner": "Ghael-V",
       "repo": "Ghael-V/Lemon-Project",
@@ -44337,12 +44842,17 @@
           "tag": "v1.3.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ghaelv-lemon-project",
+      "family_label": "Lemon Project",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "medard22-dolphin-mmjr2-vbi",
       "name": "Dolphin MMJR2 VBI",
-      "category": "Nintendo GameCube / Wii",
+      "category": "主机模拟",
       "description": "A fork of Dolphin MMJR2 - with added VBI Skip hack and further fixes ported over from Dolphin Official.",
       "owner": "Medard22",
       "repo": "Medard22/Dolphin-MMJR2-VBI",
@@ -44557,12 +45067,17 @@
           "tag": "U24.07.02-2407"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dolphin",
+      "family_label": "Dolphin 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /dolphin/"
     },
     {
       "id": "jica98-bachata-s4",
       "name": "Bachata-S4",
-      "category": "Emulator PS4",
+      "category": "主机模拟",
       "description": "Bachata S4 releases, compatibility reports, and public community ports",
       "owner": "JICA98",
       "repo": "JICA98/Bachata-S4",
@@ -44710,12 +45225,17 @@
           "tag": "v0.2.5"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "jica98-bachata-s4",
+      "family_label": "Bachata-S4",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "borked3ds-3ds",
       "name": "Borked3DS",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "实验性 3DS 模拟器（Lime3DS 系 fork，★276）：2025 年初活跃的实验分支，2025-04 后停更（与 Lime3DS 同期归档）；源码保留，无独立 release。",
       "owner": "Borked3DS",
       "repo": "Borked3DS/Borked3DS",
@@ -46855,12 +47375,17 @@
           "tag": "v2025.03.11"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "borked3ds-3ds",
+      "family_label": "Borked3DS",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mame2003plus",
       "name": "MAME 2003+",
-      "category": "Arcade Emulator",
+      "category": "主机模拟",
       "description": "MAME 0.78 增强版（RetroArch 内核），仓库活跃",
       "owner": "libretro",
       "repo": "libretro/mame2003-plus-libretro",
@@ -46905,12 +47430,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mame2003plus",
+      "family_label": "MAME 2003+",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "seedlessds-android",
       "name": "SeedlessDS",
-      "category": "Nintendo DS Emulator",
+      "category": "主机模拟",
       "description": "NDS 安卓模拟器（SapphireRhodonite 制作组）：核心由 DraStic r2.6.0.4a 重构并源码构建，专为物理按键掌机与双屏设备优化，内置游戏库、按键映射、即时存档、金手指与 RetroAchievements；与 WatermelonDS（melonDS 内核）为姊妹项目。",
       "owner": "SapphireRhodonite",
       "repo": "SapphireRhodonite/SeedlessDS",
@@ -46997,12 +47527,17 @@
           "tag": "1.0.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "seedlessds-android",
+      "family_label": "SeedlessDS",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "es-de-frontend",
       "name": "ES-DE Frontend",
-      "category": "Frontend",
+      "category": "前端与工具",
       "description": "跨平台游戏前端（EmulationStation Desktop Edition），安卓版为付费应用，经 Patreon / 三星 Galaxy Store / 华为 AppGallery 购买",
       "owner": "es-de",
       "repo": "es-de/emulationstation-de",
@@ -47036,12 +47571,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "es-de-frontend",
+      "family_label": "ES-DE Frontend",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "raport-redalert",
       "name": "ra-port (Red Alert)",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "命令与征服：红色警戒 Android 移植（APK 经 GitHub Actions 构建，arm64-v8a debug 包）",
       "owner": "dk8827",
       "repo": "dk8827/ra-port",
@@ -47074,12 +47614,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "raport-redalert",
+      "family_label": "ra-port (Red Alert)",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "flycast-dojo",
       "name": "Flycast Dojo",
-      "category": "Sega Dreamcast",
+      "category": "主机模拟",
       "description": "Flycast Dojo：Flycast 的社区增强分支，持续维护",
       "owner": "blueminder",
       "repo": "blueminder/flycast-dojo",
@@ -47134,12 +47679,17 @@
           "tag": "dojo-7.9"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "flycast",
+      "family_label": "Flycast 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /flycast/"
     },
     {
       "id": "emucorev-android",
       "name": "EmuCoreV",
-      "category": "PSVITA",
+      "category": "主机模拟",
       "description": "PlayStation Vita emulator for Android with a custom UI",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreV",
@@ -47659,12 +48209,17 @@
           "tag": "v0.2.7"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "emucorev-android",
+      "family_label": "EmuCoreV",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "emucorex-android",
       "name": "EmuCoreX",
-      "category": "PlayStation 2 Emulator",
+      "category": "主机模拟",
       "description": "PlayStation 2 emulator for Android with a PCSX2-based core adapted by EmuCoreX, a modern game library, live overlay controls, and a handheld-focused experience.",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreX",
@@ -48279,12 +48834,17 @@
           "tag": "v0.5.4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "emucorex-android",
+      "family_label": "EmuCoreX",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "unleashedrecomp",
       "name": "UnleashedRecomp-Android",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "索尼克释放 重编译版 Android 移植，活跃更新",
       "owner": "SansNope",
       "repo": "SansNope/UnleashedRecomp-Android",
@@ -48505,12 +49065,17 @@
           "tag": "v0.6.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "unleashedrecomp",
+      "family_label": "UnleashedRecomp-Android",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "odrannnn-metroidprime2port",
       "name": "MetroidPrime2Port",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Native port of Metroid Prime 2: Echoes (GameCube) for Linux and Android, built from the PrimeDecomp decompilation. No emulator, no game assets included: bring your own disc image.",
       "owner": "Odrannnn",
       "repo": "Odrannnn/MetroidPrime2Port",
@@ -48641,12 +49206,17 @@
       "needs_review": false,
       "_pool_score": 99,
       "_dup": false,
-      "distribution": null
+      "distribution": null,
+      "section": "native-port",
+      "family": "odrannnn-metroidprime2port",
+      "family_label": "MetroidPrime2Port",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "stredohori-winlator-cmod",
       "name": "Winlator Bionic Stredohiri",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "Stredohori",
       "repo": "Stredohori/Winlator-CMOD",
@@ -49171,12 +49741,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "winlatorxr-winlatorxr",
       "name": "Winlator XR",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Windows apps/games emulator for standalone OpenXR headsets.",
       "owner": "WinlatorXR",
       "repo": "WinlatorXR/WinlatorXR",
@@ -49277,12 +49852,17 @@
           "tag": "winlatorxr_dawn42"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "ranggacasper-mostwanted-android",
       "name": "Most Wanted for Android",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Unofficial native Android port of Need for Speed: Most Wanted (Xbox Black Edition). The x86 code is statically recompiled to C++ with XboxXBE-Recomp and built for arm64, with a Vulkan renderer, SDL3, touch/controller/keyboard input, and extended graphics options. No emulator, no game assets included.",
       "owner": "RanggaCasper",
       "repo": "RanggaCasper/MostWanted-Android",
@@ -49362,12 +49942,17 @@
       "needs_review": false,
       "_pool_score": 95,
       "_dup": false,
-      "distribution": null
+      "distribution": null,
+      "section": "native-port",
+      "family": "ranggacasper-mostwanted-android",
+      "family_label": "Most Wanted for Android",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "wie-skvm",
       "name": "Wie",
-      "category": "J2ME Emulator",
+      "category": "主机模拟",
       "description": "WIPI/SKVM/J2ME 模拟器（dlunch，★206，活跃）：韩系 SKVM（智能卡虚拟机）与 J2ME 手机游戏运行器，Android nightly 持续构建（v0.2.12 含 aarch64 APK）。",
       "owner": "dlunch",
       "repo": "dlunch/wie",
@@ -51184,12 +51769,17 @@
           "tag": "nightly-34abac9d09ce"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "wie-skvm",
+      "family_label": "Wie",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "aetherkiri-aether",
       "name": "Aether",
-      "category": "Visual Novel Engine",
+      "category": "视觉小说引擎",
       "description": "A cross-platform, multi-runtime visual novel emulator using Godot 4 as the rendering layer.",
       "owner": "AetherKiri",
       "repo": "AetherKiri/Aether",
@@ -51308,12 +51898,17 @@
       "needs_review": false,
       "_pool_score": 95,
       "_dup": false,
-      "distribution": null
+      "distribution": null,
+      "section": "vn-engine",
+      "family": "aetherkiri-aether",
+      "family_label": "Aether",
+      "_section_evidence": "method=engine",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ruzu-emu",
       "name": "Ruzu",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ruzu：用 Rust 重写的 Switch 模拟器，实验性但独立实现、跨平台",
       "owner": "vricosti",
       "repo": "vricosti/ruzu-emu",
@@ -51378,12 +51973,17 @@
           "tag": "v0.1.1-rc8"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ruzu-emu",
+      "family_label": "Ruzu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "the412banner-bannerhub-revanced",
       "name": "BannerHub v6 (The412Banner)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "ReVanced patches for GameHub — BannerHub features as true ReVanced patches",
       "owner": "The412Banner",
       "repo": "The412Banner/bannerhub-revanced",
@@ -53423,12 +54023,17 @@
           "tag": "v1.0.2-631"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "bannerhub",
+      "family_label": "BannerHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /bannerhub/"
     },
     {
       "id": "pocket8",
       "name": "Pocket8 (Pico-8)",
-      "category": "Pico-8 Emulator",
+      "category": "主机模拟",
       "description": "Pico-8 幻想机原生模拟器（pico-ios 同源）",
       "owner": "jevonlipsey",
       "repo": "jevonlipsey/pico-ios",
@@ -53627,12 +54232,17 @@
           "tag": "v1.6.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pocket8",
+      "family_label": "Pocket8 (Pico-8)",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "lime3ds-3ds",
       "name": "Lime3DS",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "3DS 模拟器（Citra 分支，★176）：2024-2025 主流维护分支之一，2025-04 项目停更后源码归档（lime3ds-archive）；不再有新 release，历史版本见归档。",
       "owner": "Lime3DS",
       "repo": "Lime3DS/lime3ds-archive",
@@ -53669,12 +54279,17 @@
         "macos",
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "lime3ds",
+      "family_label": "Lime3DS 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /lime3ds/"
     },
     {
       "id": "prosperoeden-ps5",
       "name": "ProsperoEden",
-      "category": "PS5 Port",
+      "category": "主机模拟",
       "description": "Experimental Eden port for PS5（Eden 模拟器移植到 PS5）",
       "owner": "Swordpdf",
       "repo": "Swordpdf/ProsperoEden",
@@ -54025,25 +54640,30 @@
         }
       ],
       "source": "github",
-      "note": "zip 运行包，非 apk 直链",
+      "note": "zip 运行包，非 apk 直链 | 2026-11-04 修：README 明写 PS5 port of Eden，原 hosts=android/method=recomp 错误",
       "download_url": "https://github.com/Swordpdf/ProsperoEden/releases/download/v1.005.000/ProsperoEden-v1.005.000.zip",
       "download_kind": "official-site",
       "kind": "emulator",
-      "runtime": "android-native",
+      "runtime": "ps5-homebrew",
       "platforms": [
-        "ps5"
+        "switch"
       ],
       "status": "active",
-      "method": "recomp",
+      "method": "emulation",
       "hosts": [
-        "android"
+        "ps5"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "prosperoeden-ps5",
+      "family_label": "ProsperoEden",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "jhinzuo-winlator",
       "name": "Winlator Bionic jhinzuo",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "jhinzuo",
       "repo": "jhinzuo/winlator",
@@ -54275,12 +54895,17 @@
           "tag": "dev8"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "rpcsx-rpcsx-ui-android",
       "name": "RPCSX Android",
-      "category": "Emulator PS3",
+      "category": "主机模拟",
       "description": "",
       "owner": "RPCSX",
       "repo": "RPCSX/rpcsx-ui-android-build",
@@ -54745,12 +55370,17 @@
           "tag": "v20260829-349fe96"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "rpcsx-rpcsx-ui-android",
+      "family_label": "RPCSX Android",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "santiquiroz-gears-of-war-2-pc-port",
       "name": "gears of war 2 pc port",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Gears of War 2 native PC port: the Xbox 360 game statically recompiled to x64 (not an emulator). 1440p/4K, FSR, 4K texture packs, keyboard & mouse, Android in progress. Bring your own copy.",
       "owner": "santiquiroz",
       "repo": "santiquiroz/gears-of-war-2-pc-port",
@@ -54861,12 +55491,17 @@
       "needs_review": false,
       "_pool_score": 95,
       "_dup": false,
-      "distribution": null
+      "distribution": null,
+      "section": "native-port",
+      "family": "santiquiroz-gears-of-war-2-pc-port",
+      "family_label": "gears of war 2 pc port",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ajay9634-winlator-ajay",
       "name": "Winlator Ajay",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "ajay9634",
       "repo": "ajay9634/winlator-ajay",
@@ -55001,12 +55636,17 @@
           "tag": "v11.1-hotfix2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "slaker222-steamlator",
       "name": "Steamlator",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Steam games with Proton/Wine and Box86/Box64",
       "owner": "slaker222",
       "repo": "slaker222/Steamlator",
@@ -55107,12 +55747,17 @@
           "tag": "1.7"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "slaker222-steamlator",
+      "family_label": "Steamlator",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "xendroid-plus",
       "name": "Xendroid+",
-      "category": "Microsoft Xbox 360",
+      "category": "主机模拟",
       "description": "XenDroid 增强 fork（phforner0）：推进 Xbox 360 安卓模拟，基于 XenDroid 代码持续优化，独立发布节奏（0.2.0-preview.108 起含 APK）。",
       "owner": "phforner0",
       "repo": "phforner0/Xendroid-Plus",
@@ -55577,12 +56222,17 @@
           "tag": "XenDroid-v144-a107faa9"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xendroid",
+      "family_label": "XenDroid 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /xendroid/"
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
       "name": "Winlator Ref4ik",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "REF4IK",
       "repo": "REF4IK/winlator-ref4ik-",
@@ -55875,12 +56525,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "jackandbeans-snap64recomp",
       "name": "Snap64Recomp",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Native Windows, Linux and macOS port of Pokémon Snap (N64)",
       "owner": "JackandBeans",
       "repo": "JackandBeans/Snap64Recomp",
@@ -56638,12 +57293,17 @@
           "tag": "v1.1.6"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "jackandbeans-snap64recomp",
+      "family_label": "Snap64Recomp",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mamcjr-totkdroid",
       "name": "TOTK Droid",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "塞尔达传说：王国之泪 原生重编译移植（Switch 1.4.3），非模拟器，需自行提供游戏文件",
       "owner": "mamcjr",
       "repo": "TOTKDroid",
@@ -56675,12 +57335,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "mamcjr-totkdroid",
+      "family_label": "TOTK Droid",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "afeimod-linbox",
       "name": "Linbox",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "一款安卓手机用来办公娱乐的项目，利用termux和x11运行的linux系统，顺便调用mobox运行wine",
       "owner": "afeimod",
       "repo": "afeimod/linbox",
@@ -57225,12 +57890,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "afeimod-linbox",
+      "family_label": "Linbox",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "silksongandroid",
       "name": "SilksongAndroid",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "空洞骑士：丝之歌 双屏 Android 移植（+Steam 集成）",
       "owner": "jakobkhansen",
       "repo": "jakobkhansen/SilksongAndroid",
@@ -57471,12 +58141,17 @@
           "tag": "v2.0.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "silksongandroid",
+      "family_label": "SilksongAndroid",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "pockethle-android",
       "name": "PocketHLE",
-      "category": "Windows Mobile",
+      "category": "主机模拟",
       "description": "A high-level Windows Mobile / Pocket PC / Gizmondo emulator for Linux, Windows and Android.",
       "owner": "j92580498-max",
       "repo": "j92580498-max/PocketHLE",
@@ -57661,12 +58336,17 @@
           "tag": "0.3.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pockethle-android",
+      "family_label": "PocketHLE",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "snes9x-z",
       "name": "Snes9x-Z",
-      "category": "Super Nintendo Emulator",
+      "category": "主机模拟",
       "description": "Snes9x-Z：Snes9x 的性能优化分支，提供 libretro 核心（含安卓 arm64）",
       "owner": "andrezaiats",
       "repo": "andrezaiats/snes9x-Z",
@@ -57741,12 +58421,17 @@
           "tag": "v1.63-z1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "snes9x-z",
+      "family_label": "Snes9x-Z",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ryubing-emulator",
       "name": "Ryubing",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ryubing：Ryujinx 的社区续接版本（Ryujinx 本体 2024-10 因 DMCA 停更后由社区接管维护）",
       "owner": "projects",
       "repo": "projects/Ryubing",
@@ -57792,12 +58477,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ryujinx",
+      "family_label": "Ryujinx 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ryubing/"
     },
     {
       "id": "linkzenic-shipwright-ports",
       "name": "Shipwright-Ports（时之笛 Android/iOS 移植）",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Ship of Harkinian 官方 PC 移植的第三方 Android/iOS 移植版，同时提供 APK 与 iOS 包，按上游版本号发布",
       "owner": "linkzenic",
       "repo": "linkzenic/Shipwright-Ports",
@@ -57916,12 +58606,17 @@
           "tag": "v9.3.1-ports.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "linkzenic-shipwright-ports",
+      "family_label": "Shipwright-Ports（时之笛 Android/iOS 移植）",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "hyperhle",
       "name": "HyperHLE",
-      "category": "iOS Emulator",
+      "category": "主机模拟",
       "description": "HyperHLE（touchHLE 系高分支，iOS 应用 HLE 模拟器）：原 j92580498-max 分支已停更（作者推荐转向 KlugKlugTG 接手分支）。touchHLE 兼容性库见 appdb.touchhle.org。",
       "owner": "j92580498-max",
       "repo": "KlugKlugTG/HyperHLE-Fork",
@@ -59403,12 +60098,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "hyperhle",
+      "family_label": "HyperHLE",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "hyperhle-reborn",
       "name": "HyperHLE-Reborn",
-      "category": "iOS Emulator",
+      "category": "主机模拟",
       "description": "KlugKlugTG 接手的 HyperHLE 活跃分支：基于 touchHLE 的 iOS 应用 HLE 模拟器，支持面与功能更多。release 含 Android AArch64 / iOS trollstore / Linux 三端。",
       "owner": "KlugKlugTG",
       "repo": "KlugKlugTG/HyperHLE-Reborn",
@@ -60941,12 +61641,17 @@
           "tag": "v1.3.6"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "hyperhle-reborn",
+      "family_label": "HyperHLE-Reborn",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "linkzenic-2ship2harkinian-android",
       "name": "2Ship2Harkinian-Android",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Unofficial Android fork of 2 Ship 2 Harkinian",
       "owner": "linkzenic",
       "repo": "linkzenic/2ship2harkinian-Android",
@@ -61301,12 +62006,17 @@
           "tag": "v5.0.1-android.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "linkzenic-2ship2harkinian-android",
+      "family_label": "2Ship2Harkinian-Android",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "citra-mirror",
       "name": "Citra Mirror",
-      "category": "Nintendo 3DS Emulator",
+      "category": "主机模拟",
       "description": "Citra 的非官方镜像分支，2024-03 后停更，无 Release 产物",
       "owner": "citra-mirror",
       "repo": "citra-mirror/citra",
@@ -61343,12 +62053,17 @@
         "macos",
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "citra",
+      "family_label": "Citra 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /citra/"
     },
     {
       "id": "prospero-eden-encore",
       "name": "ProsperoEden Encore",
-      "category": "PS5 Port",
+      "category": "主机模拟",
       "description": "ProsperoEden Encore：Eden 的 Switch 1 + Switch 2 实验分支",
       "owner": "niakw",
       "repo": "niakw/ProsperoEden-Encore",
@@ -61372,23 +62087,27 @@
       "source": "github",
       "distribution": "release-zip",
       "kind": "emulator",
-      "runtime": "desktop",
+      "runtime": "ps5-homebrew",
       "platforms": [
         "switch"
       ],
       "status": "active",
-      "note": "★79，2026-11-03 仍活跃。release 附可运行构建。与本库已有 ProsperoEden（Android 移植）同源不同目标平台",
-      "method": "recomp",
+      "note": "★79，2026-11-03 仍活跃。release 附可运行构建。与本库已有 ProsperoEden（Android 移植）同源不同目标平台 | 2026-11-04 修：仓库描述为 \"fork for PS5 FW 13.60\"，host=ps5、method=emulation，原记录 hosts=android/windows 错误",
+      "method": "emulation",
       "hosts": [
-        "android",
-        "windows"
+        "ps5"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "id 兜底命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "jaycore-mobox-patched",
       "name": "Mobox Patched",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "",
       "owner": "jaycore",
       "repo": "jaycore/mobox-patched",
@@ -61492,12 +62211,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "jaycore-mobox-patched",
+      "family_label": "Mobox Patched",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "ax360e-android",
       "name": "ax360e",
-      "category": "Microsoft Xbox 360",
+      "category": "主机模拟",
       "description": "实验性 Android Xbox360 模拟器（基于 Xenia），经 Google Play 分发（免费版 aenu.ax360e.free 与付费版 aenu.ax360e），GitHub 无 release 资产。",
       "owner": "aenu1",
       "repo": "aenu1/ax360e",
@@ -61533,12 +62257,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ax360e-android",
+      "family_label": "ax360e",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "maxjivi05-ps3native",
       "name": "PS3Native",
-      "category": "Emulator PS3",
+      "category": "主机模拟",
       "description": "PlayStation 3 emulator and debugger",
       "owner": "maxjivi05",
       "repo": "maxjivi05/PS3Native",
@@ -61753,13 +62482,18 @@
           "tag": "v0.4.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "maxjivi05-ps3native",
+      "family_label": "PS3Native",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "termux-kotlin",
       "name": "Termux Kotlin",
       "repo": "reapercanuk39/termux-kotlin-app",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "https://github.com/reapercanuk39/termux-kotlin-app",
       "logoUrl": "https://avatars.githubusercontent.com/u/728003?v=4",
       "description": "Termux Kotlin 重写版：全 Kotlin 实现，独立发布 APK",
@@ -62822,13 +63556,18 @@
           "tag": "v2.0.14"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "termux-jiaxinchen",
       "name": "Termux 增强镜像",
       "repo": "jiaxinchen-max/termux-app",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "https://f-droid.org/packages/com.termux/",
       "logoUrl": "https://avatars.githubusercontent.com/u/103731829?v=4",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
@@ -63472,12 +64211,17 @@
           "tag": "1.0.8"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "skyline-official",
       "name": "Skyline（官方）",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Skyline（官方）：安卓 Switch 模拟器。仓库 README 已自述开发终止，源码已从所有 owner 分支与 tag 移除，仅作历史记录",
       "owner": "skyline-emu",
       "repo": "skyline-emu/skyline",
@@ -63521,12 +64265,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "skyline",
+      "family_label": "Skyline 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /skyline/"
     },
     {
       "id": "ghael-v-capyps5",
       "name": "CapyPS5",
-      "category": "Emulator PS5",
+      "category": "主机模拟",
       "description": "PS5 emulator（早期原型 v0.0.1，官方 release 直链）",
       "owner": "Ghael-V",
       "repo": "Ghael-V/CapyPS5",
@@ -63627,12 +64376,17 @@
           "tag": "v0.0.4"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ghael-v-capyps5",
+      "family_label": "CapyPS5",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "the412banner-bannerhub-lite",
       "name": "BannerHub Lite (The412Banner)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "BannerHub Lite — BannerHub features patched into GameHub Lite 5.1.4",
       "owner": "The412Banner",
       "repo": "The412Banner/Bannerhub-Lite",
@@ -64203,12 +64957,17 @@
           "tag": "v1.0.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "bannerhub",
+      "family_label": "BannerHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /bannerhub/"
     },
     {
       "id": "virtualjaguar",
       "name": "Virtual Jaguar",
-      "category": "Atari Emulator",
+      "category": "主机模拟",
       "description": "Atari Jaguar/Jaguar CD 模拟器（RetroArch 内核），活跃",
       "owner": "libretro",
       "repo": "libretro/virtualjaguar-libretro",
@@ -70006,12 +70765,17 @@
           "tag": "nightly"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "virtualjaguar",
+      "family_label": "Virtual Jaguar",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mircowuffwuff-sharpdroid",
       "name": "SharpDroid",
-      "category": "Emulator PS5",
+      "category": "主机模拟",
       "description": "an android app that runs SharpEmu, a PS5 emulator",
       "owner": "mircowuffwuff",
       "repo": "mircowuffwuff/sharpdroid",
@@ -70168,12 +70932,17 @@
           "tag": "sharpdroid-8"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mircowuffwuff-sharpdroid",
+      "family_label": "SharpDroid",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "nfs3recompiled",
       "name": "nfs3recompiled-android",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "极品飞车3：热力追踪 重编译版 Android 移植",
       "owner": "ZloiKILLER",
       "repo": "ZloiKILLER/nfs3recompiled-android",
@@ -70246,12 +71015,17 @@
           "tag": "v0.78"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "nfs3recompiled",
+      "family_label": "nfs3recompiled-android",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "zeebx-zeebo",
       "name": "Zeebx",
-      "category": "Zeebo Emulator",
+      "category": "主机模拟",
       "description": "Zeebo 模拟器（巴西 Tectoy 家用机，开发中）",
       "owner": "ZeebxTeam",
       "repo": "ZeebxTeam/zeebx-emu",
@@ -71305,12 +72079,17 @@
           "tag": "v0.5.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "zeebx-zeebo",
+      "family_label": "Zeebx",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "dev-ali2008-onrps4-android",
       "name": "onRps4",
-      "category": "Emulator PS4",
+      "category": "主机模拟",
       "description": "PS4 & PS5 emulator Android",
       "owner": "dev-Ali2008",
       "repo": "dev-Ali2008/onRps4-Android",
@@ -71397,7 +72176,12 @@
           "tag": "v0.0.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dev-ali2008-onrps4-android",
+      "family_label": "onRps4",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "yifengling0-vintagepomelopro",
@@ -71431,12 +72215,17 @@
       "builds": [],
       "license": null,
       "topics": [],
-      "note": "鸿蒙专用：Box64(x86_64→ARM64) + Wine + 进程内 Wayland compositor，支持多窗口、音频(WASAPI/DSound/MCI)、VirGL/OpenGL。release 只发 Proton 依赖包，HAP 需自行签名构建；173 个 open issues 说明用户量大。"
+      "note": "鸿蒙专用：Box64(x86_64→ARM64) + Wine + 进程内 Wayland compositor，支持多窗口、音频(WASAPI/DSound/MCI)、VirGL/OpenGL。release 只发 Proton 依赖包，HAP 需自行签名构建；173 个 open issues 说明用户量大。",
+      "section": "windows-compat",
+      "family": "yifengling0-vintagepomelopro",
+      "family_label": "VintagePomeloPro",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "afeimod-winlator-glibc",
       "name": "Winlator Glibc (Amod)",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "基于 longjunyu2/winlator 的 glibc 构建（Amod 维护）",
       "owner": "afeimod",
       "repo": "afeimod/winlator-glibc",
@@ -71845,12 +72634,17 @@
           "tag": "9.9-staging-Amod-wow64"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "dukeps3-android",
       "name": "DukePS3",
-      "category": "Emulator PS3",
+      "category": "主机模拟",
       "description": "PS3Native 的 fork（thecrixux 分支）：PS3 安卓模拟器。上游 PS3Native v0.3.0 起已内置 LSFG 帧生成（用户自备 Lossless.dll）；本分支独有 DIS 内置免费帧生成与游戏 FPS/输出 FPS 分离 overlay，并与上游协作提 PR（固件修复已并入 v0.4.0）。直链待核：GitHub release 页未公开（tag 1.0.0 存在）。",
       "owner": "thecrixux",
       "repo": "thecrixux/DukePS3",
@@ -71883,12 +72677,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dukeps3-android",
+      "family_label": "DukePS3",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "emucorec-ps3",
       "name": "EmuCoreC",
-      "category": "PlayStation 3",
+      "category": "主机模拟",
       "description": "PS3 安卓模拟器（sashkinbro EmuCore 家族，★43，基于 RPCS3 内核）：2026-08 起活跃，v0.0.5/v0.0.6 连续发布且含 APK；独立安卓前端界面。",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreC",
@@ -72028,12 +72827,17 @@
           "tag": "v0.0.6"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "emucorec-ps3",
+      "family_label": "EmuCoreC",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "itzdfplayer-gamehub-lite",
       "name": "GameHub Lite (ItzDFPlayer)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
       "owner": "ItzDFPlayer",
       "repo": "ItzDFPlayer/gamehub-lite",
@@ -72111,12 +72915,17 @@
           "tag": "5.3.5-v2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamehub",
+      "family_label": "GameHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamehub/"
     },
     {
       "id": "eden-nx2-zuan",
       "name": "Eden NX2 (ZuanCrisp)",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Eden 的 Switch 2 实验分支，release 附 Windows 构建与校验和",
       "owner": "ZuanCrisp",
       "repo": "ZuanCrisp/Eden-NX2",
@@ -72161,12 +72970,17 @@
           "tag": "nx2-2026-10-29"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "eden-emulator-releases",
       "name": "Eden Emulator",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "官方自托管 Gitea（git.eden-emu.dev）持续更新，GitHub 仓库已被屏蔽；v0.2.1 四档 APK",
       "owner": "eden-emu",
       "repo": "eden-emu/eden",
@@ -74567,12 +75381,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "md.emu-sms",
       "name": "MD.emu",
-      "category": "Sega Mega Drive",
+      "category": "主机模拟",
       "description": "Sega Genesis/Mega Drive 与 Master System 模拟器（Robert Broglia .emu 系列）：GitHub 官方源码镜像（neonichu 维护），正式版经 Google Play 分发（免费+付费版）；视频中 v1.5.8x 系列版本。",
       "owner": "neonichu",
       "repo": "neonichu/MD.emu",
@@ -74608,13 +75427,18 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "md.emu-sms",
+      "family_label": "MD.emu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "termux-ghostty",
       "name": "Termux Ghostty",
       "repo": "mrndstvndv/termux-ghostty",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "",
       "logoUrl": "https://avatars.githubusercontent.com/u/181800731?v=4",
       "description": "Termux + Ghostty 实验性集成：现代终端渲染，APK 分发活跃",
@@ -75966,12 +76790,17 @@
           "tag": "v4.13.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "juris-x-winlator_x",
       "name": "Winlator X",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "JURIS-X",
       "repo": "JURIS-X/winlator_x",
@@ -76101,12 +76930,17 @@
           "tag": "v3.0.1-beta"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "dukestation-ps1",
       "name": "DukeStation",
-      "category": "PlayStation 1 Emulator",
+      "category": "主机模拟",
       "description": "PS1 安卓模拟器（thecrixux，DukePS3 同作者）：基于 sashkinbro/EmuCoreR 的 fork，2026-09 起活跃维护；GitHub release 页暂未公开，APK 经网盘分发（直链待核）。",
       "owner": "thecrixux",
       "repo": "thecrixux/DukeStation",
@@ -76141,12 +76975,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dukestation-ps1",
+      "family_label": "DukeStation",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "eden-ns2-android-vivsi",
       "name": "Eden NS2 Android (Vivsi)",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Eden NS2（Switch 2 模拟器）的安卓分支：Donkey Kong Bananza / Mario Kart World / 宝可梦 Pokopia / Splatoon Raiders 可玩（部分场景掉帧），Welcome Tour 能进但极慢。性能仍在开发期，部分游戏需 GPU accuracy Low + 异步着色 + ASTC BC3 重压缩",
       "owner": "Vivsi1",
       "repo": "Vivsi1/Eden-NS2-Android",
@@ -76202,12 +77041,17 @@
           "tag": "Alpha"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "honkonx-winlator-honkon",
       "name": "Winlator Honkon",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "Honkonx",
       "repo": "Honkonx/winlator-honkon",
@@ -76493,12 +77337,17 @@
           "tag": "V11.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "m64plusfz",
       "name": "M64Plus FZ",
-      "category": "Nintendo 64 Emulator",
+      "category": "主机模拟",
       "description": "M64Plus FZ（Mupen64Plus AE 前端）：闭源商店版，但核心为开源 GPL-3.0",
       "owner": "fzurita",
       "repo": "fzurita/mupen64plus-ae",
@@ -76544,12 +77393,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mupen64plus",
+      "family_label": "Mupen64Plus 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /mupen64plus/"
     },
     {
       "id": "mupen64plus-ae-fzurita",
       "name": "Mupen64Plus AE (fzurita)",
-      "category": "Nintendo 64 Emulator",
+      "category": "主机模拟",
       "description": "Mupen64Plus AE 的 fzurita 分支，安卓端 M64Plus FZ 商店版所对应的开源核心",
       "owner": "fzurita",
       "repo": "fzurita/mupen64plus-ae",
@@ -76583,12 +77437,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mupen64plus",
+      "family_label": "Mupen64Plus 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /mupen64plus/"
     },
     {
       "id": "azaharplus-android",
       "name": "AzaharPlus",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "Azahar 3DS 模拟器增强 fork（f4mrfaux，★25）：恢复 3DS 文件直接支持、官方服务器下载系统文件等特性；仓库为纯源码（无 release 资产），APK 见社区分发（待核）。",
       "owner": "f4mrfaux",
       "repo": "f4mrfaux/AzaharPlus",
@@ -76624,12 +77483,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "azahar",
+      "family_label": "Azahar 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /azahar/"
     },
     {
       "id": "afeimod-linbox-winemu",
       "name": "Linbox WinEmu",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "一款安卓手机用来办公娱乐的项目，利用proot终端运行linux，其他资源请去 https://github.com/afeimod/Linbox-WinEmu 查看",
       "owner": "afeimod",
       "repo": "afeimod/Linbox-WinEmu",
@@ -76845,12 +77709,17 @@
           "tag": "Linbox-WinEmu-2.0test"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "afeimod-linbox-winemu",
+      "family_label": "Linbox WinEmu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "dk64recomp",
       "name": "dk64-recomp-android",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "大金刚64 重编译版 Android 移植（RT64/Vulkan）",
       "owner": "deivid22srk",
       "repo": "deivid22srk/dk64-recomp-android",
@@ -76961,12 +77830,17 @@
           "tag": "v1.0.3-android-r7"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "dk64recomp",
+      "family_label": "dk64-recomp-android",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "edeegg-sharpemu-arm64",
       "name": "SharpEmu ARM64",
-      "category": "Emulator PS5",
+      "category": "主机模拟",
       "description": "An experimental PlayStation 5 emulator for Windows, Linux and macOS.",
       "owner": "edeegg",
       "repo": "edeegg/sharpemu-arm64",
@@ -77039,13 +77913,18 @@
           "tag": "android-v0.0.2_poc"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "edeegg-sharpemu-arm64",
+      "family_label": "SharpEmu ARM64",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "termux-enhanced",
       "name": "Termux Enhanced",
       "repo": "NIK2703/termux-enhanced",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "https://github.com/NIK2703/termux-enhanced",
       "logoUrl": "https://avatars.githubusercontent.com/u/44705381?v=4",
       "description": "Termux fork：持续发布增强版 Release，APK 与官方并行",
@@ -77815,12 +78694,17 @@
           "tag": "Release22"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "afeimod-nesstation",
       "name": "NesStation",
-      "category": "All In One",
+      "category": "前端与工具",
       "description": "一款安卓端模拟器游戏运行前端，不提供rom，避免不必要的麻烦",
       "owner": "afeimod",
       "repo": "afeimod/NesStation",
@@ -78002,12 +78886,17 @@
           "tag": "3.9-release"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "afeimod-nesstation",
+      "family_label": "NesStation",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "pocket2droid-android",
       "name": "Pocket2Droid",
-      "category": "Windows Mobile",
+      "category": "主机模拟",
       "description": "Windows Mobile 6 emulator for Android",
       "owner": "samsixx6",
       "repo": "samsixx6/Pocket2Droid",
@@ -78114,12 +79003,17 @@
           "tag": "1.0.3.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pocket2droid-android",
+      "family_label": "Pocket2Droid",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "zenith-panplay",
       "name": "PanPlay (Mali 游戏启动器)",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "PanPlay：Android Windows 游戏启动器（Wine/FEX/DXVK，Mali）",
       "owner": "zenithblue-oss",
       "repo": "zenithblue-oss/panplay",
@@ -78605,12 +79499,17 @@
           "tag": "panplay-v1.3.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "zenith-panplay",
+      "family_label": "PanPlay (Mali 游戏启动器)",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "alexoqool-winlator-bionic-build",
       "name": "Winlator Bionic Alexoqool",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "APKs of Pipetto-crypto's Winlator Bionic",
       "owner": "Alexoqool",
       "repo": "Alexoqool/winlator-bionic-build",
@@ -79076,12 +79975,17 @@
           "tag": "2026-05-03"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "ryujinx-canary-ademola",
       "name": "Ryujinx Canary Builds (ADEMOLA200)",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ryujinx 的社区 canary 构建仓，每次提交编译发布",
       "owner": "ADEMOLA200",
       "repo": "ADEMOLA200/Ryujinx-Canary-Builds",
@@ -79146,13 +80050,18 @@
           "tag": "1.3.31"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ryujinx",
+      "family_label": "Ryujinx 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ryujinx/"
     },
     {
       "id": "termux-plus",
       "name": "TermuxPlus",
       "repo": "thejaustin/TermuxPlus",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "https://github.com/thejaustin/TermuxPlus",
       "logoUrl": "https://avatars.githubusercontent.com/u/10579902?v=4",
       "description": "Termux fork：基于 0.118 主线独立维护并发布 APK",
@@ -79209,12 +80118,17 @@
           "tag": "v0.118.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "windroidemulation-winnative",
       "name": "WinNative (fork)",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "In Development",
       "owner": "WinDroidEmulation",
       "repo": "WinDroidEmulation/WinNative",
@@ -79944,12 +80858,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winnative",
+      "family_label": "WinNative 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winnative/"
     },
     {
       "id": "dingooemu-android",
       "name": "DingooEmu",
-      "category": "Handheld Console",
+      "category": "主机模拟",
       "description": "Dingoo A320 / Gemei A330 掌机模拟器（AloysHF，2026-08 起活跃）：发布物为各平台 libretro 核心包（nightly-build 含 android/ios/linux/macos/windows），安卓端为 tar.gz 核心包，需配合 RetroArch 等 libretro 前端加载；另有独立单机版（linux/macos/windows 直装包）。",
       "owner": "AloysHF",
       "repo": "AloysHF/DingooEmu",
@@ -80348,12 +81267,17 @@
           "tag": "nightly-build"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dingooemu-android",
+      "family_label": "DingooEmu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "emucorep-android",
       "name": "EmuCoreP-Releases",
-      "category": "Windows PC",
+      "category": "Windows 兼容层",
       "description": "PC gaming on Android, simplified - a fast native UI for Wine and Box64.",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreP-Releases",
@@ -80441,12 +81365,17 @@
           "tag": "v0.0.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "emucorep-android",
+      "family_label": "EmuCoreP-Releases",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
       "name": "X1 BOX",
-      "category": "Xbox",
+      "category": "主机模拟",
       "description": "",
       "owner": "NETHERSTRIKER",
       "repo": "NETHERSTRIKER/x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
@@ -80533,12 +81462,17 @@
           "tag": "X1Box"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
+      "family_label": "X1 BOX",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "nexium-switch1",
       "name": "NeXium",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Nintendo Switch 1 Homebrew Emulator",
       "owner": "nexium-emu",
       "repo": "nexium-emu/nexium",
@@ -80574,12 +81508,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "nexium-switch1",
+      "family_label": "NeXium",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "handylynx",
       "name": "Handy (Atari Lynx)",
-      "category": "Atari Emulator",
+      "category": "主机模拟",
       "description": "Atari Lynx 模拟器 Handy（RetroArch 内核）",
       "owner": "libretro",
       "repo": "libretro/libretro-handy",
@@ -80615,12 +81554,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "handylynx",
+      "family_label": "Handy (Atari Lynx)",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "melange-brew",
       "name": "Melange (BREW)",
-      "category": "Brew Emulator",
+      "category": "主机模拟",
       "description": "BREW 平台模拟器（Qualcomm BREW 手机游戏），GitLab 开源",
       "owner": "usernameak",
       "repo": "usernameak/melange",
@@ -80656,12 +81600,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "melange-brew",
+      "family_label": "Melange (BREW)",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "orangefox86-hollycast",
       "name": "Hollycast",
-      "category": "Sega Dreamcast",
+      "category": "主机模拟",
       "channel": "github",
       "repo": "OrangeFox86/Hollycast",
       "repo_url": "https://github.com/OrangeFox86/Hollycast",
@@ -80757,12 +81706,17 @@
           "tag": "v1.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "orangefox86-hollycast",
+      "family_label": "Hollycast",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "emucorea-android",
       "name": "EmuCoreA",
-      "category": "PlayStation Portable",
+      "category": "主机模拟",
       "description": "PlayStation PSP Emulator for Android",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreA",
@@ -81035,12 +81989,17 @@
           "tag": "v0.1.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "emucorea-android",
+      "family_label": "EmuCoreA",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "azahartrigger-3ds",
       "name": "AzaharTrigger",
-      "category": "Nintendo 3DS",
+      "category": "主机模拟",
       "description": "Azahar 3DS 模拟器 fork（diegolix29，★13，上游 AzaharPlus/AzaharPlus ★1352）：带额外功能（聊天模组等）的增强分支，2026-07 起连续 release（v1.0.11→v1.0.13）且含 APK；中文汉化版由 klark231 分发。",
       "owner": "diegolix29",
       "repo": "diegolix29/AzaharTrigger",
@@ -81881,12 +82840,17 @@
           "tag": "v1.0.13"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "azahar",
+      "family_label": "Azahar 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /azahar/"
     },
     {
       "id": "frostie77-tooie-recompiled",
       "name": "Tooie-Recompiled（Banjo-Tooie 安卓原生移植）",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Banjo-Tooie 的原生安卓移植，arm64 APK，作者注明与 BanjoRecomp 官方无关联",
       "owner": "Frostie77",
       "repo": "Frostie77/Tooie-Recompiled",
@@ -81990,12 +82954,17 @@
           "tag": "v1.2.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "frostie77-tooie-recompiled",
+      "family_label": "Tooie-Recompiled（Banjo-Tooie 安卓原生移植）",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "nin64-android",
       "name": "Nin64-Emulator",
-      "category": "Nintendo 64",
+      "category": "主机模拟",
       "description": "Nintendo 64 安卓模拟器（基于 Mupen64Plus-Next/libretro，含金手指管理与即时存档）：经 Google Play 分发（免费含广告，可选内购去广告），GitHub 无 release。",
       "owner": "izzy2lost",
       "repo": "izzy2lost/Nin64-Emulator",
@@ -82031,12 +83000,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "nin64-android",
+      "family_label": "Nin64-Emulator",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "afeimod-gamehtml",
       "name": "Game4399 Flash盒",
-      "category": "Web/Flash 游戏",
+      "category": "主机模拟",
       "description": "支持 Flash 插件、触屏+物理键盘+虚拟手柄的 4399 网页安卓 App，基于 WebView + Ruffle Flash",
       "owner": "afeimod",
       "repo": "afeimod/gamehtml",
@@ -82148,12 +83122,17 @@
           "tag": "3.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "afeimod-gamehtml",
+      "family_label": "Game4399 Flash盒",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "deivid22srk-winlator-xmod",
       "name": "Winlator Xmod",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "",
       "owner": "deivid22srk",
       "repo": "deivid22srk/Winlator-Xmod",
@@ -82240,12 +83219,17 @@
           "tag": "Winlator_xmox_1.1.0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "emucoreh-android",
       "name": "EmuCoreH",
-      "category": "Sega Dreamcast",
+      "category": "主机模拟",
       "description": "EmuCoreH - Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
       "owner": "sashkinbro",
       "repo": "sashkinbro/EmuCoreH",
@@ -82518,12 +83502,17 @@
           "tag": "v0.1.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "emucoreh-android",
+      "family_label": "EmuCoreH",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "samsixx6-brew2droid",
       "name": "Brew2Droid",
-      "category": "Brew Emulator",
+      "category": "主机模拟",
       "channel": "github",
       "repo": "samsixx6/Brew2Droid",
       "repo_url": "https://github.com/samsixx6/Brew2Droid",
@@ -82589,12 +83578,17 @@
           "tag": "1.1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "samsixx6-brew2droid",
+      "family_label": "Brew2Droid",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "duckyduckg-winlator",
       "name": "Winlator Bionic duckyduckG",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Android application for running Windows applications with Wine and Box86/Box64",
       "owner": "duckyduckG",
       "repo": "duckyduckG/winlator",
@@ -83059,12 +84053,17 @@
           "tag": "8de79b1"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "ryudeck-steamdeck",
       "name": "Ryujinx Ryudeck",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ryudeck：面向 Steam Deck 原生的 Ryujinx 分支，针对掌机做适配",
       "owner": "deucebucket",
       "repo": "deucebucket/ryudeck",
@@ -83109,12 +84108,17 @@
           "tag": "v0.1.24"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ryujinx",
+      "family_label": "Ryujinx 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ryujinx/"
     },
     {
       "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
       "name": "Exiled Kingdoms Multiplayer",
-      "category": "GAME",
+      "category": "主机模拟",
       "description": "Multiplayer",
       "owner": "winlatorbrasil",
       "repo": "winlatorbrasil/Exiled-Kingdoms-Multiplayer",
@@ -83176,13 +84180,18 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "id 兜底命中 /winlator/"
     },
     {
       "id": "termux-aether",
       "name": "Termux-Aether",
       "repo": "wallentx/termux-aether-app",
-      "category": "terminal",
+      "category": "前端与工具",
       "homepage": "https://github.com/wallentx/termux-aether-app",
       "logoUrl": "https://avatars.githubusercontent.com/u/8990544?v=4",
       "description": "现代终端分支：Pacman 包管理 + 原生 glibc 兼容，独立版本线",
@@ -83466,12 +84475,17 @@
           "tag": "v1000.0.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "termux",
+      "family_label": "Termux 系",
+      "_section_evidence": "method 空，platforms=[terminal]",
+      "_family_evidence": "名称/仓库命中 /termux/"
     },
     {
       "id": "eden-sx2a-moceure",
       "name": "Eden SX2A (Switch 2 实验版)",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "非官方 Switch 2 安卓实验版（Eden SX2A）：基于 PokeDinner（Eglantine 系社区修复合集 fork），v0.2.x 基于 Eden-NS2。免设置开箱即用；需 Android 13+、推荐 16GB RAM、Adreno GPU，仅支持散装文件夹（exefs+romfs）游戏，NSP/XCI 不支持。实验性质可能随时停更",
       "owner": "moceure",
       "repo": "moceure/eden-nx2-android",
@@ -83586,12 +84600,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "kreitinnsoftware-micewine-application",
       "name": "MiceWine",
-      "category": "PC Emulator",
+      "category": "主机模拟",
       "description": "MiceWine Emulator",
       "owner": "KreitinnSoftware",
       "repo": "KreitinnSoftware/MiceWine",
@@ -83623,12 +84642,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "kreitinnsoftware-micewine-application",
+      "family_label": "MiceWine",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "faux123-gamenative-mali",
       "name": "GameNative Mali",
-      "category": "GameNative",
+      "category": "Windows 兼容层",
       "description": "GameNative 的 Mali GPU 优化版（原生 PC 游戏，含现代 Mali 渲染修复），faux123 维护",
       "owner": "faux123",
       "repo": "faux123/GameNative-Mali",
@@ -83687,7 +84711,12 @@
           "tag": "v1.2.1-mali.11"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamenative",
+      "family_label": "GameNative 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamenative/"
     },
     {
       "id": "hitode-project-hitode",
@@ -83807,12 +84836,17 @@
         "visual-novel",
         "windows-compatibility"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "hitode-project-hitode",
+      "family_label": "Hitode",
+      "_section_evidence": "method=translation（guest=visual-novel）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "maxi000q-consolefivepro",
       "name": "Console Five Pro",
-      "category": "Emulator PS5",
+      "category": "主机模拟",
       "description": "Android 平台的 PS5 硬件环境模拟器（开源研究/教育项目，需自备系统文件）",
       "owner": "maxi000q",
       "repo": "ConsoleFivePro",
@@ -84075,12 +85109,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "maxi000q-consolefivepro",
+      "family_label": "Console Five Pro",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "afeimod-eden-an",
       "name": "Eden AN (mod)",
-      "category": "Symbian Emulator",
+      "category": "主机模拟",
       "description": "Eden 模拟器安卓 mod（上游 https://git.eden-emu.dev/eden-emu/eden）",
       "owner": "afeimod",
       "repo": "afeimod/eden-an",
@@ -84151,7 +85190,7 @@
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
-        "symbian"
+        "switch"
       ],
       "status": "active",
       "method": "emulation",
@@ -84169,12 +85208,18 @@
           "tag": "mod-3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "note": " | 2026-11-04 修：platforms 原为 symbian，但 README 为 Eden 上游镜像（Switch 1 模拟器），属误抄 eka2l1-an",
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "melonx-ios",
       "name": "MeloNX",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "MeloNX：Ryujinx 的 iOS/iPadOS 移植，release 直接附 IPA",
       "owner": "projects",
       "repo": "projects/MeloNX",
@@ -84209,12 +85254,17 @@
       "hosts": [
         "ios"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "melonx-ios",
+      "family_label": "MeloNX",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "zenith-panprobe",
       "name": "PanProbe (Mali 驱动探测)",
-      "category": "GameNative",
+      "category": "Windows 兼容层",
       "description": "PanProbe：Vulkan 信息与设备端驱动测试（PanVK Kbase Mali）",
       "owner": "zenithblue-oss",
       "repo": "zenithblue-oss/panprobe",
@@ -84603,12 +85653,17 @@
           "tag": "panprobe-v1.3.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "zenith-panprobe",
+      "family_label": "PanProbe (Mali 驱动探测)",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "8cee-banjorecomp-android",
       "name": "BanjoRecomp-Android（Banjo-Kazooie 安卓移植）",
-      "category": "Game Port",
+      "category": "原生移植",
       "description": "Banjo-Kazooie 的 Android 移植，基于 N64: Recompiled，仅通过 CI 产出调试版 APK",
       "owner": "8cee",
       "repo": "8cee/BanjoRecomp-Android",
@@ -84643,12 +85698,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "native-port",
+      "family": "8cee-banjorecomp-android",
+      "family_label": "BanjoRecomp-Android（Banjo-Kazooie 安卓移植）",
+      "_section_evidence": "method=recomp",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "afeimod-eka2l1-an",
       "name": "EKA2L1 AN (mod)",
-      "category": "Symbian Emulator",
+      "category": "主机模拟",
       "description": "塞班模拟器 mod（基于 EKA2L1）",
       "owner": "afeimod",
       "repo": "afeimod/EKA2L1-AN",
@@ -84704,12 +85764,17 @@
           "tag": "0.1.0-mod-test"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ekA2l1",
+      "family_label": "EKA2L1 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /eka2l1/"
     },
     {
       "id": "j4mcu-builds-gamehub-lite-redmagic",
       "name": "GameHub Lite (J4MCU-builds)",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "This version of Gamehub Lite aims to reduce Input Latency and add Interpolated Frames for overall smoothness.",
       "owner": "J4MCU-builds",
       "repo": "J4MCU-builds/Gamehub-Lite-RedMagic",
@@ -84768,12 +85833,17 @@
           "tag": "V5.1.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamehub",
+      "family_label": "GameHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamehub/"
     },
     {
       "id": "eden-ci-nightly",
       "name": "Eden Emulator Nightly",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "官方每夜版：nightly.eden-emu.dev 直链（Gitea eden-ci/nightly，每日自动构建，standard/optimized/legacy 三档）",
       "owner": "eden-ci",
       "repo": "eden-ci/nightly",
@@ -86542,12 +87612,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eden",
+      "family_label": "Eden 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
     },
     {
       "id": "ryubing-canary",
       "name": "Ryubing Canary",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ryubing 社区每次提交自动发版的 canary 构建通道",
       "owner": "Ryubing",
       "repo": "Ryubing/Canary",
@@ -86583,12 +87658,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ryujinx",
+      "family_label": "Ryujinx 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ryubing/"
     },
     {
       "id": "seedlessds-cn-fork",
       "name": "SeedlessDS 优化分支",
-      "category": "Nintendo DS Emulator",
+      "category": "主机模拟",
       "description": "SeedlessDS 第三方中文优化分支（yjhqq）：副屏悬浮窗、可绑定按键回溯、Vulkan 低延迟呈现、16 项内置滤镜、社区金手指与 OpenGL 滤镜集成；自制版本号与官方独立（当前 1.0.11-shaders，Vulkan 低延迟仅作用于软件渲染帧呈现，非新增硬件 3D 核心）。",
       "owner": "yjhqq761261552-wq",
       "repo": "yjhqq761261552-wq/seedless-ds-fork",
@@ -86663,12 +87743,17 @@
           "tag": "v1.0.11-shaders"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "seedlessds-cn-fork",
+      "family_label": "SeedlessDS 优化分支",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "drastic",
       "name": "DraStic",
-      "category": "Nintendo DS Emulator",
+      "category": "主机模拟",
       "description": "DraStic（Exophase）：闭源 NDS 模拟器。2025-02 已从 Google Play 自行下架，作者承诺开源但至今未发布。官方一手渠道已失效",
       "owner": "dsemu",
       "repo": "dsemu/drastic",
@@ -86707,12 +87792,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "drastic",
+      "family_label": "DraStic",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "emulicious",
       "name": "Emulicious",
-      "category": "All In One",
+      "category": "主机模拟",
       "description": "Game Boy / Game Boy Color / Master System / Game Gear / SG-1000 模拟器，带调试器与 TAS 工具。",
       "owner": "",
       "repo": "",
@@ -86750,12 +87840,17 @@
       "latest_apk_name": null,
       "latest_apk_size": null,
       "download_url": "https://emulicious.net/downloads/",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "emulicious",
+      "family_label": "Emulicious",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "epsxe",
       "name": "ePSXe",
-      "category": "PlayStation 1 Emulator",
+      "category": "主机模拟",
       "description": "PS1 模拟器（付费闭源，Play 商店）",
       "owner": "epsxe",
       "repo": "epsxe/epsxe",
@@ -86797,12 +87892,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "epsxe",
+      "family_label": "ePSXe",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "fpse",
       "name": "FPse",
-      "category": "PlayStation 1 Emulator",
+      "category": "主机模拟",
       "description": "PS1 模拟器（付费闭源，Play 商店）",
       "owner": "fpsece",
       "repo": "fpsece/fpse",
@@ -86838,12 +87938,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "fpse",
+      "family_label": "FPse",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "fuse",
       "name": "Fuse",
-      "category": "ZX Spectrum",
+      "category": "主机模拟",
       "description": "ZX Spectrum 系列模拟器（16K/48K/128/+2/+3/Next 部分支持）。",
       "owner": "",
       "repo": "",
@@ -86878,12 +87983,17 @@
       "latest_apk_name": null,
       "latest_apk_size": null,
       "download_url": "https://fuse-emulator.sourceforge.net/",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "fuse",
+      "family_label": "Fuse",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "kenji-nx-android-releases",
       "name": "Kenji-NX Emulator",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Kenji-NX Emulator：Ryujinx 系社区延续项目。源码与 Android APK 均在自建 Forgejo（git.ryujinx.app）公开分发",
       "owner": "Kenji-NX",
       "repo": "Kenji-NX/Android",
@@ -86923,12 +88033,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "kenji-nx-android-releases",
+      "family_label": "Kenji-NX Emulator",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "mame4droid",
       "name": "MAME4droid",
-      "category": "Arcade Emulator",
+      "category": "主机模拟",
       "description": "街机 MAME 模拟器（付费闭源，Play 商店）",
       "owner": "seleuco",
       "repo": "seleuco/MAME4droid-Current",
@@ -86973,12 +88088,17 @@
           "tag": "v1.41.2"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mame4droid",
+      "family_label": "MAME4droid",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "maxjivi05-gamenative-performance",
       "name": "GameNative Performance",
-      "category": "GameNative",
+      "category": "Windows 兼容层",
       "description": "",
       "owner": "maxjivi05",
       "repo": "maxjivi05/GameNative-Performance",
@@ -87012,12 +88132,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamenative",
+      "family_label": "GameNative 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamenative/"
     },
     {
       "id": "mednafen",
       "name": "Mednafen",
-      "category": "All In One",
+      "category": "主机模拟",
       "description": "多平台高精度模拟器：PC Engine/TurboGrafx-16、Virtual Boy、WonderSwan、Neo Geo Pocket、Saturn、PS1、NES、SNES、GB 等。",
       "owner": "",
       "repo": "",
@@ -87061,12 +88186,17 @@
       "latest_apk_name": null,
       "latest_apk_size": null,
       "download_url": "https://mednafen.github.io/releases/",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "mednafen",
+      "family_label": "Mednafen",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "myboy",
       "name": "My Boy!",
-      "category": "Game Boy Advance Emulator",
+      "category": "主机模拟",
       "description": "GBA 模拟器（付费闭源，Play 商店）",
       "owner": "fastemulation",
       "repo": "fastemulation/myboy",
@@ -87103,12 +88233,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "myboy",
+      "family_label": "My Boy!",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "myoldboy",
       "name": "My OldBoy!",
-      "category": "Game Boy Color Emulator",
+      "category": "主机模拟",
       "description": "GBC 模拟器（付费闭源，Play 商店）",
       "owner": "fastemulation",
       "repo": "fastemulation/myoldboy",
@@ -87145,12 +88280,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "myoldboy",
+      "family_label": "My OldBoy!",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "myps2-ps2",
       "name": "MYPS2",
-      "category": "PlayStation 2",
+      "category": "主机模拟",
       "description": "MYPS2（iefriends）：闭源 PS2 模拟器，仅 Google Play 分发。2026-08 仍在更新",
       "owner": "iefriends",
       "repo": "",
@@ -87188,12 +88328,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "myps2-ps2",
+      "family_label": "MYPS2",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "pizzaboy",
       "name": "Pizza Boy GBA",
-      "category": "Game Boy Advance Emulator",
+      "category": "主机模拟",
       "description": "GBA 模拟器（付费闭源，Play 商店）",
       "owner": "fastemulation",
       "repo": "fastemulation/gba",
@@ -87230,12 +88375,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "pizzaboy",
+      "family_label": "Pizza Boy GBA",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "producdevity-gamehub",
       "name": "GameHub（官方）",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "GameHub（Producdevity 官方版）：Android Windows 游戏启动器，闭源，仅经官网分发。开源 Lite 版另见 gamehub-lite 条目",
       "owner": "Producdevity",
       "repo": "Producdevity/gamehub",
@@ -87275,12 +88425,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamehub",
+      "family_label": "GameHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamehub/"
     },
     {
       "id": "ryujinx-benji-sc",
       "name": "Ryujinx Benji-SC",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ryujinx 系社区分支 Benji-SC（Kenji-NX 的 fork，主打快捷键/UI 体验）。一手源码与构建在 Forgejo git.ryujinx.app",
       "owner": "Kenji-NX",
       "repo": "projects/Kenji-NX",
@@ -87331,12 +88486,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ryujinx",
+      "family_label": "Ryujinx 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ryujinx/"
     },
     {
       "id": "ryujinx-official",
       "name": "Ryujinx（官方）",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Ryujinx 官方：C# 编写的 Switch 模拟器，2024-10 因 DMCA 停更，原 GitHub 仓库已移除。当前 ryujinx.app 由社区 Ryubing 团队续接维护",
       "owner": "Ryujinx",
       "repo": "Ryujinx/Ryujinx",
@@ -87385,12 +88545,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ryujinx",
+      "family_label": "Ryujinx 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /ryujinx/"
     },
     {
       "id": "skyline-pine",
       "name": "Skyline Pine",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Skyline 分支 Pine，社区中文分支 pine_CN 存活并持续发版（含 APK）",
       "owner": "xmy953538104",
       "repo": "xmy953538104/pine_CN",
@@ -87446,12 +88611,17 @@
           "tag": "v2.1.2-diagnostics-v1.3"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "skyline",
+      "family_label": "Skyline 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /skyline/"
     },
     {
       "id": "sudachi-emulator",
       "name": "Sudachi",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Sudachi：Switch 模拟器。官网四个平台下载按钮全部指向 archive.org 存档分发",
       "owner": "suda-cz",
       "repo": "",
@@ -87489,12 +88659,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "sudachi",
+      "family_label": "Sudachi 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /sudachi/"
     },
     {
       "id": "torzu-emulator",
       "name": "Torzu",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "Torzu：Switch 模拟器。主仓在 Tor 隐藏服务，明网镜像随时可能下架，官方不发布二进制",
       "owner": "litucks",
       "repo": "litucks/torzu",
@@ -87545,12 +88720,17 @@
         "linux",
         "macos"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "torzu-emulator",
+      "family_label": "Torzu",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "vice",
       "name": "VICE",
-      "category": "Commodore 64",
+      "category": "主机模拟",
       "description": "Commodore 64 / C128 / VIC-20 / Plus/4 / PET 模拟器，最完整的 C64 实现。",
       "owner": "",
       "repo": "",
@@ -87585,12 +88765,17 @@
       "latest_apk_name": null,
       "latest_apk_size": null,
       "download_url": "https://vice-emu.sourceforge.io/",
-      "download_kind": "official-site"
+      "download_kind": "official-site",
+      "section": "console-emulation",
+      "family": "vice",
+      "family_label": "VICE",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     },
     {
       "id": "winlator-releases",
       "name": "Winlator Bionic cjxyz",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "Winlator Bionic cjxyz 分支：brunodev85 → coffincolors → cjxyz 演进链上的 Bionic 版本",
       "owner": "cjxyz",
       "repo": "cjxyz/winlator",
@@ -87637,12 +88822,17 @@
           "tag": "f0891a0"
         }
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "winlatorbrasil-gamehub-brasil",
       "name": "GameHub Brasil",
-      "category": "GameHub",
+      "category": "Windows 兼容层",
       "description": "",
       "owner": "winlatorbrasil",
       "repo": "winlatorbrasil/gamehub-brasil",
@@ -87676,12 +88866,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "gamehub",
+      "family_label": "GameHub 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /gamehub/"
     },
     {
       "id": "winlatorbrasil-winlator-brasil",
       "name": "Winlator Brasil",
-      "category": "Winlator",
+      "category": "Windows 兼容层",
       "description": "",
       "owner": "winlatorbrasil",
       "repo": "winlatorbrasil/Winlator-Brasil",
@@ -87715,12 +88910,17 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "_section_evidence": "method=translation（guest=windows-pc）",
+      "_family_evidence": "名称/仓库命中 /winlator/"
     },
     {
       "id": "yuzu-citrus",
       "name": "CitruS",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "yuzu 的社区续作 CitruS / citron。一手源码在 Forgejo git.ryujinx.app/archive/citron，另有 Gitee fanwenjie/citrus 源码树",
       "owner": "archive",
       "repo": "archive/citron",
@@ -87767,12 +88967,17 @@
         "linux",
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "yuzu",
+      "family_label": "yuzu 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "id 兜底命中 /\\byuzu\\b/"
     },
     {
       "id": "yuzu-official",
       "name": "yuzu（官方）",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "yuzu 官方：2024-03 因任天堂诉讼停更删库（全球最流行 Switch 模拟器）；社区归档含官方黄金版（标准/加速）与日更版（136-273，273 为最终版）；社区归档文件未经安全验证",
       "owner": "yuzu-emu",
       "repo": "yuzu-emu/yuzu",
@@ -87809,12 +89014,17 @@
         "windows",
         "linux"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "yuzu",
+      "family_label": "yuzu 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /\\byuzu\\b/"
     },
     {
       "id": "yuzu-plus",
       "name": "Yuzu+",
-      "category": "Nintendo Switch Emulator",
+      "category": "主机模拟",
       "description": "yuzu 删库后的社区改名包（包名 org.yuzu.yuzu_plus，v4.0.1）。无一手来源，仅第三方应用市场与网盘分发",
       "owner": "",
       "repo": "",
@@ -87861,7 +89071,12 @@
       "hosts": [
         "android"
       ],
-      "needs_review": false
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "yuzu",
+      "family_label": "yuzu 系",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "名称/仓库命中 /\\byuzu\\b/"
     }
   ]
 }
