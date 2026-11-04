@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
-  "updated_at": "2026-11-02T00:00:00Z",
+  "updated_at": "2026-11-03T03:38:17Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -2079,6 +2079,36 @@
       "latest_tag": "mesa27-g925-bc-mip-priority-20261029",
       "latest_date": "2026-10-29T14:37:21Z",
       "latest_body": "## Mesa 27.0.0-devel G925 development build\n\nThis release publishes the Mesa 27.0.0-devel source update and a validated Android AArch64 ADPKG for Mali-G925 (`PAN_ARCH=13`) on Kbase CSF (Android API 35 minimum).\n\n### Changes\n- **BC mip priority:** decode multi-mip uploads, image copies, and zero initialization from the smallest mip upward, with a write dependency between levels. Enabled by default; set `PANVK_BC_MIP_PRIORITY=0` to restore the prior order. This does not implement sparse residency/"
+    },
+    {
+      "id": "winlatorcomponents",
+      "name": "WinlatorComponents (Winlator 组件源)",
+      "owner": "erickmendes22",
+      "repo": "WinlatorComponents",
+      "api_url": "https://api.github.com/repos/erickmendes22/WinlatorComponents/releases",
+      "gpu_vendor": "any",
+      "gpu_arch": [],
+      "gpu_models": [],
+      "driver_type": "component",
+      "component_type": "VKD3D / Turnip",
+      "frontend": null,
+      "target_emulator": "winlator",
+      "package_format": "wcp",
+      "maturity": "experimental",
+      "stars": 0,
+      "description": "Winlator 组件分发：VKD3D 3.1.0 GameSir 定制构建（.wcp，3.2MB）+ Turnip GameHub 26.3 GMEM/PWR_MAX 实验版（zip，2.6MB），首版即带完整标签与构建日志",
+      "notes": "K11MCH1/Winlator101 的活跃 fork（原仓 2025-12-25 停更）。2026-11-03 首版直接发驱动组件，命名规范、日志说明调优项（GMEM autotuning 11→10、KGSL PWR_MAX），按潜在驱动源收录观察。VKD3D 包注明自 GameHub 提取二次打包，Turnip 为 GameHub 26.3 基底调优",
+      "companion": [],
+      "filters": {
+        "default": [
+          "wcp",
+          "winlator"
+        ]
+      },
+      "updated_at": "2026-11-03T02:19:52Z",
+      "latest_tag": "vkd3d-3.1.0-gamesir",
+      "latest_date": "2026-11-03T02:19:52Z",
+      "latest_body": "VKD3D 3.1.0 GameSir — Winlator\r\n\r\nCustom VKD3D 3.1.0 GameSir build packaged extracted from gamehub for installation through the Winlator Components Manager."
     }
   ]
 }
