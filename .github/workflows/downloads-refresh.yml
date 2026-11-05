@@ -1,0 +1,59 @@
+name: 每周补下载量
+
+# 做什么：把所有走 GitHub Releases 分发的项目，按 release asset 的
+# download_count 重新累加，写回 emulator-registry.json 的 downloads 字段。
+#
+# 为什么单独一个工作流、而不是塞进 discovery：
+#   它是「补数」，不新增条目、不改任何判定字段，直推 main 风险极低；
+#   而 discovery 会产出新条目，必须走 PR 人审。两者的安全等级不一样。
+#
+# 为什么每周而不是每天：download_count 是累计值，日更没有增量信息，
+# 只会让 git 历史变脏，并白白消耗 60 次/小时的匿名配额。
+
+on:
+  schedule:
+    - cron: "20 19 * * 0"     # 每周一 03:20 (UTC+8)
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "本次最多抓多少个仓库（0 = 全部）"
+        default: "0"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-downloads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 先把 builds 里已有的下载数聚合上来（零网络，兜底）
+      - name: 聚合 builds 内下载数
+        run: python3 scripts/fetch_downloads.py --from-builds
+
+      # 再走 API 抓全部 release 的累计值。
+      # 注意：Actions 自带的 GITHUB_TOKEN 限额是每仓库 1000 次/小时，
+      # 243 个仓库够用；不要换成 PAT，没必要多给一份权限。
+      - name: 抓取累计下载量
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch_downloads.py --api --limit ${{ inputs.limit || 0 }}
+
+      - name: 有变化则提交
+        run: |
+          if ! git diff --quiet -- emulator-registry.json; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add emulator-registry.json
+            git commit -m "chore(downloads): 每周刷新 release 下载量"
+            git push
+          else
+            echo "无变化，跳过提交"
+          fi

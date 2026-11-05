@@ -88,6 +88,37 @@ def main():
             if not e.get("note"):
                 problems.append(f"[{eid}] 活跃代码源无下载直链且无 note 说明")
 
+    # ── 新字段校验：hosts / method / builds ──
+    METHOD_OK = {"emulation", "translation", "recomp", "engine", "virtualization", None}
+    HOST_OK = {"android", "windows", "linux", "macos", "ios", "harmonyos",
+               # 主机自制固件宿主：PS5 homebrew 等。目前只有 1 条（ProsperoEden），
+               # 但它是真实存在的宿主，塞进 android 会误导「安卓端能装」的判断。
+               "ps5",
+               # 主机 homebrew 宿主：dborth 的 GX 系列（Snes9x/VBA/FCE Ultra）跑在
+               # GameCube/Wii 上，不是 PC 软件，也不该算 desktop。
+               "gamecube", "wii"}
+    for e in ems:
+        eid = e.get("id")
+        if "method" not in e:
+            problems.append(f"[{eid}] 缺 method 字段")
+        elif e["method"] not in METHOD_OK:
+            problems.append(f"[{eid}] method 非法值: {e['method']}")
+        hs = e.get("hosts")
+        if hs is None:
+            problems.append(f"[{eid}] 缺 hosts 字段")
+        elif not isinstance(hs, list):
+            problems.append(f"[{eid}] hosts 不是数组")
+        else:
+            bad = [h for h in hs if h not in HOST_OK]
+            if bad:
+                problems.append(f"[{eid}] hosts 含非法值: {bad}")
+            if len(hs) != len(set(hs)):
+                problems.append(f"[{eid}] hosts 有重复项")
+        for b in (e.get("builds") or []):
+            if not isinstance(b, dict) or "host" not in b or "url" not in b:
+                problems.append(f"[{eid}] builds 项结构不完整")
+                break
+
     print(f"条目总数: {len(ems)}")
     print(f"发现问题: {len(problems)}")
     for p in problems:

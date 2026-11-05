@@ -1,0 +1,43 @@
+name: 每日榜单快照
+
+# 做什么：每天把当前各项目的 downloads / stars 存一份到 ranking-history/，
+# 并重算 ranking.json。
+#
+# 为什么这条最重要：累计下载量随时能补抓，**历史增量补不了**。
+# 「涨得最快」这个榜靠的就是这些日快照做差；今天不存，两周后还是空白。
+#
+# 为什么放 CI 而不是本地：本地没人每天开机器。快照必须无人值守地攒。
+
+on:
+  schedule:
+    - cron: "10 20 * * *"     # 每天 04:10 (UTC+8)，在下载量刷新之前
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 落快照并重算榜单
+        run: python3 scripts/ranking.py
+
+      - name: 有变化则提交
+        run: |
+          if ! git diff --quiet -- ranking-history ranking.json; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add ranking-history ranking.json
+            git commit -m "chore(ranking): 每日快照 $(date -u +%F)"
+            git push
+          else
+            echo "无变化，跳过提交"
+          fi

@@ -1,223 +1,252 @@
 ﻿id,name,category,source,gaps,repo,reason
-eclipseds-nds,EclipseDS,Nintendo DS,community-archive,无下载+无日志+无官网,,no_repo_field; unresolvable
-brunodev85-winlator,Winlator BrunoDev,Winlator,github,完整,https://github.com/brunodev85/winlator,
-azahar-emu-azahar,Azahar,Nintendo 3DS,github,完整,https://github.com/azahar-emu/azahar,tag_stale:2126.2->2127.0-alpha4
-weihuoya-citra,Citra (weihuoya),Nintendo 3DS,github,完整,https://github.com/weihuoya/citra,
-vita3k-vita3k-android,Vita3K Android,PSVITA,github,完整,https://github.com/Vita3K/Vita3K-Android,
-trixarian-nethersx2-patch,NetherSX2 Patch,Emulator PS2,github,完整,https://github.com/Trixarian/NetherSX2-patch,
-ssimco-cemu,Cemu,Wii U Emulator,github,完整,https://github.com/SSimco/Cemu,
-gunacharanteja-winlatormali,Winlator Mali,Winlator,github,完整,https://github.com/GunaCharanTeja/WinlatorMali,
-faux123-gamenative-mali,GameNative Mali,GameNative,github,完整,https://github.com/faux123/GameNative-Mali,
-stevenmxz-winlator-ludashi,Winlator Ludashi,Winlator,github,完整,https://github.com/StevenMXZ/Winlator-Ludashi,
-trixarian-nethersx2-classic,NetherSX2 Classic,Emulator PS2,github,完整,https://github.com/Trixarian/NetherSX2-classic,
-producdevity-gamehub-lite,GameHub Lite (Producdevity),GameHub,github,完整,https://github.com/Producdevity/gamehub-lite,
-utkarshdalal-gamenative,GameNative,GameNative,github,完整,https://github.com/utkarshdalal/GameNative,tag_stale:v1.3.0->v1.4.0-prerelease
-longjunyu2-winlator,Winlator Glibc,Winlator,github,完整,https://github.com/longjunyu2/winlator,tag_stale:v7.1.3->v7.1.5
-armsx2-armsx2,ARMSX2,Emulator PS2,github,完整,https://github.com/ARMSX2/ARMSX2,
-flyinghead-flycast,Flycast,Sega Dreamcast,github,无官网,https://github.com/flyinghead/flycast,
-rpcsx-rpcsx-ui-android,RPCSX Android,Emulator PS3,github,无官网+无描述,https://github.com/RPCSX/rpcsx-ui-android-build,no_description
-coffincolors-winlator,Winlator Coffincolors,Winlator,github,完整,https://github.com/coffincolors/winlator,
-afeimod-winlator-mod,Winlator Afei,Winlator,github,完整,https://github.com/afeimod/winlator-mod,
-medard22-dolphin-mmjr2-vbi,Dolphin MMJR2 VBI,Nintendo GameCube / Wii,github,无官网,https://github.com/Medard22/Dolphin-MMJR2-VBI,
-xodiosx-xodos,XoDos,PC Emulator,github,无官网+无描述,https://github.com/xodiosx/XoDos,no_description; tag_stale:v6.0.0->1.0.3-link
-aenu1-aps3e,APS3e,Emulator PS3,github,无日志,https://github.com/aenu1/aps3e,
-fcharan-winlatormali,Winlator Mali,Winlator,github,完整,https://github.com/Fcharan/WinlatorMali,
-ashnar2602-x360-mobile---official,X360 Mobile,Xbox,github,完整,https://github.com/Ashnar2602/X360-Mobile---OFFICIAL,tag_stale:v0.6.4+f398ad183.11108->v0.6.4+f398ad183.11113
-armsx2-armsx3,ARMSX3,Emulator PS3,github,无官网,https://github.com/ARMSX2/ARMSX3,tag_stale:1.6.1->1.6.2
-horizonemuteam-horizon-emu,Horizon Emu,PC Emulator,github,无官网+无描述,https://github.com/HorizonEmuTeam/Horizon-Emu,no_description
-the412banner-bannerhub,BannerHub (The412Banner),GameHub,github,无官网,https://github.com/The412Banner/bannerhub,
-droid-deck-droiddeck,DroidDeck,PC Emulator,github,无官网,https://github.com/Droid-Deck/DroidDeck,tag_stale:0.6.9->gamescope-3.16.29-p24-mouse-qa
-winebox64-winlator,Wb64dev,Winlator,github,完整,https://github.com/winebox64/winlator,
-the412banner-bannerhub-revanced,BannerHub v6 (The412Banner),GameHub,github,无官网,https://github.com/The412Banner/bannerhub-revanced,
-rfandango-xendroid,XenDroid,Xbox,github,无官网+无描述,https://github.com/rfandango/XenDroid,no_description
-the412banner-bannerlator,Bannerlator (The412Banner),GameHub,github,无官网,https://github.com/The412Banner/Bannerlator,tag_stale:3.1.8->3.1.8-mali-pre1
-xhyn-ph-exagear-302,ExaGear 302,PC Emulator,github,完整,https://github.com/XHYN-PH/exagear-302,
-stredohori-winlator-cmod,Winlator Bionic Stredohiri,Winlator,github,完整,https://github.com/Stredohori/Winlator-CMOD,archived
-winnative-emu-winnative,WinNative,Winlator,github,完整,https://github.com/WinNative-Emu/WinNative,
-winlatorbrasil-gamehub-brasil,GameHub Brasil,GameHub,github,无官网,https://github.com/winlatorbrasil/gamehub-brasil,repo_404
-jacojayy-star,Star (fork),Winlator,github,完整,https://github.com/jacojayy/star,
-kreitinnsoftware-micewine-application,MiceWine,PC Emulator,github,无release+无日志+无官网,https://github.com/KreitinnSoftware/MiceWine,no_release
-oxters168-pluvia,Pluvia,PC Emulator,github,无官网,https://github.com/oxters168/Pluvia,
-ajay9634-winlator-ajay,Winlator Ajay,Winlator,github,完整,https://github.com/ajay9634/winlator-ajay,archived
-swordfish90-lemuroid,Lemuroid,All In One,github,完整,https://github.com/Swordfish90/Lemuroid,
-ref4ik-winlator-ref4ik-,Winlator Ref4ik,Winlator,github,完整,https://github.com/REF4IK/winlator-ref4ik-,archived
-juris-x-winlator_x,Winlator X,Winlator,github,完整,https://github.com/JURIS-X/winlator_x,
-slaker222-steamlator,Steamlator,Winlator,github,完整,https://github.com/slaker222/Steamlator,
-jhinzuo-winlator,Winlator Bionic jhinzuo,Winlator,github,完整,https://github.com/jhinzuo/winlator,
-honkonx-winlator-honkon,Winlator Honkon,Winlator,github,完整,https://github.com/Honkonx/winlator-honkon,
-the412banner-bannerhub-lite,BannerHub Lite (The412Banner),GameHub,github,无官网,https://github.com/The412Banner/Bannerhub-Lite,
-winlatorbrasil-winlator-brasil,Winlator Brasil,Winlator,github,无下载,https://github.com/winlatorbrasil/Winlator-Brasil,repo_404
-jaycore-mobox-patched,Mobox Patched,PC Emulator,github,无下载+无官网+无描述,https://github.com/jaycore/mobox-patched,no_description
-itzdfplayer-gamehub-lite,GameHub Lite (ItzDFPlayer),GameHub,github,完整,https://github.com/ItzDFPlayer/gamehub-lite,
-winlatorxr-winlatorxr,Winlator XR,Winlator,github,完整,https://github.com/WinlatorXR/WinlatorXR,
-windroidemulation-winnative,WinNative (fork),Winlator,github,完整,https://github.com/WinDroidEmulation/WinNative,
-netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code,X1 BOX,Xbox,github,无官网+无描述,https://github.com/NETHERSTRIKER/x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code,no_description
-edeegg-sharpemu-arm64,SharpEmu ARM64,Emulator PS5,github,完整,https://github.com/edeegg/sharpemu-arm64,
-alexoqool-winlator-bionic-build,Winlator Bionic Alexoqool,Winlator,github,完整,https://github.com/Alexoqool/winlator-bionic-build,archived
-duckyduckg-winlator,Winlator Bionic duckyduckG,Winlator,github,完整,https://github.com/duckyduckG/winlator,
-winlatorbrasil-exiled-kingdoms-multiplayer,Exiled Kingdoms Multiplayer,GAME,github,无官网,https://github.com/winlatorbrasil/Exiled-Kingdoms-Multiplayer,
-j4mcu-builds-gamehub-lite-redmagic,GameHub Lite (J4MCU-builds),GameHub,github,无官网,https://github.com/J4MCU-builds/Gamehub-Lite-RedMagic,
-deivid22srk-winlator-xmod,Winlator Xmod,Winlator,github,无描述,https://github.com/deivid22srk/Winlator-Xmod,no_description; tag_stale:Winlatorxmod1.0->Winlator_xmox_1.1.0
-maxjivi05-gamenative-performance,GameNative Performance,GameNative,github,无下载+无日志+无官网,https://github.com/maxjivi05/GameNative-Performance,repo_404
-winlator-releases,Winlator Bionic cjxyz,Winlator,github,无日志,https://github.com/cjxyz/winlator,
-eden-emulator-releases,Eden Emulator,Nintendo Switch Emulator,gitea,完整,https://git.eden-emu.dev/eden-emu/eden,
-eden-ci-nightly,Eden Emulator Nightly,Nintendo Switch Emulator,gitea,完整,https://git.eden-emu.dev/eden-ci/nightly,tag_stale:v1793569440.7a6d055094->v1793745818.07677aa500
-citron-emulator,Citron Emulator,Nintendo Switch Emulator,github,完整,https://github.com/citron-neo/emulator,
-ovsky-sumi-emu,Sumi Emulator,Nintendo Switch Emulator,official-web,无下载+无日志,https://sumi-emu.org,repo_451
-ghaelv-lemon-project,Lemon Project,Nintendo Switch Emulator,github,完整,https://github.com/Ghael-V/Lemon-Project,
-kenji-nx-android-releases,Kenji-NX Emulator,Nintendo Switch Emulator,gitea,无日志,https://git.ryujinx.app/Kenji-NX/Android,
-duckstation,DuckStation,PlayStation 1 Emulator,github,无下载,https://github.com/stenzek/duckstation,no_apk_anywhere_in_releases; has_build_workflow
-melonds,melonDS,Nintendo DS Emulator,github,无下载,https://github.com/melonDS-emu/melonDS,no_apk_anywhere_in_releases
-mgba,mGBA,Game Boy Advance Emulator,github,无下载+无日志,https://github.com/mgba-emu/mgba,no_apk_anywhere_in_releases
-skyemu,SkyEmu,Game Boy Advance Emulator,github,完整,https://github.com/skylersaleh/SkyEmu,
-m64plusae,Mupen64Plus AE,Nintendo 64 Emulator,github,无下载,https://github.com/mupen64plus-ae/mupen64plus-ae,
-fbneo,FBNeo,Arcade Emulator,github,无下载,https://github.com/finalburnneo/FBNeo,
-eka2l1,EKA2L1,Symbian Emulator,github,完整,https://github.com/EKA2L1/EKA2L1,
-j2meloader,J2ME-Loader,Java Emulator,github,无日志+无官网,https://github.com/nikita36078/J2ME-Loader,
-touchhle,touchHLE,iOS Emulator,github,无下载,https://github.com/touchHLE/touchHLE,no_apk_anywhere_in_releases; has_build_workflow
-opennectar,Open-Nectar,Game Port,github,无官网,https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port,
-unleashedrecomp,UnleashedRecomp-Android,Game Port,github,无官网,https://github.com/SansNope/UnleashedRecomp-Android,
-silksongandroid,SilksongAndroid,Game Port,github,无官网,https://github.com/jakobkhansen/SilksongAndroid,
-metroidprimeport,MetroidPrimePort,Game Port,github,完整,https://github.com/Odrannnn/MetroidPrimePort,tag_stale:v0.39.0->v0.40.0
-raport-redalert,ra-port (Red Alert),Game Port,github,无下载+无release+无日志,https://github.com/dk8827/ra-port,no_release
-nfs3recompiled,nfs3recompiled-android,Game Port,github,无官网,https://github.com/ZloiKILLER/nfs3recompiled-android,
-dk64recomp,dk64-recomp-android,Game Port,github,无官网,https://github.com/deivid22srk/dk64-recomp-android,
-snes9xexplus,Snes9x EX+ / NostalgiaNes,Super Nintendo Emulator,github,无日志,https://github.com/Rakashazi/emu-ex-plus-alpha,
-supermodel3,Supermodel 3,桌面模拟器,github,无下载,https://github.com/trzy/Supermodel,
-freej2me,FreeJ2ME,Java Emulator,github,无下载+无release+无日志,https://github.com/hex007/freej2me,no_release
-virtualjaguar,Virtual Jaguar,Atari Emulator,github,无下载,https://github.com/libretro/virtualjaguar-libretro,
-handylynx,Handy (Atari Lynx),Atari Emulator,github,无下载+无release+无日志,https://github.com/libretro/libretro-handy,no_release
-mame2003plus,MAME 2003+,Arcade Emulator,github,无下载,https://github.com/libretro/mame2003-plus-libretro,
-khmelonmix,KH Melon Mix,PC 移植,github,无下载+无官网,https://github.com/vitor251093/KHMelonMix,no_apk_anywhere_in_releases
-pocket8,Pocket8 (Pico-8),Pico-8 Emulator,github,无下载+无官网,https://github.com/jevonlipsey/pico-ios,no_apk_anywhere_in_releases
-melange-brew,Melange (BREW),Brew Emulator,gitlab,无release+无日志+无官网,https://gitlab.com/usernameak/melange,no_release
-zenith-panprobe,PanProbe (Mali 驱动探测),GameNative,github,无官网,https://github.com/zenithblue-oss/panprobe,
-zenith-panplay,PanPlay (Mali 游戏启动器),Winlator,github,完整,https://github.com/zenithblue-oss/panplay,
-producdevity-gamehub,GameHub（官方）,GameHub,official-web,无日志,https://gamehub.xiaoji.com/zh-cn,repo_404
-ryujinx-official,Ryujinx（官方）,Nintendo Switch Emulator,official-web,无下载+无日志,https://github.com/Ryujinx/Ryujinx,repo_404
-ryujinx-benji-sc,Ryujinx Benji-SC,Nintendo Switch Emulator,gitea,无日志,https://git.ryujinx.app/projects/Kenji-NX,tag_stale:2.1.0-pr.2->2.0.5
-strato-emulator,Strato,Nintendo Switch Emulator,github,无下载+无release+无日志,https://github.com/strato-emu/strato,no_release
-sudachi-emulator,Sudachi,Nintendo Switch Emulator,official-web,无日志,https://sudachi-emulator.com,no_repo_field; unresolvable
-torzu-emulator,Torzu,Nintendo Switch Emulator,notabug,无下载+无日志,https://notabug.org/litucks/torzu,repo_451
-suyu-emulator,Suyu,Nintendo Switch Emulator,github,完整,https://github.com/suyu-emu/suyu-main,
-ryubing-emulator,Ryubing,Nintendo Switch Emulator,gitea,无下载+无日志,https://git.ryujinx.app/projects/Ryubing,
-skyline-official,Skyline（官方）,Nintendo Switch Emulator,github,无下载+无release+无日志,https://github.com/skyline-emu/skyline,no_release
-skyline-pine,Skyline Pine,Nintendo Switch Emulator,github,无日志+无官网,https://github.com/xmy953538104/pine_CN,
-skyline-tagline,Skyline Tagline,Nintendo Switch Emulator,community-archive,无下载+无日志+无官网,,no_repo_field; unresolvable
-skyline-enhanced-infinity,Skyline Enhanced Infinity,Nintendo Switch Emulator,github,无下载+无日志+无官网,https://github.com/Ishan0981/Skyline-Enhanced-Infinity,repo_451
-yuzu-official,yuzu（官方）,Nintendo Switch Emulator,community-archive,无下载+无日志,https://github.com/yuzu-emu/yuzu,repo_404
-yuzu-citrus,CitruS,Nintendo Switch Emulator,gitea,无下载+无release+无日志,https://git.ryujinx.app/archive/citron,archived; no_release
-yuzu-plus,Yuzu+,Nintendo Switch Emulator,community-archive,无日志,https://www.9k9k.com/app/91506.html,no_repo_field; unresolvable
-epsxe,ePSXe,PlayStation 1 Emulator,official-web,无日志,https://play.google.com/store/apps/details?id=com.epsxe.ePSXe,repo_404
-fpse,FPse,PlayStation 1 Emulator,official-web,无日志,https://play.google.com/store/apps/details?id=com.emulator.fpse,repo_404
-drastic,DraStic,Nintendo DS Emulator,official-play,无日志+无官网,,repo_404
-pizzaboy,Pizza Boy GBA,Game Boy Advance Emulator,official-play,无日志,https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygba,repo_404
-myboy,My Boy!,Game Boy Advance Emulator,official-play,无日志,https://play.google.com/store/apps/details?id=com.fastemulator.gba,repo_404
-myoldboy,My OldBoy!,Game Boy Color Emulator,official-play,无日志,https://play.google.com/store/apps/details?id=com.fastemulator.gbc,repo_404
-m64plusfz,M64Plus FZ,Nintendo 64 Emulator,official-web,无下载+无release+无日志,https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita,no_release; no_apk_anywhere_in_releases
-mame4droid,MAME4droid,Arcade Emulator,github,无日志,https://github.com/seleuco/MAME4droid-Current,tag_missing:v1.41.2; apk_recoverable
-termux,Termux,terminal,github,完整,https://github.com/termux/termux-app,tag_stale:v0.118.3->v0.119.0-beta.3
-ppsspp,PPSSPP,PSP,github,无下载,https://github.com/hrydgard/ppsspp,no_apk_anywhere_in_releases; has_build_workflow
-retroarch,RetroArch,All In One,github,完整,https://github.com/libretro/RetroArch,tag_stale:v1.17.0->v1.22.2
-dolphin,Dolphin,Nintendo GameCube / Wii,github,无下载+无release+无日志,https://github.com/dolphin-emu/dolphin,no_release; no_apk_anywhere_in_releases
-termux-jiaxinchen,Termux 增强镜像,terminal,official-web,完整,https://github.com/termux/termux-app,
-termux-ghostty,Termux Ghostty,terminal,github,无官网,https://github.com/mrndstvndv/termux-ghostty,
-termux-plus,TermuxPlus,terminal,official-web,完整,https://github.com/thejaustin/TermuxPlus,
-termux-enhanced,Termux Enhanced,terminal,official-web,完整,https://github.com/NIK2703/termux-enhanced,
-termux-aether,Termux-Aether,terminal,github,完整,https://github.com/wallentx/termux-aether-app,
-termux-zero,ZeroTermux,terminal,github,完整,https://github.com/hanxinhao000/ZeroTermux,
-termux-kotlin,Termux Kotlin,terminal,github,完整,https://github.com/reapercanuk39/termux-kotlin-app,
-shadps4-emu-shadps4,ShadPS4,桌面模拟器,github,无下载,https://github.com/shadps4-emu/shadPS4,
-kytyps5-kytyps5,KytyPS5,桌面模拟器,github,无下载+无官网,https://github.com/KytyPS5/KytyPS5,
-ilya114-box64droid,Box64Droid,PC Emulator,github,完整,https://github.com/Ilya114/Box64Droid,
-jica98-bachata-s4,Bachata-S4,Emulator PS4,github,完整,https://github.com/JICA98/Bachata-S4,
-n3xox1-nxemu,NxEmu,Nintendo Switch Emulator,github,无下载,https://github.com/N3xoX1/nxemu,no_apk_anywhere_in_releases
-maxjivi05-ps3native,PS3Native,Emulator PS3,github,完整,https://github.com/maxjivi05/PS3Native,
-dev-ali2008-onrps4-android,onRps4,Emulator PS4,github,无官网,https://github.com/dev-Ali2008/onRps4-Android,
-harbourmasters-shipwright,Ship of Harkinian,PC 移植,github,无下载,https://github.com/HarbourMasters/Shipwright,no_apk_anywhere_in_releases; has_build_workflow
-2ship2harkinian-2ship2harkinian,2Ship2Harkinian,PC 移植,github,无下载,https://github.com/2ship2harkinian/2ship2harkinian,no_apk_anywhere_in_releases; has_build_workflow
-linkzenic-2ship2harkinian-android,2Ship2Harkinian-Android,Game Port,github,无官网,https://github.com/linkzenic/2ship2harkinian-Android,
-zelda64recomp-zelda64recomp,Zelda64 Recompiled,PC 移植,github,无下载+无官网,https://github.com/Zelda64Recomp/Zelda64Recomp,no_apk_anywhere_in_releases
-harbourmasters-ghostship,Ghostship,PC 移植,github,无下载,https://github.com/HarbourMasters/Ghostship,no_apk_anywhere_in_releases; has_build_workflow
-harbourmasters-spaghettikart,SpaghettiKart,PC 移植,github,无下载,https://github.com/HarbourMasters/SpaghettiKart,no_apk_anywhere_in_releases; has_build_workflow
-banjorecomp-banjorecomp,Banjo: Recompiled,PC 移植,github,无下载+无官网,https://github.com/BanjoRecomp/BanjoRecomp,no_apk_anywhere_in_releases
-rainchus-dk64-rekongpiled,DK64 Rekongpiled,PC 移植,github,无下载+无官网,https://github.com/Rainchus/Donkey-Kong-64-Recompiled,no_apk_anywhere_in_releases
-jackandbeans-snap64recomp,Snap64Recomp,Game Port,github,完整,https://github.com/JackandBeans/Snap64Recomp,
-twilitrealm-dusklight,Dusklight,Game Port,github,完整,https://github.com/TwilitRealm/dusklight,
-zorkats-g-diffuser,G-Diffuser,Game Port,github,无官网,https://github.com/Zorkats/G-Diffuser,tag_stale:v1.2.1->v1.2.2
-mchughalex-skate3recomp,Skate3recomp,PC 移植,github,无下载+无官网,https://github.com/mchughalex/skate3recomp,no_apk_anywhere_in_releases
-felipeprado0-spartanport,SpartanPort,PC 移植,github,无下载,https://github.com/FelipePrado0/SpartanPort,tag_stale:windows-v3.0.0->windows-v3.0.0-launcher-test1; no_apk_anywhere_in_releases; has_build_workflow
-supermedo-bloodborne-pc,Bloodborne PC,PC 移植,github,无下载,https://github.com/supermedo/bloodborne_pc,no_apk_anywhere_in_releases
-mircowuffwuff-sharpdroid,SharpDroid,Emulator PS5,github,无官网,https://github.com/mircowuffwuff/sharpdroid,
-ghael-v-capyps5,CapyPS5,Emulator PS5,github,无官网,https://github.com/Ghael-V/CapyPS5,
-pocket2droid-android,Pocket2Droid,Windows Mobile,github,完整,https://github.com/samsixx6/Pocket2Droid,
-dukeps3-android,DukePS3,Emulator PS3,github,无下载+无release+无官网,https://github.com/thecrixux/DukePS3,no_release
-emucorev-android,EmuCoreV,PSVITA,github,完整,https://github.com/sashkinbro/EmuCoreV,
-zeebx-zeebo,Zeebx,Zeebo Emulator,github,无官网,https://github.com/ZeebxTeam/zeebx-emu,
-nexium-switch1,NeXium,Nintendo Switch Emulator,github,无下载+无release+无日志,https://github.com/nexium-emu/nexium,no_release; no_apk_anywhere_in_releases
-anyps5-porting-tool,AnyPS5,移植工具,github,无下载,https://github.com/boykopovar/AnyPS5,
-prosperoeden-ps5,ProsperoEden,PS5 Port,github,无下载+无官网,https://github.com/Swordpdf/ProsperoEden,no_apk_anywhere_in_releases; has_build_workflow
-hyperhle,HyperHLE,iOS Emulator,github,无下载+无官网,https://github.com/KlugKlugTG/HyperHLE-Fork,no_apk_anywhere_in_releases; has_build_workflow
-hyperhle-reborn,HyperHLE-Reborn,iOS Emulator,github,无下载+无官网,https://github.com/KlugKlugTG/HyperHLE-Reborn,no_apk_anywhere_in_releases; has_build_workflow
-seedlessds-android,SeedlessDS,Nintendo DS Emulator,github,无官网,https://github.com/SapphireRhodonite/SeedlessDS,
-watermelonds-android,WatermelonDS,Nintendo DS Emulator,github,无官网,https://github.com/SapphireRhodonite/WatermelonDS,
-seedlessds-cn-fork,SeedlessDS 优化分支,Nintendo DS Emulator,github,无官网,https://github.com/yjhqq761261552-wq/seedless-ds-fork,
-wpr-wp7-8,WPR,Windows Mobile,github,无官网,https://github.com/8212369/WPR,
-xendroid-plus,Xendroid+,Microsoft Xbox 360,github,完整,https://github.com/phforner0/Xendroid-Plus,
-dukestation-ps1,DukeStation,PlayStation 1 Emulator,github,无下载+无release+无日志+无官网,https://github.com/thecrixux/DukeStation,no_release
-emucorex-android,EmuCoreX,PlayStation 2 Emulator,github,完整,https://github.com/sashkinbro/EmuCoreX,
-emucoreh-android,EmuCoreH,Sega Dreamcast,github,完整,https://github.com/sashkinbro/EmuCoreH,
-emucorea-android,EmuCoreA,PlayStation Portable,github,完整,https://github.com/sashkinbro/EmuCoreA,
-emucorep-android,EmuCoreP-Releases,Windows PC,github,完整,https://github.com/sashkinbro/EmuCoreP-Releases,archived
-armsx1-ps1,ARMSX1,PlayStation 1 Emulator,github,无官网,https://github.com/ARMSX2/ARMSX1,
-ax360e-android,ax360e,Microsoft Xbox 360,github,无下载+无release,https://github.com/aenu1/ax360e,no_release; no_apk_anywhere_in_releases
-dingooemu-android,DingooEmu,Handheld Console,github,无下载,https://github.com/AloysHF/DingooEmu,no_apk_anywhere_in_releases; has_build_workflow
-azaharplus-android,AzaharPlus,Nintendo 3DS,github,无下载+无release+无官网,https://github.com/f4mrfaux/AzaharPlus,no_release; no_apk_anywhere_in_releases; has_build_workflow
-nin64-android,Nin64-Emulator,Nintendo 64,github,无下载+无release,https://github.com/izzy2lost/Nin64-Emulator,no_release; no_apk_anywhere_in_releases; has_build_workflow
-pockethle-android,PocketHLE,Windows Mobile,github,完整,https://github.com/j92580498-max/PocketHLE,
-mandarineneo-3ds,mandarine-neo,Nintendo 3DS,github,无官网,https://github.com/ptyfyre/mandarine-neo,
-panda3ds-3ds,Panda3DS,Nintendo 3DS,github,无下载,https://github.com/wheremyfoodat/Panda3DS,no_apk_anywhere_in_releases; has_build_workflow
-wie-skvm,Wie,J2ME Emulator,github,完整,https://github.com/dlunch/wie,
-lime3ds-3ds,Lime3DS,Nintendo 3DS,github,无下载+无release,https://github.com/Lime3DS/lime3ds-archive,archived; no_release
-borked3ds-3ds,Borked3DS,Nintendo 3DS,github,完整,https://github.com/Borked3DS/Borked3DS,
-redream-dc,redream,Sega Dreamcast,github,无下载+无release,https://github.com/inolen/redream,no_release; no_apk_anywhere_in_releases
-md.emu-sms,MD.emu,Sega Mega Drive,github,无下载+无release+无日志,https://github.com/neonichu/MD.emu,no_release; no_apk_anywhere_in_releases
-emucorec-ps3,EmuCoreC,PlayStation 3,github,完整,https://github.com/sashkinbro/EmuCoreC,
-myps2-ps2,MYPS2,PlayStation 2,official-play,无官网,https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2,no_repo_field; unresolvable
-azahartrigger-3ds,AzaharTrigger,Nintendo 3DS,github,无官网,https://github.com/diegolix29/AzaharTrigger,
-azaharplus-main,AzaharPlus,Nintendo 3DS,github,无官网,https://github.com/AzaharPlus/AzaharPlus,
-afeimod-linbox,Linbox,PC Emulator,github,无下载,https://github.com/afeimod/linbox,
-afeimod-linbox-winemu,Linbox WinEmu,PC Emulator,github,完整,https://github.com/afeimod/Linbox-WinEmu,
-afeimod-nesstation,NesStation,All In One,github,完整,https://github.com/afeimod/NesStation,
-afeimod-gamehtml,Game4399 Flash盒,Web/Flash 游戏,github,完整,https://github.com/afeimod/gamehtml,
-afeimod-winlator-glibc,Winlator Glibc (Amod),Winlator,github,无下载,https://github.com/afeimod/winlator-glibc,
-afeimod-eka2l1-an,EKA2L1 AN (mod),Symbian Emulator,github,完整,https://github.com/afeimod/EKA2L1-AN,
-afeimod-eden-an,Eden AN (mod),Symbian Emulator,github,完整,https://github.com/afeimod/eden-an,
-maxi000q-consolefivepro,Console Five Pro,Emulator PS5,github,无官网,https://github.com/maxi000q/ConsoleFivePro,
-rfandango-hakux,HakuX,Xbox,github,无官网,https://github.com/rfandango/hakuX,
-orangefox86-hollycast,Hollycast,Sega Dreamcast,github,无官网,https://github.com/OrangeFox86/Hollycast,
-samsixx6-brew2droid,Brew2Droid,Brew Emulator,github,无官网,https://github.com/samsixx6/Brew2Droid,
-eden-sx2a-moceure,Eden SX2A (Switch 2 实验版),Nintendo Switch Emulator,gitea,无图标,https://git.eden-emu.dev/moceure/eden-nx2-android,archived; no_logo
-eden-ns2-android-vivsi,Eden NS2 Android (Vivsi),Nintendo Switch Emulator,github,完整,https://github.com/Vivsi1/Eden-NS2-Android,
-mamcjr-botwrecompandroid,BOTW Recomp Android,Game Port,github,无官网,https://github.com/mamcjr/BOTWRecompAndroid,tag_stale:v0.2.13-beta->v0.3.0-beta
-mamcjr-totkdroid,TOTK Droid,Game Port,github,无官网,https://github.com/mamcjr/TOTKDroid,
-linkzenic-shipwright-ports,Shipwright-Ports（时之笛 Android/iOS 移植）,Game Port,github,无官网,https://github.com/linkzenic/Shipwright-Ports,
-waterdish-shipwright-android,Shipwright-Android（时之笛 Android 老分支）,Game Port,github,无官网,https://github.com/Waterdish/Shipwright-Android,
-frostie77-tooie-recompiled,Tooie-Recompiled（Banjo-Tooie 安卓原生移植）,Game Port,github,无官网,https://github.com/Frostie77/Tooie-Recompiled,
-8cee-banjorecomp-android,BanjoRecomp-Android（Banjo-Kazooie 安卓移植）,Game Port,github,无release+无日志+无官网,https://github.com/8cee/BanjoRecomp-Android,no_release; has_build_workflow
-ryubing-canary,Ryubing Canary,Nintendo Switch Emulator,gitea,无日志,https://git.ryujinx.app/Ryubing/Canary,
-melonx-ios,MeloNX,Nintendo Switch Emulator,gitea,无日志,https://git.ryujinx.app/projects/MeloNX,
-ruzu-emu,Ruzu,Nintendo Switch Emulator,github,无日志+无官网+无图标,https://github.com/vricosti/ruzu-emu,no_logo
-eden-nx2-zuan,Eden NX2 (ZuanCrisp),Nintendo Switch Emulator,github,无日志+无官网+无图标,https://github.com/ZuanCrisp/Eden-NX2,no_logo
-prospero-eden-encore,ProsperoEden Encore,PS5 Port,github,无下载+无日志+无官网+无图标,https://github.com/niakw/ProsperoEden-Encore,no_logo
-dosbox-staging,DOSBox Staging,桌面模拟器,github,无日志+无图标,https://github.com/dosbox-staging/dosbox-staging,no_logo
-dosbox-x,DOSBox-X,桌面模拟器,github,无日志+无图标,https://github.com/joncampbell123/dosbox-x,no_logo; tag_stale:dosbox-x-v2026.10.01->dosbox-x-v2026.10.01-osfree
-dosbox-pure,DOSBox Pure,桌面模拟器,github,无日志+无官网+无图标,https://github.com/schellingb/dosbox-pure,no_logo
-flycast-dojo,Flycast Dojo,Sega Dreamcast,github,无日志+无图标,https://github.com/blueminder/flycast-dojo,no_logo; homepage_recoverable
-snes9x-z,Snes9x-Z,Super Nintendo Emulator,github,无日志+无官网+无图标,https://github.com/andrezaiats/snes9x-Z,no_logo
-mupen64plus-ae-fzurita,Mupen64Plus AE (fzurita),Nintendo 64 Emulator,github,无下载+无release+无日志+无官网+无图标,https://github.com/fzurita/mupen64plus-ae,no_logo; no_release
-ryudeck-steamdeck,Ryujinx Ryudeck,Nintendo Switch Emulator,github,无日志+无官网+无图标,https://github.com/deucebucket/ryudeck,no_logo
-ryujinx-canary-ademola,Ryujinx Canary Builds (ADEMOLA200),Nintendo Switch Emulator,github,无日志+无官网+无图标,https://github.com/ADEMOLA200/Ryujinx-Canary-Builds,no_logo
-melonds-android,melonDS Android,Nintendo DS Emulator,github,无日志,https://github.com/rafaelvcaetano/melonDS-android,
-es-de-frontend,ES-DE Frontend,Frontend,gitlab,无下载+无日志+无图标,https://gitlab.com/es-de/emulationstation-de,no_logo
-citra-mirror,Citra Mirror,Nintendo 3DS Emulator,github,无下载+无release+无日志,https://github.com/citra-mirror/citra,no_release
+termux,Termux,前端与工具,github,完整,https://github.com/termux/termux-app,tag_stale:v0.118.3->v0.119.0-beta.3
+anyps5-porting-tool,AnyPS5,前端与工具,github,无下载,https://github.com/boykopovar/AnyPS5,
+shadps4-emu-shadps4,ShadPS4,主机模拟,github,无下载,https://github.com/shadps4-emu/shadPS4,
+rpcs3,RPCS3,主机模拟,github,完整,https://github.com/RPCS3/rpcs3,
+brunodev85-winlator,Winlator BrunoDev,Windows 兼容层,github,完整,https://github.com/brunodev85/winlator,
+droid-deck-droiddeck,DroidDeck,主机模拟,github,无官网,https://github.com/Droid-Deck/DroidDeck,tag_stale:0.6.9->gamescope-3.16.29-p26-mouse-qa
+pcsx2,PCSX2,主机模拟,github,无下载,https://github.com/PCSX2/pcsx2,
+dolphin,Dolphin,主机模拟,github,无下载+无release+无日志,https://github.com/dolphin-emu/dolphin,no_release; no_apk_anywhere_in_releases
+ppsspp,PPSSPP,主机模拟,github,无下载,https://github.com/hrydgard/ppsspp,no_apk_anywhere_in_releases; has_build_workflow
+retroarch,RetroArch,前端与工具,github,完整,https://github.com/libretro/RetroArch,tag_stale:v1.17.0->v1.22.2
+utkarshdalal-gamenative,GameNative,Windows 兼容层,github,完整,https://github.com/utkarshdalal/GameNative,tag_stale:v1.3.0->v1.4.0-prerelease
+duckstation,DuckStation,主机模拟,github,无下载,https://github.com/stenzek/duckstation,no_apk_anywhere_in_releases; has_build_workflow
+kytyps5-kytyps5,KytyPS5,主机模拟,github,无下载+无官网,https://github.com/KytyPS5/KytyPS5,
+cemu,Cemu,主机模拟,github,无下载,https://github.com/cemu-project/Cemu,
+azahar-emu-azahar,Azahar,主机模拟,github,完整,https://github.com/azahar-emu/azahar,tag_stale:2126.2->2127.0-alpha4
+zelda64recomp-zelda64recomp,Zelda64 Recompiled,原生移植,github,无下载+无官网,https://github.com/Zelda64Recomp/Zelda64Recomp,no_apk_anywhere_in_releases
+mgba,mGBA,主机模拟,github,无下载+无日志,https://github.com/mgba-emu/mgba,no_apk_anywhere_in_releases
+twilitrealm-dusklight,Dusklight,原生移植,github,完整,https://github.com/TwilitRealm/dusklight,
+harbourmasters-shipwright,Ship of Harkinian,原生移植,github,无下载,https://github.com/HarbourMasters/Shipwright,no_apk_anywhere_in_releases; has_build_workflow
+melonds,melonDS,主机模拟,github,无下载,https://github.com/melonDS-emu/melonDS,no_apk_anywhere_in_releases
+supermedo-bloodborne-pc,Bloodborne PC,原生移植,github,无下载,https://github.com/supermedo/bloodborne_pc,no_apk_anywhere_in_releases
+felipeprado0-spartanport,SpartanPort,原生移植,github,无下载,https://github.com/FelipePrado0/SpartanPort,tag_stale:windows-v3.0.0->windows-v3.0.0-launcher-test1; no_apk_anywhere_in_releases; has_build_workflow
+swordfish90-lemuroid,Lemuroid,前端与工具,github,完整,https://github.com/Swordfish90/Lemuroid,
+xemu,xemu,主机模拟,github,无下载,https://github.com/xemu-project/xemu,
+touchhle,touchHLE,主机模拟,github,无下载,https://github.com/touchHLE/touchHLE,no_apk_anywhere_in_releases; has_build_workflow
+dosbox-x,DOSBox-X,主机模拟,github,无日志+无图标,https://github.com/joncampbell123/dosbox-x,no_logo; tag_stale:dosbox-x-v2026.10.01->dosbox-x-v2026.10.01-osfree
+termux-zero,ZeroTermux,前端与工具,github,完整,https://github.com/hanxinhao000/ZeroTermux,
+scummvm,ScummVM,主机模拟,github,完整,https://github.com/scummvm/scummvm,
+weihuoya-citra,Citra (weihuoya),主机模拟,github,完整,https://github.com/weihuoya/citra,
+trixarian-nethersx2-patch,NetherSX2 Patch,主机模拟,github,完整,https://github.com/Trixarian/NetherSX2-patch,
+j2meloader,J2ME-Loader,主机模拟,github,无日志+无官网,https://github.com/nikita36078/J2ME-Loader,
+flyinghead-flycast,Flycast,主机模拟,github,无官网,https://github.com/flyinghead/flycast,
+harbourmasters-spaghettikart,SpaghettiKart,原生移植,github,无下载,https://github.com/HarbourMasters/SpaghettiKart,no_apk_anywhere_in_releases; has_build_workflow
+2ship2harkinian-2ship2harkinian,2Ship2Harkinian,原生移植,github,无下载,https://github.com/2ship2harkinian/2ship2harkinian,no_apk_anywhere_in_releases; has_build_workflow
+mesen2,Mesen,主机模拟,github,无下载,https://github.com/SourMesen/Mesen2,
+armsx2-armsx2,ARMSX2,主机模拟,github,完整,https://github.com/ARMSX2/ARMSX2,
+strato-emulator,Strato,主机模拟,github,无下载+无release+无日志,https://github.com/strato-emu/strato,no_release
+banjorecomp-banjorecomp,Banjo: Recompiled,原生移植,github,无下载+无官网,https://github.com/BanjoRecomp/BanjoRecomp,no_apk_anywhere_in_releases
+producdevity-gamehub-lite,GameHub Lite (Producdevity),Windows 兼容层,github,完整,https://github.com/Producdevity/gamehub-lite,
+eka2l1,EKA2L1,主机模拟,github,完整,https://github.com/EKA2L1/EKA2L1,
+ares,ares,主机模拟,github,无下载,https://github.com/ares-emulator/ares,
+dosbox-staging,DOSBox Staging,主机模拟,github,无日志+无图标,https://github.com/dosbox-staging/dosbox-staging,no_logo
+mchughalex-skate3recomp,Skate3recomp,原生移植,github,无下载+无官网,https://github.com/mchughalex/skate3recomp,no_apk_anywhere_in_releases
+melonds-android,melonDS Android,主机模拟,github,无日志,https://github.com/rafaelvcaetano/melonDS-android,
+oxters168-pluvia,Pluvia,主机模拟,github,无官网,https://github.com/oxters168/Pluvia,
+vita3k-vita3k-android,Vita3K Android,主机模拟,github,完整,https://github.com/Vita3K/Vita3K-Android,
+fceux,FCEUX,主机模拟,github,无下载,https://github.com/TASEmulators/fceux,
+fbneo,FBNeo,主机模拟,github,无下载,https://github.com/finalburnneo/FBNeo,
+panda3ds-3ds,Panda3DS,主机模拟,github,无下载,https://github.com/wheremyfoodat/Panda3DS,no_apk_anywhere_in_releases; has_build_workflow
+azaharplus-main,AzaharPlus,主机模拟,github,无官网,https://github.com/AzaharPlus/AzaharPlus,
+skyemu,SkyEmu,主机模拟,github,完整,https://github.com/skylersaleh/SkyEmu,
+stevenmxz-winlator-ludashi,Winlator Ludashi,Windows 兼容层,github,完整,https://github.com/StevenMXZ/Winlator-Ludashi,
+snes9xexplus,Snes9x EX+ / NostalgiaNes,主机模拟,github,无日志,https://github.com/Rakashazi/emu-ex-plus-alpha,
+ssimco-cemu,Cemu（安卓移植）,主机模拟,github,完整,https://github.com/SSimco/Cemu,
+trixarian-nethersx2-classic,NetherSX2 Classic,主机模拟,github,完整,https://github.com/Trixarian/NetherSX2-classic,
+dosbox-pure,DOSBox Pure,主机模拟,github,无日志+无官网+无图标,https://github.com/schellingb/dosbox-pure,no_logo
+coffincolors-winlator,Winlator Coffincolors,Windows 兼容层,github,完整,https://github.com/coffincolors/winlator,
+ilya114-box64droid,Box64Droid,Windows 兼容层,github,完整,https://github.com/Ilya114/Box64Droid,
+armsx2-armsx3,ARMSX3,主机模拟,github,无官网,https://github.com/ARMSX2/ARMSX3,tag_stale:1.6.1->1.6.2
+harbourmasters-ghostship,Ghostship,原生移植,github,无下载,https://github.com/HarbourMasters/Ghostship,no_apk_anywhere_in_releases; has_build_workflow
+weiss-ultimatesavior-tyranor-next,Tyranor Next,视觉小说引擎,github,完整,https://github.com/Weiss-UltimateSavior/Tyranor-Next,
+stella,Stella,主机模拟,github,无下载,https://github.com/stella-emu/stella,
+xodiosx-xodos,XoDos,主机模拟,github,无官网+无描述,https://github.com/xodiosx/XoDos,no_description; tag_stale:v6.0.0->1.0.3-link
+aenu1-aps3e,APS3e,主机模拟,github,无日志,https://github.com/aenu1/aps3e,
+mandarineneo-3ds,mandarine-neo,主机模拟,github,无官网,https://github.com/ptyfyre/mandarine-neo,
+winnative-emu-winnative,WinNative,Windows 兼容层,github,完整,https://github.com/WinNative-Emu/WinNative,
+horizonemuteam-horizon-emu,Horizon Emu,主机模拟,github,无官网+无描述,https://github.com/HorizonEmuTeam/Horizon-Emu,no_description
+rfandango-hakux,HakuX,主机模拟,github,无官网,https://github.com/rfandango/hakuX,
+afeimod-winlator-mod,Winlator Afei,Windows 兼容层,github,完整,https://github.com/afeimod/winlator-mod,
+freej2me,FreeJ2ME,主机模拟,github,无下载+无release+无日志,https://github.com/hex007/freej2me,no_release
+supermodel3,Supermodel 3,主机模拟,github,无下载,https://github.com/trzy/Supermodel,
+waterdish-shipwright-android,Shipwright-Android（时之笛 Android 老分支）,原生移植,github,无官网,https://github.com/Waterdish/Shipwright-Android,
+khmelonmix,KH Melon Mix,原生移植,github,无下载+无官网,https://github.com/vitor251093/KHMelonMix,no_apk_anywhere_in_releases
+watermelonds-android,WatermelonDS,主机模拟,github,无官网,https://github.com/SapphireRhodonite/WatermelonDS,
+metroidprimeport,MetroidPrimePort,原生移植,github,完整,https://github.com/Odrannnn/MetroidPrimePort,tag_stale:v0.39.0->v0.40.0
+citron-emulator,Citron Emulator,主机模拟,github,完整,https://github.com/citron-neo/emulator,
+suyu-emulator,Suyu,主机模拟,github,完整,https://github.com/suyu-emu/suyu-main,
+ashnar2602-x360-mobile---official,X360 Mobile,主机模拟,github,完整,https://github.com/Ashnar2602/X360-Mobile---OFFICIAL,tag_stale:v0.6.4+f398ad183.11108->v0.6.4+f398ad183.11113
+openmsx,openMSX,主机模拟,github,无下载,https://github.com/openMSX/openMSX,
+rainchus-dk64-rekongpiled,DK64 Rekongpiled,原生移植,github,无下载+无官网,https://github.com/Rainchus/Donkey-Kong-64-Recompiled,no_apk_anywhere_in_releases
+fs-uae,FS-UAE,主机模拟,github,无下载,https://github.com/FrodeSolheim/fs-uae,
+the412banner-bannerhub,BannerHub (The412Banner),Windows 兼容层,github,无官网,https://github.com/The412Banner/bannerhub,
+xm486-yukihub,YukiHub,视觉小说引擎,github,完整,https://github.com/xm486/YukiHub,
+winebox64-winlator,Wb64dev,Windows 兼容层,github,完整,https://github.com/winebox64/winlator,
+longjunyu2-winlator,Winlator Glibc,Windows 兼容层,github,完整,https://github.com/longjunyu2/winlator,tag_stale:v7.1.3->v7.1.5
+rfandango-xendroid,XenDroid,主机模拟,github,无官网+无描述,https://github.com/rfandango/XenDroid,no_description
+fcharan-winlatormali,Winlator Mali,Windows 兼容层,github,完整,https://github.com/Fcharan/WinlatorMali,
+gunacharanteja-winlatormali,Winlator Mali,Windows 兼容层,github,完整,https://github.com/GunaCharanTeja/WinlatorMali,
+m64plusae,Mupen64Plus AE,主机模拟,github,无下载,https://github.com/mupen64plus-ae/mupen64plus-ae,
+the412banner-bannerlator,Bannerlator (The412Banner),Windows 兼容层,github,无官网,https://github.com/The412Banner/Bannerlator,tag_stale:3.1.8->3.1.8-mali-pre1
+mamcjr-botwrecompandroid,BOTW Recomp Android,原生移植,github,无官网,https://github.com/mamcjr/BOTWRecompAndroid,tag_stale:v0.2.13-beta->v0.3.0-beta
+jacojayy-star,Star (fork),Windows 兼容层,github,完整,https://github.com/jacojayy/star,
+np2kai,NP2kai,主机模拟,github,无日志,https://github.com/AZO234/NP2kai,
+n3xox1-nxemu,NxEmu,主机模拟,github,无下载,https://github.com/N3xoX1/nxemu,no_apk_anywhere_in_releases
+redream-dc,redream,主机模拟,github,无下载+无release,https://github.com/inolen/redream,no_release; no_apk_anywhere_in_releases
+xhyn-ph-exagear-302,ExaGear 302,Windows 兼容层,github,完整,https://github.com/XHYN-PH/exagear-302,
+zorkats-g-diffuser,G-Diffuser,原生移植,github,无官网,https://github.com/Zorkats/G-Diffuser,tag_stale:v1.2.1->v1.2.2
+kronos,Kronos,主机模拟,github,无日志,https://github.com/FCare/Kronos,
+wpr-wp7-8,WPR,主机模拟,github,无官网,https://github.com/8212369/WPR,
+opennectar,Open-Nectar,原生移植,github,无官网,https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port,
+armsx1-ps1,ARMSX1,主机模拟,github,无官网,https://github.com/ARMSX2/ARMSX1,
+ghaelv-lemon-project,Lemon Project,主机模拟,github,完整,https://github.com/Ghael-V/Lemon-Project,
+medard22-dolphin-mmjr2-vbi,Dolphin MMJR2 VBI,主机模拟,github,无官网,https://github.com/Medard22/Dolphin-MMJR2-VBI,
+jica98-bachata-s4,Bachata-S4,主机模拟,github,完整,https://github.com/JICA98/Bachata-S4,
+borked3ds-3ds,Borked3DS,主机模拟,github,完整,https://github.com/Borked3DS/Borked3DS,
+mame2003plus,MAME 2003+,主机模拟,github,无下载,https://github.com/libretro/mame2003-plus-libretro,
+seedlessds-android,SeedlessDS,主机模拟,github,无官网,https://github.com/SapphireRhodonite/SeedlessDS,
+es-de-frontend,ES-DE Frontend,前端与工具,gitlab,无下载+无日志+无图标,https://gitlab.com/es-de/emulationstation-de,no_logo
+raport-redalert,ra-port (Red Alert),原生移植,github,无下载+无release+无日志,https://github.com/dk8827/ra-port,no_release
+flycast-dojo,Flycast Dojo,主机模拟,github,无日志+无图标,https://github.com/blueminder/flycast-dojo,no_logo; homepage_recoverable
+emucorev-android,EmuCoreV,主机模拟,github,完整,https://github.com/sashkinbro/EmuCoreV,
+emucorex-android,EmuCoreX,主机模拟,github,完整,https://github.com/sashkinbro/EmuCoreX,
+unleashedrecomp,UnleashedRecomp-Android,原生移植,github,无官网,https://github.com/SansNope/UnleashedRecomp-Android,
+odrannnn-metroidprime2port,MetroidPrime2Port,原生移植,github,完整,https://github.com/Odrannnn/MetroidPrime2Port,
+stredohori-winlator-cmod,Winlator Bionic Stredohiri,Windows 兼容层,github,完整,https://github.com/Stredohori/Winlator-CMOD,archived
+winlatorxr-winlatorxr,Winlator XR,Windows 兼容层,github,完整,https://github.com/WinlatorXR/WinlatorXR,
+ranggacasper-mostwanted-android,Most Wanted for Android,原生移植,github,完整,https://github.com/RanggaCasper/MostWanted-Android,
+wie-skvm,Wie,主机模拟,github,完整,https://github.com/dlunch/wie,
+aetherkiri-aether,Aether,视觉小说引擎,github,完整,https://github.com/AetherKiri/Aether,
+ruzu-emu,Ruzu,主机模拟,github,无日志+无官网+无图标,https://github.com/vricosti/ruzu-emu,no_logo
+the412banner-bannerhub-revanced,BannerHub v6 (The412Banner),Windows 兼容层,github,无官网,https://github.com/The412Banner/bannerhub-revanced,
+pocket8,Pocket8 (Pico-8),主机模拟,github,无下载+无官网,https://github.com/jevonlipsey/pico-ios,no_apk_anywhere_in_releases
+lime3ds-3ds,Lime3DS,主机模拟,github,无下载+无release,https://github.com/Lime3DS/lime3ds-archive,archived; no_release
+prosperoeden-ps5,ProsperoEden,主机模拟,github,无下载+无官网,https://github.com/Swordpdf/ProsperoEden,no_apk_anywhere_in_releases; has_build_workflow
+jhinzuo-winlator,Winlator Bionic jhinzuo,Windows 兼容层,github,完整,https://github.com/jhinzuo/winlator,
+rpcsx-rpcsx-ui-android,RPCSX Android,主机模拟,github,无官网+无描述,https://github.com/RPCSX/rpcsx-ui-android-build,no_description
+santiquiroz-gears-of-war-2-pc-port,gears of war 2 pc port,原生移植,github,完整,https://github.com/santiquiroz/gears-of-war-2-pc-port,tag_stale:v0.3.12->v0.3.13
+ajay9634-winlator-ajay,Winlator Ajay,Windows 兼容层,github,完整,https://github.com/ajay9634/winlator-ajay,archived
+slaker222-steamlator,Steamlator,Windows 兼容层,github,完整,https://github.com/slaker222/Steamlator,
+xendroid-plus,Xendroid+,主机模拟,github,完整,https://github.com/phforner0/Xendroid-Plus,
+ref4ik-winlator-ref4ik-,Winlator Ref4ik,Windows 兼容层,github,完整,https://github.com/REF4IK/winlator-ref4ik-,archived
+jackandbeans-snap64recomp,Snap64Recomp,原生移植,github,完整,https://github.com/JackandBeans/Snap64Recomp,
+mamcjr-totkdroid,TOTK Droid,原生移植,github,无官网,https://github.com/mamcjr/TOTKDroid,
+afeimod-linbox,Linbox,主机模拟,github,无下载,https://github.com/afeimod/linbox,
+silksongandroid,SilksongAndroid,原生移植,github,无官网,https://github.com/jakobkhansen/SilksongAndroid,
+pockethle-android,PocketHLE,主机模拟,github,完整,https://github.com/j92580498-max/PocketHLE,
+snes9x-z,Snes9x-Z,主机模拟,github,无日志+无官网+无图标,https://github.com/andrezaiats/snes9x-Z,no_logo
+ryubing-emulator,Ryubing,主机模拟,gitea,无下载+无日志,https://git.ryujinx.app/projects/Ryubing,
+linkzenic-shipwright-ports,Shipwright-Ports（时之笛 Android/iOS 移植）,原生移植,github,无官网,https://github.com/linkzenic/Shipwright-Ports,
+hyperhle,HyperHLE,主机模拟,github,无下载+无官网,https://github.com/KlugKlugTG/HyperHLE-Fork,tag_stale:v1.3.5->v1.3.6; no_apk_anywhere_in_releases; has_build_workflow
+hyperhle-reborn,HyperHLE-Reborn,主机模拟,github,无下载+无官网,https://github.com/KlugKlugTG/HyperHLE-Reborn,tag_stale:v1.3.5->v1.3.6; no_apk_anywhere_in_releases; has_build_workflow
+linkzenic-2ship2harkinian-android,2Ship2Harkinian-Android,原生移植,github,无官网,https://github.com/linkzenic/2ship2harkinian-Android,
+citra-mirror,Citra Mirror,主机模拟,github,无下载+无release+无日志,https://github.com/citra-mirror/citra,no_release
+prospero-eden-encore,ProsperoEden Encore,主机模拟,github,无下载+无日志+无官网+无图标,https://github.com/niakw/ProsperoEden-Encore,no_logo
+jaycore-mobox-patched,Mobox Patched,主机模拟,github,无下载+无官网+无描述,https://github.com/jaycore/mobox-patched,no_description
+ax360e-android,ax360e,主机模拟,github,无下载+无release,https://github.com/aenu1/ax360e,no_release; no_apk_anywhere_in_releases
+maxjivi05-ps3native,PS3Native,主机模拟,github,完整,https://github.com/maxjivi05/PS3Native,
+termux-kotlin,Termux Kotlin,前端与工具,github,完整,https://github.com/reapercanuk39/termux-kotlin-app,
+termux-jiaxinchen,Termux 增强镜像,前端与工具,official-web,完整,https://github.com/termux/termux-app,
+skyline-official,Skyline（官方）,主机模拟,github,无下载+无release+无日志,https://github.com/skyline-emu/skyline,no_release
+ghael-v-capyps5,CapyPS5,主机模拟,github,无官网,https://github.com/Ghael-V/CapyPS5,
+the412banner-bannerhub-lite,BannerHub Lite (The412Banner),Windows 兼容层,github,无官网,https://github.com/The412Banner/Bannerhub-Lite,
+virtualjaguar,Virtual Jaguar,主机模拟,github,无下载,https://github.com/libretro/virtualjaguar-libretro,
+mircowuffwuff-sharpdroid,SharpDroid,主机模拟,github,无官网,https://github.com/mircowuffwuff/sharpdroid,
+nfs3recompiled,nfs3recompiled-android,原生移植,github,无官网,https://github.com/ZloiKILLER/nfs3recompiled-android,tag_stale:v0.77->v0.78
+zeebx-zeebo,Zeebx,主机模拟,github,无官网,https://github.com/ZeebxTeam/zeebx-emu,
+dev-ali2008-onrps4-android,onRps4,主机模拟,github,无官网,https://github.com/dev-Ali2008/onRps4-Android,
+yifengling0-vintagepomelopro,VintagePomeloPro,Windows 兼容层,github,无下载+无日志+无图标,https://github.com/yifengling0/VintagePomeloPro,no_logo; tag_stale:build-deps-gnu-1.5.2->build-deps-gnu-1.5.2-21f85e476cc5
+afeimod-winlator-glibc,Winlator Glibc (Amod),Windows 兼容层,github,无下载,https://github.com/afeimod/winlator-glibc,
+dukeps3-android,DukePS3,主机模拟,github,无下载+无release+无官网,https://github.com/thecrixux/DukePS3,no_release
+emucorec-ps3,EmuCoreC,主机模拟,github,完整,https://github.com/sashkinbro/EmuCoreC,
+itzdfplayer-gamehub-lite,GameHub Lite (ItzDFPlayer),Windows 兼容层,github,完整,https://github.com/ItzDFPlayer/gamehub-lite,
+eden-nx2-zuan,Eden NX2 (ZuanCrisp),主机模拟,github,无日志+无官网+无图标,https://github.com/ZuanCrisp/Eden-NX2,no_logo
+eden-emulator-releases,Eden Emulator,主机模拟,gitea,完整,https://git.eden-emu.dev/eden-emu/eden,
+md.emu-sms,MD.emu,主机模拟,github,无下载+无release+无日志,https://github.com/neonichu/MD.emu,no_release; no_apk_anywhere_in_releases
+termux-ghostty,Termux Ghostty,前端与工具,github,无官网,https://github.com/mrndstvndv/termux-ghostty,
+juris-x-winlator_x,Winlator X,Windows 兼容层,github,完整,https://github.com/JURIS-X/winlator_x,
+dukestation-ps1,DukeStation,主机模拟,github,无下载+无release+无日志+无官网,https://github.com/thecrixux/DukeStation,no_release
+eden-ns2-android-vivsi,Eden NS2 Android (Vivsi),主机模拟,github,完整,https://github.com/Vivsi1/Eden-NS2-Android,
+honkonx-winlator-honkon,Winlator Honkon,Windows 兼容层,github,完整,https://github.com/Honkonx/winlator-honkon,
+m64plusfz,M64Plus FZ,主机模拟,official-web,无下载+无release+无日志,https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita,no_release; no_apk_anywhere_in_releases
+mupen64plus-ae-fzurita,Mupen64Plus AE (fzurita),主机模拟,github,无下载+无release+无日志+无官网+无图标,https://github.com/fzurita/mupen64plus-ae,no_logo; no_release
+azaharplus-android,AzaharPlus,主机模拟,github,无下载+无release+无官网,https://github.com/f4mrfaux/AzaharPlus,no_release; no_apk_anywhere_in_releases; has_build_workflow
+afeimod-linbox-winemu,Linbox WinEmu,主机模拟,github,完整,https://github.com/afeimod/Linbox-WinEmu,
+dk64recomp,dk64-recomp-android,原生移植,github,无官网,https://github.com/deivid22srk/dk64-recomp-android,
+edeegg-sharpemu-arm64,SharpEmu ARM64,主机模拟,github,完整,https://github.com/edeegg/sharpemu-arm64,
+termux-enhanced,Termux Enhanced,前端与工具,official-web,完整,https://github.com/NIK2703/termux-enhanced,
+afeimod-nesstation,NesStation,前端与工具,github,完整,https://github.com/afeimod/NesStation,
+pocket2droid-android,Pocket2Droid,主机模拟,github,完整,https://github.com/samsixx6/Pocket2Droid,
+zenith-panplay,PanPlay (Mali 游戏启动器),Windows 兼容层,github,完整,https://github.com/zenithblue-oss/panplay,
+alexoqool-winlator-bionic-build,Winlator Bionic Alexoqool,Windows 兼容层,github,完整,https://github.com/Alexoqool/winlator-bionic-build,archived
+ryujinx-canary-ademola,Ryujinx Canary Builds (ADEMOLA200),主机模拟,github,无日志+无官网+无图标,https://github.com/ADEMOLA200/Ryujinx-Canary-Builds,no_logo
+termux-plus,TermuxPlus,前端与工具,official-web,完整,https://github.com/thejaustin/TermuxPlus,
+windroidemulation-winnative,WinNative (fork),Windows 兼容层,github,完整,https://github.com/WinDroidEmulation/WinNative,
+dingooemu-android,DingooEmu,主机模拟,github,无下载,https://github.com/AloysHF/DingooEmu,no_apk_anywhere_in_releases; has_build_workflow
+emucorep-android,EmuCoreP-Releases,Windows 兼容层,github,完整,https://github.com/sashkinbro/EmuCoreP-Releases,archived
+netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code,X1 BOX,主机模拟,github,无官网+无描述,https://github.com/NETHERSTRIKER/x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code,no_description
+nexium-switch1,NeXium,主机模拟,github,无下载+无release+无日志,https://github.com/nexium-emu/nexium,no_release; no_apk_anywhere_in_releases
+handylynx,Handy (Atari Lynx),主机模拟,github,无下载+无release+无日志,https://github.com/libretro/libretro-handy,no_release
+melange-brew,Melange (BREW),主机模拟,gitlab,无release+无日志+无官网,https://gitlab.com/usernameak/melange,no_release
+orangefox86-hollycast,Hollycast,主机模拟,github,无官网,https://github.com/OrangeFox86/Hollycast,
+emucorea-android,EmuCoreA,主机模拟,github,完整,https://github.com/sashkinbro/EmuCoreA,
+azahartrigger-3ds,AzaharTrigger,主机模拟,github,无官网,https://github.com/diegolix29/AzaharTrigger,
+frostie77-tooie-recompiled,Tooie-Recompiled（Banjo-Tooie 安卓原生移植）,原生移植,github,无官网,https://github.com/Frostie77/Tooie-Recompiled,
+nin64-android,Nin64-Emulator,主机模拟,github,无下载+无release,https://github.com/izzy2lost/Nin64-Emulator,no_release; no_apk_anywhere_in_releases; has_build_workflow
+afeimod-gamehtml,Game4399 Flash盒,主机模拟,github,完整,https://github.com/afeimod/gamehtml,
+deivid22srk-winlator-xmod,Winlator Xmod,Windows 兼容层,github,无描述,https://github.com/deivid22srk/Winlator-Xmod,no_description; tag_stale:Winlatorxmod1.0->Winlator_xmox_1.1.0
+emucoreh-android,EmuCoreH,主机模拟,github,完整,https://github.com/sashkinbro/EmuCoreH,
+samsixx6-brew2droid,Brew2Droid,主机模拟,github,无官网,https://github.com/samsixx6/Brew2Droid,
+duckyduckg-winlator,Winlator Bionic duckyduckG,Windows 兼容层,github,完整,https://github.com/duckyduckG/winlator,
+ryudeck-steamdeck,Ryujinx Ryudeck,主机模拟,github,无日志+无官网+无图标,https://github.com/deucebucket/ryudeck,no_logo
+winlatorbrasil-exiled-kingdoms-multiplayer,Exiled Kingdoms Multiplayer,主机模拟,github,无官网,https://github.com/winlatorbrasil/Exiled-Kingdoms-Multiplayer,
+termux-aether,Termux-Aether,前端与工具,github,完整,https://github.com/wallentx/termux-aether-app,
+eden-sx2a-moceure,Eden SX2A (Switch 2 实验版),主机模拟,gitea,无图标,https://git.eden-emu.dev/moceure/eden-nx2-android,no_logo
+kreitinnsoftware-micewine-application,MiceWine,主机模拟,github,无release+无日志+无官网,https://github.com/KreitinnSoftware/MiceWine,no_release
+faux123-gamenative-mali,GameNative Mali,Windows 兼容层,github,完整,https://github.com/faux123/GameNative-Mali,
+hitode-project-hitode,Hitode,Windows 兼容层,github,完整,https://github.com/hitode-project/hitode,
+maxi000q-consolefivepro,Console Five Pro,主机模拟,github,无官网,https://github.com/maxi000q/ConsoleFivePro,
+afeimod-eden-an,Eden AN (mod),主机模拟,github,完整,https://github.com/afeimod/eden-an,
+melonx-ios,MeloNX,主机模拟,gitea,无日志,https://git.ryujinx.app/projects/MeloNX,
+zenith-panprobe,PanProbe (Mali 驱动探测),Windows 兼容层,github,无官网,https://github.com/zenithblue-oss/panprobe,
+8cee-banjorecomp-android,BanjoRecomp-Android（Banjo-Kazooie 安卓移植）,原生移植,github,无release+无日志+无官网,https://github.com/8cee/BanjoRecomp-Android,no_release; has_build_workflow
+afeimod-eka2l1-an,EKA2L1 AN (mod),主机模拟,github,完整,https://github.com/afeimod/EKA2L1-AN,
+j4mcu-builds-gamehub-lite-redmagic,GameHub Lite (J4MCU-builds),Windows 兼容层,github,无官网,https://github.com/J4MCU-builds/Gamehub-Lite-RedMagic,
+eden-ci-nightly,Eden Emulator Nightly,主机模拟,gitea,完整,https://git.eden-emu.dev/eden-ci/nightly,tag_stale:v1793569440.7a6d055094->v1793745818.07677aa500
+ryubing-canary,Ryubing Canary,主机模拟,gitea,无日志,https://git.ryujinx.app/Ryubing/Canary,
+seedlessds-cn-fork,SeedlessDS 优化分支,主机模拟,github,无官网,https://github.com/yjhqq761261552-wq/seedless-ds-fork,
+drastic,DraStic,主机模拟,official-play,无日志+无官网,,repo_404
+emulicious,Emulicious,主机模拟,official-web,无日志,https://emulicious.net/,
+epsxe,ePSXe,主机模拟,official-web,无日志,https://play.google.com/store/apps/details?id=com.epsxe.ePSXe,repo_404
+fpse,FPse,主机模拟,official-web,无日志,https://play.google.com/store/apps/details?id=com.emulator.fpse,repo_404
+fuse,Fuse,主机模拟,official-web,无日志,https://fuse-emulator.sourceforge.net/,
+kenji-nx-android-releases,Kenji-NX Emulator,主机模拟,gitea,无日志,https://git.ryujinx.app/Kenji-NX/Android,
+mame4droid,MAME4droid,主机模拟,github,无日志,https://github.com/seleuco/MAME4droid-Current,tag_missing:v1.41.2; apk_recoverable
+maxjivi05-gamenative-performance,GameNative Performance,Windows 兼容层,github,无下载+无日志+无官网,https://github.com/maxjivi05/GameNative-Performance,repo_404
+mednafen,Mednafen,主机模拟,official-web,无日志,https://mednafen.github.io/,
+myboy,My Boy!,主机模拟,official-play,无日志,https://play.google.com/store/apps/details?id=com.fastemulator.gba,repo_404
+myoldboy,My OldBoy!,主机模拟,official-play,无日志,https://play.google.com/store/apps/details?id=com.fastemulator.gbc,repo_404
+myps2-ps2,MYPS2,主机模拟,official-play,无官网,https://play.google.com/store/apps/details?id=kr.co.iefriends.myps2,no_repo_field; unresolvable
+pizzaboy,Pizza Boy GBA,主机模拟,official-play,无日志,https://play.google.com/store/apps/details?id=it.dbtecno.pizzaboygba,repo_404
+producdevity-gamehub,GameHub（官方）,Windows 兼容层,official-web,无日志,https://gamehub.xiaoji.com/zh-cn,repo_404
+ryujinx-benji-sc,Ryujinx Benji-SC,主机模拟,gitea,无日志,https://git.ryujinx.app/projects/Kenji-NX,tag_stale:2.1.0-pr.2->2.0.5
+ryujinx-official,Ryujinx（官方）,主机模拟,official-web,无下载+无日志,https://github.com/Ryujinx/Ryujinx,repo_404
+skyline-pine,Skyline Pine,主机模拟,github,无日志+无官网,https://github.com/xmy953538104/pine_CN,
+sudachi-emulator,Sudachi,主机模拟,official-web,无日志,https://sudachi-emulator.com,no_repo_field; unresolvable
+torzu-emulator,Torzu,主机模拟,notabug,无下载+无日志,https://notabug.org/litucks/torzu,repo_451
+vice,VICE,主机模拟,official-web,无日志,https://vice-emu.sourceforge.io/,
+winlator-releases,Winlator Bionic cjxyz,Windows 兼容层,github,无日志,https://github.com/cjxyz/winlator,
+winlatorbrasil-gamehub-brasil,GameHub Brasil,Windows 兼容层,github,无官网,https://github.com/winlatorbrasil/gamehub-brasil,repo_404
+winlatorbrasil-winlator-brasil,Winlator Brasil,Windows 兼容层,github,无下载,https://github.com/winlatorbrasil/Winlator-Brasil,repo_404
+yuzu-citrus,CitruS,主机模拟,gitea,无下载+无release+无日志,https://git.ryujinx.app/archive/citron,archived; no_release
+yuzu-official,yuzu（官方）,主机模拟,community-archive,无下载+无日志,https://github.com/yuzu-emu/yuzu,repo_404
+yuzu-plus,Yuzu+,主机模拟,community-archive,无日志,https://www.9k9k.com/app/91506.html,no_repo_field; unresolvable
+djihads80-eglantine,Eglantine,主机模拟,github,无下载+无官网,https://github.com/Djihads80/Eglantine,
+shirai91-nx2android,nx2android,原生移植,github,无下载+无官网,https://github.com/shirai91/nx2android,
+lnpandy-nx2apple,NX2Apple,原生移植,github,无下载+无官网,https://github.com/LNPANDY/NX2Apple,
+smarkyie-nsp-box,NSP Box,前端与工具,github,无下载+无官网,https://github.com/smarkyie/NSP-Box,
+yebot32-xenra,Xenra,主机模拟,github,完整,https://github.com/Yebot32/xenra,
+xenia-project-xenia,Xenia,主机模拟,github,无下载,https://github.com/xenia-project/xenia,
+project64-project64,Project64,主机模拟,github,无下载,https://github.com/project64/project64,
+liji32-sameboy,SameBoy,主机模拟,github,无下载,https://github.com/LIJI32/SameBoy,

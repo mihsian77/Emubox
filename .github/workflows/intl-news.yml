@@ -1,0 +1,55 @@
+name: 国外信源采集
+
+# 做什么：抓 YouTube 频道更新 + Reddit 板块新帖，落到 data/intl-news/。
+#
+# 为什么只能在 CI 跑：本机出口对 youtube / reddit / t.me / x.com 全部不可达
+# （curl 连 TLS 都建不起来），只有 GitHub 系能通。runner 在海外，天然能访问。
+#
+# 产物按天一份 JSON，本地监控任务读最近一份做「库外项目」比对。
+
+on:
+  schedule:
+    - cron: "40 21 * * *"     # 每天 05:40 (UTC+8)，早于本地 09:00 的汇报
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  intl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 先探可达性（失败也好定位是墙还是接口变了）
+        run: python3 scripts/intl_news.py --probe
+
+      - name: 采集
+        run: python3 scripts/intl_news.py --out data/intl-news/$(date -u +%F).json
+
+      - name: 有变化则提交
+        run: |
+          if ! git diff --quiet -- data/intl-news; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/intl-news
+            git commit -m "chore(intl): 国外信源 $(date -u +%F)"
+            git push
+          else
+            echo "无变化，跳过提交"
+          fi
+
+      - name: 保留最近 30 天
+        run: |
+          ls -1 data/intl-news/*.json 2>/dev/null | sort | head -n -30 | xargs -r git rm -q
+          if ! git diff --cached --quiet; then
+            git config user.name "emubox-ci[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore(intl): 清理旧数据"
+            git push
+          fi
