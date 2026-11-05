@@ -3,7 +3,7 @@
   "sections": {
     "frontend-tool": {
       "label": "前端与工具",
-      "count": 13
+      "count": 14
     },
     "virtualization": {
       "label": "虚拟机",
@@ -19,11 +19,11 @@
     },
     "native-port": {
       "label": "原生移植",
-      "count": 31
+      "count": 33
     },
     "console-emulation": {
       "label": "主机模拟",
-      "count": 152
+      "count": 154
     }
   },
   "families": {
