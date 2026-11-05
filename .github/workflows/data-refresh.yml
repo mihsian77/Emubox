@@ -1,0 +1,110 @@
+name: 每日数据刷新（合并提交）
+
+# 做什么：把原来 4 个独立 workflow（榜单快照 / 驱动模拟器排行 / EmuReady 目录 / 跑分）
+# 串到一个 job 里跑，最后只产生 1 次 commit。
+#
+# 为什么合并：原来每类数据各推一次，一天 7 条 chore 提交，且每条都会触发全量 CI（含 APK 编译）。
+# 合并后一天 1 条数据提交；配合 ci.yml 的 paths-ignore，数据更新不再触发编译。
+#
+# 为什么每步 continue-on-error：单点失败（比如 Playwright 装不上、某个站点临时 502）
+# 不能连累其他数据，最后统一提交已成功的那部分。
+
+on:
+  schedule:
+    # UTC 18:40 ≈ 北京时间 02:40，避开新闻任务与白天高峰
+    - cron: "40 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # 1) 榜单快照必须最先跑：下载量历史增量补不回来
+      - name: 榜单快照
+        continue-on-error: true
+        run: python3 scripts/ranking.py
+
+      # 2) 驱动 / 模拟器 / 排行 / 配置推荐
+      - name: 刷新驱动与模拟器元数据
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/refresh-registry.py
+          python3 scripts/refresh-ranking.py
+          python3 scripts/refresh-emulator-registry.py
+          python3 scripts/aggregate-recipes.py --clone
+
+      # 3) EmuReady 目录（仅标准库）
+      - name: 刷新 EmuReady 目录
+        continue-on-error: true
+        run: python3 scripts/refresh-emuready.py
+
+      # 4) 跑分数据
+      - name: 安装 Playwright 与 Chromium
+        continue-on-error: true
+        run: |
+          npm init -y
+          npm i playwright@1.62.0
+          sudo npx playwright install-deps chromium
+          npx playwright install chromium
+
+      - name: 抓取并解析跑分
+        continue-on-error: true
+        run: |
+          node scripts/bench/fetch_antutu.js
+          node scripts/bench/fetch_ludashi.js
+          python3 scripts/bench/parse_bench.py
+          python3 scripts/bench/check_bench.py
+          python3 scripts/bench/build_meta.py
+          node scripts/bench/fetch_soc_specs.js
+          python3 scripts/bench/build_specs.py
+          python3 scripts/soc/build_master.py --fetch
+
+      - name: 同步内置数据到 assets
+        continue-on-error: true
+        run: |
+          mkdir -p app/src/main/assets/bench
+          cp bench-data/antutu_soc.json app/src/main/assets/bench/antutu_soc.json
+          cp bench-data/ludashi.json app/src/main/assets/bench/ludashi.json
+          cp bench-data/manifest.json app/src/main/assets/bench/manifest.json
+          cp bench-data/soc_specs.json app/src/main/assets/bench/soc_specs.json
+
+      - name: 有变化则合并提交一次
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PATHS="driver-registry.json \
+                 app/src/main/assets/driver-registry.json \
+                 catalog/catalog.json \
+                 emulator-ranking.json \
+                 emulator-registry.json \
+                 app/src/main/assets/winlator-recipes.json \
+                 app/src/main/assets/emuready-catalog.json \
+                 ranking-history ranking.json \
+                 app/src/main/assets/bench app/src/main/assets/soc_master.json bench-data"
+          if git diff --quiet -- $PATHS; then
+            echo "无变化，跳过提交"
+            exit 0
+          fi
+          git config user.name "emubox-ci[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add $PATHS
+          git commit -m "chore(data): 每日刷新 $(date -u +%F)"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin HEAD:main

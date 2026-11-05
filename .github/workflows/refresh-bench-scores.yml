@@ -1,9 +1,10 @@
 name: 刷新跑分数据（安兔兔/鲁大师）
 
 on:
-  schedule:
-    # UTC 03:00 ≈ 北京时间 11:00，排在驱动源刷新之后
-    - cron: "0 3 * * *"
+  # 已并入 data-refresh.yml（每日一次合并提交）；此处保留手动触发用于单独调试
+  # schedule:
+  #   # UTC 03:00 ≈ 北京时间 11:00，排在驱动源刷新之后
+  #   - cron: "0 3 * * *"
   workflow_dispatch:
 
 permissions:

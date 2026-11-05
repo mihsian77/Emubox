@@ -1,28 +1,27 @@
 name: CI 构建与校验
 
+# 只处理代码改动。纯数据改动走 ci-data.yml（只做 schema 校验，不编译）。
+# 这样每天的数据自动刷新不会再触发 APK 构建。
+
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '*.json'
+      - 'ranking-history/**'
+      - 'bench-data/**'
+      - 'catalog/**'
+      - 'app/src/main/assets/**/*.json'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '*.json'
+      - 'ranking-history/**'
+      - 'bench-data/**'
+      - 'catalog/**'
+      - 'app/src/main/assets/**/*.json'
 
 jobs:
-  registry-check:
-    name: 驱动注册表 schema 校验
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: 校验 registry schema 完整性
-        run: python3 scripts/validate-registry.py
-
-  emulator-check:
-    name: 模拟器注册表校验
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: 校验模拟器 registry（来源/dead/下载直链）
-        run: python3 scripts/validate-emulators.py
-
   i18n-check:
     name: i18n 翻译校验
     runs-on: ubuntu-latest

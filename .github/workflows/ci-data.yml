@@ -1,0 +1,40 @@
+name: 数据校验
+
+# 只校验数据文件，不编译 APK。
+# 拆分原因：数据每天自动刷新，原来每次都会触发 Android 编译（lint + assembleDebug + assembleRelease），
+# 一天白烧 6~8 次构建。数据改动只需 schema 校验，代码改动才需要编译。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.json'
+      - 'ranking-history/**'
+      - 'bench-data/**'
+      - 'catalog/**'
+      - 'app/src/main/assets/**/*.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - '*.json'
+      - 'ranking-history/**'
+      - 'bench-data/**'
+      - 'catalog/**'
+      - 'app/src/main/assets/**/*.json'
+
+jobs:
+  registry-check:
+    name: 驱动注册表 schema 校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 校验 registry schema 完整性
+        run: python3 scripts/validate-registry.py
+
+  emulator-check:
+    name: 模拟器注册表校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 校验模拟器 registry（来源/dead/下载直链）
+        run: python3 scripts/validate-emulators.py
