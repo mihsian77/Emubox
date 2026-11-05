@@ -1,0 +1,1177 @@
+{
+ "source": "antutu.com/ranking/rank1",
+ "fetched": "2026-10-24",
+ "count": 117,
+ "devices": [
+  {
+   "name": "小米18 Fold",
+   "soc": "XRing O3 16+1024",
+   "cpu_score": 1091743,
+   "gpu_score": 1911255,
+   "mem_score": 729972,
+   "ux_score": 887916,
+   "total_score": 4620886,
+   "rank": 1
+  },
+  {
+   "name": "iQOO 16",
+   "soc": "S-8 Elite Extreme Gen 6 16+512",
+   "cpu_score": 1115703,
+   "gpu_score": 1688835,
+   "mem_score": 713188,
+   "ux_score": 932199,
+   "total_score": 4449925,
+   "rank": 2
+  },
+  {
+   "name": "荣耀Magic9 Pro Max",
+   "soc": "S-8 Elite Extreme Gen 6 16+1024",
+   "cpu_score": 1171873,
+   "gpu_score": 1738212,
+   "mem_score": 662461,
+   "ux_score": 862943,
+   "total_score": 4435489,
+   "rank": 3
+  },
+  {
+   "name": "小米18 Pro Max",
+   "soc": "S-8 Elite Extreme Gen 6 16+1024",
+   "cpu_score": 1146894,
+   "gpu_score": 1667905,
+   "mem_score": 673249,
+   "ux_score": 907871,
+   "total_score": 4395919,
+   "rank": 4
+  },
+  {
+   "name": "OPPO Find X10 Pro Max",
+   "soc": "M-9600-Pro 16+1024",
+   "cpu_score": 1228111,
+   "gpu_score": 1691183,
+   "mem_score": 631462,
+   "ux_score": 834405,
+   "total_score": 4385161,
+   "rank": 5
+  },
+  {
+   "name": "红魔11S Pro+",
+   "soc": "S-8 Elite Gen 5 OC 16+512",
+   "cpu_score": 1268140,
+   "gpu_score": 1511157,
+   "mem_score": 624590,
+   "ux_score": 940135,
+   "total_score": 4344022,
+   "rank": 6
+  },
+  {
+   "name": "iQOO 15 Ultra",
+   "soc": "S-8 Elite Gen 5 24+1024",
+   "cpu_score": 1226227,
+   "gpu_score": 1524321,
+   "mem_score": 683350,
+   "ux_score": 890774,
+   "total_score": 4324672,
+   "rank": 7
+  },
+  {
+   "name": "荣耀WIN",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 1210564,
+   "gpu_score": 1512196,
+   "mem_score": 596036,
+   "ux_score": 781169,
+   "total_score": 4099965,
+   "rank": 8
+  },
+  {
+   "name": "小米18 Pro",
+   "soc": "S-8 Elite Gen 6 16+512",
+   "cpu_score": 1076769,
+   "gpu_score": 1602656,
+   "mem_score": 632720,
+   "ux_score": 783473,
+   "total_score": 4095618,
+   "rank": 9
+  },
+  {
+   "name": "realme GT8 Pro",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1201691,
+   "gpu_score": 1476795,
+   "mem_score": 591185,
+   "ux_score": 819410,
+   "total_score": 4089081,
+   "rank": 10
+  },
+  {
+   "name": "iQOO 15",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 1154741,
+   "gpu_score": 1417236,
+   "mem_score": 602044,
+   "ux_score": 830978,
+   "total_score": 4004999,
+   "rank": 11
+  },
+  {
+   "name": "vivo X300 Ultra 卫星通信版",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 1135602,
+   "gpu_score": 1396978,
+   "mem_score": 630851,
+   "ux_score": 829728,
+   "total_score": 3993159,
+   "rank": 12
+  },
+  {
+   "name": "荣耀Magic8 Pro",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1221412,
+   "gpu_score": 1457656,
+   "mem_score": 541677,
+   "ux_score": 756057,
+   "total_score": 3976802,
+   "rank": 13
+  },
+  {
+   "name": "荣耀Magic8",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1209890,
+   "gpu_score": 1479498,
+   "mem_score": 545025,
+   "ux_score": 739820,
+   "total_score": 3974233,
+   "rank": 14
+  },
+  {
+   "name": "vivo X300 Ultra",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1115039,
+   "gpu_score": 1377080,
+   "mem_score": 571170,
+   "ux_score": 825207,
+   "total_score": 3888496,
+   "rank": 15
+  },
+  {
+   "name": "REDMI K100 Pro Max",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 1164672,
+   "gpu_score": 1364761,
+   "mem_score": 641941,
+   "ux_score": 638456,
+   "total_score": 3809830,
+   "rank": 16
+  },
+  {
+   "name": "OPPO Find X9 Ultra",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1073443,
+   "gpu_score": 1411797,
+   "mem_score": 552790,
+   "ux_score": 764026,
+   "total_score": 3802056,
+   "rank": 17
+  },
+  {
+   "name": "小米17 Max",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1162282,
+   "gpu_score": 1364647,
+   "mem_score": 578173,
+   "ux_score": 665076,
+   "total_score": 3770178,
+   "rank": 18
+  },
+  {
+   "name": "一加15",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 1060848,
+   "gpu_score": 1369528,
+   "mem_score": 593091,
+   "ux_score": 743530,
+   "total_score": 3766997,
+   "rank": 19
+  },
+  {
+   "name": "REDMI K90 Pro Max",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 1161399,
+   "gpu_score": 1350563,
+   "mem_score": 623813,
+   "ux_score": 605414,
+   "total_score": 3741189,
+   "rank": 20
+  },
+  {
+   "name": "一加15T",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1042480,
+   "gpu_score": 1375150,
+   "mem_score": 551206,
+   "ux_score": 732289,
+   "total_score": 3701125,
+   "rank": 21
+  },
+  {
+   "name": "OPPO Find X9 Ultra 卫星通信版",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 941422,
+   "gpu_score": 1391808,
+   "mem_score": 594022,
+   "ux_score": 720122,
+   "total_score": 3647374,
+   "rank": 22
+  },
+  {
+   "name": "vivo X300 Pro 卫星通信版",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1098985,
+   "gpu_score": 1292047,
+   "mem_score": 510735,
+   "ux_score": 728425,
+   "total_score": 3630192,
+   "rank": 23
+  },
+  {
+   "name": "一加Ace 6 至尊版",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1084748,
+   "gpu_score": 1305985,
+   "mem_score": 521812,
+   "ux_score": 695632,
+   "total_score": 3608177,
+   "rank": 24
+  },
+  {
+   "name": "vivo X300 Pro",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1081472,
+   "gpu_score": 1236123,
+   "mem_score": 481079,
+   "ux_score": 717227,
+   "total_score": 3515901,
+   "rank": 25
+  },
+  {
+   "name": "REDMI K90 至尊版",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 1084269,
+   "gpu_score": 1182299,
+   "mem_score": 533970,
+   "ux_score": 679289,
+   "total_score": 3479827,
+   "rank": 26
+  },
+  {
+   "name": "REDMI K90 Max",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1042386,
+   "gpu_score": 1278190,
+   "mem_score": 459155,
+   "ux_score": 693852,
+   "total_score": 3473583,
+   "rank": 27
+  },
+  {
+   "name": "OPPO Find X9 Pro",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1094940,
+   "gpu_score": 1222003,
+   "mem_score": 448023,
+   "ux_score": 677937,
+   "total_score": 3442903,
+   "rank": 28
+  },
+  {
+   "name": "Xiaomi 17 Ultra",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1080608,
+   "gpu_score": 1178581,
+   "mem_score": 584538,
+   "ux_score": 594393,
+   "total_score": 3438120,
+   "rank": 29
+  },
+  {
+   "name": "Xiaomi 17 Ultra by Leica",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 1074020,
+   "gpu_score": 1179787,
+   "mem_score": 582732,
+   "ux_score": 594759,
+   "total_score": 3431298,
+   "rank": 30
+  },
+  {
+   "name": "iQOO 15T",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1036437,
+   "gpu_score": 1143242,
+   "mem_score": 507544,
+   "ux_score": 742668,
+   "total_score": 3429891,
+   "rank": 31
+  },
+  {
+   "name": "OPPO Find X9s Pro",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1060773,
+   "gpu_score": 1193975,
+   "mem_score": 485345,
+   "ux_score": 645896,
+   "total_score": 3385989,
+   "rank": 32
+  },
+  {
+   "name": "荣耀GT Pro",
+   "soc": "S-8 Elite OC 16+512",
+   "cpu_score": 1069045,
+   "gpu_score": 1231659,
+   "mem_score": 504148,
+   "ux_score": 550466,
+   "total_score": 3355318,
+   "rank": 33
+  },
+  {
+   "name": "OPPO Find X9",
+   "soc": "M-9500 16+512",
+   "cpu_score": 1055457,
+   "gpu_score": 1163896,
+   "mem_score": 471796,
+   "ux_score": 648456,
+   "total_score": 3339605,
+   "rank": 34
+  },
+  {
+   "name": "一加13",
+   "soc": "S-8 Elite 24+1024",
+   "cpu_score": 931000,
+   "gpu_score": 1159228,
+   "mem_score": 638626,
+   "ux_score": 596064,
+   "total_score": 3324918,
+   "rank": 35
+  },
+  {
+   "name": "一加Ace 6",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 987342,
+   "gpu_score": 1155643,
+   "mem_score": 542841,
+   "ux_score": 612858,
+   "total_score": 3298684,
+   "rank": 36
+  },
+  {
+   "name": "vivo X300s",
+   "soc": "M-9500 16+512",
+   "cpu_score": 989694,
+   "gpu_score": 1128204,
+   "mem_score": 479423,
+   "ux_score": 700038,
+   "total_score": 3297359,
+   "rank": 37
+  },
+  {
+   "name": "realme GT8",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 1007430,
+   "gpu_score": 1152386,
+   "mem_score": 524743,
+   "ux_score": 611055,
+   "total_score": 3295614,
+   "rank": 38
+  },
+  {
+   "name": "REDMI K100 Pro",
+   "soc": "S-8 Elite Gen 5 V 16+512",
+   "cpu_score": 1106074,
+   "gpu_score": 1050256,
+   "mem_score": 587161,
+   "ux_score": 551702,
+   "total_score": 3295193,
+   "rank": 39
+  },
+  {
+   "name": "荣耀WIN RT",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 1017565,
+   "gpu_score": 1158306,
+   "mem_score": 500149,
+   "ux_score": 616956,
+   "total_score": 3292976,
+   "rank": 40
+  },
+  {
+   "name": "vivo X200 Ultra",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 976149,
+   "gpu_score": 1170907,
+   "mem_score": 512661,
+   "ux_score": 627915,
+   "total_score": 3287632,
+   "rank": 41
+  },
+  {
+   "name": "iQOO Neo11 至尊版",
+   "soc": "M-9500M 16+512",
+   "cpu_score": 996889,
+   "gpu_score": 1075838,
+   "mem_score": 495547,
+   "ux_score": 714697,
+   "total_score": 3282971,
+   "rank": 42
+  },
+  {
+   "name": "REDMI K90",
+   "soc": "S-8 Elite 12+512",
+   "cpu_score": 1006033,
+   "gpu_score": 1146625,
+   "mem_score": 493022,
+   "ux_score": 628449,
+   "total_score": 3274129,
+   "rank": 43
+  },
+  {
+   "name": "小米15 Pro",
+   "soc": "S-8 Elite 16+1024",
+   "cpu_score": 981844,
+   "gpu_score": 1118757,
+   "mem_score": 545623,
+   "ux_score": 624062,
+   "total_score": 3270286,
+   "rank": 44
+  },
+  {
+   "name": "iQOO 13",
+   "soc": "S-8 Elite 16+1024",
+   "cpu_score": 914756,
+   "gpu_score": 1160363,
+   "mem_score": 562703,
+   "ux_score": 631791,
+   "total_score": 3269613,
+   "rank": 45
+  },
+  {
+   "name": "小米15",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 1004203,
+   "gpu_score": 1106815,
+   "mem_score": 510802,
+   "ux_score": 625055,
+   "total_score": 3246875,
+   "rank": 46
+  },
+  {
+   "name": "iQOO Neo10 Pro+",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 947378,
+   "gpu_score": 1152274,
+   "mem_score": 503956,
+   "ux_score": 632708,
+   "total_score": 3236316,
+   "rank": 47
+  },
+  {
+   "name": "iQOO Neo11",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 923867,
+   "gpu_score": 1144757,
+   "mem_score": 524437,
+   "ux_score": 640723,
+   "total_score": 3233784,
+   "rank": 48
+  },
+  {
+   "name": "小米15 Ultra",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 990217,
+   "gpu_score": 1112040,
+   "mem_score": 512881,
+   "ux_score": 617057,
+   "total_score": 3232195,
+   "rank": 49
+  },
+  {
+   "name": "小米17",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 998168,
+   "gpu_score": 1062402,
+   "mem_score": 574187,
+   "ux_score": 594827,
+   "total_score": 3229584,
+   "rank": 50
+  },
+  {
+   "name": "OPPO Find X8 Ultra",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 903009,
+   "gpu_score": 1164142,
+   "mem_score": 497489,
+   "ux_score": 598034,
+   "total_score": 3162674,
+   "rank": 51
+  },
+  {
+   "name": "iQOO Z11 Turbo",
+   "soc": "S-8 Gen 5 16+512",
+   "cpu_score": 966133,
+   "gpu_score": 1013571,
+   "mem_score": 532519,
+   "ux_score": 646557,
+   "total_score": 3158780,
+   "rank": 52
+  },
+  {
+   "name": "小米17 Pro",
+   "soc": "S-8 Elite Gen 5 16+512",
+   "cpu_score": 968729,
+   "gpu_score": 1035856,
+   "mem_score": 562701,
+   "ux_score": 591382,
+   "total_score": 3158668,
+   "rank": 53
+  },
+  {
+   "name": "REDMI K80 Pro",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 952456,
+   "gpu_score": 1078091,
+   "mem_score": 501303,
+   "ux_score": 611748,
+   "total_score": 3143598,
+   "rank": 54
+  },
+  {
+   "name": "一加Ace 5 Pro",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 896254,
+   "gpu_score": 1144844,
+   "mem_score": 522142,
+   "ux_score": 577683,
+   "total_score": 3140923,
+   "rank": 55
+  },
+  {
+   "name": "realme GT7 Pro",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 903991,
+   "gpu_score": 1116194,
+   "mem_score": 520436,
+   "ux_score": 585820,
+   "total_score": 3126441,
+   "rank": 56
+  },
+  {
+   "name": "小米17 Pro Max",
+   "soc": "S-8 Elite Gen 5 16+1024",
+   "cpu_score": 948949,
+   "gpu_score": 983770,
+   "mem_score": 604008,
+   "ux_score": 586907,
+   "total_score": 3123634,
+   "rank": 57
+  },
+  {
+   "name": "realme Neo8",
+   "soc": "S-8 Gen 5 16+512",
+   "cpu_score": 992828,
+   "gpu_score": 1000828,
+   "mem_score": 512498,
+   "ux_score": 601117,
+   "total_score": 3107271,
+   "rank": 58
+  },
+  {
+   "name": "荣耀Magic 7 Pro",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 925532,
+   "gpu_score": 1142911,
+   "mem_score": 491027,
+   "ux_score": 505606,
+   "total_score": 3065076,
+   "rank": 59
+  },
+  {
+   "name": "REDMI K80 至尊版",
+   "soc": "M-9400+ 16+512",
+   "cpu_score": 907885,
+   "gpu_score": 964264,
+   "mem_score": 512512,
+   "ux_score": 644153,
+   "total_score": 3028814,
+   "rank": 60
+  },
+  {
+   "name": "一加13T",
+   "soc": "S-8 Elite 16+512",
+   "cpu_score": 848282,
+   "gpu_score": 1090787,
+   "mem_score": 502853,
+   "ux_score": 560286,
+   "total_score": 3002208,
+   "rank": 61
+  },
+  {
+   "name": "OPPO K15 Pro+",
+   "soc": "M-9500s 12+256",
+   "cpu_score": 924346,
+   "gpu_score": 1027314,
+   "mem_score": 471383,
+   "ux_score": 576693,
+   "total_score": 2999736,
+   "rank": 62
+  },
+  {
+   "name": "vivo X300",
+   "soc": "M-9500 16+512",
+   "cpu_score": 907611,
+   "gpu_score": 978932,
+   "mem_score": 461680,
+   "ux_score": 649953,
+   "total_score": 2998176,
+   "rank": 63
+  },
+  {
+   "name": "iQOO Z10 Turbo+",
+   "soc": "M-9400+ 16+512",
+   "cpu_score": 912226,
+   "gpu_score": 959768,
+   "mem_score": 489304,
+   "ux_score": 635050,
+   "total_score": 2996348,
+   "rank": 64
+  },
+  {
+   "name": "REDMI Turbo 5 Max",
+   "soc": "M-9500s 16+512",
+   "cpu_score": 929594,
+   "gpu_score": 916419,
+   "mem_score": 518247,
+   "ux_score": 623763,
+   "total_score": 2988023,
+   "rank": 65
+  },
+  {
+   "name": "一加Ace 6T",
+   "soc": "S-8 Gen 5 16+512",
+   "cpu_score": 971119,
+   "gpu_score": 896058,
+   "mem_score": 511391,
+   "ux_score": 587335,
+   "total_score": 2965903,
+   "rank": 66
+  },
+  {
+   "name": "OPPO Find X8",
+   "soc": "M-9400 16+512",
+   "cpu_score": 918065,
+   "gpu_score": 976693,
+   "mem_score": 479679,
+   "ux_score": 550399,
+   "total_score": 2924836,
+   "rank": 67
+  },
+  {
+   "name": "一加Ace 5 至尊版",
+   "soc": "M-9400+ 12+256",
+   "cpu_score": 931713,
+   "gpu_score": 959371,
+   "mem_score": 451180,
+   "ux_score": 564404,
+   "total_score": 2906668,
+   "rank": 68
+  },
+  {
+   "name": "vivo X200 Pro",
+   "soc": "M-9400 16+512",
+   "cpu_score": 903998,
+   "gpu_score": 909409,
+   "mem_score": 459998,
+   "ux_score": 589112,
+   "total_score": 2862517,
+   "rank": 69
+  },
+  {
+   "name": "vivo X200s",
+   "soc": "M-9400+ 16+512",
+   "cpu_score": 883159,
+   "gpu_score": 906608,
+   "mem_score": 484532,
+   "ux_score": 584417,
+   "total_score": 2858716,
+   "rank": 70
+  },
+  {
+   "name": "realme GT7",
+   "soc": "M-9400+ 12+256",
+   "cpu_score": 839607,
+   "gpu_score": 975132,
+   "mem_score": 413273,
+   "ux_score": 542243,
+   "total_score": 2770255,
+   "rank": 71
+  },
+  {
+   "name": "小米15S Pro",
+   "soc": "XRing O1 16+512",
+   "cpu_score": 989465,
+   "gpu_score": 659545,
+   "mem_score": 515440,
+   "ux_score": 583499,
+   "total_score": 2747949,
+   "rank": 72
+  },
+  {
+   "name": "vivo X500",
+   "soc": "M-9600M 12+512",
+   "cpu_score": 831997,
+   "gpu_score": 803600,
+   "mem_score": 400745,
+   "ux_score": 592895,
+   "total_score": 2629237,
+   "rank": 73
+  },
+  {
+   "name": "vivo X200 Pro mini",
+   "soc": "M-9400 16+512",
+   "cpu_score": 784449,
+   "gpu_score": 803622,
+   "mem_score": 431390,
+   "ux_score": 554481,
+   "total_score": 2573942,
+   "rank": 74
+  },
+  {
+   "name": "小米14 Ultra",
+   "soc": "S-8 Gen 3 16+512",
+   "cpu_score": 738155,
+   "gpu_score": 813763,
+   "mem_score": 460263,
+   "ux_score": 526408,
+   "total_score": 2538589,
+   "rank": 75
+  },
+  {
+   "name": "OPPO K13 Turbo Pro 5G",
+   "soc": "S-8s Gen 4 16+512",
+   "cpu_score": 754518,
+   "gpu_score": 824459,
+   "mem_score": 460598,
+   "ux_score": 469614,
+   "total_score": 2509189,
+   "rank": 76
+  },
+  {
+   "name": "一加Ace 5",
+   "soc": "S-8 Gen 3 16+512",
+   "cpu_score": 732498,
+   "gpu_score": 794513,
+   "mem_score": 462925,
+   "ux_score": 509984,
+   "total_score": 2499920,
+   "rank": 77
+  },
+  {
+   "name": "小米14",
+   "soc": "S-8 Gen 3 16+1024",
+   "cpu_score": 703644,
+   "gpu_score": 768182,
+   "mem_score": 498192,
+   "ux_score": 513388,
+   "total_score": 2483406,
+   "rank": 78
+  },
+  {
+   "name": "小米14 Pro",
+   "soc": "S-8 Gen 3 16+1024",
+   "cpu_score": 694315,
+   "gpu_score": 768682,
+   "mem_score": 495938,
+   "ux_score": 517729,
+   "total_score": 2476664,
+   "rank": 79
+  },
+  {
+   "name": "vivo X100 Pro",
+   "soc": "M-9300 16+512",
+   "cpu_score": 743596,
+   "gpu_score": 708407,
+   "mem_score": 503875,
+   "ux_score": 519572,
+   "total_score": 2475450,
+   "rank": 80
+  },
+  {
+   "name": "Redmi K70 至尊版",
+   "soc": "M-9300+ 16+512",
+   "cpu_score": 743612,
+   "gpu_score": 719327,
+   "mem_score": 488357,
+   "ux_score": 519692,
+   "total_score": 2470988,
+   "rank": 81
+  },
+  {
+   "name": "一加12",
+   "soc": "S-8 Gen 3 16+512",
+   "cpu_score": 715762,
+   "gpu_score": 778834,
+   "mem_score": 454976,
+   "ux_score": 508284,
+   "total_score": 2457856,
+   "rank": 82
+  },
+  {
+   "name": "vivo X100s",
+   "soc": "M-9300+ 16+512",
+   "cpu_score": 731682,
+   "gpu_score": 695043,
+   "mem_score": 503627,
+   "ux_score": 515438,
+   "total_score": 2445790,
+   "rank": 83
+  },
+  {
+   "name": "一加Ace 3 Pro",
+   "soc": "S-8 Gen 3 16+512",
+   "cpu_score": 701075,
+   "gpu_score": 749226,
+   "mem_score": 468760,
+   "ux_score": 500691,
+   "total_score": 2419752,
+   "rank": 84
+  },
+  {
+   "name": "iQOO Neo10",
+   "soc": "S-8 Gen 3 12+512",
+   "cpu_score": 689194,
+   "gpu_score": 813316,
+   "mem_score": 405638,
+   "ux_score": 502051,
+   "total_score": 2410199,
+   "rank": 85
+  },
+  {
+   "name": "REDMI Turbo 4 Pro",
+   "soc": "S-8s Gen 4 12+256",
+   "cpu_score": 703952,
+   "gpu_score": 793328,
+   "mem_score": 419738,
+   "ux_score": 467424,
+   "total_score": 2384442,
+   "rank": 86
+  },
+  {
+   "name": "iQOO Z10 Turbo Pro",
+   "soc": "S-8s Gen 4 12+256",
+   "cpu_score": 719192,
+   "gpu_score": 774631,
+   "mem_score": 386281,
+   "ux_score": 502399,
+   "total_score": 2382503,
+   "rank": 87
+  },
+  {
+   "name": "iQOO 12",
+   "soc": "S-8 Gen 3 16+512",
+   "cpu_score": 640731,
+   "gpu_score": 790788,
+   "mem_score": 445166,
+   "ux_score": 497188,
+   "total_score": 2373873,
+   "rank": 88
+  },
+  {
+   "name": "REDMI K80",
+   "soc": "S-8 Gen 3 12+256",
+   "cpu_score": 694119,
+   "gpu_score": 746176,
+   "mem_score": 394712,
+   "ux_score": 508099,
+   "total_score": 2343106,
+   "rank": 89
+  },
+  {
+   "name": "iQOO Z9 Turbo+",
+   "soc": "M-9300+ 12+256",
+   "cpu_score": 718890,
+   "gpu_score": 699869,
+   "mem_score": 398307,
+   "ux_score": 508216,
+   "total_score": 2325282,
+   "rank": 90
+  },
+  {
+   "name": "OPPO Reno15 Pro",
+   "soc": "M-8450 16+512",
+   "cpu_score": 714099,
+   "gpu_score": 658899,
+   "mem_score": 462050,
+   "ux_score": 471208,
+   "total_score": 2306256,
+   "rank": 91
+  },
+  {
+   "name": "iQOO Neo9 Pro",
+   "soc": "M-9300 16+512",
+   "cpu_score": 660033,
+   "gpu_score": 662623,
+   "mem_score": 469578,
+   "ux_score": 511443,
+   "total_score": 2303677,
+   "rank": 92
+  },
+  {
+   "name": "OPPO Reno15",
+   "soc": "M-8450 16+1024",
+   "cpu_score": 678716,
+   "gpu_score": 651206,
+   "mem_score": 491695,
+   "ux_score": 474974,
+   "total_score": 2296591,
+   "rank": 93
+  },
+  {
+   "name": "OPPO Reno16",
+   "soc": "M-8550-Super 16+512",
+   "cpu_score": 684238,
+   "gpu_score": 690706,
+   "mem_score": 444861,
+   "ux_score": 466678,
+   "total_score": 2286483,
+   "rank": 94
+  },
+  {
+   "name": "REDMI Turbo 5",
+   "soc": "M-8500-Ultra 16+512",
+   "cpu_score": 679803,
+   "gpu_score": 646610,
+   "mem_score": 465620,
+   "ux_score": 487403,
+   "total_score": 2279436,
+   "rank": 95
+  },
+  {
+   "name": "荣耀WIN Turbo",
+   "soc": "M-8500-竞速版 12+512",
+   "cpu_score": 673655,
+   "gpu_score": 714125,
+   "mem_score": 446421,
+   "ux_score": 426745,
+   "total_score": 2260946,
+   "rank": 96
+  },
+  {
+   "name": "realme Neo7 SE",
+   "soc": "M-8400-Max 16+512",
+   "cpu_score": 692382,
+   "gpu_score": 642281,
+   "mem_score": 439946,
+   "ux_score": 441795,
+   "total_score": 2216404,
+   "rank": 97
+  },
+  {
+   "name": "OPPO K15 Pro",
+   "soc": "M-8500-Super 12+512",
+   "cpu_score": 669164,
+   "gpu_score": 686265,
+   "mem_score": 407247,
+   "ux_score": 448909,
+   "total_score": 2211585,
+   "rank": 98
+  },
+  {
+   "name": "iQOO Z11",
+   "soc": "M-8500-满血版 12+256",
+   "cpu_score": 665499,
+   "gpu_score": 646362,
+   "mem_score": 401892,
+   "ux_score": 494190,
+   "total_score": 2207943,
+   "rank": 99
+  },
+  {
+   "name": "小米17T",
+   "soc": "M-8500-Ultra 12+256",
+   "cpu_score": 679812,
+   "gpu_score": 634266,
+   "mem_score": 415296,
+   "ux_score": 470864,
+   "total_score": 2200238,
+   "rank": 100
+  },
+  {
+   "name": "iQOO Z10 Turbo",
+   "soc": "M-8400 12+256",
+   "cpu_score": 679171,
+   "gpu_score": 572676,
+   "mem_score": 376482,
+   "ux_score": 475524,
+   "total_score": 2103853,
+   "rank": 101
+  },
+  {
+   "name": "一加Ace 3",
+   "soc": "S-8 Gen 2 16+512",
+   "cpu_score": 625786,
+   "gpu_score": 447310,
+   "mem_score": 427307,
+   "ux_score": 478229,
+   "total_score": 1978632,
+   "rank": 102
+  },
+  {
+   "name": "小米13",
+   "soc": "S-8 Gen 2 12+512",
+   "cpu_score": 645769,
+   "gpu_score": 445428,
+   "mem_score": 395423,
+   "ux_score": 458760,
+   "total_score": 1945380,
+   "rank": 103
+  },
+  {
+   "name": "Redmi K70",
+   "soc": "S-8 Gen 2 16+512",
+   "cpu_score": 633114,
+   "gpu_score": 438482,
+   "mem_score": 426441,
+   "ux_score": 442996,
+   "total_score": 1941033,
+   "rank": 104
+  },
+  {
+   "name": "一加Ace 2 Pro",
+   "soc": "S-8 Gen 2 16+512",
+   "cpu_score": 591685,
+   "gpu_score": 444581,
+   "mem_score": 423839,
+   "ux_score": 470210,
+   "total_score": 1930315,
+   "rank": 105
+  },
+  {
+   "name": "Redmi Turbo 3",
+   "soc": "S-8s Gen 3 12+256",
+   "cpu_score": 573197,
+   "gpu_score": 489546,
+   "mem_score": 391642,
+   "ux_score": 417129,
+   "total_score": 1871514,
+   "rank": 106
+  },
+  {
+   "name": "iQOO Neo9",
+   "soc": "S-8 Gen 2 16+512",
+   "cpu_score": 578401,
+   "gpu_score": 435887,
+   "mem_score": 402489,
+   "ux_score": 450468,
+   "total_score": 1867245,
+   "rank": 107
+  },
+  {
+   "name": "iQOO Z9 Turbo",
+   "soc": "S-8s Gen 3 12+256",
+   "cpu_score": 568709,
+   "gpu_score": 463523,
+   "mem_score": 364232,
+   "ux_score": 424058,
+   "total_score": 1820522,
+   "rank": 108
+  },
+  {
+   "name": "iQOO 11",
+   "soc": "S-8 Gen 2 12+256",
+   "cpu_score": 563618,
+   "gpu_score": 442862,
+   "mem_score": 350670,
+   "ux_score": 446025,
+   "total_score": 1803175,
+   "rank": 109
+  },
+  {
+   "name": "vivo X80",
+   "soc": "M-9000 12+256",
+   "cpu_score": 597672,
+   "gpu_score": 203736,
+   "mem_score": 341224,
+   "ux_score": 387444,
+   "total_score": 1530076,
+   "rank": 110
+  },
+  {
+   "name": "iQOO Neo8",
+   "soc": "S-8+ Gen 1 UC 12+256",
+   "cpu_score": 525791,
+   "gpu_score": 243296,
+   "mem_score": 281742,
+   "ux_score": 399369,
+   "total_score": 1450198,
+   "rank": 111
+  },
+  {
+   "name": "iQOO Neo7 SE",
+   "soc": "M-8200 12+256",
+   "cpu_score": 485791,
+   "gpu_score": 157478,
+   "mem_score": 278062,
+   "ux_score": 344647,
+   "total_score": 1265978,
+   "rank": 112
+  },
+  {
+   "name": "iQOO Neo5",
+   "soc": "S-870 12+256",
+   "cpu_score": 437324,
+   "gpu_score": 176134,
+   "mem_score": 330801,
+   "ux_score": 306208,
+   "total_score": 1250467,
+   "rank": 113
+  },
+  {
+   "name": "vivo S15",
+   "soc": "S-870 8+256",
+   "cpu_score": 434069,
+   "gpu_score": 178068,
+   "mem_score": 300372,
+   "ux_score": 312987,
+   "total_score": 1225496,
+   "rank": 114
+  },
+  {
+   "name": "Redmi K40",
+   "soc": "S-870 12+256",
+   "cpu_score": 439629,
+   "gpu_score": 166775,
+   "mem_score": 266644,
+   "ux_score": 274215,
+   "total_score": 1147263,
+   "rank": 115
+  },
+  {
+   "name": "小米10S",
+   "soc": "S-870 8+256",
+   "cpu_score": 440477,
+   "gpu_score": 175237,
+   "mem_score": 237006,
+   "ux_score": 251059,
+   "total_score": 1103779,
+   "rank": 116
+  },
+  {
+   "name": "华为Mate 40 Pro",
+   "soc": "K-9000 8+256",
+   "cpu_score": 345160,
+   "gpu_score": 159432,
+   "mem_score": 285452,
+   "ux_score": 219580,
+   "total_score": 1009624,
+   "rank": 117
+  }
+ ]
+}
