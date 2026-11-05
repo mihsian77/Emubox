@@ -598,7 +598,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 1965538,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "anyps5-porting-tool",
@@ -983,7 +985,9 @@
       "family": "anyps5-porting-tool",
       "family_label": "AnyPS5",
       "_section_evidence": "kind=tool",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1563,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "shadps4-emu-shadps4",
@@ -1852,7 +1856,9 @@
       "family": "shadps4-emu-shadps4",
       "family_label": "ShadPS4",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 333,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "rpcs3",
@@ -1944,7 +1950,8 @@
       "family": "rpcs3",
       "family_label": "RPCS3 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /rpcs3/"
+      "_family_evidence": "名称/仓库命中 /rpcs3/",
+      "downloads_basis": "none"
     },
     {
       "id": "brunodev85-winlator",
@@ -2252,7 +2259,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 901862,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "droid-deck-droiddeck",
@@ -3768,7 +3777,8 @@
       "family": "droid-deck-droiddeck",
       "family_label": "DroidDeck",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "pcsx2",
@@ -3881,7 +3891,9 @@
       "family": "pcsx2",
       "family_label": "PCSX2 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /pcsx2/"
+      "_family_evidence": "名称/仓库命中 /pcsx2/",
+      "downloads_latest": 23200,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "dolphin",
@@ -3920,7 +3932,8 @@
       "family": "dolphin",
       "family_label": "Dolphin 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /dolphin/"
+      "_family_evidence": "名称/仓库命中 /dolphin/",
+      "downloads_basis": "none"
     },
     {
       "id": "ppsspp",
@@ -4840,7 +4853,9 @@
       "family": "ppsspp",
       "family_label": "PPSSPP 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ppsspp/"
+      "_family_evidence": "名称/仓库命中 /ppsspp/",
+      "downloads_latest": 64568,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "retroarch",
@@ -5155,7 +5170,8 @@
       "family": "retroarch",
       "family_label": "RetroArch 系",
       "_section_evidence": "kind=frontend",
-      "_family_evidence": "名称/仓库命中 /retroarch/"
+      "_family_evidence": "名称/仓库命中 /retroarch/",
+      "downloads_basis": "none"
     },
     {
       "id": "utkarshdalal-gamenative",
@@ -5690,7 +5706,9 @@
       "family": "gamenative",
       "family_label": "GameNative 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamenative/"
+      "_family_evidence": "名称/仓库命中 /gamenative/",
+      "downloads_latest": 1561,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "duckstation",
@@ -7771,7 +7789,9 @@
       "family": "duckstation",
       "family_label": "DuckStation 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /duckstation/"
+      "_family_evidence": "名称/仓库命中 /duckstation/",
+      "downloads_latest": 59,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "kytyps5-kytyps5",
@@ -8511,7 +8531,9 @@
       "family": "kytyps5-kytyps5",
       "family_label": "KytyPS5",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 68,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "cemu",
@@ -8626,7 +8648,9 @@
       "family": "cemu",
       "family_label": "Cemu 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /cemu/"
+      "_family_evidence": "名称/仓库命中 /cemu/",
+      "downloads_latest": 4032382,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "azahar-emu-azahar",
@@ -12646,7 +12670,9 @@
       "family": "azahar",
       "family_label": "Azahar 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /azahar/"
+      "_family_evidence": "名称/仓库命中 /azahar/",
+      "downloads_latest": 9831,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "zelda64recomp-zelda64recomp",
@@ -12919,7 +12945,9 @@
       "family": "zelda64recomp-zelda64recomp",
       "family_label": "Zelda64 Recompiled",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 99604,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "mgba",
@@ -15058,7 +15086,9 @@
       "family": "mgba",
       "family_label": "mGBA",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2569533,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "twilitrealm-dusklight",
@@ -16014,7 +16044,9 @@
       "family": "twilitrealm-dusklight",
       "family_label": "Dusklight",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 177643,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "harbourmasters-shipwright",
@@ -16994,7 +17026,9 @@
       "family": "harbourmasters-shipwright",
       "family_label": "Ship of Harkinian",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 65072,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "melonds",
@@ -17701,7 +17735,9 @@
       "family": "melonds",
       "family_label": "melonDS 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<!water)melonds/"
+      "_family_evidence": "名称/仓库命中 /(?<!water)melonds/",
+      "downloads_latest": 237178,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "supermedo-bloodborne-pc",
@@ -18148,7 +18184,9 @@
       "family": "supermedo-bloodborne-pc",
       "family_label": "Bloodborne PC",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 64029,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "felipeprado0-spartanport",
@@ -18833,7 +18871,9 @@
       "family": "felipeprado0-spartanport",
       "family_label": "SpartanPort",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 236,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "swordfish90-lemuroid",
@@ -19321,7 +19361,9 @@
       "family": "swordfish90-lemuroid",
       "family_label": "Lemuroid",
       "_section_evidence": "kind=frontend",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 29348,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "xemu",
@@ -19434,7 +19476,9 @@
       "family": "xemu",
       "family_label": "xemu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 156,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "touchhle",
@@ -19689,7 +19733,9 @@
       "family": "touchhle",
       "family_label": "touchHLE",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 12600,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "dosbox-x",
@@ -19755,7 +19801,9 @@
       "family": "dosbox",
       "family_label": "DOSBox 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /dosbox/"
+      "_family_evidence": "名称/仓库命中 /dosbox/",
+      "downloads_latest": 672,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "termux-zero",
@@ -20209,7 +20257,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 4795,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "scummvm",
@@ -20297,7 +20347,8 @@
       "family": "scummvm",
       "family_label": "ScummVM 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /scummvm/"
+      "_family_evidence": "名称/仓库命中 /scummvm/",
+      "downloads_basis": "none"
     },
     {
       "id": "weihuoya-citra",
@@ -21197,7 +21248,9 @@
       "family": "citra",
       "family_label": "Citra 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /citra/"
+      "_family_evidence": "名称/仓库命中 /citra/",
+      "downloads_latest": 55646,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "trixarian-nethersx2-patch",
@@ -21533,7 +21586,9 @@
       "family": "pcsx2",
       "family_label": "PCSX2 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /nethersx2/"
+      "_family_evidence": "名称/仓库命中 /nethersx2/",
+      "downloads_latest": 726367,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "j2meloader",
@@ -22008,7 +22063,9 @@
       "family": "j2meloader",
       "family_label": "J2ME-Loader",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 40,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "flyinghead-flycast",
@@ -22519,7 +22576,9 @@
       "family": "flycast",
       "family_label": "Flycast 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /flycast/"
+      "_family_evidence": "名称/仓库命中 /flycast/",
+      "downloads_latest": 135918,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "harbourmasters-spaghettikart",
@@ -22656,7 +22715,9 @@
       "family": "harbourmasters-spaghettikart",
       "family_label": "SpaghettiKart",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 84463,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "2ship2harkinian-2ship2harkinian",
@@ -23105,7 +23166,9 @@
       "family": "2ship2harkinian-2ship2harkinian",
       "family_label": "2Ship2Harkinian",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 62217,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "mesen2",
@@ -23208,7 +23271,9 @@
       "family": "mesen2",
       "family_label": "Mesen",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 373112,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "armsx2-armsx2",
@@ -24253,7 +24318,9 @@
       "family": "pcsx2",
       "family_label": "PCSX2 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /armsx2/"
+      "_family_evidence": "名称/仓库命中 /armsx2/",
+      "downloads_latest": 3150,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "strato-emulator",
@@ -24298,7 +24365,8 @@
       "family": "strato-emulator",
       "family_label": "Strato",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "banjorecomp-banjorecomp",
@@ -24470,7 +24538,9 @@
       "family": "banjorecomp-banjorecomp",
       "family_label": "Banjo: Recompiled",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 25546,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "producdevity-gamehub-lite",
@@ -24921,7 +24991,9 @@
       "family": "gamehub",
       "family_label": "GameHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamehub/"
+      "_family_evidence": "名称/仓库命中 /gamehub/",
+      "downloads_latest": 161910,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "eka2l1",
@@ -25103,7 +25175,9 @@
       "family": "ekA2l1",
       "family_label": "EKA2L1 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /eka2l1/"
+      "_family_evidence": "名称/仓库命中 /eka2l1/",
+      "downloads_latest": 133,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "ares",
@@ -25216,7 +25290,9 @@
       "family": "ares",
       "family_label": "ares",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1389,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "dosbox-staging",
@@ -25292,7 +25368,9 @@
       "family": "dosbox",
       "family_label": "DOSBox 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /dosbox/"
+      "_family_evidence": "名称/仓库命中 /dosbox/",
+      "downloads_latest": 51,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "mchughalex-skate3recomp",
@@ -25578,7 +25656,9 @@
       "family": "mchughalex-skate3recomp",
       "family_label": "Skate3recomp",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 112654,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "melonds-android",
@@ -25633,7 +25713,9 @@
       "family": "melonds",
       "family_label": "melonDS 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<!water)melonds/"
+      "_family_evidence": "名称/仓库命中 /(?<!water)melonds/",
+      "downloads_latest": 43044,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "oxters168-pluvia",
@@ -25772,7 +25854,9 @@
       "family": "oxters168-pluvia",
       "family_label": "Pluvia",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 68403,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "vita3k-vita3k-android",
@@ -25995,7 +26079,9 @@
       "family": "vita3k",
       "family_label": "Vita3K 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /vita3k/"
+      "_family_evidence": "名称/仓库命中 /vita3k/",
+      "downloads_latest": 2187158,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "fceux",
@@ -26093,7 +26179,9 @@
       "family": "fceux",
       "family_label": "FCEUX",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 545,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "fbneo",
@@ -26265,7 +26353,9 @@
       "family": "fbneo",
       "family_label": "FBNeo",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 10,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "panda3ds-3ds",
@@ -26571,7 +26661,9 @@
       "family": "panda3ds-3ds",
       "family_label": "Panda3DS",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 14904,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "azaharplus-main",
@@ -27213,7 +27305,9 @@
       "family": "azahar",
       "family_label": "Azahar 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /azahar/"
+      "_family_evidence": "名称/仓库命中 /azahar/",
+      "downloads_latest": 24939,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "skyemu",
@@ -27475,7 +27569,9 @@
       "family": "skyemu",
       "family_label": "SkyEmu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 23104,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "stevenmxz-winlator-ludashi",
@@ -27986,7 +28082,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 146729,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "snes9xexplus",
@@ -28121,7 +28219,8 @@
       "family": "snes9xexplus",
       "family_label": "Snes9x EX+ / NostalgiaNes",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "ssimco-cemu",
@@ -28302,7 +28401,9 @@
       "family": "cemu",
       "family_label": "Cemu 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /cemu/"
+      "_family_evidence": "名称/仓库命中 /cemu/",
+      "downloads_latest": 460778,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "trixarian-nethersx2-classic",
@@ -28493,7 +28594,9 @@
       "family": "pcsx2",
       "family_label": "PCSX2 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /nethersx2/"
+      "_family_evidence": "名称/仓库命中 /nethersx2/",
+      "downloads_latest": 437124,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "dosbox-pure",
@@ -28541,7 +28644,8 @@
       "family": "dosbox",
       "family_label": "DOSBox 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /dosbox/"
+      "_family_evidence": "名称/仓库命中 /dosbox/",
+      "downloads_basis": "none"
     },
     {
       "id": "coffincolors-winlator",
@@ -28863,7 +28967,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ilya114-box64droid",
@@ -29017,7 +29122,9 @@
       "family": "ilya114-box64droid",
       "family_label": "Box64Droid",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1285,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "armsx2-armsx3",
@@ -29942,7 +30049,9 @@
       "family": "rpcs3",
       "family_label": "RPCS3 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /armsx3/"
+      "_family_evidence": "名称/仓库命中 /armsx3/",
+      "downloads_latest": 360,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "harbourmasters-ghostship",
@@ -30160,7 +30269,9 @@
       "family": "harbourmasters-ghostship",
       "family_label": "Ghostship",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 42938,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "weiss-ultimatesavior-tyranor-next",
@@ -30262,7 +30373,9 @@
       "family": "weiss-ultimatesavior-tyranor-next",
       "family_label": "Tyranor Next",
       "_section_evidence": "method=engine",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 168,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "stella",
@@ -30377,7 +30490,9 @@
       "family": "stella",
       "family_label": "Stella",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 43626,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "xodiosx-xodos",
@@ -30750,7 +30865,8 @@
       "family": "xodiosx-xodos",
       "family_label": "XoDos",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "aenu1-aps3e",
@@ -31141,7 +31257,9 @@
       "family": "aenu1-aps3e",
       "family_label": "APS3e",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 58954,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "mandarineneo-3ds",
@@ -31426,7 +31544,9 @@
       "family": "mandarineneo-3ds",
       "family_label": "mandarine-neo",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 95925,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "winnative-emu-winnative",
@@ -31838,7 +31958,9 @@
       "family": "winnative",
       "family_label": "WinNative 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winnative/"
+      "_family_evidence": "名称/仓库命中 /winnative/",
+      "downloads_latest": 984,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "horizonemuteam-horizon-emu",
@@ -31921,7 +32043,9 @@
       "family": "horizonemuteam-horizon-emu",
       "family_label": "Horizon Emu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 243925,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "rfandango-hakux",
@@ -32118,7 +32242,9 @@
       "family": "rfandango-hakux",
       "family_label": "HakuX",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 20166,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "afeimod-winlator-mod",
@@ -32844,7 +32970,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 61163,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "freej2me",
@@ -32889,7 +33017,8 @@
       "family": "freej2me",
       "family_label": "FreeJ2ME",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "supermodel3",
@@ -33684,7 +33813,9 @@
       "family": "supermodel3",
       "family_label": "Supermodel 3",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 282,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "waterdish-shipwright-android",
@@ -33783,7 +33914,9 @@
       "family": "waterdish-shipwright-android",
       "family_label": "Shipwright-Android（时之笛 Android 老分支）",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 138518,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "khmelonmix",
@@ -35208,7 +35341,9 @@
       "family": "khmelonmix",
       "family_label": "KH Melon Mix",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 17090,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "watermelonds-android",
@@ -35738,7 +35873,9 @@
       "family": "watermelonds-android",
       "family_label": "WatermelonDS",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 179320,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "metroidprimeport",
@@ -37258,7 +37395,9 @@
       "family": "metroidprimeport",
       "family_label": "MetroidPrimePort",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1102,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "citron-emulator",
@@ -37571,7 +37710,9 @@
       "family": "citron-emulator",
       "family_label": "Citron Emulator",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 218992,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "suyu-emulator",
@@ -37973,7 +38114,9 @@
       "family": "suyu-emulator",
       "family_label": "Suyu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 9431,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "ashnar2602-x360-mobile---official",
@@ -38211,7 +38354,9 @@
       "family": "ashnar2602-x360-mobile---official",
       "family_label": "X360 Mobile",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2183,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "openmsx",
@@ -38328,7 +38473,9 @@
       "family": "openmsx",
       "family_label": "openMSX",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 487,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "rainchus-dk64-rekongpiled",
@@ -38539,7 +38686,9 @@
       "family": "rainchus-dk64-rekongpiled",
       "family_label": "DK64 Rekongpiled",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 12980,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "fs-uae",
@@ -38649,7 +38798,9 @@
       "family": "fs-uae",
       "family_label": "FS-UAE",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 37303,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "the412banner-bannerhub",
@@ -39827,7 +39978,9 @@
       "family": "bannerhub",
       "family_label": "BannerHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /bannerhub/"
+      "_family_evidence": "名称/仓库命中 /bannerhub/",
+      "downloads_latest": 15643,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "xm486-yukihub",
@@ -39917,7 +40070,9 @@
       "family": "xm486-yukihub",
       "family_label": "YukiHub",
       "_section_evidence": "method=engine",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 453,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "winebox64-winlator",
@@ -40036,7 +40191,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 128143,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "longjunyu2-winlator",
@@ -40235,7 +40392,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 115937,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "rfandango-xendroid",
@@ -40472,7 +40631,9 @@
       "family": "xendroid",
       "family_label": "XenDroid 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /xendroid/"
+      "_family_evidence": "名称/仓库命中 /xendroid/",
+      "downloads_latest": 12557,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "fcharan-winlatormali",
@@ -40658,7 +40819,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "gunacharanteja-winlatormali",
@@ -40844,7 +41006,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_basis": "none"
     },
     {
       "id": "m64plusae",
@@ -41086,7 +41249,8 @@
       "family": "mupen64plus",
       "family_label": "Mupen64Plus 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /mupen64plus/"
+      "_family_evidence": "名称/仓库命中 /mupen64plus/",
+      "downloads_basis": "none"
     },
     {
       "id": "the412banner-bannerlator",
@@ -42061,7 +42225,9 @@
       "family": "bannerhub",
       "family_label": "BannerHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /bannerlator/"
+      "_family_evidence": "名称/仓库命中 /bannerlator/",
+      "downloads_latest": 234,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "mamcjr-botwrecompandroid",
@@ -42103,7 +42269,8 @@
       "family": "mamcjr-botwrecompandroid",
       "family_label": "BOTW Recomp Android",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "jacojayy-star",
@@ -42436,7 +42603,8 @@
       "family": "jacojayy-star",
       "family_label": "Star (fork)",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "np2kai",
@@ -42489,7 +42657,8 @@
       "family": "np2kai",
       "family_label": "NP2kai",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "n3xox1-nxemu",
@@ -42620,7 +42789,8 @@
       "family": "n3xox1-nxemu",
       "family_label": "NxEmu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "redream-dc",
@@ -42665,7 +42835,8 @@
       "family": "redream-dc",
       "family_label": "redream",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "xhyn-ph-exagear-302",
@@ -42748,7 +42919,9 @@
       "family": "xhyn-ph-exagear-302",
       "family_label": "ExaGear 302",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 174747,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "zorkats-g-diffuser",
@@ -43046,7 +43219,9 @@
       "family": "zorkats-g-diffuser",
       "family_label": "G-Diffuser",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 318,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "kronos",
@@ -43127,7 +43302,8 @@
       "family": "kronos",
       "family_label": "Kronos",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "wpr-wp7-8",
@@ -43201,7 +43377,9 @@
       "family": "wpr-wp7-8",
       "family_label": "WPR",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 42427,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "opennectar",
@@ -44001,7 +44179,9 @@
       "family": "opennectar",
       "family_label": "Open-Nectar",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2843,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "armsx1-ps1",
@@ -44420,7 +44600,9 @@
       "family": "armsx1-ps1",
       "family_label": "ARMSX1",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 14088,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "ghaelv-lemon-project",
@@ -44847,7 +45029,9 @@
       "family": "ghaelv-lemon-project",
       "family_label": "Lemon Project",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2503,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "medard22-dolphin-mmjr2-vbi",
@@ -45072,7 +45256,9 @@
       "family": "dolphin",
       "family_label": "Dolphin 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /dolphin/"
+      "_family_evidence": "名称/仓库命中 /dolphin/",
+      "downloads_latest": 337595,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "jica98-bachata-s4",
@@ -45230,7 +45416,9 @@
       "family": "jica98-bachata-s4",
       "family_label": "Bachata-S4",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 38618,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "borked3ds-3ds",
@@ -47380,7 +47568,9 @@
       "family": "borked3ds-3ds",
       "family_label": "Borked3DS",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 6888,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "mame2003plus",
@@ -47435,7 +47625,8 @@
       "family": "mame2003plus",
       "family_label": "MAME 2003+",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "seedlessds-android",
@@ -47532,7 +47723,9 @@
       "family": "seedlessds-android",
       "family_label": "SeedlessDS",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 3659,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "es-de-frontend",
@@ -47576,7 +47769,8 @@
       "family": "es-de-frontend",
       "family_label": "ES-DE Frontend",
       "_section_evidence": "kind=frontend",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "raport-redalert",
@@ -47619,7 +47813,8 @@
       "family": "raport-redalert",
       "family_label": "ra-port (Red Alert)",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "flycast-dojo",
@@ -47684,7 +47879,9 @@
       "family": "flycast",
       "family_label": "Flycast 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /flycast/"
+      "_family_evidence": "名称/仓库命中 /flycast/",
+      "downloads_latest": 321,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "emucorev-android",
@@ -48214,7 +48411,9 @@
       "family": "emucorev-android",
       "family_label": "EmuCoreV",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1571,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "emucorex-android",
@@ -48839,7 +49038,9 @@
       "family": "emucorex-android",
       "family_label": "EmuCoreX",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 150,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "unleashedrecomp",
@@ -49070,7 +49271,9 @@
       "family": "unleashedrecomp",
       "family_label": "UnleashedRecomp-Android",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 25288,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "odrannnn-metroidprime2port",
@@ -49211,7 +49414,9 @@
       "family": "odrannnn-metroidprime2port",
       "family_label": "MetroidPrime2Port",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 894,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "stredohori-winlator-cmod",
@@ -49746,7 +49951,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "winlatorxr-winlatorxr",
@@ -49857,7 +50063,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 2739,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ranggacasper-mostwanted-android",
@@ -49947,7 +50155,9 @@
       "family": "ranggacasper-mostwanted-android",
       "family_label": "Most Wanted for Android",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 63217,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "wie-skvm",
@@ -51774,7 +51984,9 @@
       "family": "wie-skvm",
       "family_label": "Wie",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 10,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "aetherkiri-aether",
@@ -51903,7 +52115,9 @@
       "family": "aetherkiri-aether",
       "family_label": "Aether",
       "_section_evidence": "method=engine",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 102,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ruzu-emu",
@@ -51978,7 +52192,9 @@
       "family": "ruzu-emu",
       "family_label": "Ruzu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 506,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "the412banner-bannerhub-revanced",
@@ -54028,7 +54244,9 @@
       "family": "bannerhub",
       "family_label": "BannerHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /bannerhub/"
+      "_family_evidence": "名称/仓库命中 /bannerhub/",
+      "downloads_latest": 211,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "pocket8",
@@ -54237,7 +54455,9 @@
       "family": "pocket8",
       "family_label": "Pocket8 (Pico-8)",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1314,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "lime3ds-3ds",
@@ -54284,7 +54504,8 @@
       "family": "lime3ds",
       "family_label": "Lime3DS 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /lime3ds/"
+      "_family_evidence": "名称/仓库命中 /lime3ds/",
+      "downloads_basis": "none"
     },
     {
       "id": "prosperoeden-ps5",
@@ -54658,7 +54879,8 @@
       "family": "prosperoeden-ps5",
       "family_label": "ProsperoEden",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "jhinzuo-winlator",
@@ -54900,7 +55122,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 18169,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "rpcsx-rpcsx-ui-android",
@@ -55375,7 +55599,9 @@
       "family": "rpcsx-rpcsx-ui-android",
       "family_label": "RPCSX Android",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1439,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "santiquiroz-gears-of-war-2-pc-port",
@@ -55496,7 +55722,9 @@
       "family": "santiquiroz-gears-of-war-2-pc-port",
       "family_label": "gears of war 2 pc port",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 5202,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ajay9634-winlator-ajay",
@@ -55641,7 +55869,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 17521,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "slaker222-steamlator",
@@ -55752,7 +55982,9 @@
       "family": "slaker222-steamlator",
       "family_label": "Steamlator",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 22905,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "xendroid-plus",
@@ -56227,7 +56459,9 @@
       "family": "xendroid",
       "family_label": "XenDroid 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /xendroid/"
+      "_family_evidence": "名称/仓库命中 /xendroid/",
+      "downloads_latest": 1390,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
@@ -56530,7 +56764,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "jackandbeans-snap64recomp",
@@ -57298,7 +57533,9 @@
       "family": "jackandbeans-snap64recomp",
       "family_label": "Snap64Recomp",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2075,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "mamcjr-totkdroid",
@@ -57340,7 +57577,8 @@
       "family": "mamcjr-totkdroid",
       "family_label": "TOTK Droid",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-linbox",
@@ -57895,7 +58133,8 @@
       "family": "afeimod-linbox",
       "family_label": "Linbox",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "silksongandroid",
@@ -58146,7 +58385,9 @@
       "family": "silksongandroid",
       "family_label": "SilksongAndroid",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 8244,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "pockethle-android",
@@ -58341,7 +58582,9 @@
       "family": "pockethle-android",
       "family_label": "PocketHLE",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 434,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "snes9x-z",
@@ -58426,7 +58669,9 @@
       "family": "snes9x-z",
       "family_label": "Snes9x-Z",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 343,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "ryubing-emulator",
@@ -58482,7 +58727,8 @@
       "family": "ryujinx",
       "family_label": "Ryujinx 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ryubing/"
+      "_family_evidence": "名称/仓库命中 /ryubing/",
+      "downloads_basis": "none"
     },
     {
       "id": "linkzenic-shipwright-ports",
@@ -58611,7 +58857,9 @@
       "family": "linkzenic-shipwright-ports",
       "family_label": "Shipwright-Ports（时之笛 Android/iOS 移植）",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2062,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "hyperhle",
@@ -60103,7 +60351,8 @@
       "family": "hyperhle",
       "family_label": "HyperHLE",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "hyperhle-reborn",
@@ -61646,7 +61895,9 @@
       "family": "hyperhle-reborn",
       "family_label": "HyperHLE-Reborn",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 30,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "linkzenic-2ship2harkinian-android",
@@ -62011,7 +62262,9 @@
       "family": "linkzenic-2ship2harkinian-android",
       "family_label": "2Ship2Harkinian-Android",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 5210,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "citra-mirror",
@@ -62058,7 +62311,8 @@
       "family": "citra",
       "family_label": "Citra 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /citra/"
+      "_family_evidence": "名称/仓库命中 /citra/",
+      "downloads_basis": "none"
     },
     {
       "id": "prospero-eden-encore",
@@ -62102,7 +62356,8 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "id 兜底命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "id 兜底命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_basis": "none"
     },
     {
       "id": "jaycore-mobox-patched",
@@ -62216,7 +62471,8 @@
       "family": "jaycore-mobox-patched",
       "family_label": "Mobox Patched",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ax360e-android",
@@ -62262,7 +62518,8 @@
       "family": "ax360e-android",
       "family_label": "ax360e",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "maxjivi05-ps3native",
@@ -62487,7 +62744,9 @@
       "family": "maxjivi05-ps3native",
       "family_label": "PS3Native",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1515,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "termux-kotlin",
@@ -63561,7 +63820,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 152,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "termux-jiaxinchen",
@@ -64216,7 +64477,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 44,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "skyline-official",
@@ -64270,7 +64533,8 @@
       "family": "skyline",
       "family_label": "Skyline 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /skyline/"
+      "_family_evidence": "名称/仓库命中 /skyline/",
+      "downloads_basis": "none"
     },
     {
       "id": "ghael-v-capyps5",
@@ -64381,7 +64645,9 @@
       "family": "ghael-v-capyps5",
       "family_label": "CapyPS5",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 371,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "the412banner-bannerhub-lite",
@@ -64962,7 +65228,9 @@
       "family": "bannerhub",
       "family_label": "BannerHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /bannerhub/"
+      "_family_evidence": "名称/仓库命中 /bannerhub/",
+      "downloads_latest": 8224,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "virtualjaguar",
@@ -70770,7 +71038,9 @@
       "family": "virtualjaguar",
       "family_label": "Virtual Jaguar",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 3,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "mircowuffwuff-sharpdroid",
@@ -70937,7 +71207,9 @@
       "family": "mircowuffwuff-sharpdroid",
       "family_label": "SharpDroid",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1426,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "nfs3recompiled",
@@ -71020,7 +71292,9 @@
       "family": "nfs3recompiled",
       "family_label": "nfs3recompiled-android",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 15,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "zeebx-zeebo",
@@ -72084,7 +72358,9 @@
       "family": "zeebx-zeebo",
       "family_label": "Zeebx",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 159,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "dev-ali2008-onrps4-android",
@@ -72181,7 +72457,9 @@
       "family": "dev-ali2008-onrps4-android",
       "family_label": "onRps4",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1826,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "yifengling0-vintagepomelopro",
@@ -72220,7 +72498,8 @@
       "family": "yifengling0-vintagepomelopro",
       "family_label": "VintagePomeloPro",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-winlator-glibc",
@@ -72639,7 +72918,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 304,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "dukeps3-android",
@@ -72682,7 +72963,8 @@
       "family": "dukeps3-android",
       "family_label": "DukePS3",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "emucorec-ps3",
@@ -72832,7 +73114,9 @@
       "family": "emucorec-ps3",
       "family_label": "EmuCoreC",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 5295,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "itzdfplayer-gamehub-lite",
@@ -72920,7 +73204,9 @@
       "family": "gamehub",
       "family_label": "GameHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamehub/"
+      "_family_evidence": "名称/仓库命中 /gamehub/",
+      "downloads_latest": 6375,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "eden-nx2-zuan",
@@ -72975,7 +73261,9 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_latest": 77,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "eden-emulator-releases",
@@ -75386,7 +75674,8 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_basis": "none"
     },
     {
       "id": "md.emu-sms",
@@ -75432,7 +75721,8 @@
       "family": "md.emu-sms",
       "family_label": "MD.emu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "termux-ghostty",
@@ -76795,7 +77085,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 19,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "juris-x-winlator_x",
@@ -76935,7 +77227,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 23659,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "dukestation-ps1",
@@ -76980,7 +77274,8 @@
       "family": "dukestation-ps1",
       "family_label": "DukeStation",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "eden-ns2-android-vivsi",
@@ -77046,7 +77341,9 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_latest": 1690,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "honkonx-winlator-honkon",
@@ -77342,7 +77639,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 12272,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "m64plusfz",
@@ -77398,7 +77697,8 @@
       "family": "mupen64plus",
       "family_label": "Mupen64Plus 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /mupen64plus/"
+      "_family_evidence": "名称/仓库命中 /mupen64plus/",
+      "downloads_basis": "none"
     },
     {
       "id": "mupen64plus-ae-fzurita",
@@ -77442,7 +77742,8 @@
       "family": "mupen64plus",
       "family_label": "Mupen64Plus 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /mupen64plus/"
+      "_family_evidence": "名称/仓库命中 /mupen64plus/",
+      "downloads_basis": "none"
     },
     {
       "id": "azaharplus-android",
@@ -77488,7 +77789,8 @@
       "family": "azahar",
       "family_label": "Azahar 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /azahar/"
+      "_family_evidence": "名称/仓库命中 /azahar/",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-linbox-winemu",
@@ -77714,7 +78016,9 @@
       "family": "afeimod-linbox-winemu",
       "family_label": "Linbox WinEmu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 457,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "dk64recomp",
@@ -77835,7 +78139,9 @@
       "family": "dk64recomp",
       "family_label": "dk64-recomp-android",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 3463,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "edeegg-sharpemu-arm64",
@@ -77918,7 +78224,9 @@
       "family": "edeegg-sharpemu-arm64",
       "family_label": "SharpEmu ARM64",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 2762,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "termux-enhanced",
@@ -78699,7 +79007,8 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-nesstation",
@@ -78891,7 +79200,9 @@
       "family": "afeimod-nesstation",
       "family_label": "NesStation",
       "_section_evidence": "kind=frontend",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 238,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "pocket2droid-android",
@@ -79008,7 +79319,9 @@
       "family": "pocket2droid-android",
       "family_label": "Pocket2Droid",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 89,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "zenith-panplay",
@@ -79504,7 +79817,9 @@
       "family": "zenith-panplay",
       "family_label": "PanPlay (Mali 游戏启动器)",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 321,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "alexoqool-winlator-bionic-build",
@@ -79980,7 +80295,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 645,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ryujinx-canary-ademola",
@@ -80055,7 +80372,9 @@
       "family": "ryujinx",
       "family_label": "Ryujinx 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ryujinx/"
+      "_family_evidence": "名称/仓库命中 /ryujinx/",
+      "downloads_latest": 15026,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "termux-plus",
@@ -80123,7 +80442,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 402,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "windroidemulation-winnative",
@@ -80863,7 +81184,8 @@
       "family": "winnative",
       "family_label": "WinNative 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winnative/"
+      "_family_evidence": "名称/仓库命中 /winnative/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "dingooemu-android",
@@ -81272,7 +81594,9 @@
       "family": "dingooemu-android",
       "family_label": "DingooEmu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 5,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "emucorep-android",
@@ -81370,7 +81694,9 @@
       "family": "emucorep-android",
       "family_label": "EmuCoreP-Releases",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 825,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
@@ -81467,7 +81793,9 @@
       "family": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
       "family_label": "X1 BOX",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 1875,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "nexium-switch1",
@@ -81513,7 +81841,8 @@
       "family": "nexium-switch1",
       "family_label": "NeXium",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "handylynx",
@@ -81559,7 +81888,8 @@
       "family": "handylynx",
       "family_label": "Handy (Atari Lynx)",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "melange-brew",
@@ -81605,7 +81935,8 @@
       "family": "melange-brew",
       "family_label": "Melange (BREW)",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "orangefox86-hollycast",
@@ -81711,7 +82042,9 @@
       "family": "orangefox86-hollycast",
       "family_label": "Hollycast",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 562,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "emucorea-android",
@@ -81994,7 +82327,9 @@
       "family": "emucorea-android",
       "family_label": "EmuCoreA",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 59,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "azahartrigger-3ds",
@@ -82845,7 +83180,9 @@
       "family": "azahar",
       "family_label": "Azahar 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /azahar/"
+      "_family_evidence": "名称/仓库命中 /azahar/",
+      "downloads_latest": 52,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "frostie77-tooie-recompiled",
@@ -82959,7 +83296,9 @@
       "family": "frostie77-tooie-recompiled",
       "family_label": "Tooie-Recompiled（Banjo-Tooie 安卓原生移植）",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 119,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "nin64-android",
@@ -83005,7 +83344,8 @@
       "family": "nin64-android",
       "family_label": "Nin64-Emulator",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-gamehtml",
@@ -83127,7 +83467,9 @@
       "family": "afeimod-gamehtml",
       "family_label": "Game4399 Flash盒",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 65,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "deivid22srk-winlator-xmod",
@@ -83224,7 +83566,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 209,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "emucoreh-android",
@@ -83507,7 +83851,9 @@
       "family": "emucoreh-android",
       "family_label": "EmuCoreH",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 29,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "samsixx6-brew2droid",
@@ -83583,7 +83929,9 @@
       "family": "samsixx6-brew2droid",
       "family_label": "Brew2Droid",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 42,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "duckyduckg-winlator",
@@ -84058,7 +84406,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 137,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "ryudeck-steamdeck",
@@ -84113,7 +84463,9 @@
       "family": "ryujinx",
       "family_label": "Ryujinx 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ryujinx/"
+      "_family_evidence": "名称/仓库命中 /ryujinx/",
+      "downloads_latest": 41,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
@@ -84185,7 +84537,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "id 兜底命中 /winlator/"
+      "_family_evidence": "id 兜底命中 /winlator/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "termux-aether",
@@ -84480,7 +84833,9 @@
       "family": "termux",
       "family_label": "Termux 系",
       "_section_evidence": "method 空，platforms=[terminal]",
-      "_family_evidence": "名称/仓库命中 /termux/"
+      "_family_evidence": "名称/仓库命中 /termux/",
+      "downloads_latest": 9,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "eden-sx2a-moceure",
@@ -84605,7 +84960,8 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_basis": "none"
     },
     {
       "id": "kreitinnsoftware-micewine-application",
@@ -84647,7 +85003,8 @@
       "family": "kreitinnsoftware-micewine-application",
       "family_label": "MiceWine",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "faux123-gamenative-mali",
@@ -84716,7 +85073,9 @@
       "family": "gamenative",
       "family_label": "GameNative 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamenative/"
+      "_family_evidence": "名称/仓库命中 /gamenative/",
+      "downloads_latest": 344,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "hitode-project-hitode",
@@ -84841,7 +85200,9 @@
       "family": "hitode-project-hitode",
       "family_label": "Hitode",
       "_section_evidence": "method=translation（guest=visual-novel）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 26,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "maxi000q-consolefivepro",
@@ -85114,7 +85475,8 @@
       "family": "maxi000q-consolefivepro",
       "family_label": "Console Five Pro",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-eden-an",
@@ -85214,7 +85576,9 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_latest": 137,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "melonx-ios",
@@ -85259,7 +85623,8 @@
       "family": "melonx-ios",
       "family_label": "MeloNX",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "zenith-panprobe",
@@ -85658,7 +86023,9 @@
       "family": "zenith-panprobe",
       "family_label": "PanProbe (Mali 驱动探测)",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 155,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "8cee-banjorecomp-android",
@@ -85703,7 +86070,8 @@
       "family": "8cee-banjorecomp-android",
       "family_label": "BanjoRecomp-Android（Banjo-Kazooie 安卓移植）",
       "_section_evidence": "method=recomp",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "afeimod-eka2l1-an",
@@ -85769,7 +86137,9 @@
       "family": "ekA2l1",
       "family_label": "EKA2L1 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /eka2l1/"
+      "_family_evidence": "名称/仓库命中 /eka2l1/",
+      "downloads_latest": 43,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "j4mcu-builds-gamehub-lite-redmagic",
@@ -85838,7 +86208,9 @@
       "family": "gamehub",
       "family_label": "GameHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamehub/"
+      "_family_evidence": "名称/仓库命中 /gamehub/",
+      "downloads_latest": 719,
+      "downloads_basis": "lifetime"
     },
     {
       "id": "eden-ci-nightly",
@@ -87617,7 +87989,8 @@
       "family": "eden",
       "family_label": "Eden 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/"
+      "_family_evidence": "名称/仓库命中 /(?<![a-z])eden(?![a-z])/",
+      "downloads_basis": "none"
     },
     {
       "id": "ryubing-canary",
@@ -87663,7 +88036,8 @@
       "family": "ryujinx",
       "family_label": "Ryujinx 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ryubing/"
+      "_family_evidence": "名称/仓库命中 /ryubing/",
+      "downloads_basis": "none"
     },
     {
       "id": "seedlessds-cn-fork",
@@ -87748,7 +88122,9 @@
       "family": "seedlessds-cn-fork",
       "family_label": "SeedlessDS 优化分支",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 5,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "drastic",
@@ -87797,7 +88173,8 @@
       "family": "drastic",
       "family_label": "DraStic",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "emulicious",
@@ -87845,7 +88222,8 @@
       "family": "emulicious",
       "family_label": "Emulicious",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "epsxe",
@@ -87897,7 +88275,8 @@
       "family": "epsxe",
       "family_label": "ePSXe",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "fpse",
@@ -87943,7 +88322,8 @@
       "family": "fpse",
       "family_label": "FPse",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "fuse",
@@ -87988,7 +88368,8 @@
       "family": "fuse",
       "family_label": "Fuse",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "kenji-nx-android-releases",
@@ -88038,7 +88419,8 @@
       "family": "kenji-nx-android-releases",
       "family_label": "Kenji-NX Emulator",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "mame4droid",
@@ -88093,7 +88475,9 @@
       "family": "mame4droid",
       "family_label": "MAME4droid",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_latest": 4646,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "maxjivi05-gamenative-performance",
@@ -88137,7 +88521,8 @@
       "family": "gamenative",
       "family_label": "GameNative 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamenative/"
+      "_family_evidence": "名称/仓库命中 /gamenative/",
+      "downloads_basis": "none"
     },
     {
       "id": "mednafen",
@@ -88191,7 +88576,8 @@
       "family": "mednafen",
       "family_label": "Mednafen",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "myboy",
@@ -88238,7 +88624,8 @@
       "family": "myboy",
       "family_label": "My Boy!",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "myoldboy",
@@ -88285,7 +88672,8 @@
       "family": "myoldboy",
       "family_label": "My OldBoy!",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "myps2-ps2",
@@ -88333,7 +88721,8 @@
       "family": "myps2-ps2",
       "family_label": "MYPS2",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "pizzaboy",
@@ -88380,7 +88769,8 @@
       "family": "pizzaboy",
       "family_label": "Pizza Boy GBA",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "producdevity-gamehub",
@@ -88430,7 +88820,8 @@
       "family": "gamehub",
       "family_label": "GameHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamehub/"
+      "_family_evidence": "名称/仓库命中 /gamehub/",
+      "downloads_basis": "none"
     },
     {
       "id": "ryujinx-benji-sc",
@@ -88491,7 +88882,8 @@
       "family": "ryujinx",
       "family_label": "Ryujinx 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ryujinx/"
+      "_family_evidence": "名称/仓库命中 /ryujinx/",
+      "downloads_basis": "none"
     },
     {
       "id": "ryujinx-official",
@@ -88550,7 +88942,8 @@
       "family": "ryujinx",
       "family_label": "Ryujinx 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /ryujinx/"
+      "_family_evidence": "名称/仓库命中 /ryujinx/",
+      "downloads_basis": "none"
     },
     {
       "id": "skyline-pine",
@@ -88616,7 +89009,9 @@
       "family": "skyline",
       "family_label": "Skyline 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /skyline/"
+      "_family_evidence": "名称/仓库命中 /skyline/",
+      "downloads_latest": 4,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "sudachi-emulator",
@@ -88664,7 +89059,8 @@
       "family": "sudachi",
       "family_label": "Sudachi 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /sudachi/"
+      "_family_evidence": "名称/仓库命中 /sudachi/",
+      "downloads_basis": "none"
     },
     {
       "id": "torzu-emulator",
@@ -88725,7 +89121,8 @@
       "family": "torzu-emulator",
       "family_label": "Torzu",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "vice",
@@ -88770,7 +89167,8 @@
       "family": "vice",
       "family_label": "VICE",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "无上游证据，自成一族"
+      "_family_evidence": "无上游证据，自成一族",
+      "downloads_basis": "none"
     },
     {
       "id": "winlator-releases",
@@ -88827,7 +89225,9 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_latest": 43529,
+      "downloads_basis": "latest-lower-bound"
     },
     {
       "id": "winlatorbrasil-gamehub-brasil",
@@ -88871,7 +89271,8 @@
       "family": "gamehub",
       "family_label": "GameHub 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /gamehub/"
+      "_family_evidence": "名称/仓库命中 /gamehub/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "winlatorbrasil-winlator-brasil",
@@ -88915,7 +89316,8 @@
       "family": "winlator",
       "family_label": "Winlator 系",
       "_section_evidence": "method=translation（guest=windows-pc）",
-      "_family_evidence": "名称/仓库命中 /winlator/"
+      "_family_evidence": "名称/仓库命中 /winlator/",
+      "downloads_basis": "lifetime"
     },
     {
       "id": "yuzu-citrus",
@@ -88972,7 +89374,8 @@
       "family": "yuzu",
       "family_label": "yuzu 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "id 兜底命中 /\\byuzu\\b/"
+      "_family_evidence": "id 兜底命中 /\\byuzu\\b/",
+      "downloads_basis": "none"
     },
     {
       "id": "yuzu-official",
@@ -89019,7 +89422,8 @@
       "family": "yuzu",
       "family_label": "yuzu 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /\\byuzu\\b/"
+      "_family_evidence": "名称/仓库命中 /\\byuzu\\b/",
+      "downloads_basis": "none"
     },
     {
       "id": "yuzu-plus",
@@ -89076,7 +89480,8 @@
       "family": "yuzu",
       "family_label": "yuzu 系",
       "_section_evidence": "method=emulation",
-      "_family_evidence": "名称/仓库命中 /\\byuzu\\b/"
+      "_family_evidence": "名称/仓库命中 /\\byuzu\\b/",
+      "downloads_basis": "none"
     }
   ]
 }
