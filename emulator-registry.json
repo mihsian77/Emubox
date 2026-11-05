@@ -91604,7 +91604,7 @@
       "id": "winhub-emu-winhub",
       "name": "WinHub",
       "category": "Windows 兼容层",
-      "description": "WinHub：Android 端一体化游戏平台（早期预览），开源；单包约 557MB，分 standard / pubg / ludashi 三个变体，是否为自带运行时的兼容层待核",
+      "description": "WinHub：Android 端一体化游戏平台（早期预览），开源；分 standard / pubg / ludashi 三个性能包变体（Winlator 分支的分级配置，非捆绑工具），单包约 557MB",
       "owner": "winhub-emu",
       "repo": "winhub-emu/winhub",
       "homepage": "https://winhub-emu.vercel.app/",
@@ -91656,7 +91656,7 @@
         }
       ],
       "source": "github",
-      "note": "",
+      "note": "三个 APK 变体为不同性能档位的包名，非捆绑软件；2026-11-05 按用户确认为 Winlator 分支特色",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
