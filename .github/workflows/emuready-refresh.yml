@@ -1,9 +1,10 @@
 name: 每日刷新 EmuReady 目录
 
 on:
-  schedule:
-    # UTC 18:40 ≈ 北京时间 02:40，避开新闻/社区任务
-    - cron: "40 18 * * *"
+  # 已并入 data-refresh.yml（每日一次合并提交）；此处保留手动触发用于单独调试
+  # schedule:
+  #   # UTC 18:40 ≈ 北京时间 02:40，避开新闻/社区任务
+  #   - cron: "40 18 * * *"
   workflow_dispatch:
 
 permissions:

@@ -1,9 +1,10 @@
 name: 每日刷新驱动源元数据
 
 on:
-  schedule:
-    # UTC 02:00 ≈ 北京时间 10:00
-    - cron: "0 2 * * *"
+  # 已并入 data-refresh.yml（每日一次合并提交）；此处保留手动触发用于单独调试
+  # schedule:
+  #   # UTC 02:00 ≈ 北京时间 10:00
+  #   - cron: "0 2 * * *"
   workflow_dispatch:
 
 permissions:

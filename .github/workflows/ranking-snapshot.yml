@@ -9,8 +9,9 @@ name: 每日榜单快照
 # 为什么放 CI 而不是本地：本地没人每天开机器。快照必须无人值守地攒。
 
 on:
-  schedule:
-    - cron: "10 20 * * *"     # 每天 04:10 (UTC+8)，在下载量刷新之前
+  # 已并入 data-refresh.yml（每日一次合并提交）；此处保留手动触发用于单独调试
+  # schedule:
+  #   - cron: "10 20 * * *"     # 每天 04:10 (UTC+8)，在下载量刷新之前
   workflow_dispatch:
 
 permissions:
