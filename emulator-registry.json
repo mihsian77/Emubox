@@ -89901,6 +89901,157 @@
       "family_label": "Xenra",
       "_section_evidence": "method=emulation",
       "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "xenia-project-xenia",
+      "name": "Xenia",
+      "category": "主机模拟",
+      "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+      "owner": "xenia-project",
+      "repo": "xenia-project/xenia",
+      "homepage": "https://xenia.jp",
+      "repo_url": "https://github.com/xenia-project/xenia",
+      "official": true,
+      "channel": "nightly",
+      "latest_tag": "2026-11-04",
+      "latest_date": "2026-11-04T00:00:00Z",
+      "latest_body": "EmuCR 2026-11-04 收录的 Git 构建。",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 9800,
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "2026-11-04",
+          "name": "Xenia Git (2026/11/04)",
+          "date": "2026-11-04"
+        }
+      ],
+      "source": "github",
+      "note": "证据：EmuCR 2026-11-04 条目「Xenia is an experimental emulator for the Xbox 360」+ 仓库 9.8k★。库里 xbox360 有 9 条但全是安卓移植（hakuX/X360 Mobile/Xendroid）或游戏重编译（SpartanPort/GoW2），没有主线本体。EmuCR 同时收录的 Xenia Edge 是它的分支，不单独建条，在此注明。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xenia-project-xenia",
+      "family_label": "Xenia",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "project64-project64",
+      "name": "Project64",
+      "category": "主机模拟",
+      "description": "N64 模拟器，Windows 平台，老牌主线实现。带图形化插件配置、存档状态、Gameshark 金手指与调试器，长期维护。",
+      "owner": "project64",
+      "repo": "project64/project64",
+      "homepage": "https://www.pj64-emu.com",
+      "repo_url": "https://github.com/project64/project64",
+      "official": true,
+      "channel": "nightly",
+      "latest_tag": "2026-11-02",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "EmuCR 2026-11-02 收录的 Git 构建。",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 3100,
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "2026-11-02",
+          "name": "Project64 Git (2026/11/02)",
+          "date": "2026-11-02"
+        }
+      ],
+      "source": "github",
+      "note": "证据：EmuCR 2026-11-02 条目 + 仓库 3.1k★。库里 n64 有 18 条，但绝大多数是 Zelda/Mario 的重编译移植（Zelda64Recomp、Ship of Harkinian、2Ship2Harkinian、BanjoRecomp），真正的 N64 模拟器只有 mupen64plus 系，缺这条主线。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "project64-project64",
+      "family_label": "Project64",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "liji32-sameboy",
+      "name": "SameBoy",
+      "category": "主机模拟",
+      "description": "Game Boy / Game Boy Color 模拟器，以精度著称，附带完整调试器（断点、内存查看、VRAM 检查、逐帧回退）。官方以 macOS 为主，另有 SDL 前端与 libretro 核心，可跨平台使用。",
+      "owner": "LIJI32",
+      "repo": "LIJI32/SameBoy",
+      "homepage": "https://sameboy.github.io",
+      "repo_url": "https://github.com/LIJI32/SameBoy",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.0.5",
+      "latest_date": "2026-11-03T00:00:00Z",
+      "latest_body": "v1.0.5（2026-11-03）。",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-03T00:00:00Z",
+      "stars": 2200,
+      "forks": null,
+      "watchers": null,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v1.0.5",
+          "name": "SameBoy v1.0.5",
+          "date": "2026-11-03"
+        }
+      ],
+      "source": "github",
+      "note": "证据：EmuCR 条目「SameBoy is a user friendly Game Boy and Game Boy Color emulator for macOS. SameBoy is extremely accurate and includes a wide range of powerful debugging features」+ 仓库 2.2k★。hosts 只记 macos：官方前端面向 macOS，Linux/Windows 走 SDL 前端但非主分发渠道，libretro 核心另计。库里 GB 有 9 条（mgba/mesen2/ares 等），缺的是「精度基准」这一档。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "gb",
+        "gbc"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "liji32-sameboy",
+      "family_label": "SameBoy",
+      "_section_evidence": "method=emulation",
+      "_family_evidence": "无上游证据，自成一族"
     }
   ]
 }

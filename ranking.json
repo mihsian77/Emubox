@@ -1,11 +1,11 @@
 {
- "updated_at": "2026-11-05T05:49:55+00:00",
+ "updated_at": "2026-11-05T05:59:32+00:00",
  "methodology": "family-aggregated / multi-axis / no-composite-score",
  "coverage": {
-  "entries": 248,
-  "families": 174,
+  "entries": 251,
+  "families": 177,
   "with_downloads": 176,
-  "downloads_visible_pct": 71.0
+  "downloads_visible_pct": 70.1
  },
  "delta": {
   "available": true,
@@ -30,6 +30,11 @@
    "stars": 14522
   },
   {
+   "id": "xenia-project-xenia",
+   "name": "Xenia",
+   "stars": 9800
+  },
+  {
    "id": "djihads80-eglantine",
    "name": "Eglantine",
    "stars": 3844
@@ -38,18 +43,13 @@
    "id": "lnpandy-nx2apple",
    "name": "NX2Apple",
    "stars": 3537
-  },
-  {
-   "id": "scummvm",
-   "name": "ScummVM",
-   "stars": 2879
   }
  ],
  "sections": [
   {
    "key": "console-emulation",
    "label": "主机模拟",
-   "count": 117
+   "count": 120
   },
   {
    "key": "windows-compat",
@@ -2439,6 +2439,40 @@
      "growth_pct": 0.0
     },
     {
+     "family": "xenia-project-xenia",
+     "label": "Xenia",
+     "rep_id": "xenia-project-xenia",
+     "rep_name": "Xenia",
+     "repo_url": "https://github.com/xenia-project/xenia",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "xbox360"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+     "members": 1,
+     "member_ids": [
+      "xenia-project-xenia"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 9800,
+     "stars_max": 9800,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "azahar",
      "label": "Azahar 系",
      "rep_id": "azaharplus-android",
@@ -2945,6 +2979,40 @@
      "growth_pct": null
     },
     {
+     "family": "project64-project64",
+     "label": "Project64",
+     "rep_id": "project64-project64",
+     "rep_name": "Project64",
+     "repo_url": "https://github.com/project64/project64",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "n64"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "N64 模拟器，Windows 平台，老牌主线实现。带图形化插件配置、存档状态、Gameshark 金手指与调试器，长期维护。",
+     "members": 1,
+     "member_ids": [
+      "project64-project64"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 3100,
+     "stars_max": 3100,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "scummvm",
      "label": "ScummVM 系",
      "rep_id": "scummvm",
@@ -3198,6 +3266,41 @@
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
+    },
+    {
+     "family": "liji32-sameboy",
+     "label": "SameBoy",
+     "rep_id": "liji32-sameboy",
+     "rep_name": "SameBoy",
+     "repo_url": "https://github.com/LIJI32/SameBoy",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "gb",
+      "gbc"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "macos"
+     ],
+     "description": "Game Boy / Game Boy Color 模拟器，以精度著称，附带完整调试器（断点、内存查看、VRAM 检查、逐帧回退）。官方以 macOS 为主，另有 SDL 前端与 libretro 核心，可跨平台使用。",
+     "members": 1,
+     "member_ids": [
+      "liji32-sameboy"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 2200,
+     "stars_max": 2200,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
     },
     {
      "family": "banjorecomp-banjorecomp",
@@ -3640,113 +3743,6 @@
      "status": "quiet",
      "downloads_delta": 0,
      "growth_pct": null
-    },
-    {
-     "family": "ilya114-box64droid",
-     "label": "Box64Droid",
-     "rep_id": "ilya114-box64droid",
-     "rep_name": "Box64Droid",
-     "repo_url": "https://github.com/Ilya114/Box64Droid",
-     "logo": "https://github.com/Ilya114.png",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "windows"
-     ],
-     "description": "Running x86_64 applications on Android",
-     "members": 1,
-     "member_ids": [
-      "ilya114-box64droid"
-     ],
-     "downloads_sum": 1285,
-     "downloads_rep": 1285,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 1091,
-     "stars_max": 1091,
-     "latest_date": "2023-08-26T00:00:00Z",
-     "days_since_release": 1167,
-     "days_since_push": 173,
-     "family_days_since_push": 173,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "harbourmasters-ghostship",
-     "label": "Ghostship",
-     "rep_id": "harbourmasters-ghostship",
-     "rep_name": "Ghostship",
-     "repo_url": "https://github.com/HarbourMasters/Ghostship",
-     "logo": "https://github.com/HarbourMasters.png",
-     "section": "native-port",
-     "platforms": [
-      "n64"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android",
-      "windows",
-      "linux",
-      "ios"
-     ],
-     "description": "HarbourMasters 版 Super Mario 64，反编译移植 PC 版（整理站描述）",
-     "members": 1,
-     "member_ids": [
-      "harbourmasters-ghostship"
-     ],
-     "downloads_sum": 42938,
-     "downloads_rep": 42938,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 884,
-     "stars_max": 884,
-     "latest_date": "2026-09-07T04:57:17Z",
-     "days_since_release": 59,
-     "days_since_push": 8,
-     "family_days_since_push": 8,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "shirai91-nx2android",
-     "label": "nx2android",
-     "rep_id": "shirai91-nx2android",
-     "rep_name": "nx2android",
-     "repo_url": "https://github.com/shirai91/nx2android",
-     "logo": null,
-     "section": "native-port",
-     "platforms": [
-      "switch"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android",
-      "windows",
-      "macos"
-     ],
-     "description": "把 Switch 游戏转成安卓原生 APK 的移植工具，不是模拟器：游戏自身的 arm64 代码在设备上原生运行，宿主替代 Switch 系统服务，NVN 图形重放到 Vulkan。选游戏目录、点 Port，产出 APK 与游戏数据。是 nxnative 的 Android 端口，需自备游戏文件与 prod.keys。",
-     "members": 1,
-     "member_ids": [
-      "shirai91-nx2android"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 784,
-     "stars_max": 784,
-     "latest_date": "2026-10-31T00:00:00Z",
-     "days_since_release": 5,
-     "days_since_push": 5,
-     "family_days_since_push": 5,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
     }
    ]
   },
@@ -4090,6 +4086,40 @@
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
+    },
+    {
+     "family": "xenia-project-xenia",
+     "label": "Xenia",
+     "rep_id": "xenia-project-xenia",
+     "rep_name": "Xenia",
+     "repo_url": "https://github.com/xenia-project/xenia",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "xbox360"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+     "members": 1,
+     "member_ids": [
+      "xenia-project-xenia"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 9800,
+     "stars_max": 9800,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
     },
     {
      "family": "djihads80-eglantine",
@@ -5237,6 +5267,41 @@
      "growth_pct": null
     },
     {
+     "family": "liji32-sameboy",
+     "label": "SameBoy",
+     "rep_id": "liji32-sameboy",
+     "rep_name": "SameBoy",
+     "repo_url": "https://github.com/LIJI32/SameBoy",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "gb",
+      "gbc"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "macos"
+     ],
+     "description": "Game Boy / Game Boy Color 模拟器，以精度著称，附带完整调试器（断点、内存查看、VRAM 检查、逐帧回退）。官方以 macOS 为主，另有 SDL 前端与 libretro 核心，可跨平台使用。",
+     "members": 1,
+     "member_ids": [
+      "liji32-sameboy"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 2200,
+     "stars_max": 2200,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "fbneo",
      "label": "FBNeo",
      "rep_id": "fbneo",
@@ -5518,74 +5583,6 @@
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
-    },
-    {
-     "family": "smarkyie-nsp-box",
-     "label": "NSP Box",
-     "rep_id": "smarkyie-nsp-box",
-     "rep_name": "NSP Box",
-     "repo_url": "https://github.com/smarkyie/NSP-Box",
-     "logo": null,
-     "section": "frontend-tool",
-     "platforms": [
-      "switch2"
-     ],
-     "method": null,
-     "hosts": [
-      "windows"
-     ],
-     "description": "Windows 便携工具：把已解包的 ExeFS / RomFS 快照打包成明文 NSP，4.0 起支持压缩 NUP 归档与互转。可挑选 Base / Update / DLC、加自定义封面与裁切、校验归档；内置 Emulator patch 面板，为 Selevet / Eglantine nx2 / PokeDinner 等 Windows x64 模拟器写入 NSP 元数据。",
-     "members": 1,
-     "member_ids": [
-      "smarkyie-nsp-box"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 469,
-     "stars_max": 469,
-     "latest_date": "2026-11-03T00:00:00Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "jacojayy-star",
-     "label": "Star (fork)",
-     "rep_id": "jacojayy-star",
-     "rep_name": "Star (fork)",
-     "repo_url": "https://github.com/jacojayy/star",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/star.png",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android"
-     ],
-     "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
-     "members": 1,
-     "member_ids": [
-      "jacojayy-star"
-     ],
-     "downloads_sum": 121380,
-     "downloads_rep": 121380,
-     "downloads_basis": "lifetime",
-     "stars_rep": 441,
-     "stars_max": 441,
-     "latest_date": "2026-10-06T19:44:52Z",
-     "days_since_release": 29,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
     }
    ]
   },
@@ -5885,6 +5882,40 @@
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": false,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "xenia-project-xenia",
+     "label": "Xenia",
+     "rep_id": "xenia-project-xenia",
+     "rep_name": "Xenia",
+     "repo_url": "https://github.com/xenia-project/xenia",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "xbox360"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+     "members": 1,
+     "member_ids": [
+      "xenia-project-xenia"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 9800,
+     "stars_max": 9800,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
@@ -6272,6 +6303,41 @@
      "growth_pct": null
     },
     {
+     "family": "liji32-sameboy",
+     "label": "SameBoy",
+     "rep_id": "liji32-sameboy",
+     "rep_name": "SameBoy",
+     "repo_url": "https://github.com/LIJI32/SameBoy",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "gb",
+      "gbc"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "macos"
+     ],
+     "description": "Game Boy / Game Boy Color 模拟器，以精度著称，附带完整调试器（断点、内存查看、VRAM 检查、逐帧回退）。官方以 macOS 为主，另有 SDL 前端与 libretro 核心，可跨平台使用。",
+     "members": 1,
+     "member_ids": [
+      "liji32-sameboy"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 2200,
+     "stars_max": 2200,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "ranggacasper-mostwanted-android",
      "label": "Most Wanted for Android",
      "rep_id": "ranggacasper-mostwanted-android",
@@ -6513,6 +6579,40 @@
      "days_since_push": 2,
      "family_days_since_push": 2,
      "official": false,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "project64-project64",
+     "label": "Project64",
+     "rep_id": "project64-project64",
+     "rep_name": "Project64",
+     "repo_url": "https://github.com/project64/project64",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "n64"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "N64 模拟器，Windows 平台，老牌主线实现。带图形化插件配置、存档状态、Gameshark 金手指与调试器，长期维护。",
+     "members": 1,
+     "member_ids": [
+      "project64-project64"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 3100,
+     "stars_max": 3100,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
@@ -7249,110 +7349,6 @@
      "family_days_since_push": 1,
      "official": true,
      "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "ruzu-emu",
-     "label": "Ruzu",
-     "rep_id": "ruzu-emu",
-     "rep_name": "Ruzu",
-     "repo_url": "https://github.com/vricosti/ruzu-emu",
-     "logo": null,
-     "section": "console-emulation",
-     "platforms": [
-      "switch"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "Ruzu：用 Rust 重写的 Switch 模拟器，实验性但独立实现、跨平台",
-     "members": 1,
-     "member_ids": [
-      "ruzu-emu"
-     ],
-     "downloads_sum": 506,
-     "downloads_rep": 506,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 198,
-     "stars_max": 198,
-     "latest_date": "2026-10-28T00:00:00Z",
-     "days_since_release": 8,
-     "days_since_push": 8,
-     "family_days_since_push": 8,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "maxi000q-consolefivepro",
-     "label": "Console Five Pro",
-     "rep_id": "maxi000q-consolefivepro",
-     "rep_name": "Console Five Pro",
-     "repo_url": "https://github.com/maxi000q/ConsoleFivePro",
-     "logo": "https://github.com/maxi000q.png",
-     "section": "console-emulation",
-     "platforms": [
-      "ps5"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "Android 平台的 PS5 硬件环境模拟器（开源研究/教育项目，需自备系统文件）",
-     "members": 1,
-     "member_ids": [
-      "maxi000q-consolefivepro"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 5,
-     "stars_max": 5,
-     "latest_date": "2026-10-28T00:00:00Z",
-     "days_since_release": 8,
-     "days_since_push": 8,
-     "family_days_since_push": 8,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "yifengling0-vintagepomelopro",
-     "label": "VintagePomeloPro",
-     "rep_id": "yifengling0-vintagepomelopro",
-     "rep_name": "VintagePomeloPro",
-     "repo_url": "https://github.com/yifengling0/VintagePomeloPro",
-     "logo": null,
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "harmonyos"
-     ],
-     "description": "在 HarmonyOS (OpenHarmony) 设备上运行 Windows x86_64 程序：Box64 指令翻译 + Wine + 嵌入式 Wayland compositor。",
-     "members": 1,
-     "member_ids": [
-      "yifengling0-vintagepomelopro"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 51,
-     "stars_max": 51,
-     "latest_date": "2026-10-26T00:00:00Z",
-     "days_since_release": 10,
-     "days_since_push": null,
-     "family_days_since_push": null,
-     "official": true,
-     "status": "quiet",
      "downloads_delta": 0,
      "growth_pct": null
     }
@@ -13546,6 +13542,109 @@
    "downloads_basis": "none",
    "stars_rep": 375,
    "stars_max": 375,
+   "latest_date": "2026-11-03T00:00:00Z",
+   "days_since_release": 2,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "xenia-project-xenia",
+   "label": "Xenia",
+   "rep_id": "xenia-project-xenia",
+   "rep_name": "Xenia",
+   "repo_url": "https://github.com/xenia-project/xenia",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "xbox360"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows"
+   ],
+   "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+   "members": 1,
+   "member_ids": [
+    "xenia-project-xenia"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 9800,
+   "stars_max": 9800,
+   "latest_date": "2026-11-04T00:00:00Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "project64-project64",
+   "label": "Project64",
+   "rep_id": "project64-project64",
+   "rep_name": "Project64",
+   "repo_url": "https://github.com/project64/project64",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "n64"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows"
+   ],
+   "description": "N64 模拟器，Windows 平台，老牌主线实现。带图形化插件配置、存档状态、Gameshark 金手指与调试器，长期维护。",
+   "members": 1,
+   "member_ids": [
+    "project64-project64"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 3100,
+   "stars_max": 3100,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "liji32-sameboy",
+   "label": "SameBoy",
+   "rep_id": "liji32-sameboy",
+   "rep_name": "SameBoy",
+   "repo_url": "https://github.com/LIJI32/SameBoy",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "gb",
+    "gbc"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "macos"
+   ],
+   "description": "Game Boy / Game Boy Color 模拟器，以精度著称，附带完整调试器（断点、内存查看、VRAM 检查、逐帧回退）。官方以 macOS 为主，另有 SDL 前端与 libretro 核心，可跨平台使用。",
+   "members": 1,
+   "member_ids": [
+    "liji32-sameboy"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 2200,
+   "stars_max": 2200,
    "latest_date": "2026-11-03T00:00:00Z",
    "days_since_release": 2,
    "days_since_push": 2,
