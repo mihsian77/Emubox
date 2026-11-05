@@ -76,7 +76,7 @@
    ]
   },
   "Adreno-840": {
-   "configs": 216,
+   "configs": 217,
    "top": [
     {
      "combo": [
@@ -98,7 +98,7 @@
       ]
      ],
      "count": 22,
-     "share": 10.2
+     "share": 10.1
     },
     {
      "combo": [
@@ -147,7 +147,7 @@
    ]
   },
   "Mali-G57": {
-   "configs": 198,
+   "configs": 199,
    "top": [
     {
      "combo": [
@@ -169,7 +169,7 @@
       ]
      ],
      "count": 33,
-     "share": 16.7
+     "share": 16.6
     },
     {
      "combo": [
@@ -191,7 +191,7 @@
       ]
      ],
      "count": 17,
-     "share": 8.6
+     "share": 8.5
     },
     {
      "combo": [
@@ -572,6 +572,77 @@
     }
    ]
   },
+  "Mali-G720": {
+   "configs": 104,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 14,
+     "share": 13.5
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 8,
+     "share": 7.7
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "1.11.1-sarek"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 7,
+     "share": 6.7
+    }
+   ]
+  },
   "Mali-G52": {
    "configs": 103,
    "top": [
@@ -640,77 +711,6 @@
      ],
      "count": 5,
      "share": 4.9
-    }
-   ]
-  },
-  "Mali-G720": {
-   "configs": 103,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 14,
-     "share": 13.6
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 8,
-     "share": 7.8
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "1.11.1-sarek"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 7,
-     "share": 6.8
     }
    ]
   },
@@ -928,7 +928,7 @@
    ]
   },
   "Adreno-710": {
-   "configs": 56,
+   "configs": 57,
    "top": [
     {
      "combo": [
@@ -950,7 +950,7 @@
       ]
      ],
      "count": 5,
-     "share": 8.9
+     "share": 8.8
     },
     {
      "combo": [
@@ -972,7 +972,7 @@
       ]
      ],
      "count": 4,
-     "share": 7.1
+     "share": 7.0
     },
     {
      "combo": [
@@ -994,12 +994,12 @@
       ]
      ],
      "count": 3,
-     "share": 5.4
+     "share": 5.3
     }
    ]
   },
   "Adreno-810": {
-   "configs": 48,
+   "configs": 51,
    "top": [
     {
      "combo": [
@@ -1021,7 +1021,7 @@
       ]
      ],
      "count": 9,
-     "share": 18.8
+     "share": 17.6
     },
     {
      "combo": [
@@ -1043,7 +1043,7 @@
       ]
      ],
      "count": 7,
-     "share": 14.6
+     "share": 13.7
     },
     {
      "combo": [
@@ -1065,7 +1065,7 @@
       ]
      ],
      "count": 3,
-     "share": 6.2
+     "share": 5.9
     }
    ]
   },
@@ -3384,7 +3384,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 162,
+   "configs": 163,
    "top": [
     {
      "combo": [
@@ -3410,7 +3410,7 @@
       ]
      ],
      "count": 57,
-     "share": 35.2
+     "share": 35.0
     },
     {
      "combo": [
@@ -3436,7 +3436,7 @@
       ]
      ],
      "count": 18,
-     "share": 11.1
+     "share": 11.0
     },
     {
      "combo": [
@@ -3716,7 +3716,7 @@
    ]
   },
   "Mali-G52": {
-   "configs": 36,
+   "configs": 37,
    "top": [
     {
      "combo": [
@@ -3742,7 +3742,7 @@
       ]
      ],
      "count": 10,
-     "share": 27.8
+     "share": 27.0
     },
     {
      "combo": [
@@ -3768,7 +3768,7 @@
       ]
      ],
      "count": 3,
-     "share": 8.3
+     "share": 8.1
     },
     {
      "combo": [
@@ -3794,7 +3794,7 @@
       ]
      ],
      "count": 2,
-     "share": 5.6
+     "share": 5.4
     }
    ]
   },
