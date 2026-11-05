@@ -1,7 +1,7 @@
 {
  "version": "1.1.0",
  "note": "芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。",
- "generated": "2026-11-04",
+ "generated": "2026-11-05",
  "socs": [
   {
    "id": "s5e9945",
@@ -3024,7 +3024,7 @@
    "antutu_cpu": "402864",
    "antutu_gpu": "182988",
    "ludashi": "457579",
-   "devices": "Galaxy Note 20 Ultra、Galaxy Tab S7+、Galaxy Tab S7、Legion Phone Duel",
+   "devices": "Galaxy Note 20 Ultra、Galaxy Tab S7、Galaxy Tab S7+、Legion Phone Duel",
    "form": "phone",
    "src": "socpk"
   },
@@ -5458,7 +5458,7 @@
    "antutu": "382424",
    "antutu_cpu": "289659",
    "antutu_gpu": "92765",
-   "devices": "Phone 2 Pro、Edge 60 Fusion、Redmi Note 14 Pro、KT R2 3:2",
+   "devices": "Edge 60 Fusion、Phone 2 Pro、Redmi Note 14 Pro、KT R2 3:2",
    "form": "phone",
    "src": "antutu"
   },
