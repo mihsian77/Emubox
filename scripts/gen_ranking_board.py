@@ -62,7 +62,8 @@ def badge(r):
 def metric_text(board, r):
     k = board["key"]
     if k == "downloads":
-        return human(r["downloads_sum"])
+        v = human(r["downloads_sum"])
+        return ("≥" + v) if r.get("downloads_basis") == "latest-lower-bound" else v
     if k == "stars":
         return human(r["stars_max"])
     if k == "active":
@@ -144,6 +145,8 @@ def main():
         pending_html = f'<div class="pending"><b>{p["label"]}</b>：{p["status_text"]}</div>'
 
     cov = data["coverage"]
+    miss = data.get("missing_downloads_examples") or []
+    missing = "、".join(f"{m['name']}（★{m['stars']}）" for m in miss[:4]) or "—"
     html = f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -210,9 +213,9 @@ border:1px dashed var(--line);border-radius:10px;padding:9px 14px}}
   <div class="st"><b>{cov['with_downloads']}</b><span>有下载数据</span></div>
   <div class="st"><b>{cov['downloads_visible_pct']}%</b><span>下载量可见率</span></div>
 </div>
-<div class="warn">下载榜只覆盖 {cov['with_downloads']} 条 —— RPCS3 / Dolphin / PPSSPP / RetroArch 这些大牌，
-以及全部国内项目（Tyranor / YukiHub / Aether）都走官网或网盘分发，GitHub 下载量读不到。
-所以「总下载」不能当默认榜，只能当一个可选的轴。</div>
+<div class="warn">下载榜覆盖 {cov['with_downloads']} 条（{cov['downloads_visible_pct']}%）。
+带 <b>≥</b> 的是「只有最新一版各资产之和」，是最低值不是累计值。
+仍读不到的主要是官网/网盘分发的项目：{missing}。所以「总下载」不能当默认榜，只能当一个可选的轴。</div>
 
 <div class="tabs">{''.join(tabs)}</div>
 <div class="chips">{''.join(sec_chips)}</div>
