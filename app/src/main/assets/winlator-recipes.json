@@ -1,11 +1,11 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-04T00:00:00Z",
+ "updated_at": "2026-11-05T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
   "Adreno-830": {
-   "configs": 326,
+   "configs": 328,
    "top": [
     {
      "combo": [
@@ -49,7 +49,7 @@
       ]
      ],
      "count": 24,
-     "share": 7.4
+     "share": 7.3
     },
     {
      "combo": [
@@ -70,13 +70,13 @@
        "2.8"
       ]
      ],
-     "count": 15,
-     "share": 4.6
+     "count": 16,
+     "share": 4.9
     }
    ]
   },
   "Adreno-840": {
-   "configs": 215,
+   "configs": 216,
    "top": [
     {
      "combo": [
@@ -147,7 +147,7 @@
    ]
   },
   "Mali-G57": {
-   "configs": 194,
+   "configs": 198,
    "top": [
     {
      "combo": [
@@ -169,7 +169,7 @@
       ]
      ],
      "count": 33,
-     "share": 17.0
+     "share": 16.7
     },
     {
      "combo": [
@@ -190,8 +190,8 @@
        "2.8"
       ]
      ],
-     "count": 16,
-     "share": 8.2
+     "count": 17,
+     "share": 8.6
     },
     {
      "combo": [
@@ -213,12 +213,12 @@
       ]
      ],
      "count": 5,
-     "share": 2.6
+     "share": 2.5
     }
    ]
   },
   "Adreno-825": {
-   "configs": 187,
+   "configs": 188,
    "top": [
     {
      "combo": [
@@ -240,7 +240,7 @@
       ]
      ],
      "count": 28,
-     "share": 15.0
+     "share": 14.9
     },
     {
      "combo": [
@@ -261,8 +261,8 @@
        "2.8"
       ]
      ],
-     "count": 7,
-     "share": 3.7
+     "count": 8,
+     "share": 4.3
     },
     {
      "combo": [
@@ -360,7 +360,7 @@
    ]
   },
   "Adreno-740": {
-   "configs": 162,
+   "configs": 164,
    "top": [
     {
      "combo": [
@@ -382,7 +382,7 @@
       ]
      ],
      "count": 15,
-     "share": 9.3
+     "share": 9.1
     },
     {
      "combo": [
@@ -426,12 +426,12 @@
       ]
      ],
      "count": 4,
-     "share": 2.5
+     "share": 2.4
     }
    ]
   },
   "Mali-G615": {
-   "configs": 121,
+   "configs": 122,
    "top": [
     {
      "combo": [
@@ -453,7 +453,7 @@
       ]
      ],
      "count": 27,
-     "share": 22.3
+     "share": 22.1
     },
     {
      "combo": [
@@ -475,7 +475,7 @@
       ]
      ],
      "count": 10,
-     "share": 8.3
+     "share": 8.2
     },
     {
      "combo": [
@@ -573,7 +573,7 @@
    ]
   },
   "Mali-G52": {
-   "configs": 102,
+   "configs": 103,
    "top": [
     {
      "combo": [
@@ -595,7 +595,7 @@
       ]
      ],
      "count": 15,
-     "share": 14.7
+     "share": 14.6
     },
     {
      "combo": [
@@ -616,8 +616,8 @@
        "2.8"
       ]
      ],
-     "count": 6,
-     "share": 5.9
+     "count": 7,
+     "share": 6.8
     },
     {
      "combo": [
@@ -644,7 +644,7 @@
    ]
   },
   "Mali-G720": {
-   "configs": 101,
+   "configs": 103,
    "top": [
     {
      "combo": [
@@ -666,7 +666,7 @@
       ]
      ],
      "count": 14,
-     "share": 13.9
+     "share": 13.6
     },
     {
      "combo": [
@@ -688,7 +688,7 @@
       ]
      ],
      "count": 8,
-     "share": 7.9
+     "share": 7.8
     },
     {
      "combo": [
@@ -710,7 +710,7 @@
       ]
      ],
      "count": 7,
-     "share": 6.9
+     "share": 6.8
     }
    ]
   },
@@ -857,7 +857,7 @@
    ]
   },
   "Adreno-610": {
-   "configs": 62,
+   "configs": 63,
    "top": [
     {
      "combo": [
@@ -879,7 +879,7 @@
       ]
      ],
      "count": 4,
-     "share": 6.5
+     "share": 6.3
     },
     {
      "combo": [
@@ -901,7 +901,7 @@
       ]
      ],
      "count": 4,
-     "share": 6.5
+     "share": 6.3
     },
     {
      "combo": [
@@ -928,7 +928,7 @@
    ]
   },
   "Adreno-710": {
-   "configs": 55,
+   "configs": 56,
    "top": [
     {
      "combo": [
@@ -950,7 +950,7 @@
       ]
      ],
      "count": 5,
-     "share": 9.1
+     "share": 8.9
     },
     {
      "combo": [
@@ -972,7 +972,7 @@
       ]
      ],
      "count": 4,
-     "share": 7.3
+     "share": 7.1
     },
     {
      "combo": [
@@ -994,12 +994,12 @@
       ]
      ],
      "count": 3,
-     "share": 5.5
+     "share": 5.4
     }
    ]
   },
   "Adreno-810": {
-   "configs": 47,
+   "configs": 48,
    "top": [
     {
      "combo": [
@@ -1021,7 +1021,7 @@
       ]
      ],
      "count": 9,
-     "share": 19.1
+     "share": 18.8
     },
     {
      "combo": [
@@ -1043,7 +1043,7 @@
       ]
      ],
      "count": 7,
-     "share": 14.9
+     "share": 14.6
     },
     {
      "combo": [
@@ -1065,7 +1065,7 @@
       ]
      ],
      "count": 3,
-     "share": 6.4
+     "share": 6.2
     }
    ]
   },
@@ -1617,8 +1617,30 @@
    ]
   },
   "Adreno-829": {
-   "configs": 30,
+   "configs": 31,
    "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 5,
+     "share": 16.1
+    },
     {
      "combo": [
       [
@@ -1639,29 +1661,7 @@
       ]
      ],
      "count": 5,
-     "share": 16.7
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 4,
-     "share": 13.3
+     "share": 16.1
     },
     {
      "combo": [
@@ -1683,7 +1683,7 @@
       ]
      ],
      "count": 2,
-     "share": 6.7
+     "share": 6.5
     }
    ]
   },
@@ -1829,6 +1829,73 @@
     }
    ]
   },
+  "Mali-G77": {
+   "configs": 17,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 4,
+     "share": 23.5
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "1.10.3-arm64ec-async"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "None"
+      ]
+     ],
+     "count": 3,
+     "share": 17.6
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 1,
+     "share": 5.9
+    }
+   ]
+  },
   "Adreno-640": {
    "configs": 16,
    "top": [
@@ -1897,73 +1964,6 @@
      ],
      "count": 1,
      "share": 6.2
-    }
-   ]
-  },
-  "Mali-G77": {
-   "configs": 15,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 4,
-     "share": 26.7
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "1.10.3-arm64ec-async"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "None"
-      ]
-     ],
-     "count": 2,
-     "share": 13.3
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 1,
-     "share": 6.7
     }
    ]
   },
@@ -2315,7 +2315,7 @@
    ]
   },
   "Adreno-732": {
-   "configs": 8,
+   "configs": 9,
    "top": [
     {
      "combo": [
@@ -2337,7 +2337,7 @@
       ]
      ],
      "count": 2,
-     "share": 25.0
+     "share": 22.2
     },
     {
      "combo": [
@@ -2359,7 +2359,7 @@
       ]
      ],
      "count": 1,
-     "share": 12.5
+     "share": 11.1
     },
     {
      "combo": [
@@ -2381,7 +2381,7 @@
       ]
      ],
      "count": 1,
-     "share": 12.5
+     "share": 11.1
     }
    ]
   },
@@ -2803,6 +2803,73 @@
     }
    ]
   },
+  "Adreno-550": {
+   "configs": 4,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 2,
+     "share": 50.0
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "1.11.1-sarek"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "arm64ec-3.0.1-ef9a02e8-1"
+      ]
+     ],
+     "count": 1,
+     "share": 25.0
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.3.1-arm64ec-gplasync"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "3.0b-arm64ec-Tfix-0"
+      ]
+     ],
+     "count": 1,
+     "share": 25.0
+    }
+   ]
+  },
   "Adreno-613": {
    "configs": 4,
    "top": [
@@ -2912,55 +2979,6 @@
       [
        "VKD3D",
        "2.14.1"
-      ]
-     ],
-     "count": 1,
-     "share": 33.3
-    }
-   ]
-  },
-  "Adreno-550": {
-   "configs": 3,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 2,
-     "share": 66.7
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "1.11.1-sarek"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "arm64ec-3.0.1-ef9a02e8-1"
       ]
      ],
      "count": 1,
@@ -3366,7 +3384,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 160,
+   "configs": 162,
    "top": [
     {
      "combo": [
@@ -3392,7 +3410,7 @@
       ]
      ],
      "count": 57,
-     "share": 35.6
+     "share": 35.2
     },
     {
      "combo": [
@@ -3418,7 +3436,7 @@
       ]
      ],
      "count": 18,
-     "share": 11.2
+     "share": 11.1
     },
     {
      "combo": [
@@ -3444,12 +3462,12 @@
       ]
      ],
      "count": 14,
-     "share": 8.8
+     "share": 8.6
     }
    ]
   },
   "Mali-G720": {
-   "configs": 145,
+   "configs": 146,
    "top": [
     {
      "combo": [
@@ -3475,7 +3493,7 @@
       ]
      ],
      "count": 27,
-     "share": 18.6
+     "share": 18.5
     },
     {
      "combo": [
@@ -3501,7 +3519,7 @@
       ]
      ],
      "count": 19,
-     "share": 13.1
+     "share": 13.0
     },
     {
      "combo": [
@@ -3527,12 +3545,12 @@
       ]
      ],
      "count": 14,
-     "share": 9.7
+     "share": 9.6
     }
    ]
   },
   "Mali-G615": {
-   "configs": 131,
+   "configs": 132,
    "top": [
     {
      "combo": [
@@ -3558,7 +3576,7 @@
       ]
      ],
      "count": 21,
-     "share": 16.0
+     "share": 15.9
     },
     {
      "combo": [
@@ -3584,7 +3602,7 @@
       ]
      ],
      "count": 14,
-     "share": 10.7
+     "share": 10.6
     },
     {
      "combo": [
@@ -3610,7 +3628,7 @@
       ]
      ],
      "count": 9,
-     "share": 6.9
+     "share": 6.8
     }
    ]
   },
@@ -3781,7 +3799,7 @@
    ]
   },
   "Mali-G68": {
-   "configs": 33,
+   "configs": 34,
    "top": [
     {
      "combo": [
@@ -3807,7 +3825,7 @@
       ]
      ],
      "count": 14,
-     "share": 42.4
+     "share": 41.2
     },
     {
      "combo": [
@@ -3833,7 +3851,7 @@
       ]
      ],
      "count": 5,
-     "share": 15.2
+     "share": 14.7
     },
     {
      "combo": [
@@ -3859,7 +3877,7 @@
       ]
      ],
      "count": 4,
-     "share": 12.1
+     "share": 11.8
     }
    ]
   },

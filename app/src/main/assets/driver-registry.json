@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5166,
+      "stars": 5168,
       "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1142,
+      "stars": 1148,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 895,
+      "stars": 901,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-04T02:52:45Z",
-      "latest_tag": "v27.0.0-20261104-r3",
-      "latest_date": "2026-11-04T02:52:45Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`ae47f65`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/ae47f65f7de25c3d1f3035fcefacfc57a1156202) |\n| **Commit title** | intel/compiler: Archive shader binaries as separate MDA objects |\n| **Vulkan version** | Vulkan 1.4.367 |\n| **Date** | 2026-11-04 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :---"
+      "updated_at": "2026-11-05T05:36:43Z",
+      "latest_tag": "v27.0.0-20261105-r2",
+      "latest_date": "2026-11-05T05:36:43Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`0848c37`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/0848c37191edeb6572363577a351fb6ab2d2c4f8) |\n| **Commit title** | rusticl: implement cl_khr_external_memory |\n| **Vulkan version** | Vulkan 1.4.367 |\n| **Date** | 2026-11-05 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--- | :--- | :--- |\n| **S"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -475,7 +475,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 485,
+      "stars": 486,
       "description": "作者自述为不稳定构建（sloppy），主要改善 A8xx；除非明确知道要它，否则别当默认选项",
       "notes": "",
       "companion": [],
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 104,
+      "stars": 106,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -811,7 +811,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 22,
+      "stars": 23,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 118,
+      "stars": 121,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -878,7 +878,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "alpha",
-      "stars": 31,
+      "stars": 32,
       "description": "Mali-G52（Bifrost JM）PanVK，V7 起支持几何着色器，仍是 alpha",
       "notes": "G52 早期支持，可能不稳定",
       "companion": [
@@ -913,7 +913,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "alpha",
-      "stars": 21,
+      "stars": 22,
       "description": "Helio G99/Mali-G57 MC2 JM 前端 PanVK，FourFectVK 构建",
       "notes": "针对 G99 设备测试，含详细研究文档",
       "companion": [
@@ -983,7 +983,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 46,
+      "stars": 48,
       "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
       "notes": "CSF 架构，native Vulkan",
       "companion": [],
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 109,
+      "stars": 111,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1057,7 +1057,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 28,
+      "stars": 27,
       "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
       "notes": "覆盖型号较广",
       "companion": [],
@@ -1160,7 +1160,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 8,
+      "stars": 9,
       "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
       "notes": "掌机设备专用",
       "companion": [
@@ -1414,7 +1414,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 263,
+      "stars": 264,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1462,7 +1462,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 48,
+      "stars": 55,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1471,10 +1471,10 @@
           "PanVK"
         ]
       },
-      "updated_at": "2026-11-03T23:54:29Z",
-      "latest_tag": "v1.5.0",
-      "latest_date": "2026-11-03T23:54:29Z",
-      "latest_body": "# mali-panvk r9\r\n\r\nPanVK for Arm Mali GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel driver the\r\nphone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Based on Mesa\r\n27.0.0-devel.\r\n\r\n`mali-panvk-27.0.0-devel-r9.zip`, sha256\r\n`04d82e2f35e4e80138f9a407ec4222e40908b32196eb7484355993e6c5fdc376`. Built from `6dc24ce`.\r\n\r\n## Supported GPUs\r\n\r\n| Architecture | GPUs | Vulkan | Status |\r\n|---|---|---|---|\r\n| Bifrost | Mali-G31, G51, G52, G71, G72, G76 | 1.4 (1.3 "
+      "updated_at": "2026-11-04T12:29:42Z",
+      "latest_tag": "v1.6.0",
+      "latest_date": "2026-11-04T12:29:42Z",
+      "latest_body": "# mali-panvk r10\r\n\r\nPanVK for Arm Mali GPUs on stock Android. Mesa's PanVK Vulkan driver runs on the kernel driver the\r\nphone already has (Arm's kbase, `/dev/mali0`): no root, no custom kernel. Based on Mesa\r\n27.0.0-devel.\r\n\r\n`mali-panvk-27.0.0-devel-r10.zip`, sha256\r\n`7e97db4d79d81ec9461d1e0676b62a865561cb56e21c151693aa25ffbe749f1c`. Built from `58f2c55`.\r\n\r\n## Supported GPUs\r\n\r\n| Architecture | GPUs | Vulkan |\r\n|---|---|---|\r\n| Bifrost | Mali-G31, G51, G52, G71, G72, G76 | 1.4 (1.3 on the G71 "
     },
     {
       "id": "apexspan-panvk-g57",
@@ -1626,7 +1626,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 73,
+      "stars": 75,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1728,7 +1728,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 12,
+      "stars": 13,
       "notes": "v1.0.0 起与 ace/pixel7/rg556 四仓发布同一 adpkg 包（同名同字节），四设备全部实测；活跃（2026-10-29 v1.1.3 修 WWE 12 掉 GPU）",
       "companion": [
         "faux123-ace",
@@ -1882,7 +1882,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 41,
+      "stars": 42,
       "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
       "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
       "companion": [],
@@ -1892,10 +1892,10 @@
           "drivers_0.9"
         ]
       },
-      "updated_at": "2026-09-14T16:55:29Z",
-      "latest_tag": "v0.9.5",
-      "latest_date": "2026-09-14T16:55:29Z",
-      "latest_body": "# WinXclipse v0.9.5\r\n\r\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\r\n\r\n## Highlights\r\n\r\n### Apex",
+      "updated_at": "2026-11-04T19:18:08Z",
+      "latest_tag": "v0.9.6",
+      "latest_date": "2026-11-04T19:18:08Z",
+      "latest_body": "# WinXclipse v0.9.6\n\n## Reinstall required: back up first\n\n**The APK signing key changed. If you are using the old key, including the original 0.9.5, you must uninstall the old APK and reinstall this version. Uninstalling deletes the app's private data.**\n\nBefore uninstalling, export your **saves and full containers**, and back up settings and control presets. Verify the backups and copy them to shared storage or a computer, outside the app's private folders. A community configuration ZIP is not",
       "strict_filter": true
     },
     {
@@ -1976,7 +1976,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 41,
+      "stars": 42,
       "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "notes": "wrappers 标签 2026-08-31（strict 过滤只读该标签，v0.9.x 为 App 本体、drivers_0.9 为三星驱动已收驱动区 companion、community-configs 社区配置不收录）",
       "companion": [
@@ -1987,10 +1987,10 @@
           "Wrapper"
         ]
       },
-      "updated_at": "2026-09-14T16:55:29Z",
-      "latest_tag": "v0.9.5",
-      "latest_date": "2026-09-14T16:55:29Z",
-      "latest_body": "# WinXclipse v0.9.5\r\n\r\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\r\n\r\n## Highlights\r\n\r\n### Apex",
+      "updated_at": "2026-11-04T19:18:08Z",
+      "latest_tag": "v0.9.6",
+      "latest_date": "2026-11-04T19:18:08Z",
+      "latest_body": "# WinXclipse v0.9.6\n\n## Reinstall required: back up first\n\n**The APK signing key changed. If you are using the old key, including the original 0.9.5, you must uninstall the old APK and reinstall this version. Uninstalling deletes the app's private data.**\n\nBefore uninstalling, export your **saves and full containers**, and back up settings and control presets. Verify the backups and copy them to shared storage or a computer, outside the app's private folders. A community configuration ZIP is not",
       "strict_filter": true
     },
     {
