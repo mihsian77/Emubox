@@ -63,6 +63,11 @@ def days_since(s):
 
 
 # ── 1. 家族聚合 ──────────────────────────────────────────────────────
+def dl_of(e):
+    """统一下载量取值：优先累计，回退最新版求和（后者是下限）。"""
+    return e.get("downloads") or e.get("downloads_latest") or 0
+
+
 def build_families(emus):
     """一个家族一行。代表条目 = official 优先 → 下载高 → 星多 → 最近发版。"""
     fam = defaultdict(list)
@@ -87,13 +92,13 @@ def build_families(emus):
                 1 if e.get("official") else 0,
                 1 if is_upstream(e) else 0,
                 1 if (dpush is not None and dpush <= 365) else 0,
-                e.get("downloads") or 0,
+                dl_of(e),
                 e.get("stars") or 0,
                 parse_dt(e.get("latest_date")) or datetime(1970, 1, 1, tzinfo=timezone.utc),
             )
 
         rep = max(members, key=rep_key)
-        dl = [m.get("downloads") or 0 for m in members]
+        dl = [dl_of(m) for m in members]
         # 活跃度按家族整体判：只要有一个分支还在推，这个家族就不是「沉寂」
         pushes = [d for d in (days_since(m.get("pushed_at")) for m in members) if d is not None]
         alive_days = min(pushes) if pushes else None
@@ -114,7 +119,11 @@ def build_families(emus):
             "member_ids": [m["id"] for m in members],
             # 家族总下载（各 APK 是不同用户，不重复计数）与代表条目下载，分开存
             "downloads_sum": sum(dl),
-            "downloads_rep": rep.get("downloads") or 0,
+            "downloads_rep": dl_of(rep),
+            # 口径：家族内只要有一条是「全部 release 累计」就算 lifetime；
+            # 全是最新版求和时只是下限，展示要带 ≥
+            "downloads_basis": ("lifetime" if any(m.get("downloads") for m in members)
+                                else "latest-lower-bound" if sum(dl) else "none"),
             "stars_rep": rep.get("stars") or 0,
             "stars_max": max((m.get("stars") or 0) for m in members),
             "latest_date": rep.get("latest_date"),
@@ -229,12 +238,17 @@ BOARDS = [
 def build_boards(rows, delta_info):
     out = []
     for b in BOARDS:
-        if b["key"] == "rising" and not delta_info.get("available"):
+        # 窗口不足 7 天时增量全是噪声（隔天快照差值为 0 或个位数），不给榜
+        short_window = delta_info.get("available") and delta_info.get("window_days", 0) < 7
+        if b["key"] == "rising" and (not delta_info.get("available") or short_window):
             out.append({
                 "key": b["key"], "label": b["label"], "note": b["note"],
                 "status": "accumulating",
-                "status_text": f"历史快照只有 {delta_info.get('have_days', 0)} 天，"
-                               f"攒够 {delta_info.get('need_days', 14)} 天才有真实增量",
+                "status_text": (f"历史快照只有 {delta_info.get('have_days', 0)} 天，"
+                                f"攒够 {delta_info.get('need_days', 14)} 天才有真实增量")
+                               if not delta_info.get("available") else
+                               (f"窗口只有 {delta_info.get('window_days')} 天，差值还全是噪声；"
+                                f"满 7 天才出榜"),
                 "rows": [],
             })
             continue
@@ -265,7 +279,7 @@ def main():
     delta_info = attach_deltas(rows, hist)
     boards = build_boards(rows, delta_info)
 
-    with_dl = sum(1 for e in emus if e.get("downloads"))
+    with_dl = sum(1 for e in emus if dl_of(e))
     payload = {
         "updated_at": now().isoformat(timespec="seconds"),
         "methodology": "family-aggregated / multi-axis / no-composite-score",
@@ -276,6 +290,11 @@ def main():
             "downloads_visible_pct": round(with_dl / len(emus) * 100, 1),
         },
         "delta": delta_info,
+        # 没有下载数但星标最高的几条，给看板当「为什么它不在榜上」的实例
+        "missing_downloads_examples": [
+            {"id": e["id"], "name": e["name"], "stars": e.get("stars") or 0}
+            for e in sorted([x for x in emus if not dl_of(x)], key=lambda x: -(x.get("stars") or 0))[:6]
+        ],
         "sections": [
             {"key": k, "label": SECTION_LABEL[k], "count": sum(1 for r in rows if r["section"] == k)}
             for k in SECTION_ORDER
