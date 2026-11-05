@@ -1,0 +1,4728 @@
+{
+"level1": [
+{
+"rank": 1,
+"name": "小米 玄戒O3",
+"clusters": "(2x 4.35GHz C1-Ultra & 4x 3.68GHz C1-Premium & 4x 3.15GHz C1-Pro)",
+"cpu_score": "1178051",
+"gpu_score": "1832719",
+"total_score": "3010770"
+},
+{
+"rank": 2,
+"name": "高通 骁龙8 超级至尊版 Gen 6",
+"clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+"cpu_score": "1161762",
+"gpu_score": "1750402",
+"total_score": "2912164"
+},
+{
+"rank": 3,
+"name": "联发科技 天玑9600 Pro",
+"clusters": "(2x 4.55GHz C2-Ultra & 3x 4.35GHz C2-Pro & 3x 3.31GHz C2-Pro)",
+"cpu_score": "1162281",
+"gpu_score": "1639084",
+"total_score": "2801365"
+},
+{
+"rank": 4,
+"name": "高通 骁龙8 至尊版 Gen 6",
+"clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+"cpu_score": "1067700",
+"gpu_score": "1590180",
+"total_score": "2657880"
+},
+{
+"rank": 5,
+"name": "高通 骁龙8 至尊版 Gen5",
+"clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
+"cpu_score": "1137283",
+"gpu_score": "1367745",
+"total_score": "2449060"
+},
+{
+"rank": 6,
+"name": "联发科技 天玑9500",
+"clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+"cpu_score": "1038120",
+"gpu_score": "1261743",
+"total_score": "2299863"
+},
+{
+"rank": 7,
+"name": "联发科技 天玑9500M",
+"clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+"cpu_score": "1007659",
+"gpu_score": "1089690",
+"total_score": "2097349"
+},
+{
+"rank": 8,
+"name": "高通 骁龙8 至尊版",
+"clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
+"cpu_score": "967722",
+"gpu_score": "1118850",
+"total_score": "2086572"
+},
+{
+"rank": 9,
+"name": "联发科技 天玑9600M",
+"clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+"cpu_score": "957273",
+"gpu_score": "1126524",
+"total_score": "2083797"
+},
+{
+"rank": 10,
+"name": "小米 玄戒O1",
+"clusters": "(2x 3.9GHz Cortex-X925 & 4x 3.4GHz Cortex-A725 & 2x 1.9GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+"cpu_score": "1002180",
+"gpu_score": "955041",
+"total_score": "1957221"
+},
+{
+"rank": 11,
+"name": "高通 骁龙8 Gen 5",
+"clusters": "(2x 3.8GHz Oryon Prime & 6x 3.32GHz Oryon Performance)",
+"cpu_score": "958707",
+"gpu_score": "969946",
+"total_score": "1928653"
+},
+{
+"rank": 12,
+"name": "联发科技 天玑9500s",
+"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "901907",
+"gpu_score": "940585",
+"total_score": "1842492"
+},
+{
+"rank": 13,
+"name": "联发科技 天玑9400+",
+"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "887236",
+"gpu_score": "947791",
+"total_score": "1835027"
+},
+{
+"rank": 14,
+"name": "联发科技 天玑9400",
+"clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "881088",
+"gpu_score": "914166",
+"total_score": "1795254"
+},
+{
+"rank": 15,
+"name": "联发科技 天玑9400e",
+"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "773600",
+"gpu_score": "756330",
+"total_score": "1529930"
+},
+{
+"rank": 16,
+"name": "高通 骁龙8s Gen 4",
+"clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
+"cpu_score": "729993",
+"gpu_score": "793467",
+"total_score": "1523460"
+},
+{
+"rank": 17,
+"name": "高通 骁龙8 Gen 3",
+"clusters": "(1x 3.3GHz Cortex-X4 & 3x 3.15GHz Cortex-A720 & 2x 2.96GHz Cortex-A720 & 2x 2.27GHz Cortex-A520)",
+"cpu_score": "708427",
+"gpu_score": "764701",
+"total_score": "1473128"
+},
+{
+"rank": 18,
+"name": "联发科技 天玑9300+",
+"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "740355",
+"gpu_score": "712257",
+"total_score": "1452612"
+},
+{
+"rank": 19,
+"name": "联发科技 天玑9300",
+"clusters": "(1x 3.25GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "733400",
+"gpu_score": "680780",
+"total_score": "1414180"
+},
+{
+"rank": 20,
+"name": "联发科技 天玑8500 Elite",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "674244",
+"gpu_score": "716224",
+"total_score": "1390468"
+},
+{
+"rank": 21,
+"name": "联发科技 天玑8500 Super",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "674535",
+"gpu_score": "684207",
+"total_score": "1358742"
+},
+{
+"rank": 22,
+"name": "联发科技 天玑8550 Super",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "686946",
+"gpu_score": "665786",
+"total_score": "1352732"
+},
+{
+"rank": 23,
+"name": "联发科技 天玑8400-Max",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "686832",
+"gpu_score": "640335",
+"total_score": "1327167"
+},
+{
+"rank": 24,
+"name": "联发科技 天玑8450",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "679062",
+"gpu_score": "642877",
+"total_score": "1321939"
+},
+{
+"rank": 25,
+"name": "联发科技 天玑8500 竞速版",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "602298",
+"gpu_score": "719386",
+"total_score": "1321684"
+},
+{
+"rank": 26,
+"name": "联发科技 天玑8500 满血版",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "661699",
+"gpu_score": "641081",
+"total_score": "1302780"
+},
+{
+"rank": 27,
+"name": "联发科技 天玑8500-Ultra",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "672403",
+"gpu_score": "628394",
+"total_score": "1300797"
+},
+{
+"rank": 28,
+"name": "三星 Exynos 2500",
+"clusters": "(1x 3.3GHz Cortex-X925 & 2x 2.36GHz Cortex-A725 & 5x 1.8GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+"cpu_score": "687559",
+"gpu_score": "600850",
+"total_score": "1288409"
+},
+{
+"rank": 29,
+"name": "联发科技 天玑8550 Elite",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "502459",
+"gpu_score": "744698",
+"total_score": "1247157"
+},
+{
+"rank": 30,
+"name": "联发科技 天玑8400-Ultra",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "665278",
+"gpu_score": "562016",
+"total_score": "1227294"
+},
+{
+"rank": 31,
+"name": "联发科技 天玑8400 满血版",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "664203",
+"gpu_score": "560657",
+"total_score": "1224860"
+},
+{
+"rank": 32,
+"name": "联发科技 天玑9200+",
+"clusters": "(1x 3.35GHz Cortex-X3 & 3x 3.0GHz Cortex-A715 & 4x 2.0GHz Cortex-A510)",
+"cpu_score": "619264",
+"gpu_score": "471140",
+"total_score": "1090404"
+},
+{
+"rank": 33,
+"name": "联发科技 天玑9200",
+"clusters": "(1x 3.05GHz Cortex-X3 & 3x 2.85GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "594463",
+"gpu_score": "472386",
+"total_score": "1066849"
+},
+{
+"rank": 34,
+"name": "高通 骁龙8s Gen 3",
+"clusters": "(1x 3.0GHz Cortex-X4 & 4x 2.8GHz Cortex-A720 & 3x 2.0GHz Cortex-A520)",
+"cpu_score": "576655",
+"gpu_score": "484551",
+"total_score": "1061206"
+},
+{
+"rank": 35,
+"name": "高通 骁龙8 Gen 2",
+"clusters": "(1x 3.2GHz Cortex-X3 & 2x 2.8GHz Cortex-A715 & 2x 2.8GHz Cortex-A710 & 3x 2.0GHz Cortex-A510)",
+"cpu_score": "610530",
+"gpu_score": "424415",
+"total_score": "1034945"
+},
+{
+"rank": 36,
+"name": "高通 骁龙7+ Gen 3",
+"clusters": "(1x 2.8 GHz Cortex-X4 & 4x 2.6 GHz Cortex-A720 & 3x 1.9 GHz Cortex-A520)",
+"cpu_score": "568831",
+"gpu_score": "425728",
+"total_score": "994559"
+},
+{
+"rank": 37,
+"name": "联发科技 天玑8350-Ultimate",
+"clusters": "(1x 3.35GHz Cortex-A715 & 3x 3.2GHz Cortex-A715 & 4x 2.2GHz Cortex-A510)",
+"cpu_score": "486715",
+"gpu_score": "478334",
+"total_score": "965049"
+},
+{
+"rank": 38,
+"name": "三星 Exynos 2400",
+"clusters": "(1x 3.2GHz Cortex-X4 & 2x 2.9GHz Cortex-A720 & 3x 2.6GHz Cortex-A720 & 4x 1.95GHz Cortex-A520)",
+"cpu_score": "559029",
+"gpu_score": "376809",
+"total_score": "935838"
+},
+{
+"rank": 39,
+"name": "谷歌 Tensor G4",
+"clusters": "(1x 3.1GHz Cortex-X4 & 3x 2.6GHz Cortex-A720 & 4x 1.92GHz Cortex-A520)",
+"cpu_score": "521122",
+"gpu_score": "404393",
+"total_score": "925515"
+},
+{
+"rank": 40,
+"name": "联发科技 天玑8300-Ultra",
+"clusters": "(1x 3.35GHz Cortex-A715 & 3x 3.2GHz Cortex-A715 & 4x 2.2GHz Cortex-A510)",
+"cpu_score": "492051",
+"gpu_score": "402826",
+"total_score": "894877"
+},
+{
+"rank": 41,
+"name": "高通 骁龙8+ Gen 1",
+"clusters": "(1x 3.2GHz Kryo Prime & 3x 2.75GHz Kryo Gold & 4x 2.0GHz Kryo Silver)",
+"cpu_score": "564964",
+"gpu_score": "266287",
+"total_score": "831251"
+},
+{
+"rank": 42,
+"name": "高通 骁龙8+ Gen 1 UC",
+"clusters": "(1x 3.0GHz Kryo Prime & 3x 2.5GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "551716",
+"gpu_score": "257716",
+"total_score": "809432"
+},
+{
+"rank": 43,
+"name": "联发科技 天玑8350",
+"clusters": "(1x 3.35GHz Cortex-A715 & 3x 3.2GHz Cortex-A715 & 4x 2.2GHz Cortex-A510)",
+"cpu_score": "473825",
+"gpu_score": "473705",
+"total_score": "807642"
+},
+{
+"rank": 44,
+"name": "谷歌 Tensor G3",
+"clusters": "(1x 3.0GHz Cortex-X3 & 4x 2.45GHz Cortex-A715 & 4x 2.15GHz Cortex-A510)",
+"cpu_score": "441836",
+"gpu_score": "358996",
+"total_score": "800832"
+},
+{
+"rank": 45,
+"name": "高通 骁龙7 Gen 4",
+"clusters": "(1x 2.8GHz Cortex-A720 & 4x 2.4GHz Cortex-A720 & 3x 1.84GHz Cortex-A520)",
+"cpu_score": "474107",
+"gpu_score": "324490",
+"total_score": "798597"
+},
+{
+"rank": 46,
+"name": "联发科技 天玑9000+",
+"clusters": "(1x 3.20GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "596694",
+"gpu_score": "197233",
+"total_score": "793927"
+},
+{
+"rank": 47,
+"name": "高通 骁龙7+ Gen 2",
+"clusters": "(1x 2.91GHz Kryo Prime & 3x 2.49GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "549589",
+"gpu_score": "233264",
+"total_score": "782853"
+},
+{
+"rank": 48,
+"name": "三星 Exynos 2200",
+"clusters": "(1x 2.8GHz Cortex-X2 & 3x 2.50GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "420123",
+"gpu_score": "352928",
+"total_score": "773051"
+},
+{
+"rank": 49,
+"name": "联发科技 天玑9000",
+"clusters": "(1x 3.05GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "559180",
+"gpu_score": "200724",
+"total_score": "759904"
+},
+{
+"rank": 50,
+"name": "高通 骁龙8 Gen 1",
+"clusters": "(1x 3.0GHz Kryo Prime & 3x 2.5GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "488811",
+"gpu_score": "231428",
+"total_score": "720239"
+},
+{
+"rank": 51,
+"name": "联发科技 天玑8250",
+"clusters": "(1x 3.1GHz Cortex-A78 & 3x 3.0GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "451357",
+"gpu_score": "230551",
+"total_score": "681908"
+},
+{
+"rank": 52,
+"name": "海思 麒麟9020",
+"clusters": "(1x 2.5GHz & 3x 2.15GHz & 4x 1.6GHz)",
+"cpu_score": "455084",
+"gpu_score": "225334",
+"total_score": "680418"
+},
+{
+"rank": 53,
+"name": "高通 骁龙888 Plus",
+"clusters": "(1x 3.0GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
+"cpu_score": "455978",
+"gpu_score": "205998",
+"total_score": "661976"
+},
+{
+"rank": 54,
+"name": "联发科技 天玑8200/8200 Ultra",
+"clusters": "(1x 3.1GHz Cortex-A78 & 3x 3.0GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "491273",
+"gpu_score": "157385",
+"total_score": "648658"
+},
+{
+"rank": 55,
+"name": "海思 麒麟9020A",
+"clusters": "(1x 2.4GHz & 3x 2.02GHz & 4x 1.6GHz)",
+"cpu_score": "452139",
+"gpu_score": "195207",
+"total_score": "647346"
+},
+{
+"rank": 56,
+"name": "高通 骁龙888",
+"clusters": "(1x 2.84GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
+"cpu_score": "456399",
+"gpu_score": "189631",
+"total_score": "646030"
+},
+{
+"rank": 57,
+"name": "谷歌 Tensor G2",
+"clusters": "(2x 2.85GHz Cortex-X1 & 2x 2.35GHz Cortex-A78 & 4x 1.80GHz Cortex-A55)",
+"cpu_score": "380887",
+"gpu_score": "263843",
+"total_score": "644730"
+},
+{
+"rank": 58,
+"name": "联发科技 天玑8100-Max",
+"clusters": "(4x 2.85GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "455278",
+"gpu_score": "151935",
+"total_score": "607213"
+},
+{
+"rank": 59,
+"name": "联发科技 天玑8100",
+"clusters": "(4x 2.85GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "413235",
+"gpu_score": "185896",
+"total_score": "599131"
+},
+{
+"rank": 60,
+"name": "高通 骁龙870",
+"clusters": "(1x 3.2GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "425093",
+"gpu_score": "167800",
+"total_score": "592893"
+},
+{
+"rank": 61,
+"name": "高通 骁龙865 Plus",
+"clusters": "(1x 3.1GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "402864",
+"gpu_score": "182988",
+"total_score": "585852"
+},
+{
+"rank": 62,
+"name": "三星 Exynos 1480",
+"clusters": "(4x 2.75GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "361997",
+"gpu_score": "221241",
+"total_score": "583238"
+},
+{
+"rank": 63,
+"name": "高通 骁龙865",
+"clusters": "(1x 2.84GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "445934",
+"gpu_score": "132294",
+"total_score": "578228"
+},
+{
+"rank": 64,
+"name": "海思 麒麟9010",
+"clusters": "(1x 2.3GHz TSV big & 3x 2.18GHz TSV middle & 4x 1.55GHz Cortex-A510)",
+"cpu_score": "419285",
+"gpu_score": "154292",
+"total_score": "573577"
+},
+{
+"rank": 65,
+"name": "高通 骁龙7 Gen 3",
+"clusters": "(1x 2.63GHz Cortex-A715 & 3x 2.4GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "408149",
+"gpu_score": "151288",
+"total_score": "559437"
+},
+{
+"rank": 66,
+"name": "联发科技 天玑7500 满血版",
+"clusters": "(4x 2.6GHz C1- Pro & 4x 2.0GHz C1-Nano)",
+"cpu_score": "439875",
+"gpu_score": "106210",
+"total_score": "546085"
+},
+{
+"rank": 67,
+"name": "海思 麒麟9000s",
+"clusters": "(1x 2.62GHz TSV big & 3x 2.15GHz TSV middle & 4x 1.53GHz Cortex-A510)",
+"cpu_score": "385167",
+"gpu_score": "157654",
+"total_score": "542821"
+},
+{
+"rank": 68,
+"name": "海思 麒麟9000",
+"clusters": "(1x 3.13GHz Cortex-A77 & 3x 2.54GHz Cortex-A77 & 4x 2.05GHz Cortex-A55)",
+"cpu_score": "354708",
+"gpu_score": "185144",
+"total_score": "539852"
+},
+{
+"rank": 69,
+"name": "高通 骁龙7s Gen 3",
+"clusters": "(1x 2.5GHz Cortex-A720 & 3x 2.4GHz Cortex-A720 & 4x 1.8GHz Cortex-A520)",
+"cpu_score": "431422",
+"gpu_score": "101769",
+"total_score": "533191"
+},
+{
+"rank": 70,
+"name": "海思 麒麟9000E",
+"clusters": "(1x 3.13GHz Cortex-A77 & 3x 2.54GHz Cortex-A77 & 4x 2.05GHz Cortex-A55)",
+"cpu_score": "351895",
+"gpu_score": "179452",
+"total_score": "531347"
+},
+{
+"rank": 71,
+"name": "联发科技 天玑1200",
+"clusters": "(1x 3.0GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "394300",
+"gpu_score": "134794",
+"total_score": "529094"
+},
+{
+"rank": 72,
+"name": "海思 麒麟9010E",
+"clusters": "(1x 2.189GHz TSV big & 3x 2.18GHz TSV middle & 4x 1.55GHz Cortex-A510)",
+"cpu_score": "392964",
+"gpu_score": "123902",
+"total_score": "516866"
+},
+{
+"rank": 73,
+"name": "联发科技 天玑1100",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "378961",
+"gpu_score": "137870",
+"total_score": "516831"
+},
+{
+"rank": 74,
+"name": "海思 麒麟9010L",
+"clusters": "(1x 2.189GHz TSV big & 2x 2.18GHz TSV middle & 3x 1.4GHz Cortex-A510)",
+"cpu_score": "393669",
+"gpu_score": "121989",
+"total_score": "515658"
+},
+{
+"rank": 75,
+"name": "谷歌 Tensor",
+"clusters": "(2x 2.8GHz Cortex-X1 & 2x 2.25GHz Cortex-A76 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "371525",
+"gpu_score": "140340",
+"total_score": "511865"
+},
+{
+"rank": 76,
+"name": "海思 麒麟9000S1",
+"clusters": "(1x 2.487GHz TSV big & 3x 2.15GHz TSV middle & 4x 1.53GHz Cortex-A510)",
+"cpu_score": "382291",
+"gpu_score": "128333",
+"total_score": "510624"
+},
+{
+"rank": 77,
+"name": "联发科技 天玑1300",
+"clusters": "(1x 3.0GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4 x2.0GHz Cortex-A55)",
+"cpu_score": "366328",
+"gpu_score": "139148",
+"total_score": "505476"
+},
+{
+"rank": 78,
+"name": "联发科技 天玑7200",
+"clusters": "(2x 2.8GHz Cortex-A715 & 6x 2.0GHz Cortex-A510)",
+"cpu_score": "389401",
+"gpu_score": "109868",
+"total_score": "499269"
+},
+{
+"rank": 79,
+"name": "联发科技 天玑7200-Ultra",
+"clusters": "(2x 2.8GHz Cortex-A715 & 6x 2.0GHz Cortex-A510)",
+"cpu_score": "345068",
+"gpu_score": "153093",
+"total_score": "498161"
+},
+{
+"rank": 80,
+"name": "三星 Exynos 1080",
+"clusters": "(1x 2.8GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "358342",
+"gpu_score": "138573",
+"total_score": "496915"
+},
+{
+"rank": 81,
+"name": "联发科技 天玑8050",
+"clusters": "(1x 3.0GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4x 2.0 Cortex-A55)",
+"cpu_score": "355714",
+"gpu_score": "139839",
+"total_score": "495553"
+},
+{
+"rank": 82,
+"name": "高通 骁龙6 Gen 5",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "373770",
+"gpu_score": "119105",
+"total_score": "492875"
+},
+{
+"rank": 83,
+"name": "高通 骁龙855 Plus",
+"clusters": "(1x 2.96GHz Kryo 485 Gold & 3x 2.42GHz Kryo 485 Gold & 4x 1.8GHz Kryo 485 Sliver)",
+"cpu_score": "363520",
+"gpu_score": "127283",
+"total_score": "490803"
+},
+{
+"rank": 84,
+"name": "联发科技 天玑8000",
+"clusters": "(4x 2.75GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "304126",
+"gpu_score": "182325",
+"total_score": "486451"
+},
+{
+"rank": 85,
+"name": "三星 Exynos 2100",
+"clusters": "(1x 2.9GHz Cortex-X1 & 3x 2.8GHz Cortex-A78 & 4x 2.2GHz Cortex-A55)",
+"cpu_score": "296974",
+"gpu_score": "188341",
+"total_score": "485315"
+},
+{
+"rank": 86,
+"name": "海思 麒麟990 5G",
+"clusters": "(2x 2.86GHz Cortex-A76 & 2x 2.36GHz Cortex-A76 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "338761",
+"gpu_score": "141470",
+"total_score": "480231"
+},
+{
+"rank": 87,
+"name": "高通 骁龙6 Gen 4",
+"clusters": "(1x 2.3GHz Cortex-A720 & 3x 2.2GHz Cortex-A720 & 4x 1.8GHz Cortex-A520)",
+"cpu_score": "378823",
+"gpu_score": "99163",
+"total_score": "477986"
+},
+{
+"rank": 88,
+"name": "高通 骁龙855",
+"clusters": "(1x 2.84GHz Kryo 485 Gold & 3x 2.41GHz Kryo 485 Gold & 4x 1.78GHz Kryo 485 Sliver)",
+"cpu_score": "354692",
+"gpu_score": "122856",
+"total_score": "477548"
+},
+{
+"rank": 89,
+"name": "海思 麒麟9000SL",
+"clusters": "(1x 2.35GHz TSV big & 2x 2.15GHz TSV middle & 3x 1.53GHz Cortex-A510)",
+"cpu_score": "346570",
+"gpu_score": "128673",
+"total_score": "475243"
+},
+{
+"rank": 90,
+"name": "联发科技 天玑7400-Ultimate",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "310929",
+"gpu_score": "158744",
+"total_score": "469673"
+},
+{
+"rank": 91,
+"name": "高通 骁龙860",
+"clusters": "(1x 2.84GHz Kryo 485 Gold & 3x 2.41GHz Kryo 485 Gold & 4x 1.78GHz Kryo 485 Sliver)",
+"cpu_score": "338527",
+"gpu_score": "127280",
+"total_score": "465807"
+},
+{
+"rank": 92,
+"name": "联发科技 天玑7400",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "362029",
+"gpu_score": "103568",
+"total_score": "465597"
+},
+{
+"rank": 93,
+"name": "高通 骁龙780G",
+"clusters": "(1x 2.4GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz 670 Sliver)",
+"cpu_score": "359944",
+"gpu_score": "103874",
+"total_score": "463818"
+},
+{
+"rank": 94,
+"name": "高通 骁龙7 Gen 1",
+"clusters": "(1x 2.4GHz Kryo Prime & 3x 2.36GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "354429",
+"gpu_score": "107997",
+"total_score": "462426"
+},
+{
+"rank": 95,
+"name": "海思 麒麟990",
+"clusters": "(2x 2.86GHz Cortex-A76 & 2x 2.09GHz Cortex-A76 & 4x 1.86GHz Cortex-A55)",
+"cpu_score": "321548",
+"gpu_score": "140518",
+"total_score": "462066"
+},
+{
+"rank": 96,
+"name": "三星 Exynos 990",
+"clusters": "(2x 2.73GHz M5 & 2x 2.50GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "300684",
+"gpu_score": "156948",
+"total_score": "457632"
+},
+{
+"rank": 97,
+"name": "联发科技 天玑1000+",
+"clusters": "(4x 2.6GHz Cortex-A77 & 4x 2.0 GHz Cortex-A55)",
+"cpu_score": "330072",
+"gpu_score": "127264",
+"total_score": "457336"
+},
+{
+"rank": 98,
+"name": "联发科技 天玑7400-Super",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "350724",
+"gpu_score": "101702",
+"total_score": "452426"
+},
+{
+"rank": 99,
+"name": "高通 骁龙778G Plus",
+"clusters": "(1x 2.5GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz Kryo 670 Sliver)",
+"cpu_score": "346400",
+"gpu_score": "105023",
+"total_score": "451423"
+},
+{
+"rank": 100,
+"name": "高通 骁龙782G",
+"clusters": "(1x 2.7GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz Kryo 670 Silver)",
+"cpu_score": "337605",
+"gpu_score": "111471",
+"total_score": "449076"
+},
+{
+"rank": 101,
+"name": "联发科技 天玑7400-Ultra",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "345311",
+"gpu_score": "97052",
+"total_score": "442363"
+},
+{
+"rank": 102,
+"name": "联发科技 天玑1000L",
+"clusters": "(4x 2.2GHz Cortex-A77 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "315023",
+"gpu_score": "124738",
+"total_score": "439761"
+},
+{
+"rank": 103,
+"name": "高通 骁龙7s Gen 2",
+"clusters": "(4x 2.40GHz Cortex-A78 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "344673",
+"gpu_score": "89985",
+"total_score": "434658"
+},
+{
+"rank": 104,
+"name": "高通 骁龙778G",
+"clusters": "(1x 2.4GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz Kryo 670 Sliver)",
+"cpu_score": "333944",
+"gpu_score": "97384",
+"total_score": "431328"
+},
+{
+"rank": 105,
+"name": "联发科技 天玑8020",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "284015",
+"gpu_score": "142876",
+"total_score": "426891"
+},
+{
+"rank": 106,
+"name": "联发科技 天玑7300e",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "347299",
+"gpu_score": "79022",
+"total_score": "426321"
+},
+{
+"rank": 107,
+"name": "高通 骁龙6s Gen 4",
+"clusters": "(4x 2.4GHz Cortex-A78 & 4x 1.5GHz Cortex-A55)",
+"cpu_score": "340877",
+"gpu_score": "82144",
+"total_score": "423021"
+},
+{
+"rank": 108,
+"name": "海思 麒麟990E",
+"clusters": "(2x 2.86GHz Cortex-A76 & 2x 2.36GHz Cortex-A76 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "295149",
+"gpu_score": "127090",
+"total_score": "422239"
+},
+{
+"rank": 109,
+"name": "联发科技 天玑7360-Super",
+"clusters": "(4x2.5 GHz Cortex-A78 & 4x2.0 GHz Cortex-A55)",
+"cpu_score": "319158",
+"gpu_score": "93046",
+"total_score": "412204"
+},
+{
+"rank": 110,
+"name": "联发科技 天玑7300-Ultra",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "319158",
+"gpu_score": "93046",
+"total_score": "412204"
+},
+{
+"rank": 111,
+"name": "三星 Exynos 9825",
+"clusters": "(2x 2.73GHz M4 & 2x 2.4GHz Cortex-A75 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "267009",
+"gpu_score": "136537",
+"total_score": "403546"
+},
+{
+"rank": 112,
+"name": "联发科技 天玑1080",
+"clusters": "(2x 2.6GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "324565",
+"gpu_score": "77182",
+"total_score": "401747"
+},
+{
+"rank": 113,
+"name": "三星 Exynos 9820",
+"clusters": "(2x 2.73GHz M4 & 2x 2.31GHz Cortex-A75 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "260763",
+"gpu_score": "129444",
+"total_score": "390207"
+},
+{
+"rank": 114,
+"name": "高通 骁龙6 Gen 3",
+"clusters": "(4x 2.4GHz Cortex-A78 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "299077",
+"gpu_score": "90319",
+"total_score": "389396"
+},
+{
+"rank": 115,
+"name": "联发科技 天玑7300X",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "294108",
+"gpu_score": "93431",
+"total_score": "387539"
+},
+{
+"rank": 116,
+"name": "联发科技 天玑7300 Energy",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "256128",
+"gpu_score": "126967",
+"total_score": "383095"
+},
+{
+"rank": 117,
+"name": "联发科技 天玑7300",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "289659",
+"gpu_score": "92765",
+"total_score": "382424"
+},
+{
+"rank": 118,
+"name": "三星 Exynos 1380",
+"clusters": "(4x 2.4GHz Cortex-A78 & 4x 2.0 GHz Cortex-A55)",
+"cpu_score": "292643",
+"gpu_score": "88438",
+"total_score": "381081"
+},
+{
+"rank": 119,
+"name": "海思 麒麟8000",
+"clusters": "(1x 2.4GHz & 3x 2.19GHz & 4x 1.84GHz)",
+"cpu_score": "270123",
+"gpu_score": "110583",
+"total_score": "380706"
+},
+{
+"rank": 120,
+"name": "海思 麒麟985",
+"clusters": "(1x 2.58GHz Cortex-A76 & 3x 2.4GHz Cortex-A76 & 4x 1.84GHz Cortex-A55)",
+"cpu_score": "300347",
+"gpu_score": "78705",
+"total_score": "379052"
+},
+{
+"rank": 121,
+"name": "联发科技 天玑820",
+"clusters": "(4x 2.6GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "296900",
+"gpu_score": "81911",
+"total_score": "378811"
+},
+{
+"rank": 122,
+"name": "高通 骁龙6 Gen 1",
+"clusters": "(4x 2.2GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "303665",
+"gpu_score": "74011",
+"total_score": "377676"
+},
+{
+"rank": 123,
+"name": "联发科技 天玑7030",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "280167",
+"gpu_score": "92198",
+"total_score": "372365"
+},
+{
+"rank": 124,
+"name": "联发科技 天玑7050",
+"clusters": "(2x 2.6GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "289801",
+"gpu_score": "75892",
+"total_score": "365693"
+},
+{
+"rank": 125,
+"name": "海思 麒麟820",
+"clusters": "(1x 2.36GHz Cortex-A76 & 3x 2.22GHz Cortex-A76 & 4x 1.84GHz Cortex-A55)",
+"cpu_score": "290121",
+"gpu_score": "73344",
+"total_score": "363465"
+},
+{
+"rank": 126,
+"name": "海思 麒麟980",
+"clusters": "(2x 2.6GHz Cortex-A76 & 2x 1.92GHz Cortex-A76 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "283330",
+"gpu_score": "76085",
+"total_score": "359415"
+},
+{
+"rank": 127,
+"name": "联发科技 天玑900",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "288714",
+"gpu_score": "70386",
+"total_score": "359100"
+},
+{
+"rank": 128,
+"name": "联发科技 天玑1050",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "282416",
+"gpu_score": "76344",
+"total_score": "358760"
+},
+{
+"rank": 129,
+"name": "联发科技 天玑920",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "284803",
+"gpu_score": "72952",
+"total_score": "357755"
+},
+{
+"rank": 130,
+"name": "海思 麒麟8000A",
+"clusters": "(3x 2.19GHz Cortex-A77 & 3x 1.84GHz Cortex-A55)",
+"cpu_score": "253408",
+"gpu_score": "102896",
+"total_score": "356304"
+},
+{
+"rank": 131,
+"name": "高通 骁龙6s Gen 3",
+"clusters": "(2x 2.3GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "293841",
+"gpu_score": "58384",
+"total_score": "352225"
+},
+{
+"rank": 132,
+"name": "海思 麒麟820E",
+"clusters": "(3x 2.22GHz Cortex-A76 & 3x 1.84GHz Cortex-A55)",
+"cpu_score": "273234",
+"gpu_score": "75956",
+"total_score": "349190"
+},
+{
+"rank": 133,
+"name": "联发科技 天玑7025-Ultra",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "287828",
+"gpu_score": "56560",
+"total_score": "344388"
+},
+{
+"rank": 134,
+"name": "高通 骁龙4 Gen 5",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "285143",
+"gpu_score": "58553",
+"total_score": "343696"
+},
+{
+"rank": 135,
+"name": "高通 骁龙768G",
+"clusters": "(1x 2.8GHz Kryo 475 Prime & 1x 2.2GHz Kryo 475 Gold & 6x 1.8GHz Kryo 475 Sliver)",
+"cpu_score": "270690",
+"gpu_score": "67703",
+"total_score": "338393"
+},
+{
+"rank": 136,
+"name": "高通 骁龙765G",
+"clusters": "(1x 2.4GHz Kryo 475 Prime & 1x 2.2GHz Kryo 475 Gold & 6x 1.8GHz Kryo 475 Sliver)",
+"cpu_score": "271057",
+"gpu_score": "62028",
+"total_score": "333085"
+},
+{
+"rank": 137,
+"name": "联发科技 天玑800",
+"clusters": "(4x 2.0GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "264699",
+"gpu_score": "64817",
+"total_score": "329516"
+},
+{
+"rank": 138,
+"name": "三星 Exynos 980",
+"clusters": "(2x 2.2GHz Cortex-A77 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "267789",
+"gpu_score": "59772",
+"total_score": "327561"
+},
+{
+"rank": 139,
+"name": "紫光展锐 T770",
+"clusters": "(1x 2.5GHz Cortex-A76 & 3x 2.2GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "241253",
+"gpu_score": "84653",
+"total_score": "325906"
+},
+{
+"rank": 140,
+"name": "高通 骁龙695",
+"clusters": "(2x 2.2GHz Kryo 660 Gold & 6x 1.7GHz Kryo 660 Silver)",
+"cpu_score": "267992",
+"gpu_score": "57225",
+"total_score": "325217"
+},
+{
+"rank": 141,
+"name": "联发科技 天玑930",
+"clusters": "(2x 2.2GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "272165",
+"gpu_score": "52977",
+"total_score": "325142"
+},
+{
+"rank": 142,
+"name": "海思 麒麟810",
+"clusters": "(2x 2.27GHz Cortex-A76 & 6x 1.88GHz Cortex-A55)",
+"cpu_score": "265666",
+"gpu_score": "57938",
+"total_score": "323604"
+},
+{
+"rank": 143,
+"name": "高通 骁龙845",
+"clusters": "(4x 2.96GHz Kryo 385 Gold & 4x 1.7GHz Kryo 385 Silver)",
+"cpu_score": "223667",
+"gpu_score": "93788",
+"total_score": "317455"
+},
+{
+"rank": 144,
+"name": "紫光展锐 T820",
+"clusters": "(1x 2.7GHz Cortex-A76 & 3x 2.3GHz Cortex-A76 & 4x 2.1GHz Cortex-A55)",
+"cpu_score": "264401",
+"gpu_score": "52665",
+"total_score": "317066"
+},
+{
+"rank": 145,
+"name": "紫光展锐 T760",
+"clusters": "(4x 2.2GHz Cortex-A76 & 4x Cortex-A55)",
+"cpu_score": "255846",
+"gpu_score": "52662",
+"total_score": "308508"
+},
+{
+"rank": 146,
+"name": "高通 骁龙4 Gen 2",
+"clusters": "(2x 2.2GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "272404",
+"gpu_score": "34284",
+"total_score": "306688"
+},
+{
+"rank": 147,
+"name": "三星 Exynos 9810",
+"clusters": "(4x 2.9GHz M3 & 4x 1.9GHz Cortex-A55)",
+"cpu_score": "216161",
+"gpu_score": "88935",
+"total_score": "305096"
+},
+{
+"rank": 148,
+"name": "高通 骁龙4 Gen 1",
+"clusters": "(2x 2.0GHz Kryo Gold & 6x 1.8GHz Kryo Silver)",
+"cpu_score": "254817",
+"gpu_score": "49182",
+"total_score": "303999"
+},
+{
+"rank": 149,
+"name": "联发科技 天玑800U",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "248641",
+"gpu_score": "54800",
+"total_score": "303441"
+},
+{
+"rank": 150,
+"name": "三星 Exynos 880",
+"clusters": "(2x 2.0GHz Cortex-A77 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "260120",
+"gpu_score": "39829",
+"total_score": "299949"
+},
+{
+"rank": 151,
+"name": "联发科技 天玑7025",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "246969",
+"gpu_score": "52844",
+"total_score": "299813"
+},
+{
+"rank": 152,
+"name": "高通 骁龙480 Plus",
+"clusters": "(2x 2.2GHz Kryo 460 Gold & 6x 1.9GHz Kryo 460 Silver)",
+"cpu_score": "248438",
+"gpu_score": "50271",
+"total_score": "298709"
+},
+{
+"rank": 153,
+"name": "高通 骁龙730G",
+"clusters": "(2x 2.2GHz Kryo 470 Gold & 6x 1.8GHz Kryo 470 Silver)",
+"cpu_score": "246726",
+"gpu_score": "49413",
+"total_score": "296139"
+},
+{
+"rank": 154,
+"name": "高通 骁龙480",
+"clusters": "(2x 2.0GHz Kryo 460 Gold & 6x 1.8GHz Kryo 460 Silver)",
+"cpu_score": "243222",
+"gpu_score": "48990",
+"total_score": "292212"
+},
+{
+"rank": 155,
+"name": "高通 骁龙690",
+"clusters": "(2x 2.0GHz Kryo 560 Gold & 6x 1.7 GHz Kryo 560 Silver)",
+"cpu_score": "234428",
+"gpu_score": "56541",
+"total_score": "290969"
+},
+{
+"rank": 156,
+"name": "联发科技 天玑6360-Max",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "241094",
+"gpu_score": "46019",
+"total_score": "287113"
+},
+{
+"rank": 157,
+"name": "联发科技 天玑810",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "238994",
+"gpu_score": "46458",
+"total_score": "285452"
+},
+{
+"rank": 158,
+"name": "联发科技 天玑6500 Elite",
+"clusters": "(2x 2.6GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "241278",
+"gpu_score": "43137",
+"total_score": "284415"
+},
+{
+"rank": 159,
+"name": "联发科技 曦力G100-Ultra",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "236674",
+"gpu_score": "46836",
+"total_score": "283510"
+},
+{
+"rank": 160,
+"name": "高通 骁龙720G",
+"clusters": "(2x 2.3GHz Kryo 465 Gold & 6x 1.8GHz Kryo 465 Silver)",
+"cpu_score": "231351",
+"gpu_score": "51407",
+"total_score": "282758"
+},
+{
+"rank": 161,
+"name": "联发科技 曦力G100",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "234698",
+"gpu_score": "46060",
+"total_score": "280758"
+},
+{
+"rank": 162,
+"name": "三星 Exynos 1280",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "211418",
+"gpu_score": "68469",
+"total_score": "279887"
+},
+{
+"rank": 163,
+"name": "联发科技 Helio G99",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "232363",
+"gpu_score": "45586",
+"total_score": "277949"
+},
+{
+"rank": 164,
+"name": "联发科技 天玑700",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "236164",
+"gpu_score": "40540",
+"total_score": "276704"
+},
+{
+"rank": 165,
+"name": "三星 Exynos 1330",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "234160",
+"gpu_score": "42103",
+"total_score": "276263"
+},
+{
+"rank": 166,
+"name": "高通 骁龙750G",
+"clusters": "(2x 2.2GHz Kryo 570 Gold & 6x 1.8GHz Kryo 570 Silver)",
+"cpu_score": "222795",
+"gpu_score": "52969",
+"total_score": "275764"
+},
+{
+"rank": 167,
+"name": "联发科技 天玑6080",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "232932",
+"gpu_score": "41983",
+"total_score": "274915"
+},
+{
+"rank": 168,
+"name": "高通 骁龙835",
+"clusters": "(4x 2.45GHz Kryo 280 Gold & 4x 1.9GHz Kryo 280 Silver)",
+"cpu_score": "208071",
+"gpu_score": "66764",
+"total_score": "274835"
+},
+{
+"rank": 169,
+"name": "联发科技 天玑6100+",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "230218",
+"gpu_score": "42229",
+"total_score": "272447"
+},
+{
+"rank": 170,
+"name": "联发科技 Helio G90T",
+"clusters": "(2x 2.05GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "221982",
+"gpu_score": "46585",
+"total_score": "268567"
+},
+{
+"rank": 171,
+"name": "联发科技 天玑6300",
+"clusters": "(2x 2.4GHz Cortex-A76 @ 6x 2.0GHz Cortex-A55)",
+"cpu_score": "218143",
+"gpu_score": "46146",
+"total_score": "264289"
+},
+{
+"rank": 172,
+"name": "联发科技 曦力G100-Ultimate",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "214198",
+"gpu_score": "47551",
+"total_score": "261749"
+},
+{
+"rank": 173,
+"name": "紫光展锐 T8200",
+"clusters": "(2x 2.3GHz Cortex-A76 & 2.1GHz Cortex-A55)",
+"cpu_score": "220570",
+"gpu_score": "38865",
+"total_score": "259435"
+},
+{
+"rank": 174,
+"name": "联发科技 Helio G200",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "211137",
+"gpu_score": "48178",
+"total_score": "259315"
+},
+{
+"rank": 175,
+"name": "紫光展锐 T765",
+"clusters": "(2x 2.3GHz Cortex-A76 & 2.1GHz Cortex-A55)",
+"cpu_score": "218474",
+"gpu_score": "39368",
+"total_score": "257842"
+},
+{
+"rank": 176,
+"name": "联发科技 Helio G95",
+"clusters": "(2x 2.05GHz Cortex-A76 & 6x 2.05GHz Cortex-A55)",
+"cpu_score": "198067",
+"gpu_score": "56519",
+"total_score": "254586"
+},
+{
+"rank": 177,
+"name": "高通 骁龙4s Gen 2",
+"clusters": "(2x 2.0GHz Cortex-A78 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "225130",
+"gpu_score": "28135",
+"total_score": "253265"
+},
+{
+"rank": 178,
+"name": "联发科技 Helio G99 Ultra",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "206117",
+"gpu_score": "46193",
+"total_score": "252310"
+},
+{
+"rank": 179,
+"name": "高通 骁龙732G",
+"clusters": "(2x 2.3GHz Kryo 470 Gold & 6x 1.8GHz Kryo 470 Silver)",
+"cpu_score": "199774",
+"gpu_score": "48174",
+"total_score": "247948"
+},
+{
+"rank": 180,
+"name": "联发科技 天玑6020",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "201687",
+"gpu_score": "39512",
+"total_score": "241199"
+},
+{
+"rank": 181,
+"name": "三星 Exynos 8895",
+"clusters": "(4x 2.3GHz M2 & 4x 1.69GHz Cortex-A53)",
+"cpu_score": "165434",
+"gpu_score": "71960",
+"total_score": "237394"
+},
+{
+"rank": 182,
+"name": "紫光展锐 T750",
+"clusters": "(4x 2.0GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "196562",
+"gpu_score": "37743",
+"total_score": "234305"
+},
+{
+"rank": 183,
+"name": "高通 骁龙680",
+"clusters": "(4x 2.2GHz Kryo 265 Gold & 4x 1.8GHz Kryo 265 Silver)",
+"cpu_score": "205686",
+"gpu_score": "27589",
+"total_score": "233275"
+},
+{
+"rank": 184,
+"name": "高通 骁龙675",
+"clusters": "(2x 2.0GHz Kryo 460 Gold & 6x 1.7GHz Kryo 460 Silver)",
+"cpu_score": "203239",
+"gpu_score": "28874",
+"total_score": "232113"
+},
+{
+"rank": 185,
+"name": "联发科技 Helio G96",
+"clusters": "(2x 2.05GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "191556",
+"gpu_score": "40218",
+"total_score": "231774"
+},
+{
+"rank": 186,
+"name": "联发科技 天玑720",
+"clusters": "(2x 2.0GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "184497",
+"gpu_score": "45598",
+"total_score": "230095"
+},
+{
+"rank": 187,
+"name": "联发科技 天玑7020",
+"clusters": "(2x 2.2GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "150910",
+"gpu_score": "79021",
+"total_score": "229931"
+},
+{
+"rank": 188,
+"name": "联发科技 Helio P90",
+"clusters": "(2x 2.2GHz Cortex-A75 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "187970",
+"gpu_score": "31166",
+"total_score": "219136"
+},
+{
+"rank": 189,
+"name": "高通 骁龙712",
+"clusters": "(2x 2.3GHz Kryo 360 Gold & 6x 1.7GHz Kryo 360 Silver)",
+"cpu_score": "172642",
+"gpu_score": "44413",
+"total_score": "217055"
+},
+{
+"rank": 190,
+"name": "高通 骁龙710",
+"clusters": "(2x 2.2GHz Kryo 360 Gold & 6x 1.7GHz Kryo 360 Silver)",
+"cpu_score": "168156",
+"gpu_score": "38455",
+"total_score": "206611"
+},
+{
+"rank": 191,
+"name": "紫光展锐 T7510",
+"clusters": "(4x 2.0GHz Cortex-A75 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "173260",
+"gpu_score": "28732",
+"total_score": "201992"
+},
+{
+"rank": 192,
+"name": "紫光展锐 T710",
+"clusters": "(4x 2.0GHz Cortex-A75 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "168257",
+"gpu_score": "28915",
+"total_score": "197172"
+},
+{
+"rank": 193,
+"name": "海思 麒麟970",
+"clusters": "(4x 2.36GHz Cortex-A73 & 4x 1.84GHz Cortex-A53)",
+"cpu_score": "161490",
+"gpu_score": "35165",
+"total_score": "196655"
+},
+{
+"rank": 194,
+"name": "高通 骁龙670",
+"clusters": "(2x 2.0GHz Kryo 360 Gold & 6x 1.7GHz Kryo 360 Silver)",
+"cpu_score": "157131",
+"gpu_score": "34202",
+"total_score": "191333"
+},
+{
+"rank": 195,
+"name": "高通 骁龙821",
+"clusters": "(2x 2.35GHz Kryo & 2x 2.19GHz Kryo)",
+"cpu_score": "138492",
+"gpu_score": "52473",
+"total_score": "190965"
+},
+{
+"rank": 196,
+"name": "紫光展锐 T7250",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "169607",
+"gpu_score": "21100",
+"total_score": "190707"
+},
+{
+"rank": 197,
+"name": "三星 Exynos 8890",
+"clusters": "(4x 2.3GHz Mongoose & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "148082",
+"gpu_score": "42200",
+"total_score": "190282"
+},
+{
+"rank": 198,
+"name": "高通 骁龙820",
+"clusters": "(2x 2.15GHz Kryo & 2x 1.6GHz Kryo)",
+"cpu_score": "136995",
+"gpu_score": "53174",
+"total_score": "190169"
+},
+{
+"rank": 199,
+"name": "紫光展锐 T618",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "151848",
+"gpu_score": "28466",
+"total_score": "180314"
+},
+{
+"rank": 200,
+"name": "联发科技 Helio G80",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "153844",
+"gpu_score": "26056",
+"total_score": "179900"
+},
+{
+"rank": 201,
+"name": "紫光展锐 T510",
+"clusters": "(4x 1.82GHz Cortex-A75 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "157693",
+"gpu_score": "21964",
+"total_score": "179657"
+},
+{
+"rank": 202,
+"name": "紫光展锐 T700",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "149014",
+"gpu_score": "30482",
+"total_score": "179496"
+},
+{
+"rank": 203,
+"name": "联发科技 曦力G85",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "151513",
+"gpu_score": "26793",
+"total_score": "178306"
+},
+{
+"rank": 204,
+"name": "海思 麒麟710",
+"clusters": "(4x 2.2GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "154645",
+"gpu_score": "21531",
+"total_score": "176176"
+},
+{
+"rank": 205,
+"name": "联发科技 Helio G81-Ultra",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "151008",
+"gpu_score": "23986",
+"total_score": "174994"
+},
+{
+"rank": 206,
+"name": "联发科技 Helio P70",
+"clusters": "(4x 2.1GHz Cortex-A73 & 4x 2.0GHz Cortex-A53)",
+"cpu_score": "145086",
+"gpu_score": "26048",
+"total_score": "171134"
+},
+{
+"rank": 207,
+"name": "海思 麒麟960",
+"clusters": "(4x 2.36GHz Cortex-A73 & 4x 1.84GHz Cortex-A53)",
+"cpu_score": "134229",
+"gpu_score": "36194",
+"total_score": "170423"
+},
+{
+"rank": 208,
+"name": "联发科技 Helio G70",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.7GHz Cortex-A55)",
+"cpu_score": "146784",
+"gpu_score": "23502",
+"total_score": "170286"
+},
+{
+"rank": 209,
+"name": "高通 骁龙660",
+"clusters": "(4x 2.2GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "149507",
+"gpu_score": "19799",
+"total_score": "169306"
+},
+{
+"rank": 210,
+"name": "联发科技 Helio P65",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "147055",
+"gpu_score": "21828",
+"total_score": "168883"
+},
+{
+"rank": 211,
+"name": "联发科技 Helio G88",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "142109",
+"gpu_score": "26696",
+"total_score": "168805"
+},
+{
+"rank": 212,
+"name": "三星 Exynos 7420",
+"clusters": "(4x 2.1GHz Cortex-A57 & 4x 1.5GHz Cortex-A53)",
+"cpu_score": "139950",
+"gpu_score": "28249",
+"total_score": "168199"
+},
+{
+"rank": 213,
+"name": "高通 骁龙665",
+"clusters": "(4x 2.0GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "143650",
+"gpu_score": "23081",
+"total_score": "166731"
+},
+{
+"rank": 214,
+"name": "高通 骁龙662",
+"clusters": "(4x 2.0GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "154683",
+"gpu_score": "23625",
+"total_score": "166633"
+},
+{
+"rank": 215,
+"name": "联发科技 Helio P60",
+"clusters": "(4x 2.0GHz Cortex-A73 & 4x 2.0GHz Cortex-A53)",
+"cpu_score": "142756",
+"gpu_score": "22351",
+"total_score": "165107"
+},
+{
+"rank": 216,
+"name": "紫光展锐 T616",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "146531",
+"gpu_score": "17518",
+"total_score": "164049"
+},
+{
+"rank": 217,
+"name": "紫光展锐 T612",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "140897",
+"gpu_score": "22986",
+"total_score": "163883"
+},
+{
+"rank": 218,
+"name": "紫光展锐 T610",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "141338",
+"gpu_score": "22101",
+"total_score": "163439"
+},
+{
+"rank": 219,
+"name": "海思 麒麟710A",
+"clusters": "(4x 2.0GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "141414",
+"gpu_score": "20201",
+"total_score": "161615"
+},
+{
+"rank": 220,
+"name": "高通 骁龙460",
+"clusters": "(4x 1.8GHz Kryo 240 Gold & 4x 1.8GHz Kryo 240 Silver)",
+"cpu_score": "142713",
+"gpu_score": "18423",
+"total_score": "161136"
+},
+{
+"rank": 221,
+"name": "三星 Exynos 9611",
+"clusters": "(4x 2.3GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "124896",
+"gpu_score": "29671",
+"total_score": "154567"
+},
+{
+"rank": 222,
+"name": "高通 骁龙636",
+"clusters": "(4x 1.8GHz Kryo 260 Gold & 4x 1.6GHz Kryo 260 Silver)",
+"cpu_score": "132995",
+"gpu_score": "17512",
+"total_score": "150507"
+},
+{
+"rank": 223,
+"name": "三星 Exynos 9610",
+"clusters": "(4x 2.3GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "121256",
+"gpu_score": "28302",
+"total_score": "149558"
+},
+{
+"rank": 224,
+"name": "紫光展锐 T606",
+"clusters": "(2x 1.6GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "131415",
+"gpu_score": "15523",
+"total_score": "146938"
+},
+{
+"rank": 225,
+"name": "高通 骁龙632",
+"clusters": "(4x 1.8GHz Kryo 250 Gold & 4x 1.8GHz Kryo 250 Silver)",
+"cpu_score": "122075",
+"gpu_score": "11711",
+"total_score": "133786"
+},
+{
+"rank": 226,
+"name": "联发科技 Helio X30",
+"clusters": "(2x 2.6GHz Cortex-A73 & 4x 1.9GHz Cortex-A35 & 4x 2.2GHz Cortex-A53)",
+"cpu_score": "72100",
+"gpu_score": "60080",
+"total_score": "132180"
+},
+{
+"rank": 227,
+"name": "三星 Exynos 7885",
+"clusters": "(2x 2.2GHz Cortex-A73 & 6x 1.6GHz Cortex-A53)",
+"cpu_score": "113783",
+"gpu_score": "17483",
+"total_score": "131266"
+},
+{
+"rank": 228,
+"name": "三星 Exynos 7904",
+"clusters": "(2x 1.8GHz Cortex-A73 & 6x 1.6GHz Cortex-A53)",
+"cpu_score": "104431",
+"gpu_score": "14311",
+"total_score": "118742"
+},
+{
+"rank": 229,
+"name": "紫光展锐 T310",
+"clusters": "(1x 2.0GHz Cortex-A75 & 3x 1.8GHz Cortex-A55)",
+"cpu_score": "110172",
+"gpu_score": "8564",
+"total_score": "118736"
+},
+{
+"rank": 230,
+"name": "三星 Exynos 850",
+"clusters": "(4x 2.0GHz Cortex-A55 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "96961",
+"gpu_score": "18002",
+"total_score": "114963"
+},
+{
+"rank": 231,
+"name": "高通 骁龙630",
+"clusters": "(4x 2.2GHz Cortex-A53 & 4x 1.8GHz Cortex-A53)",
+"cpu_score": "97124",
+"gpu_score": "17637",
+"total_score": "114761"
+},
+{
+"rank": 232,
+"name": "联发科技 Helio P35",
+"clusters": "(8x 2.3GHz Cortex-A53)",
+"cpu_score": "99737",
+"gpu_score": "11194",
+"total_score": "110931"
+},
+{
+"rank": 233,
+"name": "联发科技 Helio G37",
+"clusters": "(4x 2.3GHz Cortex-A53 & 4x 1.8GHz Cortex-A53)",
+"cpu_score": "95634",
+"gpu_score": "12189",
+"total_score": "107823"
+},
+{
+"rank": 234,
+"name": "联发科技 Helio G35",
+"clusters": "(8x 2.3GHz Cortex-A53)",
+"cpu_score": "92337",
+"gpu_score": "12260",
+"total_score": "104597"
+},
+{
+"rank": 235,
+"name": "联发科技 Helio P25",
+"clusters": "(4x 2.6GHz Cortex-A53 & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "92482",
+"gpu_score": "10745",
+"total_score": "103227"
+},
+{
+"rank": 236,
+"name": "三星 Exynos 7880",
+"clusters": "(8x 1.9GHz Cortex-A53)",
+"cpu_score": "85208",
+"gpu_score": "15296",
+"total_score": "100504"
+},
+{
+"rank": 237,
+"name": "紫光展锐 T603",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "87530",
+"gpu_score": "10688",
+"total_score": "98218"
+},
+{
+"rank": 238,
+"name": "联发科技 Helio P23",
+"clusters": "(8x 2.3GHz Cortex-A53)",
+"cpu_score": "85066",
+"gpu_score": "12388",
+"total_score": "97454"
+},
+{
+"rank": 239,
+"name": "瓴盛科技 JLQ JR510",
+"clusters": "(4x 2.0GHz Cortex-A55 & 4x 1.5GHz Cortex-A55)",
+"cpu_score": "85105",
+"gpu_score": "11294",
+"total_score": "96399"
+},
+{
+"rank": 240,
+"name": "高通 骁龙439",
+"clusters": "(4x 1.95GHz Cortex-A53 & 4x 1.45GHz Cortex-A53)",
+"cpu_score": "85039",
+"gpu_score": "10432",
+"total_score": "95471"
+},
+{
+"rank": 241,
+"name": "联发科技 Helio P22",
+"clusters": "(8x 2.0GHz Cortex-A53)",
+"cpu_score": "82589",
+"gpu_score": "11002",
+"total_score": "93591"
+},
+{
+"rank": 242,
+"name": "海思 麒麟950",
+"clusters": "(4x 2.3GHz Cortex-A72 & 4x 1.8GHz Cortex A53)",
+"cpu_score": "68429",
+"gpu_score": "24221",
+"total_score": "92650"
+},
+{
+"rank": 243,
+"name": "联发科技 Helio P20",
+"clusters": "(4x 2.3GHz Cortex-A53 & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "80576",
+"gpu_score": "12036",
+"total_score": "92612"
+},
+{
+"rank": 244,
+"name": "紫光展锐 SC9863A",
+"clusters": "(4x 1.6GHz Cortex-A55 & 4x 1.2GHz Cortex-A55)",
+"cpu_score": "79629",
+"gpu_score": "9951",
+"total_score": "89580"
+},
+{
+"rank": 245,
+"name": "联发科技 Helio G25",
+"clusters": "(8x 2.0GHz Cortex-A53)",
+"cpu_score": "77213",
+"gpu_score": "11791",
+"total_score": "89004"
+},
+{
+"rank": 246,
+"name": "联发科技 Helio G36",
+"clusters": "(4x 2.2GHz Cortex-A53& 4x 1.8GHz Cortex-A53)",
+"cpu_score": "74537",
+"gpu_score": "11681",
+"total_score": "86218"
+},
+{
+"rank": 247,
+"name": "三星 Exynos 7870",
+"clusters": "(8x 1.6GHz Cortex-A53)",
+"cpu_score": "76679",
+"gpu_score": "5281",
+"total_score": "81960"
+},
+{
+"rank": 248,
+"name": "高通 骁龙450",
+"clusters": "(8x 1.8GHz Cortex-A53)",
+"cpu_score": "71609",
+"gpu_score": "10135",
+"total_score": "81744"
+},
+{
+"rank": 249,
+"name": "高通 骁龙626",
+"clusters": "(8x 2.2GHz Cortex-A53)",
+"cpu_score": "67290",
+"gpu_score": "12351",
+"total_score": "79641"
+},
+{
+"rank": 250,
+"name": "联发科技 Helio P10",
+"clusters": "(4x 2.0GHz Cortex-A53 & 4x 1.2GHz Cortex-A53)",
+"cpu_score": "72319",
+"gpu_score": "4876",
+"total_score": "77195"
+},
+{
+"rank": 251,
+"name": "高通 骁龙653",
+"clusters": "(4x 1.95GHz Cortex-A72 & 4x 1.44GHz Cortex-A53)",
+"cpu_score": "53857",
+"gpu_score": "23095",
+"total_score": "76952"
+},
+{
+"rank": 252,
+"name": "三星 Exynos 7872",
+"clusters": "(2x 2.0GHz Cortex-A73 & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "61234",
+"gpu_score": "11673",
+"total_score": "72907"
+},
+{
+"rank": 253,
+"name": "高通 骁龙652",
+"clusters": "(4x 1.8GHz Cortex-A72 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "51932",
+"gpu_score": "19909",
+"total_score": "71841"
+},
+{
+"rank": 254,
+"name": "高通 骁龙808",
+"clusters": "(2x 1.8GHz Cortex-A57 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "46473",
+"gpu_score": "24959",
+"total_score": "71432"
+},
+{
+"rank": 255,
+"name": "联发科技 Helio A22",
+"clusters": "(4x 2.0GHz Cortex-A53)",
+"cpu_score": "60512",
+"gpu_score": "6628",
+"total_score": "67140"
+},
+{
+"rank": 256,
+"name": "联发科技 Helio A20",
+"clusters": "(4x 1.8GHz Cortex-A53)",
+"cpu_score": "59232",
+"gpu_score": "6315",
+"total_score": "65547"
+},
+{
+"rank": 257,
+"name": "高通 骁龙650",
+"clusters": "(2x 1.8GHz Cortex-A72 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "46704",
+"gpu_score": "17710",
+"total_score": "64414"
+},
+{
+"rank": 258,
+"name": "联发科技 Helio X25",
+"clusters": "(2x 2.5GHz Cortex-A72 & 4x 2.0GHz Cortex-A53 & 4x 1.55GHz Cortex-A53)",
+"cpu_score": "35296",
+"gpu_score": "23871",
+"total_score": "59167"
+},
+{
+"rank": 259,
+"name": "高通 骁龙810",
+"clusters": "(4x 2.0GHz Cortex-A57 & 4x 1.5GHz Cortex-A53)",
+"cpu_score": "38765",
+"gpu_score": "19573",
+"total_score": "58338"
+},
+{
+"rank": 260,
+"name": "海思 麒麟65x",
+"clusters": "(4x 2.0GHz Cortex-A53 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "46587",
+"gpu_score": "10696",
+"total_score": "57283"
+},
+{
+"rank": 261,
+"name": "联发科技 Helio X20",
+"clusters": "(2x 2.1GHz Cortex-A72 & 4x 1.85GHz Cortex-A53 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "47977",
+"gpu_score": "6875",
+"total_score": "54852"
+},
+{
+"rank": 262,
+"name": "高通 骁龙625",
+"clusters": "(8x 2.0GHz Cortex-A53)",
+"cpu_score": "43808",
+"gpu_score": "10506",
+"total_score": "54314"
+},
+{
+"rank": 263,
+"name": "三星 Exynos 7570",
+"clusters": "(4x 1.4GHz Cortex-A53)",
+"cpu_score": "45383",
+"gpu_score": "2560",
+"total_score": "47943"
+},
+{
+"rank": 264,
+"name": "三星 Exynos 7580",
+"clusters": "(8x 1.6GHz Cortex-A53)",
+"cpu_score": "34114",
+"gpu_score": "7733",
+"total_score": "41847"
+},
+{
+"rank": 265,
+"name": "高通 骁龙617",
+"clusters": "(4x 1.5GHz Cortex-A53 & 4x 1.2GHz Cortex-A53)",
+"cpu_score": "29650",
+"gpu_score": "10524",
+"total_score": "40174"
+},
+{
+"rank": 266,
+"name": "高通 骁龙435",
+"clusters": "(8x 1.4GHz Cortex-A53)",
+"cpu_score": "31288",
+"gpu_score": "5612",
+"total_score": "36900"
+},
+{
+"rank": 267,
+"name": "高通 骁龙430",
+"clusters": "(8x 1.4GHz Cortex-A53)",
+"cpu_score": "30362",
+"gpu_score": "4237",
+"total_score": "34599"
+},
+{
+"rank": 268,
+"name": "联发科技 MT6750",
+"clusters": "(4x 1.5GHz Cortex-A53 & 4x 1.0GHz Cortex-A53)",
+"cpu_score": "27012",
+"gpu_score": "3802",
+"total_score": "30814"
+},
+{
+"rank": 269,
+"name": "高通 骁龙801AC",
+"clusters": "(4x 2.45GHz Krait 400)",
+"cpu_score": "13690",
+"gpu_score": "15072",
+"total_score": "28762"
+},
+{
+"rank": 270,
+"name": "高通 骁龙425",
+"clusters": "(4x 1.4GHz Cortex-A53)",
+"cpu_score": "25573",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 100,
+"name": "25673 分",
+"clusters": "",
+"cpu_score": "",
+"gpu_score": "",
+"total_score": ""
+}
+],
+"level2": [
+{
+"rank": 1,
+"name": "Xiaomi 玄戒O3",
+"clusters": "(2x 4.35GHz C1-Ultra & 4x 3.68GHz C1-Premium & 4x 3.15GHz C1-Pro)",
+"cpu_score": "1178051",
+"gpu_score": "1832719",
+"total_score": "3010770"
+},
+{
+"rank": 2,
+"name": "高通 骁龙8 超级至尊版 Gen 6",
+"clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+"cpu_score": "1161762",
+"gpu_score": "1750402",
+"total_score": "2912164"
+},
+{
+"rank": 3,
+"name": "联发科技 天玑9600 Pro",
+"clusters": "(2x 4.55GHz C2-Ultra & 3x 4.35GHz C2-Pro & 3x 3.31GHz C2-Pro)",
+"cpu_score": "1162281",
+"gpu_score": "1639084",
+"total_score": "2801365"
+},
+{
+"rank": 4,
+"name": "高通 骁龙8 至尊版 Gen 6",
+"clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+"cpu_score": "1067700",
+"gpu_score": "1590180",
+"total_score": "2657880"
+},
+{
+"rank": 5,
+"name": "高通 骁龙8 至尊版 Gen5",
+"clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
+"cpu_score": "1137283",
+"gpu_score": "1367745",
+"total_score": "2449060"
+},
+{
+"rank": 6,
+"name": "联发科技 天玑9500",
+"clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+"cpu_score": "1038120",
+"gpu_score": "1261743",
+"total_score": "2299863"
+},
+{
+"rank": 7,
+"name": "联发科技 天玑9500M",
+"clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+"cpu_score": "1007659",
+"gpu_score": "1089690",
+"total_score": "2097349"
+},
+{
+"rank": 8,
+"name": "高通 骁龙8 至尊版",
+"clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
+"cpu_score": "967722",
+"gpu_score": "1118850",
+"total_score": "2086572"
+},
+{
+"rank": 9,
+"name": "联发科技 天玑9600M",
+"clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
+"cpu_score": "957273",
+"gpu_score": "1126524",
+"total_score": "2083797"
+},
+{
+"rank": 10,
+"name": "小米 玄戒O1",
+"clusters": "(2x 3.9GHz Cortex-X925 & 4x 3.4GHz Cortex-A725 & 2x 1.9GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+"cpu_score": "1002180",
+"gpu_score": "955041",
+"total_score": "1957221"
+},
+{
+"rank": 11,
+"name": "高通 骁龙8 Gen 5",
+"clusters": "(2x 3.8GHz Oryon Prime & 6x 3.32GHz Oryon Performance)",
+"cpu_score": "958707",
+"gpu_score": "969946",
+"total_score": "1928653"
+},
+{
+"rank": 12,
+"name": "联发科技 天玑9500s",
+"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "901907",
+"gpu_score": "940585",
+"total_score": "1842492"
+},
+{
+"rank": 13,
+"name": "联发科技 天玑9400+",
+"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "887236",
+"gpu_score": "947791",
+"total_score": "1835027"
+},
+{
+"rank": 14,
+"name": "联发科技 天玑9400",
+"clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "881088",
+"gpu_score": "914166",
+"total_score": "1795254"
+},
+{
+"rank": 15,
+"name": "联发科技 天玑9400e",
+"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "773600",
+"gpu_score": "756330",
+"total_score": "1529930"
+},
+{
+"rank": 16,
+"name": "高通 骁龙8s Gen 4",
+"clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
+"cpu_score": "729993",
+"gpu_score": "793467",
+"total_score": "1523460"
+},
+{
+"rank": 17,
+"name": "高通 骁龙8 Gen 3",
+"clusters": "(1x 3.3GHz Cortex-X4 & 3x 3.15GHz Cortex-A720 & 2x 2.96GHz Cortex-A720 & 2x 2.27GHz Cortex-A520)",
+"cpu_score": "708427",
+"gpu_score": "764701",
+"total_score": "1473128"
+},
+{
+"rank": 18,
+"name": "联发科技 天玑9300+",
+"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "740355",
+"gpu_score": "712257",
+"total_score": "1452612"
+},
+{
+"rank": 19,
+"name": "联发科技 天玑9300",
+"clusters": "(1x 3.25GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "733400",
+"gpu_score": "680780",
+"total_score": "1414180"
+},
+{
+"rank": 20,
+"name": "联发科技 天玑8500 Elite",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "674244",
+"gpu_score": "716224",
+"total_score": "1390468"
+},
+{
+"rank": 21,
+"name": "联发科技 天玑8500 Super",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "674535",
+"gpu_score": "684207",
+"total_score": "1358742"
+},
+{
+"rank": 22,
+"name": "联发科技 天玑8550 Super",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "686946",
+"gpu_score": "665786",
+"total_score": "1352732"
+},
+{
+"rank": 23,
+"name": "联发科技 天玑8400-Max",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "686832",
+"gpu_score": "640335",
+"total_score": "1327167"
+},
+{
+"rank": 24,
+"name": "联发科技 天玑8450",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "679062",
+"gpu_score": "642877",
+"total_score": "1321939"
+},
+{
+"rank": 25,
+"name": "联发科技 天玑8500 竞速版",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "602298",
+"gpu_score": "719386",
+"total_score": "1321684"
+},
+{
+"rank": 26,
+"name": "联发科技 天玑8500 满血版",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "661699",
+"gpu_score": "641081",
+"total_score": "1302780"
+},
+{
+"rank": 27,
+"name": "联发科技 天玑8500-Ultra",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "672403",
+"gpu_score": "628394",
+"total_score": "1300797"
+},
+{
+"rank": 28,
+"name": "三星 Exynos 2500",
+"clusters": "(1x 3.3GHz Cortex-X925 & 2x 2.36GHz Cortex-A725 & 5x 1.8GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+"cpu_score": "687559",
+"gpu_score": "600850",
+"total_score": "1288409"
+},
+{
+"rank": 29,
+"name": "联发科技 天玑8550 Elite",
+"clusters": "(1x 3.4GHz Cortex-A725 & 3x 3.2GHz Cortex-A725 & 4x 2.2GHz Cortex-A725)",
+"cpu_score": "502459",
+"gpu_score": "744698",
+"total_score": "1247157"
+},
+{
+"rank": 30,
+"name": "联发科技 天玑8400-Ultra",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "665278",
+"gpu_score": "562016",
+"total_score": "1227294"
+},
+{
+"rank": 31,
+"name": "联发科技 天玑8400 满血版",
+"clusters": "(1x 3.25GHz Cortex-A725 & 3x 3.0GHz Cortex-A725 & 4x 2.1GHz Cortex-A725)",
+"cpu_score": "664203",
+"gpu_score": "560657",
+"total_score": "1224860"
+},
+{
+"rank": 32,
+"name": "联发科技 天玑9200+",
+"clusters": "(1x 3.35GHz Cortex-X3 & 3x 3.0GHz Cortex-A715 & 4x 2.0GHz Cortex-A510)",
+"cpu_score": "619264",
+"gpu_score": "471140",
+"total_score": "1090404"
+},
+{
+"rank": 33,
+"name": "联发科技 天玑9200",
+"clusters": "(1x 3.05GHz Cortex-X3 & 3x 2.85GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "594463",
+"gpu_score": "472386",
+"total_score": "1066849"
+},
+{
+"rank": 34,
+"name": "高通 骁龙8s Gen 3",
+"clusters": "(1x 3.0GHz Cortex-X4 & 4x 2.8GHz Cortex-A720 & 3x 2.0GHz Cortex-A520)",
+"cpu_score": "576655",
+"gpu_score": "484551",
+"total_score": "1061206"
+},
+{
+"rank": 35,
+"name": "高通 骁龙8 Gen 2",
+"clusters": "(1x 3.2GHz Cortex-X3 & 2x 2.8GHz Cortex-A715 & 2x 2.8GHz Cortex-A710 & 3x 2.0GHz Cortex-A510)",
+"cpu_score": "610530",
+"gpu_score": "424415",
+"total_score": "1034945"
+},
+{
+"rank": 36,
+"name": "高通 骁龙7+ Gen 3",
+"clusters": "(1x 2.8 GHz Cortex-X4 & 4x 2.6 GHz Cortex-A720 & 3x 1.9 GHz Cortex-A520)",
+"cpu_score": "568831",
+"gpu_score": "425728",
+"total_score": "994559"
+},
+{
+"rank": 37,
+"name": "联发科技 天玑8350-Ultimate",
+"clusters": "(1x 3.35GHz Cortex-A715 & 3x 3.2GHz Cortex-A715 & 4x 2.2GHz Cortex-A510)",
+"cpu_score": "486715",
+"gpu_score": "478334",
+"total_score": "965049"
+},
+{
+"rank": 38,
+"name": "三星 Exynos 2400",
+"clusters": "(1x 3.2GHz Cortex-X4 & 2x 2.9GHz Cortex-A720 & 3x 2.6GHz Cortex-A720 & 4x 1.95GHz Cortex-A520)",
+"cpu_score": "559029",
+"gpu_score": "376809",
+"total_score": "935838"
+},
+{
+"rank": 39,
+"name": "谷歌 Tensor G4",
+"clusters": "(1x 3.1GHz Cortex-X4 & 3x 2.6GHz Cortex-A720 & 4x 1.92GHz Cortex-A520)",
+"cpu_score": "521122",
+"gpu_score": "404393",
+"total_score": "925515"
+},
+{
+"rank": 40,
+"name": "联发科技 天玑8300-Ultra",
+"clusters": "(1x 3.35GHz Cortex-A715 & 3x 3.2GHz Cortex-A715 & 4x 2.2GHz Cortex-A510)",
+"cpu_score": "492051",
+"gpu_score": "402826",
+"total_score": "894877"
+},
+{
+"rank": 41,
+"name": "高通 骁龙8+ Gen 1",
+"clusters": "(1x 3.2GHz Kryo Prime & 3x 2.75GHz Kryo Gold & 4x 2.0GHz Kryo Silver)",
+"cpu_score": "564964",
+"gpu_score": "266287",
+"total_score": "831251"
+},
+{
+"rank": 42,
+"name": "高通 骁龙8+ Gen 1 UC",
+"clusters": "(1x 3.0GHz Kryo Prime & 3x 2.5GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "551716",
+"gpu_score": "257716",
+"total_score": "809432"
+},
+{
+"rank": 43,
+"name": "联发科技 天玑8350",
+"clusters": "(1x 3.35GHz Cortex-A715 & 3x 3.2GHz Cortex-A715 & 4x 2.2GHz Cortex-A510)",
+"cpu_score": "473825",
+"gpu_score": "473705",
+"total_score": "807642"
+},
+{
+"rank": 44,
+"name": "谷歌 Tensor G3",
+"clusters": "(1x 3.0GHz Cortex-X3 & 4x 2.45GHz Cortex-A715 & 4x 2.15GHz Cortex-A510)",
+"cpu_score": "441836",
+"gpu_score": "358996",
+"total_score": "800832"
+},
+{
+"rank": 45,
+"name": "高通 骁龙7 Gen 4",
+"clusters": "(1x 2.8GHz Cortex-A720 & 4x 2.4GHz Cortex-A720 & 3x 1.84GHz Cortex-A520)",
+"cpu_score": "474107",
+"gpu_score": "324490",
+"total_score": "798597"
+},
+{
+"rank": 46,
+"name": "联发科技 天玑9000+",
+"clusters": "(1x 3.20GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "596694",
+"gpu_score": "197233",
+"total_score": "793927"
+},
+{
+"rank": 47,
+"name": "高通 骁龙7+ Gen 2",
+"clusters": "(1x 2.91GHz Kryo Prime & 3x 2.49GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "549589",
+"gpu_score": "233264",
+"total_score": "782853"
+},
+{
+"rank": 48,
+"name": "三星 Exynos 2200",
+"clusters": "(1x 2.8GHz Cortex-X2 & 3x 2.50GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "420123",
+"gpu_score": "352928",
+"total_score": "773051"
+},
+{
+"rank": 49,
+"name": "联发科技 天玑9000",
+"clusters": "(1x 3.05GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "559180",
+"gpu_score": "200724",
+"total_score": "759904"
+},
+{
+"rank": 50,
+"name": "高通 骁龙8 Gen 1",
+"clusters": "(1x 3.0GHz Kryo Prime & 3x 2.5GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "488811",
+"gpu_score": "231428",
+"total_score": "720239"
+},
+{
+"rank": 51,
+"name": "联发科技 天玑8250",
+"clusters": "(1x 3.1GHz Cortex-A78 & 3x 3.0GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "451357",
+"gpu_score": "230551",
+"total_score": "681908"
+},
+{
+"rank": 52,
+"name": "海思 麒麟9020",
+"clusters": "(1x 2.5GHz & 3x 2.15GHz & 4x 1.6GHz)",
+"cpu_score": "455084",
+"gpu_score": "225334",
+"total_score": "680418"
+},
+{
+"rank": 53,
+"name": "高通 骁龙888 Plus",
+"clusters": "(1x 3.0GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
+"cpu_score": "455978",
+"gpu_score": "205998",
+"total_score": "661976"
+},
+{
+"rank": 54,
+"name": "联发科技 天玑8200/8200 Ultra",
+"clusters": "(1x 3.1GHz Cortex-A78 & 3x 3.0GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "491273",
+"gpu_score": "157385",
+"total_score": "648658"
+},
+{
+"rank": 55,
+"name": "海思 麒麟9020A",
+"clusters": "(1x 2.4GHz & 3x 2.02GHz & 4x 1.6GHz)",
+"cpu_score": "452139",
+"gpu_score": "195207",
+"total_score": "647346"
+},
+{
+"rank": 56,
+"name": "高通 骁龙888",
+"clusters": "(1x 2.84GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
+"cpu_score": "456399",
+"gpu_score": "189631",
+"total_score": "646030"
+},
+{
+"rank": 57,
+"name": "谷歌 Tensor G2",
+"clusters": "(2x 2.85GHz Cortex-X1 & 2x 2.35GHz Cortex-A78 & 4x 1.80GHz Cortex-A55)",
+"cpu_score": "380887",
+"gpu_score": "263843",
+"total_score": "644730"
+},
+{
+"rank": 58,
+"name": "联发科技 天玑8100-Max",
+"clusters": "(4x 2.85GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "455278",
+"gpu_score": "151935",
+"total_score": "607213"
+},
+{
+"rank": 59,
+"name": "联发科技 天玑8100",
+"clusters": "(4x 2.85GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "413235",
+"gpu_score": "185896",
+"total_score": "599131"
+},
+{
+"rank": 60,
+"name": "高通 骁龙870",
+"clusters": "(1x 3.2GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "425093",
+"gpu_score": "167800",
+"total_score": "592893"
+},
+{
+"rank": 61,
+"name": "高通 骁龙865 Plus",
+"clusters": "(1x 3.1GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "402864",
+"gpu_score": "182988",
+"total_score": "585852"
+},
+{
+"rank": 62,
+"name": "三星 Exynos 1480",
+"clusters": "(4x 2.75GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "361997",
+"gpu_score": "221241",
+"total_score": "583238"
+},
+{
+"rank": 63,
+"name": "高通 骁龙865",
+"clusters": "(1x 2.84GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "445934",
+"gpu_score": "132294",
+"total_score": "578228"
+},
+{
+"rank": 64,
+"name": "海思 麒麟9010",
+"clusters": "(1x 2.3GHz TSV big & 3x 2.18GHz TSV middle & 4x 1.55GHz Cortex-A510)",
+"cpu_score": "419285",
+"gpu_score": "154292",
+"total_score": "573577"
+},
+{
+"rank": 65,
+"name": "高通 骁龙7 Gen 3",
+"clusters": "(1x 2.63GHz Cortex-A715 & 3x 2.4GHz Cortex-A715 & 4x 1.8GHz Cortex-A510)",
+"cpu_score": "408149",
+"gpu_score": "151288",
+"total_score": "559437"
+},
+{
+"rank": 66,
+"name": "联发科技 天玑7500 满血版",
+"clusters": "(4x 2.6GHz C1- Pro & 4x 2.0GHz C1-Nano)",
+"cpu_score": "439875",
+"gpu_score": "106210",
+"total_score": "546085"
+},
+{
+"rank": 67,
+"name": "海思 麒麟9000s",
+"clusters": "(1x 2.62GHz TSV big & 3x 2.15GHz TSV middle & 4x 1.53GHz Cortex-A510)",
+"cpu_score": "385167",
+"gpu_score": "157654",
+"total_score": "542821"
+},
+{
+"rank": 68,
+"name": "海思 麒麟9000",
+"clusters": "(1x 3.13GHz Cortex-A77 & 3x 2.54GHz Cortex-A77 & 4x 2.05GHz Cortex-A55)",
+"cpu_score": "354708",
+"gpu_score": "185144",
+"total_score": "539852"
+},
+{
+"rank": 69,
+"name": "高通 骁龙7s Gen 3",
+"clusters": "(1x 2.5GHz Cortex-A720 & 3x 2.4GHz Cortex-A720 & 4x 1.8GHz Cortex-A520)",
+"cpu_score": "431422",
+"gpu_score": "101769",
+"total_score": "533191"
+},
+{
+"rank": 70,
+"name": "海思 麒麟9000E",
+"clusters": "(1x 3.13GHz Cortex-A77 & 3x 2.54GHz Cortex-A77 & 4x 2.05GHz Cortex-A55)",
+"cpu_score": "351895",
+"gpu_score": "179452",
+"total_score": "531347"
+},
+{
+"rank": 71,
+"name": "联发科技 天玑1200",
+"clusters": "(1x 3.0GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "394300",
+"gpu_score": "134794",
+"total_score": "529094"
+},
+{
+"rank": 72,
+"name": "海思 麒麟9010E",
+"clusters": "(1x 2.189GHz TSV big & 3x 2.18GHz TSV middle & 4x 1.55GHz Cortex-A510)",
+"cpu_score": "392964",
+"gpu_score": "123902",
+"total_score": "516866"
+},
+{
+"rank": 73,
+"name": "联发科技 天玑1100",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "378961",
+"gpu_score": "137870",
+"total_score": "516831"
+},
+{
+"rank": 74,
+"name": "海思 麒麟9010L",
+"clusters": "(1x 2.189GHz TSV big & 2x 2.18GHz TSV middle & 3x 1.4GHz Cortex-A510)",
+"cpu_score": "393669",
+"gpu_score": "121989",
+"total_score": "515658"
+},
+{
+"rank": 75,
+"name": "谷歌 Tensor",
+"clusters": "(2x 2.8GHz Cortex-X1 & 2x 2.25GHz Cortex-A76 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "371525",
+"gpu_score": "140340",
+"total_score": "511865"
+},
+{
+"rank": 76,
+"name": "海思 麒麟9000S1",
+"clusters": "(1x 2.487GHz TSV big & 3x 2.15GHz TSV middle & 4x 1.53GHz Cortex-A510)",
+"cpu_score": "382291",
+"gpu_score": "128333",
+"total_score": "510624"
+},
+{
+"rank": 77,
+"name": "联发科技 天玑1300",
+"clusters": "(1x 3.0GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4 x2.0GHz Cortex-A55)",
+"cpu_score": "366328",
+"gpu_score": "139148",
+"total_score": "505476"
+},
+{
+"rank": 78,
+"name": "联发科技 天玑7200",
+"clusters": "(2x 2.8GHz Cortex-A715 & 6x 2.0GHz Cortex-A510)",
+"cpu_score": "389401",
+"gpu_score": "109868",
+"total_score": "499269"
+},
+{
+"rank": 79,
+"name": "联发科技 天玑7200-Ultra",
+"clusters": "(2x 2.8GHz Cortex-A715 & 6x 2.0GHz Cortex-A510)",
+"cpu_score": "345068",
+"gpu_score": "153093",
+"total_score": "498161"
+},
+{
+"rank": 80,
+"name": "三星 Exynos 1080",
+"clusters": "(1x 2.8GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "358342",
+"gpu_score": "138573",
+"total_score": "496915"
+},
+{
+"rank": 81,
+"name": "联发科技 天玑8050",
+"clusters": "(1x 3.0GHz Cortex-A78 & 3x 2.6GHz Cortex-A78 & 4x 2.0 Cortex-A55)",
+"cpu_score": "355714",
+"gpu_score": "139839",
+"total_score": "495553"
+},
+{
+"rank": 82,
+"name": "高通 骁龙6 Gen 5",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "373770",
+"gpu_score": "119105",
+"total_score": "492875"
+},
+{
+"rank": 83,
+"name": "高通 骁龙855 Plus",
+"clusters": "(1x 2.96GHz Kryo 485 Gold & 3x 2.42GHz Kryo 485 Gold & 4x 1.8GHz Kryo 485 Sliver)",
+"cpu_score": "363520",
+"gpu_score": "127283",
+"total_score": "490803"
+},
+{
+"rank": 84,
+"name": "联发科技 天玑8000",
+"clusters": "(4x 2.75GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "304126",
+"gpu_score": "182325",
+"total_score": "486451"
+},
+{
+"rank": 85,
+"name": "三星 Exynos 2100",
+"clusters": "(1x 2.9GHz Cortex-X1 & 3x 2.8GHz Cortex-A78 & 4x 2.2GHz Cortex-A55)",
+"cpu_score": "296974",
+"gpu_score": "188341",
+"total_score": "485315"
+},
+{
+"rank": 86,
+"name": "海思 麒麟990 5G",
+"clusters": "(2x 2.86GHz Cortex-A76 & 2x 2.36GHz Cortex-A76 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "338761",
+"gpu_score": "141470",
+"total_score": "480231"
+},
+{
+"rank": 87,
+"name": "高通 骁龙6 Gen 4",
+"clusters": "(1x 2.3GHz Cortex-A720 & 3x 2.2GHz Cortex-A720 & 4x 1.8GHz Cortex-A520)",
+"cpu_score": "378823",
+"gpu_score": "99163",
+"total_score": "477986"
+},
+{
+"rank": 88,
+"name": "高通 骁龙855",
+"clusters": "(1x 2.84GHz Kryo 485 Gold & 3x 2.41GHz Kryo 485 Gold & 4x 1.78GHz Kryo 485 Sliver)",
+"cpu_score": "354692",
+"gpu_score": "122856",
+"total_score": "477548"
+},
+{
+"rank": 89,
+"name": "海思 麒麟9000SL",
+"clusters": "(1x 2.35GHz TSV big & 2x 2.15GHz TSV middle & 3x 1.53GHz Cortex-A510)",
+"cpu_score": "346570",
+"gpu_score": "128673",
+"total_score": "475243"
+},
+{
+"rank": 90,
+"name": "联发科技 天玑7400-Ultimate",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "310929",
+"gpu_score": "158744",
+"total_score": "469673"
+},
+{
+"rank": 91,
+"name": "高通 骁龙860",
+"clusters": "(1x 2.84GHz Kryo 485 Gold & 3x 2.41GHz Kryo 485 Gold & 4x 1.78GHz Kryo 485 Sliver)",
+"cpu_score": "338527",
+"gpu_score": "127280",
+"total_score": "465807"
+},
+{
+"rank": 92,
+"name": "联发科技 天玑7400",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "362029",
+"gpu_score": "103568",
+"total_score": "465597"
+},
+{
+"rank": 93,
+"name": "高通 骁龙780G",
+"clusters": "(1x 2.4GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz 670 Sliver)",
+"cpu_score": "359944",
+"gpu_score": "103874",
+"total_score": "463818"
+},
+{
+"rank": 94,
+"name": "高通 骁龙7 Gen 1",
+"clusters": "(1x 2.4GHz Kryo Prime & 3x 2.36GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "354429",
+"gpu_score": "107997",
+"total_score": "462426"
+},
+{
+"rank": 95,
+"name": "海思 麒麟990",
+"clusters": "(2x 2.86GHz Cortex-A76 & 2x 2.09GHz Cortex-A76 & 4x 1.86GHz Cortex-A55)",
+"cpu_score": "321548",
+"gpu_score": "140518",
+"total_score": "462066"
+},
+{
+"rank": 96,
+"name": "三星 Exynos 990",
+"clusters": "(2x 2.73GHz M5 & 2x 2.50GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "300684",
+"gpu_score": "156948",
+"total_score": "457632"
+},
+{
+"rank": 97,
+"name": "联发科技 天玑1000+",
+"clusters": "(4x 2.6GHz Cortex-A77 & 4x 2.0 GHz Cortex-A55)",
+"cpu_score": "330072",
+"gpu_score": "127264",
+"total_score": "457336"
+},
+{
+"rank": 98,
+"name": "联发科技 天玑7400-Super",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "350724",
+"gpu_score": "101702",
+"total_score": "452426"
+},
+{
+"rank": 99,
+"name": "高通 骁龙778G Plus",
+"clusters": "(1x 2.5GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz Kryo 670 Sliver)",
+"cpu_score": "346400",
+"gpu_score": "105023",
+"total_score": "451423"
+},
+{
+"rank": 100,
+"name": "高通 骁龙782G",
+"clusters": "(1x 2.7GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz Kryo 670 Silver)",
+"cpu_score": "337605",
+"gpu_score": "111471",
+"total_score": "449076"
+},
+{
+"rank": 101,
+"name": "联发科技 天玑7400-Ultra",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "345311",
+"gpu_score": "97052",
+"total_score": "442363"
+},
+{
+"rank": 102,
+"name": "联发科技 天玑1000L",
+"clusters": "(4x 2.2GHz Cortex-A77 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "315023",
+"gpu_score": "124738",
+"total_score": "439761"
+},
+{
+"rank": 103,
+"name": "高通 骁龙7s Gen 2",
+"clusters": "(4x 2.40GHz Cortex-A78 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "344673",
+"gpu_score": "89985",
+"total_score": "434658"
+},
+{
+"rank": 104,
+"name": "高通 骁龙778G",
+"clusters": "(1x 2.4GHz Kryo 670 Prime & 3x 2.2GHz Kryo 670 Gold & 4x 1.9GHz Kryo 670 Sliver)",
+"cpu_score": "333944",
+"gpu_score": "97384",
+"total_score": "431328"
+},
+{
+"rank": 105,
+"name": "联发科技 天玑8020",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "284015",
+"gpu_score": "142876",
+"total_score": "426891"
+},
+{
+"rank": 106,
+"name": "联发科技 天玑7300e",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "347299",
+"gpu_score": "79022",
+"total_score": "426321"
+},
+{
+"rank": 107,
+"name": "高通 骁龙6s Gen 4",
+"clusters": "(4x 2.4GHz Cortex-A78 & 4x 1.5GHz Cortex-A55)",
+"cpu_score": "340877",
+"gpu_score": "82144",
+"total_score": "423021"
+},
+{
+"rank": 108,
+"name": "海思 麒麟990E",
+"clusters": "(2x 2.86GHz Cortex-A76 & 2x 2.36GHz Cortex-A76 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "295149",
+"gpu_score": "127090",
+"total_score": "422239"
+},
+{
+"rank": 109,
+"name": "联发科技 天玑7360-Super",
+"clusters": "(4x2.5 GHz Cortex-A78 & 4x2.0 GHz Cortex-A55)",
+"cpu_score": "319158",
+"gpu_score": "93046",
+"total_score": "412204"
+},
+{
+"rank": 110,
+"name": "联发科技 天玑7300-Ultra",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "319158",
+"gpu_score": "93046",
+"total_score": "412204"
+},
+{
+"rank": 111,
+"name": "三星 Exynos 9825",
+"clusters": "(2x 2.73GHz M4 & 2x 2.4GHz Cortex-A75 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "267009",
+"gpu_score": "136537",
+"total_score": "403546"
+},
+{
+"rank": 112,
+"name": "联发科技 天玑1080",
+"clusters": "(2x 2.6GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "324565",
+"gpu_score": "77182",
+"total_score": "401747"
+},
+{
+"rank": 113,
+"name": "三星 Exynos 9820",
+"clusters": "(2x 2.73GHz M4 & 2x 2.31GHz Cortex-A75 & 4x 1.95GHz Cortex-A55)",
+"cpu_score": "260763",
+"gpu_score": "129444",
+"total_score": "390207"
+},
+{
+"rank": 114,
+"name": "高通 骁龙6 Gen 3",
+"clusters": "(4x 2.4GHz Cortex-A78 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "299077",
+"gpu_score": "90319",
+"total_score": "389396"
+},
+{
+"rank": 115,
+"name": "联发科技 天玑7300X",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "294108",
+"gpu_score": "93431",
+"total_score": "387539"
+},
+{
+"rank": 116,
+"name": "联发科技 天玑7300 Energy",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "256128",
+"gpu_score": "126967",
+"total_score": "383095"
+},
+{
+"rank": 117,
+"name": "联发科技 天玑7300",
+"clusters": "(4x 2.5GHz Cortex-A78 & 4x 2.0GHz Cortex-A55 )",
+"cpu_score": "289659",
+"gpu_score": "92765",
+"total_score": "382424"
+},
+{
+"rank": 118,
+"name": "三星 Exynos 1380",
+"clusters": "(4x 2.4GHz Cortex-A78 & 4x 2.0 GHz Cortex-A55)",
+"cpu_score": "292643",
+"gpu_score": "88438",
+"total_score": "381081"
+},
+{
+"rank": 119,
+"name": "海思 麒麟8000",
+"clusters": "(1x 2.4GHz & 3x 2.19GHz & 4x 1.84GHz)",
+"cpu_score": "270123",
+"gpu_score": "110583",
+"total_score": "380706"
+},
+{
+"rank": 120,
+"name": "海思 麒麟985",
+"clusters": "(1x 2.58GHz Cortex-A76 & 3x 2.4GHz Cortex-A76 & 4x 1.84GHz Cortex-A55)",
+"cpu_score": "300347",
+"gpu_score": "78705",
+"total_score": "379052"
+},
+{
+"rank": 121,
+"name": "联发科技 天玑820",
+"clusters": "(4x 2.6GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "296900",
+"gpu_score": "81911",
+"total_score": "378811"
+},
+{
+"rank": 122,
+"name": "高通 骁龙6 Gen 1",
+"clusters": "(4x 2.2GHz Kryo Gold & 4x 1.8GHz Kryo Silver)",
+"cpu_score": "303665",
+"gpu_score": "74011",
+"total_score": "377676"
+},
+{
+"rank": 123,
+"name": "联发科技 天玑7030",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "280167",
+"gpu_score": "92198",
+"total_score": "372365"
+},
+{
+"rank": 124,
+"name": "联发科技 天玑7050",
+"clusters": "(2x 2.6GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "289801",
+"gpu_score": "75892",
+"total_score": "365693"
+},
+{
+"rank": 125,
+"name": "海思 麒麟820",
+"clusters": "(1x 2.36GHz Cortex-A76 & 3x 2.22GHz Cortex-A76 & 4x 1.84GHz Cortex-A55)",
+"cpu_score": "290121",
+"gpu_score": "73344",
+"total_score": "363465"
+},
+{
+"rank": 126,
+"name": "海思 麒麟980",
+"clusters": "(2x 2.6GHz Cortex-A76 & 2x 1.92GHz Cortex-A76 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "283330",
+"gpu_score": "76085",
+"total_score": "359415"
+},
+{
+"rank": 127,
+"name": "联发科技 天玑900",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "288714",
+"gpu_score": "70386",
+"total_score": "359100"
+},
+{
+"rank": 128,
+"name": "联发科技 天玑1050",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "282416",
+"gpu_score": "76344",
+"total_score": "358760"
+},
+{
+"rank": 129,
+"name": "联发科技 天玑920",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "284803",
+"gpu_score": "72952",
+"total_score": "357755"
+},
+{
+"rank": 130,
+"name": "海思 麒麟8000A",
+"clusters": "(3x 2.19GHz Cortex-A77 & 3x 1.84GHz Cortex-A55)",
+"cpu_score": "253408",
+"gpu_score": "102896",
+"total_score": "356304"
+},
+{
+"rank": 131,
+"name": "高通 骁龙6s Gen 3",
+"clusters": "(2x 2.3GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "293841",
+"gpu_score": "58384",
+"total_score": "352225"
+},
+{
+"rank": 132,
+"name": "海思 麒麟820E",
+"clusters": "(3x 2.22GHz Cortex-A76 & 3x 1.84GHz Cortex-A55)",
+"cpu_score": "273234",
+"gpu_score": "75956",
+"total_score": "349190"
+},
+{
+"rank": 133,
+"name": "联发科技 天玑7025-Ultra",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "287828",
+"gpu_score": "56560",
+"total_score": "344388"
+},
+{
+"rank": 134,
+"name": "高通 骁龙4 Gen 5",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "285143",
+"gpu_score": "58553",
+"total_score": "343696"
+},
+{
+"rank": 135,
+"name": "高通 骁龙768G",
+"clusters": "(1x 2.8GHz Kryo 475 Prime & 1x 2.2GHz Kryo 475 Gold & 6x 1.8GHz Kryo 475 Sliver)",
+"cpu_score": "270690",
+"gpu_score": "67703",
+"total_score": "338393"
+},
+{
+"rank": 136,
+"name": "高通 骁龙765G",
+"clusters": "(1x 2.4GHz Kryo 475 Prime & 1x 2.2GHz Kryo 475 Gold & 6x 1.8GHz Kryo 475 Sliver)",
+"cpu_score": "271057",
+"gpu_score": "62028",
+"total_score": "333085"
+},
+{
+"rank": 137,
+"name": "联发科技 天玑800",
+"clusters": "(4x 2.0GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "264699",
+"gpu_score": "64817",
+"total_score": "329516"
+},
+{
+"rank": 138,
+"name": "三星 Exynos 980",
+"clusters": "(2x 2.2GHz Cortex-A77 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "267789",
+"gpu_score": "59772",
+"total_score": "327561"
+},
+{
+"rank": 139,
+"name": "紫光展锐 T770",
+"clusters": "(1x 2.5GHz Cortex-A76 & 3x 2.2GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "241253",
+"gpu_score": "84653",
+"total_score": "325906"
+},
+{
+"rank": 140,
+"name": "高通 骁龙695",
+"clusters": "(2x 2.2GHz Kryo 660 Gold & 6x 1.7GHz Kryo 660 Silver)",
+"cpu_score": "267992",
+"gpu_score": "57225",
+"total_score": "325217"
+},
+{
+"rank": 141,
+"name": "联发科技 天玑930",
+"clusters": "(2x 2.2GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "272165",
+"gpu_score": "52977",
+"total_score": "325142"
+},
+{
+"rank": 142,
+"name": "海思 麒麟810",
+"clusters": "(2x 2.27GHz Cortex-A76 & 6x 1.88GHz Cortex-A55)",
+"cpu_score": "265666",
+"gpu_score": "57938",
+"total_score": "323604"
+},
+{
+"rank": 143,
+"name": "高通 骁龙845",
+"clusters": "(4x 2.96GHz Kryo 385 Gold & 4x 1.7GHz Kryo 385 Silver)",
+"cpu_score": "223667",
+"gpu_score": "93788",
+"total_score": "317455"
+},
+{
+"rank": 144,
+"name": "紫光展锐 T820",
+"clusters": "(1x 2.7GHz Cortex-A76 & 3x 2.3GHz Cortex-A76 & 4x 2.1GHz Cortex-A55)",
+"cpu_score": "264401",
+"gpu_score": "52665",
+"total_score": "317066"
+},
+{
+"rank": 145,
+"name": "紫光展锐 T760",
+"clusters": "(4x 2.2GHz Cortex-A76 & 4x Cortex-A55)",
+"cpu_score": "255846",
+"gpu_score": "52662",
+"total_score": "308508"
+},
+{
+"rank": 146,
+"name": "高通 骁龙4 Gen 2",
+"clusters": "(2x 2.2GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "272404",
+"gpu_score": "34284",
+"total_score": "306688"
+},
+{
+"rank": 147,
+"name": "三星 Exynos 9810",
+"clusters": "(4x 2.9GHz M3 & 4x 1.9GHz Cortex-A55)",
+"cpu_score": "216161",
+"gpu_score": "88935",
+"total_score": "305096"
+},
+{
+"rank": 148,
+"name": "高通 骁龙4 Gen 1",
+"clusters": "(2x 2.0GHz Kryo Gold & 6x 1.8GHz Kryo Silver)",
+"cpu_score": "254817",
+"gpu_score": "49182",
+"total_score": "303999"
+},
+{
+"rank": 149,
+"name": "联发科技 天玑800U",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "248641",
+"gpu_score": "54800",
+"total_score": "303441"
+},
+{
+"rank": 150,
+"name": "三星 Exynos 880",
+"clusters": "(2x 2.0GHz Cortex-A77 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "260120",
+"gpu_score": "39829",
+"total_score": "299949"
+},
+{
+"rank": 151,
+"name": "联发科技 天玑7025",
+"clusters": "(2x 2.5GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "246969",
+"gpu_score": "52844",
+"total_score": "299813"
+},
+{
+"rank": 152,
+"name": "高通 骁龙480 Plus",
+"clusters": "(2x 2.2GHz Kryo 460 Gold & 6x 1.9GHz Kryo 460 Silver)",
+"cpu_score": "248438",
+"gpu_score": "50271",
+"total_score": "298709"
+},
+{
+"rank": 153,
+"name": "高通 骁龙730G",
+"clusters": "(2x 2.2GHz Kryo 470 Gold & 6x 1.8GHz Kryo 470 Silver)",
+"cpu_score": "246726",
+"gpu_score": "49413",
+"total_score": "296139"
+},
+{
+"rank": 154,
+"name": "高通 骁龙480",
+"clusters": "(2x 2.0GHz Kryo 460 Gold & 6x 1.8GHz Kryo 460 Silver)",
+"cpu_score": "243222",
+"gpu_score": "48990",
+"total_score": "292212"
+},
+{
+"rank": 155,
+"name": "高通 骁龙690",
+"clusters": "(2x 2.0GHz Kryo 560 Gold & 6x 1.7 GHz Kryo 560 Silver)",
+"cpu_score": "234428",
+"gpu_score": "56541",
+"total_score": "290969"
+},
+{
+"rank": 156,
+"name": "联发科技 天玑6360-Max",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "241094",
+"gpu_score": "46019",
+"total_score": "287113"
+},
+{
+"rank": 157,
+"name": "联发科技 天玑810",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "238994",
+"gpu_score": "46458",
+"total_score": "285452"
+},
+{
+"rank": 158,
+"name": "联发科技 天玑6500 Elite",
+"clusters": "(2x 2.6GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "241278",
+"gpu_score": "43137",
+"total_score": "284415"
+},
+{
+"rank": 159,
+"name": "联发科技 曦力G100-Ultra",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "236674",
+"gpu_score": "46836",
+"total_score": "283510"
+},
+{
+"rank": 160,
+"name": "高通 骁龙720G",
+"clusters": "(2x 2.3GHz Kryo 465 Gold & 6x 1.8GHz Kryo 465 Silver)",
+"cpu_score": "231351",
+"gpu_score": "51407",
+"total_score": "282758"
+},
+{
+"rank": 161,
+"name": "联发科技 曦力G100",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "234698",
+"gpu_score": "46060",
+"total_score": "280758"
+},
+{
+"rank": 162,
+"name": "三星 Exynos 1280",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "211418",
+"gpu_score": "68469",
+"total_score": "279887"
+},
+{
+"rank": 163,
+"name": "联发科技 Helio G99",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "232363",
+"gpu_score": "45586",
+"total_score": "277949"
+},
+{
+"rank": 164,
+"name": "联发科技 天玑700",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "236164",
+"gpu_score": "40540",
+"total_score": "276704"
+},
+{
+"rank": 165,
+"name": "三星 Exynos 1330",
+"clusters": "(2x 2.4GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "234160",
+"gpu_score": "42103",
+"total_score": "276263"
+},
+{
+"rank": 166,
+"name": "高通 骁龙750G",
+"clusters": "(2x 2.2GHz Kryo 570 Gold & 6x 1.8GHz Kryo 570 Silver)",
+"cpu_score": "222795",
+"gpu_score": "52969",
+"total_score": "275764"
+},
+{
+"rank": 167,
+"name": "联发科技 天玑6080",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "232932",
+"gpu_score": "41983",
+"total_score": "274915"
+},
+{
+"rank": 168,
+"name": "高通 骁龙835",
+"clusters": "(4x 2.45GHz Kryo 280 Gold & 4x 1.9GHz Kryo 280 Silver)",
+"cpu_score": "208071",
+"gpu_score": "66764",
+"total_score": "274835"
+},
+{
+"rank": 169,
+"name": "联发科技 天玑6100+",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "230218",
+"gpu_score": "42229",
+"total_score": "272447"
+},
+{
+"rank": 170,
+"name": "联发科技 Helio G90T",
+"clusters": "(2x 2.05GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "221982",
+"gpu_score": "46585",
+"total_score": "268567"
+},
+{
+"rank": 171,
+"name": "联发科技 天玑6300",
+"clusters": "(2x 2.4GHz Cortex-A76 @ 6x 2.0GHz Cortex-A55)",
+"cpu_score": "218143",
+"gpu_score": "46146",
+"total_score": "264289"
+},
+{
+"rank": 172,
+"name": "联发科技 曦力G100-Ultimate",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "214198",
+"gpu_score": "47551",
+"total_score": "261749"
+},
+{
+"rank": 173,
+"name": "紫光展锐 T8200",
+"clusters": "(2x 2.3GHz Cortex-A76 & 2.1GHz Cortex-A55)",
+"cpu_score": "220570",
+"gpu_score": "38865",
+"total_score": "259435"
+},
+{
+"rank": 174,
+"name": "联发科技 Helio G200",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "211137",
+"gpu_score": "48178",
+"total_score": "259315"
+},
+{
+"rank": 175,
+"name": "紫光展锐 T765",
+"clusters": "(2x 2.3GHz Cortex-A76 & 2.1GHz Cortex-A55)",
+"cpu_score": "218474",
+"gpu_score": "39368",
+"total_score": "257842"
+},
+{
+"rank": 176,
+"name": "联发科技 Helio G95",
+"clusters": "(2x 2.05GHz Cortex-A76 & 6x 2.05GHz Cortex-A55)",
+"cpu_score": "198067",
+"gpu_score": "56519",
+"total_score": "254586"
+},
+{
+"rank": 177,
+"name": "高通 骁龙4s Gen 2",
+"clusters": "(2x 2.0GHz Cortex-A78 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "225130",
+"gpu_score": "28135",
+"total_score": "253265"
+},
+{
+"rank": 178,
+"name": "联发科技 Helio G99 Ultra",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "206117",
+"gpu_score": "46193",
+"total_score": "252310"
+},
+{
+"rank": 179,
+"name": "高通 骁龙732G",
+"clusters": "(2x 2.3GHz Kryo 470 Gold & 6x 1.8GHz Kryo 470 Silver)",
+"cpu_score": "199774",
+"gpu_score": "48174",
+"total_score": "247948"
+},
+{
+"rank": 180,
+"name": "联发科技 天玑6020",
+"clusters": "(2x 2.2GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "201687",
+"gpu_score": "39512",
+"total_score": "241199"
+},
+{
+"rank": 181,
+"name": "三星 Exynos 8895",
+"clusters": "(4x 2.3GHz M2 & 4x 1.69GHz Cortex-A53)",
+"cpu_score": "165434",
+"gpu_score": "71960",
+"total_score": "237394"
+},
+{
+"rank": 182,
+"name": "紫光展锐 T750",
+"clusters": "(4x 2.0GHz Cortex-A76 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "196562",
+"gpu_score": "37743",
+"total_score": "234305"
+},
+{
+"rank": 183,
+"name": "高通 骁龙680",
+"clusters": "(4x 2.2GHz Kryo 265 Gold & 4x 1.8GHz Kryo 265 Silver)",
+"cpu_score": "205686",
+"gpu_score": "27589",
+"total_score": "233275"
+},
+{
+"rank": 184,
+"name": "高通 骁龙675",
+"clusters": "(2x 2.0GHz Kryo 460 Gold & 6x 1.7GHz Kryo 460 Silver)",
+"cpu_score": "203239",
+"gpu_score": "28874",
+"total_score": "232113"
+},
+{
+"rank": 185,
+"name": "联发科技 Helio G96",
+"clusters": "(2x 2.05GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "191556",
+"gpu_score": "40218",
+"total_score": "231774"
+},
+{
+"rank": 186,
+"name": "联发科技 天玑720",
+"clusters": "(2x 2.0GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "184497",
+"gpu_score": "45598",
+"total_score": "230095"
+},
+{
+"rank": 187,
+"name": "联发科技 天玑7020",
+"clusters": "(2x 2.2GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "150910",
+"gpu_score": "79021",
+"total_score": "229931"
+},
+{
+"rank": 188,
+"name": "联发科技 Helio P90",
+"clusters": "(2x 2.2GHz Cortex-A75 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "187970",
+"gpu_score": "31166",
+"total_score": "219136"
+},
+{
+"rank": 189,
+"name": "高通 骁龙712",
+"clusters": "(2x 2.3GHz Kryo 360 Gold & 6x 1.7GHz Kryo 360 Silver)",
+"cpu_score": "172642",
+"gpu_score": "44413",
+"total_score": "217055"
+},
+{
+"rank": 190,
+"name": "高通 骁龙710",
+"clusters": "(2x 2.2GHz Kryo 360 Gold & 6x 1.7GHz Kryo 360 Silver)",
+"cpu_score": "168156",
+"gpu_score": "38455",
+"total_score": "206611"
+},
+{
+"rank": 191,
+"name": "紫光展锐 T7510",
+"clusters": "(4x 2.0GHz Cortex-A75 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "173260",
+"gpu_score": "28732",
+"total_score": "201992"
+},
+{
+"rank": 192,
+"name": "紫光展锐 T710",
+"clusters": "(4x 2.0GHz Cortex-A75 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "168257",
+"gpu_score": "28915",
+"total_score": "197172"
+},
+{
+"rank": 193,
+"name": "海思 麒麟970",
+"clusters": "(4x 2.36GHz Cortex-A73 & 4x 1.84GHz Cortex-A53)",
+"cpu_score": "161490",
+"gpu_score": "35165",
+"total_score": "196655"
+},
+{
+"rank": 194,
+"name": "高通 骁龙670",
+"clusters": "(2x 2.0GHz Kryo 360 Gold & 6x 1.7GHz Kryo 360 Silver)",
+"cpu_score": "157131",
+"gpu_score": "34202",
+"total_score": "191333"
+},
+{
+"rank": 195,
+"name": "高通 骁龙821",
+"clusters": "(2x 2.35GHz Kryo & 2x 2.19GHz Kryo)",
+"cpu_score": "138492",
+"gpu_score": "52473",
+"total_score": "190965"
+},
+{
+"rank": 196,
+"name": "紫光展锐 T7250",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "169607",
+"gpu_score": "21100",
+"total_score": "190707"
+},
+{
+"rank": 197,
+"name": "三星 Exynos 8890",
+"clusters": "(4x 2.3GHz Mongoose & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "148082",
+"gpu_score": "42200",
+"total_score": "190282"
+},
+{
+"rank": 198,
+"name": "高通 骁龙820",
+"clusters": "(2x 2.15GHz Kryo & 2x 1.6GHz Kryo)",
+"cpu_score": "136995",
+"gpu_score": "53174",
+"total_score": "190169"
+},
+{
+"rank": 199,
+"name": "紫光展锐 T618",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "151848",
+"gpu_score": "28466",
+"total_score": "180314"
+},
+{
+"rank": 200,
+"name": "联发科技 Helio G80",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "153844",
+"gpu_score": "26056",
+"total_score": "179900"
+},
+{
+"rank": 201,
+"name": "紫光展锐 T510",
+"clusters": "(4x 1.82GHz Cortex-A75 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "157693",
+"gpu_score": "21964",
+"total_score": "179657"
+},
+{
+"rank": 202,
+"name": "紫光展锐 T700",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "149014",
+"gpu_score": "30482",
+"total_score": "179496"
+},
+{
+"rank": 203,
+"name": "联发科技 曦力G85",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "151513",
+"gpu_score": "26793",
+"total_score": "178306"
+},
+{
+"rank": 204,
+"name": "海思 麒麟710",
+"clusters": "(4x 2.2GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "154645",
+"gpu_score": "21531",
+"total_score": "176176"
+},
+{
+"rank": 205,
+"name": "联发科技 Helio G81-Ultra",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "151008",
+"gpu_score": "23986",
+"total_score": "174994"
+},
+{
+"rank": 206,
+"name": "联发科技 Helio P70",
+"clusters": "(4x 2.1GHz Cortex-A73 & 4x 2.0GHz Cortex-A53)",
+"cpu_score": "145086",
+"gpu_score": "26048",
+"total_score": "171134"
+},
+{
+"rank": 207,
+"name": "海思 麒麟960",
+"clusters": "(4x 2.36GHz Cortex-A73 & 4x 1.84GHz Cortex-A53)",
+"cpu_score": "134229",
+"gpu_score": "36194",
+"total_score": "170423"
+},
+{
+"rank": 208,
+"name": "联发科技 Helio G70",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.7GHz Cortex-A55)",
+"cpu_score": "146784",
+"gpu_score": "23502",
+"total_score": "170286"
+},
+{
+"rank": 209,
+"name": "高通 骁龙660",
+"clusters": "(4x 2.2GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "149507",
+"gpu_score": "19799",
+"total_score": "169306"
+},
+{
+"rank": 210,
+"name": "联发科技 Helio P65",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "147055",
+"gpu_score": "21828",
+"total_score": "168883"
+},
+{
+"rank": 211,
+"name": "联发科技 Helio G88",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "142109",
+"gpu_score": "26696",
+"total_score": "168805"
+},
+{
+"rank": 212,
+"name": "三星 Exynos 7420",
+"clusters": "(4x 2.1GHz Cortex-A57 & 4x 1.5GHz Cortex-A53)",
+"cpu_score": "139950",
+"gpu_score": "28249",
+"total_score": "168199"
+},
+{
+"rank": 213,
+"name": "高通 骁龙665",
+"clusters": "(4x 2.0GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "143650",
+"gpu_score": "23081",
+"total_score": "166731"
+},
+{
+"rank": 214,
+"name": "高通 骁龙662",
+"clusters": "(4x 2.0GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "154683",
+"gpu_score": "23625",
+"total_score": "166633"
+},
+{
+"rank": 215,
+"name": "联发科技 Helio P60",
+"clusters": "(4x 2.0GHz Cortex-A73 & 4x 2.0GHz Cortex-A53)",
+"cpu_score": "142756",
+"gpu_score": "22351",
+"total_score": "165107"
+},
+{
+"rank": 216,
+"name": "紫光展锐 T616",
+"clusters": "(2x 2.0GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "146531",
+"gpu_score": "17518",
+"total_score": "164049"
+},
+{
+"rank": 217,
+"name": "紫光展锐 T612",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "140897",
+"gpu_score": "22986",
+"total_score": "163883"
+},
+{
+"rank": 218,
+"name": "紫光展锐 T610",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.8GHz Cortex-A55)",
+"cpu_score": "141338",
+"gpu_score": "22101",
+"total_score": "163439"
+},
+{
+"rank": 219,
+"name": "海思 麒麟710A",
+"clusters": "(4x 2.0GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "141414",
+"gpu_score": "20201",
+"total_score": "161615"
+},
+{
+"rank": 220,
+"name": "高通 骁龙460",
+"clusters": "(4x 1.8GHz Kryo 240 Gold & 4x 1.8GHz Kryo 240 Silver)",
+"cpu_score": "142713",
+"gpu_score": "18423",
+"total_score": "161136"
+},
+{
+"rank": 221,
+"name": "三星 Exynos 9611",
+"clusters": "(4x 2.3GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "124896",
+"gpu_score": "29671",
+"total_score": "154567"
+},
+{
+"rank": 222,
+"name": "高通 骁龙636",
+"clusters": "(4x 1.8GHz Kryo 260 Gold & 4x 1.6GHz Kryo 260 Silver)",
+"cpu_score": "132995",
+"gpu_score": "17512",
+"total_score": "150507"
+},
+{
+"rank": 223,
+"name": "三星 Exynos 9610",
+"clusters": "(4x 2.3GHz Cortex-A73 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "121256",
+"gpu_score": "28302",
+"total_score": "149558"
+},
+{
+"rank": 224,
+"name": "紫光展锐 T606",
+"clusters": "(2x 1.6GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "131415",
+"gpu_score": "15523",
+"total_score": "146938"
+},
+{
+"rank": 225,
+"name": "高通 骁龙632",
+"clusters": "(4x 1.8GHz Kryo 250 Gold & 4x 1.8GHz Kryo 250 Silver)",
+"cpu_score": "122075",
+"gpu_score": "11711",
+"total_score": "133786"
+},
+{
+"rank": 226,
+"name": "联发科技 Helio X30",
+"clusters": "(2x 2.6GHz Cortex-A73 & 4x 1.9GHz Cortex-A35 & 4x 2.2GHz Cortex-A53)",
+"cpu_score": "72100",
+"gpu_score": "60080",
+"total_score": "132180"
+},
+{
+"rank": 227,
+"name": "三星 Exynos 7885",
+"clusters": "(2x 2.2GHz Cortex-A73 & 6x 1.6GHz Cortex-A53)",
+"cpu_score": "113783",
+"gpu_score": "17483",
+"total_score": "131266"
+},
+{
+"rank": 228,
+"name": "三星 Exynos 7904",
+"clusters": "(2x 1.8GHz Cortex-A73 & 6x 1.6GHz Cortex-A53)",
+"cpu_score": "104431",
+"gpu_score": "14311",
+"total_score": "118742"
+},
+{
+"rank": 229,
+"name": "紫光展锐 T310",
+"clusters": "(1x 2.0GHz Cortex-A75 & 3x 1.8GHz Cortex-A55)",
+"cpu_score": "110172",
+"gpu_score": "8564",
+"total_score": "118736"
+},
+{
+"rank": 230,
+"name": "三星 Exynos 850",
+"clusters": "(4x 2.0GHz Cortex-A55 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "96961",
+"gpu_score": "18002",
+"total_score": "114963"
+},
+{
+"rank": 231,
+"name": "高通 骁龙630",
+"clusters": "(4x 2.2GHz Cortex-A53 & 4x 1.8GHz Cortex-A53)",
+"cpu_score": "97124",
+"gpu_score": "17637",
+"total_score": "114761"
+},
+{
+"rank": 232,
+"name": "联发科技 Helio P35",
+"clusters": "(8x 2.3GHz Cortex-A53)",
+"cpu_score": "99737",
+"gpu_score": "11194",
+"total_score": "110931"
+},
+{
+"rank": 233,
+"name": "联发科技 Helio G37",
+"clusters": "(4x 2.3GHz Cortex-A53 & 4x 1.8GHz Cortex-A53)",
+"cpu_score": "95634",
+"gpu_score": "12189",
+"total_score": "107823"
+},
+{
+"rank": 234,
+"name": "联发科技 Helio G35",
+"clusters": "(8x 2.3GHz Cortex-A53)",
+"cpu_score": "92337",
+"gpu_score": "12260",
+"total_score": "104597"
+},
+{
+"rank": 235,
+"name": "联发科技 Helio P25",
+"clusters": "(4x 2.6GHz Cortex-A53 & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "92482",
+"gpu_score": "10745",
+"total_score": "103227"
+},
+{
+"rank": 236,
+"name": "三星 Exynos 7880",
+"clusters": "(8x 1.9GHz Cortex-A53)",
+"cpu_score": "85208",
+"gpu_score": "15296",
+"total_score": "100504"
+},
+{
+"rank": 237,
+"name": "紫光展锐 T603",
+"clusters": "(2x 1.8GHz Cortex-A75 & 6x 1.6GHz Cortex-A55)",
+"cpu_score": "87530",
+"gpu_score": "10688",
+"total_score": "98218"
+},
+{
+"rank": 238,
+"name": "联发科技 Helio P23",
+"clusters": "(8x 2.3GHz Cortex-A53)",
+"cpu_score": "85066",
+"gpu_score": "12388",
+"total_score": "97454"
+},
+{
+"rank": 239,
+"name": "瓴盛科技 JLQ JR510",
+"clusters": "(4x 2.0GHz Cortex-A55 & 4x 1.5GHz Cortex-A55)",
+"cpu_score": "85105",
+"gpu_score": "11294",
+"total_score": "96399"
+},
+{
+"rank": 240,
+"name": "高通 骁龙439",
+"clusters": "(4x 1.95GHz Cortex-A53 & 4x 1.45GHz Cortex-A53)",
+"cpu_score": "85039",
+"gpu_score": "10432",
+"total_score": "95471"
+},
+{
+"rank": 241,
+"name": "联发科技 Helio P22",
+"clusters": "(8x 2.0GHz Cortex-A53)",
+"cpu_score": "82589",
+"gpu_score": "11002",
+"total_score": "93591"
+},
+{
+"rank": 242,
+"name": "海思 麒麟950",
+"clusters": "(4x 2.3GHz Cortex-A72 & 4x 1.8GHz Cortex A53)",
+"cpu_score": "68429",
+"gpu_score": "24221",
+"total_score": "92650"
+},
+{
+"rank": 243,
+"name": "联发科技 Helio P20",
+"clusters": "(4x 2.3GHz Cortex-A53 & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "80576",
+"gpu_score": "12036",
+"total_score": "92612"
+},
+{
+"rank": 244,
+"name": "紫光展锐 SC9863A",
+"clusters": "(4x 1.6GHz Cortex-A55 & 4x 1.2GHz Cortex-A55)",
+"cpu_score": "79629",
+"gpu_score": "9951",
+"total_score": "89580"
+},
+{
+"rank": 245,
+"name": "联发科技 Helio G25",
+"clusters": "(8x 2.0GHz Cortex-A53)",
+"cpu_score": "77213",
+"gpu_score": "11791",
+"total_score": "89004"
+},
+{
+"rank": 246,
+"name": "联发科技 Helio G36",
+"clusters": "(4x 2.2GHz Cortex-A53& 4x 1.8GHz Cortex-A53)",
+"cpu_score": "74537",
+"gpu_score": "11681",
+"total_score": "86218"
+},
+{
+"rank": 247,
+"name": "三星 Exynos 7870",
+"clusters": "(8x 1.6GHz Cortex-A53)",
+"cpu_score": "76679",
+"gpu_score": "5281",
+"total_score": "81960"
+},
+{
+"rank": 248,
+"name": "高通 骁龙450",
+"clusters": "(8x 1.8GHz Cortex-A53)",
+"cpu_score": "71609",
+"gpu_score": "10135",
+"total_score": "81744"
+},
+{
+"rank": 249,
+"name": "高通 骁龙626",
+"clusters": "(8x 2.2GHz Cortex-A53)",
+"cpu_score": "67290",
+"gpu_score": "12351",
+"total_score": "79641"
+},
+{
+"rank": 250,
+"name": "联发科技 Helio P10",
+"clusters": "(4x 2.0GHz Cortex-A53 & 4x 1.2GHz Cortex-A53)",
+"cpu_score": "72319",
+"gpu_score": "4876",
+"total_score": "77195"
+},
+{
+"rank": 251,
+"name": "高通 骁龙653",
+"clusters": "(4x 1.95GHz Cortex-A72 & 4x 1.44GHz Cortex-A53)",
+"cpu_score": "53857",
+"gpu_score": "23095",
+"total_score": "76952"
+},
+{
+"rank": 252,
+"name": "三星 Exynos 7872",
+"clusters": "(2x 2.0GHz Cortex-A73 & 4x 1.6GHz Cortex-A53)",
+"cpu_score": "61234",
+"gpu_score": "11673",
+"total_score": "72907"
+},
+{
+"rank": 253,
+"name": "高通 骁龙652",
+"clusters": "(4x 1.8GHz Cortex-A72 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "51932",
+"gpu_score": "19909",
+"total_score": "71841"
+},
+{
+"rank": 254,
+"name": "高通 骁龙808",
+"clusters": "(2x 1.8GHz Cortex-A57 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "46473",
+"gpu_score": "24959",
+"total_score": "71432"
+},
+{
+"rank": 255,
+"name": "联发科技 Helio A22",
+"clusters": "(4x 2.0GHz Cortex-A53)",
+"cpu_score": "60512",
+"gpu_score": "6628",
+"total_score": "67140"
+},
+{
+"rank": 256,
+"name": "联发科技 Helio A20",
+"clusters": "(4x 1.8GHz Cortex-A53)",
+"cpu_score": "59232",
+"gpu_score": "6315",
+"total_score": "65547"
+},
+{
+"rank": 257,
+"name": "高通 骁龙650",
+"clusters": "(2x 1.8GHz Cortex-A72 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "46704",
+"gpu_score": "17710",
+"total_score": "64414"
+},
+{
+"rank": 258,
+"name": "联发科技 Helio X25",
+"clusters": "(2x 2.5GHz Cortex-A72 & 4x 2.0GHz Cortex-A53 & 4x 1.55GHz Cortex-A53)",
+"cpu_score": "35296",
+"gpu_score": "23871",
+"total_score": "59167"
+},
+{
+"rank": 259,
+"name": "高通 骁龙810",
+"clusters": "(4x 2.0GHz Cortex-A57 & 4x 1.5GHz Cortex-A53)",
+"cpu_score": "38765",
+"gpu_score": "19573",
+"total_score": "58338"
+},
+{
+"rank": 260,
+"name": "海思 麒麟65x",
+"clusters": "(4x 2.0GHz Cortex-A53 & 4x 1.7GHz Cortex-A53)",
+"cpu_score": "46587",
+"gpu_score": "10696",
+"total_score": "57283"
+},
+{
+"rank": 261,
+"name": "联发科技 Helio X20",
+"clusters": "(2x 2.1GHz Cortex-A72 & 4x 1.85GHz Cortex-A53 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "47977",
+"gpu_score": "6875",
+"total_score": "54852"
+},
+{
+"rank": 262,
+"name": "高通 骁龙625",
+"clusters": "(8x 2.0GHz Cortex-A53)",
+"cpu_score": "43808",
+"gpu_score": "10506",
+"total_score": "54314"
+},
+{
+"rank": 263,
+"name": "三星 Exynos 7570",
+"clusters": "(4x 1.4GHz Cortex-A53)",
+"cpu_score": "45383",
+"gpu_score": "2560",
+"total_score": "47943"
+},
+{
+"rank": 264,
+"name": "三星 Exynos 7580",
+"clusters": "(8x 1.6GHz Cortex-A53)",
+"cpu_score": "34114",
+"gpu_score": "7733",
+"total_score": "41847"
+},
+{
+"rank": 265,
+"name": "高通 骁龙617",
+"clusters": "(4x 1.5GHz Cortex-A53 & 4x 1.2GHz Cortex-A53)",
+"cpu_score": "29650",
+"gpu_score": "10524",
+"total_score": "40174"
+},
+{
+"rank": 266,
+"name": "高通 骁龙435",
+"clusters": "(8x 1.4GHz Cortex-A53)",
+"cpu_score": "31288",
+"gpu_score": "5612",
+"total_score": "36900"
+},
+{
+"rank": 267,
+"name": "高通 骁龙430",
+"clusters": "(8x 1.4GHz Cortex-A53)",
+"cpu_score": "30362",
+"gpu_score": "4237",
+"total_score": "34599"
+},
+{
+"rank": 268,
+"name": "联发科技 MT6750",
+"clusters": "(4x 1.5GHz Cortex-A53 & 4x 1.0GHz Cortex-A53)",
+"cpu_score": "27012",
+"gpu_score": "3802",
+"total_score": "30814"
+},
+{
+"rank": 269,
+"name": "高通 骁龙801AC",
+"clusters": "(4x 2.45GHz Krait 400)",
+"cpu_score": "13690",
+"gpu_score": "15072",
+"total_score": "28762"
+},
+{
+"rank": 270,
+"name": "高通 骁龙425",
+"clusters": "(4x 1.4GHz Cortex-A53)",
+"cpu_score": "25573",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 100,
+"name": "25673 分",
+"clusters": "",
+"cpu_score": "",
+"gpu_score": "",
+"total_score": ""
+}
+],
+"level3": [
+{
+"rank": 1,
+"name": "高通 QCM8550",
+"clusters": "(1x 3.2GHz GoldPlus & 4x 2.8GHz Gold & 3x 2.0GHz Silver)",
+"cpu_score": "338409",
+"gpu_score": "488799",
+"total_score": "827208"
+},
+{
+"rank": 2,
+"name": "高通 骁龙G3x Gen 2",
+"clusters": "(N/A)",
+"cpu_score": "318111",
+"gpu_score": "477764",
+"total_score": "795875"
+},
+{
+"rank": 3,
+"name": "高通 QCS8550",
+"clusters": "(1x 3.2GHz GoldPlus & 4x 2.8GHz Gold & 3x 2.0GHz Silver)",
+"cpu_score": "318636",
+"gpu_score": "430416",
+"total_score": "749052"
+},
+{
+"rank": 4,
+"name": "高通 骁龙XR2 Gen 2",
+"clusters": "(1x 2.36GHz Cortex-X3 & 2x 2.36GHz Cortex-A715 & 3x 2.05GHz Cortex-A510)",
+"cpu_score": "162630",
+"gpu_score": "398403",
+"total_score": "561033"
+},
+{
+"rank": 5,
+"name": "高通 骁龙G3x Gen 1",
+"clusters": "(1x 3.0GHz Cortex-X1 & 3x 2.42GHz Cortex-A78 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "221330",
+"gpu_score": "265836",
+"total_score": "487166"
+},
+{
+"rank": 6,
+"name": "高通 QCS6490",
+"clusters": "(4x 2.7GHz Kryo 670 & 4x 1.9GHz Kryo 670)",
+"cpu_score": "221595",
+"gpu_score": "177662",
+"total_score": "399257"
+},
+{
+"rank": 7,
+"name": "高通 QCM6490",
+"clusters": "(4x 2.7GHz Kryo 670 & 4x 1.9GHz Kryo 670)",
+"cpu_score": "198937",
+"gpu_score": "182305",
+"total_score": "381242"
+},
+{
+"rank": 8,
+"name": "联发科技 迅鲲1200",
+"clusters": "(4x 2.6GHz Cortex-A78 & 4x 2.0GHz Cortex-A55)",
+"cpu_score": "229442",
+"gpu_score": "119702",
+"total_score": "349144"
+},
+{
+"rank": 9,
+"name": "高通 骁龙865 IoT",
+"clusters": "(1x 2.84GHz Kryo 585 Prime & 3x 2.42GHz Kryo 585 Gold & 4x 1.8GHz Kryo 585 Sliver)",
+"cpu_score": "223323",
+"gpu_score": "101808",
+"total_score": "325131"
+},
+{
+"rank": 10,
+"name": "瑞芯微 RK3588",
+"clusters": "(4x 2.4GHz Cortex-A76 & 4x 1.8GHz Cortex-A55)",
+"cpu_score": "124311",
+"gpu_score": "139644",
+"total_score": "263955"
+},
+{
+"rank": 11,
+"name": "联发科技 迅鲲900T",
+"clusters": "(2x 2.6GHz Cortex-A78 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "149194",
+"gpu_score": "110793",
+"total_score": "259987"
+},
+{
+"rank": 12,
+"name": "高通 QCS5430",
+"clusters": "(4x 2.1GHz Kryo 670 Gold & 4x 1.8GHz Kryo 670 Silver)",
+"cpu_score": "170368",
+"gpu_score": "86990",
+"total_score": "257358"
+},
+{
+"rank": 13,
+"name": "紫光展锐 P7885",
+"clusters": "(1x 2.7GHz Cortex-A76 & 3x 2.3GHz Cortex-A76 & 4x 2.1GHz Cortex-A55)",
+"cpu_score": "159216",
+"gpu_score": "87362",
+"total_score": "246578"
+},
+{
+"rank": 14,
+"name": "高通 QCM4490",
+"clusters": "(2x 2.4GHz Gold A78 & 6x 2.0GHz Silver A55)",
+"cpu_score": "165507",
+"gpu_score": "51160",
+"total_score": "216667"
+},
+{
+"rank": 15,
+"name": "高通 QCS4490",
+"clusters": "(2x 2.4GHz Gold A78 & 6x 2.0GHz Silver A55)",
+"cpu_score": "162451",
+"gpu_score": "50814",
+"total_score": "213265"
+},
+{
+"rank": 16,
+"name": "高通 QCM5430",
+"clusters": "(4x 2.1GHz Kryo 670 Gold & 4x 1.8GHz Kryo 670 Silver)",
+"cpu_score": "138372",
+"gpu_score": "65965",
+"total_score": "204337"
+},
+{
+"rank": 17,
+"name": "联发科技 迅鲲800T",
+"clusters": "(2x 2.4GHz Cortex-A76 & 6x 2.0GHz Cortex-A55)",
+"cpu_score": "139593",
+"gpu_score": "62941",
+"total_score": "202534"
+},
+{
+"rank": 18,
+"name": "Amlogic A311D2",
+"clusters": "(4x 2.2GHz Cortex-A73 & 4x 2.0GHz Cortex-A53)",
+"cpu_score": "85498",
+"gpu_score": "65083",
+"total_score": "150581"
+},
+{
+"rank": 19,
+"name": "高通 骁龙662 IoT",
+"clusters": "(4x 2.0GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "86364",
+"gpu_score": "35150",
+"total_score": "121514"
+},
+{
+"rank": 20,
+"name": "高通 QCM4290",
+"clusters": "(4x 2.0GHz Kryo 260 & 4x 1.8GHz Kryo 260)",
+"cpu_score": "85270",
+"gpu_score": "35058",
+"total_score": "120328"
+},
+{
+"rank": 21,
+"name": "高通 骁龙665 IoT",
+"clusters": "(4x 2.0GHz Kryo 260 Gold & 4x 1.8GHz Kryo 260 Silver)",
+"cpu_score": "84823",
+"gpu_score": "35240",
+"total_score": "120063"
+},
+{
+"rank": 22,
+"name": "高通 QCS4290",
+"clusters": "(4x 2.0GHz Kryo 260 & 4x 1.8GHz Kryo 260)",
+"cpu_score": "84286",
+"gpu_score": "35234",
+"total_score": "119520"
+},
+{
+"rank": 23,
+"name": "高通 QCM4325",
+"clusters": "(N/A)",
+"cpu_score": "71827",
+"gpu_score": "40685",
+"total_score": "112512"
+},
+{
+"rank": 24,
+"name": "Synaptics VS680",
+"clusters": "(4x 2.1GHz Cortex-A73)",
+"cpu_score": "53912",
+"gpu_score": "26910",
+"total_score": "80822"
+},
+{
+"rank": 25,
+"name": "全志 A523",
+"clusters": "(8x 1.8GHz Cortex-A55)",
+"cpu_score": "53811",
+"gpu_score": "23123",
+"total_score": "76934"
+},
+{
+"rank": 26,
+"name": "联发科技 S900",
+"clusters": "(4x 1.8GHz Cortex-A73)",
+"cpu_score": "47583",
+"gpu_score": "27544",
+"total_score": "75127"
+},
+{
+"rank": 27,
+"name": "瑞芯微 RK3399",
+"clusters": "(2x 1.8GHz Cortex-A72 & 4x 1.4GHz Cortex-A53)",
+"cpu_score": "51263",
+"gpu_score": "23496",
+"total_score": "74759"
+},
+{
+"rank": 28,
+"name": "紫光展锐 8581E",
+"clusters": "(2x 1.3GHz Cortex-A53)",
+"cpu_score": "52963",
+"gpu_score": "13813",
+"total_score": "66776"
+},
+{
+"rank": 29,
+"name": "瑞芯微 RK3568",
+"clusters": "(4x 2.0GHz Cortex-A55)",
+"cpu_score": "31038",
+"gpu_score": "16636",
+"total_score": "47674"
+},
+{
+"rank": 30,
+"name": "瑞芯微 RK3562",
+"clusters": "(4x 2.0GHz Cortex-A53)",
+"cpu_score": "29280",
+"gpu_score": "18126",
+"total_score": "47406"
+},
+{
+"rank": 31,
+"name": "高通 QCS2290",
+"clusters": "(4x 2.0GHz Cortex-A53)",
+"cpu_score": "34426",
+"gpu_score": "12891",
+"total_score": "47317"
+},
+{
+"rank": 32,
+"name": "瑞芯微 RK3566",
+"clusters": "(4x 1.8GHz Cortex-A55)",
+"cpu_score": "30223",
+"gpu_score": "15972",
+"total_score": "46195"
+},
+{
+"rank": 33,
+"name": "晶晨 S905X4",
+"clusters": "(4x 2.0GHz Cortex-A55)",
+"cpu_score": "34813",
+"gpu_score": "10627",
+"total_score": "45440"
+},
+{
+"rank": 34,
+"name": "全志 H618",
+"clusters": "(4x 1.5GHz Cortex-A53)",
+"cpu_score": "29564",
+"gpu_score": "12376",
+"total_score": "41940"
+},
+{
+"rank": 35,
+"name": "全志 A133",
+"clusters": "(4x 1.5GHz Cortex-A55)",
+"cpu_score": "28026",
+"gpu_score": "7435",
+"total_score": "35461"
+},
+{
+"rank": 36,
+"name": "杰发科技 AC8257",
+"clusters": "(4x 2.0GHz Cortex-A53)",
+"cpu_score": "27022",
+"gpu_score": "7193",
+"total_score": "34215"
+},
+{
+"rank": 37,
+"name": "全志 A100",
+"clusters": "(4x 1.6GHz Cortex-A53)",
+"cpu_score": "24625",
+"gpu_score": "6940",
+"total_score": "31565"
+},
+{
+"rank": 38,
+"name": "全志 A63",
+"clusters": "(4x Cortex-A53)",
+"cpu_score": "24759",
+"gpu_score": "5233",
+"total_score": "29992"
+},
+{
+"rank": 39,
+"name": "全志 H6",
+"clusters": "(4x 1.8GHz Cortex-A53)",
+"cpu_score": "22643",
+"gpu_score": "5905",
+"total_score": "28548"
+},
+{
+"rank": 40,
+"name": "全志 H616",
+"clusters": "(4x Cortex-A53)",
+"cpu_score": "20572",
+"gpu_score": "7242",
+"total_score": "27814"
+},
+{
+"rank": 41,
+"name": "紫光展锐 8541E",
+"clusters": "(4x 1.4GHz Cortex-A53)",
+"cpu_score": "23163",
+"gpu_score": "4047",
+"total_score": "27210"
+},
+{
+"rank": 42,
+"name": "瑞芯微 RK3528",
+"clusters": "(4x 2.0GHz Cortex-A53)",
+"cpu_score": "24773",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 0,
+"name": "24773 分",
+"clusters": "",
+"cpu_score": "",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 43,
+"name": "瑞芯微 RK3326",
+"clusters": "(4x 1.5GHz Cortex-A35)",
+"cpu_score": "16152",
+"gpu_score": "7864",
+"total_score": "24016"
+},
+{
+"rank": 44,
+"name": "杰发科技 AC8227L",
+"clusters": "(4x 1.1GHz Cortex-A7)",
+"cpu_score": "20846",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 0,
+"name": "20846 分",
+"clusters": "",
+"cpu_score": "",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 45,
+"name": "全志 R311",
+"clusters": "(2x 1.5GHz Cortex-A7)",
+"cpu_score": "15930",
+"gpu_score": "",
+"total_score": ""
+},
+{
+"rank": 0,
+"name": "15930 分",
+"clusters": "",
+"cpu_score": "",
+"gpu_score": "",
+"total_score": ""
+}
+]
+}
