@@ -52,6 +52,11 @@ def section_of(e):
     method = (e.get("method") or "").strip()
 
     if kind in TOOL_KINDS:
+        # 例外：移植工具（nx2android / NX2Apple 这类把游戏重编译成原生 APK / APP 的）
+        # 本质是「原生移植」的实现手段。按 kind 归进「前端与工具」会和驱动、
+        # 文件管理器混在一起，用户按「在手机上跑 Switch 游戏」永远找不到。
+        if method == "recomp":
+            return "native-port", f"kind={kind} 但 method=recomp（移植工具）"
         return "frontend-tool", f"kind={kind}"
     if method == "virtualization":
         return "virtualization", "method=virtualization"
