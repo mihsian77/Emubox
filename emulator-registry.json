@@ -1,6 +1,6 @@
 {
   "version": "1.3.0",
-  "updated_at": "2026-11-05",
+  "updated_at": "2026-11-05T23:15:00+08:00",
   "emulators": [
     {
       "id": "termux",
@@ -42235,26 +42235,26 @@
       "category": "原生移植",
       "description": "塞尔达传说：旷野之息 原生重编译移植（Switch 1.0.0/1.6.0/1.8.2/1.9.0，NVN→Vulkan），需自行提供游戏文件",
       "owner": "mamcjr",
-      "repo": "BOTWRecompAndroid",
-      "homepage": "",
+      "repo": "mamcjr/BOTWRecompAndroid",
+      "homepage": "https://playported.com/badge.svg",
       "repo_url": "https://github.com/mamcjr/BOTWRecompAndroid",
       "official": true,
-      "channel": "beta",
-      "latest_tag": "v0.2.13-beta",
-      "latest_date": "2026-11-03T03:40:51Z",
-      "latest_body": "**Beta 26.** Uma opção de 20 fps, mais gestos nos controles de toque e o fim das folhas que surgiam no chão.\n\n## Novidades\n\n- **20 fps** (Vídeo > Taxa de quadros: Auto, 20, 30 ou 60): para aparelhos mais fracos. O jogo entra no modo 20 fps dele, como no console quando cai para 20, e continua na velocidade certa. Trocar a taxa no meio do jogo também não faz mais o Link afundar no chão.\n- **Controles de toque:**\n  - **Magnesis** (#199): com a Magnesis selecionada, aparece uma cruz de setas ao lado do poder. ↑ empurra o objeto, ↓ puxa.\n  - **Conversas:** durante uma conversa ficam só o analógico, o A e o B. Dá para desligar em Controles > Controles simples nas conversas.\n  - **Cancelar o tiro ou o arremesso:** enquanto você segura o arco ou o arremesso, aparece um ✕ à esquerda, para o outro polegar.\n  - **Parry:** segurando o escudo, deslize o mesmo dedo para qualquer lado. O intervalo mínimo é de 0,6 s, o mesmo ritmo de quem aperta o A no controle.\n  - **Sensibilidade da câmera** (#199): agora aparece também com o layout de ação e vai até 400%.\n\n## Correções\n\n- **Folhas no chão** (#168): manchas de folhas escuras surgiam em qualquer tipo de chão em volta do Link e sumiam segundos depois. O jogo decide onde pôr as folhas lendo um mapa que a GPU desenha, e esse mapa (1 MB) não voltava para a memória do jogo, então ele lia zeros. Agora volta.\n- **Conversas no toque** (#200): com os controles de toque, as opções de resposta subiam junto com o minimapa e ficavam divididas. Agora o g",
-      "latest_apk_name": "BOTWRecompAndroid-0.2.13-beta.apk",
-      "latest_apk_url": "https://github.com/mamcjr/BOTWRecompAndroid/releases/download/v0.2.13-beta/BOTWRecompAndroid-0.2.13-beta.apk",
-      "latest_apk_size": 90050973,
-      "pushed_at": "2026-11-03T03:40:50Z",
-      "stars": 493,
-      "forks": 31,
-      "watchers": 21,
-      "downloads": 0,
+      "channel": "prerelease",
+      "latest_tag": "v0.3.1-beta",
+      "latest_date": "2026-11-04T14:03:45Z",
+      "latest_body": "**Beta 28.** Menos quedas com as runas e a câmera do Slate, o giroscópio como a tela do Switch e a memória compartilhada tentando outro caminho no Xclipse.\n\n## Novidades\n\n- **Movimento do celular como a tela do Switch** (Menu > Controles; #211, #247): com a opção ligada, girar e inclinar o celular funcionam como no Switch no modo portátil. Experimente se, ao inclinar o celular, a mira gira, e ao girar, ela inclina. Os controles com giroscópio ficam como antes.\n- **Memória do jogo por arquivo compartilhado (experimental):**\n  - Quando o driver não oferece memória que a CPU consiga usar pelo caminho normal, o app agora tenta um dma-buf (#234, Xclipse).\n  - O log diz por que a opção não foi usada (por exemplo, o driver não exporta memória) e quais formas de exportação o driver tem (#249).\n  - **Se você tem Mali ou Xclipse, teste e mande o log:** Configurações > Compatibilidade do driver.\n\n## Correções\n\n- **Quedas com Magnésis, Stasis e a câmera do Slate** (#235, #241, #248, #247): uma verificação do jogo no alvo da runa ou da câmera, que ainda não estava pronto, lia um ponteiro vazio. No modo nativo ela agora responde \"não\", e nos dois modos uma leitura desse tipo devolve zero em vez de derrubar o jogo. Cada caso aparece no log como \"the game's code read address\".\n- **Previsão do tempo** (#243): com o minimapa no alto (controles de toque), a previsão ficava solta no meio da tela. Voltou a acompanhar a hora.\n- **Mapeamentos de memória na Mali** (#249): o log agora mostra de onde vem a contagem (a memória do jogo, o driver da GPU, o resto), para achar o que ainda chega ao limite do Android em sessões longas.\n\n> **Não precisa compilar o código do jogo de novo:** é só instalar por cima da 0.2.x ou da 0.3.0.\n\n## Problemas conhecidos\n\n- **1.0.0 em combate:** os inimigos podem deixar linhas pretas ao morrer, e o jogo pode fechar na luta. Use a 1.8.2 ou a 1.9.0 por enquanto.\n- A chuva cai mais devagar que no console.\n- A grama baixa ao longe só aparece de perto.\n- No driver de",
+      "latest_apk_name": "BOTWRecompAndroid-0.3.1-beta.apk",
+      "latest_apk_url": "https://github.com/mamcjr/BOTWRecompAndroid/releases/download/v0.3.1-beta/BOTWRecompAndroid-0.3.1-beta.apk",
+      "latest_apk_size": 90071901,
+      "pushed_at": "2026-11-04T14:03:45Z",
+      "stars": 583,
+      "forks": 36,
+      "watchers": 583,
+      "downloads": 3078,
       "logo_url": "https://avatars.githubusercontent.com/u/26612066?v=4",
       "source": "github",
       "distribution": "release-apk",
-      "kind": "port",
+      "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
         "switch"
@@ -42270,7 +42270,53 @@
       "family_label": "BOTW Recomp Android",
       "_section_evidence": "method=recomp",
       "_family_evidence": "无上游证据，自成一族",
-      "downloads_basis": "none"
+      "downloads_basis": "none",
+      "releases": [
+        {
+          "tag": "v0.3.1-beta",
+          "name": "BOTWRecompAndroid 0.3.1 (beta 28): rune and camera crashes, Switch-screen motion, shared memory on Xclipse",
+          "date": "2026-11-04T14:03:45Z",
+          "body": "**Beta 28.** Menos quedas com as runas e a câmera do Slate, o giroscópio como a tela do Switch e a memória compartilhada tentando outro caminho no Xclipse.\n\n## Novidades\n\n- **Movimento do celular como a tela do Switch** (Menu > Controles; #211, #247): com a opção ligada, girar e inclinar o celular funcionam como no Switch no modo portátil. Experimente se, ao inclinar o celular, a mira gira, e ao girar, ela inclina. Os controles com giroscópio ficam como antes.\n- **Memória do jogo por arquivo compartilhado (experimental):**\n  - Quando o driver não oferece memória que a CPU consiga usar pelo caminho normal, o app agora tenta um dma-buf (#234, Xclipse).\n  - O log diz por que a opção não foi usada (por exemplo, o driver não exporta memória) e quais formas de exportação o driver tem (#249).\n  -"
+        },
+        {
+          "tag": "v0.3.0-beta",
+          "name": "BOTWRecompAndroid 0.3.0 (beta 27): Mali crashes fixed, fast travel back, 40 / 45 fps, even 30 fps on 60 Hz",
+          "date": "2026-11-04T02:47:32Z",
+          "body": "**Beta 27.** Fim das quedas depois de meia hora nas GPUs Mali, a viagem rápida de volta, 40 fps em telas de 120 Hz e 30 fps uniformes em telas de 60 Hz.\n\n## Novidades\n\n- **40 / 45 fps** (Vídeo > Taxa de quadros; #207, #216): entre 30 e 60, na taxa que a sua tela mostra por igual - 40 fps numa tela de 120 Hz, 45 numa de 90 Hz (numa de 60 Hz fica em 30). O jogo roda no modo de 60 fps dele, com o relógio certo.\n- **Controles de toque:**\n  - **Flechas:** com o arco puxado, um botão abre a troca de flechas; escolha arrastando o mesmo dedo, como nas armas.\n  - **Álbum** (#202): com a runa da câmera selecionada, aparece um botão − para abrir o álbum.\n  - **Mapa:** agora abre com **dois toques** no minimapa, para um toque sem querer não abrir o mapa (#209, #218). Um toque só vai para o botão que e"
+        },
+        {
+          "tag": "v0.2.13-beta",
+          "name": "BOTWRecompAndroid 0.2.13 (beta 26): 20 fps, touch gestures, no stray leaves",
+          "date": "2026-11-03T03:40:51Z",
+          "body": "**Beta 26.** Uma opção de 20 fps, mais gestos nos controles de toque e o fim das folhas que surgiam no chão.\n\n## Novidades\n\n- **20 fps** (Vídeo > Taxa de quadros: Auto, 20, 30 ou 60): para aparelhos mais fracos. O jogo entra no modo 20 fps dele, como no console quando cai para 20, e continua na velocidade certa. Trocar a taxa no meio do jogo também não faz mais o Link afundar no chão.\n- **Controles de toque:**\n  - **Magnesis** (#199): com a Magnesis selecionada, aparece uma cruz de setas ao lado do poder. ↑ empurra o objeto, ↓ puxa.\n  - **Conversas:** durante uma conversa ficam só o analógico, o A e o B. Dá para desligar em Controles > Controles simples nas conversas.\n  - **Cancelar o tiro ou o arremesso:** enquanto você segura o arco ou o arremesso, aparece um ✕ à esquerda, para o outro p"
+        },
+        {
+          "tag": "v0.2.12-beta",
+          "name": "BOTWRecompAndroid 0.2.12 (beta 25): Touch Controls Overhaul",
+          "date": "2026-11-02T20:47:12Z",
+          "body": "**Beta 25.** Touch Controls Overhaul: controles de toque com ícones, gestos e o minimapa no alto. E a correção do nome do cavalo.\n\n## Touch Controls Overhaul\n\n![Controles de toque no mundo](https://github.com/mamcjr/BOTWRecompAndroid/raw/main/docs/images/touch-controls-overhaul.jpg)\n\n- **Layout de ação:** enquanto você joga no mundo, os botões mostram o que fazem, em vez de A, B, ZR. São eles: atacar, defender, arco, arremessar, interagir, pular, correr, agachar, assobiar, a Sheikah Slate, o inventário e o poder. Os menus do jogo continuam com os botões clássicos. Dá para desligar em Controles > Ícones de ação no mundo.\n- **Ícones do próprio jogo,** lidos dos seus arquivos (nada vem no APK):\n  - o ataque e a troca de arma mostram a arma equipada, o arco mostra o arco equipado, e a defesa e"
+        },
+        {
+          "tag": "v0.2.11-beta",
+          "name": "BOTWRecompAndroid 0.2.11 (beta 24): mira por movimento com controle, mods que não desligavam",
+          "date": "2026-11-02T15:55:35Z",
+          "body": "**Beta 24.** Correções da mira por movimento quando há um controle conectado e de mods que não desligavam.\n\n## Correções\n\n- **A mira por movimento não funcionava com um controle conectado, ou parava depois de mexer o analógico direito** (#149, #175, #78):\n  - **A causa:** com a zona morta dos analógicos em \"Off\", um analógico parado um pouco fora do centro chegava ao jogo como se estivesse sendo segurado. O GameSir X4, por exemplo, marca 128 numa escala de 0 a 255. O jogo desliga a mira por movimento enquanto o analógico direito está em uso, então o giroscópio do celular não fazia nada. Às vezes parava depois de mexer o analógico e só voltava ao desconectar o controle.\n  - **A correção:** no Switch, um analógico no centro sempre vale exatamente 0. Agora a zona morta dos analógicos é de pel"
+        }
+      ],
+      "note": "",
+      "builds": [
+        {
+          "host": "android",
+          "format": "apk",
+          "name": "BOTWRecompAndroid-0.3.1-beta.apk",
+          "size": 90071901,
+          "url": "https://github.com/mamcjr/BOTWRecompAndroid/releases/download/v0.3.1-beta/BOTWRecompAndroid-0.3.1-beta.apk",
+          "downloads": 3078,
+          "tag": "v0.3.1-beta"
+        }
+      ],
+      "license": "NOASSERTION",
+      "topics": []
     },
     {
       "id": "jacojayy-star",
@@ -55990,445 +56036,55 @@
       "id": "xendroid-plus",
       "name": "Xendroid+",
       "category": "主机模拟",
-      "description": "XenDroid 增强 fork（phforner0）：推进 Xbox 360 安卓模拟，基于 XenDroid 代码持续优化，独立发布节奏（0.2.0-preview.108 起含 APK）。",
+      "description": "XenDroid 增强 fork（phforner0）：推进 Xbox 360 安卓模拟，基于 XenDroid 代码持续优化，独立发布节奏",
       "owner": "phforner0",
       "repo": "phforner0/Xendroid-Plus",
       "homepage": "https://phforner0.github.io/Xendroid-Plus/",
       "repo_url": "https://github.com/phforner0/Xendroid-Plus",
       "official": false,
-      "channel": "beta",
-      "latest_tag": "XenDroid-v134-dba22de8",
-      "latest_date": "2026-11-02T21:12:42Z",
-      "latest_body": "The shader math precision series from Xenia Edge: vertex shaders compute as the Xbox 360 GPU does, pixel shaders get cheaper.\n\n* Vertex shaders compute reciprocals, square roots, exponentials and logarithms bit for bit as the console, and round sums and products toward zero, which fixes z-fighting and exploding geometry.\n* Only the results that reach a fetch index, an address register, a memory export or a rounding pay for the exact math.\n* Pixel shaders drop the 21-bit mantissa rounding, so they cost less in every game, and the option that chose its form is gone.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v132-80237530...XenDroid-v134-dba22de8\n\n<!-- update-summary:en\n* Vertex shaders compute reciprocals, square roots, exponentials and logarithms bit for bit as the console, and round sums and products toward zero, which fixes z-fighting and exploding geometry.\n* Only the results that reach a fetch index, an address register, a memory export or a rounding pay for the exact math.\n* Pixel shaders drop the 21-bit mantissa rounding, so they cost less in every game, and the option that chose its form is gone.\n-->\n<!-- update-summary:pt-BR\n* Os vertex",
-      "latest_apk_name": "XenDroid_Release_dba22de8.apk",
-      "latest_apk_url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v134-dba22de8/XenDroid_Release_dba22de8.apk",
-      "latest_apk_size": 42568905,
-      "pushed_at": "2026-11-03T03:29:58Z",
-      "stars": 140,
-      "forks": 5,
-      "watchers": 5,
-      "downloads": 0,
-      "logo_url": "https://github.com/phforner0.png",
+      "channel": "stable",
+      "latest_tag": "XenDroid-v144-a107faa9",
+      "latest_date": "2026-11-04T04:04:48Z",
+      "latest_body": "Fixes Forza Horizon drawing broken distant geometry at 6 fps in 0.2.1 on Adreno GPUs.\n\nFixes from upstream Xenia Edge: safer loading of game executables and DLLs, a batch of crash and memory-corruption fixes, and the right title update when a game has several installed.\n\nA Vulkan driver that doesn't support the phone's GPU no longer closes every game without a word.\n\nAnalog triggers stay analog in games, and handhelds whose built-in controls Android lists twice, such as the AYN Thor, play as P1.\n\n* Forza Horizon is back to 30 fps with a correct image on Adreno with Turnip.\n* Games sharing a title ID with another edition (GTA IV and Episodes from Liberty City, Dragon Age: Origins and Awakening) get the title update built for them.\n* A game waiting on the same object twice no longer freezes.\n* Truncated ISOs, empty XMA audio buffers and network sends with no destination no longer crash the emulator.\n* The game shows why it didn't start and offers the system driver.\n* Racing games get throttle and brake control from analog triggers.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v134-dba22de8...XenDroid-v144-a107faa9\n\n<!-- update-summary:en\n* Forza Horizon is back to 30 fps with a correct image on Adreno with Turnip.\n* Games sharing a title ID with another edition (GTA IV and Episodes from Liberty City, Dragon Age: Origins and Awakening) get the title update built for them.\n* A game waiting on the same object twice no longer freezes.\n* Truncated ISOs, empty XMA audio buffers and network sends with no destination no longer crash the emulator.\n* The game shows why it didn't start and offers the system driver.\n* Racing games get throttle and brake control from analog triggers.\n-->\n<!-- update-summary:pt-BR\n* O Forza Horizon volta a 30 fps com a imagem certa no Adreno com Turnip.\n* Jogos que dividem o title ID com outra edição (GTA IV e Episodes from Liberty City, Dragon Age: Origins e Awakening) recebem a title update feita para eles.\n* U",
+      "latest_apk_name": "XenDroid_Release_a107faa9.apk",
+      "latest_apk_url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v144-a107faa9/XenDroid_Release_a107faa9.apk",
+      "latest_apk_size": 42589385,
+      "pushed_at": "2026-11-04T07:57:44Z",
+      "stars": 154,
+      "forks": 12,
+      "watchers": 154,
+      "downloads": 5600,
+      "logo_url": "https://avatars.githubusercontent.com/u/238772760?v=4",
       "releases": [
         {
-          "tag": "XenDroid-v134-dba22de8",
-          "name": "Xendroid+ 0.2.1",
-          "date": "2026-11-02T21:12:42Z",
-          "body": "The shader math precision series from Xenia Edge: vertex shaders compute as the Xbox 360 GPU does, pixel shaders get cheaper.\n\n* Vertex shaders compute reciprocals, square roots, exponentials and logarithms bit for bit as the console, and round sums and products toward zero, which fixes z-fighting and exploding geometry.\n* Only the results that reach a fetch index, an address register, a memory export or a rounding pay for the exact math.\n* Pixel shaders drop the 21-bit mantissa rounding, so they cost less in every game, and the option that chose its form is gone.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v132-80237530...XenDroid-v134-dba22de8\n\n<!-- update-summary:en\n* Vertex shaders compute reciprocals, square roots, exponentials and logarithms bit for bit as the console, and round sums and products toward zero, which fixes z-fighting and exploding geometry.\n* Only the results that reach a fetch index, an address register, a memory export or a rounding pay for the exact math.\n* Pixel shaders drop the 21-bit mantissa rounding, so they cost less in every game, and the option that chose its form is gone.\n-->\n<!-- update-summary:pt-BR\n* Os vertex",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_dba22de8.apk",
-              "size": 42568905,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v134-dba22de8/XenDroid_Release_dba22de8.apk"
-            }
-          ]
+          "tag": "XenDroid-v144-a107faa9",
+          "name": "Xendroid+ 0.2.2",
+          "date": "2026-11-04T04:04:48Z",
+          "body": "Fixes Forza Horizon drawing broken distant geometry at 6 fps in 0.2.1 on Adreno GPUs.\n\nFixes from upstream Xenia Edge: safer loading of game executables and DLLs, a batch of crash and memory-corruption fixes, and the right title update when a game has several installed.\n\nA Vulkan driver that doesn't support the phone's GPU no longer closes every game without a word.\n\nAnalog triggers stay analog in games, and handhelds whose built-in controls Android lists twice, such as the AYN Thor, play as P1.\n\n* Forza Horizon is back to 30 fps with a correct image on Adreno with Turnip.\n* Games sharing a title ID with another edition (GTA IV and Episodes from Liberty City, Dragon Age: Origins and Awakening) get the title update built for them.\n* A game waiting on the same object twice no longer freezes."
         },
         {
-          "tag": "XenDroid-v133-dba22de8",
-          "name": "Xendroid+ 0.3.0-preview.133",
-          "date": "2026-11-02T04:19:08Z",
-          "body": "The shader math precision series from Xenia Edge: vertex shaders compute as the Xbox 360 GPU does, pixel shaders get cheaper.\n\n* Vertex shaders compute reciprocals, square roots, exponentials and logarithms bit for bit as the console, and round sums and products toward zero, which fixes z-fighting and exploding geometry.\n* Only the results that reach a fetch index, an address register, a memory export or a rounding pay for the exact math.\n* Pixel shaders drop the 21-bit mantissa rounding, so they cost less in every game, and the option that chose its form is gone.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v132-80237530...XenDroid-v133-dba22de8\n\n<!-- update-summary:en\n* Vertex shaders compute reciprocals, square roots, exponentials and logarithms bit for bit as the console, and round sums and products toward zero, which fixes z-fighting and exploding geometry.\n* Only the results that reach a fetch index, an address register, a memory export or a rounding pay for the exact math.\n* Pixel shaders drop the 21-bit mantissa rounding, so they cost less in every game, and the option that chose its form is gone.\n-->\n<!-- update-summary:pt-BR\n* Os vertex",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_dba22de8.apk",
-              "size": 42568905,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v133-dba22de8/XenDroid_Release_dba22de8.apk"
-            }
-          ]
+          "tag": "XenDroid-v146-d6dfac08",
+          "name": "Xendroid+ 0.3.0-preview.146",
+          "date": "2026-11-04T07:57:45Z",
+          "body": "Scheduler and file I/O fixes from upstream Xenia Edge: file reads and writes finish the way they do on the console, and kernel timers and DPCs behave like the console's.\n\n* Reads take about as long as they would on real storage, which some games need in order to load properly. A few games can take some seconds longer to start.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v144-a107faa9...XenDroid-v146-d6dfac08\n\n<!-- update-summary:en\n* Reads take about as long as they would on real storage, which some games need in order to load properly. A few games can take some seconds longer to start.\n-->\n<!-- update-summary:pt-BR\n* As leituras levam um tempo parecido com o de um disco real, o que alguns jogos precisam para carregar direito. Alguns jogos podem levar a"
         },
         {
-          "tag": "XenDroid-v132-80237530",
-          "name": "Xendroid+ 0.2.0",
-          "date": "2026-10-31T04:19:57Z",
-          "body": "First step toward XNA games such as Bastion: the console kernel's user mode, which their .NET runtime needs.\n\nController navigation: the focus no longer gets stuck in the search field, and B no longer closes the app at once.\n\nSettings that games change, and more useful diagnostic logs.\n\nPrototype's city is lit again, and Dirt 3 loses its harsh contrast.\n\nNaruto: Rise of a Ninja no longer closes a few seconds after it starts.\n\nGPU fixes from Xenia Edge, and Forza Motorsport 4's car shadow.\n\nKernel, CPU and file fixes from Xenia Edge.\n\nContent and profile fixes from Xenia Edge, as a console behaves, and installed packages that keep opening.\n\nNetwork fixes from Xenia Edge, and socket options that work on Android.\n\nUser mode fixes from Xenia Edge for XNA games such as Bastion.\n\nGPU diagnostics for bug reports: the packets around a GPU command failure go to the log, and a diagnostic build can capture a frame.\n\n* The kernel's user mode, where the runtime of XNA games runs the game's code, is now implemented.\n* Code a game compiles while it runs is now translated, and dropped again when the game rewrites it.\n* Text fields let the D-pad and B out, and A shows the keyboard again.\n* A contro",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_80237530.apk",
-              "size": 42556617,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v132-80237530/XenDroid_Release_80237530.apk"
-            }
-          ]
+          "tag": "XenDroid-v143-a107faa9",
+          "name": "Xendroid+ 0.3.0-preview.143",
+          "date": "2026-11-04T04:10:05Z",
+          "body": "\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v144-a107faa9...XenDroid-v143-a107faa9\n\n<!-- update-summary:en\n-->\n<!-- update-summary:pt-BR\n-->\n\n<details>\n<summary><b>📜 Every change since build 144</b> · 0 pull requests</summary>\n\n\n</details>\n\n---\n\nBuilt by [Xendroid+ #143](https://github.com/phforner0/Xendroid-Plus/actions/runs/41769464563) from [`a107faa9`](https://github.com/phforner0/Xendroid-Plus/commit/a107faa92c35f327d863161474be4080cbf9d30a), signed with the release key.\n\n| File | Size | SHA-256 |\n|---|---|---|\n| [`XenDroid_Release_a107faa9.apk`](https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v143-a107faa9/XenDroid_Release_a107faa9.apk) | 40.6 MiB | `11309f57a41b271546947b6efabf7b74f295b48d00b6177a8d5ced5fdcf2a96b` |\n"
         },
         {
-          "tag": "XenDroid-v131-80237530",
-          "name": "Xendroid+ 0.2.0-preview.131",
-          "date": "2026-10-30T23:21:04Z",
-          "body": "Prototype's city is lit again, and Dirt 3 loses its harsh contrast.\n\nNaruto: Rise of a Ninja no longer closes a few seconds after it starts.\n\nGPU fixes from Xenia Edge, and Forza Motorsport 4's car shadow.\n\nKernel, CPU and file fixes from Xenia Edge.\n\nContent and profile fixes from Xenia Edge, as a console behaves, and installed packages that keep opening.\n\nNetwork fixes from Xenia Edge, and socket options that work on Android.\n\nUser mode fixes from Xenia Edge for XNA games such as Bastion.\n\nGPU diagnostics for bug reports: the packets around a GPU command failure go to the log, and a diagnostic build can capture a frame.\n\n* Prototype no longer draws the ground, buildings and people black on Turnip drivers.\n* Dirt 3's menus and stages no longer come out nearly black and overly contrasted on Turnip drivers.\n* Naruto: Rise of a Ninja no longer closes with \"Guest crashed\" a few seconds after starting, which happened in about half of the launches. Its threads run as system threads again.\n* 16-bit fixed render targets use the hardware's 10 fractional bits, and packed mip tails, 8-bit format aliases and one-component vertex fetches load correctly.\n* float16 render targets and memory expo",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_80237530.apk",
-              "size": 42556617,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v131-80237530/XenDroid_Release_80237530.apk"
-            }
-          ]
+          "tag": "XenDroid-v141-a3e2f4a9",
+          "name": "Xendroid+ 0.3.0-preview.141",
+          "date": "2026-11-04T04:01:42Z",
+          "body": "Fixes from upstream Xenia Edge: safer loading of game executables and DLLs, a batch of crash and memory-corruption fixes, and the right title update when a game has several installed.\n\n* Games sharing a title ID with another edition (GTA IV and Episodes from Liberty City, Dragon Age: Origins and Awakening) get the title update built for them.\n* A game waiting on the same object twice no longer freezes.\n* Truncated ISOs, empty XMA audio buffers and network sends with no destination no longer crash the emulator.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v137-f5eeff4a...XenDroid-v141-a3e2f4a9\n\n<!-- update-summary:en\n* Games sharing a title ID with another edition (GTA IV and Episodes from Liberty City, Dragon Age: Origins and Awakening) get the title upd"
         },
         {
-          "tag": "XenDroid-v121-32acc032",
-          "name": "Xendroid+ 0.2.0-preview.121",
-          "date": "2026-10-30T23:05:43Z",
-          "body": "Settings that games change, and more useful diagnostic logs.\n\n* The Settings summary lists the games with settings of their own again, and a setting shows how many games use another value.\n* The Drivers screen marks a driver that games use and warns before removing it.\n* Shared diagnostic logs keep the start of the emulator log, with the GPU, driver and settings, the end of the previous session's log, where a crash is, and the times of the system log.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v108-9a84d065...XenDroid-v121-32acc032\n\n<!-- update-summary:en\n* The Settings summary lists the games with settings of their own again, and a setting shows how many games use another value.\n* The Drivers screen marks a driver that games use and warns before removing it.\n* Shared diagnostic logs keep the start of the emulator log, with the GPU, driver and settings, the end of the previous session's log, where a crash is, and the times of the system log.\n-->\n<!-- update-summary:pt-BR\n* O resumo das configurações volta a listar os jogos com configurações próprias, e uma configuração mostra quantos jogos usam outro valor.\n* A tela de drivers marca o driver qu",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_32acc032.apk",
-              "size": 42532041,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v121-32acc032/XenDroid_Release_32acc032.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v108-9a84d065",
-          "name": "Xendroid+ 0.2.0-preview.108",
-          "date": "2026-10-20T21:22:53Z",
-          "body": "Controller navigation: the focus no longer gets stuck in the search field, and B no longer closes the app at once.\n\n* Text fields let the D-pad and B out, and A shows the keyboard again.\n* A controller's first press in the library goes to the games, not to the search field.\n* With a controller, sheets and the Start menu take the focus on their first control, and B closes them at once.\n* B at the library asks \"Press B again to exit\" before leaving the app.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v107-e0d45b9f...XenDroid-v108-9a84d065\n\n<!-- update-summary:en\n* Text fields let the D-pad and B out, and A shows the keyboard again.\n* A controller's first press in the library goes to the games, not to the search field.\n* With a controller, sheets and the Start menu take the focus on their first control, and B closes them at once.\n* B at the library asks \"Press B again to exit\" before leaving the app.\n-->\n<!-- update-summary:pt-BR\n* Os campos de texto deixam o direcional e o B saírem, e o A reabre o teclado.\n* O primeiro direcional na biblioteca vai para os jogos, não para a busca.\n* Com controle, as folhas e o menu Start recebem o foco no primeiro ",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_9a84d065.apk",
-              "size": 42527945,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v108-9a84d065/XenDroid_Release_9a84d065.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v107-e0d45b9f",
-          "name": "Xendroid+ 0.2.0-preview.107",
-          "date": "2026-10-20T21:14:29Z",
-          "body": "First step toward XNA games such as Bastion: the console kernel's user mode, which their .NET runtime needs.\n\n* The kernel's user mode, where the runtime of XNA games runs the game's code, is now implemented.\n* Code a game compiles while it runs is now translated, and dropped again when the game rewrites it.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v104-8715d0fb...XenDroid-v107-e0d45b9f\n\n<!-- update-summary:en\n* The kernel's user mode, where the runtime of XNA games runs the game's code, is now implemented.\n* Code a game compiles while it runs is now translated, and dropped again when the game rewrites it.\n-->\n<!-- update-summary:pt-BR\n* O user mode do kernel, onde o runtime dos jogos XNA roda o código do jogo, agora está implementado.\n* Código que um jogo compila enquanto roda agora é traduzido, e descartado de novo quando o jogo o reescreve.\n-->\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nPrimeiro passo para jogos XNA como o Bastion: o user mode do kernel do console, de que o runtime .NET deles precisa.\n\n- O user mode do kernel, onde o runtime dos jogos XNA roda o código do jogo, agora está implementado.\n- Código que um jogo compi",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_e0d45b9f.apk",
-              "size": 42511561,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v107-e0d45b9f/XenDroid_Release_e0d45b9f.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v104-8715d0fb",
-          "name": "Xendroid+ 0.1.0",
-          "date": "2026-10-19T19:07:40Z",
-          "body": "Releases now have version numbers, and every change reaches the Preview channel first.\n\nFile operations behave more like the console, and a batch of small fixes from upstream.\n\nThree leftovers of the upstream sweep: a copy mode some Kinect games use, a memory allocation fix, and socket fixes.\n\nBad game and content files can no longer crash the app or lose your data.\n\nWith an empty shader cache, effects drawn once no longer go missing while their shaders compile.\n\nCalls from games into the system cost less on the CPU.\n\nA damaged or crafted title update can no longer write outside the game's memory.\n\n* Stable updates come as numbered versions (1.0.0, 1.1.0…), published when they are ready, with notes for everything since the previous one.\n* Turn on the Preview channel in the updater to get every change as soon as it is merged (1.1.0-preview.95…).\n* The update screen shows the version and the build number.\n* Reads at the start of a file, appends and renames into another folder work as games expect.\n* Reserving space in a file no longer pads it with zeros.\n* DLCs that need licenses without flags now apply.\n* 5345084D's Kinect masks can now be built by the GPU.\n* Memory allocated within",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_8715d0fb.apk",
-              "size": 42482889,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v104-8715d0fb/XenDroid_Release_8715d0fb.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v98-0189ee44",
-          "name": "Xendroid+ 0.1.0-preview.98",
-          "date": "2026-10-19T16:56:31Z",
-          "body": "File operations behave more like the console, and a batch of small fixes from upstream.\n\n* Reads at the start of a file, appends and renames into another folder work as games expect.\n* Reserving space in a file no longer pads it with zeros.\n* DLCs that need licenses without flags now apply.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v91-172089a3...XenDroid-v98-0189ee44\n\n<!-- update-summary:en\n* Reads at the start of a file, appends and renames into another folder work as games expect.\n* Reserving space in a file no longer pads it with zeros.\n* DLCs that need licenses without flags now apply.\n-->\n<!-- update-summary:pt-BR\n* Ler no começo de um arquivo, acrescentar ao fim e renomear para outra pasta funcionam como os jogos esperam.\n* Reservar espaço num arquivo não o enche mais de zeros.\n* DLCs que pedem licenças sem flags agora são aplicados.\n-->\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nOperações de arquivo mais parecidas com as do console, e um lote de correções pequenas do upstream.\n\n- Ler no começo de um arquivo, acrescentar ao fim e renomear para outra pasta funcionam como os jogos esperam.\n- Reservar espaço num arquivo não o en",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_0189ee44.apk",
-              "size": 42437833,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v98-0189ee44/XenDroid_Release_0189ee44.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v103-8715d0fb",
-          "name": "Xendroid+ 0.1.0-preview.103",
-          "date": "2026-10-19T17:12:29Z",
-          "body": "Three leftovers of the upstream sweep: a copy mode some Kinect games use, a memory allocation fix, and socket fixes.\n\nBad game and content files can no longer crash the app or lose your data.\n\nWith an empty shader cache, effects drawn once no longer go missing while their shaders compile.\n\nCalls from games into the system cost less on the CPU.\n\nA damaged or crafted title update can no longer write outside the game's memory.\n\n* 5345084D's Kinect masks can now be built by the GPU.\n* Memory allocated within a range no longer ends past it.\n* Accepted network connections no longer block when the game expects them not to.\n* A broken or crafted game file no longer crashes the library scan.\n* A content install that fails leaves what was there before.\n* Saves copied in by hand as a package can be written to.\n* Back on a license text returns to the list.\n* A draw into a render target used once, a small generated texture or memory export now waits for its shader instead of being skipped.\n* Only that shader is waited for; the others keep compiling in the background.\n* Most kernel calls no longer save and restore 28 vector registers.\n* Fixed addresses the JIT needs at every call are loaded in o",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_8715d0fb.apk",
-              "size": 42482889,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v103-8715d0fb/XenDroid_Release_8715d0fb.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v89-975dd61a",
-          "name": "Xendroid+ 975dd61a (build 89)",
-          "date": "2026-10-18T20:49:04Z",
-          "body": "Fixes the website build after the license notice.\n\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v87-29223981...XenDroid-v89-975dd61a\n\n<!-- update-summary:en\n* Fixes the website build after the license notice.\n-->\n<!-- update-summary:pt-BR\n* Corrige o build do site depois do aviso de licença.\n-->\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nCorrige o build do site depois do aviso de licença.\n\n\n</details>\n\n<details>\n<summary><b>📜 Every change since build 87</b> · 1 pull request, 2 commits</summary>\n\n- [#50](https://github.com/phforner0/Xendroid-Plus/pull/50) Página de licenças: link do código-fonte pelo nome, não pelo endereço (corrige o Site) · @phforner0\n  - Licenses page: name the source link instead of spelling its address · [`064c1c1b`](https://github.com/phforner0/Xendroid-Plus/commit/064c1c1b562f0e08dbcbc7be8f6bc7b30a046f26)\n\n</details>\n\n---\n\nBuilt by [Xendroid+ #89](https://github.com/phforner0/Xendroid-Plus/actions/runs/39164487440) from [`975dd61a`](https://github.com/phforner0/Xendroid-Plus/commit/975dd61ab0eb4b0348480f0cfb02b7cab30cd5d1), signed with the release key.\n\n| File | Size | SHA-256 |\n|---|---|---|\n| [`XenDroid_Release",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_975dd61a.apk",
-              "size": 42437833,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v89-975dd61a/XenDroid_Release_975dd61a.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v87-29223981",
-          "name": "Xendroid+ 29223981 (build 87)",
-          "date": "2026-10-18T20:32:41Z",
-          "body": "Audio, graphics and CPU fixes from xenia-edge. The first launch of each game after this update rebuilds its pipeline cache.\n\nScheduler, kernel, input and network fixes from xenia-edge, plus Android-specific fixes to sockets and thread sync.\n\nCPU, ARM64 code generation, kernel and XAM fixes from xenia-edge.\n\nTexture and resolve fixes from xenia-edge and Xenia Canary.\n\nKernel cryptography and executable decryption now run on Mbed TLS, as in xenia-edge, fixing several results that differed from the console.\n\nFaster CPU emulation on ARM64 from xenia-edge, and audio that game threads no longer hold up.\n\nXendroid+ now has a license of its own: the GNU AGPL, version 3 or later.\n\n* Audio fixes: LEGO games no longer freeze in their opening cutscenes, NBA Live 06's menus no longer stall the audio, the musou games' music plays without skips, and Tekken Tag Tournament 2 keeps its sound.\n* Graphics fixes: draws that used mirrored memory addresses are no longer dropped, and texture formats, shader translation and the Gears of War: Judgment scene decode are corrected.\n* CPU instructions that returned wrong results now behave like the console.\n* Black Ops II plays its music.\n* Halo: Reach no longe",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_29223981.apk",
-              "size": 42437833,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v87-29223981/XenDroid_Release_29223981.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v79-726ef8f8",
-          "name": "Xendroid+ 726ef8f8 (build 79)",
-          "date": "2026-10-18T20:11:46Z",
-          "body": "Games keep their files and their clock right, and the game patch list is current.\n\n* Files a game opens for appending no longer get their writes moved to the end, which could corrupt them.\n* The game's own clock no longer runs 100 times too fast.\n* 22 new game patches (Gun, Shrek the Third, Disney-Pixar Cars, Assassin's Creed I and II, Sonic & All-Stars Racing Transformed, Ticket to Ride and more), and updated ones for Fable II, Kameo and Gears of War 2, 3 and Judgment.\n* A fix from xenia-edge for Dead Rising's disc read errors.\n* A fix from xenia-edge for content that games install themselves, as in Battlefield 3 and Forza Motorsport 3.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v70-d9891617...XenDroid-v79-726ef8f8\n\n<!-- update-summary:en\n* Files a game opens for appending no longer get their writes moved to the end, which could corrupt them.\n* The game's own clock no longer runs 100 times too fast.\n* 22 new game patches (Gun, Shrek the Third, Disney-Pixar Cars, Assassin's Creed I and II, Sonic & All-Stars Racing Transformed, Ticket to Ride and more), and updated ones for Fable II, Kameo and Gears of War 2, 3 and Judgment.\n* A fix from xenia-e",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_726ef8f8.apk",
-              "size": 42363927,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v79-726ef8f8/XenDroid_Release_726ef8f8.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v91-172089a3",
-          "name": "Xendroid+ 0.1.0-preview.91",
-          "date": "2026-10-18T21:25:37Z",
-          "body": "Releases now have version numbers, and every change reaches the Preview channel first.\n\n* Stable updates come as numbered versions (1.0.0, 1.1.0…), published when they are ready, with notes for everything since the previous one.\n* Turn on the Preview channel in the updater to get every change as soon as it is merged (1.1.0-preview.95…).\n* The update screen shows the version and the build number.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v89-975dd61a...XenDroid-v91-172089a3\n\n<!-- update-summary:en\n* Stable updates come as numbered versions (1.0.0, 1.1.0…), published when they are ready, with notes for everything since the previous one.\n* Turn on the Preview channel in the updater to get every change as soon as it is merged (1.1.0-preview.95…).\n* The update screen shows the version and the build number.\n-->\n<!-- update-summary:pt-BR\n* As atualizações estáveis vêm como versões numeradas (1.0.0, 1.1.0…), publicadas quando estão prontas, com as notas de tudo desde a anterior.\n* Ligue o canal Prévia no atualizador para receber cada mudança assim que ela entra (1.1.0-preview.95…).\n* A tela de atualização mostra a versão e o número do build.\n-->\n\n<det",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_172089a3.apk",
-              "size": 42437833,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v91-172089a3/XenDroid_Release_172089a3.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v80-92f0cdcc",
-          "name": "Xendroid+ 92f0cdcc (build 80)",
-          "date": "2026-10-18T21:11:18Z",
-          "body": "\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v89-975dd61a...XenDroid-v80-92f0cdcc\n\n<!-- update-summary:en\n-->\n<!-- update-summary:pt-BR\n-->\n\n<details>\n<summary><b>📜 Every change since build 89</b> · 0 pull requests</summary>\n\n\n</details>\n\n---\n\nBuilt by [Xendroid+ #80](https://github.com/phforner0/Xendroid-Plus/actions/runs/39160912095) from [`92f0cdcc`](https://github.com/phforner0/Xendroid-Plus/commit/92f0cdcc3cfa828fd0869ddd9b87cb81ba613ba3), signed with the release key.\n\n| File | Size | SHA-256 |\n|---|---|---|\n| [`XenDroid_Release_92f0cdcc.apk`](https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v80-92f0cdcc/XenDroid_Release_92f0cdcc.apk) | 40.4 MiB | `04c27fc25aed0de9a42b91c5a69452deb2c4979bb9e7f452ec46d49c2dc05e79` |\n",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "XenDroid_Release_92f0cdcc.apk",
-              "size": 42376215,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v80-92f0cdcc/XenDroid_Release_92f0cdcc.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v70-d9891617",
-          "name": "Xendroid+ d9891617 (build 70)",
-          "date": "2026-10-15T18:33:03Z",
-          "body": "App updates work on Android 10 and on some Android 13 phones: there, the app's updater refused every update, saying it was signed with another key. Install this build once from the release page; from then on, the updater installs the next ones.\n\n* In-app updates work on Android 10 and on some Android 13 phones (install this build from the release page first).\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v69-4033c50a...XenDroid-v70-d9891617\n\n<!-- update-summary:en\n* In-app updates work on Android 10 and on some Android 13 phones (install this build from the release page first).\n-->\n<!-- update-summary:pt-BR\n* Atualizações pelo app funcionam no Android 10 e em alguns aparelhos com Android 13 (instale esta build pela página da release antes).\n-->\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nAs atualizações pelo app funcionam no Android 10 e em alguns aparelhos com Android 13: neles, o atualizador recusava toda atualização, dizendo que ela estava assinada com outra chave. Instale esta build uma vez pela página da release; daí em diante, o atualizador instala as próximas.\n\n- Atualizações pelo app funcionam no Android 10 e em alguns aparelhos ",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_d9891617.apk",
-              "size": 42337137,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v70-d9891617/XenDroid_Release_d9891617.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v69-4033c50a",
-          "name": "Xendroid+ 4033c50a (build 69)",
-          "date": "2026-10-15T18:23:53Z",
-          "body": "Audio holds up better when a game gets heavy: in frame-rate drops, crashes and busy scenes, the sound used to stutter whenever the emulator's audio thread was kept waiting.\n\n* Less audio stutter in frame-rate drops and heavy scenes.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v65-87b5c00f...XenDroid-v69-4033c50a\n\n<!-- update-summary:en\n* Less audio stutter in frame-rate drops and heavy scenes.\n-->\n<!-- update-summary:pt-BR\n* Menos áudio picotando nas quedas de FPS e nas cenas pesadas.\n-->\n\n> ✅ **Tested** on a POCO F7 (Snapdragon 8s Gen 4): Forza Horizon, driving straight into whatever is ahead with extra load on the phone — hiccups of 20 to 40 ms no longer break the sound.\n\n## What's new\n\n### Other changes\n\n- README: Rise of the Tomb Raider, Crysis 3 em jogo, NFS sem forçar clock, precisão e estabilidade (#35)\n\n## ⚠️ Still open\n\n- Stalls longer than about 40 ms (with the phone at its limit) can still break the sound up.\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nO áudio aguenta melhor quando o jogo pesa: nas quedas de FPS, nas batidas e nas cenas cheias, o som picotava sempre que a thread de áudio do emulador ficava esperando.\n\n- Meno",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_4033c50a.apk",
-              "size": 42337137,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v69-4033c50a/XenDroid_Release_4033c50a.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v65-87b5c00f",
-          "name": "Xendroid+ 87b5c00f (build 65)",
-          "date": "2026-10-14T17:36:47Z",
-          "body": "Gears of War 3 shows its colors: in play, the image was washed out, almost gray.\n\n* Gears of War 3: the image is no longer washed out.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v63-732c64db...XenDroid-v65-87b5c00f\n\n<!-- update-summary:en\n* Gears of War 3: the image is no longer washed out.\n-->\n<!-- update-summary:pt-BR\n* Gears of War 3: a imagem não sai mais lavada.\n-->\n\n> ✅ **Tested** on a POCO F7 (Snapdragon 8s Gen 4): the first checkpoint, at 30 FPS.\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nO Gears of War 3 mostra suas cores: na partida, a imagem saía lavada, quase cinza.\n\n- Gears of War 3: a imagem não sai mais lavada.\n\n> ✅ **Testado** num POCO F7 (Snapdragon 8s Gen 4): o primeiro checkpoint, a 30 FPS.\n\n</details>\n\n<details>\n<summary><b>📜 Every change since build 63</b> · 1 pull request, 2 commits</summary>\n\n- [#34](https://github.com/phforner0/Xendroid-Plus/pull/34) Gears of War 3: imagem lavada, quase cinza — resolves não gravam mais em texturas empilhadas · @phforner0\n  - Resolves store into single-layer textures only (Gears of War 3's colors) · [`f908b975`](https://github.com/phforner0/Xendroid-Plus/commit/f908b97518ce91fc",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_87b5c00f.apk",
-              "size": 42333041,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v65-87b5c00f/XenDroid_Release_87b5c00f.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v63-732c64db",
-          "name": "Xendroid+ 732c64db (build 63)",
-          "date": "2026-10-14T16:37:51Z",
-          "body": "Rise of the Tomb Raider now renders: its main menu was a flat blue screen, and now the menu shows its room and the first level is drawn.\n\n* Rise of the Tomb Raider: the main menu and the first level render.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v60-db981f83...XenDroid-v63-732c64db\n\n<!-- update-summary:en\n* Rise of the Tomb Raider: the main menu and the first level render.\n-->\n<!-- update-summary:pt-BR\n* Rise of the Tomb Raider: o menu principal e a primeira fase renderizam.\n-->\n\n> ✅ **Tested** on a POCO F7 (Snapdragon 8s Gen 4): the main menu and the start of the first level, at about 20 FPS.\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nO Rise of the Tomb Raider passa a renderizar: o menu principal era uma tela azul chapada, e agora o menu mostra a sala e a primeira fase aparece.\n\n- Rise of the Tomb Raider: o menu principal e a primeira fase renderizam.\n\n> ✅ **Testado** num POCO F7 (Snapdragon 8s Gen 4): o menu principal e o começo da primeira fase, a cerca de 20 FPS.\n\n</details>\n\n<details>\n<summary><b>📜 Every change since build 60</b> · 1 pull request, 5 commits</summary>\n\n- [#33](https://github.com/phforner0/Xendroid-Plus/pull/3",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_732c64db.apk",
-              "size": 42333041,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v63-732c64db/XenDroid_Release_732c64db.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v60-db981f83",
-          "name": "Xendroid+ db981f83 (build 60)",
-          "date": "2026-10-13T22:00:20Z",
-          "body": "Need for Speed: Most Wanted no longer recreates textures every frame, and the command thread writes far fewer descriptor sets on Turnip.\n\n* Need for Speed: Most Wanted: 7 textures a frame were destroyed and created again at every load; now none.\n* Turnip: the constant buffers use dynamic offsets (Red Dead Redemption: 7260 descriptor set writes a frame -> 14), and texture descriptor sets written earlier in a frame are reused.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v58-1066f8fd...XenDroid-v60-db981f83\n\n<!-- update-summary:en\n* Need for Speed: Most Wanted: 7 textures a frame were destroyed and created again at every load; now none.\n* Turnip: the constant buffers use dynamic offsets (Red Dead Redemption: 7260 descriptor set writes a frame -> 14), and texture descriptor sets written earlier in a frame are reused.\n-->\n<!-- update-summary:pt-BR\n* Need for Speed: Most Wanted: 7 texturas por quadro eram destruídas e criadas de novo a cada carga; agora nenhuma.\n* Turnip: os buffers de constantes usam offsets dinâmicos (Red Dead Redemption: 7 260 escritas de conjuntos de descriptors por quadro → 14), e conjuntos de texturas escritos antes no mesmo qua",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_db981f83.apk",
-              "size": 42328945,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v60-db981f83/XenDroid_Release_db981f83.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v58-1066f8fd",
-          "name": "Xendroid+ 1066f8fd (build 58)",
-          "date": "2026-10-11T17:41:51Z",
-          "body": "Need for Speed: Most Wanted no longer freezes before its first race with the option that keeps the GPU's data on CPU writes.\n\n* Need for Speed: Most Wanted: with shared_memory_preserve_gpu_writes on, it reaches the first race (it froze where the prologue gives way to the 3D scene).\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v56-ae3d8293...XenDroid-v58-1066f8fd\n\n<!-- update-summary:en\n* Need for Speed: Most Wanted: with shared_memory_preserve_gpu_writes on, it reaches the first race (it froze where the prologue gives way to the 3D scene).\n-->\n<!-- update-summary:pt-BR\n* Need for Speed: Most Wanted: com shared_memory_preserve_gpu_writes ligada, ele chega à primeira corrida (travava onde o prólogo dá lugar à cena 3D).\n-->\n\n<details>\n<summary><b>🇧🇷 Em português</b></summary>\n\nO Need for Speed: Most Wanted não trava mais antes da primeira corrida com a opção que preserva os dados da GPU em escritas da CPU.\n\n- Need for Speed: Most Wanted: com shared_memory_preserve_gpu_writes ligada, ele chega à primeira corrida (travava onde o prólogo dá lugar à cena 3D).\n\n</details>\n\n<details>\n<summary><b>📜 Every change since build 56</b> · 1 pull request, 4 commit",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_1066f8fd.apk",
-              "size": 42320753,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v58-1066f8fd/XenDroid_Release_1066f8fd.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v56-ae3d8293",
-          "name": "Xendroid+ ae3d8293 (build 56)",
-          "date": "2026-10-09T05:53:01Z",
-          "body": "Games that don't read back what the GPU renders no longer pay for copying it into game memory.\n\n* Every game: the output of resolves is copied back into game memory only once the game reads it (Need for Speed: Most Wanted copied 77 MB a frame it never reads: 18.6 -> 21.2 fps at the first race's start line).\n* Need for Speed: Most Wanted: the processor's signal in the middle of each frame is noticed 0.4 ms sooner.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v54-f280e7be...XenDroid-v56-ae3d8293\n\n<!-- update-summary:en\n* Every game: the output of resolves is copied back into game memory only once the game reads it (Need for Speed: Most Wanted copied 77 MB a frame it never reads: 18.6 -> 21.2 fps at the first race's start line).\n* Need for Speed: Most Wanted: the processor's signal in the middle of each frame is noticed 0.4 ms sooner.\n-->\n<!-- update-summary:pt-BR\n* Todos os jogos: a saída dos resolves só é copiada de volta para a memória do jogo quando o jogo a lê (o Need for Speed: Most Wanted copiava 77 MB por quadro que nunca lia: 18,6 → 21,2 fps na largada da primeira corrida).\n* Need for Speed: Most Wanted: o sinal do processador no meio de ca",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_ae3d8293.apk",
-              "size": 42320753,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v56-ae3d8293/XenDroid_Release_ae3d8293.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v54-f280e7be",
-          "name": "Xendroid+ f280e7be (build 54)",
-          "date": "2026-10-08T22:49:03Z",
-          "body": "Need for Speed: Most Wanted runs 14-21% faster.\n\n* Need for Speed: Most Wanted: the output of its 122 resolves a frame, 77 MB its processor never reads, is no longer copied back into game memory (18.6 -> 21.2 fps at the first race's start line).\n* Need for Speed: Most Wanted: its reflection cube map reloads only the face and level written since its last load (2.3 ms less GPU work a frame).\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v52-6a7e630e...XenDroid-v54-f280e7be\n\n<!-- update-summary:en\n* Need for Speed: Most Wanted: the output of its 122 resolves a frame, 77 MB its processor never reads, is no longer copied back into game memory (18.6 -> 21.2 fps at the first race's start line).\n* Need for Speed: Most Wanted: its reflection cube map reloads only the face and level written since its last load (2.3 ms less GPU work a frame).\n-->\n<!-- update-summary:pt-BR\n* Need for Speed: Most Wanted: a saída dos seus 122 resolves por quadro, 77 MB que o processador dele nunca lê, não é mais copiada de volta para a memória do jogo (18,6 → 21,2 fps na largada da primeira corrida).\n* Need for Speed: Most Wanted: o cube map de reflexos recarrega só a face e o ",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_f280e7be.apk",
-              "size": 42320753,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v54-f280e7be/XenDroid_Release_f280e7be.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v52-6a7e630e",
-          "name": "Xendroid+ 6a7e630e (build 52)",
-          "date": "2026-10-08T18:13:50Z",
-          "body": "Need for Speed: Most Wanted runs about 55% faster without forcing the GPU clock, and options you set back to an old default now stay that way on Android.\n\n* Every game: right after the GPU runs out of work (games that wait for it mid-frame), commands are sent in small batches so it never sits idle. Need for Speed: Most Wanted goes from ~12 to ~19 fps.\n* Every game: textures with mipmaps or several layers (cube maps too) load straight into the image, without an extra copy (Need for Speed: 2.4 ms less GPU work a frame).\n* Android: settings you change no longer go back to the new default at every launch.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v51-25e50a47...XenDroid-v52-6a7e630e\n\n<!-- update-summary:en\n* Every game: right after the GPU runs out of work (games that wait for it mid-frame), commands are sent in small batches so it never sits idle. Need for Speed: Most Wanted goes from ~12 to ~19 fps.\n* Every game: textures with mipmaps or several layers (cube maps too) load straight into the image, without an extra copy (Need for Speed: 2.4 ms less GPU work a frame).\n* Android: settings you change no longer go back to the new default at every lau",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_6a7e630e.apk",
-              "size": 42316657,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v52-6a7e630e/XenDroid_Release_6a7e630e.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v51-25e50a47",
-          "name": "Xendroid+ 25e50a47 (build 51)",
-          "date": "2026-10-08T17:55:49Z",
-          "body": "Need for Speed: Most Wanted runs faster, and every game picks up settings already proven on a few: data games copy with the GPU reaches the CPU without stalling the GPU after every copy, resolved images go straight into their textures, and the image no longer freezes on HyperOS.\n\n* Need for Speed: Most Wanted: faster in the open world (two changes, about +7% each).\n* Every game: the image no longer freezes after minutes of play on Android (FIFO presentation).\n* Every game: resolved images stored straight into their textures (fewer texture reloads).\n* Every game: the CPU emulator uses the host's NaN rules, as the PC version always did (less CPU work).\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v48-4ffafcec...XenDroid-v51-25e50a47\n\n<!-- update-summary:en\n* Need for Speed: Most Wanted: faster in the open world (two changes, about +7% each).\n* Every game: the image no longer freezes after minutes of play on Android (FIFO presentation).\n* Every game: resolved images stored straight into their textures (fewer texture reloads).\n* Every game: the CPU emulator uses the host's NaN rules, as the PC version always did (less CPU work).\n-->\n<!-- update-summa",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_25e50a47.apk",
-              "size": 42300273,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v51-25e50a47/XenDroid_Release_25e50a47.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v48-4ffafcec",
-          "name": "Xendroid+ 4ffafcec (build 48)",
-          "date": "2026-10-08T00:56:49Z",
-          "body": "The Xendroid+ website is now in English and Portuguese.\n\nCrysis 3 now looks and plays right on a POCO F7 (Snapdragon 8s Gen 4): its lighting is fixed, textures stay intact after loading, shots inside the ship no longer draw blades across the screen, and the image no longer freezes after minutes of play.\n\n* Website in English (default) and Portuguese, including the interface simulator\n* Crysis 3: lighting fixed - lit surfaces, the deck and the weapon were nearly black.\n* Crysis 3: textures stay intact after loading (a character could show up all blue).\n* Crysis 3: no more blades across the screen when shots hit inside the ship.\n* Crysis 3: the image no longer freezes after minutes of play.\n* Faster 64-bit texture loads for every game that uses them (Turnip, Adreno 750 and newer).\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v46-29ef9e7c...XenDroid-v48-4ffafcec\n\n<!-- update-summary:en\n* Website in English (default) and Portuguese, including the interface simulator\n* Crysis 3: lighting fixed - lit surfaces, the deck and the weapon were nearly black.\n* Crysis 3: textures stay intact after loading (a character could show up all blue).\n* Crysis 3: no m",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_4ffafcec.apk",
-              "size": 42300273,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v48-4ffafcec/XenDroid_Release_4ffafcec.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v46-29ef9e7c",
-          "name": "Xendroid+ 29ef9e7c (build 46)",
-          "date": "2026-10-07T12:37:44Z",
-          "body": "* website: base do site oficial (extratores de dados, marca e tokens) (#21)\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v43-bd1d2a8d...XenDroid-v46-29ef9e7c\n\n<!-- update-summary:en\n* website: base do site oficial (extratores de dados, marca e tokens)\n-->\n<!-- update-summary:pt-BR\n* website: base do site oficial (extratores de dados, marca e tokens)\n-->\n\n<details>\n<summary><b>📜 Every change since build 43</b> · 1 pull request, 15 commits</summary>\n\n- [#21](https://github.com/phforner0/Xendroid-Plus/pull/21) website: base do site oficial (extratores de dados, marca e tokens) · @phforner0\n  - website: base do site oficial (extratores de dados, marca e tokens) · [`c9046201`](https://github.com/phforner0/Xendroid-Plus/commit/c9046201c5dd32b473faa2734955e1183b596d7f)\n  - Merge main into the website branch · [`c0e1450b`](https://github.com/phforner0/Xendroid-Plus/commit/c0e1450bd9d485ce7d6f056077cdd8e7ba87e1fe)\n  - website: build do site, página inicial e moldura da documentação · [`a05dec8d`](https://github.com/phforner0/Xendroid-Plus/commit/a05dec8d291c73e8db88b563986ccb24f3bebb2d)\n  - website: documentação em português e verificação dos links · [`b0",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_29ef9e7c.apk",
-              "size": 42128241,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v46-29ef9e7c/XenDroid_Release_29ef9e7c.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v43-bd1d2a8d",
-          "name": "Xendroid+ bd1d2a8d (build 43)",
-          "date": "2026-10-06T23:05:48Z",
-          "body": "Crysis 3 reaches its 30 fps cap on the first checkpoint on a POCO F7 (Snapdragon 8s Gen 4), up from about 22: the GPU does a third less work per frame, and the CPU no longer burns two cores while the game's workers wait for jobs.\n\n* Crysis 3: 30 fps (its cap) on the first checkpoint, up from ~22.\n* Faster 10:11:11 texture loads for every game that uses them (Turnip, Adreno 750 and newer).\n* Less CPU spent when games spin on thread yields.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v41-e179885e...XenDroid-v43-bd1d2a8d\n\n<!-- update-summary:en\n* Crysis 3: 30 fps (its cap) on the first checkpoint, up from ~22.\n* Faster 10:11:11 texture loads for every game that uses them (Turnip, Adreno 750 and newer).\n* Less CPU spent when games spin on thread yields.\n-->\n<!-- update-summary:pt-BR\n* Crysis 3: 30 fps (o limite dele) no primeiro checkpoint, antes ~22.\n* Cargas de texturas 10:11:11 mais rápidas para todo jogo que as usa (Turnip, Adreno 750 ou mais novo).\n* Menos CPU gasta quando os jogos ficam em espera ativa.\n-->\n\n## What's new\n\n### 🎮 Crysis 3\n\n- Its depth-only 4x MSAA passes now render straight into the 1x surfaces they are read from: 46 surface co",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_bd1d2a8d.apk",
-              "size": 42128241,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v43-bd1d2a8d/XenDroid_Release_bd1d2a8d.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v41-e179885e",
-          "name": "Xendroid+ e179885e (build 41)",
-          "date": "2026-10-06T15:16:59Z",
-          "body": "Audio is sturdier: a late block fades out and back in instead of clicking, OpenSL ES catches up with AAudio, and crash-prone corners of the audio code are closed.\n\n* Audio hiccups fade out and back in instead of clicking, on AAudio and on OpenSL ES.\n* The media player's music (custom soundtracks) plays mono and multichannel songs as stereo, with its volume working on both backends.\n* Fixes for crashes and memory errors in rare audio paths.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v40-7e480b3e...XenDroid-v41-e179885e\n\n<!-- update-summary:en\n* Audio hiccups fade out and back in instead of clicking, on AAudio and on OpenSL ES.\n* The media player's music (custom soundtracks) plays mono and multichannel songs as stereo, with its volume working on both backends.\n* Fixes for crashes and memory errors in rare audio paths.\n-->\n<!-- update-summary:pt-BR\n* Engasgos de áudio somem e voltam suaves em vez de estalar, no AAudio e no OpenSL ES.\n* A música do player (trilhas personalizadas) toca músicas mono e multicanal como estéreo, com o volume funcionando nos dois backends.\n* Correções de crashes e erros de memória em caminhos raros do áudio.\n-->\n\n## What",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_e179885e.apk",
-              "size": 42099569,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v41-e179885e/XenDroid_Release_e179885e.apk"
-            }
-          ]
-        },
-        {
-          "tag": "XenDroid-v40-7e480b3e",
-          "name": "Xendroid+ 7e480b3e (build 40)",
-          "date": "2026-10-06T15:10:27Z",
-          "body": "Release pages now say what changed for players, in English and Portuguese, and the update screen shows a short summary in the app's language.\n\n* The update screen lists the release's highlights in the app's language, instead of pull request titles.\n* Release pages group the changes by topic, say what was fixed and what is still open, and keep the Portuguese one tap away.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v37-710b1e81...XenDroid-v40-7e480b3e\n\n<!-- update-summary:en\n* The update screen lists the release's highlights in the app's language, instead of pull request titles.\n* Release pages group the changes by topic, say what was fixed and what is still open, and keep the Portuguese one tap away.\n-->\n<!-- update-summary:pt-BR\n* A tela de atualização lista os destaques do release no idioma do app, em vez dos títulos dos PRs.\n* As páginas dos releases agrupam as mudanças por tema, dizem o que foi corrigido e o que ainda está em aberto, e deixam o português a um toque.\n-->\n\n## What's new\n\n### 📦 Updates\n\n- The update screen lists a release's highlights in the app's language (English or Portuguese), and reads older notes without links, headings o",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "XenDroid_Release_7e480b3e.apk",
-              "size": 42095473,
-              "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v40-7e480b3e/XenDroid_Release_7e480b3e.apk"
-            }
-          ]
+          "tag": "XenDroid-v137-f5eeff4a",
+          "name": "Xendroid+ 0.3.0-preview.137",
+          "date": "2026-11-04T00:23:29Z",
+          "body": "Fixes Forza Horizon drawing broken distant geometry at 6 fps in 0.2.1 on Adreno GPUs.\n\n* Forza Horizon is back to 30 fps with a correct image on Adreno with Turnip.\n\n**Full Changelog**: https://github.com/phforner0/Xendroid-Plus/compare/XenDroid-v134-dba22de8...XenDroid-v137-f5eeff4a\n\n<!-- update-summary:en\n* Forza Horizon is back to 30 fps with a correct image on Adreno with Turnip.\n-->\n<!-- update-summary:pt-BR\n* O Forza Horizon volta a 30 fps com a imagem certa no Adreno com Turnip.\n-->\n\n## What's new\n\n### 🛠️ Fixed\n\n- On GPUs without the round-toward-zero mode, 0.2.1 rounds some vertex shader results toward zero in software, and Turnip's shader compiler dropped the clamp of saturated results computed that way: in Forza Horizon, tree impostors covered the sky. The rounding now uses float"
         }
       ],
       "source": "github",
@@ -56450,7 +56106,7 @@
           "name": "XenDroid_Release_a107faa9.apk",
           "size": 42589385,
           "url": "https://github.com/phforner0/Xendroid-Plus/releases/download/XenDroid-v144-a107faa9/XenDroid_Release_a107faa9.apk",
-          "downloads": 1390,
+          "downloads": 5600,
           "tag": "XenDroid-v144-a107faa9"
         }
       ],
@@ -56461,7 +56117,10 @@
       "_section_evidence": "method=emulation",
       "_family_evidence": "名称/仓库命中 /xendroid/",
       "downloads_latest": 1390,
-      "downloads_basis": "latest-lower-bound"
+      "downloads_basis": "latest-lower-bound",
+      "note": "",
+      "license": "AGPL-3.0",
+      "topics": []
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
@@ -90052,6 +89711,2223 @@
       "family_label": "SameBoy",
       "_section_evidence": "method=emulation",
       "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "par274-sharpemu",
+      "name": "SharpEmu",
+      "category": "主机模拟",
+      "description": "实验性 PS5 模拟器（C#），面向 Windows/Linux，2026-03 建仓，11 月仍每日推送。",
+      "owner": "par274",
+      "repo": "par274/sharpemu",
+      "homepage": "",
+      "repo_url": "https://github.com/par274/sharpemu",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.0.7-pulse",
+      "latest_date": "2026-11-01T00:00:00Z",
+      "latest_body": "Automated SharpEmu v0.0.7-pulse build for commit [`791a053`](https://github.com/sharpemu/sharpemu/commit/791a053549b1364994377992a555092a3e76a283). ## Changes since v0.0.6-mono - [scripts/release.py] fix utf-8 ([`0896ef6",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 6531,
+      "forks": 598,
+      "watchers": 105,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.0.7-pulse",
+          "name": "SharpEmu v0.0.7-pulse",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "v0.0.6-mono",
+          "name": "SharpEmu v0.0.6-mono",
+          "date": "2026-10-18"
+        },
+        {
+          "tag": "v0.0.5-nexus-release.2",
+          "name": "SharpEmu v0.0.5-nexus-release.2",
+          "date": "2026-10-08"
+        }
+      ],
+      "source": "github",
+      "note": "EmuCR 11-01 公告带出仓库地址。此前库里 PS5 只有 Prospero/Eden 系，缺一个纯社区实验项目；它是目前 PS5 模拟器里星标最高的独立仓库。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "par274-sharpemu",
+      "family_label": "SharpEmu",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "vita3k-vita3k",
+      "name": "Vita3K",
+      "category": "主机模拟",
+      "description": "PS Vita 模拟器桌面版（Windows/Linux/macOS），Vita3K 项目的上游主仓库。",
+      "owner": "Vita3K",
+      "repo": "Vita3K/Vita3K",
+      "homepage": "",
+      "repo_url": "https://github.com/Vita3K/Vita3K",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "continuous",
+      "latest_date": "2026-11-05T00:00:00Z",
+      "latest_body": "Corresponding commit: 9409e2ecad1bdae275db2f85b83a97aa084c79bc Vita3K Build: 4269",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-03T00:00:00Z",
+      "stars": 5937,
+      "forks": 687,
+      "watchers": 190,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "continuous",
+          "name": "Automatic CI builds",
+          "date": "2026-11-05"
+        }
+      ],
+      "source": "github",
+      "note": "库里此前只收了 Vita3K-Android（1664★），上游本体 5942★ 缺失——收了下游漏了上游，属于结构缺口。归入 vita3k 家族。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "psvita"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "vita3k",
+      "family_label": "Vita3K 系",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "上游同项目"
+    },
+    {
+      "id": "xenia-canary-xenia-canary",
+      "name": "Xenia Canary",
+      "category": "主机模拟",
+      "description": "Xenia 的金丝雀构建线，比主线更激进的每日构建，兼容性试验优先。",
+      "owner": "xenia-canary",
+      "repo": "xenia-canary/xenia-canary",
+      "homepage": "",
+      "repo_url": "https://github.com/xenia-canary/xenia-canary",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "838850f",
+      "latest_date": "2026-11-04T00:00:00Z",
+      "latest_body": "### Changes - [Kernel] Default MmAllocatePhysicalMemoryEx to read/write access (`838850f`) **Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/455b988...838850f",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 2742,
+      "forks": 359,
+      "watchers": 78,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "838850f",
+          "name": "838850f_canary_experimental",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "455b988",
+          "name": "455b988_canary_experimental",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "6842939",
+          "name": "6842939_canary_experimental",
+          "date": "2026-11-04"
+        }
+      ],
+      "source": "github",
+      "note": "库里只有 xenia-project/xenia 主线；canary 是社区实际用来跑新游戏的构建线，长期漏收。归入 xenia 家族。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xenia-project-xenia",
+      "family_label": "Xenia",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "上游同项目"
+    },
+    {
+      "id": "trekawek-coffee-gb",
+      "name": "Coffee GB",
+      "category": "主机模拟",
+      "description": "Java 写的 Game Boy / Game Boy Color 精确模拟器，强调周期准确与测试覆盖。",
+      "owner": "trekawek",
+      "repo": "trekawek/coffee-gb",
+      "homepage": "",
+      "repo_url": "https://github.com/trekawek/coffee-gb",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "coffee-gb-2.1.8",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "## Changes - On Windows, store settings in `%LOCALAPPDATA%\\Coffee GB\\coffeegb.properties`. Existing settings are imported from the user profile without changing the old file. - Add `--portable` to keep settings beside th",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 1173,
+      "forks": 82,
+      "watchers": 30,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "coffee-gb-2.1.8",
+          "name": "Coffee GB 2.1.8",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "coffee-gb-2.1.7",
+          "name": "Coffee GB 2.1.7",
+          "date": "2026-10-01"
+        },
+        {
+          "tag": "coffee-gb-2.1.6",
+          "name": "Coffee GB 2.1.6",
+          "date": "2026-09-20"
+        }
+      ],
+      "source": "github",
+      "note": "EmuCR 11-02 公告。库里 GB/GBC 只有 SameBoy/Gambatte 系，缺一个 Java 跨平台实现；1173★ 属高星遗漏。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "gb",
+        "gbc"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "trekawek-coffee-gb",
+      "family_label": "Coffee GB",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "ymir-emu-ymir",
+      "name": "Ymir",
+      "category": "主机模拟",
+      "description": "Sega Saturn 模拟器（C++），Windows/Linux/macOS。",
+      "owner": "ymir-emu",
+      "repo": "ymir-emu/ymir",
+      "homepage": "",
+      "repo_url": "https://github.com/ymir-emu/ymir",
+      "official": true,
+      "channel": "nightly",
+      "latest_tag": "latest-nightly",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "This is a nightly release built from the latest commit. Before you use these builds, **make sure to backup your data, especially the save states!** Save states are constantly evolving and are only guaranteed to be compat",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 1108,
+      "forks": 65,
+      "watchers": 27,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "latest-nightly",
+          "name": "Latest nightly release",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v0.4.1",
+          "name": "Ymir v0.4.1",
+          "date": "2026-10-18"
+        },
+        {
+          "tag": "v0.4.0",
+          "name": "Ymir v0.4.0",
+          "date": "2026-10-17"
+        }
+      ],
+      "source": "github",
+      "note": "库里 Saturn 分区此前是 0 条，这是该平台的第一个条目。1108★，11 月仍在推送。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "saturn"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ymir-emu-ymir",
+      "family_label": "Ymir",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "grumpycoders-pcsx-redux",
+      "name": "PCSX-Redux",
+      "category": "主机模拟",
+      "description": "PS1 模拟器 + 逆向调试工具链，含 MIPS 重编译器、硬件测试与内存断点。",
+      "owner": "grumpycoders",
+      "repo": "grumpycoders/pcsx-redux",
+      "homepage": "",
+      "repo_url": "https://github.com/grumpycoders/pcsx-redux",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 1038,
+      "forks": 164,
+      "watchers": 23,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [],
+      "source": "github",
+      "note": "库里 PS1 只有 ARMSX1 与 DukeStation 两个小众条目，缺主流开源实现；1038★。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps1"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "grumpycoders-pcsx-redux",
+      "family_label": "PCSX-Redux",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "has207-xenia-edge",
+      "name": "Xenia Edge",
+      "category": "主机模拟",
+      "description": "Xenia 的 Edge 分支构建，面向新游戏的兼容性试验。",
+      "owner": "has207",
+      "repo": "has207/xenia-edge",
+      "homepage": "",
+      "repo_url": "https://github.com/has207/xenia-edge",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "aa961b5",
+      "latest_date": "2026-11-05T00:00:00Z",
+      "latest_body": "### Changes - [XAM] Patch the dashboard to start indie games without a Live sign-in (`aa961b5`) - [XAM] Implement XdfLaunchNewImageFromCache (`f4b5f3c`) - [UI] Ship the dashboard patch with the bundled patches (`6ab2bc9`",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 586,
+      "forks": 57,
+      "watchers": 20,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "aa961b5",
+          "name": "xenia_edge",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "7d3298b",
+          "name": "xenia_edge",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "e89d8be",
+          "name": "xenia_edge",
+          "date": "2026-11-05"
+        }
+      ],
+      "source": "github",
+      "note": "与 canary 并列的第二条分支构建线，586★；同样归入 xenia 家族，不单独占家族位。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "xbox360"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "xenia-project-xenia",
+      "family_label": "Xenia",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "上游同项目"
+    },
+    {
+      "id": "dborth-snes9xgx",
+      "name": "Snes9x GX",
+      "category": "主机模拟",
+      "description": "Snes9x 的 GameCube / Wii 移植，dborth 维护。",
+      "owner": "dborth",
+      "repo": "dborth/snes9xgx",
+      "homepage": "",
+      "repo_url": "https://github.com/dborth/snes9xgx",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "5.0.5",
+      "latest_date": "2026-11-03T00:00:00Z",
+      "latest_body": "* **USB mouse support** on Wii and Wii U. The mouse moves the pointer in the menus and aims the Super Scope, Justifier and SNES Mouse * **The left analog stick now moves the pointer in the menus**, on every controller, l",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 510,
+      "forks": 79,
+      "watchers": 34,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "5.0.5",
+          "name": "5.0.5 - November 3, 2026",
+          "date": "2026-11-03"
+        },
+        {
+          "tag": "5.0.4",
+          "name": "5.0.4 - October 20, 2026",
+          "date": "2026-10-20"
+        },
+        {
+          "tag": "5.0.3",
+          "name": "5.0.3 - October 1, 2026",
+          "date": "2026-10-01"
+        }
+      ],
+      "source": "github",
+      "note": "主机端 homebrew，不是 PC 软件；库里此前没有「跑在 Wii 上」的条目，hosts 首次引入 gamecube/wii。",
+      "kind": "emulator",
+      "runtime": "console-homebrew",
+      "platforms": [
+        "snes"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "gamecube",
+        "wii"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dborth-snes9xgx",
+      "family_label": "Snes9x GX",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "dirkwhoffmann-virtualc64",
+      "name": "VirtualC64",
+      "category": "主机模拟",
+      "description": "周期精确的 Commodore 64 模拟器，macOS 原生（Swift/Objective-C）。",
+      "owner": "dirkwhoffmann",
+      "repo": "dirkwhoffmann/virtualc64",
+      "homepage": "",
+      "repo_url": "https://github.com/dirkwhoffmann/virtualc64",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v6.2",
+      "latest_date": "2026-10-31T00:00:00Z",
+      "latest_body": "Changes since the latest beta release: - Fixed two UI issues (#843, #846) - Fixed a bug in the CBM file system implementation (#853) - Fixed a bug in the drive idle logic (#854) - Fixed three drive-related VICE tests (#6",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 422,
+      "forks": 41,
+      "watchers": 27,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v6.2",
+          "name": "v6.2",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v6.2b1",
+          "name": "v6.2b1",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "v6.1",
+          "name": "v6.1",
+          "date": "2026-09-01"
+        }
+      ],
+      "source": "github",
+      "note": "库里 C64 分区此前 0 条。422★，11-02 刚发 v6.2。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "c64"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dirkwhoffmann-virtualc64",
+      "family_label": "VirtualC64",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "dirkwhoffmann-vamiga",
+      "name": "vAmiga",
+      "category": "主机模拟",
+      "description": "Amiga 500/1000/2000 模拟器，macOS 原生，与 VirtualC64 同一作者。",
+      "owner": "dirkwhoffmann",
+      "repo": "dirkwhoffmann/vamiga",
+      "homepage": "",
+      "repo_url": "https://github.com/dirkwhoffmann/vamiga",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v5.0",
+      "latest_date": "2026-11-01T00:00:00Z",
+      "latest_body": "This release finalizes the 5.0 series. Emulation accuracy - New option CPU_START_DELAY staggers the CPU start relative to the beam. Without it, some memory configurations always hit a timing race in Kickstart 1.3’s PAL/N",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-01T00:00:00Z",
+      "stars": 417,
+      "forks": 48,
+      "watchers": 26,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v5.0",
+          "name": "v5.0",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "v5.0b2",
+          "name": "v5.0b2",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "v5.0b1",
+          "name": "v5.0b1",
+          "date": "2026-08-18"
+        }
+      ],
+      "source": "github",
+      "note": "库里 Amiga 分区此前 0 条。417★。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "amiga"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dirkwhoffmann-vamiga",
+      "family_label": "vAmiga",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "dborth-vbagx",
+      "name": "Visual Boy Advance GX",
+      "category": "主机模拟",
+      "description": "Visual Boy Advance 的 GameCube / Wii 移植。",
+      "owner": "dborth",
+      "repo": "dborth/vbagx",
+      "homepage": "",
+      "repo_url": "https://github.com/dborth/vbagx",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "3.0.5",
+      "latest_date": "2026-11-03T00:00:00Z",
+      "latest_body": "* **The left analog stick now moves the pointer in the menus**, on every controller, like a mouse. It no longer also steps through the buttons; the D-pad still does * **A Wiimote with anything plugged into it is now alwa",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 350,
+      "forks": 49,
+      "watchers": 22,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "3.0.5",
+          "name": "3.0.5 - November 3, 2026",
+          "date": "2026-11-03"
+        },
+        {
+          "tag": "3.0.4",
+          "name": "3.0.4 - October 20, 2026",
+          "date": "2026-10-20"
+        },
+        {
+          "tag": "3.0.3",
+          "name": "3.0.3 - October 1, 2026",
+          "date": "2026-10-01"
+        }
+      ],
+      "source": "github",
+      "note": "与 Snes9x GX 同作者同形态，350★；主机端 GBA 运行方案。",
+      "kind": "emulator",
+      "runtime": "console-homebrew",
+      "platforms": [
+        "gba"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "gamecube",
+        "wii"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dborth-vbagx",
+      "family_label": "Visual Boy Advance GX",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "dborth-fceugx",
+      "name": "FCE Ultra GX",
+      "category": "主机模拟",
+      "description": "FCE Ultra 的 GameCube / Wii 移植（NES）。",
+      "owner": "dborth",
+      "repo": "dborth/fceugx",
+      "homepage": "",
+      "repo_url": "https://github.com/dborth/fceugx",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "4.0.4",
+      "latest_date": "2026-11-03T00:00:00Z",
+      "latest_body": "## 4.0.4 - November 3, 2026 * **The left analog stick now moves the pointer in the menus**, on every controller, like a mouse. It no longer also steps through the buttons; the D-pad still does * **A Wiimote with anything",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 336,
+      "forks": 57,
+      "watchers": 20,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "4.0.4",
+          "name": "4.0.4 - November 3, 2026",
+          "date": "2026-11-03"
+        },
+        {
+          "tag": "4.0.3",
+          "name": "4.0.3 - October 20, 2026",
+          "date": "2026-10-20"
+        },
+        {
+          "tag": "4.0.2",
+          "name": "4.0.2 - October 1, 2026",
+          "date": "2026-10-01"
+        }
+      ],
+      "source": "github",
+      "note": "同系列第三个，336★。",
+      "kind": "emulator",
+      "runtime": "console-homebrew",
+      "platforms": [
+        "nes"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "gamecube",
+        "wii"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dborth-fceugx",
+      "family_label": "FCE Ultra GX",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "m5devs-openrom",
+      "name": "OpenROM",
+      "category": "前端与工具",
+      "description": "复古 ROM 工具箱：格式转换、打补丁、压缩、校验、批量整理。",
+      "owner": "m5devs",
+      "repo": "m5devs/openrom",
+      "homepage": "",
+      "repo_url": "https://github.com/m5devs/openrom",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v3.9.9",
+      "latest_date": "2026-11-04T00:00:00Z",
+      "latest_body": "## OpenROM v3.9.9 Universal Retro Gaming Toolkit for retro gaming enthusiasts. Each download includes: - **OpenROM** — Flutter desktop GUI - **openrom-core** — headless CLI (used internally by the GUI) ### CLI usage ``` ",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 294,
+      "forks": 7,
+      "watchers": 6,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v3.9.9",
+          "name": "OpenROM v3.9.9",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "v3.9.8",
+          "name": "OpenROM v3.9.8",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v3.9.7",
+          "name": "OpenROM v3.9.7",
+          "date": "2026-11-02"
+        }
+      ],
+      "source": "github",
+      "note": "不是模拟器，是配套工具；294★，与库里 Termux/前端类条目同层。",
+      "kind": "tool",
+      "runtime": "desktop",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active",
+      "method": null,
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "m5devs-openrom",
+      "family_label": "OpenROM",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=tool",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "drhelius-geargrafx",
+      "name": "Geargrafx",
+      "category": "主机模拟",
+      "description": "PC Engine / TurboGrafx-16 / SuperGrafx / CD-ROM² 模拟器与调试器。",
+      "owner": "drhelius",
+      "repo": "drhelius/geargrafx",
+      "homepage": "",
+      "repo_url": "https://github.com/drhelius/geargrafx",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "1.8.7",
+      "latest_date": "2026-11-04T00:00:00Z",
+      "latest_body": "- 🎨 New CRT shader presets - 🚀 Optional fast forward during CD-ROM loads - 🐛 Bug fixes and improvements **Full Changelog**: https://github.com/drhelius/Geargrafx/compare/1.8.6...1.8.7",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 253,
+      "forks": 18,
+      "watchers": 7,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "1.8.7",
+          "name": "Geargrafx 1.8.7",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "1.8.6",
+          "name": "Geargrafx 1.8.6",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "1.8.5",
+          "name": "Geargrafx 1.8.5",
+          "date": "2026-10-24"
+        }
+      ],
+      "source": "github",
+      "note": "PC Engine 分区此前只有零星条目，这是主流的独立实现；256★。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "pc-engine"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "drhelius-geargrafx",
+      "family_label": "Geargrafx",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "jay-day-rmg-k",
+      "name": "RMG-K",
+      "category": "前端与工具",
+      "description": "基于 Mupen64 的 N64 前端，带 Kaillera 与 GekkoNet 回滚联机。",
+      "owner": "jay-day",
+      "repo": "jay-day/rmg-k",
+      "homepage": "",
+      "repo_url": "https://github.com/jay-day/rmg-k",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "test-latest",
+      "latest_date": "2026-11-04T00:00:00Z",
+      "latest_body": "Latest build of master. Connects to the test lobby server.",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 183,
+      "forks": 24,
+      "watchers": 3,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "test-latest",
+          "name": "Test build 02a77433",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "v0.9.15",
+          "name": "v0.9.15",
+          "date": "2026-10-24"
+        },
+        {
+          "tag": "v0.9.14",
+          "name": "v0.9.14",
+          "date": "2026-09-02"
+        }
+      ],
+      "source": "github",
+      "note": "N64 联机是库里空白；183★。作为前端收录，不重复计入核心模拟器。",
+      "kind": "frontend",
+      "runtime": "desktop",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "jay-day-rmg-k",
+      "family_label": "RMG-K",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "copperlinehq-copperline",
+      "name": "Copperline",
+      "category": "主机模拟",
+      "description": "Rust 写的 Amiga 模拟器。",
+      "owner": "copperlinehq",
+      "repo": "copperlinehq/copperline",
+      "homepage": "",
+      "repo_url": "https://github.com/copperlinehq/copperline",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.1.0",
+      "latest_date": "2026-10-31T00:00:00Z",
+      "latest_body": "Copperline 1.1.0 is the first feature release of the 1.x series. Hard drives can now run at the speed of the period drives each Amiga shipped with. The MMU-less 68EC030, 68EC040 and 68EC060 are new CPU choices. The JIT i",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 140,
+      "forks": 18,
+      "watchers": 7,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v1.1.0",
+          "name": "Copperline 1.1.0",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v1.0.1",
+          "name": "Copperline 1.0.1",
+          "date": "2026-10-18"
+        },
+        {
+          "tag": "v1.0.0",
+          "name": "Copperline 1.0.0",
+          "date": "2026-10-10"
+        }
+      ],
+      "source": "github",
+      "note": "Amiga 的第二个条目，语言栈不同（Rust）；140★，11 月仍在推送。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "amiga"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "copperlinehq-copperline",
+      "family_label": "Copperline",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "shanytc-snes9x",
+      "name": "SuperSnes9x",
+      "category": "主机模拟",
+      "description": "Snes9x 的可移植分支（SuperSnes9x），保留旧前端与滤镜。",
+      "owner": "shanytc",
+      "repo": "shanytc/snes9x",
+      "homepage": "",
+      "repo_url": "https://github.com/shanytc/snes9x",
+      "official": true,
+      "channel": "nightly",
+      "latest_tag": "nightly",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "Automated build of `master` at 934e4aac30d97e219514adfa474a53ff567f752d. These are untested snapshots and may be broken. For stable builds use the [latest release](https://github.com/shanytc/snes9x/releases/latest). **GU",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 124,
+      "forks": 8,
+      "watchers": 11,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "nightly",
+          "name": "Nightly 2026-11-02 (934e4aac)",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "1.63.32",
+          "name": "1.63.32",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "1.63.31",
+          "name": "1.63.31",
+          "date": "2026-09-25"
+        }
+      ],
+      "source": "github",
+      "note": "与 Snes9x GX 不是一回事（一个 PC 分支、一个 Wii 移植）；124★。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "snes"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "shanytc-snes9x",
+      "family_label": "SuperSnes9x",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "shadps4-emu-shadnet",
+      "name": "shadNet",
+      "category": "前端与工具",
+      "description": "shadPS4 的自建联机服务端，用 C++ 重写 RPCSN。",
+      "owner": "shadps4-emu",
+      "repo": "shadps4-emu/shadnet",
+      "homepage": "",
+      "repo_url": "https://github.com/shadps4-emu/shadnet",
+      "official": true,
+      "channel": "nightly",
+      "latest_tag": "pre-release-shadnet-2026-11-05-93c1d44542871cfaf1f225b015d60137b9dc4cfa",
+      "latest_date": "2026-11-05T00:00:00Z",
+      "latest_body": "Full Changelog: [0.1.1...93c1d44](https://github.com/shadps4-emu/shadNet/compare/0.1.1...93c1d44542871cfaf1f225b015d60137b9dc4cfa)",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 78,
+      "forks": 15,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "pre-release-shadnet-2026-11-05-93c1d44542871cfaf1f225b015d60137b9dc4cfa",
+          "name": "shadnet-2026-11-05-93c1d44",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "0.1.1",
+          "name": "shadNet v0.1.1 - codename : Resident Shadow",
+          "date": "2026-10-19"
+        },
+        {
+          "tag": "0.1.0",
+          "name": "shadNet v0.1.0 - codename : Metr1k's Zone",
+          "date": "2026-10-14"
+        }
+      ],
+      "source": "github",
+      "note": "PS4 联机服务，属配套工具；78★，11 月高频构建。",
+      "kind": "tool",
+      "runtime": "desktop",
+      "platforms": [
+        "ps4"
+      ],
+      "status": "active",
+      "method": null,
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "shadps4-emu-shadnet",
+      "family_label": "shadNet",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=tool",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "crazyriddler-xbased",
+      "name": "xbased",
+      "category": "主机模拟",
+      "description": "初代 Xbox 模拟器，Windows/Linux。",
+      "owner": "crazyriddler",
+      "repo": "crazyriddler/xbased",
+      "homepage": "",
+      "repo_url": "https://github.com/crazyriddler/xbased",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.0.22",
+      "latest_date": "2026-11-05T00:00:00Z",
+      "latest_body": "## 1.0.22 (2026-11) ### New - CHD disc images (`chdman createdvd`, from an XISO or a full dump): in the library and on the command line, like an ISO, read through libchdr. - Desktop shortcuts (a game's page › Create desk",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 73,
+      "forks": 2,
+      "watchers": 3,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v1.0.22",
+          "name": "xbased 1.0.22",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "v1.0.21",
+          "name": "xbased 1.0.21",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "v1.0.20",
+          "name": "xbased 1.0.20",
+          "date": "2026-11-04"
+        }
+      ],
+      "source": "github",
+      "note": "初代 Xbox 分区条目稀少；73★，11-04 仍在推。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "xbox"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "crazyriddler-xbased",
+      "family_label": "xbased",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "ivanizag-izapple2",
+      "name": "izapple2",
+      "category": "主机模拟",
+      "description": "Apple ][+ / //e 模拟器，Go 编写，支持多种前端。",
+      "owner": "ivanizag",
+      "repo": "ivanizag/izapple2",
+      "homepage": "",
+      "repo_url": "https://github.com/ivanizag/izapple2",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v2.6.0",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "## Highlights - Apple IIc emulation: roms 255, 0, 3, and 4 supported. The disk port has an emulated IWM with the internal and the external 5.25 drives. It has SmartPort, the two serial ports, the mouse and the 80/40 swit",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 71,
+      "forks": 13,
+      "watchers": 6,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v2.6.0",
+          "name": "v2.6.0",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v2.5.0",
+          "name": "v2.5.0",
+          "date": "2026-10-06"
+        },
+        {
+          "tag": "v2.4.0",
+          "name": "v2.4.0",
+          "date": "2026-08-04"
+        }
+      ],
+      "source": "github",
+      "note": "Apple II 分区此前为空；71★。新增平台值 apple2。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "apple2"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "ivanizag-izapple2",
+      "family_label": "izapple2",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "pcsx2-mymcpp",
+      "name": "myMCpp",
+      "category": "前端与工具",
+      "description": "PS2 记忆卡管理与存档编辑器（myMC 的 C++ 重写）。",
+      "owner": "pcsx2",
+      "repo": "pcsx2/mymcpp",
+      "homepage": "",
+      "repo_url": "https://github.com/pcsx2/mymcpp",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.3.3",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "## What's Changed * Core/Renderer: Fix icon lighting and colors by @SternXD in https://github.com/PCSX2/myMCpp/pull/121 **Full Changelog**: https://github.com/PCSX2/myMCpp/compare/v0.3.2...v0.3.3",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 62,
+      "forks": 5,
+      "watchers": 7,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.3.3",
+          "name": "myMCpp v0.3.3",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v0.3.2",
+          "name": "myMCpp v0.3.2",
+          "date": "2026-10-12"
+        },
+        {
+          "tag": "v0.3.1",
+          "name": "myMCpp v0.3.1",
+          "date": "2026-10-03"
+        }
+      ],
+      "source": "github",
+      "note": "PS2 存档工具，不与模拟器条目混计；62★。",
+      "kind": "tool",
+      "runtime": "desktop",
+      "platforms": [
+        "ps2"
+      ],
+      "status": "active",
+      "method": null,
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "pcsx2-mymcpp",
+      "family_label": "myMCpp",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=tool",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "eighttails-pc6001vx",
+      "name": "PC6001VX",
+      "category": "主机模拟",
+      "description": "NEC PC-6001 模拟器的跨平台版本（Qt 前端）。",
+      "owner": "eighttails",
+      "repo": "eighttails/pc6001vx",
+      "homepage": "",
+      "repo_url": "https://github.com/eighttails/pc6001vx",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v4.6.0",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "* マニュアルを日本語版(README_J.adoc)と英語版(README.adoc)に分離 * オンラインヘルプがUIの言語に追従するように変更。日本語の場合は日本語版、それ以外の場合は英語版を表示 * (Windows)オンラインヘルプとして英語版HTMLも同梱 * (Linux)AppImageにオンラインマニュアルのHTML(日本語・英語)を同梱し、GitHubではなくローカルのマニュアルを表示するように変更 * Separa",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 54,
+      "forks": 11,
+      "watchers": 7,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v4.6.0",
+          "name": "v4.6.0",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v4.5.1",
+          "name": "v4.5.1",
+          "date": "2026-10-02"
+        },
+        {
+          "tag": "v4.5.0",
+          "name": "v4.5.0",
+          "date": "2026-09-09"
+        }
+      ],
+      "source": "github",
+      "note": "8 位机细分平台，此前为空；54★。新增平台值 pc-6001。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "pc-6001"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "eighttails-pc6001vx",
+      "family_label": "PC6001VX",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "keklick1337-rps5e",
+      "name": "RustPS5Emu",
+      "category": "主机模拟",
+      "description": "Rust 写的 PS5 模拟器，面向 Linux/Windows，早期实验阶段。",
+      "owner": "keklick1337",
+      "repo": "keklick1337/rps5e",
+      "homepage": "",
+      "repo_url": "https://github.com/keklick1337/rps5e",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.1.4-alpha",
+      "latest_date": "2026-11-01T00:00:00Z",
+      "latest_body": "### Added - On-screen keyboard for games' text input dialogs (sceImeDialog), drawn over the game: type on the keyboard (Enter accepts, Esc cancels) or use the controller (D-pad and Cross on the keys, Circle cancels, Tria",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 45,
+      "forks": 3,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.1.4-alpha",
+          "name": "0.1.4-alpha",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "v0.1.3-alpha",
+          "name": "0.1.3-alpha - 2026-10-31",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v0.1.2-alpha",
+          "name": "0.1.2-alpha",
+          "date": "2026-10-28"
+        }
+      ],
+      "source": "github",
+      "note": "PS5 的第二个独立实现；45★，版本仍是 v0.1.x-alpha，note 标实验。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "keklick1337-rps5e",
+      "family_label": "RustPS5Emu",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "tixul-ngpcraft-emulator",
+      "name": "NgpCraft",
+      "category": "主机模拟",
+      "description": "Neo Geo Pocket / Color 模拟器，带完整调试器与多语言界面。",
+      "owner": "tixul",
+      "repo": "tixul/ngpcraft_emulator",
+      "homepage": "",
+      "repo_url": "https://github.com/tixul/ngpcraft_emulator",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v3.15",
+      "latest_date": "2026-11-04T00:00:00Z",
+      "latest_body": "# NgpCraft Emulator v3.15 - what's new This release is mostly about the built-in BIOS, the one the emulator uses when you have no `bios.bin` (and the one the web player always uses). It now behaves much more like the rea",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 33,
+      "forks": 3,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v3.15",
+          "name": "v3.15",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "v3.14",
+          "name": "v3.14",
+          "date": "2026-11-03"
+        },
+        {
+          "tag": "v3.13",
+          "name": "v3.13",
+          "date": "2026-10-30"
+        }
+      ],
+      "source": "github",
+      "note": "NGP 分区此前为空；33★，但功能完整度高于星标。新增平台值 neo-geo-pocket。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "neo-geo-pocket"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "tixul-ngpcraft-emulator",
+      "family_label": "NgpCraft",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "nixxou-zaxnes",
+      "name": "Zaxnes",
+      "category": "主机模拟",
+      "description": "NES 模拟器，Windows/Linux。",
+      "owner": "nixxou",
+      "repo": "nixxou/zaxnes",
+      "homepage": "",
+      "repo_url": "https://github.com/nixxou/zaxnes",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.4.2",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "# Zaxnes 0.4.2 Independent project, not affiliated with Geod Studio or Nintendo. NES is a trademark of Nintendo. A demo game included, and Zaxnes on Android. ## FlappyZaxNes: a demo game, with its 3D profile and widescre",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 30,
+      "forks": 1,
+      "watchers": 2,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.4.2",
+          "name": "Zaxnes 0.4.2",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v0.4.1",
+          "name": "Zaxnes 0.4.1",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "v0.4.0",
+          "name": "Zaxnes 0.4.0",
+          "date": "2026-10-31"
+        }
+      ],
+      "source": "github",
+      "note": "30★，小项目；收录理由是 EmuCR 上持续发版，且 NES 端缺少独立实现。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "nes"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "nixxou-zaxnes",
+      "family_label": "Zaxnes",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "dmanlfc-sm2-emu",
+      "name": "SM2-EMU",
+      "category": "主机模拟",
+      "description": "Sega Model 2 街机模拟器。",
+      "owner": "dmanlfc",
+      "repo": "dmanlfc/sm2-emu",
+      "homepage": "",
+      "repo_url": "https://github.com/dmanlfc/sm2-emu",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.9.57",
+      "latest_date": "2026-11-03T00:00:00Z",
+      "latest_body": "## What's Changed * Choose the light gun of each player (gun1_device / gun2_device) by @Tartifless in https://github.com/dmanlfc/sm2-emu/pull/25 ## New Contributors * @Tartifless made their first contribution in https://",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 27,
+      "forks": 8,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.9.57",
+          "name": "v0.9.57",
+          "date": "2026-11-03"
+        },
+        {
+          "tag": "v0.9.56",
+          "name": "v0.9.56",
+          "date": "2026-10-26"
+        },
+        {
+          "tag": "v0.9.55",
+          "name": "v0.9.55",
+          "date": "2026-10-25"
+        }
+      ],
+      "source": "github",
+      "note": "街机 Model 2 在库里只有 Model 3 相关条目；27★。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "arcade"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dmanlfc-sm2-emu",
+      "family_label": "SM2-EMU",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "jberclaz-turbostage",
+      "name": "TurboStage",
+      "category": "前端与工具",
+      "description": "DOSBox Staging 的图形前端，管理 DOS 游戏库并一键启动。",
+      "owner": "jberclaz",
+      "repo": "jberclaz/turbostage",
+      "homepage": "",
+      "repo_url": "https://github.com/jberclaz/turbostage",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.12.1",
+      "latest_date": "2026-11-03T00:00:00Z",
+      "latest_body": "Fix setup wizard hidden behind the splash screen on first launch (#56)",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-03T00:00:00Z",
+      "stars": 21,
+      "forks": 1,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.12.1",
+          "name": "v0.12.1",
+          "date": "2026-11-03"
+        },
+        {
+          "tag": "v0.12.0",
+          "name": "v0.12.0",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "v0.11.1",
+          "name": "v0.11.1",
+          "date": "2026-10-27"
+        }
+      ],
+      "source": "github",
+      "note": "DOS 前端，配套 DOSBox Staging；21★。",
+      "kind": "frontend",
+      "runtime": "desktop",
+      "platforms": [
+        "dos"
+      ],
+      "status": "active",
+      "method": null,
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "jberclaz-turbostage",
+      "family_label": "TurboStage",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "habib256-pom2",
+      "name": "POM2",
+      "category": "主机模拟",
+      "description": "Apple ][ / ][+ / //e / //c / //c+ 模拟器。",
+      "owner": "habib256",
+      "repo": "habib256/pom2",
+      "homepage": "",
+      "repo_url": "https://github.com/habib256/pom2",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.1.2",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "# POM2 v1.1.2 > [!WARNING] > **First launch on macOS or Windows: you have to allow POM2 once.** The packages > are not notarized by Apple or signed for Windows, so both systems block a > downloaded copy. > > **🍏 macOS: \"",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T00:00:00Z",
+      "stars": 18,
+      "forks": 2,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v1.1.2",
+          "name": "POM2 v1.1.2",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v1.1.0",
+          "name": "POM2 v1.1.0",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "v1.0.0",
+          "name": "POM2 v1.0.0",
+          "date": "2026-10-28"
+        }
+      ],
+      "source": "github",
+      "note": "Apple II 的第二个条目；18★。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "apple2"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux",
+        "macos"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "habib256-pom2",
+      "family_label": "POM2",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "eryski-cosmou",
+      "name": "CosmoU",
+      "category": "前端与工具",
+      "description": "Wii U 游戏在 PC 上运行的前端/兼容层。",
+      "owner": "eryski",
+      "repo": "eryski/cosmou",
+      "homepage": "",
+      "repo_url": "https://github.com/eryski/cosmou",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.13.1",
+      "latest_date": "2026-11-01T00:00:00Z",
+      "latest_body": "## 💙 Thank you, Eduard! Everything in CosmoU 0.13.1 comes from ideas and bug reports by **Eduard** in the CosmoU Discord. Thank you for testing so much and for all the great ideas – this update is yours! 🎉 ## ✨ What's ne",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T00:00:00Z",
+      "stars": 15,
+      "forks": 0,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.13.1",
+          "name": "CosmoU 0.13.1",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "v0.13.0",
+          "name": "CosmoU 0.13.0",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v0.12.1",
+          "name": "CosmoU 0.12.1",
+          "date": "2026-10-31"
+        }
+      ],
+      "source": "github",
+      "note": "Wii U 分区此前为空；15★，形态更接近前端而非模拟器。",
+      "kind": "frontend",
+      "runtime": "desktop",
+      "platforms": [
+        "wiiu"
+      ],
+      "status": "active",
+      "method": null,
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "frontend-tool",
+      "family": "eryski-cosmou",
+      "family_label": "CosmoU",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=frontend",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "tovarichtch-odin",
+      "name": "Odin",
+      "category": "主机模拟",
+      "description": "Sega Hikaru 街机模拟器（LLE），Valkyrie 的硬分叉。",
+      "owner": "tovarichtch",
+      "repo": "tovarichtch/odin",
+      "homepage": "",
+      "repo_url": "https://github.com/tovarichtch/odin",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.1.0",
+      "latest_date": "2026-11-02T00:00:00Z",
+      "latest_body": "The first release of Odin. Odin (ᚨ) is a low-level emulator of the SEGA Hikaru arcade board. It runs the programs of the real chips wherever they are known, and draws with OpenGL or Vulkan. It is a hard fork of Valkyrie,",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:00:00Z",
+      "stars": 11,
+      "forks": 4,
+      "watchers": 2,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.1.0",
+          "name": "v0.1.0",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "dev",
+          "name": "Dev build (aa89944add2787233d8161cca380255193b92f15)",
+          "date": "2026-11-01"
+        }
+      ],
+      "source": "github",
+      "note": "Hikaru 基板此前无人覆盖；11★，属长尾平台。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "arcade"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "tovarichtch-odin",
+      "family_label": "Odin",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "frantriems-vkrt-nes-remaster",
+      "name": "VKRT NES Remaster",
+      "category": "主机模拟",
+      "description": "NES 模拟器源码（C++20），与前端解耦。",
+      "owner": "frantriems",
+      "repo": "frantriems/vkrt-nes-remaster",
+      "homepage": "",
+      "repo_url": "https://github.com/frantriems/vkrt-nes-remaster",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.1.0-rc.1",
+      "latest_date": "2026-11-01T00:00:00Z",
+      "latest_body": "# VKRT NES Remaster v0.1.0-rc.1 **First public preview — Windows x64 and experimental Linux x86-64** VKRT NES Remaster is an open-source, native C++20 Nintendo Entertainment System emulator developed by Francisco Triemst",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-01T00:00:00Z",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 0,
+      "downloads": null,
+      "logo_url": "",
+      "releases": [
+        {
+          "tag": "v0.1.0-rc.1",
+          "name": "VKRT NES Remaster v0.1.0-rc.1 — Windows & Linux Preview",
+          "date": "2026-11-01"
+        }
+      ],
+      "source": "github",
+      "note": "3★，实验性质；收录原因是它代表了「模拟器内核与前端分离」的一种做法。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "nes"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "builds": [],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "frantriems-vkrt-nes-remaster",
+      "family_label": "VKRT NES Remaster",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族"
+    },
+    {
+      "id": "winhub-emu-winhub",
+      "name": "WinHub",
+      "category": "Windows 兼容层",
+      "description": "WinHub：Android 端一体化游戏平台（早期预览），开源；单包约 557MB，分 standard / pubg / ludashi 三个变体，是否为自带运行时的兼容层待核",
+      "owner": "winhub-emu",
+      "repo": "winhub-emu/winhub",
+      "homepage": "https://winhub-emu.vercel.app/",
+      "repo_url": "https://github.com/winhub-emu/winhub",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "0.1",
+      "latest_date": "2026-11-05T12:58:47Z",
+      "latest_body": "<p align=\"center\">\r\n<img src=\"https://raw.githubusercontent.com/winhub-emu/winhub/refs/heads/master/logo.png\" width=\"1500\" height=\"500\" alt=\"WinHub\" />\r\n</p>\r\n\r\n<!-- update-summary: WinHub 0.1-beta: a revamped UI, new EGL and SurfaceDirect renderers, Social Hub game configs, Mali support and a mod loader. -->\r\n# 📜 WinHub - Early Preview\r\n\r\n## 🚀 Version 0.1-beta\r\n\r\n> This page covers everything new in this release, grouped by what you will actually notice. 🚀\r\n\r\n**Jump to:** [🎨 New UI](#-a-fully-revamped-ui) · [🖼️ Renderers](#️-new-renderers-egl-and-surfacedirect) · [💬 Social Hub & Game Configs](#-social-hub-and-game-configs) · [🟢 Mali](#-new-mali-support) · [🧩 Mod Loader](#-mod-loader) · [🔄 Updater](#-updater) · [🛠️ Other improvements](#️-other-improvements) · [🗑️ Removed](#️-removed) · [🙏 Credits](#-credits)\r\n\r\n---\r\n\r\n## 🎨 A fully revamped UI\r\n\r\nWinHub now looks and feels like a console. Everything was rebuilt around a **Deck-style shell** that works fully with a gamepad **and** with touch, in landscape **and** in portrait.\r\n\r\n### 🕹️ The Deck shell (landscape)\r\n- 🏠 **Console-style Home.** A top-left carousel of your games with big glowing covers, a launch zoom when you press play, a blurred cover backdrop, a status strip, a details panel, an intro, and L2/R2 to switch shelves (**All, Recent, Favourites, Store games**).\r\n- 🎛️ **Two Home styles** (Settings → Appearance): **XMB** (default) with the game options column, and **Classic**, which opens a full console-style game menu when you hold a cover or press **Y**.\r\n- 🧭 **Hint bar, Start quick menu, download tray, idle screensaver and a sound set**, so the whole app reacts like a console.\r\n- 🔁 **Shoulder buttons switch things the same way everywhere.** L1/R1 move between sections, L2/R2 move between sub-tabs, **A** selects, **B** goes back and never exits the app by accident.\r\n- 🌊 **Stretchy tab pills and a gliding focus ring** that follows your D-pad across grids, lists, buttons and dialogs. Rings hide after you touch",
+      "latest_apk_name": "WinHub-0.1-ludashi.apk",
+      "latest_apk_url": "https://github.com/winhub-emu/winhub/releases/download/0.1/WinHub-0.1-ludashi.apk",
+      "latest_apk_size": 570813229,
+      "pushed_at": "2026-11-05T14:36:21Z",
+      "stars": 443,
+      "forks": 24,
+      "watchers": 443,
+      "downloads": 225,
+      "logo_url": "https://avatars.githubusercontent.com/u/288650572?v=4",
+      "releases": [
+        {
+          "tag": "0.1",
+          "name": "WinHub - Early Preview",
+          "date": "2026-11-05T12:58:47Z",
+          "body": "<p align=\"center\">\r\n<img src=\"https://raw.githubusercontent.com/winhub-emu/winhub/refs/heads/master/logo.png\" width=\"1500\" height=\"500\" alt=\"WinHub\" />\r\n</p>\r\n\r\n<!-- update-summary: WinHub 0.1-beta: a revamped UI, new EGL and SurfaceDirect renderers, Social Hub game configs, Mali support and a mod loader. -->\r\n# 📜 WinHub - Early Preview\r\n\r\n## 🚀 Version 0.1-beta\r\n\r\n> This page covers everything new in this release, grouped by what you will actually notice. 🚀\r\n\r\n**Jump to:** [🎨 New UI](#-a-fully-revamped-ui) · [🖼️ Renderers](#️-new-renderers-egl-and-surfacedirect) · [💬 Social Hub & Game Configs](#-social-hub-and-game-configs) · [🟢 Mali](#-new-mali-support) · [🧩 Mod Loader](#-mod-loader) · [🔄 Updater](#-updater) · [🛠️ Other improvements](#️-other-improvements) · [🗑️ Removed](#️-removed) · [🙏 "
+        },
+        {
+          "tag": "yesysyeysys",
+          "name": "help thx 💪💪",
+          "date": "2026-10-06T19:44:52Z",
+          "body": "so basically dc got terminated so join new one 💪🙏❤️🥰\r\nhttps://discord.gg/KpwUbc2cby"
+        },
+        {
+          "tag": "ignore",
+          "name": "IGNORE",
+          "date": "2026-09-27T10:58:30Z",
+          "body": "ignore this, its just a test for winhub"
+        },
+        {
+          "tag": "star-winhub-progrwss",
+          "name": "The future of star - What will it become?",
+          "date": "2026-07-19T09:55:07Z",
+          "body": "Hello everyone. I'm writing this to inform all of you on the current status of star, and what it will be and if its actually getting continued.\r\n\r\nStar will be continued, yes, but also no. It's going to be a fresh new start, because everything was ruined because of my actions and how I acted with the project, along with the team members. I apologize for my actions and I hope I can be forgiven. The project is now called WinHub, and in a little bit, development will start.\r\n\r\nSo, here is a little list of things you should know:\r\n- The star development continues! (now under WinHub)\r\n- The focus on next release will be mostly Quality of Life features. This means fixing long standing bugs, but more importantly, adding a lot of new features.\r\n- The Vegas implementation will be severely improved "
+        },
+        {
+          "tag": "1.3",
+          "name": "star 1.3 - UI redesigns, Vegas Engine built in, New FPS Counter, New in-game menu redesign",
+          "date": "2026-06-09T05:37:13Z",
+          "body": "<img src=\"https://github.com/jacojayy/star/blob/main/20260418_134945.png\" width=\"1500\" height=\"500\" alt=\"star\" />\r\n</p>\r\n\r\n**After a lot of previews, star 1.3 is here. We had some juicy changes made! But first of all, credits!**\r\n\r\n- @jacojayy: All of the changes, excluding the Vegas work.\r\n- @leegao: Helping in Vegas. It was a pleasure to work and chat with you, hope we will do it again in the future!\r\n- @isygold: Developing Vegas\r\n\r\n### NOTE\r\n- The Vegas FrameGen still doesnt work. \r\n- When installing Proton / Wine versions, do not panic. It will install over time, just wait!\r\n\r\n## Changelog\r\n- Redesigned the in-game ui:\r\n     - The in-game ui menu now has a modern and sleek look, making the experience way more fresh and easier.\r\n- Redesigned FPS Counter\r\n     - The FPS Counter is now ho"
+        }
+      ],
+      "source": "github",
+      "note": "",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "status": "active",
+      "hosts": [
+        "android"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "android",
+          "format": "apk",
+          "name": "WinHub-0.1-ludashi.apk",
+          "size": 570813229,
+          "url": "https://github.com/winhub-emu/winhub/releases/download/0.1/WinHub-0.1-ludashi.apk",
+          "downloads": 36,
+          "tag": "0.1"
+        }
+      ],
+      "license": "GPL-3.0",
+      "topics": [],
+      "needs_review": false,
+      "section": "windows-compat"
+    },
+    {
+      "id": "gs-soft-it-lumen-emu",
+      "name": "Lumen Emu",
+      "category": "主机模拟",
+      "description": "Lumen Emu（GS-Soft）：实验性 PS4/PS5 安卓模拟器，核心开源，另有 macOS（Apple Silicon）版本",
+      "owner": "gs-soft-it",
+      "repo": "gs-soft-it/lumen-emu",
+      "homepage": "https://lumen-emu.com/",
+      "repo_url": "https://github.com/gs-soft-it/lumen-emu",
+      "official": true,
+      "channel": "prerelease",
+      "latest_tag": "v0.1.7-spike-fexlab",
+      "latest_date": "2026-11-04T04:55:54Z",
+      "latest_body": "**Lumen Emu 0.1.7, build 10** updates the GitHub APK with a quick folder browser, direct access to your existing game library, PS4 audio fixes and the latest cumulative core changes.\n\n### Library and interface\n\n- Choose your game folder quickly and use its files in place after granting Android’s all-files access. No private copy is required for the GitHub APK.\n- Preserve the selected folder from earlier direct-access GitHub releases, together with existing settings and saves. The one-time folder reset used by the Play migration is skipped on GitHub.\n- English dashboard and folder-selection flow, with an expanded compatibility catalog.\n- Updated device-specific compatibility reports in the README, including developer-reported West of Dead version 01.00 on realme GT 8 Pro. Reports remain tied to their stated device and tested build.\n\n### Audio and core\n\n- Improve NGS2 streamed PCM audio, buffer completion callbacks and voice-state queries. The corrected path restored audible Brotato audio in the documented Android development test.\n- Integrate six selected KytyPS5 improvements to shader compilation, shader identity and memory-range handling while preserving Lumen’s existing defaults.\n- Include the latest controller input delivery, shader sampler comparison and FEX signal-state fixes.\n- Retain bundled Mojo/Bionic, Turnip Banners and experimental PanVK with the existing hardware-based driver selection.\n\n### Download and verification\n\nDownload **`lumenemu-0.1.7-spike-fexlab-v10-github.apk`** below. Requires **Android 13+ and ARM64**; target API 36. The package and signing certificate match the previous public GitHub APKs, with a higher version code.\n\nThe signed Release APK passed native-runtime, signature, permission and 16 KiB alignment checks. **84 JVM tests passed, with 3 existing skips**; `lintVital` passed. Full lint still reports 54 pre-existing errors. Instrumentation tests compiled but were not run on a device for this package, and the exact final APK has not rec",
+      "latest_apk_name": "lumenemu-0.1.7-spike-fexlab-v10-github.apk",
+      "latest_apk_url": "https://github.com/gs-soft-it/lumen-emu/releases/download/v0.1.7-spike-fexlab/lumenemu-0.1.7-spike-fexlab-v10-github.apk",
+      "latest_apk_size": 59604364,
+      "pushed_at": "2026-11-04T04:55:53Z",
+      "stars": 23,
+      "forks": 0,
+      "watchers": 23,
+      "downloads": 42,
+      "logo_url": "https://avatars.githubusercontent.com/u/254604543?v=4",
+      "releases": [
+        {
+          "tag": "v0.1.7-spike-fexlab",
+          "name": "Lumen Emu 0.1.7 — Direct library access, audio fixes & updated core",
+          "date": "2026-11-04T04:55:54Z",
+          "body": "**Lumen Emu 0.1.7, build 10** updates the GitHub APK with a quick folder browser, direct access to your existing game library, PS4 audio fixes and the latest cumulative core changes.\n\n### Library and interface\n\n- Choose your game folder quickly and use its files in place after granting Android’s all-files access. No private copy is required for the GitHub APK.\n- Preserve the selected folder from earlier direct-access GitHub releases, together with existing settings and saves. The one-time folder reset used by the Play migration is skipped on GitHub.\n- English dashboard and folder-selection flow, with an expanded compatibility catalog.\n- Updated device-specific compatibility reports in the README, including developer-reported West of Dead version 01.00 on realme GT 8 Pro. Reports remain tie"
+        },
+        {
+          "tag": "v0.1.6-spike-fexlab",
+          "name": "Lumen Emu 0.1.6 — Faster loading, Banners & automatic PanVK",
+          "date": "2026-11-01T05:17:53Z",
+          "body": "## Massive loading improvements and experimental Mali support\n\n**Lumen Emu 0.1.6 brings a massive loading speedup in the tested PS5 startup path, restores direct local-ROM access for both PS4 and PS5, bundles Turnip Banners, and adds automatic experimental PanVK selection for compatible Mali GPUs.**\n\n### Faster loading\n\n- Local ROM folders now use direct filesystem reads after granting Android's all-files access, avoiding repeated document-provider work during loading.\n- The system folder picker remains available. Recognised local filesystem folders use the direct path; other supported providers retain the document bridge.\n- Document-backed libraries also benefit from reduced path lookups, provider acquisition and directory-enumeration overhead, plus improved native file-size queries.\n- Th"
+        },
+        {
+          "tag": "v0.1.5-spike-fexlab",
+          "name": "Lumen Emu Android 0.1.5-spike-fexlab — build 6",
+          "date": "2026-10-28T08:47:19Z",
+          "body": "Fixed ROM folder handling and improved emulation speed.\n"
+        },
+        {
+          "tag": "v0.1.2-spike-fexlab",
+          "name": "Lumen Emu Android 0.1.2-spike-fexlab — build 3",
+          "date": "2026-10-27T09:49:36Z",
+          "body": "## 0.1.2-spike-fexlab — Android version code 3\n\n27 October 2026 · [Release and APK](https://github.com/gs-soft-it/lumen-emu/releases/tag/v0.1.2-spike-fexlab)\n\n### Changes\n\n- Import the entire prepared library with Android's system folder picker into a private copy, with a space check, progress and cancellation. The source remains unchanged and can be disconnected after import.\n- New imports create separate libraries without merging contents or automatically synchronising source changes. Existing shared-storage selections require an explicit re-import.\n- Remove broad storage permissions. Clarify that content must already be extracted: the app does not open, extract or install PKG files.\n- Include the current common-runtime fixes for shared memory, graphics resources, shader compilation/rend"
+        },
+        {
+          "tag": "v0.1.1-spike-fexlab",
+          "name": "Lumen Emu Android 0.1.1-spike-fexlab — build 2",
+          "date": "2026-10-23T12:12:51Z",
+          "body": "## 0.1.1-spike-fexlab — Android version code 2\n\n23 October 2026 · [Release and APK](https://github.com/gs-soft-it/lumen-emu/releases/tag/v0.1.1-spike-fexlab)\n\n### Changes\n\n- Fixed a startup failure affecting some PS5 games on Adreno 730 GPUs when the Vulkan `shaderBufferInt64Atomics` feature was required unconditionally.\n- Enable that feature only when supported by the GPU. Check shaders that require it before use, with an explicit diagnostic when support is unavailable.\n- Improved fatal-error diagnostics in release builds.\n\nThe public core update includes the matching PS5 Vulkan feature checks, shader admission checks, regression tests and provenance records. Existing public documentation and the exclusions of dashboard/application-shell sources are preserved.\n\n### Android package\n\n- File"
+        }
+      ],
+      "source": "github",
+      "note": "",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "ps5",
+        "ps4"
+      ],
+      "status": "active",
+      "hosts": [
+        "android"
+      ],
+      "method": "emulation",
+      "builds": [
+        {
+          "host": "android",
+          "format": "apk",
+          "name": "lumenemu-0.1.7-spike-fexlab-v10-github.apk",
+          "size": 59604364,
+          "url": "https://github.com/gs-soft-it/lumen-emu/releases/download/v0.1.7-spike-fexlab/lumenemu-0.1.7-spike-fexlab-v10-github.apk",
+          "downloads": 35,
+          "tag": "v0.1.7-spike-fexlab"
+        }
+      ],
+      "license": "GPL-2.0",
+      "topics": [
+        "android",
+        "arm64",
+        "emulation",
+        "emulator",
+        "kytyps5",
+        "ps4",
+        "ps5",
+        "shadps4",
+        "vulkan"
+      ],
+      "needs_review": false,
+      "section": "console-emulation"
+    },
+    {
+      "id": "zfitness-nixport",
+      "name": "Nixport",
+      "category": "前端与工具",
+      "description": "Nixport：在 Android 上直接运行 Linux 程序的启动器，无需 root、无需 proot；安装包约 299MB",
+      "owner": "zFitness",
+      "repo": "zFitness/nixport",
+      "homepage": "",
+      "repo_url": "https://github.com/zFitness/nixport",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.2.304-alpha",
+      "latest_date": "2026-11-04T09:02:38Z",
+      "latest_body": "**Nixport v1.2.304-alpha** — a test build for people who want to try it early.\r\n\r\n> Published by hand: built and signed with the same key as v1.1.299-alpha and\r\n> v1.0.267-alpha (upgrades install over them without uninstalling).\r\n\r\n## Changelog (since v1.1.299-alpha)\r\n\r\n### Gamepads\r\n\r\n- **Single-player pad model** (replaces v1.1's player slots): exactly one physical\r\n  pad feeds the game at a time. The pad you touch takes over automatically\r\n  (last-active wins); the session drawer offers \"use this pad\" to pin a choice for\r\n  the session. The effective pad and the on-screen controls merge into one player.\r\n- **Fix: intermittent directional input**. After opening a menu or losing focus,\r\n  sticks / D-pad / triggers now reach the game immediately at their current position —\r\n  no more \"only X works in the load screen\" or \"the first press does nothing\".\r\n  The old \"stay blocked until centered\" gate is gone (keys only).\r\n- Rumble now always lands on the effective pad (Xbox-protocol pads don't expose\r\n  motors to Android — enable \"phone vibration\" as the fallback).\r\n- On-screen stale-state fix: a closed overlay can no longer pin the virtual stick\r\n  over the physical one.\r\n\r\n### New: gyro aim (native ports)\r\n\r\n- Hold the activator button and aim with the phone's gyroscope; the offset is added\r\n  to the target stick (left or right, configurable).\r\n\r\n### Frame generation\r\n\r\n- Second FG engine wired up: **LSFG**, using your own Lossless.dll. Engine switches\r\n  flush the queue first (fixes artifacts on switch). The DD-FG entry is temporarily\r\n  hidden (known defect).\r\n\r\n## 安装 / Install\r\n\r\n下载 `nixport.apk` 安装（ARM64 手机，Android 9+）。已装 v1.1.299-alpha 或\r\nv1.0.267-alpha 的可直接覆盖安装（同签名，数据与已导入程序全部保留）。\r\n\r\nDownload `nixport.apk` and install it on an ARM64 phone (Android 9+). Existing\r\nv1.1.299-alpha / v1.0.267-alpha installs upgrade in place (same signature — app\r\ndata and imported programs are preserved).\r\n\r\n**`nixport.apk` 的 SHA-256 / SHA-256 of `nixport.apk`:**\r\n`97c8867f1bac465d562",
+      "latest_apk_name": "nixport.apk",
+      "latest_apk_url": "https://github.com/zFitness/nixport/releases/download/v1.2.304-alpha/nixport.apk",
+      "latest_apk_size": 306790932,
+      "pushed_at": "2026-11-04T09:02:28Z",
+      "stars": 17,
+      "forks": 0,
+      "watchers": 17,
+      "downloads": 1049,
+      "logo_url": "https://avatars.githubusercontent.com/u/41500499?v=4",
+      "releases": [
+        {
+          "tag": "v1.2.304-alpha",
+          "name": "Nixport v1.2.304-alpha",
+          "date": "2026-11-04T09:02:38Z",
+          "body": "**Nixport v1.2.304-alpha** — a test build for people who want to try it early.\r\n\r\n> Published by hand: built and signed with the same key as v1.1.299-alpha and\r\n> v1.0.267-alpha (upgrades install over them without uninstalling).\r\n\r\n## Changelog (since v1.1.299-alpha)\r\n\r\n### Gamepads\r\n\r\n- **Single-player pad model** (replaces v1.1's player slots): exactly one physical\r\n  pad feeds the game at a time. The pad you touch takes over automatically\r\n  (last-active wins); the session drawer offers \"use this pad\" to pin a choice for\r\n  the session. The effective pad and the on-screen controls merge into one player.\r\n- **Fix: intermittent directional input**. After opening a menu or losing focus,\r\n  sticks / D-pad / triggers now reach the game immediately at their current position —\r\n  no more \"only"
+        },
+        {
+          "tag": "v1.1.299-alpha",
+          "name": "Nixport v1.1.299-alpha",
+          "date": "2026-11-03T13:21:13Z",
+          "body": "**Nixport v1.1.299-alpha** — a test build for people who want to try it early.\n\n> **The project is still being prepared.** This build was published by hand: the\n> tag points at the current remote `main`, and the APK is built and signed with\n> the same machine and key as the local v1.0.267-alpha release (upgrades install\n> over it without uninstalling).\n\n## Changelog (since v1.0.267-alpha)\n\n### Gamepads\n\n- **Player slots**: Player 1 = on-screen controls + one selected physical pad, merged.\n  The in-game drawer (Input tab) now lists every physical pad under \"Physical gamepads\" —\n  set one as Player 1, assign pads to Players 2-4, or unassign them. An explicit choice is\n  remembered across sessions.\n- **First input wins**: with no explicit choice, the first pad that actually produces\n  input b"
+        },
+        {
+          "tag": "v1.0.267-alpha",
+          "name": "Nixport v1.0.267-alpha",
+          "date": "2026-11-01T03:37:48Z",
+          "body": "**Nixport v1.0.267-alpha** — a test build for people who want to try it early.\n\n> **The project is still being prepared.** The source code is not public yet — it will be open-sourced in [NixPort/nixport](https://github.com/zFitness/nixport) once the release is ready. What you get here today is the documentation plus a runnable APK.\n\n**Install:** download `nixport.apk` from this release and install it on an ARM64 Android phone (Android 9 / API 28 or newer). The APK ships the Linux environment inside it and unpacks it on first run.\n\nIf the app is already installed, update from inside the app (Home). Note that this build is signed with a different key than the CI-published ones, so it may require uninstalling the previous build first.\n\n**SHA-256 of `nixport.apk`:**\n`9541187e23d823f1e883ad002c"
+        }
+      ],
+      "source": "github",
+      "note": "",
+      "kind": "frontend",
+      "runtime": "android-native",
+      "platforms": [],
+      "status": "active",
+      "hosts": [
+        "android"
+      ],
+      "method": null,
+      "builds": [
+        {
+          "host": "android",
+          "format": "apk",
+          "name": "nixport.apk",
+          "size": 306790932,
+          "url": "https://github.com/zFitness/nixport/releases/download/v1.2.304-alpha/nixport.apk",
+          "downloads": 972,
+          "tag": "v1.2.304-alpha"
+        }
+      ],
+      "license": null,
+      "topics": [],
+      "needs_review": false,
+      "section": "frontend-tool"
+    },
+    {
+      "id": "moceure-banananative",
+      "name": "BananaNative",
+      "category": "主机模拟",
+      "description": "BananaNative：Switch 原生层（nxnative），把 NVN 调用直接转成 Vulkan，不做系统模拟；实验性、非官方",
+      "owner": "moceure",
+      "repo": "moceure/BananaNative",
+      "homepage": "",
+      "repo_url": "https://github.com/moceure/BananaNative",
+      "official": false,
+      "channel": "prerelease",
+      "latest_tag": "v0.1.4",
+      "latest_date": "2026-11-05T13:03:32Z",
+      "latest_body": "## Banana Native v0.1.4\n\nInstall over v0.1.3: saves, packs and settings are kept. No shader update is needed.\n\n- **In-app updates.** From this version on, the app checks this page when it starts and offers new releases in a popup (Update or Later). It downloads the APK from this page and checks it before Android asks you to install it. Settings › Check for updates checks right away.\n- **`0400C3F00006E000`: Prepare no longer stops at \"rewriting the game code\" (#20).** That step now needs about a fifth of the memory (0.5 GB instead of about 3 GB), so it finishes on phones with other apps open. If Prepare stopped for you, tap Retry.\n- **No more false \"Pack from other tools\" chip** on packs this app made. Packs made by earlier versions count as current; nothing has to be prepared again.\n\nNeeds Android 13+, a Snapdragon (Adreno) phone with 12 GB of RAM or more, and your own dump. Experimental: back up your saves. Download only from this page. No games, keys or shaders are included. GPL-3.0-or-later.\n\n\nSHA-256 (`banana-native-v0.1.4.apk`): `3ef50ee0542b073249393fb4b4cf995e763e307aea4c9e55d2281d390f9c65a7`\n",
+      "latest_apk_name": "banana-native-v0.1.4.apk",
+      "latest_apk_url": "https://github.com/moceure/BananaNative/releases/download/v0.1.4/banana-native-v0.1.4.apk",
+      "latest_apk_size": 27282204,
+      "pushed_at": "2026-11-05T13:15:33Z",
+      "stars": 287,
+      "forks": 19,
+      "watchers": 287,
+      "downloads": 503,
+      "logo_url": "https://avatars.githubusercontent.com/u/351666937?v=4",
+      "releases": [
+        {
+          "tag": "v0.1.4",
+          "name": "v0.1.4",
+          "date": "2026-11-05T13:03:32Z",
+          "body": "## Banana Native v0.1.4\n\nInstall over v0.1.3: saves, packs and settings are kept. No shader update is needed.\n\n- **In-app updates.** From this version on, the app checks this page when it starts and offers new releases in a popup (Update or Later). It downloads the APK from this page and checks it before Android asks you to install it. Settings › Check for updates checks right away.\n- **`0400C3F00006E000`: Prepare no longer stops at \"rewriting the game code\" (#20).** That step now needs about a fifth of the memory (0.5 GB instead of about 3 GB), so it finishes on phones with other apps open. If Prepare stopped for you, tap Retry.\n- **No more false \"Pack from other tools\" chip** on packs this app made. Packs made by earlier versions count as current; nothing has to be prepared again.\n\nNeeds"
+        },
+        {
+          "tag": "v0.1.3",
+          "name": "v0.1.3",
+          "date": "2026-11-05T11:43:14Z",
+          "body": "## Banana Native v0.1.3\n\nInstall over v0.1.2: saves, packs and settings are kept.\n\n- **`040074A01BF12000`: 30 fps on Turnip at Phone 1080p (was about 20; #5, #16).** The upscaler shader is rewritten for Adreno and the GPU clock no longer drops on Turnip. Phone 1080p is the default again; if you set Phone 720p for v0.1.2, switch back in Game settings › Game resolution. 60 fps is a later step.\n- **One shader update after installing.** The app does it by itself when opened (112 shaders for `040074A01BF12000`, 175 for `0400C3F00006E000`); the game can start once its card says **Ready**. The update pauses while the phone is too hot and goes on once it cools.\n- The build tag no longer shows the build time.\n\nNeeds Android 13+, a Snapdragon (Adreno) phone with 12 GB of RAM or more, and your own du"
+        },
+        {
+          "tag": "v0.1.2",
+          "name": "v0.1.2",
+          "date": "2026-11-05T09:49:29Z",
+          "body": "## Banana Native v0.1.2 (hotfix)\n\nInstall over v0.1.1: saves, packs and settings are kept.\n\n### Fixes\n- **Prepare shaders on shared storage:** Prepare no longer stops with \"Operation not permitted\" after splitting the game's files (it now writes the `split` folder in place instead of renaming it). If Prepare failed there on v0.1.1, run it again.\n- **GPU driver install no longer crashes the app:** pick the driver .zip, it installs in the background, and any problem is shown as a message. The app no longer scans the Download folder on its own.\n- **Add game takes dumps in any layout:** base only, update only, or base + update, as a folder or a `.nup`. Each game shows as one card (old duplicate cards are merged), with its build shown on Home.\n- **Same game code under another version number:** "
+        },
+        {
+          "tag": "v0.1.1",
+          "name": "v0.1.1",
+          "date": "2026-11-04T23:59:09Z",
+          "body": "## Banana Native v0.1.1\n\n### New\n- **NUP files:** add a game straight from one `.nup` file (base, update and DLC in one file), no unpacking. Add game › A .nup file.\n- **Emulator frontends:** ES-DE, Daijisho, Pegasus and others can start a game directly. Setup: [frontend guide](https://github.com/moceure/BananaNative/blob/v0.1.1/android/FRONTENDS.md).\n- **Incremental shader updates:** from now on, when shaders change, only the changed ones are rebuilt in the background, and Play stays available. A pack made before versioned updates shows \"Shaders need one update\": run Prepare shaders once, then updates stay small.\n- **`0400C3F00006E000` can be prepared on the phone** (about 16-30 minutes; not yet tested on many phones, reports welcome).\n- **`0400C3F00006E000` uses about 1 GiB less RAM**, an"
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "v0.1.0",
+          "date": "2026-11-03T23:10:18Z",
+          "body": "First release of Banana Native, the first native port of Switch 2 games to Android: the game's own code runs on the phone's CPU, no emulation. Pre-release.\n\n- **Fold-aware layout:** separate layouts for the folded and unfolded screen, switched live; move the picture up or down and place the controls where you want.\n- **Frame generation** with Lossless Scaling (your own `Lossless.dll`): 2x-4x or a 60 / 90 / 120 fps target.\n\n**Games**\n\n- `040074A01BF12000` (update 458752): works.\n- `0400C3F00006E000` (1.8.0): work in progress. Black pixels; the 3D scene can go dark after a race when you go back to character selection.\n\nNeeds Android 13+, a Snapdragon (Adreno) phone with at least 12 GB of RAM, and your own dump. Setup is in the README.\n\n**Risks**\n- Experimental and unofficial, mostly written "
+        }
+      ],
+      "source": "github",
+      "note": "",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "hosts": [
+        "android"
+      ],
+      "method": "translation",
+      "builds": [
+        {
+          "host": "android",
+          "format": "apk",
+          "name": "banana-native-v0.1.4.apk",
+          "size": 27282204,
+          "url": "https://github.com/moceure/BananaNative/releases/download/v0.1.4/banana-native-v0.1.4.apk",
+          "downloads": 503,
+          "tag": "v0.1.4"
+        }
+      ],
+      "license": "MIT",
+      "topics": [],
+      "needs_review": false,
+      "section": "console-emulation"
     }
   ]
 }

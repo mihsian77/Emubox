@@ -93,7 +93,10 @@ def main():
     HOST_OK = {"android", "windows", "linux", "macos", "ios", "harmonyos",
                # 主机自制固件宿主：PS5 homebrew 等。目前只有 1 条（ProsperoEden），
                # 但它是真实存在的宿主，塞进 android 会误导「安卓端能装」的判断。
-               "ps5"}
+               "ps5",
+               # 主机 homebrew 宿主：dborth 的 GX 系列（Snes9x/VBA/FCE Ultra）跑在
+               # GameCube/Wii 上，不是 PC 软件，也不该算 desktop。
+               "gamecube", "wii"}
     for e in ems:
         eid = e.get("id")
         if "method" not in e:

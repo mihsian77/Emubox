@@ -292,7 +292,13 @@ GUEST_RULES = [
     ("c64", [r"\bc64\b", r"commodore\s*64", r"\bvice\b"]),
     ("3do", [r"\b3do\b"]),
     ("wonderswan", [r"\bwonderswan\b"]),
-    ("neo-geo", [r"neo\s*geo", r"\bngp\b"]),
+    # NGP 必须先于 neo-geo 判断，否则 ngpcraft 会被宽泛的 neo-geo 吞掉
+    ("neo-geo-pocket", [r"neo\s*geo\s*pocket", r"\bngpc?\b", r"ngpcraft"]),
+    ("neo-geo", [r"neo\s*geo"]),
+    ("wiiu", [r"wii\s*u", r"\bcemu\b"]),
+    ("pc-engine", [r"pc\s*engine", r"turbografx", r"supergrafx", r"\bgeargrafx\b"]),
+    ("apple2", [r"apple\s*(ii|2|\[|\\\])", r"\bpom2\b", r"izapple2"]),
+    ("pc-6001", [r"pc-?6001"]),
     ("adventure", [r"\bscummvm\b", r"point[-\s]and[-\s]click", r"\badventure\s+game"]),
 ]
 

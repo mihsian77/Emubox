@@ -1,11 +1,11 @@
 {
- "updated_at": "2026-11-05T05:59:32+00:00",
+ "updated_at": "2026-11-05T15:13:25+00:00",
  "methodology": "family-aggregated / multi-axis / no-composite-score",
  "coverage": {
-  "entries": 251,
-  "families": 177,
-  "with_downloads": 176,
-  "downloads_visible_pct": 70.1
+  "entries": 286,
+  "families": 209,
+  "with_downloads": 181,
+  "downloads_visible_pct": 63.3
  },
  "delta": {
   "available": true,
@@ -35,26 +35,26 @@
    "stars": 9800
   },
   {
-   "id": "djihads80-eglantine",
-   "name": "Eglantine",
-   "stars": 3844
+   "id": "par274-sharpemu",
+   "name": "SharpEmu",
+   "stars": 6531
   },
   {
-   "id": "lnpandy-nx2apple",
-   "name": "NX2Apple",
-   "stars": 3537
+   "id": "vita3k-vita3k",
+   "name": "Vita3K",
+   "stars": 5937
   }
  ],
  "sections": [
   {
    "key": "console-emulation",
    "label": "主机模拟",
-   "count": 120
+   "count": 144
   },
   {
    "key": "windows-compat",
    "label": "Windows 兼容层",
-   "count": 14
+   "count": 15
   },
   {
    "key": "native-port",
@@ -74,7 +74,7 @@
   {
    "key": "frontend-tool",
    "label": "前端与工具",
-   "count": 7
+   "count": 14
   }
  ],
  "boards": [
@@ -139,7 +139,7 @@
      "stars_rep": 19786,
      "stars_max": 19786,
      "latest_date": "2026-08-19T11:06:47Z",
-     "days_since_release": 77,
+     "days_since_release": 78,
      "days_since_push": 2,
      "family_days_since_push": 2,
      "official": true,
@@ -212,8 +212,8 @@
      "stars_max": 2769,
      "latest_date": "2025-11-12T02:51:02Z",
      "days_since_release": 358,
-     "days_since_push": 355,
-     "family_days_since_push": 355,
+     "days_since_push": 356,
+     "family_days_since_push": 356,
      "official": false,
      "status": "quiet",
      "downloads_delta": 0,
@@ -248,7 +248,7 @@
      "stars_rep": 10086,
      "stars_max": 10086,
      "latest_date": "2025-02-06T13:18:18Z",
-     "days_since_release": 636,
+     "days_since_release": 637,
      "days_since_push": 3,
      "family_days_since_push": 3,
      "official": true,
@@ -288,8 +288,8 @@
      "stars_max": 15990,
      "latest_date": "2026-11-03T16:18:22Z",
      "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -298,34 +298,37 @@
     {
      "family": "vita3k",
      "label": "Vita3K 系",
-     "rep_id": "vita3k-vita3k-android",
-     "rep_name": "Vita3K Android",
-     "repo_url": "https://github.com/Vita3K/Vita3K-Android",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/vita3k.png",
+     "rep_id": "vita3k-vita3k",
+     "rep_name": "Vita3K",
+     "repo_url": "https://github.com/Vita3K/Vita3K",
+     "logo": null,
      "section": "console-emulation",
      "platforms": [
       "psvita"
      ],
      "method": "emulation",
      "hosts": [
-      "android"
+      "windows",
+      "linux",
+      "macos"
      ],
-     "description": "Public releases and CI for the Vita3K Android app",
-     "members": 1,
+     "description": "PS Vita 模拟器桌面版（Windows/Linux/macOS），Vita3K 项目的上游主仓库。",
+     "members": 2,
      "member_ids": [
-      "vita3k-vita3k-android"
+      "vita3k-vita3k-android",
+      "vita3k-vita3k"
      ],
      "downloads_sum": 4327968,
-     "downloads_rep": 4327968,
+     "downloads_rep": 0,
      "downloads_basis": "lifetime",
-     "stars_rep": 1664,
-     "stars_max": 1664,
-     "latest_date": "2024-06-06T20:36:09Z",
-     "days_since_release": 881,
-     "days_since_push": 620,
-     "family_days_since_push": 620,
-     "official": false,
-     "status": "quiet",
+     "stars_rep": 5937,
+     "stars_max": 5937,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
     },
@@ -402,7 +405,7 @@
      "latest_date": "2025-05-22T22:47:26Z",
      "days_since_release": 531,
      "days_since_push": 40,
-     "family_days_since_push": 2,
+     "family_days_since_push": 3,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -474,9 +477,9 @@
      "stars_rep": 11703,
      "stars_max": 11703,
      "latest_date": "2026-10-14T09:36:19Z",
-     "days_since_release": 21,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_release": 22,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -512,9 +515,9 @@
      "stars_rep": 2636,
      "stars_max": 2636,
      "latest_date": "2026-08-19T11:47:09Z",
-     "days_since_release": 77,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "days_since_release": 78,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -546,9 +549,9 @@
      "stars_rep": 151,
      "stars_max": 151,
      "latest_date": "2026-08-29T13:33:12Z",
-     "days_since_release": 67,
-     "days_since_push": 67,
-     "family_days_since_push": 67,
+     "days_since_release": 68,
+     "days_since_push": 68,
+     "family_days_since_push": 68,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -688,9 +691,9 @@
      "stars_rep": 754,
      "stars_max": 754,
      "latest_date": "2026-10-05T09:08:05Z",
-     "days_since_release": 30,
-     "days_since_push": 30,
-     "family_days_since_push": 30,
+     "days_since_release": 31,
+     "days_since_push": 31,
+     "family_days_since_push": 31,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -722,9 +725,9 @@
      "stars_rep": 592,
      "stars_max": 592,
      "latest_date": "2026-11-02T08:56:36Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "days_since_release": 3,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -793,9 +796,9 @@
      "stars_rep": 721,
      "stars_max": 721,
      "latest_date": "2025-02-28T07:48:56Z",
-     "days_since_release": 614,
-     "days_since_push": 614,
-     "family_days_since_push": 614,
+     "days_since_release": 615,
+     "days_since_push": 615,
+     "family_days_since_push": 615,
      "official": false,
      "status": "quiet",
      "downloads_delta": 0,
@@ -833,9 +836,9 @@
      "stars_rep": 2416,
      "stars_max": 2416,
      "latest_date": "2025-07-06T07:32:33Z",
-     "days_since_release": 486,
-     "days_since_push": 153,
-     "family_days_since_push": 153,
+     "days_since_release": 487,
+     "days_since_push": 154,
+     "family_days_since_push": 154,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -904,7 +907,7 @@
      "stars_rep": 5180,
      "stars_max": 5180,
      "latest_date": "2025-11-18T10:14:11Z",
-     "days_since_release": 351,
+     "days_since_release": 352,
      "days_since_push": 8,
      "family_days_since_push": 8,
      "official": true,
@@ -933,19 +936,19 @@
       "rfandango-xendroid",
       "xendroid-plus"
      ],
-     "downloads_sum": 204110,
+     "downloads_sum": 208320,
      "downloads_rep": 202720,
      "downloads_basis": "lifetime",
      "stars_rep": 506,
      "stars_max": 506,
      "latest_date": "2026-08-14T11:11:00Z",
-     "days_since_release": 82,
-     "days_since_push": 76,
-     "family_days_since_push": 2,
+     "days_since_release": 83,
+     "days_since_push": 77,
+     "family_days_since_push": 1,
      "official": false,
      "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
+     "downloads_delta": 5600,
+     "growth_pct": 2.8
     },
     {
      "family": "watermelonds-android",
@@ -1011,7 +1014,7 @@
      "stars_rep": 6209,
      "stars_max": 6209,
      "latest_date": "2026-09-30T07:06:44Z",
-     "days_since_release": 35,
+     "days_since_release": 36,
      "days_since_push": 10,
      "family_days_since_push": 10,
      "official": true,
@@ -1046,8 +1049,8 @@
      "stars_max": 335,
      "latest_date": "2024-01-12T16:20:17Z",
      "days_since_release": 1027,
-     "days_since_push": 617,
-     "family_days_since_push": 617,
+     "days_since_push": 618,
+     "family_days_since_push": 618,
      "official": false,
      "status": "quiet",
      "downloads_delta": 0,
@@ -1080,9 +1083,9 @@
      "stars_rep": 738,
      "stars_max": 738,
      "latest_date": "2026-10-12T11:19:55Z",
-     "days_since_release": 23,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "days_since_release": 24,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -1114,9 +1117,9 @@
      "stars_rep": 650,
      "stars_max": 650,
      "latest_date": "2025-07-11T06:03:00Z",
-     "days_since_release": 481,
-     "days_since_push": 481,
-     "family_days_since_push": 481,
+     "days_since_release": 482,
+     "days_since_push": 482,
+     "family_days_since_push": 482,
      "official": false,
      "status": "quiet",
      "downloads_delta": 0,
@@ -1150,9 +1153,9 @@
      "stars_rep": 565,
      "stars_max": 565,
      "latest_date": "2025-09-07T12:30:43Z",
-     "days_since_release": 423,
-     "days_since_push": 417,
-     "family_days_since_push": 417,
+     "days_since_release": 424,
+     "days_since_push": 418,
+     "family_days_since_push": 418,
      "official": true,
      "status": "quiet",
      "downloads_delta": 0,
@@ -1219,8 +1222,8 @@
      "stars_max": 7,
      "latest_date": "2026-04-09T16:39:54Z",
      "days_since_release": 209,
-     "days_since_push": 34,
-     "family_days_since_push": 34,
+     "days_since_push": 35,
+     "family_days_since_push": 35,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -1358,9 +1361,9 @@
      "stars_rep": 4476,
      "stars_max": 4476,
      "latest_date": "2026-04-21T08:52:05Z",
-     "days_since_release": 197,
-     "days_since_push": 19,
-     "family_days_since_push": 19,
+     "days_since_release": 198,
+     "days_since_push": 20,
+     "family_days_since_push": 20,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -1396,8 +1399,8 @@
      "stars_max": 752,
      "latest_date": "2026-04-15T15:38:08Z",
      "days_since_release": 203,
-     "days_since_push": 199,
-     "family_days_since_push": 199,
+     "days_since_push": 200,
+     "family_days_since_push": 200,
      "official": true,
      "status": "quiet",
      "downloads_delta": 0,
@@ -1500,9 +1503,9 @@
      "stars_rep": 140,
      "stars_max": 140,
      "latest_date": "2026-04-29T11:14:37Z",
-     "days_since_release": 189,
-     "days_since_push": 189,
-     "family_days_since_push": 189,
+     "days_since_release": 190,
+     "days_since_push": 190,
+     "family_days_since_push": 190,
      "official": false,
      "status": "quiet",
      "downloads_delta": 0,
@@ -1573,9 +1576,9 @@
      "stars_rep": 14814,
      "stars_max": 14814,
      "latest_date": "2026-05-16T12:35:08Z",
-     "days_since_release": 172,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_release": 173,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -1641,9 +1644,9 @@
      "stars_rep": 222,
      "stars_max": 222,
      "latest_date": "2026-11-01T14:56:16Z",
-     "days_since_release": 3,
-     "days_since_push": 3,
-     "family_days_since_push": 3,
+     "days_since_release": 4,
+     "days_since_push": 4,
+     "family_days_since_push": 4,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -1714,8 +1717,8 @@
      "stars_max": 884,
      "latest_date": "2026-09-07T04:57:17Z",
      "days_since_release": 59,
-     "days_since_push": 8,
-     "family_days_since_push": 8,
+     "days_since_push": 9,
+     "family_days_since_push": 9,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -1781,7 +1784,7 @@
      "stars_rep": 276,
      "stars_max": 276,
      "latest_date": "2026-10-12T15:12:34Z",
-     "days_since_release": 23,
+     "days_since_release": 24,
      "days_since_push": 13,
      "family_days_since_push": 13,
      "official": true,
@@ -1892,8 +1895,8 @@
      "stars_max": 1314,
      "latest_date": "2026-02-12T05:46:32Z",
      "days_since_release": 266,
-     "days_since_push": 11,
-     "family_days_since_push": 11,
+     "days_since_push": 12,
+     "family_days_since_push": 12,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -1942,7 +1945,7 @@
      "latest_date": "2025-05-22T22:47:26Z",
      "days_since_release": 531,
      "days_since_push": 40,
-     "family_days_since_push": 2,
+     "family_days_since_push": 3,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -1976,8 +1979,8 @@
      "stars_max": 50786,
      "latest_date": "2026-10-30T23:09:14Z",
      "days_since_release": 5,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -2011,7 +2014,7 @@
      "stars_rep": 34034,
      "stars_max": 34034,
      "latest_date": "2026-10-30T13:38:45Z",
-     "days_since_release": 5,
+     "days_since_release": 6,
      "days_since_push": 2,
      "family_days_since_push": 2,
      "official": true,
@@ -2103,7 +2106,7 @@
      "stars_rep": 19786,
      "stars_max": 19786,
      "latest_date": "2026-08-19T11:06:47Z",
-     "days_since_release": 77,
+     "days_since_release": 78,
      "days_since_push": 2,
      "family_days_since_push": 2,
      "official": true,
@@ -2177,8 +2180,8 @@
      "stars_max": 15990,
      "latest_date": "2026-11-03T16:18:22Z",
      "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -2251,9 +2254,9 @@
      "stars_rep": 14814,
      "stars_max": 14814,
      "latest_date": "2026-05-16T12:35:08Z",
-     "days_since_release": 172,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_release": 173,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -2324,9 +2327,9 @@
      "stars_rep": 11703,
      "stars_max": 11703,
      "latest_date": "2026-10-14T09:36:19Z",
-     "days_since_release": 21,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_release": 22,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -2430,7 +2433,7 @@
      "stars_rep": 10086,
      "stars_max": 10086,
      "latest_date": "2025-02-06T13:18:18Z",
-     "days_since_release": 636,
+     "days_since_release": 637,
      "days_since_push": 3,
      "family_days_since_push": 3,
      "official": true,
@@ -2454,9 +2457,11 @@
       "windows"
      ],
      "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
-     "members": 1,
+     "members": 3,
      "member_ids": [
-      "xenia-project-xenia"
+      "xenia-project-xenia",
+      "xenia-canary-xenia-canary",
+      "has207-xenia-edge"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
@@ -2466,7 +2471,7 @@
      "latest_date": "2026-11-04T00:00:00Z",
      "days_since_release": 1,
      "days_since_push": 1,
-     "family_days_since_push": 1,
+     "family_days_since_push": 0,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -2584,6 +2589,41 @@
      "growth_pct": null
     },
     {
+     "family": "par274-sharpemu",
+     "label": "SharpEmu",
+     "rep_id": "par274-sharpemu",
+     "rep_name": "SharpEmu",
+     "repo_url": "https://github.com/par274/sharpemu",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "ps5"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "实验性 PS5 模拟器（C#），面向 Windows/Linux，2026-03 建仓，11 月仍每日推送。",
+     "members": 1,
+     "member_ids": [
+      "par274-sharpemu"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 6531,
+     "stars_max": 6531,
+     "latest_date": "2026-11-01T00:00:00Z",
+     "days_since_release": 4,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "twilitrealm-dusklight",
      "label": "Dusklight",
      "rep_id": "twilitrealm-dusklight",
@@ -2613,13 +2653,50 @@
      "stars_rep": 6209,
      "stars_max": 6209,
      "latest_date": "2026-09-30T07:06:44Z",
-     "days_since_release": 35,
+     "days_since_release": 36,
      "days_since_push": 10,
      "family_days_since_push": 10,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
+    },
+    {
+     "family": "vita3k",
+     "label": "Vita3K 系",
+     "rep_id": "vita3k-vita3k",
+     "rep_name": "Vita3K",
+     "repo_url": "https://github.com/Vita3K/Vita3K",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "psvita"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "PS Vita 模拟器桌面版（Windows/Linux/macOS），Vita3K 项目的上游主仓库。",
+     "members": 2,
+     "member_ids": [
+      "vita3k-vita3k-android",
+      "vita3k-vita3k"
+     ],
+     "downloads_sum": 4327968,
+     "downloads_rep": 0,
+     "downloads_basis": "lifetime",
+     "stars_rep": 5937,
+     "stars_max": 5937,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": 0.0
     },
     {
      "family": "harbourmasters-shipwright",
@@ -2685,7 +2762,7 @@
      "stars_rep": 5180,
      "stars_max": 5180,
      "latest_date": "2025-11-18T10:14:11Z",
-     "days_since_release": 351,
+     "days_since_release": 352,
      "days_since_push": 8,
      "family_days_since_push": 8,
      "official": true,
@@ -2787,9 +2864,9 @@
      "stars_rep": 4476,
      "stars_max": 4476,
      "latest_date": "2026-04-21T08:52:05Z",
-     "days_since_release": 197,
-     "days_since_push": 19,
-     "family_days_since_push": 19,
+     "days_since_release": 198,
+     "days_since_push": 20,
+     "family_days_since_push": 20,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -2859,9 +2936,9 @@
      "stars_rep": 4057,
      "stars_max": 4057,
      "latest_date": "2026-10-01T13:43:22Z",
-     "days_since_release": 34,
-     "days_since_push": 14,
-     "family_days_since_push": 14,
+     "days_since_release": 35,
+     "days_since_push": 15,
+     "family_days_since_push": 15,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -3043,8 +3120,8 @@
      "stars_max": 2879,
      "latest_date": "2026-10-11T18:04:33Z",
      "days_since_release": 24,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -3078,8 +3155,8 @@
      "stars_max": 2769,
      "latest_date": "2025-11-12T02:51:02Z",
      "days_since_release": 358,
-     "days_since_push": 355,
-     "family_days_since_push": 355,
+     "days_since_push": 356,
+     "family_days_since_push": 356,
      "official": false,
      "status": "quiet",
      "downloads_delta": 0,
@@ -3149,9 +3226,9 @@
      "stars_rep": 2636,
      "stars_max": 2636,
      "latest_date": "2026-08-19T11:47:09Z",
-     "days_since_release": 77,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "days_since_release": 78,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -3259,9 +3336,9 @@
      "stars_rep": 2416,
      "stars_max": 2416,
      "latest_date": "2025-07-06T07:32:33Z",
-     "days_since_release": 486,
-     "days_since_push": 153,
-     "family_days_since_push": 153,
+     "days_since_release": 487,
+     "days_since_push": 154,
+     "family_days_since_push": 154,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -3408,8 +3485,8 @@
      "stars_max": 2069,
      "latest_date": "2022-03-01T00:14:43Z",
      "days_since_release": 1710,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -3529,40 +3606,6 @@
      "growth_pct": 0.0
     },
     {
-     "family": "vita3k",
-     "label": "Vita3K 系",
-     "rep_id": "vita3k-vita3k-android",
-     "rep_name": "Vita3K Android",
-     "repo_url": "https://github.com/Vita3K/Vita3K-Android",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/vita3k.png",
-     "section": "console-emulation",
-     "platforms": [
-      "psvita"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "Public releases and CI for the Vita3K Android app",
-     "members": 1,
-     "member_ids": [
-      "vita3k-vita3k-android"
-     ],
-     "downloads_sum": 4327968,
-     "downloads_rep": 4327968,
-     "downloads_basis": "lifetime",
-     "stars_rep": 1664,
-     "stars_max": 1664,
-     "latest_date": "2024-06-06T20:36:09Z",
-     "days_since_release": 881,
-     "days_since_push": 620,
-     "family_days_since_push": 620,
-     "official": false,
-     "status": "quiet",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
      "family": "fceux",
      "label": "FCEUX",
      "rep_id": "fceux",
@@ -3662,7 +3705,7 @@
      "stars_rep": 1415,
      "stars_max": 1415,
      "latest_date": "2024-12-25T13:32:34Z",
-     "days_since_release": 679,
+     "days_since_release": 680,
      "days_since_push": 32,
      "family_days_since_push": 32,
      "official": true,
@@ -3703,44 +3746,10 @@
      "stars_max": 1314,
      "latest_date": "2026-02-12T05:46:32Z",
      "days_since_release": 266,
-     "days_since_push": 11,
-     "family_days_since_push": 11,
+     "days_since_push": 12,
+     "family_days_since_push": 12,
      "official": true,
      "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "snes9xexplus",
-     "label": "Snes9x EX+ / NostalgiaNes",
-     "rep_id": "snes9xexplus",
-     "rep_name": "Snes9x EX+ / NostalgiaNes",
-     "repo_url": "https://github.com/Rakashazi/emu-ex-plus-alpha",
-     "logo": "https://github.com/Rakashazi.png",
-     "section": "console-emulation",
-     "platforms": [
-      "snes"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "SFC(NostalgiaNes 内置 NES) 模拟器，emu-ex-plus-alpha 同源全家桶",
-     "members": 1,
-     "member_ids": [
-      "snes9xexplus"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 1265,
-     "stars_max": 1265,
-     "latest_date": "2023-01-17T12:00:58Z",
-     "days_since_release": 1387,
-     "days_since_push": 205,
-     "family_days_since_push": 205,
-     "official": true,
-     "status": "quiet",
      "downloads_delta": 0,
      "growth_pct": null
     }
@@ -3753,75 +3762,69 @@
    "status": "ok",
    "rows": [
     {
-     "family": "pcsx2",
-     "label": "PCSX2 系",
-     "rep_id": "pcsx2",
-     "rep_name": "PCSX2",
-     "repo_url": "https://github.com/PCSX2/pcsx2",
-     "logo": "https://avatars.githubusercontent.com/u/6278711?v=4",
+     "family": "xenia-project-xenia",
+     "label": "Xenia",
+     "rep_id": "xenia-project-xenia",
+     "rep_name": "Xenia",
+     "repo_url": "https://github.com/xenia-project/xenia",
+     "logo": null,
      "section": "console-emulation",
      "platforms": [
-      "ps2"
+      "xbox360"
      ],
      "method": "emulation",
      "hosts": [
-      "windows",
-      "macos",
-      "linux"
+      "windows"
      ],
-     "description": "PCSX2 - The Playstation 2 Emulator",
-     "members": 4,
+     "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+     "members": 3,
      "member_ids": [
-      "pcsx2",
-      "trixarian-nethersx2-patch",
-      "armsx2-armsx2",
-      "trixarian-nethersx2-classic"
-     ],
-     "downloads_sum": 5977111,
-     "downloads_rep": 23349,
-     "downloads_basis": "lifetime",
-     "stars_rep": 15990,
-     "stars_max": 15990,
-     "latest_date": "2026-11-03T16:18:22Z",
-     "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "scummvm",
-     "label": "ScummVM 系",
-     "rep_id": "scummvm",
-     "rep_name": "ScummVM",
-     "repo_url": "https://github.com/scummvm/scummvm",
-     "logo": "https://avatars.githubusercontent.com/u/365181?v=4",
-     "section": "console-emulation",
-     "platforms": [
-      "adventure"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux",
-      "android",
-      "ios"
-     ],
-     "description": "ScummVM main repository",
-     "members": 1,
-     "member_ids": [
-      "scummvm"
+      "xenia-project-xenia",
+      "xenia-canary-xenia-canary",
+      "has207-xenia-edge"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
      "downloads_basis": "none",
-     "stars_rep": 2879,
-     "stars_max": 2879,
-     "latest_date": "2026-10-11T18:04:33Z",
-     "days_since_release": 24,
+     "stars_rep": 9800,
+     "stars_max": 9800,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "dborth-snes9xgx",
+     "label": "Snes9x GX",
+     "rep_id": "dborth-snes9xgx",
+     "rep_name": "Snes9x GX",
+     "repo_url": "https://github.com/dborth/snes9xgx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "snes"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "gamecube",
+      "wii"
+     ],
+     "description": "Snes9x 的 GameCube / Wii 移植，dborth 维护。",
+     "members": 1,
+     "member_ids": [
+      "dborth-snes9xgx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 510,
+     "stars_max": 510,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
      "days_since_push": 0,
      "family_days_since_push": 0,
      "official": true,
@@ -3830,148 +3833,244 @@
      "growth_pct": null
     },
     {
-     "family": "odrannnn-metroidprime2port",
-     "label": "MetroidPrime2Port",
-     "rep_id": "odrannnn-metroidprime2port",
-     "rep_name": "MetroidPrime2Port",
-     "repo_url": "https://github.com/Odrannnn/MetroidPrime2Port",
-     "logo": "https://avatars.githubusercontent.com/u/116312962?v=4",
-     "section": "native-port",
-     "platforms": [
-      "gamecube"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux",
-      "ios"
-     ],
-     "description": "Native port of Metroid Prime 2: Echoes (GameCube) for Linux and Android, built from the PrimeDecomp decompilation. No emulator, no game assets included: bring your own disc image.",
-     "members": 1,
-     "member_ids": [
-      "odrannnn-metroidprime2port"
-     ],
-     "downloads_sum": 1091,
-     "downloads_rep": 1091,
-     "downloads_basis": "lifetime",
-     "stars_rep": 237,
-     "stars_max": 237,
-     "latest_date": "2026-11-03T20:03:00Z",
-     "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "aetherkiri-aether",
-     "label": "Aether",
-     "rep_id": "aetherkiri-aether",
-     "rep_name": "Aether",
-     "repo_url": "https://github.com/AetherKiri/Aether",
-     "logo": "https://avatars.githubusercontent.com/u/286601150?v=4",
-     "section": "vn-engine",
-     "platforms": [
-      "visual-novel"
-     ],
-     "method": "engine",
-     "hosts": [
-      "android",
-      "macos",
-      "linux",
-      "ios"
-     ],
-     "description": "A cross-platform, multi-runtime visual novel emulator using Godot 4 as the rendering layer.",
-     "members": 1,
-     "member_ids": [
-      "aetherkiri-aether"
-     ],
-     "downloads_sum": 111,
-     "downloads_rep": 111,
-     "downloads_basis": "lifetime",
-     "stars_rep": 201,
-     "stars_max": 201,
-     "latest_date": "2026-11-03T08:27:42Z",
-     "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "hitode-project-hitode",
-     "label": "Hitode",
-     "rep_id": "hitode-project-hitode",
-     "rep_name": "Hitode",
-     "repo_url": "https://github.com/hitode-project/hitode",
-     "logo": "https://avatars.githubusercontent.com/u/344285188?v=4",
+     "family": "winhub-emu-winhub",
+     "label": "WinHub",
+     "rep_id": "winhub-emu-winhub",
+     "rep_name": "WinHub",
+     "repo_url": "https://github.com/winhub-emu/winhub",
+     "logo": "https://avatars.githubusercontent.com/u/288650572?v=4",
      "section": "windows-compat",
      "platforms": [
-      "visual-novel"
+      "windows-pc"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "android"
+     ],
+     "description": "WinHub：Android 端一体化游戏平台（早期预览），开源；单包约 557MB，分 standard / pubg / ludashi 三个变体，是否为自带运行时的兼容层待核",
+     "members": 1,
+     "member_ids": [
+      "winhub-emu-winhub"
+     ],
+     "downloads_sum": 225,
+     "downloads_rep": 225,
+     "downloads_basis": "lifetime",
+     "stars_rep": 443,
+     "stars_max": 443,
+     "latest_date": "2026-11-05T12:58:47Z",
+     "days_since_release": 0,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 225,
+     "growth_pct": null
+    },
+    {
+     "family": "dborth-vbagx",
+     "label": "Visual Boy Advance GX",
+     "rep_id": "dborth-vbagx",
+     "rep_name": "Visual Boy Advance GX",
+     "repo_url": "https://github.com/dborth/vbagx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "gba"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "gamecube",
+      "wii"
+     ],
+     "description": "Visual Boy Advance 的 GameCube / Wii 移植。",
+     "members": 1,
+     "member_ids": [
+      "dborth-vbagx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 350,
+     "stars_max": 350,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "dborth-fceugx",
+     "label": "FCE Ultra GX",
+     "rep_id": "dborth-fceugx",
+     "rep_name": "FCE Ultra GX",
+     "repo_url": "https://github.com/dborth/fceugx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "nes"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "gamecube",
+      "wii"
+     ],
+     "description": "FCE Ultra 的 GameCube / Wii 移植（NES）。",
+     "members": 1,
+     "member_ids": [
+      "dborth-fceugx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 336,
+     "stars_max": 336,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "moceure-banananative",
+     "label": "BananaNative",
+     "rep_id": "moceure-banananative",
+     "rep_name": "BananaNative",
+     "repo_url": "https://github.com/moceure/BananaNative",
+     "logo": "https://avatars.githubusercontent.com/u/351666937?v=4",
+     "section": "console-emulation",
+     "platforms": [
+      "switch"
      ],
      "method": "translation",
      "hosts": [
-      "android",
-      "macos",
-      "ios",
-      "windows"
+      "android"
      ],
-     "description": "Run the original Windows releases of visual novels on Mac, iPhone, iPad and Android.",
+     "description": "BananaNative：Switch 原生层（nxnative），把 NVN 调用直接转成 Vulkan，不做系统模拟；实验性、非官方",
      "members": 1,
      "member_ids": [
-      "hitode-project-hitode"
+      "moceure-banananative"
      ],
-     "downloads_sum": 28,
-     "downloads_rep": 28,
+     "downloads_sum": 503,
+     "downloads_rep": 503,
      "downloads_basis": "lifetime",
-     "stars_rep": 5,
-     "stars_max": 5,
-     "latest_date": "2026-11-03T12:46:33Z",
-     "days_since_release": 1,
+     "stars_rep": 287,
+     "stars_max": 287,
+     "latest_date": "2026-11-05T13:03:32Z",
+     "days_since_release": 0,
      "days_since_push": 0,
      "family_days_since_push": 0,
-     "official": true,
+     "official": false,
      "status": "active",
-     "downloads_delta": 0,
+     "downloads_delta": 503,
      "growth_pct": null
     },
     {
-     "family": "anyps5-porting-tool",
-     "label": "AnyPS5",
-     "rep_id": "anyps5-porting-tool",
-     "rep_name": "AnyPS5",
-     "repo_url": "https://github.com/boykopovar/AnyPS5",
-     "logo": "https://github.com/boykopovar.png",
+     "family": "shadps4-emu-shadnet",
+     "label": "shadNet",
+     "rep_id": "shadps4-emu-shadnet",
+     "rep_name": "shadNet",
+     "repo_url": "https://github.com/shadps4-emu/shadnet",
+     "logo": null,
      "section": "frontend-tool",
      "platforms": [
-      "ps5"
+      "ps4"
      ],
      "method": null,
      "hosts": [
       "windows",
       "linux"
      ],
-     "description": "Tool for automatic PS5 executables porting to Linux and Windows",
+     "description": "shadPS4 的自建联机服务端，用 C++ 重写 RPCSN。",
      "members": 1,
      "member_ids": [
-      "anyps5-porting-tool"
+      "shadps4-emu-shadnet"
      ],
-     "downloads_sum": 1563,
-     "downloads_rep": 1563,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 50786,
-     "stars_max": 50786,
-     "latest_date": "2026-10-30T23:09:14Z",
-     "days_since_release": 5,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
-     "official": false,
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 78,
+     "stars_max": 78,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "dmanlfc-sm2-emu",
+     "label": "SM2-EMU",
+     "rep_id": "dmanlfc-sm2-emu",
+     "rep_name": "SM2-EMU",
+     "repo_url": "https://github.com/dmanlfc/sm2-emu",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "arcade"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "Sega Model 2 街机模拟器。",
+     "members": 1,
+     "member_ids": [
+      "dmanlfc-sm2-emu"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 27,
+     "stars_max": 27,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "tovarichtch-odin",
+     "label": "Odin",
+     "rep_id": "tovarichtch-odin",
+     "rep_name": "Odin",
+     "repo_url": "https://github.com/tovarichtch/odin",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "arcade"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "Sega Hikaru 街机模拟器（LLE），Valkyrie 的硬分叉。",
+     "members": 1,
+     "member_ids": [
+      "tovarichtch-odin"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 11,
+     "stars_max": 11,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
@@ -4014,106 +4113,72 @@
      "growth_pct": 0.0
     },
     {
-     "family": "ppsspp",
-     "label": "PPSSPP 系",
-     "rep_id": "ppsspp",
-     "rep_name": "PPSSPP",
-     "repo_url": "https://github.com/hrydgard/ppsspp",
-     "logo": "https://github.com/hrydgard.png",
+     "family": "pcsx2",
+     "label": "PCSX2 系",
+     "rep_id": "pcsx2",
+     "rep_name": "PCSX2",
+     "repo_url": "https://github.com/PCSX2/pcsx2",
+     "logo": "https://avatars.githubusercontent.com/u/6278711?v=4",
      "section": "console-emulation",
      "platforms": [
-      "psp"
+      "ps2"
      ],
      "method": "emulation",
      "hosts": [
-      "android",
       "windows",
       "macos",
-      "linux",
-      "ios"
+      "linux"
      ],
-     "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
-     "members": 1,
+     "description": "PCSX2 - The Playstation 2 Emulator",
+     "members": 4,
      "member_ids": [
-      "ppsspp"
+      "pcsx2",
+      "trixarian-nethersx2-patch",
+      "armsx2-armsx2",
+      "trixarian-nethersx2-classic"
      ],
-     "downloads_sum": 64568,
-     "downloads_rep": 64568,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 14814,
-     "stars_max": 14814,
-     "latest_date": "2026-05-16T12:35:08Z",
-     "days_since_release": 172,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "gamenative",
-     "label": "GameNative 系",
-     "rep_id": "utkarshdalal-gamenative",
-     "rep_name": "GameNative",
-     "repo_url": "https://github.com/utkarshdalal/GameNative",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/gamenative.png",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android"
-     ],
-     "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
-     "members": 3,
-     "member_ids": [
-      "utkarshdalal-gamenative",
-      "faux123-gamenative-mali",
-      "maxjivi05-gamenative-performance"
-     ],
-     "downloads_sum": 1318487,
-     "downloads_rep": 1318143,
+     "downloads_sum": 5977111,
+     "downloads_rep": 23349,
      "downloads_basis": "lifetime",
-     "stars_rep": 11703,
-     "stars_max": 11703,
-     "latest_date": "2026-10-14T09:36:19Z",
-     "days_since_release": 21,
+     "stars_rep": 15990,
+     "stars_max": 15990,
+     "latest_date": "2026-11-03T16:18:22Z",
+     "days_since_release": 1,
      "days_since_push": 1,
      "family_days_since_push": 1,
-     "official": false,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
     },
     {
-     "family": "xenia-project-xenia",
-     "label": "Xenia",
-     "rep_id": "xenia-project-xenia",
-     "rep_name": "Xenia",
-     "repo_url": "https://github.com/xenia-project/xenia",
+     "family": "par274-sharpemu",
+     "label": "SharpEmu",
+     "rep_id": "par274-sharpemu",
+     "rep_name": "SharpEmu",
+     "repo_url": "https://github.com/par274/sharpemu",
      "logo": null,
      "section": "console-emulation",
      "platforms": [
-      "xbox360"
+      "ps5"
      ],
      "method": "emulation",
      "hosts": [
-      "windows"
+      "windows",
+      "linux"
      ],
-     "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
+     "description": "实验性 PS5 模拟器（C#），面向 Windows/Linux，2026-03 建仓，11 月仍每日推送。",
      "members": 1,
      "member_ids": [
-      "xenia-project-xenia"
+      "par274-sharpemu"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
      "downloads_basis": "none",
-     "stars_rep": 9800,
-     "stars_max": 9800,
-     "latest_date": "2026-11-04T00:00:00Z",
-     "days_since_release": 1,
+     "stars_rep": 6531,
+     "stars_max": 6531,
+     "latest_date": "2026-11-01T00:00:00Z",
+     "days_since_release": 4,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
@@ -4194,37 +4259,36 @@
      "growth_pct": null
     },
     {
-     "family": "ekA2l1",
-     "label": "EKA2L1 系",
-     "rep_id": "eka2l1",
-     "rep_name": "EKA2L1",
-     "repo_url": "https://github.com/EKA2L1/EKA2L1",
-     "logo": "https://github.com/EKA2L1.png",
+     "family": "scummvm",
+     "label": "ScummVM 系",
+     "rep_id": "scummvm",
+     "rep_name": "ScummVM",
+     "repo_url": "https://github.com/scummvm/scummvm",
+     "logo": "https://avatars.githubusercontent.com/u/365181?v=4",
      "section": "console-emulation",
      "platforms": [
-      "symbian"
+      "adventure"
      ],
      "method": "emulation",
      "hosts": [
-      "android",
       "windows",
       "macos",
       "linux",
+      "android",
       "ios"
      ],
-     "description": "Symbian OS / N-Gage 模拟器，活跃开源",
-     "members": 2,
+     "description": "ScummVM main repository",
+     "members": 1,
      "member_ids": [
-      "eka2l1",
-      "afeimod-eka2l1-an"
+      "scummvm"
      ],
-     "downloads_sum": 176,
-     "downloads_rep": 133,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 2069,
-     "stars_max": 2069,
-     "latest_date": "2022-03-01T00:14:43Z",
-     "days_since_release": 1710,
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 2879,
+     "stars_max": 2879,
+     "latest_date": "2026-10-11T18:04:33Z",
+     "days_since_release": 24,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
@@ -4274,6 +4338,42 @@
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
+    },
+    {
+     "family": "grumpycoders-pcsx-redux",
+     "label": "PCSX-Redux",
+     "rep_id": "grumpycoders-pcsx-redux",
+     "rep_name": "PCSX-Redux",
+     "repo_url": "https://github.com/grumpycoders/pcsx-redux",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "ps1"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "PS1 模拟器 + 逆向调试工具链，含 MIPS 重编译器、硬件测试与内存断点。",
+     "members": 1,
+     "member_ids": [
+      "grumpycoders-pcsx-redux"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 1038,
+     "stars_max": 1038,
+     "latest_date": "",
+     "days_since_release": null,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
     },
     {
      "family": "weiss-ultimatesavior-tyranor-next",
@@ -4346,41 +4446,37 @@
      "growth_pct": 0.0
     },
     {
-     "family": "metroidprimeport",
-     "label": "MetroidPrimePort",
-     "rep_id": "metroidprimeport",
-     "rep_name": "MetroidPrimePort",
-     "repo_url": "https://github.com/Odrannnn/MetroidPrimePort",
-     "logo": "https://github.com/Odrannnn.png",
+     "family": "mamcjr-botwrecompandroid",
+     "label": "BOTW Recomp Android",
+     "rep_id": "mamcjr-botwrecompandroid",
+     "rep_name": "BOTW Recomp Android",
+     "repo_url": "https://github.com/mamcjr/BOTWRecompAndroid",
+     "logo": "https://avatars.githubusercontent.com/u/26612066?v=4",
      "section": "native-port",
      "platforms": [
-      "gamecube"
+      "switch"
      ],
      "method": "recomp",
      "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux",
-      "ios"
+      "android"
      ],
-     "description": "银河战士 Prime（GC）原生移植：Linux/Windows/Android",
+     "description": "塞尔达传说：旷野之息 原生重编译移植（Switch 1.0.0/1.6.0/1.8.2/1.9.0，NVN→Vulkan），需自行提供游戏文件",
      "members": 1,
      "member_ids": [
-      "metroidprimeport"
+      "mamcjr-botwrecompandroid"
      ],
-     "downloads_sum": 1102,
-     "downloads_rep": 1102,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 634,
-     "stars_max": 634,
-     "latest_date": "2026-11-02T22:08:00Z",
-     "days_since_release": 2,
+     "downloads_sum": 3078,
+     "downloads_rep": 3078,
+     "downloads_basis": "lifetime",
+     "stars_rep": 583,
+     "stars_max": 583,
+     "latest_date": "2026-11-04T14:03:45Z",
+     "days_since_release": 1,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
      "status": "active",
-     "downloads_delta": 0,
+     "downloads_delta": 3078,
      "growth_pct": null
     },
     {
@@ -4418,68 +4514,68 @@
      "growth_pct": null
     },
     {
-     "family": "n3xox1-nxemu",
-     "label": "NxEmu",
-     "rep_id": "n3xox1-nxemu",
-     "rep_name": "NxEmu",
-     "repo_url": "https://github.com/N3xoX1/nxemu",
-     "logo": "https://github.com/N3xoX1.png",
+     "family": "xendroid",
+     "label": "XenDroid 系",
+     "rep_id": "rfandango-xendroid",
+     "rep_name": "XenDroid",
+     "repo_url": "https://github.com/rfandango/XenDroid",
+     "logo": "https://t3st31.github.io/Ranking-Emulators-Download/logos/xendroid.png",
      "section": "console-emulation",
      "platforms": [
-      "switch"
+      "xbox360"
      ],
      "method": "emulation",
      "hosts": [
       "android"
      ],
-     "description": "NxEmu is a free, open-source Nintendo Switch emulator for Windows, written in C++",
+     "description": "",
+     "members": 2,
+     "member_ids": [
+      "rfandango-xendroid",
+      "xendroid-plus"
+     ],
+     "downloads_sum": 208320,
+     "downloads_rep": 202720,
+     "downloads_basis": "lifetime",
+     "stars_rep": 506,
+     "stars_max": 506,
+     "latest_date": "2026-08-14T11:11:00Z",
+     "days_since_release": 83,
+     "days_since_push": 77,
+     "family_days_since_push": 1,
+     "official": false,
+     "status": "active",
+     "downloads_delta": 5600,
+     "growth_pct": 2.8
+    },
+    {
+     "family": "m5devs-openrom",
+     "label": "OpenROM",
+     "rep_id": "m5devs-openrom",
+     "rep_name": "OpenROM",
+     "repo_url": "https://github.com/m5devs/openrom",
+     "logo": null,
+     "section": "frontend-tool",
+     "platforms": [
+      "multi"
+     ],
+     "method": null,
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "复古 ROM 工具箱：格式转换、打补丁、压缩、校验、批量整理。",
      "members": 1,
      "member_ids": [
-      "n3xox1-nxemu"
+      "m5devs-openrom"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
      "downloads_basis": "none",
-     "stars_rep": 417,
-     "stars_max": 417,
-     "latest_date": "2026-08-23T12:13:46Z",
-     "days_since_release": 73,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "zorkats-g-diffuser",
-     "label": "G-Diffuser",
-     "rep_id": "zorkats-g-diffuser",
-     "rep_name": "G-Diffuser",
-     "repo_url": "https://github.com/Zorkats/G-Diffuser",
-     "logo": "https://github.com/Zorkats.png",
-     "section": "native-port",
-     "platforms": [
-      "multi"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "Unofficial PC Port of F-Zero X based on the decompilation",
-     "members": 1,
-     "member_ids": [
-      "zorkats-g-diffuser"
-     ],
-     "downloads_sum": 318,
-     "downloads_rep": 318,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 310,
-     "stars_max": 310,
-     "latest_date": "2026-11-03T06:26:37Z",
+     "stars_rep": 294,
+     "stars_max": 294,
+     "latest_date": "2026-11-04T00:00:00Z",
      "days_since_release": 1,
      "days_since_push": 1,
      "family_days_since_push": 1,
@@ -4489,32 +4585,73 @@
      "growth_pct": null
     },
     {
-     "family": "armsx1-ps1",
-     "label": "ARMSX1",
-     "rep_id": "armsx1-ps1",
-     "rep_name": "ARMSX1",
-     "repo_url": "https://github.com/ARMSX2/ARMSX1",
-     "logo": "https://github.com/ARMSX2.png",
-     "section": "console-emulation",
+     "family": "odrannnn-metroidprime2port",
+     "label": "MetroidPrime2Port",
+     "rep_id": "odrannnn-metroidprime2port",
+     "rep_name": "MetroidPrime2Port",
+     "repo_url": "https://github.com/Odrannnn/MetroidPrime2Port",
+     "logo": "https://avatars.githubusercontent.com/u/116312962?v=4",
+     "section": "native-port",
      "platforms": [
-      "ps1"
+      "gamecube"
      ],
-     "method": "emulation",
+     "method": "recomp",
      "hosts": [
-      "android"
+      "android",
+      "windows",
+      "macos",
+      "linux",
+      "ios"
      ],
-     "description": "New PS1 Emulator from the Founders of ARMSX2 ",
+     "description": "Native port of Metroid Prime 2: Echoes (GameCube) for Linux and Android, built from the PrimeDecomp decompilation. No emulator, no game assets included: bring your own disc image.",
      "members": 1,
      "member_ids": [
-      "armsx1-ps1"
+      "odrannnn-metroidprime2port"
      ],
-     "downloads_sum": 14088,
-     "downloads_rep": 14088,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 301,
-     "stars_max": 301,
-     "latest_date": "2026-09-25T09:31:53Z",
-     "days_since_release": 40,
+     "downloads_sum": 1091,
+     "downloads_rep": 1091,
+     "downloads_basis": "lifetime",
+     "stars_rep": 237,
+     "stars_max": 237,
+     "latest_date": "2026-11-03T20:03:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": 0.0
+    },
+    {
+     "family": "aetherkiri-aether",
+     "label": "Aether",
+     "rep_id": "aetherkiri-aether",
+     "rep_name": "Aether",
+     "repo_url": "https://github.com/AetherKiri/Aether",
+     "logo": "https://avatars.githubusercontent.com/u/286601150?v=4",
+     "section": "vn-engine",
+     "platforms": [
+      "visual-novel"
+     ],
+     "method": "engine",
+     "hosts": [
+      "android",
+      "macos",
+      "linux",
+      "ios"
+     ],
+     "description": "A cross-platform, multi-runtime visual novel emulator using Godot 4 as the rendering layer.",
+     "members": 1,
+     "member_ids": [
+      "aetherkiri-aether"
+     ],
+     "downloads_sum": 111,
+     "downloads_rep": 111,
+     "downloads_basis": "lifetime",
+     "stars_rep": 201,
+     "stars_max": 201,
+     "latest_date": "2026-11-03T08:27:42Z",
+     "days_since_release": 2,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
@@ -4523,35 +4660,33 @@
      "growth_pct": null
     },
     {
-     "family": "mame2003plus",
-     "label": "MAME 2003+",
-     "rep_id": "mame2003plus",
-     "rep_name": "MAME 2003+",
-     "repo_url": "https://github.com/libretro/mame2003-plus-libretro",
-     "logo": "https://github.com/libretro.png",
-     "section": "console-emulation",
+     "family": "jay-day-rmg-k",
+     "label": "RMG-K",
+     "rep_id": "jay-day-rmg-k",
+     "rep_name": "RMG-K",
+     "repo_url": "https://github.com/jay-day/rmg-k",
+     "logo": null,
+     "section": "frontend-tool",
      "platforms": [
-      "arcade"
+      "n64"
      ],
      "method": "emulation",
      "hosts": [
-      "android",
       "windows",
-      "linux",
-      "macos"
+      "linux"
      ],
-     "description": "MAME 0.78 增强版（RetroArch 内核），仓库活跃",
+     "description": "基于 Mupen64 的 N64 前端，带 Kaillera 与 GekkoNet 回滚联机。",
      "members": 1,
      "member_ids": [
-      "mame2003plus"
+      "jay-day-rmg-k"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
      "downloads_basis": "none",
-     "stars_rep": 256,
-     "stars_max": 256,
-     "latest_date": "2022-01-26T02:02:09Z",
-     "days_since_release": 1744,
+     "stars_rep": 183,
+     "stars_max": 183,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
@@ -4560,73 +4695,33 @@
      "growth_pct": null
     },
     {
-     "family": "wie-skvm",
-     "label": "Wie",
-     "rep_id": "wie-skvm",
-     "rep_name": "Wie",
-     "repo_url": "https://github.com/dlunch/wie",
-     "logo": "https://github.com/dlunch.png",
+     "family": "shanytc-snes9x",
+     "label": "SuperSnes9x",
+     "rep_id": "shanytc-snes9x",
+     "rep_name": "SuperSnes9x",
+     "repo_url": "https://github.com/shanytc/snes9x",
+     "logo": null,
      "section": "console-emulation",
      "platforms": [
-      "java-me"
+      "snes"
      ],
      "method": "emulation",
      "hosts": [
-      "android",
       "windows",
-      "macos",
       "linux",
-      "ios"
+      "macos"
      ],
-     "description": "WIPI/SKVM/J2ME 模拟器（dlunch，★206，活跃）：韩系 SKVM（智能卡虚拟机）与 J2ME 手机游戏运行器，Android nightly 持续构建（v0.2.12 含 aarch64 APK）。",
+     "description": "Snes9x 的可移植分支（SuperSnes9x），保留旧前端与滤镜。",
      "members": 1,
      "member_ids": [
-      "wie-skvm"
+      "shanytc-snes9x"
      ],
-     "downloads_sum": 10,
-     "downloads_rep": 10,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 208,
-     "stars_max": 208,
-     "latest_date": "2026-10-28T05:01:40Z",
-     "days_since_release": 8,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "virtualjaguar",
-     "label": "Virtual Jaguar",
-     "rep_id": "virtualjaguar",
-     "rep_name": "Virtual Jaguar",
-     "repo_url": "https://github.com/libretro/virtualjaguar-libretro",
-     "logo": "https://github.com/libretro.png",
-     "section": "console-emulation",
-     "platforms": [
-      "atari-jaguar"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux",
-      "ios"
-     ],
-     "description": "Atari Jaguar/Jaguar CD 模拟器（RetroArch 内核），活跃",
-     "members": 1,
-     "member_ids": [
-      "virtualjaguar"
-     ],
-     "downloads_sum": 3,
-     "downloads_rep": 3,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 62,
-     "stars_max": 62,
-     "latest_date": "2026-11-02T03:38:43Z",
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 124,
+     "stars_max": 124,
+     "latest_date": "2026-11-02T00:00:00Z",
      "days_since_release": 3,
      "days_since_push": 1,
      "family_days_since_push": 1,
@@ -4636,74 +4731,349 @@
      "growth_pct": null
     },
     {
-     "family": "nexium-switch1",
-     "label": "NeXium",
-     "rep_id": "nexium-switch1",
-     "rep_name": "NeXium",
-     "repo_url": "https://github.com/nexium-emu/nexium",
-     "logo": "https://github.com/nexium-emu.png",
+     "family": "crazyriddler-xbased",
+     "label": "xbased",
+     "rep_id": "crazyriddler-xbased",
+     "rep_name": "xbased",
+     "repo_url": "https://github.com/crazyriddler/xbased",
+     "logo": null,
      "section": "console-emulation",
      "platforms": [
-      "switch"
+      "xbox"
      ],
      "method": "emulation",
      "hosts": [
-      "android"
+      "windows",
+      "linux"
      ],
-     "description": "Nintendo Switch 1 Homebrew Emulator",
+     "description": "初代 Xbox 模拟器，Windows/Linux。",
      "members": 1,
      "member_ids": [
-      "nexium-switch1"
+      "crazyriddler-xbased"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
      "downloads_basis": "none",
-     "stars_rep": 17,
-     "stars_max": 17,
-     "latest_date": "",
-     "days_since_release": null,
+     "stars_rep": 73,
+     "stars_max": 73,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
      "days_since_push": 1,
      "family_days_since_push": 1,
-     "official": false,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
     },
     {
-     "family": "termux",
-     "label": "Termux 系",
-     "rep_id": "termux",
-     "rep_name": "Termux",
-     "repo_url": "https://github.com/termux/termux-app",
-     "logo": "https://github.com/termux.png",
-     "section": "frontend-tool",
+     "family": "ivanizag-izapple2",
+     "label": "izapple2",
+     "rep_id": "ivanizag-izapple2",
+     "rep_name": "izapple2",
+     "repo_url": "https://github.com/ivanizag/izapple2",
+     "logo": null,
+     "section": "console-emulation",
      "platforms": [
-      "terminal"
+      "apple2"
      ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "Apple ][+ / //e 模拟器，Go 编写，支持多种前端。",
+     "members": 1,
+     "member_ids": [
+      "ivanizag-izapple2"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 71,
+     "stars_max": 71,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "keklick1337-rps5e",
+     "label": "RustPS5Emu",
+     "rep_id": "keklick1337-rps5e",
+     "rep_name": "RustPS5Emu",
+     "repo_url": "https://github.com/keklick1337/rps5e",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "ps5"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "Rust 写的 PS5 模拟器，面向 Linux/Windows，早期实验阶段。",
+     "members": 1,
+     "member_ids": [
+      "keklick1337-rps5e"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 45,
+     "stars_max": 45,
+     "latest_date": "2026-11-01T00:00:00Z",
+     "days_since_release": 4,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "tixul-ngpcraft-emulator",
+     "label": "NgpCraft",
+     "rep_id": "tixul-ngpcraft-emulator",
+     "rep_name": "NgpCraft",
+     "repo_url": "https://github.com/tixul/ngpcraft_emulator",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "neo-geo-pocket"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "Neo Geo Pocket / Color 模拟器，带完整调试器与多语言界面。",
+     "members": 1,
+     "member_ids": [
+      "tixul-ngpcraft-emulator"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 33,
+     "stars_max": 33,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "nixxou-zaxnes",
+     "label": "Zaxnes",
+     "rep_id": "nixxou-zaxnes",
+     "rep_name": "Zaxnes",
+     "repo_url": "https://github.com/nixxou/zaxnes",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "nes"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "NES 模拟器，Windows/Linux。",
+     "members": 1,
+     "member_ids": [
+      "nixxou-zaxnes"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 30,
+     "stars_max": 30,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "gs-soft-it-lumen-emu",
+     "label": "Lumen Emu",
+     "rep_id": "gs-soft-it-lumen-emu",
+     "rep_name": "Lumen Emu",
+     "repo_url": "https://github.com/gs-soft-it/lumen-emu",
+     "logo": "https://avatars.githubusercontent.com/u/254604543?v=4",
+     "section": "console-emulation",
+     "platforms": [
+      "ps5",
+      "ps4"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "android"
+     ],
+     "description": "Lumen Emu（GS-Soft）：实验性 PS4/PS5 安卓模拟器，核心开源，另有 macOS（Apple Silicon）版本",
+     "members": 1,
+     "member_ids": [
+      "gs-soft-it-lumen-emu"
+     ],
+     "downloads_sum": 42,
+     "downloads_rep": 42,
+     "downloads_basis": "lifetime",
+     "stars_rep": 23,
+     "stars_max": 23,
+     "latest_date": "2026-11-04T04:55:54Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 42,
+     "growth_pct": null
+    },
+    {
+     "family": "habib256-pom2",
+     "label": "POM2",
+     "rep_id": "habib256-pom2",
+     "rep_name": "POM2",
+     "repo_url": "https://github.com/habib256/pom2",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "apple2"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "Apple ][ / ][+ / //e / //c / //c+ 模拟器。",
+     "members": 1,
+     "member_ids": [
+      "habib256-pom2"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 18,
+     "stars_max": 18,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "zfitness-nixport",
+     "label": "Nixport",
+     "rep_id": "zfitness-nixport",
+     "rep_name": "Nixport",
+     "repo_url": "https://github.com/zFitness/nixport",
+     "logo": "https://avatars.githubusercontent.com/u/41500499?v=4",
+     "section": "frontend-tool",
+     "platforms": [],
      "method": null,
      "hosts": [
       "android"
      ],
-     "description": "Termux 官方：Android 终端模拟器 + Linux 环境，无需 root，APT 包管理",
-     "members": 8,
+     "description": "Nixport：在 Android 上直接运行 Linux 程序的启动器，无需 root、无需 proot；安装包约 299MB",
+     "members": 1,
      "member_ids": [
-      "termux",
-      "termux-zero",
-      "termux-kotlin",
-      "termux-jiaxinchen",
-      "termux-ghostty",
-      "termux-enhanced",
-      "termux-plus",
-      "termux-aether"
+      "zfitness-nixport"
      ],
-     "downloads_sum": 1970959,
-     "downloads_rep": 1965538,
+     "downloads_sum": 1049,
+     "downloads_rep": 1049,
+     "downloads_basis": "lifetime",
+     "stars_rep": 17,
+     "stars_max": 17,
+     "latest_date": "2026-11-04T09:02:38Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 1049,
+     "growth_pct": null
+    },
+    {
+     "family": "hitode-project-hitode",
+     "label": "Hitode",
+     "rep_id": "hitode-project-hitode",
+     "rep_name": "Hitode",
+     "repo_url": "https://github.com/hitode-project/hitode",
+     "logo": "https://avatars.githubusercontent.com/u/344285188?v=4",
+     "section": "windows-compat",
+     "platforms": [
+      "visual-novel"
+     ],
+     "method": "translation",
+     "hosts": [
+      "android",
+      "macos",
+      "ios",
+      "windows"
+     ],
+     "description": "Run the original Windows releases of visual novels on Mac, iPhone, iPad and Android.",
+     "members": 1,
+     "member_ids": [
+      "hitode-project-hitode"
+     ],
+     "downloads_sum": 28,
+     "downloads_rep": 28,
+     "downloads_basis": "lifetime",
+     "stars_rep": 5,
+     "stars_max": 5,
+     "latest_date": "2026-11-03T12:46:33Z",
+     "days_since_release": 2,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "anyps5-porting-tool",
+     "label": "AnyPS5",
+     "rep_id": "anyps5-porting-tool",
+     "rep_name": "AnyPS5",
+     "repo_url": "https://github.com/boykopovar/AnyPS5",
+     "logo": "https://github.com/boykopovar.png",
+     "section": "frontend-tool",
+     "platforms": [
+      "ps5"
+     ],
+     "method": null,
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "Tool for automatic PS5 executables porting to Linux and Windows",
+     "members": 1,
+     "member_ids": [
+      "anyps5-porting-tool"
+     ],
+     "downloads_sum": 1563,
+     "downloads_rep": 1563,
      "downloads_basis": "latest-lower-bound",
-     "stars_rep": 63999,
-     "stars_max": 63999,
-     "latest_date": "2025-05-22T22:47:26Z",
-     "days_since_release": 531,
-     "days_since_push": 40,
+     "stars_rep": 50786,
+     "stars_max": 50786,
+     "latest_date": "2026-10-30T23:09:14Z",
+     "days_since_release": 5,
+     "days_since_push": 2,
      "family_days_since_push": 2,
      "official": false,
      "status": "active",
@@ -4738,7 +5108,7 @@
      "stars_rep": 34034,
      "stars_max": 34034,
      "latest_date": "2026-10-30T13:38:45Z",
-     "days_since_release": 5,
+     "days_since_release": 6,
      "days_since_push": 2,
      "family_days_since_push": 2,
      "official": true,
@@ -4793,7 +5163,7 @@
      "stars_rep": 19786,
      "stars_max": 19786,
      "latest_date": "2026-08-19T11:06:47Z",
-     "days_since_release": 77,
+     "days_since_release": 78,
      "days_since_push": 2,
      "family_days_since_push": 2,
      "official": true,
@@ -4873,6 +5243,44 @@
      "growth_pct": 0.0
     },
     {
+     "family": "ppsspp",
+     "label": "PPSSPP 系",
+     "rep_id": "ppsspp",
+     "rep_name": "PPSSPP",
+     "repo_url": "https://github.com/hrydgard/ppsspp",
+     "logo": "https://github.com/hrydgard.png",
+     "section": "console-emulation",
+     "platforms": [
+      "psp"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "android",
+      "windows",
+      "macos",
+      "linux",
+      "ios"
+     ],
+     "description": "PSP 模拟器，支持 Vulkan/OpenGL 渲染，安卓端成熟的掌机模拟方案",
+     "members": 1,
+     "member_ids": [
+      "ppsspp"
+     ],
+     "downloads_sum": 64568,
+     "downloads_rep": 64568,
+     "downloads_basis": "latest-lower-bound",
+     "stars_rep": 14814,
+     "stars_max": 14814,
+     "latest_date": "2026-05-16T12:35:08Z",
+     "days_since_release": 173,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": false,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "retroarch",
      "label": "RetroArch 系",
      "rep_id": "retroarch",
@@ -4908,6 +5316,42 @@
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
+    },
+    {
+     "family": "gamenative",
+     "label": "GameNative 系",
+     "rep_id": "utkarshdalal-gamenative",
+     "rep_name": "GameNative",
+     "repo_url": "https://github.com/utkarshdalal/GameNative",
+     "logo": "https://the412banner.github.io/emulator-ranking/logos/gamenative.png",
+     "section": "windows-compat",
+     "platforms": [
+      "windows-pc"
+     ],
+     "method": "translation",
+     "hosts": [
+      "android"
+     ],
+     "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
+     "members": 3,
+     "member_ids": [
+      "utkarshdalal-gamenative",
+      "faux123-gamenative-mali",
+      "maxjivi05-gamenative-performance"
+     ],
+     "downloads_sum": 1318487,
+     "downloads_rep": 1318143,
+     "downloads_basis": "lifetime",
+     "stars_rep": 11703,
+     "stars_max": 11703,
+     "latest_date": "2026-10-14T09:36:19Z",
+     "days_since_release": 22,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": false,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": 0.0
     },
     {
      "family": "duckstation",
@@ -5017,6 +5461,43 @@
      "growth_pct": null
     },
     {
+     "family": "vita3k",
+     "label": "Vita3K 系",
+     "rep_id": "vita3k-vita3k",
+     "rep_name": "Vita3K",
+     "repo_url": "https://github.com/Vita3K/Vita3K",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "psvita"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "PS Vita 模拟器桌面版（Windows/Linux/macOS），Vita3K 项目的上游主仓库。",
+     "members": 2,
+     "member_ids": [
+      "vita3k-vita3k-android",
+      "vita3k-vita3k"
+     ],
+     "downloads_sum": 4327968,
+     "downloads_rep": 0,
+     "downloads_basis": "lifetime",
+     "stars_rep": 5937,
+     "stars_max": 5937,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": 0.0
+    },
+    {
      "family": "supermedo-bloodborne-pc",
      "label": "Bloodborne PC",
      "rep_id": "supermedo-bloodborne-pc",
@@ -5083,506 +5564,6 @@
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
-    },
-    {
-     "family": "xemu",
-     "label": "xemu",
-     "rep_id": "xemu",
-     "rep_name": "xemu",
-     "repo_url": "https://github.com/xemu-project/xemu",
-     "logo": "https://avatars.githubusercontent.com/u/61253676?v=4",
-     "section": "console-emulation",
-     "platforms": [
-      "xbox"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "Original Xbox Emulator for Windows, macOS, and Linux (Active Development)",
-     "members": 1,
-     "member_ids": [
-      "xemu"
-     ],
-     "downloads_sum": 674,
-     "downloads_rep": 674,
-     "downloads_basis": "lifetime",
-     "stars_rep": 4231,
-     "stars_max": 4231,
-     "latest_date": "2026-11-02T20:08:37Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "dosbox",
-     "label": "DOSBox 系",
-     "rep_id": "dosbox-staging",
-     "rep_name": "DOSBox Staging",
-     "repo_url": "https://github.com/dosbox-staging/dosbox-staging",
-     "logo": null,
-     "section": "console-emulation",
-     "platforms": [
-      "dos",
-      "windows-pc"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "DOSBox 的官方现代化延续分支（modern continuation），多平台原生构建",
-     "members": 3,
-     "member_ids": [
-      "dosbox-x",
-      "dosbox-staging",
-      "dosbox-pure"
-     ],
-     "downloads_sum": 723,
-     "downloads_rep": 51,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 1834,
-     "stars_max": 3804,
-     "latest_date": "2026-08-27T00:00:00Z",
-     "days_since_release": 70,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "j2meloader",
-     "label": "J2ME-Loader",
-     "rep_id": "j2meloader",
-     "rep_name": "J2ME-Loader",
-     "repo_url": "https://github.com/nikita36078/J2ME-Loader",
-     "logo": "https://github.com/nikita36078.png",
-     "section": "console-emulation",
-     "platforms": [
-      "java-me"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "Java（J2ME）手机游戏模拟器，开源经典",
-     "members": 1,
-     "member_ids": [
-      "j2meloader"
-     ],
-     "downloads_sum": 40,
-     "downloads_rep": 40,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 2735,
-     "stars_max": 2735,
-     "latest_date": "2026-11-02T20:20:35Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "flycast",
-     "label": "Flycast 系",
-     "rep_id": "flyinghead-flycast",
-     "rep_name": "Flycast",
-     "repo_url": "https://github.com/flyinghead/flycast",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/flycast.png",
-     "section": "console-emulation",
-     "platforms": [
-      "dreamcast"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
-     "members": 2,
-     "member_ids": [
-      "flyinghead-flycast",
-      "flycast-dojo"
-     ],
-     "downloads_sum": 882655,
-     "downloads_rep": 882334,
-     "downloads_basis": "lifetime",
-     "stars_rep": 2636,
-     "stars_max": 2636,
-     "latest_date": "2026-08-19T11:47:09Z",
-     "days_since_release": 77,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "2ship2harkinian-2ship2harkinian",
-     "label": "2Ship2Harkinian",
-     "rep_id": "2ship2harkinian-2ship2harkinian",
-     "rep_name": "2Ship2Harkinian",
-     "repo_url": "https://github.com/2ship2harkinian/2ship2harkinian",
-     "logo": "https://github.com/2ship2harkinian.png",
-     "section": "native-port",
-     "platforms": [
-      "n64"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "windows",
-      "linux"
-     ],
-     "description": "2 Ship 2 Harkinian is a PC port of The Legend of Zelda: Majora's Mask",
-     "members": 1,
-     "member_ids": [
-      "2ship2harkinian-2ship2harkinian"
-     ],
-     "downloads_sum": 62217,
-     "downloads_rep": 62217,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 2421,
-     "stars_max": 2421,
-     "latest_date": "2026-08-25T17:54:43Z",
-     "days_since_release": 71,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "liji32-sameboy",
-     "label": "SameBoy",
-     "rep_id": "liji32-sameboy",
-     "rep_name": "SameBoy",
-     "repo_url": "https://github.com/LIJI32/SameBoy",
-     "logo": null,
-     "section": "console-emulation",
-     "platforms": [
-      "gb",
-      "gbc"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "macos"
-     ],
-     "description": "Game Boy / Game Boy Color 模拟器，以精度著称，附带完整调试器（断点、内存查看、VRAM 检查、逐帧回退）。官方以 macOS 为主，另有 SDL 前端与 libretro 核心，可跨平台使用。",
-     "members": 1,
-     "member_ids": [
-      "liji32-sameboy"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 2200,
-     "stars_max": 2200,
-     "latest_date": "2026-11-03T00:00:00Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "fbneo",
-     "label": "FBNeo",
-     "rep_id": "fbneo",
-     "rep_name": "FBNeo",
-     "repo_url": "https://github.com/finalburnneo/FBNeo",
-     "logo": "https://github.com/finalburnneo.png",
-     "section": "console-emulation",
-     "platforms": [
-      "arcade"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "linux"
-     ],
-     "description": "街机/家用机多平台模拟器（FinalBurn Neo），每日更新",
-     "members": 1,
-     "member_ids": [
-      "fbneo"
-     ],
-     "downloads_sum": 10,
-     "downloads_rep": 10,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 1559,
-     "stars_max": 1559,
-     "latest_date": "2026-11-03T02:13:12Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "winnative",
-     "label": "WinNative 系",
-     "rep_id": "winnative-emu-winnative",
-     "rep_name": "WinNative",
-     "repo_url": "https://github.com/WinNative-Emu/WinNative",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/winnative.jpeg",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android"
-     ],
-     "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
-     "members": 2,
-     "member_ids": [
-      "winnative-emu-winnative",
-      "windroidemulation-winnative"
-     ],
-     "downloads_sum": 148121,
-     "downloads_rep": 141006,
-     "downloads_basis": "lifetime",
-     "stars_rep": 738,
-     "stars_max": 738,
-     "latest_date": "2026-10-12T11:19:55Z",
-     "days_since_release": 23,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "suyu-emulator",
-     "label": "Suyu",
-     "rep_id": "suyu-emulator",
-     "rep_name": "Suyu",
-     "repo_url": "https://github.com/suyu-emu/suyu-main",
-     "logo": "https://github.com/suyu-emu.png",
-     "section": "console-emulation",
-     "platforms": [
-      "switch"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "yuzu 继任者：2024 停止开发，GitHub 仓库已因 DMCA 删除；社区归档收录历史版本",
-     "members": 1,
-     "member_ids": [
-      "suyu-emulator"
-     ],
-     "downloads_sum": 9431,
-     "downloads_rep": 9431,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 600,
-     "stars_max": 600,
-     "latest_date": "2026-10-12T22:35:02Z",
-     "days_since_release": 23,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "ashnar2602-x360-mobile---official",
-     "label": "X360 Mobile",
-     "rep_id": "ashnar2602-x360-mobile---official",
-     "rep_name": "X360 Mobile",
-     "repo_url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL",
-     "logo": "https://t3st31.github.io/Ranking-Emulators-Download/logos/x360-mobile.png",
-     "section": "console-emulation",
-     "platforms": [
-      "xbox360"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "This repository will contain all future releases of the experimental Xbox 360 emulator",
-     "members": 1,
-     "member_ids": [
-      "ashnar2602-x360-mobile---official"
-     ],
-     "downloads_sum": 526915,
-     "downloads_rep": 526915,
-     "downloads_basis": "lifetime",
-     "stars_rep": 592,
-     "stars_max": 592,
-     "latest_date": "2026-11-02T08:56:36Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "openmsx",
-     "label": "openMSX",
-     "rep_id": "openmsx",
-     "rep_name": "openMSX",
-     "repo_url": "https://github.com/openMSX/openMSX",
-     "logo": "https://avatars.githubusercontent.com/u/12670808?v=4",
-     "section": "console-emulation",
-     "platforms": [
-      "msx"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "the MSX emulator that aims for perfection",
-     "members": 1,
-     "member_ids": [
-      "openmsx"
-     ],
-     "downloads_sum": 2164,
-     "downloads_rep": 2164,
-     "downloads_basis": "lifetime",
-     "stars_rep": 569,
-     "stars_max": 569,
-     "latest_date": "2026-10-28T09:59:28Z",
-     "days_since_release": 7,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "bannerhub",
-     "label": "BannerHub 系",
-     "rep_id": "the412banner-bannerhub",
-     "rep_name": "BannerHub (The412Banner)",
-     "repo_url": "https://github.com/The412Banner/bannerhub",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/bannerhub.png",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android"
-     ],
-     "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool sm",
-     "members": 4,
-     "member_ids": [
-      "the412banner-bannerhub",
-      "the412banner-bannerlator",
-      "the412banner-bannerhub-revanced",
-      "the412banner-bannerhub-lite"
-     ],
-     "downloads_sum": 795771,
-     "downloads_rep": 364904,
-     "downloads_basis": "lifetime",
-     "stars_rep": 564,
-     "stars_max": 564,
-     "latest_date": "2026-09-12T01:44:41Z",
-     "days_since_release": 54,
-     "days_since_push": 37,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "xendroid",
-     "label": "XenDroid 系",
-     "rep_id": "rfandango-xendroid",
-     "rep_name": "XenDroid",
-     "repo_url": "https://github.com/rfandango/XenDroid",
-     "logo": "https://t3st31.github.io/Ranking-Emulators-Download/logos/xendroid.png",
-     "section": "console-emulation",
-     "platforms": [
-      "xbox360"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "",
-     "members": 2,
-     "member_ids": [
-      "rfandango-xendroid",
-      "xendroid-plus"
-     ],
-     "downloads_sum": 204110,
-     "downloads_rep": 202720,
-     "downloads_basis": "lifetime",
-     "stars_rep": 506,
-     "stars_max": 506,
-     "latest_date": "2026-08-14T11:11:00Z",
-     "days_since_release": 82,
-     "days_since_push": 76,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "mamcjr-botwrecompandroid",
-     "label": "BOTW Recomp Android",
-     "rep_id": "mamcjr-botwrecompandroid",
-     "rep_name": "BOTW Recomp Android",
-     "repo_url": "https://github.com/mamcjr/BOTWRecompAndroid",
-     "logo": "https://avatars.githubusercontent.com/u/26612066?v=4",
-     "section": "native-port",
-     "platforms": [
-      "switch"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android"
-     ],
-     "description": "塞尔达传说：旷野之息 原生重编译移植（Switch 1.0.0/1.6.0/1.8.2/1.9.0，NVN→Vulkan），需自行提供游戏文件",
-     "members": 1,
-     "member_ids": [
-      "mamcjr-botwrecompandroid"
-     ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 493,
-     "stars_max": 493,
-     "latest_date": "2026-11-03T03:40:51Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
     }
    ]
   },
@@ -5592,6 +5573,181 @@
    "note": "距最后一次正式发版的天数。发版频繁≠质量高，只说明节奏。",
    "status": "ok",
    "rows": [
+    {
+     "family": "vita3k",
+     "label": "Vita3K 系",
+     "rep_id": "vita3k-vita3k",
+     "rep_name": "Vita3K",
+     "repo_url": "https://github.com/Vita3K/Vita3K",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "psvita"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "PS Vita 模拟器桌面版（Windows/Linux/macOS），Vita3K 项目的上游主仓库。",
+     "members": 2,
+     "member_ids": [
+      "vita3k-vita3k-android",
+      "vita3k-vita3k"
+     ],
+     "downloads_sum": 4327968,
+     "downloads_rep": 0,
+     "downloads_basis": "lifetime",
+     "stars_rep": 5937,
+     "stars_max": 5937,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": 0.0
+    },
+    {
+     "family": "shadps4-emu-shadnet",
+     "label": "shadNet",
+     "rep_id": "shadps4-emu-shadnet",
+     "rep_name": "shadNet",
+     "repo_url": "https://github.com/shadps4-emu/shadnet",
+     "logo": null,
+     "section": "frontend-tool",
+     "platforms": [
+      "ps4"
+     ],
+     "method": null,
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "shadPS4 的自建联机服务端，用 C++ 重写 RPCSN。",
+     "members": 1,
+     "member_ids": [
+      "shadps4-emu-shadnet"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 78,
+     "stars_max": 78,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "crazyriddler-xbased",
+     "label": "xbased",
+     "rep_id": "crazyriddler-xbased",
+     "rep_name": "xbased",
+     "repo_url": "https://github.com/crazyriddler/xbased",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "xbox"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "初代 Xbox 模拟器，Windows/Linux。",
+     "members": 1,
+     "member_ids": [
+      "crazyriddler-xbased"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 73,
+     "stars_max": 73,
+     "latest_date": "2026-11-05T00:00:00Z",
+     "days_since_release": 0,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "winhub-emu-winhub",
+     "label": "WinHub",
+     "rep_id": "winhub-emu-winhub",
+     "rep_name": "WinHub",
+     "repo_url": "https://github.com/winhub-emu/winhub",
+     "logo": "https://avatars.githubusercontent.com/u/288650572?v=4",
+     "section": "windows-compat",
+     "platforms": [
+      "windows-pc"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "android"
+     ],
+     "description": "WinHub：Android 端一体化游戏平台（早期预览），开源；单包约 557MB，分 standard / pubg / ludashi 三个变体，是否为自带运行时的兼容层待核",
+     "members": 1,
+     "member_ids": [
+      "winhub-emu-winhub"
+     ],
+     "downloads_sum": 225,
+     "downloads_rep": 225,
+     "downloads_basis": "lifetime",
+     "stars_rep": 443,
+     "stars_max": 443,
+     "latest_date": "2026-11-05T12:58:47Z",
+     "days_since_release": 0,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 225,
+     "growth_pct": null
+    },
+    {
+     "family": "moceure-banananative",
+     "label": "BananaNative",
+     "rep_id": "moceure-banananative",
+     "rep_name": "BananaNative",
+     "repo_url": "https://github.com/moceure/BananaNative",
+     "logo": "https://avatars.githubusercontent.com/u/351666937?v=4",
+     "section": "console-emulation",
+     "platforms": [
+      "switch"
+     ],
+     "method": "translation",
+     "hosts": [
+      "android"
+     ],
+     "description": "BananaNative：Switch 原生层（nxnative），把 NVN 调用直接转成 Vulkan，不做系统模拟；实验性、非官方",
+     "members": 1,
+     "member_ids": [
+      "moceure-banananative"
+     ],
+     "downloads_sum": 503,
+     "downloads_rep": 503,
+     "downloads_basis": "lifetime",
+     "stars_rep": 287,
+     "stars_max": 287,
+     "latest_date": "2026-11-05T13:03:32Z",
+     "days_since_release": 0,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": false,
+     "status": "active",
+     "downloads_delta": 503,
+     "growth_pct": null
+    },
     {
      "family": "pcsx2",
      "label": "PCSX2 系",
@@ -5624,8 +5780,8 @@
      "stars_max": 15990,
      "latest_date": "2026-11-03T16:18:22Z",
      "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
@@ -5666,40 +5822,37 @@
      "growth_pct": null
     },
     {
-     "family": "zorkats-g-diffuser",
-     "label": "G-Diffuser",
-     "rep_id": "zorkats-g-diffuser",
-     "rep_name": "G-Diffuser",
-     "repo_url": "https://github.com/Zorkats/G-Diffuser",
-     "logo": "https://github.com/Zorkats.png",
+     "family": "mamcjr-botwrecompandroid",
+     "label": "BOTW Recomp Android",
+     "rep_id": "mamcjr-botwrecompandroid",
+     "rep_name": "BOTW Recomp Android",
+     "repo_url": "https://github.com/mamcjr/BOTWRecompAndroid",
+     "logo": "https://avatars.githubusercontent.com/u/26612066?v=4",
      "section": "native-port",
      "platforms": [
-      "multi"
+      "switch"
      ],
      "method": "recomp",
      "hosts": [
-      "android",
-      "windows",
-      "macos",
-      "linux"
+      "android"
      ],
-     "description": "Unofficial PC Port of F-Zero X based on the decompilation",
+     "description": "塞尔达传说：旷野之息 原生重编译移植（Switch 1.0.0/1.6.0/1.8.2/1.9.0，NVN→Vulkan），需自行提供游戏文件",
      "members": 1,
      "member_ids": [
-      "zorkats-g-diffuser"
+      "mamcjr-botwrecompandroid"
      ],
-     "downloads_sum": 318,
-     "downloads_rep": 318,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 310,
-     "stars_max": 310,
-     "latest_date": "2026-11-03T06:26:37Z",
+     "downloads_sum": 3078,
+     "downloads_rep": 3078,
+     "downloads_basis": "lifetime",
+     "stars_rep": 583,
+     "stars_max": 583,
+     "latest_date": "2026-11-04T14:03:45Z",
      "days_since_release": 1,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
      "status": "active",
-     "downloads_delta": 0,
+     "downloads_delta": 3078,
      "growth_pct": null
     },
     {
@@ -5733,86 +5886,12 @@
      "stars_max": 237,
      "latest_date": "2026-11-03T20:03:00Z",
      "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
-    },
-    {
-     "family": "aetherkiri-aether",
-     "label": "Aether",
-     "rep_id": "aetherkiri-aether",
-     "rep_name": "Aether",
-     "repo_url": "https://github.com/AetherKiri/Aether",
-     "logo": "https://avatars.githubusercontent.com/u/286601150?v=4",
-     "section": "vn-engine",
-     "platforms": [
-      "visual-novel"
-     ],
-     "method": "engine",
-     "hosts": [
-      "android",
-      "macos",
-      "linux",
-      "ios"
-     ],
-     "description": "A cross-platform, multi-runtime visual novel emulator using Godot 4 as the rendering layer.",
-     "members": 1,
-     "member_ids": [
-      "aetherkiri-aether"
-     ],
-     "downloads_sum": 111,
-     "downloads_rep": 111,
-     "downloads_basis": "lifetime",
-     "stars_rep": 201,
-     "stars_max": 201,
-     "latest_date": "2026-11-03T08:27:42Z",
-     "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "hitode-project-hitode",
-     "label": "Hitode",
-     "rep_id": "hitode-project-hitode",
-     "rep_name": "Hitode",
-     "repo_url": "https://github.com/hitode-project/hitode",
-     "logo": "https://avatars.githubusercontent.com/u/344285188?v=4",
-     "section": "windows-compat",
-     "platforms": [
-      "visual-novel"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android",
-      "macos",
-      "ios",
-      "windows"
-     ],
-     "description": "Run the original Windows releases of visual novels on Mac, iPhone, iPad and Android.",
-     "members": 1,
-     "member_ids": [
-      "hitode-project-hitode"
-     ],
-     "downloads_sum": 28,
-     "downloads_rep": 28,
-     "downloads_basis": "lifetime",
-     "stars_rep": 5,
-     "stars_max": 5,
-     "latest_date": "2026-11-03T12:46:33Z",
-     "days_since_release": 1,
-     "days_since_push": 0,
-     "family_days_since_push": 0,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
     },
     {
      "family": "djihads80-eglantine",
@@ -5902,9 +5981,11 @@
       "windows"
      ],
      "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
-     "members": 1,
+     "members": 3,
      "member_ids": [
-      "xenia-project-xenia"
+      "xenia-project-xenia",
+      "xenia-canary-xenia-canary",
+      "has207-xenia-edge"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
@@ -5914,10 +5995,218 @@
      "latest_date": "2026-11-04T00:00:00Z",
      "days_since_release": 1,
      "days_since_push": 1,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "m5devs-openrom",
+     "label": "OpenROM",
+     "rep_id": "m5devs-openrom",
+     "rep_name": "OpenROM",
+     "repo_url": "https://github.com/m5devs/openrom",
+     "logo": null,
+     "section": "frontend-tool",
+     "platforms": [
+      "multi"
+     ],
+     "method": null,
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "复古 ROM 工具箱：格式转换、打补丁、压缩、校验、批量整理。",
+     "members": 1,
+     "member_ids": [
+      "m5devs-openrom"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 294,
+     "stars_max": 294,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "drhelius-geargrafx",
+     "label": "Geargrafx",
+     "rep_id": "drhelius-geargrafx",
+     "rep_name": "Geargrafx",
+     "repo_url": "https://github.com/drhelius/geargrafx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "pc-engine"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "PC Engine / TurboGrafx-16 / SuperGrafx / CD-ROM² 模拟器与调试器。",
+     "members": 1,
+     "member_ids": [
+      "drhelius-geargrafx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 253,
+     "stars_max": 253,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "jay-day-rmg-k",
+     "label": "RMG-K",
+     "rep_id": "jay-day-rmg-k",
+     "rep_name": "RMG-K",
+     "repo_url": "https://github.com/jay-day/rmg-k",
+     "logo": null,
+     "section": "frontend-tool",
+     "platforms": [
+      "n64"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "基于 Mupen64 的 N64 前端，带 Kaillera 与 GekkoNet 回滚联机。",
+     "members": 1,
+     "member_ids": [
+      "jay-day-rmg-k"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 183,
+     "stars_max": 183,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "tixul-ngpcraft-emulator",
+     "label": "NgpCraft",
+     "rep_id": "tixul-ngpcraft-emulator",
+     "rep_name": "NgpCraft",
+     "repo_url": "https://github.com/tixul/ngpcraft_emulator",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "neo-geo-pocket"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows"
+     ],
+     "description": "Neo Geo Pocket / Color 模拟器，带完整调试器与多语言界面。",
+     "members": 1,
+     "member_ids": [
+      "tixul-ngpcraft-emulator"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 33,
+     "stars_max": 33,
+     "latest_date": "2026-11-04T00:00:00Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "gs-soft-it-lumen-emu",
+     "label": "Lumen Emu",
+     "rep_id": "gs-soft-it-lumen-emu",
+     "rep_name": "Lumen Emu",
+     "repo_url": "https://github.com/gs-soft-it/lumen-emu",
+     "logo": "https://avatars.githubusercontent.com/u/254604543?v=4",
+     "section": "console-emulation",
+     "platforms": [
+      "ps5",
+      "ps4"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "android"
+     ],
+     "description": "Lumen Emu（GS-Soft）：实验性 PS4/PS5 安卓模拟器，核心开源，另有 macOS（Apple Silicon）版本",
+     "members": 1,
+     "member_ids": [
+      "gs-soft-it-lumen-emu"
+     ],
+     "downloads_sum": 42,
+     "downloads_rep": 42,
+     "downloads_basis": "lifetime",
+     "stars_rep": 23,
+     "stars_max": 23,
+     "latest_date": "2026-11-04T04:55:54Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 42,
+     "growth_pct": null
+    },
+    {
+     "family": "zfitness-nixport",
+     "label": "Nixport",
+     "rep_id": "zfitness-nixport",
+     "rep_name": "Nixport",
+     "repo_url": "https://github.com/zFitness/nixport",
+     "logo": "https://avatars.githubusercontent.com/u/41500499?v=4",
+     "section": "frontend-tool",
+     "platforms": [],
+     "method": null,
+     "hosts": [
+      "android"
+     ],
+     "description": "Nixport：在 Android 上直接运行 Linux 程序的启动器，无需 root、无需 proot；安装包约 299MB",
+     "members": 1,
+     "member_ids": [
+      "zfitness-nixport"
+     ],
+     "downloads_sum": 1049,
+     "downloads_rep": 1049,
+     "downloads_basis": "lifetime",
+     "stars_rep": 17,
+     "stars_max": 17,
+     "latest_date": "2026-11-04T09:02:38Z",
+     "days_since_release": 1,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 1049,
      "growth_pct": null
     },
     {
@@ -6090,73 +6379,42 @@
      "stars_max": 634,
      "latest_date": "2026-11-02T22:08:00Z",
      "days_since_release": 2,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
     },
     {
-     "family": "ashnar2602-x360-mobile---official",
-     "label": "X360 Mobile",
-     "rep_id": "ashnar2602-x360-mobile---official",
-     "rep_name": "X360 Mobile",
-     "repo_url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL",
-     "logo": "https://t3st31.github.io/Ranking-Emulators-Download/logos/x360-mobile.png",
-     "section": "console-emulation",
-     "platforms": [
-      "xbox360"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "This repository will contain all future releases of the experimental Xbox 360 emulator",
-     "members": 1,
-     "member_ids": [
-      "ashnar2602-x360-mobile---official"
-     ],
-     "downloads_sum": 526915,
-     "downloads_rep": 526915,
-     "downloads_basis": "lifetime",
-     "stars_rep": 592,
-     "stars_max": 592,
-     "latest_date": "2026-11-02T08:56:36Z",
-     "days_since_release": 2,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "mamcjr-botwrecompandroid",
-     "label": "BOTW Recomp Android",
-     "rep_id": "mamcjr-botwrecompandroid",
-     "rep_name": "BOTW Recomp Android",
-     "repo_url": "https://github.com/mamcjr/BOTWRecompAndroid",
-     "logo": "https://avatars.githubusercontent.com/u/26612066?v=4",
+     "family": "zorkats-g-diffuser",
+     "label": "G-Diffuser",
+     "rep_id": "zorkats-g-diffuser",
+     "rep_name": "G-Diffuser",
+     "repo_url": "https://github.com/Zorkats/G-Diffuser",
+     "logo": "https://github.com/Zorkats.png",
      "section": "native-port",
      "platforms": [
-      "switch"
+      "multi"
      ],
      "method": "recomp",
      "hosts": [
-      "android"
+      "android",
+      "windows",
+      "macos",
+      "linux"
      ],
-     "description": "塞尔达传说：旷野之息 原生重编译移植（Switch 1.0.0/1.6.0/1.8.2/1.9.0，NVN→Vulkan），需自行提供游戏文件",
+     "description": "Unofficial PC Port of F-Zero X based on the decompilation",
      "members": 1,
      "member_ids": [
-      "mamcjr-botwrecompandroid"
+      "zorkats-g-diffuser"
      ],
-     "downloads_sum": 0,
-     "downloads_rep": 0,
-     "downloads_basis": "none",
-     "stars_rep": 493,
-     "stars_max": 493,
-     "latest_date": "2026-11-03T03:40:51Z",
+     "downloads_sum": 318,
+     "downloads_rep": 318,
+     "downloads_basis": "latest-lower-bound",
+     "stars_rep": 310,
+     "stars_max": 310,
+     "latest_date": "2026-11-03T06:26:37Z",
      "days_since_release": 2,
      "days_since_push": 2,
      "family_days_since_push": 2,
@@ -6200,6 +6458,43 @@
      "growth_pct": null
     },
     {
+     "family": "aetherkiri-aether",
+     "label": "Aether",
+     "rep_id": "aetherkiri-aether",
+     "rep_name": "Aether",
+     "repo_url": "https://github.com/AetherKiri/Aether",
+     "logo": "https://avatars.githubusercontent.com/u/286601150?v=4",
+     "section": "vn-engine",
+     "platforms": [
+      "visual-novel"
+     ],
+     "method": "engine",
+     "hosts": [
+      "android",
+      "macos",
+      "linux",
+      "ios"
+     ],
+     "description": "A cross-platform, multi-runtime visual novel emulator using Godot 4 as the rendering layer.",
+     "members": 1,
+     "member_ids": [
+      "aetherkiri-aether"
+     ],
+     "downloads_sum": 111,
+     "downloads_rep": 111,
+     "downloads_basis": "lifetime",
+     "stars_rep": 201,
+     "stars_max": 201,
+     "latest_date": "2026-11-03T08:27:42Z",
+     "days_since_release": 2,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
      "family": "samsixx6-brew2droid",
      "label": "Brew2Droid",
      "rep_id": "samsixx6-brew2droid",
@@ -6229,6 +6524,43 @@
      "days_since_push": 4,
      "family_days_since_push": 4,
      "official": false,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "hitode-project-hitode",
+     "label": "Hitode",
+     "rep_id": "hitode-project-hitode",
+     "rep_name": "Hitode",
+     "repo_url": "https://github.com/hitode-project/hitode",
+     "logo": "https://avatars.githubusercontent.com/u/344285188?v=4",
+     "section": "windows-compat",
+     "platforms": [
+      "visual-novel"
+     ],
+     "method": "translation",
+     "hosts": [
+      "android",
+      "macos",
+      "ios",
+      "windows"
+     ],
+     "description": "Run the original Windows releases of visual novels on Mac, iPhone, iPad and Android.",
+     "members": 1,
+     "member_ids": [
+      "hitode-project-hitode"
+     ],
+     "downloads_sum": 28,
+     "downloads_rep": 28,
+     "downloads_basis": "lifetime",
+     "stars_rep": 5,
+     "stars_max": 5,
+     "latest_date": "2026-11-03T12:46:33Z",
+     "days_since_release": 2,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
@@ -6338,35 +6670,212 @@
      "growth_pct": null
     },
     {
-     "family": "ranggacasper-mostwanted-android",
-     "label": "Most Wanted for Android",
-     "rep_id": "ranggacasper-mostwanted-android",
-     "rep_name": "Most Wanted for Android",
-     "repo_url": "https://github.com/RanggaCasper/MostWanted-Android",
-     "logo": "https://avatars.githubusercontent.com/u/76829603?v=4",
-     "section": "native-port",
+     "family": "dborth-snes9xgx",
+     "label": "Snes9x GX",
+     "rep_id": "dborth-snes9xgx",
+     "rep_name": "Snes9x GX",
+     "repo_url": "https://github.com/dborth/snes9xgx",
+     "logo": null,
+     "section": "console-emulation",
      "platforms": [
-      "xbox"
+      "snes"
      ],
-     "method": "recomp",
+     "method": "emulation",
+     "hosts": [
+      "gamecube",
+      "wii"
+     ],
+     "description": "Snes9x 的 GameCube / Wii 移植，dborth 维护。",
+     "members": 1,
+     "member_ids": [
+      "dborth-snes9xgx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 510,
+     "stars_max": 510,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "dborth-vbagx",
+     "label": "Visual Boy Advance GX",
+     "rep_id": "dborth-vbagx",
+     "rep_name": "Visual Boy Advance GX",
+     "repo_url": "https://github.com/dborth/vbagx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "gba"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "gamecube",
+      "wii"
+     ],
+     "description": "Visual Boy Advance 的 GameCube / Wii 移植。",
+     "members": 1,
+     "member_ids": [
+      "dborth-vbagx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 350,
+     "stars_max": 350,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "dborth-fceugx",
+     "label": "FCE Ultra GX",
+     "rep_id": "dborth-fceugx",
+     "rep_name": "FCE Ultra GX",
+     "repo_url": "https://github.com/dborth/fceugx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "nes"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "gamecube",
+      "wii"
+     ],
+     "description": "FCE Ultra 的 GameCube / Wii 移植（NES）。",
+     "members": 1,
+     "member_ids": [
+      "dborth-fceugx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 336,
+     "stars_max": 336,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "dmanlfc-sm2-emu",
+     "label": "SM2-EMU",
+     "rep_id": "dmanlfc-sm2-emu",
+     "rep_name": "SM2-EMU",
+     "repo_url": "https://github.com/dmanlfc/sm2-emu",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "arcade"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "Sega Model 2 街机模拟器。",
+     "members": 1,
+     "member_ids": [
+      "dmanlfc-sm2-emu"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 27,
+     "stars_max": 27,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 0,
+     "family_days_since_push": 0,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "jberclaz-turbostage",
+     "label": "TurboStage",
+     "rep_id": "jberclaz-turbostage",
+     "rep_name": "TurboStage",
+     "repo_url": "https://github.com/jberclaz/turbostage",
+     "logo": null,
+     "section": "frontend-tool",
+     "platforms": [
+      "dos"
+     ],
+     "method": null,
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "DOSBox Staging 的图形前端，管理 DOS 游戏库并一键启动。",
+     "members": 1,
+     "member_ids": [
+      "jberclaz-turbostage"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 21,
+     "stars_max": 21,
+     "latest_date": "2026-11-03T00:00:00Z",
+     "days_since_release": 2,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "ashnar2602-x360-mobile---official",
+     "label": "X360 Mobile",
+     "rep_id": "ashnar2602-x360-mobile---official",
+     "rep_name": "X360 Mobile",
+     "repo_url": "https://github.com/Ashnar2602/X360-Mobile---OFFICIAL",
+     "logo": "https://t3st31.github.io/Ranking-Emulators-Download/logos/x360-mobile.png",
+     "section": "console-emulation",
+     "platforms": [
+      "xbox360"
+     ],
+     "method": "emulation",
      "hosts": [
       "android"
      ],
-     "description": "Unofficial native Android port of Need for Speed: Most Wanted (Xbox Black Edition). The x86 code is statically recompiled to C++ with XboxXBE-Recomp and built for arm64, with a Vulkan renderer, SDL3, touch/controller/keyboard input, and extended graphics options. No emulator, no game assets included.",
+     "description": "This repository will contain all future releases of the experimental Xbox 360 emulator",
      "members": 1,
      "member_ids": [
-      "ranggacasper-mostwanted-android"
+      "ashnar2602-x360-mobile---official"
      ],
-     "downloads_sum": 63217,
-     "downloads_rep": 63217,
+     "downloads_sum": 526915,
+     "downloads_rep": 526915,
      "downloads_basis": "lifetime",
-     "stars_rep": 222,
-     "stars_max": 222,
-     "latest_date": "2026-11-01T14:56:16Z",
+     "stars_rep": 592,
+     "stars_max": 592,
+     "latest_date": "2026-11-02T08:56:36Z",
      "days_since_release": 3,
      "days_since_push": 3,
      "family_days_since_push": 3,
-     "official": true,
+     "official": false,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": 0.0
@@ -6508,43 +7017,9 @@
      "stars_max": 62,
      "latest_date": "2026-11-02T03:38:43Z",
      "days_since_release": 3,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
+     "days_since_push": 2,
+     "family_days_since_push": 2,
      "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "pocket2droid-android",
-     "label": "Pocket2Droid",
-     "rep_id": "pocket2droid-android",
-     "rep_name": "Pocket2Droid",
-     "repo_url": "https://github.com/samsixx6/Pocket2Droid",
-     "logo": "https://github.com/samsixx6.png",
-     "section": "console-emulation",
-     "platforms": [
-      "windows-mobile"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "Windows Mobile 6 emulator for Android",
-     "members": 1,
-     "member_ids": [
-      "pocket2droid-android"
-     ],
-     "downloads_sum": 89,
-     "downloads_rep": 89,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 22,
-     "stars_max": 22,
-     "latest_date": "2026-11-01T13:11:33Z",
-     "days_since_release": 3,
-     "days_since_push": 3,
-     "family_days_since_push": 3,
-     "official": false,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
@@ -6576,8 +7051,8 @@
      "stars_max": 13,
      "latest_date": "2026-11-02T03:32:18Z",
      "days_since_release": 3,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
      "official": false,
      "status": "active",
      "downloads_delta": 0,
@@ -6618,414 +7093,35 @@
      "growth_pct": null
     },
     {
-     "family": "droid-deck-droiddeck",
-     "label": "DroidDeck",
-     "rep_id": "droid-deck-droiddeck",
-     "rep_name": "DroidDeck",
-     "repo_url": "https://github.com/Droid-Deck/DroidDeck",
-     "logo": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
-     "section": "console-emulation",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "DroidDeck brings the SteamOS experience to Android",
-     "members": 1,
-     "member_ids": [
-      "droid-deck-droiddeck"
-     ],
-     "downloads_sum": 316398,
-     "downloads_rep": 316398,
-     "downloads_basis": "lifetime",
-     "stars_rep": 17535,
-     "stars_max": 17535,
-     "latest_date": "2026-10-31T18:47:24Z",
-     "days_since_release": 4,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "felipeprado0-spartanport",
-     "label": "SpartanPort",
-     "rep_id": "felipeprado0-spartanport",
-     "rep_name": "SpartanPort",
-     "repo_url": "https://github.com/FelipePrado0/SpartanPort",
-     "logo": "https://github.com/FelipePrado0.png",
-     "section": "native-port",
-     "platforms": [
-      "xbox360"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "windows"
-     ],
-     "description": "SpartanPort: unofficial PC port of God of War III Remastered",
-     "members": 1,
-     "member_ids": [
-      "felipeprado0-spartanport"
-     ],
-     "downloads_sum": 236,
-     "downloads_rep": 236,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 4545,
-     "stars_max": 4545,
-     "latest_date": "2026-11-01T02:26:44Z",
-     "days_since_release": 4,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "rfandango-hakux",
-     "label": "HakuX",
-     "rep_id": "rfandango-hakux",
-     "rep_name": "HakuX",
-     "repo_url": "https://github.com/rfandango/hakuX",
-     "logo": "https://avatars.githubusercontent.com/u/263785354?v=4",
-     "section": "console-emulation",
-     "platforms": [
-      "xbox360"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "xbox emulator for Android",
-     "members": 1,
-     "member_ids": [
-      "rfandango-hakux"
-     ],
-     "downloads_sum": 20166,
-     "downloads_rep": 20166,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 716,
-     "stars_max": 716,
-     "latest_date": "2026-10-31T12:43:13Z",
-     "days_since_release": 4,
-     "days_since_push": 4,
-     "family_days_since_push": 4,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "zenith-panplay",
-     "label": "PanPlay (Mali 游戏启动器)",
-     "rep_id": "zenith-panplay",
-     "rep_name": "PanPlay (Mali 游戏启动器)",
-     "repo_url": "https://github.com/zenithblue-oss/panplay",
-     "logo": "https://github.com/zenithblue-oss.png",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android"
-     ],
-     "description": "PanPlay：Android Windows 游戏启动器（Wine/FEX/DXVK，Mali）",
-     "members": 1,
-     "member_ids": [
-      "zenith-panplay"
-     ],
-     "downloads_sum": 321,
-     "downloads_rep": 321,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 22,
-     "stars_max": 22,
-     "latest_date": "2026-10-31T07:29:39Z",
-     "days_since_release": 4,
-     "days_since_push": 4,
-     "family_days_since_push": 4,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "emucoreh-android",
-     "label": "EmuCoreH",
-     "rep_id": "emucoreh-android",
-     "rep_name": "EmuCoreH",
-     "repo_url": "https://github.com/sashkinbro/EmuCoreH",
-     "logo": "https://github.com/sashkinbro.png",
-     "section": "console-emulation",
-     "platforms": [
-      "dreamcast"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "EmuCoreH - Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
-     "members": 1,
-     "member_ids": [
-      "emucoreh-android"
-     ],
-     "downloads_sum": 29,
-     "downloads_rep": 29,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 12,
-     "stars_max": 12,
-     "latest_date": "2026-10-31T09:01:09Z",
-     "days_since_release": 4,
-     "days_since_push": 4,
-     "family_days_since_push": 4,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "zenith-panprobe",
-     "label": "PanProbe (Mali 驱动探测)",
-     "rep_id": "zenith-panprobe",
-     "rep_name": "PanProbe (Mali 驱动探测)",
-     "repo_url": "https://github.com/zenithblue-oss/panprobe",
-     "logo": "https://github.com/zenithblue-oss.png",
-     "section": "windows-compat",
-     "platforms": [
-      "windows-pc"
-     ],
-     "method": "translation",
-     "hosts": [
-      "android"
-     ],
-     "description": "PanProbe：Vulkan 信息与设备端驱动测试（PanVK Kbase Mali）",
-     "members": 1,
-     "member_ids": [
-      "zenith-panprobe"
-     ],
-     "downloads_sum": 155,
-     "downloads_rep": 155,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 4,
-     "stars_max": 4,
-     "latest_date": "2026-10-31T07:29:04Z",
-     "days_since_release": 4,
-     "days_since_push": 4,
-     "family_days_since_push": 4,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "anyps5-porting-tool",
-     "label": "AnyPS5",
-     "rep_id": "anyps5-porting-tool",
-     "rep_name": "AnyPS5",
-     "repo_url": "https://github.com/boykopovar/AnyPS5",
-     "logo": "https://github.com/boykopovar.png",
-     "section": "frontend-tool",
-     "platforms": [
-      "ps5"
-     ],
-     "method": null,
-     "hosts": [
-      "windows",
-      "linux"
-     ],
-     "description": "Tool for automatic PS5 executables porting to Linux and Windows",
-     "members": 1,
-     "member_ids": [
-      "anyps5-porting-tool"
-     ],
-     "downloads_sum": 1563,
-     "downloads_rep": 1563,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 50786,
-     "stars_max": 50786,
-     "latest_date": "2026-10-30T23:09:14Z",
-     "days_since_release": 5,
-     "days_since_push": 1,
-     "family_days_since_push": 1,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "shadps4-emu-shadps4",
-     "label": "ShadPS4",
-     "rep_id": "shadps4-emu-shadps4",
-     "rep_name": "ShadPS4",
-     "repo_url": "https://github.com/shadps4-emu/shadPS4",
-     "logo": "https://t3st31.github.io/Ranking-Emulators-Download/logos/shadps4.png",
-     "section": "console-emulation",
-     "platforms": [
-      "ps4"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "PlayStation 4 emulator for Windows, Linux, macOS and FreeBSD",
-     "members": 1,
-     "member_ids": [
-      "shadps4-emu-shadps4"
-     ],
-     "downloads_sum": 333,
-     "downloads_rep": 333,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 34034,
-     "stars_max": 34034,
-     "latest_date": "2026-10-30T13:38:45Z",
-     "days_since_release": 5,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "supermedo-bloodborne-pc",
-     "label": "Bloodborne PC",
-     "rep_id": "supermedo-bloodborne-pc",
-     "rep_name": "Bloodborne PC",
-     "repo_url": "https://github.com/supermedo/bloodborne_pc",
-     "logo": "https://github.com/supermedo.png",
-     "section": "native-port",
-     "platforms": [
-      "ps4"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "windows"
-     ],
-     "description": "Bloodborne running natively on Windows 10/11: launcher and reverse engineering project",
-     "members": 1,
-     "member_ids": [
-      "supermedo-bloodborne-pc"
-     ],
-     "downloads_sum": 64029,
-     "downloads_rep": 64029,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 5075,
-     "stars_max": 5075,
-     "latest_date": "2026-10-30T20:43:36Z",
-     "days_since_release": 5,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "santiquiroz-gears-of-war-2-pc-port",
-     "label": "gears of war 2 pc port",
-     "rep_id": "santiquiroz-gears-of-war-2-pc-port",
-     "rep_name": "gears of war 2 pc port",
-     "repo_url": "https://github.com/santiquiroz/gears-of-war-2-pc-port",
-     "logo": "https://avatars.githubusercontent.com/u/20863170?v=4",
-     "section": "native-port",
-     "platforms": [
-      "xbox360"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android",
-      "windows"
-     ],
-     "description": "Gears of War 2 native PC port: the Xbox 360 game statically recompiled to x64 (not an emulator). 1440p/4K, FSR, 4K texture packs, keyboard & mouse, Android in progress. Bring your own copy.",
-     "members": 1,
-     "member_ids": [
-      "santiquiroz-gears-of-war-2-pc-port"
-     ],
-     "downloads_sum": 5399,
-     "downloads_rep": 5399,
-     "downloads_basis": "lifetime",
-     "stars_rep": 150,
-     "stars_max": 150,
-     "latest_date": "2026-10-30T14:41:12Z",
-     "days_since_release": 5,
-     "days_since_push": 5,
-     "family_days_since_push": 5,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "shirai91-nx2android",
-     "label": "nx2android",
-     "rep_id": "shirai91-nx2android",
-     "rep_name": "nx2android",
-     "repo_url": "https://github.com/shirai91/nx2android",
+     "family": "trekawek-coffee-gb",
+     "label": "Coffee GB",
+     "rep_id": "trekawek-coffee-gb",
+     "rep_name": "Coffee GB",
+     "repo_url": "https://github.com/trekawek/coffee-gb",
      "logo": null,
-     "section": "native-port",
+     "section": "console-emulation",
      "platforms": [
-      "switch"
+      "gb",
+      "gbc"
      ],
-     "method": "recomp",
+     "method": "emulation",
      "hosts": [
-      "android",
       "windows",
+      "linux",
       "macos"
      ],
-     "description": "把 Switch 游戏转成安卓原生 APK 的移植工具，不是模拟器：游戏自身的 arm64 代码在设备上原生运行，宿主替代 Switch 系统服务，NVN 图形重放到 Vulkan。选游戏目录、点 Port，产出 APK 与游戏数据。是 nxnative 的 Android 端口，需自备游戏文件与 prod.keys。",
+     "description": "Java 写的 Game Boy / Game Boy Color 精确模拟器，强调周期准确与测试覆盖。",
      "members": 1,
      "member_ids": [
-      "shirai91-nx2android"
+      "trekawek-coffee-gb"
      ],
      "downloads_sum": 0,
      "downloads_rep": 0,
      "downloads_basis": "none",
-     "stars_rep": 784,
-     "stars_max": 784,
-     "latest_date": "2026-10-31T00:00:00Z",
-     "days_since_release": 5,
-     "days_since_push": 5,
-     "family_days_since_push": 5,
-     "official": true,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "supermodel3",
-     "label": "Supermodel 3",
-     "rep_id": "supermodel3",
-     "rep_name": "Supermodel 3",
-     "repo_url": "https://github.com/trzy/Supermodel",
-     "logo": "https://github.com/trzy.png",
-     "section": "console-emulation",
-     "platforms": [
-      "model3"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "windows",
-      "macos",
-      "linux"
-     ],
-     "description": "Sega Model 3 街机模拟器，2026-10 活跃更新",
-     "members": 1,
-     "member_ids": [
-      "supermodel3"
-     ],
-     "downloads_sum": 282,
-     "downloads_rep": 282,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 680,
-     "stars_max": 680,
-     "latest_date": "2026-10-29T15:59:10Z",
-     "days_since_release": 6,
+     "stars_rep": 1173,
+     "stars_max": 1173,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
      "days_since_push": 3,
      "family_days_since_push": 3,
      "official": true,
@@ -7034,317 +7130,213 @@
      "growth_pct": null
     },
     {
-     "family": "opennectar",
-     "label": "Open-Nectar",
-     "rep_id": "opennectar",
-     "rep_name": "Open-Nectar",
-     "repo_url": "https://github.com/SSunnKing/Open-Nectar---Pikmin-Native-PC-Mobile-Port",
-     "logo": "https://github.com/SSunnKing.png",
-     "section": "native-port",
+     "family": "ymir-emu-ymir",
+     "label": "Ymir",
+     "rep_id": "ymir-emu-ymir",
+     "rep_name": "Ymir",
+     "repo_url": "https://github.com/ymir-emu/ymir",
+     "logo": null,
+     "section": "console-emulation",
      "platforms": [
-      "gamecube"
+      "saturn"
      ],
-     "method": "recomp",
+     "method": "emulation",
      "hosts": [
-      "android",
       "windows",
-      "linux"
+      "linux",
+      "macos"
      ],
-     "description": "皮克敏 1 原生移植（PC/移动端），活跃更新",
+     "description": "Sega Saturn 模拟器（C++），Windows/Linux/macOS。",
      "members": 1,
      "member_ids": [
-      "opennectar"
+      "ymir-emu-ymir"
      ],
-     "downloads_sum": 2843,
-     "downloads_rep": 2843,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 304,
-     "stars_max": 304,
-     "latest_date": "2026-10-29T15:26:56Z",
-     "days_since_release": 6,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 1108,
+     "stars_max": 1108,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
     },
     {
-     "family": "linkzenic-shipwright-ports",
-     "label": "Shipwright-Ports（时之笛 Android/iOS 移植）",
-     "rep_id": "linkzenic-shipwright-ports",
-     "rep_name": "Shipwright-Ports（时之笛 Android/iOS 移植）",
-     "repo_url": "https://github.com/linkzenic/Shipwright-Ports",
-     "logo": "https://avatars.githubusercontent.com/u/270810195?v=4",
-     "section": "native-port",
-     "platforms": [
-      "n64"
-     ],
-     "method": "recomp",
-     "hosts": [
-      "android",
-      "ios"
-     ],
-     "description": "Ship of Harkinian 官方 PC 移植的第三方 Android/iOS 移植版，同时提供 APK 与 iOS 包，按上游版本号发布",
-     "members": 1,
-     "member_ids": [
-      "linkzenic-shipwright-ports"
-     ],
-     "downloads_sum": 2062,
-     "downloads_rep": 2062,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 92,
-     "stars_max": 92,
-     "latest_date": "2026-10-30T03:13:30Z",
-     "days_since_release": 6,
-     "days_since_push": 6,
-     "family_days_since_push": 6,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "openmsx",
-     "label": "openMSX",
-     "rep_id": "openmsx",
-     "rep_name": "openMSX",
-     "repo_url": "https://github.com/openMSX/openMSX",
-     "logo": "https://avatars.githubusercontent.com/u/12670808?v=4",
+     "family": "shanytc-snes9x",
+     "label": "SuperSnes9x",
+     "rep_id": "shanytc-snes9x",
+     "rep_name": "SuperSnes9x",
+     "repo_url": "https://github.com/shanytc/snes9x",
+     "logo": null,
      "section": "console-emulation",
      "platforms": [
-      "msx"
+      "snes"
      ],
      "method": "emulation",
      "hosts": [
       "windows",
-      "macos",
-      "linux"
+      "linux",
+      "macos"
      ],
-     "description": "the MSX emulator that aims for perfection",
+     "description": "Snes9x 的可移植分支（SuperSnes9x），保留旧前端与滤镜。",
      "members": 1,
      "member_ids": [
-      "openmsx"
+      "shanytc-snes9x"
      ],
-     "downloads_sum": 2164,
-     "downloads_rep": 2164,
-     "downloads_basis": "lifetime",
-     "stars_rep": 569,
-     "stars_max": 569,
-     "latest_date": "2026-10-28T09:59:28Z",
-     "days_since_release": 7,
-     "days_since_push": 2,
-     "family_days_since_push": 2,
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 124,
+     "stars_max": 124,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
      "official": true,
      "status": "active",
      "downloads_delta": 0,
-     "growth_pct": 0.0
-    },
-    {
-     "family": "ghaelv-lemon-project",
-     "label": "Lemon Project",
-     "rep_id": "ghaelv-lemon-project",
-     "rep_name": "Lemon Project",
-     "repo_url": "https://github.com/Ghael-V/Lemon-Project",
-     "logo": "https://github.com/Ghael-V.png",
-     "section": "console-emulation",
-     "platforms": [
-      "switch"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "Android-only Switch 模拟器（Adreno GPU），2026 活跃：标准版 / Lite / Lite-Spoofed",
-     "members": 1,
-     "member_ids": [
-      "ghaelv-lemon-project"
-     ],
-     "downloads_sum": 2503,
-     "downloads_rep": 2503,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 286,
-     "stars_max": 286,
-     "latest_date": "2026-10-28T12:57:57Z",
-     "days_since_release": 7,
-     "days_since_push": 7,
-     "family_days_since_push": 7,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
      "growth_pct": null
     },
     {
-     "family": "ghael-v-capyps5",
-     "label": "CapyPS5",
-     "rep_id": "ghael-v-capyps5",
-     "rep_name": "CapyPS5",
-     "repo_url": "https://github.com/Ghael-V/CapyPS5",
-     "logo": "https://github.com/Ghael-V.png",
+     "family": "ivanizag-izapple2",
+     "label": "izapple2",
+     "rep_id": "ivanizag-izapple2",
+     "rep_name": "izapple2",
+     "repo_url": "https://github.com/ivanizag/izapple2",
+     "logo": null,
      "section": "console-emulation",
      "platforms": [
-      "ps5"
+      "apple2"
      ],
      "method": "emulation",
      "hosts": [
-      "android"
-     ],
-     "description": "PS5 emulator（早期原型 v0.0.1，官方 release 直链）",
-     "members": 1,
-     "member_ids": [
-      "ghael-v-capyps5"
-     ],
-     "downloads_sum": 371,
-     "downloads_rep": 371,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 69,
-     "stars_max": 69,
-     "latest_date": "2026-10-28T10:46:40Z",
-     "days_since_release": 7,
-     "days_since_push": 7,
-     "family_days_since_push": 7,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "zeebx-zeebo",
-     "label": "Zeebx",
-     "rep_id": "zeebx-zeebo",
-     "rep_name": "Zeebx",
-     "repo_url": "https://github.com/ZeebxTeam/zeebx-emu",
-     "logo": "https://github.com/ZeebxTeam.png",
-     "section": "console-emulation",
-     "platforms": [
-      "zeebo"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android",
       "windows",
-      "macos",
       "linux",
-      "ios"
+      "macos"
      ],
-     "description": "Zeebo 模拟器（巴西 Tectoy 家用机，开发中）",
+     "description": "Apple ][+ / //e 模拟器，Go 编写，支持多种前端。",
      "members": 1,
      "member_ids": [
-      "zeebx-zeebo"
+      "ivanizag-izapple2"
      ],
-     "downloads_sum": 159,
-     "downloads_rep": 159,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 60,
-     "stars_max": 60,
-     "latest_date": "2026-10-29T00:12:13Z",
-     "days_since_release": 7,
-     "days_since_push": 7,
-     "family_days_since_push": 7,
-     "official": false,
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 71,
+     "stars_max": 71,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 1,
+     "family_days_since_push": 1,
+     "official": true,
      "status": "active",
      "downloads_delta": 0,
      "growth_pct": null
     },
     {
-     "family": "emucorea-android",
-     "label": "EmuCoreA",
-     "rep_id": "emucorea-android",
-     "rep_name": "EmuCoreA",
-     "repo_url": "https://github.com/sashkinbro/EmuCoreA",
-     "logo": "https://github.com/sashkinbro.png",
-     "section": "console-emulation",
+     "family": "pcsx2-mymcpp",
+     "label": "myMCpp",
+     "rep_id": "pcsx2-mymcpp",
+     "rep_name": "myMCpp",
+     "repo_url": "https://github.com/pcsx2/mymcpp",
+     "logo": null,
+     "section": "frontend-tool",
      "platforms": [
-      "psp"
+      "ps2"
      ],
-     "method": "emulation",
+     "method": null,
      "hosts": [
-      "android"
-     ],
-     "description": "PlayStation PSP Emulator for Android",
-     "members": 1,
-     "member_ids": [
-      "emucorea-android"
-     ],
-     "downloads_sum": 59,
-     "downloads_rep": 59,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 15,
-     "stars_max": 15,
-     "latest_date": "2026-10-28T16:29:00Z",
-     "days_since_release": 7,
-     "days_since_push": 4,
-     "family_days_since_push": 4,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "emucorev-android",
-     "label": "EmuCoreV",
-     "rep_id": "emucorev-android",
-     "rep_name": "EmuCoreV",
-     "repo_url": "https://github.com/sashkinbro/EmuCoreV",
-     "logo": "https://github.com/sashkinbro.png",
-     "section": "console-emulation",
-     "platforms": [
-      "psvita"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android"
-     ],
-     "description": "PlayStation Vita emulator for Android with a custom UI",
-     "members": 1,
-     "member_ids": [
-      "emucorev-android"
-     ],
-     "downloads_sum": 1571,
-     "downloads_rep": 1571,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 245,
-     "stars_max": 245,
-     "latest_date": "2026-10-27T22:05:54Z",
-     "days_since_release": 8,
-     "days_since_push": 8,
-     "family_days_since_push": 8,
-     "official": false,
-     "status": "active",
-     "downloads_delta": 0,
-     "growth_pct": null
-    },
-    {
-     "family": "wie-skvm",
-     "label": "Wie",
-     "rep_id": "wie-skvm",
-     "rep_name": "Wie",
-     "repo_url": "https://github.com/dlunch/wie",
-     "logo": "https://github.com/dlunch.png",
-     "section": "console-emulation",
-     "platforms": [
-      "java-me"
-     ],
-     "method": "emulation",
-     "hosts": [
-      "android",
       "windows",
-      "macos",
       "linux",
-      "ios"
+      "macos"
      ],
-     "description": "WIPI/SKVM/J2ME 模拟器（dlunch，★206，活跃）：韩系 SKVM（智能卡虚拟机）与 J2ME 手机游戏运行器，Android nightly 持续构建（v0.2.12 含 aarch64 APK）。",
+     "description": "PS2 记忆卡管理与存档编辑器（myMC 的 C++ 重写）。",
      "members": 1,
      "member_ids": [
-      "wie-skvm"
+      "pcsx2-mymcpp"
      ],
-     "downloads_sum": 10,
-     "downloads_rep": 10,
-     "downloads_basis": "latest-lower-bound",
-     "stars_rep": 208,
-     "stars_max": 208,
-     "latest_date": "2026-10-28T05:01:40Z",
-     "days_since_release": 8,
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 62,
+     "stars_max": 62,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "eighttails-pc6001vx",
+     "label": "PC6001VX",
+     "rep_id": "eighttails-pc6001vx",
+     "rep_name": "PC6001VX",
+     "repo_url": "https://github.com/eighttails/pc6001vx",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "pc-6001"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux",
+      "macos"
+     ],
+     "description": "NEC PC-6001 模拟器的跨平台版本（Qt 前端）。",
+     "members": 1,
+     "member_ids": [
+      "eighttails-pc6001vx"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 54,
+     "stars_max": 54,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
+     "days_since_push": 3,
+     "family_days_since_push": 3,
+     "official": true,
+     "status": "active",
+     "downloads_delta": 0,
+     "growth_pct": null
+    },
+    {
+     "family": "nixxou-zaxnes",
+     "label": "Zaxnes",
+     "rep_id": "nixxou-zaxnes",
+     "rep_name": "Zaxnes",
+     "repo_url": "https://github.com/nixxou/zaxnes",
+     "logo": null,
+     "section": "console-emulation",
+     "platforms": [
+      "nes"
+     ],
+     "method": "emulation",
+     "hosts": [
+      "windows",
+      "linux"
+     ],
+     "description": "NES 模拟器，Windows/Linux。",
+     "members": 1,
+     "member_ids": [
+      "nixxou-zaxnes"
+     ],
+     "downloads_sum": 0,
+     "downloads_rep": 0,
+     "downloads_basis": "none",
+     "stars_rep": 30,
+     "stars_max": 30,
+     "latest_date": "2026-11-02T00:00:00Z",
+     "days_since_release": 3,
      "days_since_push": 1,
      "family_days_since_push": 1,
      "official": true,
@@ -7391,7 +7383,7 @@
    "latest_date": "2025-05-22T22:47:26Z",
    "days_since_release": 531,
    "days_since_push": 40,
-   "family_days_since_push": 2,
+   "family_days_since_push": 3,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -7425,8 +7417,8 @@
    "stars_max": 50786,
    "latest_date": "2026-10-30T23:09:14Z",
    "days_since_release": 5,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -7460,7 +7452,7 @@
    "stars_rep": 34034,
    "stars_max": 34034,
    "latest_date": "2026-10-30T13:38:45Z",
-   "days_since_release": 5,
+   "days_since_release": 6,
    "days_since_push": 2,
    "family_days_since_push": 2,
    "official": true,
@@ -7552,7 +7544,7 @@
    "stars_rep": 19786,
    "stars_max": 19786,
    "latest_date": "2026-08-19T11:06:47Z",
-   "days_since_release": 77,
+   "days_since_release": 78,
    "days_since_push": 2,
    "family_days_since_push": 2,
    "official": true,
@@ -7626,8 +7618,8 @@
    "stars_max": 15990,
    "latest_date": "2026-11-03T16:18:22Z",
    "days_since_release": 1,
-   "days_since_push": 0,
-   "family_days_since_push": 0,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -7700,9 +7692,9 @@
    "stars_rep": 14814,
    "stars_max": 14814,
    "latest_date": "2026-05-16T12:35:08Z",
-   "days_since_release": 172,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_release": 173,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -7773,9 +7765,9 @@
    "stars_rep": 11703,
    "stars_max": 11703,
    "latest_date": "2026-10-14T09:36:19Z",
-   "days_since_release": 21,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_release": 22,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -7879,7 +7871,7 @@
    "stars_rep": 10086,
    "stars_max": 10086,
    "latest_date": "2025-02-06T13:18:18Z",
-   "days_since_release": 636,
+   "days_since_release": 637,
    "days_since_push": 3,
    "family_days_since_push": 3,
    "official": true,
@@ -8028,7 +8020,7 @@
    "stars_rep": 6209,
    "stars_max": 6209,
    "latest_date": "2026-09-30T07:06:44Z",
-   "days_since_release": 35,
+   "days_since_release": 36,
    "days_since_push": 10,
    "family_days_since_push": 10,
    "official": true,
@@ -8100,7 +8092,7 @@
    "stars_rep": 5180,
    "stars_max": 5180,
    "latest_date": "2025-11-18T10:14:11Z",
-   "days_since_release": 351,
+   "days_since_release": 352,
    "days_since_push": 8,
    "family_days_since_push": 8,
    "official": true,
@@ -8202,9 +8194,9 @@
    "stars_rep": 4476,
    "stars_max": 4476,
    "latest_date": "2026-04-21T08:52:05Z",
-   "days_since_release": 197,
-   "days_since_push": 19,
-   "family_days_since_push": 19,
+   "days_since_release": 198,
+   "days_since_push": 20,
+   "family_days_since_push": 20,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -8274,9 +8266,9 @@
    "stars_rep": 4057,
    "stars_max": 4057,
    "latest_date": "2026-10-01T13:43:22Z",
-   "days_since_release": 34,
-   "days_since_push": 14,
-   "family_days_since_push": 14,
+   "days_since_release": 35,
+   "days_since_push": 15,
+   "family_days_since_push": 15,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -8352,8 +8344,8 @@
    "stars_max": 2879,
    "latest_date": "2026-10-11T18:04:33Z",
    "days_since_release": 24,
-   "days_since_push": 0,
-   "family_days_since_push": 0,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -8387,8 +8379,8 @@
    "stars_max": 2769,
    "latest_date": "2025-11-12T02:51:02Z",
    "days_since_release": 358,
-   "days_since_push": 355,
-   "family_days_since_push": 355,
+   "days_since_push": 356,
+   "family_days_since_push": 356,
    "official": false,
    "status": "quiet",
    "downloads_delta": 0,
@@ -8458,9 +8450,9 @@
    "stars_rep": 2636,
    "stars_max": 2636,
    "latest_date": "2026-08-19T11:47:09Z",
-   "days_since_release": 77,
-   "days_since_push": 2,
-   "family_days_since_push": 2,
+   "days_since_release": 78,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -8568,9 +8560,9 @@
    "stars_rep": 2416,
    "stars_max": 2416,
    "latest_date": "2025-07-06T07:32:33Z",
-   "days_since_release": 486,
-   "days_since_push": 153,
-   "family_days_since_push": 153,
+   "days_since_release": 487,
+   "days_since_push": 154,
+   "family_days_since_push": 154,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -8682,8 +8674,8 @@
    "stars_max": 2069,
    "latest_date": "2022-03-01T00:14:43Z",
    "days_since_release": 1710,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -8805,34 +8797,37 @@
   {
    "family": "vita3k",
    "label": "Vita3K 系",
-   "rep_id": "vita3k-vita3k-android",
-   "rep_name": "Vita3K Android",
-   "repo_url": "https://github.com/Vita3K/Vita3K-Android",
-   "logo": "https://the412banner.github.io/emulator-ranking/logos/vita3k.png",
+   "rep_id": "vita3k-vita3k",
+   "rep_name": "Vita3K",
+   "repo_url": "https://github.com/Vita3K/Vita3K",
+   "logo": null,
    "section": "console-emulation",
    "platforms": [
     "psvita"
    ],
    "method": "emulation",
    "hosts": [
-    "android"
+    "windows",
+    "linux",
+    "macos"
    ],
-   "description": "Public releases and CI for the Vita3K Android app",
-   "members": 1,
+   "description": "PS Vita 模拟器桌面版（Windows/Linux/macOS），Vita3K 项目的上游主仓库。",
+   "members": 2,
    "member_ids": [
-    "vita3k-vita3k-android"
+    "vita3k-vita3k-android",
+    "vita3k-vita3k"
    ],
    "downloads_sum": 4327968,
-   "downloads_rep": 4327968,
+   "downloads_rep": 0,
    "downloads_basis": "lifetime",
-   "stars_rep": 1664,
-   "stars_max": 1664,
-   "latest_date": "2024-06-06T20:36:09Z",
-   "days_since_release": 881,
-   "days_since_push": 620,
-   "family_days_since_push": 620,
-   "official": false,
-   "status": "quiet",
+   "stars_rep": 5937,
+   "stars_max": 5937,
+   "latest_date": "2026-11-05T00:00:00Z",
+   "days_since_release": 0,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
+   "official": true,
+   "status": "active",
    "downloads_delta": 0,
    "growth_pct": 0.0
   },
@@ -8936,7 +8931,7 @@
    "stars_rep": 1415,
    "stars_max": 1415,
    "latest_date": "2024-12-25T13:32:34Z",
-   "days_since_release": 679,
+   "days_since_release": 680,
    "days_since_push": 32,
    "family_days_since_push": 32,
    "official": true,
@@ -8977,8 +8972,8 @@
    "stars_max": 1314,
    "latest_date": "2026-02-12T05:46:32Z",
    "days_since_release": 266,
-   "days_since_push": 11,
-   "family_days_since_push": 11,
+   "days_since_push": 12,
+   "family_days_since_push": 12,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -9010,9 +9005,9 @@
    "stars_rep": 1265,
    "stars_max": 1265,
    "latest_date": "2023-01-17T12:00:58Z",
-   "days_since_release": 1387,
-   "days_since_push": 205,
-   "family_days_since_push": 205,
+   "days_since_release": 1388,
+   "days_since_push": 206,
+   "family_days_since_push": 206,
    "official": true,
    "status": "quiet",
    "downloads_delta": 0,
@@ -9082,8 +9077,8 @@
    "stars_max": 884,
    "latest_date": "2026-09-07T04:57:17Z",
    "days_since_release": 59,
-   "days_since_push": 8,
-   "family_days_since_push": 8,
+   "days_since_push": 9,
+   "family_days_since_push": 9,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -9219,9 +9214,9 @@
    "stars_rep": 754,
    "stars_max": 754,
    "latest_date": "2026-10-05T09:08:05Z",
-   "days_since_release": 30,
-   "days_since_push": 30,
-   "family_days_since_push": 30,
+   "days_since_release": 31,
+   "days_since_push": 31,
+   "family_days_since_push": 31,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -9257,8 +9252,8 @@
    "stars_max": 752,
    "latest_date": "2026-04-15T15:38:08Z",
    "days_since_release": 203,
-   "days_since_push": 199,
-   "family_days_since_push": 199,
+   "days_since_push": 200,
+   "family_days_since_push": 200,
    "official": true,
    "status": "quiet",
    "downloads_delta": 0,
@@ -9291,9 +9286,9 @@
    "stars_rep": 738,
    "stars_max": 738,
    "latest_date": "2026-10-12T11:19:55Z",
-   "days_since_release": 23,
-   "days_since_push": 2,
-   "family_days_since_push": 2,
+   "days_since_release": 24,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -9325,9 +9320,9 @@
    "stars_rep": 721,
    "stars_max": 721,
    "latest_date": "2025-02-28T07:48:56Z",
-   "days_since_release": 614,
-   "days_since_push": 614,
-   "family_days_since_push": 614,
+   "days_since_release": 615,
+   "days_since_push": 615,
+   "family_days_since_push": 615,
    "official": false,
    "status": "quiet",
    "downloads_delta": 0,
@@ -9359,7 +9354,7 @@
    "stars_rep": 716,
    "stars_max": 716,
    "latest_date": "2026-10-31T12:43:13Z",
-   "days_since_release": 4,
+   "days_since_release": 5,
    "days_since_push": 4,
    "family_days_since_push": 4,
    "official": false,
@@ -9465,9 +9460,9 @@
    "stars_rep": 650,
    "stars_max": 650,
    "latest_date": "2025-07-11T06:03:00Z",
-   "days_since_release": 481,
-   "days_since_push": 481,
-   "family_days_since_push": 481,
+   "days_since_release": 482,
+   "days_since_push": 482,
+   "family_days_since_push": 482,
    "official": false,
    "status": "quiet",
    "downloads_delta": 0,
@@ -9574,8 +9569,8 @@
    "stars_max": 634,
    "latest_date": "2026-11-02T22:08:00Z",
    "days_since_release": 2,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -9644,9 +9639,9 @@
    "stars_rep": 592,
    "stars_max": 592,
    "latest_date": "2026-11-02T08:56:36Z",
-   "days_since_release": 2,
-   "days_since_push": 2,
-   "family_days_since_push": 2,
+   "days_since_release": 3,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -9680,7 +9675,7 @@
    "stars_rep": 569,
    "stars_max": 569,
    "latest_date": "2026-10-28T09:59:28Z",
-   "days_since_release": 7,
+   "days_since_release": 8,
    "days_since_push": 2,
    "family_days_since_push": 2,
    "official": true,
@@ -9752,9 +9747,9 @@
    "stars_rep": 565,
    "stars_max": 565,
    "latest_date": "2025-09-07T12:30:43Z",
-   "days_since_release": 423,
-   "days_since_push": 417,
-   "family_days_since_push": 417,
+   "days_since_release": 424,
+   "days_since_push": 418,
+   "family_days_since_push": 418,
    "official": true,
    "status": "quiet",
    "downloads_delta": 0,
@@ -9852,19 +9847,19 @@
     "rfandango-xendroid",
     "xendroid-plus"
    ],
-   "downloads_sum": 204110,
+   "downloads_sum": 208320,
    "downloads_rep": 202720,
    "downloads_basis": "lifetime",
    "stars_rep": 506,
    "stars_max": 506,
    "latest_date": "2026-08-14T11:11:00Z",
-   "days_since_release": 82,
-   "days_since_push": 76,
-   "family_days_since_push": 2,
+   "days_since_release": 83,
+   "days_since_push": 77,
+   "family_days_since_push": 1,
    "official": false,
    "status": "active",
-   "downloads_delta": 0,
-   "growth_pct": 0.0
+   "downloads_delta": 5600,
+   "growth_pct": 2.8
   },
   {
    "family": "mupen64plus",
@@ -9894,9 +9889,9 @@
    "stars_rep": 504,
    "stars_max": 504,
    "latest_date": "2014-12-18T14:58:41Z",
-   "days_since_release": 4339,
-   "days_since_push": 68,
-   "family_days_since_push": 68,
+   "days_since_release": 4340,
+   "days_since_push": 69,
+   "family_days_since_push": 69,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -9922,18 +9917,18 @@
    "member_ids": [
     "mamcjr-botwrecompandroid"
    ],
-   "downloads_sum": 0,
-   "downloads_rep": 0,
-   "downloads_basis": "none",
-   "stars_rep": 493,
-   "stars_max": 493,
-   "latest_date": "2026-11-03T03:40:51Z",
-   "days_since_release": 2,
-   "days_since_push": 2,
-   "family_days_since_push": 2,
+   "downloads_sum": 3078,
+   "downloads_rep": 3078,
+   "downloads_basis": "lifetime",
+   "stars_rep": 583,
+   "stars_max": 583,
+   "latest_date": "2026-11-04T14:03:45Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
    "official": true,
    "status": "active",
-   "downloads_delta": 0,
+   "downloads_delta": 3078,
    "growth_pct": null
   },
   {
@@ -10000,8 +9995,8 @@
    "stars_max": 438,
    "latest_date": "",
    "days_since_release": null,
-   "days_since_push": 60,
-   "family_days_since_push": 60,
+   "days_since_push": 61,
+   "family_days_since_push": 61,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10033,9 +10028,9 @@
    "stars_rep": 417,
    "stars_max": 417,
    "latest_date": "2026-08-23T12:13:46Z",
-   "days_since_release": 73,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_release": 74,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10102,8 +10097,8 @@
    "stars_max": 335,
    "latest_date": "2024-01-12T16:20:17Z",
    "days_since_release": 1027,
-   "days_since_push": 617,
-   "family_days_since_push": 617,
+   "days_since_push": 618,
+   "family_days_since_push": 618,
    "official": false,
    "status": "quiet",
    "downloads_delta": 0,
@@ -10138,9 +10133,9 @@
    "stars_rep": 310,
    "stars_max": 310,
    "latest_date": "2026-11-03T06:26:37Z",
-   "days_since_release": 1,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_release": 2,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10174,9 +10169,9 @@
    "stars_rep": 308,
    "stars_max": 308,
    "latest_date": "2025-01-16T07:35:49Z",
-   "days_since_release": 657,
-   "days_since_push": 109,
-   "family_days_since_push": 109,
+   "days_since_release": 658,
+   "days_since_push": 110,
+   "family_days_since_push": 110,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10278,9 +10273,9 @@
    "stars_rep": 301,
    "stars_max": 301,
    "latest_date": "2026-09-25T09:31:53Z",
-   "days_since_release": 40,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_release": 41,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10312,9 +10307,9 @@
    "stars_rep": 286,
    "stars_max": 286,
    "latest_date": "2026-10-28T12:57:57Z",
-   "days_since_release": 7,
-   "days_since_push": 7,
-   "family_days_since_push": 7,
+   "days_since_release": 8,
+   "days_since_push": 8,
+   "family_days_since_push": 8,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -10346,7 +10341,7 @@
    "stars_rep": 276,
    "stars_max": 276,
    "latest_date": "2026-10-12T15:12:34Z",
-   "days_since_release": 23,
+   "days_since_release": 24,
    "days_since_push": 13,
    "family_days_since_push": 13,
    "official": true,
@@ -10421,8 +10416,8 @@
    "stars_max": 256,
    "latest_date": "2022-01-26T02:02:09Z",
    "days_since_release": 1744,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10489,8 +10484,8 @@
    "stars_max": 251,
    "latest_date": "2026-09-30T00:00:00Z",
    "days_since_release": 36,
-   "days_since_push": 3,
-   "family_days_since_push": 3,
+   "days_since_push": 4,
+   "family_days_since_push": 4,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10663,8 +10658,8 @@
    "stars_max": 237,
    "latest_date": "2026-11-03T20:03:00Z",
    "days_since_release": 1,
-   "days_since_push": 0,
-   "family_days_since_push": 0,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10696,9 +10691,9 @@
    "stars_rep": 222,
    "stars_max": 222,
    "latest_date": "2026-11-01T14:56:16Z",
-   "days_since_release": 3,
-   "days_since_push": 3,
-   "family_days_since_push": 3,
+   "days_since_release": 4,
+   "days_since_push": 4,
+   "family_days_since_push": 4,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10735,8 +10730,8 @@
    "stars_max": 208,
    "latest_date": "2026-10-28T05:01:40Z",
    "days_since_release": 8,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10771,9 +10766,9 @@
    "stars_rep": 201,
    "stars_max": 201,
    "latest_date": "2026-11-03T08:27:42Z",
-   "days_since_release": 1,
-   "days_since_push": 0,
-   "family_days_since_push": 0,
+   "days_since_release": 2,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10842,8 +10837,8 @@
    "stars_max": 181,
    "latest_date": "2026-01-22T23:33:34Z",
    "days_since_release": 286,
-   "days_since_push": 43,
-   "family_days_since_push": 43,
+   "days_since_push": 44,
+   "family_days_since_push": 44,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -10946,9 +10941,9 @@
    "stars_rep": 151,
    "stars_max": 151,
    "latest_date": "2026-08-29T13:33:12Z",
-   "days_since_release": 67,
-   "days_since_push": 67,
-   "family_days_since_push": 67,
+   "days_since_release": 68,
+   "days_since_push": 68,
+   "family_days_since_push": 68,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -10981,9 +10976,9 @@
    "stars_rep": 150,
    "stars_max": 150,
    "latest_date": "2026-10-30T14:41:12Z",
-   "days_since_release": 5,
-   "days_since_push": 5,
-   "family_days_since_push": 5,
+   "days_since_release": 6,
+   "days_since_push": 6,
+   "family_days_since_push": 6,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -11015,9 +11010,9 @@
    "stars_rep": 140,
    "stars_max": 140,
    "latest_date": "2026-04-29T11:14:37Z",
-   "days_since_release": 189,
-   "days_since_push": 189,
-   "family_days_since_push": 189,
+   "days_since_release": 190,
+   "days_since_push": 190,
+   "family_days_since_push": 190,
    "official": false,
    "status": "quiet",
    "downloads_delta": 0,
@@ -11190,9 +11185,9 @@
    "stars_rep": 105,
    "stars_max": 105,
    "latest_date": "2026-10-18T11:10:11Z",
-   "days_since_release": 17,
-   "days_since_push": 17,
-   "family_days_since_push": 17,
+   "days_since_release": 18,
+   "days_since_push": 18,
+   "family_days_since_push": 18,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -11515,8 +11510,8 @@
    "stars_max": 76,
    "latest_date": "",
    "days_since_release": null,
-   "days_since_push": 7,
-   "family_days_since_push": 7,
+   "days_since_push": 8,
+   "family_days_since_push": 8,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -11582,9 +11577,9 @@
    "stars_rep": 69,
    "stars_max": 69,
    "latest_date": "2026-10-28T10:46:40Z",
-   "days_since_release": 7,
-   "days_since_push": 7,
-   "family_days_since_push": 7,
+   "days_since_release": 8,
+   "days_since_push": 8,
+   "family_days_since_push": 8,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -11621,8 +11616,8 @@
    "stars_max": 62,
    "latest_date": "2026-11-02T03:38:43Z",
    "days_since_release": 3,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -11654,9 +11649,9 @@
    "stars_rep": 61,
    "stars_max": 61,
    "latest_date": "2026-10-20T13:44:16Z",
-   "days_since_release": 15,
-   "days_since_push": 15,
-   "family_days_since_push": 15,
+   "days_since_release": 16,
+   "days_since_push": 16,
+   "family_days_since_push": 16,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -11862,9 +11857,9 @@
    "stars_rep": 48,
    "stars_max": 48,
    "latest_date": "2026-09-26T11:19:01Z",
-   "days_since_release": 39,
-   "days_since_push": 7,
-   "family_days_since_push": 7,
+   "days_since_release": 40,
+   "days_since_push": 8,
+   "family_days_since_push": 8,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -11897,8 +11892,8 @@
    "stars_max": 38,
    "latest_date": "",
    "days_since_release": null,
-   "days_since_push": 3488,
-   "family_days_since_push": 3488,
+   "days_since_push": 3489,
+   "family_days_since_push": 3489,
    "official": true,
    "status": "quiet",
    "downloads_delta": 0,
@@ -11966,7 +11961,7 @@
    "stars_rep": 25,
    "stars_max": 25,
    "latest_date": "2026-07-10T07:22:53Z",
-   "days_since_release": 117,
+   "days_since_release": 118,
    "days_since_push": 106,
    "family_days_since_push": 106,
    "official": false,
@@ -12000,9 +11995,9 @@
    "stars_rep": 25,
    "stars_max": 25,
    "latest_date": "2026-09-05T10:08:49Z",
-   "days_since_release": 60,
-   "days_since_push": 60,
-   "family_days_since_push": 60,
+   "days_since_release": 61,
+   "days_since_push": 61,
+   "family_days_since_push": 61,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -12034,7 +12029,7 @@
    "stars_rep": 24,
    "stars_max": 24,
    "latest_date": "2026-08-05T07:38:15Z",
-   "days_since_release": 91,
+   "days_since_release": 92,
    "days_since_push": 86,
    "family_days_since_push": 86,
    "official": false,
@@ -12068,7 +12063,7 @@
    "stars_rep": 22,
    "stars_max": 22,
    "latest_date": "2026-10-24T08:01:35Z",
-   "days_since_release": 11,
+   "days_since_release": 12,
    "days_since_push": 2,
    "family_days_since_push": 2,
    "official": false,
@@ -12102,9 +12097,9 @@
    "stars_rep": 22,
    "stars_max": 22,
    "latest_date": "2026-11-01T13:11:33Z",
-   "days_since_release": 3,
-   "days_since_push": 3,
-   "family_days_since_push": 3,
+   "days_since_release": 4,
+   "days_since_push": 4,
+   "family_days_since_push": 4,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12136,9 +12131,9 @@
    "stars_rep": 22,
    "stars_max": 22,
    "latest_date": "2026-10-31T07:29:39Z",
-   "days_since_release": 4,
-   "days_since_push": 4,
-   "family_days_since_push": 4,
+   "days_since_release": 5,
+   "days_since_push": 5,
+   "family_days_since_push": 5,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -12174,7 +12169,7 @@
    "stars_rep": 20,
    "stars_max": 20,
    "latest_date": "2026-09-13T06:38:01Z",
-   "days_since_release": 52,
+   "days_since_release": 53,
    "days_since_push": 2,
    "family_days_since_push": 2,
    "official": true,
@@ -12208,9 +12203,9 @@
    "stars_rep": 19,
    "stars_max": 19,
    "latest_date": "2026-09-17T15:11:52Z",
-   "days_since_release": 48,
-   "days_since_push": 48,
-   "family_days_since_push": 48,
+   "days_since_release": 49,
+   "days_since_push": 49,
+   "family_days_since_push": 49,
    "official": true,
    "status": "archived",
    "downloads_delta": 0,
@@ -12277,8 +12272,8 @@
    "stars_max": 17,
    "latest_date": "",
    "days_since_release": null,
-   "days_since_push": 1,
-   "family_days_since_push": 1,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12348,8 +12343,8 @@
    "stars_max": 16,
    "latest_date": "2026-03-19T00:00:00Z",
    "days_since_release": 231,
-   "days_since_push": 257,
-   "family_days_since_push": 257,
+   "days_since_push": 258,
+   "family_days_since_push": 258,
    "official": true,
    "status": "quiet",
    "downloads_delta": 0,
@@ -12418,8 +12413,8 @@
    "stars_max": 15,
    "latest_date": "2026-10-28T16:29:00Z",
    "days_since_release": 7,
-   "days_since_push": 4,
-   "family_days_since_push": 4,
+   "days_since_push": 5,
+   "family_days_since_push": 5,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12452,8 +12447,8 @@
    "stars_max": 13,
    "latest_date": "2026-11-02T03:32:18Z",
    "days_since_release": 3,
-   "days_since_push": 2,
-   "family_days_since_push": 2,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12520,8 +12515,8 @@
    "stars_max": 12,
    "latest_date": "2026-07-27T00:02:20Z",
    "days_since_release": 101,
-   "days_since_push": 94,
-   "family_days_since_push": 94,
+   "days_since_push": 95,
+   "family_days_since_push": 95,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12553,7 +12548,7 @@
    "stars_rep": 12,
    "stars_max": 12,
    "latest_date": "2026-10-31T09:01:09Z",
-   "days_since_release": 4,
+   "days_since_release": 5,
    "days_since_push": 4,
    "family_days_since_push": 4,
    "official": true,
@@ -12622,8 +12617,8 @@
    "stars_max": 7,
    "latest_date": "2026-04-09T16:39:54Z",
    "days_since_release": 209,
-   "days_since_push": 34,
-   "family_days_since_push": 34,
+   "days_since_push": 35,
+   "family_days_since_push": 35,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12658,9 +12653,9 @@
    "stars_rep": 5,
    "stars_max": 5,
    "latest_date": "2026-11-03T12:46:33Z",
-   "days_since_release": 1,
-   "days_since_push": 0,
-   "family_days_since_push": 0,
+   "days_since_release": 2,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -12693,8 +12688,8 @@
    "stars_max": 5,
    "latest_date": "2026-10-28T00:00:00Z",
    "days_since_release": 8,
-   "days_since_push": 8,
-   "family_days_since_push": 8,
+   "days_since_push": 9,
+   "family_days_since_push": 9,
    "official": false,
    "status": "active",
    "downloads_delta": 0,
@@ -12761,9 +12756,9 @@
    "stars_rep": 4,
    "stars_max": 4,
    "latest_date": "2026-10-31T07:29:04Z",
-   "days_since_release": 4,
-   "days_since_push": 4,
-   "family_days_since_push": 4,
+   "days_since_release": 5,
+   "days_since_push": 5,
+   "family_days_since_push": 5,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -13567,9 +13562,11 @@
     "windows"
    ],
    "description": "Xbox 360 模拟器，Windows 平台，实验性但已能运行大量商业游戏。支持 Vulkan 与 D3D12 两套渲染后端，需要自备主机固件与游戏镜像。EmuCR 每日跟随其 Git 构建，是 Xbox 360 方向的上游主线。",
-   "members": 1,
+   "members": 3,
    "member_ids": [
-    "xenia-project-xenia"
+    "xenia-project-xenia",
+    "xenia-canary-xenia-canary",
+    "has207-xenia-edge"
    ],
    "downloads_sum": 0,
    "downloads_rep": 0,
@@ -13579,7 +13576,7 @@
    "latest_date": "2026-11-04T00:00:00Z",
    "days_since_release": 1,
    "days_since_push": 1,
-   "family_days_since_push": 1,
+   "family_days_since_push": 0,
    "official": true,
    "status": "active",
    "downloads_delta": 0,
@@ -13652,6 +13649,1129 @@
    "official": true,
    "status": "active",
    "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "par274-sharpemu",
+   "label": "SharpEmu",
+   "rep_id": "par274-sharpemu",
+   "rep_name": "SharpEmu",
+   "repo_url": "https://github.com/par274/sharpemu",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "ps5"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux"
+   ],
+   "description": "实验性 PS5 模拟器（C#），面向 Windows/Linux，2026-03 建仓，11 月仍每日推送。",
+   "members": 1,
+   "member_ids": [
+    "par274-sharpemu"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 6531,
+   "stars_max": 6531,
+   "latest_date": "2026-11-01T00:00:00Z",
+   "days_since_release": 4,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "trekawek-coffee-gb",
+   "label": "Coffee GB",
+   "rep_id": "trekawek-coffee-gb",
+   "rep_name": "Coffee GB",
+   "repo_url": "https://github.com/trekawek/coffee-gb",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "gb",
+    "gbc"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Java 写的 Game Boy / Game Boy Color 精确模拟器，强调周期准确与测试覆盖。",
+   "members": 1,
+   "member_ids": [
+    "trekawek-coffee-gb"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 1173,
+   "stars_max": 1173,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "ymir-emu-ymir",
+   "label": "Ymir",
+   "rep_id": "ymir-emu-ymir",
+   "rep_name": "Ymir",
+   "repo_url": "https://github.com/ymir-emu/ymir",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "saturn"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Sega Saturn 模拟器（C++），Windows/Linux/macOS。",
+   "members": 1,
+   "member_ids": [
+    "ymir-emu-ymir"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 1108,
+   "stars_max": 1108,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "grumpycoders-pcsx-redux",
+   "label": "PCSX-Redux",
+   "rep_id": "grumpycoders-pcsx-redux",
+   "rep_name": "PCSX-Redux",
+   "repo_url": "https://github.com/grumpycoders/pcsx-redux",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "ps1"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "PS1 模拟器 + 逆向调试工具链，含 MIPS 重编译器、硬件测试与内存断点。",
+   "members": 1,
+   "member_ids": [
+    "grumpycoders-pcsx-redux"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 1038,
+   "stars_max": 1038,
+   "latest_date": "",
+   "days_since_release": null,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "dborth-snes9xgx",
+   "label": "Snes9x GX",
+   "rep_id": "dborth-snes9xgx",
+   "rep_name": "Snes9x GX",
+   "repo_url": "https://github.com/dborth/snes9xgx",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "snes"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "gamecube",
+    "wii"
+   ],
+   "description": "Snes9x 的 GameCube / Wii 移植，dborth 维护。",
+   "members": 1,
+   "member_ids": [
+    "dborth-snes9xgx"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 510,
+   "stars_max": 510,
+   "latest_date": "2026-11-03T00:00:00Z",
+   "days_since_release": 2,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "dirkwhoffmann-virtualc64",
+   "label": "VirtualC64",
+   "rep_id": "dirkwhoffmann-virtualc64",
+   "rep_name": "VirtualC64",
+   "repo_url": "https://github.com/dirkwhoffmann/virtualc64",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "c64"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "macos"
+   ],
+   "description": "周期精确的 Commodore 64 模拟器，macOS 原生（Swift/Objective-C）。",
+   "members": 1,
+   "member_ids": [
+    "dirkwhoffmann-virtualc64"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 422,
+   "stars_max": 422,
+   "latest_date": "2026-10-31T00:00:00Z",
+   "days_since_release": 5,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "dirkwhoffmann-vamiga",
+   "label": "vAmiga",
+   "rep_id": "dirkwhoffmann-vamiga",
+   "rep_name": "vAmiga",
+   "repo_url": "https://github.com/dirkwhoffmann/vamiga",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "amiga"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "macos"
+   ],
+   "description": "Amiga 500/1000/2000 模拟器，macOS 原生，与 VirtualC64 同一作者。",
+   "members": 1,
+   "member_ids": [
+    "dirkwhoffmann-vamiga"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 417,
+   "stars_max": 417,
+   "latest_date": "2026-11-01T00:00:00Z",
+   "days_since_release": 4,
+   "days_since_push": 4,
+   "family_days_since_push": 4,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "dborth-vbagx",
+   "label": "Visual Boy Advance GX",
+   "rep_id": "dborth-vbagx",
+   "rep_name": "Visual Boy Advance GX",
+   "repo_url": "https://github.com/dborth/vbagx",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "gba"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "gamecube",
+    "wii"
+   ],
+   "description": "Visual Boy Advance 的 GameCube / Wii 移植。",
+   "members": 1,
+   "member_ids": [
+    "dborth-vbagx"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 350,
+   "stars_max": 350,
+   "latest_date": "2026-11-03T00:00:00Z",
+   "days_since_release": 2,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "dborth-fceugx",
+   "label": "FCE Ultra GX",
+   "rep_id": "dborth-fceugx",
+   "rep_name": "FCE Ultra GX",
+   "repo_url": "https://github.com/dborth/fceugx",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "nes"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "gamecube",
+    "wii"
+   ],
+   "description": "FCE Ultra 的 GameCube / Wii 移植（NES）。",
+   "members": 1,
+   "member_ids": [
+    "dborth-fceugx"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 336,
+   "stars_max": 336,
+   "latest_date": "2026-11-03T00:00:00Z",
+   "days_since_release": 2,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "m5devs-openrom",
+   "label": "OpenROM",
+   "rep_id": "m5devs-openrom",
+   "rep_name": "OpenROM",
+   "repo_url": "https://github.com/m5devs/openrom",
+   "logo": null,
+   "section": "frontend-tool",
+   "platforms": [
+    "multi"
+   ],
+   "method": null,
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "复古 ROM 工具箱：格式转换、打补丁、压缩、校验、批量整理。",
+   "members": 1,
+   "member_ids": [
+    "m5devs-openrom"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 294,
+   "stars_max": 294,
+   "latest_date": "2026-11-04T00:00:00Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "drhelius-geargrafx",
+   "label": "Geargrafx",
+   "rep_id": "drhelius-geargrafx",
+   "rep_name": "Geargrafx",
+   "repo_url": "https://github.com/drhelius/geargrafx",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "pc-engine"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "PC Engine / TurboGrafx-16 / SuperGrafx / CD-ROM² 模拟器与调试器。",
+   "members": 1,
+   "member_ids": [
+    "drhelius-geargrafx"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 253,
+   "stars_max": 253,
+   "latest_date": "2026-11-04T00:00:00Z",
+   "days_since_release": 1,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "jay-day-rmg-k",
+   "label": "RMG-K",
+   "rep_id": "jay-day-rmg-k",
+   "rep_name": "RMG-K",
+   "repo_url": "https://github.com/jay-day/rmg-k",
+   "logo": null,
+   "section": "frontend-tool",
+   "platforms": [
+    "n64"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux"
+   ],
+   "description": "基于 Mupen64 的 N64 前端，带 Kaillera 与 GekkoNet 回滚联机。",
+   "members": 1,
+   "member_ids": [
+    "jay-day-rmg-k"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 183,
+   "stars_max": 183,
+   "latest_date": "2026-11-04T00:00:00Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "copperlinehq-copperline",
+   "label": "Copperline",
+   "rep_id": "copperlinehq-copperline",
+   "rep_name": "Copperline",
+   "repo_url": "https://github.com/copperlinehq/copperline",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "amiga"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Rust 写的 Amiga 模拟器。",
+   "members": 1,
+   "member_ids": [
+    "copperlinehq-copperline"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 140,
+   "stars_max": 140,
+   "latest_date": "2026-10-31T00:00:00Z",
+   "days_since_release": 5,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "shanytc-snes9x",
+   "label": "SuperSnes9x",
+   "rep_id": "shanytc-snes9x",
+   "rep_name": "SuperSnes9x",
+   "repo_url": "https://github.com/shanytc/snes9x",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "snes"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Snes9x 的可移植分支（SuperSnes9x），保留旧前端与滤镜。",
+   "members": 1,
+   "member_ids": [
+    "shanytc-snes9x"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 124,
+   "stars_max": 124,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "shadps4-emu-shadnet",
+   "label": "shadNet",
+   "rep_id": "shadps4-emu-shadnet",
+   "rep_name": "shadNet",
+   "repo_url": "https://github.com/shadps4-emu/shadnet",
+   "logo": null,
+   "section": "frontend-tool",
+   "platforms": [
+    "ps4"
+   ],
+   "method": null,
+   "hosts": [
+    "windows",
+    "linux"
+   ],
+   "description": "shadPS4 的自建联机服务端，用 C++ 重写 RPCSN。",
+   "members": 1,
+   "member_ids": [
+    "shadps4-emu-shadnet"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 78,
+   "stars_max": 78,
+   "latest_date": "2026-11-05T00:00:00Z",
+   "days_since_release": 0,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "crazyriddler-xbased",
+   "label": "xbased",
+   "rep_id": "crazyriddler-xbased",
+   "rep_name": "xbased",
+   "repo_url": "https://github.com/crazyriddler/xbased",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "xbox"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux"
+   ],
+   "description": "初代 Xbox 模拟器，Windows/Linux。",
+   "members": 1,
+   "member_ids": [
+    "crazyriddler-xbased"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 73,
+   "stars_max": 73,
+   "latest_date": "2026-11-05T00:00:00Z",
+   "days_since_release": 0,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "ivanizag-izapple2",
+   "label": "izapple2",
+   "rep_id": "ivanizag-izapple2",
+   "rep_name": "izapple2",
+   "repo_url": "https://github.com/ivanizag/izapple2",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "apple2"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Apple ][+ / //e 模拟器，Go 编写，支持多种前端。",
+   "members": 1,
+   "member_ids": [
+    "ivanizag-izapple2"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 71,
+   "stars_max": 71,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "pcsx2-mymcpp",
+   "label": "myMCpp",
+   "rep_id": "pcsx2-mymcpp",
+   "rep_name": "myMCpp",
+   "repo_url": "https://github.com/pcsx2/mymcpp",
+   "logo": null,
+   "section": "frontend-tool",
+   "platforms": [
+    "ps2"
+   ],
+   "method": null,
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "PS2 记忆卡管理与存档编辑器（myMC 的 C++ 重写）。",
+   "members": 1,
+   "member_ids": [
+    "pcsx2-mymcpp"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 62,
+   "stars_max": 62,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "eighttails-pc6001vx",
+   "label": "PC6001VX",
+   "rep_id": "eighttails-pc6001vx",
+   "rep_name": "PC6001VX",
+   "repo_url": "https://github.com/eighttails/pc6001vx",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "pc-6001"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "NEC PC-6001 模拟器的跨平台版本（Qt 前端）。",
+   "members": 1,
+   "member_ids": [
+    "eighttails-pc6001vx"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 54,
+   "stars_max": 54,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "keklick1337-rps5e",
+   "label": "RustPS5Emu",
+   "rep_id": "keklick1337-rps5e",
+   "rep_name": "RustPS5Emu",
+   "repo_url": "https://github.com/keklick1337/rps5e",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "ps5"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux"
+   ],
+   "description": "Rust 写的 PS5 模拟器，面向 Linux/Windows，早期实验阶段。",
+   "members": 1,
+   "member_ids": [
+    "keklick1337-rps5e"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 45,
+   "stars_max": 45,
+   "latest_date": "2026-11-01T00:00:00Z",
+   "days_since_release": 4,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "tixul-ngpcraft-emulator",
+   "label": "NgpCraft",
+   "rep_id": "tixul-ngpcraft-emulator",
+   "rep_name": "NgpCraft",
+   "repo_url": "https://github.com/tixul/ngpcraft_emulator",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "neo-geo-pocket"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows"
+   ],
+   "description": "Neo Geo Pocket / Color 模拟器，带完整调试器与多语言界面。",
+   "members": 1,
+   "member_ids": [
+    "tixul-ngpcraft-emulator"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 33,
+   "stars_max": 33,
+   "latest_date": "2026-11-04T00:00:00Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "nixxou-zaxnes",
+   "label": "Zaxnes",
+   "rep_id": "nixxou-zaxnes",
+   "rep_name": "Zaxnes",
+   "repo_url": "https://github.com/nixxou/zaxnes",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "nes"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux"
+   ],
+   "description": "NES 模拟器，Windows/Linux。",
+   "members": 1,
+   "member_ids": [
+    "nixxou-zaxnes"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 30,
+   "stars_max": 30,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "dmanlfc-sm2-emu",
+   "label": "SM2-EMU",
+   "rep_id": "dmanlfc-sm2-emu",
+   "rep_name": "SM2-EMU",
+   "repo_url": "https://github.com/dmanlfc/sm2-emu",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "arcade"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Sega Model 2 街机模拟器。",
+   "members": 1,
+   "member_ids": [
+    "dmanlfc-sm2-emu"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 27,
+   "stars_max": 27,
+   "latest_date": "2026-11-03T00:00:00Z",
+   "days_since_release": 2,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "jberclaz-turbostage",
+   "label": "TurboStage",
+   "rep_id": "jberclaz-turbostage",
+   "rep_name": "TurboStage",
+   "repo_url": "https://github.com/jberclaz/turbostage",
+   "logo": null,
+   "section": "frontend-tool",
+   "platforms": [
+    "dos"
+   ],
+   "method": null,
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "DOSBox Staging 的图形前端，管理 DOS 游戏库并一键启动。",
+   "members": 1,
+   "member_ids": [
+    "jberclaz-turbostage"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 21,
+   "stars_max": 21,
+   "latest_date": "2026-11-03T00:00:00Z",
+   "days_since_release": 2,
+   "days_since_push": 2,
+   "family_days_since_push": 2,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "habib256-pom2",
+   "label": "POM2",
+   "rep_id": "habib256-pom2",
+   "rep_name": "POM2",
+   "repo_url": "https://github.com/habib256/pom2",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "apple2"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows",
+    "linux",
+    "macos"
+   ],
+   "description": "Apple ][ / ][+ / //e / //c / //c+ 模拟器。",
+   "members": 1,
+   "member_ids": [
+    "habib256-pom2"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 18,
+   "stars_max": 18,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "eryski-cosmou",
+   "label": "CosmoU",
+   "rep_id": "eryski-cosmou",
+   "rep_name": "CosmoU",
+   "repo_url": "https://github.com/eryski/cosmou",
+   "logo": null,
+   "section": "frontend-tool",
+   "platforms": [
+    "wiiu"
+   ],
+   "method": null,
+   "hosts": [
+    "windows"
+   ],
+   "description": "Wii U 游戏在 PC 上运行的前端/兼容层。",
+   "members": 1,
+   "member_ids": [
+    "eryski-cosmou"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 15,
+   "stars_max": 15,
+   "latest_date": "2026-11-01T00:00:00Z",
+   "days_since_release": 4,
+   "days_since_push": 3,
+   "family_days_since_push": 3,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "tovarichtch-odin",
+   "label": "Odin",
+   "rep_id": "tovarichtch-odin",
+   "rep_name": "Odin",
+   "repo_url": "https://github.com/tovarichtch/odin",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "arcade"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows"
+   ],
+   "description": "Sega Hikaru 街机模拟器（LLE），Valkyrie 的硬分叉。",
+   "members": 1,
+   "member_ids": [
+    "tovarichtch-odin"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 11,
+   "stars_max": 11,
+   "latest_date": "2026-11-02T00:00:00Z",
+   "days_since_release": 3,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "frantriems-vkrt-nes-remaster",
+   "label": "VKRT NES Remaster",
+   "rep_id": "frantriems-vkrt-nes-remaster",
+   "rep_name": "VKRT NES Remaster",
+   "repo_url": "https://github.com/frantriems/vkrt-nes-remaster",
+   "logo": null,
+   "section": "console-emulation",
+   "platforms": [
+    "nes"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "windows"
+   ],
+   "description": "NES 模拟器源码（C++20），与前端解耦。",
+   "members": 1,
+   "member_ids": [
+    "frantriems-vkrt-nes-remaster"
+   ],
+   "downloads_sum": 0,
+   "downloads_rep": 0,
+   "downloads_basis": "none",
+   "stars_rep": 3,
+   "stars_max": 3,
+   "latest_date": "2026-11-01T00:00:00Z",
+   "days_since_release": 4,
+   "days_since_push": 4,
+   "family_days_since_push": 4,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 0,
+   "growth_pct": null
+  },
+  {
+   "family": "winhub-emu-winhub",
+   "label": "WinHub",
+   "rep_id": "winhub-emu-winhub",
+   "rep_name": "WinHub",
+   "repo_url": "https://github.com/winhub-emu/winhub",
+   "logo": "https://avatars.githubusercontent.com/u/288650572?v=4",
+   "section": "windows-compat",
+   "platforms": [
+    "windows-pc"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "android"
+   ],
+   "description": "WinHub：Android 端一体化游戏平台（早期预览），开源；单包约 557MB，分 standard / pubg / ludashi 三个变体，是否为自带运行时的兼容层待核",
+   "members": 1,
+   "member_ids": [
+    "winhub-emu-winhub"
+   ],
+   "downloads_sum": 225,
+   "downloads_rep": 225,
+   "downloads_basis": "lifetime",
+   "stars_rep": 443,
+   "stars_max": 443,
+   "latest_date": "2026-11-05T12:58:47Z",
+   "days_since_release": 0,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 225,
+   "growth_pct": null
+  },
+  {
+   "family": "gs-soft-it-lumen-emu",
+   "label": "Lumen Emu",
+   "rep_id": "gs-soft-it-lumen-emu",
+   "rep_name": "Lumen Emu",
+   "repo_url": "https://github.com/gs-soft-it/lumen-emu",
+   "logo": "https://avatars.githubusercontent.com/u/254604543?v=4",
+   "section": "console-emulation",
+   "platforms": [
+    "ps5",
+    "ps4"
+   ],
+   "method": "emulation",
+   "hosts": [
+    "android"
+   ],
+   "description": "Lumen Emu（GS-Soft）：实验性 PS4/PS5 安卓模拟器，核心开源，另有 macOS（Apple Silicon）版本",
+   "members": 1,
+   "member_ids": [
+    "gs-soft-it-lumen-emu"
+   ],
+   "downloads_sum": 42,
+   "downloads_rep": 42,
+   "downloads_basis": "lifetime",
+   "stars_rep": 23,
+   "stars_max": 23,
+   "latest_date": "2026-11-04T04:55:54Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 42,
+   "growth_pct": null
+  },
+  {
+   "family": "zfitness-nixport",
+   "label": "Nixport",
+   "rep_id": "zfitness-nixport",
+   "rep_name": "Nixport",
+   "repo_url": "https://github.com/zFitness/nixport",
+   "logo": "https://avatars.githubusercontent.com/u/41500499?v=4",
+   "section": "frontend-tool",
+   "platforms": [],
+   "method": null,
+   "hosts": [
+    "android"
+   ],
+   "description": "Nixport：在 Android 上直接运行 Linux 程序的启动器，无需 root、无需 proot；安装包约 299MB",
+   "members": 1,
+   "member_ids": [
+    "zfitness-nixport"
+   ],
+   "downloads_sum": 1049,
+   "downloads_rep": 1049,
+   "downloads_basis": "lifetime",
+   "stars_rep": 17,
+   "stars_max": 17,
+   "latest_date": "2026-11-04T09:02:38Z",
+   "days_since_release": 1,
+   "days_since_push": 1,
+   "family_days_since_push": 1,
+   "official": true,
+   "status": "active",
+   "downloads_delta": 1049,
+   "growth_pct": null
+  },
+  {
+   "family": "moceure-banananative",
+   "label": "BananaNative",
+   "rep_id": "moceure-banananative",
+   "rep_name": "BananaNative",
+   "repo_url": "https://github.com/moceure/BananaNative",
+   "logo": "https://avatars.githubusercontent.com/u/351666937?v=4",
+   "section": "console-emulation",
+   "platforms": [
+    "switch"
+   ],
+   "method": "translation",
+   "hosts": [
+    "android"
+   ],
+   "description": "BananaNative：Switch 原生层（nxnative），把 NVN 调用直接转成 Vulkan，不做系统模拟；实验性、非官方",
+   "members": 1,
+   "member_ids": [
+    "moceure-banananative"
+   ],
+   "downloads_sum": 503,
+   "downloads_rep": 503,
+   "downloads_basis": "lifetime",
+   "stars_rep": 287,
+   "stars_max": 287,
+   "latest_date": "2026-11-05T13:03:32Z",
+   "days_since_release": 0,
+   "days_since_push": 0,
+   "family_days_since_push": 0,
+   "official": false,
+   "status": "active",
+   "downloads_delta": 503,
    "growth_pct": null
   }
  ]
