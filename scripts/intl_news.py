@@ -162,14 +162,20 @@ def main():
         "reddit": sorted(rd, key=lambda r: r["created"], reverse=True),
         "errors": errors,
         "counts": {"youtube": len(yt), "reddit": len(rd)},
+        "degraded": degraded,
     }
 
     print(f"\n合计 YouTube {len(yt)} / Reddit {len(rd)}，错误 {len(errors)}")
+    # 全 0 不能当成功：11-06 实测 YouTube 频道页 404、Reddit 403，
+    # 脚本照样 exit 0，CI 显示绿色但其实什么都没收到。用非零退出码让链路故障可见。
+    degraded = (len(yt) + len(rd)) == 0
+    if degraded:
+        print("!! 两条线都是 0 条，判定链路失效（YouTube 频道页 / Reddit 接口不可达）", flush=True)
     if args.out:
         os.makedirs(os.path.dirname(args.out), exist_ok=True)
         json.dump(payload, open(args.out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"→ {args.out}")
-    return 0
+    return 2 if degraded else 0
 
 
 if __name__ == "__main__":
