@@ -718,7 +718,8 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     j << "}";
 
     // Format 支持矩阵：DXVK/VKD3D 转译层判断纹理/交换链格式的关键依据
-    // 全量遍历 0..184，只输出至少一种 tiling/buffer 能力非零的格式
+    // 遍历全部 250 个已知格式值，只输出能力非零的；配合 formatsQueried
+    // 可区分「查询了但不支持」与「压根没查」
     j << ",\"formats\":[";
     bool fmtOk = vk.vkGetPhysicalDeviceFormatProperties != nullptr;
     uint32_t printedFmts = 0;
@@ -736,6 +737,9 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
         }
     }
     j << "]";
+    // 实际查询过的格式数：为 0 表示驱动没有 vkGetPhysicalDeviceFormatProperties，
+    // 与「查询了但全部不支持」区分开
+    j << ",\"formatsQueried\":" << (fmtOk ? kFormatEntryCount : 0u);
 
     j << "}";
     return j.str();
