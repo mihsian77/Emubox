@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-05T23:54:44Z",
+ "generated_at": "2026-11-06T23:34:48Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -187,7 +187,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1614,
+   "listingsCount": 1615,
    "keys": [
     "thormax",
     "aynthormax"
@@ -275,7 +275,7 @@
    "modelName": "Pocket 6",
    "brandName": "Retroid",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 378,
+   "listingsCount": 379,
    "keys": [
     "pocket6",
     "retroidpocket6"
@@ -297,7 +297,7 @@
    "modelName": "Odin 2 Portal",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 245,
+   "listingsCount": 246,
    "keys": [
     "odin2portal",
     "aynodin2portal"
@@ -319,7 +319,7 @@
    "modelName": "Odin 2 Portal Pro",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 223,
+   "listingsCount": 224,
    "keys": [
     "odin2portalpro",
     "aynodin2portalpro"
@@ -330,7 +330,7 @@
    "modelName": "Pocket 4 Pro",
    "brandName": "Retroid",
    "socName": "Dimensity 1100",
-   "listingsCount": 164,
+   "listingsCount": 167,
    "keys": [
     "pocket4pro",
     "retroidpocket4pro"
@@ -495,7 +495,7 @@
    "modelName": "Odin 3 Pro",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Elite",
-   "listingsCount": 90,
+   "listingsCount": 91,
    "keys": [
     "odin3pro",
     "aynodin3pro"
@@ -909,6 +909,17 @@
    ]
   },
   {
+   "id": "974e2c9d-9c66-4e54-9a43-5e698c9888d6",
+   "modelName": "Redmi Note 13",
+   "brandName": "Xiaomi",
+   "socName": "Snapdragon 685",
+   "listingsCount": 34,
+   "keys": [
+    "redminote13",
+    "xiaomiredminote13"
+   ]
+  },
+  {
    "id": "c9e31b03-de28-4316-bf39-8315bf988cce",
    "modelName": "Galaxy S26 Ultra",
    "brandName": "Samsung",
@@ -928,17 +939,6 @@
    "keys": [
     "pocof5pro",
     "xiaomipocof5pro"
-   ]
-  },
-  {
-   "id": "974e2c9d-9c66-4e54-9a43-5e698c9888d6",
-   "modelName": "Redmi Note 13",
-   "brandName": "Xiaomi",
-   "socName": "Snapdragon 685",
-   "listingsCount": 33,
-   "keys": [
-    "redminote13",
-    "xiaomiredminote13"
    ]
   },
   {
@@ -9027,7 +9027,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 6251,
+   "listings": 6254,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9040,7 +9040,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3418,
+   "listings": 3419,
    "description": ""
   },
   {
@@ -9053,7 +9053,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 2023,
+   "listings": 2024,
    "description": "**Free, open-source PC gaming via Steam, on Android.** Play your favorite PC games directly on your Android device. Just log in to Steam, install your game, and start playing, with full cloud save support."
   },
   {
@@ -9092,7 +9092,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 713,
+   "listings": 714,
    "description": ""
   },
   {
@@ -9106,7 +9106,7 @@
     "nintendo_gamecube",
     "nintendo_wii"
    ],
-   "listings": 377,
+   "listings": 378,
    "description": ""
   },
   {
@@ -9184,7 +9184,7 @@
    "systems": [
     "sony_playstation_vita"
    ],
-   "listings": 169,
+   "listings": 170,
    "description": ""
   },
   {
@@ -9358,7 +9358,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 27,
+   "listings": 28,
    "description": ""
   },
   {
