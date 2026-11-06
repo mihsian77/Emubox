@@ -52,12 +52,49 @@ def get(url, timeout=25):
         return r.read()
 
 
-def resolve_channel_id(handle):
-    """频道页 HTML 里抠 channelId。RSS 只认 channel_id，不认 @handle。"""
-    html = get(f"https://www.youtube.com/@{handle}").decode("utf-8", "ignore")
-    m = re.search(r'"channelId":"(UC[\w-]{20,24})"', html) or \
-        re.search(r'channel_id=(UC[\w-]{20,24})', html)
-    return m.group(1) if m else None
+CID_CACHE = "data/intl-news/.channels.json"
+
+
+def _load_cid_cache():
+    try:
+        return json.load(open(CID_CACHE, encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_cid_cache(d):
+    try:
+        os.makedirs(os.path.dirname(CID_CACHE), exist_ok=True)
+        json.dump(d, open(CID_CACHE, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+
+
+def resolve_channel_id(handle, tries=3):
+    """频道页 HTML 里抠 channelId。RSS 只认 channel_id，不认 @handle。
+
+    YouTube 对机房 IP 的频道页会间歇性返回 404（首跑 4 个全 404，复跑 1 个成功），
+    所以先查缓存，再重试三次，成功后写回缓存——解析过一次就不用再解析。
+    """
+    cache = _load_cid_cache()
+    if cache.get(handle):
+        return cache[handle]
+    last = None
+    for i in range(tries):
+        try:
+            html = get(f"https://www.youtube.com/@{handle}").decode("utf-8", "ignore")
+            m = re.search(r'"channelId":"(UC[\w-]{20,24})"', html) or \
+                re.search(r'channel_id=(UC[\w-]{20,24})', html)
+            if m:
+                cache[handle] = m.group(1)
+                _save_cid_cache(cache)
+                return m.group(1)
+        except Exception as ex:
+            last = ex
+        time.sleep(2 + i * 3)
+    if last:
+        raise last
+    return None
 
 
 def youtube_feed(handle, cid):
@@ -156,6 +193,9 @@ def main():
 
     yt = [r for r in yt if r["days"] <= args.days]
     rd = [r for r in rd if r["days"] <= args.days]
+    # 全 0 不能当成功：11-06 实测 YouTube 频道页 404、Reddit 403，
+    # 脚本照样 exit 0，CI 显示绿色但其实什么都没收到。用非零退出码让链路故障可见。
+    degraded = (len(yt) + len(rd)) == 0
     payload = {
         "generated_at": _NOW.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "youtube": sorted(yt, key=lambda r: r["published"], reverse=True),
@@ -166,11 +206,8 @@ def main():
     }
 
     print(f"\n合计 YouTube {len(yt)} / Reddit {len(rd)}，错误 {len(errors)}")
-    # 全 0 不能当成功：11-06 实测 YouTube 频道页 404、Reddit 403，
-    # 脚本照样 exit 0，CI 显示绿色但其实什么都没收到。用非零退出码让链路故障可见。
-    degraded = (len(yt) + len(rd)) == 0
     if degraded:
-        print("!! 两条线都是 0 条，判定链路失效（YouTube 频道页 / Reddit 接口不可达）", flush=True)
+        print("!! 两条线都是 0 条，判定链路失效（YouTube 频道页 404 / Reddit 403）", flush=True)
     if args.out:
         os.makedirs(os.path.dirname(args.out), exist_ok=True)
         json.dump(payload, open(args.out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

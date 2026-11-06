@@ -30,9 +30,8 @@ jobs:
         run: python3 scripts/intl_news.py --probe
 
       - name: 采集
-        # 全 0 条时脚本 exit 2。这里 continue-on-error 让后续提交/清理照跑，
-        # 但这一步会标红——链路失效必须看得见，不能像 11-06 那样显示绿色。
-        continue-on-error: true
+        # 全 0 条时脚本 exit 2，这一步直接红——链路失效必须看得见，
+        # 不能像 11-06 首跑那样显示绿色、实际一条数据都没有。
         run: python3 scripts/intl_news.py --out data/intl-news/$(date -u +%F).json
 
       - name: 有变化则提交
