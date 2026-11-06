@@ -75,9 +75,8 @@ object NativeVulkanBridge {
         driverDir: String, driverName: String, tmpDir: String, hookLibDir: String, logPath: String
     ): String
 
-    /** 外部新版 adrenotools 运行时（FauxVkTest 同款，dlopen_ext hook + KGSL 直连）。
-     *  内置 2021 linkernsbypass 旧版对现代 turnip 的 mapping import 不兼容（崩），
-     *  实测前把 assets/fauxvktest-runtime 解压到 filesDir 并调用本方法；失败静默回退内置。 */
+    /** 外部运行时目录（当前仅用于清理：传 null 让 native 回退内置加载路径）。
+     *  第三方运行时已退役，自研 DriverCheck 将复用同一入口注入自有运行时。 */
     external fun setExternalRuntimeDir(runtimeDir: String?)
 
     /** 便捷方法：AdrenoTools 路径实测一个驱动（采集+跑分一起返回）。 */

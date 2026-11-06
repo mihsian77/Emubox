@@ -4,44 +4,31 @@ import android.content.Context
 import java.io.File
 
 /**
- * 外部新版 adrenotools 运行时（FauxVkTest 1.11 同款机制）引导。
+ * 已退役的第三方运行时引导。
  *
- * 内置 adrenotools 为 2021 linkernsbypass 旧版，其 GSL hook 对现代 turnip
- * （mesa 25+/27）的 GPU mapping import 初始化不兼容：warmup 通过后打开驱动
- * 瞬间被杀（崩溃步骤停在 mapping_import_try）。FauxVkTest 内置新版运行时
- * （android_dlopen_ext hook + /dev/kgsl 直连），本类把其运行时组件从 assets
- * 解压到 filesDir 并通知 native dlopen；失败静默回退内置旧版（不中断功能）。
+ * 历史：此类曾把 FauxVkTest 1.11 同款运行时（新版 adrenotools hook 库 + Vulkan-Samples
+ * 修改版，共 13.9 MB）从 assets 解压到 filesDir，再通知 native dlopen，用于修复内置
+ * 2021 版 adrenotools 在现代 turnip 上的 mapping import 崩溃。
+ *
+ * 移除原因：
+ * 1. 这些 .so 从闭源 APK 中提取，其中 libvulkan_samples.so 是 Vulkan-Samples 的
+ *    "MODIFIED build"（Apache-2.0），上游补丁仓已 404、修改说明缺失，随包分发有授权瑕疵；
+ * 2. 体积占 APK 近四分之一，而它的能力（换驱动渲染实测）正由自研 DriverCheck 接管。
+ *
+ * 现在本类只做两件收尾：清掉老版本已解压到 filesDir 的残留，并把 native 侧外部运行时
+ * 目录置空，让驱动加载回到内置路径。调用点保持原样，幂等且失败静默。
  */
 object RuntimeBootstrap {
 
-    private const val RUNTIME_ASSET_DIR = "fauxvktest-runtime"
-    private const val READY_MARKER = ".ready"
+    private const val LEGACY_DIR = "fauxvktest-runtime"
 
-    private val soNames = listOf(
-        "libvulkan_samples.so", "libhook_impl.so", "libmain_hook.so",
-        "libgsl_alloc_hook.so", "libfile_redirect_hook.so"
-    )
-
-    fun runtimeDir(context: Context): File = File(context.filesDir, RUNTIME_ASSET_DIR)
-
-    /** 解压运行时（幂等，带 ready 标记）+ 通知 native。主进程与 :drivertest 独立进程共用。 */
-    fun ensure(context: Context) {
-        val dir = runtimeDir(context)
-        if (File(dir, READY_MARKER).exists()) {
-            NativeVulkanBridge.setExternalRuntimeDir(dir.absolutePath)
-            return
+    fun retireLegacy(context: Context) {
+        // 老版本升级上来的机器：filesDir 里可能还躺着上次解压的第三方 .so
+        runCatching {
+            val dir = File(context.filesDir, LEGACY_DIR)
+            if (dir.exists()) dir.deleteRecursively()
         }
-        try {
-            dir.mkdirs()
-            for (name in soNames) {
-                context.assets.open("$RUNTIME_ASSET_DIR/$name").use { input ->
-                    File(dir, name).outputStream().use { input.copyTo(it) }
-                }
-            }
-            File(dir, READY_MARKER).writeText("1")
-            NativeVulkanBridge.setExternalRuntimeDir(dir.absolutePath)
-        } catch (e: Exception) {
-            // assets 缺失 / IO 失败：静默回退内置旧版运行时
-        }
+        // 置空外部运行时路径 → native 回退内置加载；native 未加载时忽略
+        runCatching { NativeVulkanBridge.setExternalRuntimeDir(null) }
     }
 }

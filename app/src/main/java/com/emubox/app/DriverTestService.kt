@@ -39,9 +39,8 @@ class DriverTestService : Service() {
             return START_NOT_STICKY
         }
 
-        // 独立进程内启用外部新版 adrenotools 运行时（与主进程同机制，
-        // dlopen 状态按进程隔离，必须在此进程内也加载一次）
-        RuntimeBootstrap.ensure(this)
+        // 清理已退役的第三方运行时残留（老版本升级上来的机器），并让 native 回到内置加载路径
+        RuntimeBootstrap.retireLegacy(this)
 
         // 启动标记：主进程据此区分「驱动加载崩溃（进程被杀）」与「执行超时」
         runCatching { File(filesDir, "driver_test_${resultId}.started").writeText("1") }

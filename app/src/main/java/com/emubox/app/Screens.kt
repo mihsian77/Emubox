@@ -7672,8 +7672,8 @@ private fun DriverDetectionList(
         return null
     }
 
-    // 外部新版 adrenotools 运行时引导（FauxVkTest 同款机制，修复内置旧版 mapping import 崩）
-    fun ensureExternalRuntime() = RuntimeBootstrap.ensure(context)
+    // 第三方运行时已退役：仅清理老版本解压残留，驱动加载回退内置路径
+    fun ensureExternalRuntime() = RuntimeBootstrap.retireLegacy(context)
 
     val testWithAdrenoTools: (String, String) -> Unit = { id, filePath ->
         adrenotoolsTestingId = id
