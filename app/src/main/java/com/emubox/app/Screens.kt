@@ -6785,6 +6785,17 @@ fun DeviceScreen(
                             if (device.driverInfo.isNotEmpty()) {
                                 InfoRow(appString(R.string.vulkan_driver_info), device.driverInfo)
                             }
+                            if (device.pipelineCacheUUID.isNotEmpty()) {
+                                InfoRow(appString(R.string.vulkan_driver_fingerprint), device.pipelineCacheUUID)
+                            }
+                            InfoRow(appString(R.string.vulkan_formats), device.formats.size.toString())
+                            if (device.sparseProperties.isNotEmpty()) {
+                                val sparseOn = device.sparseProperties.count { it.value }
+                                InfoRow(
+                                    appString(R.string.vulkan_sparse_support),
+                                    "$sparseOn/${device.sparseProperties.size}"
+                                )
+                            }
                             InfoRow(appString(R.string.vulkan_extensions), device.extensions.size.toString())
                             InfoRow(appString(R.string.vulkan_memory_types), device.memoryTypes.size.toString())
                             InfoRow(appString(R.string.vulkan_memory_heaps), device.memoryHeaps.size.toString())

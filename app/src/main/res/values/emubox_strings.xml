@@ -536,6 +536,9 @@
     <string name="vulkan_driver_name">Driver name</string>
     <string name="vulkan_driver_info">Driver info</string>
     <string name="vulkan_extensions">Extensions</string>
+    <string name="vulkan_formats">Texture formats</string>
+    <string name="vulkan_driver_fingerprint">Driver fingerprint</string>
+    <string name="vulkan_sparse_support">Sparse resources</string>
     <string name="vulkan_memory_types">Memory types</string>
     <string name="vulkan_memory_heaps">Memory heaps</string>
     <string name="vulkan_queue_families">Queue families</string>
