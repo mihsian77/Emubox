@@ -1,6 +1,6 @@
 {
   "version": "1.3.0",
-  "updated_at": "2026-11-05T23:54:41Z",
+  "updated_at": "2026-11-06T08:31:58+08:00",
   "emulators": [
     {
       "id": "termux",
@@ -138296,6 +138296,2062 @@
       "topics": [],
       "needs_review": false,
       "section": "console-emulation"
+    },
+    {
+      "id": "tasvideos-bizhawk",
+      "name": "BizHawk",
+      "category": "主机模拟",
+      "description": "多机种模拟器 + TAS 工具链（C#），覆盖 NES/SNES/GB/GBA/N64/PS1/Saturn/Genesis 等，内建逐帧调试、存档回放与内存监视。",
+      "owner": "TASVideos",
+      "repo": "TASVideos/BizHawk",
+      "homepage": "http://tasvideos.org/BizHawk.html",
+      "repo_url": "https://github.com/TASEmulators/BizHawk",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "2.11.1",
+      "latest_date": "2026-05-01T13:49:04Z",
+      "latest_body": "New experimental core: PPSSPP for PlayStation Portable Lots of updates and fixes to other cores and EmuHawk. Full changelog: https://tasvideos.org/Bizhawk/ReleaseHistory#Bizhawk2111",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-02T10:29:53Z",
+      "stars": 2811,
+      "forks": 486,
+      "watchers": 96,
+      "downloads": null,
+      "logo_url": "https://github.com/TASVideos.png",
+      "source": "github",
+      "note": "库内此前完全没有 BizHawk，是 multi 分区最大的缺口；它同时是 TAS 视频制作的事实标准，价值不止于「多跑几个平台」。EmuCR 11-06 公告带出仓库地址。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "multi"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "tasvideos-bizhawk",
+      "family_label": "BizHawk",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "2.11.1",
+          "name": "2.11.1",
+          "date": "2026-05-01"
+        },
+        {
+          "tag": "2.11",
+          "name": "2.11",
+          "date": "2025-09-20"
+        },
+        {
+          "tag": "2.10",
+          "name": "2.10",
+          "date": "2025-01-07"
+        },
+        {
+          "tag": "2.10-rc2",
+          "name": "2.10-rc2",
+          "date": "2024-11-26"
+        },
+        {
+          "tag": "2.10-rc1",
+          "name": "2.10-rc1",
+          "date": "2024-09-14"
+        },
+        {
+          "tag": "2.9.1",
+          "name": "2.9.1",
+          "date": "2023-05-03"
+        },
+        {
+          "tag": "2.9",
+          "name": "2.9",
+          "date": "2023-04-07"
+        },
+        {
+          "tag": "2.9-rc3",
+          "name": "2.9-rc3",
+          "date": "2023-03-16"
+        },
+        {
+          "tag": "2.9-rc2",
+          "name": "2.9-rc2",
+          "date": "2022-12-07"
+        },
+        {
+          "tag": "2.9-rc1",
+          "name": "2.9-rc1",
+          "date": "2022-12-07"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "BizHawk-2.11.1-win-x64.zip",
+          "size": 97984101,
+          "url": "https://github.com/TASEmulators/BizHawk/releases/download/2.11.1/BizHawk-2.11.1-win-x64.zip",
+          "downloads": 138362,
+          "tag": "2.11.1"
+        },
+        {
+          "host": "linux",
+          "format": "gz",
+          "name": "BizHawk-2.11.1-linux-x64.tar.gz",
+          "size": 97169408,
+          "url": "https://github.com/TASEmulators/BizHawk/releases/download/2.11.1/BizHawk-2.11.1-linux-x64.tar.gz",
+          "downloads": 21206,
+          "tag": "2.11.1"
+        }
+      ]
+    },
+    {
+      "id": "drhelius-gearboy",
+      "name": "Gearboy",
+      "category": "主机模拟",
+      "description": "Game Boy / Game Boy Color / Super Game Boy 模拟器与调试器，C++ 跨平台，带内存查看与断点。",
+      "owner": "drhelius",
+      "repo": "drhelius/Gearboy",
+      "homepage": "https://x.com/drhelius",
+      "repo_url": "https://github.com/drhelius/Gearboy",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "3.8.20",
+      "latest_date": "2026-10-30T20:10:52Z",
+      "latest_body": "- 🖥️ Improved vsync pacing on high refresh rate displays - 🔊 Smoother audio sync with vsync - 📂 Remembers last folder in file dialogs - 🎮 Updated Game Controller DB - 🐛 Bug fixes and improvements **Full Changelog**: https://github.com/drhelius/Gearboy/compare/3.8.19...3.8.20",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T19:35:34Z",
+      "stars": 1217,
+      "forks": 170,
+      "watchers": 45,
+      "downloads": null,
+      "logo_url": "https://github.com/drhelius.png",
+      "source": "github",
+      "note": "drhelius 的 Gear* 系列是本次一批补齐的（Gearboy/Gearsystem/Gearcoleco/Gearlynx），此前库里四个都没有，属于同作者整族遗漏。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "gb",
+        "gbc"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "drhelius-gearboy",
+      "family_label": "Gearboy",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "3.8.20",
+          "name": "Gearboy 3.8.20",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "3.8.19",
+          "name": "Gearboy 3.8.19",
+          "date": "2026-10-24"
+        },
+        {
+          "tag": "3.8.18",
+          "name": "Gearboy 3.8.18",
+          "date": "2026-10-11"
+        },
+        {
+          "tag": "3.8.17",
+          "name": "Gearboy 3.8.17",
+          "date": "2026-10-04"
+        },
+        {
+          "tag": "3.8.16",
+          "name": "Gearboy 3.8.16",
+          "date": "2026-09-28"
+        },
+        {
+          "tag": "3.8.15",
+          "name": "Gearboy 3.8.15",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "3.8.14",
+          "name": "Gearboy 3.8.14",
+          "date": "2026-08-26"
+        },
+        {
+          "tag": "3.8.13",
+          "name": "Gearboy 3.8.13",
+          "date": "2026-08-22"
+        },
+        {
+          "tag": "3.8.12",
+          "name": "Gearboy 3.8.12",
+          "date": "2026-08-07"
+        },
+        {
+          "tag": "3.8.11",
+          "name": "Gearboy 3.8.11",
+          "date": "2026-07-24"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Gearboy-3.8.20-desktop-windows-x64.zip",
+          "size": 2918192,
+          "url": "https://github.com/drhelius/Gearboy/releases/download/3.8.20/Gearboy-3.8.20-desktop-windows-x64.zip",
+          "downloads": 310,
+          "tag": "3.8.20"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "Gearboy-3.8.20-desktop-macos-intel.zip",
+          "size": 4886741,
+          "url": "https://github.com/drhelius/Gearboy/releases/download/3.8.20/Gearboy-3.8.20-desktop-macos-intel.zip",
+          "downloads": 74,
+          "tag": "3.8.20"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "Gearboy-3.8.20-desktop-ubuntu26.04-x64.zip",
+          "size": 1649310,
+          "url": "https://github.com/drhelius/Gearboy/releases/download/3.8.20/Gearboy-3.8.20-desktop-ubuntu26.04-x64.zip",
+          "downloads": 50,
+          "tag": "3.8.20"
+        }
+      ]
+    },
+    {
+      "id": "rosalie241-rmg",
+      "name": "RMG",
+      "category": "主机模拟",
+      "description": "Mupen64Plus 的 Qt 图形前端（Rosalie's Mupen GUI），插件与存档状态管理完善，N64 桌面首选外壳。",
+      "owner": "Rosalie241",
+      "repo": "Rosalie241/RMG",
+      "homepage": "",
+      "repo_url": "https://github.com/Rosalie241/RMG",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.9.1",
+      "latest_date": "2026-11-04T03:52:38Z",
+      "latest_body": "# Changes * Fix controller presence detection in RMG-Input-GCA (thank you @EIREXE) * Use SDL GUID in RMG-Input (thank you @bmsuseluda) * Add mupen64plus-video-softrdp plugin (thank you @PixelMechanic0 for the suggestion) * Update mupen64plus-core, mupen64plus-video-GLideN64, SDL_GameControllerDB and LZMA SDK",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T03:52:47Z",
+      "stars": 1143,
+      "forks": 112,
+      "watchers": 27,
+      "downloads": null,
+      "logo_url": "https://github.com/Rosalie241.png",
+      "source": "github",
+      "note": "库里此前只有 jay-day/RMG-K 分支（183★），本体 1142★ 缺失——收了分支漏了上游。归入 rmg 家族。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "n64"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "rosalie241-rmg",
+      "family_label": "RMG",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "同上游衍生，归入同一家族",
+      "releases": [
+        {
+          "tag": "v0.9.1",
+          "name": "",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "v0.9.0",
+          "name": "",
+          "date": "2026-06-14"
+        },
+        {
+          "tag": "v0.8.9",
+          "name": "",
+          "date": "2026-01-23"
+        },
+        {
+          "tag": "v0.8.8",
+          "name": "",
+          "date": "2025-11-16"
+        },
+        {
+          "tag": "v0.8.7",
+          "name": "",
+          "date": "2025-11-06"
+        },
+        {
+          "tag": "v0.8.6",
+          "name": "",
+          "date": "2025-10-19"
+        },
+        {
+          "tag": "v0.8.5",
+          "name": "",
+          "date": "2025-10-09"
+        },
+        {
+          "tag": "v0.8.4",
+          "name": "",
+          "date": "2025-10-09"
+        },
+        {
+          "tag": "v0.8.3",
+          "name": "",
+          "date": "2025-09-28"
+        },
+        {
+          "tag": "v0.8.2",
+          "name": "",
+          "date": "2025-09-26"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "RMG-Portable-Windows64-v0.9.1.zip",
+          "size": 92752417,
+          "url": "https://github.com/Rosalie241/RMG/releases/download/v0.9.1/RMG-Portable-Windows64-v0.9.1.zip",
+          "downloads": 987,
+          "tag": "v0.9.1"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "RMG-Portable-Linux64-v0.9.1.AppImage",
+          "size": 175000056,
+          "url": "https://github.com/Rosalie241/RMG/releases/download/v0.9.1/RMG-Portable-Linux64-v0.9.1.AppImage",
+          "downloads": 203,
+          "tag": "v0.9.1"
+        }
+      ]
+    },
+    {
+      "id": "drhelius-gearsystem",
+      "name": "Gearsystem",
+      "category": "主机模拟",
+      "description": "Sega Master System / Game Gear / SG-1000 模拟器与调试器，含 SC-3000 与 Mark III 兼容。",
+      "owner": "drhelius",
+      "repo": "drhelius/Gearsystem",
+      "homepage": "https://x.com/drhelius",
+      "repo_url": "https://github.com/drhelius/Gearsystem",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "3.9.24",
+      "latest_date": "2026-10-30T19:53:39Z",
+      "latest_body": "- 🖥️ Improved vsync on high refresh rate displays - 🔊 Smoother audio rate control - 🖥️ Remember last folder in file dialogs - 🎮 Updated Game Controller DB - 🐛 Bug fixes and improvements **Full Changelog**: https://github.com/drhelius/Gearsystem/compare/3.9.23...3.9.24",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T19:35:36Z",
+      "stars": 399,
+      "forks": 65,
+      "watchers": 18,
+      "downloads": null,
+      "logo_url": "https://github.com/drhelius.png",
+      "source": "github",
+      "note": "与 Gearboy 同作者。库里 master-system/game-gear 各只有 1 条，sg-1000 此前为 0。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "master-system",
+        "game-gear",
+        "sg-1000"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "drhelius-gearsystem",
+      "family_label": "Gearsystem",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "3.9.24",
+          "name": "Gearsystem 3.9.24",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "3.9.23",
+          "name": "Gearsystem 3.9.23",
+          "date": "2026-10-24"
+        },
+        {
+          "tag": "3.9.22",
+          "name": "Gearsystem 3.9.22",
+          "date": "2026-10-11"
+        },
+        {
+          "tag": "3.9.21",
+          "name": "Gearsystem 3.9.21",
+          "date": "2026-10-04"
+        },
+        {
+          "tag": "3.9.20",
+          "name": "Gearsystem 3.9.20",
+          "date": "2026-09-30"
+        },
+        {
+          "tag": "3.9.19",
+          "name": "Gearsystem 3.9.19",
+          "date": "2026-09-27"
+        },
+        {
+          "tag": "3.9.18",
+          "name": "Gearsystem 3.9.18",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "3.9.17",
+          "name": "Gearsystem 3.9.17",
+          "date": "2026-08-27"
+        },
+        {
+          "tag": "3.9.16",
+          "name": "Gearsystem 3.9.16",
+          "date": "2026-08-22"
+        },
+        {
+          "tag": "3.9.15",
+          "name": "Gearsystem 3.9.15",
+          "date": "2026-08-07"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Gearsystem-3.9.24-desktop-windows-x64.zip",
+          "size": 2949944,
+          "url": "https://github.com/drhelius/Gearsystem/releases/download/3.9.24/Gearsystem-3.9.24-desktop-windows-x64.zip",
+          "downloads": 345,
+          "tag": "3.9.24"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "Gearsystem-3.9.24-desktop-macos-intel.zip",
+          "size": 4871595,
+          "url": "https://github.com/drhelius/Gearsystem/releases/download/3.9.24/Gearsystem-3.9.24-desktop-macos-intel.zip",
+          "downloads": 72,
+          "tag": "3.9.24"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "Gearsystem-3.9.24-desktop-ubuntu26.04-x64.zip",
+          "size": 1923709,
+          "url": "https://github.com/drhelius/Gearsystem/releases/download/3.9.24/Gearsystem-3.9.24-desktop-ubuntu26.04-x64.zip",
+          "downloads": 44,
+          "tag": "3.9.24"
+        }
+      ]
+    },
+    {
+      "id": "nextendonetwork-ryujinx-nextendo",
+      "name": "Ryujinx Nextendo",
+      "category": "主机模拟",
+      "description": "Ryujinx 分支，内置 Nextendo 账号与联机服务，主打本地/在线多人。",
+      "owner": "NextendoNetwork",
+      "repo": "NextendoNetwork/Ryujinx-Nextendo",
+      "homepage": "",
+      "repo_url": "https://github.com/NextendoNetwork/Ryujinx-Nextendo",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.10.3",
+      "latest_date": "2026-11-05T19:42:48Z",
+      "latest_body": "## Ryujinx | Nextendo 1.10.3 This update is mandatory. - Super Mario 3D World + Bowser's Fury: fixed the freeze on the password keyboard (thanks @alyeri) - HOME Menu: fixed startup on recent firmware (21.0.0 and later) (thanks @alyeri) - HOME Menu: no more repeated warnings in the log while the menu is open (thanks @alyeri) - Vulkan: fixed a crash and an empty screen when opening Sphaira from the Album on some GPUs (thanks @alyeri) - Fixed the slowdown, and the crash on exit, after leaving the HOME Menu open for a long time with a controller connected (thanks @z1pp090) - Fixed a crash when a game closes before showing its first frame (thanks @RobiiAragon) - Linux and macOS: games now receive the correct network error codes (thanks @RobiiAragon) - Stability improvements",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T19:45:35Z",
+      "stars": 336,
+      "forks": 50,
+      "watchers": 9,
+      "downloads": null,
+      "logo_url": "https://github.com/NextendoNetwork.png",
+      "source": "github",
+      "note": "用户确认收（我们只做索引与搬运，不对项目合法性背书）。与库内 ryujinx 系并列，归入 Ryujinx 系。联机依赖其私有账号服务，可用性未实测。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "nextendonetwork-ryujinx-nextendo",
+      "family_label": "Ryujinx 系",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "v1.10.3",
+          "name": "Ryujinx-Nextendo 1.10.3",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "v1.10.2",
+          "name": "Ryujinx-Nextendo 1.10.2",
+          "date": "2026-10-29"
+        },
+        {
+          "tag": "v1.10.1",
+          "name": "Ryujinx-Nextendo 1.10.1",
+          "date": "2026-10-21"
+        },
+        {
+          "tag": "v1.10.0",
+          "name": "Ryujinx-Nextendo 1.10.0 | Aperture Science Update",
+          "date": "2026-10-21"
+        },
+        {
+          "tag": "v1.9.9",
+          "name": "Ryujinx-Nextendo 1.9.9 | Animal Crossing Best Friends & Island Cloud",
+          "date": "2026-10-20"
+        },
+        {
+          "tag": "v1.9.8",
+          "name": "Ryujinx-Nextendo 1.9.8 | macOS Online Fix",
+          "date": "2026-10-19"
+        },
+        {
+          "tag": "v1.9.7",
+          "name": "Ryujinx-Nextendo 1.9.7 | Exact Version Fix",
+          "date": "2026-10-18"
+        },
+        {
+          "tag": "v1.9.6",
+          "name": "Ryujinx-Nextendo 1.9.6 | Mario Kart 8 Deluxe 4.0.1 Update",
+          "date": "2026-10-18"
+        },
+        {
+          "tag": "v1.9.5",
+          "name": "Ryujinx-Nextendo 1.9.5 | Smash Rework Update",
+          "date": "2026-10-17"
+        },
+        {
+          "tag": "v1.9.4",
+          "name": "Ryujinx-Nextendo 1.9.4 | qLaunch beta 5",
+          "date": "2026-10-15"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Nextendo-1.10.3-win-x64.zip",
+          "size": 40690138,
+          "url": "https://github.com/NextendoNetwork/Ryujinx-Nextendo/releases/download/v1.10.3/Nextendo-1.10.3-win-x64.zip",
+          "downloads": 624,
+          "tag": "v1.10.3"
+        },
+        {
+          "host": "linux",
+          "format": "gz",
+          "name": "Nextendo-1.10.3-linux-x64.tar.gz",
+          "size": 38236023,
+          "url": "https://github.com/NextendoNetwork/Ryujinx-Nextendo/releases/download/v1.10.3/Nextendo-1.10.3-linux-x64.tar.gz",
+          "downloads": 51,
+          "tag": "v1.10.3"
+        }
+      ]
+    },
+    {
+      "id": "arignir-hades",
+      "name": "Hades",
+      "category": "主机模拟",
+      "description": "GBA 模拟器（Rust），主打指令级精确与低延迟音频，2026 年新项目、月度活跃。",
+      "owner": "Arignir",
+      "repo": "Arignir/Hades",
+      "homepage": "https://hades-emu.org",
+      "repo_url": "https://github.com/hades-emu/Hades",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.1.1",
+      "latest_date": "2026-02-21T17:45:33Z",
+      "latest_body": "The latest release of Hades (v1.1.0) went out smoothly overall, but a rather significant issue slipped through and required a quick patch release to address it 😬. Below is a short summary of what’s included in this new release: - Fixed an issue where gamepad bindings were not properly saved to the configuration file. - Added support and official builds for Windows ARM64 (thanks to [@tordona](https://github.com/tordona) 🙌) - Introduced a new shortcut to quickly focus the menu bar. - Improved gamepad support to make navigating the UI with only a gamepad smoother and more intuitive. You can find a complete changelog with more details [on our blog](https://hades-emu.org/blog/release-1.1.1/)! Download instructions are available [here](https://hades-emu.org/download/). Thank you for taking the time to check on Hades~",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-10-31T11:42:48Z",
+      "stars": 258,
+      "forks": 14,
+      "watchers": 7,
+      "downloads": null,
+      "logo_url": "https://github.com/Arignir.png",
+      "source": "github",
+      "note": "库内 GBA 条目偏安卓端，缺一个现代桌面原生实现；258★ 但增势快，本月仍在提交。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "gba"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "arignir-hades",
+      "family_label": "Hades",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "v1.1.1",
+          "name": "v1.1.1",
+          "date": "2026-02-21"
+        },
+        {
+          "tag": "v1.1.0",
+          "name": "v1.1.0",
+          "date": "2026-01-19"
+        },
+        {
+          "tag": "v1.0.0",
+          "name": "v1.0.0",
+          "date": "2024-02-10"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "hades-1.1.1-win-x64.zip",
+          "size": 6720538,
+          "url": "https://github.com/hades-emu/Hades/releases/download/v1.1.1/hades-1.1.1-win-x64.zip",
+          "downloads": 822,
+          "tag": "v1.1.1"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "hades-1.1.1-macos.dmg",
+          "size": 2853807,
+          "url": "https://github.com/hades-emu/Hades/releases/download/v1.1.1/hades-1.1.1-macos.dmg",
+          "downloads": 172,
+          "tag": "v1.1.1"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "hades-1.1.1-linux.appimage",
+          "size": 28185792,
+          "url": "https://github.com/hades-emu/Hades/releases/download/v1.1.1/hades-1.1.1-linux.appimage",
+          "downloads": 318,
+          "tag": "v1.1.1"
+        }
+      ]
+    },
+    {
+      "id": "mattias800-prosper",
+      "name": "Prosper",
+      "category": "主机模拟",
+      "description": "用户态 PS5 → PC 兼容层，Windows/Linux，靠静态重编译 + HLE 跑商业游戏，实验阶段。",
+      "owner": "mattias800",
+      "repo": "mattias800/prosper",
+      "homepage": "",
+      "repo_url": "https://github.com/mattias800/prosper",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.2.4",
+      "latest_date": "2026-10-10T18:47:57Z",
+      "latest_body": "## What's Changed * ci: add the platform-stub ratchet rule for HLE(*_stub) platform-arm handlers by @ymatrix1 in https://github.com/mattias800/prosper/pull/4366 * gpu: preserve independent logical64 WAITCNT completion by @mattias800 in https://github.com/mattias800/prosper/pull/4372 * docs: list all eleven ratchet rules in the charter and state the platform-arm rule by @ymatrix1 in https://github.com/mattias800/prosper/pull/4367 * docs: clarify APR proposal and preserve historical Dragon Quest observations by @ymatrix1 in https://github.com/mattias800/prosper/pull/4365 * fix(gpu): retain producing raster launch controls through capture replay by @mattias800 in https://github.com/mattias800/prosper/pull/4376 * ci: enforce pytest policy on new Python tests by @ymatrix1 in https://github.com/mattias800/prosper/pull/4314 * Bound native shader walkers by authentic readable source windows by @mattias800 in https://github.com/mattias800/prosper/pull/4377 * docs: record current GTA Stage 2 ABBA checkpoint by @mattias800 in https://github.com/mattias800/prosper/pull/4379 * docs: record Sonic deferred-wait world falsification by @mattias800 in https://github.com/mattias800/prosper/pull/4380 ",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T07:55:58Z",
+      "stars": 216,
+      "forks": 12,
+      "watchers": 4,
+      "downloads": null,
+      "logo_url": "https://github.com/mattias800.png",
+      "source": "github",
+      "note": "用户确认收。库内 PS5 已有 kytyps5 / sharpemu / rps5e 三条，这是第四条且走不同技术路线（重编译而非翻译），保留作对照。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mattias800-prosper",
+      "family_label": "Prosper",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "v0.2.4",
+          "name": "prosper v0.2.4",
+          "date": "2026-10-10"
+        },
+        {
+          "tag": "v0.2.3",
+          "name": "prosper v0.2.3",
+          "date": "2026-10-04"
+        },
+        {
+          "tag": "v0.2.2",
+          "name": "prosper v0.2.2",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "v0.2.1",
+          "name": "prosper v0.2.1",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "v0.2.0",
+          "name": "prosper v0.2.0",
+          "date": "2026-08-02"
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "prosper v0.1.0",
+          "date": "2026-07-14"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "prosper-windows-x64.zip",
+          "size": 108328140,
+          "url": "https://github.com/mattias800/prosper/releases/download/v0.2.4/prosper-windows-x64.zip",
+          "downloads": 255,
+          "tag": "v0.2.4"
+        },
+        {
+          "host": "linux",
+          "format": "gz",
+          "name": "prosper-linux-x86_64.tar.gz",
+          "size": 71825938,
+          "url": "https://github.com/mattias800/prosper/releases/download/v0.2.4/prosper-linux-x86_64.tar.gz",
+          "downloads": 24,
+          "tag": "v0.2.4"
+        }
+      ]
+    },
+    {
+      "id": "colinpitrat-caprice32",
+      "name": "Caprice32",
+      "category": "主机模拟",
+      "description": "Amstrad CPC 系列（464/664/6128）模拟器，SDL 前端，含磁盘镜像与快照功能。",
+      "owner": "ColinPitrat",
+      "repo": "ColinPitrat/caprice32",
+      "homepage": "",
+      "repo_url": "https://github.com/ColinPitrat/caprice32",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "latest",
+      "latest_date": "2025-02-14T10:08:58Z",
+      "latest_body": "Latest build of Caprice 32, with the newest cool features and the most recent bugs.",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-10-29T16:20:41Z",
+      "stars": 187,
+      "forks": 50,
+      "watchers": 16,
+      "downloads": null,
+      "logo_url": "https://github.com/ColinPitrat.png",
+      "source": "github",
+      "note": "Amstrad CPC 平台此前 0 条，这是该平台第一个条目。187★，长期维护。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "amstrad-cpc"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "colinpitrat-caprice32",
+      "family_label": "Caprice32",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "latest",
+          "name": "latest",
+          "date": "2025-02-14"
+        },
+        {
+          "tag": "v4.6.0",
+          "name": "Caprice32 v4.6.0",
+          "date": "2020-03-14"
+        },
+        {
+          "tag": "v4.5.0",
+          "name": "Caprice32 v4.5.0",
+          "date": "2018-12-27"
+        },
+        {
+          "tag": "v4.4.0",
+          "name": "Caprice32 v4.4.0",
+          "date": "2017-03-26"
+        },
+        {
+          "tag": "v4.3.0",
+          "name": "Caprice32 4.3.0",
+          "date": "2016-05-19"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "cap32-win32.zip",
+          "size": 6935424,
+          "url": "https://github.com/ColinPitrat/caprice32/releases/download/latest/cap32-win32.zip",
+          "downloads": 75,
+          "tag": "latest"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "Caprice32.dmg",
+          "size": 1770505,
+          "url": "https://github.com/ColinPitrat/caprice32/releases/download/latest/Caprice32.dmg",
+          "downloads": 43,
+          "tag": "latest"
+        }
+      ]
+    },
+    {
+      "id": "drhelius-gearcoleco",
+      "name": "Gearcoleco",
+      "category": "主机模拟",
+      "description": "ColecoVision 与 ADAM 电脑模拟器，带调试器，C++ 跨平台。",
+      "owner": "drhelius",
+      "repo": "drhelius/Gearcoleco",
+      "homepage": "https://x.com/drhelius",
+      "repo_url": "https://github.com/drhelius/Gearcoleco",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "1.7.6",
+      "latest_date": "2026-10-30T19:52:26Z",
+      "latest_body": "- 🚀 Improved OpenGL rendering performance - 🖥️ Improved vsync on high refresh rate displays - 🔊 Improved audio sync with vsync - 🎥 Improved video recording - 🎮 Updated Game Controller DB - 🐛 Many bug fixes and improvements **Full Changelog**: https://github.com/drhelius/Gearcoleco/compare/1.7.4...1.7.6",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T19:35:40Z",
+      "stars": 146,
+      "forks": 28,
+      "watchers": 3,
+      "downloads": null,
+      "logo_url": "https://github.com/drhelius.png",
+      "source": "github",
+      "note": "ColecoVision 平台此前 0 条。drhelius 系列第四个项目。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "colecovision"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "drhelius-gearcoleco",
+      "family_label": "Gearcoleco",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "1.7.6",
+          "name": "Gearcoleco 1.7.6",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "1.7.4",
+          "name": "Gearcoleco 1.7.4",
+          "date": "2026-10-11"
+        },
+        {
+          "tag": "1.7.3",
+          "name": "Gearcoleco 1.7.3",
+          "date": "2026-10-04"
+        },
+        {
+          "tag": "1.7.2",
+          "name": "Gearcoleco 1.7.2",
+          "date": "2026-09-30"
+        },
+        {
+          "tag": "1.7.1",
+          "name": "Gearcoleco 1.7.1",
+          "date": "2026-09-27"
+        },
+        {
+          "tag": "1.7.0",
+          "name": "Gearcoleco 1.7.0",
+          "date": "2026-09-13"
+        },
+        {
+          "tag": "1.6.13",
+          "name": "Gearcoleco 1.6.13",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "1.6.12",
+          "name": "Gearcoleco 1.6.12",
+          "date": "2026-08-26"
+        },
+        {
+          "tag": "1.6.11",
+          "name": "Gearcoleco 1.6.11",
+          "date": "2026-08-22"
+        },
+        {
+          "tag": "1.6.10",
+          "name": "Gearcoleco 1.6.10",
+          "date": "2026-08-17"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Gearcoleco-1.7.6-desktop-windows-x64.zip",
+          "size": 2946516,
+          "url": "https://github.com/drhelius/Gearcoleco/releases/download/1.7.6/Gearcoleco-1.7.6-desktop-windows-x64.zip",
+          "downloads": 205,
+          "tag": "1.7.6"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "Gearcoleco-1.7.6-desktop-macos-intel.zip",
+          "size": 5072315,
+          "url": "https://github.com/drhelius/Gearcoleco/releases/download/1.7.6/Gearcoleco-1.7.6-desktop-macos-intel.zip",
+          "downloads": 52,
+          "tag": "1.7.6"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "Gearcoleco-1.7.6-desktop-ubuntu26.04-x64.zip",
+          "size": 1947339,
+          "url": "https://github.com/drhelius/Gearcoleco/releases/download/1.7.6/Gearcoleco-1.7.6-desktop-ubuntu26.04-x64.zip",
+          "downloads": 28,
+          "tag": "1.7.6"
+        }
+      ]
+    },
+    {
+      "id": "drhelius-gearlynx",
+      "name": "Gearlynx",
+      "category": "主机模拟",
+      "description": "Atari Lynx 模拟器与调试器，C++ 跨平台，支持 ComLynx 联机。",
+      "owner": "drhelius",
+      "repo": "drhelius/Gearlynx",
+      "homepage": "https://x.com/drhelius",
+      "repo_url": "https://github.com/drhelius/Gearlynx",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "1.2.38",
+      "latest_date": "2026-11-04T18:59:04Z",
+      "latest_body": "- 🖥️ Added display flip mode - 🎨 Shader variants, groups and parameters window - 🕹️ Improved libretro compatibility with older RetroArch versions - 🐛 Bug fixes and improvements **Full Changelog**: https://github.com/drhelius/Gearlynx/compare/1.2.37...1.2.38",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-04T19:35:43Z",
+      "stars": 80,
+      "forks": 12,
+      "watchers": 5,
+      "downloads": null,
+      "logo_url": "https://github.com/drhelius.png",
+      "source": "github",
+      "note": "Atari Lynx 此前只有 libretro 的 Handy 核心（16★），缺一个独立可执行实现。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "atari-lynx"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "drhelius-gearlynx",
+      "family_label": "Gearlynx",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "1.2.38",
+          "name": "Gearlynx 1.2.38",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "1.2.37",
+          "name": "Gearlynx 1.2.37",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "1.2.36",
+          "name": "Gearlynx 1.2.36",
+          "date": "2026-10-24"
+        },
+        {
+          "tag": "1.2.35",
+          "name": "Gearlynx 1.2.35",
+          "date": "2026-10-11"
+        },
+        {
+          "tag": "1.2.34",
+          "name": "Gearlynx 1.2.34",
+          "date": "2026-10-04"
+        },
+        {
+          "tag": "1.2.33",
+          "name": "Gearlynx 1.2.33",
+          "date": "2026-09-30"
+        },
+        {
+          "tag": "1.2.32",
+          "name": "Gearlynx 1.2.32",
+          "date": "2026-09-27"
+        },
+        {
+          "tag": "1.2.31",
+          "name": "Gearlynx 1.2.31",
+          "date": "2026-09-01"
+        },
+        {
+          "tag": "1.2.30",
+          "name": "Gearlynx 1.2.30",
+          "date": "2026-08-26"
+        },
+        {
+          "tag": "1.2.28",
+          "name": "Gearlynx 1.2.28",
+          "date": "2026-08-22"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "Gearlynx-1.2.38-desktop-windows-x64.zip",
+          "size": 3107644,
+          "url": "https://github.com/drhelius/Gearlynx/releases/download/1.2.38/Gearlynx-1.2.38-desktop-windows-x64.zip",
+          "downloads": 93,
+          "tag": "1.2.38"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "Gearlynx-1.2.38-desktop-macos-intel.zip",
+          "size": 5592363,
+          "url": "https://github.com/drhelius/Gearlynx/releases/download/1.2.38/Gearlynx-1.2.38-desktop-macos-intel.zip",
+          "downloads": 22,
+          "tag": "1.2.38"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "Gearlynx-1.2.38-desktop-ubuntu26.04-x64.zip",
+          "size": 2262770,
+          "url": "https://github.com/drhelius/Gearlynx/releases/download/1.2.38/Gearlynx-1.2.38-desktop-ubuntu26.04-x64.zip",
+          "downloads": 16,
+          "tag": "1.2.38"
+        }
+      ]
+    },
+    {
+      "id": "istark-ps5pcem",
+      "name": "PS5 PC Emulator",
+      "category": "主机模拟",
+      "description": "PS5 模拟器实验项目，Windows 端，早期阶段。",
+      "owner": "iStark",
+      "repo": "iStark/PS5PCEM",
+      "homepage": "https://ps5pcem.com",
+      "repo_url": "https://github.com/iStark/PS5PCEM",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.3.6",
+      "latest_date": "2026-10-30T10:32:33Z",
+      "latest_body": "# PS5PCEM 0.3.6 This release collects **71 commits after 0.3.5**, including merged contributor history, plus release preparation. It introduces the experimental native DirectX 12 renderer, ZAR loading/extraction, launcher FPS limits and motion sensor input, alongside Vulkan performance, graphics, audio and save fixes. ## Downloads - **Windows x64:** portable ZIP and per-user installer. The three applications and installer carry SHA-256 Authenticode signatures and timestamps using the same **Artur Strazewicz / PS5PCEM** certificate as 0.3.5. The certificate is self-signed; Windows/SmartScreen can still warn. - **Linux x64:** `.deb`, `.rpm`, `.pacman` and `.AppImage`, with the native GTK 3 launcher, `game-run` and `pkgextractor`. See the [Linux guide](https://github.com/iStark/PS5PCEM/blob/v0.3.6/docs/linux.md). - **SHA256SUMS.txt** covers all six packages. Linux packages do not use Windows Authenticode signatures. The CPU baseline remains **x86-64-v3 (AVX2/BMI2/FMA)**. Vulkan remains the default renderer on both platforms. DirectX 12 is Windows-only and experimental. Windows packages include the pinned Microsoft DXC compiler, DXIL validator and license notices; keep these DLLs besid",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T00:28:25Z",
+      "stars": 80,
+      "forks": 2,
+      "watchers": 3,
+      "downloads": null,
+      "logo_url": "https://github.com/iStark.png",
+      "source": "github",
+      "note": "用户确认收。80★，功能完整度低，note 标注「实验性」以免用户误以为可用；收它的理由是 PS5 是库内最薄的平台（10 条），需要尽量铺开候选面。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "ps5"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "istark-ps5pcem",
+      "family_label": "PS5 PC Emulator",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "v0.3.6",
+          "name": "PS5PCEM 0.3.6",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "v0.3.5",
+          "name": "PS5PCEM 0.3.5",
+          "date": "2026-10-16"
+        },
+        {
+          "tag": "v0.3.4",
+          "name": "PS5PCEM 0.3.4",
+          "date": "2026-10-08"
+        },
+        {
+          "tag": "v0.3.3",
+          "name": "PS5PCEM 0.3.3",
+          "date": "2026-10-04"
+        },
+        {
+          "tag": "v0.3.2",
+          "name": "PS5PCEM 0.3.2",
+          "date": "2026-09-24"
+        },
+        {
+          "tag": "v0.3.1-beta.1",
+          "name": "PS5PCEM 0.3.1-beta.1",
+          "date": "2026-09-15"
+        },
+        {
+          "tag": "v0.3.0-alpha.4",
+          "name": "PS5PCEM 0.3.0-alpha.4",
+          "date": "2026-09-08"
+        },
+        {
+          "tag": "v0.3.0-alpha.3",
+          "name": "PS5PCEM 0.3.0-alpha.3",
+          "date": "2026-09-04"
+        },
+        {
+          "tag": "v0.3.0-alpha.2",
+          "name": "PS5PCEM 0.3.0-alpha.2",
+          "date": "2026-08-25"
+        },
+        {
+          "tag": "v0.3.0-alpha.1",
+          "name": "PS5PCEM 0.3.0-alpha.1",
+          "date": "2026-08-25"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "PS5PCEM-0.3.6-windows-x64-portable.zip",
+          "size": 306065798,
+          "url": "https://github.com/iStark/PS5PCEM/releases/download/v0.3.6/PS5PCEM-0.3.6-windows-x64-portable.zip",
+          "downloads": 501,
+          "tag": "v0.3.6"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "PS5PCEM-0.3.6-linux-x64.AppImage",
+          "size": 16157176,
+          "url": "https://github.com/iStark/PS5PCEM/releases/download/v0.3.6/PS5PCEM-0.3.6-linux-x64.AppImage",
+          "downloads": 51,
+          "tag": "v0.3.6"
+        }
+      ]
+    },
+    {
+      "id": "blueminder-supermodel-dojo",
+      "name": "Supermodel Dojo",
+      "category": "主机模拟",
+      "description": "Supermodel 分支，主打 Sega Model 3 街机的网络对战与训练模式。",
+      "owner": "blueminder",
+      "repo": "blueminder/supermodel-dojo",
+      "homepage": "",
+      "repo_url": "https://github.com/blueminder/supermodel-dojo",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.3a-20261029-git-9bdf7f2",
+      "latest_date": "2026-10-29T20:24:15Z",
+      "latest_body": "Automated release with builds for Windows, Linux, and macOS. **Full Changelog**: https://github.com/blueminder/supermodel-dojo/compare/v0.3a-20261029-git-06fa8a5...v0.3a-20261029-git-9bdf7f2",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-03T17:41:06Z",
+      "stars": 73,
+      "forks": 5,
+      "watchers": 6,
+      "downloads": null,
+      "logo_url": "https://github.com/blueminder.png",
+      "source": "github",
+      "note": "Model 3 平台库内只有 trzy/supermodel3 一条。本批一次收三个衍生（Dojo 联机 / Vulkan 重写 / Sinden 光枪），分别解决原版没有的联机、渲染后端、光枪支持，不算重复。归入 supermodel3 家族。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "model3"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "supermodel3",
+      "family_label": "Model 3 系",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "同上游衍生，归入同一家族",
+      "releases": [
+        {
+          "tag": "v0.3a-20261029-git-9bdf7f2",
+          "name": "Supermodel Dojo v0.3a-20261029-git-9bdf7f2",
+          "date": "2026-10-29"
+        },
+        {
+          "tag": "v0.3a-20261029-git-06fa8a5",
+          "name": "Supermodel Dojo v0.3a-20261029-git-06fa8a5",
+          "date": "2026-10-29"
+        },
+        {
+          "tag": "v0.3a-20261024-git-113a48d",
+          "name": "Supermodel Dojo v0.3a-20261024-git-113a48d",
+          "date": "2026-10-24"
+        },
+        {
+          "tag": "v0.3a-20261022-git-d409fe7",
+          "name": "Supermodel Dojo v0.3a-20261022-git-d409fe7",
+          "date": "2026-10-22"
+        },
+        {
+          "tag": "v0.3a-20261021-git-fc67453",
+          "name": "Supermodel v0.3a-20261021-git-fc67453",
+          "date": "2026-10-21"
+        },
+        {
+          "tag": "v0.3a-20261021-git-3b71afb",
+          "name": "Supermodel v0.3a-20261021-git-3b71afb",
+          "date": "2026-10-21"
+        },
+        {
+          "tag": "v0.3a-20260528-git-77d28ee",
+          "name": "Supermodel v0.3a-20260528-git-77d28ee",
+          "date": "2026-06-25"
+        },
+        {
+          "tag": "dojo-preview6",
+          "name": "Supermodel Dojo Preview 6",
+          "date": "2025-04-27"
+        },
+        {
+          "tag": "dojo-preview5",
+          "name": "Supermodel Dojo Preview 5",
+          "date": "2025-04-22"
+        },
+        {
+          "tag": "dojo-preview4",
+          "name": "Supermodel Dojo Preview 4",
+          "date": "2025-04-14"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "supermodel-dojo-0.3a-20261029-git-9bdf7f2-windows.zip",
+          "size": 3538097,
+          "url": "https://github.com/blueminder/supermodel-dojo/releases/download/v0.3a-20261029-git-9bdf7f2/supermodel-dojo-0.3a-20261029-git-9bdf7f2-windows.zip",
+          "downloads": 202,
+          "tag": "v0.3a-20261029-git-9bdf7f2"
+        },
+        {
+          "host": "macos",
+          "format": "gz",
+          "name": "supermodel-dojo-0.3a-20261029-git-9bdf7f2-macos.tar.gz",
+          "size": 6968873,
+          "url": "https://github.com/blueminder/supermodel-dojo/releases/download/v0.3a-20261029-git-9bdf7f2/supermodel-dojo-0.3a-20261029-git-9bdf7f2-macos.tar.gz",
+          "downloads": 19,
+          "tag": "v0.3a-20261029-git-9bdf7f2"
+        },
+        {
+          "host": "linux",
+          "format": "gz",
+          "name": "supermodel-dojo-0.3a-20261029-git-9bdf7f2-linux.tar.gz",
+          "size": 2006006,
+          "url": "https://github.com/blueminder/supermodel-dojo/releases/download/v0.3a-20261029-git-9bdf7f2/supermodel-dojo-0.3a-20261029-git-9bdf7f2-linux.tar.gz",
+          "downloads": 34,
+          "tag": "v0.3a-20261029-git-9bdf7f2"
+        }
+      ]
+    },
+    {
+      "id": "igloo-garage-model-3-vulkan",
+      "name": "Model-3-Vulkan",
+      "category": "主机模拟",
+      "description": "Supermodel 的 Vulkan 渲染后端独立重写版（原 Supermodel-VK），画面与性能取向。",
+      "owner": "Igloo-Garage",
+      "repo": "Igloo-Garage/Model-3-Vulkan",
+      "homepage": "",
+      "repo_url": "https://github.com/Igloo-Garage/Model-3-Vulkan",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v0.9.8.6x",
+      "latest_date": "2026-10-31T19:34:20Z",
+      "latest_body": "# Model 3-Vulkan v0.9.8.6x — Linux and macOS **This release replaces both `v0.9.8.6l` (Linux) and `v0.9.8.6m` (macOS).** It contains three assets: Linux, macOS for Apple Silicon, and macOS for Intel Macs. There is no Windows package: the Windows build is unchanged since v0.9.8.6 and does not need this update. --- ## Fixed in both packages **The in-game settings panel ignored the mouse and the keyboard on Linux and macOS.** Press Tab and the panel opened, but nothing in it responded: no hover highlight, no clicks, no arrow keys, no Enter. The panel's input feed was Windows-only — the whole block that reads the pointer position, the mouse buttons and the key states sat behind `#ifdef _WIN32`, with no equivalent for the other platforms, so on Linux and macOS only the mouse wheel was ever delivered. It now reads the platform's per-frame input snapshot, which both backends already maintain: pointer position, three mouse buttons, Ctrl/Shift/Alt and a full key table (arrows, Tab, Enter, Escape, Home/End, Page Up/Down, Insert/Delete, Backspace, Space, A/C/V/X/Z, digits and the keypad). Verified by hand on both platforms: the panel responds to the mouse, to keyboard navigation, and to a cli",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-03T06:53:28Z",
+      "stars": 69,
+      "forks": 2,
+      "watchers": 4,
+      "downloads": null,
+      "logo_url": "https://github.com/Igloo-Garage.png",
+      "source": "github",
+      "note": "与 supermodel-dojo 同一上游、不同侧重：这条换的是渲染后端，原版只有 OpenGL。归入 supermodel3 家族。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "model3"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "supermodel3",
+      "family_label": "Model 3 系",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "同上游衍生，归入同一家族",
+      "releases": [
+        {
+          "tag": "v0.9.8.6x",
+          "name": "Model 3-Vulkan v0.9.8.6x (Linux and macOS)",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v0.9.8.6a",
+          "name": "Model 3-Vulkan v0.9.8.6a (Windows only, AMD fix)",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v0.9.8.6",
+          "name": "Model 3-Vulkan v0.9.8.6",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "v0.9.8.6m",
+          "name": "Model 3-Vulkan v0.9.8.6m",
+          "date": "2026-10-30"
+        },
+        {
+          "tag": "v0.9.8.6l",
+          "name": "Model 3-Vulkan v0.9.8.6l (Linux only)",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "v0.9.8.3b",
+          "name": "Model 3-Vulkan v0.9.8.3b",
+          "date": "2026-10-28"
+        },
+        {
+          "tag": "v0.9.8.3a",
+          "name": " Model 3-Vulkan v0.9.8.3a (superseded by v0.9.8.3b - sound effects muted)",
+          "date": "2026-10-28"
+        },
+        {
+          "tag": "v0.9.2.4a",
+          "name": "Supermodel-VK v0.9.2.4a",
+          "date": "2026-10-22"
+        },
+        {
+          "tag": "v0.9.2.3a",
+          "name": "Supermodel-VK v0.9.2.3a",
+          "date": "2026-10-21"
+        },
+        {
+          "tag": "v0.9.0.3a-20261017",
+          "name": "Supermodel-VK v0.9.0.3a-20261017",
+          "date": "2026-10-17"
+        }
+      ],
+      "builds": [
+        {
+          "host": "macos",
+          "format": "gz",
+          "name": "Model3-Vulkan.v0.9.8.6x.for.macOS-Intel.tar.gz",
+          "size": 17825125,
+          "url": "https://github.com/Igloo-Garage/Model-3-Vulkan/releases/download/v0.9.8.6x/Model3-Vulkan.v0.9.8.6x.for.macOS-Intel.tar.gz",
+          "downloads": 47,
+          "tag": "v0.9.8.6x"
+        },
+        {
+          "host": "linux",
+          "format": "gz",
+          "name": "Model3-Vulkan.v0.9.8.6x.for.Linux.tar.gz",
+          "size": 19277981,
+          "url": "https://github.com/Igloo-Garage/Model-3-Vulkan/releases/download/v0.9.8.6x/Model3-Vulkan.v0.9.8.6x.for.Linux.tar.gz",
+          "downloads": 78,
+          "tag": "v0.9.8.6x"
+        }
+      ]
+    },
+    {
+      "id": "dirtbagxon-model3emu-code-sinden",
+      "name": "Model 3 Sinden",
+      "category": "主机模拟",
+      "description": "model3emu 分支，加入 Sinden 光枪与双人光枪支持，面向实体街机柜改造。",
+      "owner": "DirtBagXon",
+      "repo": "DirtBagXon/model3emu-code-sinden",
+      "homepage": "https://ko-fi.com/dirtbagxon",
+      "repo_url": "https://github.com/DirtBagXon/model3emu-code-sinden",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "96af5fe",
+      "latest_date": "2026-11-05T20:16:37Z",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T20:16:37Z",
+      "stars": 55,
+      "forks": 10,
+      "watchers": 8,
+      "downloads": null,
+      "logo_url": "https://github.com/DirtBagXon.png",
+      "source": "github",
+      "note": "第三条 Model 3 衍生，价值在光枪外设支持（原版无）。归入 supermodel3 家族。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "model3"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "supermodel3",
+      "family_label": "Model 3 系",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "同上游衍生，归入同一家族",
+      "releases": [
+        {
+          "tag": "96af5fe",
+          "name": "0.3a-ef7efa9-dbx",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "3317b21",
+          "name": "0.3a-e7b01c6-dbx",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "ef6b24b",
+          "name": "0.3a-036af1c-dbx",
+          "date": "2026-10-29"
+        },
+        {
+          "tag": "5029e27",
+          "name": "0.3a-11726c4-dbx",
+          "date": "2026-10-28"
+        },
+        {
+          "tag": "1da5684",
+          "name": "0.3a-b25b264-dbx",
+          "date": "2026-10-28"
+        },
+        {
+          "tag": "11726c4",
+          "name": "0.3a-1481545-dbx",
+          "date": "2026-10-25"
+        },
+        {
+          "tag": "68ed96f",
+          "name": "0.3a-58d4b87-dbx",
+          "date": "2026-10-24"
+        },
+        {
+          "tag": "0455189",
+          "name": "0.3a-e048c09-dbx",
+          "date": "2026-10-23"
+        },
+        {
+          "tag": "cd7cb8f",
+          "name": "0.3a-4cfa19f-dbx",
+          "date": "2026-10-22"
+        },
+        {
+          "tag": "44c83af",
+          "name": "0.3a-32c29b0-dbx",
+          "date": "2026-10-22"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "supermodel-Windows-0.3a-ef7efa9.zip",
+          "size": 3774897,
+          "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/96af5fe/supermodel-Windows-0.3a-ef7efa9.zip",
+          "downloads": 7,
+          "tag": "96af5fe"
+        },
+        {
+          "host": "macos",
+          "format": "tgz",
+          "name": "supermodel-macOS-0.3a-ef7efa9.tgz",
+          "size": 6984907,
+          "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/96af5fe/supermodel-macOS-0.3a-ef7efa9.tgz",
+          "downloads": 2,
+          "tag": "96af5fe"
+        },
+        {
+          "host": "linux",
+          "format": "tgz",
+          "name": "supermodel-Linux-0.3a-ef7efa9.tgz",
+          "size": 2144109,
+          "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/96af5fe/supermodel-Linux-0.3a-ef7efa9.tgz",
+          "downloads": 3,
+          "tag": "96af5fe"
+        }
+      ]
+    },
+    {
+      "id": "mentalfoundry-pokket",
+      "name": "Pokket",
+      "category": "主机模拟",
+      "description": "Sony PocketStation 模拟器核心，以 libretro core 形式分发。",
+      "owner": "mentalfoundry",
+      "repo": "mentalfoundry/Pokket",
+      "homepage": "",
+      "repo_url": "https://github.com/mentalfoundry/Pokket",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "v1.24",
+      "latest_date": "2026-11-05T03:43:47Z",
+      "latest_body": "## Changes since v1.23 - A large amount of further hardware testing and bugfixes to go along with. PK timing bench has been drastically expanded to capture edge hardware behavior. - docs: state that the release packages and the desktop app are Windows only (c3e186b) - docs: credit GBATEK as the CPU documentation (a666fda) - Update README.md (2b3fb9f)",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T03:43:47Z",
+      "stars": 44,
+      "forks": 0,
+      "watchers": 1,
+      "downloads": null,
+      "logo_url": "https://github.com/mentalfoundry.png",
+      "source": "github",
+      "note": "PocketStation 平台此前 0 条，这是第一个条目；以 libretro 核心形态存在，runtime 标 libretro。",
+      "kind": "emulator",
+      "runtime": "libretro",
+      "platforms": [
+        "pocketstation"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "mentalfoundry-pokket",
+      "family_label": "Pokket",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "v1.24",
+          "name": "v1.24",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "v1.23",
+          "name": "v1.23",
+          "date": "2026-10-13"
+        },
+        {
+          "tag": "v1.22",
+          "name": "v1.22",
+          "date": "2026-10-13"
+        },
+        {
+          "tag": "v1.21",
+          "name": "v1.21",
+          "date": "2026-10-12"
+        },
+        {
+          "tag": "v1.20",
+          "name": "v1.20",
+          "date": "2026-10-11"
+        },
+        {
+          "tag": "v1.14",
+          "name": "v1.14",
+          "date": "2026-09-28"
+        },
+        {
+          "tag": "v1.13",
+          "name": "v1.13",
+          "date": "2026-09-23"
+        },
+        {
+          "tag": "v1.12",
+          "name": "v1.12",
+          "date": "2026-09-07"
+        },
+        {
+          "tag": "v1.11.1",
+          "name": "v1.11.1",
+          "date": "2026-08-06"
+        },
+        {
+          "tag": "v1.11.0",
+          "name": "v1.11.0",
+          "date": "2026-08-03"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "pokket-desktop-windows-v1.24.zip",
+          "size": 751445,
+          "url": "https://github.com/mentalfoundry/Pokket/releases/download/v1.24/pokket-desktop-windows-v1.24.zip",
+          "downloads": 43,
+          "tag": "v1.24"
+        }
+      ]
+    },
+    {
+      "id": "dborth-dosbox-wii",
+      "name": "DOSBox Wii",
+      "category": "主机模拟",
+      "description": "DOSBox 的 GameCube / Wii 移植，在主机上跑 DOS 游戏。",
+      "owner": "dborth",
+      "repo": "dborth/dosbox-wii",
+      "homepage": "http://wiibrew.org/wiki/DOSBox_Wii",
+      "repo_url": "https://github.com/dborth/dosbox-wii",
+      "official": true,
+      "channel": "prerelease",
+      "latest_tag": "Pre-release",
+      "latest_date": "2025-05-19T18:32:17Z",
+      "latest_body": "",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T21:48:31Z",
+      "stars": 41,
+      "forks": 12,
+      "watchers": 10,
+      "downloads": null,
+      "logo_url": "https://github.com/dborth.png",
+      "source": "github",
+      "note": "与库内 snes9xgx / vbagx 同作者同形态（主机端 homebrew），hosts 用 gamecube/wii 而非 PC。",
+      "kind": "emulator",
+      "runtime": "console-homebrew",
+      "platforms": [
+        "dos"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "gamecube",
+        "wii"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "dborth-dosbox-wii",
+      "family_label": "DOSBox Wii",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "Pre-release",
+          "name": "Pre-release",
+          "date": "2025-05-19"
+        },
+        {
+          "tag": "2.0",
+          "name": "2.0 - October 25, 2026",
+          "date": "2026-10-26"
+        },
+        {
+          "tag": "1.7",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.6",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.5",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.4",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.3",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.2",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.1",
+          "name": "",
+          "date": "2015-06-20"
+        },
+        {
+          "tag": "1.0",
+          "name": "",
+          "date": "2015-06-20"
+        }
+      ]
+    },
+    {
+      "id": "p2000t-m2000",
+      "name": "M2000",
+      "category": "主机模拟",
+      "description": "Philips P2000T / P2000M 家用电脑模拟器（Pascal 系机型）。",
+      "owner": "p2000t",
+      "repo": "p2000t/M2000",
+      "homepage": "",
+      "repo_url": "https://github.com/p2000t/M2000",
+      "official": true,
+      "channel": "stable",
+      "latest_tag": "0.9.6",
+      "latest_date": "2026-10-31T20:53:25Z",
+      "latest_body": "## What has changed in this version: * Serial port support;<br>Available through command-line argument like e.g. `M2000 --serial COM7`; * Added option for 10x (1000%) CPU speed; * Support for emulating @ifilot's SD-card cartridge;<br>Targeted at developers of SD-card Launcher firmware; **Full Changelog**: https://github.com/p2000t/M2000/compare/v0.9.5...0.9.6",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-05T16:17:18Z",
+      "stars": 15,
+      "forks": 7,
+      "watchers": 7,
+      "downloads": null,
+      "logo_url": "https://github.com/p2000t.png",
+      "source": "github",
+      "note": "Philips P2000 平台此前 0 条。15★ 但为该平台唯一开源实现，收录价值在覆盖而非热度。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "philips-p2000"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "p2000t-m2000",
+      "family_label": "M2000",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "0.9.6",
+          "name": "M2000 v0.9.6",
+          "date": "2026-10-31"
+        },
+        {
+          "tag": "0.9.5",
+          "name": "M2000 v0.9.5",
+          "date": "2026-07-17"
+        },
+        {
+          "tag": "v0.9.4",
+          "name": "M2000 v0.9.4",
+          "date": "2025-01-28"
+        },
+        {
+          "tag": "v0.9.3",
+          "name": "M2000 v0.9.3",
+          "date": "2024-08-08"
+        },
+        {
+          "tag": "v0.9.2",
+          "name": "M2000 v0.9.2",
+          "date": "2024-06-04"
+        },
+        {
+          "tag": "v0.8.1",
+          "name": "M2000 v0.8.1",
+          "date": "2024-03-13"
+        },
+        {
+          "tag": "v0.8.0",
+          "name": "M2000 v0.8",
+          "date": "2023-12-27"
+        },
+        {
+          "tag": "v0.7.0",
+          "name": "M2000 v0.7",
+          "date": "2023-11-19"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "M2000-v0.9.6-windows.zip",
+          "size": 4640258,
+          "url": "https://github.com/p2000t/M2000/releases/download/0.9.6/M2000-v0.9.6-windows.zip",
+          "downloads": 52,
+          "tag": "0.9.6"
+        },
+        {
+          "host": "macos",
+          "format": "zip",
+          "name": "M2000-v0.9.6-macos.zip",
+          "size": 1180368,
+          "url": "https://github.com/p2000t/M2000/releases/download/0.9.6/M2000-v0.9.6-macos.zip",
+          "downloads": 9,
+          "tag": "0.9.6"
+        },
+        {
+          "host": "linux",
+          "format": "zip",
+          "name": "M2000-v0.9.6-ubuntu.zip",
+          "size": 130370,
+          "url": "https://github.com/p2000t/M2000/releases/download/0.9.6/M2000-v0.9.6-ubuntu.zip",
+          "downloads": 9,
+          "tag": "0.9.6"
+        }
+      ]
+    },
+    {
+      "id": "zortos293-lichii",
+      "name": "Lichii",
+      "category": "主机模拟",
+      "description": "Nintendo Switch 2 模拟器（早期实验阶段），与 Eglantine 同作者。",
+      "owner": "zortos293",
+      "repo": "zortos293/Lichii",
+      "homepage": "",
+      "repo_url": "https://github.com/zortos293/Lichii",
+      "official": true,
+      "channel": "prerelease",
+      "latest_tag": "build-75",
+      "latest_date": "2026-11-05T02:37:01Z",
+      "latest_body": "## What's new since build 70 ### Game fixes - **The green-hat kid adventure:** it now boots, gets through the intro and plays. It used to abort about 20 s after launch, on a 64-bit wait-on-address the kernel rejected (upstream Eglantine #567 is ported). About 80 shaders it couldn't run before now translate, so the white screen is gone and the world renders (#87). - **Star Fox:** gameplay runs at 60 fps instead of 30. Ampere GPU timestamps are now reported in nanoseconds (#84). ### Updater - The in-app updater now checks Lichii's GitHub releases and picks the right download for your platform (#82). ### Diagnostics (all off by default) - The frame dump can also record every texture a pass or compute dispatch samples (`EDEN_NX2_FRAME_DUMP_SAMPLED=1`), and `EDEN_NX2_REJECT_HASH` switches off specific shaders for A/B tests (#87). ### Known issues - **Green-hat kid:** outdoor areas have far too much fog and glow, much hazier than on console. We're working on it. - **Green-hat kid:** performance is low, about 12–22 fps on a Ryzen 5900X with an RTX 3080, and three rare shaders are still unsupported. - **Star Fox on RTX 50-series GPUs** can still lose the GPU device after a scene change. Tr",
+      "latest_apk_name": "",
+      "latest_apk_url": "",
+      "latest_apk_size": null,
+      "pushed_at": "2026-11-06T00:31:31Z",
+      "stars": 2257,
+      "forks": 351,
+      "watchers": 45,
+      "downloads": null,
+      "logo_url": "https://github.com/zortos293.png",
+      "source": "github",
+      "note": "用户确认收（只做搬运不做背书）。与库内 djihads80/eglantine 同作者、同为 Switch 2 实验项目，星标增长异常快，note 标注「实验性、可用性未验证」。",
+      "kind": "emulator",
+      "runtime": "desktop",
+      "platforms": [
+        "switch2"
+      ],
+      "status": "active",
+      "method": "emulation",
+      "hosts": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "needs_review": false,
+      "section": "console-emulation",
+      "family": "zortos293-lichii",
+      "family_label": "Lichii",
+      "downloads_basis": "none",
+      "_section_evidence": "kind=emulator",
+      "_family_evidence": "无上游证据，自成一族",
+      "releases": [
+        {
+          "tag": "build-75",
+          "name": "Lichii nx2 build 75 (c9ebb5c)",
+          "date": "2026-11-05"
+        },
+        {
+          "tag": "build-70",
+          "name": "Lichii nx2 build 70 (286117c)",
+          "date": "2026-11-04"
+        },
+        {
+          "tag": "build-65",
+          "name": "Eglantine nx2 build 65 (3bdd53d)",
+          "date": "2026-11-02"
+        },
+        {
+          "tag": "nx2-build31-20261101",
+          "name": "Eglantine nx2 build 31",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "nx2-build-34",
+          "name": "Eglantine nx2 build 34 (3140648)",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "nx2-build-25",
+          "name": "Eglantine nx2 build 25 (9c34939)",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "nx2-build-15",
+          "name": "Eglantine nx2 build 15 (2818f85)",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "build-10",
+          "name": "Eglantine nx2 build 10 (d8a9528)",
+          "date": "2026-11-01"
+        },
+        {
+          "tag": "nx2-20261031",
+          "name": "Eglantine NX2 Windows build (2026-10-31)",
+          "date": "2026-10-31"
+        }
+      ],
+      "builds": [
+        {
+          "host": "windows",
+          "format": "zip",
+          "name": "lichii-windows-x86_64.zip",
+          "size": 115840760,
+          "url": "https://github.com/zortos293/Lichii/releases/download/build-75/lichii-windows-x86_64.zip",
+          "downloads": 56903,
+          "tag": "build-75"
+        },
+        {
+          "host": "macos",
+          "format": "dmg",
+          "name": "lichii-macos-arm64.dmg",
+          "size": 83698900,
+          "url": "https://github.com/zortos293/Lichii/releases/download/build-75/lichii-macos-arm64.dmg",
+          "downloads": 415,
+          "tag": "build-75"
+        },
+        {
+          "host": "linux",
+          "format": "appimage",
+          "name": "lichii-linux-x86_64-pgo.AppImage",
+          "size": 139790840,
+          "url": "https://github.com/zortos293/Lichii/releases/download/build-75/lichii-linux-x86_64-pgo.AppImage",
+          "downloads": 7444,
+          "tag": "build-75"
+        }
+      ]
     }
   ]
 }
