@@ -3741,8 +3741,8 @@ Java_com_emubox_app_NativeVulkanBridge_renderDriverAdrenotoolsInProcess(
     return env->NewStringUTF(json.c_str());
 }
 
-// 设置外部新版 adrenotools 运行时目录（assets 解压到 filesDir/fauxvktest-runtime）。
-// 实测/跑分/渲染任一入口调用前由 Kotlin 侧调用一次；dlopen 失败静默回退内置旧版。
+// 设置外部运行时目录。传 null 清空 → 回退内置 adrenotools 加载路径。
+// 第三方运行时已退役（见 RuntimeBootstrap 注释），该入口保留给自研 DriverCheck 注入。
 extern "C" JNIEXPORT void JNICALL
 Java_com_emubox_app_NativeVulkanBridge_setExternalRuntimeDir(
         JNIEnv* env, jobject /* thiz */, jstring runtimeDir) {
