@@ -172,7 +172,11 @@ data class VulkanDeviceInfo(
     val memoryTypes: List<MemoryTypeInfo>,
     val memoryHeaps: List<MemoryHeapInfo>,
     val queueFamilies: List<QueueFamilyInfo>,
-    val limits: Map<String, Any>
+    val limits: Map<String, Any>,
+    /** 驱动指纹：16 字节转小写 hex，同型号不同驱动的区分依据 */
+    val pipelineCacheUUID: String = "",
+    /** 稀疏资源能力（模拟器的 sparse texture 支持判断） */
+    val sparseProperties: Map<String, Boolean> = emptyMap()
 ) {
     companion object {
         fun fromJson(obj: JSONObject): VulkanDeviceInfo {
@@ -300,6 +304,24 @@ data class VulkanDeviceInfo(
                 }
             }
 
+            // 驱动指纹：16 字节 → 32 位 hex（小写，便于直接对比粘贴）
+            val uuidArray = obj.optJSONArray("pipelineCacheUUID")
+            val pipelineCacheUUID = if (uuidArray == null) "" else buildString {
+                for (i in 0 until uuidArray.length()) {
+                    append("%02x".format(uuidArray.optInt(i, 0) and 0xFF))
+                }
+            }
+
+            val sparseObj = obj.optJSONObject("sparseProperties")
+            val sparseProperties = mutableMapOf<String, Boolean>()
+            if (sparseObj != null) {
+                val keys = sparseObj.keys()
+                while (keys.hasNext()) {
+                    val key = keys.next()
+                    sparseProperties[key] = sparseObj.optBoolean(key, false)
+                }
+            }
+
             return VulkanDeviceInfo(
                 deviceName = obj.optString("deviceName", ""),
                 deviceType = obj.optString("deviceType", ""),
@@ -316,7 +338,9 @@ data class VulkanDeviceInfo(
                 memoryTypes = memoryTypes,
                 memoryHeaps = memoryHeaps,
                 queueFamilies = queueFamilies,
-                limits = limits
+                limits = limits,
+                pipelineCacheUUID = pipelineCacheUUID,
+                sparseProperties = sparseProperties
             )
         }
     }

@@ -533,6 +533,9 @@
     <string name="vulkan_driver_name">驱动名称</string>
     <string name="vulkan_driver_info">驱动信息</string>
     <string name="vulkan_extensions">扩展数量</string>
+    <string name="vulkan_formats">纹理格式</string>
+    <string name="vulkan_driver_fingerprint">驱动指纹</string>
+    <string name="vulkan_sparse_support">稀疏资源</string>
     <string name="vulkan_memory_types">内存类型</string>
     <string name="vulkan_memory_heaps">内存堆</string>
     <string name="vulkan_queue_families">队列族</string>
