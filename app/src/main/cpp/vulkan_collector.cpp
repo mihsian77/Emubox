@@ -29,33 +29,262 @@
 #define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
 
 // ── VkFormat → 名称（format 矩阵 JSON 输出用）────────────────────────
-static const char* stringifyFormat(VkFormat f) {
-    switch (f) {
-        case VK_FORMAT_R8G8B8A8_UNORM: return "R8G8B8A8_UNORM";
-        case VK_FORMAT_B8G8R8A8_UNORM: return "B8G8R8A8_UNORM";
-        case VK_FORMAT_R8G8B8A8_SRGB: return "R8G8B8A8_SRGB";
-        case VK_FORMAT_B8G8R8A8_SRGB: return "B8G8R8A8_SRGB";
-        case VK_FORMAT_R16G16B16A16_SFLOAT: return "R16G16B16A16_SFLOAT";
-        case VK_FORMAT_R32G32B32A32_SFLOAT: return "R32G32B32A32_SFLOAT";
-        case VK_FORMAT_R16_SFLOAT: return "R16_SFLOAT";
-        case VK_FORMAT_R32_SFLOAT: return "R32_SFLOAT";
-        case VK_FORMAT_R8_UNORM: return "R8_UNORM";
-        case VK_FORMAT_R8G8_UNORM: return "R8G8_UNORM";
-        case VK_FORMAT_A2R10G10B10_UNORM_PACK32: return "A2R10G10B10_UNORM_PACK32";
-        case VK_FORMAT_B10G11R11_UFLOAT_PACK32: return "B10G11R11_UFLOAT_PACK32";
-        case VK_FORMAT_D16_UNORM: return "D16_UNORM";
-        case VK_FORMAT_D24_UNORM_S8_UINT: return "D24_UNORM_S8_UINT";
-        case VK_FORMAT_D32_SFLOAT: return "D32_SFLOAT";
-        case VK_FORMAT_D32_SFLOAT_S8_UINT: return "D32_SFLOAT_S8_UINT";
-        case VK_FORMAT_BC1_RGBA_UNORM_BLOCK: return "BC1_RGBA_UNORM_BLOCK";
-        case VK_FORMAT_BC3_UNORM_BLOCK: return "BC3_UNORM_BLOCK";
-        case VK_FORMAT_BC5_UNORM_BLOCK: return "BC5_UNORM_BLOCK";
-        case VK_FORMAT_BC7_UNORM_BLOCK: return "BC7_UNORM_BLOCK";
-        case VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK: return "ETC2_R8G8B8_UNORM_BLOCK";
-        case VK_FORMAT_ASTC_4x4_UNORM_BLOCK: return "ASTC_4x4_UNORM_BLOCK";
-        default: return "UNKNOWN";
-    }
-}
+struct FormatNameEntry { uint32_t value; const char* name; };
+// 值 → 名称全表：核心 0..184 连续，1.2/1.3 新增格式落在 1000xxx 区间
+static const FormatNameEntry kFormatEntries[] = {
+    {0u, "UNDEFINED"},
+    {1u, "R4G4_UNORM_PACK8"},
+    {2u, "R4G4B4A4_UNORM_PACK16"},
+    {3u, "B4G4R4A4_UNORM_PACK16"},
+    {4u, "R5G6B5_UNORM_PACK16"},
+    {5u, "B5G6R5_UNORM_PACK16"},
+    {6u, "R5G5B5A1_UNORM_PACK16"},
+    {7u, "B5G5R5A1_UNORM_PACK16"},
+    {8u, "A1R5G5B5_UNORM_PACK16"},
+    {9u, "R8_UNORM"},
+    {10u, "R8_SNORM"},
+    {11u, "R8_USCALED"},
+    {12u, "R8_SSCALED"},
+    {13u, "R8_UINT"},
+    {14u, "R8_SINT"},
+    {15u, "R8_SRGB"},
+    {16u, "R8G8_UNORM"},
+    {17u, "R8G8_SNORM"},
+    {18u, "R8G8_USCALED"},
+    {19u, "R8G8_SSCALED"},
+    {20u, "R8G8_UINT"},
+    {21u, "R8G8_SINT"},
+    {22u, "R8G8_SRGB"},
+    {23u, "R8G8B8_UNORM"},
+    {24u, "R8G8B8_SNORM"},
+    {25u, "R8G8B8_USCALED"},
+    {26u, "R8G8B8_SSCALED"},
+    {27u, "R8G8B8_UINT"},
+    {28u, "R8G8B8_SINT"},
+    {29u, "R8G8B8_SRGB"},
+    {30u, "B8G8R8_UNORM"},
+    {31u, "B8G8R8_SNORM"},
+    {32u, "B8G8R8_USCALED"},
+    {33u, "B8G8R8_SSCALED"},
+    {34u, "B8G8R8_UINT"},
+    {35u, "B8G8R8_SINT"},
+    {36u, "B8G8R8_SRGB"},
+    {37u, "R8G8B8A8_UNORM"},
+    {38u, "R8G8B8A8_SNORM"},
+    {39u, "R8G8B8A8_USCALED"},
+    {40u, "R8G8B8A8_SSCALED"},
+    {41u, "R8G8B8A8_UINT"},
+    {42u, "R8G8B8A8_SINT"},
+    {43u, "R8G8B8A8_SRGB"},
+    {44u, "B8G8R8A8_UNORM"},
+    {45u, "B8G8R8A8_SNORM"},
+    {46u, "B8G8R8A8_USCALED"},
+    {47u, "B8G8R8A8_SSCALED"},
+    {48u, "B8G8R8A8_UINT"},
+    {49u, "B8G8R8A8_SINT"},
+    {50u, "B8G8R8A8_SRGB"},
+    {51u, "A8B8G8R8_UNORM_PACK32"},
+    {52u, "A8B8G8R8_SNORM_PACK32"},
+    {53u, "A8B8G8R8_USCALED_PACK32"},
+    {54u, "A8B8G8R8_SSCALED_PACK32"},
+    {55u, "A8B8G8R8_UINT_PACK32"},
+    {56u, "A8B8G8R8_SINT_PACK32"},
+    {57u, "A8B8G8R8_SRGB_PACK32"},
+    {58u, "A2R10G10B10_UNORM_PACK32"},
+    {59u, "A2R10G10B10_SNORM_PACK32"},
+    {60u, "A2R10G10B10_USCALED_PACK32"},
+    {61u, "A2R10G10B10_SSCALED_PACK32"},
+    {62u, "A2R10G10B10_UINT_PACK32"},
+    {63u, "A2R10G10B10_SINT_PACK32"},
+    {64u, "A2B10G10R10_UNORM_PACK32"},
+    {65u, "A2B10G10R10_SNORM_PACK32"},
+    {66u, "A2B10G10R10_USCALED_PACK32"},
+    {67u, "A2B10G10R10_SSCALED_PACK32"},
+    {68u, "A2B10G10R10_UINT_PACK32"},
+    {69u, "A2B10G10R10_SINT_PACK32"},
+    {70u, "R16_UNORM"},
+    {71u, "R16_SNORM"},
+    {72u, "R16_USCALED"},
+    {73u, "R16_SSCALED"},
+    {74u, "R16_UINT"},
+    {75u, "R16_SINT"},
+    {76u, "R16_SFLOAT"},
+    {77u, "R16G16_UNORM"},
+    {78u, "R16G16_SNORM"},
+    {79u, "R16G16_USCALED"},
+    {80u, "R16G16_SSCALED"},
+    {81u, "R16G16_UINT"},
+    {82u, "R16G16_SINT"},
+    {83u, "R16G16_SFLOAT"},
+    {84u, "R16G16B16_UNORM"},
+    {85u, "R16G16B16_SNORM"},
+    {86u, "R16G16B16_USCALED"},
+    {87u, "R16G16B16_SSCALED"},
+    {88u, "R16G16B16_UINT"},
+    {89u, "R16G16B16_SINT"},
+    {90u, "R16G16B16_SFLOAT"},
+    {91u, "R16G16B16A16_UNORM"},
+    {92u, "R16G16B16A16_SNORM"},
+    {93u, "R16G16B16A16_USCALED"},
+    {94u, "R16G16B16A16_SSCALED"},
+    {95u, "R16G16B16A16_UINT"},
+    {96u, "R16G16B16A16_SINT"},
+    {97u, "R16G16B16A16_SFLOAT"},
+    {98u, "R32_UINT"},
+    {99u, "R32_SINT"},
+    {100u, "R32_SFLOAT"},
+    {101u, "R32G32_UINT"},
+    {102u, "R32G32_SINT"},
+    {103u, "R32G32_SFLOAT"},
+    {104u, "R32G32B32_UINT"},
+    {105u, "R32G32B32_SINT"},
+    {106u, "R32G32B32_SFLOAT"},
+    {107u, "R32G32B32A32_UINT"},
+    {108u, "R32G32B32A32_SINT"},
+    {109u, "R32G32B32A32_SFLOAT"},
+    {110u, "R64_UINT"},
+    {111u, "R64_SINT"},
+    {112u, "R64_SFLOAT"},
+    {113u, "R64G64_UINT"},
+    {114u, "R64G64_SINT"},
+    {115u, "R64G64_SFLOAT"},
+    {116u, "R64G64B64_UINT"},
+    {117u, "R64G64B64_SINT"},
+    {118u, "R64G64B64_SFLOAT"},
+    {119u, "R64G64B64A64_UINT"},
+    {120u, "R64G64B64A64_SINT"},
+    {121u, "R64G64B64A64_SFLOAT"},
+    {122u, "B10G11R11_UFLOAT_PACK32"},
+    {123u, "E5B9G9R9_UFLOAT_PACK32"},
+    {124u, "D16_UNORM"},
+    {125u, "X8_D24_UNORM_PACK32"},
+    {126u, "D32_SFLOAT"},
+    {127u, "S8_UINT"},
+    {128u, "D16_UNORM_S8_UINT"},
+    {129u, "D24_UNORM_S8_UINT"},
+    {130u, "D32_SFLOAT_S8_UINT"},
+    {131u, "BC1_RGB_UNORM_BLOCK"},
+    {132u, "BC1_RGB_SRGB_BLOCK"},
+    {133u, "BC1_RGBA_UNORM_BLOCK"},
+    {134u, "BC1_RGBA_SRGB_BLOCK"},
+    {135u, "BC2_UNORM_BLOCK"},
+    {136u, "BC2_SRGB_BLOCK"},
+    {137u, "BC3_UNORM_BLOCK"},
+    {138u, "BC3_SRGB_BLOCK"},
+    {139u, "BC4_UNORM_BLOCK"},
+    {140u, "BC4_SNORM_BLOCK"},
+    {141u, "BC5_UNORM_BLOCK"},
+    {142u, "BC5_SNORM_BLOCK"},
+    {143u, "BC6H_UFLOAT_BLOCK"},
+    {144u, "BC6H_SFLOAT_BLOCK"},
+    {145u, "BC7_UNORM_BLOCK"},
+    {146u, "BC7_SRGB_BLOCK"},
+    {147u, "ETC2_R8G8B8_UNORM_BLOCK"},
+    {148u, "ETC2_R8G8B8_SRGB_BLOCK"},
+    {149u, "ETC2_R8G8B8A1_UNORM_BLOCK"},
+    {150u, "ETC2_R8G8B8A1_SRGB_BLOCK"},
+    {151u, "ETC2_R8G8B8A8_UNORM_BLOCK"},
+    {152u, "ETC2_R8G8B8A8_SRGB_BLOCK"},
+    {153u, "EAC_R11_UNORM_BLOCK"},
+    {154u, "EAC_R11_SNORM_BLOCK"},
+    {155u, "EAC_R11G11_UNORM_BLOCK"},
+    {156u, "EAC_R11G11_SNORM_BLOCK"},
+    {157u, "ASTC_4x4_UNORM_BLOCK"},
+    {158u, "ASTC_4x4_SRGB_BLOCK"},
+    {159u, "ASTC_5x4_UNORM_BLOCK"},
+    {160u, "ASTC_5x4_SRGB_BLOCK"},
+    {161u, "ASTC_5x5_UNORM_BLOCK"},
+    {162u, "ASTC_5x5_SRGB_BLOCK"},
+    {163u, "ASTC_6x5_UNORM_BLOCK"},
+    {164u, "ASTC_6x5_SRGB_BLOCK"},
+    {165u, "ASTC_6x6_UNORM_BLOCK"},
+    {166u, "ASTC_6x6_SRGB_BLOCK"},
+    {167u, "ASTC_8x5_UNORM_BLOCK"},
+    {168u, "ASTC_8x5_SRGB_BLOCK"},
+    {169u, "ASTC_8x6_UNORM_BLOCK"},
+    {170u, "ASTC_8x6_SRGB_BLOCK"},
+    {171u, "ASTC_8x8_UNORM_BLOCK"},
+    {172u, "ASTC_8x8_SRGB_BLOCK"},
+    {173u, "ASTC_10x5_UNORM_BLOCK"},
+    {174u, "ASTC_10x5_SRGB_BLOCK"},
+    {175u, "ASTC_10x6_UNORM_BLOCK"},
+    {176u, "ASTC_10x6_SRGB_BLOCK"},
+    {177u, "ASTC_10x8_UNORM_BLOCK"},
+    {178u, "ASTC_10x8_SRGB_BLOCK"},
+    {179u, "ASTC_10x10_UNORM_BLOCK"},
+    {180u, "ASTC_10x10_SRGB_BLOCK"},
+    {181u, "ASTC_12x10_UNORM_BLOCK"},
+    {182u, "ASTC_12x10_SRGB_BLOCK"},
+    {183u, "ASTC_12x12_UNORM_BLOCK"},
+    {184u, "ASTC_12x12_SRGB_BLOCK"},
+    // ── 以下为 Vulkan 1.2/1.3 新增（1000xxx 区间）──
+    {1000054000u, "PVRTC1_2BPP_UNORM_BLOCK_IMG"},
+    {1000054001u, "PVRTC1_4BPP_UNORM_BLOCK_IMG"},
+    {1000054002u, "PVRTC2_2BPP_UNORM_BLOCK_IMG"},
+    {1000054003u, "PVRTC2_4BPP_UNORM_BLOCK_IMG"},
+    {1000054004u, "PVRTC1_2BPP_SRGB_BLOCK_IMG"},
+    {1000054005u, "PVRTC1_4BPP_SRGB_BLOCK_IMG"},
+    {1000054006u, "PVRTC2_2BPP_SRGB_BLOCK_IMG"},
+    {1000054007u, "PVRTC2_4BPP_SRGB_BLOCK_IMG"},
+    {1000066000u, "ASTC_4x4_SFLOAT_BLOCK"},
+    {1000066001u, "ASTC_5x4_SFLOAT_BLOCK"},
+    {1000066002u, "ASTC_5x5_SFLOAT_BLOCK"},
+    {1000066003u, "ASTC_6x5_SFLOAT_BLOCK"},
+    {1000066004u, "ASTC_6x6_SFLOAT_BLOCK"},
+    {1000066005u, "ASTC_8x5_SFLOAT_BLOCK"},
+    {1000066006u, "ASTC_8x6_SFLOAT_BLOCK"},
+    {1000066007u, "ASTC_8x8_SFLOAT_BLOCK"},
+    {1000066008u, "ASTC_10x5_SFLOAT_BLOCK"},
+    {1000066009u, "ASTC_10x6_SFLOAT_BLOCK"},
+    {1000066010u, "ASTC_10x8_SFLOAT_BLOCK"},
+    {1000066011u, "ASTC_10x10_SFLOAT_BLOCK"},
+    {1000066012u, "ASTC_12x10_SFLOAT_BLOCK"},
+    {1000066013u, "ASTC_12x12_SFLOAT_BLOCK"},
+    {1000156000u, "G8B8G8R8_422_UNORM"},
+    {1000156001u, "B8G8R8G8_422_UNORM"},
+    {1000156002u, "G8_B8_R8_3PLANE_420_UNORM"},
+    {1000156003u, "G8_B8R8_2PLANE_420_UNORM"},
+    {1000156004u, "G8_B8_R8_3PLANE_422_UNORM"},
+    {1000156005u, "G8_B8R8_2PLANE_422_UNORM"},
+    {1000156006u, "G8_B8_R8_3PLANE_444_UNORM"},
+    {1000156007u, "R10X6_UNORM_PACK16"},
+    {1000156008u, "R10X6G10X6_UNORM_2PACK16"},
+    {1000156009u, "R10X6G10X6B10X6A10X6_UNORM_4PACK16"},
+    {1000156010u, "G10X6B10X6G10X6R10X6_422_UNORM_4PACK16"},
+    {1000156011u, "B10X6G10X6R10X6G10X6_422_UNORM_4PACK16"},
+    {1000156012u, "G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16"},
+    {1000156013u, "G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16"},
+    {1000156014u, "G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16"},
+    {1000156015u, "G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16"},
+    {1000156016u, "G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16"},
+    {1000156017u, "R12X4_UNORM_PACK16"},
+    {1000156018u, "R12X4G12X4_UNORM_2PACK16"},
+    {1000156019u, "R12X4G12X4B12X4A12X4_UNORM_4PACK16"},
+    {1000156020u, "G12X4B12X4G12X4R12X4_422_UNORM_4PACK16"},
+    {1000156021u, "B12X4G12X4R12X4G12X4_422_UNORM_4PACK16"},
+    {1000156022u, "G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16"},
+    {1000156023u, "G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16"},
+    {1000156024u, "G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16"},
+    {1000156025u, "G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16"},
+    {1000156026u, "G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16"},
+    {1000156027u, "G16B16G16R16_422_UNORM"},
+    {1000156028u, "B16G16R16G16_422_UNORM"},
+    {1000156029u, "G16_B16_R16_3PLANE_420_UNORM"},
+    {1000156030u, "G16_B16R16_2PLANE_420_UNORM"},
+    {1000156031u, "G16_B16_R16_3PLANE_422_UNORM"},
+    {1000156032u, "G16_B16R16_2PLANE_422_UNORM"},
+    {1000156033u, "G16_B16_R16_3PLANE_444_UNORM"},
+    {1000330000u, "G8_B8R8_2PLANE_444_UNORM"},
+    {1000330001u, "G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16"},
+    {1000330002u, "G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16"},
+    {1000330003u, "G16_B16R16_2PLANE_444_UNORM"},
+    {1000340000u, "A4R4G4B4_UNORM_PACK16"},
+    {1000340001u, "A4B4G4R4_UNORM_PACK16"},
+    {1000464000u, "R16G16_S10_5_NV"},
+    {1000470000u, "A1B5G5R5_UNORM_PACK16_KHR"},
+    {1000470001u, "A8_UNORM_KHR"},
+};
+static constexpr uint32_t kFormatEntryCount = 250;
 
 // ── 函数指针类型（vulkan.h 里 PFN_vk* 本身已是函数指针，直接用别名）──────
 // vkGetInstanceProcAddr 的函数指针类型（明确指定 2 参数）
@@ -208,6 +437,23 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     }
     j << "\"driverName\":\"" << jsonEscape(driverName) << "\",";
     j << "\"driverInfo\":\"" << jsonEscape(driverInfo) << "\",";
+
+    // 驱动指纹：同型号不同驱动的区分依据，比 deviceID 更细
+    j << "\"pipelineCacheUUID\":[";
+    for (uint32_t u = 0; u < VK_UUID_SIZE; ++u) {
+        if (u) j << ",";
+        j << static_cast<uint32_t>(props.pipelineCacheUUID[u]);
+    }
+    j << "],";
+
+    // 稀疏资源能力：模拟器对 sparse texture 的支持判断
+    j << "\"sparseProperties\":{";
+    j << "\"residencyStandard2DBlockShape\":" << (props.sparseProperties.residencyStandard2DBlockShape ? "true" : "false") << ",";
+    j << "\"residencyStandard2DMultisampleBlockShape\":" << (props.sparseProperties.residencyStandard2DMultisampleBlockShape ? "true" : "false") << ",";
+    j << "\"residencyStandard3DBlockShape\":" << (props.sparseProperties.residencyStandard3DBlockShape ? "true" : "false") << ",";
+    j << "\"residencyAlignedMipSize\":" << (props.sparseProperties.residencyAlignedMipSize ? "true" : "false") << ",";
+    j << "\"residencyNonResidentStrict\":" << (props.sparseProperties.residencyNonResidentStrict ? "true" : "false");
+    j << "},";
 
     // 特性（只列关键特性，避免 JSON 过大）
     VkPhysicalDeviceFeatures features{};
@@ -472,32 +718,22 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     j << "}";
 
     // Format 支持矩阵：DXVK/VKD3D 转译层判断纹理/交换链格式的关键依据
+    // 全量遍历 0..184，只输出至少一种 tiling/buffer 能力非零的格式
     j << ",\"formats\":[";
-    const VkFormat keyFormats[] = {
-        VK_FORMAT_R8G8B8A8_UNORM, VK_FORMAT_B8G8R8A8_UNORM,
-        VK_FORMAT_R8G8B8A8_SRGB, VK_FORMAT_B8G8R8A8_SRGB,
-        VK_FORMAT_R16G16B16A16_SFLOAT, VK_FORMAT_R32G32B32A32_SFLOAT,
-        VK_FORMAT_R16_SFLOAT, VK_FORMAT_R32_SFLOAT,
-        VK_FORMAT_R8_UNORM, VK_FORMAT_R8G8_UNORM,
-        VK_FORMAT_A2R10G10B10_UNORM_PACK32, VK_FORMAT_B10G11R11_UFLOAT_PACK32,
-        VK_FORMAT_D16_UNORM, VK_FORMAT_D24_UNORM_S8_UINT,
-        VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT,
-        VK_FORMAT_BC1_RGBA_UNORM_BLOCK, VK_FORMAT_BC3_UNORM_BLOCK,
-        VK_FORMAT_BC5_UNORM_BLOCK, VK_FORMAT_BC7_UNORM_BLOCK,
-        VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK, VK_FORMAT_ASTC_4x4_UNORM_BLOCK
-    };
     bool fmtOk = vk.vkGetPhysicalDeviceFormatProperties != nullptr;
     uint32_t printedFmts = 0;
-    for (VkFormat f : keyFormats) {
-        VkFormatProperties fp{};
-        if (fmtOk) {
-            vk.vkGetPhysicalDeviceFormatProperties(device, f, &fp);
+    if (fmtOk) {
+        for (uint32_t fi = 0; fi < kFormatEntryCount; ++fi) {
+            VkFormatProperties fp{};
+            vk.vkGetPhysicalDeviceFormatProperties(
+                device, static_cast<VkFormat>(kFormatEntries[fi].value), &fp);
+            if (!fp.linearTilingFeatures && !fp.optimalTilingFeatures && !fp.bufferFeatures) continue;
+            if (printedFmts++) j << ",";
+            j << "{\"format\":\"" << kFormatEntries[fi].name << "\","
+              << "\"linear\":" << fp.linearTilingFeatures << ","
+              << "\"optimal\":" << fp.optimalTilingFeatures << ","
+              << "\"buffer\":" << fp.bufferFeatures << "}";
         }
-        if (printedFmts++) j << ",";
-        j << "{\"format\":\"" << stringifyFormat(f) << "\","
-          << "\"linear\":" << fp.linearTilingFeatures << ","
-          << "\"optimal\":" << fp.optimalTilingFeatures << ","
-          << "\"buffer\":" << fp.bufferFeatures << "}";
     }
     j << "]";
 
