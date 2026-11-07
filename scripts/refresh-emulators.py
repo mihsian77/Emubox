@@ -74,9 +74,14 @@ def main():
                 apk = next((a for a in assets if a["name"].lower().endswith(".apk")), None)
                 tag = r.get("tag_name", "")
                 url = apk["browser_download_url"] if apk else ""
-                if tag != emu.get("latest_tag") or url != emu.get("latest_apk_url"):
+                date = r.get("published_at", "")
+                channel = "prerelease" if r.get("prerelease") else "stable"
+                if (tag != emu.get("latest_tag") or url != emu.get("latest_apk_url")
+                        or date != emu.get("latest_date") or channel != emu.get("channel")):
                     emu["latest_tag"] = tag
                     emu["latest_apk_url"] = url
+                    emu["latest_date"] = date
+                    emu["channel"] = channel
                     changed = True
                 break
         elif owner and repo:

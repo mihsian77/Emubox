@@ -72,7 +72,13 @@ data class EmulatorEntry(
      * registry 里 40 条只有它没有 APK，此前 UI 完全没读这个字段，
      * 于是「有官方下载页」被渲染成按钮变灰的「无下载」。
      */
-    val downloadUrl: String = ""
+    val downloadUrl: String = "",
+    /**
+     * 运行宿主：android / windows / macos / linux。
+     * 库里 105 条是桌面模拟器，安卓端装不了，列表要标出来，
+     * 否则用户点进去才发现「没有安装包」。
+     */
+    val hosts: List<String> = emptyList()
 ) {
     /**
      * 源码仓库地址。
@@ -288,7 +294,10 @@ EmulatorEntry(id = "citra-mirror", name = "Citra Mirror", category = "Nintendo 3
                         source = obj.optString("source", ""),
                         dead = obj.optBoolean("dead", false),
                         deadReason = obj.optString("dead_reason", ""),
-                        downloadUrl = obj.optString("download_url")
+                        downloadUrl = obj.optString("download_url"),
+                        hosts = obj.optJSONArray("hosts")?.let { arr ->
+                            (0 until arr.length()).mapNotNull { i -> arr.optString(i).takeIf(String::isNotBlank) }
+                        } ?: emptyList()
                     )
                 )
             }
