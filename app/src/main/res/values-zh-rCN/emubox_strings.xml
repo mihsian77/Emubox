@@ -188,6 +188,8 @@
     <string name="emulator_cat_share_title">分类下载占比</string>
     <string name="emulator_recipes_title">硬件配置食谱</string>
 
+    <string name="emulator_channel_prerelease">预发布</string>
+    <string name="emulator_hosts_desktop_only">仅桌面</string>
     <string name="emulator_badge_official">官方</string>
     <string name="emulator_all_versions">全部版本与文件（%d）</string>
     <string name="emulator_no_releases">暂无发布版本，可在仓库查看</string>
