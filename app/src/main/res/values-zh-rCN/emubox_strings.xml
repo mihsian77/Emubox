@@ -772,4 +772,15 @@
     <string name="driver_check_use_system">系统驱动</string>
     <string name="driver_check_target_note">将直接加载 %1$s（绕开系统 loader，失败会带 dlerror 原文）</string>
     <string name="driver_check_extract_failed">驱动包解压失败，取不到 .so</string>
+    <!-- 详情型：设备页结论卡与分组 -->
+    <string name="device_conclusion_full">这台机器 Turnip 可用，DXVK 游戏有硬件加速</string>
+    <string name="device_conclusion_partial">Turnip 支持有限：老游戏稳，新 3A 撑不住</string>
+    <string name="device_conclusion_none">没有 Turnip，只能走翻译层，帧率大约打对折</string>
+    <string name="device_conclusion_unknown">显卡厂商未识别，先用 VirGL 兜底</string>
+    <string name="device_badge_recommended">推荐</string>
+    <string name="device_badge_limited">受限</string>
+    <string name="device_badge_caution">谨慎</string>
+    <string name="device_section_compat">本机兼容性</string>
+    <string name="device_section_driver">推荐驱动</string>
+    <string name="device_section_chip">芯片与性能</string>
 </resources>

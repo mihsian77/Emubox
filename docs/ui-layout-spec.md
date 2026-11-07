@@ -100,9 +100,11 @@
 | 换驱动渲染实测入口 | 完成（系统驱动 / 已下载驱动可切） |
 | 列表型模板 | 完成（`ui/template/PageTemplates.kt`） |
 | 驱动页按模板迁移 | 完成（标题 → 设备一行 → 搜索 → 计数 → 分区） |
-| 详情型模板 | 待做（已有 `FusionCard` 可复用） |
-| 设置型模板 | 待做（已有 `FusionCard` / `CollapseRow` 可复用） |
-| 其余 6 个分区迁移 | 待做 |
+| 详情型模板 | 完成（`ConclusionCard` / `SpecStrip` / `FactRow` / `DetailActionBar`） |
+| 设置型模板 | 完成（`SectionHeader` / `SettingGroup` / `SettingRow` / `SettingChoiceRow`） |
+| 设备页按详情型迁移 | 完成（结论前置，新闻降级为末尾折叠区） |
+| 设置页按设置型迁移 | 完成（一组一卡，大图标组标题改小字） |
+| 其余分区迁移 | 待做（组件 / 运行库 / 下载 / 指南） |
 
 ### 模拟器页重排记录
 
@@ -128,6 +130,14 @@
 | `ResultCountRow` | 结果计数 | 列表页必须有且只出现一次 |
 | `CollapseRow` | 折叠区入口 | 次要内容默认收起 |
 | `FusionCard` | 卡片外壳 | 一层底色 + 一层描边，内部禁止再叠底色 |
+| `ConclusionCard` | 详情页结论卡 | 结论在参数之前，主操作最多一个 |
+| `SpecStrip` | 关键参数横排 | 3–4 项一行，不换行、不做大格子 |
+| `FactRow` | 详情页键值行 | 标签固定宽，值可换行 |
+| `DetailActionBar` | 详情页底部固定条 | 放进 bottomBar，主按钮只放一个 |
+| `SectionHeader` | 分组标题 | 小字 + 弱色，替代带图标盒的大标题 |
+| `SettingGroup` | 设置分组容器 | 一组一卡，组内不超过 8 行 |
+| `SettingRow` | 设置行 | 左标题/副标题，右控件，行高 ≥ 56dp |
+| `SettingChoiceRow` | 选择型设置行 | 控件独占一行（chips / 分段 / 下拉） |
 
 ### 两个写页面时一定会踩的坑
 

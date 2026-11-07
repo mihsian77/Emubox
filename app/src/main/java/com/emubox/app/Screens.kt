@@ -60,6 +60,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.emubox.app.ui.template.CollapseRow
+import com.emubox.app.ui.template.ConclusionCard
+import com.emubox.app.ui.template.ConclusionTone
+import com.emubox.app.ui.template.DetailActionBar
+import com.emubox.app.ui.template.FusionCard
+import com.emubox.app.ui.template.SectionHeader
+import com.emubox.app.ui.template.SettingChoiceRow
+import com.emubox.app.ui.template.SettingGroup
+import com.emubox.app.ui.template.SettingRow
+import com.emubox.app.ui.template.SpecItem
+import com.emubox.app.ui.template.SpecStrip
 import com.emubox.app.ui.template.listPageHeader
 import com.emubox.app.ui.theme.Fusion
 import androidx.documentfile.provider.DocumentFile
@@ -1326,105 +1337,68 @@ fun SettingsScreen(
                 .fillMaxSize()
                 .padding(padding),
             contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             // 「我的」入口：下载页不再占一级导航，改从这里进入
             if (onOpenDownloads != null) {
                 item {
-                    SettingsCard(title = appString(R.string.tab_download)) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { onOpenDownloads() }
-                                .padding(vertical = 6.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = appString(R.string.downloads_entry_desc),
-                                modifier = Modifier.weight(1f),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Fusion.OnSurfaceDim
-                            )
-                            Icon(
-                                Icons.Default.ChevronRight,
-                                contentDescription = null,
-                                tint = Fusion.OnSurfaceFaint
-                            )
-                        }
+                    SettingGroup {
+                        SettingRow(
+                            title = appString(R.string.tab_download),
+                            subtitle = appString(R.string.downloads_entry_desc),
+                            showDivider = false,
+                            onClick = onOpenDownloads,
+                            trailing = {
+                                Icon(
+                                    Icons.Default.ChevronRight,
+                                    contentDescription = null,
+                                    tint = Fusion.OnSurfaceFaint
+                                )
+                            }
+                        )
                     }
                 }
             }
 
             item {
                 SettingsSectionHeader(
-                    icon = Icons.Default.Palette,
                     title = appString(R.string.appearance),
                     subtitle = appString(R.string.appearance_desc)
                 )
             }
             item {
-                SettingsCard(title = appString(R.string.app_language)) {
-                    Text(
-                        text = appString(R.string.language_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(Modifier.height(12.dp))
-                    LanguageSelector(
-                        selected = appLanguage,
-                        onSelected = onAppLanguageChange
-                    )
-                }
-            }
-
-            item {
-                SettingsCard(title = appString(R.string.theme_mode)) {
-                    Text(
-                        text = appString(R.string.theme_mode_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(Modifier.height(12.dp))
-                    ThemeModeSelector(
-                        selected = themeMode,
-                        onSelected = onThemeModeChange
-                    )
-                }
-            }
-
-            item {
-                SettingsCard(title = appString(R.string.ui_scale_title)) {
-                    Text(
-                        text = appString(R.string.ui_scale_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(Modifier.height(12.dp))
-                    UiScaleSelector(
-                        selected = uiScale,
-                        onSelected = onUiScaleChange
-                    )
-                }
-            }
-
-            item {
-                SettingsCard(title = appString(R.string.color_theme)) {
-                    Text(
-                        text = appString(R.string.color_theme_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(Modifier.height(12.dp))
-                    ColorThemeSelector(
-                        selected = colorTheme,
-                        onSelected = onColorThemeChange
-                    )
+                // 外观四项合为一组：一组一张卡，项与项之间只用分隔线分层
+                SettingGroup {
+                    SettingChoiceRow(
+                        title = appString(R.string.app_language),
+                        subtitle = appString(R.string.language_desc),
+                    ) {
+                        LanguageSelector(selected = appLanguage, onSelected = onAppLanguageChange)
+                    }
+                    SettingChoiceRow(
+                        title = appString(R.string.theme_mode),
+                        subtitle = appString(R.string.theme_mode_desc),
+                    ) {
+                        ThemeModeSelector(selected = themeMode, onSelected = onThemeModeChange)
+                    }
+                    SettingChoiceRow(
+                        title = appString(R.string.ui_scale_title),
+                        subtitle = appString(R.string.ui_scale_desc),
+                    ) {
+                        UiScaleSelector(selected = uiScale, onSelected = onUiScaleChange)
+                    }
+                    SettingChoiceRow(
+                        title = appString(R.string.color_theme),
+                        subtitle = appString(R.string.color_theme_desc),
+                        showDivider = false,
+                    ) {
+                        ColorThemeSelector(selected = colorTheme, onSelected = onColorThemeChange)
+                    }
                 }
             }
 
             item {
                 SettingsSectionHeader(
-                    icon = Icons.Default.Translate,
                     title = appString(R.string.translate_section),
                     subtitle = appString(R.string.translate_section_desc)
                 )
@@ -1506,7 +1480,6 @@ fun SettingsScreen(
 
             item {
                 SettingsSectionHeader(
-                    icon = Icons.Default.Dns,
                     title = appString(R.string.sources),
                     subtitle = appString(R.string.sources_desc)
                 )
@@ -1578,33 +1551,27 @@ fun SettingsScreen(
             }
 
             item {
-                SettingsCard(title = appString(R.string.match_drivers_by_device)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = appString(R.string.match_drivers_by_device_desc),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.weight(1f)
-                        )
-                        Spacer(Modifier.width(12.dp))
-                        Switch(
-                            checked = matchDriversByDevice,
-                            onCheckedChange = { enabled ->
-                                matchDriversByDevice = enabled
-                                SettingsManager.setMatchDriversByDevice(enabled)
-                                onSourceCatalogChanged()
-                            }
-                        )
-                    }
+                SettingGroup {
+                    SettingRow(
+                        title = appString(R.string.match_drivers_by_device),
+                        subtitle = appString(R.string.match_drivers_by_device_desc),
+                        showDivider = false,
+                        trailing = {
+                            Switch(
+                                checked = matchDriversByDevice,
+                                onCheckedChange = { enabled ->
+                                    matchDriversByDevice = enabled
+                                    SettingsManager.setMatchDriversByDevice(enabled)
+                                    onSourceCatalogChanged()
+                                }
+                            )
+                        }
+                    )
                 }
             }
 
             item {
                 SettingsSectionHeader(
-                    icon = Icons.Default.Download,
                     title = appString(R.string.downloads),
                     subtitle = appString(R.string.downloads_settings_desc)
                 )
@@ -1676,7 +1643,6 @@ fun SettingsScreen(
 
             item {
                 SettingsSectionHeader(
-                    icon = Icons.Default.Bolt,
                     title = appString(R.string.accelerator_title),
                     subtitle = appString(R.string.accelerator_desc)
                 )
@@ -1688,7 +1654,6 @@ fun SettingsScreen(
 
             item {
                 SettingsSectionHeader(
-                    icon = Icons.Default.Info,
                     title = appString(R.string.about_section),
                     subtitle = appString(R.string.about_upstream)
                 )
@@ -1703,34 +1668,18 @@ fun SettingsScreen(
     }
 }
 
+/**
+ * 设置页分组标题。
+ *
+ * 旧实现给每组配一个 60dp 高的图标盒子，等于用整行高度换零信息量；
+ * 现在按排版规格 C 收敛成「小字 + 弱色」的一行标题。
+ */
 @Composable
 private fun SettingsSectionHeader(
-    icon: ImageVector,
     title: String,
     subtitle: String
 ) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Surface(
-            shape = RoundedCornerShape(16.dp),
-            color = MaterialTheme.colorScheme.primaryContainer
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.padding(12.dp),
-                tint = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-        }
-        Spacer(Modifier.width(12.dp))
-        Column {
-            Text(title, style = MaterialTheme.typography.titleLarge)
-            Text(
-                subtitle,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-    }
+    SectionHeader(title = title, subtitle = subtitle)
 }
 
 @Composable
@@ -1738,15 +1687,15 @@ private fun SettingsCard(
     title: String,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = Fusion.Surface),
-        border = BorderStroke(1.dp, Fusion.Border)
-    ) {
-        Column(modifier = Modifier.padding(20.dp)) {
-            Text(title, style = MaterialTheme.typography.titleMedium)
-            Spacer(Modifier.height(6.dp))
+    SettingGroup(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 13.dp)) {
+            Text(
+                title,
+                fontSize = 14.sp,
+                color = Fusion.OnSurface,
+                fontWeight = FontWeight.Medium,
+            )
+            Spacer(Modifier.height(8.dp))
             content()
         }
     }
@@ -2103,20 +2052,18 @@ private fun UiScaleSelector(
     onSelected: (UiScale) -> Unit
 ) {
     val choices = UiScale.entries.map { it to appString(it.labelRes) }
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        choices.chunked(2).forEach { rowItems ->
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                rowItems.forEach { (scale, label) ->
-                    FilterChip(
-                        selected = selected == scale,
-                        onClick = { onSelected(scale) },
-                        label = { Text(label) }
-                    )
-                }
-            }
+    // 四个选项标签都很短，一行放完；分两行等于白占半行高度
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        choices.forEach { (scale, label) ->
+            FilterChip(
+                selected = selected == scale,
+                onClick = { onSelected(scale) },
+                label = { Text(label) },
+                modifier = Modifier.weight(1f)
+            )
         }
     }
 }
@@ -3396,7 +3343,11 @@ fun DriverHubScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item(key = "device_summary") {
-            DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
+            DeviceConclusionBlock(
+                deviceInfo = deviceInfo,
+                isLoading = isLoading,
+                route = deviceInfo?.let { recommendDriverRoute(it) },
+            )
         }
 
         // ── 驱动专区：驱动区块直接平铺，不再通过索引卡片切换 ──
@@ -3621,15 +3572,13 @@ private fun RegionHeader(title: String, icon: ImageVector) {
 }
 
 @Composable
-private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
+private fun DeviceConclusionBlock(
+    deviceInfo: DeviceInfo?,
+    isLoading: Boolean,
+    route: DriverRouteRecommendation?,
+) {
     val context = LocalContext.current
     val gpuIsAdreno = deviceInfo?.gpuVendor == GpuVendor.ADRENO
-    val socName = remember(gpuIsAdreno) {
-        SocNameMapper.getCurrentSocName(
-            context, deviceInfo?.gpuModel.orEmpty(), gpuIsAdreno
-        )
-    }
-    // 主表解析一次，代号与厂商徽章都复用；拿不到时为 null，退回旧映射
     val resolvedSoc = remember(deviceInfo?.gpuModel, deviceInfo?.socName, gpuIsAdreno) {
         runCatching {
             SocResolver.resolveCurrent(
@@ -3638,151 +3587,74 @@ private fun DeviceSummaryCard(deviceInfo: DeviceInfo?, isLoading: Boolean) {
             )
         }.getOrNull()
     }
-    // 厂商徽章（官方图形大图版）：作用域须在 Column/Row lambda 之外，供各分支复用
-    val socBrand = detectSocBrand(deviceInfo?.socName.orEmpty())
-    val brandIconRes = remember(socBrand.name) { socBrandIconRes(socBrand.name) }
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-    ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                if (brandIconRes != null) {
-                    Surface(
-                        shape = RoundedCornerShape(20.dp),
-                        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
-                    ) {
-                        Image(
-                            painter = painterResource(brandIconRes),
-                            contentDescription = socBrand.name,
-                            modifier = Modifier
-                                .padding(10.dp)
-                                .size(44.dp),
-                            contentScale = ContentScale.Fit
-                        )
-                    }
-                } else {
-                    Surface(
-                        shape = RoundedCornerShape(18.dp),
-                        color = MaterialTheme.colorScheme.primary
-                    ) {
-                        Icon(
-                            Icons.Default.PhoneAndroid,
-                            contentDescription = null,
-                            modifier = Modifier.padding(12.dp),
-                            tint = MaterialTheme.colorScheme.onPrimary
-                        )
-                    }
-                }
-                Spacer(Modifier.width(14.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(appString(R.string.your_device), style = MaterialTheme.typography.labelMedium)
-                    if (isLoading) {
-                        Text(
-                            appString(R.string.detecting_hardware),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    } else {
-                        // 芯片名只在这里出现一次。中文营销名优先（用户认这个），
-                        // 没有中文映射时退回英文原名，两者相同则不再重复。
-                        val rawSoc = deviceInfo?.socName
-                            ?.takeIf { it.isNotBlank() && !it.contains("未知") }
-                        // 主表优先：旧知识库只有 58 条，且带 GPU 模糊匹配，
-                        // 展锐设备（Mali-G57）会被它判成天玑 6100
-                        val cnName = (resolvedSoc?.displayName?.takeIf { it.isNotBlank() }
-                            ?: deviceInfo?.let { socChineseName(it, context) }).orEmpty()
-                        // 代号从主表取：此时 socName 已是中文营销名，旧的反查表只认英文名，查不到
-                        val codeName = resolvedSoc?.codes?.firstOrNull()
-                            ?: deviceInfo?.socName?.let { SocNameMapper.lookupCode(it) }.orEmpty()
-                        val socPrimary = when {
-                            cnName.isNotBlank() && cnName != rawSoc -> cnName
-                            rawSoc != null -> rawSoc
-                            else -> appString(R.string.hardware_unavailable)
-                        }
-                        Text(
-                            socPrimary,
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            // 两行：411dp 宽度下一行放不下 "Qualcomm Snapdragon 8 Elite"
-                            // 这类英文全名，会被截成 "Qualcomm Snapdragon …"
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        // 英文原名 + 代号并作一行灰字，中文名与原名相同时不重复
-                        val socSecondary = listOfNotNull(
-                            // 「紫光展锐 T760」与「T760」不算两个名字，只差厂牌前缀
-                            rawSoc?.takeIf { it != socPrimary && !it.endsWith(socPrimary) },
-                            codeName.takeIf { it.isNotBlank() }
-                        ).joinToString(" · ")
-                        if (socSecondary.isNotBlank()) {
-                            Text(
-                                socSecondary,
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f),
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        }
-                    }
-                }
-            }
 
-            if (isLoading) {
+    // 芯片名只出现一次：中文营销名优先，无映射时退回原名
+    val rawSoc = deviceInfo?.socName?.takeIf { it.isNotBlank() && !it.contains("未知") }
+    val cnName = (resolvedSoc?.displayName?.takeIf { it.isNotBlank() }
+        ?: deviceInfo?.let { socChineseName(it, context) }).orEmpty()
+    val socPrimary = when {
+        cnName.isNotBlank() && cnName != rawSoc -> cnName
+        rawSoc != null -> rawSoc
+        else -> null
+    }
+
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        if (isLoading) {
+            FusionCard {
+                Text(
+                    appString(R.string.detecting_hardware),
+                    fontSize = 14.sp,
+                    color = Fusion.OnSurfaceDim,
+                )
+                Spacer(Modifier.height(10.dp))
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-            } else if (deviceInfo != null) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    DeviceStat(
-                        icon = Icons.Default.Phone,
-                        label = appString(R.string.device_label),
-                        // 设备型号识别：营销名优先（V2338A → iQOO Neo9），未收录显示原代号
-                        value = listOf(deviceInfo.deviceBrand, deviceMarketingName(deviceInfo.deviceModel, context))
-                            .filter { it.isNotBlank() }.distinct().joinToString(" ").ifBlank { "—" },
-                        modifier = Modifier.weight(1f)
-                    )
-                    DeviceStat(
-                        icon = Icons.Default.Android,
-                        label = appString(R.string.android_label),
-                        value = deviceInfo.androidVersion,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    DeviceStat(
-                        icon = Icons.Default.Storage,
-                        label = appString(R.string.ram_label),
-                        value = deviceInfo.ram,
-                        modifier = Modifier.weight(1f)
-                    )
-                    DeviceStat(
-                        icon = Icons.Default.Memory,
-                        label = appString(R.string.gpu_label),
-                        value = gpuDisplayName(deviceInfo),
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-                // 厂商徽章：代号已并入标题副行，这里只留厂商，不再重复芯片型号
-                if (brandIconRes != null) {
-                    Spacer(Modifier.height(8.dp))
-                    SocBrandBadge(
-                        brand = socBrand,
-                        // 厂商徽章显示英文官方原名（Qualcomm / MediaTek），与顶部官方图形一致
-                        text = socBrandEnglishName(socBrand.name)
-                    )
-                }
             }
+        } else if (deviceInfo == null) {
+            FusionCard {
+                Text(
+                    appString(R.string.hardware_unavailable),
+                    fontSize = 14.sp,
+                    color = Fusion.OnSurfaceDim,
+                )
+            }
+        } else {
+            // 结论先行：先说「能跑成什么样」，参数只是支撑证据
+            val tone = when (route?.turnipSupport) {
+                TurnipSupport.FULL -> ConclusionTone.GOOD
+                TurnipSupport.PARTIAL -> ConclusionTone.WARN
+                TurnipSupport.NONE -> ConclusionTone.BAD
+                null -> ConclusionTone.NEUTRAL
+            }
+            val headline = when (route?.turnipSupport) {
+                TurnipSupport.FULL -> appString(R.string.device_conclusion_full)
+                TurnipSupport.PARTIAL -> appString(R.string.device_conclusion_partial)
+                TurnipSupport.NONE -> appString(R.string.device_conclusion_none)
+                null -> appString(R.string.device_conclusion_unknown)
+            }
+            val badge = when (route?.turnipSupport) {
+                TurnipSupport.FULL -> appString(R.string.device_badge_recommended)
+                TurnipSupport.PARTIAL -> appString(R.string.device_badge_limited)
+                TurnipSupport.NONE -> appString(R.string.device_badge_caution)
+                null -> null
+            }
+            ConclusionCard(
+                headline = headline,
+                evidence = listOfNotNull(
+                    socPrimary,
+                    listOf(deviceInfo.deviceBrand, deviceMarketingName(deviceInfo.deviceModel, context))
+                        .filter { it.isNotBlank() }.distinct().joinToString(" ").ifBlank { null },
+                ).joinToString(" · "),
+                badge = badge,
+                tone = tone,
+            )
+            // 参数横排：三项一行放完，不做「一卡一格」
+            SpecStrip(
+                listOf(
+                    SpecItem(appString(R.string.android_label), deviceInfo.androidVersion),
+                    SpecItem(appString(R.string.ram_label), deviceInfo.ram),
+                    SpecItem(appString(R.string.gpu_label), gpuDisplayName(deviceInfo)),
+                )
+            )
         }
     }
 }
@@ -3799,7 +3671,9 @@ private fun gpuDisplayName(info: DeviceInfo): String {
         .find(renderer)?.value?.replaceFirstChar { it.uppercase() }
         ?.let { return it }
     return when {
-        info.gpuModel != "unknown" -> "Adreno ${info.gpuModel}"
+        // gpuModel 有时已是「Adreno 750」全名，直接拼会变成「Adreno Adreno 750」
+        info.gpuModel != "unknown" ->
+            if (info.gpuModel.contains("Adreno", true)) info.gpuModel else "Adreno ${info.gpuModel}"
         info.adrenoSeries != "unknown" -> "Adreno ${info.adrenoSeries}"
         else -> renderer.ifBlank { "—" }
     }
@@ -6655,81 +6529,51 @@ fun DeviceScreen(
         }
     }
 
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        item(key = "device_summary") {
-            DeviceSummaryCard(deviceInfo = deviceInfo, isLoading = isLoading)
-        }
+    val driverRoute = deviceInfo?.let { recommendDriverRoute(it) }
+    var ecoExpanded by remember { mutableStateOf(false) }
 
-        item(key = "device_news") {
-            NewsZoneCard(
-                title = appString(R.string.news_eco_title),
-                items = deviceNewsItems,
-                category = "device",
-                showGeneralFold = true
-            )
-        }
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            // 底部留出固定操作条高度，否则最后一条会被压住
+            contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 92.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
+        ) {
+            // 结论在参数之前：用户要的是判断，不是跑分
+            item(key = "device_conclusion") {
+                DeviceConclusionBlock(
+                    deviceInfo = deviceInfo,
+                    isLoading = isLoading,
+                    route = driverRoute,
+                )
+            }
 
-        item(key = "device_guide_entry") {
-            Card(
-                onClick = { showDeviceGuide = true },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(Icons.Default.School, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                    Spacer(Modifier.width(10.dp))
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(appString(R.string.device_guide_title), style = MaterialTheme.typography.titleSmall)
-                        Text(
-                            appString(R.string.device_guide_subtitle),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (!isLoading && deviceInfo != null) {
+                item(key = "emuready_compat") {
+                    EmuReadyCard(deviceInfo = deviceInfo)
+                }
+                item(key = "driver_route") {
+                    DriverRecommendationCard(
+                        deviceInfo = deviceInfo,
+                        onNavigateToDrivers = onNavigateToDrivers,
+                        onOpenDriverFiles = onOpenDriverFiles
+                    )
+                }
+                item(key = "soc_knowledge") {
+                    SocKnowledgeCard(
+                        context = LocalContext.current,
+                        gpuModel = deviceInfo.gpuModel,
+                        socHint = deviceInfo.socName,
+                        gpuIsAdreno = deviceInfo.gpuVendor == GpuVendor.ADRENO
+                    )
+                }
+                item(key = "bench_engine") {
+                    BenchEngineCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
                 }
             }
-        }
-
-        if (!isLoading && deviceInfo != null) {
-            item(key = "emuready_compat") {
-                EmuReadyCard(deviceInfo = deviceInfo)
-            }
-            item(key = "driver_route") {
-                DriverRecommendationCard(
-                    deviceInfo = deviceInfo,
-                    onNavigateToDrivers = onNavigateToDrivers,
-                    onOpenDriverFiles = onOpenDriverFiles
-                )
-            }
-            item(key = "soc_knowledge") {
-                SocKnowledgeCard(
-                    context = LocalContext.current,
-                    gpuModel = deviceInfo.gpuModel,
-                    socHint = deviceInfo.socName,
-                    gpuIsAdreno = deviceInfo.gpuVendor == GpuVendor.ADRENO
-                )
-            }
-            item(key = "bench_engine") {
-                BenchEngineCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
-            }
-        }
 
         item(key = "vulkan_header") {
-            RegionHeader(
-                title = appString(R.string.vulkan_title),
-                icon = Icons.Default.Memory,
-            )
+            SectionHeader(appString(R.string.vulkan_title))
         }
 
         if (vulkanLoading) {
@@ -6991,10 +6835,7 @@ fun DeviceScreen(
 
         // ── GPU 性能跑分：native Vulkan 带宽基准，对比不同驱动性能 ──
         item(key = "benchmark_header") {
-            RegionHeader(
-                title = appString(R.string.benchmark_title),
-                icon = Icons.Default.Memory,
-            )
+            SectionHeader(appString(R.string.benchmark_title))
         }
 
         item(key = "benchmark_card") {
@@ -7046,10 +6887,7 @@ fun DeviceScreen(
 
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
         item(key = "driver_detect_header") {
-            RegionHeader(
-                title = appString(R.string.driver_detection_title),
-                icon = Icons.Default.Memory,
-            )
+            SectionHeader(appString(R.string.driver_detection_title))
         }
 
         item(key = "driver_detect_list") {
@@ -7058,6 +6896,50 @@ fun DeviceScreen(
             )
         }
 
+            // 生态动态：详情页不塞资讯流，降级为列表末尾的折叠区（默认收起）
+            item(key = "dev_news_collapse") {
+                CollapseRow(
+                    title = appString(R.string.news_eco_title),
+                    expanded = ecoExpanded,
+                    onToggle = { ecoExpanded = !ecoExpanded },
+                )
+            }
+            if (ecoExpanded) {
+                item(key = "device_news") {
+                    NewsZoneCard(
+                        title = appString(R.string.news_eco_title),
+                        items = deviceNewsItems,
+                        category = "device",
+                        showGeneralFold = true
+                    )
+                }
+            }
+        }
+
+        // 底部固定操作条：详情页的「下一步」只放一个主按钮
+        if (!isLoading && deviceInfo != null) {
+            DetailActionBar(modifier = Modifier.align(Alignment.BottomCenter)) {
+                Button(
+                    onClick = { onNavigateToDrivers?.invoke() },
+                    enabled = onNavigateToDrivers != null,
+                    modifier = Modifier.weight(1f).heightIn(min = 44.dp),
+                    shape = RoundedCornerShape(14.dp),
+                ) {
+                    Icon(Icons.Default.Memory, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.goto_driver_region))
+                }
+                OutlinedButton(
+                    onClick = { showDeviceGuide = true },
+                    modifier = Modifier.heightIn(min = 44.dp),
+                    shape = RoundedCornerShape(14.dp),
+                ) {
+                    Icon(Icons.Default.School, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(appString(R.string.device_guide_title))
+                }
+            }
+        }
     }
 }
 
