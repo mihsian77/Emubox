@@ -786,4 +786,6 @@ How to verify in emulator:
     <string name="device_section_compat">Compatibility</string>
     <string name="device_section_driver">Recommended drivers</string>
     <string name="device_section_chip">Chipset &amp; performance</string>
+    <string name="runtime_result_count">%1$d components</string>
+    <string name="runtime_meta_title">Sources &amp; news</string>
 </resources>

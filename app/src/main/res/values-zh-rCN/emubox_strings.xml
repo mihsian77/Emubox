@@ -783,4 +783,6 @@
     <string name="device_section_compat">本机兼容性</string>
     <string name="device_section_driver">推荐驱动</string>
     <string name="device_section_chip">芯片与性能</string>
+    <string name="runtime_result_count">%1$d 个运行库</string>
+    <string name="runtime_meta_title">来源与资讯</string>
 </resources>

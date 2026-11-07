@@ -61,6 +61,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.emubox.app.ui.template.CollapseRow
+import com.emubox.app.ui.template.PageTitleRow
+import com.emubox.app.ui.template.ResultCountRow
 import com.emubox.app.ui.template.ConclusionCard
 import com.emubox.app.ui.template.ConclusionTone
 import com.emubox.app.ui.template.DetailActionBar
@@ -190,74 +192,24 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
             contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
+            // 统计收成一行三段：三个独立格子等于用 3 倍面积说 3 个数
             item(key = "download_summary") {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(28.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    SpecStrip(
+                        listOf(
+                            SpecItem(appString(R.string.active), active.size.toString()),
+                            SpecItem(appString(R.string.saved), completed.size.toString()),
+                            SpecItem(appString(R.string.stored), formatBytes(completedBytes)),
+                        )
                     )
-                ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Surface(
-                                shape = RoundedCornerShape(18.dp),
-                                color = MaterialTheme.colorScheme.primary
-                            ) {
-                                Icon(
-                                    Icons.Default.DownloadDone,
-                                    contentDescription = null,
-                                    modifier = Modifier.padding(12.dp),
-                                    tint = MaterialTheme.colorScheme.onPrimary
-                                )
-                            }
-                            Spacer(Modifier.width(14.dp))
-                            Column {
-                                Text(appString(R.string.download_library), style = MaterialTheme.typography.titleLarge)
-                                Text(
-                                    appString(R.string.download_library_desc),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            }
-                        }
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
-                        ) {
-                            DownloadStatCard(
-                                icon = Icons.Default.Downloading,
-                                value = active.size.toString(),
-                                label = appString(R.string.active),
-                                modifier = Modifier.weight(1f)
-                            )
-                            DownloadStatCard(
-                                icon = Icons.Default.Inventory2,
-                                value = completed.size.toString(),
-                                label = appString(R.string.saved),
-                                modifier = Modifier.weight(1f)
-                            )
-                            DownloadStatCard(
-                                icon = Icons.Default.Storage,
-                                value = formatBytes(completedBytes),
-                                label = appString(R.string.stored),
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
-
-                        // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位"扫不出"根因
-                        val scanNote = DownloadsManager.lastScanNote
-                        if (scanNote.isNotBlank()) {
-                            Text(
-                                scanNote,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
-                            )
-                        }
+                    // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位「扫不出」根因
+                    val scanNote = DownloadsManager.lastScanNote
+                    if (scanNote.isNotBlank()) {
+                        Text(
+                            scanNote,
+                            fontSize = 11.sp,
+                            color = Fusion.OnSurfaceFaint,
+                        )
                     }
                 }
             }
@@ -6246,7 +6198,8 @@ fun ComponentSection(
                         },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 2,
+                        // 单行：副标题折成两行会把卡片撑高，且「25 天/前」这种断行很丑
+                        maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
@@ -6255,7 +6208,7 @@ fun ComponentSection(
                         text = selected?.verName ?: "",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
-                        maxLines = 2,
+                        maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         textAlign = androidx.compose.ui.text.style.TextAlign.End,
                         modifier = Modifier.weight(0.55f)
@@ -9613,6 +9566,8 @@ fun ComponentScreen(
         .sorted()
     val componentOrder = preferredComponentOrder + discoveredComponentTypes
     val componentSourceSelections = remember { mutableStateMapOf<String, String>() }
+    var newsExpanded by remember { mutableStateOf(false) }
+    var bundleExpanded by remember { mutableStateOf(false) }
 
     // 来源"综合最新最全"评分：类型覆盖数主导（×1000），版本总数次之。
     // 默认首推覆盖类型最全、版本最多的源；用户手动选择仍优先尊重。
@@ -9651,53 +9606,39 @@ fun ComponentScreen(
         return candidates.firstOrNull { it.id == selectedId } ?: candidates.firstOrNull()
     }
 
+    // LazyListScope 不是 @Composable 上下文，文案必须先在函数体取好
+    val guideLabel = appString(R.string.component_guide)
+    val componentRegionTitle = appString(R.string.component_region)
+    val bundleTitle = appString(R.string.source_bundle_title)
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item(key = "component_region_header") {
-            RegionHeader(
-                title = appString(R.string.component_region),
-                icon = Icons.Default.Extension,
-            )
-        }
-
-        // R5：来源级捆绑——组件区主页单独分类，一键下载各组件源最新一套文件
-        item(key = "component_bundle_region") {
-            ComponentBundleSection(sources = componentSources)
-        }
-
-        item(key = "component_news") {
-            NewsZoneCard(
-                title = appString(R.string.news_component_title),
-                items = componentNewsItems,
-                category = "component",
-                typeFilter = true
-            )
-        }
-
-        // 组件指南入口（组件分区直达组件指南）
-        item(key = "component_guide_entry") {
-            Surface(
-                onClick = onOpenGuide,
-                shape = RoundedCornerShape(14.dp),
-                color = Fusion.Surface,
-                border = BorderStroke(1.dp, Fusion.Border),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(20.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text(appString(R.string.component_guide), style = MaterialTheme.typography.bodyMedium)
-                    Spacer(Modifier.weight(1f))
-                    Icon(Icons.Default.ChevronRight, contentDescription = null)
+        listPageHeader(
+            title = componentRegionTitle,
+            trailing = {
+                IconButton(onClick = onOpenGuide) {
+                    Icon(Icons.Default.Info, contentDescription = guideLabel)
                 }
+            },
+        )
+
+        // R5：来源级捆绑——次要功能，默认收起，别把组件分类挤出首屏
+        item(key = "component_bundle_collapse") {
+            CollapseRow(
+                title = bundleTitle,
+                expanded = bundleExpanded,
+                onToggle = { bundleExpanded = !bundleExpanded },
+            )
+        }
+        if (bundleExpanded) {
+            item(key = "component_bundle_region") {
+                ComponentBundleSection(sources = componentSources)
             }
         }
+
 
         var hasAnyComponent = false
         componentOrder.forEach { type ->
@@ -9744,6 +9685,24 @@ fun ComponentScreen(
                         )
                     }
                 }
+            }
+        }
+
+        item(key = "component_news_collapse") {
+            CollapseRow(
+                title = appString(R.string.news_component_title),
+                expanded = newsExpanded,
+                onToggle = { newsExpanded = !newsExpanded },
+            )
+        }
+        if (newsExpanded) {
+            item(key = "component_news") {
+                NewsZoneCard(
+                    title = appString(R.string.news_component_title),
+                    items = componentNewsItems,
+                    category = "component",
+                    typeFilter = true
+                )
             }
         }
 
@@ -9833,6 +9792,7 @@ fun RuntimeLibraryScreen(
     }
 
     val grouped = remember(filtered) { RuntimeLibraryRepository.groupByCategory(filtered) }
+    var metaExpanded by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -9841,62 +9801,15 @@ fun RuntimeLibraryScreen(
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.Top
-        ) {
-            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(
-                    text = appString(R.string.runtime_title),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Fusion.OnSurface
-                )
-                Text(
-                    text = appString(R.string.runtime_subtitle),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-            IconButton(onClick = { showGuide = true }) {
-                Icon(Icons.Default.Info, contentDescription = appString(R.string.runtime_guide_title))
-            }
-        }
-
-        // 运行库资讯：Wine/Box64/Proton 运行时新闻
-        NewsZoneCard(
-            title = appString(R.string.news_runtime_title),
-            items = runtimeNewsItems,
-            category = "runtime",
-            typeFilter = true
+        PageTitleRow(
+            title = appString(R.string.runtime_title),
+            subtitle = appString(R.string.runtime_subtitle),
+            trailing = {
+                IconButton(onClick = { showGuide = true }) {
+                    Icon(Icons.Default.Info, contentDescription = appString(R.string.runtime_guide_title))
+                }
+            },
         )
-
-        // 数据来源与版权免责声明
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
-            )
-        ) {
-            Row(
-                modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
-                verticalAlignment = Alignment.Top
-            ) {
-                Icon(
-                    Icons.Default.Info,
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp),
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    text = appString(R.string.runtime_disclaimer),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-        }
 
         // 搜索框
         FusionSearchBar(
@@ -9904,6 +9817,14 @@ fun RuntimeLibraryScreen(
             onQueryChange = { searchQuery = it },
             placeholder = appString(R.string.runtime_search_hint)
         )
+
+        // 加载中不报数：0 会被读成「一个都没有」
+        if (!isLoading && !loadError) {
+            ResultCountRow(
+                count = filtered.size,
+                label = { appString(R.string.runtime_result_count, it) },
+            )
+        }
 
         if (isLoading) {
             Box(
@@ -9938,6 +9859,49 @@ fun RuntimeLibraryScreen(
                     components = list,
                     onDownload = onDownload
                 )
+            }
+        }
+
+        // 资讯与来源声明：低频信息，收进末尾折叠区，不再挤占首屏
+        CollapseRow(
+            title = appString(R.string.runtime_meta_title),
+            expanded = metaExpanded,
+            onToggle = { metaExpanded = !metaExpanded },
+        )
+        if (metaExpanded) {
+            // 运行库资讯：Wine/Box64/Proton 运行时新闻
+            NewsZoneCard(
+                title = appString(R.string.news_runtime_title),
+                items = runtimeNewsItems,
+                category = "runtime",
+                typeFilter = true
+            )
+
+            // 数据来源与版权免责声明
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+                )
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Icon(
+                        Icons.Default.Info,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        text = appString(R.string.runtime_disclaimer),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
         }
     }
