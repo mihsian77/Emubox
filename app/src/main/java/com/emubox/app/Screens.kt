@@ -2465,16 +2465,7 @@ private const val RECIPES_REMOTE_URL =
 fun loadWinlatorRecipes(context: Context): Pair<Map<String, List<ComboRec>>, Map<String, List<ComboRec>>> {
     return try {
         // 远程优先：拿到 CI 最新聚合结果；失败回退内置资产（离线可用）
-        val remoteText = runCatching {
-            val conn = java.net.URL(RECIPES_REMOTE_URL).openConnection() as java.net.HttpURLConnection
-            conn.connectTimeout = 5000
-            conn.readTimeout = 8000
-            conn.setRequestProperty("User-Agent", "EmuBox")
-            val ok = conn.responseCode == 200
-            val t = if (ok) conn.inputStream.bufferedReader().use { it.readText() } else ""
-            conn.disconnect()
-            t
-        }.getOrNull()
+        val remoteText = runCatching { RemoteData.fetchText(RECIPES_REMOTE_URL) }.getOrNull()
         val text = if (!remoteText.isNullOrBlank()) remoteText
             else context.assets.open("winlator-recipes.json").bufferedReader().use { it.readText() }
         val j = org.json.JSONObject(text)
@@ -2511,8 +2502,15 @@ private fun comboText(combo: List<Pair<String, String>>): String =
 @Composable
 private fun WinlatorConfigRecsCard(deviceInfo: DeviceInfo?) {
     val context = LocalContext.current
-    val recipes = remember { loadWinlatorRecipes(context) }
-    val (adrenoMap, maliMap) = recipes
+    // 不能在 composition 里同步取数：原来 remember 直接调 loadWinlatorRecipes，
+    // 打开指南页会卡住主线程直到网络超时。改成进页面后异步拉，拿到再显示。
+    var recipes by remember {
+        mutableStateOf<Pair<Map<String, List<ComboRec>>, Map<String, List<ComboRec>>>?>(null)
+    }
+    LaunchedEffect(Unit) {
+        recipes = withContext(Dispatchers.IO) { loadWinlatorRecipes(context) }
+    }
+    val (adrenoMap, maliMap) = recipes ?: return
     val gpuModel = deviceInfo?.gpuModel.orEmpty()
     val isMali = deviceInfo?.gpuVendor == GpuVendor.MALI
     // 设备 gpuModel 为纯数字（如 "740"），recipes 键为 "Adreno-740"/"Mali-G57"，需归一化；
