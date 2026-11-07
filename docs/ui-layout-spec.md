@@ -135,7 +135,6 @@
 | `FusionCard` | 卡片外壳 | 一层底色 + 一层描边，内部禁止再叠底色 |
 | `ConclusionCard` | 详情页结论卡 | 结论在参数之前，主操作最多一个 |
 | `SpecStrip` | 关键参数横排 | 3–4 项一行，不换行、不做大格子 |
-| `FactRow` | 详情页键值行 | 标签固定宽，值可换行 |
 | `DetailActionBar` | 详情页底部固定条 | 放进 bottomBar，主按钮只放一个 |
 | `SectionHeader` | 分组标题 | 小字 + 弱色，替代带图标盒的大标题 |
 | `SettingGroup` | 设置分组容器 | 一组一卡，组内不超过 8 行 |

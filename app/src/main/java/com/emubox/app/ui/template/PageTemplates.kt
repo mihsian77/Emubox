@@ -548,25 +548,6 @@ fun SettingValue(text: String, dim: Boolean = true) {
     )
 }
 
-/** 详情页分组里的键值行：左标签弱色，右值主色，值过长时换行而不是截断。 */
-@Composable
-fun FactRow(label: String, value: String, modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier.fillMaxWidth().padding(vertical = 5.dp),
-        verticalAlignment = Alignment.Top,
-    ) {
-        Text(label, fontSize = 12.sp, color = Fusion.OnSurfaceFaint, modifier = Modifier.width(96.dp))
-        Spacer(Modifier.width(8.dp))
-        Text(
-            value,
-            fontSize = 12.sp,
-            color = Fusion.OnSurface,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.End,
-        )
-    }
-}
-
 /**
  * 详情页底部固定操作条。放进 Scaffold 的 bottomBar，或外层 Box 的底部对齐位。
  *
