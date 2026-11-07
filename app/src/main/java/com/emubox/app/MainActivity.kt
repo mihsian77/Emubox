@@ -18,16 +18,23 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
@@ -64,6 +71,72 @@ private val AppScreen.labelRes: Int
         AppScreen.SETTINGS -> R.string.tab_settings
         AppScreen.GUIDE -> R.string.tab_driver
     }
+
+/**
+ * 底部一级导航：4 个内容分区 + 「我的」。
+ * 见 docs/ui-layout-spec.md：驱动与组件合并为一个入口，下载/设置/指南收进「我的」。
+ * 旧 AppScreen 枚举与 when 分发保持不变，后台服务、深链、指南返回栈不受影响。
+ */
+private enum class AppTab(
+    val icon: ImageVector,
+    val labelRes: Int,
+    val targets: Set<AppScreen>,
+    val landing: AppScreen
+) {
+    HOME(Icons.Default.Home, R.string.tab_home, setOf(AppScreen.DEVICE), AppScreen.DEVICE),
+    EMULATORS(Icons.Default.Android, R.string.tab_emulator, setOf(AppScreen.EMULATORS), AppScreen.EMULATORS),
+    DRIVERS(
+        Icons.Default.Memory, R.string.tab_driver,
+        setOf(AppScreen.DRIVERS, AppScreen.COMPONENTS, AppScreen.GUIDE), AppScreen.DRIVERS
+    ),
+    RUNTIME(Icons.Default.Apps, R.string.tab_runtime, setOf(AppScreen.RUNTIME), AppScreen.RUNTIME),
+    MINE(
+        Icons.Default.Person, R.string.tab_mine,
+        setOf(AppScreen.SETTINGS, AppScreen.DOWNLOADS), AppScreen.SETTINGS
+    )
+}
+
+/**
+ * 驱动 / 组件二级切换：两者合并进同一个一级入口后，用这条分段控件在页内切换。
+ * 只在一级入口底部栏上方出现，不侵入页面自身的 TopAppBar 与滚动容器。
+ */
+@Composable
+private fun DriverComponentSwitch(current: AppScreen, onSelect: (AppScreen) -> Unit) {
+    val items = listOf(
+        AppScreen.DRIVERS to R.string.tab_driver,
+        AppScreen.COMPONENTS to R.string.tab_component
+    )
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xE6161423))
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        items.forEach { (screen, labelRes) ->
+            val selected = current == screen
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(50))
+                    .background(if (selected) Color(0x333FD9C4) else Color.Transparent)
+                    .border(
+                        BorderStroke(1.dp, if (selected) Color(0xFF3FD9C4) else Color(0xFF332F4E)),
+                        RoundedCornerShape(50)
+                    )
+                    .clickable { onSelect(screen) }
+                    .padding(vertical = 8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = appString(labelRes),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = if (selected) Color(0xFF3FD9C4) else Color(0xFF8B86AC)
+                )
+            }
+        }
+    }
+}
 
 class MainActivity : ComponentActivity() {
 
@@ -603,35 +676,31 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         bottomBar = {
                             // 模板 A「璃光暗夜」：玻璃拟态导航 + 青紫渐变发光指示
+                            Column {
+                            if (currentScreen == AppScreen.DRIVERS || currentScreen == AppScreen.COMPONENTS) {
+                                DriverComponentSwitch(current = currentScreen) { currentScreen = it }
+                            }
                             Box {
                                 NavigationBar(
                                     containerColor = Color(0xE6161423)
                                 ) {
-                                    val navItems = listOf(
-                                        AppScreen.DEVICE to Icons.Default.PhoneAndroid,
-                                        AppScreen.DRIVERS to Icons.Default.Memory,
-                                        AppScreen.COMPONENTS to Icons.Default.Extension,
-                                        AppScreen.EMULATORS to Icons.Default.Android,
-                                        AppScreen.RUNTIME to Icons.Default.Apps,
-                                        AppScreen.DOWNLOADS to Icons.Default.Download,
-                                        AppScreen.SETTINGS to Icons.Default.Settings
-                                    )
-                                    navItems.forEach { (screen, icon) ->
+                                    val navItems = AppTab.values().toList()
+                                    navItems.forEach { tab ->
                                         NavigationBarItem(
-                                            selected = currentScreen == screen,
-                                            onClick = { currentScreen = screen },
+                                            selected = currentScreen in tab.targets,
+                                            onClick = { currentScreen = tab.landing },
                                             icon = {
-                                                if (screen == AppScreen.DOWNLOADS) {
+                                                if (tab == AppTab.MINE) {
                                                     BadgedBox(
                                                         badge = {
                                                             if (activeCount > 0) Badge { Text(activeCount.toString()) }
                                                         }
-                                                    ) { Icon(icon, contentDescription = null) }
+                                                    ) { Icon(tab.icon, contentDescription = null) }
                                                 } else {
-                                                    Icon(icon, contentDescription = null)
+                                                    Icon(tab.icon, contentDescription = null)
                                                 }
                                             },
-                                            label = { Text(appString(screen.labelRes)) },
+                                            label = { Text(appString(tab.labelRes)) },
                                             colors = NavigationBarItemDefaults.colors(
                                                 selectedIconColor = Color(0xFF3FD9C4),
                                                 selectedTextColor = Color(0xFF9B7CFF),
@@ -658,6 +727,7 @@ class MainActivity : ComponentActivity() {
                                             )
                                         )
                                 )
+                            }
                             }
                         }
                     ) { innerPadding ->
@@ -958,8 +1028,8 @@ class MainActivity : ComponentActivity() {
                                 )
 
                                 AppScreen.DOWNLOADS -> DownloadsScreen(
-                                    onBack = { },
-                                    showBack = false
+                                    onBack = { currentScreen = AppScreen.SETTINGS },
+                                    showBack = true
                                 )
 
                                 AppScreen.SETTINGS -> SettingsScreen(
@@ -985,7 +1055,8 @@ class MainActivity : ComponentActivity() {
                                         SettingsManager.setUiScale(scale)
                                         uiScale = scale
                                     },
-                                    onSourceCatalogChanged = { refreshTrigger++ }
+                                    onSourceCatalogChanged = { refreshTrigger++ },
+                                    onOpenDownloads = { currentScreen = AppScreen.DOWNLOADS }
                                 )
 
                                 AppScreen.GUIDE -> ComponentGuideScreen(

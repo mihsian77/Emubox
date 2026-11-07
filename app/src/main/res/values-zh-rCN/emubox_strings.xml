@@ -477,12 +477,15 @@
     <string name="category_exclusive">专属</string>
 
     <!-- Tab 标签 -->
+    <string name="tab_home">首页</string>
+    <string name="tab_mine">我的</string>
     <string name="tab_device">设备</string>
     <string name="tab_driver">驱动</string>
     <string name="tab_component">组件</string>
     <string name="tab_emulator">模拟器</string>
     <string name="tab_runtime">运行库</string>
     <string name="tab_download">下载</string>
+    <string name="downloads_entry_desc">进行中与已完成的任务</string>
     <string name="tab_settings">设置</string>
     <string name="device_info_title">设备信息</string>
 

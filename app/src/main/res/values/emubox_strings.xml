@@ -480,12 +480,15 @@
     <string name="category_exclusive">Exclusive</string>
 
     <!-- Tab 标签 -->
+    <string name="tab_home">Home</string>
+    <string name="tab_mine">Me</string>
     <string name="tab_device">Device</string>
     <string name="tab_driver">Drivers</string>
     <string name="tab_component">Components</string>
     <string name="tab_emulator">Emulators</string>
     <string name="tab_runtime">Runtime</string>
     <string name="tab_download">Downloads</string>
+    <string name="downloads_entry_desc">In-progress and finished tasks</string>
     <string name="tab_settings">Settings</string>
     <string name="device_info_title">Device Info</string>
 
