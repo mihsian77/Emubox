@@ -83,7 +83,7 @@ object Accelerator {
     val JSDELIVR_NODE = ProxyNode(
         id = "jsdelivr",
         displayName = "jsdelivr CDN",
-        domain = "fastly.jsdelivr.net",
+        domain = "cdn.jsdelivr.net",
         trafficKinds = setOf(TrafficKind.RAW_FILE)
     )
 
@@ -134,11 +134,6 @@ object Accelerator {
         .followSslRedirects(true)
         .build()
 
-    private val updateClient = OkHttpClient.Builder()
-        .connectTimeout(8, TimeUnit.SECONDS)
-        .readTimeout(8, TimeUnit.SECONDS)
-        .build()
-
     /** 加速模式 */
     enum class Mode { AUTO, MANUAL, OFF }
 
@@ -187,6 +182,9 @@ object Accelerator {
         if (node.id == DIRECT_NODE.id || !isGithubUrl(url)) return url
         val kind = classifyTraffic(url)
         if (kind != null && !node.supports(kind)) return url
+        // jsDelivr 不是「前缀拼接」型代理，它要把 raw 路径重排成 /gh/owner/repo@ref/path，
+        // 否则会拼出 https://cdn.jsdelivr.net/https://raw.githubusercontent.com/... 这种废链接
+        if (node.id == JSDELIVR_NODE.id) return rewriteJsdelivr(url)
         return node.rewrite(url)
     }
 
@@ -242,7 +240,7 @@ object Accelerator {
         val repo = segments[1]
         val ref = segments[2]
         val filePath = segments.drop(3).joinToString("/")
-        return "https://fastly.jsdelivr.net/gh/$owner/$repo@$ref/$filePath"
+        return "https://cdn.jsdelivr.net/gh/$owner/$repo@$ref/$filePath"
     }
 
     /** 判断是否为 GitHub 域名的 URL */
@@ -302,10 +300,10 @@ object Accelerator {
      */
     suspend fun refreshRemoteNodes(): Boolean = withContext(Dispatchers.IO) {
         try {
-            val request = Request.Builder().url(REMOTE_NODES_URL).get().build()
-            updateClient.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return@withContext false
-                val json = response.body?.string() ?: return@withContext false
+            // 节点清单本身也走多通道取数：直连 raw 不通时，靠 jsDelivr/镜像把节点表拿回来，
+            // 否则「加速器拉不到节点列表」会变成死循环，永远只能用内置的 6 个节点。
+            val json = RemoteData.fetchText(REMOTE_NODES_URL) ?: return@withContext false
+            run {
                 val obj = org.json.JSONObject(json)
                 // 验证来源：不匹配说明这份 JSON 不是 MirrorHub 发的，整份丢弃，
                 // 回退内置节点列表（只打日志就继续用等于没校验）

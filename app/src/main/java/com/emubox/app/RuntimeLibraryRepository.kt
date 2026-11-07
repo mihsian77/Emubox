@@ -92,14 +92,9 @@ object RuntimeLibraryRepository {
 
     private suspend fun fetchCommunity(url: String): List<RuntimeComponent> {
         return try {
-            val acceleratedUrl = Accelerator.rewriteUrl(url)
-            val request = Request.Builder().url(acceleratedUrl).build()
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return emptyList()
-                val body = response.body?.string().orEmpty()
-                if (body.isBlank()) return emptyList()
-                RuntimeLibraryParser.parse(body)
-            }
+            val body = RemoteData.fetchText(url).orEmpty()
+            if (body.isBlank()) return emptyList()
+            RuntimeLibraryParser.parse(body)
         } catch (_: Exception) {
             emptyList()
         }

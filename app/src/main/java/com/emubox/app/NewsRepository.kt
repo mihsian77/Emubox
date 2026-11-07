@@ -4,8 +4,6 @@ import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.net.HttpURLConnection
-import java.net.URL
 
 /** 新闻条目（news-data.json 由 CI 每日刷新；官方组件/运行库条目带 type 字段） */
 data class NewsItem(
@@ -42,8 +40,6 @@ object NewsRepository {
 
     private const val NEWS_URL_PRIMARY =
         "https://raw.githubusercontent.com/mihsian77/Emubox/main/news-data.json"
-    private const val NEWS_URL_JSDELIVR =
-        "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/news-data.json"
     private const val OFFLINE_ASSET = "news_offline.json"
 
     @Volatile
@@ -103,33 +99,19 @@ object NewsRepository {
     /** 远程拉取（raw → jsDelivr），失败回退内置离线副本 */
     suspend fun loadNews(context: Context): List<NewsItem> {
         cached?.let { return it }
+        // 多通道竞速取数：以前固定先试 raw 直连，8 秒超时后才回退 jsDelivr，
+        // 国内网络下 raw 基本不通，等于每次白等 8 秒。
         val fetched = withContext(Dispatchers.IO) {
-            try {
-                fetchUrl(NEWS_URL_PRIMARY)?.let { parseNews(it) }
-                    ?: fetchUrl(NEWS_URL_JSDELIVR)?.let { parseNews(it) }
-            } catch (_: Exception) {
-                null
-            }
+            runCatching {
+                RemoteData.fetchText(NEWS_URL_PRIMARY)?.let { parseNews(it) }
+            }.getOrNull()
         }
         if (fetched != null && fetched.isNotEmpty()) {
             cached = fetched
-            cachedSource = "remote"
+            cachedSource = RemoteData.lastChannel
             return fetched
         }
         return loadFromAssets(context) ?: emptyList()
-    }
-
-    private fun fetchUrl(url: String): String? {
-        return try {
-            val conn = URL(url).openConnection() as HttpURLConnection
-            conn.connectTimeout = 8000
-            conn.readTimeout = 8000
-            conn.setRequestProperty("User-Agent", "EmuHub-CN/1.3")
-            if (conn.responseCode != HttpURLConnection.HTTP_OK) return null
-            conn.inputStream.bufferedReader().use { it.readText() }
-        } catch (_: Exception) {
-            null
-        }
     }
 
     fun clearCache() {

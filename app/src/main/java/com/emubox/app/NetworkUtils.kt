@@ -362,12 +362,8 @@ suspend fun fetchWrappersCatalog(manifestUrl: String): List<WrapperItem> = withC
 private val inFlightWrappers = ConcurrentHashMap.newKeySet<String>()
 
 private suspend fun refreshWrappers(manifestUrl: String): List<WrapperItem> {
-    val acceleratedUrl = Accelerator.rewriteUrl(manifestUrl)
-    var json = executeWrappersRequest(acceleratedUrl)
-    if (json == null && acceleratedUrl != manifestUrl) {
-        json = executeWrappersRequest(manifestUrl)
-    }
-    if (json == null) return emptyList()
+    val body = RemoteData.fetchText(manifestUrl) ?: return emptyList()
+    val json = runCatching { JSONObject(body) }.getOrNull() ?: return emptyList()
 
     val items = buildList {
         val wrappersArr = json.optJSONArray("wrappers") ?: JSONArray()
@@ -396,17 +392,6 @@ private suspend fun refreshWrappers(manifestUrl: String): List<WrapperItem> {
     }
     wrapperCache[manifestUrl] = CacheEntry(items, System.currentTimeMillis())
     return items
-}
-
-private fun executeWrappersRequest(url: String): JSONObject? = try {
-    val request = Request.Builder().url(url).build()
-    githubClient.newCall(request).execute().use { response ->
-        if (!response.isSuccessful) return null
-        val body = response.body?.string() ?: return null
-        JSONObject(body)
-    }
-} catch (_: Exception) {
-    null
 }
 
 suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Component>> =

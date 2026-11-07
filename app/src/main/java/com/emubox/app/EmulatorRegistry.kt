@@ -264,12 +264,22 @@ EmulatorEntry(id = "citra-mirror", name = "Citra Mirror", category = "Nintendo 3
                         latestApkName = obj.optString("latest_apk_name").ifBlank { firstApk?.optString("name").orEmpty() },
                         latestApkSize = obj.optLong("latest_apk_size", 0L).takeIf { it > 0 } ?: firstApk?.optLong("size", 0L) ?: 0L,
                         pushedAt = obj.optString("pushed_at"),
-                        logoUrl = obj.optString("logoUrl"),
+                        // 图标：registry 走 logo_url（82%），ranking 走 logoUrl（100%）；
+                        // 两者都没有时用 owner 拼 GitHub 头像，保证列表不出现整片占位图。
+                        logoUrl = obj.optString("logoUrl")
+                            .ifBlank { obj.optString("logo_url") }
+                            .ifBlank {
+                                val o = if (slash > 0) repoFull.substring(0, slash) else ""
+                                if (o.isBlank()) "" else "https://github.com/$o.png"
+                            },
                         note = obj.optString("note"),
                         stars = obj.optLong("stars", 0L),
                         forks = obj.optLong("forks", 0L),
                         watchers = obj.optLong("watchers", 0L),
-                        downloads = obj.optLong("downloads", 0L),
+                        // 下载量：registry 主要写在 downloads_latest（53%），ranking 写 downloads（89%）。
+                        // 只读 downloads 会让 83 条有下载量的模拟器显示为 0。
+                        downloads = obj.optLong("downloads", 0L)
+                            .takeIf { it > 0 } ?: obj.optLong("downloads_latest", 0L),
                         releases = parseReleases(obj),
                         source = obj.optString("source", ""),
                         dead = obj.optBoolean("dead", false),
@@ -285,15 +295,10 @@ EmulatorEntry(id = "citra-mirror", name = "Citra Mirror", category = "Nintendo 3
         DiskRegistryCache.read(context, "emulator_registry", maxAgeDays = 1)?.let { cached ->
             parseEmulators(JSONObject(cached))?.let { if (it.isNotEmpty()) return@withContext it }
         }
-        val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_REGISTRY_URL)
-        val request = Request.Builder().url(acceleratedUrl).build()
         val entries = runCatching {
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return@use null
-                val json = JSONObject(response.body?.string() ?: return@use null)
-                val parsed = parseEmulators(json)
-                if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_registry", json.toString()) }
-            }
+            val body = RemoteData.fetchText(DEFAULT_EMULATOR_REGISTRY_URL) ?: return@runCatching null
+            val parsed = parseEmulators(JSONObject(body))
+            if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_registry", body) }
         }.getOrNull()
         entries ?: DiskRegistryCache.read(context, "emulator_registry", maxAgeDays = 1)?.let {
             parseEmulators(JSONObject(it))?.takeIf { p -> p.isNotEmpty() }
@@ -305,15 +310,10 @@ EmulatorEntry(id = "citra-mirror", name = "Citra Mirror", category = "Nintendo 3
         DiskRegistryCache.read(context, "emulator_ranking", maxAgeDays = 1)?.let { cached ->
             parseEmulators(JSONObject(cached))?.let { if (it.isNotEmpty()) return@withContext it }
         }
-        val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_RANKING_URL)
-        val request = Request.Builder().url(acceleratedUrl).build()
         val entries = runCatching {
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return@use null
-                val json = JSONObject(response.body?.string() ?: return@use null)
-                val parsed = parseEmulators(json)
-                if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_ranking", json.toString()) }
-            }
+            val body = RemoteData.fetchText(DEFAULT_EMULATOR_RANKING_URL) ?: return@runCatching null
+            val parsed = parseEmulators(JSONObject(body))
+            if (parsed.isEmpty()) null else parsed.also { DiskRegistryCache.write(context, "emulator_ranking", body) }
         }.getOrNull()
         entries ?: DiskRegistryCache.read(context, "emulator_ranking", maxAgeDays = 1)?.let {
             parseEmulators(JSONObject(it))?.takeIf { p -> p.isNotEmpty() }
@@ -501,13 +501,9 @@ object EmulatorInsightsRepository {
 
     /** 从远程 emulator-ranking.json 拉取 insights（与排行同一文件），失败返回空 */
     suspend fun fetchRemoteInsights(): EmulatorInsights = withContext(Dispatchers.IO) {
-        val acceleratedUrl = Accelerator.rewriteUrl(DEFAULT_EMULATOR_RANKING_URL)
-        val request = Request.Builder().url(acceleratedUrl).build()
         runCatching {
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return@use null
-                parse(JSONObject(response.body?.string() ?: return@use null))
-            }
+            val body = RemoteData.fetchText(DEFAULT_EMULATOR_RANKING_URL) ?: return@runCatching null
+            parse(JSONObject(body))
         }.getOrNull() ?: EmulatorInsights()
     }
 }
