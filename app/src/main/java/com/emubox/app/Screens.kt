@@ -2357,7 +2357,8 @@ fun ComponentGuideScreen(
             val index = visibleTopics.indexOfFirst { it.id == initialTopicId }
             if (index >= 0) {
                 expandedId = initialTopicId
-                listState.animateScrollToItem(index + 3)
+                // 主题卡前面只剩「说明行」一个 item，偏移量跟着信息架构走，别再写死 +3
+                listState.animateScrollToItem(index + 1)
             }
         }
     }
@@ -2391,37 +2392,27 @@ fun ComponentGuideScreen(
             contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 36.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
+            // 顶部只留一句话说明：标题和副标题已在 TopAppBar，再来一张大卡是重复
             item(key = "guide_intro") {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(28.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-                ) {
-                    Row(
-                        modifier = Modifier.padding(20.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Surface(
-                            shape = RoundedCornerShape(18.dp),
-                            color = MaterialTheme.colorScheme.primary
-                        ) {
-                            Icon(
-                                Icons.Default.School,
-                                contentDescription = null,
-                                modifier = Modifier.padding(12.dp),
-                                tint = MaterialTheme.colorScheme.onPrimary
-                            )
+                Text(
+                    appString(
+                        if (driverMode) R.string.guide_intro_desc_driver
+                        else R.string.guide_intro_desc
+                    ),
+                    fontSize = 12.sp,
+                    color = Fusion.OnSurfaceDim,
+                )
+            }
+
+            sortedTopics.forEach { topic ->
+                item(key = "guide_topic_${topic.id}") {
+                    GuideTopicCard(
+                        topic = topic,
+                        expanded = expandedId == topic.id,
+                        onClick = {
+                            expandedId = if (expandedId == topic.id) null else topic.id
                         }
-                        Spacer(Modifier.width(14.dp))
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(if (driverMode) appString(R.string.choose_drivers_confidence) else appString(R.string.choose_components_confidence), style = MaterialTheme.typography.titleLarge)
-                            Text(
-                                if (driverMode) appString(R.string.guide_intro_desc_driver) else appString(R.string.guide_intro_desc),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                            )
-                        }
-                    }
+                    )
                 }
             }
 
@@ -2460,17 +2451,6 @@ fun ComponentGuideScreen(
                 }
             }
 
-            sortedTopics.forEach { topic ->
-                item(key = "guide_topic_${topic.id}") {
-                    GuideTopicCard(
-                        topic = topic,
-                        expanded = expandedId == topic.id,
-                        onClick = {
-                            expandedId = if (expandedId == topic.id) null else topic.id
-                        }
-                    )
-                }
-            }
         }
     }
 }
@@ -2806,20 +2786,20 @@ private fun GuideTopicCard(
                 )
             }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                SuggestionChip(onClick = {}, label = { Text(appString(topic.categoryRes)) })
-                AssistChip(onClick = {}, label = { Text(appString(topic.badgeRes)) })
-            }
-
             AnimatedVisibility(
                 visible = expanded,
                 enter = fadeIn() + expandVertically(),
                 exit = fadeOut() + shrinkVertically()
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                    // 分类与徽章是标签，不是结论；收起时挂在卡片上只是白占一行高度
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        SuggestionChip(onClick = {}, label = { Text(appString(topic.categoryRes)) })
+                        AssistChip(onClick = {}, label = { Text(appString(topic.badgeRes)) })
+                    }
                     HorizontalDivider()
                     GuideDetailBlock(appString(R.string.what_it_is), appString(topic.whatItIsRes), Icons.Default.Info)
                     GuideDetailBlock(appString(R.string.try_first), appString(topic.tryFirstRes), Icons.Default.PlayArrow)
