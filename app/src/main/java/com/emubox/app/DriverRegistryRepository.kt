@@ -58,7 +58,7 @@ data class DriverMatchResult(
  * 修改原因：上游硬编码驱动源且只有 Adreno，新增 30+ 仓库（含 Mali PanVK 全系列），
  *           需要结构化注册表 + 自动匹配，用户不用自己判断该下哪个驱动。
  * 影响范围：仅新增文件，不改动现有 SourceCatalog 逻辑；UI 层后续接入。
- * 回滚方法：删除本文件，DriverHubScreen 继续使用原有 SourceCatalog。
+ * 回滚方法：删除本文件，驱动页继续使用原有 SourceCatalog。
  */
 object DriverRegistryRepository {
 
