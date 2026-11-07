@@ -100,12 +100,28 @@ private fun fusionScheme(dark: Boolean): ColorScheme {
         onSecondary = if (dark) Color(0xFF1A1030) else Color.White,
         secondaryContainer = p.surfaceAlt,
         onSecondaryContainer = p.onSurface,
+        // tertiary 一族原来漏了映射 → 沿用 darkColorScheme() 的番茄紫，
+        // 这就是「指南页图标盒是粉的、组件页卡片发紫」的来源。
+        tertiary = p.secondary,
+        onTertiary = if (dark) Color(0xFF1A1030) else Color.White,
+        tertiaryContainer = p.surfaceAlt,
+        onTertiaryContainer = p.onSurface,
         background = p.background,
         onBackground = p.onSurface,
         surface = p.surface,
         onSurface = p.onSurface,
         surfaceVariant = p.surfaceAlt,
         onSurfaceVariant = p.onSurfaceDim,
+        // surfaceContainer 系列同样漏映射，卡片折叠态会突然变成 Material 的紫灰底
+        surfaceContainerLowest = p.background,
+        surfaceContainerLow = p.background,
+        surfaceContainer = p.surface,
+        surfaceContainerHigh = p.surfaceAlt,
+        surfaceContainerHighest = p.surfaceAlt,
+        surfaceDim = p.background,
+        surfaceBright = p.surface,
+        inverseSurface = p.onSurface,
+        inverseOnSurface = p.background,
         outline = p.border,
         outlineVariant = p.borderAlt
     )
