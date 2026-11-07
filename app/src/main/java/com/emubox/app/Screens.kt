@@ -11239,81 +11239,6 @@ fun EmulatorScreen(
                         }
                     }
                 }
-                Text(
-                    appString(R.string.emulator_community_rank),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
-                    modifier = Modifier.padding(top = 2.dp)
-                )
-            }
-        }
-        // 概览区（英雄卡 / 简介 / 统计 / 更新动态）与工具栏在列表非空时同样显示。
-        // 旧实现把整块包在 flatItems.isEmpty() 里，真实数据一到位就全部消失。
-        item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
-            var dynOpen by remember { mutableStateOf(false) }
-            Column {
-                // 英雄卡 + 简介 + 摘要：首屏直接可见（不再折叠）
-                topEntry?.let { hero ->
-                    EmulatorHeroCard(
-                        entry = hero,
-                        categoryLabel = categoryLabel[hero.category].orEmpty(),
-                        onClickDetail = { detailEntry = hero }
-                    )
-                }
-                Text(
-                    appString(R.string.emulator_desc),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                )
-                val officialCount = entries.count { it.official }
-                val direct = entries.count { it.latestApkUrl.isNotBlank() }
-                Text(
-                    appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(Fusion.SurfaceAlt)
-                        .border(1.dp, Fusion.BorderAlt, RoundedCornerShape(12.dp))
-                        .clickable { dynOpen = !dynOpen }
-                        .padding(horizontal = 14.dp, vertical = 11.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text("更新动态", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Fusion.OnSurface, modifier = Modifier.weight(1f))
-                    Text(if (dynOpen) "收起" else "展开", fontSize = 11.sp, color = Fusion.OnSurfaceFainter)
-                }
-                AnimatedVisibility(visible = dynOpen) {
-                    Column(Modifier.padding(top = 8.dp)) {
-                        NewsReleaseCard(items = newsItems)
-                        if (insights.totalProjects > 0) {
-                            EmulatorInsightsCard(insights = insights)
-                        }
-                        val news = newsList
-                        if (news.isNotEmpty()) {
-                            EmulatorNewsCard(news = news, onOpen = { detailEntry = it })
-                        }
-                        if (insights.trending14.isNotEmpty()) {
-                            EmulatorTrendingCard(
-                                trending = insights.trending14,
-                                baseDate = insights.trendBaseDate,
-                                latestDate = insights.trendLatestDate,
-                                entries = entries,
-                                onOpen = { detailEntry = it }
-                            )
-                        }
-                        if (insights.categoryDownloads.size > 1) {
-                            EmulatorCategoryShareCard(categories = insights.categoryDownloads)
-                        }
-                        if (insights.recipes.isNotEmpty()) {
-                            EmulatorRecipesCard(recipes = insights.recipes)
-                        }
-                    }
-                }
             }
         }
 item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
@@ -11462,6 +11387,79 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                         onClickDetail = { detailEntry = entry },
                         onDownload = onDownload
                     )
+                }
+            }
+        }
+        // 概览区（推荐 / 动态 / 榜单）整体移到列表之后。
+        // 列表型页面的第一任务是「找到并下载」：首屏必须见到结果，
+        // 而不是先滚过英雄卡 + 简介 + 统计 + 排序说明才看到第一条。
+        // 概览区（英雄卡 / 简介 / 统计 / 更新动态）与工具栏在列表非空时同样显示。
+        // 旧实现把整块包在 flatItems.isEmpty() 里，真实数据一到位就全部消失。
+        item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
+            var dynOpen by remember { mutableStateOf(false) }
+            Column {
+                // 列表之后只剩一个折叠条，默认收起：推荐与动态是「逛」的内容，
+                // 不该在用户已经决定要看哪一项时继续占屏。
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Fusion.SurfaceAlt)
+                        .border(1.dp, Fusion.BorderAlt, RoundedCornerShape(12.dp))
+                        .clickable { dynOpen = !dynOpen }
+                        .padding(horizontal = 14.dp, vertical = 11.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("社区推荐与动态", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Fusion.OnSurface, modifier = Modifier.weight(1f))
+                    Text(if (dynOpen) "收起" else "展开", fontSize = 11.sp, color = Fusion.OnSurfaceFainter)
+                }
+                AnimatedVisibility(visible = dynOpen) {
+                    Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        topEntry?.let { hero ->
+                            EmulatorHeroCard(
+                                entry = hero,
+                                categoryLabel = categoryLabel[hero.category].orEmpty(),
+                                onClickDetail = { detailEntry = hero }
+                            )
+                        }
+                        Text(
+                            appString(R.string.emulator_desc),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 4.dp)
+                        )
+                        val officialCount = entries.count { it.official }
+                        val direct = entries.count { it.latestApkUrl.isNotBlank() }
+                        Text(
+                            appString(R.string.emulator_summary, entries.size, officialCount, entries.size - officialCount, direct),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(horizontal = 4.dp)
+                        )
+                        NewsReleaseCard(items = newsItems)
+                        if (insights.totalProjects > 0) {
+                            EmulatorInsightsCard(insights = insights)
+                        }
+                        val news = newsList
+                        if (news.isNotEmpty()) {
+                            EmulatorNewsCard(news = news, onOpen = { detailEntry = it })
+                        }
+                        if (insights.trending14.isNotEmpty()) {
+                            EmulatorTrendingCard(
+                                trending = insights.trending14,
+                                baseDate = insights.trendBaseDate,
+                                latestDate = insights.trendLatestDate,
+                                entries = entries,
+                                onOpen = { detailEntry = it }
+                            )
+                        }
+                        if (insights.categoryDownloads.size > 1) {
+                            EmulatorCategoryShareCard(categories = insights.categoryDownloads)
+                        }
+                        if (insights.recipes.isNotEmpty()) {
+                            EmulatorRecipesCard(recipes = insights.recipes)
+                        }
+                    }
                 }
             }
         }
