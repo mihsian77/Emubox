@@ -29,6 +29,9 @@ def gh(url):
         return json.load(r)
 
 
+RELEASES_KEPT = 5
+
+
 def _norm_releases(rels, platform):
     """GitLab/Gitea(NotABug) 的 release 结构转统一格式（与 GitHub 对齐）"""
     out = []
@@ -123,7 +126,9 @@ def main():
             continue
         e["stars"] = int(meta.get("stargazers_count") or 0)
         e["pushed_at"] = meta.get("pushed_at") or ""
-        e["releases"] = rels
+        # 只存最近 5 个版本：详情页最多展开看几个，存 30 个让 registry 从 9MB 涨到 30MB，
+        # 而 91% 的体积都在 releases 上（每个 release 带完整 changelog 与 assets 列表）。
+        e["releases"] = rels[:RELEASES_KEPT]
         if rels:
             r0 = next((r for r in rels if not r.get("prerelease") and (r.get("body") or "").strip()), None) \
                 or next((r for r in rels if (r.get("body") or "").strip()), None) \
@@ -146,6 +151,11 @@ def main():
         changed = True
     if changed:
         d["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        # _section_evidence / _family_evidence 是脚本判断分类时的依据，属于中间产物，
+        # 落到仓库里既占体积又容易被误读成数据字段，写出前剔除。
+        for e in d.get("emulators", []):
+            e.pop("_section_evidence", None)
+            e.pop("_family_evidence", None)
         json.dump(d, open(REGISTRY, "w"), ensure_ascii=False, indent=2)
         print(f"已更新 {len(d['emulators'])} 条，releases 总量: "
               f"{sum(len(e.get('releases') or []) for e in d['emulators'])}")

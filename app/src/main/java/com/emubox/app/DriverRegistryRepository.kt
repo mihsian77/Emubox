@@ -64,8 +64,6 @@ object DriverRegistryRepository {
 
     private const val REGISTRY_URL_PRIMARY =
         "https://raw.githubusercontent.com/mihsian77/Emubox/main/driver-registry.json"
-    private const val REGISTRY_URL_JSDELIVR =
-        "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/driver-registry.json"
     private const val ASSETS_REGISTRY = "driver-registry.json"
 
     /** 成熟度排序权重，越小越优先 */
@@ -122,21 +120,15 @@ object DriverRegistryRepository {
     var lastLoadSource: String = "unknown"
         private set
 
-    /** 加载注册表：GitHub Raw → jsDelivr → 内置 assets 全量（39 源） */
+    /** 加载注册表：多通道竞速取远程 → 内置 assets 全量（39 源）→ 硬编码兜底 */
     suspend fun load(forceRefresh: Boolean = false, context: Context? = null): List<DriverRegistryEntry> {
         cachedEntries?.let { if (!forceRefresh) return it }
         return withContext(Dispatchers.IO) {
-            val fromPrimary = fetchFromUrl(REGISTRY_URL_PRIMARY)
-            if (fromPrimary != null) {
-                lastLoadSource = "remote"
-                cachedEntries = fromPrimary
-                return@withContext fromPrimary
-            }
-            val fromJsDelivr = fetchFromUrl(REGISTRY_URL_JSDELIVR)
-            if (fromJsDelivr != null) {
-                lastLoadSource = "jsdelivr"
-                cachedEntries = fromJsDelivr
-                return@withContext fromJsDelivr
+            val fromRemote = RemoteData.fetchText(REGISTRY_URL_PRIMARY)?.let { parseRegistry(it) }
+            if (fromRemote != null) {
+                lastLoadSource = RemoteData.lastChannel
+                cachedEntries = fromRemote
+                return@withContext fromRemote
             }
             val fromAssets = loadFromAssets(context)
             if (fromAssets != null) {
@@ -148,21 +140,6 @@ object DriverRegistryRepository {
             val fb = builtinFallback()
             cachedEntries = fb
             fb
-        }
-    }
-
-    private fun fetchFromUrl(urlStr: String): List<DriverRegistryEntry>? {
-        return try {
-            val conn = (URL(urlStr).openConnection() as HttpURLConnection).apply {
-                connectTimeout = 6000
-                readTimeout = 6000
-                setRequestProperty("User-Agent", "EmuBox")
-            }
-            if (conn.responseCode != 200) return null
-            val body = conn.inputStream.bufferedReader().readText()
-            parseRegistry(body)
-        } catch (_: Exception) {
-            null
         }
     }
 
