@@ -775,4 +775,17 @@ How to verify in emulator:
     <string name="driver_check_use_system">System driver</string>
     <string name="driver_check_target_note">Will dlopen %1$s directly (bypassing the system loader; failures report the raw dlerror)</string>
     <string name="driver_check_extract_failed">Failed to extract the driver package (.so not found)</string>
+    <!-- 详情型：设备页结论卡与分组 -->
+    <string name="device_conclusion_full">Turnip works on this GPU — DXVK titles run with hardware acceleration</string>
+    <string name="device_conclusion_partial">Limited Turnip support — older titles are stable, recent 3A titles will struggle</string>
+    <string name="device_conclusion_none">No Turnip here — translation layer only, expect roughly half the frame rate</string>
+    <string name="device_conclusion_unknown">GPU vendor not recognised — start with VirGL</string>
+    <string name="device_badge_recommended">Recommended</string>
+    <string name="device_badge_limited">Limited</string>
+    <string name="device_badge_caution">Caution</string>
+    <string name="device_section_compat">Compatibility</string>
+    <string name="device_section_driver">Recommended drivers</string>
+    <string name="device_section_chip">Chipset &amp; performance</string>
+    <string name="runtime_result_count">%1$d components</string>
+    <string name="runtime_meta_title">Sources &amp; news</string>
 </resources>
