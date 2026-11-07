@@ -6994,6 +6994,11 @@ fun DeviceScreen(
             )
         }
 
+        // 渲染实测（自研内核）：直接出图，而不是只给一行 FPS 文字
+        item(key = "driver_render_check") {
+            DriverRenderCheckCard()
+        }
+
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
         item(key = "driver_detect_header") {
             RegionHeader(
@@ -7007,6 +7012,7 @@ fun DeviceScreen(
                 systemDevice = vulkanPayload?.devices?.firstOrNull()
             )
         }
+
     }
 }
 

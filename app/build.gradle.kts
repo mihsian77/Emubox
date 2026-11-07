@@ -125,4 +125,6 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
     implementation(libs.coil.compose)
     implementation("androidx.documentfile:documentfile:1.1.0")
+    // 自研驱动渲染实测内核（私有仓 emubox-drivercheck 构建的 AAR，闭源分发）
+    implementation(files("libs/drivercheck.aar"))
 }
