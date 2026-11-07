@@ -1262,6 +1262,7 @@ fun SettingsScreen(
     uiScale: UiScale,
     onUiScaleChange: (UiScale) -> Unit,
     onSourceCatalogChanged: () -> Unit,
+    onOpenDownloads: (() -> Unit)? = null,
     showBack: Boolean = true
 ) {
     if (showBack) {
@@ -1326,6 +1327,33 @@ fun SettingsScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // 「我的」入口：下载页不再占一级导航，改从这里进入
+            if (onOpenDownloads != null) {
+                item {
+                    SettingsCard(title = appString(R.string.tab_download)) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onOpenDownloads() }
+                                .padding(vertical = 6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = appString(R.string.downloads_entry_desc),
+                                modifier = Modifier.weight(1f),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Fusion.OnSurfaceDim
+                            )
+                            Icon(
+                                Icons.Default.ChevronRight,
+                                contentDescription = null,
+                                tint = Fusion.OnSurfaceFaint
+                            )
+                        }
+                    }
+                }
+            }
+
             item {
                 SettingsSectionHeader(
                     icon = Icons.Default.Palette,
@@ -1333,7 +1361,6 @@ fun SettingsScreen(
                     subtitle = appString(R.string.appearance_desc)
                 )
             }
-
             item {
                 SettingsCard(title = appString(R.string.app_language)) {
                     Text(
