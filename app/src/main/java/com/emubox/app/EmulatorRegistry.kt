@@ -66,7 +66,13 @@ data class EmulatorEntry(
     val source: String = "",
     /** DMCA/停更等失效仓库：UI 不跳转、隐藏下载 */
     val dead: Boolean = false,
-    val deadReason: String = ""
+    val deadReason: String = "",
+    /**
+     * 非 GitHub 分发条目的下载入口：官网直链 / SourceForge 文件页 / Google Play。
+     * registry 里 40 条只有它没有 APK，此前 UI 完全没读这个字段，
+     * 于是「有官方下载页」被渲染成按钮变灰的「无下载」。
+     */
+    val downloadUrl: String = ""
 ) {
     /**
      * 源码仓库地址。
@@ -194,7 +200,6 @@ EmulatorEntry(id = "producdevity-gamehub", name = "GameHub（官方）", categor
 EmulatorEntry(id = "ryujinx-official", name = "Ryujinx（官方）", category = "Nintendo Switch Emulator", description = "Switch 模拟器（官方 2024-10 因 DMCA 停更，社区续接版见 Ryubing）", owner = "Ryujinx", repo = "Ryujinx", homepage = "https://ryujinx.app", repoUrl = "https://ryujinx.app", official = true, channel = "stable", downloads = 0, stars = 0, pushedAt = "2024-10-01T00:00:00Z", latestTag = "1.0.43", latestDate = "2024-10-01T00:00:00Z", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "ryujinx-benji-sc", name = "Ryujinx Benji-SC", category = "Nintendo Switch Emulator", description = "Ryujinx 安卓分支 Benji-SC（社区维护，123 盘收录）；123 盘文件未经安全验证", owner = "", repo = "", homepage = "", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "strato-emulator", name = "Strato", category = "Nintendo Switch Emulator", description = "Skyline 继任者（strato-emu/strato），2348★，2024-09 后停更，无官方 release；社区经 123 盘分发", owner = "strato-emu", repo = "strato", homepage = "", repoUrl = "https://github.com/strato-emu/strato", official = false, channel = "stable", downloads = 0, stars = 2348, pushedAt = "2024-09-02T00:00:00Z", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
-EmulatorEntry(id = "sudachi-emulator", name = "Sudachi", category = "Nintendo Switch Emulator", description = "Switch 模拟器。官网四个平台下载按钮均指向 archive.org 存档分发", owner = "suda-cz", repo = "", homepage = "https://sudachi-emulator.com", repoUrl = "https://sudachi-emulator.com", official = true, channel = "stable", downloads = 0, stars = 0, pushedAt = "2026-06-15T00:00:00Z", latestTag = "v1.0.15", latestDate = "2026-06-15T00:00:00Z", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "torzu-emulator", name = "Torzu", category = "Nintendo Switch Emulator", description = "Switch 模拟器（yuzu 血统，GitHub 451，实际维护在 Gitee 镜像）", owner = "WinterMute", repo = "torzu", homepage = "https://gitee.com/mirrors/torzu", repoUrl = "https://gitee.com/mirrors/torzu", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "2024-08-14T00:00:00Z", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "suyu-emulator", name = "Suyu", category = "Nintendo Switch Emulator", description = "yuzu 继任者：2024 停止开发，GitHub 仓库已因 DMCA 删除；123 盘收录历史版本", owner = "suyu-emu", repo = "suyu", homepage = "", repoUrl = "https://github.com/suyu-emu/suyu", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "2024-05-01T00:00:00Z", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "ryubing-emulator", name = "Ryubing", category = "Nintendo Switch Emulator", description = "Ryujinx 社区续接版，源码在自建 Forgejo", owner = "projects", repo = "Website", homepage = "https://ryujinx.app", repoUrl = "https://git.ryujinx.app/projects/Ryubing", official = false, channel = "stable", downloads = 0, stars = 91, pushedAt = "2026-07-25T00:00:00Z", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
@@ -202,7 +207,6 @@ EmulatorEntry(id = "skyline-official", name = "Skyline（官方）", category = 
 EmulatorEntry(id = "skyline-pine", name = "Skyline Pine", category = "Nintendo Switch Emulator", description = "Skyline 分支 Pine（社区 fork）：123 盘含 944/961/v2.1.1 汉化版（2025-11 更新）；123 盘文件未经安全验证", owner = "pavelbarabanov777", repo = "pine", homepage = "", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "2025-11-22T00:00:00Z", latestTag = "2.1.1", latestDate = "2025-11-22T00:00:00Z", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "yuzu-official", name = "yuzu（官方）", category = "Nintendo Switch Emulator", description = "yuzu 官方：2024-03 因任天堂诉讼停更删库（全球最流行 Switch 模拟器）；123 盘含官方黄金版（标准/加速）与日更版（136-273，273 为最终版）；123 盘文件未经安全验证", owner = "yuzu-emu", repo = "yuzu", homepage = "https://yuzu-emu.org", repoUrl = "https://github.com/yuzu-emu/yuzu", official = true, channel = "stable", downloads = 0, stars = 0, pushedAt = "2024-03-04T00:00:00Z", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "yuzu-citrus", name = "CitruS", category = "Nintendo Switch Emulator", description = "yuzu 分支 CitruS（社区维护）：123 盘收录；123 盘文件未经安全验证", owner = "", repo = "", homepage = "", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
-EmulatorEntry(id = "yuzu-plus", name = "Yuzu+", category = "Nintendo Switch Emulator", description = "yuzu 删库后的社区改名包（包名 org.yuzu.yuzu_plus，v4.0.1）。无一手来源，仅第三方应用市场与网盘分发", owner = "", repo = "", homepage = "https://www.9k9k.com/app/91506.html", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "", latestTag = "4.0.1", latestDate = "2025-11-19T00:00:00Z", latestBody = "", logoUrl = "", latestApkName = "org.yuzu.yuzu_plus_c993bc78.apk", latestApkUrl = "", latestApkSize = 40294331),
 EmulatorEntry(id = "epsxe", name = "ePSXe", category = "PlayStation 1 Emulator", description = "PS1 模拟器（付费闭源，Play 商店）", owner = "epsxe", repo = "epsxe", homepage = "https://play.google.com/store/apps/details?id=com.epsxe.ePSXe", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "fpse", name = "FPse", category = "PlayStation 1 Emulator", description = "PS1 模拟器（付费闭源，Play 商店）", owner = "fpsece", repo = "fpse", homepage = "https://play.google.com/store/apps/details?id=com.emulator.fpse", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
 EmulatorEntry(id = "drastic", name = "DraStic", category = "Nintendo DS Emulator", description = "NDS 模拟器（已下架，无官方渠道）", owner = "dsemu", repo = "drastic", homepage = "", repoUrl = "", official = false, channel = "stable", downloads = 0, stars = 0, pushedAt = "", latestTag = "", latestDate = "", latestBody = "", logoUrl = "", latestApkName = "", latestApkUrl = "", latestApkSize = 0),
@@ -283,7 +287,8 @@ EmulatorEntry(id = "citra-mirror", name = "Citra Mirror", category = "Nintendo 3
                         releases = parseReleases(obj),
                         source = obj.optString("source", ""),
                         dead = obj.optBoolean("dead", false),
-                        deadReason = obj.optString("dead_reason", "")
+                        deadReason = obj.optString("dead_reason", ""),
+                        downloadUrl = obj.optString("download_url")
                     )
                 )
             }

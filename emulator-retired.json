@@ -169,5 +169,110 @@
       }
     ],
     "repo_status": "451"
+  },
+  {
+    "id": "sudachi-emulator",
+    "name": "Sudachi",
+    "category": "主机模拟",
+    "description": "Sudachi：Switch 模拟器。官网四个平台下载按钮全部指向 archive.org 存档分发",
+    "owner": "suda-cz",
+    "repo": "",
+    "homepage": "https://sudachi-emulator.com",
+    "repo_url": "https://sudachi-emulator.com",
+    "official": true,
+    "channel": "stable",
+    "latest_tag": "v1.0.15",
+    "latest_date": "2026-06-15T00:00:00Z",
+    "latest_body": "",
+    "latest_apk_name": "",
+    "latest_apk_url": "",
+    "latest_apk_size": 0,
+    "pushed_at": "2026-06-15T00:00:00Z",
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "downloads": 0,
+    "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/sudachi.png",
+    "releases": [],
+    "source": "official-web",
+    "repo_status": "none",
+    "note": "2026-11-08 复核：GitHub 组织 sudachi-emu 已不存在，官方站 sudachi-emulator.com 实为 SEO 站，四个平台按钮指向其自行上传到 archive.org 的转存包（文件名带站点前缀），属搬运分发；无任何一手发布渠道，删除",
+    "kind": "emulator",
+    "runtime": "android-native",
+    "platforms": [
+      "switch"
+    ],
+    "status": "stale",
+    "download_url": "https://archive.org/download/sudachiemulator-apk/sudachiemulator-apk.apk",
+    "download_kind": "archive-org",
+    "distribution": "official-site",
+    "community_sources": [],
+    "method": "emulation",
+    "hosts": [
+      "android"
+    ],
+    "needs_review": false,
+    "section": "console-emulation",
+    "family": "sudachi",
+    "family_label": "Sudachi 系",
+    "downloads_basis": "none",
+    "retired_at": "2026-11-08"
+  },
+  {
+    "id": "yuzu-plus",
+    "name": "Yuzu+",
+    "category": "主机模拟",
+    "description": "yuzu 删库后的社区改名包（包名 org.yuzu.yuzu_plus，v4.0.1）。无一手来源，仅第三方应用市场与网盘分发",
+    "owner": "",
+    "repo": "",
+    "homepage": "https://www.9k9k.com/app/91506.html",
+    "repo_url": "",
+    "official": false,
+    "channel": "stable",
+    "latest_tag": "4.0.1",
+    "latest_date": "2025-11-19T00:00:00Z",
+    "latest_body": "",
+    "latest_apk_name": "org.yuzu.yuzu_plus_c993bc78.apk",
+    "latest_apk_url": "",
+    "latest_apk_size": 40294331,
+    "pushed_at": "",
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "downloads": 0,
+    "logo_url": "https://t3st31.github.io/Ranking-Emulators-Download/logos/yuzu.png",
+    "releases": [],
+    "source": "community-archive",
+    "note": "2026-11-08 复核：无源码仓库、无官方站点，仅 9k9k 等第三方应用市场与 down.huangt.cn 直链（需 Referer）分发，属搬运资源；包体虽已实包校验（sha256 8a7f33e7…88ab6），但无一手来源，删除",
+    "skip": "no_repo",
+    "distribution": "community-archive",
+    "kind": "emulator",
+    "runtime": "android-native",
+    "platforms": [
+      "switch"
+    ],
+    "status": "community",
+    "community_sources": [
+      {
+        "repo": "https://www.9k9k.com/app/91506.html",
+        "note": "第三方应用市场页，v4.0.1"
+      },
+      {
+        "repo": "https://down.huangt.cn/youxi/b/35/org.yuzu.yuzu_plus_c993bc78.apk",
+        "note": "实包直链（需 Referer，否则 403）；40,294,331 B；sha256 8a7f33e7…88ab6"
+      }
+    ],
+    "download_url": "https://www.9k9k.com/app/91506.html",
+    "download_kind": "market-page",
+    "method": "emulation",
+    "hosts": [
+      "android"
+    ],
+    "needs_review": false,
+    "section": "console-emulation",
+    "family": "yuzu",
+    "family_label": "yuzu 系",
+    "downloads_basis": "none",
+    "retired_at": "2026-11-08"
   }
 ]

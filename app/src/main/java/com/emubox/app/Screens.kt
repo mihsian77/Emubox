@@ -11793,7 +11793,8 @@ private fun EmulatorCard(
     // DMCA/停更仓库：社区归档（123盘历史包）保留下载，其余不跳仓库、隐藏下载
     val isArchive = entry.source == "community-archive"
     val canDownload = entry.latestApkUrl.isNotBlank() && !(entry.dead && !isArchive)
-    val websiteUrl = if (entry.dead && !isArchive) "" else entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.repoLink } }
+    val websiteUrl = if (entry.dead && !isArchive) "" else
+        entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.repoLink.ifBlank { entry.downloadUrl } } }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -12210,7 +12211,7 @@ private fun EmulatorListRow(
     }
     val canDownload = entry.latestApkUrl.isNotBlank()
     // 官网优先 homepage，无则回退仓库（模拟器专区为社区排行榜，保留仓库跳转）
-    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.repoLink } }
+    val websiteUrl = entry.homepage.ifBlank { entry.repoUrl.ifBlank { entry.repoLink.ifBlank { entry.downloadUrl } } }
     Card(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onClickDetail),
         shape = RoundedCornerShape(16.dp)
