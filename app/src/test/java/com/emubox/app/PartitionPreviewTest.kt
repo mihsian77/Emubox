@@ -647,4 +647,69 @@ class PartitionPreviewTest {
         settle(4)
         save("p3b-components-tall.png")
     }
+
+    /** 指南页：验证顶部不再有大图标卡，首个主题卡能否落在首屏 */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h891dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun p8Guide() {
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        ComponentGuideScreen(
+                            onBack = {},
+                            adrenoSeries = "740",
+                            deviceInfo = onePlus13(),
+                        )
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p8-guide.png")
+    }
+
+    /** 指南页展开态：确认展开后 chip 行与四个说明块完整显示，不被裁切 */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h1900dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun p8bGuideExpanded() {
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        ComponentGuideScreen(
+                            onBack = {},
+                            adrenoSeries = "740",
+                            initialTopicId = "wine",
+                            deviceInfo = onePlus13(),
+                        )
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p8b-guide-expanded.png")
+    }
+
+    /** 驱动指南：同一函数走 driverMode 分支，确认主题过滤与顺序都没错 */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h891dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun p8cDriverGuide() {
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        ComponentGuideScreen(
+                            onBack = {},
+                            adrenoSeries = "830",
+                            driverMode = true,
+                            deviceInfo = onePlus13(),
+                        )
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p8c-driver-guide.png")
+    }
 }
