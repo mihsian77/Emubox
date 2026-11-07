@@ -60,6 +60,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.emubox.app.ui.template.listPageHeader
 import com.emubox.app.ui.theme.Fusion
 import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
@@ -3452,12 +3453,6 @@ fun DriverHubScreen(
                 driverCount = turnipSources.size + panvkSources.size + qualcommSources.size,
                 onClick = { showDriverCompare = true }
             )
-        }
-
-        if (deviceInfo != null) {
-            item(key = "driver_device_summary") {
-                DriverDeviceSummaryCard(deviceInfo = deviceInfo)
-            }
         }
 
         if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
@@ -9470,6 +9465,10 @@ fun DriverScreen(
         onPendingRepoConsumed()
     }
 
+    // 头部文案在 Composable 上下文取好（LazyColumn content 内不能调 appString）
+    val headerTitle = appString(R.string.driver_region)
+    val headerHint = appString(R.string.driver_search_hint)
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         state = listState,
@@ -9477,36 +9476,33 @@ fun DriverScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        item(key = "driver_region_header") {
-            RegionHeader(
-                title = appString(R.string.driver_region),
-                icon = Icons.Default.Memory,
-            )
-        }
-
-        item(key = "driver_search") {
-            FusionSearchBar(
-                query = driverQuery,
-                onQueryChange = { v ->
-                    driverQuery = v
-                    // 搜索词精确匹配源名 → 自动切换该源并加载其版本列表
-                    // （修复"搜索后仅该来源但可下载文件不刷新"：仅过滤源列表不切换源的问题）
-                    val q = v.trim()
-                    if (q.isNotBlank()) {
-                        turnipSources.firstOrNull { it.name.equals(q, ignoreCase = true) }?.let {
-                            onTurnipSourceChange(it.id)
-                        }
+        // 模板化头部（排版规格 v1）：标题 → 搜索 → 结果计数，控件不超过三层。
+        // 「N 个驱动源」是搜索/过滤是否生效的唯一反馈，缺了它用户只能靠数卡片。
+        // 文案在页面级取好：LazyColumn 的 content 不是 Composable 上下文，里面不能调 appString。
+        listPageHeader(
+            title = headerTitle,
+            icon = Icons.Default.Memory,
+            query = driverQuery,
+            onQueryChange = { v ->
+                driverQuery = v
+                // 搜索词精确匹配源名 → 自动切换该源并加载其版本列表
+                // （修复"搜索后仅该来源但可下载文件不刷新"：仅过滤源列表不切换源的问题）
+                val key = v.trim()
+                if (key.isNotBlank()) {
+                    turnipSources.firstOrNull { it.name.equals(key, ignoreCase = true) }?.let {
+                        onTurnipSourceChange(it.id)
                     }
-                },
-                placeholder = appString(R.string.driver_search_hint)
-            )
-        }
-
-        if (deviceInfo != null) {
-            item(key = "driver_device_summary") {
-                DriverDeviceSummaryCard(deviceInfo = deviceInfo)
-            }
-        }
+                }
+            },
+            headerContext = if (deviceInfo != null) {
+                { DriverDeviceSummaryCard(deviceInfo = deviceInfo) }
+            } else null,
+            searchPlaceholder = headerHint,
+            // 一条源都没有时不显示「0 个驱动源」——下面已有专门的空态卡，重复说两次没有意义
+            resultCount = (filteredTurnip.size + filteredPanvk.size + filteredQualcomm.size +
+                filteredXclipse.size + filteredWrapper.size).takeIf { it > 0 },
+            resultLabel = { appString(R.string.driver_result_count, it) },
+        )
 
         if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
             item(key = "driver_loading") {
