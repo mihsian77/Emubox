@@ -44,9 +44,14 @@ jobs:
             exit 1
           fi
           mkdir -p app/libs
+          # 私有仓 asset 必须走 API：github.com/releases/download 对私有仓不作为鉴权入口
+          AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+                  -H "Accept: application/vnd.github+json" \
+                  https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
+                | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
           curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-            -o app/libs/drivercheck.aar \
-            https://github.com/mihsian77/emubox-drivercheck/releases/download/aar-latest/drivercheck.aar
+            -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
+            "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
           ls -l app/libs/drivercheck.aar
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
@@ -81,9 +86,14 @@ jobs:
             exit 1
           fi
           mkdir -p app/libs
+          # 私有仓 asset 必须走 API：github.com/releases/download 对私有仓不作为鉴权入口
+          AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+                  -H "Accept: application/vnd.github+json" \
+                  https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
+                | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
           curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-            -o app/libs/drivercheck.aar \
-            https://github.com/mihsian77/emubox-drivercheck/releases/download/aar-latest/drivercheck.aar
+            -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
+            "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
           ls -l app/libs/drivercheck.aar
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
