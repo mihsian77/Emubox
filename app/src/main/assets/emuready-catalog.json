@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-06T23:34:48Z",
+ "generated_at": "2026-11-07T22:20:57Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -330,7 +330,7 @@
    "modelName": "Pocket 4 Pro",
    "brandName": "Retroid",
    "socName": "Dimensity 1100",
-   "listingsCount": 167,
+   "listingsCount": 168,
    "keys": [
     "pocket4pro",
     "retroidpocket4pro"
@@ -9027,7 +9027,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 6254,
+   "listings": 6255,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
