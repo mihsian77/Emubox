@@ -1111,16 +1111,26 @@ private fun RepoAvatar(
     fallbackName: String,
     size: Dp = 26.dp,
     selected: Boolean = false,
-    shape: Shape = CircleShape
+    shape: Shape = CircleShape,
+    seed: String = ""
 ) {
     val initial = fallbackName.trim().firstOrNull()?.uppercase() ?: "?"
+    // 字母牌颜色按名称散列：同一屏里相邻卡片不会是同一种灰，扫读时更容易区分
+    val palette = listOf(
+        MaterialTheme.colorScheme.primary,
+        MaterialTheme.colorScheme.tertiary,
+        MaterialTheme.colorScheme.secondary,
+        MaterialTheme.colorScheme.error
+    )
+    val tint = if (seed.isBlank()) MaterialTheme.colorScheme.primary
+    else palette[(seed.hashCode() and 0x7fffffff) % palette.size]
     Box(
         modifier = Modifier
             .size(size)
             .clip(shape)
             .background(
                 if (selected) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.surfaceVariant
+                else tint.copy(alpha = 0.14f)
             ),
         contentAlignment = Alignment.Center
     ) {
@@ -1128,8 +1138,7 @@ private fun RepoAvatar(
         Text(
             initial,
             style = MaterialTheme.typography.labelMedium,
-            color = if (selected) MaterialTheme.colorScheme.onPrimary
-            else MaterialTheme.colorScheme.primary,
+            color = if (selected) MaterialTheme.colorScheme.onPrimary else tint,
             textAlign = TextAlign.Center
         )
         if (avatarUrl != null) {
@@ -1154,8 +1163,24 @@ private fun ProjectAvatar(
     size: Dp = 26.dp,
     shape: Shape = CircleShape
 ) {
-    val avatar = logoUrl.ifBlank { if (owner.isNotBlank()) "https://avatars.githubusercontent.com/$owner?size=64" else null }
-    RepoAvatar(avatarUrl = avatar, fallbackName = fallbackName, size = size, shape = shape)
+    // 作者头像不是项目图标：同一个作者做 5 个项目就是 5 张一样的脸，
+    // 列表里反而更难认（weihuoya 的 Citra/PPSSPP/Dolphin 分支就是典型）。
+    // 没拿到真图标时宁可给「首字母 + 品牌色」的字母牌，也不要塞头像。
+    val avatar = logoUrl.takeUnless { it.isAuthorAvatar(owner) }.orEmpty().ifBlank { null }
+    RepoAvatar(
+        avatarUrl = avatar,
+        fallbackName = fallbackName,
+        size = size,
+        shape = shape,
+        seed = fallbackName
+    )
+}
+
+/** 判断 logo 是不是 GitHub 头像占位：github.com/<owner>.png，或 avatars.githubusercontent.com 下的地址 */
+private fun String.isAuthorAvatar(owner: String): Boolean {
+    if (isBlank()) return true
+    if (contains("avatars.githubusercontent.com")) return true
+    return owner.isNotBlank() && endsWith("github.com/$owner.png", ignoreCase = true)
 }
 
 private fun formatRelativeTime(iso: String): String {
@@ -11840,7 +11865,7 @@ private fun EmulatorCard(
             if (entry.channel.isNotBlank() && entry.channel != "stable") {
                 Spacer(Modifier.height(2.dp))
                 Text(
-                    entry.channel,
+                    if (entry.channel == "prerelease") appString(R.string.emulator_channel_prerelease) else entry.channel,
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.tertiary
                 )
@@ -11851,6 +11876,24 @@ private fun EmulatorCard(
                     // 只显示日期：原始值为 "2026-08-19T11:06:00Z"，在卡片里被截成
                     // "…2026-08-19T11:06…"，末尾一截毫秒毫无信息量。
                     "${entry.latestTag} · ${shortDate(entry.latestDate)}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            // 桌面模拟器在安卓端装不了，必须标出来；多生态保留，但不假装能装
+            if (entry.hosts.isNotEmpty() && !entry.hosts.contains("android")) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    appString(R.string.emulator_hosts_desktop_only) + " · " + entry.hosts.joinToString("/") {
+                        when (it) {
+                            "windows" -> "Windows"
+                            "macos" -> "macOS"
+                            "linux" -> "Linux"
+                            else -> it
+                        }
+                    },
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
@@ -12275,7 +12318,7 @@ private fun EmulatorListRow(
                         Spacer(Modifier.width(4.dp))
                         Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.tertiaryContainer) {
                             Text(
-                                entry.channel,
+                                if (entry.channel == "prerelease") appString(R.string.emulator_channel_prerelease) else entry.channel,
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onTertiaryContainer
@@ -12433,7 +12476,7 @@ private fun EmulatorDetailDialog(
                         Spacer(Modifier.width(6.dp))
                         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.tertiaryContainer) {
                             Text(
-                                entry.channel,
+                                if (entry.channel == "prerelease") appString(R.string.emulator_channel_prerelease) else entry.channel,
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onTertiaryContainer

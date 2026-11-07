@@ -130,17 +130,26 @@ def main():
         # 而 91% 的体积都在 releases 上（每个 release 带完整 changelog 与 assets 列表）。
         e["releases"] = rels[:RELEASES_KEPT]
         if rels:
-            r0 = next((r for r in rels if not r.get("prerelease") and (r.get("body") or "").strip()), None) \
-                or next((r for r in rels if (r.get("body") or "").strip()), None) \
-                or rels[0]
+            # 最新一条就是「当前版本」，预发布也算。
+            # 旧逻辑优先挑「非预发布且带 changelog」的那条，于是只发 nightly/beta 的项目
+            # 永远停在旧正式版，发过预发布的项目在「按日期排序」里也会被排到后面。
+            # GitHub 的 /releases 按 created_at 排，改过草稿的旧 tag 会插到前面，
+            # 这里按 published_at 再排一次，保证「最新发布的」真的是第一条。
+            rels = sorted(rels, key=lambda r: r.get("date") or "", reverse=True)
+            e["releases"] = rels[:RELEASES_KEPT]
+            r0 = rels[0]
             e["latest_tag"] = r0["tag"]
             e["latest_date"] = r0["date"]
             e["latest_body"] = (r0.get("body") or "")[:2000]
-            a0s = r0.get("assets") or []
-            apks = [a for a in a0s if a.get("name","").lower().endswith(".apk")]
-            # 优先 release 版（debug/测试版兜底），避免下载按钮给 debug 包
-            apks.sort(key=lambda a: 0 if "release" in a.get("name","").lower() else (1 if "debug" not in a.get("name","").lower() else 2))
-            if apks:
+            e["channel"] = "prerelease" if r0.get("prerelease") else "stable"
+            # 下载包仍优先取当前版本的 asset；当前版本只有源码包时，回退到最近一个带 APK 的版本，
+            # 避免发个 source-only 的 nighty 就把「下载」按钮抹掉。
+            target = r0 if any(a.get("name", "").lower().endswith(".apk") for a in (r0.get("assets") or [])) \
+                else next((r for r in rels if any(a.get("name", "").lower().endswith(".apk") for a in (r.get("assets") or []))), None)
+            if target:
+                apks = [a for a in (target.get("assets") or []) if a.get("name", "").lower().endswith(".apk")]
+                # 优先 release 版（debug/测试版兜底），避免下载按钮给 debug 包
+                apks.sort(key=lambda a: 0 if "release" in a.get("name", "").lower() else (1 if "debug" not in a.get("name", "").lower() else 2))
                 a0 = apks[0]
                 e["latest_apk_name"] = a0["name"]
                 e["latest_apk_url"] = a0["url"]
