@@ -771,4 +771,7 @@ How to verify in emulator:
     <string name="driver_check_running_label">Rendering…</string>
     <string name="driver_check_export">Export log</string>
     <string name="driver_check_export_subject">EmuBox driver render check</string>
+    <string name="driver_check_use_system">System driver</string>
+    <string name="driver_check_target_note">Will dlopen %1$s directly (bypassing the system loader; failures report the raw dlerror)</string>
+    <string name="driver_check_extract_failed">Failed to extract the driver package (.so not found)</string>
 </resources>
