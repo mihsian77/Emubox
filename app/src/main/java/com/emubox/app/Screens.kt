@@ -2072,27 +2072,33 @@ private fun ColorThemeSelector(
         ColorTheme.CN to appString(R.string.theme_cn)
     )
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .horizontalScroll(rememberScrollState()),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        choices.forEach { (theme, title) ->
-            FilterChip(
-                selected = selected == theme,
-                onClick = { onSelected(theme) },
-                label = { Text(title) },
-                leadingIcon = if (selected == theme) {
-                    {
-                        Icon(
-                            Icons.Default.Check,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                    }
-                } else null
-            )
+    // 六个主题横排一屏放不下，横滑等于把后两个藏起来（用户不知道能滑）。
+    // 改成 3×2 换行，一眼看全，不用猜。
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        choices.chunked(3).forEach { rowItems ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                rowItems.forEach { (theme, title) ->
+                    FilterChip(
+                        selected = selected == theme,
+                        onClick = { onSelected(theme) },
+                        label = { Text(title, maxLines = 1) },
+                        leadingIcon = if (selected == theme) {
+                            {
+                                Icon(
+                                    Icons.Default.Check,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+                        } else null,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                repeat(3 - rowItems.size) { Spacer(Modifier.weight(1f)) }
+            }
         }
     }
 }
@@ -2760,13 +2766,15 @@ private fun GuideTopicCard(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Surface(
                     shape = RoundedCornerShape(16.dp),
-                    color = MaterialTheme.colorScheme.tertiaryContainer
+                    color = Fusion.SurfaceAlt
                 ) {
+                    // 图标本身给品牌色：底色已是中性灰，图标再用灰会整片糊在一起，
+                    // 八个主题卡长得一模一样，扫描时找不到落点
                     Icon(
                         topic.icon,
                         contentDescription = null,
                         modifier = Modifier.padding(10.dp),
-                        tint = MaterialTheme.colorScheme.onTertiaryContainer
+                        tint = Fusion.Primary
                     )
                 }
                 Spacer(Modifier.width(12.dp))
