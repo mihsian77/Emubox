@@ -768,4 +768,7 @@
     <string name="driver_check_running_label">渲染中…</string>
     <string name="driver_check_export">导出日志</string>
     <string name="driver_check_export_subject">EmuBox 驱动渲染实测</string>
+    <string name="driver_check_use_system">系统驱动</string>
+    <string name="driver_check_target_note">将直接加载 %1$s（绕开系统 loader，失败会带 dlerror 原文）</string>
+    <string name="driver_check_extract_failed">驱动包解压失败，取不到 .so</string>
 </resources>

@@ -6604,6 +6604,28 @@ fun DeviceScreen(
     var benchmarkLoading by remember { mutableStateOf(false) }
     var benchmarkError by remember { mutableStateOf<String?>(null) }
     var showDeviceGuide by remember { mutableStateOf(false) }
+    // 渲染实测可换的目标驱动：只取已下载完成的驱动包（与驱动页同一套判定口径）。
+    // 页面级 remember：设备页数据本来就是进入时采集一次，列表在页面存活期内固定，
+    // 避免每次重组重建列表把卡片里选中的驱动重置掉。
+    val driverTargets = remember {
+        DownloadsManager.completedDownloads
+            .filter {
+                it.fileName.endsWith(".zip", true) || it.fileName.endsWith(".adpkg", true)
+            }
+            .filter { dl ->
+                if (dl.subPath.isNotBlank()) dl.subPath.startsWith("Drivers", true)
+                else listOf(
+                    "turnip", "qualcomm", "adreno", "mali", "panvk", "driver", "vulkan", "mesa"
+                ).any { dl.fileName.contains(it, true) }
+            }
+            .map { dl ->
+                DriverTarget(
+                    id = dl.id,
+                    label = dl.fileName.substringBeforeLast('.').take(24),
+                    packagePath = dl.filePath,
+                )
+            }
+    }
     // 生态动态：eco 类新闻（芯片/手机/安卓，与设备检测呼应）
     var deviceNewsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     val deviceNewsContext = LocalContext.current
@@ -7022,8 +7044,9 @@ fun DeviceScreen(
         }
 
         // 渲染实测（自研内核）：直接出图，而不是只给一行 FPS 文字
+        // 有已下载驱动时可在卡片内切换「系统驱动 / 指定驱动」，实现换驱动实测
         item(key = "driver_render_check") {
-            DriverRenderCheckCard()
+            DriverRenderCheckCard(drivers = driverTargets)
         }
 
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
