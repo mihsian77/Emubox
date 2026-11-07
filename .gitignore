@@ -45,3 +45,7 @@ community/
 audit-report.json
 resolve-report.json
 .cache/
+
+# 闭源驱动实测内核：由私有仓 emubox-drivercheck 的 CI 构建，
+# 本地开发手动放入，CI 通过 DRIVERCHECK_TOKEN 下载，不入公开仓库
+app/libs/*.aar

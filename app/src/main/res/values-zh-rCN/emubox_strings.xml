@@ -754,4 +754,15 @@
     <string name="translate_deepseek_key_desc">只存在本机，只会发往 api.deepseek.com。</string>
     <string name="translate_deepseek_hint">sk-...</string>
     <string name="translate_saved">已保存</string>
+    <string name="driver_check_title">渲染实测（可视化）</string>
+    <string name="driver_check_desc">离屏渲染一张固定测试图案并回读像素。驱动有问题时会直接显示成一张错图或空白，而不是一行失败文字。</string>
+    <string name="driver_check_run">开始实测</string>
+    <string name="driver_check_rerun">重新实测</string>
+    <string name="driver_check_no_image">驱动没有产出图像。</string>
+    <string name="driver_check_failed">渲染实测失败：%1$s</string>
+    <string name="driver_check_summary">%1$d / %2$d 项图案断言通过 · 单帧 %3$.0f ms</string>
+    <string name="driver_check_system_note">走系统 Vulkan 驱动，不依赖窗口 Surface。</string>
+    <string name="driver_check_running_label">渲染中…</string>
+    <string name="driver_check_export">导出日志</string>
+    <string name="driver_check_export_subject">EmuBox 驱动渲染实测</string>
 </resources>

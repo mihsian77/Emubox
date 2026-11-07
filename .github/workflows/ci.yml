@@ -35,6 +35,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: 拉取自研渲染内核（闭源 AAR）
+        env:
+          DRIVERCHECK_TOKEN: ${{ secrets.DRIVERCHECK_TOKEN }}
+        run: |
+          if [ -z "$DRIVERCHECK_TOKEN" ]; then
+            echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
+            exit 1
+          fi
+          mkdir -p app/libs
+          curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+            -o app/libs/drivercheck.aar \
+            https://github.com/mihsian77/emubox-drivercheck/releases/download/aar-latest/drivercheck.aar
+          ls -l app/libs/drivercheck.aar
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
         with:
@@ -59,6 +72,19 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: 拉取自研渲染内核（闭源 AAR）
+        env:
+          DRIVERCHECK_TOKEN: ${{ secrets.DRIVERCHECK_TOKEN }}
+        run: |
+          if [ -z "$DRIVERCHECK_TOKEN" ]; then
+            echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
+            exit 1
+          fi
+          mkdir -p app/libs
+          curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+            -o app/libs/drivercheck.aar \
+            https://github.com/mihsian77/emubox-drivercheck/releases/download/aar-latest/drivercheck.aar
+          ls -l app/libs/drivercheck.aar
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
         with:

@@ -757,4 +757,15 @@ How to verify in emulator:
     <string name="translate_deepseek_key_desc">Stored only on this device and sent solely to api.deepseek.com.</string>
     <string name="translate_deepseek_hint">sk-...</string>
     <string name="translate_saved">Saved</string>
+    <string name="driver_check_title">Render check (visual)</string>
+    <string name="driver_check_desc">Offscreen-render a fixed test pattern and read the pixels back. A broken driver shows up as a wrong or missing picture instead of a failed text line.</string>
+    <string name="driver_check_run">Run check</string>
+    <string name="driver_check_rerun">Run again</string>
+    <string name="driver_check_no_image">The driver produced no image.</string>
+    <string name="driver_check_failed">Render check failed: %1$s</string>
+    <string name="driver_check_summary">%1$d of %2$d pattern checks passed · %3$.0f ms per frame</string>
+    <string name="driver_check_system_note">Runs on the system Vulkan driver, bypassing the window surface.</string>
+    <string name="driver_check_running_label">Rendering…</string>
+    <string name="driver_check_export">Export log</string>
+    <string name="driver_check_export_subject">EmuBox driver render check</string>
 </resources>
