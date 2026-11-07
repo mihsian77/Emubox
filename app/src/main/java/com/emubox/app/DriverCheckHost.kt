@@ -3,9 +3,15 @@ package com.emubox.app
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.ui.platform.LocalContext
+import java.io.File
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -45,32 +51,66 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 /**
+ * 一个可被实测的目标驱动。
+ *
+ * @param id 下载记录 id，用于 DriverExtractor 的缓存目录
+ * @param label 展示名（通常取包文件名）
+ * @param packagePath 驱动包本地路径或 content:// URI，需要时才会解压取 .so
+ */
+data class DriverTarget(
+    val id: String,
+    val label: String,
+    val packagePath: String,
+)
+
+/**
  * 驱动渲染实测入口（自研内核，闭源 AAR）。
  *
  * 与旧的「渲染测试」区别：旧链路只回一行 FPS 文字，驱动画错了也看不出；
  * 这里把回读的像素直接铺成图，配 N 项图案断言，问题驱动会显示成一张错图。
  *
- * 走系统 Vulkan 驱动，不依赖窗口 Surface，所以旋转/前后台不会引入假失败。
+ * 两种取驱动方式：
+ * - 不选驱动（默认「系统驱动」）走系统 libvulkan.so.1；
+ * - 选中某个已下载驱动则用 dlopen 直接加载它的 .so，绕开系统 loader。
+ *   后者在 App 进程内可能被 namespace/SELinux 拒绝，失败时报告里带 dlerror 原文，
+ *   那本身就是有用的信息（说明该驱动不能裸加载，必须走 AdrenoTools 注入）。
  */
 @Composable
 fun DriverRenderCheckCard(
     modifier: Modifier = Modifier,
+    drivers: List<DriverTarget> = emptyList(),
     // 仅用于截图/预览测试注入已完成状态，正式调用保持默认 Idle
     initialState: DriverCheckState = DriverCheckState.Idle,
 ) {
     var state by remember(initialState) { mutableStateOf(initialState) }
     var showSheet by remember { mutableStateOf(false) }
+    // null = 系统驱动
+    var selected by remember(drivers) { mutableStateOf<DriverTarget?>(null) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     // 文案在 composable 上下文取好，onClick 里不能调 @Composable
     val exportLabel = appString(R.string.driver_check_export)
     val exportSubject = appString(R.string.driver_check_export_subject)
+    val extractFailed = appString(R.string.driver_check_extract_failed)
 
     fun start() {
+        val target = selected
         state = DriverCheckState.Running
         scope.launch {
             val res = withContext(Dispatchers.IO) {
-                runCatching { DriverCheck.run() }
+                runCatching {
+                    // 选中驱动时才解压取 .so，避免每次进页面都做重活
+                    val soPath = target?.let { t ->
+                        val cached = DriverExtractor.getSoFile(context, t.id)?.takeIf { it.exists() }
+                        val so = cached ?: runCatching {
+                            val uri = if (t.packagePath.startsWith("content://")) Uri.parse(t.packagePath)
+                            else Uri.fromFile(File(t.packagePath))
+                            DriverExtractor.extract(context, uri, t.id)
+                        }.getOrNull()
+                        so?.absolutePath ?: error(extractFailed)
+                    }
+                    DriverCheck.run(driverPath = soPath)
+                }
             }
             state = res.fold(
                 onSuccess = { (bmp, report) ->
@@ -135,11 +175,51 @@ fun DriverRenderCheckCard(
                     )
                 }
             }
+            // 驱动选择：系统驱动 / 已下载驱动。只有一个选项（系统）时整行隐藏，
+            // 避免卡片在没有任何驱动的设备上多出一排无意义控件。
+            if (drivers.isNotEmpty()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    FilterChip(
+                        selected = selected == null,
+                        onClick = {
+                            selected = null
+                            if (state !is DriverCheckState.Running) state = DriverCheckState.Idle
+                        },
+                        enabled = state !is DriverCheckState.Running,
+                        label = { Text(appString(R.string.driver_check_use_system), style = MaterialTheme.typography.labelSmall) },
+                        colors = FilterChipDefaults.filterChipColors(),
+                    )
+                    drivers.forEach { d ->
+                        FilterChip(
+                            selected = selected?.id == d.id,
+                            onClick = {
+                                selected = d
+                                if (state !is DriverCheckState.Running) state = DriverCheckState.Idle
+                            },
+                            enabled = state !is DriverCheckState.Running,
+                            label = {
+                                Text(
+                                    d.label,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    maxLines = 1,
+                                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                                )
+                            },
+                        )
+                    }
+                }
+            }
             Text(
                 appString(R.string.driver_check_desc),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            val target = selected
             val statusText = when (val s = state) {
                 is DriverCheckState.Done -> summary(s.report, s.checks.count { it.ok }, s.checks.size)
                 is DriverCheckState.Failed -> appString(
@@ -147,7 +227,8 @@ fun DriverRenderCheckCard(
                     s.message.ifBlank { appString(R.string.driver_check_no_image) },
                 )
                 is DriverCheckState.Running -> appString(R.string.driver_check_running_label)
-                else -> appString(R.string.driver_check_system_note)
+                else -> if (target == null) appString(R.string.driver_check_system_note)
+                else appString(R.string.driver_check_target_note, target.label)
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (state is DriverCheckState.Running) {
