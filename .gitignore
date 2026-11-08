@@ -53,3 +53,11 @@ app/libs/*.aar
 # README 抓取缓存（fetch_summaries.py / fetch_source_profiles.py 的中间产物，可重建）
 data/readme-cache/
 data/source-readme/
+
+# 工作产物（可重跑生成，一律不入库）
+缺口清单.md
+缺口清单.csv
+schema-audit.json
+download-source-audit.json
+audit-report.json
+resolve-report.json

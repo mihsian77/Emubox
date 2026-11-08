@@ -22,7 +22,10 @@ python3 scripts/gen_gap_md.py
 echo "[6/6] csv"
 python3 scripts/gen_gap_report.py
 DATE=$(date +%Y%m%d)
-cp 缺口清单.csv "/workspace/项目库缺口清单-${DATE}.csv"
-cp 缺口清单.md  "/workspace/项目库缺口清单-${DATE}.md"
+mkdir -p /workspace/项目库缺口
+mv 缺口清单.csv "/workspace/项目库缺口/项目库缺口清单-${DATE}.csv"
+mv 缺口清单.md  "/workspace/项目库缺口/项目库缺口清单-${DATE}.md"
+mv 项目库缺口总表.html "/workspace/项目库缺口/项目库缺口总表-${DATE}.html" 2>/dev/null || true
 
-echo "done: /workspace/项目库缺口总表.html"
+echo "done: /workspace/项目库缺口/
+# 产物一律搬到 /workspace，仓库根目录不留任何中间文件（见 AGENTS.md 仓库内容红线）
