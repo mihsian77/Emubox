@@ -19,6 +19,7 @@
 - 不提交任何个人的 UID、昵称、主页地址、Cookie、Token。
 - 不提交依赖登录态才能抓取的数据。
 - 抓取脚本不留在仓库。外部动态在本地工具里跑，结果人工确认后以中性描述入库。
+- 社区动态（社媒、视频站、网盘）采集禁止进 `.github/workflows/` 与 `scripts/`，CI 由 `scripts/check-monitor-scope.py` 拦截。分工唯一事实来源是 `docs/monitoring.md`。
 
 ## 数据取舍边界
 
