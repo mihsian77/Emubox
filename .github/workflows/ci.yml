@@ -30,6 +30,14 @@ jobs:
       - name: 运行 i18n 校验
         run: python3 scripts/check-i18n.py
 
+  monitor-scope:
+    name: 监控分工校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 检查仓库内是否混入社媒采集
+        run: python3 scripts/check-monitor-scope.py
+
   lint:
     name: Android Lint 检查
     runs-on: ubuntu-latest
