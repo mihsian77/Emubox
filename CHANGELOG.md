@@ -5,6 +5,11 @@
 ## [1.4.0] - 未发布
 
 ### Added
+- 首屏拆包：`emulator-index.json`（374KB，卡片字段）+ `emulator-details-0..7.json`（详情分片），首屏流量 3269KB → 374KB（-89%）。进详情页只拉该条目所在那一片，不再整包等 3MB
+- 项目简介贴近官方：`scripts/fetch_summaries.py` 从 README 首段提炼一句话（无 README 用仓库 About，再没有用发布说明），302 条里 294 条有摘要（readme 261 / about 30 / release 3）。卡片和详情页优先展示 `summary`，`description` 保留作者原文
+- 模拟器页两级筛选：一级用途分区（主机模拟 200 / Windows 兼容 45 / 原生移植 33 / 前端工具 21 / 视觉小说 3），二级按模拟平台（PS2 / Switch / 3DS…，按条目数取前 18）。原来是一行 60+ 个分类 chips 横滑
+- 字段命名统一为 snake_case（`logo_url` / `downloads_total` / `latest_tag` / `summary`），新增 `scripts/validate-schema.py` 上 CI，别名出现即失败
+- 图标全量入库：113 张自托管到 `icons/<id>.png`（仓库内 58 + APK 内 70），剔除单色填充/空壳/灰圆/宣传图 15 张，其余 160 条走字母牌（另有 29 条社区/官网图标）；另压 144px WebP 进 APK assets（409KB），本地优先、远程兜底
 - 新闻系统 v3：Wine 小版本接入（dl.winehq.org 目录源，补齐 10.19–11.20 中间版本）；组件/运行库分类口径统一（Wine / Box64 / Proton-GE 归组件，DXVK / VKD3D-Proton / Wine Mono / Wine Gecko / Mono 归运行库）；IT 之家正文抓取落库；同 url 去重防重复收录
 - 新闻卡片弹窗化：卡片去除来源名，点击后应用内弹窗阅读全文（正文优先，无正文回退摘要）；官方条目支持翻译与查看原文
 - 各分区新闻列表分页：3 条预览 + 「查看全部」近全屏列表（8 条/页）
@@ -17,6 +22,9 @@
 - 版本双轨规则：正式版 x.y.0，预发布 x.y.z 由 CI 自动发布并置顶；本 Changelog 作为功能-版本映射
 
 ### Fixed
+- 12 条桌面/主机构建被写进 `latest_apk_url`（DOSBox-X 的 zip、DOSBox-Staging 的 exe、MeloNX 的 ipa、Ryujinx 的 AppImage），安卓端会给出一个装不上的下载按钮。已移到 `download_url`，并加进 schema 校验
+- 离线内置列表与 registry 脱节：Kotlin 里手写 130 条字面量，早已和 registry 不同步（有把 .png 当 APK 的条目、缺 summary）。改为读 `assets/emulator-offline.json`
+- `channel` 脏值（`stable/unknown`、`alpha`、`nightly`、`canary`、`archive`）归一为 `stable` / `prerelease`
 - 版本号停在旧正式版：刷新脚本优先挑「非预发布」那条，只发 nightly/beta 的项目永远拿不到新版本，发过预发布的项目在按日期排序里也会被排到后面。改为「最新一条就是当前版本」，`channel` 标 `prerelease`，当前版本只有源码包时回退到最近带 APK 的版本
 - 图标用作者头像顶替：同一作者多个项目在列表里是同一张脸。改为「真图标 → 首字母字母牌（按名称散列配色）」，作者头像退出链路
 - 只有 `download_url`、没有 homepage 的条目按钮变灰（DraStic / MYPS2），按钮回退链补上 `download_url`
