@@ -318,6 +318,9 @@ class MainActivity : ComponentActivity() {
                     val registry = EmulatorRegistryRepository.fetchRemoteRegistry(emulatorAppContext) { fresh ->
                         emulatorEntries = mergeEmulators(fresh, rankingCache)
                     }
+                    // registry（370KB）一到就先渲染，不等榜单：榜单是补充下载量/更新时间的，
+                    // 原来这里串行等待，弱网下要等第二个请求回来列表才刷新。
+                    emulatorEntries = mergeEmulators(registry, rankingCache)
                     val ranking = EmulatorRegistryRepository.fetchRemoteRanking(emulatorAppContext) { fresh ->
                         rankingCache = fresh
                         emulatorEntries = mergeEmulators(registry, fresh)

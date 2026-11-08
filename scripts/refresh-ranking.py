@@ -5,7 +5,7 @@
 主源 the412banner/emulator-ranking（字段最全：logo/homepage/stars/description/pushedAt），
 t3st31/Ranking-Emulators-Download 补其独有条目。两个站均为静态 GitHub Pages JSON，每日自动更新。
 排除 Drivers 分类（驱动走驱动专区，不混入模拟器）。
-输出：仓库根目录 emulator-ranking.json（全量 releases/assets）。
+输出：仓库根目录 emulator-ranking.json（条目列表字段；releases 只留给 registry 未收录的独有条目）。
 """
 import json, os, sys, time, urllib.request
 
@@ -370,6 +370,32 @@ def main():
         for d in driver_src if isinstance(d, dict)
     ]
 
+    # 瘦身：releases 只对「registry 未收录的独有条目」保留，其余剥离。
+    # 已收录条目的详情从 emulator-details-N.json 按需拉，列表首屏不该背 1.7MB。
+    # 同时剔除 retired：否则 MainActivity 的「ranking 独有条目」分支会把已退役的
+    # 404 项目重新加回列表。
+    try:
+        reg_ids = {e["id"] for e in json.load(
+            open(os.path.join(ROOT, "emulator-registry.json"), encoding="utf-8"))["emulators"]}
+    except Exception:
+        reg_ids = set()
+    try:
+        retired_ids = {e.get("id") for e in json.load(
+            open(os.path.join(ROOT, "emulator-retired.json"), encoding="utf-8"))}
+    except Exception:
+        retired_ids = set()
+
+    week_ago = time.strftime("%Y-%m-%d", time.gmtime(time.time() - 7 * 86400))
+    weekly_releases = sum(1 for e in emus for r in (e.get("releases") or [])
+                          if (r.get("date") or "")[:10] >= week_ago)
+    total_rel = sum(len(e.get("releases") or []) for e in emus)
+    total_as = sum(len(a) for e in emus for r in (e.get("releases") or []) for a in r["assets"])
+
+    emus = [e for e in emus if e.get("id") not in retired_ids]
+    for e in emus:
+        if e.get("id") in reg_ids:
+            e.pop("releases", None)
+
     doc = {
         "updated_at": t412.get("updatedAt", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())),
         "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
@@ -384,9 +410,7 @@ def main():
                 [{"category": k, "label": CAT_ZH.get(k, k), "downloads": v} for k, v in cat_dl.items()],
                 key=lambda x: -x["downloads"]),
             # 本周发布数：按 release date 近 7 天统计（412 首页 Releases this week 等价物）
-            "weekly_releases": sum(
-                1 for e in emus for r in (e.get("releases") or [])
-                if (r.get("date") or "")[:10] >= (time.strftime("%Y-%m-%d", time.gmtime(time.time() - 7 * 86400)))),
+            "weekly_releases": weekly_releases,
             # 条件接入：412 站点访问统计（visitors.json 未产出时省略，App 端无值不显示）
             **({"total_visits": int(visitors_raw.get("totalVisits") or 0),
                 "online_now": int(visitors_raw.get("onlineNow") or 0),
@@ -408,7 +432,6 @@ def main():
         json.dump(doc, f, ensure_ascii=False, indent=1)
         f.write("\n")
     total_rel = sum(len(e["releases"]) for e in emus)
-    total_as = sum(len(a) for e in emus for r in e["releases"] for a in r["assets"])
     print(f"已更新：{len(emus)} 条 / {len(cats)} 分类 / {total_rel} releases / {total_as} 资产 / {os.path.getsize(OUT)/1024/1024:.2f} MB")
     print("分类:", cats)
 
