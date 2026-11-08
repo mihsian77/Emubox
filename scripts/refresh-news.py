@@ -277,32 +277,49 @@ ECO_DROP_WORDS = [
     "机箱", "电源适配", "充电器", "游戏本", "键鼠", "手柄",
 ]
 
-# 官方组件/运行库源：repo / category / type / mode（release=GitHub release）
-# 分类口径：DXVK/VKD3D-Proton 属组件区；Wine/Box64/Proton-GE/Wine Mono/Wine Gecko/Mono 属运行库区。
+# 官方组件源：repo / category / type / mode（release=GitHub release，tag=只用 tag）
+# 分类口径（2026-11 修订）：App 组件页 8 个类型全部归 component，与「运行库」区分——
+#   运行库指 Windows 运行库（VC++/.NET/DirectX），数据来自 winlator-contents 的
+#   components.json，不走 GitHub release，因此这里不再产生 runtime 条目。
+# type 名必须与 App 组件页的类型名逐字一致，否则该区块仍然是空的。
 # 注：wine 官方公告站（winehq.org）对云服务器 IP 有 Cloudflare 拦截（403，实测），
 # wine-mirror/wine 无 release 对象；wine 本体小版本改走 dl.winehq.org 源码目录源
 # （见 collect_runtime_extra）；wine-staging 有 GitHub release（补完整日志维度）。
 OFFICIAL_SOURCES = [
-    ("doitsujin/dxvk", "component", "DXVK", "release"),
-    ("HansKristian-Work/vkd3d-proton", "component", "VKD3D-Proton", "release"),
-    ("ptitSeb/box64", "runtime", "Box64", "release"),
-    ("GloriousEggroll/proton-ge-custom", "runtime", "Proton-GE", "release"),
+    # (repo, category, type, mode, 标题前缀)
+    ("doitsujin/dxvk", "component", "DXVK", "release", "DXVK"),
+    ("HansKristian-Work/vkd3d-proton", "component", "VKD3D", "release", "VKD3D-Proton"),
+    ("WinterSnowfall/d7vk", "component", "D7VK", "release", "D7VK"),
+    ("FEX-Emu/FEX", "component", "FEXCore", "release", "FEX"),
+    ("ptitSeb/box64", "component", "Box64", "release", "Box64"),
+    ("butilly/box64", "component", "WOWBox64", "tag", "WOWBox64"),
+    ("ValveSoftware/Proton", "component", "Proton", "release", "Proton"),
+    ("GloriousEggroll/proton-ge-custom", "component", "Proton", "release", "GE-Proton"),
     # 驱动官方源（driver 分类专属；与 driver-registry.json 同名仓库对齐）
-    ("K11MCH1/AdrenoToolsDrivers", "driver", "K11MCH1 AdrenoTools", "release"),
-    ("StevenMXZ/Adrenotools-Drivers", "driver", "StevenMXZ Adrenotools", "release"),
-    ("MrPurple666/purple-turnip", "driver", "Purple-Turnip", "release"),
-    ("faux123/turnip-faux123-driver", "driver", "faux123 Turnip", "release"),
-    ("faux123/panvk-faux123-driver-ace", "driver", "faux123 PanVK", "release"),
-    ("xodiosx/mesa-panvk-g57", "driver", "xodiosx PanVK", "release"),
-    ("adesyaefull/panvk-kbase-android-g925-mesa27", "driver", "adesyaefull PanVK G925", "release"),
-    ("isygold/panDXVK", "driver", "panDXVK", "release"),
-    ("JimVulkan/radv-xclipse", "driver", "RADV Xclipse", "release"),
+    ("K11MCH1/AdrenoToolsDrivers", "driver", "K11MCH1 AdrenoTools", "release", "K11MCH1 AdrenoTools"),
+    ("StevenMXZ/Adrenotools-Drivers", "driver", "StevenMXZ Adrenotools", "release", "StevenMXZ Adrenotools"),
+    ("MrPurple666/purple-turnip", "driver", "Purple-Turnip", "release", "Purple-Turnip"),
+    ("faux123/turnip-faux123-driver", "driver", "faux123 Turnip", "release", "faux123 Turnip"),
+    ("faux123/panvk-faux123-driver-ace", "driver", "faux123 PanVK", "release", "faux123 PanVK"),
+    ("xodiosx/mesa-panvk-g57", "driver", "xodiosx PanVK", "release", "xodiosx PanVK"),
+    ("adesyaefull/panvk-kbase-android-g925-mesa27", "driver", "adesyaefull PanVK G925", "release", "adesyaefull PanVK G925"),
+    ("isygold/panDXVK", "driver", "panDXVK", "release", "panDXVK"),
+    ("JimVulkan/radv-xclipse", "driver", "RADV Xclipse", "release", "RADV Xclipse"),
 ]
 
 CATS = {
     "emulator": "模拟器", "driver": "驱动", "component": "组件",
     "runtime": "运行库", "eco": "生态", "general": "泛科技",
 }
+
+# 组件类型白名单：必须与 App 组件页 8 个区块逐字一致
+COMPONENT_TYPES = {
+    "Wine", "Proton", "Box64", "WOWBox64", "DXVK", "FEXCore", "VKD3D", "D7VK",
+    # 历史名 / 附加项（Wine 自带运行库），一并归组件区
+    "VKD3D-Proton", "Proton-GE", "Wine Mono", "Wine Gecko", "Mono",
+}
+# 历史 type → 现行 type（旧数据原地改名，不丢条目）
+TYPE_ALIAS = {"VKD3D-Proton": "VKD3D", "Proton-GE": "Proton"}
 
 # 资讯具体主题标签（App 新闻卡显示用，替代大类名；按顺序首个命中为准）
 TAG_RULES = [
@@ -525,6 +542,10 @@ def _head_last_modified(url: str) -> int:
     return 0
 
 
+# 本次抓取失败的目录源类型：失败时保留上一轮条目，避免一次网络抖动把整条线清空
+EXTRA_FAILED = set()
+
+
 def collect_runtime_extra():
     """Wine / Wine Mono / Wine Gecko / Mono：官方目录源（补官方 GitHub release 缺口）。
 
@@ -566,6 +587,7 @@ def collect_runtime_extra():
                 "low_freq": True,
             })
     except Exception as e:
+        EXTRA_FAILED.add("Wine")
         print(f"  Wine 小版本抓取失败: {e}", file=sys.stderr)
 
     # Wine Mono / Wine Gecko：dl.winehq.org 版本目录 + HEAD 日期（低频）
@@ -592,12 +614,13 @@ def collect_runtime_extra():
                     "title": f"[{typ}] {v}",
                     "url": base + v + "/",
                     "published_at": ts,
-                    "category": "runtime",
+                    "category": "component",
                     "type": typ,
                     "summary": f"{pfx} {v} 官方发布（WineHQ 下载站）",
                     "low_freq": True,
                 })
         except Exception as e:
+            EXTRA_FAILED.add(typ)
             print(f"  {typ} 抓取失败: {e}", file=sys.stderr)
 
     # 4. Mono：官方源码目录（Apache 行内日期）——归运行库区
@@ -620,23 +643,49 @@ def collect_runtime_extra():
                 "title": f"[Mono] {v}",
                 "url": f"https://download.mono-project.com/sources/mono/mono-{v}.tar.xz",
                 "published_at": ts,
-                "category": "runtime",
+                "category": "component",
                 "type": "Mono",
                 "summary": "Mono 官方源码发布（mono-project.com）",
                 "low_freq": True,
             })
     except Exception as e:
+        EXTRA_FAILED.add("Mono")
         print(f"  mono 抓取失败: {e}", file=sys.stderr)
 
     return items
 
 
+def fetch_github_tags(repo: str, limit: int = 3):
+    """只打 tag、不发 release 的仓库（WOWBox64 这类同步打包仓库）。
+
+    GitHub tags 接口不带时间，需要再查一次 commit 拿 committer date；
+    每个仓最多取 limit 个 tag，控制 API 调用量。
+    """
+    tags = github_get(f"https://api.github.com/repos/{repo}/tags?per_page={limit}")
+    out = []
+    for t in (tags if isinstance(tags, list) else [])[:limit]:
+        sha = (t.get("commit") or {}).get("sha", "")
+        ts = ""
+        try:
+            c = github_get(f"https://api.github.com/repos/{repo}/commits/{sha}")
+            ts = ((c.get("commit") or {}).get("committer") or {}).get("date", "")
+        except Exception:
+            ts = ""
+        out.append({
+            "tag_name": t.get("name", ""),
+            "html_url": f"https://github.com/{repo}/tree/{t.get('name', '')}",
+            "published_at": ts,
+            "body": "",
+        })
+    return out
+
+
 def collect_official():
     """官方 GitHub releases → news items（category + type，App 端按 type 筛选）"""
     items = []
-    for repo, cat, typ, mode in OFFICIAL_SOURCES:
+    for repo, cat, typ, mode, label in OFFICIAL_SOURCES:
         try:
-            rels = fetch_github_releases(repo)
+            rels = fetch_github_tags(repo) if mode == "tag" else fetch_github_releases(repo)
             if not isinstance(rels, list):
                 continue
             for r in rels:
@@ -644,12 +693,13 @@ def collect_official():
                 if not tag:
                     continue
                 body = (r.get("body") or "").strip()
-                summary = re.sub(r"\s+", " ", body)[:180] if body else "查看官方发布说明"
+                summary = re.sub(r"\s+", " ", body)[:180] if body else (
+                    "上游只打 tag、不发 release，点开看该版本源码" if mode == "tag" else "查看官方发布说明")
                 ts = iso_epoch_iso(r.get("published_at") or r.get("created_at") or "")
                 uid = hashlib.md5(f"{cat}:{repo}:{tag}".encode()).hexdigest()[:8]
                 items.append({
                     "id": uid,
-                    "title": f"[{typ}] {tag}",
+                    "title": f"[{label}] {tag}",
                     "url": r.get("html_url") or f"https://github.com/{repo}/releases",
                     "published_at": ts,
                     "category": cat,
@@ -701,7 +751,6 @@ def main():
     merged = [
         it for it in merged.values()
         if not (it.get("category") == "driver" and not it.get("type"))  # 清除历史杂项误标 driver
-        and not (it.get("type") == "Box64" and it.get("category") == "component")  # Box64 归运行库，清历史 component 重复
         and (it.get("low_freq") or
              (now - it.get("published_at", 0) <= (180 * 86400 if it.get("type") else 7 * 86400)))
     ]
@@ -711,12 +760,15 @@ def main():
     merged = [
         it for it in merged
         if not it.get("low_freq") or it["id"] in fresh_extra_ids
+        or it.get("type") in EXTRA_FAILED  # 本类型本次抓取失败 → 保留上一轮，不清空
     ]
-    # 分类口径迁移：DXVK/VKD3D-Proton 归组件；Wine/Box64/Proton-GE/Wine Mono/Wine Gecko/Mono 归运行库
-    # （历史旧数据原地迁移，不丢条目）
+    # 分类口径迁移（2026-11）：组件页 8 类一律 component；运行库不再由 GitHub 源产生。
+    # 同时把历史 type 名改成现行名（VKD3D-Proton→VKD3D、Proton-GE→Proton），
+    # 否则旧条目落在旧名下，App 的组件区块按新名筛选时看不到。
     merged = [
-        {**it, "category": "component"} if it.get("type") in ("DXVK", "VKD3D-Proton") else
-        {**it, "category": "runtime"} if it.get("type") in ("Wine", "Box64", "Proton-GE", "Wine Mono", "Wine Gecko", "Mono") else it
+        {**it, "type": TYPE_ALIAS.get(it["type"], it["type"]), "category": "component",
+         "title": it.get("title", "").replace("[Proton-GE]", "[GE-Proton]")}
+        if it.get("type") in COMPONENT_TYPES else it
         for it in merged
     ]
     merged.sort(key=lambda x: x.get("published_at", 0), reverse=True)
