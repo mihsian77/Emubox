@@ -1,6 +1,6 @@
-name: 国外信源采集
+name: 境外与国内信源采集
 
-# 做什么：抓 YouTube 频道更新 + Reddit 板块新帖，落到 data/intl-news/。
+# 做什么：抓 YouTube 频道更新 + Reddit 板块新帖 + B 站相关视频，落到 data/intl-news/。
 #
 # 为什么只能在 CI 跑：本机出口对 youtube / reddit / t.me / x.com 全部不可达
 # （curl 连 TLS 都建不起来），只有 GitHub 系能通。runner 在海外，天然能访问。
@@ -18,7 +18,7 @@ permissions:
 jobs:
   intl:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
