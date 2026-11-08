@@ -8,7 +8,7 @@ App 里三个分区看着相近，实际是三套互不相干的数据。
 |---|---|---|---|
 | **驱动** | `driver-registry.json` 登记仓库 + 各仓 GitHub releases | 仓库每天 02:40 | 52 个仓库 |
 | **组件** | 6 份社区 `contents.json` 清单，App 运行时直连 | 清单维护者发新构建 | 536 个版本名（去重） |
-| **运行库** | `The412Banner/winlator-contents` 的 `components.json` + 6 条微软直链 | **人工补录，不自动跟踪** | 124 条 |
+| **运行库** | `The412Banner/winlator-contents` 的 `components.json` + 7 条官方直链 | **人工补录，不自动跟踪** | 124 条 |
 
 组件清单来源（`SourceCatalog.kt` 的 `componentSources`）：
 
@@ -65,8 +65,10 @@ D7VK（base 11 / arm64ec 11 / nightly 1）。
 
 - **230 个下载链接全部指向** `github.com/The412Banner/winlator-contents/releases`（转存镜像）。
 - 只有 5 个 `download.microsoft.com`、3 个 `download.visualstudio.microsoft.com` 是官方域名。
-- App 另硬编码 6 条微软直链（.NET 9、VC++ 2026 x64/x86、.NET Framework 4.8.1、WMV9 等），
-  版本号写死，换版本要改代码发版。
+- App 另硬编码 7 条官方直链（.NET 10 / .NET 9、VC++ 2026 x64/x86、.NET Framework 4.8.1、WMV9、Wine Mono 11.3.0），
+  版本号写死，换版本要改代码发版。除 mono 走 `dl.winehq.org`，其余都是 `aka.ms` / `download.microsoft.com`。
+- 社区清单的 mono 停在 **10.4.1**，官方层补到 **11.3.0**；gecko 2.47.4 已是最新，不补。
+- **mono 必须配 Wine 大版本**：Wine 11.x 用 11.3.0，Wine 9/10 仍用 10.x。不是越新越好。
 
 **结论：0 条运行库跟上游仓库自动更新。** 全部是清单式人工补录 + 镜像托管，
 上游只在"溯源链接"这一层出现（`RuntimeLibrary.kt` 的 `RuntimeSource.lookup`）。

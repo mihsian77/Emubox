@@ -35,11 +35,27 @@ object RuntimeLibraryRepository {
 
     private val officialEntries: List<OfficialEntry> = listOf(
         OfficialEntry(
+            name = "dotnet10",
+            displayName = ".NET 10.0 桌面运行库",
+            description = ".NET 10 桌面运行时（LTS），微软官方直链，aka.ms 始终指向最新补丁版",
+            provider = "Microsoft",
+            url = "https://aka.ms/dotnet/10.0/dotnet-runtime-win-x64.zip",
+            category = RuntimeCategory.DOTNET
+        ),
+        OfficialEntry(
             name = "dotnet9",
             displayName = ".NET 9.0 桌面运行库",
-            description = ".NET 9 桌面运行时（LTS），微软官方直链",
+            description = ".NET 9 桌面运行时（旧版），游戏声明只支持 9.x 时装这个",
             provider = "Microsoft",
             url = "https://aka.ms/dotnet/9.0/dotnet-runtime-win-x64.zip",
+            category = RuntimeCategory.DOTNET
+        ),
+        OfficialEntry(
+            name = "mono-11.3.0",
+            displayName = "Wine Mono 11.3.0",
+            description = "Wine 11.x 配套的 .NET 兼容层，社区清单只到 10.4.1，这里补官方直链",
+            provider = "WineHQ",
+            url = "https://dl.winehq.org/wine/wine-mono/11.3.0/wine-mono-11.3.0-x86.msi",
             category = RuntimeCategory.DOTNET
         ),
         OfficialEntry(
@@ -114,7 +130,7 @@ object RuntimeLibraryRepository {
                 dependencies = emptyList(),
                 steps = listOf(
                     RuntimeStep(
-                        action = "install_exe",
+                        action = if (entry.url.endsWith(".msi", true)) "install_msi" else "install_exe",
                         fileName = entry.url.substringAfterLast('/'),
                         url = entry.url,
                         arguments = "",

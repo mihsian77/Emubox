@@ -140,7 +140,7 @@ object RuntimeSource {
 /** 运行库分类 */
 enum class RuntimeCategory(val labelRes: String, val order: Int) {
     VC_RUNTIME("VC++ 运行库", 0),
-    DOTNET(".NET 运行库", 1),
+    DOTNET(".NET / Mono", 1),
     CODEC("解码器 / 媒体", 2),
     GAME_DEPS("游戏依赖", 3),
     FONTS("字体 / CJK", 4),
@@ -153,7 +153,8 @@ enum class RuntimeCategory(val labelRes: String, val order: Int) {
             val d = description.lowercase()
             return when {
                 n.contains("vcredist") || n.contains("vcrun") || d.contains("visual c++") -> VC_RUNTIME
-                n.contains("dotnet") || d.contains(".net framework") || d.contains(".net core") -> DOTNET
+                n.contains("dotnet") || d.contains(".net framework") || d.contains(".net core") ||
+                    n.contains("mono") || n.contains("gecko") -> DOTNET
                 n.contains("lavfilter") || n.contains("k-lite") || n.contains("klite") ||
                     n.contains("codec") || n.contains("mediafoundation") || n.contains("wmdecoder") ||
                     d.contains("decoder") || d.contains("codec pack") -> CODEC
