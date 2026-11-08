@@ -38,3 +38,25 @@ jobs:
       - uses: actions/checkout@v4
       - name: 校验模拟器 registry（来源/dead/下载直链）
         run: python3 scripts/validate-emulators.py
+
+  schema-check:
+    name: 字段命名与类型
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # 历史上字段名分裂成两套（logo_url/logoUrl、downloads/downloads_latest），
+      # App 只能靠 ifBlank 兜底。这个 job 保证不再长出新方言。
+      - name: 校验注册表 schema
+        run: python3 scripts/validate-schema.py
+
+  index-check:
+    name: 索引与详情是否最新
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 重新生成索引，检查是否与 registry 同步
+        run: |
+          python3 scripts/build_index.py
+          git diff --exit-code emulator-index.json emulator-details-*.json \
+            app/src/main/assets/emulator-offline.json \
+            || (echo "::error::registry 改了但索引没重新生成，本地跑 python3 scripts/build_index.py" && exit 1)

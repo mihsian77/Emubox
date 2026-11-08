@@ -65,7 +65,7 @@ def days_since(s):
 # ── 1. 家族聚合 ──────────────────────────────────────────────────────
 def dl_of(e):
     """统一下载量取值：优先累计，回退最新版求和（后者是下限）。"""
-    return e.get("downloads") or e.get("downloads_latest") or 0
+    return e.get("downloads_total") or e.get("downloads_latest") or 0
 
 
 def build_families(emus):
@@ -109,7 +109,7 @@ def build_families(emus):
             "rep_id": rep["id"],
             "rep_name": rep["name"],
             "repo_url": rep.get("repo_url"),
-            "logo": rep.get("logo_url") or rep.get("logoUrl"),
+            "logo_url": rep.get("logo_url") or "",
             "section": rep.get("section"),
             "platforms": rep.get("platforms") or [],
             "method": rep.get("method"),
@@ -122,7 +122,7 @@ def build_families(emus):
             "downloads_rep": dl_of(rep),
             # 口径：家族内只要有一条是「全部 release 累计」就算 lifetime；
             # 全是最新版求和时只是下限，展示要带 ≥
-            "downloads_basis": ("lifetime" if any(m.get("downloads") for m in members)
+            "downloads_basis": ("lifetime" if any(m.get("downloads_total") for m in members)
                                 else "latest-lower-bound" if sum(dl) else "none"),
             "stars_rep": rep.get("stars") or 0,
             "stars_max": max((m.get("stars") or 0) for m in members),
@@ -158,7 +158,7 @@ def write_snapshot(emus):
     day = now().strftime("%Y-%m-%d")
     path = os.path.join(HIST_DIR, f"{day}.json")
     snap = {
-        e["id"]: {"downloads": e.get("downloads") or 0, "stars": e.get("stars") or 0}
+        e["id"]: {"downloads": e.get("downloads_total") or 0, "stars": e.get("stars") or 0}
         for e in emus
     }
     with open(path, "w", encoding="utf-8") as f:

@@ -272,23 +272,24 @@ class MainActivity : ComponentActivity() {
                 var driverSourceStars by remember {
                     mutableStateOf<Map<String, Long>>(emptyMap())
                 }
+                val emulatorAppContext = LocalContext.current.applicationContext
                 var emulatorEntries by remember {
-                    mutableStateOf(EmulatorRegistryRepository.builtInRegistry())
+                    // 首帧先给 assets 里的离线索引（约 330KB，含 302 条卡片数据），
+                    // 远程索引回来后覆盖
+                    mutableStateOf(EmulatorRegistryRepository.builtInRegistry(emulatorAppContext))
                 }
                 var emulatorInsights by remember {
                     mutableStateOf(EmulatorInsights())
                 }
-                val emulatorAppContext = LocalContext.current.applicationContext
-
                 val activeCount by remember { derivedStateOf { DownloadsManager.activeDownloads.size } }
 
                 // 模拟器清单远程刷新：官方 registry（版本/APK）+ 社区排行（下载量/日志），
                 // 磁盘缓存优先（秒开），后台刷新有更新才覆盖；失败保留缓存/内置
-                LaunchedEffect(Unit) {
-                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry(emulatorAppContext)
-                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking(emulatorAppContext)
-                    emulatorInsights = EmulatorInsightsRepository.fetchRemoteInsights()
-                    // 合并：registry 数据优先（官方 APK 直链），ranking 补充下载量/日志
+                // 合并：registry 数据优先（官方 APK 直链），ranking 补充下载量/日志
+                fun mergeEmulators(
+                    registry: List<EmulatorEntry>,
+                    ranking: List<EmulatorEntry>
+                ): List<EmulatorEntry> {
                     val merged = registry.map { base ->
                         val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
                         if (r != null) {
@@ -305,11 +306,25 @@ class MainActivity : ComponentActivity() {
                         registry.none { it.id == r.id || it.repo == r.repo }
                     }
                     // 内置保底：远程 registry 覆盖面小于内置时，内置独有条目不被丢弃
-                    // （此前远程 registry 仅 13 条，内置 Lemon/Eden 等独有条目会被覆盖丢失）
-                    val mergedWithBuiltin = merged + emulatorEntries.filter { base ->
+                    val current = emulatorEntries
+                    return merged + current.filter { base ->
                         merged.none { it.id == base.id || it.repo == base.repo }
                     }
-                    emulatorEntries = mergedWithBuiltin
+                }
+
+                LaunchedEffect(Unit) {
+                    // 先用磁盘缓存把界面填满，过期也照用；后台刷新到新数据再覆盖。
+                    var rankingCache: List<EmulatorEntry> = emptyList()
+                    val registry = EmulatorRegistryRepository.fetchRemoteRegistry(emulatorAppContext) { fresh ->
+                        emulatorEntries = mergeEmulators(fresh, rankingCache)
+                    }
+                    val ranking = EmulatorRegistryRepository.fetchRemoteRanking(emulatorAppContext) { fresh ->
+                        rankingCache = fresh
+                        emulatorEntries = mergeEmulators(registry, fresh)
+                    }
+                    rankingCache = ranking
+                    emulatorInsights = EmulatorInsightsRepository.fetchRemoteInsights()
+                    emulatorEntries = mergeEmulators(registry, ranking)
                 }
 
                 // 慢下载推荐弹窗

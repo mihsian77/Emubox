@@ -5,13 +5,12 @@
 主源 the412banner/emulator-ranking（字段最全：logo/homepage/stars/description/pushedAt），
 t3st31/Ranking-Emulators-Download 补其独有条目。两个站均为静态 GitHub Pages JSON，每日自动更新。
 排除 Drivers 分类（驱动走驱动专区，不混入模拟器）。
-输出：仓库根目录 emulator-ranking.json（全量 releases/assets）+ scripts/emu_builtin_block.txt（内置块）。
+输出：仓库根目录 emulator-ranking.json（全量 releases/assets）。
 """
 import json, os, sys, time, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "emulator-ranking.json")
-BUILTIN = os.path.join(ROOT, "scripts", "emu_builtin_block.txt")
 
 T412 = "https://the412banner.github.io/emulator-ranking/data/rankings.json"
 T412_CACHE = "/tmp/t412_rankings.json"  # 本地缓存（4.7MB 大文件，云 IP 直连易中断；存在且合法时优先）
@@ -201,7 +200,7 @@ def main():
         if key in by_repo:
             return
         cat, off = OFFICIAL.get(repo, (e.get("category", ""), False))
-        logo = e.get("logo") or e.get("logoUrl") or ""
+        logo = e.get("logo") or e.get("logoUrl") or e.get("logo_url") or ""
         rels = norm_releases(e.get("releases"))
         if not rels:
             rels = gh_releases(repo)
@@ -213,12 +212,12 @@ def main():
             "category": cat,
             "official": off,
             "channel": e.get("channel", "stable"),
-            "downloads": int(e.get("downloads") or 0),
+            "downloads_total": int(e.get("downloads") or 0),
             "stars": 0,
             "description": "",
             "pushed_at": "",
             "homepage": "",
-            "logoUrl": (logo_base + logo) if logo else "",
+            "logo_url": (logo_base + logo) if logo else "",
             "releases": rels,
         }
         order.append(key)
@@ -288,16 +287,16 @@ def main():
     # 补充最新版本信息：latestTag/latestDate 从最新 release 取（releases 已按时间倒序）
     for e in emus:
         rel0 = (e.get("releases") or [{}])[0]
-        e["latestTag"] = rel0.get("tag", "")
-        e["latestDate"] = rel0.get("date", "")
-    emus.sort(key=lambda e: (-(1 if e["official"] else 0), -(e.get("downloads") or 0)))
+        e["latest_tag"] = rel0.get("tag", "")
+        e["latest_date"] = rel0.get("date", "")
+    emus.sort(key=lambda e: (-(1 if e["official"] else 0), -(e.get("downloads_total") or 0)))
     cats = {}
     cat_dl = {}
     for e in emus:
         cats[e["category"]] = cats.get(e["category"], 0) + 1
-        cat_dl[e["category"]] = cat_dl.get(e["category"], 0) + (e.get("downloads") or 0)
+        cat_dl[e["category"]] = cat_dl.get(e["category"], 0) + (e.get("downloads_total") or 0)
 
-    total_dl = sum(e.get("downloads") or 0 for e in emus)
+    total_dl = sum(e.get("downloads_total") or 0 for e in emus)
     total_stars = sum(e.get("stars") or 0 for e in emus)
 
     # 食谱（t3st31 recipes，葡萄牙语 → 中文翻译）
@@ -413,32 +412,9 @@ def main():
     print(f"已更新：{len(emus)} 条 / {len(cats)} 分类 / {total_rel} releases / {total_as} 资产 / {os.path.getsize(OUT)/1024/1024:.2f} MB")
     print("分类:", cats)
 
-    # 内置块（离线兜底：元数据+最新版本+最新文件；全量 releases 走远程拉取）
-    def ks(v: str) -> str:
-        """Kotlin 字符串字面量转义（换行/引号/反斜杠）"""
-        return (v or "").replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\r", "")
-
-    block_lines = []
-    for e in emus:
-        rel0 = (e["releases"] or [{}])[0]
-        asset0 = (rel0.get("assets") or [{}])[0]
-        block_lines.append(
-            "EmulatorEntry("
-            f"id = \"{e['id']}\", name = \"{ks(e['name'])}\", category = \"{ks(e['category'])}\", "
-            f"description = \"{ks(e['description'][:160])}\", owner = \"{ks((e['repo'].split('/') + [''])[0])}\", "
-            f"repo = \"{ks(e['repo'].split('/')[-1] if '/' in e['repo'] else e['repo'])}\", "
-            f"homepage = \"{ks(e['homepage'])}\", repoUrl = \"{ks(e['repo_url'])}\", official = {str(e['official']).lower()}, "
-            f"channel = \"{ks(e['channel'])}\", downloads = {e['downloads']}, stars = {e['stars']}, "
-            f"pushedAt = \"{ks(e['pushed_at'])}\", latestTag = \"{ks(rel0.get('tag', ''))}\", "
-            f"latestDate = \"{ks(rel0.get('date', ''))}\", latestBody = \"{ks(rel0.get('body', '')[:200])}\", "
-            f"logoUrl = \"{ks(e['logoUrl'])}\", "
-            f"latestApkName = \"{ks(asset0.get('name', ''))}\", latestApkUrl = \"{ks(asset0.get('url', ''))}\", "
-            f"latestApkSize = {asset0.get('size', 0)}"
-            "),"
-        )
-    with open(BUILTIN, "w", encoding="utf-8") as f:
-        f.write("\n".join(block_lines))
-    print(f"内置块：{len(block_lines)} 条 -> {BUILTIN}")
+    # 内置块（scripts/emu_builtin_block.txt）已废弃：
+    # App 的离线兜底改成读 assets/emulator-offline.json（由 build_index.py 生成），
+    # 不再需要人来把这段文本粘进 Kotlin。
 
 
 if __name__ == "__main__":

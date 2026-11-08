@@ -25,6 +25,14 @@ object DiskRegistryCache {
         }
     }
 
+    /** 缓存文件距今多少天；不存在返回 Int.MAX_VALUE */
+    fun ageDays(context: Context, key: String): Int {
+        val f = file(context, key)
+        if (!f.exists()) return Int.MAX_VALUE
+        val ms = System.currentTimeMillis() - f.lastModified()
+        return (ms / (24L * 3600_000L)).toInt()
+    }
+
     /** 写缓存；失败静默（不影响主流程） */
     fun write(context: Context, key: String, body: String) {
         try {
