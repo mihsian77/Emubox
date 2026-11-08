@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | `emulator-index.json` | App `EmulatorRegistry` | **首屏索引**，374KB，302 条的卡片字段 + `detail_shard` |
 | `emulator-details-0..7.json` | App `EmulatorRegistry` | 详情分片，每片 230~390KB，进详情页只拉一片 |
-| `emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（2MB） |
+| `emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（57KB；releases 已剥离，只剩列表字段） |
 | `news-data.json` | App `NewsRepository` | 新闻，CI 每日两次刷新 |
 | `driver-registry.json` | App `DriverRegistryRepository` | 驱动源注册表 |
 | `app/src/main/assets/source-profiles.json` | App `SourceProfiles` | 驱动/组件源的「给谁用 · 怎么装 · 注意」文案 |
