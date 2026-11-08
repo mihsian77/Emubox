@@ -72,8 +72,8 @@
 - 样本：100 条 / 12 天，日均 **8.3 条**，峰值 **17 条**（11-08 当日，未满一天）。
 - 可用率：**69/100**（A 级 60、B 级 9）。剩下 31 条是成品包（mediafire / modsfire / gofile /
   apkvision / romsfun）或纯图片，一律丢弃，不转载、不入库。
-- 库外比对：45 个去重仓库里 **25 个不在主库**（GTA V 移植、WWE 2K14 重编译、Eglantine、
-  BananaNative、Lichii、Xenra、Vita3K+、MaliBridge 等）。
+- 库外比对：45 个去重仓库里 **29 个不在主库**（GTA V 移植、WWE 2K14 重编译、Eglantine、
+  Lichii、Vita3K+、MaliBridge、SkyNetEmu 等）。
 
 ## 四、按国内 / 国外清点
 
