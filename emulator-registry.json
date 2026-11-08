@@ -323,7 +323,7 @@
       ],
       "stars": 64262,
       "downloads_latest": 1965538,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/termux/termux-app/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -340,7 +340,9 @@
       ],
       "pushed_at": "2026-11-05T09:38:22Z",
       "summary": "Termux is an Android terminal application and Linux environment.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 11151114,
+      "downloads_lifetime": 11151114
     },
     {
       "id": "anyps5-porting-tool",
@@ -703,7 +705,7 @@
       "watchers": 419,
       "downloads_total": 0,
       "downloads_latest": 1563,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -726,7 +728,9 @@
       ],
       "note": "PS5 移植工具（Linux），release 无安卓 APK",
       "pushed_at": "2026-11-06T23:28:40Z",
-      "summary": "Tool for automatic executables porting to Linux and Windows."
+      "summary": "Tool for automatic executables porting to Linux and Windows.",
+      "downloads": 204823,
+      "downloads_lifetime": 204823
     },
     {
       "id": "shadps4-emu-shadps4",
@@ -895,7 +899,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 333,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -927,7 +931,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T22:38:23Z",
-      "summary": "shadPS4 is an early PlayStation 4 emulator for Windows, Linux and macOS written in C++."
+      "summary": "shadPS4 is an early PlayStation 4 emulator for Windows, Linux and macOS written in C++.",
+      "downloads": 4742888,
+      "downloads_lifetime": 4742888
     },
     {
       "id": "rpcs3",
@@ -1010,7 +1016,7 @@
       "forks": 2572,
       "watchers": 20328,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://rpcs3.net/download",
       "download_kind": "official-site",
       "builds": [],
@@ -1029,7 +1035,9 @@
         "vulkan"
       ],
       "pushed_at": "2026-11-06T21:28:56Z",
-      "summary": "The world's first free and open-source PlayStation 3 emulator/debugger, written in C++ for Windows, Linux, macOS and FreeBSD."
+      "summary": "The world's first free and open-source PlayStation 3 emulator/debugger, written in C++ for Windows, Linux, macOS and FreeBSD.",
+      "downloads": 55721,
+      "downloads_lifetime": 55721
     },
     {
       "id": "brunodev85-winlator",
@@ -1156,7 +1164,9 @@
       ],
       "pushed_at": "2026-11-02T17:21:07Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 16766692,
+      "downloads_lifetime": 16766692
     },
     {
       "id": "droid-deck-droiddeck",
@@ -1369,7 +1379,9 @@
       "downloads_total": 316398,
       "downloads_basis": "lifetime",
       "pushed_at": "2026-11-06T23:18:37Z",
-      "summary": "DroidDeck brings the SteamOS experience to Android: Steam Gaming Mode, full Linux desktop, integration with GOG, Epic Games, Xbox, and other storefronts, Steam VR, and more!"
+      "summary": "DroidDeck brings the SteamOS experience to Android: Steam Gaming Mode, full Linux desktop, integration with GOG, Epic Games, Xbox, and other storefronts, Steam VR, and more!",
+      "downloads": 1427718,
+      "downloads_lifetime": 1427718
     },
     {
       "id": "pcsx2",
@@ -1623,7 +1635,9 @@
         "ps2"
       ],
       "pushed_at": "2026-11-06T20:20:50Z",
-      "summary": "PCSX2 is a free and open-source PlayStation 2 (PS2) emulator. Its purpose is to emulate the PS2's hardware, using a combination of MIPS CPU Interpreters>), Recompilers and a Virtua…"
+      "summary": "PCSX2 is a free and open-source PlayStation 2 (PS2) emulator. Its purpose is to emulate the PS2's hardware, using a combination of MIPS CPU Interpreters>), Recompilers and a Virtua…",
+      "downloads": 5241012,
+      "downloads_lifetime": 5241012
     },
     {
       "id": "dolphin",
@@ -1999,7 +2013,7 @@
       ],
       "stars": 14844,
       "downloads_latest": 64568,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://www.ppsspp.org/files/1_20_4/ppsspp.apk",
       "download_kind": "official-site",
       "distribution": "official-site",
@@ -2043,7 +2057,9 @@
       ],
       "note": "GitHub release 无安卓 APK 资产 安卓版经 Google Play 与官网 APK 分发，GitHub release 仅含桌面端。",
       "pushed_at": "2026-11-06T23:26:03Z",
-      "summary": "PPSSPP - a fast and portable PSP emulator"
+      "summary": "PPSSPP - a fast and portable PSP emulator",
+      "downloads": 622209,
+      "downloads_lifetime": 622209
     },
     {
       "id": "retroarch",
@@ -2153,12 +2169,14 @@
         }
       ],
       "stars": 14547,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://www.retroarch.com/",
       "download_kind": "official-site",
       "note": "安卓版走官网与 Play，GitHub release 仅源码包",
       "pushed_at": "2026-11-06T23:10:35Z",
-      "summary": "RetroArch is the reference frontend for the libretro API. Popular examples of implementations for this API includes video game system emulators and game engines as well as more gen…"
+      "summary": "RetroArch is the reference frontend for the libretro API. Popular examples of implementations for this API includes video game system emulators and game engines as well as more gen…",
+      "downloads": 47328,
+      "downloads_lifetime": 47328
     },
     {
       "id": "utkarshdalal-gamenative",
@@ -2312,7 +2330,9 @@
       ],
       "pushed_at": "2026-11-06T17:50:46Z",
       "summary": "Play the PC games you already own — from Steam, Epic and GOG — on your Android device, with cloud saves.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1437210,
+      "downloads_lifetime": 1437210
     },
     {
       "id": "duckstation",
@@ -2750,7 +2770,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 59,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://play.google.com/store/apps/details?id=com.github.stenzek.duckstation",
       "download_kind": "play",
       "distribution": "play",
@@ -2776,7 +2796,9 @@
       ],
       "note": "官方 Play 版；GitHub release 仅桌面构建",
       "pushed_at": "2026-11-06T15:29:37Z",
-      "summary": "DuckStation is an simulator/emulator of the Sony PlayStation(TM) console, focusing on playability, speed, and long-term maintainability."
+      "summary": "DuckStation is an simulator/emulator of the Sony PlayStation(TM) console, focusing on playability, speed, and long-term maintainability.",
+      "downloads": 3774322,
+      "downloads_lifetime": 3774322
     },
     {
       "id": "kytyps5-kytyps5",
@@ -2938,7 +2960,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 68,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "linux",
@@ -2952,7 +2974,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T10:42:57Z",
-      "summary": "PlayStation 5 translation layer for Windows, Linux and macOS"
+      "summary": "PlayStation 5 translation layer for Windows, Linux and macOS",
+      "downloads": 371114,
+      "downloads_lifetime": 371114
     },
     {
       "id": "cemu",
@@ -3185,7 +3209,9 @@
         "wiiu"
       ],
       "pushed_at": "2026-11-04T21:47:03Z",
-      "summary": "This is the code repository of Cemu, a Wii U emulator that is able to run most Wii U games and homebrew in a playable state."
+      "summary": "This is the code repository of Cemu, a Wii U emulator that is able to run most Wii U games and homebrew in a playable state.",
+      "downloads": 11680811,
+      "downloads_lifetime": 11680811
     },
     {
       "id": "azahar-emu-azahar",
@@ -3903,7 +3929,9 @@
         }
       ],
       "pushed_at": "2026-11-06T18:33:51Z",
-      "summary": "Azahar is a free and open-source high level Nintendo 3DS emulator for PC and mobile devices."
+      "summary": "Azahar is a free and open-source high level Nintendo 3DS emulator for PC and mobile devices.",
+      "downloads": 9107114,
+      "downloads_lifetime": 9107114
     },
     {
       "id": "zelda64recomp-zelda64recomp",
@@ -4107,7 +4135,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 99604,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -4139,7 +4167,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-09-25T18:57:57Z",
-      "summary": "Zelda 64: Recompiled is a project that uses N64: Recompiled to statically recompile Majora's Mask (and soon Ocarina of Time) into a native port with many new features, enhancements…"
+      "summary": "Zelda 64: Recompiled is a project that uses N64: Recompiled to statically recompile Majora's Mask (and soon Ocarina of Time) into a native port with many new features, enhancements…",
+      "downloads": 388847,
+      "downloads_lifetime": 388847
     },
     {
       "id": "mgba",
@@ -4640,7 +4670,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 2569533,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://mgba.io/",
       "download_kind": "official-site",
       "builds": [
@@ -4674,7 +4704,9 @@
       ],
       "note": "官网发布 Android 版，GitHub release 仅桌面包",
       "pushed_at": "2026-11-06T03:17:44Z",
-      "summary": "mGBA is an emulator for running Game Boy Advance games. It aims to be faster and more accurate than many existing Game Boy Advance emulators, as well as adding features that other…"
+      "summary": "mGBA is an emulator for running Game Boy Advance games. It aims to be faster and more accurate than many existing Game Boy Advance emulators, as well as adding features that other…",
+      "downloads": 16333546,
+      "downloads_lifetime": 16333546
     },
     {
       "id": "twilitrealm-dusklight",
@@ -4965,7 +4997,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 177643,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -5015,7 +5047,9 @@
         }
       ],
       "pushed_at": "2026-10-26T04:50:53Z",
-      "summary": "Dusklight is a reverse-engineered reimplementation of Twilight Princess."
+      "summary": "Dusklight is a reverse-engineered reimplementation of Twilight Princess.",
+      "downloads": 1481657,
+      "downloads_lifetime": 1481657
     },
     {
       "id": "harbourmasters-shipwright",
@@ -5178,7 +5212,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 65072,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -5201,7 +5235,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-05T10:51:52Z",
-      "summary": "If you're having any trouble after reading through this `README`, feel free to ask for help in the Support text channels. Please keep in mind that we do not condone piracy."
+      "summary": "If you're having any trouble after reading through this `README`, feel free to ask for help in the Support text channels. Please keep in mind that we do not condone piracy.",
+      "downloads": 2457891,
+      "downloads_lifetime": 2457891
     },
     {
       "id": "melonds",
@@ -5445,7 +5481,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 237178,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://melonds.kuribo64.net/",
       "download_kind": "official-site",
       "builds": [
@@ -5479,7 +5515,9 @@
       ],
       "note": "官网发布 Android 版，GitHub release 仅桌面 AppImage",
       "pushed_at": "2026-11-04T22:54:03Z",
-      "summary": "The goal is to do things right and fast, akin to blargSNES (but hopefully better). But also to, you know, have a fun challenge :)"
+      "summary": "The goal is to do things right and fast, akin to blargSNES (but hopefully better). But also to, you know, have a fun challenge :)",
+      "downloads": 1038746,
+      "downloads_lifetime": 1038746
     },
     {
       "id": "supermedo-bloodborne-pc",
@@ -5611,7 +5649,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 64029,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -5625,7 +5663,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T23:03:25Z",
-      "summary": "THIS PROJECT IS NOT RELATED TO SHADPS4. ALL QUESTIONS RELATED TO THIS PROJECT SHOULD BE SENT TO THE DISCORD SERVER https://discord.gg/KYZRKk9CB, NOT TO THE SHADPS4 SERVER."
+      "summary": "THIS PROJECT IS NOT RELATED TO SHADPS4. ALL QUESTIONS RELATED TO THIS PROJECT SHOULD BE SENT TO THE DISCORD SERVER https://discord.gg/KYZRKk9CB, NOT TO THE SHADPS4 SERVER.",
+      "downloads": 766294,
+      "downloads_lifetime": 766294
     },
     {
       "id": "felipeprado0-spartanport",
@@ -5817,7 +5857,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 236,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -5831,7 +5871,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-05T20:57:42Z",
-      "summary": "SpartanPort is an unofficial PC port of God of War III Remastered (PlayStation 4) for Windows 10/11 and Linux (experimental AppImage)."
+      "summary": "SpartanPort is an unofficial PC port of God of War III Remastered (PlayStation 4) for Windows 10/11 and Linux (experimental AppImage).",
+      "downloads": 702175,
+      "downloads_lifetime": 702175
     },
     {
       "id": "swordfish90-lemuroid",
@@ -5957,7 +5999,9 @@
         }
       ],
       "pushed_at": "2026-10-16T09:07:56Z",
-      "summary": "alt=\"Get it on F-Droid\" alt=\"Get it on Google Play\""
+      "summary": "alt=\"Get it on F-Droid\" alt=\"Get it on Google Play\"",
+      "downloads": 105677,
+      "downloads_lifetime": 105677
     },
     {
       "id": "xemu",
@@ -6523,7 +6567,9 @@
         "xbox"
       ],
       "pushed_at": "2026-11-02T20:08:36Z",
-      "summary": "QEMU is a generic and open source machine & userspace emulator and virtualizer."
+      "summary": "QEMU is a generic and open source machine & userspace emulator and virtualizer.",
+      "downloads": 4631098,
+      "downloads_lifetime": 4631098
     },
     {
       "id": "touchhle",
@@ -6687,7 +6733,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 12600,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/touchHLE/touchHLE/releases/download/v0.3.0/touchHLE_v0.3.0_Android_AArch64.zip",
       "download_kind": "zip",
       "distribution": "release-zip",
@@ -6722,7 +6768,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-10-21T12:18:04Z",
-      "summary": "touchHLE is a high-level emulator for early iOS apps. It runs on modern desktop operating systems and Android, and is written in Rust."
+      "summary": "touchHLE is a high-level emulator for early iOS apps. It runs on modern desktop operating systems and Android, and is written in Rust.",
+      "downloads": 238535,
+      "downloads_lifetime": 238535
     },
     {
       "id": "dosbox-x",
@@ -7156,7 +7204,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 672,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/joncampbell123/dosbox-x/releases",
       "download_kind": "github-releases",
       "distribution": "release-zip",
@@ -7182,7 +7230,9 @@
       ],
       "note": "★3804，2026-10-29 仍提交。release 附 Windows/macOS/Linux 可移植包",
       "pushed_at": "2026-10-29T14:07:30Z",
-      "summary": "Welcome to the DOSBox-X project homepage located on GitHub."
+      "summary": "Welcome to the DOSBox-X project homepage located on GitHub.",
+      "downloads": 1518108,
+      "downloads_lifetime": 1518108
     },
     {
       "id": "termux-zero",
@@ -7315,7 +7365,7 @@
       ],
       "stars": 3107,
       "downloads_latest": 4795,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/hanxinhao000/ZeroTermux/releases/download/ZeroTermux-0.118.3.64/termux-app_apt-android-7-release_arm64-v8a.apk",
       "download_kind": "github-release",
       "distribution": "release-apk",
@@ -7333,7 +7383,9 @@
       "note": "溯源结论：原记录 source 标 official-web 且错指 F-Droid。实际自有仓库 hanxinhao000/ZeroTermux（★3099），release ZeroTermux-0.118.3.64 附 4 个 APK；官方镜像 https://od.ixcmstudio.cn/repository/main/ZeroTermux/",
       "pushed_at": "2026-08-10T15:45:31Z",
       "summary": "Diving Group 248022558 (recommended to join first) Group ① 1062337587 Group ② 885832352",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 80761,
+      "downloads_lifetime": 80761
     },
     {
       "id": "scummvm",
@@ -7635,7 +7687,9 @@
       ],
       "pushed_at": "2025-11-14T11:04:59Z",
       "summary": "BEFORE FILING AN ISSUE, READ THE RELEVANT SECTION IN THE CONTRIBUTING FILE!!!",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 9905083,
+      "downloads_lifetime": 9905083
     },
     {
       "id": "trixarian-nethersx2-patch",
@@ -7762,7 +7816,9 @@
       ],
       "pushed_at": "2026-09-22T04:21:34Z",
       "summary": "This is a continuation of NetherSX2 to build on the amazing work already done by Anon and EZOnTheEyes",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 3639424,
+      "downloads_lifetime": 3639424
     },
     {
       "id": "j2meloader",
@@ -7874,7 +7930,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 40,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -7889,7 +7945,9 @@
       ],
       "pushed_at": "2026-11-06T21:08:29Z",
       "summary": "J2ME-Loader is a J2ME emulator for Android. It supports most 2D and 3D games (including Mascot Capsule 3D ones).",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 226232,
+      "downloads_lifetime": 226232
     },
     {
       "id": "flyinghead-flycast",
@@ -8140,7 +8198,9 @@
       ],
       "pushed_at": "2026-11-04T17:34:35Z",
       "summary": "Join us on our Discord server for a chat.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 924775,
+      "downloads_lifetime": 924775
     },
     {
       "id": "harbourmasters-spaghettikart",
@@ -8255,7 +8315,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 84463,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/HarbourMasters/SpaghettiKart/releases",
       "download_kind": "github-releases",
       "builds": [
@@ -8280,7 +8340,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-10-22T15:55:20Z",
-      "summary": "If you're having any trouble after reading through this `README`, feel free ask for help in the SpaghettiKart Support text channels."
+      "summary": "If you're having any trouble after reading through this `README`, feel free ask for help in the SpaghettiKart Support text channels.",
+      "downloads": 248644,
+      "downloads_lifetime": 248644
     },
     {
       "id": "2ship2harkinian-2ship2harkinian",
@@ -8443,7 +8505,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 62217,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -8466,7 +8528,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-03T00:30:25Z",
-      "summary": "This is a WIP decompilation of *The Legend of Zelda: Majora's Mask*. The purpose of the project is to recreate a source code base for the game from scratch, using information found…"
+      "summary": "This is a WIP decompilation of *The Legend of Zelda: Majora's Mask*. The purpose of the project is to recreate a source code base for the game from scratch, using information found…",
+      "downloads": 735039,
+      "downloads_lifetime": 735039
     },
     {
       "id": "mesen2",
@@ -8626,7 +8690,9 @@
         "wonderswan"
       ],
       "pushed_at": "2026-06-04T09:31:24Z",
-      "summary": "This repository is an archive of Mesen as it was around version 2.1.1 in mid-2025."
+      "summary": "This repository is an archive of Mesen as it was around version 2.1.1 in mid-2025.",
+      "downloads": 514457,
+      "downloads_lifetime": 514457
     },
     {
       "id": "armsx2-armsx2",
@@ -8943,7 +9009,9 @@
       ],
       "pushed_at": "2026-11-06T18:20:02Z",
       "summary": "ARMSX2 is a free and open-source PlayStation 2 (PS2) emulator based on PCSX2.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1296977,
+      "downloads_lifetime": 1296977
     },
     {
       "id": "strato-emulator",
@@ -9129,7 +9197,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 25546,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -9161,7 +9229,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-09-25T18:57:08Z",
-      "summary": "Banjo: Recompiled is a project that uses N64: Recompiled to statically recompile Banjo-Kazooie into a native port with many new features, enhancements, and extensive mod support."
+      "summary": "Banjo: Recompiled is a project that uses N64: Recompiled to statically recompile Banjo-Kazooie into a native port with many new features, enhancements, and extensive mod support.",
+      "downloads": 154492,
+      "downloads_lifetime": 154492
     },
     {
       "id": "producdevity-gamehub-lite",
@@ -9368,7 +9438,9 @@
       ],
       "pushed_at": "2026-07-03T18:28:52Z",
       "summary": "GameHub Lite is a community-maintained modified version of GameHub for education purposes.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1607634,
+      "downloads_lifetime": 1607634
     },
     {
       "id": "eka2l1",
@@ -9501,7 +9573,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 133,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -9552,7 +9624,9 @@
       ],
       "pushed_at": "2026-11-06T15:30:15Z",
       "summary": "Symbian OS/N-Gage emulator, written in C++ 17.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 12279,
+      "downloads_lifetime": 12279
     },
     {
       "id": "ares",
@@ -9856,7 +9930,9 @@
         "near"
       ],
       "pushed_at": "2026-11-06T21:37:38Z",
-      "summary": "ares is a multi-system emulator that began development on October 14th, 2004. It is a descendant of higan and bsnes, and focuses on accuracy and preservation."
+      "summary": "ares is a multi-system emulator that began development on October 14th, 2004. It is a descendant of higan and bsnes, and focuses on accuracy and preservation.",
+      "downloads": 536639,
+      "downloads_lifetime": 536639
     },
     {
       "id": "dosbox-staging",
@@ -10046,7 +10122,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 51,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-zip",
       "builds": [
         {
@@ -10081,7 +10157,9 @@
       "pushed_at": "2026-11-03T12:43:34Z",
       "download_url": "https://github.com/dosbox-staging/dosbox-staging/releases/download/v0.83.0/dosbox-staging-windows-x64-v0.83.0-setup.exe",
       "download_kind": "desktop-build",
-      "summary": "DOSBox Staging is a modern continuation of DOSBox with advanced features and current development practices."
+      "summary": "DOSBox Staging is a modern continuation of DOSBox with advanced features and current development practices.",
+      "downloads": 294479,
+      "downloads_lifetime": 294479
     },
     {
       "id": "mchughalex-skate3recomp",
@@ -10245,7 +10323,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 112654,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -10277,7 +10355,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-07-24T21:18:52Z",
-      "summary": "An unofficial native recompilation of the Xbox 360 version of Skate 3, supporting Windows, Linux, and macOS."
+      "summary": "An unofficial native recompilation of the Xbox 360 version of Skate 3, supporting Windows, Linux, and macOS.",
+      "downloads": 146337,
+      "downloads_lifetime": 146337
     },
     {
       "id": "melonds-android",
@@ -10389,7 +10469,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 43044,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -10405,7 +10485,9 @@
       "note": "★1735，GPL-3.0，非 fork。README 自述「Android port of melonDS」，官方 melonDS 下载页只列桌面 1.1、未链接本项目，故标为第三方移植。2.0.1（2026-05-06）附 app-gitHub-prod-release.apk（21,061,910 B），另有 Google Play 版 me.magnum.melonds",
       "pushed_at": "2026-11-05T00:41:20Z",
       "summary": "Android port of melonDS, a DS and DSi emulator.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 980089,
+      "downloads_lifetime": 980089
     },
     {
       "id": "oxters168-pluvia",
@@ -10532,7 +10614,9 @@
       ],
       "pushed_at": "2026-02-23T19:23:53Z",
       "summary": "Development of Pluvia has been at a standstill. And with people still joining communities outside of the github repo (Discord, Reddit, etc) with questions or issues going unanswere…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 100366,
+      "downloads_lifetime": 100366
     },
     {
       "id": "vita3k-vita3k-android",
@@ -10658,7 +10742,9 @@
         }
       ],
       "pushed_at": "2025-02-22T16:30:58Z",
-      "summary": "Vita3K is an experimental PlayStation Vita emulator for Windows, Linux, macOS and Android."
+      "summary": "Vita3K is an experimental PlayStation Vita emulator for Windows, Linux, macOS and Android.",
+      "downloads": 4343044,
+      "downloads_lifetime": 4343044
     },
     {
       "id": "fceux",
@@ -10872,7 +10958,9 @@
       "license": "GPL-2.0",
       "topics": [],
       "pushed_at": "2026-11-02T02:48:28Z",
-      "summary": "An open source NES Emulator for Windows and Unix that features solid emulation accuracy and state of the art tools for power users. For some reason casual gamers use it too."
+      "summary": "An open source NES Emulator for Windows and Unix that features solid emulation accuracy and state of the art tools for power users. For some reason casual gamers use it too.",
+      "downloads": 425657,
+      "downloads_lifetime": 425657
     },
     {
       "id": "fbneo",
@@ -11022,7 +11110,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 10,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/finalburnneo/FBNeo/releases",
       "download_kind": "github-releases",
       "builds": [
@@ -11047,7 +11135,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T21:19:47Z",
-      "summary": "FBNeo, or FinalBurn Neo, is a multi-system arcade emulator designed for retro gaming enthusiasts."
+      "summary": "FBNeo, or FinalBurn Neo, is a multi-system arcade emulator designed for retro gaming enthusiasts.",
+      "downloads": 149640,
+      "downloads_lifetime": 149640
     },
     {
       "id": "panda3ds-3ds",
@@ -11262,7 +11352,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 14904,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/wheremyfoodat/Panda3DS/releases/download/v0.9/android-arm64.zip",
       "download_kind": "zip",
       "distribution": "release-zip",
@@ -11306,7 +11396,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-10-04T02:30:25Z",
-      "summary": "Panda3DS is an HLE, red-panda-themed Nintendo 3DS emulator written in C++ which started out as a fun project out of curiosity, but evolved into something that can sort of play game…"
+      "summary": "Panda3DS is an HLE, red-panda-themed Nintendo 3DS emulator written in C++ which started out as a fun project out of curiosity, but evolved into something that can sort of play game…",
+      "downloads": 41478,
+      "downloads_lifetime": 41478
     },
     {
       "id": "azaharplus-main",
@@ -11525,7 +11617,7 @@
       "watchers": 26,
       "downloads_total": 0,
       "downloads_latest": 24939,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -11558,7 +11650,9 @@
       ],
       "pushed_at": "2026-11-06T18:42:13Z",
       "summary": "Azahar is a free and open-source high level Nintendo 3DS emulator for PC and mobile devices.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 662345,
+      "downloads_lifetime": 662345
     },
     {
       "id": "skyemu",
@@ -11771,7 +11865,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 23104,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -11822,7 +11916,9 @@
       ],
       "pushed_at": "2026-10-24T14:51:40Z",
       "summary": "SkyEmu is a low level GameBoy, GameBoy Color, Game Boy Advance, and DS emulator.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 85875,
+      "downloads_lifetime": 85875
     },
     {
       "id": "stevenmxz-winlator-ludashi",
@@ -11999,7 +12095,9 @@
       ],
       "pushed_at": "2026-10-07T21:29:08Z",
       "summary": "Winlator is an Android application that lets you run Windows (x86\\_64) applications with Wine.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1681016,
+      "downloads_lifetime": 1681016
     },
     {
       "id": "snes9xexplus",
@@ -12129,12 +12227,14 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/Rakashazi/emu-ex-plus-alpha/releases/download/Pre-release/EX-Emulators.zip",
       "download_kind": "official-site",
       "note": "EX-Emulators.zip 95.8MB 含全套 APK（解压得 apk，非直链）",
       "pushed_at": "2026-04-13T11:23:14Z",
-      "summary": "The EX Emulator project is a series of emulators primarily targeting Android and Linux with a minimalist UI and a focus on low audio/video latency. They consist of 3 components:"
+      "summary": "The EX Emulator project is a series of emulators primarily targeting Android and Linux with a minimalist UI and a focus on low audio/video latency. They consist of 3 components:",
+      "downloads": 61403,
+      "downloads_lifetime": 61403
     },
     {
       "id": "ssimco-cemu",
@@ -12262,7 +12362,9 @@
         }
       ],
       "pushed_at": "2026-09-12T17:30:42Z",
-      "summary": "This is the code repository of Cemu, a Wii U emulator that is able to run most Wii U games and homebrew in a playable state."
+      "summary": "This is the code repository of Cemu, a Wii U emulator that is able to run most Wii U games and homebrew in a playable state.",
+      "downloads": 2929550,
+      "downloads_lifetime": 2929550
     },
     {
       "id": "trixarian-nethersx2-classic",
@@ -12389,7 +12491,9 @@
       ],
       "pushed_at": "2026-06-29T12:01:14Z",
       "summary": "This is a modified copy of AetherSX2 3668 with the NetherSX2 anti-tampering hack applied",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1570996,
+      "downloads_lifetime": 1570996
     },
     {
       "id": "dosbox-pure",
@@ -12638,13 +12742,15 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/schellingb/dosbox-pure/releases",
       "download_kind": "github-releases",
       "distribution": "release-zip",
       "note": "★1185，GPL-2.0。非 fork 而是重写，专为 RetroArch/libretro 后端设计。release 1.0-preview6 附 android arm32/arm64 核心包，可直接供安卓端 RetroArch 使用",
       "pushed_at": "2026-10-06T21:43:33Z",
-      "summary": "DOSBox Pure：专为 libretro/RetroArch 打造的重写版，含 Android arm64 核心包"
+      "summary": "DOSBox Pure：专为 libretro/RetroArch 打造的重写版，含 Android arm64 核心包",
+      "downloads": 53976,
+      "downloads_lifetime": 53976
     },
     {
       "id": "coffincolors-winlator",
@@ -12759,7 +12865,9 @@
       "note": "release 首资产为图片说明（PNG），真实 APK 位于同一 release 的 cmod_*.apk，需手动选取；无稳定直链",
       "pushed_at": "2025-12-09T22:36:49Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 861096,
+      "downloads_lifetime": 861096
     },
     {
       "id": "ilya114-box64droid",
@@ -12899,7 +13007,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 1285,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -12915,7 +13023,9 @@
       "note": "GitHub release 无安卓 APK 资产",
       "pushed_at": "2026-05-15T23:16:07Z",
       "summary": "Box64Droid is a first project (founded in May of 2023) with scripts that automate installing preconfigured rootfs with Box64, Box86, Wine, DXVK, D8VK on Android.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 271390,
+      "downloads_lifetime": 271390
     },
     {
       "id": "armsx2-armsx3",
@@ -13117,7 +13227,9 @@
       ],
       "pushed_at": "2026-11-06T16:28:00Z",
       "summary": "Uses the latest RPCS3 upstream code (the recent ARM64 improvements included).",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 693404,
+      "downloads_lifetime": 693404
     },
     {
       "id": "harbourmasters-ghostship",
@@ -13292,7 +13404,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 42938,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/HarbourMasters/Ghostship/releases/download/3.0.0/Nautilus-Alfa-Android.zip",
       "download_kind": "zip",
       "distribution": "release-zip",
@@ -13336,7 +13448,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-10-27T07:44:34Z",
-      "summary": "If you're having any trouble after reading through this `README`, feel free ask for help in the Ghostship Support text channels. Please keep in mind that we do not condone piracy."
+      "summary": "If you're having any trouble after reading through this `README`, feel free ask for help in the Ghostship Support text channels. Please keep in mind that we do not condone piracy.",
+      "downloads": 145591,
+      "downloads_lifetime": 145591
     },
     {
       "id": "weiss-ultimatesavior-tyranor-next",
@@ -13478,7 +13592,9 @@
       ],
       "pushed_at": "2026-11-06T04:48:35Z",
       "summary": "基于 Tyranor 模拟器逆向重写 的多引擎视觉小说（Galgame）模拟器，面向 Android 平台。具体功能与兼容边界见 SPEC.md。",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 21789,
+      "downloads_lifetime": 21789
     },
     {
       "id": "stella",
@@ -13794,7 +13910,9 @@
         "emulators"
       ],
       "pushed_at": "2026-11-06T20:04:31Z",
-      "summary": "Stella is a multi-platform Atari 2600 VCS emulator which allows you to play all of your favourite Atari 2600 games on your PC."
+      "summary": "Stella is a multi-platform Atari 2600 VCS emulator which allows you to play all of your favourite Atari 2600 games on your PC.",
+      "downloads": 621427,
+      "downloads_lifetime": 621427
     },
     {
       "id": "xodiosx-xodos",
@@ -13949,7 +14067,9 @@
       "note": "GitHub release 自动映射",
       "pushed_at": "2026-05-04T03:29:50Z",
       "summary": "XoDos rebirth is the second version of XoDos original but different app and features and has active development",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 772886,
+      "downloads_lifetime": 772886
     },
     {
       "id": "aenu1-aps3e",
@@ -14076,7 +14196,9 @@
       ],
       "pushed_at": "2026-10-05T09:08:05Z",
       "summary": "Compilation Steps (Windows using Android Studio):",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 775557,
+      "downloads_lifetime": 775557
     },
     {
       "id": "mandarineneo-3ds",
@@ -14321,7 +14443,7 @@
       "watchers": 32,
       "downloads_total": 0,
       "downloads_latest": 95925,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -14362,7 +14484,9 @@
         }
       ],
       "pushed_at": "2026-04-19T11:46:23Z",
-      "summary": "Azahar is an open-source 3DS emulator project based on Citra."
+      "summary": "Azahar is an open-source 3DS emulator project based on Citra.",
+      "downloads": 457414,
+      "downloads_lifetime": 457414
     },
     {
       "id": "winnative-emu-winnative",
@@ -14564,7 +14688,9 @@
       ],
       "pushed_at": "2026-11-02T13:31:16Z",
       "summary": "WinNative is an advanced, high-performance Windows (x86_64) emulation environment for Android, unifying the best of Winlator Bionic and Pluvia.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 177694,
+      "downloads_lifetime": 177694
     },
     {
       "id": "horizonemuteam-horizon-emu",
@@ -14648,7 +14774,9 @@
         }
       ],
       "pushed_at": "2025-02-28T07:48:56Z",
-      "summary": "Horizon Emu is an application for running Windows x86_64 applications on Android"
+      "summary": "Horizon Emu is an application for running Windows x86_64 applications on Android",
+      "downloads": 494030,
+      "downloads_lifetime": 494030
     },
     {
       "id": "rfandango-hakux",
@@ -14761,7 +14889,7 @@
       "watchers": 424,
       "downloads_total": 0,
       "downloads_latest": 20166,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -14775,7 +14903,9 @@
         }
       ],
       "note": "",
-      "pushed_at": "2026-10-31T21:17:51Z"
+      "pushed_at": "2026-10-31T21:17:51Z",
+      "downloads": 248168,
+      "downloads_lifetime": 248168
     },
     {
       "id": "afeimod-winlator-mod",
@@ -14938,7 +15068,9 @@
       "note": "GitHub release 自动映射",
       "pushed_at": "2026-04-19T02:53:06Z",
       "summary": "Winlator-Amod是一个 Winlaor的mod版。10.0以后用的是hostei的改版apk",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 829823,
+      "downloads_lifetime": 829823
     },
     {
       "id": "freej2me",
@@ -15147,7 +15279,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 282,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -15179,7 +15311,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T19:55:18Z",
-      "summary": "Supermodel emulates Sega's Model 3 arcade platform, allowing you to relive state-of-the-art 3D arcade gaming as it existed from 1996 through 1999."
+      "summary": "Supermodel emulates Sega's Model 3 arcade platform, allowing you to relive state-of-the-art 3D arcade gaming as it existed from 1996 through 1999.",
+      "downloads": 78366,
+      "downloads_lifetime": 78366
     },
     {
       "id": "waterdish-shipwright-android",
@@ -15291,7 +15425,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 138518,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -15307,7 +15441,9 @@
       "note": "社区移植；2025-07 后停更，版本落后上游约一年，可用但非最新",
       "pushed_at": "2025-07-11T06:03:00Z",
       "community_port": true,
-      "summary": "Supported (probably): Android 7.0+ (OpenGL ES 3.0+ required)"
+      "summary": "Supported (probably): Android 7.0+ (OpenGL ES 3.0+ required)",
+      "downloads": 241555,
+      "downloads_lifetime": 241555
     },
     {
       "id": "khmelonmix",
@@ -15586,7 +15722,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 17090,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -15618,7 +15754,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-10-16T03:27:37Z",
-      "summary": "This project aims to turn the KH DS games into playable PC games with a single screen and controls suited for a regular controller."
+      "summary": "This project aims to turn the KH DS games into playable PC games with a single screen and controls suited for a regular controller.",
+      "downloads": 110954,
+      "downloads_lifetime": 110954
     },
     {
       "id": "watermelonds-android",
@@ -15730,7 +15868,7 @@
       "watchers": 12,
       "downloads_total": 0,
       "downloads_latest": 179320,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -15745,7 +15883,9 @@
       ],
       "pushed_at": "2026-10-17T02:18:41Z",
       "summary": "A Nintendo DS and DSi emulator for Android, built on top of melonDS and the melonDS Android port by rafaelvcaetano.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2055273,
+      "downloads_lifetime": 2055273
     },
     {
       "id": "metroidprimeport",
@@ -16136,7 +16276,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 1102,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -16187,7 +16327,9 @@
       ],
       "pushed_at": "2026-11-06T20:54:40Z",
       "summary": "A work-in-progress decompilation of Metroid Prime.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 78222,
+      "downloads_lifetime": 78222
     },
     {
       "id": "citron-emulator",
@@ -16458,7 +16600,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 218992,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -16501,7 +16643,9 @@
       "dead": true,
       "dead_reason": "上游停更",
       "pushed_at": "2026-11-06T11:24:52Z",
-      "summary": "Citron Neo is an open-source emulator that continues the Citron codebase. It runs on Windows, Linux, macOS and Android (arm64). Development and maintenance"
+      "summary": "Citron Neo is an open-source emulator that continues the Citron codebase. It runs on Windows, Linux, macOS and Android (arm64). Development and maintenance",
+      "downloads": 521524,
+      "downloads_lifetime": 521524
     },
     {
       "id": "suyu-emulator",
@@ -16820,7 +16964,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 9431,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -16865,7 +17009,9 @@
       "dead_reason": "2024 停止开发，GitHub 已因 DMCA 删除",
       "pushed_at": "2026-11-06T17:07:55Z",
       "summary": "Nintendo Switch emulator and native recompiler — based on Eden , which itself descends from yuzu.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 23118,
+      "downloads_lifetime": 23118
     },
     {
       "id": "ashnar2602-x360-mobile---official",
@@ -17012,7 +17158,9 @@
       ],
       "pushed_at": "2026-11-03T22:34:13Z",
       "summary": "Experimental ARM64 Xbox 360 emulation for Android with a Vulkan renderer.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 619754,
+      "downloads_lifetime": 619754
     },
     {
       "id": "openmsx",
@@ -17330,7 +17478,9 @@
         "msxturbor"
       ],
       "pushed_at": "2026-11-05T23:07:52Z",
-      "summary": "the MSX emulator that aims for perfection"
+      "summary": "the MSX emulator that aims for perfection",
+      "downloads": 295241,
+      "downloads_lifetime": 295241
     },
     {
       "id": "rainchus-dk64-rekongpiled",
@@ -17510,7 +17660,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 12980,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -17542,7 +17692,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-09-30T00:21:10Z",
-      "summary": "Donkey Kong 64: Recompiled is a project that uses N64: Recompiled to statically recompile Donkey Kong 64 into a native port with many new features and enhancements."
+      "summary": "Donkey Kong 64: Recompiled is a project that uses N64: Recompiled to statically recompile Donkey Kong 64 into a native port with many new features and enhancements.",
+      "downloads": 54402,
+      "downloads_lifetime": 54402
     },
     {
       "id": "fs-uae",
@@ -17824,7 +17976,9 @@
         "emulator"
       ],
       "pushed_at": "2026-11-06T20:38:50Z",
-      "summary": "See od-fs/README.md for the full FS-UAE README file."
+      "summary": "See od-fs/README.md for the full FS-UAE README file.",
+      "downloads": 131096,
+      "downloads_lifetime": 131096
     },
     {
       "id": "the412banner-bannerhub",
@@ -18151,7 +18305,9 @@
       ],
       "pushed_at": "2026-09-28T21:24:36Z",
       "summary": "All smali edits, patches, and code changes in this project are developed with the assistance of Claude AI Sonnet 4.6 by Anthropic.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 402264,
+      "downloads_lifetime": 402264
     },
     {
       "id": "xm486-yukihub",
@@ -18281,7 +18437,9 @@
       "topics": [],
       "pushed_at": "2026-11-03T18:55:44Z",
       "summary": "YukiHub 是一款面向 Android 平台的Galgame/视觉小说管理与启动工具，适合用于管理本地游戏、安卓应用型，模拟器游戏入口、外部程序快捷方式以及游玩记录。",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 9056,
+      "downloads_lifetime": 9056
     },
     {
       "id": "winebox64-winlator",
@@ -18402,7 +18560,9 @@
       ],
       "pushed_at": "2025-03-18T01:28:27Z",
       "summary": "Winlator is an Android application that lets you run Windows (x86_64) applications and games with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 302974,
+      "downloads_lifetime": 302974
     },
     {
       "id": "longjunyu2-winlator",
@@ -18589,7 +18749,9 @@
       ],
       "pushed_at": "2026-01-05T23:43:15Z",
       "summary": "It's been a few months since the lead developer `longjunyu2` has been online.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1029067,
+      "downloads_lifetime": 1029067
     },
     {
       "id": "rfandango-xendroid",
@@ -18716,7 +18878,9 @@
       ],
       "pushed_at": "2026-08-20T11:32:36Z",
       "summary": "However, a complete rebase was made on Xenia Edge with a new Kotlin backend.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 253925,
+      "downloads_lifetime": 253925
     },
     {
       "id": "fcharan-winlatormali",
@@ -18870,7 +19034,9 @@
       "distribution": "release-apk",
       "pushed_at": "2026-10-31T22:06:38Z",
       "summary": "Winlator Mali runs Windows (x86 / x86_64) games on Android, built for Non Snapdragon Devices with (MediaTek Dimensity, Samsung Exynos, Google Tensor), and still works on Qualcomm A…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 725020,
+      "downloads_lifetime": 725020
     },
     {
       "id": "gunacharanteja-winlatormali",
@@ -19020,11 +19186,13 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "pushed_at": "2026-10-31T22:06:38Z",
       "summary": "Winlator Mali runs Windows (x86 / x86_64) games on Android, built for Non Snapdragon Devices with (MediaTek Dimensity, Samsung Exynos, Google Tensor), and still works on Qualcomm A…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 725020,
+      "downloads_lifetime": 725020
     },
     {
       "id": "m64plusae",
@@ -19111,11 +19279,13 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-08-28T13:45:57Z",
       "summary": "Mupen64Plus, Android Edition (AE) is an Android user interface for Mupen64Plus.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 3631,
+      "downloads_lifetime": 3631
     },
     {
       "id": "the412banner-bannerlator",
@@ -19342,7 +19512,9 @@
       ],
       "pushed_at": "2026-11-06T20:51:21Z",
       "summary": "All coding, features, and changes in this project are developed with the assistance of Claude AI by Anthropic.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1398229,
+      "downloads_lifetime": 1398229
     },
     {
       "id": "mamcjr-botwrecompandroid",
@@ -19453,7 +19625,7 @@
       "forks": 36,
       "watchers": 583,
       "downloads_total": 3078,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -19470,7 +19642,10 @@
       "license": "NOASSERTION",
       "topics": [],
       "pushed_at": "2026-11-04T14:03:45Z",
-      "summary": "A port of *The Legend of Zelda: Breath of the Wild* (Nintendo Switch, versions 1.0.0, 1.6.0, 1.8.2 and 1.9.0) for Android."
+      "summary": "A port of *The Legend of Zelda: Breath of the Wild* (Nintendo Switch, versions 1.0.0, 1.6.0, 1.8.2 and 1.9.0) for Android.",
+      "downloads_latest": 3078,
+      "downloads": 84537,
+      "downloads_lifetime": 84537
     },
     {
       "id": "jacojayy-star",
@@ -19643,7 +19818,9 @@
       "distribution": "release-apk",
       "note": "GitHub release 自动映射",
       "pushed_at": "2026-11-06T20:38:27Z",
-      "summary": "✨ WinHub Your one-stop place for all your games, now on Android."
+      "summary": "✨ WinHub Your one-stop place for all your games, now on Android.",
+      "downloads": 170899,
+      "downloads_lifetime": 170899
     },
     {
       "id": "np2kai",
@@ -19807,13 +19984,15 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://nightly.link/N3xoX1/nxemu/workflows/android.yml/main/NxEmu-android-arm64.zip",
       "download_kind": "nightly",
       "distribution": "nightly",
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T22:09:04Z",
-      "summary": "NxEmu is a free, open-source Nintendo Switch emulator for Windows, Linux and macOS, written in C++."
+      "summary": "NxEmu is a free, open-source Nintendo Switch emulator for Windows, Linux and macOS, written in C++.",
+      "downloads": 7609,
+      "downloads_lifetime": 7609
     },
     {
       "id": "redream-dc",
@@ -19943,7 +20122,9 @@
       ],
       "pushed_at": "2025-02-25T11:41:52Z",
       "summary": "GAME COMPATIBILITY LIST • PHONE REQUIREMENTS",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 182740,
+      "downloads_lifetime": 182740
     },
     {
       "id": "zorkats-g-diffuser",
@@ -20183,7 +20364,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 318,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/Zorkats/G-Diffuser/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -20227,7 +20408,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-05T08:00:09Z",
-      "summary": "A native PC port of F-Zero X (N64), including 64DD Expansion Kit support."
+      "summary": "A native PC port of F-Zero X (N64), including 64DD Expansion Kit support.",
+      "downloads": 19708,
+      "downloads_lifetime": 19708
     },
     {
       "id": "kronos",
@@ -20348,7 +20531,9 @@
       "license": null,
       "topics": [],
       "pushed_at": "2026-11-06T15:03:41Z",
-      "summary": "The CMake system has been refined to build the full Yabause stack. you have to download CMake and run it in the root of the first CMakeLists.txt."
+      "summary": "The CMake system has been refined to build the full Yabause stack. you have to download CMake and run it in the root of the first CMakeLists.txt.",
+      "downloads": 14309,
+      "downloads_lifetime": 14309
     },
     {
       "id": "wpr-wp7-8",
@@ -20409,7 +20594,7 @@
       "watchers": 19,
       "downloads_total": 0,
       "downloads_latest": 42427,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/8212369/WPR/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -20425,7 +20610,9 @@
         }
       ],
       "pushed_at": "2022-12-10T21:51:36Z",
-      "summary": "Installing WP7-8 decrypted XNA XAPs locally on your machine. Earning achievements locally for Xbox Live games, with a pop-up appear everytime achievement is unlocked."
+      "summary": "Installing WP7-8 decrypted XNA XAPs locally on your machine. Earning achievements locally for Xbox Live games, with a pop-up appear everytime achievement is unlocked.",
+      "downloads": 49439,
+      "downloads_lifetime": 49439
     },
     {
       "id": "opennectar",
@@ -20599,7 +20786,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 2843,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -20632,7 +20819,9 @@
       ],
       "pushed_at": "2026-11-06T05:24:11Z",
       "summary": "Native, open-source ports of *Pikmin* (GameCube, 2001) and *Pikmin 2* (GameCube, 2004) for Linux, Windows and Android, and macOS from source.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 32535,
+      "downloads_lifetime": 32535
     },
     {
       "id": "armsx1-ps1",
@@ -20744,7 +20933,7 @@
       "watchers": 9,
       "downloads_total": 0,
       "downloads_latest": 14088,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -20759,7 +20948,9 @@
       ],
       "pushed_at": "2026-11-06T21:10:37Z",
       "summary": "Android now uses the original PSX Lab backend with the existing Compose UI. See PSXLAB-BACKEND.md for build instructions, validation, save compatibility and current limitations.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 515000,
+      "downloads_lifetime": 515000
     },
     {
       "id": "ghaelv-lemon-project",
@@ -20921,7 +21112,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 2503,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -20936,7 +21127,9 @@
       ],
       "pushed_at": "2026-10-28T12:57:38Z",
       "summary": "An Android-only Nintendo Switch emulator built for Adreno GPUs.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 34859,
+      "downloads_lifetime": 34859
     },
     {
       "id": "medard22-dolphin-mmjr2-vbi",
@@ -21065,7 +21258,9 @@
       ],
       "pushed_at": "2025-08-03T09:27:46Z",
       "summary": "Welcome 👋 The goal of this fork is to improve the MMJR2 fork of Dolphin Emulator.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 791635,
+      "downloads_lifetime": 791635
     },
     {
       "id": "jica98-bachata-s4",
@@ -21182,7 +21377,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 38618,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -21197,7 +21392,9 @@
       ],
       "pushed_at": "2026-10-23T03:21:52Z",
       "summary": "Bachata S4 Experimental PlayStation 4 emulation for ARM64 Android devices. FEX, a managed Linux runtime, and Vulkan.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 143286,
+      "downloads_lifetime": 143286
     },
     {
       "id": "borked3ds-3ds",
@@ -21662,7 +21859,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 6888,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/Borked3DS/Borked3DS/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -21706,7 +21903,9 @@
       ],
       "pushed_at": "2025-04-15T15:28:14Z",
       "summary": "Borked3DS is yet another Citra-derived project that aims to continue Nintendo 3DS emulation development work after that project shut down.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 60470,
+      "downloads_lifetime": 60470
     },
     {
       "id": "mame2003plus",
@@ -21845,7 +22044,7 @@
       "watchers": 16,
       "downloads_total": 0,
       "downloads_latest": 3659,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -21860,7 +22059,9 @@
       ],
       "pushed_at": "2026-10-15T03:26:02Z",
       "summary": "A Nintendo DS emulator for Android handhelds with physical controls, including devices with two displays.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 22661,
+      "downloads_lifetime": 22661
     },
     {
       "id": "es-de-frontend",
@@ -22110,7 +22311,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 321,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-zip",
       "builds": [
         {
@@ -22136,7 +22337,9 @@
       "pushed_at": "2026-10-24T23:43:33Z",
       "download_url": "https://github.com/blueminder/flycast-dojo/releases/download/dojo-7.9/flycast-dojo-windows.zip",
       "download_kind": "desktop-build",
-      "summary": "Flycast Dojo is a fork of Flycast, a multi-platform Sega Dreamcast, Naomi and Atomiswave emulator derived from Reicast, with a focus on netplay features and replay."
+      "summary": "Flycast Dojo is a fork of Flycast, a multi-platform Sega Dreamcast, Naomi and Atomiswave emulator derived from Reicast, with a focus on netplay features and replay.",
+      "downloads": 95707,
+      "downloads_lifetime": 95707
     },
     {
       "id": "emucorev-android",
@@ -22273,7 +22476,7 @@
       "watchers": 9,
       "downloads_total": 0,
       "downloads_latest": 1571,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -22288,7 +22491,9 @@
       ],
       "pushed_at": "2026-10-27T22:05:53Z",
       "summary": "EmuCoreV is a PlayStation Vita emulator for Android. It combines a custom Android interface, library and catalog UX, installer flows, and runtime controls with a Vita3K-based emula…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 160657,
+      "downloads_lifetime": 160657
     },
     {
       "id": "emucorex-android",
@@ -22425,7 +22630,7 @@
       "watchers": 13,
       "downloads_total": 0,
       "downloads_latest": 150,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -22440,7 +22645,9 @@
       ],
       "pushed_at": "2026-11-06T12:36:16Z",
       "summary": "EmuCoreX is a PlayStation 2 library, launcher, and emulator frontend for Android.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 80982,
+      "downloads_lifetime": 80982
     },
     {
       "id": "unleashedrecomp",
@@ -22546,7 +22753,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 25288,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -22561,7 +22768,9 @@
       ],
       "pushed_at": "2026-10-14T02:24:43Z",
       "summary": "Play the Xbox 360 version of *Sonic Unleashed* natively on a supported Android device.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 102000,
+      "downloads_lifetime": 102000
     },
     {
       "id": "odrannnn-metroidprime2port",
@@ -23019,7 +23228,9 @@
       ],
       "pushed_at": "2026-11-06T21:29:35Z",
       "summary": "Disclaimer: this is an independent project, not affiliated with or endorsed by PrimeDecomp.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 20686,
+      "downloads_lifetime": 20686
     },
     {
       "id": "stredohori-winlator-cmod",
@@ -23145,7 +23356,9 @@
       "repo_status": "archived",
       "pushed_at": "2026-05-12T18:19:19Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 151977,
+      "downloads_lifetime": 151977
     },
     {
       "id": "winlatorxr-winlatorxr",
@@ -23258,7 +23471,9 @@
       ],
       "pushed_at": "2026-10-09T17:41:04Z",
       "summary": "1.Clone repository with all submodules `git clone --recursive git@github.com:WinlatorXR/WinlatorXR.git`",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 10307,
+      "downloads_lifetime": 10307
     },
     {
       "id": "ranggacasper-mostwanted-android",
@@ -23388,7 +23603,9 @@
       "topics": [],
       "pushed_at": "2026-11-01T14:43:58Z",
       "summary": "An unofficial native Android port of the original Xbox version of *Need for Speed: Most Wanted* (Black Edition), with touch controls, controller and keyboard support and extended g…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 318632,
+      "downloads_lifetime": 318632
     },
     {
       "id": "wie-skvm",
@@ -23804,7 +24021,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 10,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -23855,7 +24072,9 @@
       ],
       "pushed_at": "2026-11-06T23:29:44Z",
       "summary": "A standalone emulator for old mobile apps based on WIPI, SKVM or J2ME.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1764,
+      "downloads_lifetime": 1764
     },
     {
       "id": "aetherkiri-aether",
@@ -24173,7 +24392,9 @@
         "ons"
       ],
       "pushed_at": "2026-11-06T21:56:55Z",
-      "summary": "A Godot-hosted, extensible multi-runtime platform for visual novels."
+      "summary": "A Godot-hosted, extensible multi-runtime platform for visual novels.",
+      "downloads": 5795,
+      "downloads_lifetime": 5795
     },
     {
       "id": "ruzu-emu",
@@ -24402,7 +24623,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 506,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -24437,7 +24658,9 @@
       "pushed_at": "2026-10-28T12:28:52Z",
       "download_url": "https://github.com/vricosti/ruzu-emu/releases/download/v0.1.1-rc8/Ruzu-Linux-v0.1.1-rc8-x86_64.AppImage",
       "download_kind": "desktop-build",
-      "summary": "An experimental, open-source Nintendo Switch emulator written in Rust. For Linux, Windows and macOS."
+      "summary": "An experimental, open-source Nintendo Switch emulator written in Rust. For Linux, Windows and macOS.",
+      "downloads": 6467,
+      "downloads_lifetime": 6467
     },
     {
       "id": "the412banner-bannerhub-revanced",
@@ -24746,7 +24969,9 @@
       ],
       "pushed_at": "2026-11-06T21:38:12Z",
       "summary": "ReVanced patches for GameHub (`com.xiaoji.egggame`) that add BannerHub features: community configs, frontend export (Beacon + ES-DE), in-app download manager, and more.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 249910,
+      "downloads_lifetime": 249910
     },
     {
       "id": "pocket8",
@@ -24858,7 +25083,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 1314,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "ios",
@@ -24873,7 +25098,9 @@
       "note": "GitHub release 无安卓 APK 资产",
       "pushed_at": "2026-09-22T06:40:30Z",
       "summary": "Pocket8 • The native PICO-8 Companion for iOS.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2214,
+      "downloads_lifetime": 2214
     },
     {
       "id": "lime3ds-3ds",
@@ -25056,12 +25283,14 @@
       "forks": 115,
       "watchers": 18,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/Swordpdf/ProsperoEden/releases/download/v1.005.000/ProsperoEden-v1.005.000.zip",
       "download_kind": "official-site",
       "note": "zip 运行包，非 apk 直链 | 2026-11-04 修：README 明写 PS5 port of Eden，原 hosts=android/method=recomp 错误",
       "pushed_at": "2026-10-18T03:56:25Z",
-      "summary": "An unofficial Eden emulator port for PlayStation 5 homebrew"
+      "summary": "An unofficial Eden emulator port for PlayStation 5 homebrew",
+      "downloads": 168099,
+      "downloads_lifetime": 168099
     },
     {
       "id": "jhinzuo-winlator",
@@ -25193,7 +25422,9 @@
       ],
       "pushed_at": "2025-08-24T22:41:56Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 64697,
+      "downloads_lifetime": 64697
     },
     {
       "id": "rpcsx-rpcsx-ui-android",
@@ -25319,7 +25550,9 @@
         }
       ],
       "pushed_at": "2026-08-29T13:33:23Z",
-      "summary": "https://github.com/RPCSX/rpcsx-ui-android/commit/1e588cbe04f7d9335787da6a2c4ecb505f7031cf"
+      "summary": "https://github.com/RPCSX/rpcsx-ui-android/commit/1e588cbe04f7d9335787da6a2c4ecb505f7031cf",
+      "downloads": 113569,
+      "downloads_lifetime": 113569
     },
     {
       "id": "santiquiroz-gears-of-war-2-pc-port",
@@ -25554,7 +25787,9 @@
         "xenia"
       ],
       "pushed_at": "2026-11-06T19:55:28Z",
-      "summary": "Retail Xbox 360 Gears of War 2 statically recompiled from the player's own `default.xex` to native x64 code with the ReXGlue SDK. This is not emulation. Players must own the game."
+      "summary": "Retail Xbox 360 Gears of War 2 statically recompiled from the player's own `default.xex` to native x64 code with the ReXGlue SDK. This is not emulation. Players must own the game.",
+      "downloads": 24288,
+      "downloads_lifetime": 24288
     },
     {
       "id": "ajay9634-winlator-ajay",
@@ -25687,7 +25922,9 @@
       "repo_status": "archived",
       "pushed_at": "2026-06-28T11:07:57Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 100978,
+      "downloads_lifetime": 100978
     },
     {
       "id": "slaker222-steamlator",
@@ -25800,7 +26037,9 @@
       ],
       "pushed_at": "2026-04-29T14:09:07Z",
       "summary": "Steam is already built into the APK – when you launch the container, the Steam launcher will open automatically. Uses special launch arguments for maximum compatibility.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 71771,
+      "downloads_lifetime": 71771
     },
     {
       "id": "xendroid-plus",
@@ -25911,8 +26150,8 @@
       "forks": 12,
       "watchers": 154,
       "downloads_total": 5600,
-      "downloads_latest": 1390,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_latest": 5600,
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -25930,7 +26169,9 @@
       "topics": [],
       "pushed_at": "2026-11-04T07:57:44Z",
       "summary": "Xendroid+ is an Xbox 360 emulator for Android, created and maintained by phforner0.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 45876,
+      "downloads_lifetime": 45876
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
@@ -26088,7 +26329,9 @@
       "repo_status": "archived",
       "pushed_at": "2026-09-11T15:09:20Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 94104,
+      "downloads_lifetime": 94104
     },
     {
       "id": "jackandbeans-snap64recomp",
@@ -26438,7 +26681,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 2075,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -26480,7 +26723,9 @@
       ],
       "pushed_at": "2026-10-25T02:17:38Z",
       "summary": "Snap64 Recomp is a native PC port of Pokémon Snap (Nintendo 64, US release) for Windows, Linux, the Steam Deck and macOS.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 13080,
+      "downloads_lifetime": 13080
     },
     {
       "id": "mamcjr-totkdroid",
@@ -26644,11 +26889,13 @@
         }
       ],
       "stars": 113,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "note": "GitHub release 无安卓 APK 资产",
       "pushed_at": "2026-09-22T00:27:35Z",
       "summary": "一个 Android 平台的 Termux 终端 + X11 图形 一体化应用：单个 APK 里同时拥有真实 Termux 终端（apt/pkg 全家桶）和内置 X11 显示端（显示号 `:13`），窗口化运行，支持虚拟键盘 / 虚拟鼠标 / 虚拟游戏手柄。",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 6225,
+      "downloads_lifetime": 6225
     },
     {
       "id": "silksongandroid",
@@ -26760,7 +27007,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 8244,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -26775,7 +27022,9 @@
       ],
       "pushed_at": "2026-09-25T19:23:48Z",
       "summary": "Hollow Knight: Silksong Android port with dual-screen capabilites and optional Steam integration for game files and cloud saves.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 12287,
+      "downloads_lifetime": 12287
     },
     {
       "id": "pockethle-android",
@@ -26939,7 +27188,7 @@
       "watchers": 4,
       "downloads_total": 0,
       "downloads_latest": 434,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -26972,7 +27221,9 @@
       ],
       "pushed_at": "2026-10-18T11:10:11Z",
       "summary": "A high-level Windows Mobile / Pocket PC / Gizmondo emulator for Linux, Windows and Android.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2950,
+      "downloads_lifetime": 2950
     },
     {
       "id": "snes9x-z",
@@ -27056,7 +27307,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 343,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-zip",
       "builds": [
         {
@@ -27100,7 +27351,9 @@
       "pushed_at": "2026-09-14T20:01:12Z",
       "download_url": "https://github.com/andrezaiats/snes9x-Z/releases/download/v1.63-z1/snes9x-Z_libretro_android-arm64-v8a.zip",
       "download_kind": "desktop-build",
-      "summary": "A performance-optimized fork of the Snes9x SNES emulator core. Bit-exact against upstream at commit `7a8878f1` (2026-09-04), built around a from-scratch dual-core PPU rendering arc…"
+      "summary": "A performance-optimized fork of the Snes9x SNES emulator core. Bit-exact against upstream at commit `7a8878f1` (2026-09-04), built around a from-scratch dual-core PPU rendering arc…",
+      "downloads": 458,
+      "downloads_lifetime": 458
     },
     {
       "id": "ryubing-emulator",
@@ -27289,7 +27542,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 2062,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -27314,7 +27567,9 @@
       "note": "社区移植，非 HarbourMasters 官方；上游为 HarbourMasters/Shipwright",
       "pushed_at": "2026-10-30T03:13:30Z",
       "community_port": true,
-      "summary": "Linkzenic's Android, iOS, and Apple TV ports of Harbour Masters' Ship of Harkinian, together in one repository."
+      "summary": "Linkzenic's Android, iOS, and Apple TV ports of Harbour Masters' Ship of Harkinian, together in one repository.",
+      "downloads": 18716,
+      "downloads_lifetime": 18716
     },
     {
       "id": "hyperhle",
@@ -27625,13 +27880,15 @@
       "forks": 2,
       "watchers": 1,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.5/HyperHLE_Android_AArch64.zip",
       "download_kind": "zip",
       "distribution": "release-zip",
       "note": "无官方 APK 发布",
       "pushed_at": "2026-11-06T16:36:09Z",
-      "summary": "HyperHLE-Reborn is a community-maintained fork of HyperHLE, itself based on touchHLE. The user-facing name of this project is HyperHLE"
+      "summary": "HyperHLE-Reborn is a community-maintained fork of HyperHLE, itself based on touchHLE. The user-facing name of this project is HyperHLE",
+      "downloads": 16187,
+      "downloads_lifetime": 16187
     },
     {
       "id": "hyperhle-reborn",
@@ -27947,7 +28204,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 30,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.5/HyperHLE_Android_AArch64.zip",
       "download_kind": "zip",
       "distribution": "release-zip",
@@ -28000,7 +28257,9 @@
       ],
       "note": "GitHub release 无安卓 APK 资产",
       "pushed_at": "2026-11-06T16:36:09Z",
-      "summary": "HyperHLE-Reborn is a community-maintained fork of HyperHLE, itself based on touchHLE. The user-facing name of this project is HyperHLE"
+      "summary": "HyperHLE-Reborn is a community-maintained fork of HyperHLE, itself based on touchHLE. The user-facing name of this project is HyperHLE",
+      "downloads": 16187,
+      "downloads_lifetime": 16187
     },
     {
       "id": "linkzenic-2ship2harkinian-android",
@@ -28112,7 +28371,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 5210,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -28126,7 +28385,9 @@
         }
       ],
       "pushed_at": "2026-10-23T03:44:19Z",
-      "summary": "Android port of 2 Ship 2 Harkinian, based on the HarbourMasters project and forked from Waterdish's original Android port."
+      "summary": "Android port of 2 Ship 2 Harkinian, based on the HarbourMasters project and forked from Waterdish's original Android port.",
+      "downloads": 19780,
+      "downloads_lifetime": 19780
     },
     {
       "id": "citra-mirror",
@@ -28252,11 +28513,13 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "distribution": "release-zip",
       "note": "★79，2026-11-03 仍活跃。release 附可运行构建。与本库已有 ProsperoEden（Android 移植）同源不同目标平台 | 2026-11-04 修：仓库描述为 \"fork for PS5 FW 13.60\"，host=ps5、method=emulation，原记录 hosts=android/windows 错误",
       "pushed_at": "2026-11-06T23:31:44Z",
-      "summary": "🌐 LANGUAGES &nbsp; · &nbsp; English &nbsp; · &nbsp; English UK &nbsp; · &nbsp; 简体中文 &nbsp; · &nbsp; 繁體中文 &nbsp; · &nbsp; Español LatAm &nbsp; · &nbsp; Español ES &nbsp; · &nbsp; Fr…"
+      "summary": "🌐 LANGUAGES &nbsp; · &nbsp; English &nbsp; · &nbsp; English UK &nbsp; · &nbsp; 简体中文 &nbsp; · &nbsp; 繁體中文 &nbsp; · &nbsp; Español LatAm &nbsp; · &nbsp; Español ES &nbsp; · &nbsp; Fr…",
+      "downloads": 2885,
+      "downloads_lifetime": 2885
     },
     {
       "id": "jaycore-mobox-patched",
@@ -28372,7 +28635,9 @@
       "download_kind": "github-releases",
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2025-06-26T21:09:18Z",
-      "summary": "2. Download file tar.gz at [releases]( 3. Choose your prepared version of mobox patched."
+      "summary": "2. Download file tar.gz at [releases]( 3. Choose your prepared version of mobox patched.",
+      "downloads": 21832,
+      "downloads_lifetime": 21832
     },
     {
       "id": "ax360e-android",
@@ -28630,7 +28895,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 1515,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -28645,7 +28910,9 @@
       ],
       "pushed_at": "2026-09-30T22:50:45Z",
       "summary": "This fork tracks the real RPCS3 tree rather than a snapshot. The archived RPCS3-Android port is folded in at `android/`, rebased onto current upstream, and carried forward with add…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 8841,
+      "downloads_lifetime": 8841
     },
     {
       "id": "termux-kotlin",
@@ -28853,7 +29120,7 @@
       ],
       "stars": 73,
       "downloads_latest": 152,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/reapercanuk39/termux-kotlin-app/releases/download/v2.0.14/termux-app_apt-android-7-release_arm64-v8a.apk",
       "download_kind": "github-release",
       "distribution": "release-apk",
@@ -28871,7 +29138,9 @@
       "note": "溯源结论：原记录 source 标 official-web 且错指 F-Droid。实际自有仓库 reapercanuk39/termux-kotlin-app（★72），release v2.0.14 附 10 个 APK 资产",
       "pushed_at": "2026-03-27T09:17:34Z",
       "summary": "The official Termux Android terminal emulator, fully converted to Kotlin!",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2347,
+      "downloads_lifetime": 2347
     },
     {
       "id": "termux-jiaxinchen",
@@ -29477,7 +29746,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 371,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -29492,7 +29761,9 @@
       ],
       "pushed_at": "2026-11-06T19:59:21Z",
       "summary": "The first PlayStation 5 emulator for Android, built on KytyPS5 and the FEX x86-64 JIT.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 3214,
+      "downloads_lifetime": 3214
     },
     {
       "id": "the412banner-bannerhub-lite",
@@ -29809,7 +30080,9 @@
       ],
       "pushed_at": "2026-05-21T21:17:38Z",
       "summary": "A modified build of GameHub Lite 5.1.4 with BannerHub features ported in — GOG, Amazon, and Epic Games Store tabs, Component Manager, in-app component downloader, Export/Import Gam…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 32520,
+      "downloads_lifetime": 32520
     },
     {
       "id": "virtualjaguar",
@@ -31555,7 +31828,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 3,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/libretro/virtualjaguar-libretro/releases",
       "download_kind": "github-releases",
       "builds": [
@@ -31607,7 +31880,9 @@
       ],
       "note": "GitHub release 无安卓 APK 资产",
       "pushed_at": "2026-11-06T21:54:50Z",
-      "summary": "An Atari Jaguar and Jaguar CD emulator packaged as a libretro core, so it runs in RetroArch and other libretro frontends."
+      "summary": "An Atari Jaguar and Jaguar CD emulator packaged as a libretro core, so it runs in RetroArch and other libretro frontends.",
+      "downloads": 9012,
+      "downloads_lifetime": 9012
     },
     {
       "id": "mircowuffwuff-sharpdroid",
@@ -31719,7 +31994,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 1426,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -31733,7 +32008,9 @@
         }
       ],
       "pushed_at": "2026-10-20T13:44:16Z",
-      "summary": "this is an android app that runs SharpEmu, a PS5 emulator for Windows and Linux on x86-64. sharpdroid focuses on low overhead, mergeability, and modularity."
+      "summary": "this is an android app that runs SharpEmu, a PS5 emulator for Windows and Linux on x86-64. sharpdroid focuses on low overhead, mergeability, and modularity.",
+      "downloads": 7019,
+      "downloads_lifetime": 7019
     },
     {
       "id": "nfs3recompiled",
@@ -31817,7 +32094,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 15,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -31832,7 +32109,9 @@
       ],
       "pushed_at": "2026-11-04T04:07:46Z",
       "summary": "Need for Speed III: Hot Pursuit, the 1998 PC game, running natively on Android",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1388,
+      "downloads_lifetime": 1388
     },
     {
       "id": "zeebx-zeebo",
@@ -32488,7 +32767,7 @@
       "watchers": 5,
       "downloads_total": 0,
       "downloads_latest": 159,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -32539,7 +32818,9 @@
       ],
       "pushed_at": "2026-10-28T23:53:45Z",
       "summary": "Emulador do Zeebo, o console que a TecToy lançou em 2009 no Brasil e no México.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 3425,
+      "downloads_lifetime": 3425
     },
     {
       "id": "dev-ali2008-onrps4-android",
@@ -32623,7 +32904,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 1826,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -32638,7 +32919,9 @@
       ],
       "pushed_at": "2026-08-15T19:53:58Z",
       "summary": "running under Box64, with a Winlator-style embedded X server, Vulkan through Vortek and Mesa Turnip drivers.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 3186,
+      "downloads_lifetime": 3186
     },
     {
       "id": "yifengling0-vintagepomelopro",
@@ -32781,13 +33064,15 @@
       "stars": 50,
       "forks": 6,
       "watchers": 0,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "鸿蒙专用：Box64(x86_64→ARM64) + Wine + 进程内 Wayland compositor，支持多窗口、音频(WASAPI/DSound/MCI)、VirGL/OpenGL。release 只发 Proton 依赖包，HAP 需自行签名构建；173 个 open issues 说明用户量大。",
       "license": null,
       "topics": [],
       "pushed_at": "2026-11-04T07:31:21Z",
-      "summary": "在 HarmonyOS (OpenHarmony) 设备上运行 Windows x86_64 程序，通过 Box64 指令翻译，嵌入 Wayland compositor 渲染窗口。"
+      "summary": "在 HarmonyOS (OpenHarmony) 设备上运行 Windows x86_64 程序，通过 Box64 指令翻译，嵌入 Wayland compositor 渲染窗口。",
+      "downloads": 1894,
+      "downloads_lifetime": 1894
     },
     {
       "id": "afeimod-winlator-glibc",
@@ -32901,7 +33186,7 @@
       ],
       "stars": 50,
       "downloads_latest": 304,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/afeimod/winlator-glibc/releases",
       "download_kind": "github-releases",
       "builds": [
@@ -32918,7 +33203,9 @@
       "note": "GitHub release 无安卓 APK 资产",
       "pushed_at": "2026-03-11T04:10:17Z",
       "summary": "Winlator-Glibc is a fork of the official Winlator. The Glibc version provides additional performance and stability improvements.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 89363,
+      "downloads_lifetime": 89363
     },
     {
       "id": "dukeps3-android",
@@ -33099,7 +33386,7 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_latest": 5295,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -33114,7 +33401,9 @@
       ],
       "pushed_at": "2026-10-28T12:01:37Z",
       "summary": "EmuCoreC is a PlayStation 3 emulator application for Android. It combines a focused mobile interface with a core built on the latest RPCS3 emulator: a clean game library and catalo…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 25823,
+      "downloads_lifetime": 25823
     },
     {
       "id": "itzdfplayer-gamehub-lite",
@@ -33204,7 +33493,9 @@
       ],
       "pushed_at": "2026-01-06T21:01:46Z",
       "summary": "GameHub Lite is a community-maintained modified version of GameHub for education purposes.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 8400,
+      "downloads_lifetime": 8400
     },
     {
       "id": "eden-nx2-zuan",
@@ -34556,7 +34847,7 @@
       ],
       "stars": 37,
       "downloads_latest": 19,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/mrndstvndv/termux-ghostty/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -34573,7 +34864,9 @@
       ],
       "pushed_at": "2026-11-02T08:23:07Z",
       "summary": "⚠️ NOTICE: This is an unofficial fork and is not affiliated with ghostty-org or termux. It combines features from both projects under their respective licenses (GPLv3 and MIT).",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1681,
+      "downloads_lifetime": 1681
     },
     {
       "id": "juris-x-winlator_x",
@@ -34715,7 +35008,9 @@
       ],
       "pushed_at": "2025-05-26T11:10:39Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 85389,
+      "downloads_lifetime": 85389
     },
     {
       "id": "dukestation-ps1",
@@ -34814,7 +35109,7 @@
       ],
       "stars": 42,
       "downloads_latest": 1690,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -34829,7 +35124,9 @@
       ],
       "pushed_at": "2026-11-01T09:39:29Z",
       "summary": "A fork of the Eden Nintendo Switch emulator that runs Nintendo Switch 2 games.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 3027,
+      "downloads_lifetime": 3027
     },
     {
       "id": "honkonx-winlator-honkon",
@@ -34961,7 +35258,9 @@
       ],
       "pushed_at": "2026-03-22T01:01:37Z",
       "summary": "Winlator es una aplicación de Android que te permite ejecutar aplicaciones de Windows (x86_64) con Wine y Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 30952,
+      "downloads_lifetime": 30952
     },
     {
       "id": "m64plusfz",
@@ -35291,7 +35590,7 @@
       ],
       "stars": 26,
       "downloads_latest": 457,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -35306,7 +35605,9 @@
       ],
       "pushed_at": "2026-07-22T03:05:10Z",
       "summary": "Linbox-WinEmu（原 WinEmulator）是一款运行在 Android 设备上的 Linux 环境模拟器，通过利用 PRoot、Box64/86、Termux-X11 等技术，在 Android 手机或平板上创建一个完整的 Linux 容器环境，从而实现运行 Windows 应用程序和游戏的目的。",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2494,
+      "downloads_lifetime": 2494
     },
     {
       "id": "dk64recomp",
@@ -35414,7 +35715,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 3463,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -35429,7 +35730,9 @@
       ],
       "pushed_at": "2026-09-05T12:39:59Z",
       "summary": "(Rainchus) para Android nativo via NDK, mantendo toda a stack original: N64ModernRuntime + RT64 (Vulkan) + RmlUi + SDL2.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 4260,
+      "downloads_lifetime": 4260
     },
     {
       "id": "edeegg-sharpemu-arm64",
@@ -35514,7 +35817,9 @@
       ],
       "pushed_at": "2026-08-11T03:43:59Z",
       "summary": "Unofficial ARM64 fork of SharpEmu — initially targeting Android ARM64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2905,
+      "downloads_lifetime": 2905
     },
     {
       "id": "termux-enhanced",
@@ -35833,7 +36138,7 @@
       ],
       "stars": 22,
       "downloads_latest": 238,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -35848,7 +36153,9 @@
       ],
       "pushed_at": "2026-11-06T14:02:06Z",
       "summary": "一个为 Android 手机与 Android TV 打造的高质感多平台复古游戏模拟器。",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1089,
+      "downloads_lifetime": 1089
     },
     {
       "id": "pocket2droid-android",
@@ -35952,7 +36259,7 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_latest": 89,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -35966,7 +36273,9 @@
         }
       ],
       "pushed_at": "2026-11-01T13:11:33Z",
-      "summary": "The source includes the GLES 1/GLES 2 GPU bridge, shared-memory graphics transport, newer compatibility fixes, and storage-preserving Update/Change ROM through test19."
+      "summary": "The source includes the GLES 1/GLES 2 GPU bridge, shared-memory graphics transport, newer compatibility fixes, and storage-preserving Update/Change ROM through test19.",
+      "downloads": 770,
+      "downloads_lifetime": 770
     },
     {
       "id": "zenith-panplay",
@@ -36183,7 +36492,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 321,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -36197,7 +36506,9 @@
         }
       ],
       "pushed_at": "2026-10-31T07:29:38Z",
-      "summary": "Windows game launcher for Android: Wine (Proton arm64ec) + FEX + DXVK + a built-in X server, with the PanVK Kbase driver bundled so Mali CSF GPUs (tested: Mali-G615) can run Direct…"
+      "summary": "Windows game launcher for Android: Wine (Proton arm64ec) + FEX + DXVK + a built-in X server, with the PanVK Kbase driver bundled so Mali CSF GPUs (tested: Mali-G615) can run Direct…",
+      "downloads": 32808,
+      "downloads_lifetime": 32808
     },
     {
       "id": "alexoqool-winlator-bionic-build",
@@ -36325,7 +36636,9 @@
       "repo_status": "archived",
       "pushed_at": "2026-05-07T20:44:04Z",
       "summary": "There is finally a workflow in Pipetto-Crypto's repository. Please visit this page",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2406,
+      "downloads_lifetime": 2406
     },
     {
       "id": "ryujinx-canary-ademola",
@@ -36639,7 +36952,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 15026,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-zip",
       "builds": [
         {
@@ -36674,7 +36987,9 @@
       "pushed_at": "2025-04-17T16:27:40Z",
       "download_url": "https://github.com/ADEMOLA200/Ryujinx-Canary-Builds/releases/download/1.3.31/ryujinx-canary-1.3.31-arm64.AppImage",
       "download_kind": "desktop-build",
-      "summary": "Ryujinx-Canary-Builds is a continuously updated repository of canray builds for testing my Ryujinx fork, automatically compiled and released after every commit."
+      "summary": "Ryujinx-Canary-Builds is a continuously updated repository of canray builds for testing my Ryujinx fork, automatically compiled and released after every commit.",
+      "downloads": 89317,
+      "downloads_lifetime": 89317
     },
     {
       "id": "termux-plus",
@@ -36909,7 +37224,9 @@
       "distribution": "release-apk",
       "pushed_at": "2026-06-25T04:23:18Z",
       "summary": "WinNative is an advanced, high-performance Windows (x86_64) emulation environment for Android.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 7211,
+      "downloads_lifetime": 7211
     },
     {
       "id": "dingooemu-android",
@@ -37266,7 +37583,7 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_latest": 5,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://nightly.link/AloysHF/DingooEmu/workflows/ci.yml/main/dingoo-emu-android.zip",
       "download_kind": "nightly",
       "distribution": "nightly",
@@ -37319,7 +37636,9 @@
       ],
       "note": "release 仅源码/安装包，无安卓 APK",
       "pushed_at": "2026-11-06T09:43:58Z",
-      "summary": "DingooEmu runs native software for the Dingoo A320 and Gemei A330 handhelds."
+      "summary": "DingooEmu runs native software for the Dingoo A320 and Gemei A330 handhelds.",
+      "downloads": 424,
+      "downloads_lifetime": 424
     },
     {
       "id": "emucorep-android",
@@ -37403,7 +37722,7 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_latest": 825,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -37419,7 +37738,9 @@
       "repo_status": "archived",
       "pushed_at": "2026-09-17T15:11:52Z",
       "summary": "EmuCoreP is an Android runtime and library manager for compatible Windows PC games.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 2638,
+      "downloads_lifetime": 2638
     },
     {
       "id": "netherstriker-x1-box-apk-1.1.4-compiled-via-izzy2lost-source-code",
@@ -37517,7 +37838,9 @@
         }
       ],
       "pushed_at": "2026-03-08T18:10:12Z",
-      "summary": "if you want to get all updates ahead of time support the developer izzy2lost on google play."
+      "summary": "if you want to get all updates ahead of time support the developer izzy2lost on google play.",
+      "downloads": 3221,
+      "downloads_lifetime": 3221
     },
     {
       "id": "nexium-switch1",
@@ -37729,7 +38052,7 @@
       "watchers": 9,
       "downloads_total": 0,
       "downloads_latest": 562,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -37761,7 +38084,9 @@
         }
       ],
       "note": "",
-      "pushed_at": "2026-11-06T05:05:23Z"
+      "pushed_at": "2026-11-06T05:05:23Z",
+      "downloads": 663,
+      "downloads_lifetime": 663
     },
     {
       "id": "emucorea-android",
@@ -37898,7 +38223,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 59,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -37913,7 +38238,9 @@
       ],
       "pushed_at": "2026-10-31T14:52:05Z",
       "summary": "EmuCoreA is a PSP library, launcher, and emulator frontend for Android. It pairs a purpose-built Compose interface with a vendored PPSSPP core that is built together with the app…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1892,
+      "downloads_lifetime": 1892
     },
     {
       "id": "azahartrigger-3ds",
@@ -38448,7 +38775,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 52,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -38490,7 +38817,9 @@
       ],
       "pushed_at": "2026-11-06T21:23:38Z",
       "summary": "Azahar is a free and open-source high level Nintendo 3DS emulator for PC and mobile devices.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1125,
+      "downloads_lifetime": 1125
     },
     {
       "id": "frostie77-tooie-recompiled",
@@ -38608,7 +38937,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 119,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -38625,7 +38954,9 @@
       "pushed_at": "2026-11-02T06:53:45Z",
       "community_port": true,
       "summary": "A native Banjo-Tooie port for Android ARM64, built with N64Recomp and",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 656,
+      "downloads_lifetime": 656
     },
     {
       "id": "nin64-android",
@@ -38781,7 +39112,7 @@
       ],
       "stars": 12,
       "downloads_latest": 65,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -38795,7 +39126,9 @@
         }
       ],
       "pushed_at": "2026-08-02T08:38:46Z",
-      "summary": "一个支持 Flash 插件、同时支持 触屏 + 物理键盘 + 虚拟手柄 的 4399 网页安卓 App。 基于 Android WebView + Ruffle WebAssembly Flash 模拟器实现，无需安装任何 Flash 插件即可在手机上怀旧游玩 4399 小游戏。"
+      "summary": "一个支持 Flash 插件、同时支持 触屏 + 物理键盘 + 虚拟手柄 的 4399 网页安卓 App。 基于 Android WebView + Ruffle WebAssembly Flash 模拟器实现，无需安装任何 Flash 插件即可在手机上怀旧游玩 4399 小游戏。",
+      "downloads": 98,
+      "downloads_lifetime": 98
     },
     {
       "id": "deivid22srk-winlator-xmod",
@@ -38894,7 +39227,9 @@
       ],
       "pushed_at": "2025-10-18T17:16:22Z",
       "summary": "Sistema completo de streaming local de filmes e séries com dois aplicativos Android conectados via rede local.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 550,
+      "downloads_lifetime": 550
     },
     {
       "id": "emucoreh-android",
@@ -39031,7 +39366,7 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_latest": 29,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -39046,7 +39381,9 @@
       ],
       "pushed_at": "2026-10-31T16:03:24Z",
       "summary": "EmuCoreH is a Sega game library, launcher, and emulator frontend for Android.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1091,
+      "downloads_lifetime": 1091
     },
     {
       "id": "samsixx6-brew2droid",
@@ -39127,7 +39464,7 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_latest": 42,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -39142,7 +39479,9 @@
       ],
       "note": "2026-10-28 发布 v1.0（arm64 APK 直链）",
       "pushed_at": "2026-11-03T10:42:49Z",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 362,
+      "downloads_lifetime": 362
     },
     {
       "id": "duckyduckg-winlator",
@@ -39269,7 +39608,9 @@
       ],
       "pushed_at": "2026-05-17T23:18:19Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1770,
+      "downloads_lifetime": 1770
     },
     {
       "id": "ryudeck-steamdeck",
@@ -39381,7 +39722,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 41,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-zip",
       "builds": [
         {
@@ -39398,7 +39739,9 @@
       "pushed_at": "2026-07-19T02:49:25Z",
       "download_url": "https://github.com/deucebucket/ryudeck/releases/download/v0.1.24/ryudeck-v0.1.24-linux_x64.tar.gz",
       "download_kind": "desktop-build",
-      "summary": "Ryudeck is a Steam Deck-native Switch game backup reader built for one hardware and software stack: the Deck's Aerith APU, Mesa RADV, Gamescope, and Steam Input."
+      "summary": "Ryudeck is a Steam Deck-native Switch game backup reader built for one hardware and software stack: the Deck's Aerith APU, Mesa RADV, Gamescope, and Steam Input.",
+      "downloads": 94,
+      "downloads_lifetime": 94
     },
     {
       "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
@@ -39471,7 +39814,9 @@
       "distribution": "release-apk",
       "pushed_at": "2026-04-24T23:48:07Z",
       "summary": "Improved Wi-Fi/VPN Co-op, 1v1 PVP Arena, New Companions, new questline, redone loot and medieval interface Exclusive.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 1759,
+      "downloads_lifetime": 1759
     },
     {
       "id": "termux-aether",
@@ -39750,7 +40095,7 @@
       ],
       "stars": 9,
       "downloads_latest": 9,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/wallentx/termux-aether-app/releases/download/v1000.0.2/termux-app-aether-v1000.0.2-arm64-v8a.apk",
       "download_kind": "github-release",
       "distribution": "release-apk",
@@ -39768,7 +40113,9 @@
       "note": "溯源结论：原记录 source 标 official-web 且错指 F-Droid。实际自有仓库 wallentx/termux-aether-app（★9，fork of termux/termux-app），release v1000.0.2 附 APK 与源码 tarball",
       "pushed_at": "2026-10-31T18:36:33Z",
       "summary": "Termux is an Android terminal application and Linux environment.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 206,
+      "downloads_lifetime": 206
     },
     {
       "id": "eden-sx2a-moceure",
@@ -39919,7 +40266,7 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": 115614,
-      "downloads_basis": "lifetime",
+      "downloads_basis": "none",
       "pushed_at": "2026-10-01T13:38:47Z",
       "summary": "MiceWine is a project that aims to run Windows applications and games on Android smartphones."
     },
@@ -39977,7 +40324,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 344,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/faux123/GameNative-Mali/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -39994,7 +40341,9 @@
       ],
       "pushed_at": "2026-10-31T13:07:14Z",
       "summary": "Play the PC games you already own — from Steam, Epic and GOG — on your Android device, with cloud saves.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 388,
+      "downloads_lifetime": 388
     },
     {
       "id": "hitode-project-hitode",
@@ -40271,7 +40620,9 @@
       ],
       "pushed_at": "2026-11-06T18:02:45Z",
       "summary": "Run the original Windows releases of visual novels on Mac, iPhone, iPad and Android.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 352,
+      "downloads_lifetime": 352
     },
     {
       "id": "maxi000q-consolefivepro",
@@ -40496,7 +40847,7 @@
       ],
       "stars": 4,
       "downloads_latest": 137,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -40512,7 +40863,9 @@
       "note": " | 2026-11-04 修：platforms 原为 symbian，但 README 为 Eden 上游镜像（Switch 1 模拟器），属误抄 eka2l1-an",
       "pushed_at": "2026-09-10T05:58:29Z",
       "summary": "Eden is a free and opensource (FOSS) Switch 1 emulator, derived from Yuzu and Sudachi - started by developer Camille LaVey.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 375,
+      "downloads_lifetime": 375
     },
     {
       "id": "melonx-ios",
@@ -40761,7 +41114,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 155,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -40775,7 +41128,9 @@
         }
       ],
       "pushed_at": "2026-10-31T07:29:04Z",
-      "summary": "Vulkan feature/extension info and on-device driver tests for the PanVK Kbase driver on Mali CSF GPUs (tested: Mali-G615)."
+      "summary": "Vulkan feature/extension info and on-device driver tests for the PanVK Kbase driver on Mali CSF GPUs (tested: Mali-G615).",
+      "downloads": 13665,
+      "downloads_lifetime": 13665
     },
     {
       "id": "8cee-banjorecomp-android",
@@ -40874,7 +41229,7 @@
       ],
       "stars": 3,
       "downloads_latest": 43,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -40889,7 +41244,9 @@
       ],
       "pushed_at": "2026-07-05T02:37:17Z",
       "summary": "Symbian OS/N-Gage emulator, written in C++ 17.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 47,
+      "downloads_lifetime": 47
     },
     {
       "id": "j4mcu-builds-gamehub-lite-redmagic",
@@ -40960,7 +41317,9 @@
       ],
       "pushed_at": "2026-02-26T13:11:42Z",
       "summary": "This version of Gamehub Lite aims to reduce Input Latency and add Interpolated Frames for overall smoothness.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 724,
+      "downloads_lifetime": 724
     },
     {
       "id": "eden-ci-nightly",
@@ -41164,7 +41523,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 5,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -41180,7 +41539,9 @@
       "note": "release 资产为文档（CREDITS.md），无 APK",
       "pushed_at": "2026-10-22T05:37:00Z",
       "summary": "基于 SapphireRhodonite/SeedlessDS 的 Android NDS 模拟器改进分支，侧重双屏布局、输入响应、可绑定回溯、存档可靠性与 Vulkan 呈现。当前版本：1.0.11-shaders / versionCode 121。",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 10,
+      "downloads_lifetime": 10
     },
     {
       "id": "drastic",
@@ -41580,7 +41941,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 4646,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "builds": [
         {
@@ -41596,7 +41957,9 @@
       "note": "原 seleuco/mame4droid 不存在，实际仓库为 MAME4droid-Current",
       "pushed_at": "2026-09-20T09:18:09Z",
       "summary": "MAME4droid (Current) is an Android port of the MAME 0.289 emulator. Developed by David Valdeita (Seleuco), this project aims to provide a highly optimized, native Android experienc…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 60982,
+      "downloads_lifetime": 60982
     },
     {
       "id": "mednafen",
@@ -42203,7 +42566,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 4,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/xmy953538104/pine_CN/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
@@ -42231,7 +42594,9 @@
       ],
       "pushed_at": "2026-10-23T08:37:12Z",
       "summary": "Pine is an experimental emulator that runs on ARMv8 Android™ devices and emulates the functionality of a Nintendo Switch™ system, licensed under GNU General Public License v3.0 or…",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 81,
+      "downloads_lifetime": 81
     },
     {
       "id": "torzu-emulator",
@@ -42447,7 +42812,7 @@
       "watchers": 0,
       "downloads_total": 0,
       "downloads_latest": 43529,
-      "downloads_basis": "latest-lower-bound",
+      "downloads_basis": "lifetime",
       "download_url": "https://winlator.org/",
       "download_kind": "official-site",
       "distribution": "release-apk",
@@ -42465,7 +42830,9 @@
       "note": "溯源结论：原 repo_url 指向 github.com/winlator/releases（404），实为 cjxyz/winlator（★139，MIT）。release f0891a0 附 app-debug.apk，可直接下载。仓库最后提交 2025-03-28，已停更。官网 winlator.org 的 Download 菜单直接指 brunodev85/winlator/releases，站内无独立下载页",
       "pushed_at": "2025-03-28T21:15:52Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 77303,
+      "downloads_lifetime": 77303
     },
     {
       "id": "yuzu-citrus",
@@ -42923,8 +43290,10 @@
       ],
       "note": "证据：仓库描述「VERY experimental Nintendo Switch 2 emulator」；README 写明 derived from Eden, Yuzu and Sudachi、作者 Camille LaVey、开发主库在 git.eden-emu.dev，GitHub 是发布镜像。README 声称有 Android 构建，但 v0.1.0-rc1 的 12 个资产里没有任何 android 包，所以 hosts 只记 win/linux/macos——安卓端目前无官方分发，别让用户以为能直接装。未归入 Eden 家族：它是独立产品线（Switch 2 方向），合并会让榜上看不到这条。",
       "pushed_at": "2026-11-06T22:16:54Z",
-      "downloads_basis": "none",
-      "summary": "Eglantine is a free and opensource (FOSS) Switch 2 emulator, derived from Eden, Yuzu and Sudachi - started by developer Camille LaVey."
+      "downloads_basis": "lifetime",
+      "summary": "Eglantine is a free and opensource (FOSS) Switch 2 emulator, derived from Eden, Yuzu and Sudachi - started by developer Camille LaVey.",
+      "downloads": 616363,
+      "downloads_lifetime": 616363
     },
     {
       "id": "shirai91-nx2android",
@@ -43070,8 +43439,10 @@
       "note": "证据：仓库描述「A compatibility layer for porting Switch games to Android, one game at a time」；README 写明游戏 arm64 代码原生运行 + NVN 重放到 Vulkan，是 nxnative 的 Android 端口，且「Bring your own game files and keys」。v0.2.0 资产实测只有 nx2android-v0.2.0-windows-x64.zip 与 -macos-arm64.zip——工具本身跑桌面，产物 APK 装安卓，所以 hosts 同时记 android / windows / macos，别把「能在安卓玩」误导成「能装这个 zip」。GPU 限制写进描述：必须支持 BC 压缩纹理（Adreno / Xclipse），Mali 与 PowerVR 不行。",
       "pushed_at": "2026-11-06T16:04:07Z",
       "requires_original": true,
-      "downloads_basis": "none",
-      "summary": "Port your own Nintendo Switch games to Android, natively: the game's own arm64 code runs on the device, with the Switch's system services stood in for by a host and NVN graphics re…"
+      "downloads_basis": "lifetime",
+      "summary": "Port your own Nintendo Switch games to Android, natively: the game's own arm64 code runs on the device, with the Switch's system services stood in for by a host and NVN graphics re…",
+      "downloads": 7303,
+      "downloads_lifetime": 7303
     },
     {
       "id": "lnpandy-nx2apple",
@@ -43357,8 +43728,10 @@
       "note": "证据：README 首屏「Not an emulator. No terminal.」「Your Switch games, running on your iPhone.」；正文写明是 nxnative（seedds/nxnative）的社区 fork，fork 只加启动器与少量 patch，真正的代码重写器在 nxnative。要求 Apple silicon Mac + macOS 13，iPhone/iPad 需 iOS 26+。official 记 false：它不是 nxnative 官方，但仓库属于作者本人、非第三方重打包。提供 README.zh-CN.md / .sv / .de / .fr / .it 六语，中文用户可直接读。",
       "pushed_at": "2026-11-06T22:26:48Z",
       "requires_original": true,
-      "downloads_basis": "none",
-      "summary": "Your Switch games, running on your iPhone."
+      "downloads_basis": "lifetime",
+      "summary": "Your Switch games, running on your iPhone.",
+      "downloads": 283009,
+      "downloads_lifetime": 283009
     },
     {
       "id": "smarkyie-nsp-box",
@@ -43522,8 +43895,10 @@
       "builds": [],
       "note": "证据：仓库描述「A Switch 2 Game Packager ... with reversible emulator patching」；README 写明是 portable Windows app、无 Linux 构建、只处理「already-extracted ExeFS/RomFS」。它不是模拟器，也不是「NS1 模拟器魔改跑 NS2」——UP 主标题说的那层能力来自它给 Eglantine nx2 / Selevet / PokeDinner 打的 patch 面板。4.0.0 的 tag 在 GitHub 上是 404，资产名待 CI 核实，所以 builds 暂空。",
       "pushed_at": "2026-11-03T18:34:28Z",
-      "downloads_basis": "none",
-      "summary": "NSP Box 4.0 — Meet NUP. Create compressed NUP archives from extracted game folders, convert plaintext NSP ↔ NUP, extract selected content, and inspect or verify archives."
+      "downloads_basis": "lifetime",
+      "summary": "NSP Box 4.0 — Meet NUP. Create compressed NUP archives from extracted game folders, convert plaintext NSP ↔ NUP, extract selected content, and inspect or verify archives.",
+      "downloads": 23889,
+      "downloads_lifetime": 23889
     },
     {
       "id": "yebot32-xenra",
@@ -43663,8 +44038,10 @@
       ],
       "note": "证据：README「Xenra is an Android-focused Xbox Original and 360 emulator that runs games in XISO and ISO format only」，并写明 build upon xemu 与 Xenia Edge；资产实测为 Xenra-0.4.5-green-release.apk。仓库现挂在 Yebot32 名下，README 里的官网/Discord/GitHub 链接仍指 dev-Ali2008（创始人 Ali alsaadi），属团队改名迁移，不是第三方重打包。此前 18 个项目那批判过「信息不足」，现补：它有真实 APK、有连续版本线、能跑 XISO/ISO。",
       "pushed_at": "2026-11-03T17:31:02Z",
-      "downloads_basis": "none",
-      "summary": "Xenra is an Android-focused Xbox Original and 360 emulator that runs games in XISO and ISO format only."
+      "downloads_basis": "lifetime",
+      "summary": "Xenra is an Android-focused Xbox Original and 360 emulator that runs games in XISO and ISO format only.",
+      "downloads": 22906,
+      "downloads_lifetime": 22906
     },
     {
       "id": "xenia-project-xenia",
@@ -43977,8 +44354,10 @@
       "builds": [],
       "note": "证据：EmuCR 条目「SameBoy is a user friendly Game Boy and Game Boy Color emulator for macOS. SameBoy is extremely accurate and includes a wide range of powerful debugging features」+ 仓库 2.2k★。hosts 只记 macos：官方前端面向 macOS，Linux/Windows 走 SDL 前端但非主分发渠道，libretro 核心另计。库里 GB 有 9 条（mgba/mesen2/ares 等），缺的是「精度基准」这一档。",
       "pushed_at": "2026-11-02T21:55:19Z",
-      "downloads_basis": "none",
-      "summary": "SameBoy is an open source Game Boy (DMG) and Game Boy Color (CGB) emulator, written in portable C."
+      "downloads_basis": "lifetime",
+      "summary": "SameBoy is an open source Game Boy (DMG) and Game Boy Color (CGB) emulator, written in portable C.",
+      "downloads": 765659,
+      "downloads_lifetime": 765659
     },
     {
       "id": "par274-sharpemu",
@@ -44135,11 +44514,13 @@
       "forks": 598,
       "watchers": 105,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "EmuCR 11-01 公告带出仓库地址。此前库里 PS5 只有 Prospero/Eden 系，缺一个纯社区实验项目；它是目前 PS5 模拟器里星标最高的独立仓库。",
       "pushed_at": "2026-11-06T21:36:04Z",
-      "summary": "An experimental PlayStation 5 emulator for Windows and Linux, with experimental backward compatibility support for PlayStation 4 games."
+      "summary": "An experimental PlayStation 5 emulator for Windows and Linux, with experimental backward compatibility support for PlayStation 4 games.",
+      "downloads": 101304,
+      "downloads_lifetime": 101304
     },
     {
       "id": "vita3k-vita3k",
@@ -44246,11 +44627,13 @@
       "forks": 687,
       "watchers": 190,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "库里此前只收了 Vita3K-Android（1664★），上游本体 5942★ 缺失——收了下游漏了上游，属于结构缺口。归入 vita3k 家族。",
       "pushed_at": "2026-11-06T01:30:27Z",
-      "summary": "Vita3K is an experimental PlayStation Vita emulator for Windows, Linux, macOS and Android."
+      "summary": "Vita3K is an experimental PlayStation Vita emulator for Windows, Linux, macOS and Android.",
+      "downloads": 5541,
+      "downloads_lifetime": 5541
     },
     {
       "id": "xenia-canary-xenia-canary",
@@ -44386,11 +44769,13 @@
       "forks": 359,
       "watchers": 78,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "库里只有 xenia-project/xenia 主线；canary 是社区实际用来跑新游戏的构建线，长期漏收。归入 xenia 家族。",
       "pushed_at": "2026-11-04T16:37:59Z",
-      "summary": "Xenia Canary is an experimental fork of the Xenia emulator. For more information, see the"
+      "summary": "Xenia Canary is an experimental fork of the Xenia emulator. For more information, see the",
+      "downloads": 1137996,
+      "downloads_lifetime": 1137996
     },
     {
       "id": "trekawek-coffee-gb",
@@ -44604,14 +44989,16 @@
       "forks": 82,
       "watchers": 30,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/trekawek/coffee-gb/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "EmuCR 11-02 公告。库里 GB/GBC 只有 SameBoy/Gambatte 系，缺一个 Java 跨平台实现；1173★ 属高星遗漏。",
       "pushed_at": "2026-11-02T11:34:53Z",
       "summary": "A highly compatible Game Boy and Game Boy Color emulator for the desktop.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads": 7677,
+      "downloads_lifetime": 7677
     },
     {
       "id": "ymir-emu-ymir",
@@ -44899,11 +45286,13 @@
       "forks": 65,
       "watchers": 27,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "库里 Saturn 分区此前是 0 条，这是该平台的第一个条目。1108★，11 月仍在推送。",
       "pushed_at": "2026-11-02T12:03:40Z",
-      "summary": "A work-in-progress Sega Saturn emulator."
+      "summary": "A work-in-progress Sega Saturn emulator.",
+      "downloads": 119344,
+      "downloads_lifetime": 119344
     },
     {
       "id": "grumpycoders-pcsx-redux",
@@ -45110,11 +45499,13 @@
       "forks": 57,
       "watchers": 20,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "与 canary 并列的第二条分支构建线，586★；同样归入 xenia 家族，不单独占家族位。",
       "pushed_at": "2026-11-06T15:43:08Z",
-      "summary": "Xenia is an experimental emulator for the Xbox 360. For more information, see the"
+      "summary": "Xenia is an experimental emulator for the Xbox 360. For more information, see the",
+      "downloads": 49199,
+      "downloads_lifetime": 49199
     },
     {
       "id": "dborth-snes9xgx",
@@ -45286,11 +45677,13 @@
       "forks": 79,
       "watchers": 34,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "主机端 homebrew，不是 PC 软件；库里此前没有「跑在 Wii 上」的条目，hosts 首次引入 gamecube/wii。",
       "pushed_at": "2026-11-06T22:40:39Z",
-      "summary": "github.com/dborth/snes9xgx — GPL licensed"
+      "summary": "github.com/dborth/snes9xgx — GPL licensed",
+      "downloads": 429126,
+      "downloads_lifetime": 429126
     },
     {
       "id": "dirkwhoffmann-virtualc64",
@@ -45401,11 +45794,13 @@
       "forks": 41,
       "watchers": 27,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "库里 C64 分区此前 0 条。422★，11-02 刚发 v6.2。",
       "pushed_at": "2026-11-02T17:18:47Z",
-      "summary": "周期精确的 Commodore 64 模拟器，macOS 原生（Swift/Objective-C）。"
+      "summary": "周期精确的 Commodore 64 模拟器，macOS 原生（Swift/Objective-C）。",
+      "downloads": 61959,
+      "downloads_lifetime": 61959
     },
     {
       "id": "dirkwhoffmann-vamiga",
@@ -45516,11 +45911,13 @@
       "forks": 48,
       "watchers": 26,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "库里 Amiga 分区此前 0 条。417★。",
       "pushed_at": "2026-11-01T16:15:29Z",
-      "summary": "Amiga 500/1000/2000 模拟器，macOS 原生，与 VirtualC64 同一作者。"
+      "summary": "Amiga 500/1000/2000 模拟器，macOS 原生，与 VirtualC64 同一作者。",
+      "downloads": 56985,
+      "downloads_lifetime": 56985
     },
     {
       "id": "dborth-vbagx",
@@ -45692,11 +46089,13 @@
       "forks": 49,
       "watchers": 22,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "与 Snes9x GX 同作者同形态，350★；主机端 GBA 运行方案。",
       "pushed_at": "2026-11-06T22:41:21Z",
-      "summary": "Visual Boy Advance GX is a Game Boy / Game Boy Color / Game Boy Advance emulator for the Nintendo GameCube, Wii, and Wii U, built on VBA-M and the shared `libgui` UI/driver framewo…"
+      "summary": "Visual Boy Advance GX is a Game Boy / Game Boy Color / Game Boy Advance emulator for the Nintendo GameCube, Wii, and Wii U, built on VBA-M and the shared `libgui` UI/driver framewo…",
+      "downloads": 254488,
+      "downloads_lifetime": 254488
     },
     {
       "id": "dborth-fceugx",
@@ -45868,13 +46267,15 @@
       "forks": 57,
       "watchers": 20,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/dborth/fceugx/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "同系列第三个，336★。",
       "pushed_at": "2026-11-06T22:41:13Z",
-      "summary": "FCE Ultra GX is a Nintendo Entertainment System / Famicom emulator for the Nintendo GameCube, Wii, and Wii U, built on FCEUX and the shared `libgui` UI/driver framework."
+      "summary": "FCE Ultra GX is a Nintendo Entertainment System / Famicom emulator for the Nintendo GameCube, Wii, and Wii U, built on FCEUX and the shared `libgui` UI/driver framework.",
+      "downloads": 332456,
+      "downloads_lifetime": 332456
     },
     {
       "id": "m5devs-openrom",
@@ -46167,11 +46568,13 @@
       "forks": 7,
       "watchers": 6,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "不是模拟器，是配套工具；294★，与库里 Termux/前端类条目同层。",
       "pushed_at": "2026-11-06T10:48:24Z",
-      "summary": "🎮 Meet ROMeo — OpenROM's official mascot. Your friendly pixel-art cartridge companion for all things ROM."
+      "summary": "🎮 Meet ROMeo — OpenROM's official mascot. Your friendly pixel-art cartridge companion for all things ROM.",
+      "downloads": 7036,
+      "downloads_lifetime": 7036
     },
     {
       "id": "drhelius-geargrafx",
@@ -46659,13 +47062,15 @@
       "forks": 18,
       "watchers": 7,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/drhelius/geargrafx/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "PC Engine 分区此前只有零星条目，这是主流的独立实现；256★。",
       "pushed_at": "2026-11-06T21:34:44Z",
-      "summary": "Geargrafx is a very accurate, cross-platform TurboGrafx-16 / PC Engine / SuperGrafx / CD-ROM² / LD-ROM² emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArc…"
+      "summary": "Geargrafx is a very accurate, cross-platform TurboGrafx-16 / PC Engine / SuperGrafx / CD-ROM² / LD-ROM² emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArc…",
+      "downloads": 58911,
+      "downloads_lifetime": 58911
     },
     {
       "id": "jay-day-rmg-k",
@@ -46822,11 +47227,13 @@
       "forks": 24,
       "watchers": 3,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "N64 联机是库里空白；183★。作为前端收录，不重复计入核心模拟器。",
       "pushed_at": "2026-11-06T14:34:22Z",
-      "summary": "Rosalie's Mupen GUI is a free and open-source mupen64plus front-end written in C++."
+      "summary": "Rosalie's Mupen GUI is a free and open-source mupen64plus front-end written in C++.",
+      "downloads": 78841,
+      "downloads_lifetime": 78841
     },
     {
       "id": "copperlinehq-copperline",
@@ -47199,11 +47606,13 @@
       "forks": 18,
       "watchers": 7,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "Amiga 的第二个条目，语言栈不同（Rust）；140★，11 月仍在推送。",
       "pushed_at": "2026-11-05T18:27:57Z",
-      "summary": "Website: copperline.dev Online demo: copperline.dev/try Chat: Discord"
+      "summary": "Website: copperline.dev Online demo: copperline.dev/try Chat: Discord",
+      "downloads": 9856,
+      "downloads_lifetime": 9856
     },
     {
       "id": "shanytc-snes9x",
@@ -47676,13 +48085,15 @@
       "forks": 8,
       "watchers": 11,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/shanytc/snes9x/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "与 Snes9x GX 不是一回事（一个 PC 分支、一个 Wii 移植）；124★。",
       "pushed_at": "2026-11-05T18:39:51Z",
-      "summary": "SuperSnes9x - Portable Super Nintendo Entertainment System (TM) emulator"
+      "summary": "SuperSnes9x - Portable Super Nintendo Entertainment System (TM) emulator",
+      "downloads": 31196,
+      "downloads_lifetime": 31196
     },
     {
       "id": "shadps4-emu-shadnet",
@@ -47775,13 +48186,15 @@
       "forks": 15,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/shadps4-emu/shadnet/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "PS4 联机服务，属配套工具；78★，11 月高频构建。",
       "pushed_at": "2026-11-06T21:32:58Z",
-      "summary": "Based on RPCSN implementation, but in C++. If anyone wonders why Qt, it's because it has all the necessary components out of the box."
+      "summary": "Based on RPCSN implementation, but in C++. If anyone wonders why Qt, it's because it has all the necessary components out of the box.",
+      "downloads": 10,
+      "downloads_lifetime": 10
     },
     {
       "id": "crazyriddler-xbased",
@@ -47943,11 +48356,13 @@
       "forks": 2,
       "watchers": 3,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "初代 Xbox 分区条目稀少；73★，11-04 仍在推。",
       "pushed_at": "2026-11-06T23:22:14Z",
-      "summary": "The original Xbox, on your PC. xbased is an original Xbox emulator for Windows and Linux, developed by crazyriddler ."
+      "summary": "The original Xbox, on your PC. xbased is an original Xbox emulator for Windows and Linux, developed by crazyriddler .",
+      "downloads": 8725,
+      "downloads_lifetime": 8725
     },
     {
       "id": "ivanizag-izapple2",
@@ -48120,13 +48535,15 @@
       "forks": 13,
       "watchers": 6,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/ivanizag/izapple2/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "Apple II 分区此前为空；71★。新增平台值 apple2。",
       "pushed_at": "2026-11-04T11:48:18Z",
-      "summary": "Portable emulator of an Apple II+ or //e. Written in Go."
+      "summary": "Portable emulator of an Apple II+ or //e. Written in Go.",
+      "downloads": 2589,
+      "downloads_lifetime": 2589
     },
     {
       "id": "pcsx2-mymcpp",
@@ -48384,11 +48801,13 @@
       "forks": 5,
       "watchers": 7,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "PS2 存档工具，不与模拟器条目混计；62★。",
       "pushed_at": "2026-11-02T17:36:59Z",
-      "summary": "myMCpp is a PlayStation 2 memory card manager for .ps2 , .mc2 , .mcd , .vm2 , and raw VMC files."
+      "summary": "myMCpp is a PlayStation 2 memory card manager for .ps2 , .mc2 , .mcd , .vm2 , and raw VMC files.",
+      "downloads": 5785,
+      "downloads_lifetime": 5785
     },
     {
       "id": "eighttails-pc6001vx",
@@ -48526,11 +48945,13 @@
       "forks": 11,
       "watchers": 7,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "8 位机细分平台，此前为空；54★。新增平台值 pc-6001。",
       "pushed_at": "2026-11-02T15:31:14Z",
-      "summary": "NEC PC-6001 模拟器的跨平台版本（Qt 前端）。"
+      "summary": "NEC PC-6001 模拟器的跨平台版本（Qt 前端）。",
+      "downloads": 7051,
+      "downloads_lifetime": 7051
     },
     {
       "id": "keklick1337-rps5e",
@@ -48667,11 +49088,13 @@
       "forks": 3,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "PS5 的第二个独立实现；45★，版本仍是 v0.1.x-alpha，note 标实验。",
       "pushed_at": "2026-11-05T13:59:01Z",
-      "summary": "I started this PS5 emulator in 2025 and have worked on it in my spare time since. Many people now want a working PS5 emulator, so I'm publishing everything I've built so far."
+      "summary": "I started this PS5 emulator in 2025 and have worked on it in my spare time since. Many people now want a working PS5 emulator, so I'm publishing everything I've built so far.",
+      "downloads": 310,
+      "downloads_lifetime": 310
     },
     {
       "id": "tixul-ngpcraft-emulator",
@@ -48867,13 +49290,15 @@
       "forks": 3,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/tixul/ngpcraft_emulator/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "NGP 分区此前为空；33★，但功能完整度高于星标。新增平台值 neo-geo-pocket。",
       "pushed_at": "2026-11-04T23:11:54Z",
-      "summary": "A Neo Geo Pocket / Neo Geo Pocket Color emulator: a fast native C++ core (TLCS-900H + Z80 + K2GE video) driven by a PyQt6 desktop shell."
+      "summary": "A Neo Geo Pocket / Neo Geo Pocket Color emulator: a fast native C++ core (TLCS-900H + Z80 + K2GE video) driven by a PyQt6 desktop shell.",
+      "downloads": 4770,
+      "downloads_lifetime": 4770
     },
     {
       "id": "nixxou-zaxnes",
@@ -49030,11 +49455,13 @@
       "forks": 1,
       "watchers": 2,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "30★，小项目；收录理由是 EmuCR 上持续发版，且 NES 端缺少独立实现。",
       "pushed_at": "2026-11-04T08:04:46Z",
-      "summary": "Zaxnes is a free NES emulator that plays your games in 3D. The flat tiles and sprites of each frame become little 3D blocks, set in a scene with a real camera, lights and shadows:…"
+      "summary": "Zaxnes is a free NES emulator that plays your games in 3D. The flat tiles and sprites of each frame become little 3D blocks, set in a scene with a real camera, lights and shadows:…",
+      "downloads": 938,
+      "downloads_lifetime": 938
     },
     {
       "id": "dmanlfc-sm2-emu",
@@ -49272,11 +49699,13 @@
       "forks": 8,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "街机 Model 2 在库里只有 Model 3 相关条目；27★。",
       "pushed_at": "2026-11-06T02:50:11Z",
-      "summary": "I started this project in February 2025 to improve Model 2 emulation on Linux."
+      "summary": "I started this project in February 2025 to improve Model 2 emulation on Linux.",
+      "downloads": 2419,
+      "downloads_lifetime": 2419
     },
     {
       "id": "jberclaz-turbostage",
@@ -49469,11 +49898,13 @@
       "forks": 1,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "DOS 前端，配套 DOSBox Staging；21★。",
       "pushed_at": "2026-11-03T02:56:43Z",
-      "summary": "Relive the golden age of PC gaming — without the hassle."
+      "summary": "Relive the golden age of PC gaming — without the hassle.",
+      "downloads": 2003,
+      "downloads_lifetime": 2003
     },
     {
       "id": "habib256-pom2",
@@ -49761,13 +50192,15 @@
       "forks": 2,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/habib256/pom2/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "Apple II 的第二个条目；18★。",
       "pushed_at": "2026-11-06T21:46:14Z",
-      "summary": "Every Apple II from the 1977 ][ to the //c Plus, in NTSC and PAL, with about forty expansion cards to plug in. Play, explore and create, on your desktop or in your browser."
+      "summary": "Every Apple II from the 1977 ][ to the //c Plus, in NTSC and PAL, with about forty expansion cards to plug in. Play, explore and create, on your desktop or in your browser.",
+      "downloads": 3109,
+      "downloads_lifetime": 3109
     },
     {
       "id": "eryski-cosmou",
@@ -50063,13 +50496,15 @@
       "forks": 0,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/eryski/cosmou/releases",
       "download_kind": "github-releases",
       "builds": [],
       "note": "Wii U 分区此前为空；15★，形态更接近前端而非模拟器。",
       "pushed_at": "2026-11-06T20:24:51Z",
-      "summary": "A free Windows, Linux, macOS, Android and iPhone/iPad launcher for the Cemu Wii U emulator with a Wii U-inspired home menu."
+      "summary": "A free Windows, Linux, macOS, Android and iPhone/iPad launcher for the Cemu Wii U emulator with a Wii U-inspired home menu.",
+      "downloads": 981,
+      "downloads_lifetime": 981
     },
     {
       "id": "tovarichtch-odin",
@@ -50193,11 +50628,13 @@
       "forks": 4,
       "watchers": 2,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "Hikaru 基板此前无人覆盖；11★，属长尾平台。",
       "pushed_at": "2026-11-06T12:26:38Z",
-      "summary": "Sega Hikaru 街机模拟器（LLE），Valkyrie 的硬分叉。"
+      "summary": "Sega Hikaru 街机模拟器（LLE），Valkyrie 的硬分叉。",
+      "downloads": 2129,
+      "downloads_lifetime": 2129
     },
     {
       "id": "frantriems-vkrt-nes-remaster",
@@ -50262,11 +50699,13 @@
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [],
       "note": "3★，实验性质；收录原因是它代表了「模拟器内核与前端分离」的一种做法。",
       "pushed_at": "2026-11-04T04:55:47Z",
-      "summary": "██╗ ██╗██╗ ██╗██████╗ ████████╗ ██║ ██║██║ ██╔╝██╔══██╗╚══██╔══╝ ██║ ██║█████╔╝ ██████╔╝ ██║ ╚██╗ ██╔╝██╔═██╗ ██╔══██╗ ██║ ╚████╔╝ ██║ ██╗██║ ██║ ██║ ╚═══╝ ╚═╝ ╚═╝╚═╝ ╚═╝ ╚═╝"
+      "summary": "██╗ ██╗██╗ ██╗██████╗ ████████╗ ██║ ██║██║ ██╔╝██╔══██╗╚══██╔══╝ ██║ ██║█████╔╝ ██████╔╝ ██║ ╚██╗ ██╔╝██╔═██╗ ██╔══██╗ ██║ ╚████╔╝ ██║ ██╗██║ ██║ ██║ ╚═══╝ ╚═╝ ╚═╝╚═╝ ╚═╝ ╚═╝",
+      "downloads": 101,
+      "downloads_lifetime": 101
     },
     {
       "id": "winhub-emu-winhub",
@@ -50448,8 +50887,11 @@
       "license": "GPL-3.0",
       "topics": [],
       "pushed_at": "2026-11-06T20:38:27Z",
-      "downloads_basis": "none",
-      "summary": "✨ WinHub Your one-stop place for all your games, now on Android."
+      "downloads_basis": "lifetime",
+      "summary": "✨ WinHub Your one-stop place for all your games, now on Android.",
+      "downloads_latest": 36,
+      "downloads": 170901,
+      "downloads_lifetime": 170901
     },
     {
       "id": "gs-soft-it-lumen-emu",
@@ -50629,9 +51071,12 @@
         "vulkan"
       ],
       "pushed_at": "2026-11-04T04:55:53Z",
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "summary": "Experimental PS4 and PS5 emulation for Android, with a macOS (Apple Silicon) version in development, by GS-Soft.",
-      "logo_source": "bundled"
+      "logo_source": "bundled",
+      "downloads_latest": 35,
+      "downloads": 372,
+      "downloads_lifetime": 372
     },
     {
       "id": "zfitness-nixport",
@@ -50740,8 +51185,11 @@
       "license": null,
       "topics": [],
       "pushed_at": "2026-11-04T09:02:28Z",
-      "downloads_basis": "none",
-      "summary": "No streaming, no middleman, no root — rendering and input all happen on the phone itself."
+      "downloads_basis": "lifetime",
+      "summary": "No streaming, no middleman, no root — rendering and input all happen on the phone itself.",
+      "downloads_latest": 972,
+      "downloads": 6201,
+      "downloads_lifetime": 6201
     },
     {
       "id": "moceure-banananative",
@@ -50865,8 +51313,9 @@
       "license": "MIT",
       "topics": [],
       "pushed_at": "2026-11-05T20:11:07Z",
-      "downloads_basis": "none",
-      "summary": "Play your own copies of Donkey Kong Bananza and Mario Kart World natively on Android."
+      "downloads_basis": "latest-lower-bound",
+      "summary": "Play your own copies of Donkey Kong Bananza and Mario Kart World natively on Android.",
+      "downloads_latest": 503
     },
     {
       "id": "tasvideos-bizhawk",
@@ -51003,7 +51452,7 @@
       "forks": 486,
       "watchers": 96,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -51026,7 +51475,10 @@
       ],
       "note": "库内此前完全没有 BizHawk，是 multi 分区最大的缺口；它同时是 TAS 视频制作的事实标准，价值不止于「多跑几个平台」。EmuCR 11-06 公告带出仓库地址。",
       "pushed_at": "2026-11-02T10:29:53Z",
-      "summary": "EmuHawk is a multi-system emulator written in C#. As well as quality-of-life features for casual players, it also has recording/playback and debugging tools, making it the first ch…"
+      "summary": "EmuHawk is a multi-system emulator written in C#. As well as quality-of-life features for casual players, it also has recording/playback and debugging tools, making it the first ch…",
+      "downloads_latest": 159568,
+      "downloads": 1581113,
+      "downloads_lifetime": 1581113
     },
     {
       "id": "drhelius-gearboy",
@@ -51515,7 +51967,7 @@
       "forks": 170,
       "watchers": 45,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -51547,7 +51999,10 @@
       ],
       "note": "drhelius 的 Gear* 系列是本次一批补齐的（Gearboy/Gearsystem/Gearcoleco/Gearlynx），此前库里四个都没有，属于同作者整族遗漏。",
       "pushed_at": "2026-11-06T21:34:46Z",
-      "summary": "Gearboy is an accurate, cross-platform Game Boy / Game Boy Color / Super Game Boy emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MC…"
+      "summary": "Gearboy is an accurate, cross-platform Game Boy / Game Boy Color / Super Game Boy emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MC…",
+      "downloads_latest": 434,
+      "downloads": 65275,
+      "downloads_lifetime": 65275
     },
     {
       "id": "rosalie241-rmg",
@@ -51709,7 +52164,7 @@
       "forks": 112,
       "watchers": 27,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -51732,7 +52187,10 @@
       ],
       "note": "库里此前只有 jay-day/RMG-K 分支（183★），本体 1142★ 缺失——收了分支漏了上游。归入 rmg 家族。",
       "pushed_at": "2026-11-04T03:52:47Z",
-      "summary": "Rosalie's Mupen GUI is a free and open-source mupen64plus front-end written in C++."
+      "summary": "Rosalie's Mupen GUI is a free and open-source mupen64plus front-end written in C++.",
+      "downloads_latest": 1190,
+      "downloads": 566211,
+      "downloads_lifetime": 566211
     },
     {
       "id": "drhelius-gearsystem",
@@ -52222,7 +52680,7 @@
       "forks": 65,
       "watchers": 18,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "download_url": "https://github.com/drhelius/Gearsystem/releases",
       "download_kind": "github-releases",
       "builds": [
@@ -52256,7 +52714,10 @@
       ],
       "note": "与 Gearboy 同作者。库里 master-system/game-gear 各只有 1 条，sg-1000 此前为 0。",
       "pushed_at": "2026-11-06T21:34:48Z",
-      "summary": "Gearsystem is a very accurate, cross-platform Sega Master System / Game Gear / SG-1000 emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedd…"
+      "summary": "Gearsystem is a very accurate, cross-platform Sega Master System / Game Gear / SG-1000 emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedd…",
+      "downloads_latest": 461,
+      "downloads": 72077,
+      "downloads_lifetime": 72077
     },
     {
       "id": "nextendonetwork-ryujinx-nextendo",
@@ -52438,7 +52899,7 @@
       "forks": 50,
       "watchers": 9,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "latest-lower-bound",
       "builds": [
         {
           "host": "windows",
@@ -52461,7 +52922,8 @@
       ],
       "note": "用户确认收（我们只做索引与搬运，不对项目合法性背书）。与库内 ryujinx 系并列，归入 Ryujinx 系。联机依赖其私有账号服务，可用性未实测。",
       "pushed_at": "2026-11-06T05:51:11Z",
-      "summary": "Ryujinx 分支，内置 Nextendo 账号与联机服务，主打本地/在线多人。"
+      "summary": "Ryujinx 分支，内置 Nextendo 账号与联机服务，主打本地/在线多人。",
+      "downloads_latest": 675
     },
     {
       "id": "arignir-hades",
@@ -52611,7 +53073,7 @@
       "forks": 14,
       "watchers": 7,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -52643,7 +53105,10 @@
       ],
       "note": "库内 GBA 条目偏安卓端，缺一个现代桌面原生实现；258★ 但增势快，本月仍在提交。",
       "pushed_at": "2026-10-31T11:42:48Z",
-      "summary": "Hades is still under heavy development but it aims to have a decent balance between usability, speed and accuracy."
+      "summary": "Hades is still under heavy development but it aims to have a decent balance between usability, speed and accuracy.",
+      "downloads_latest": 1312,
+      "downloads": 7096,
+      "downloads_lifetime": 7096
     },
     {
       "id": "mattias800-prosper",
@@ -52860,7 +53325,7 @@
       "forks": 12,
       "watchers": 4,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -52883,7 +53348,10 @@
       ],
       "note": "用户确认收。库内 PS5 已有 kytyps5 / sharpemu / rps5e 三条，这是第四条且走不同技术路线（重编译而非翻译），保留作对照。",
       "pushed_at": "2026-11-04T07:55:58Z",
-      "summary": "Native execution of PS5 game dumps on Linux and Windows."
+      "summary": "Native execution of PS5 game dumps on Linux and Windows.",
+      "downloads_latest": 279,
+      "downloads": 1383,
+      "downloads_lifetime": 1383
     },
     {
       "id": "colinpitrat-caprice32",
@@ -53019,7 +53487,7 @@
       "forks": 50,
       "watchers": 16,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -53042,7 +53510,10 @@
       ],
       "note": "Amstrad CPC 平台此前 0 条，这是该平台第一个条目。187★，长期维护。",
       "pushed_at": "2026-10-29T16:20:41Z",
-      "summary": "Caprice32 is a software emulator of the Amstrad CPC 8-bit home computer series running on Linux, macOS and Windows."
+      "summary": "Caprice32 is a software emulator of the Amstrad CPC 8-bit home computer series running on Linux, macOS and Windows.",
+      "downloads_latest": 118,
+      "downloads": 2447,
+      "downloads_lifetime": 2447
     },
     {
       "id": "drhelius-gearcoleco",
@@ -53525,7 +53996,7 @@
       "forks": 28,
       "watchers": 3,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -53557,7 +54028,10 @@
       ],
       "note": "ColecoVision 平台此前 0 条。drhelius 系列第四个项目。",
       "pushed_at": "2026-11-06T21:34:50Z",
-      "summary": "Gearcoleco is a very accurate, cross-platform ColecoVision and Coleco ADAM emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MCP serve…"
+      "summary": "Gearcoleco is a very accurate, cross-platform ColecoVision and Coleco ADAM emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MCP serve…",
+      "downloads_latest": 285,
+      "downloads": 28800,
+      "downloads_lifetime": 28800
     },
     {
       "id": "drhelius-gearlynx",
@@ -54045,7 +54519,7 @@
       "forks": 12,
       "watchers": 5,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -54077,7 +54551,10 @@
       ],
       "note": "Atari Lynx 此前只有 libretro 的 Handy 核心（16★），缺一个独立可执行实现。",
       "pushed_at": "2026-11-04T19:35:43Z",
-      "summary": "Gearlynx is a very accurate, cross-platform Atari Lynx emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MCP server for AI debugging a…"
+      "summary": "Gearlynx is a very accurate, cross-platform Atari Lynx emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MCP server for AI debugging a…",
+      "downloads_latest": 131,
+      "downloads": 32892,
+      "downloads_lifetime": 32892
     },
     {
       "id": "istark-ps5pcem",
@@ -54279,7 +54756,7 @@
       "forks": 2,
       "watchers": 3,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -54302,7 +54779,10 @@
       ],
       "note": "用户确认收。80★，功能完整度低，note 标注「实验性」以免用户误以为可用；收它的理由是 PS5 是库内最薄的平台（10 条），需要尽量铺开候选面。",
       "pushed_at": "2026-11-05T00:28:25Z",
-      "summary": "Experimental PlayStation 5 emulation and interoperability research in Zig Native guest execution · RDNA2 shader translation · Vulkan / DirectX 12 rendering · Windows / Linux launch…"
+      "summary": "Experimental PlayStation 5 emulation and interoperability research in Zig Native guest execution · RDNA2 shader translation · Vulkan / DirectX 12 rendering · Windows / Linux launch…",
+      "downloads_latest": 552,
+      "downloads": 6304,
+      "downloads_lifetime": 6304
     },
     {
       "id": "blueminder-supermodel-dojo",
@@ -54465,7 +54945,7 @@
       "forks": 5,
       "watchers": 6,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -54497,7 +54977,10 @@
       ],
       "note": "Model 3 平台库内只有 trzy/supermodel3 一条。本批一次收三个衍生（Dojo 联机 / Vulkan 重写 / Sinden 光枪），分别解决原版没有的联机、渲染后端、光枪支持，不算重复。归入 supermodel3 家族。",
       "pushed_at": "2026-11-03T17:41:06Z",
-      "summary": "Supermodel emulates Sega's Model 3 arcade platform, allowing you to relive state-of-the-art 3D arcade gaming as it existed from 1996 through 1999."
+      "summary": "Supermodel emulates Sega's Model 3 arcade platform, allowing you to relive state-of-the-art 3D arcade gaming as it existed from 1996 through 1999.",
+      "downloads_latest": 255,
+      "downloads": 4500,
+      "downloads_lifetime": 4500
     },
     {
       "id": "igloo-garage-model-3-vulkan",
@@ -54659,7 +55142,7 @@
       "forks": 2,
       "watchers": 4,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "macos",
@@ -54682,7 +55165,10 @@
       ],
       "note": "与 supermodel-dojo 同一上游、不同侧重：这条换的是渲染后端，原版只有 OpenGL。归入 supermodel3 家族。",
       "pushed_at": "2026-11-03T06:53:28Z",
-      "summary": "A modern, standalone Sega Model 3 arcade emulator powered by pure Vulkan 1.3 & SDL3."
+      "summary": "A modern, standalone Sega Model 3 arcade emulator powered by pure Vulkan 1.3 & SDL3.",
+      "downloads_latest": 125,
+      "downloads": 2565,
+      "downloads_lifetime": 2565
     },
     {
       "id": "dirtbagxon-model3emu-code-sinden",
@@ -54845,7 +55331,7 @@
       "forks": 10,
       "watchers": 8,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -54877,7 +55363,10 @@
       ],
       "note": "第三条 Model 3 衍生，价值在光枪外设支持（原版无）。归入 supermodel3 家族。",
       "pushed_at": "2026-11-06T17:16:13Z",
-      "summary": "This is a fork of Supermodel to add native Sinden light gun support."
+      "summary": "This is a fork of Supermodel to add native Sinden light gun support.",
+      "downloads_latest": 12,
+      "downloads": 14311,
+      "downloads_lifetime": 14311
     },
     {
       "id": "mentalfoundry-pokket",
@@ -55013,7 +55502,7 @@
       "forks": 0,
       "watchers": 1,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -55027,7 +55516,10 @@
       ],
       "note": "PocketStation 平台此前 0 条，这是第一个条目；以 libretro 核心形态存在，runtime 标 libretro。",
       "pushed_at": "2026-11-05T03:43:47Z",
-      "summary": "Libretro builds: the buildbot core now has a new name. Install Pokket from the core downloader and delete the old pokketstation core."
+      "summary": "Libretro builds: the buildbot core now has a new name. Install Pokket from the core downloader and delete the old pokketstation core.",
+      "downloads_latest": 43,
+      "downloads": 971,
+      "downloads_lifetime": 971
     },
     {
       "id": "dborth-dosbox-wii",
@@ -55149,10 +55641,12 @@
       "forks": 12,
       "watchers": 10,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "note": "与库内 snes9xgx / vbagx 同作者同形态（主机端 homebrew），hosts 用 gamecube/wii 而非 PC。",
       "pushed_at": "2026-11-06T22:23:52Z",
-      "summary": "github.com/dborth/dosbox-wii — GPL licensed"
+      "summary": "github.com/dborth/dosbox-wii — GPL licensed",
+      "downloads": 6970,
+      "downloads_lifetime": 6970
     },
     {
       "id": "p2000t-m2000",
@@ -55320,7 +55814,7 @@
       "forks": 7,
       "watchers": 7,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -55352,7 +55846,10 @@
       ],
       "note": "Philips P2000 平台此前 0 条。15★ 但为该平台唯一开源实现，收录价值在覆盖而非热度。",
       "pushed_at": "2026-11-05T16:17:18Z",
-      "summary": "Windows - standalone app Linux - standalone app macOS - standalone app RetroArch (Libretro) - running the M2000 core in RetroArch P2000T Web Player - runs from your browser"
+      "summary": "Windows - standalone app Linux - standalone app macOS - standalone app RetroArch (Libretro) - running the M2000 core in RetroArch P2000T Web Player - runs from your browser",
+      "downloads_latest": 70,
+      "downloads": 1217,
+      "downloads_lifetime": 1217
     },
     {
       "id": "zortos293-lichii",
@@ -55690,7 +56187,7 @@
       "forks": 351,
       "watchers": 45,
       "downloads_total": null,
-      "downloads_basis": "none",
+      "downloads_basis": "lifetime",
       "builds": [
         {
           "host": "windows",
@@ -55722,7 +56219,10 @@
       ],
       "note": "用户确认收（只做搬运不做背书）。与库内 djihads80/eglantine 同作者、同为 Switch 2 实验项目，星标增长异常快，note 标注「实验性、可用性未验证」。",
       "pushed_at": "2026-11-06T20:43:49Z",
-      "summary": "Lichii is an experimental, open-source Nintendo Switch and Switch 2 emulator written in C++."
+      "summary": "Lichii is an experimental, open-source Nintendo Switch and Switch 2 emulator written in C++.",
+      "downloads_latest": 64762,
+      "downloads": 958957,
+      "downloads_lifetime": 958957
     }
   ]
 }
