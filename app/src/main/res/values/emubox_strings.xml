@@ -439,6 +439,9 @@
     <string name="about_translation_by">by moon279</string>
     <string name="about_upstream">Based on EmuHub-APP (MIT) by Rodrig02005</string>
     <string name="about_license">MIT License</string>
+    <string name="about_project">Project</string>
+    <string name="about_feedback">Feedback</string>
+    <string name="about_support">Support the developer</string>
     <string name="driver_compare_title">Compare Drivers</string>
     <string name="driver_news_title">Driver updates</string>
     <string name="driver_news_empty">No update records yet. Tap refresh to fetch the latest releases.</string>

@@ -1941,7 +1941,23 @@ private fun AboutCard() {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            Spacer(Modifier.height(12.dp))
+            Spacer(Modifier.height(6.dp))
+            Column {
+                listOf(
+                    appString(R.string.about_project) to "https://github.com/mihsian77/Emubox",
+                    appString(R.string.about_feedback) to "https://github.com/mihsian77/Emubox/issues",
+                    appString(R.string.about_support) to "https://afdian.com/a/moon279"
+                ).forEach { (label, url) ->
+                    TextButton(
+                        onClick = { openNewsLink(context, url) },
+                        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 0.dp),
+                        modifier = Modifier.height(34.dp)
+                    ) {
+                        Text(label, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+            }
+            Spacer(Modifier.height(6.dp))
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
