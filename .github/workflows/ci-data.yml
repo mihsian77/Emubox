@@ -60,3 +60,17 @@ jobs:
           git diff --exit-code emulator-index.json emulator-details-*.json \
             app/src/main/assets/emulator-offline.json \
             || (echo "::error::registry 改了但索引没重新生成，本地跑 python3 scripts/build_index.py" && exit 1)
+
+  profile-check:
+    name: 驱动/组件说明是否最新
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # 驱动页每条源的「给谁用 / 怎么装」由 catalog/source-profiles.json 手写文案
+      # + driver-registry.json 的字段合成。注册表新增源却忘了补文案时，
+      # 卡片上就只剩一行作者简介，用户看不出该不该装。
+      - name: 重新生成源说明，检查是否与注册表同步
+        run: |
+          python3 scripts/build_source_profiles.py
+          git diff --exit-code app/src/main/assets/source-profiles.json \
+            || (echo "::error::source-profiles.json 与注册表不同步，本地跑 python3 scripts/build_source_profiles.py" && exit 1)

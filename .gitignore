@@ -50,5 +50,6 @@ resolve-report.json
 # 本地开发手动放入，CI 通过 DRIVERCHECK_TOKEN 下载，不入公开仓库
 app/libs/*.aar
 
-# README 抓取缓存（fetch_summaries.py 的中间产物，可重建）
+# README 抓取缓存（fetch_summaries.py / fetch_source_profiles.py 的中间产物，可重建）
 data/readme-cache/
+data/source-readme/

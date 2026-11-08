@@ -66,6 +66,13 @@ BOOL_FIELDS = ["official", "dead", "needs_review", "archived"]
 
 URL_RE = re.compile(r"^https?://", re.I)
 
+# 网盘 / 搬运站：这些域名即使在条目里出现也只是「有人转存了一份」，
+# 不构成一手来源。历史上 40 多条只有 123 盘镜像的条目已经全部复核清掉，
+# 这条规则防止它们再被批量录回来。
+NETDISK_RE = re.compile(
+    r"(123pan|123684|123865|123912|pan\.baidu\.com|aliyundrive|alipan\.com|"
+    r"pan\.quark\.cn|lanzou[a-z]?\.com|9k9k|huangt\.cn|ctfile|weiyun\.com)", re.I)
+
 
 def check_entry(path, i, e):
     p = []
@@ -122,6 +129,16 @@ def check_entry(path, i, e):
         v = (e.get(k) or "").strip()
         if v and not URL_RE.match(v) and not v.startswith("icons/"):
             p.append(f"{where}: {k} 不是 http(s) 或 icons/ 路径：{v[:60]}")
+
+    # 网盘/搬运站一律不算来源
+    for k in ("homepage", "repo_url", "download_url", "latest_apk_url"):
+        v = e.get(k) or ""
+        if NETDISK_RE.search(v):
+            p.append(f"{where}: {k} 指向网盘/搬运站，不能作为分发来源：{v[:70]}")
+
+    # 停更条目必须写清停更原因，否则读者只看到一个灰掉的名字
+    if e.get("dead") and not (e.get("dead_reason") or "").strip():
+        p.append(f"{where}: dead=true 但缺 dead_reason")
 
     # 安装包必须是 apk/aab，不能把 png/zip 当下载按钮（历史上真发生过）
     apk = (e.get("latest_apk_url") or "").lower()
