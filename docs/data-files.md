@@ -31,12 +31,14 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 | `emulator-retired.json` | 人工 | 已退役模拟器记录（含复核理由） |
 | `catalog/source-profiles.json` | `build_source_profiles.py` | 驱动/组件说明的手写文案（可直接改，改完重跑脚本） |
 
-## 审计报告（人工）
+## 审计产物（不入库）
 
-| 文件 | 说明 |
-| --- | --- |
-| `download-source-audit.json` | 下载源分级审计 |
-| `schema-audit.json` | 分类体系审计 |
+| 文件 | 生成脚本 | 说明 |
+| --- | --- | --- |
+| `download-source-audit.json` | `audit_download_sources.py` | 下载源分级审计 |
+| `schema-audit.json` | `migrate_schema.py` | 分类体系证据 |
+
+两者都是核对用的中间结果，跑完看完即可，已在 `.gitignore` 里排除。
 
 ## 已删除
 
