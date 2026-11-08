@@ -3188,6 +3188,62 @@ private fun CollapsedSourceHint(name: String, latestPublishedAt: String?) {
 }
 
 /**
+ * 「给谁用 · 怎么装 · 注意」三行说明块。
+ *
+ * 驱动和组件页以前只给一行作者简介（「稳定版 Turnip 构建」这种），
+ * 用户还得自己判断这包适不适合自己的机器、下完往哪儿放。
+ * 这里把三件事并排摊开：适用机型/GPU、按顺序的安装步骤、什么时候别用。
+ * 文案来自 assets/source-profiles.json，读不到就整块不渲染。
+ */
+@Composable
+private fun UsageBlock(profile: SourceProfile?, modifier: Modifier = Modifier) {
+    if (profile == null || profile.isEmpty) return
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(14.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.38f)
+    ) {
+        Column(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            if (profile.fit.isNotBlank()) {
+                UsageRow("给谁用", profile.fit, MaterialTheme.colorScheme.onSurface)
+            }
+            if (profile.how.isNotEmpty()) {
+                UsageRow(
+                    "怎么装",
+                    profile.how.mapIndexed { i, step -> "${i + 1}. $step" }.joinToString("\n"),
+                    MaterialTheme.colorScheme.onSurface
+                )
+            }
+            if (profile.caution.isNotBlank()) {
+                UsageRow("注意", profile.caution, MaterialTheme.colorScheme.tertiary)
+            }
+        }
+    }
+}
+
+@Composable
+private fun UsageRow(label: String, value: String, valueColor: Color) {
+    Row(verticalAlignment = Alignment.Top) {
+        Text(
+            label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.width(44.dp).padding(top = 1.dp)
+        )
+        Text(
+            value,
+            style = MaterialTheme.typography.bodySmall,
+            color = valueColor,
+            lineHeight = 17.sp,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+/**
  * 专区大标题（驱动专区 / 组件专区）。
  *
  * 曾经右侧挂一个「实时来源 / 内置兜底」的 chip：数据来自远端还是内置。
@@ -3970,6 +4026,10 @@ fun TurnipDriverSection(
     downloadLabel: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
+    val profileCtx = LocalContext.current
+    val profile = remember(currentSource?.id) {
+        SourceProfiles.ofSource(profileCtx, currentSource?.id)
+    }
     // 区块默认折叠：与组件专区一致，一屏可浏览全部驱动大区
     var expanded by rememberSaveable(selectionKey) { mutableStateOf(false) }
     // I1：外部触发展开（切换来源后自动打开对应文件列表）
@@ -4005,6 +4065,21 @@ fun TurnipDriverSection(
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title ?: appString(R.string.turnip_driver), style = MaterialTheme.typography.titleSmall)
+                    // 折叠时也要能一眼看出「这包给谁用」：取人工核定文案，没有就退回作者简介
+                    if (!expanded) {
+                        val fitLine = profile?.fit?.takeIf { it.isNotBlank() }
+                            ?: currentSource?.description
+                        if (!fitLine.isNullOrBlank()) {
+                            Text(
+                                fitLine,
+                                style = MaterialTheme.typography.bodySmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(top = 2.dp)
+                            )
+                        }
+                    }
                     if (expanded) {
                         // I2：简介可点击展开/收起，解决长简介截断无法查看全文
                         var descExpanded by rememberSaveable(selectionKey + ":desc") { mutableStateOf(false) }
@@ -4047,6 +4122,8 @@ fun TurnipDriverSection(
                 modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
+
+            UsageBlock(profile)
 
             if (currentSource != null) {
                 val currentCategory = turnipCategoryOf(currentSource, adrenoSeries)
@@ -4798,6 +4875,10 @@ title: String,
     expandTrigger: String? = null
 ) {
     val currentSource = sources.firstOrNull { it.id == currentSourceId } ?: sources.firstOrNull()
+    val profileCtx = LocalContext.current
+    val profile = remember(currentSource?.id) {
+        SourceProfiles.ofSource(profileCtx, currentSource?.id)
+    }
     // 高通区块默认折叠：与 Turnip/PanVK 大区一致
     var expanded by rememberSaveable(selectionKey) { mutableStateOf(false) }
     // I1：外部触发展开（切换来源后自动打开对应文件列表）
@@ -4830,6 +4911,20 @@ title: String,
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(title, style = MaterialTheme.typography.titleSmall)
+                    if (!expanded) {
+                        val fitLine = profile?.fit?.takeIf { it.isNotBlank() }
+                            ?: currentSource?.description
+                        if (!fitLine.isNullOrBlank()) {
+                            Text(
+                                fitLine,
+                                style = MaterialTheme.typography.bodySmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(top = 2.dp)
+                            )
+                        }
+                    }
                     if (expanded) {
                         // I2：简介可点击展开/收起，解决长简介截断无法查看全文
                         var descExpanded by rememberSaveable(selectionKey + ":desc") { mutableStateOf(false) }
@@ -4865,6 +4960,8 @@ title: String,
                 modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
+            UsageBlock(profile)
+
             if (currentSource != null) {
                 SourcePickerCard(
                     title = appString(R.string.driver_source),
@@ -5858,6 +5955,11 @@ fun ComponentSection(
 
     // 折叠状态：默认收起，一屏可浏览全部类型
     var expanded by rememberSaveable(type) { mutableStateOf(false) }
+    val profileCtx = LocalContext.current
+    val typeProfile = remember(type) { SourceProfiles.ofComponentType(profileCtx, type) }
+    val sourceProfile = remember(currentSource.id) {
+        SourceProfiles.ofSource(profileCtx, currentSource.id)
+    }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -5883,6 +5985,17 @@ fun ComponentSection(
                 Spacer(Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(type, style = MaterialTheme.typography.titleMedium)
+                    // 「给谁用」压到折叠态：一眼能判断这个组件要不要装
+                    val fitLine = typeProfile?.fit?.takeIf { it.isNotBlank() }
+                        ?: componentSubtitle(type)
+                    Text(
+                        fitLine,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(top = 1.dp)
+                    )
                     Text(
                         buildString {
                             append("${components.size} ${appString(R.string.version)} · ${currentSource.name}")
@@ -5927,6 +6040,10 @@ fun ComponentSection(
                         title = type,
                         description = componentSubtitle(type)
                     )
+
+                    // 组件类型通用说明 + 当前来源的补充说明（没有文案就不占位）
+                    UsageBlock(typeProfile)
+                    UsageBlock(sourceProfile)
 
                     SourcePickerCard(
                         title = appString(R.string.source_type, type),

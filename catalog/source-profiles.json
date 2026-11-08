@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-08",
+  "note": "驱动/组件源的「给谁用 + 怎么装 + 注意」文案。只写能从源仓库 README 或发布说明里读到的事实，不猜机型、不编兼容性。sources 按 catalog.json 的源 id 索引，componentTypes 按组件类型名索引。",
+  "sources": {
+    "stevenmxz": {
+      "fit": "骁龙全系首选。6xx/7xx 用 v26 稳定版，8xx 用 Gen8 / Rutabaga 包",
+      "how": [
+        "下载 .adpkg 或 .zip 驱动包",
+        "模拟器「设置 → 驱动」里导入并选中",
+        "回到游戏重启（有的模拟器要重开容器）"
+      ],
+      "caution": "同一仓库里还发高通闭源驱动，别和 Turnip 包混装；8xx 用错包会花屏"
+    },
+    "whitebelyash": {
+      "fit": "Adreno 6xx–8xx 通用。8xx 想跟上游最新进度就选它（基于 mesa-unified turnip/gen8 自己补丁）",
+      "how": [
+        "按系列选 A8XX / Mainline Turnip 包",
+        "导入 AdrenoTools 类模拟器后选中",
+        "同一系列取日期最新的那个"
+      ],
+      "caution": "每月 1 日、15 日自动构建，未逐机型验证；A8XX 除 gralloc 外已接近上游可用，出问题换回 StevenMXZ 稳定版"
+    },
+    "k11mch1": {
+      "fit": "Adreno 6xx/7xx 通用，维护时间最长。README 明确支持 Vita3K、Dolphin、PPSSPP、Winlator Bionic",
+      "how": [
+        "按目标模拟器下载对应的 Turnip .adpkg",
+        "在该模拟器的驱动页导入",
+        "Winlator Bionic 在容器「显卡驱动」里加载"
+      ],
+      "caution": "只发 6xx/7xx，8xx 新芯片不覆盖；Skyline 已停止开发，相关包仅存档"
+    },
+    "mrpurple": {
+      "fit": "想一个包通吃 6xx/7xx/8xx 时用。作者做的是 A6xx/A7xx/A8xx 统一 Turnip 构建",
+      "how": [
+        "下载 Turnip / vturnip / turnip_mrpurple 包",
+        "导入模拟器驱动页选中"
+      ],
+      "caution": "README 是空的，兼容性只能以发布说明为准，没有逐机型承诺"
+    },
+    "banner": {
+      "fit": "追新版 Mesa 的用户。这是每日 CI 构建的前沿 Turnip，上游修复当天就能拿到",
+      "how": [
+        "下载当日构建的 zip",
+        "导入后选中试玩",
+        "保留上一版安装包，随时回退"
+      ],
+      "caution": "未经测试的前沿构建，可能崩或花屏；主力机建议同时留一份稳定版"
+    },
+    "s1mptom": {
+      "fit": "只有 Adreno 830/840（骁龙 8 Elite 一代/二代）需要。上游 Mesa 加 GPU enablement 补丁，为 Eden 打过适配",
+      "how": [
+        "下载 CI 产物（zip）",
+        "在 Eden 的「驱动」里导入并选中"
+      ],
+      "caution": "针对 Eden 调优，其它模拟器和 Winlator 没有保证"
+    },
+    "wintermist010-a810": {
+      "fit": "Adreno 810/812 专用（骁龙 7s Gen 3、6 Gen 4、7s Gen 4 等 A81X 机型）",
+      "how": [
+        "选 Turnip-A81X-V.zip（README 标为推荐的 -N 构建）",
+        "导入 AdrenoTools 后选中",
+        "带 -sync 的是时间线同步补丁版，默认不选"
+      ],
+      "caution": "实验性项目：可能花屏、崩溃、掉帧；作者要求别把 bug 报给 Mesa 或 whitebelyash"
+    },
+    "diskdvd-a8xx": {
+      "fit": "Adreno 810/829 想试新补丁时用。基于 whitebelyash 的 gen8，额外加了 A8XX 补丁",
+      "how": [
+        "下载 zip 导入",
+        "坏了就换回 whitebelyash 稳定包"
+      ],
+      "caution": "作者自己写明：仓库里所有改动都是实验性的，可能花屏、启动崩溃、容器损坏"
+    },
+    "vauzi17-710": {
+      "fit": "骁龙 6 Gen 1/3、7s Gen 2、7 Gen 3/4、7s Gen 3/4 等 Adreno 710/720/722/810 机型，做了专门调优",
+      "how": [
+        "Switch 模拟器（Eden 等）选 -sw 包",
+        "Winlator 跑 DX 游戏选 -win 包",
+        "其它场景用通用包"
+      ],
+      "caution": "调优只针对上面几款 GPU，其余 6xx/7xx/8xx 属于「上游支持范围」而非专用优化"
+    },
+    "panvk-g720": {
+      "fit": "只有 Mali-G720（天玑 9300/9200+ 系）用。把 Mesa PanVK 通过 Kbase/CSF 直接跑到 Mali 上",
+      "how": [
+        "下载 PanVK-G720 的 zip",
+        "Winlator 容器「显卡驱动」里导入",
+        "内核需支持 Kbase/CSF，否则加载不了"
+      ],
+      "caution": "实验项目，README 明确警告可能卡死应用、GPU 故障、需要重启设备"
+    },
+    "stevenmxz-qualcomm": {
+      "fit": "想用高通官方闭源驱动（而不是开源 Turnip）时用。部分游戏在闭源驱动上兼容性更好",
+      "how": [
+        "下载 Qualcomm 开头的驱动包",
+        "导入为系统/模拟器驱动",
+        "与 Turnip 二选一，不要叠装"
+      ],
+      "caution": "闭源包和具体机型、系统版本绑定，装错会黑屏；装之前记下原驱动，方便回退"
+    },
+    "k11mch1-qualcomm": {
+      "fit": "同上，覆盖面更广：从各代骁龙设备里提取的原厂驱动包",
+      "how": [
+        "按机型/代次选包",
+        "导入后选中，一次只装一个"
+      ],
+      "caution": "提取包不保证和你机器的 GPU 版本对得上，版本号差太多容易起不来"
+    },
+    "stevenmxz-collection": {
+      "fit": "只给 Adreno 8xx 老设备补历史版本用（2026-01 已停更）",
+      "how": [
+        "当作存档查：需要某个旧版时才来下载",
+        "下载后按常规流程导入"
+      ],
+      "caution": "已停更，新设备不要用"
+    },
+    "winnative": {
+      "fit": "归档清单，仅当其它组件源缺某个版本时来翻（与 WinNative-Components 81/117 重叠）",
+      "how": [
+        "选组件类型 → 选版本 → 下载",
+        "Winlator 容器里选同名版本"
+      ],
+      "caution": "已归档，版本偏旧"
+    },
+    "xnick": {
+      "fit": "主力组件源：Wine / Box64 / DXVK 版本最全，含 Sarek、GPLAsync 分支",
+      "how": [
+        "选组件类型 → 选版本 → 下载到 Components 目录",
+        "在 Winlator 容器「组件」里切成同名版本"
+      ],
+      "caution": "夜间构建，个别版本会起不来，留一个稳定版兜底"
+    },
+    "banner-components": {
+      "fit": "想追 Winlator 夜间组件（更新的 Wine / DXVK / FEXCore）时用",
+      "how": [
+        "选类型 → 选版本 → 下载",
+        "容器组件里切换"
+      ],
+      "caution": "夜间版不稳定，出问题先切回主线版本"
+    },
+    "ref4ik": {
+      "fit": "备选合集，Adrenotools 场景下的 Wine / Box64 / DXVK 打包",
+      "how": [
+        "选类型 → 选版本 → 下载",
+        "容器组件里切换"
+      ],
+      "caution": "清单更新不规律，版本比主力源旧"
+    },
+    "arihany": {
+      "fit": "要 .wcp 格式包时来这儿：DXVK / FEXCore / VKD3D 都有，更新较快",
+      "how": [
+        "下载 .wcp 包",
+        "Winlator 组件里导入"
+      ],
+      "caution": "第三方汇总，遇到问题先换回主源同名版本对照"
+    },
+    "stevenmxz-wcp": {
+      "fit": "和 StevenMXZ 驱动配套的组件包（Wine / DXVK 等）",
+      "how": [
+        "下载 .wcp",
+        "Winlator 组件里导入"
+      ],
+      "caution": "以 .wcp 打包为主，老版本 Winlator 可能不认"
+    }
+  },
+  "componentTypes": {
+    "Wine": {
+      "fit": "所有 Windows 程序的地基。版本新 = 支持更多 API；个别老游戏反而要旧版",
+      "how": [
+        "Winlator 容器设置里选 Wine 版本",
+        "换版本等于换一套注册表环境，进容器后要重新配置"
+      ],
+      "caution": "起不来先别急着换 DXVK，多半是 Wine 版本不对"
+    },
+    "Proton": {
+      "fit": "Steam 游戏和依赖一堆 Windows 运行库的大作。Valve 的 Wine 分支，自带 DXVK/VKD3D 打包",
+      "how": [
+        "容器里选 Proton 版本",
+        "再单独挑 DXVK / VKD3D 版本一起调"
+      ],
+      "caution": "包体大、启动慢，小工具类程序用 Wine 更轻"
+    },
+    "Box64": {
+      "fit": "把 x86_64 指令翻译成 ARM。所有 x86_64 Windows 程序都要经过它，DXVK 也靠它跑",
+      "how": [
+        "容器设置里选 Box64 版本",
+        "和 Wine / DXVK 版本配套换"
+      ],
+      "caution": "32 位程序要靠 WOWBox64，装 64 位版跑不了 32 位 exe"
+    },
+    "WOWBox64": {
+      "fit": "32 位 Windows 程序（老游戏、老工具）的翻译层",
+      "how": [
+        "和 Box64 一起在容器设置里选",
+        "64 位程序不需要装它"
+      ],
+      "caution": "只有 32 位 exe 报「不是有效的 Win32 应用」时才需要换它"
+    },
+    "DXVK": {
+      "fit": "DirectX 9/10/11 游戏转 Vulkan。黑屏、花屏、掉帧优先换 DXVK 版本",
+      "how": [
+        "容器里选 DXVK 版本",
+        "Sarek 分支偏新，GPLAsync 异步编译减少卡顿"
+      ],
+      "caution": "DX12 游戏不吃 DXVK，要用 VKD3D；换完记得清容器缓存"
+    },
+    "FEXCore": {
+      "fit": "另一套 x86 → ARM64 翻译器。Box64 跑不动的程序可以试，新硬件上有时更快",
+      "how": [
+        "容器设置里切换 CPU 翻译器为 FEXCore",
+        "配合同一版本的 DXVK 使用"
+      ],
+      "caution": "兼容性不如 Box64，出问题先切回 Box64 对照"
+    },
+    "VKD3D": {
+      "fit": "DirectX 12 游戏转 Vulkan。只有 DX12 游戏需要",
+      "how": [
+        "容器里单独选 VKD3D 版本",
+        "和 DXVK 版本分开调"
+      ],
+      "caution": "DX12 对驱动要求更高，Adreno 6xx 老机型基本跑不动"
+    },
+    "D7VK": {
+      "fit": "Direct3D 7 老游戏（1998–2002 年那批：暗黑破坏神 2、反恐精英 1.6 时代）",
+      "how": [
+        "当作 DXVK 的替代装载",
+        "只对 D3D7 程序生效"
+      ],
+      "caution": "新游戏装它没用，别和 DXVK 同时装"
+    }
+  }
+}
