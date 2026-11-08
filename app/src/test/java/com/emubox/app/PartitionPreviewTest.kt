@@ -54,6 +54,12 @@ class PartitionPreviewTest {
             .bufferedReader().readText()
 
     /** 仓库根目录下的数据文件（emulator-registry.json 在仓库根，不在 assets） */
+    /** assets/icons/<id>.webp 存在就用本地文件，模拟 App 的「本地图标优先」 */
+    private fun localIconOr(id: String, remote: String): String {
+        val f = repoFile("app/src/main/assets/icons/$id.webp")
+        return if (f.exists()) f.toURI().toString() else remote
+    }
+
     private fun repoFile(name: String): File {
         var d: File? = File(System.getProperty("user.dir"))
         while (d != null && !File(d, name).exists()) d = d.parentFile
@@ -218,7 +224,12 @@ class PartitionPreviewTest {
                 id = o.optString("id"),
                 name = o.optString("name"),
                 category = o.optString("category"),
+                section = o.optString("section"),
+                platforms = o.optJSONArray("platforms")?.let { a ->
+                    (0 until a.length()).mapNotNull { i -> a.optString(i).takeIf(String::isNotBlank) }
+                } ?: emptyList(),
                 description = o.optString("description"),
+                summary = o.optString("summary"),
                 owner = o.optString("owner"),
                 repo = o.optString("repo"),
                 homepage = o.optString("homepage"),
@@ -233,10 +244,13 @@ class PartitionPreviewTest {
                 stars = o.optLong("stars"),
                 forks = o.optLong("forks"),
                 watchers = o.optLong("watchers"),
-                downloads = o.optLong("downloads"),
+                downloads = o.optLong("downloads_total").takeIf { it > 0 }
+                    ?: o.optLong("downloads_latest"),
                 latestDate = o.optString("latest_date"),
                 latestBody = o.optString("latest_body"),
-                logoUrl = o.optString("logo_url"),
+                // 截图里要看到真实图标：用仓库内的 assets 文件（file:// 绝对路径），
+                // 而不是等 jsDelivr 回源——测试机没网会全退化成字母牌，看不出真实观感
+                logoUrl = localIconOr(o.optString("id"), o.optString("logo_url")),
                 note = o.optString("note")
             )
         }

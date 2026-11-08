@@ -48,6 +48,8 @@ jobs:
           python3 scripts/refresh-ranking.py
           python3 scripts/refresh-emulator-registry.py
           python3 scripts/aggregate-recipes.py --clone
+          # registry 变了必须重建索引，否则 App 首屏还是旧数据
+          python3 scripts/build_index.py
 
       # 3) EmuReady 目录（仅标准库）
       - name: 刷新 EmuReady 目录

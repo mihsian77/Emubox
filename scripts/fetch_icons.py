@@ -159,16 +159,31 @@ def cmd_probe(limit):
     ems = [e for e in load_registry() if e.get("repo") and "/" in e["repo"]][:limit or None]
     hits = {}
 
+    os.makedirs(ICON_DIR, exist_ok=True)
+
     def work(e):
+        """命中就顺手落盘：自托管比每次回源 jsDelivr 稳，也方便人工复核。
+        已经是同尺寸正方的 PNG 才收，避免把圆形 mask 或横幅当图标。"""
         try:
-            return e["id"], probe_repo(e["repo"])
-        except Exception:
-            return e["id"], (None, None)
+            url, path = probe_repo(e["repo"])
+            if not url:
+                return e["id"], "miss"
+            blob, _ = http(url)
+            size = _png_size(blob) if blob[:4] == b"\x89PNG" else None
+            if not size:
+                return e["id"], "not-png"
+            w, h = size
+            if w != h or w < 72:
+                return e["id"], f"bad-shape {w}x{h}"
+            open(os.path.join(ICON_DIR, e["id"] + ".png"), "wb").write(blob)
+            return e["id"], path
+        except Exception as ex:
+            return e["id"], "err " + str(ex)[:40]
 
     with ThreadPoolExecutor(16) as pool:
-        for i, (eid, (url, path)) in enumerate(pool.map(work, ems), 1):
-            if url:
-                hits[eid] = {"url": url, "path": path, "via": "repo"}
+        for i, (eid, st) in enumerate(pool.map(work, ems), 1):
+            if not st.startswith(("miss", "not-png", "bad-shape", "err")):
+                hits[eid] = {"url": f"icons/{eid}.png", "path": st, "via": "repo"}
             if i % 50 == 0:
                 print(f"{i}/{len(ems)} 命中 {len(hits)}", flush=True)
     merge(hits)
@@ -182,6 +197,11 @@ def cmd_apk(limit, ids):
         ems = [e for e in ems if e["id"] in ids]
     else:
         ems = [e for e in ems if e.get("latest_apk_url")]
+    # 已经有图（仓库里探到的更干净）就不再拿 APK 盖掉
+    done = set()
+    if os.path.exists(RESULT):
+        done = set(json.load(open(RESULT, encoding="utf-8")).keys())
+    ems = [e for e in ems if e["id"] not in done]
     ems = ems[:limit or None]
     hits = {}
 

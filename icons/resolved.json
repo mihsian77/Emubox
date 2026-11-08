@@ -1,0 +1,572 @@
+{
+ "termux": {
+  "url": "icons/termux.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "utkarshdalal-gamenative": {
+  "url": "icons/utkarshdalal-gamenative.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "termux-zero": {
+  "url": "icons/termux-zero.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "j2meloader": {
+  "url": "icons/j2meloader.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "melonds-android": {
+  "url": "icons/melonds-android.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "oxters168-pluvia": {
+  "url": "icons/oxters168-pluvia.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "stevenmxz-winlator-ludashi": {
+  "url": "icons/stevenmxz-winlator-ludashi.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "coffincolors-winlator": {
+  "url": "icons/coffincolors-winlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "weiss-ultimatesavior-tyranor-next": {
+  "url": "icons/weiss-ultimatesavior-tyranor-next.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "xodiosx-xodos": {
+  "url": "icons/xodiosx-xodos.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "rfandango-hakux": {
+  "url": "icons/rfandango-hakux.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "afeimod-winlator-mod": {
+  "url": "icons/afeimod-winlator-mod.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "watermelonds-android": {
+  "url": "icons/watermelonds-android.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "xm486-yukihub": {
+  "url": "icons/xm486-yukihub.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "longjunyu2-winlator": {
+  "url": "icons/longjunyu2-winlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "rfandango-xendroid": {
+  "url": "icons/rfandango-xendroid.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "fcharan-winlatormali": {
+  "url": "icons/fcharan-winlatormali.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "gunacharanteja-winlatormali": {
+  "url": "icons/gunacharanteja-winlatormali.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "m64plusae": {
+  "url": "icons/m64plusae.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "the412banner-bannerlator": {
+  "url": "icons/the412banner-bannerlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "jacojayy-star": {
+  "url": "icons/jacojayy-star.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "armsx1-ps1": {
+  "url": "icons/armsx1-ps1.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "stredohori-winlator-cmod": {
+  "url": "icons/stredohori-winlator-cmod.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "ranggacasper-mostwanted-android": {
+  "url": "icons/ranggacasper-mostwanted-android.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "pocket8": {
+  "url": "icons/pocket8.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "jhinzuo-winlator": {
+  "url": "icons/jhinzuo-winlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "slaker222-steamlator": {
+  "url": "icons/slaker222-steamlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "xendroid-plus": {
+  "url": "icons/xendroid-plus.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "ref4ik-winlator-ref4ik-": {
+  "url": "icons/ref4ik-winlator-ref4ik-.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "jackandbeans-snap64recomp": {
+  "url": "icons/jackandbeans-snap64recomp.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "afeimod-linbox": {
+  "url": "icons/afeimod-linbox.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "maxjivi05-ps3native": {
+  "url": "icons/maxjivi05-ps3native.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "termux-kotlin": {
+  "url": "icons/termux-kotlin.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "termux-jiaxinchen": {
+  "url": "icons/termux-jiaxinchen.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "ghael-v-capyps5": {
+  "url": "icons/ghael-v-capyps5.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "nfs3recompiled": {
+  "url": "icons/nfs3recompiled.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "afeimod-winlator-glibc": {
+  "url": "icons/afeimod-winlator-glibc.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "dukeps3-android": {
+  "url": "icons/dukeps3-android.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "termux-ghostty": {
+  "url": "icons/termux-ghostty.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "juris-x-winlator_x": {
+  "url": "icons/juris-x-winlator_x.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "dukestation-ps1": {
+  "url": "icons/dukestation-ps1.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "honkonx-winlator-honkon": {
+  "url": "icons/honkonx-winlator-honkon.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "afeimod-linbox-winemu": {
+  "url": "icons/afeimod-linbox-winemu.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "dk64recomp": {
+  "url": "icons/dk64recomp.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "termux-enhanced": {
+  "url": "icons/termux-enhanced.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "afeimod-nesstation": {
+  "url": "icons/afeimod-nesstation.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "termux-plus": {
+  "url": "icons/termux-plus.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "emucorea-android": {
+  "url": "icons/emucorea-android.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "frostie77-tooie-recompiled": {
+  "url": "icons/frostie77-tooie-recompiled.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "nin64-android": {
+  "url": "icons/nin64-android.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "emucoreh-android": {
+  "url": "icons/emucoreh-android.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "duckyduckg-winlator": {
+  "url": "icons/duckyduckg-winlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "termux-aether": {
+  "url": "icons/termux-aether.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "faux123-gamenative-mali": {
+  "url": "icons/faux123-gamenative-mali.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "8cee-banjorecomp-android": {
+  "url": "icons/8cee-banjorecomp-android.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "winlator-releases": {
+  "url": "icons/winlator-releases.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "trekawek-coffee-gb": {
+  "url": "icons/trekawek-coffee-gb.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "winhub-emu-winhub": {
+  "url": "icons/winhub-emu-winhub.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "brunodev85-winlator": {
+  "url": "icons/brunodev85-winlator.png",
+  "via": "apk"
+ },
+ "azahar-emu-azahar": {
+  "url": "icons/azahar-emu-azahar.png",
+  "via": "apk"
+ },
+ "twilitrealm-dusklight": {
+  "url": "icons/twilitrealm-dusklight.png",
+  "via": "apk"
+ },
+ "swordfish90-lemuroid": {
+  "url": "icons/swordfish90-lemuroid.png",
+  "via": "apk"
+ },
+ "weihuoya-citra": {
+  "url": "icons/weihuoya-citra.png",
+  "via": "apk"
+ },
+ "trixarian-nethersx2-patch": {
+  "url": "icons/trixarian-nethersx2-patch.png",
+  "via": "apk"
+ },
+ "flyinghead-flycast": {
+  "url": "icons/flyinghead-flycast.png",
+  "via": "apk"
+ },
+ "armsx2-armsx2": {
+  "url": "icons/armsx2-armsx2.png",
+  "via": "apk"
+ },
+ "producdevity-gamehub-lite": {
+  "url": "icons/producdevity-gamehub-lite.png",
+  "via": "apk"
+ },
+ "eka2l1": {
+  "url": "icons/eka2l1.png",
+  "via": "apk"
+ },
+ "vita3k-vita3k-android": {
+  "url": "icons/vita3k-vita3k-android.png",
+  "via": "apk"
+ },
+ "azaharplus-main": {
+  "url": "icons/azaharplus-main.png",
+  "via": "apk"
+ },
+ "skyemu": {
+  "url": "icons/skyemu.png",
+  "via": "apk"
+ },
+ "trixarian-nethersx2-classic": {
+  "url": "icons/trixarian-nethersx2-classic.png",
+  "via": "apk"
+ },
+ "ilya114-box64droid": {
+  "url": "icons/ilya114-box64droid.png",
+  "via": "apk"
+ },
+ "armsx2-armsx3": {
+  "url": "icons/armsx2-armsx3.png",
+  "via": "apk"
+ },
+ "aenu1-aps3e": {
+  "url": "icons/aenu1-aps3e.png",
+  "via": "apk"
+ },
+ "mandarineneo-3ds": {
+  "url": "icons/mandarineneo-3ds.png",
+  "via": "apk"
+ },
+ "winnative-emu-winnative": {
+  "url": "icons/winnative-emu-winnative.png",
+  "via": "apk"
+ },
+ "horizonemuteam-horizon-emu": {
+  "url": "icons/horizonemuteam-horizon-emu.png",
+  "via": "apk"
+ },
+ "metroidprimeport": {
+  "url": "icons/metroidprimeport.png",
+  "via": "apk"
+ },
+ "citron-emulator": {
+  "url": "icons/citron-emulator.png",
+  "via": "apk"
+ },
+ "suyu-emulator": {
+  "url": "icons/suyu-emulator.png",
+  "via": "apk"
+ },
+ "ashnar2602-x360-mobile---official": {
+  "url": "icons/ashnar2602-x360-mobile---official.png",
+  "via": "apk"
+ },
+ "the412banner-bannerhub": {
+  "url": "icons/the412banner-bannerhub.png",
+  "via": "apk"
+ },
+ "winebox64-winlator": {
+  "url": "icons/winebox64-winlator.png",
+  "via": "apk"
+ },
+ "xhyn-ph-exagear-302": {
+  "url": "icons/xhyn-ph-exagear-302.png",
+  "via": "apk"
+ },
+ "wpr-wp7-8": {
+  "url": "icons/wpr-wp7-8.png",
+  "via": "apk"
+ },
+ "opennectar": {
+  "url": "icons/opennectar.png",
+  "via": "apk"
+ },
+ "ghaelv-lemon-project": {
+  "url": "icons/ghaelv-lemon-project.png",
+  "via": "apk"
+ },
+ "medard22-dolphin-mmjr2-vbi": {
+  "url": "icons/medard22-dolphin-mmjr2-vbi.png",
+  "via": "apk"
+ },
+ "jica98-bachata-s4": {
+  "url": "icons/jica98-bachata-s4.png",
+  "via": "apk"
+ },
+ "borked3ds-3ds": {
+  "url": "icons/borked3ds-3ds.png",
+  "via": "apk"
+ },
+ "seedlessds-android": {
+  "url": "icons/seedlessds-android.png",
+  "via": "apk"
+ },
+ "emucorev-android": {
+  "url": "icons/emucorev-android.png",
+  "via": "apk"
+ },
+ "emucorex-android": {
+  "url": "icons/emucorex-android.png",
+  "via": "apk"
+ },
+ "unleashedrecomp": {
+  "url": "icons/unleashedrecomp.png",
+  "via": "apk"
+ },
+ "odrannnn-metroidprime2port": {
+  "url": "icons/odrannnn-metroidprime2port.png",
+  "via": "apk"
+ },
+ "winlatorxr-winlatorxr": {
+  "url": "icons/winlatorxr-winlatorxr.png",
+  "via": "apk"
+ },
+ "wie-skvm": {
+  "url": "icons/wie-skvm.png",
+  "via": "apk"
+ },
+ "the412banner-bannerhub-revanced": {
+  "url": "icons/the412banner-bannerhub-revanced.png",
+  "via": "apk"
+ },
+ "rpcsx-rpcsx-ui-android": {
+  "url": "icons/rpcsx-rpcsx-ui-android.png",
+  "via": "apk"
+ },
+ "ajay9634-winlator-ajay": {
+  "url": "icons/ajay9634-winlator-ajay.png",
+  "via": "apk"
+ },
+ "silksongandroid": {
+  "url": "icons/silksongandroid.png",
+  "via": "apk"
+ },
+ "pockethle-android": {
+  "url": "icons/pockethle-android.png",
+  "via": "apk"
+ },
+ "the412banner-bannerhub-lite": {
+  "url": "icons/the412banner-bannerhub-lite.png",
+  "via": "apk"
+ },
+ "zeebx-zeebo": {
+  "url": "icons/zeebx-zeebo.png",
+  "via": "apk"
+ },
+ "dev-ali2008-onrps4-android": {
+  "url": "icons/dev-ali2008-onrps4-android.png",
+  "via": "apk"
+ },
+ "emucorec-ps3": {
+  "url": "icons/emucorec-ps3.png",
+  "via": "apk"
+ },
+ "itzdfplayer-gamehub-lite": {
+  "url": "icons/itzdfplayer-gamehub-lite.png",
+  "via": "apk"
+ },
+ "eden-ns2-android-vivsi": {
+  "url": "icons/eden-ns2-android-vivsi.png",
+  "via": "apk"
+ },
+ "edeegg-sharpemu-arm64": {
+  "url": "icons/edeegg-sharpemu-arm64.png",
+  "via": "apk"
+ },
+ "alexoqool-winlator-bionic-build": {
+  "url": "icons/alexoqool-winlator-bionic-build.png",
+  "via": "apk"
+ },
+ "windroidemulation-winnative": {
+  "url": "icons/windroidemulation-winnative.png",
+  "via": "apk"
+ },
+ "emucorep-android": {
+  "url": "icons/emucorep-android.png",
+  "via": "apk"
+ },
+ "azahartrigger-3ds": {
+  "url": "icons/azahartrigger-3ds.png",
+  "via": "apk"
+ },
+ "deivid22srk-winlator-xmod": {
+  "url": "icons/deivid22srk-winlator-xmod.png",
+  "via": "apk"
+ },
+ "samsixx6-brew2droid": {
+  "url": "icons/samsixx6-brew2droid.png",
+  "via": "apk"
+ },
+ "winlatorbrasil-exiled-kingdoms-multiplayer": {
+  "url": "icons/winlatorbrasil-exiled-kingdoms-multiplayer.png",
+  "via": "apk"
+ },
+ "hitode-project-hitode": {
+  "url": "icons/hitode-project-hitode.png",
+  "via": "apk"
+ },
+ "afeimod-eden-an": {
+  "url": "icons/afeimod-eden-an.png",
+  "via": "apk"
+ },
+ "afeimod-eka2l1-an": {
+  "url": "icons/afeimod-eka2l1-an.png",
+  "via": "apk"
+ },
+ "j4mcu-builds-gamehub-lite-redmagic": {
+  "url": "icons/j4mcu-builds-gamehub-lite-redmagic.png",
+  "via": "apk"
+ },
+ "seedlessds-cn-fork": {
+  "url": "icons/seedlessds-cn-fork.png",
+  "via": "apk"
+ },
+ "mame4droid": {
+  "url": "icons/mame4droid.png",
+  "via": "apk"
+ },
+ "skyline-pine": {
+  "url": "icons/skyline-pine.png",
+  "via": "apk"
+ },
+ "yebot32-xenra": {
+  "url": "icons/yebot32-xenra.png",
+  "via": "apk"
+ },
+ "vita3k-vita3k": {
+  "url": "icons/vita3k-vita3k.png",
+  "via": "apk"
+ },
+ "gs-soft-it-lumen-emu": {
+  "url": "icons/gs-soft-it-lumen-emu.png",
+  "via": "apk"
+ },
+ "zfitness-nixport": {
+  "url": "icons/zfitness-nixport.png",
+  "via": "apk"
+ }
+}

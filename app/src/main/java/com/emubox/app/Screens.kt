@@ -9949,6 +9949,57 @@ private fun saveEmulatorFavs(context: Context, favs: Set<String>) {
 /** 模拟器专区：双列网格，卡片含分类徽章/最新版本/下载/仓库入口 */
 
 /** 原站分类 -> 中文分区名（t3st31 / the412banner 分类体系） */
+/** 平台标签：数据里是 ps2 / switch 这种 key，界面要给中文 */
+private fun emulatorPlatformLabel(platform: String): String = when (platform) {
+    "windows-pc" -> "Windows 游戏"
+    "switch" -> "Switch"
+    "ps5" -> "PS5"
+    "ps4" -> "PS4"
+    "ps3" -> "PS3"
+    "ps2" -> "PS2"
+    "ps1" -> "PS1"
+    "psp" -> "PSP"
+    "psvita" -> "PS Vita"
+    "3ds" -> "3DS"
+    "nds" -> "NDS"
+    "gba" -> "GBA"
+    "gbc" -> "GBC"
+    "gb" -> "GB"
+    "n64" -> "N64"
+    "nes" -> "FC / NES"
+    "snes" -> "SFC / SNES"
+    "gamecube" -> "NGC"
+    "wii" -> "Wii"
+    "wii-u" -> "Wii U"
+    "dreamcast" -> "Dreamcast"
+    "saturn" -> "Saturn"
+    "xbox" -> "Xbox"
+    "xbox360" -> "Xbox 360"
+    "arcade" -> "街机"
+    "dos" -> "DOS"
+    "terminal" -> "终端"
+    "ios" -> "iOS"
+    "android" -> "安卓"
+    "visual-novel" -> "视觉小说"
+    "multi" -> "多平台"
+    else -> platform
+}
+
+/** 用途分区顺序：与 registry 的 section 字段一致 */
+private val EMULATOR_SECTION_ORDER = listOf(
+    "console-emulation", "windows-compat", "native-port", "frontend-tool", "vn-engine"
+)
+
+/** 分区标签：告诉用户「这一堆是什么」，比按主机名平铺更好找 */
+private fun emulatorSectionLabel(section: String): String = when (section) {
+    "console-emulation" -> "主机模拟"
+    "windows-compat" -> "Windows 兼容"
+    "native-port" -> "原生移植"
+    "frontend-tool" -> "前端工具"
+    "vn-engine" -> "视觉小说引擎"
+    else -> section
+}
+
 private fun emulatorCategoryLabel(category: String): String = when (category) {
     "Winlator" -> "Winlator 专区"
     "GameHub" -> "GameHub 专区"
@@ -10574,7 +10625,6 @@ fun EmulatorScreen(
     LaunchedEffect(Unit) {
         newsItems = NewsRepository.loadNews(context)
     }
-    var filterCat by remember { mutableStateOf("all") }
     var sortMode by remember { mutableStateOf("popular") }
     var detailEntry by remember { mutableStateOf<EmulatorEntry?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -10585,21 +10635,35 @@ fun EmulatorScreen(
     // 对比槽（t3st31 compareSlots 移植）：最多 3 个项目
     var compareIds by remember { mutableStateOf(listOf<String>()) }
     var showCompare by remember { mutableStateOf(false) }
-    // 分类默认折叠：与组件专区一致，一屏可浏览全部类型
-    val categoryOrder = remember(entries) {
+    // 两级筛选：先按用途分区（5 类，稳定），再按具体平台/家族细分。
+    // 之前是一行 60+ 个分类 chips 横滑，找「PS2」要划半天。
+    var filterSection by rememberSaveable { mutableStateOf("all") }
+    val sectionOrder = remember(entries) {
         val seen = LinkedHashSet<String>()
-        entries.forEach { seen.add(it.category) }
-        seen.toList()
+        entries.forEach { if (it.section.isNotBlank()) seen.add(it.section) }
+        EMULATOR_SECTION_ORDER.filter { it in seen } .ifEmpty { seen.toList() }
     }
-    val categoryLabel = categoryOrder.associateWith { emulatorCategoryLabel(it) }
+    // 二级维度用「模拟的目标平台」：主机模拟里 200 条，用户真正想筛的是 PS2 / Switch / 3DS，
+    // 而不是再筛一次「主机模拟」。
+    var filterPlatform by rememberSaveable { mutableStateOf("all") }
+    val platformOrder = remember(entries, filterSection) {
+        val count = HashMap<String, Int>()
+        entries.filter { filterSection == "all" || it.section == filterSection }
+            .forEach { e -> e.platforms.forEach { count[it] = (count[it] ?: 0) + 1 } }
+        count.entries.sortedWith(compareByDescending<Map.Entry<String, Int>> { it.value }.thenBy { it.key })
+            .map { it.key }
+            .take(18)
+    }
 
-    val filtered = remember(entries, filterCat, sortMode, searchQuery, onlyFav, favorites) {
-        val base = if (filterCat == "all") entries
-        else entries.filter { it.category == filterCat }
+    val filtered = remember(entries, filterSection, filterPlatform, sortMode, searchQuery, onlyFav, favorites) {
+        val base = entries
+            .filter { filterSection == "all" || it.section == filterSection }
+            .filter { filterPlatform == "all" || it.platforms.contains(filterPlatform) }
         val favFiltered = if (onlyFav) base.filter { it.id in favorites } else base
         val searched = if (searchQuery.isBlank()) favFiltered
         else favFiltered.filter {
             it.name.contains(searchQuery, ignoreCase = true) ||
+                it.summary.contains(searchQuery, ignoreCase = true) ||
                 it.description.contains(searchQuery, ignoreCase = true) ||
                 it.category.contains(searchQuery, ignoreCase = true) ||
                 emulatorCategoryLabel(it.category).contains(searchQuery, ignoreCase = true)
@@ -10625,7 +10689,7 @@ fun EmulatorScreen(
         entries.maxByOrNull { it.downloads + it.stars * 10L }
     }
 
-    // 分类切换在顶部 chips（filterCat），列表直接平铺，不再用折叠区块
+    // 分区/平台切换在顶部两行 chips，列表直接平铺，不再用折叠区块
     val flatItems = filtered
 
     LazyVerticalGrid(
@@ -10705,18 +10769,36 @@ fun EmulatorScreen(
         }
         item(key = "emulator_filter", span = { GridItemSpan(maxLineSpan) }) {
             Column {
+                // 一级：用途分区
                 Row(
                     modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    val chips = mutableListOf("all")
-                    chips += categoryOrder
-                    chips.forEach { c ->
+                    listOf("all") .plus(sectionOrder).forEach { sec ->
                         FusionFilterChip(
-                            label = if (c == "all") appString(R.string.emulator_cat_all)
-                            else categoryLabel[c].orEmpty(),
-                            selected = filterCat == c,
-                            onClick = { filterCat = c }
+                            label = if (sec == "all") appString(R.string.emulator_cat_all)
+                            else emulatorSectionLabel(sec),
+                            selected = filterSection == sec,
+                            onClick = {
+                                filterSection = sec
+                                // 切分区时平台重置，否则会停在上一个分区才有的平台上
+                                filterPlatform = "all"
+                            }
+                        )
+                    }
+                }
+                Spacer(Modifier.height(6.dp))
+                // 二级：该分区里出现的模拟平台（按条目数排序，取前 18 个）
+                Row(
+                    modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf("all").plus(platformOrder).forEach { p ->
+                        FusionFilterChip(
+                            label = if (p == "all") appString(R.string.emulator_platform_all)
+                            else emulatorPlatformLabel(p),
+                            selected = filterPlatform == p,
+                            onClick = { filterPlatform = p }
                         )
                     }
                 }
@@ -10849,7 +10931,7 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                             FilledTonalButton(
                                 onClick = {
                                     searchQuery = ""
-                                    filterCat = "all"
+                                    filterPlatform = "all"
                                     onlyFav = false
                                 },
                                 shape = RoundedCornerShape(12.dp)
@@ -10954,7 +11036,7 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                         topEntry?.let { hero ->
                             EmulatorHeroCard(
                                 entry = hero,
-                                categoryLabel = categoryLabel[hero.category].orEmpty(),
+                                categoryLabel = emulatorCategoryLabel(hero.category),
                                 onClickDetail = { detailEntry = hero }
                             )
                         }
@@ -11003,7 +11085,7 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
 
     detailEntry?.let { entry ->
         EmulatorDetailDialog(
-            entry = entry,
+            initialEntry = entry,
             onDismiss = { detailEntry = null },
             onDownloadAsset = { url, name ->
                 scope.launch { downloadEmulatorAsset(context, entry.name, url, name) }
@@ -11909,13 +11991,16 @@ private fun EmulatorCard(
                     maxLines = 1
                 )
             }
-            if (entry.latestApkName.isNotBlank()) {
-                Spacer(Modifier.height(2.dp))
+            // 卡片上原来放的是 APK 文件名（"Winlator_11.2.apk"），既占一行又被截断，
+            // 用户看不出什么。换成 README 摘要，一眼知道这东西是干什么的。
+            val cardBlurb = entry.summary.ifBlank { entry.description }
+            if (cardBlurb.isNotBlank()) {
+                Spacer(Modifier.height(3.dp))
                 Text(
-                    entry.latestApkName,
-                    style = MaterialTheme.typography.labelSmall,
+                    cardBlurb,
+                    style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -12403,12 +12488,18 @@ private fun assetTypeLabel(name: String): String = when {
 /** 模拟器详情：全部 releases 全部文件，每个文件可下载，日志可翻译 */
 @Composable
 private fun EmulatorDetailDialog(
-    entry: EmulatorEntry,
+    initialEntry: EmulatorEntry,
     onDismiss: () -> Unit,
     onDownloadAsset: (url: String, name: String) -> Unit
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    // 首屏索引不含 releases：进详情时补拉该条目所在分片，拉到后整页刷新。
+    // 补拉期间先用索引里的卡片字段渲染，不出现空白弹窗。
+    var entry by remember(initialEntry.id) { mutableStateOf(initialEntry) }
+    LaunchedEffect(initialEntry.id) {
+        entry = EmulatorRegistryRepository.loadDetail(context, initialEntry)
+    }
     val isArchive = entry.source == "community-archive"
     var expandedTag by remember { mutableStateOf(entry.releases.firstOrNull()?.tag) }
     var translatedMap by remember { mutableStateOf<Map<String, String?>>(emptyMap()) }
@@ -12484,9 +12575,12 @@ private fun EmulatorDetailDialog(
                         }
                     }
                 }
-                if (entry.description.isNotBlank()) {
+                // 优先展示 README 提炼的摘要（说清「这是什么、能跑什么」），
+                // 没有再用作者在仓库 About 里写的原文
+                val blurb = entry.summary.ifBlank { entry.description }
+                if (blurb.isNotBlank()) {
                     Text(
-                        entry.description,
+                        blurb,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
