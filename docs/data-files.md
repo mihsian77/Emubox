@@ -11,6 +11,7 @@
 | `emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（2MB） |
 | `news-data.json` | App `NewsRepository` | 新闻，CI 每日两次刷新 |
 | `driver-registry.json` | App `DriverRegistryRepository` | 驱动源注册表 |
+| `app/src/main/assets/source-profiles.json` | App `SourceProfiles` | 驱动/组件源的「给谁用 · 怎么装 · 注意」文案 |
 | `sources.json` | App `Accelerator` | 加速节点源清单 |
 
 `app/src/main/assets/emulator-offline.json` 是索引的离线副本（369KB），
@@ -28,6 +29,7 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 | `emulator-registry.json` | 构建脚本 | 全量清单（3.2MB），`build_index.py` 的输入 |
 | `ranking.json` + `ranking-history/` | `scripts/gen_ranking_board.py` | 家族聚合榜，网页榜单源 |
 | `emulator-retired.json` | 人工 | 已退役模拟器记录（含复核理由） |
+| `catalog/source-profiles.json` | `build_source_profiles.py` | 驱动/组件说明的手写文案（可直接改，改完重跑脚本） |
 
 ## 审计报告（人工）
 
@@ -55,3 +57,15 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 `summary` 是 README 首段提炼的一句话（没有 README 时用仓库 About，再没有用发布说明），
 `description` 保留作者原文。生成脚本：`scripts/fetch_summaries.py`。
 校验脚本：`scripts/validate-schema.py`（CI 必过）。
+
+## 来源门槛
+
+`validate-schema.py` 会拦两类条目：
+
+1. **网盘/搬运站**：`homepage` / `repo_url` / `download_url` / `latest_apk_url`
+   出现 123pan、百度网盘、夸克、蓝奏、9k9k 等域名直接失败。
+   这些只是「有人转存了一份」，不构成一手来源。
+2. **停更却不写原因**：`dead: true` 必须带 `dead_reason`，否则详情页只剩一个灰名字。
+
+历史上 40 多条只有 123 盘镜像的条目已逐条复核（见 `docs/download-source-audit.md`），
+目前全库 0 条依赖网盘分发；仍在库里的「无下载」条目都是官方站/Play 分发或纯源码项目。
