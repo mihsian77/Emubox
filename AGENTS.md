@@ -45,30 +45,19 @@
 - 官网判定要单独验：域名解析 + HTTPS + 页面标题，停放页/空页不算可访问。
 - 交付前对照 `/workspace/项目库-下一步待办.md`，确认没有把待办当已完成。
 
-## 收录流水线（2026-11-04 新增）
+## 收录流水线（2026-11-08 清空，待重新设计）
 
-收录一个项目，**不允许从空白开始手填**。凡 GitHub 上能拿到的，必须由脚本先抓一遍。
+自动收录机制**已整体下线**：`registry-discover.yml`、`discover_candidates.py`、
+`batch_extract.py`、`drafts/` 全部删除，工作流也不再跑 GitHub Search。
+原因不是坏了，是判定口径没定下来——"什么样的项目该收、按什么筛"还没形成
+可稳定执行的规则，先跑自动收录只会把噪音固化进库。
 
-```
-discover_candidates.py   找项目（宽口径，宁可多抓，误判留给下一关）
-        ↓  /workspace/生态发现/候选池-<日期>.json
-batch_extract.py         候选 → 填好的记录（带证据与置信度）
-        ↓  drafts/<日期>/drafts.json + report.md
-人工只看两件事：标了「需人工确认」的、以及明显同名不同物的
-        ↓
-合并进 registry → validate-emulators.py → rebuild_gaps.sh
-```
+现阶段录入一律人工：写 `emulator-registry.json` → 跑 `scripts/validate-emulators.py`
+→ 跑 `bash scripts/rebuild_gaps.sh`。等口径定稿后再重建自动通道。
 
-**三条硬规矩：**
+重新设计时必须遵守的三条（沿用旧结论）：
 
-1. **规则集中在 `scripts/infer.py`**。改判定逻辑只改这一个文件，不许在抓取脚本里再写一份。老数据迁移（`migrate_schema.py`）和新项目提取（`extract_entry.py`）用的是同一套函数，规则升级一次，两边同时生效。
-2. **每条判定必须带证据**。`schema-audit.json` 里记 `method_evidence` 和 `hosts_evidence`（命中的资产名/关键词）。没有证据的判定视为无效。
-3. **推不出就置空，不许猜**。`hosts` 为空标 `needs_review`，`method` 对终端/工具类置 `null`。空值会被校验放行、被人工看到；编一个看似合理的值会静默错下去。
+1. **规则集中在一个文件**。判定逻辑只许有一份，不许在抓取脚本里再写一遍。
+2. **每条判定必须带证据**。命中的资产名/关键词要落地，没有证据的判定视为无效。
+3. **推不出就置空，不许猜**。空值会被校验放行、被人看到；编一个像真的值会静默错下去。
 
-**人工兜底只有一处**：`migrate_schema.py` 的 `HOST_OVERRIDES`。只允许写「仓库已 404/归档、资产拉不到」的条目，且必须在注释里写出处。
-
-**已知边界（别当 bug 修）：**
-
-- `sort=stars` 只能捞大项目，新项目靠 `NEW_QUERIES`（`sort=updated` + `created:>`）单独扫。两条通道都要留。
-- 4★ 以下的新仓库任何排序都排不进前 30，只能靠人工投喂。
-- 中文项目的 README 可能是 `README.zh-CN.md`，判断语种要查文件列表（`check_zh_readme.py`），不能读默认 README 数汉字。
