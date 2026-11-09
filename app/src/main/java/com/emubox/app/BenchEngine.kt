@@ -11,15 +11,17 @@ data class PcEquiv(val cpuName: String, val cpuScore: Long, val gpuName: String,
 data class EmulatorTier(val id: String, val name: String, val tier: String, val note: String)
 
 /** 升级建议：当前芯片的下一性能档 */
-/** 升级建议：首选同厂商更高档位；次选跨厂商（增益 15%~50% 内最近） */
 data class UpgradeSuggestion(
     val nextName: String,
     val nextScore: Long,
     val gainPct: Int,
+    /** 该芯片的常见机型（来自 soc_master 的 devices 字段，可能为空） */
+    val nextDevices: String = "",
     /** 跨厂商次选（同厂商无候选或增益过近时给出；无则 null） */
     val altName: String? = null,
     val altScore: Long? = null,
-    val altGainPct: Int? = null
+    val altGainPct: Int? = null,
+    val altDevices: String = ""
 )
 
 /** 同芯机型条目：榜单收录才有分，未收录为 null（如实展示） */
@@ -80,6 +82,120 @@ data class SocBenchInfo(
 )
 
 /**
+ * 芯片主表（assets/soc_master.json，389 颗，来自 socpk）。
+ *
+ * 升级建议的候选池。原来只用手写的 28 条 aliases，导致「下一档」常年只有
+ * 骁龙 8 Gen3 / 天玑 9300 几条，国内在售的新芯片根本进不来。
+ * 这里同时提供 brand（芯片厂商）与 devices（常见机型），用来按国内厂商排序。
+ */
+private object SocMasterCatalog {
+
+    class Row(
+        val name: String,
+        val brand: String,
+        val devices: String,
+        val antutu: Long,
+        val form: String,
+        /** 全部可匹配写法（中文名 / 英文名 / 部件号），用 | 连接 */
+        val keys: String
+    )
+
+    private var cache: List<Row>? = null
+
+    fun rows(context: Context): List<Row> {
+        cache?.let { return it }
+        val list = runCatching {
+            val arr = JSONObject(
+                context.assets.open("soc_master.json").bufferedReader().use { it.readText() }
+            ).getJSONArray("socs")
+            buildList {
+                for (i in 0 until arr.length()) {
+                    val o = arr.getJSONObject(i)
+                    // 跑分是排序与增益的唯一依据，没有分的条目不参与候选
+                    val score = o.optString("antutu").toLongOrNull() ?: 0L
+                    if (score <= 0) continue
+                    val keys = buildList {
+                        add(o.optString("name"))
+                        o.optJSONArray("names")?.let { ns ->
+                            for (j in 0 until ns.length()) add(ns.optString(j))
+                        }
+                        o.optJSONArray("codes")?.let { cs ->
+                            for (j in 0 until cs.length()) add(cs.optString(j))
+                        }
+                    }.filter { it.isNotBlank() }.distinct()
+                    if (keys.isEmpty()) continue
+                    add(
+                        Row(
+                            name = o.optString("name"),
+                            brand = o.optString("brand"),
+                            devices = o.optString("devices"),
+                            antutu = score,
+                            form = o.optString("form"),
+                            keys = keys.joinToString("|")
+                        )
+                    )
+                }
+            }
+        }.getOrElse { emptyList() }
+        cache = list
+        return list
+    }
+
+    /** 按显示名/代号反查主表条目；先精确、再按命中键最长（区分 865 与 865 IoT 这类变体） */
+    fun find(context: Context, socName: String): Row? {
+        if (socName.isBlank()) return null
+        val q = normSoc(socName)
+        if (q.length < 4) return null
+        var best: Row? = null
+        var bestLen = 0
+        for (r in rows(context)) {
+            for (k in r.keys.split('|')) {
+                val nk = normSoc(k)
+                if (nk.length < 4) continue
+                // 精确同名直接命中：主表里「骁龙865」和「骁龙865 IoT」并存，
+                // 只按包含匹配会把后者选走，等于给用户换了一颗不同用途的芯片
+                if (q == nk) return r
+                if (q.contains(nk) || nk.contains(q)) {
+                    if (nk.length > bestLen) {
+                        bestLen = nk.length
+                        best = r
+                    }
+                }
+            }
+        }
+        return best
+    }
+}
+
+/** 芯片名归一化：去空格/连字符，厂商名统一成中文，供主表与别名表共用 */
+private fun normSoc(s: String): String {
+    var t = s.lowercase().replace(" ", "").replace("-", "").replace("_", "")
+    t = t.replace("snapdragon", "骁龙")
+        .replace("dimensity", "天玑")
+        .replace("kirin", "麒麟")
+        .replace("qualcomm", "高通")
+    return t
+}
+
+/**
+ * 国内品牌热度权重：按国内出货量粗排，只用于升级建议的排序，不是销量统计。
+ * 用途是「同样 +30% 的两颗芯片，优先推国内买得到、售后方便的那颗」。
+ */
+private val CN_BRAND_WEIGHT = listOf(
+    "小米" to 10, "红米" to 10, "REDMI" to 10, "华为" to 9, "荣耀" to 8,
+    "vivo" to 8, "iQOO" to 7, "OPPO" to 7, "一加" to 6,
+    "真我" to 6, "realme" to 6, "红魔" to 5, "努比亚" to 4,
+    "魅族" to 3, "摩托罗拉" to 3, "中兴" to 2
+)
+
+/** 该芯片的常见机型里最热门的国产品牌权重；0 表示国内基本买不到（如 Exynos / Tensor） */
+private fun cnPresence(devices: String): Int {
+    if (devices.isBlank()) return 0
+    return CN_BRAND_WEIGHT.filter { devices.contains(it.first, ignoreCase = true) }
+        .maxOfOrNull { it.second } ?: 0
+}
+
+/**
  * 跑分引擎：基于 assets/bench/bench_meta.json（curated 别名映射 + 阈值表）
  * 与 ludashi.json（同分制 PC 榜）的最近邻换算。
  *
@@ -92,15 +208,7 @@ object BenchEngine {
     private var ludashiCache: JSONObject? = null
 
     /** 归一化：去空格/连字符/下划线 + 厂商英文名转中文（设备上报多英文，数据表多中文）。 */
-    private fun normalizeSoc(s: String): String {
-        var t = s.lowercase().replace(" ", "").replace("-", "").replace("_", "")
-        t = t.replace("snapdragon", "骁龙")
-            .replace("dimensity", "天玑")
-            .replace("kirin", "麒麟")
-            .replace("exynos", "exynos")
-        t = t.replace("qualcomm", "高通")
-        return t
-    }
+    private fun normalizeSoc(s: String): String = normSoc(s)
 
     private fun meta(context: Context): JSONObject? {
         metaCache?.let { return it }
@@ -163,7 +271,7 @@ object BenchEngine {
                 else -> ""
             }
         }
-        val upgrade = antutuTotal?.let { upgradeFrom(it, arr, selfBrand) }
+        val upgrade = antutuTotal?.let { upgradeFrom(it, arr, selfBrand, name, context) }
         val sameChip = sameChipDevices(family, m.optJSONArray("same_chip_devices"))
         val gen = generation(family, arr, name, context)
         val deviceBench = deviceBench(context)
@@ -372,8 +480,62 @@ object BenchEngine {
         }.sortedBy { it.id }
     }
 
-    /** 升级建议：全部别名条目按安兔兔总分排序，找下一个更高档（提升 15%~50% 内的最近条） */
-    private fun upgradeFrom(score: Long, arr: JSONArray, selfBrand: String = ""): UpgradeSuggestion? {
+    /**
+     * 升级建议：优先同芯片厂商，其次按「国内买不买得到」排序。
+     *
+     * 候选池用 soc_master 全表（389 颗），不再用 28 条手写别名——
+     * 那份表只有骁龙/天玑少数几档，国内在售的新芯片全都漏了。
+     * 排序规则（同一增益区间内）：
+     *   1. 同厂商（骁龙→骁龙、天玑→天玑、麒麟→麒麟）：换平台要重做适配，不该首推；
+     *   2. 常见机型含国内主流品牌（小米/红米/华为/荣耀/vivo/iQOO/OPPO/一加/真我…）；
+     *   3. 增益更接近下限（换机成本对应收益）。
+     * 国内基本买不到的（Exynos、Tensor 这类）只会出现在「次选」之后，且不优先。
+     */
+    private fun upgradeFrom(
+        score: Long,
+        arr: JSONArray,
+        selfBrand: String = "",
+        selfName: String = "",
+        context: Context? = null
+    ): UpgradeSuggestion? {
+        context?.let { ctx ->
+            val master = SocMasterCatalog.rows(ctx)
+            if (master.isNotEmpty()) {
+                val selfRow = SocMasterCatalog.find(ctx, selfName)
+                val selfBrandZh = selfRow?.brand?.takeIf { it.isNotBlank() } ?: selfBrand
+                // 同厂商上限放宽到 0.85（8 Gen2→8 Gen3 这段本来就有 40%+ 的跳档）
+                val candidates = master
+                    .asSequence()
+                    .filter { it.antutu > score }
+                    .map { Triple(it, ((it.antutu - score).toDouble() / score), cnPresence(it.devices)) }
+                    .filter { (_, gain, _) -> gain in 0.15..0.85 }
+                    .toList()
+                if (candidates.isNotEmpty()) {
+                    val same = candidates.filter { it.first.brand == selfBrandZh && selfBrandZh.isNotBlank() }
+                    val cross = candidates.filterNot { it.first.brand == selfBrandZh }
+                    // 同组内：国内热度高的优先，其次增益更近
+                    fun rank(list: List<Triple<SocMasterCatalog.Row, Double, Int>>) =
+                        list.sortedWith(compareByDescending<Triple<SocMasterCatalog.Row, Double, Int>> { it.third }.thenBy { it.second })
+                    val sameBest = rank(same).firstOrNull()
+                    // 次选：跨厂商、国内在售、增益 15%~50%
+                    val crossBest = rank(cross.filter { it.second <= 0.5 && it.third > 0 }).firstOrNull()
+                    val best = sameBest ?: crossBest ?: return@let
+                    val alt = if (best === sameBest) crossBest else null
+                    return UpgradeSuggestion(
+                        nextName = best.first.name,
+                        nextScore = best.first.antutu,
+                        gainPct = (best.second * 100).toInt(),
+                        nextDevices = best.first.devices,
+                        altName = alt?.first?.name,
+                        altScore = alt?.first?.antutu,
+                        altGainPct = alt?.let { (it.second * 100).toInt() },
+                        altDevices = alt?.first?.devices.orEmpty()
+                    )
+                }
+            }
+        }
+
+        // 主表不可用（首次启动 asset 缺失）时退回别名表：口径与主表一致，只是候选少
         val sorted = buildList {
             for (i in 0 until arr.length()) {
                 val o = arr.getJSONObject(i)
@@ -381,9 +543,7 @@ object BenchEngine {
                 if (s != null) add(o to s)
             }
         }.sortedBy { it.second }
-        // 同厂商优先（骁龙→骁龙、天玑→天玑）：升级建议首推同品牌更高档位；
-        // 同厂商增益可达 60%+（骁龙8Gen2→8Gen3 约 65%），同厂商上限放宽到 0.85；
-        // 跨厂商候选（增益 15%~50%）作为次选列出，不作为首选。
+
         fun sameBrand(name: String): Boolean =
             selfBrand.isNotBlank() && name.contains(selfBrand)
 
@@ -403,7 +563,6 @@ object BenchEngine {
                 alt = o to s
             }
         }
-        // 同厂商有候选 → 首选同厂商；无 → 首选降级为跨厂商最近条
         if (best == null) {
             best = alt
             alt = null

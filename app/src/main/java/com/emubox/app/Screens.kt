@@ -3033,7 +3033,7 @@ private fun DeviceGuideDialog(
     val benchExtra = when {
         benchmarkResult?.success == true -> "本机实测总分 ${benchmarkResult.totalScore}（填充带宽 ${benchmarkResult.fillBandwidthGBs} GB/s）"
         benchmarkResult != null -> "实测受 App 进程环境限制（SELinux/容器），性能请在模拟器内验证"
-        else -> "尚未实测；点击跑分按钮后自动填充"
+        else -> "尚未实测；在「实测」里跑一次驱动实测后自动填充"
     }
     val socExtra = if (deviceInfo != null) {
         val spec = SocSpecStore.find(deviceInfo.socName, guideContext)
@@ -6322,9 +6322,8 @@ fun DeviceScreen(
     var vulkanLoading by remember { mutableStateOf(true) }
     var vulkanError by remember { mutableStateOf<String?>(null) }
     var showDetails by remember { mutableStateOf(false) }
+    // 最近一次驱动实测的跑分：由「实测」里的驱动实测卡回传，用于设备指南的实测脚注
     var benchmarkResult by remember { mutableStateOf<BenchmarkResult?>(null) }
-    var benchmarkLoading by remember { mutableStateOf(false) }
-    var benchmarkError by remember { mutableStateOf<String?>(null) }
     var showDeviceGuide by remember { mutableStateOf(false) }
     // 渲染实测可换的目标驱动：只取已下载完成的驱动包（与驱动页同一套判定口径）。
     // 页面级 remember：设备页数据本来就是进入时采集一次，列表在页面存活期内固定，
@@ -6728,58 +6727,17 @@ fun DeviceScreen(
             }
         }
 
-        // ── GPU 性能跑分：native Vulkan 带宽基准，对比不同驱动性能 ──
-        item(key = "benchmark_header") {
-            SectionHeader(appString(R.string.benchmark_title))
-        }
-
-        item(key = "benchmark_card") {
-            GpuBenchmarkCard(
-                result = benchmarkResult,
-                deviceInfo = deviceInfo,
-                isLoading = benchmarkLoading,
-                error = benchmarkError,
-                onRun = {
-                    benchmarkLoading = true
-                    benchmarkError = null
-                    benchmarkResult = null
-                    // native 跑分在 IO 线程执行，避免阻塞 UI；加 60s 超时兜底，
-                    // 防止 native 卡死（如驱动异常）时界面永远停在 loading
-                    kotlinx.coroutines.GlobalScope.launch(Dispatchers.IO) {
-                        try {
-                            val result = withTimeout(60_000) {
-                                NativeVulkanBridge.benchmarkSystemVulkan()
-                            }
-                            withContext(Dispatchers.Main) {
-                                benchmarkResult = result
-                                if (!result.success) {
-                                    benchmarkError = result.errorMessage ?: result.errorCode
-                                }
-                            }
-                        } catch (e: kotlinx.coroutines.TimeoutCancellationException) {
-                            withContext(Dispatchers.Main) {
-                                benchmarkError = "跑分超时（60s），可能是驱动异常或设备过慢"
-                            }
-                        } catch (e: Exception) {
-                            withContext(Dispatchers.Main) {
-                                benchmarkError = e.message ?: "unknown error"
-                            }
-                        } finally {
-                            withContext(Dispatchers.Main) {
-                                benchmarkLoading = false
-                            }
-                        }
-                    }
-                }
-            )
-        }
-
+        // GPU 跑分并入「实测」子分区的驱动实测卡：同一份驱动、同一次测试里
+        // 既出图又出分，不再单独占一个入口（原来三个入口各自跑一遍，用户不知道点哪个）。
         }
 
         // 渲染实测（自研内核）：直接出图，而不是只给一行 FPS 文字
         // 有已下载驱动时可在卡片内切换「系统驱动 / 指定驱动」，实现换驱动实测
         if (deviceTab == 2) item(key = "driver_render_check") {
-            DriverRenderCheckCard(drivers = driverTargets)
+            DriverRenderCheckCard(
+                drivers = driverTargets,
+                onBenchResult = { benchmarkResult = it },
+            )
         }
 
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
@@ -6993,6 +6951,8 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
 private fun emuSystemZh(name: String, key: String): String {
     val k = key.ifBlank { name.lowercase() }
     val zh = when {
+        // switch2 要在 switch 之前判：contains("switch") 会把 NS2 也吃掉
+        k.contains("switch_2") || k.contains("switch2") || k.contains("switch 2") -> "Switch 2"
         k.contains("switch") -> "Switch"
         k.contains("windows") -> "Windows (Winlator)"
         k.contains("playstation_2") || k.contains("ps2") -> "PS2"
@@ -7081,191 +7041,7 @@ private fun CompatRow(
  * 影响范围：设备 Tab 新增卡片，不影响其他页面。
  * 回滚方法：删除本函数及 DeviceScreen 中 benchmark 相关 item/状态即可。
  */
-@Composable
-private fun GpuBenchmarkCard(
-    result: BenchmarkResult?,
-    deviceInfo: DeviceInfo?,
-    isLoading: Boolean,
-    error: String?,
-    onRun: () -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(28.dp)
-    ) {
-        Column(Modifier.padding(20.dp)) {
-            // 说明文字
-            Text(
-                appString(R.string.benchmark_note),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(Modifier.height(16.dp))
 
-            when {
-                isLoading -> {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(24.dp),
-                            strokeWidth = 2.dp
-                        )
-                        Spacer(Modifier.width(12.dp))
-                        Text(appString(R.string.benchmark_running))
-                    }
-                }
-
-                error != null -> {
-                    // 环境受限（SELinux/容器）：不再反复红字报失败，改为引导模拟器内验证
-                    var showEnvGuide by remember { mutableStateOf(false) }
-                    Text(
-                        appString(R.string.benchmark_failed),
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        error,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(Modifier.height(12.dp))
-                    Button(onClick = { showEnvGuide = true }) {
-                        Text(appString(R.string.benchmark_guide_btn))
-                    }
-                    if (showEnvGuide) {
-                        AlertDialog(
-                            onDismissRequest = { showEnvGuide = false },
-                            title = { Text(appString(R.string.benchmark_guide_btn)) },
-                            text = { Text(appString(R.string.benchmark_env_guide)) },
-                            confirmButton = {
-                                Button(onClick = { showEnvGuide = false }) {
-                                    Text(appString(R.string.confirm_ok))
-                                }
-                            }
-                        )
-                    }
-                }
-
-                result != null && result.success -> {
-                    // 总分 + 设备名
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column {
-                            Text(
-                                appString(R.string.benchmark_total_score),
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Text(
-                                result.totalScore.toString(),
-                                style = MaterialTheme.typography.displaySmall,
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                        }
-                        Column(horizontalAlignment = Alignment.End) {
-                            Text(
-                                appString(R.string.benchmark_device),
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Text(
-                                result.deviceName,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                        }
-                    }
-                    Spacer(Modifier.height(16.dp))
-
-                    // fill 带宽条
-                    BandwidthRow(
-                        label = appString(R.string.benchmark_fill_bandwidth),
-                        valueGBs = result.fillBandwidthGBs
-                    )
-                    Spacer(Modifier.height(10.dp))
-
-                    // copy 带宽条
-                    BandwidthRow(
-                        label = appString(R.string.benchmark_copy_bandwidth),
-                        valueGBs = result.copyBandwidthGBs
-                    )
-                    Spacer(Modifier.height(10.dp))
-
-                    // CPU 整数吞吐（多线程 MIPS）
-                    CpuRow(
-                        label = appString(R.string.benchmark_cpu_int),
-                        value = result.cpuIntMIPS,
-                        unit = "MIPS",
-                        threads = result.cpuThreads
-                    )
-                    Spacer(Modifier.height(10.dp))
-
-                    // CPU 浮点吞吐（多线程 MFLOPS）
-                    CpuRow(
-                        label = appString(R.string.benchmark_cpu_float),
-                        value = result.cpuFloatMFLOPS,
-                        unit = "MFLOPS",
-                        threads = result.cpuThreads
-                    )
-
-                    // 对比 PC 显卡：优先用跑分数据库的 GPU 等效（如 8 Gen 2 → RX 7600M XT ~41%），
-                    // 而非实测物理量（手机 LPDDR 带宽与 PC 显存不是一个体系，个位数百分比无参考价值）
-                    val benchCtx = LocalContext.current
-                    val socName = deviceInfo?.socName.orEmpty()
-                    val gpuModel = deviceInfo?.gpuModel.orEmpty()
-                    val benchInfo = remember(socName, gpuModel) {
-                        if (socName.isNotBlank() || gpuModel.isNotBlank()) {
-                            BenchEngine.resolve(socName, gpuModel, benchCtx)
-                        } else null
-                    }
-                    if (benchInfo?.gpuEquivName != null) {
-                        // GPU 等效：curated 跑分库（人工校准，鲁大师同口径 GPU 分最近邻），
-                        // 仅型号参考，不做百分比换算。
-                        // 注：CPU 等效曾用整机分最近邻桌面榜（结果如 i9-12900F 明显失真），
-                        // 已停用——暂缺手机 CPU 分 ↔ 桌面 CPU 分的可靠映射数据源。
-                        Spacer(Modifier.height(16.dp))
-                        Text(
-                            appString(R.string.bench_driver_pc_title),
-                            style = MaterialTheme.typography.titleSmall
-                        )
-                        Spacer(Modifier.height(8.dp))
-                        InfoRow(
-                            label = "AMD 参考显卡",
-                            value = benchInfo.gpuEquivName
-                        )
-                        benchInfo.gpuEquivNvidia?.let { nName ->
-                            InfoRow(
-                                label = "NVIDIA 参考显卡",
-                                value = nName
-                            )
-                        }
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            "参考显卡为鲁大师 GPU 跑分库同档校准（RX 7600M XT ≈ RTX 2060 SUPER，同一榜单分数接近）；CPU 等效暂缺可靠数据源",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f),
-                            maxLines = 3
-                        )
-                    }
-                    Spacer(Modifier.height(16.dp))
-
-                    Button(onClick = onRun) {
-                        Text(appString(R.string.benchmark_start))
-                    }
-                }
-
-                else -> {
-                    // 初始状态：只有按钮
-                    Button(onClick = onRun) {
-                        Text(appString(R.string.benchmark_start))
-                    }
-                }
-            }
-        }
-    }
-}
 
 /** 计算吞吐数值 + 进度条（满格 1500 GFLOPS，对应 Adreno 8 系 compute 上限）。 */
 @Composable
@@ -10326,6 +10102,9 @@ private fun saveEmulatorFavs(context: Context, favs: Set<String>) {
 private fun emulatorPlatformLabel(platform: String): String = when (platform) {
     "windows-pc" -> "Windows 游戏"
     "switch" -> "Switch"
+    // Switch 2 单独一档：数据里 switch2 ⊂ switch，合并显示会让「Switch 2」
+    // 筛选里出现一堆只跑 Switch 1 的项目，反过来也容易被误当成能跑 NS2。
+    "switch2" -> "Switch 2"
     "ps5" -> "PS5"
     "ps4" -> "PS4"
     "ps3" -> "PS3"
@@ -11097,8 +10876,11 @@ fun EmulatorScreen(
     }
 
     // 精选大卡：综合热度最高条目（方案 C hero 区）
-    val topEntry = remember(entries) {
-        entries.maxByOrNull { it.downloads + it.stars * 10L }
+    // 排序结果留着：英雄卡要说明「凭什么推它」，排名是最直接的一条依据。
+    val heroRanking = remember(entries) { entries.sortedByDescending { it.downloads + it.stars * 10L } }
+    val topEntry = heroRanking.firstOrNull()
+    val heroReason = remember(topEntry, heroRanking.size) {
+        topEntry?.let { heroReasonText(it, heroRanking.size) }.orEmpty()
     }
 
     // 分区/平台切换在顶部两行 chips，列表直接平铺，不再用折叠区块
@@ -11448,6 +11230,7 @@ if (emuTab == 0) item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan)
                             EmulatorHeroCard(
                                 entry = hero,
                                 categoryLabel = emulatorCategoryLabel(hero.category),
+                                reason = heroReason,
                                 onClickDetail = { detailEntry = hero }
                             )
                         }
@@ -12197,10 +11980,32 @@ private fun FusionSearchBar(
     }
 }
 
+/**
+ * 英雄卡「为什么推荐它」。
+ *
+ * 只用数据里能核对的量：热度排名、最近提交、是否有安卓直装包、是否官方。
+ * 不写「口碑最好」「强烈推荐」这类无法验证的话——上一版的卡片就是因为只放
+ * 名称和星标，用户看不出这张大卡想表达什么。
+ */
+private fun heroReasonText(entry: EmulatorEntry, total: Int): String {
+    val parts = ArrayList<String>(4)
+    if (total > 1) parts += "${total} 个项目里热度第 1"
+    val days = daysSinceIso(entry.pushedAt)
+    when {
+        days == 0L -> parts += "今天有提交"
+        days in 1L..45L -> parts += "${days} 天前更新"
+    }
+    if (entry.latestApkUrl.isNotBlank()) parts += "有 Android 直装包"
+    if (entry.official) parts += "官方项目"
+    if (parts.size <= 1 && entry.stars > 0) parts += "★${entry.stars}"
+    return parts.take(3).joinToString(" · ")
+}
+
 @Composable
 private fun EmulatorHeroCard(
     entry: EmulatorEntry,
     categoryLabel: String,
+    reason: String,
     onClickDetail: () -> Unit
 ) {
     Card(
@@ -12236,6 +12041,15 @@ private fun EmulatorHeroCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+                if (entry.nameZh.isNotBlank()) {
+                    Text(
+                        entry.nameZh,
+                        fontSize = 11.sp,
+                        color = Fusion.OnSurfaceDim,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
                 Text(
                     "$categoryLabel · ${entry.latestTag.ifBlank { "latest" }}",
                     fontSize = 12.sp,
@@ -12267,6 +12081,19 @@ private fun EmulatorHeroCard(
                                 .padding(horizontal = 8.dp, vertical = 3.dp)
                         )
                     }
+                }
+                // 「为什么是它」：排名、更新、直装能力都来自数据本身，
+                // 不放主观评语，用户能自己对上号。
+                if (reason.isNotBlank()) {
+                    Text(
+                        reason,
+                        fontSize = 10.sp,
+                        lineHeight = 14.sp,
+                        color = Fusion.OnSurfaceFaint,
+                        modifier = Modifier.padding(top = 6.dp),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             }
             Box(
@@ -12357,6 +12184,18 @@ private fun EmulatorCard(
                         )
                     }
                 }
+            }
+            // 中文名只在这条目有译名时出现（原生移植项目居多），
+            // 原名本身可读的项目不重复占一行。
+            if (entry.nameZh.isNotBlank()) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    entry.nameZh,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
             if (entry.channel.isNotBlank() && entry.channel != "stable") {
                 Spacer(Modifier.height(2.dp))
@@ -12989,6 +12828,14 @@ private fun EmulatorDetailDialog(
                         }
                     }
                 }
+                // 中文名/中文作品名：详情页放在标题下面一行，不抢标题的位置
+                if (entry.nameZh.isNotBlank()) {
+                    Text(
+                        entry.nameZh,
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
                 // 优先展示 README 提炼的摘要（说清「这是什么、能跑什么」），
                 // 没有再用作者在仓库 About 里写的原文
                 val blurb = entry.summary.ifBlank { entry.description }
@@ -12998,6 +12845,22 @@ private fun EmulatorDetailDialog(
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                }
+                // 卡片上的红字说明只给两行，长内容在列表里必然被截断。
+                // 详情页完整展示，用户点进来能看到「这条为什么没有下载」。
+                if (entry.note.isNotBlank()) {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = MaterialTheme.colorScheme.errorContainer,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            entry.note,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer
+                        )
+                    }
                 }
                 // EmuReady 社区数据入口（按模拟器名匹配，命中才显示）
                 if (!emuReadyLoading && emuReadyInfo != null && emuReadyInfo!!.listingsCount > 0) {
@@ -13522,6 +13385,13 @@ private fun SocKnowledgeCard(
     }
 }
 
+/** 常见机型太长（「小米 13、iQOO Neo9、一加 11、红魔 8」），卡片里只留前三款 */
+private fun compactDevices(devices: String, max: Int = 3): String {
+    val parts = devices.split('、', '，', ',', '/').map { it.trim() }.filter { it.isNotBlank() }
+    if (parts.isEmpty()) return devices
+    return if (parts.size <= max) parts.joinToString("、") else parts.take(max).joinToString("、") + " 等"
+}
+
 /** SoC 跑分引擎：等效 PC / 模拟器体验预估 / 升级建议 / 世代演进 / 同芯机型。
  *  数据来自安兔兔 SoC 天梯 + 鲁大师五榜（assets/bench，CI 每日刷新）。
  *  匹配失败或数据缺失一律展示空态，不编造分数。 */
@@ -13781,12 +13651,22 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                         label = if (u.altName != null) "同厂商首选" else appString(R.string.bench_upgrade_next),
                         value = "${u.nextName}（+${u.gainPct}%）"
                     )
+                    // 常见机型来自 soc_master 的 devices 字段：告诉用户「换到这颗芯片，
+                    // 对应的机器是哪些」，比只给一个芯片名有用
+                    if (u.nextDevices.isNotBlank()) {
+                        Spacer(Modifier.height(4.dp))
+                        InfoRow(label = "常见机型", value = compactDevices(u.nextDevices))
+                    }
                     if (u.altName != null) {
                         Spacer(Modifier.height(4.dp))
                         InfoRow(
                             label = "次选（跨厂商）",
                             value = "${u.altName}（+${u.altGainPct}%）"
                         )
+                        if (u.altDevices.isNotBlank()) {
+                            Spacer(Modifier.height(4.dp))
+                            InfoRow(label = "常见机型", value = compactDevices(u.altDevices))
+                        }
                     }
                 }
             }

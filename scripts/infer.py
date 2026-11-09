@@ -250,6 +250,10 @@ def builds_from_assets(ev, tag="", default_url=""):
 # 否则每条都要人工从 topics 里翻。规则按「专有名词优先」排：
 # 命中 yuzu 就一定是 switch，不管描述里还写了什么。
 GUEST_RULES = [
+    # switch2 必须排在 switch 之前：命中 NS2 的项目描述里几乎都同时写着 switch。
+    # 口径按「能跑 Switch 2 游戏」判定，纯 Switch 1 项目不会被这条捞进来。
+    ("switch2", [r"\bswitch\s*2\b", r"\bswitch2\b", r"\bns2\b", r"nintendo\s*switch\s*2",
+                 r"\bswitch\s*二代\b"]),
     ("switch", [r"\bswitch\b", r"\bns\b", r"\bns模拟器\b", r"\byuzu\b", r"\bryujinx\b", r"\beden\b", r"\bsudachi\b",
                 r"\bsuyu\b", r"\btorzu\b", r"\bhorizon\b", r"\bnx2?\b", r"\bsx2\b"]),
     ("xbox360", [r"\bxbox\s*360\b", r"\bxenia\b", r"\bx360\b", r"\bxendroid\b", r"\bxenra\b"]),
@@ -320,4 +324,8 @@ def infer_guests(ev):
         out.remove("ps1")
     if "xbox" in out and "xbox360" in out:
         out.remove("xbox")
+    # Switch 2 向下兼容 Switch 1：能跑 NS2 的项目一定能跑 NS1，
+    # 反过来不成立，所以 switch2 命中时补一个 switch，但不做反向补齐。
+    if "switch2" in out and "switch" not in out:
+        out.insert(out.index("switch2") + 1, "switch")
     return out, evi

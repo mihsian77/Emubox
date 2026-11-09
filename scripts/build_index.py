@@ -26,7 +26,7 @@ SHARDS = 8
 
 # 首屏要用的字段。判断标准：列表卡片、筛选、排序、以及不点进去就能看到的信息。
 INDEX_FIELDS = [
-    "id", "name", "category", "section", "family", "family_label", "owner",
+    "id", "name", "name_zh", "category", "section", "family", "family_label", "owner",
     "repo", "repo_url", "homepage", "description", "summary", "logo_url",
     "official", "source", "kind", "runtime", "platforms", "hosts", "status",
     "needs_review", "method", "latest_tag", "latest_date", "channel",

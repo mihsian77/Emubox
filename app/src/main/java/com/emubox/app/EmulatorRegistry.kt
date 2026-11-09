@@ -51,6 +51,12 @@ data class EmulatorRelease(
 data class EmulatorEntry(
     val id: String,
     val name: String,
+    /**
+     * 中文名 / 中文作品名。
+     * 原生移植项目的原名是英文（Zelda64 Recompiled、Ship of Harkinian），
+     * 中文用户看不出这是哪个游戏，所以补一列人工核对的译名，空值表示原名本身可读。
+     */
+    val nameZh: String = "",
     val category: String,
     /** 用途分区：console-emulation / windows-compat / native-port / frontend-tool / vn-engine */
     val section: String = "",
@@ -220,6 +226,7 @@ object EmulatorRegistryRepository {
                         // 字段名统一后只认 logo_url；不再回退作者头像，
                         // 空值交给 UI 的字母牌（见 ProjectAvatar）。
                         logoUrl = obj.optString("logo_url"),
+                        nameZh = obj.optString("name_zh"),
                         note = obj.optString("note"),
                         stars = obj.optLong("stars", 0L),
                         forks = obj.optLong("forks", 0L),

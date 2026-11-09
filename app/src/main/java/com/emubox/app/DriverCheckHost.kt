@@ -82,11 +82,15 @@ fun DriverRenderCheckCard(
     drivers: List<DriverTarget> = emptyList(),
     // 仅用于截图/预览测试注入已完成状态，正式调用保持默认 Idle
     initialState: DriverCheckState = DriverCheckState.Idle,
+    // 跑分结果回传：设备指南与结论文案要用它显示「本机实测总分」
+    onBenchResult: (BenchmarkResult) -> Unit = {},
 ) {
     var state by remember(initialState) { mutableStateOf(initialState) }
     var showSheet by remember { mutableStateOf(false) }
     // null = 系统驱动
     var selected by remember(drivers) { mutableStateOf<DriverTarget?>(null) }
+    // 带宽/算力跑分：与出图共用同一个驱动库，结果跟着这张卡走
+    var bench by remember { mutableStateOf<BenchmarkResult?>(null) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     // 文案在 composable 上下文取好，onClick 里不能调 @Composable
@@ -97,11 +101,13 @@ fun DriverRenderCheckCard(
     fun start() {
         val target = selected
         state = DriverCheckState.Running
+        bench = null
         scope.launch {
+            var soPath: String? = null
             val res = withContext(Dispatchers.IO) {
                 runCatching {
                     // 选中驱动时才解压取 .so，避免每次进页面都做重活
-                    val soPath = target?.let { t ->
+                    soPath = target?.let { t ->
                         val cached = DriverExtractor.getSoFile(context, t.id)?.takeIf { it.exists() }
                         val so = cached ?: runCatching {
                             val uri = if (t.packagePath.startsWith("content://")) Uri.parse(t.packagePath)
@@ -112,6 +118,16 @@ fun DriverRenderCheckCard(
                     }
                     DriverCheck.run(driverPath = soPath)
                 }
+            }
+            // 出图之后紧接着跑带宽/算力：同一份驱动、同一个进程，
+            // 这样「能不能画对」和「画得多快」是一条结果，不再拆成两个入口。
+            if (res.isSuccess) {
+                bench = withContext(Dispatchers.IO) {
+                    runCatching {
+                        BenchmarkResult.fromJson(NativeVulkanBridge.benchmarkVulkan(soPath))
+                    }.getOrNull()
+                }
+                bench?.let { onBenchResult(it) }
             }
             state = res.fold(
                 onSuccess = { (bmp, report) ->
@@ -261,6 +277,24 @@ fun DriverRenderCheckCard(
                     contentScale = ContentScale.Fit,
                 )
             }
+
+            // 跑分：填充/拷贝带宽 + 计算吞吐 + 综合分。数字都来自 native 的
+            // timestamp query，不做归一化，不同驱动之间可直接对比。
+            bench?.let { b ->
+                Spacer(Modifier.height(2.dp))
+                if (b.success) {
+                    BenchRow("填充带宽", "%.1f GB/s".format(b.fillBandwidthGBs))
+                    BenchRow("拷贝带宽", "%.1f GB/s".format(b.copyBandwidthGBs))
+                    if (b.computeGFLOPS > 0) BenchRow("计算吞吐", "%.1f GFLOPS".format(b.computeGFLOPS))
+                    BenchRow("综合分", "${b.totalScore}")
+                } else {
+                    Text(
+                        "跑分未完成：${b.errorMessage ?: b.errorCode ?: "未知原因"}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
+            }
         }
     }
 
@@ -270,6 +304,23 @@ fun DriverRenderCheckCard(
             onRun = { start() },
             onDismiss = { showSheet = false },
         )
+    }
+}
+
+/** 左标签右数值的一行，跑分结果用 */
+@Composable
+private fun BenchRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.weight(1f),
+        )
+        Text(value, style = MaterialTheme.typography.labelSmall)
     }
 }
 
