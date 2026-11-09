@@ -45,7 +45,12 @@ data class ProxyNode(
         )
         for (prefix in githubDomains) {
             if (url.startsWith(prefix)) {
-                return "https://$domain/$url"
+                // GitHub 全站强制 HTTPS：把录入/清单里的 http:// 规范化掉，
+                // 否则会拼出 https://proxy/http://github.com/... 这种必然 404 的地址
+                val normalized = if (url.startsWith("http://")) {
+                    "https://" + url.removePrefix("http://")
+                } else url
+                return "https://$domain/$normalized"
             }
         }
         return url

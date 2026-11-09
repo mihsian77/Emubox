@@ -44,12 +44,24 @@ private const val KEY_UI_SCALE = "ui_scale"
 private const val KEY_ACCELERATOR_MODE = "accelerator_mode"
 private const val KEY_ACCELERATOR_NODE = "accelerator_node"
 private const val KEY_MATCH_DRIVERS_BY_DEVICE = "match_drivers_by_device"
+private const val KEY_DEEPSEEK_KEY = "secret_deepseek_key"
+private const val KEY_GITHUB_TOKEN = "secret_github_token"
 
 object SettingsManager {
     private lateinit var prefs: SharedPreferences
 
+    /** 供 SecretStore（Keystore 加解密）使用；存 applicationContext 不会泄漏 Activity */
+    private lateinit var appContext: Context
+
     fun init(context: Context) {
-        prefs = context.getSharedPreferences(PREFS_SETTINGS, Context.MODE_PRIVATE)
+        appContext = context.applicationContext
+        prefs = appContext.getSharedPreferences(PREFS_SETTINGS, Context.MODE_PRIVATE)
+        // 旧版本把 DeepSeek Key / GitHub Token 明文存 prefs，升级后一次性搬进 Keystore
+        runCatching {
+            SecretStore.migrateLegacy(
+                appContext, prefs, "translate_deepseek_key", KEY_DEEPSEEK_KEY
+            )
+        }
     }
 
     fun isStoragePermissionAsked(): Boolean = prefs.getBoolean(KEY_STORAGE_PERMISSION_ASKED, false)
@@ -225,11 +237,35 @@ object SettingsManager {
         TranslationEngine.clearCache()
     }
 
-    fun getDeepSeekKey(): String = prefs.getString("translate_deepseek_key", "") ?: ""
+    /** DeepSeek Key：Keystore 加密存储（旧版明文已在 init 时迁移并删除） */
+    fun getDeepSeekKey(): String =
+        runCatching { SecretStore.get(appContext, KEY_DEEPSEEK_KEY) }.getOrDefault("")
 
     fun setDeepSeekKey(key: String) {
-        prefs.edit().putString("translate_deepseek_key", key.trim()).apply()
+        SecretStore.put(appContext, KEY_DEEPSEEK_KEY, key.trim())
         TranslationEngine.clearCache()
+    }
+
+    // ── GitHub API Token（可选）──────────────────────────────────
+    // 未认证的 GitHub API 限额 60 次/小时/IP：冷启动 5 个源 + 强刷就会 403。
+    // 填了 token 后限额 5000 次/小时。token 只用于 api.github.com，且经过
+    // 第三方加速节点时会主动剥离 Authorization 头（Accelerator.shouldStripAuthorization）。
+    fun getGithubToken(): String =
+        runCatching { SecretStore.get(appContext, KEY_GITHUB_TOKEN) }.getOrDefault("")
+
+    fun setGithubToken(token: String) {
+        SecretStore.put(appContext, KEY_GITHUB_TOKEN, token.trim())
+        clearRemoteCaches()
+    }
+
+    fun hasGithubToken(): Boolean = getGithubToken().isNotBlank()
+
+    /** 驱动首次加载的风险确认（第三方驱动包内含可执行 native 代码） */
+    fun isDriverRiskAcknowledged(): Boolean =
+        prefs.getBoolean("driver_risk_acknowledged", false)
+
+    fun setDriverRiskAcknowledged() {
+        prefs.edit().putBoolean("driver_risk_acknowledged", true).apply()
     }
 
     /** MyMemory 提升配额的邮箱（官方 de 参数，可留空）。 */

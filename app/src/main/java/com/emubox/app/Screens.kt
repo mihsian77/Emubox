@@ -1630,6 +1630,10 @@ fun SettingsScreen(
             }
 
             item {
+                GithubTokenCard()
+            }
+
+            item {
                 SettingsSectionHeader(
                     title = appString(R.string.about_section),
                     subtitle = appString(R.string.about_upstream)
@@ -1674,6 +1678,68 @@ private fun SettingsCard(
             )
             Spacer(Modifier.height(8.dp))
             content()
+        }
+    }
+}
+
+// ── GitHub API Token（可选）──────────────────────────────────────
+
+/**
+ * 未认证的 GitHub API 限额 60 次/小时/IP。冷启动会并发拉 5 个驱动源，
+ * 几次强刷就会 403，表现为「驱动列表突然空了」。填 Token 后 5000 次/小时。
+ * Token 用 Keystore 加密保存，且只发给 api.github.com（经代理时自动剥离）。
+ */
+@Composable
+private fun GithubTokenCard() {
+    var input by remember { mutableStateOf("") }
+    var configured by remember { mutableStateOf(SettingsManager.hasGithubToken()) }
+    var justSaved by remember { mutableStateOf(false) }
+
+    SettingsCard(title = appString(R.string.settings_github_token_title)) {
+        Text(
+            appString(R.string.settings_github_token_desc),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(Modifier.height(8.dp))
+        OutlinedTextField(
+            value = input,
+            onValueChange = { input = it; justSaved = false },
+            modifier = Modifier.fillMaxWidth(),
+            placeholder = { Text(appString(R.string.settings_github_token_hint)) },
+            singleLine = true,
+            visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
+        )
+        Spacer(Modifier.height(4.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            TextButton(
+                onClick = {
+                    SettingsManager.setGithubToken(input)
+                    configured = SettingsManager.hasGithubToken()
+                    justSaved = configured
+                    input = ""
+                },
+                enabled = input.isNotBlank()
+            ) { Text(appString(R.string.save)) }
+
+            if (configured) {
+                TextButton(
+                    onClick = {
+                        SettingsManager.setGithubToken("")
+                        configured = false
+                        justSaved = false
+                    }
+                ) { Text(appString(R.string.delete)) }
+            }
+
+            if (justSaved) {
+                Spacer(Modifier.height(0.dp))
+                Text(
+                    appString(R.string.settings_github_token_saved),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
         }
     }
 }
@@ -3797,7 +3863,11 @@ private fun DriverRecommendRow(
                 modifier = Modifier.fillMaxWidth().height(2.dp)
             )
             list.isEmpty() -> Text(
-                "没取到版本列表，可进驱动专区查看",
+                when (lastApiError) {
+                    "RATE_LIMITED" -> appString(R.string.source_empty_rate_limited)
+                    "NOT_FOUND" -> appString(R.string.source_empty_no_release)
+                    else -> "没取到版本列表，可进驱动专区查看"
+                },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
             )
@@ -6512,8 +6582,19 @@ fun DeviceScreen(
                             if (device.formats.isEmpty()) {
                                 Text("未采集（驱动未导出 vkGetPhysicalDeviceFormatProperties）", style = MaterialTheme.typography.bodySmall)
                             } else {
+                                if (!device.formatFlags2) {
+                                    Text(
+                                        "驱动未提供 VkFormatProperties3（Vulkan 1.3 / VK_KHR_format_feature_flags2）：\n下列仅含 32 位特性位，高位特性显示为「—」不代表设备真的不支持。",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                                 device.formats.forEach { fmt ->
-                                    val ok = fmt.optimalTilingFeatures != 0L
+                                    // 有 64 位值就用 64 位（VK_FORMAT_FEATURE_2_* 的高位标志），
+                                    // 否则退回 32 位值，保证「不支持」与「读不出」可区分
+                                    val effective = fmt.optimalFeatures64
+                                        ?: fmt.optimalTilingFeatures.toULong()
+                                    val ok = effective != 0uL
                                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
                                         Surface(
                                             shape = RoundedCornerShape(6.dp),
@@ -6529,7 +6610,7 @@ fun DeviceScreen(
                                         }
                                         Spacer(Modifier.width(8.dp))
                                         Text(
-                                            "${fmt.format}  [0x${fmt.optimalTilingFeatures.toString(16)}]",
+                                            "${fmt.format}  [0x${effective.toString(16)}]",
                                             style = MaterialTheme.typography.bodySmall
                                         )
                                     }
@@ -10013,6 +10094,16 @@ private fun RuntimeComponentCard(
                             overflow = TextOverflow.Ellipsis
                         )
                     }
+                }
+                // 社区清单基本不带摘要：明确标注「没校验」而不是让用户误以为已校验
+                if (!component.isBundle && component.downloadUrl.isNotBlank() &&
+                    component.checksum.isBlank()
+                ) {
+                    Text(
+                        appString(R.string.runtime_checksum_missing),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.outline
+                    )
                 }
             } else {
                 Text(

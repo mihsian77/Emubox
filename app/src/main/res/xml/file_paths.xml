@@ -11,5 +11,7 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path name="emubox_downloads" path="Download/EmuBox/" />
     <external-path name="emuhub_legacy_downloads" path="Download/EmuHub-CN/" />
-    <external-files-path name="emubox_external_files" path="." />
+    <!-- 旧版本可能把文件写过 Android/data/<pkg>/files/Download；只放行这一层子目录，
+         不再暴露整个 files/（里面有驱动解压目录与测试中间产物） -->
+    <external-files-path name="emubox_legacy_external" path="Download/" />
 </paths>

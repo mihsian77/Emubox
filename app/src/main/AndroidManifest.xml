@@ -12,6 +12,11 @@
          目录文件，不再依赖 MediaStore 索引（部分 ROM 查询不到磁盘文件） -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
+    <!-- 下载保活：GB 级驱动下载切后台/锁屏时进程会被冻结，需要 dataSync 前台服务 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- Android 13+ 显示前台服务通知（未授予时服务仍然有效，只是通知不可见） -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="false"
@@ -57,6 +62,12 @@
             android:name=".DriverTestService"
             android:exported="false"
             android:process=":drivertest" />
+
+        <!-- 下载保活：有活动下载时以 dataSync 前台服务常驻，避免切后台被冻结 -->
+        <service
+            android:name=".DownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
     </application>
 
 </manifest>

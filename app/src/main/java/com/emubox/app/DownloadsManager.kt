@@ -131,6 +131,7 @@ object DownloadsManager {
     private val _activeDownloads = mutableStateMapOf<String, ActiveDownload>()
     private val _completedDownloads = mutableStateListOf<CompletedDownload>()
     private lateinit var prefs: SharedPreferences
+    private lateinit var appContext: Context
     private var lastActivePersistAt = 0L
 
     /** 最近一次本地扫描的诊断摘要：显示在下载 Tab，便于定位"扫不出"根因 */
@@ -141,9 +142,15 @@ object DownloadsManager {
     val completedDownloads: List<CompletedDownload> get() = _completedDownloads
 
     fun init(context: Context) {
-        prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        appContext = context.applicationContext
+        prefs = appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         loadCompletedDownloads()
         loadActiveDownloads()
+    }
+
+    /** 活动下载集合变化后同步前台保活服务（有下载则常驻，无则停） */
+    private fun syncDownloadService() {
+        if (::appContext.isInitialized) DownloadService.sync(appContext)
     }
 
     private fun saveCompletedDownloads() {
@@ -243,6 +250,7 @@ object DownloadsManager {
             subPath = subPath
         )
         saveActiveDownloads(force = true)
+        syncDownloadService()
     }
 
     /** Update the size after the server sends the response headers without resetting progress. */
@@ -274,6 +282,7 @@ object DownloadsManager {
             if (current.status != DownloadStatus.CANCELLING) {
                 _activeDownloads[fileName] = current.copy(status = DownloadStatus.CONNECTING)
                 saveActiveDownloads(force = true)
+                syncDownloadService()
             }
         }
     }
@@ -361,6 +370,7 @@ object DownloadsManager {
             )
         )
         saveCompletedDownloads()
+        syncDownloadService()
     }
 
     fun failDownload(fileName: String, error: String? = null) {
@@ -388,6 +398,7 @@ object DownloadsManager {
             )
             saveActiveDownloads(force = true)
             saveCompletedDownloads()
+            syncDownloadService()
             return
         }
         _activeDownloads.remove(fileName)
@@ -395,6 +406,7 @@ object DownloadsManager {
         _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) }
         saveActiveDownloads(force = true)
         saveCompletedDownloads()
+        syncDownloadService()
     }
 
     /** 按文件名+子路径移除 completed 记录（死文件记录清理，允许重新下载） */

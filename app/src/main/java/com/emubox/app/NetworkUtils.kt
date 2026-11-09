@@ -150,10 +150,17 @@ private fun refreshReleasesInBackground(apiUrl: String) {
 /** 拉取并解析 release 列表；API 节点失败时轮换下一个支持 API 的加速节点，最后直连兜底。 */
 private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
     var json: JSONArray? = null
+    // 配了 Token 就先直连：Token 只对 api.github.com 有效，经代理时会被主动剥离
+    // （不能把用户凭据交给第三方节点），而剥离后仍按代理出口 IP 计入 60 次/小时。
+    // 直连失败再退回「代理轮换」，行为与未配置 Token 时一致。
+    if (runCatching { SettingsManager.hasGithubToken() }.getOrDefault(false)) {
+        json = executeReleasesRequest(apiUrl)
+    }
     // API 请求只走支持 API 流量的节点（ghfast 等实测不支持，返回 Invalid input）；
     // 失败则轮换下一个节点，避免 AUTO 选中不支持 API 的节点导致列表永远拉不到。
     val triedIds = mutableSetOf<String>()
     for (i in 0..Accelerator.ALL_NODES.size) {
+        if (json != null) break
         val node = Accelerator.ALL_NODES.firstOrNull {
             it.id !in triedIds && it.id != Accelerator.DIRECT_NODE.id &&
                 (it.trafficKinds.isEmpty() || TrafficKind.API in it.trafficKinds)
@@ -205,14 +212,50 @@ private suspend fun refreshReleases(apiUrl: String): List<GithubRelease> {
     return releases
 }
 
+/**
+ * 最近一次 GitHub API 失败的原因，供 UI 给出可解释的空态：
+ *   RATE_LIMITED —— 未认证 60 次/小时配额用尽（设置里填 Token 可提到 5000）
+ *   NOT_FOUND    —— 仓库存在但没有任何 release（例如 panDXVK-lloyd262）
+ *   null         —— 成功或网络层失败（走既有「加载失败」文案）
+ */
+@Volatile
+var lastApiError: String? = null
+
+/** 清空所有内存缓存（用户改了 Token / 加速节点后调用） */
+fun clearRemoteCaches() {
+    releaseCache.clear()
+    componentCache.clear()
+    repoMetaCache.clear()
+    componentSizeCache.clear()
+    lastApiError = null
+}
+
 private fun executeReleasesRequest(url: String): JSONArray? = try {
-    val request = Request.Builder()
+    val builder = Request.Builder()
         .url(url)
         .header("Accept", "application/vnd.github+json")
         .header("X-GitHub-Api-Version", "2022-11-28")
-        .build()
-    githubClient.newCall(request).execute().use { response ->
-        if (!response.isSuccessful) return null
+
+    // Token 只发给 GitHub 官方 API：请求被加速节点重写后域名已变，
+    // 此时绝不能带 Authorization（会把用户凭据交给第三方）。
+    val host = runCatching { java.net.URI(url).host }.getOrNull()
+    val token = if (host == "api.github.com") {
+        runCatching { SettingsManager.getGithubToken() }.getOrDefault("")
+    } else ""
+
+    if (token.isNotBlank()) builder.header("Authorization", "Bearer $token")
+
+    githubClient.newCall(builder.build()).execute().use { response ->
+        if (!response.isSuccessful) {
+            val body = runCatching { response.body?.string() }.getOrNull().orEmpty()
+            lastApiError = when {
+                response.code == 403 && body.contains("rate limit", ignoreCase = true) -> "RATE_LIMITED"
+                response.code == 429 -> "RATE_LIMITED"
+                response.code == 404 -> "NOT_FOUND"
+                else -> null
+            }
+            return null
+        }
         val body = response.body?.string() ?: return null
         JSONArray(body)
     }
@@ -526,10 +569,14 @@ suspend fun fetchRepoMeta(url: String): RepoMeta? =
 
         val ownerRepo = extractOwnerRepo(url) ?: return@withContext null
         val apiUrl = "https://api.github.com/repos/${ownerRepo.first}/${ownerRepo.second}"
-        val request = Request.Builder()
+        val builder = Request.Builder()
             .url(apiUrl)
             .header("Accept", "application/vnd.github+json")
-            .build()
+        runCatching { SettingsManager.getGithubToken() }
+            .getOrDefault("")
+            .takeIf { it.isNotBlank() }
+            ?.let { builder.header("Authorization", "Bearer $it") }
+        val request = builder.build()
         repoMetaSemaphore.acquire()
         try {
             githubClient.newCall(request).execute().use { response ->

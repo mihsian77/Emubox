@@ -175,7 +175,13 @@ data class VulkanDeviceInfo(
     /** 驱动指纹：16 字节转小写 hex，同型号不同驱动的区分依据 */
     val pipelineCacheUUID: String = "",
     /** 稀疏资源能力（模拟器的 sparse texture 支持判断） */
-    val sparseProperties: Map<String, Boolean> = emptyMap()
+    val sparseProperties: Map<String, Boolean> = emptyMap(),
+    /**
+     * 是否真的采集到了 64 位格式特性（VkFormatProperties3 / Vulkan 1.3）。
+     * false 表示驱动不支持 flags2 查询，UI 需提示「只能看到 32 位信息」，
+     * 避免把「读不出」误判成「不支持」。
+     */
+    val formatFlags2: Boolean = false
 ) {
     companion object {
         fun fromJson(obj: JSONObject): VulkanDeviceInfo {
@@ -209,7 +215,10 @@ data class VulkanDeviceInfo(
                             format = fmt.optString("format", ""),
                             linearTilingFeatures = fmt.optLong("linear", 0),
                             optimalTilingFeatures = fmt.optLong("optimal", 0),
-                            bufferFeatures = fmt.optLong("buffer", 0)
+                            bufferFeatures = fmt.optLong("buffer", 0),
+                            linearFeatures64 = fmt.optString("linear2", "").toULongOrNull(),
+                            optimalFeatures64 = fmt.optString("optimal2", "").toULongOrNull(),
+                            bufferFeatures64 = fmt.optString("buffer2", "").toULongOrNull()
                         )
                     )
                 }
@@ -339,7 +348,8 @@ data class VulkanDeviceInfo(
                 queueFamilies = queueFamilies,
                 limits = limits,
                 pipelineCacheUUID = pipelineCacheUUID,
-                sparseProperties = sparseProperties
+                sparseProperties = sparseProperties,
+                formatFlags2 = obj.optBoolean("formatFlags2", false)
             )
         }
     }
@@ -349,7 +359,11 @@ data class FormatSupportInfo(
     val format: String,
     val linearTilingFeatures: Long,
     val optimalTilingFeatures: Long,
-    val bufferFeatures: Long
+    val bufferFeatures: Long,
+    /** 64 位特性位（VkFormatProperties3）；驱动不支持时与 32 位值相同 */
+    val linearFeatures64: ULong? = null,
+    val optimalFeatures64: ULong? = null,
+    val bufferFeatures64: ULong? = null
 )
 
 data class ExtensionInfo(

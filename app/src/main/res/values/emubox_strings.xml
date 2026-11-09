@@ -794,4 +794,27 @@ How to verify in emulator:
     <string name="device_section_chip">Chipset &amp; performance</string>
     <string name="runtime_result_count">%1$d components</string>
     <string name="runtime_meta_title">Sources &amp; news</string>
+    <string name="storage_perm_banner_title">File access not granted — downloads and local scanning will fail</string>
+    <string name="storage_perm_banner_action">Grant</string>
+    <string name="storage_dialog_title">File access is required</string>
+    <string name="storage_dialog_body">EmuBox needs the system “All files access” permission to write drivers into Download/EmuBox, scan existing files and delete downloads.</string>
+    <string name="storage_dialog_body2">You can also pick a folder instead — that permission is scoped to the folder you choose and does not need system-wide access.</string>
+    <string name="storage_dialog_grant">Open system settings</string>
+    <string name="storage_dialog_saf">Choose a folder</string>
+    <string name="storage_dialog_later">Later</string>
+    <string name="download_service_title">%1$d file(s) downloading</string>
+    <string name="download_service_idle">Preparing…</string>
+    <string name="download_service_done">Downloads finished</string>
+    <string name="download_perm_missing">Cannot write to the download folder: file access permission is missing. Tap the banner above to fix it.</string>
+    <string name="driver_risk_title">Third-party driver notice</string>
+    <string name="driver_risk_body">Drivers are third-party binaries and are loaded as native code inside the emulator process. A malicious package could execute arbitrary code with the app\'s permissions. Only install drivers from sources you trust.</string>
+    <string name="driver_risk_accept">I understand</string>
+    <string name="settings_github_token_title">GitHub API token (optional)</string>
+    <string name="settings_github_token_desc">Unauthenticated GitHub API allows 60 requests/hour — cold start plus a few refreshes can hit the limit and show empty driver lists. A personal access token (no scopes needed) raises it to 5000/hour. Stored encrypted on this device, never sent to accelerator nodes.</string>
+    <string name="settings_github_token_hint">ghp_… (leave empty to disable)</string>
+    <string name="settings_github_token_saved">Token saved (encrypted)</string>
+    <string name="source_empty_rate_limited">GitHub API rate limit reached (60 requests/hour without a token). Add a token in Settings → Network, or try again later.</string>
+    <string name="source_empty_no_release">This repository has not published any release yet — an empty list is expected, not a bug.</string>
+    <string name="runtime_checksum_missing">source provides no checksum</string>
+    <string name="runtime_installer_note">Windows installers cannot run on Android — files are extracted and copied instead</string>
 </resources>

@@ -36,7 +36,7 @@ data class RuntimeComponent(
         return when {
             actions.contains("install_fonts") || actions.contains("register_font") ||
                 actions.contains("replace_font") -> "字体包"
-            actions.contains("install_exe") || actions.contains("install_msi") -> "安装包"
+            actions.contains("install_exe") || actions.contains("install_msi") -> "安装包（解压拷贝）"
             actions.contains("archive_extract") || actions.contains("copy_dll") ||
                 actions.contains("copy_file") -> "DLL 复制包"
             actions.contains("set_windows") || actions.contains("set_register_key") -> "系统环境"

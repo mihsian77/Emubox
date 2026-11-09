@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
@@ -143,22 +145,77 @@ class MainActivity : ComponentActivity() {
     /** 授权返回后已补扫标记：避免每次 onResume 重复扫描 */
     private var resumedScanDone = false
 
+    /** 当前是否具备文件访问能力（Compose 侧据此显示顶部提示条） */
+    private val storageGranted = mutableStateOf(true)
+
+    /** 「授权失败」说明对话框：从系统设置页返回且仍未授权时弹一次 */
+    private val showStorageDialog = mutableStateOf(false)
+
+    /** 是否刚跳去过系统授权页（onWindowFocusChanged 回来时据此判定） */
+    private var leftForStorageSettings = false
+
+    /**
+     * 从系统授权页 / SAF 选择器回到本页时重新判定权限。
+     * 用窗口焦点而不是 onResume：onCreate 里 startActivity 之后 onResume 会先于
+     * 用户操作触发，只有焦点从外部回到本 Activity 才代表「用户已经做过选择」。
+     */
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (!hasFocus || !leftForStorageSettings) return
+        leftForStorageSettings = false
+        refreshStorageState(notifyIfMissing = true)
+    }
+
+    private fun refreshStorageState(notifyIfMissing: Boolean) {
+        val granted = StorageAccess.hasAccess(this)
+        storageGranted.value = granted
+        if (granted) {
+            showStorageDialog.value = false
+            if (!resumedScanDone) {
+                resumedScanDone = true
+                lifecycleScope.launch(Dispatchers.IO) {
+                    DownloadsManager.scanExistingFiles(applicationContext)
+                }
+            }
+        } else if (notifyIfMissing) {
+            showStorageDialog.value = true
+        }
+    }
+
+    /** 请求文件访问权限：运行时权限 / 系统「所有文件访问」页，均失败则弹说明 */
+    private fun requestStorageAccess() {
+        if (StorageAccess.needsRuntimePermission()) {
+            requestPermissions(
+                arrayOf(
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                1001
+            )
+            return
+        }
+        leftForStorageSettings = StorageAccess.openSettings(this)
+        if (!leftForStorageSettings) {
+            // 系统没有对应设置页（极少数 ROM）→ 只能走 SAF
+            showStorageDialog.value = true
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1001) refreshStorageState(notifyIfMissing = true)
+    }
+
     /** 从系统授权页返回后补扫：启动时扫描早于用户完成授权（异步弹窗），
      *  授权落地前扫不到本地文件 → 返回时按新权限重扫一次，覆盖
      *  "必须打开下载区才能读取本地文件" 的体验问题。 */
     override fun onResume() {
         super.onResume()
-        if (resumedScanDone) return
-        val granted = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-            Environment.isExternalStorageManager()) ||
-            SettingsManager.getDownloadFolderUri() != null ||
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
-        if (granted) {
-            resumedScanDone = true
-            lifecycleScope.launch(Dispatchers.IO) {
-                DownloadsManager.scanExistingFiles(applicationContext)
-            }
-        }
+        refreshStorageState(notifyIfMissing = false)
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -174,27 +231,17 @@ class MainActivity : ComponentActivity() {
         // 自动跳系统授权页；授权一次后 App 永久直读 Download/EmuBox 目录，
         // 下载、扫描、删除全部走 File 直读，根治 MediaStore 索引扫不出/删除无效。
         // 已通过 SAF 指定目录（folderUri 非空）时跳过：SAF 授权已覆盖直读。
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-            !Environment.isExternalStorageManager() &&
-            SettingsManager.getDownloadFolderUri() == null
+        storageGranted.value = StorageAccess.hasAccess(this)
+        if (!storageGranted.value) {
+            requestStorageAccess()
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=
+            PackageManager.PERMISSION_GRANTED
         ) {
-            runCatching {
-                val intent = Intent(
-                    Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
-                    Uri.parse("package:$packageName")
-                )
-                startActivity(intent)
-            }
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-            SettingsManager.getDownloadFolderUri() == null
-        ) {
-            // Android 10 以下：运行时存储权限（自动请求，覆盖"必须进下载区"）
+            // 前台下载服务的通知需要该权限；拒绝也不影响下载（只是看不到进度通知）
             requestPermissions(
-                arrayOf(
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ),
-                1001
+                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                1002
             )
         }
 
@@ -678,6 +725,25 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
+                // SAF 兜底：系统「所有文件访问」页不可用 / 用户不想开总权限时，
+                // 直接选一个文件夹授权（takePersistableUriPermission 后永久可写）。
+                val storageFolderLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.OpenDocumentTree()
+                ) { uri ->
+                    if (uri != null) {
+                        runCatching {
+                            contentResolver.takePersistableUriPermission(
+                                uri,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                            )
+                        }
+                        SettingsManager.setDownloadFolderUri(uri.toString())
+                        showStorageDialog.value = false
+                        refreshStorageState(notifyIfMissing = false)
+                    }
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -692,6 +758,28 @@ class MainActivity : ComponentActivity() {
 
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
+                        topBar = {
+                            // 缺文件权限时常驻提示：任何分区都能看到并一键去授权，
+                            // 避免「点了下载没反应」却查不到原因
+                            if (!storageGranted.value) {
+                                StoragePermissionBanner(
+                                    onGrant = { requestStorageAccess() }
+                                )
+                                if (showStorageDialog.value) {
+                                    StoragePermissionDialog(
+                                        onGrant = {
+                                            showStorageDialog.value = false
+                                            requestStorageAccess()
+                                        },
+                                        onChooseFolder = {
+                                            showStorageDialog.value = false
+                                            storageFolderLauncher.launch(null)
+                                        },
+                                        onDismiss = { showStorageDialog.value = false }
+                                    )
+                                }
+                            }
+                        },
                         bottomBar = {
                             // 模板 A「璃光暗夜」：玻璃拟态导航 + 青紫渐变发光指示
                             Column {
@@ -749,6 +837,15 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     ) { innerPadding ->
+                        // 第三方驱动首次提示：驱动会被 dlopen 成原生代码，明确告知一次
+                        if (currentScreen in listOf(AppScreen.DRIVERS, AppScreen.COMPONENTS) &&
+                            !SettingsManager.isDriverRiskAcknowledged()
+                        ) {
+                            DriverRiskDialog(
+                                onAccept = { SettingsManager.setDriverRiskAcknowledged() },
+                                onDismiss = { SettingsManager.setDriverRiskAcknowledged() }
+                            )
+                        }
                         AnimatedContent(
                             targetState = currentScreen,
                             modifier = Modifier.fillMaxSize().padding(innerPadding),

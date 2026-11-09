@@ -302,6 +302,7 @@ using PFN_GetPhysicalDeviceQueueFamilyProperties = PFN_vkGetPhysicalDeviceQueueF
 using PFN_GetPhysicalDeviceProperties2 = PFN_vkGetPhysicalDeviceProperties2;
 using PFN_GetPhysicalDeviceFeatures2 = PFN_vkGetPhysicalDeviceFeatures2;
 using PFN_GetPhysicalDeviceFormatProperties = PFN_vkGetPhysicalDeviceFormatProperties;
+using PFN_GetPhysicalDeviceFormatProperties2 = PFN_vkGetPhysicalDeviceFormatProperties2;
 
 struct VulkanDispatch {
     void* libHandle = nullptr;
@@ -316,6 +317,7 @@ struct VulkanDispatch {
     PFN_GetPhysicalDeviceProperties2 vkGetPhysicalDeviceProperties2 = nullptr;
     PFN_GetPhysicalDeviceFeatures2 vkGetPhysicalDeviceFeatures2 = nullptr;
     PFN_GetPhysicalDeviceFormatProperties vkGetPhysicalDeviceFormatProperties = nullptr;
+    PFN_GetPhysicalDeviceFormatProperties2 vkGetPhysicalDeviceFormatProperties2 = nullptr;
 };
 
 // ── JSON 工具（手写拼接，不引入第三方库）──────────────────────────────────
@@ -722,24 +724,74 @@ static std::string collectDevice(const VulkanDispatch& vk, VkPhysicalDevice devi
     // 可区分「查询了但不支持」与「压根没查」
     j << ",\"formats\":[";
     bool fmtOk = vk.vkGetPhysicalDeviceFormatProperties != nullptr;
+    bool fmt2Ok = vk.vkGetPhysicalDeviceFormatProperties2 != nullptr;
+    // 64 位 feature flags（VK_KHR_format_feature_flags2 / Vulkan 1.3）：
+    // 32 位 VkFormatProperties 只有低 32 位，VK_FORMAT_FEATURE_2_* 的高位
+    // （如 VK_FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR）
+    // 会被截断，表现为「DXVK 需要的特性显示不支持」。这里优先走 2 版本并链
+    // VkFormatProperties3；驱动不支持时 pNext 会被忽略，自动退回 32 位结果。
+    // 只有当设备真的支持 flags2（Vulkan 1.3 或 VK_KHR_format_feature_flags2）时，
+    // pNext 里的 VkFormatProperties3 才会被驱动解析；否则驱动会忽略整条链，
+    // 白跑 250 次 2 版本查询。先看扩展表再决定走哪条路径。
+    bool hasFlags2 = props.apiVersion >= VK_API_VERSION_1_3;
+    if (!hasFlags2) {
+        for (uint32_t i = 0; i < extCount; i++) {
+            // 直接用字面量：部分 NDK 头未导出该扩展的宏
+            if (strcmp(extensions[i].extensionName,
+                       "VK_KHR_format_feature_flags2") == 0) {
+                hasFlags2 = true;
+                break;
+            }
+        }
+    }
+    const bool useFmt2 = fmt2Ok && hasFlags2;
+
+    bool flags2Available = false;
     uint32_t printedFmts = 0;
-    if (fmtOk) {
+    if (fmtOk || fmt2Ok) {
         for (uint32_t fi = 0; fi < kFormatEntryCount; ++fi) {
+            const VkFormat fmt = static_cast<VkFormat>(kFormatEntries[fi].value);
             VkFormatProperties fp{};
-            vk.vkGetPhysicalDeviceFormatProperties(
-                device, static_cast<VkFormat>(kFormatEntries[fi].value), &fp);
+            VkFormatProperties3 fp3{};
+            fp3.sType = VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3;
+            bool got64 = false;
+            if (useFmt2) {
+                VkFormatProperties2 fp2{};
+                fp2.sType = VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2;
+                fp2.pNext = &fp3;
+                vk.vkGetPhysicalDeviceFormatProperties2(device, fmt, &fp2);
+                fp = fp2.formatProperties;
+                got64 = (fp3.linearTilingFeatures | fp3.optimalTilingFeatures |
+                         fp3.bufferFeatures) != 0;
+            } else {
+                vk.vkGetPhysicalDeviceFormatProperties(device, fmt, &fp);
+            }
             if (!fp.linearTilingFeatures && !fp.optimalTilingFeatures && !fp.bufferFeatures) continue;
+            if (got64) flags2Available = true;
+            // 64 位不可用时用 32 位值补齐，保证 UI 永远有数可显示
+            const uint64_t lin64 = got64 ? fp3.linearTilingFeatures : (uint64_t) fp.linearTilingFeatures;
+            const uint64_t opt64 = got64 ? fp3.optimalTilingFeatures : (uint64_t) fp.optimalTilingFeatures;
+            const uint64_t buf64 = got64 ? fp3.bufferFeatures : (uint64_t) fp.bufferFeatures;
             if (printedFmts++) j << ",";
             j << "{\"format\":\"" << kFormatEntries[fi].name << "\","
               << "\"linear\":" << fp.linearTilingFeatures << ","
               << "\"optimal\":" << fp.optimalTilingFeatures << ","
-              << "\"buffer\":" << fp.bufferFeatures << "}";
+              << "\"buffer\":" << fp.bufferFeatures << ","
+              // 64 位标志用字符串输出：VK_FORMAT_FEATURE_2_* 最高位是 0x8000000000000000，
+              // 超出 JSON number 的安全整数范围，用数字会被解析成浮点丢精度
+              << "\"linear2\":\"" << lin64 << "\","
+              << "\"optimal2\":\"" << opt64 << "\","
+              << "\"buffer2\":\"" << buf64 << "\""
+              << "}";
         }
     }
     j << "]";
     // 实际查询过的格式数：为 0 表示驱动没有 vkGetPhysicalDeviceFormatProperties，
     // 与「查询了但全部不支持」区分开
-    j << ",\"formatsQueried\":" << (fmtOk ? kFormatEntryCount : 0u);
+    j << ",\"formatsQueried\":" << ((fmtOk || fmt2Ok) ? kFormatEntryCount : 0u);
+    // 是否真的拿到了 64 位标志：false 表示驱动/设备不支持 flags2，此时
+    // 32 位视图是全部信息（UI 需要区分「不支持」与「读不出」）
+    j << ",\"formatFlags2\":" << (flags2Available ? "true" : "false");
 
     j << "}";
     return j.str();
@@ -829,6 +881,8 @@ static std::string collectWithSystemVulkan() {
         vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures2"));
     vk.vkGetPhysicalDeviceFormatProperties = reinterpret_cast<PFN_GetPhysicalDeviceFormatProperties>(
         vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties"));
+    vk.vkGetPhysicalDeviceFormatProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceFormatProperties2>(
+        vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties2"));
 
     std::string json = collectDevices(vk, instance);
     vkDestroyInstance(instance, nullptr);
@@ -887,6 +941,8 @@ static std::string collectWithDriver(const char* driverPath) {
         getInstanceProcAddr(instance, "vkGetPhysicalDeviceFeatures2"));
     vk.vkGetPhysicalDeviceFormatProperties = reinterpret_cast<PFN_GetPhysicalDeviceFormatProperties>(
         getInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties"));
+    vk.vkGetPhysicalDeviceFormatProperties2 = reinterpret_cast<PFN_GetPhysicalDeviceFormatProperties2>(
+        getInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties2"));
 
     std::string json = collectDevices(vk, instance);
     vk.vkDestroyInstance(instance, nullptr);

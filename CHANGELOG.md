@@ -35,6 +35,14 @@
 - 驱动专区仓库图标/简介截断/下载卡连接、来源切换弹窗更新时间内置化
 - 新闻管道：驱动资讯不再混入 IT 之家杂项，官方 release 条目优先保留（组件/运行库资讯防空）
 - 新闻分类迁移重复收录（历史 component 条目与新抓 runtime 条目同 release 双 id）
+- 文件权限失败无任何提示：启动跳系统授权页，用户直接返回后下载全部失败且查不到原因。改为全局提示条 + 返回未授权时说明对话框（去设置 / 改选文件夹 / 稍后三条出路），下载建文件失败时也按缺权限给出指引
+- 下载不是前台服务：GB 级驱动切后台或锁屏被系统冻结，回来显示暂停。改为活动下载期间常驻 dataSync 前台服务（含进度通知），下载结束自动停止
+- Vulkan 格式矩阵只读 32 位特性位（`vkGetPhysicalDeviceFormatProperties`）：1.3/1.4 的 `VK_FORMAT_FEATURE_2_*` 高位标志被截断，表现为「DXVK 要的特性显示不支持」。改用 `VkFormatProperties2` + `VkFormatProperties3` 采集 64 位值，驱动不支持时明确标注只含 32 位
+- GitHub API 未认证限额 60 次/小时，冷启动并发拉多个驱动源会 403 且列表直接变空。加可选 Token（Keystore 加密、经代理自动剥离）+ 限流/无 release 两种空态说明
+- DeepSeek Key 明文存 SharedPreferences。改为 Android Keystore AES/GCM 加密存储，旧明文启动时一次性迁移并删除
+- FileProvider 暴露整个 `Android/data/<pkg>/files/`。收窄到 `files/Download/` 一层，驱动解压目录与测试中间产物不再可被外部读取
+- 第三方驱动加载前无风险告知：首次进驱动/组件分区说明「驱动是原生代码，只装可信来源」
+- 加速节点拼接保留 `http://` 前缀的原始 URL，拼出 `https://proxy/http://github.com/…` 必然 404。改为统一规范化为 https
 
 ### Changed
 - 模拟器专区：分类折叠改为合并大分类切换（首行大分类，点击查看全列表与其他小分类），减少分类条目占用空间

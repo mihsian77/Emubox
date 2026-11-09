@@ -1019,8 +1019,20 @@ private suspend fun downloadFileWithProgress(
     val outputUri = createOutputUri(context, folderUri, uniqueFileName, subPath)
 
     if (outputUri == null) {
+        // 最常见的根因是没给「所有文件访问」权限：明确告诉用户去开，
+        // 而不是丢一句 "Cannot create output file" 让人以为是网络问题
+        val missingPermission = !StorageAccess.hasAccess(context)
+        val message = if (missingPermission) {
+            appStringFor(
+                context,
+                SettingsManager.getAppLanguage(),
+                R.string.download_perm_missing
+            )
+        } else {
+            "Cannot create output file: $originalDesiredName"
+        }
         withContext(Dispatchers.Main) {
-            Toast.makeText(context, "Cannot create output file", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
         return@download
     }
