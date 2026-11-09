@@ -43,6 +43,8 @@ ALLOWED = set(REQUIRED) | {
     "distribution", "builds", "note", "license", "topics", "community_sources",
     "repo_status", "dead", "dead_reason", "created_at", "archived", "pushed_at",
     "community_port", "requires_original", "logo_source",
+    # 中文名/中文作品名：原生移植项目原名是英文，列表里补一行译名（人工核对）
+    "name_zh",
 }
 
 # 枚举值取自真实数据分布，不是猜的：

@@ -72,6 +72,24 @@ def fetch(url, retries=2):
     return None
 
 
+def norm_channel(ch):
+    """把各种渠道写法归一成 stable / prerelease。
+
+    源站与仓库 tag 里会出现 nightly / beta / rc / canary / stable/unknown 这些值，
+    直接落库会让 validate-schema 报「channel 不在允许值内」。规则与 schema 一致：
+    明确的稳定版才是 stable，其余（含未知）按预发布处理，宁可标保守。
+    """
+    c = (ch or "").strip().lower()
+    if c in ("stable", "release", "released"):
+        return "stable"
+    if not c:
+        return "stable"
+    for kw in ("night", "beta", "alpha", "rc", "canary", "experimental", "preview", "pre"):
+        if kw in c:
+            return "prerelease"
+    return "stable"
+
+
 def norm_releases(rels):
     out = []
     for r in rels or []:
@@ -211,7 +229,7 @@ def main():
             "repo_url": e.get("repoUrl") or f"https://github.com/{repo}",
             "category": cat,
             "official": off,
-            "channel": e.get("channel", "stable"),
+            "channel": norm_channel(e.get("channel")),
             "downloads_total": int(e.get("downloads") or 0),
             "stars": 0,
             "description": "",
