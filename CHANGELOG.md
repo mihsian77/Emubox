@@ -20,6 +20,7 @@
 - 模拟器注册表治理：多平台源（GitLab / Gitea / NotABug / Gitee）release 拉取、图标补全、APK 直链修正、来源合规分级与失效标记、release 日志补录、123 盘直达卡片（网盘来源/路径/提取码/打开）
 - wrapper 区：翻译重做（专名与社区术语保留原文，只译解释句）+ 译文/原文切换
 - 版本双轨规则：正式版 x.y.0，预发布 x.y.z 由 CI 自动发布并置顶；本 Changelog 作为功能-版本映射
+- 驱动检测支持驱动包依赖闭包：跨机型高通包的 `libgsl.so` / `libllvm-glnext.so` 按驱动自身目录解析，缺库时直接报出库名，不再是一句 `dlopen failed`
 
 ### Fixed
 - 12 条桌面/主机构建被写进 `latest_apk_url`（DOSBox-X 的 zip、DOSBox-Staging 的 exe、MeloNX 的 ipa、Ryujinx 的 AppImage），安卓端会给出一个装不上的下载按钮。已移到 `download_url`，并加进 schema 校验
