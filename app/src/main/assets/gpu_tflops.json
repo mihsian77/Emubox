@@ -1,0 +1,250 @@
+{
+ "version": 1,
+ "note": "手机 GPU 物理算力（FP32 TFLOPS）与典型内存带宽。FP32 = ALU 数 × 2(FMA) × 频率；带宽取同代 LPDDR 规格。来源：高通/ARM/三星公开规格推算，误差约 ±10%。用途：与桌面显卡做量级对齐；不与安兔兔/鲁大师分数换算（口径不同，分数不可比）。",
+ "source": "vendor public specs",
+ "gpus": [
+  {
+   "key": "adreno830",
+   "name": "Adreno 830",
+   "alus": 1536,
+   "mhz": 1100,
+   "tf32": 3.38,
+   "bw": 68.3,
+   "soc": "骁龙 8 Elite"
+  },
+  {
+   "key": "adreno840",
+   "name": "Adreno 840",
+   "alus": 1536,
+   "mhz": 1200,
+   "tf32": 3.69,
+   "bw": 68.3,
+   "soc": "骁龙 8 Elite Gen 5"
+  },
+  {
+   "key": "adreno750",
+   "name": "Adreno 750",
+   "alus": 1536,
+   "mhz": 903,
+   "tf32": 2.77,
+   "bw": 68.3,
+   "soc": "骁龙 8 Gen 3"
+  },
+  {
+   "key": "adreno740",
+   "name": "Adreno 740",
+   "alus": 1024,
+   "mhz": 680,
+   "tf32": 1.39,
+   "bw": 68.3,
+   "soc": "骁龙 8 Gen 2"
+  },
+  {
+   "key": "adreno735",
+   "name": "Adreno 735",
+   "alus": 1024,
+   "mhz": 700,
+   "tf32": 1.43,
+   "bw": 51.2,
+   "soc": "骁龙 8s Gen 3"
+  },
+  {
+   "key": "adreno730",
+   "name": "Adreno 730",
+   "alus": 1024,
+   "mhz": 818,
+   "tf32": 1.68,
+   "bw": 51.2,
+   "soc": "骁龙 8 Gen 1"
+  },
+  {
+   "key": "adreno725",
+   "name": "Adreno 725",
+   "alus": 1024,
+   "mhz": 580,
+   "tf32": 1.19,
+   "bw": 51.2,
+   "soc": "骁龙 7+ Gen 2"
+  },
+  {
+   "key": "adreno720",
+   "name": "Adreno 720",
+   "alus": 768,
+   "mhz": 700,
+   "tf32": 1.08,
+   "bw": 44.0,
+   "soc": "骁龙 7 Gen 3"
+  },
+  {
+   "key": "adreno710",
+   "name": "Adreno 710",
+   "alus": 768,
+   "mhz": 600,
+   "tf32": 0.92,
+   "bw": 44.0,
+   "soc": "骁龙 7 Gen 1"
+  },
+  {
+   "key": "adreno660",
+   "name": "Adreno 660",
+   "alus": 1024,
+   "mhz": 840,
+   "tf32": 1.72,
+   "bw": 51.2,
+   "soc": "骁龙 888"
+  },
+  {
+   "key": "adreno650",
+   "name": "Adreno 650",
+   "alus": 1024,
+   "mhz": 587,
+   "tf32": 1.2,
+   "bw": 44.0,
+   "soc": "骁龙 865/870"
+  },
+  {
+   "key": "adreno643",
+   "name": "Adreno 643",
+   "alus": 768,
+   "mhz": 800,
+   "tf32": 1.23,
+   "bw": 34.1,
+   "soc": "骁龙 778G"
+  },
+  {
+   "key": "adreno642l",
+   "name": "Adreno 642L",
+   "alus": 768,
+   "mhz": 550,
+   "tf32": 0.84,
+   "bw": 34.1,
+   "soc": "骁龙 778G"
+  },
+  {
+   "key": "adreno640",
+   "name": "Adreno 640",
+   "alus": 768,
+   "mhz": 585,
+   "tf32": 0.9,
+   "bw": 34.1,
+   "soc": "骁龙 855"
+  },
+  {
+   "key": "adreno620",
+   "name": "Adreno 620",
+   "alus": 512,
+   "mhz": 750,
+   "tf32": 0.77,
+   "bw": 34.1,
+   "soc": "骁龙 765G"
+  },
+  {
+   "key": "adreno619",
+   "name": "Adreno 619",
+   "alus": 512,
+   "mhz": 650,
+   "tf32": 0.67,
+   "bw": 34.1,
+   "soc": "骁龙 750G"
+  },
+  {
+   "key": "adreno618",
+   "name": "Adreno 618",
+   "alus": 512,
+   "mhz": 550,
+   "tf32": 0.56,
+   "bw": 34.1,
+   "soc": "骁龙 730G"
+  },
+  {
+   "key": "adreno610",
+   "name": "Adreno 610",
+   "alus": 256,
+   "mhz": 750,
+   "tf32": 0.38,
+   "bw": 34.1,
+   "soc": "骁龙 6xx"
+  },
+  {
+   "key": "adreno530",
+   "name": "Adreno 530",
+   "alus": 512,
+   "mhz": 650,
+   "tf32": 0.67,
+   "bw": 29.8,
+   "soc": "骁龙 820/821"
+  },
+  {
+   "key": "adreno510",
+   "name": "Adreno 510",
+   "alus": 256,
+   "mhz": 600,
+   "tf32": 0.31,
+   "bw": 25.6,
+   "soc": "骁龙 650/652"
+  },
+  {
+   "key": "mali-g720",
+   "name": "Immortalis-G720",
+   "alus": 1024,
+   "mhz": 1300,
+   "tf32": 2.66,
+   "bw": 68.3,
+   "soc": "天玑 9300/9400"
+  },
+  {
+   "key": "mali-g715",
+   "name": "Mali-G715",
+   "alus": 896,
+   "mhz": 1300,
+   "tf32": 2.33,
+   "bw": 51.2,
+   "soc": "天玑 9200"
+  },
+  {
+   "key": "mali-g710",
+   "name": "Mali-G710",
+   "alus": 768,
+   "mhz": 1300,
+   "tf32": 2.0,
+   "bw": 51.2,
+   "soc": "天玑 9000/8100"
+  },
+  {
+   "key": "mali-g610",
+   "name": "Mali-G610",
+   "alus": 512,
+   "mhz": 1100,
+   "tf32": 1.13,
+   "bw": 44.0,
+   "soc": "天玑 8100/7200"
+  },
+  {
+   "key": "mali-g57",
+   "name": "Mali-G57",
+   "alus": 256,
+   "mhz": 950,
+   "tf32": 0.49,
+   "bw": 34.1,
+   "soc": "天玑 700/810"
+  },
+  {
+   "key": "xclipse940",
+   "name": "Xclipse 940",
+   "alus": 768,
+   "mhz": 1300,
+   "tf32": 2.0,
+   "bw": 51.2,
+   "soc": "Exynos 2400"
+  },
+  {
+   "key": "xclipse920",
+   "name": "Xclipse 920",
+   "alus": 768,
+   "mhz": 1300,
+   "tf32": 2.0,
+   "bw": 51.2,
+   "soc": "Exynos 2200"
+  }
+ ]
+}

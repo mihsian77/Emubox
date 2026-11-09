@@ -22,7 +22,24 @@
 - 版本双轨规则：正式版 x.y.0，预发布 x.y.z 由 CI 自动发布并置顶；本 Changelog 作为功能-版本映射
 - 驱动检测支持驱动包依赖闭包：跨机型高通包的 `libgsl.so` / `libllvm-glnext.so` 按驱动自身目录解析，缺库时直接报出库名，不再是一句 `dlopen failed`
 
+- 分区页重排：设备 / 驱动 / 运行库 / 模拟器 / 组件全部改为「页内子分区」——顶部一条切换条，一次只渲染一个分区。原来所有模块竖排成一条长列表，资讯被压到最底部，看最后一块内容要滑 6~8 屏
+- 资讯独立成区：设备（概览/性能/实测/资讯）、运行库（运行库/资讯）、组件（组件/资讯）、模拟器（项目/推荐/动态）都给了资讯独立入口，不再挂在页尾折叠条里
+- 设备页顶栏恢复指南图标（原来被挪进底部操作条，和「前往驱动专区」挤在一起）；底部只留一个主按钮
+- 新闻详情支持封面图；设备/泛科技分区去掉「翻译」「查看原文」按钮（中文原生内容不需要）
+- EmuReady 离线聚合：新增 `scripts/refresh-emuready-soc.py`，按 SoC 把同芯片前 3 台机型的社区报告并集聚合到 `emuready-soc-compat.json`（160 个 SoC / 143KB）。设备页不再只显示本机那 1~2 个平台，也不再需要点开跳官网
+- GPU 算力对照：新增 `gpu_tflops.json`（27 个手机 GPU 的 FP32 算力与带宽），改按物理量与桌面卡做量级对齐，替代原先的「跑分最近邻」
+- 驱动日志导出改为直接落盘到 `Download/EmuBox/logs`（或设置里选的目录），不再走系统分享面板
+- 全局下载作用域：下载任务不再绑定页面/Activity 生命周期
+
 ### Fixed
+- 深色模式弱文字发虚：`onSurfaceFaint/Fainter` 提到 4.5:1 以上，散落的 `alpha=0.4~0.8` 文字统一收敛；亮色背景压到 `#E9ECF3`，纯白卡片不再和背景糊成一片
+- 下载「一点就自动暂停、必须再点一次」：下载协程原来跑在 `rememberCoroutineScope()`，切分区/列表项回收/Activity 重建都会取消它，取消在传输层等价于暂停。改为全局作用域
+- 驱动声明弹窗按钮「点不动、只能重启」：弹窗开关读的是 SharedPreferences，写盘不触发重组，条件恒为真。改为可观察状态，点「稍后」只关本次、不替用户确认
+- 运行库资讯恒为空：数据管道只产出 `emulator/device/component/driver/tech` 五类，页面却按 `category == "runtime"` 严格比对。改为按 type 从 component 里拆出 DXVK/VKD3D/Mono/Gecko
+- 等效 PC 配置严重失真（8 Gen 2 被算成 RTX 2060 SUPER，实际差 8~10 倍）：手机 GPU 分与桌面 GPU 分不是同一张榜，数值却同量级。删除分数最近邻，改按 FP32/带宽做物理量对照
+- 模拟器体验预估凭空判定（8 Gen 2 跑 Winlator 被判「不建议」）：自造安兔兔阈值改为 EmuReady 社区实测分，没有报告就不给结论
+- 机翻把品牌名音译错（Ludashi → 「路大师」）：加专名纠错表
+- 设备页首屏长时间停在「正在检测硬件」：`isLoading` 原来要等注册表 + 组件清单 + 全部 releases 拉完。改为硬件采集完成即放行，网络部分后台继续
 - 12 条桌面/主机构建被写进 `latest_apk_url`（DOSBox-X 的 zip、DOSBox-Staging 的 exe、MeloNX 的 ipa、Ryujinx 的 AppImage），安卓端会给出一个装不上的下载按钮。已移到 `download_url`，并加进 schema 校验
 - 离线内置列表与 registry 脱节：Kotlin 里手写 130 条字面量，早已和 registry 不同步（有把 .png 当 APK 的条目、缺 summary）。改为读 `assets/emulator-offline.json`
 - `channel` 脏值（`stable/unknown`、`alpha`、`nightly`、`canary`、`archive`）归一为 `stable` / `prerelease`

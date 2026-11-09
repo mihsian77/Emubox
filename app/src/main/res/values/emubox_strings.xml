@@ -238,7 +238,7 @@
     <string name="bench_equiv_gpu">Desktop GPU</string>
     <string name="bench_equiv_none">Not on Ludashi list; PC equivalence unavailable</string>
     <string name="bench_emu_title">Emulator Experience Estimate</string>
-    <string name="bench_emu_calib">Experience thresholds, pending on-device calibration</string>
+    <string name="bench_emu_calib">Scores are community averages (0-100); report counts are shown per row. Not measured on this device.</string>
     <string name="bench_upgrade_title">Upgrade Suggestion</string>
     <string name="bench_upgrade_next">Next tier</string>
     <string name="bench_gen_title">Generation Trend</string>
@@ -806,9 +806,15 @@ How to verify in emulator:
     <string name="download_service_idle">Preparing…</string>
     <string name="download_service_done">Downloads finished</string>
     <string name="download_perm_missing">Cannot write to the download folder: file access permission is missing. Tap the banner above to fix it.</string>
-    <string name="driver_risk_title">Third-party driver notice</string>
-    <string name="driver_risk_body">Drivers are third-party binaries and are loaded as native code inside the emulator process. A malicious package could execute arbitrary code with the app\'s permissions. Only install drivers from sources you trust.</string>
-    <string name="driver_risk_accept">I understand</string>
+    <string name="driver_risk_title">How drivers are loaded</string>
+    <string name="driver_risk_body">EmuBox loads the Vulkan driver from a driver package directly into the emulator process, replacing the system driver.
+
+· Drivers are published by third-party developers, not by EmuBox
+· Only install drivers from sources you trust (official repos, known authors)
+· A failed load does not affect your system, and you can delete it anytime
+
+Continuing means you understand the above.</string>
+    <string name="driver_risk_accept">Got it</string>
     <string name="settings_github_token_title">GitHub API token (optional)</string>
     <string name="settings_github_token_desc">Unauthenticated GitHub API allows 60 requests/hour — cold start plus a few refreshes can hit the limit and show empty driver lists. A personal access token (no scopes needed) raises it to 5000/hour. Stored encrypted on this device, never sent to accelerator nodes.</string>
     <string name="settings_github_token_hint">ghp_… (leave empty to disable)</string>
@@ -817,4 +823,39 @@ How to verify in emulator:
     <string name="source_empty_no_release">This repository has not published any release yet — an empty list is expected, not a bug.</string>
     <string name="runtime_checksum_missing">source provides no checksum</string>
     <string name="runtime_installer_note">Windows installers cannot run on Android — files are extracted and copied instead</string>
+    <string name="device_tab_overview">Overview</string>
+    <string name="device_tab_perf">Performance</string>
+    <string name="device_tab_test">Benchmarks</string>
+    <string name="device_tab_news">News</string>
+    <string name="runtime_tab_all">Libraries</string>
+    <string name="tab_news_short">News</string>
+    <string name="driver_tab_all">All</string>
+    <string name="emu_tab_projects">Projects</string>
+    <string name="emu_tab_picks">Picks</string>
+    <string name="emu_tab_dynamic">Updates</string>
+    <string name="emuready_title">EmuReady compatibility</string>
+    <string name="emuready_loading">Matching this device and community reports…</string>
+    <string name="emuready_soc_line">%1$s · aggregated from %2$d same-chip devices</string>
+    <string name="emuready_no_report">no report for this model yet</string>
+    <string name="emuready_no_data">Not in EmuReady yet — showing local specs only</string>
+    <string name="emuready_badge_device">This device, measured</string>
+    <string name="emuready_badge_soc">Same-chip devices (reference)</string>
+    <string name="emuready_badge_none">No community data</string>
+    <string name="emuready_conf_high">high confidence</string>
+    <string name="emuready_conf_mid">medium confidence</string>
+    <string name="emuready_conf_low">low confidence</string>
+    <string name="emuready_src_soc">SoC-level</string>
+    <string name="emuready_src_device">device-level</string>
+    <string name="emuready_best_emu">best %1$s</string>
+    <string name="emuready_listings">%1$d reports</string>
+    <string name="emuready_expand_more">Show all %1$d platforms</string>
+    <string name="emuready_source_note">Source: EmuReady community reports, bundled %1$s</string>
+    <string name="bench_gpu_phys_title">GPU compute reference</string>
+    <string name="bench_gpu_phys_local">This GPU</string>
+    <string name="bench_gpu_phys_desk">Closest desktop card</string>
+    <string name="bench_gpu_phys_rel">Compute %1$d%% · bandwidth %2$d%%</string>
+    <string name="bench_gpu_phys_note">Phone GPUs and desktop cards have no common benchmark, so this only aligns FP32 compute and memory bandwidth. Real games also depend on drivers, thermals and API support. Derived from vendor specs (±10%).</string>
+    <string name="bench_gpu_phys_none">No compute reference for this GPU — benchmark-only data is shown above.</string>
+    <string name="bench_emu_source">EmuReady community reports · %1$d platforms</string>
+    <string name="bench_emu_no_data">No community reports for this chip yet — no estimate is shown rather than guessing.</string>
 </resources>

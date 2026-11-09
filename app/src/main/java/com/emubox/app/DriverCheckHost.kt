@@ -2,6 +2,7 @@ package com.emubox.app
 
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -148,14 +149,15 @@ fun DriverRenderCheckCard(
                 if (doneForExport != null) {
                     TextButton(onClick = {
                         val log = buildLog(doneForExport.report, doneForExport.checks)
-                        val send = Intent(Intent.ACTION_SEND).apply {
-                            type = "text/plain"
-                            putExtra(Intent.EXTRA_SUBJECT, exportSubject)
-                            putExtra(Intent.EXTRA_TEXT, log)
-                        }
-                        context.startActivity(
-                            Intent.createChooser(send, exportLabel)
-                        )
+                        // 直接落盘到 Download/EmuBox/logs（或设置里选的目录），
+                        // 不再走 ACTION_SEND —— 部分 ROM 会把纯文本分享当成浏览器搜索
+                        val result = LogExporter.save(context, "emubox-drivercheck", log)
+                        Toast.makeText(
+                            context,
+                            if (result.ok) "日志已保存：${result.displayPath}"
+                            else "日志保存失败：${result.error}",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }) {
                         Text(exportLabel)
                     }

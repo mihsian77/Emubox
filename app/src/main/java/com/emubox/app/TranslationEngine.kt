@@ -272,7 +272,7 @@ object TranslationEngine {
                         val r = deepSeekTranslate(b, key)
                         if (r != null) { sb.append(r); ok = true } else sb.append(b)
                     }
-                    val merged = sb.toString().trim()
+                    val merged = fixTerms(sb.toString().trim())
                     if (ok) {
                         cache["$engineTag|$input"] = CacheEntry(merged, System.currentTimeMillis())
                         return@withContext merged
@@ -304,11 +304,39 @@ object TranslationEngine {
                 }
             }
             if (!anySuccess) return@withContext null
-            val merged = out.toString().trim()
+            val merged = fixTerms(out.toString().trim())
             if (merged.isEmpty()) return@withContext null
             cache["$engineTag|$input"] = CacheEntry(merged, System.currentTimeMillis())
             merged
         }
+
+    /**
+     * 专名纠错表：机翻会把品牌/产品音译成同音字（Ludashi → 「路大师」），
+     * 在业界文本里这些词必须保持原品牌名，否则用户根本认不出说的是什么。
+     * 只做「错→对」的定点替换，不改动其他内容。
+     */
+    private val termFixes = listOf(
+        "路大师" to "鲁大师", "鲁大师跑分" to "鲁大师跑分",
+        "阿德雷诺" to "Adreno", "阿德里诺" to "Adreno", "阿德雷诺" to "Adreno",
+        "马里图形" to "Mali GPU", "马里-G" to "Mali-G", "马里 G" to "Mali G",
+        "温拉托" to "Winlator", "温莱特" to "Winlator", "温拉特" to "Winlator",
+        "特尼普" to "Turnip", "特纳普" to "Turnip", "特努普" to "Turnip",
+        "潘弗罗斯特" to "Panfrost", "帕恩夫罗斯特" to "Panfrost",
+        "维恩" to "Wine", "普罗顿" to "Proton",
+        "波克斯64" to "Box64", "博克斯64" to "Box64",
+        "赛马" to "Theodore", "安兔兔" to "安兔兔",
+        "高通骁龙" to "高通骁龙", "联发科天玑" to "联发科天玑",
+        "埃克西诺斯" to "Exynos", "埃克斯诺斯" to "Exynos",
+        "麒麟" to "麒麟", "德米恩西蒂" to "Dimensity", "迪门西蒂" to "Dimensity"
+    )
+
+    private fun fixTerms(text: String): String {
+        var t = text
+        for ((wrong, right) in termFixes) {
+            if (wrong != right) t = t.replace(wrong, right)
+        }
+        return t
+    }
 
     /** 清空缓存（设置里切换引擎/邮箱后调用，避免读到旧译文）。 */
     fun clearCache() = cache.clear()

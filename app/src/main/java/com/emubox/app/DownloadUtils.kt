@@ -68,6 +68,16 @@ private val downloadClient = OkHttpClient.Builder()
 // Used when resuming a persisted download after the Activity/app UI was recreated.
 private val persistedDownloadScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+/**
+ * 下载专用全局作用域。
+ *
+ * 下载【不能】跑在 `rememberCoroutineScope()` 或 Activity 的作用域里：
+ * 切分区、列表项被回收、Activity 重建（旋转/内存紧张）都会取消协程，
+ * 协程取消在传输层被当作「暂停」处理 —— 用户看到的就是
+ * 「点下载后自己变回暂停，必须再点一次开始」。
+ */
+val AppDownloadScope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
 private data class DownloadControl(
     @Volatile var paused: Boolean = false,
     @Volatile var cancelled: Boolean = false,

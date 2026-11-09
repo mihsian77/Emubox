@@ -157,6 +157,9 @@ class MainActivity : ComponentActivity() {
     /** 通知权限是否已请求过（Android 13+，前台服务通知用，拒绝不影响下载） */
     private var notificationPermissionAsked = false
 
+    /** 设备页顶栏指南按钮的自增信号（Compose 侧读，>0 即打开指南） */
+    private val deviceGuideSignal = mutableStateOf(0)
+
     /**
      * 从系统授权页 / SAF 选择器回到本页时重新判定权限。
      * 用窗口焦点而不是 onResume：onCreate 里 startActivity 之后 onResume 会先于
@@ -284,7 +287,6 @@ class MainActivity : ComponentActivity() {
                         fontScale = baseDensity.fontScale
                     )
                 ) {
-                val downloadScope = rememberCoroutineScope()
                 val appContext = applicationContext
 
                 // 记忆当前分区 / 指南来源：转屏、系统深浅色切换会重建 Activity，
@@ -401,9 +403,17 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(refreshTrigger) {
                     isLoading = true
 
+                    // 先只做本机硬件采集（纯本地，毫秒级），拿到就立刻放行设备页。
+                    // 原来 isLoading 要等注册表 + 组件清单 + 全部 releases 的网络请求结束，
+                    // 设备页会长时间停在「正在检测硬件」—— 用户感知就是「刷新太慢」。
+                    val collectedInfo = withContext(Dispatchers.IO) {
+                        cachedDeviceInfo ?: DeviceInfo.collect(this@MainActivity).also { cachedDeviceInfo = it }
+                    }
+                    deviceInfo = collectedInfo
+                    isLoading = false
+
                     val result = withContext(Dispatchers.IO) {
-                        // EGL 采集较慢且结果不变，缓存；刷新时才重新采集
-                        val info = cachedDeviceInfo ?: DeviceInfo.collect(this@MainActivity).also { cachedDeviceInfo = it }
+                        val info = collectedInfo
                         val matchByDevice = SettingsManager.getMatchDriversByDevice()
 
                         // 源目录与驱动注册表并行加载（互不依赖，串行会多等一个超时周期）
@@ -848,13 +858,29 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     ) { innerPadding ->
-                        // 第三方驱动首次提示：驱动会被 dlopen 成原生代码，明确告知一次
+                        // 驱动加载说明：只弹一次。
+                        // 注意必须用可观察状态：原来直接读 SettingsManager（SharedPreferences），
+                        // 写盘后不触发重组，对话框既关不掉、按钮也像「点不动」，只能重启 App。
+                        var driverRiskAck by remember {
+                            mutableStateOf(SettingsManager.isDriverRiskAcknowledged())
+                        }
+                        var driverRiskDismissed by remember { mutableStateOf(false) }
+                        // 离开驱动分区后重置「本次已关闭」，下次再进还会提示一次
+                        LaunchedEffect(currentScreen) {
+                            if (currentScreen !in listOf(AppScreen.DRIVERS, AppScreen.COMPONENTS)) {
+                                driverRiskDismissed = false
+                            }
+                        }
                         if (currentScreen in listOf(AppScreen.DRIVERS, AppScreen.COMPONENTS) &&
-                            !SettingsManager.isDriverRiskAcknowledged()
+                            !driverRiskAck && !driverRiskDismissed
                         ) {
                             DriverRiskDialog(
-                                onAccept = { SettingsManager.setDriverRiskAcknowledged() },
-                                onDismiss = { SettingsManager.setDriverRiskAcknowledged() }
+                                onAccept = {
+                                    SettingsManager.setDriverRiskAcknowledged()
+                                    driverRiskAck = true
+                                },
+                                // 点外部/返回：只关掉这一次，不替用户做「已阅读」的决定
+                                onDismiss = { driverRiskDismissed = true }
                             )
                         }
                         AnimatedContent(
@@ -874,6 +900,9 @@ class MainActivity : ComponentActivity() {
                                             TopAppBar(
                                                 title = { Text(appString(R.string.device_info_title)) },
                                                 actions = {
+                                                    IconButton(onClick = { deviceGuideSignal.value++ }) {
+                                                        Icon(Icons.Default.School, contentDescription = appString(R.string.device_guide_title))
+                                                    }
                                                     IconButton(onClick = { globalSearchOpen = true }) {
                                                         Icon(Icons.Default.Search, contentDescription = appString(R.string.global_search_hint))
                                                     }
@@ -905,6 +934,7 @@ class MainActivity : ComponentActivity() {
                                             modifier = Modifier.padding(padding),
                                             deviceInfo = deviceInfo,
                                             isLoading = isLoading,
+                                            guideSignal = deviceGuideSignal.value,
                                             onNavigateToDrivers = { currentScreen = AppScreen.DRIVERS },
                                             onOpenDriverFiles = { repoId ->
                                                 pendingDriverRepo = repoId
@@ -1027,7 +1057,7 @@ class MainActivity : ComponentActivity() {
                                                 SettingsManager.setWrapperSource(sourceId)
                                             },
                                             onDownloadAsset = { release, asset ->
-                                                downloadScope.launch {
+                                                AppDownloadScope.launch {
                                                     downloadAsset(appContext, release, asset)
                                                 }
                                             },
@@ -1075,7 +1105,7 @@ class MainActivity : ComponentActivity() {
                                             componentCatalogs = componentCatalogs,
                                             componentSourceUpdatedAt = componentSourceUpdatedAt,
                                             onDownloadComponent = { component ->
-                                                downloadScope.launch {
+                                                AppDownloadScope.launch {
                                                     downloadComponent(appContext, component)
                                                 }
                                             },
@@ -1137,7 +1167,7 @@ class MainActivity : ComponentActivity() {
                                             entries = emulatorEntries,
                                             insights = emulatorInsights,
                                             onDownload = { entry ->
-                                                downloadScope.launch {
+                                                AppDownloadScope.launch {
                                                     downloadEmulator(appContext, entry)
                                                 }
                                             }
@@ -1147,7 +1177,7 @@ class MainActivity : ComponentActivity() {
 
                                 AppScreen.RUNTIME -> RuntimeLibraryScreen(
                                     onDownload = { component ->
-                                        downloadScope.launch {
+                                        AppDownloadScope.launch {
                                             downloadRuntimeLibrary(appContext, component)
                                         }
                                     }

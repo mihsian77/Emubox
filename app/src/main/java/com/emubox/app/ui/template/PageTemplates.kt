@@ -651,3 +651,57 @@ fun SettingChoiceRow(
         }
     }
 }
+
+/**
+ * 页内子分区切换条（排版规格 v2 的核心件）。
+ *
+ * 动机：分区页原来把所有模块竖排成一条长列表，新闻被压到最底部，用户想看最后
+ * 一块内容必须一路滑到底，首屏也全是折叠条。改成「一屏一个子分区」后，
+ * 单页长度降到 2~4 屏，资讯成为独立入口而不是页尾残余。
+ *
+ * 放在 LazyColumn 的 stickyHeader 里，滚动时保持可见，随时可切。
+ *
+ * @param tabs 子分区标题（顺序即展示顺序，第一项为默认）
+ * @param selected 当前下标
+ */
+@Composable
+fun SectionTabs(
+    tabs: List<String>,
+    selected: Int,
+    onSelect: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    if (tabs.isEmpty()) return
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(Fusion.Background)
+            .horizontalScroll(rememberScrollState())
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        tabs.forEachIndexed { index, label ->
+            val active = index == selected
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50))
+                    .background(if (active) Fusion.Primary.copy(alpha = 0.16f) else Fusion.SurfaceAlt)
+                    .border(
+                        BorderStroke(1.dp, if (active) Fusion.Primary else Fusion.BorderAlt),
+                        RoundedCornerShape(50),
+                    )
+                    .clickable { onSelect(index) }
+                    .padding(horizontal = 14.dp, vertical = 7.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    label,
+                    fontSize = 13.sp,
+                    fontWeight = if (active) FontWeight.Bold else FontWeight.Medium,
+                    color = if (active) Fusion.Primary else Fusion.OnSurfaceFaint,
+                    maxLines = 1,
+                )
+            }
+        }
+    }
+}

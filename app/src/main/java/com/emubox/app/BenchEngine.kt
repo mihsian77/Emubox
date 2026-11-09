@@ -34,6 +34,20 @@ data class DeviceBench(
     val totalScore: Long?
 )
 
+/** 手机 GPU 物理算力 vs 最近桌面卡（FP32/带宽，单位可比；不做跑分换算） */
+data class GpuPhys(
+    val gpuName: String,
+    val tf32: Double,
+    val bwGbs: Double,
+    val soc: String,
+    val deskName: String,
+    val deskTf32: Double,
+    val deskBwGbs: Double,
+    /** 本机算力相当于该桌面卡的百分比 */
+    val tfPct: Int,
+    val bwPct: Int
+)
+
 /** 驱动实测 ↔ PC 显卡物理量对比（带宽/算力，跨体系但单位可比） */
 data class PcGpuCompare(
     val bandwidthName: String, val bandwidthGBs: Double, val bandwidthPct: Int,
@@ -56,6 +70,8 @@ data class SocBenchInfo(
     val gpuEquivNvidia: String?,
     val gpuEquivScore: Long?,
     val gpuEquivRatio: Double?,
+    /** GPU 物理算力对照（TFLOPS/带宽）；null 表示该型号未收录算力数据 */
+    val gpuPhys: GpuPhys? = null,
     val emulatorTiers: List<EmulatorTier>,
     val upgrade: UpgradeSuggestion?,
     val sameChip: List<SameChipDevice>?,
@@ -151,6 +167,7 @@ object BenchEngine {
         val sameChip = sameChipDevices(family, m.optJSONArray("same_chip_devices"))
         val gen = generation(family, arr, name, context)
         val deviceBench = deviceBench(context)
+        val gpuPhys = gpuPhysique(entry, name, gpuModel, m, context)
 
         return SocBenchInfo(
             name = name, family = family, year = year,
@@ -163,9 +180,87 @@ object BenchEngine {
             gpuEquivNvidia = gpuEquiv?.optString("nvidia_name")?.ifBlank { null },
             gpuEquivScore = gpuEquiv?.optLong("score", -1)?.takeIf { it > 0 },
             gpuEquivRatio = gpuEquiv?.optDouble("ratio", -1.0)?.takeIf { it > 0 },
+            gpuPhys = gpuPhys,
             emulatorTiers = tiers, upgrade = upgrade,
             sameChip = sameChip, generation = gen,
             deviceBench = deviceBench
+        )
+    }
+
+    /**
+     * GPU 物理算力对照。
+     *
+     * 为什么不再用「分数最近邻」：安兔兔 GPU 分（手机口径）与鲁大师桌面 GPU 分
+     * 不是同一张榜，数值却同量级（42 万 vs 33 万），最近邻会把 Adreno 740 匹配成
+     * RTX 2060 SUPER —— 实际相差 8~10 倍。这里改用 FP32 TFLOPS 与内存带宽这两个
+     * 跨平台可直接比较的物理量，只做量级对齐，并如实给出百分比。
+     */
+    private fun gpuPhysique(
+        entry: JSONObject,
+        socName: String,
+        gpuModel: String,
+        meta: JSONObject,
+        context: Context
+    ): GpuPhys? {
+        val table = runCatching {
+            JSONObject(
+                context.assets.open("gpu_tflops.json").bufferedReader().use { it.readText() }
+            ).optJSONArray("gpus")
+        }.getOrNull() ?: return null
+
+        val socKey = normalizeSoc(socName)
+        val gpuKey = when {
+            gpuModel.isBlank() || gpuModel == "unknown" -> ""
+            gpuModel.any { it.isDigit() } && gpuModel.first().isDigit() -> "adreno$gpuModel"
+            else -> gpuModel.lowercase().replace(" ", "")
+        }
+
+        var hit: JSONObject? = null
+        for (i in 0 until table.length()) {
+            val o = table.getJSONObject(i) ?: continue
+            val k = o.optString("key")
+            val s = normalizeSoc(o.optString("soc"))
+            if (gpuKey.isNotBlank() && (k.equals(gpuKey, true) || k.replace("-", "").equals(gpuKey.replace("-", ""), true))) {
+                hit = o; break
+            }
+            if (socKey.isNotBlank() && (s.contains(socKey) || socKey.contains(s))) {
+                hit = o; break
+            }
+        }
+        val row = hit ?: return null
+        val tf32 = row.optDouble("tf32", 0.0)
+        val bw = row.optDouble("bw", 0.0)
+        if (tf32 <= 0.0) return null
+
+        // 桌面卡：pc_gpu_specs = [[name, bandwidthGBs, tflops], ...]，按 TFLOPS 最近邻
+        val desk = meta.optJSONArray("pc_gpu_specs") ?: return null
+        var bestName = ""
+        var bestTf = 0.0
+        var bestBw = 0.0
+        var bestDiff = Double.MAX_VALUE
+        for (i in 0 until desk.length()) {
+            val a = desk.optJSONArray(i) ?: continue
+            val tf = a.optDouble(2, 0.0)
+            if (tf <= 0.0) continue
+            val d = kotlin.math.abs(tf - tf32)
+            if (d < bestDiff) {
+                bestDiff = d
+                bestName = a.optString(0)
+                bestBw = a.optDouble(1, 0.0)
+                bestTf = tf
+            }
+        }
+        if (bestName.isBlank()) return null
+        return GpuPhys(
+            gpuName = row.optString("name"),
+            tf32 = tf32,
+            bwGbs = bw,
+            soc = row.optString("soc"),
+            deskName = bestName,
+            deskTf32 = bestTf,
+            deskBwGbs = bestBw,
+            tfPct = ((tf32 / bestTf) * 100).toInt().coerceIn(1, 999),
+            bwPct = if (bestBw > 0) ((bw / bestBw) * 100).toInt().coerceIn(1, 999) else 0
         )
     }
 

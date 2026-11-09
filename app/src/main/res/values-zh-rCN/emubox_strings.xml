@@ -238,7 +238,7 @@
     <string name="bench_equiv_gpu">台式机显卡</string>
     <string name="bench_equiv_none">鲁大师榜未收录，无法换算 PC 等效</string>
     <string name="bench_emu_title">模拟器体验预估</string>
-    <string name="bench_emu_calib">经验阈值，待实测校准</string>
+    <string name="bench_emu_calib">分数为社区报告均值（0-100），样本量见每条报告数；不是本机实测</string>
     <string name="bench_upgrade_title">升级建议</string>
     <string name="bench_upgrade_next">下一档</string>
     <string name="bench_gen_title">世代演进</string>
@@ -803,9 +803,15 @@
     <string name="download_service_idle">准备中…</string>
     <string name="download_service_done">下载已完成</string>
     <string name="download_perm_missing">无法写入下载目录：缺少文件访问权限。点上方提示条修复。</string>
-    <string name="driver_risk_title">第三方驱动提示</string>
-    <string name="driver_risk_body">驱动是第三方二进制文件，会作为原生代码在模拟器进程内加载。恶意包可以借用本 App 的权限执行任意代码，请只安装你信任来源的驱动。</string>
-    <string name="driver_risk_accept">我已了解</string>
+    <string name="driver_risk_title">驱动加载说明</string>
+    <string name="driver_risk_body">EmuBox 会把驱动包里的 Vulkan 驱动直接加载进模拟器进程，用来替代系统驱动。
+
+· 驱动由第三方开发者发布，不是 EmuBox 提供的
+· 只安装来源可信的驱动（官方仓库、熟悉作者）
+· 加载失败不会影响系统，随时可以删除
+
+继续即表示你了解以上内容。</string>
+    <string name="driver_risk_accept">我知道了</string>
     <string name="settings_github_token_title">GitHub API Token（可选）</string>
     <string name="settings_github_token_desc">GitHub 未认证接口限额 60 次/小时：冷启动加几次刷新就可能触发限流，驱动列表会变空。填一个个人访问令牌（无需任何 scope）可提到 5000 次/小时。令牌在本机加密保存，且经过加速节点时会自动剥离，不会外泄。</string>
     <string name="settings_github_token_hint">ghp_…（留空表示不启用）</string>
@@ -814,4 +820,39 @@
     <string name="source_empty_no_release">该仓库尚未发布任何 release，空列表属正常现象，不是 bug。</string>
     <string name="runtime_checksum_missing">来源未提供校验值</string>
     <string name="runtime_installer_note">Windows 安装包无法在 Android 上运行，实际只做解压与拷贝</string>
+    <string name="device_tab_overview">概览</string>
+    <string name="device_tab_perf">性能</string>
+    <string name="device_tab_test">实测</string>
+    <string name="device_tab_news">资讯</string>
+    <string name="runtime_tab_all">运行库</string>
+    <string name="tab_news_short">资讯</string>
+    <string name="driver_tab_all">全部</string>
+    <string name="emu_tab_projects">项目</string>
+    <string name="emu_tab_picks">推荐</string>
+    <string name="emu_tab_dynamic">动态</string>
+    <string name="emuready_title">EmuReady 社区实测</string>
+    <string name="emuready_loading">正在匹配本机与社区报告…</string>
+    <string name="emuready_soc_line">%1$s · 由 %2$d 台同芯片机型的报告聚合</string>
+    <string name="emuready_no_report">暂无该机型报告</string>
+    <string name="emuready_no_data">EmuReady 未收录该机型，仅显示本机规格</string>
+    <string name="emuready_badge_device">本机实测</string>
+    <string name="emuready_badge_soc">同芯片机型（参考）</string>
+    <string name="emuready_badge_none">暂无社区数据</string>
+    <string name="emuready_conf_high">高置信</string>
+    <string name="emuready_conf_mid">中置信</string>
+    <string name="emuready_conf_low">低置信</string>
+    <string name="emuready_src_soc">芯片级</string>
+    <string name="emuready_src_device">设备级</string>
+    <string name="emuready_best_emu">最佳 %1$s</string>
+    <string name="emuready_listings">%1$d 条报告</string>
+    <string name="emuready_expand_more">展开全部 %1$d 个平台</string>
+    <string name="emuready_source_note">数据：EmuReady 社区报告，离线包 %1$s</string>
+    <string name="bench_gpu_phys_title">GPU 算力对照</string>
+    <string name="bench_gpu_phys_local">本机 GPU</string>
+    <string name="bench_gpu_phys_desk">最接近的桌面卡</string>
+    <string name="bench_gpu_phys_rel">算力 %1$d%% · 带宽 %2$d%%</string>
+    <string name="bench_gpu_phys_note">手机 GPU 与桌面显卡没有同口径跑分，这里只按 FP32 算力与内存带宽做量级对齐；实际游戏还受驱动、发热与 API 支持影响。数据按厂商公开规格推算（±10%）。</string>
+    <string name="bench_gpu_phys_none">该 GPU 未收录算力数据，上方为跑分数据。</string>
+    <string name="bench_emu_source">EmuReady 社区实测 · %1$d 个平台</string>
+    <string name="bench_emu_no_data">该芯片暂无社区实测报告。没有数据就不给估算，避免误导。</string>
 </resources>

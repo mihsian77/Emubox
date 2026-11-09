@@ -68,6 +68,7 @@ import com.emubox.app.ui.template.ConclusionTone
 import com.emubox.app.ui.template.DetailActionBar
 import com.emubox.app.ui.template.FusionCard
 import com.emubox.app.ui.template.SectionHeader
+import com.emubox.app.ui.template.SectionTabs
 import com.emubox.app.ui.template.SettingChoiceRow
 import com.emubox.app.ui.template.SettingGroup
 import com.emubox.app.ui.template.SettingRow
@@ -1924,7 +1925,7 @@ private fun AcceleratorSettingsCard() {
                                 Text(
                                     text = "—",
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
                                 )
                             }
                         }
@@ -3737,7 +3738,7 @@ private fun DriverRecommendationCard(
             Text(
                 route.note,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f)
+                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
             )
 
             when {
@@ -3753,14 +3754,14 @@ private fun DriverRecommendationCard(
                     LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 }
                 else -> {
-                    val scope = rememberCoroutineScope()
                     matches.forEach { match ->
                         key(match.entry.id) {
                             DriverRecommendRow(
                                 match = match,
                                 onOpenDriverFiles = onOpenDriverFiles,
                                 onDownload = { asset ->
-                                    scope.launch {
+                                    // 用全局作用域：卡片滚出屏幕被回收/切分区时不能把下载一起取消
+                                    AppDownloadScope.launch {
                                         runCatching {
                                             downloadDriverAsset(
                                                 context,
@@ -3777,17 +3778,6 @@ private fun DriverRecommendationCard(
                 }
             }
 
-            if (onNavigateToDrivers != null) {
-                Button(
-                    onClick = onNavigateToDrivers,
-                    modifier = Modifier.fillMaxWidth().heightIn(min = 44.dp),
-                    shape = RoundedCornerShape(16.dp)
-                ) {
-                    Icon(Icons.Default.Memory, contentDescription = null)
-                    Spacer(Modifier.width(8.dp))
-                    Text(appString(R.string.goto_driver_region))
-                }
-            }
         }
     }
 }
@@ -3827,7 +3817,7 @@ private fun DriverRecommendRow(
                         }
                     },
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.75f),
+                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -3836,7 +3826,7 @@ private fun DriverRecommendRow(
                     Text(
                         entry.description,
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f),
+                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -3869,7 +3859,7 @@ private fun DriverRecommendRow(
                     else -> "没取到版本列表，可进驱动专区查看"
                 },
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
             )
             else -> {
                 // 最新一个非预发布版算推荐版本
@@ -3903,7 +3893,7 @@ private fun DriverRecommendRow(
                             Text(
                                 release.publishedAt.take(10),
                                 style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.5f)
+                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
                             )
                         }
                     }
@@ -3923,7 +3913,7 @@ private fun DriverRecommendRow(
                                     Icons.Default.Download,
                                     contentDescription = null,
                                     modifier = Modifier.size(16.dp),
-                                    tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f)
+                                    tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
                                 )
                                 Spacer(Modifier.width(8.dp))
                                 Text(
@@ -3938,7 +3928,7 @@ private fun DriverRecommendRow(
                                     Text(
                                         formatBytes(asset.sizeBytes),
                                         style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
                                     )
                                 }
                             }
@@ -4730,7 +4720,7 @@ private fun SourcePickerGridCard(
                     if (option.archived) {
                         TagChip(
                             appString(R.string.source_archived),
-                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
                         )
                     }
                     if (!option.archived && option.category == "recommended") {
@@ -6313,7 +6303,9 @@ fun DeviceScreen(
     deviceInfo: DeviceInfo?,
     isLoading: Boolean,
     onNavigateToDrivers: (() -> Unit)? = null,
-    onOpenDriverFiles: ((String) -> Unit)? = null
+    onOpenDriverFiles: ((String) -> Unit)? = null,
+    /** 顶栏指南按钮的触发信号（自增计数）：>0 时打开指南 */
+    guideSignal: Int = 0
 ) {
     var vulkanPayload by remember { mutableStateOf<VulkanInfoPayload?>(null) }
     var vulkanLoading by remember { mutableStateOf(true) }
@@ -6352,6 +6344,11 @@ fun DeviceScreen(
         deviceNewsItems = NewsRepository.loadNews(deviceNewsContext)
     }
 
+    // 指南入口在顶栏（右上角图标），这里响应信号打开
+    LaunchedEffect(guideSignal) {
+        if (guideSignal > 0) showDeviceGuide = true
+    }
+
     if (showDeviceGuide) {
         DeviceGuideDialog(
             onDismiss = { showDeviceGuide = false },
@@ -6380,17 +6377,39 @@ fun DeviceScreen(
     }
 
     val driverRoute = deviceInfo?.let { recommendDriverRoute(it) }
-    var ecoExpanded by remember { mutableStateOf(false) }
+    // 设备页子分区：0 概览 / 1 性能 / 2 实测 / 3 资讯
+    // 单页原来把所有模块竖排（含底部新闻折叠区）要滑 6~8 屏，重排成一屏一个子分区。
+    var deviceTab by remember { mutableStateOf(0) }
+    val deviceListState = rememberLazyListState()
+    val deviceScope = rememberCoroutineScope()
 
     Box(modifier = modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+        // 子分区条固定在列表上方：滚动时始终可见，切分区即换内容，不用一路滑
+        SectionTabs(
+            tabs = listOf(
+                appString(R.string.device_tab_overview),
+                appString(R.string.device_tab_perf),
+                appString(R.string.device_tab_test),
+                appString(R.string.device_tab_news),
+            ),
+            selected = deviceTab,
+            onSelect = { index ->
+                if (index != deviceTab) {
+                    deviceTab = index
+                    deviceScope.launch { deviceListState.scrollToItem(0) }
+                }
+            },
+        )
         LazyColumn(
+            state = deviceListState,
             modifier = Modifier.fillMaxSize(),
             // 底部留出固定操作条高度，否则最后一条会被压住
             contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 92.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             // 结论在参数之前：用户要的是判断，不是跑分
-            item(key = "device_conclusion") {
+            if (deviceTab == 0) item(key = "device_conclusion") {
                 DeviceConclusionBlock(
                     deviceInfo = deviceInfo,
                     isLoading = isLoading,
@@ -6398,7 +6417,7 @@ fun DeviceScreen(
                 )
             }
 
-            if (!isLoading && deviceInfo != null) {
+            if (deviceTab == 0 && !isLoading && deviceInfo != null) {
                 item(key = "emuready_compat") {
                     EmuReadyCard(deviceInfo = deviceInfo)
                 }
@@ -6417,11 +6436,15 @@ fun DeviceScreen(
                         gpuIsAdreno = deviceInfo.gpuVendor == GpuVendor.ADRENO
                     )
                 }
+            }
+
+            if (deviceTab == 1 && !isLoading && deviceInfo != null) {
                 item(key = "bench_engine") {
                     BenchEngineCard(context = LocalContext.current, gpuModel = deviceInfo.gpuModel)
                 }
             }
 
+        if (deviceTab == 1) {
         item(key = "vulkan_header") {
             SectionHeader(appString(R.string.vulkan_title))
         }
@@ -6740,32 +6763,27 @@ fun DeviceScreen(
             )
         }
 
+        }
+
         // 渲染实测（自研内核）：直接出图，而不是只给一行 FPS 文字
         // 有已下载驱动时可在卡片内切换「系统驱动 / 指定驱动」，实现换驱动实测
-        item(key = "driver_render_check") {
+        if (deviceTab == 2) item(key = "driver_render_check") {
             DriverRenderCheckCard(drivers = driverTargets)
         }
 
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
-        item(key = "driver_detect_header") {
+        if (deviceTab == 2) item(key = "driver_detect_header") {
             SectionHeader(appString(R.string.driver_detection_title))
         }
 
-        item(key = "driver_detect_list") {
+        if (deviceTab == 2) item(key = "driver_detect_list") {
             DriverDetectionList(
                 systemDevice = vulkanPayload?.devices?.firstOrNull()
             )
         }
 
-            // 生态动态：详情页不塞资讯流，降级为列表末尾的折叠区（默认收起）
-            item(key = "dev_news_collapse") {
-                CollapseRow(
-                    title = appString(R.string.news_eco_title),
-                    expanded = ecoExpanded,
-                    onToggle = { ecoExpanded = !ecoExpanded },
-                )
-            }
-            if (ecoExpanded) {
+            // 资讯是独立子分区，不再挂在页尾折叠（用户要看新闻不必先滑到底）
+            if (deviceTab == 3) {
                 item(key = "device_news") {
                     NewsZoneCard(
                         title = appString(R.string.news_eco_title),
@@ -6775,6 +6793,7 @@ fun DeviceScreen(
                     )
                 }
             }
+        }
         }
 
         // 底部固定操作条：详情页的「下一步」只放一个主按钮
@@ -6789,15 +6808,6 @@ fun DeviceScreen(
                     Icon(Icons.Default.Memory, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
                     Text(appString(R.string.goto_driver_region))
-                }
-                OutlinedButton(
-                    onClick = { showDeviceGuide = true },
-                    modifier = Modifier.heightIn(min = 44.dp),
-                    shape = RoundedCornerShape(14.dp),
-                ) {
-                    Icon(Icons.Default.School, contentDescription = null)
-                    Spacer(Modifier.width(8.dp))
-                    Text(appString(R.string.device_guide_title))
                 }
             }
         }
@@ -6815,12 +6825,20 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
     val context = LocalContext.current
     var compat by remember { mutableStateOf<EmuReadyCompat?>(null) }
     var match by remember { mutableStateOf<EmuReadyMatch?>(null) }
+    var socCompat by remember { mutableStateOf<SocCompat?>(null) }
+    // 本地 SoC 表是毫秒级同步读取：先出内容，再让网络结果覆盖，
+    // 避免整张卡先转圈几秒（用户之前的体感是"刷新很久才出来"）
     var loading by remember { mutableStateOf(true) }
     var showAll by remember { mutableStateOf(false) }
+
     LaunchedEffect(deviceInfo.deviceBrand, deviceInfo.deviceModel, deviceInfo.socName) {
         loading = true
+        socCompat = withContext(Dispatchers.IO) {
+            EmuReadySocStore.find(context, deviceInfo.socName)
+        }
+        if (socCompat != null) loading = false
+
         val marketing = deviceMarketingName(deviceInfo.deviceModel, context)
-        // 候选名：系统营销名（PJZ110 → OnePlus 13）优先，其次代号映射表结果、最后 Build.MODEL
         val models = (EmuReadyStore.systemMarketNames() + listOf(marketing, deviceInfo.deviceModel))
             .map { it.trim() }.filter { it.isNotBlank() }.distinct()
         val hit = withContext(Dispatchers.IO) {
@@ -6832,29 +6850,33 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
         } else null
         loading = false
     }
+
+    // 展示口径：本机有报告 → 本机；否则用同 SoC 聚合表（不再引导去官网）
+    val deviceSystems = compat?.systems.orEmpty()
+    val socSystems = socCompat?.systems.orEmpty()
+    val useDevice = deviceSystems.isNotEmpty()
+    val rows = if (useDevice) deviceSystems.size else socSystems.size
+
     Card(
-        onClick = {
-            runCatching {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.emuready.com/devices")))
-            }
-        },
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f))
     ) {
         Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                Icon(Icons.Default.Verified, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                 Spacer(Modifier.width(10.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("EmuReady 兼容性", style = MaterialTheme.typography.titleSmall)
+                    Text(appString(R.string.emuready_title), style = MaterialTheme.typography.titleSmall)
                     val deviceLine = when {
-                        loading -> "匹配本机型号与社区数据…"
-                        compat != null && match?.isSocFallback == true ->
-                            "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}（参考机型）"
-                        compat != null -> "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}"
-                        match != null -> "${match!!.device.brandName} ${match!!.device.modelName} · 暂无该机型兼容报告"
-                        else -> "该机型未收录，点击浏览 EmuReady 全库"
+                        loading && rows == 0 -> appString(R.string.emuready_loading)
+                        useDevice -> "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}"
+                        socCompat != null -> {
+                            val n = socCompat!!.devices.size.coerceAtLeast(1)
+                            appString(R.string.emuready_soc_line, socCompat!!.soc, n)
+                        }
+                        match != null -> "${match!!.device.brandName} ${match!!.device.modelName} · ${appString(R.string.emuready_no_report)}"
+                        else -> appString(R.string.emuready_no_data)
                     }
                     Text(
                         deviceLine,
@@ -6864,32 +6886,27 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                         overflow = TextOverflow.Ellipsis
                     )
                 }
-                Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
             }
 
-            // 匹配方式徽章：让用户一眼看出这份分数是不是本机的
-            val how = match?.how
-            if (how != null && !loading) {
-                Spacer(Modifier.height(6.dp))
-                val (label, tint) = when (how) {
-                    "exact" -> "本机型号命中" to MaterialTheme.colorScheme.primary
-                    "prefix" -> "型号近似匹配" to MaterialTheme.colorScheme.tertiary
-                    "brand-soc" -> "同品牌同芯片参考" to MaterialTheme.colorScheme.secondary
-                    else -> "同芯片参考机型" to MaterialTheme.colorScheme.secondary
-                }
-                Surface(shape = RoundedCornerShape(6.dp), color = tint.copy(alpha = 0.14f)) {
-                    Text(
-                        label,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = tint,
-                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                    )
-                }
+            // 数据口径徽章：本机实测 / 同芯片机型聚合，别让用户误以为都是本机数据
+            Spacer(Modifier.height(6.dp))
+            val (badge, tint) = when {
+                useDevice -> appString(R.string.emuready_badge_device) to MaterialTheme.colorScheme.primary
+                socCompat != null -> appString(R.string.emuready_badge_soc) to MaterialTheme.colorScheme.secondary
+                else -> appString(R.string.emuready_badge_none) to MaterialTheme.colorScheme.outline
+            }
+            Surface(shape = RoundedCornerShape(6.dp), color = tint.copy(alpha = 0.14f)) {
+                Text(
+                    badge,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = tint,
+                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                )
             }
 
-            if (compat != null && compat!!.systems.isNotEmpty()) {
-                val all = compat!!.systems
-                val shown = if (showAll) all else all.take(6)
+            if (useDevice) {
+                val all = deviceSystems
+                val shown = if (showAll) all else all.take(8)
                 Spacer(Modifier.height(8.dp))
                 shown.forEachIndexed { idx, s ->
                     if (idx > 0) HorizontalDivider(
@@ -6897,56 +6914,151 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                         thickness = 0.5.dp,
                         color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
                     )
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(s.name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                            val srcLabel = if (s.dataSource == "soc") "SoC 同源" else "设备实测"
-                            val confLabel = when (s.confidence) { "high" -> "高置信"; "medium" -> "中置信"; else -> "低置信" }
-                            val extra = listOfNotNull(
-                                s.bestEmulator.takeIf { it.isNotBlank() }?.let { "最佳 $it" },
-                                "$confLabel · $srcLabel",
-                                "${s.uniqueGames} 游戏/${s.totalListings} 条报告".takeIf { s.totalListings > 0 }
-                            ).joinToString("  ·  ")
-                            Text(
-                                extra,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        }
-                        Spacer(Modifier.width(8.dp))
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = when {
-                                s.score >= 80 -> Color(0xFF2E7D32)
-                                s.score >= 60 -> Color(0xFFF9A825)
-                                else -> Color(0xFFC62828)
-                            }
-                        ) {
-                            Text(
-                                "${s.score}",
-                                style = MaterialTheme.typography.labelLarge,
-                                color = Color.White,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
-                            )
-                        }
-                    }
+                    CompatRow(
+                        name = emuSystemZh(s.name, ""),
+                        emulator = s.bestEmulator,
+                        score = s.score,
+                        confidence = s.confidence,
+                        source = s.dataSource,
+                        listings = s.totalListings
+                    )
                 }
-                if (all.size > 6) {
+                if (all.size > shown.size) {
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        if (showAll) "收起" else "展开全部 ${all.size} 个平台",
+                        appString(R.string.emuready_expand_more, all.size),
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { showAll = !showAll }
+                            .clickable { showAll = true }
                             .padding(vertical = 4.dp),
                         textAlign = TextAlign.Center
                     )
                 }
+            } else if (socSystems.isNotEmpty()) {
+                val shown = if (showAll) socSystems else socSystems.take(8)
+                Spacer(Modifier.height(8.dp))
+                shown.forEachIndexed { idx, s ->
+                    if (idx > 0) HorizontalDivider(
+                        Modifier.padding(vertical = 6.dp),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                    )
+                    CompatRow(
+                        name = emuSystemZh(s.name, s.key),
+                        emulator = s.bestEmulator,
+                        score = s.score,
+                        confidence = s.confidence,
+                        source = s.dataSource,
+                        listings = s.listings
+                    )
+                }
+                if (socSystems.size > shown.size) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        appString(R.string.emuready_expand_more, socSystems.size),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { showAll = true }
+                            .padding(vertical = 4.dp),
+                        textAlign = TextAlign.Center
+                    )
+                }
+                Text(
+                    appString(R.string.emuready_source_note, EmuReadySocStore.dataGeneratedAt().take(10)),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 6.dp)
+                )
             }
+        }
+    }
+}
+
+/** EmuReady 平台名的中文对照：接口只给英文系统名，直接摆英文用户读不懂 */
+private fun emuSystemZh(name: String, key: String): String {
+    val k = key.ifBlank { name.lowercase() }
+    val zh = when {
+        k.contains("switch") -> "Switch"
+        k.contains("windows") -> "Windows (Winlator)"
+        k.contains("playstation_2") || k.contains("ps2") -> "PS2"
+        k.contains("playstation_3") || k.contains("ps3") -> "PS3"
+        k.contains("playstation_vita") || k.contains("vita") -> "PS Vita"
+        k.contains("playstation_portable") || k.contains("psp") -> "PSP"
+        k.contains("playstation") || k.contains("ps1") -> "PS1"
+        k.contains("gamecube") -> "GameCube"
+        k.contains("wii_u") -> "Wii U"
+        k.contains("wii") -> "Wii"
+        k.contains("nintendo_3ds") || k.contains("3ds") -> "3DS"
+        k.contains("nintendo_ds") || k.contains("nds") -> "NDS"
+        k.contains("nintendo_64") || k.contains("n64") -> "N64"
+        k.contains("snes") || k.contains("super_nintendo") -> "SFC"
+        k.contains("nes") -> "FC"
+        k.contains("game_boy_advance") || k.contains("gba") -> "GBA"
+        k.contains("game_boy") -> "GB"
+        k.contains("xbox_360") -> "Xbox 360"
+        k.contains("xbox") -> "Xbox"
+        k.contains("dreamcast") -> "Dreamcast"
+        k.contains("saturn") -> "Saturn"
+        k.contains("arcade") -> "街机"
+        k.contains("apple_ios") || k.contains("ios") -> "iOS"
+        k.contains("android") -> "Android"
+        k.contains("linux") -> "Linux"
+        else -> name
+    }
+    return zh
+}
+
+@Composable
+private fun CompatRow(
+    name: String,
+    emulator: String,
+    score: Int,
+    confidence: String,
+    source: String,
+    listings: Int
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            val conf = when (confidence) {
+                "high" -> appString(R.string.emuready_conf_high)
+                "medium" -> appString(R.string.emuready_conf_mid)
+                else -> appString(R.string.emuready_conf_low)
+            }
+            val src = if (source == "soc") appString(R.string.emuready_src_soc) else appString(R.string.emuready_src_device)
+            val parts = listOfNotNull(
+                emulator.takeIf { it.isNotBlank() }?.let { appString(R.string.emuready_best_emu, it) },
+                conf,
+                src,
+                if (listings > 0) appString(R.string.emuready_listings, listings) else null
+            )
+            Text(
+                parts.joinToString("  ·  "),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        Surface(
+            shape = RoundedCornerShape(8.dp),
+            color = when {
+                score >= 80 -> Color(0xFF2E7D32)
+                score >= 60 -> Color(0xFFF9A825)
+                else -> Color(0xFFC62828)
+            }
+        ) {
+            Text(
+                "$score",
+                style = MaterialTheme.typography.labelLarge,
+                color = Color.White,
+                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+            )
         }
     }
 }
@@ -7122,7 +7234,7 @@ private fun GpuBenchmarkCard(
                         Text(
                             "参考显卡为鲁大师 GPU 跑分库同档校准（RX 7600M XT ≈ RTX 2060 SUPER，同一榜单分数接近）；CPU 等效暂缺可靠数据源",
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f),
                             maxLines = 3
                         )
                     }
@@ -9212,8 +9324,25 @@ fun DriverScreen(
     val headerTitle = appString(R.string.driver_region)
     val headerHint = appString(R.string.driver_search_hint)
 
+    // 五类驱动分开展示：原来 5 个区块全竖排，一屏只够看一个源，找另一个系列要滑很久。
+    // 0 全部 / 1 Turnip / 2 高通 / 3 PanVK / 4 Xclipse / 5 Wrapper
+    var driverTab by remember { mutableStateOf(0) }
+
+    Column(modifier = modifier.fillMaxSize()) {
+    SectionTabs(
+        tabs = listOf(
+            appString(R.string.driver_tab_all),
+            "Turnip",
+            appString(R.string.qualcomm_driver),
+            "PanVK",
+            "Xclipse",
+            "Wrapper",
+        ),
+        selected = driverTab,
+        onSelect = { driverTab = it },
+    )
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         state = listState,
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -9264,7 +9393,7 @@ fun DriverScreen(
 
         // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
         // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
-        if (filteredTurnip.isNotEmpty() && showTurnipSection) {
+        if (filteredTurnip.isNotEmpty() && showTurnipSection && (driverTab == 0 || driverTab == 1)) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9273,7 +9402,7 @@ fun DriverScreen(
                     onSourceChange = { id ->
                         onTurnipSourceChange(id)
                         expandTrigger = "turnip:$id"
-                        scope.launch { listState.animateScrollToItem(sectionIndex(0)) }
+                        scope.launch { listState.animateScrollToItem(0) }
                     },
                     releases = turnipReleases,
                     selectionKey = "turnip:$turnipSourceId",
@@ -9286,7 +9415,7 @@ fun DriverScreen(
         }
 
         // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
-        if (filteredPanvk.isNotEmpty() && showPanvkSection) {
+        if (filteredPanvk.isNotEmpty() && showPanvkSection && (driverTab == 0 || driverTab == 3)) {
             item(key = "panvk_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9295,7 +9424,7 @@ fun DriverScreen(
                     onSourceChange = { id ->
                         onPanvkSourceChange(id)
                         expandTrigger = "panvk:$id"
-                        scope.launch { listState.animateScrollToItem(sectionIndex(1)) }
+                        scope.launch { listState.animateScrollToItem(0) }
                     },
                     releases = panvkReleases,
                     selectionKey = "panvk:$panvkSourceId",
@@ -9310,7 +9439,7 @@ fun DriverScreen(
             }
         }
 
-        if (showQualcomm && showQualcommSection && filteredQualcomm.isNotEmpty()) {
+        if (showQualcomm && showQualcommSection && filteredQualcomm.isNotEmpty() && (driverTab == 0 || driverTab == 2)) {
             item(key = "qualcomm_section") {
                 DriverCardDynamic(
                     title = appString(R.string.qualcomm_driver),
@@ -9321,7 +9450,7 @@ fun DriverScreen(
                     onSourceChange = { id ->
                         onQualcommSourceChange(id)
                         expandTrigger = "qualcomm:$id"
-                        scope.launch { listState.animateScrollToItem(sectionIndex(2)) }
+                        scope.launch { listState.animateScrollToItem(0) }
                     },
                     releases = qualcommReleases,
                     selectionKey = "qualcomm:$qualcommSourceId",
@@ -9334,7 +9463,7 @@ fun DriverScreen(
         }
 
         // ── 三星 Xclipse 驱动专区：Exynos RDNA GPU（Exynos 2200/2400）独立区块 ──
-        if (filteredXclipse.isNotEmpty() && showXclipseSection) {
+        if (filteredXclipse.isNotEmpty() && showXclipseSection && (driverTab == 0 || driverTab == 4)) {
             item(key = "xclipse_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9343,7 +9472,7 @@ fun DriverScreen(
                     onSourceChange = { id ->
                         onXclipseSourceChange(id)
                         expandTrigger = "xclipse:$id"
-                        scope.launch { listState.animateScrollToItem(sectionIndex(3)) }
+                        scope.launch { listState.animateScrollToItem(0) }
                     },
                     releases = xclipseReleases,
                     selectionKey = "xclipse:$xclipseSourceId",
@@ -9362,7 +9491,7 @@ fun DriverScreen(
         // Wrapper 专区：三源（banner/fristoner/winx）单区块并列，源切换弹窗可选。
         // banner 源为 wrappers.json 清单型：展开区显示清单卡（集成在 TurnipDriverSection
         // 的 catalogItems 分支），不占满页面；fristoner/winx 为 release 型展开显示版本卡。
-        if (filteredWrapper.isNotEmpty() && showWrapperSection) {
+        if (filteredWrapper.isNotEmpty() && showWrapperSection && (driverTab == 0 || driverTab == 5)) {
             item(key = "wrapper_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9371,7 +9500,7 @@ fun DriverScreen(
                     onSourceChange = { id ->
                         onWrapperSourceChange(id)
                         expandTrigger = "wrapper:$id"
-                        scope.launch { listState.animateScrollToItem(sectionIndex(4)) }
+                        scope.launch { listState.animateScrollToItem(0) }
                     },
                     releases = wrapperReleases,
                     selectionKey = "wrapper:$wrapperSourceId",
@@ -9443,6 +9572,7 @@ fun DriverScreen(
                 }
             }
         }
+    }
     }
 }
 
@@ -9519,8 +9649,17 @@ fun ComponentScreen(
     val componentRegionTitle = appString(R.string.component_region)
     val bundleTitle = appString(R.string.source_bundle_title)
 
+    // 子分区：0 组件 / 1 资讯
+    var componentTab by remember { mutableStateOf(0) }
+
+    Column(modifier = modifier.fillMaxSize()) {
+    SectionTabs(
+        tabs = listOf(appString(R.string.component_region), appString(R.string.tab_news_short)),
+        selected = componentTab,
+        onSelect = { componentTab = it },
+    )
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -9549,7 +9688,7 @@ fun ComponentScreen(
 
 
         var hasAnyComponent = false
-        componentOrder.forEach { type ->
+        if (componentTab == 0) componentOrder.forEach { type ->
             val source = currentComponentSource(type)
             val list = source?.let { componentCatalogs[it.id]?.get(type).orEmpty() }.orEmpty()
             if (list.isNotEmpty() && source != null) {
@@ -9596,14 +9735,7 @@ fun ComponentScreen(
             }
         }
 
-        item(key = "component_news_collapse") {
-            CollapseRow(
-                title = appString(R.string.news_component_title),
-                expanded = newsExpanded,
-                onToggle = { newsExpanded = !newsExpanded },
-            )
-        }
-        if (newsExpanded) {
+        if (componentTab == 1) {
             item(key = "component_news") {
                 NewsZoneCard(
                     title = appString(R.string.news_component_title),
@@ -9614,7 +9746,7 @@ fun ComponentScreen(
             }
         }
 
-        item(key = "footer") {
+        if (componentTab == 0) item(key = "footer") {
             Text(
                 text = appString(R.string.versions_footer),
                 style = MaterialTheme.typography.bodySmall,
@@ -9622,6 +9754,7 @@ fun ComponentScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
+    }
     }
 }
 
@@ -9700,8 +9833,15 @@ fun RuntimeLibraryScreen(
     }
 
     val grouped = remember(filtered) { RuntimeLibraryRepository.groupByCategory(filtered) }
-    var metaExpanded by remember { mutableStateOf(false) }
+    // 子分区：0 全部运行库 / 1 资讯。资讯原来挂在页尾折叠区（最后一屏 + 还要再点一次）
+    var runtimeTab by remember { mutableStateOf(0) }
 
+    Column(modifier = Modifier.fillMaxSize()) {
+    SectionTabs(
+        tabs = listOf(appString(R.string.runtime_tab_all), appString(R.string.tab_news_short)),
+        selected = runtimeTab,
+        onSelect = { runtimeTab = it },
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -9719,6 +9859,7 @@ fun RuntimeLibraryScreen(
             },
         )
 
+        if (runtimeTab == 0) {
         // 搜索框
         FusionSearchBar(
             query = searchQuery,
@@ -9769,14 +9910,10 @@ fun RuntimeLibraryScreen(
                 )
             }
         }
+        }
 
-        // 资讯与来源声明：低频信息，收进末尾折叠区，不再挤占首屏
-        CollapseRow(
-            title = appString(R.string.runtime_meta_title),
-            expanded = metaExpanded,
-            onToggle = { metaExpanded = !metaExpanded },
-        )
-        if (metaExpanded) {
+        // 资讯与来源声明：独立子分区
+        if (runtimeTab == 1) {
             // 运行库资讯：Wine/Box64/Proton 运行时新闻
             NewsZoneCard(
                 title = appString(R.string.news_runtime_title),
@@ -9812,6 +9949,7 @@ fun RuntimeLibraryScreen(
                 }
             }
         }
+    }
     }
 }
 
@@ -10424,6 +10562,18 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                                 .fillMaxWidth()
                                 .verticalScroll(rememberScrollState())
                         ) {
+                            // 封面图：设备/生态类报道的信息有一半在图里，只有文字等于缺内容
+                            if (item.image.isNotBlank()) {
+                                AsyncImage(
+                                    model = item.image,
+                                    contentDescription = null,
+                                    contentScale = ContentScale.FillWidth,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(12.dp))
+                                )
+                                Spacer(Modifier.height(10.dp))
+                            }
                             Text(showText, style = MaterialTheme.typography.bodyMedium)
                         }
                     }
@@ -10434,7 +10584,11 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (baseText.isNotBlank()) {
+                    // 设备/泛科技报道本来就是中文，翻译与「查看原文」在这里没有意义；
+                    // 组件/驱动这类英文 release 才保留
+                    val showActions = baseText.isNotBlank() &&
+                        item.category !in setOf("device", "tech", "eco")
+                    if (showActions) {
                         OutlinedButton(
                             onClick = {
                                 if (translated == null) {
@@ -10480,7 +10634,7 @@ private fun NewsListDialog(
     typeFilter: Boolean,
     onDismiss: () -> Unit
 ) {
-    val catItemsAll = items.filter { it.category == category }
+    val catItemsAll = items.filter { newsMatches(it, category) }
     val typeOptions = if (typeFilter) {
         buildList {
             add("")
@@ -10609,6 +10763,29 @@ private fun NewsPager(
     }
 }
 
+
+/**
+ * 分区 → 新闻条目的归属判定。
+ *
+ * 数据管道只产生 emulator / device / component / driver / tech 五类，
+ * 但页面上有「运行库」分区。一直用 category == "runtime" 严格比对，
+ * 数据里根本没有这个值 —— 运行库资讯因此恒为空（用户看到的就是「没有信息」）。
+ *
+ * 按既定口径拆 component：Wine / Box64 / Proton / FEX 属「组件」，
+ * DXVK / VKD3D(D7VK) / Wine Mono / Wine Gecko / Mono 属「运行库」。
+ */
+private fun isRuntimeType(type: String): Boolean {
+    val t = type.lowercase()
+    return t.contains("dxvk") || t.contains("vkd3d") || t.contains("d7vk") ||
+        t.contains("mono") || t.contains("gecko")
+}
+
+private fun newsMatches(item: NewsItem, category: String): Boolean = when (category) {
+    "runtime" -> item.category == "component" && isRuntimeType(item.type)
+    "eco" -> item.category == "device" || item.category == "tech"
+    else -> item.category == category
+}
+
 /** 分区新闻卡：按固定分类展示资讯新闻（无筛选，分区即分类）。
  *  @param showGeneralFold 是否在底部折叠展示泛科技资讯（保底不丢 IT 无关新闻）。 */
 @Composable
@@ -10629,7 +10806,7 @@ private fun NewsZoneCard(
                 Text(title, style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Text(
-                    "共 ${items?.count { it.category == category } ?: 0} 条",
+                    "共 ${items?.count { newsMatches(it, category) } ?: 0} 条",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -10656,7 +10833,7 @@ private fun NewsZoneCard(
                 else -> {
                     // 卡片内只展示 3 条预览（瘦身，不再整页铺 8 条 + 分页条），
                     // 完整列表/类型筛选/分页都在"查看全部"打开的列表弹窗里。
-                    val catItemsAll = items.filter { it.category == category }
+                    val catItemsAll = items.filter { newsMatches(it, category) }
                     var showList by remember(category, typeFilter) { mutableStateOf(false) }
                     if (catItemsAll.isEmpty()) {
                         Spacer(Modifier.height(8.dp))
@@ -10916,14 +11093,29 @@ fun EmulatorScreen(
     // 分区/平台切换在顶部两行 chips，列表直接平铺，不再用折叠区块
     val flatItems = filtered
 
+    // 模拟器页子分区：0 项目 / 1 推荐 / 2 动态
+    // 原来「推荐+动态+榜单+热度+配方」全塞进列表末尾一个默认收起的折叠条，
+    // 用户根本看不到，也不该滑到最底才有内容。
+    var emuTab by remember { mutableStateOf(0) }
+
+    Column(modifier = modifier.fillMaxSize()) {
+    SectionTabs(
+        tabs = listOf(
+            appString(R.string.emu_tab_projects),
+            appString(R.string.emu_tab_picks),
+            appString(R.string.emu_tab_dynamic),
+        ),
+        selected = emuTab,
+        onSelect = { emuTab = it },
+    )
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        item(key = "emulator_region_header", span = { GridItemSpan(maxLineSpan) }) {
+        if (emuTab == 0) item(key = "emulator_region_header", span = { GridItemSpan(maxLineSpan) }) {
             Column {
                 // 融合风渐变标题
                 Row(
@@ -10991,7 +11183,7 @@ fun EmulatorScreen(
                 }
             }
         }
-        item(key = "emulator_filter", span = { GridItemSpan(maxLineSpan) }) {
+        if (emuTab == 0) item(key = "emulator_filter", span = { GridItemSpan(maxLineSpan) }) {
             Column {
                 // 一级：用途分区
                 Row(
@@ -11083,7 +11275,7 @@ fun EmulatorScreen(
                 }
             }
         }
-item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
+if (emuTab == 0) item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     appString(R.string.emulator_result_count, flatItems.size),
@@ -11113,7 +11305,7 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
         if (compareIds.isNotEmpty()) {
             val compareEntries = compareIds.mapNotNull { id -> entries.firstOrNull { it.id == id } }
             if (compareEntries.isNotEmpty()) {
-                item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
+                if (emuTab == 0) item(key = "compare_bar", span = { GridItemSpan(maxLineSpan) }) {
                     CompareBar(
                         projects = compareEntries,
                         onOpen = { showCompare = true },
@@ -11125,7 +11317,7 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
         // 空态：区分"清单还没拉回来"与"筛选没命中"，后者给出清除筛选入口。
         // 旧实现两种情况都显示"正在加载模拟器列表…"，搜索无结果时用户会一直等。
         if (flatItems.isEmpty()) {
-            item(key = "emulator_empty_state", span = { GridItemSpan(maxLineSpan) }) {
+            if (emuTab == 0) item(key = "emulator_empty_state", span = { GridItemSpan(maxLineSpan) }) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(20.dp),
@@ -11237,26 +11429,10 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
         // 而不是先滚过英雄卡 + 简介 + 统计 + 排序说明才看到第一条。
         // 概览区（英雄卡 / 简介 / 统计 / 更新动态）与工具栏在列表非空时同样显示。
         // 旧实现把整块包在 flatItems.isEmpty() 里，真实数据一到位就全部消失。
-        item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
-            var dynOpen by remember { mutableStateOf(false) }
+        if (emuTab != 0) item(key = "emulator_dynamic", span = { GridItemSpan(maxLineSpan) }) {
             Column {
-                // 列表之后只剩一个折叠条，默认收起：推荐与动态是「逛」的内容，
-                // 不该在用户已经决定要看哪一项时继续占屏。
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(Fusion.SurfaceAlt)
-                        .border(1.dp, Fusion.BorderAlt, RoundedCornerShape(12.dp))
-                        .clickable { dynOpen = !dynOpen }
-                        .padding(horizontal = 14.dp, vertical = 11.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text("社区推荐与动态", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Fusion.OnSurface, modifier = Modifier.weight(1f))
-                    Text(if (dynOpen) "收起" else "展开", fontSize = 11.sp, color = Fusion.OnSurfaceFainter)
-                }
-                AnimatedVisibility(visible = dynOpen) {
-                    Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Column(Modifier.padding(top = 4.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        if (emuTab == 1) {
                         topEntry?.let { hero ->
                             EmulatorHeroCard(
                                 entry = hero,
@@ -11278,15 +11454,18 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                             color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.padding(horizontal = 4.dp)
                         )
-                        NewsReleaseCard(items = newsItems)
-                        if (insights.totalProjects > 0) {
+                        }
+                        if (emuTab == 1 && !newsItems.isNullOrEmpty()) {
+                            NewsReleaseCard(items = newsItems.orEmpty())
+                        }
+                        if (emuTab == 2 && insights.totalProjects > 0) {
                             EmulatorInsightsCard(insights = insights)
                         }
                         val news = newsList
-                        if (news.isNotEmpty()) {
+                        if (emuTab == 2 && news.isNotEmpty()) {
                             EmulatorNewsCard(news = news, onOpen = { detailEntry = it })
                         }
-                        if (insights.trending14.isNotEmpty()) {
+                        if (emuTab == 2 && insights.trending14.isNotEmpty()) {
                             EmulatorTrendingCard(
                                 trending = insights.trending14,
                                 baseDate = insights.trendBaseDate,
@@ -11295,16 +11474,16 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
                                 onOpen = { detailEntry = it }
                             )
                         }
-                        if (insights.categoryDownloads.size > 1) {
+                        if (emuTab == 2 && insights.categoryDownloads.size > 1) {
                             EmulatorCategoryShareCard(categories = insights.categoryDownloads)
                         }
-                        if (insights.recipes.isNotEmpty()) {
+                        if (emuTab == 2 && insights.recipes.isNotEmpty()) {
                             EmulatorRecipesCard(recipes = insights.recipes)
                         }
                     }
-                }
             }
         }
+    }
     }
 
     detailEntry?.let { entry ->
@@ -11312,7 +11491,7 @@ item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             initialEntry = entry,
             onDismiss = { detailEntry = null },
             onDownloadAsset = { url, name ->
-                scope.launch { downloadEmulatorAsset(context, entry.name, url, name) }
+                AppDownloadScope.launch { downloadEmulatorAsset(context, entry.name, url, name) }
             }
         )
     }
@@ -13323,7 +13502,7 @@ private fun SocKnowledgeCard(
                     Text(
                         appString(R.string.soc_source_note),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f),
                         maxLines = 2
                     )
                 }
@@ -13442,42 +13621,45 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                     Text(
                         "安兔兔 V10 手机榜按具体机型计分；处理器分为 SoC 天梯口径，两者口径不同",
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
                     )
                 }
             }
         }
 
-        // 等效 PC 配置（鲁大师同分制最近邻）
-        if (info.gpuEquivName != null) {
+        // GPU 算力对照：只比物理量（FP32 TFLOPS / 带宽），不比跑分。
+        // 旧实现用「鲁大师同分制最近邻」把手机 GPU 分和桌面 GPU 分对齐，
+        // 两张榜口径不同却数值相近，8 Gen 2 被算成 RTX 2060 SUPER（实际差 8~10 倍）。
+        val gpuPhys = info.gpuPhys
+        if (gpuPhys != null) {
+            val g = gpuPhys
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(28.dp)
             ) {
                 Column(Modifier.padding(16.dp)) {
                     Text(
-                        appString(R.string.bench_equiv_title),
+                        appString(R.string.bench_gpu_phys_title),
                         style = MaterialTheme.typography.titleSmall
                     )
                     Spacer(Modifier.height(8.dp))
-                    // GPU 等效为跑分库人工校准（鲁大师同口径 GPU 分最近邻）；
-                    // CPU 等效曾用整机分最近邻桌面榜（如 i9-12900F 失真）已停用
                     InfoRow(
-                        label = "AMD 参考显卡",
-                        value = info.gpuEquivName
+                        label = appString(R.string.bench_gpu_phys_local),
+                        value = "${g.gpuName} · FP32 ${g.tf32} TFLOPS · ${g.bwGbs} GB/s"
                     )
-                    info.gpuEquivNvidia?.let { nName ->
-                        InfoRow(
-                            label = "NVIDIA 参考显卡",
-                            value = nName
-                        )
-                    }
+                    InfoRow(
+                        label = appString(R.string.bench_gpu_phys_desk),
+                        value = "${g.deskName}（${g.deskTf32} TFLOPS / ${g.deskBwGbs} GB/s）"
+                    )
+                    InfoRow(
+                        label = appString(R.string.bench_gpu_phys_rel),
+                        value = appString(R.string.bench_gpu_phys_rel, g.tfPct, g.bwPct)
+                    )
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        "参考显卡为鲁大师 GPU 跑分库同档校准（A/N 双榜同分档）；CPU 等效暂缺可靠数据源",
+                        appString(R.string.bench_gpu_phys_note),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
-                        maxLines = 2
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
                     )
                 }
             }
@@ -13491,12 +13673,12 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
             ) {
                 Column(Modifier.padding(16.dp)) {
                     Text(
-                        appString(R.string.bench_equiv_title),
+                        appString(R.string.bench_gpu_phys_title),
                         style = MaterialTheme.typography.titleSmall
                     )
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        appString(R.string.bench_equiv_none),
+                        appString(R.string.bench_gpu_phys_none),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -13504,8 +13686,12 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
             }
         }
 
-        // 模拟器体验预估
-        if (info.emulatorTiers.isNotEmpty()) {
+        // 模拟器体验：改用 EmuReady 真实社区报告，不再用「安兔兔总分阈值」自估。
+        // 旧阈值（Winlator 流畅 280 万 / 不建议 120 万）把 8 Gen 2 判成「不建议」，
+        // 而 EmuReady 上 8 Gen 2 跑 Winlator 有 800+ 条报告、均分 73 —— 自估阈值不可信。
+        val socCompat = remember(socName) { EmuReadySocStore.find(context, socName) }
+        val emuSystems = socCompat?.systems.orEmpty()
+        if (emuSystems.isNotEmpty()) {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(28.dp)
@@ -13515,13 +13701,54 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                         appString(R.string.bench_emu_title),
                         style = MaterialTheme.typography.titleSmall
                     )
+                    Spacer(Modifier.height(2.dp))
+                    Text(
+                        appString(R.string.bench_emu_source, emuSystems.size),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                     Spacer(Modifier.height(8.dp))
-                    info.emulatorTiers.forEach { t -> BenchTierRow(t) }
+                    emuSystems.take(6).forEachIndexed { idx, sys ->
+                        if (idx > 0) HorizontalDivider(
+                            Modifier.padding(vertical = 6.dp),
+                            thickness = 0.5.dp,
+                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                        )
+                        CompatRow(
+                            name = emuSystemZh(sys.name, sys.key),
+                            emulator = sys.bestEmulator,
+                            score = sys.score,
+                            confidence = sys.confidence,
+                            source = sys.dataSource,
+                            listings = sys.listings
+                        )
+                    }
                     Spacer(Modifier.height(6.dp))
                     Text(
                         appString(R.string.bench_emu_calib),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f)
+                    )
+                }
+            }
+        } else if (info.antutuTotal != null) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(28.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                )
+            ) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        appString(R.string.bench_emu_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        appString(R.string.bench_emu_no_data),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -13609,7 +13836,7 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                             Text(
                                 appString(R.string.bench_samechip_partial),
                                 style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.9f),
                                 maxLines = 2
                             )
                         }
