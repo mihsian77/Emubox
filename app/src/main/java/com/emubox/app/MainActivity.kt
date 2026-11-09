@@ -154,6 +154,9 @@ class MainActivity : ComponentActivity() {
     /** 是否刚跳去过系统授权页（onWindowFocusChanged 回来时据此判定） */
     private var leftForStorageSettings = false
 
+    /** 通知权限是否已请求过（Android 13+，前台服务通知用，拒绝不影响下载） */
+    private var notificationPermissionAsked = false
+
     /**
      * 从系统授权页 / SAF 选择器回到本页时重新判定权限。
      * 用窗口焦点而不是 onResume：onCreate 里 startActivity 之后 onResume 会先于
@@ -170,6 +173,7 @@ class MainActivity : ComponentActivity() {
         val granted = StorageAccess.hasAccess(this)
         storageGranted.value = granted
         if (granted) {
+            maybeRequestNotificationPermission()
             showStorageDialog.value = false
             if (!resumedScanDone) {
                 resumedScanDone = true
@@ -180,6 +184,20 @@ class MainActivity : ComponentActivity() {
         } else if (notifyIfMissing) {
             showStorageDialog.value = true
         }
+    }
+
+    /** 前台下载服务的通知权限（Android 13+）。拒绝只是看不到进度通知，不影响下载 */
+    private fun maybeRequestNotificationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+        if (notificationPermissionAsked) return
+        if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) ==
+            PackageManager.PERMISSION_GRANTED
+        ) return
+        notificationPermissionAsked = true
+        requestPermissions(
+            arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+            1002
+        )
     }
 
     /** 请求文件访问权限：运行时权限 / 系统「所有文件访问」页，均失败则弹说明 */
@@ -234,15 +252,8 @@ class MainActivity : ComponentActivity() {
         storageGranted.value = StorageAccess.hasAccess(this)
         if (!storageGranted.value) {
             requestStorageAccess()
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=
-            PackageManager.PERMISSION_GRANTED
-        ) {
-            // 前台下载服务的通知需要该权限；拒绝也不影响下载（只是看不到进度通知）
-            requestPermissions(
-                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
-                1002
-            )
+        } else {
+            maybeRequestNotificationPermission()
         }
 
         // 扫描下载目录中磁盘已有、但记录缺失的文件（卸载重装 / 外部放入），
