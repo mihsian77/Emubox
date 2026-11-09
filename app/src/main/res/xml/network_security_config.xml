@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  明文流量白名单。
+
+  背景：运行库定义（runtime yml）里有 9 条 http 源，共 30 处引用，全部指向
+  Windows 更新服务器与几个老站点，这些地址没有可用的 https 等价路径：
+    download.windowsupdate.com  （DirectShow / IE 等系统组件补丁包，21 处）
+    download.microsoft.com      （DirectX 9/11、.NET 3.5 安装包，4 处）
+    x3270.bgp.nu                （W2KSP4 等，3 处）
+    web.archive.org             （存档镜像，1 处）
+    appldnld.apple.com          （旧版 Apple 组件，1 处）
+
+  targetSdk 28 起系统默认禁止明文，OkHttp 会直接抛
+  UnknownServiceException: CLEARTEXT communication not permitted，
+  表现为这些运行库全部装不上。
+
+  只对上述域名放行，其余一律强制 HTTPS（见 base-config）。
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">download.windowsupdate.com</domain>
+        <domain includeSubdomains="true">download.microsoft.com</domain>
+        <domain includeSubdomains="true">x3270.bgp.nu</domain>
+        <domain includeSubdomains="true">web.archive.org</domain>
+        <domain includeSubdomains="true">appldnld.apple.com</domain>
+    </domain-config>
+</network-security-config>
