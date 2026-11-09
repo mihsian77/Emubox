@@ -782,9 +782,9 @@ How to verify in emulator:
     <string name="driver_check_target_note">Will dlopen %1$s directly (bypassing the system loader; failures report the raw dlerror)</string>
     <string name="driver_check_extract_failed">Failed to extract the driver package (.so not found)</string>
     <!-- 详情型：设备页结论卡与分组 -->
-    <string name="device_conclusion_full">Turnip works on this GPU — DXVK titles run with hardware acceleration</string>
-    <string name="device_conclusion_partial">Limited Turnip support — older titles are stable, recent 3A titles will struggle</string>
-    <string name="device_conclusion_none">No Turnip here — translation layer only, expect roughly half the frame rate</string>
+    <string name="device_conclusion_full">This Adreno GPU can use Turnip directly, so DXVK games render on hardware (frame rate still depends on driver version and thermals).</string>
+    <string name="device_conclusion_partial">Limited Xclipse/RDNA support: older titles are fine, new AAA titles are not.</string>
+    <string name="device_conclusion_none">Mali GPUs go through PanVK — Turnip is not available, so translation layers cost performance.</string>
     <string name="device_conclusion_unknown">GPU vendor not recognised — start with VirGL</string>
     <string name="device_badge_recommended">Recommended</string>
     <string name="device_badge_limited">Limited</string>

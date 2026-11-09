@@ -58,4 +58,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: EmuBox-*.apk
-          generate_release_notes: true
+          # 不用自动生成的 "What's Changed + 提交者" 列表：这个项目是独立开发，
+          # 更新日志按「功能/修复」写成人话，维护在 .github/release-notes.md
+          body_path: .github/release-notes.md
+          # tag 带 pre 的一律标记为预发布，不占用「最新正式版」的位置
+          prerelease: ${{ contains(github.ref_name, 'pre') }}
+          make_latest: ${{ contains(github.ref_name, 'pre') && 'false' || 'true' }}

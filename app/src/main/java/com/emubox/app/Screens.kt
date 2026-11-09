@@ -3251,7 +3251,9 @@ private fun CollapsedSourceHint(name: String, latestPublishedAt: String?) {
         color = MaterialTheme.colorScheme.primary,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        modifier = Modifier.padding(end = 6.dp)
+        // 源名可能很长（the412banner 的整合包名带一串包含项），不限宽会把
+        // 右侧「更新时间」和展开箭头挤出屏幕
+        modifier = Modifier.widthIn(max = 104.dp).padding(end = 6.dp)
     )
     if (!latestPublishedAt.isNullOrBlank()) {
         Spacer(Modifier.width(2.dp))
@@ -3802,12 +3804,21 @@ private fun DriverRecommendRow(
     }
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
+            // 作者头像：和驱动区分区头一致，用户能一眼认出这是哪个作者/仓库
+            RepoAvatar(
+                avatarUrl = githubOwnerAvatar(entry.apiUrl),
+                fallbackName = entry.name,
+                size = 26.dp
+            )
+            Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
                 Text(
                     entry.name,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     buildString {
@@ -3821,13 +3832,13 @@ private fun DriverRecommendRow(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                // 来源简介（注册表中文描述）：一行说明维护者/构建类型
+                // 来源简介：两行封顶。原来一行截断，稍长的说明只剩省略号，用户判断不了该下哪个
                 if (entry.description.isNotBlank()) {
                     Text(
                         entry.description,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f),
-                        maxLines = 1,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                 }

@@ -78,6 +78,9 @@ object DriverExtractor {
 
         var libraryName: String? = null
         var soFile: File? = null
+        // 包里常常有多个 .so（主驱动 + libbinder_ndk / libhardware 之类依赖）。
+        // 原来用「最后遍历到的那个」当主驱动，顺序一变就指向依赖库，加载必失败。
+        val extractedSos = mutableListOf<File>()
         // 已解压字节累计，用于拦截 zip bomb
         var totalWritten = 0L
 
@@ -112,7 +115,7 @@ object DriverExtractor {
                                 // 设置可执行权限（native dlopen 需要）
                                 outFile.setReadable(true, false)
                                 outFile.setExecutable(true, false)
-                                soFile = outFile
+                                extractedSos += outFile
                             }
                         }
 
@@ -127,6 +130,11 @@ object DriverExtractor {
             dir.deleteRecursively()
             return null
         }
+
+        // 主驱动选择：meta.libraryName 精确命中 → 名字带 vulkan 的 → 第一个
+        soFile = libraryName?.let { lib -> extractedSos.firstOrNull { it.name == lib } }
+            ?: extractedSos.firstOrNull { it.name.contains("vulkan", true) }
+            ?: extractedSos.firstOrNull()
 
         // 如果 meta.json 指定了 libraryName 但提取的 .so 文件名不同，重命名
         val targetName = libraryName
