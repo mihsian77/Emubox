@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-10T01:46:26Z",
+ "generated_at": "2026-11-10T23:43:42Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
