@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5176,
+      "stars": 5180,
       "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1186,
+      "stars": 1212,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 906,
+      "stars": 912,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -333,7 +333,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 237,
+      "stars": 239,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-08T20:53:09Z",
-      "latest_tag": "v27.0.0-20261108-r4",
-      "latest_date": "2026-11-08T20:53:09Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`3160097`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/316009797d8de1efdda53646f527821d2993ce24) |\n| **Commit title** | brw: Remove required flush on NVL-P (B0+) |\n| **Vulkan version** | Vulkan 1.4.367 |\n| **Date** | 2026-11-08 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--- | :--- | :--- |\n| **S"
+      "updated_at": "2026-11-10T00:48:38Z",
+      "latest_tag": "v27.0.0-20261110",
+      "latest_date": "2026-11-10T00:48:38Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ **A8xx** didn't build this run, so it isn't included.\n\n> ❌ **Banners-AIO** didn't build this run, so it isn't included.\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`1c87c60`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/1c87c60187064c60a10378fa79e20debf0941f97) |\n| **Commit title** | tu: WFI before reading registers that were just written |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -636,7 +636,7 @@
       "target_emulator": "eden",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 51,
+      "stars": 52,
       "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
       "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
       "companion": [],
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 108,
+      "stars": 112,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -820,10 +820,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-11-06T12:55:54Z",
-      "latest_tag": "v1.2.7",
-      "latest_date": "2026-11-06T12:55:54Z",
-      "latest_body": "Mesa Turnip for Adreno. v1.2.7 is v1.2.6 plus one fix: very large batches of GPU work no longer crash or hang the driver.\n\nDownload `turnip_faux123_v1.2.7.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.2.6\n\n- Large batches of work: when an app handed the driver thousands of command buffers in one go, the driver either reported the GPU as lost or stopped responding. Every earlier version had this bug. FauxVkTest 1.25 added a chec"
+      "updated_at": "2026-11-09T15:50:20Z",
+      "latest_tag": "v1.2.9",
+      "latest_date": "2026-11-09T15:50:20Z",
+      "latest_body": "Mesa Turnip for Adreno. v1.2.9 is v1.2.8 with one addition: the driver now starts on the Adreno 825 (Snapdragon 8s Gen 4, SM8735). Nothing else changed.\n\nDownload `turnip_faux123_v1.2.9.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.2.8\n\n- Adreno 825: added to the driver's GPU table, using the same settings as the Adreno 829. Before v1.2.9 the driver did not recognize the Adreno 825 and did not start on it.\n- Every other Adreno:"
     },
     {
       "id": "fristoner-g57",
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 134,
+      "stars": 140,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -913,7 +913,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "alpha",
-      "stars": 22,
+      "stars": 24,
       "description": "Helio G99/Mali-G57 MC2 JM 前端 PanVK，FourFectVK 构建",
       "notes": "针对 G99 设备测试，含详细研究文档",
       "companion": [
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 125,
+      "stars": 133,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1160,7 +1160,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 12,
+      "stars": 13,
       "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
       "notes": "掌机设备专用",
       "companion": [
@@ -1414,7 +1414,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 271,
+      "stars": 275,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1462,7 +1462,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 66,
+      "stars": 73,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1626,7 +1626,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 100,
+      "stars": 103,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1728,7 +1728,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 14,
+      "stars": 15,
       "notes": "v1.0.0 起与 ace/pixel7/rg556 四仓发布同一 adpkg 包（同名同字节），四设备全部实测；活跃（2026-10-29 v1.1.3 修 WWE 12 掉 GPU）",
       "companion": [
         "faux123-ace",
@@ -1814,7 +1814,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "ci",
-      "stars": 31,
+      "stars": 33,
       "notes": "活跃（2026-10-14）；无 Release，APK/zip 从 Actions 产物获取",
       "companion": [
         "guna-winlatormali"
@@ -1853,7 +1853,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 8,
+      "stars": 9,
       "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
       "companion": [
         "ghaelv-lemon-project"
