@@ -12683,8 +12683,10 @@ private fun EmulatorListRow(
             Spacer(Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    // 原生移植项目的原名是英文（Ship of Harkinian / Zelda64 Recompiled），
+                    // 中文用户看不出是哪个游戏：有译名时主标题用译名，原名缩成下一行小字
                     Text(
-                        entry.name,
+                        entry.nameZh.ifBlank { entry.name },
                         style = MaterialTheme.typography.titleSmall,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -12756,6 +12758,15 @@ private fun EmulatorListRow(
                             )
                         }
                     }
+                }
+                if (entry.nameZh.isNotBlank()) {
+                    Text(
+                        entry.name,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
                 // 能跑什么：平台标签 + 家族（分支/移植来源）。
                 // 之前只有「桌面 / 预发布 / 官方」这类状态标签，用户看不出项目是干嘛的。
