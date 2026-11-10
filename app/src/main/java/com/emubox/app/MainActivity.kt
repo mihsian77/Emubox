@@ -350,6 +350,17 @@ class MainActivity : ComponentActivity() {
                     registry: List<EmulatorEntry>,
                     ranking: List<EmulatorEntry>
                 ): List<EmulatorEntry> {
+                    // 榜单本身按累计下载量降序，名次就是它的下标 + 1。
+                    // 只给榜单内项目发名次：其余条目没有下载统计，硬排一个号是假数据。
+                    val rankById = HashMap<String, Int>(ranking.size * 2)
+                    val rankByRepo = HashMap<String, Int>(ranking.size * 2)
+                    ranking.forEachIndexed { i, r ->
+                        rankById[r.id] = i + 1
+                        if (r.repo.isNotBlank()) rankByRepo[r.repo] = i + 1
+                    }
+                    fun rankOf(e: EmulatorEntry): Int =
+                        rankById[e.id] ?: rankByRepo[e.repo].takeIf { e.repo.isNotBlank() } ?: 0
+
                     val merged = registry.map { base ->
                         val r = ranking.firstOrNull { it.id == base.id || it.repo == base.repo }
                         if (r != null) {
@@ -359,7 +370,9 @@ class MainActivity : ComponentActivity() {
                                 latestBody = if (base.latestBody.isBlank()) r.latestBody else base.latestBody,
                                 stars = if (base.stars == 0L) r.stars else base.stars,
                                 forks = if (base.forks == 0L) r.forks else base.forks,
-                                watchers = if (base.watchers == 0L) r.watchers else base.watchers
+                                watchers = if (base.watchers == 0L) r.watchers else base.watchers,
+                                topics = if (base.topics.isEmpty()) r.topics else base.topics,
+                                rank = rankOf(base)
                             )
                         } else base
                     } + ranking.filter { r ->

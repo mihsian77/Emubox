@@ -506,6 +506,9 @@ object BenchEngine {
                 // 同厂商上限放宽到 0.85（8 Gen2→8 Gen3 这段本来就有 40%+ 的跳档）
                 val candidates = master
                     .asSequence()
+                    // 只推手机芯片：主表里混着 QCS8550（车机/IoT）这类嵌入式件，
+                    // 跑分比 8 Gen 2 高，不筛就会把「换车机模组」当升级建议
+                    .filter { it.form.isBlank() || it.form == "phone" }
                     .filter { it.antutu > score }
                     .map { Triple(it, ((it.antutu - score).toDouble() / score), cnPresence(it.devices)) }
                     .filter { (_, gain, _) -> gain in 0.15..0.85 }

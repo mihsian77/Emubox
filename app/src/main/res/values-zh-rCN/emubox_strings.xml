@@ -256,7 +256,7 @@
     <string name="bench_driver_pc_note">带宽/算力为物理量对比（GB/s、TFLOPS），非同一跑分体系换算。</string>
 
     <string name="bench_samechip_partial">榜单仅收录部分机型，其余未收录。</string>
-    <string name="soc_source_note">数据来源：公开跑分平台综合整理，仅供参考。</string>
+    <string name="soc_source_note">数据来源：socpk 芯片库 + 安兔兔天梯，随每日数据任务刷新；跑分随系统版本与散热差异会有浮动。</string>
     <string name="soc_devices">常见机型</string>
     <string name="component_wine_subtitle">Windows 兼容层</string>
     <string name="component_proton_subtitle">游戏兼容层</string>

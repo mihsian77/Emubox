@@ -109,7 +109,13 @@ data class EmulatorEntry(
     /** 详情分片号（-1 表示当前对象已自带 releases，无需补拉） */
     val detailShard: Int = -1,
     val license: String = "",
-    val topics: List<String> = emptyList()
+    val topics: List<String> = emptyList(),
+    /**
+     * 社区下载量名次（1 起，0 = 无排名）。
+     * 只有进榜（有累计下载统计）的项目才有值，列表挂「#N」勋章；
+     * 其余留 0 而不是硬排一个号——没有下载数据的排名是假数据。
+     */
+    val rank: Int = 0
 ) {
     /**
      * 源码仓库地址。
@@ -227,6 +233,12 @@ object EmulatorRegistryRepository {
                         // 空值交给 UI 的字母牌（见 ProjectAvatar）。
                         logoUrl = obj.optString("logo_url"),
                         nameZh = obj.optString("name_zh"),
+                        rank = obj.optInt("rank", 0),
+                        topics = obj.optJSONArray("topics")?.let { arr ->
+                            (0 until arr.length()).mapNotNull { i ->
+                                arr.optString(i).takeIf(String::isNotBlank)
+                            }
+                        } ?: emptyList(),
                         note = obj.optString("note"),
                         stars = obj.optLong("stars", 0L),
                         forks = obj.optLong("forks", 0L),

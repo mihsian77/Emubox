@@ -1154,7 +1154,7 @@ private fun RepoAvatar(
     }
 }
 
-/** 项目图标统一链路：App 徽标（logoUrl，the412banner 等徽标站）→ 作者 GitHub 头像 → 首字母兜底。
+/** 项目图标统一链路：App 徽标（logoUrl，徽标站/仓库 social preview）→ 作者 GitHub 头像 → 首字母牌。
  *  模拟器/组件/驱动所有分区卡片共用，保证图标风格一致。 */
 @Composable
 private fun ProjectAvatar(
@@ -1164,10 +1164,13 @@ private fun ProjectAvatar(
     size: Dp = 26.dp,
     shape: Shape = CircleShape
 ) {
-    // 作者头像不是项目图标：同一个作者做 5 个项目就是 5 张一样的脸，
-    // 列表里反而更难认（weihuoya 的 Citra/PPSSPP/Dolphin 分支就是典型）。
-    // 没拿到真图标时宁可给「首字母 + 品牌色」的字母牌，也不要塞头像。
-    val avatar = logoUrl.takeUnless { it.isAuthorAvatar(owner) }.orEmpty().ifBlank { null }
+    // 没有项目徽标就用作者头像：GitHub 仓库未设置 social preview 时，
+    // logo_url 本来就等于作者头像，两者一致；作者也取不到才退到首字母牌。
+    val avatar = logoUrl.ifBlank {
+        owner.trim().takeIf { it.isNotBlank() && it != "unknown" }
+            ?.let { "https://avatars.githubusercontent.com/$it?size=96" }
+            .orEmpty()
+    }.ifBlank { null }
     RepoAvatar(
         avatarUrl = avatar,
         fallbackName = fallbackName,
@@ -1175,13 +1178,6 @@ private fun ProjectAvatar(
         shape = shape,
         seed = fallbackName
     )
-}
-
-/** 判断 logo 是不是 GitHub 头像占位：github.com/<owner>.png，或 avatars.githubusercontent.com 下的地址 */
-private fun String.isAuthorAvatar(owner: String): Boolean {
-    if (isBlank()) return true
-    if (contains("avatars.githubusercontent.com")) return true
-    return owner.isNotBlank() && endsWith("github.com/$owner.png", ignoreCase = true)
 }
 
 private fun formatRelativeTime(iso: String): String {
@@ -9527,8 +9523,7 @@ fun ComponentScreen(
                 NewsZoneCard(
                     title = appString(R.string.news_component_title),
                     items = componentNewsItems,
-                    category = "component",
-                    typeFilter = true
+                    category = "component"
                 )
             }
         }
@@ -9705,8 +9700,7 @@ fun RuntimeLibraryScreen(
             NewsZoneCard(
                 title = appString(R.string.news_runtime_title),
                 items = runtimeNewsItems,
-                category = "runtime",
-                typeFilter = true
+                category = "runtime"
             )
 
             // 数据来源与版权免责声明
@@ -10098,6 +10092,13 @@ private fun saveEmulatorFavs(context: Context, favs: Set<String>) {
 /** 模拟器专区：双列网格，卡片含分类徽章/最新版本/下载/仓库入口 */
 
 /** 原站分类 -> 中文分区名（t3st31 / the412banner 分类体系） */
+/** GitHub topics 里的无信息量词：平台/来源/语言这些已经在别处体现，再挂一遍是噪音 */
+private val EMULATOR_TOPIC_NOISE = setOf(
+    "android", "emulator", "emulators", "emulation", "windows", "linux", "macos",
+    "ios", "java", "kotlin", "cpp", "c", "python", "rust", "open-source",
+    "mit-license", "gpl-3.0", "game", "games", "gaming", "app", "tool", "tools"
+)
+
 /** 平台标签：数据里是 ps2 / switch 这种 key，界面要给中文 */
 private fun emulatorPlatformLabel(platform: String): String = when (platform) {
     "windows-pc" -> "Windows 游戏"
@@ -10364,7 +10365,30 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                                 )
                                 Spacer(Modifier.height(10.dp))
                             }
-                            Text(showText, style = MaterialTheme.typography.bodyMedium)
+                            // Release 正文是 Markdown 原文，直接 Text 渲染会把 ## / ** / [文字](网址)
+                            // 原样显示出来；翻译结果已是纯文本，不再处理
+                            val shownBody = remember(item.id, translated, baseText) {
+                                if (translated != null) translated!!.trim()
+                                else if (isOfficial) cleanReleaseBody(baseText)
+                                else baseText
+                            }
+                            Text(shownBody, style = MaterialTheme.typography.bodyMedium)
+                            // 正文内嵌图（GitHub user-attachments / <img>）：示例图、对比图都在这里，
+                            // 只渲染文字等于丢掉一半内容
+                            val inlineImgs = remember(item.id) {
+                                if (isOfficial) inlineImages(item.body) else emptyList()
+                            }
+                            inlineImgs.forEach { url ->
+                                Spacer(Modifier.height(8.dp))
+                                AsyncImage(
+                                    model = url,
+                                    contentDescription = null,
+                                    contentScale = ContentScale.FillWidth,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(10.dp))
+                                )
+                            }
                         }
                     }
                 }
@@ -10413,6 +10437,50 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
     }
 }
 
+/** Release 正文的 Markdown 轻量清理：留文字、去标记。
+ *  这里不做完整 Markdown 渲染（引入 parser 会把 60MB 包再撑大，且 release 正文以段落为主），
+ *  只处理正文里实际出现的几种标记：标题井号、粗体/行内代码星号、链接括号、引用符号。 */
+private fun cleanReleaseBody(raw: String): String {
+    if (raw.isBlank()) return raw
+    var t = raw
+    // 图片单独成区展示，正文里先摘掉，避免留下空括号
+    t = t.replace(Regex("!\\[[^\\]]*\\]\\([^)\\s]+\\)"), "")
+    t = t.replace(Regex("<img[^>]*>", RegexOption.IGNORE_CASE), "")
+    // [文字](链接) → 文字：正文里带一长串网址会让段落完全没法读
+    t = t.replace(Regex("\\[([^\\]]+)\\]\\([^)]*\\)"), "$1")
+    // 标题符号（行首 #）
+    t = t.replace(Regex("(?m)^#{1,6}\\s*"), "")
+    // 粗体 / 斜体 / 行内代码
+    t = t.replace(Regex("\\*\\*([^*\\n]+)\\*\\*"), "$1")
+    t = t.replace(Regex("(?<![*\\w])\\*([^*\\n]+)\\*(?![*\\w])"), "$1")
+    t = t.replace(Regex("`([^`\\n]+)`"), "$1")
+    // 引用与分割线
+    t = t.replace(Regex("(?m)^&gt;\\s?"), "")
+    t = t.replace(Regex("(?m)^>\\s?"), "")
+    t = t.replace(Regex("(?m)^\\s*[-*_]{3,}\\s*$"), "")
+    // HTML 换行/段落标签
+    t = t.replace(Regex("<br\\s*/?>", RegexOption.IGNORE_CASE), "\n")
+    t = t.replace(Regex("</p>", RegexOption.IGNORE_CASE), "\n")
+    t = t.replace(Regex("<[^>]+>"), "")
+    // 连续空行压成一段间隔
+    t = t.replace(Regex("\\n{3,}"), "\n\n")
+    return t.trim()
+}
+
+/** 提取正文内嵌图片地址（Markdown 与 HTML 两种写法），去重并保持顺序，最多 6 张 */
+private fun inlineImages(raw: String): List<String> {
+    if (raw.isBlank()) return emptyList()
+    val urls = buildList {
+        Regex("!\\[[^\\]]*\\]\\(([^)\\s]+)\\)").findAll(raw).forEach { add(it.groupValues[1]) }
+        Regex("<img[^>]+src=[\"']([^\"']+)[\"']", RegexOption.IGNORE_CASE).findAll(raw)
+            .forEach { add(it.groupValues[1]) }
+    }
+    return urls
+        .filter { it.startsWith("http://") || it.startsWith("https://") }
+        .distinct()
+        .take(6)
+}
+
 /** 新闻列表弹窗（近全屏）：某分区的完整新闻列表。
  *  类型筛选 chips（官方组件/运行库）与分页（8/页）都在此弹窗内，
  *  分区卡片本体只保留 3 条预览，避免占用页面空间。 */
@@ -10421,20 +10489,27 @@ private fun NewsListDialog(
     title: String,
     items: List<NewsItem>,
     category: String,
-    typeFilter: Boolean,
     onDismiss: () -> Unit
 ) {
     val catItemsAll = items.filter { newsMatches(it, category) }
-    val typeOptions = if (typeFilter) {
-        buildList {
-            add("")
-            addAll(catItemsAll.mapNotNull { it.type.takeIf { t -> t.isNotBlank() } }.distinct())
-        }
-    } else emptyList()
-    var selectedType by remember(category, typeFilter) { mutableStateOf("") }
+    // 标签筛选：官方组件的 type（Wine / Proton / Turnip）与资讯的 tag（芯片 / 系统 / 手机 / AI）
+    // 合并成一排，按出现条数从多到少取前 12 个——这就是「各标签的分类页」入口。
+    // 原来只有驱动区能按 type 筛，科技资讯只能从头翻到尾。
+    val tagOptions = remember(items, category) {
+        catItemsAll
+            .flatMap { listOf(it.type, it.tag) }
+            .filter { it.isNotBlank() }
+            .groupingBy { it }
+            .eachCount()
+            .entries
+            .sortedWith(compareByDescending<Map.Entry<String, Int>> { it.value }.thenBy { it.key })
+            .map { it.key }
+            .take(12)
+    }
+    var selectedTag by remember(category) { mutableStateOf("") }
     var page by remember { mutableStateOf(0) }
-    val catItems = if (selectedType.isNotBlank()) {
-        catItemsAll.filter { it.type == selectedType }
+    val catItems = if (selectedTag.isNotBlank()) {
+        catItemsAll.filter { it.type == selectedTag || it.tag == selectedTag }
     } else catItemsAll
     Dialog(onDismissRequest = onDismiss) {
         Surface(
@@ -10455,16 +10530,16 @@ private fun NewsListDialog(
                     }
                 }
                 Spacer(Modifier.height(4.dp))
-                if (typeOptions.size > 1) {
+                if (tagOptions.isNotEmpty()) {
                     Row(
                         modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        typeOptions.forEach { t ->
+                        (listOf("") + tagOptions).forEach { t ->
                             val label = if (t.isBlank()) appString(R.string.news_type_all) else t
-                            val selected = t == selectedType
+                            val selected = t == selectedTag
                             SuggestionChip(
-                                onClick = { selectedType = t; page = 0 },
+                                onClick = { selectedTag = t; page = 0 },
                                 label = { Text(label, style = MaterialTheme.typography.labelSmall) },
                                 colors = SuggestionChipDefaults.suggestionChipColors(
                                     containerColor = if (selected) {
@@ -10583,9 +10658,7 @@ private fun NewsZoneCard(
     title: String,
     items: List<NewsItem>?,
     category: String,
-    showGeneralFold: Boolean = false,
-    /** 官方组件/运行库条目按 type 筛选（组件类型 chips） */
-    typeFilter: Boolean = false
+    showGeneralFold: Boolean = false
 ) {
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
@@ -10624,7 +10697,7 @@ private fun NewsZoneCard(
                     // 卡片内只展示 3 条预览（瘦身，不再整页铺 8 条 + 分页条），
                     // 完整列表/类型筛选/分页都在"查看全部"打开的列表弹窗里。
                     val catItemsAll = items.filter { newsMatches(it, category) }
-                    var showList by remember(category, typeFilter) { mutableStateOf(false) }
+                    var showList by remember(category) { mutableStateOf(false) }
                     if (catItemsAll.isEmpty()) {
                         Spacer(Modifier.height(8.dp))
                         Text(
@@ -10667,7 +10740,6 @@ private fun NewsZoneCard(
                             title = title,
                             items = items,
                             category = category,
-                            typeFilter = typeFilter,
                             onDismiss = { showList = false }
                         )
                     }
@@ -10792,7 +10864,6 @@ private fun NewsReleaseCard(items: List<NewsItem>?) {
                             title = appString(R.string.news_new_releases),
                             items = items,
                             category = "emulator",
-                            typeFilter = false,
                             onDismiss = { showList = false }
                         )
                     }
@@ -12619,6 +12690,28 @@ private fun EmulatorListRow(
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f)
                     )
+                    // 社区下载量名次：只给有统计的项目挂，前三是金银铜
+                    if (entry.rank in 1..99) {
+                        Spacer(Modifier.width(5.dp))
+                        val rankColor = when (entry.rank) {
+                            1 -> Color(0xFFE0A82E)
+                            2 -> Color(0xFFA8B4C4)
+                            3 -> Color(0xFFC0764A)
+                            else -> MaterialTheme.colorScheme.onSurfaceVariant
+                        }
+                        Surface(
+                            shape = RoundedCornerShape(6.dp),
+                            color = rankColor.copy(alpha = 0.16f)
+                        ) {
+                            Text(
+                                "#${entry.rank}",
+                                modifier = Modifier.padding(horizontal = 5.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.Bold,
+                                color = rankColor
+                            )
+                        }
+                    }
                     if (entry.official) {
                         Spacer(Modifier.width(4.dp))
                         Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.primary) {
@@ -12661,6 +12754,52 @@ private fun EmulatorListRow(
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onTertiaryContainer
                             )
+                        }
+                    }
+                }
+                // 能跑什么：平台标签 + 家族（分支/移植来源）。
+                // 之前只有「桌面 / 预发布 / 官方」这类状态标签，用户看不出项目是干嘛的。
+                val goalTags = buildList {
+                    entry.platforms.take(3).forEach { p ->
+                        emulatorPlatformLabel(p).takeIf { it.isNotBlank() }?.let { add(it) }
+                    }
+                    if (entry.hosts.isNotEmpty() && "android" !in entry.hosts) {
+                        add(
+                            entry.hosts.joinToString("/") { h ->
+                                when (h.lowercase()) {
+                                    "windows" -> "Windows"
+                                    "macos" -> "macOS"
+                                    "linux" -> "Linux"
+                                    else -> h
+                                }
+                            }
+                        )
+                    }
+                    entry.topics
+                        .filter { t -> t.length in 2..18 && t.lowercase() !in EMULATOR_TOPIC_NOISE }
+                        .take(2)
+                        .forEach { add("#$it") }
+                }
+                if (goalTags.isNotEmpty()) {
+                    Spacer(Modifier.height(3.dp))
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        goalTags.take(4).forEach { tag ->
+                            Surface(
+                                shape = RoundedCornerShape(5.dp),
+                                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f)
+                            ) {
+                                Text(
+                                    tag,
+                                    modifier = Modifier.padding(horizontal = 5.dp, vertical = 1.dp),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 1,
+                                    softWrap = false
+                                )
+                            }
                         }
                     }
                 }
@@ -13371,6 +13510,32 @@ private fun SocKnowledgeCard(
                     }
                     if (knowledge.devices.isNotBlank()) {
                         InfoRow(label = appString(R.string.soc_devices), value = knowledge.devices)
+                    }
+                    // 时效性与口径：哪年发布、什么档位、是不是嵌入式件。
+                    // 主表里 QCS/QCM 是车机与 IoT 模组，跑分比同期手机芯片高，
+                    // 不标出来会被当成手机芯片看。
+                    val metaLine = remember(resolved) {
+                        if (resolved == null) "" else buildList {
+                            if (resolved.year.isNotBlank()) add("${resolved.year} 年发布")
+                            when (resolved.tier) {
+                                "flagship" -> add("旗舰")
+                                "sub-flagship" -> add("次旗舰")
+                                "mid" -> add("中端")
+                                "low" -> add("入门")
+                            }
+                            val embedded = resolved.codes.any { c ->
+                                c.startsWith("QCS", true) || c.startsWith("QCM", true)
+                            } || resolved.id.startsWith("qcs", true) || resolved.id.startsWith("qcm", true)
+                            if (embedded) add("嵌入式 / 车机版")
+                        }.joinToString(" · ")
+                    }
+                    if (metaLine.isNotBlank()) {
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            metaLine,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     }
                     Spacer(Modifier.height(6.dp))
                     Text(
