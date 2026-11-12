@@ -4,129 +4,129 @@
 "rank": 1,
 "name": "小米 玄戒O3",
 "clusters": "(2x 4.35GHz C1-Ultra & 4x 3.68GHz C1-Premium & 4x 3.15GHz C1-Pro)",
-"cpu_score": "1178051",
-"gpu_score": "1832719",
-"total_score": "3010770"
+"cpu_score": "1196681",
+"gpu_score": "1827012",
+"total_score": "3023692"
 },
 {
 "rank": 2,
 "name": "高通 骁龙8 超级至尊版 Gen 6",
-"clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
-"cpu_score": "1161762",
-"gpu_score": "1750402",
-"total_score": "2912164"
+"clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+"cpu_score": "1183347",
+"gpu_score": "1757961",
+"total_score": "2941308"
 },
 {
 "rank": 3,
 "name": "联发科技 天玑9600 Pro",
 "clusters": "(2x 4.55GHz C2-Ultra & 3x 4.35GHz C2-Pro & 3x 3.31GHz C2-Pro)",
-"cpu_score": "1162281",
-"gpu_score": "1639084",
-"total_score": "2801365"
+"cpu_score": "1207803",
+"gpu_score": "1706777",
+"total_score": "2914579"
 },
 {
 "rank": 4,
 "name": "高通 骁龙8 至尊版 Gen 6",
 "clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
-"cpu_score": "1067700",
-"gpu_score": "1590180",
-"total_score": "2657880"
+"cpu_score": "1031384",
+"gpu_score": "1566297",
+"total_score": "2597681"
 },
 {
 "rank": 5,
 "name": "高通 骁龙8 至尊版 Gen5",
 "clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
-"cpu_score": "1137283",
-"gpu_score": "1367745",
-"total_score": "2449060"
+"cpu_score": "1137886",
+"gpu_score": "1374073",
+"total_score": "2511960"
 },
 {
 "rank": 6,
 "name": "联发科技 天玑9500",
 "clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-"cpu_score": "1038120",
-"gpu_score": "1261743",
-"total_score": "2299863"
+"cpu_score": "1021732",
+"gpu_score": "1177409",
+"total_score": "2199141"
 },
 {
 "rank": 7,
 "name": "联发科技 天玑9500M",
 "clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-"cpu_score": "1007659",
-"gpu_score": "1089690",
-"total_score": "2097349"
+"cpu_score": "1004446",
+"gpu_score": "1071961",
+"total_score": "2076408"
 },
 {
 "rank": 8,
 "name": "高通 骁龙8 至尊版",
 "clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
-"cpu_score": "967722",
-"gpu_score": "1118850",
-"total_score": "2086572"
+"cpu_score": "951404",
+"gpu_score": "1121399",
+"total_score": "2072803"
 },
 {
 "rank": 9,
 "name": "联发科技 天玑9600M",
 "clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-"cpu_score": "957273",
-"gpu_score": "1126524",
-"total_score": "2083797"
+"cpu_score": "937273",
+"gpu_score": "1045448",
+"total_score": "1982721"
 },
 {
 "rank": 10,
-"name": "小米 玄戒O1",
-"clusters": "(2x 3.9GHz Cortex-X925 & 4x 3.4GHz Cortex-A725 & 2x 1.9GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
-"cpu_score": "1002180",
-"gpu_score": "955041",
-"total_score": "1957221"
+"name": "高通 骁龙8 Gen 5",
+"clusters": "(2x 3.8GHz Oryon Prime & 6x 3.32GHz Oryon Performance)",
+"cpu_score": "948249",
+"gpu_score": "965321",
+"total_score": "1913570"
 },
 {
 "rank": 11,
-"name": "高通 骁龙8 Gen 5",
-"clusters": "(2x 3.8GHz Oryon Prime & 6x 3.32GHz Oryon Performance)",
-"cpu_score": "958707",
-"gpu_score": "969946",
-"total_score": "1928653"
+"name": "联发科技 天玑9500s",
+"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "915364",
+"gpu_score": "933653",
+"total_score": "1849017"
 },
 {
 "rank": 12,
-"name": "联发科技 天玑9500s",
-"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-"cpu_score": "901907",
-"gpu_score": "940585",
-"total_score": "1842492"
+"name": "小米 玄戒O1",
+"clusters": "(2x 3.9GHz Cortex-X925 & 4x 3.4GHz Cortex-A725 & 2x 1.9GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+"cpu_score": "992247",
+"gpu_score": "854785",
+"total_score": "1847032"
 },
 {
 "rank": 13,
 "name": "联发科技 天玑9400+",
 "clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-"cpu_score": "887236",
-"gpu_score": "947791",
-"total_score": "1835027"
+"cpu_score": "873999",
+"gpu_score": "933600",
+"total_score": "1807599"
 },
 {
 "rank": 14,
 "name": "联发科技 天玑9400",
 "clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-"cpu_score": "881088",
-"gpu_score": "914166",
-"total_score": "1795254"
+"cpu_score": "854787",
+"gpu_score": "885899",
+"total_score": "1740686"
 },
 {
 "rank": 15,
-"name": "联发科技 天玑9400e",
-"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
-"cpu_score": "773600",
-"gpu_score": "756330",
-"total_score": "1529930"
+"name": "高通 骁龙8s Gen 4",
+"clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
+"cpu_score": "714849",
+"gpu_score": "787824",
+"total_score": "1502673"
 },
 {
 "rank": 16,
-"name": "高通 骁龙8s Gen 4",
-"clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
-"cpu_score": "729993",
-"gpu_score": "793467",
-"total_score": "1523460"
+"name": "联发科技 天玑9400e",
+"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "758044",
+"gpu_score": "741664",
+"total_score": "1499708"
 },
 {
 "rank": 17,
@@ -2174,129 +2174,129 @@
 "rank": 1,
 "name": "Xiaomi 玄戒O3",
 "clusters": "(2x 4.35GHz C1-Ultra & 4x 3.68GHz C1-Premium & 4x 3.15GHz C1-Pro)",
-"cpu_score": "1178051",
-"gpu_score": "1832719",
-"total_score": "3010770"
+"cpu_score": "1196681",
+"gpu_score": "1827012",
+"total_score": "3023692"
 },
 {
 "rank": 2,
 "name": "高通 骁龙8 超级至尊版 Gen 6",
-"clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
-"cpu_score": "1161762",
-"gpu_score": "1750402",
-"total_score": "2912164"
+"clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+"cpu_score": "1183347",
+"gpu_score": "1757961",
+"total_score": "2941308"
 },
 {
 "rank": 3,
 "name": "联发科技 天玑9600 Pro",
 "clusters": "(2x 4.55GHz C2-Ultra & 3x 4.35GHz C2-Pro & 3x 3.31GHz C2-Pro)",
-"cpu_score": "1162281",
-"gpu_score": "1639084",
-"total_score": "2801365"
+"cpu_score": "1207803",
+"gpu_score": "1706777",
+"total_score": "2914579"
 },
 {
 "rank": 4,
 "name": "高通 骁龙8 至尊版 Gen 6",
 "clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
-"cpu_score": "1067700",
-"gpu_score": "1590180",
-"total_score": "2657880"
+"cpu_score": "1031384",
+"gpu_score": "1566297",
+"total_score": "2597681"
 },
 {
 "rank": 5,
 "name": "高通 骁龙8 至尊版 Gen5",
 "clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
-"cpu_score": "1137283",
-"gpu_score": "1367745",
-"total_score": "2449060"
+"cpu_score": "1137886",
+"gpu_score": "1374073",
+"total_score": "2511960"
 },
 {
 "rank": 6,
 "name": "联发科技 天玑9500",
 "clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-"cpu_score": "1038120",
-"gpu_score": "1261743",
-"total_score": "2299863"
+"cpu_score": "1021732",
+"gpu_score": "1177409",
+"total_score": "2199141"
 },
 {
 "rank": 7,
 "name": "联发科技 天玑9500M",
 "clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-"cpu_score": "1007659",
-"gpu_score": "1089690",
-"total_score": "2097349"
+"cpu_score": "1004446",
+"gpu_score": "1071961",
+"total_score": "2076408"
 },
 {
 "rank": 8,
 "name": "高通 骁龙8 至尊版",
 "clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
-"cpu_score": "967722",
-"gpu_score": "1118850",
-"total_score": "2086572"
+"cpu_score": "951404",
+"gpu_score": "1121399",
+"total_score": "2072803"
 },
 {
 "rank": 9,
 "name": "联发科技 天玑9600M",
 "clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
-"cpu_score": "957273",
-"gpu_score": "1126524",
-"total_score": "2083797"
+"cpu_score": "937273",
+"gpu_score": "1045448",
+"total_score": "1982721"
 },
 {
 "rank": 10,
-"name": "小米 玄戒O1",
-"clusters": "(2x 3.9GHz Cortex-X925 & 4x 3.4GHz Cortex-A725 & 2x 1.9GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
-"cpu_score": "1002180",
-"gpu_score": "955041",
-"total_score": "1957221"
+"name": "高通 骁龙8 Gen 5",
+"clusters": "(2x 3.8GHz Oryon Prime & 6x 3.32GHz Oryon Performance)",
+"cpu_score": "948249",
+"gpu_score": "965321",
+"total_score": "1913570"
 },
 {
 "rank": 11,
-"name": "高通 骁龙8 Gen 5",
-"clusters": "(2x 3.8GHz Oryon Prime & 6x 3.32GHz Oryon Performance)",
-"cpu_score": "958707",
-"gpu_score": "969946",
-"total_score": "1928653"
+"name": "联发科技 天玑9500s",
+"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
+"cpu_score": "915364",
+"gpu_score": "933653",
+"total_score": "1849017"
 },
 {
 "rank": 12,
-"name": "联发科技 天玑9500s",
-"clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-"cpu_score": "901907",
-"gpu_score": "940585",
-"total_score": "1842492"
+"name": "小米 玄戒O1",
+"clusters": "(2x 3.9GHz Cortex-X925 & 4x 3.4GHz Cortex-A725 & 2x 1.9GHz Cortex-A725 & 2x 1.8GHz Cortex-A520)",
+"cpu_score": "992247",
+"gpu_score": "854785",
+"total_score": "1847032"
 },
 {
 "rank": 13,
 "name": "联发科技 天玑9400+",
 "clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-"cpu_score": "887236",
-"gpu_score": "947791",
-"total_score": "1835027"
+"cpu_score": "873999",
+"gpu_score": "933600",
+"total_score": "1807599"
 },
 {
 "rank": 14,
 "name": "联发科技 天玑9400",
 "clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
-"cpu_score": "881088",
-"gpu_score": "914166",
-"total_score": "1795254"
+"cpu_score": "854787",
+"gpu_score": "885899",
+"total_score": "1740686"
 },
 {
 "rank": 15,
-"name": "联发科技 天玑9400e",
-"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
-"cpu_score": "773600",
-"gpu_score": "756330",
-"total_score": "1529930"
+"name": "高通 骁龙8s Gen 4",
+"clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
+"cpu_score": "714849",
+"gpu_score": "787824",
+"total_score": "1502673"
 },
 {
 "rank": 16,
-"name": "高通 骁龙8s Gen 4",
-"clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
-"cpu_score": "729993",
-"gpu_score": "793467",
-"total_score": "1523460"
+"name": "联发科技 天玑9400e",
+"clusters": "(1x 3.4GHz Cortex-X4 & 3x 2.85GHz Cortex-X4 & 4x 2.0GHz Cortex-A720)",
+"cpu_score": "758044",
+"gpu_score": "741664",
+"total_score": "1499708"
 },
 {
 "rank": 17,

@@ -15,8 +15,8 @@
    "antutu_clusters": "(1x 2.84GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
    "ludashi_score": "480872",
    "gpu_equiv": {
-    "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
-    "score": 142457,
+    "name": "AMD Radeon RX560XT Series 8GB",
+    "score": 140464,
     "est": 141151,
     "ratio": 0.294
    }
@@ -53,7 +53,7 @@
    "ludashi_score": "807517",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2060 SUPER 8GB",
-    "score": 331205,
+    "score": 331073,
     "est": 331150,
     "ratio": 0.41
    }
@@ -73,8 +73,8 @@
    "antutu_clusters": "(1x 3.3GHz Cortex-X4 & 3x 3.15GHz Cortex-A720 & 2x 2.96GHz Cortex-A720 & 2x 2.27GHz Cortex-A520)",
    "ludashi_score": "1062717",
    "gpu_equiv": {
-    "name": "NVIDIA GeForce RTX 2080 Ti 11GB",
-    "score": 539650,
+    "name": "AMD Radeon RX 560 12GB",
+    "score": 542913,
     "est": 551656,
     "ratio": 0.519
    }
@@ -88,16 +88,16 @@
    "family": "骁龙8 Elite",
    "year": "2024-10",
    "antutu_name": "高通 骁龙8 至尊版",
-   "antutu_total": "2086572",
-   "antutu_cpu": "967722",
-   "antutu_gpu": "1118850",
+   "antutu_total": "2072803",
+   "antutu_cpu": "951404",
+   "antutu_gpu": "1121399",
    "antutu_clusters": "(2x 4.32GHz Oryon Prime & 6x 3.53GHz Oryon Performance)",
    "ludashi_score": "1159763",
    "gpu_equiv": {
     "name": "AMD Radeon RX 7700 XT 12GB",
-    "score": 615113,
-    "est": 621881,
-    "ratio": 0.536
+    "score": 615196,
+    "est": 627438,
+    "ratio": 0.541
    }
   },
   {
@@ -108,16 +108,16 @@
    "family": "骁龙8 Elite",
    "year": "2025-10",
    "antutu_name": "高通 骁龙8 至尊版 Gen5",
-   "antutu_total": "2449060",
-   "antutu_cpu": "1137283",
-   "antutu_gpu": "1367745",
+   "antutu_total": "2511960",
+   "antutu_cpu": "1137886",
+   "antutu_gpu": "1374073",
    "antutu_clusters": "(2x 4.6GHz Oryon Prime & 6x 3.62GHz Oryon Performance)",
    "ludashi_score": "1308603",
    "gpu_equiv": {
-    "name": "NVIDIA GeForce RTX 3080 12GB",
-    "score": 739685,
-    "est": 730825,
-    "ratio": 0.558
+    "name": "NVIDIA GeForce RTX 4070 Ti 12GB",
+    "score": 714959,
+    "est": 715821,
+    "ratio": 0.547
    }
   },
   {
@@ -128,16 +128,16 @@
    "family": "骁龙8 Elite",
    "year": "2026-10",
    "antutu_name": "高通 骁龙8 至尊版 Gen 6",
-   "antutu_total": "2657880",
-   "antutu_cpu": "1067700",
-   "antutu_gpu": "1590180",
+   "antutu_total": "2597681",
+   "antutu_cpu": "1031384",
+   "antutu_gpu": "1566297",
    "antutu_clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
    "ludashi_score": "1385516",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6900 XT 16GB",
-    "score": 817810,
-    "est": 828938,
-    "ratio": 0.598
+    "score": 817993,
+    "est": 835410,
+    "ratio": 0.603
    }
   },
   {
@@ -148,16 +148,16 @@
    "family": "骁龙8 Elite",
    "year": "2026-12",
    "antutu_name": "高通 骁龙8 超级至尊版 Gen 6",
-   "antutu_total": "2912164",
-   "antutu_cpu": "1161762",
-   "antutu_gpu": "1750402",
-   "antutu_clusters": "(2x 5.07GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
+   "antutu_total": "2941308",
+   "antutu_cpu": "1183347",
+   "antutu_gpu": "1757961",
+   "antutu_clusters": "(2x 5.01GHz Oryon Prime & 3x 4.03GHz Oryon Performance & 3x 3.74GHz Oryon Performance)",
    "ludashi_score": "1467056",
    "gpu_equiv": {
-    "name": "AMD Radeon RX 9070 16GB",
-    "score": 896188,
-    "est": 881797,
-    "ratio": 0.601
+    "name": "AMD Radeon RX 6950 XT 16GB",
+    "score": 860006,
+    "est": 876830,
+    "ratio": 0.598
    }
   },
   {
@@ -174,7 +174,7 @@
    "ludashi_score": "724435",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2060 SUPER 8GB",
-    "score": 331205,
+    "score": 331073,
     "est": 330779,
     "ratio": 0.457
    }
@@ -186,16 +186,16 @@
    "family": "骁龙8s",
    "year": "2025-04",
    "antutu_name": "高通 骁龙8s Gen 4",
-   "antutu_total": "1523460",
-   "antutu_cpu": "729993",
-   "antutu_gpu": "793467",
+   "antutu_total": "1502673",
+   "antutu_cpu": "714849",
+   "antutu_gpu": "787824",
    "antutu_clusters": "(1x 3.2GHz Cortex-X4 & 3x 3.0GHz Cortex-A720 & 2x 2.8GHz Cortex-A720 & 2x 2.0GHz Cortex-A720)",
    "ludashi_score": "996259",
    "gpu_equiv": {
     "name": "NVIDIA TITAN V 12GB",
-    "score": 517807,
-    "est": 518883,
-    "ratio": 0.521
+    "score": 517933,
+    "est": 522320,
+    "ratio": 0.524
    }
   },
   {
@@ -255,7 +255,7 @@
    "ludashi_score": "602793",
    "gpu_equiv": {
     "name": "NVIDIA Quadro T2000 4GB",
-    "score": 158313,
+    "score": 159663,
     "est": 159224,
     "ratio": 0.264
    }
@@ -275,7 +275,7 @@
    "ludashi_score": "787766",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
-    "score": 347230,
+    "score": 347141,
     "est": 348811,
     "ratio": 0.443
    }
@@ -295,7 +295,7 @@
    "ludashi_score": "922847",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
-    "score": 443034,
+    "score": 443025,
     "est": 444254,
     "ratio": 0.481
    }
@@ -308,15 +308,15 @@
    "family": "天玑旗舰",
    "year": "2024-10",
    "antutu_name": "联发科技 天玑9400",
-   "antutu_total": "1795254",
-   "antutu_cpu": "881088",
-   "antutu_gpu": "914166",
+   "antutu_total": "1740686",
+   "antutu_cpu": "854787",
+   "antutu_gpu": "885899",
    "antutu_clusters": "(1x 3.626GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
    "ludashi_score": "1114009",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3070 Ti 8GB",
-    "score": 581835,
-    "est": 567267,
+    "score": 581804,
+    "est": 566960,
     "ratio": 0.509
    }
   },
@@ -327,16 +327,16 @@
    "family": "天玑旗舰",
    "year": "2025-10",
    "antutu_name": "联发科技 天玑9500",
-   "antutu_total": "2299863",
-   "antutu_cpu": "1038120",
-   "antutu_gpu": "1261743",
+   "antutu_total": "2199141",
+   "antutu_cpu": "1021732",
+   "antutu_gpu": "1177409",
    "antutu_clusters": "(1x 4.21GHz C1-Ultra & 3x 3.5GHz C1-Premiuim & 4x 2.7GHz C1-Pro)",
    "ludashi_score": "1372822",
    "gpu_equiv": {
-    "name": "NVIDIA GeForce RTX 4090 Laptop GPU 16GB",
-    "score": 749573,
-    "est": 753152,
-    "ratio": 0.549
+    "name": "NVIDIA GeForce RTX 3080 12GB",
+    "score": 739124,
+    "est": 735001,
+    "ratio": 0.535
    }
   },
   {
@@ -360,15 +360,15 @@
    "family": "天玑旗舰",
    "year": "2025-06",
    "antutu_name": "联发科技 天玑9400+",
-   "antutu_total": "1835027",
-   "antutu_cpu": "887236",
-   "antutu_gpu": "947791",
+   "antutu_total": "1807599",
+   "antutu_cpu": "873999",
+   "antutu_gpu": "933600",
    "antutu_clusters": "(1x 3.73GHz Cortex-X925 & 3x 3.3GHz Cortex-X4 & 4x 2.4GHz Cortex-A720)",
    "ludashi_score": "1114009",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3070 Ti 8GB",
-    "score": 581835,
-    "est": 575385,
+    "score": 581804,
+    "est": 575370,
     "ratio": 0.516
    }
   },

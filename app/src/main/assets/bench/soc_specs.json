@@ -44,9 +44,9 @@
   },
   "Xiaomi 玄戒O3": {
    "level": "level2",
-   "total_score": "3010770",
-   "cpu_score": "1178051",
-   "gpu_score": "1832719",
+   "total_score": "3023692",
+   "cpu_score": "1196681",
+   "gpu_score": "1827012",
    "cores": [
     {
      "count": 2,
@@ -883,9 +883,9 @@
   },
   "小米 玄戒O1": {
    "level": "level1",
-   "total_score": "1957221",
-   "cpu_score": "1002180",
-   "gpu_score": "955041",
+   "total_score": "1847032",
+   "cpu_score": "992247",
+   "gpu_score": "854785",
    "cores": [
     {
      "count": 2,
@@ -914,9 +914,9 @@
   },
   "小米 玄戒O3": {
    "level": "level1",
-   "total_score": "3010770",
-   "cpu_score": "1178051",
-   "gpu_score": "1832719",
+   "total_score": "3023692",
+   "cpu_score": "1196681",
+   "gpu_score": "1827012",
    "cores": [
     {
      "count": 2,
@@ -3181,9 +3181,9 @@
   },
   "联发科技 天玑9400e": {
    "level": "level1",
-   "total_score": "1529930",
-   "cpu_score": "773600",
-   "gpu_score": "756330",
+   "total_score": "1499708",
+   "cpu_score": "758044",
+   "gpu_score": "741664",
    "cores": [
     {
      "count": 1,
@@ -3210,9 +3210,9 @@
   },
   "联发科技 天玑9500M": {
    "level": "level1",
-   "total_score": "2097349",
-   "cpu_score": "1007659",
-   "gpu_score": "1089690",
+   "total_score": "2076408",
+   "cpu_score": "1004446",
+   "gpu_score": "1071961",
    "cores": [
     {
      "count": 1,
@@ -3239,9 +3239,9 @@
   },
   "联发科技 天玑9500s": {
    "level": "level1",
-   "total_score": "1842492",
-   "cpu_score": "901907",
-   "gpu_score": "940585",
+   "total_score": "1849017",
+   "cpu_score": "915364",
+   "gpu_score": "933653",
    "cores": [
     {
      "count": 1,
@@ -3268,9 +3268,9 @@
   },
   "联发科技 天玑9600 Pro": {
    "level": "level1",
-   "total_score": "2801365",
-   "cpu_score": "1162281",
-   "gpu_score": "1639084",
+   "total_score": "2914579",
+   "cpu_score": "1207803",
+   "gpu_score": "1706777",
    "cores": [
     {
      "count": 2,
@@ -3297,9 +3297,9 @@
   },
   "联发科技 天玑9600M": {
    "level": "level1",
-   "total_score": "2083797",
-   "cpu_score": "957273",
-   "gpu_score": "1126524",
+   "total_score": "1982721",
+   "cpu_score": "937273",
+   "gpu_score": "1045448",
    "cores": [
     {
      "count": 1,
@@ -4608,9 +4608,9 @@
   },
   "高通 骁龙8 Gen 5": {
    "level": "level1",
-   "total_score": "1928653",
-   "cpu_score": "958707",
-   "gpu_score": "969946",
+   "total_score": "1913570",
+   "cpu_score": "948249",
+   "gpu_score": "965321",
    "cores": [
     {
      "count": 2,
@@ -4629,9 +4629,9 @@
   },
   "高通 骁龙8 至尊版 Gen 6": {
    "level": "level1",
-   "total_score": "2657880",
-   "cpu_score": "1067700",
-   "gpu_score": "1590180",
+   "total_score": "2597681",
+   "cpu_score": "1031384",
+   "gpu_score": "1566297",
    "cores": [
     {
      "count": 2,
@@ -4655,9 +4655,9 @@
   },
   "高通 骁龙8 至尊版 Gen5": {
    "level": "level1",
-   "total_score": "2449060",
-   "cpu_score": "1137283",
-   "gpu_score": "1367745",
+   "total_score": "2511960",
+   "cpu_score": "1137886",
+   "gpu_score": "1374073",
    "cores": [
     {
      "count": 2,
@@ -4676,13 +4676,13 @@
   },
   "高通 骁龙8 超级至尊版 Gen 6": {
    "level": "level1",
-   "total_score": "2912164",
-   "cpu_score": "1161762",
-   "gpu_score": "1750402",
+   "total_score": "2941308",
+   "cpu_score": "1183347",
+   "gpu_score": "1757961",
    "cores": [
     {
      "count": 2,
-     "freq_ghz": 5.07,
+     "freq_ghz": 5.01,
      "core": "Oryon Prime"
     },
     {
@@ -4697,8 +4697,8 @@
     }
    ],
    "total_cores": 8,
-   "max_freq_ghz": 5.07,
-   "cpu_summary": "2×5.07GHz Oryon Prime + 3×4.03GHz Oryon Performance + 3×3.74GHz Oryon Performance"
+   "max_freq_ghz": 5.01,
+   "cpu_summary": "2×5.01GHz Oryon Prime + 3×4.03GHz Oryon Performance + 3×3.74GHz Oryon Performance"
   },
   "高通 骁龙8+ Gen 1": {
    "level": "level1",
@@ -4900,9 +4900,9 @@
   },
   "高通 骁龙8s Gen 4": {
    "level": "level1",
-   "total_score": "1523460",
-   "cpu_score": "729993",
-   "gpu_score": "793467",
+   "total_score": "1502673",
+   "cpu_score": "714849",
+   "gpu_score": "787824",
    "cores": [
     {
      "count": 1,
