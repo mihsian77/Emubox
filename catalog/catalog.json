@@ -26,7 +26,7 @@
         ]
       },
       "updatedAt": 1794066683000,
-      "stars": 1236
+      "stars": 1245
     },
     {
       "id": "whitebelyash",
@@ -49,7 +49,7 @@
         ]
       },
       "updatedAt": 1789825064000,
-      "stars": 488
+      "stars": 489
     },
     {
       "id": "k11mch1",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5182
+      "stars": 5184
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 916
+      "stars": 920
     },
     {
       "id": "banner",
@@ -123,7 +123,7 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1794347843000,
+      "updatedAt": 1794440971000,
       "stars": 241
     },
     {
@@ -146,7 +146,7 @@
         ]
       },
       "updatedAt": 1773854713000,
-      "stars": 52
+      "stars": 53
     },
     {
       "id": "wintermist010-a810",
@@ -214,7 +214,7 @@
         ]
       },
       "updatedAt": 1794136780000,
-      "stars": 112
+      "stars": 116
     },
     {
       "id": "panvk-g720",
@@ -234,7 +234,7 @@
         ]
       },
       "updatedAt": 1790289737000,
-      "stars": 48
+      "stars": 50
     }
   ],
   "qualcommSources": [
@@ -247,7 +247,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1236,
+      "stars": 1245,
       "updatedAt": 1794066683000
     },
     {
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5182,
+      "stars": 5184,
       "updatedAt": 1768398883000
     },
     {
@@ -283,7 +283,7 @@
       "description": "与 WinNative-Components（wnc）高度同源（81/117 重叠），保留 wnc 为主源，本源归档备用",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1794309674000
+      "updatedAt": 1794395093000
     },
     {
       "id": "xnick",
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative/Winlator 自动构建组件（含 Sarek/GPLAsync 分支，活跃）",
       "experimental": true,
-      "updatedAt": 1794310919000
+      "updatedAt": 1794395245000
     },
     {
       "id": "banner-components",

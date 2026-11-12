@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5182,
+      "stars": 5184,
       "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1236,
+      "stars": 1245,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 916,
+      "stars": 920,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-10T21:57:23Z",
-      "latest_tag": "v27.0.0-20261110-r4",
-      "latest_date": "2026-11-10T21:57:23Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ **A8xx** didn't build this run, so it isn't included.\n\n> ❌ **Banners-AIO** didn't build this run, so it isn't included.\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`4404b6b`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/4404b6bb9f858bc768f8d75fce1bcb224f12fceb) |\n| **Commit title** | util: Initialize memstream outputs on Xbox |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-10 |\n\n### Dow"
+      "updated_at": "2026-11-11T23:49:31Z",
+      "latest_tag": "v27.0.0-20261111-r4",
+      "latest_date": "2026-11-11T23:49:31Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ **A8xx** didn't build this run, so it isn't included.\n\n> ❌ **Banners-AIO** didn't build this run, so it isn't included.\n\n> ❌ The **Linux** build of **A6xx / A7xx** didn't build this run. Its X11 zip is fine.\n\n> ❌ The **Linux** build of **A710 / A720 / A722** didn't build this run. Its X11 zip is fine.\n\n> ❌ The **Linux** build of **8 Gen 2 One UI** didn't build this run. Its X11 zip is fine.\n\n| Mesa | |\n| :"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -412,7 +412,7 @@
       "target_emulator": "generic",
       "package_format": "magisk",
       "maturity": "ci",
-      "stars": 166,
+      "stars": 167,
       "description": "Magisk 模块形态的 Turnip CI 构建，每两周自动发布",
       "notes": "Magisk 模块格式，需要 root",
       "companion": [],
@@ -475,7 +475,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 488,
+      "stars": 489,
       "description": "作者自述为不稳定构建（sloppy），主要改善 A8xx；除非明确知道要它，否则别当默认选项",
       "notes": "",
       "companion": [],
@@ -636,7 +636,7 @@
       "target_emulator": "eden",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 52,
+      "stars": 53,
       "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
       "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
       "companion": [],
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 112,
+      "stars": 116,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -811,7 +811,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 25,
+      "stars": 27,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 142,
+      "stars": 144,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -983,7 +983,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 48,
+      "stars": 50,
       "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
       "notes": "CSF 架构，native Vulkan",
       "companion": [],
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 136,
+      "stars": 140,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1057,7 +1057,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 27,
+      "stars": 28,
       "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
       "notes": "覆盖型号较广",
       "companion": [],
@@ -1137,10 +1137,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-11-10T21:45:45Z",
-      "latest_tag": "v1.1.5",
-      "latest_date": "2026-11-10T21:45:45Z",
-      "latest_body": "**Fixes the gray screen with colored dashes on MediaTek phones with newer Mali GPUs, makes placed memory maps work on the older Mali GPUs, and speeds up the older Mali GPUs in busy scenes.** All four repositories ship the same package, `panvk_faux123_v1.1.5.adpkg.zip`, with the same bytes. If you use v1.1.4, you can update.\n\nDownload `panvk_faux123_v1.1.5.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more gray screen with colored dashes on Medi"
+      "updated_at": "2026-11-11T05:57:41Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T05:57:41Z",
+      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
     },
     {
       "id": "faux123-rg556",
@@ -1160,7 +1160,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 13,
+      "stars": 15,
       "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
       "notes": "掌机设备专用",
       "companion": [
@@ -1171,10 +1171,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-11-10T21:45:53Z",
-      "latest_tag": "v1.1.5",
-      "latest_date": "2026-11-10T21:45:53Z",
-      "latest_body": "**Fixes the gray screen with colored dashes on MediaTek phones with newer Mali GPUs, makes placed memory maps work on the older Mali GPUs, and speeds up the older Mali GPUs in busy scenes.** All four repositories ship the same package, `panvk_faux123_v1.1.5.adpkg.zip`, with the same bytes. If you use v1.1.4, you can update.\n\nDownload `panvk_faux123_v1.1.5.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more gray screen with colored dashes on Medi"
+      "updated_at": "2026-11-11T05:57:46Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T05:57:46Z",
+      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
     },
     {
       "id": "dkdndje-g720",
@@ -1289,7 +1289,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 55,
+      "stars": 57,
       "description": "JimVulkan 的 radv-xclipse：把 Mesa RADV 移植到三星 Xclipse GPU",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1299,10 +1299,10 @@
           "Xclipse"
         ]
       },
-      "updated_at": "2026-10-19T22:27:02Z",
-      "latest_tag": "v1.8.0",
-      "latest_date": "2026-10-19T22:27:02Z",
-      "latest_body": "RADV for Samsung Xclipse GPUs. This release loads BC6H and BC7 textures about twice as fast\r\nand adds a build for Bannerlator's Wayland mode.\r\n\r\n## What's new\r\n\r\n- **BC6H and BC7 textures load about twice as fast.** The driver converts these formats on the GPU\r\n  when a game loads them, and that conversion is now much quicker. For a 2048x2048 texture on the\r\n  Xclipse 920: BC7 about 4 ms instead of 10, BC6H about 2.5 ms instead of 5. Games that stream many\r\n  textures should stutter less while l"
+      "updated_at": "2026-11-11T22:39:02Z",
+      "latest_tag": "v1.9.0",
+      "latest_date": "2026-11-11T22:39:02Z",
+      "latest_body": "RADV for Samsung Xclipse GPUs, build `cc87fdf`. It contains\r\nfixes that passed our tests but haven't been confirmed in the games they're aimed at yet, so it can\r\nbehave worse than the last build in some games. Please report what you find, good or bad.\r\n\r\nThere are now three packages, all built from the same source:\r\n\r\n| Package | For |\r\n|---|---|\r\n| `radv-xclipse-27.0.0-devel-cc87fdf.zip` | Eden, Winlator and other Android apps that load a Vulkan driver from a zip |\r\n| `radv-xclipse-wayland-27.0"
     },
     {
       "id": "winnative-drivers",
@@ -1352,7 +1352,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 100,
+      "stars": 101,
       "description": "WinNative 团队构建的 Turnip 合集，按设备分批发布",
       "notes": "同时提供 Android 包与 Linux 变体",
       "companion": [],
@@ -1462,7 +1462,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 76,
+      "stars": 83,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1593,7 +1593,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 20,
+      "stars": 21,
       "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
       "companion": [],
@@ -1626,7 +1626,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 105,
+      "stars": 109,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1704,10 +1704,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-11-10T21:45:48Z",
-      "latest_tag": "v1.1.5",
-      "latest_date": "2026-11-10T21:45:48Z",
-      "latest_body": "**Fixes the gray screen with colored dashes on MediaTek phones with newer Mali GPUs, makes placed memory maps work on the older Mali GPUs, and speeds up the older Mali GPUs in busy scenes.** All four repositories ship the same package, `panvk_faux123_v1.1.5.adpkg.zip`, with the same bytes. If you use v1.1.4, you can update.\n\nDownload `panvk_faux123_v1.1.5.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more gray screen with colored dashes on Medi"
+      "updated_at": "2026-11-11T05:57:44Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T05:57:44Z",
+      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
     },
     {
       "id": "faux123-rp4pro",
@@ -1738,10 +1738,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-11-10T21:45:51Z",
-      "latest_tag": "v1.1.5",
-      "latest_date": "2026-11-10T21:45:51Z",
-      "latest_body": "**Fixes the gray screen with colored dashes on MediaTek phones with newer Mali GPUs, makes placed memory maps work on the older Mali GPUs, and speeds up the older Mali GPUs in busy scenes.** All four repositories ship the same package, `panvk_faux123_v1.1.5.adpkg.zip`, with the same bytes. If you use v1.1.4, you can update.\n\nDownload `panvk_faux123_v1.1.5.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more gray screen with colored dashes on Medi"
+      "updated_at": "2026-11-11T05:57:50Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T05:57:50Z",
+      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
     },
     {
       "id": "lukevalen-kbase",
@@ -1882,7 +1882,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 44,
+      "stars": 45,
       "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
       "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
       "companion": [],
@@ -1976,7 +1976,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 44,
+      "stars": 45,
       "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "notes": "wrappers 标签 2026-08-31（strict 过滤只读该标签，v0.9.x 为 App 本体、drivers_0.9 为三星驱动已收驱动区 companion、community-configs 社区配置不收录）",
       "companion": [
