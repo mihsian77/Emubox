@@ -1,7 +1,7 @@
 {
  "version": "1.1.0",
  "note": "芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。",
- "generated": "2026-11-05",
+ "generated": "2026-11-13",
  "socs": [
   {
    "id": "s5e9945",
@@ -27,9 +27,9 @@
    "features": "三星 4nm（4LPP+）工艺，FOWLP 扇出型晶圆级封装",
    "year": "2023",
    "tier": "flagship",
-   "antutu": "935838",
-   "antutu_cpu": "559029",
-   "antutu_gpu": "376809",
+   "antutu": "1379530",
+   "antutu_cpu": "713739",
+   "antutu_gpu": "665791",
    "ludashi": "684785",
    "devices": "三星 S24 系列",
    "form": "phone",
@@ -877,9 +877,9 @@
    "process": "TSMC N3P",
    "year": "2026",
    "tier": "flagship",
-   "antutu": "3010770",
-   "antutu_cpu": "1178051",
-   "antutu_gpu": "1832719",
+   "antutu": "3023692",
+   "antutu_cpu": "1196681",
+   "antutu_gpu": "1827012",
    "ludashi": "1395529",
    "devices": "18 Fold、Pad 9 Pro Max",
    "form": "phone",
@@ -908,9 +908,9 @@
    "features": "MediaTek T800 外挂基带",
    "year": "2025",
    "tier": "flagship",
-   "antutu": "1957221",
-   "antutu_cpu": "1002180",
-   "antutu_gpu": "955041",
+   "antutu": "1847032",
+   "antutu_cpu": "992247",
+   "antutu_gpu": "854785",
    "ludashi": "1289600",
    "form": "phone",
    "src": "socpk"
@@ -1303,9 +1303,9 @@
    "features": "NPU 990 / Wi-Fi 7 / Bluetooth 6.0",
    "year": "2025",
    "tier": "flagship",
-   "antutu": "2299863",
-   "antutu_cpu": "1038120",
-   "antutu_gpu": "1261743",
+   "antutu": "2199141",
+   "antutu_cpu": "1021732",
+   "antutu_gpu": "1177409",
    "ludashi": "1372822",
    "devices": "Find X9 Pro、Find X9",
    "form": "phone",
@@ -1340,9 +1340,9 @@
    "features": "NPU 890 / Wi-Fi 7 / Bluetooth 5.4",
    "year": "2024",
    "tier": "flagship",
-   "antutu": "1795254",
-   "antutu_cpu": "881088",
-   "antutu_gpu": "914166",
+   "antutu": "1740686",
+   "antutu_cpu": "854787",
+   "antutu_gpu": "885899",
    "ludashi": "1054699",
    "devices": "vivo X200、OPPO Find X8、iQOO Neo10 Pro",
    "form": "phone",
@@ -1377,9 +1377,9 @@
    "features": "Wi-Fi 7 / Bluetooth 5.4",
    "year": "2023",
    "tier": "flagship",
-   "antutu": "1414180",
-   "antutu_cpu": "733400",
-   "antutu_gpu": "680780",
+   "antutu": "1320657",
+   "antutu_cpu": "655471",
+   "antutu_gpu": "665186",
    "ludashi": "922847",
    "devices": "vivo X100、OPPO Find X7",
    "form": "phone",
@@ -1413,9 +1413,9 @@
    "features": "Wi-Fi 7 / Bluetooth 5.3",
    "year": "2022",
    "tier": "flagship",
-   "antutu": "1066849",
-   "antutu_cpu": "594463",
-   "antutu_gpu": "472386",
+   "antutu": "1066210",
+   "antutu_cpu": "594836",
+   "antutu_gpu": "471374",
    "ludashi": "787766",
    "devices": "vivo X90、OPPO Find X6",
    "form": "phone",
@@ -2053,11 +2053,11 @@
     "MT8781V/NA"
    ],
    "names": [
-    "Helio G99",
     "曦力 G99",
-    "MediaTek Helio G99"
+    "MediaTek Helio G99",
+    "Helio G99"
    ],
-   "name": "Helio G99",
+   "name": "曦力 G99",
    "name_en": "MediaTek Helio G99",
    "brand": "联发科",
    "process": "TSMC N6",
@@ -2087,11 +2087,11 @@
     "MT8789V/T"
    ],
    "names": [
-    "Helio G90T",
     "曦力 G90T",
-    "MediaTek Helio G90T"
+    "MediaTek Helio G90T",
+    "Helio G90T"
    ],
-   "name": "Helio G90T",
+   "name": "曦力 G90T",
    "name_en": "MediaTek Helio G90T",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -2123,12 +2123,11 @@
     "MT6769V/WZ"
    ],
    "names": [
-    "Helio G85",
     "曦力 G85",
     "MediaTek Helio G85",
     "曦力G85"
    ],
-   "name": "Helio G85",
+   "name": "曦力 G85",
    "name_en": "MediaTek Helio G85",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -2160,11 +2159,11 @@
     "MT6769V/WU"
    ],
    "names": [
-    "Helio G80",
     "曦力 G80",
-    "MediaTek Helio G80"
+    "MediaTek Helio G80",
+    "Helio G80"
    ],
-   "name": "Helio G80",
+   "name": "曦力 G80",
    "name_en": "MediaTek Helio G80",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -2192,11 +2191,11 @@
     "MT6799"
    ],
    "names": [
-    "Helio X30",
     "曦力 X30",
-    "MediaTek Helio X30"
+    "MediaTek Helio X30",
+    "Helio X30"
    ],
-   "name": "Helio X30",
+   "name": "曦力 X30",
    "name_en": "MediaTek Helio X30",
    "brand": "联发科",
    "process": "TSMC 10nm",
@@ -2222,11 +2221,11 @@
     "MT6797"
    ],
    "names": [
-    "Helio X20",
     "曦力 X20",
-    "MediaTek Helio X20"
+    "MediaTek Helio X20",
+    "Helio X20"
    ],
-   "name": "Helio X20",
+   "name": "曦力 X20",
    "name_en": "MediaTek Helio X20",
    "brand": "联发科",
    "process": "TSMC 20nm",
@@ -2252,11 +2251,11 @@
     "MT6779"
    ],
    "names": [
-    "Helio P90",
     "曦力 P90",
-    "MediaTek Helio P90"
+    "MediaTek Helio P90",
+    "Helio P90"
    ],
-   "name": "Helio P90",
+   "name": "曦力 P90",
    "name_en": "MediaTek Helio P90",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -2289,7 +2288,7 @@
     "曦力 P60",
     "联发科技 Helio P70"
    ],
-   "name": "Helio P60",
+   "name": "曦力 P60",
    "name_en": "MediaTek Helio P60",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -2320,11 +2319,11 @@
     "MT6765V/WB"
    ],
    "names": [
-    "Helio P35",
     "曦力 P35",
-    "MediaTek Helio P35"
+    "MediaTek Helio P35",
+    "Helio P35"
    ],
-   "name": "Helio P35",
+   "name": "曦力 P35",
    "name_en": "MediaTek Helio P35",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -2484,9 +2483,9 @@
    "features": "Samsung Exynos 5400 外挂基带 / Bluetooth 5.3",
    "year": "2024",
    "tier": "flagship",
-   "antutu": "925515",
-   "antutu_cpu": "521122",
-   "antutu_gpu": "404393",
+   "antutu": "883853",
+   "antutu_cpu": "482506",
+   "antutu_gpu": "401347",
    "devices": "Pixel 9 系列",
    "form": "phone",
    "src": "socpk"
@@ -2519,9 +2518,9 @@
    "features": "Samsung Exynos 5300 外挂基带 / Bluetooth 5.3",
    "year": "2023",
    "tier": "flagship",
-   "antutu": "800832",
-   "antutu_cpu": "441836",
-   "antutu_gpu": "358996",
+   "antutu": "801718",
+   "antutu_cpu": "437769",
+   "antutu_gpu": "363949",
    "devices": "Pixel 8 系列",
    "form": "phone",
    "src": "socpk"
@@ -2627,9 +2626,9 @@
    "gb6m": 12352,
    "year": "2025Q3",
    "tier": "flagship",
-   "antutu": "2449060",
-   "antutu_cpu": "1137283",
-   "antutu_gpu": "1367745",
+   "antutu": "2511960",
+   "antutu_cpu": "1137886",
+   "antutu_gpu": "1374073",
    "ludashi": "1308603",
    "devices": "11 Pro、15、Galaxy S26 Ultra、S26 Ultra",
    "form": "phone",
@@ -2666,9 +2665,9 @@
    "gb6m": 10234,
    "year": "2024Q4",
    "tier": "flagship",
-   "antutu": "2086572",
-   "antutu_cpu": "967722",
-   "antutu_gpu": "1118850",
+   "antutu": "2072803",
+   "antutu_cpu": "951404",
+   "antutu_gpu": "1121399",
    "ludashi": "1159763",
    "devices": "小米 15、iQOO 13、一加 13、荣耀 Magic7",
    "form": "phone",
@@ -2702,9 +2701,9 @@
    "gb6m": 10037,
    "year": "2025Q4",
    "tier": "sub-flagship",
-   "antutu": "1928653",
-   "antutu_cpu": "958707",
-   "antutu_gpu": "969946",
+   "antutu": "1913570",
+   "antutu_cpu": "948249",
+   "antutu_gpu": "965321",
    "ludashi": "1040495",
    "devices": "15R、iQOO 15R",
    "form": "phone",
@@ -2742,9 +2741,9 @@
    "gb6m": 7466,
    "year": "2023Q4",
    "tier": "flagship",
-   "antutu": "1473128",
-   "antutu_cpu": "708427",
-   "antutu_gpu": "764701",
+   "antutu": "1459232",
+   "antutu_cpu": "693860",
+   "antutu_gpu": "765372",
    "ludashi": "945923",
    "devices": "小米 14、iQOO 12、一加 12、三星 S24",
    "form": "phone",
@@ -2776,9 +2775,9 @@
    "features": "NPU: Hexagon AI Engine / X70 5G Modem / FastConnect 7800 Wi-Fi 7 / Bluetooth 5.4",
    "year": "2024",
    "tier": "sub-flagship",
-   "antutu": "1061206",
-   "antutu_cpu": "576655",
-   "antutu_gpu": "484551",
+   "antutu": "1034812",
+   "antutu_cpu": "564979",
+   "antutu_gpu": "469833",
    "ludashi": "724435",
    "devices": "红米 K70 Ultra、iQOO Z9 Turbo+",
    "form": "phone",
@@ -2814,9 +2813,9 @@
    "gb6m": 5697,
    "year": "2022Q4",
    "tier": "flagship",
-   "antutu": "1034945",
-   "antutu_cpu": "610530",
-   "antutu_gpu": "424415",
+   "antutu": "1038499",
+   "antutu_cpu": "606195",
+   "antutu_gpu": "432304",
    "ludashi": "807517",
    "devices": "小米 13、iQOO Neo9、一加 11、红魔 8",
    "form": "phone",
@@ -3066,49 +3065,17 @@
    "src": "socpk"
   },
   {
-   "id": "sm8150-ab",
+   "id": "sm8150-ac",
    "codes": [
-    "SM8150-AB",
+    "SM8150-AC",
     "SM8150P"
    ],
    "names": [
-    "骁龙 855+",
     "Qualcomm Snapdragon 855+",
-    "骁龙855 Plus",
-    "骁龙 855 Plus"
-   ],
-   "name": "骁龙 855+",
-   "name_en": "Qualcomm Snapdragon 855+",
-   "brand": "高通",
-   "process": "TSMC N7",
-   "cpu": "1×Kryo 485 Prime (Cortex-A76) 2.96GHz + 3×Kryo 485 Gold (Cortex-A76) 2.42GHz + 4×Kryo 485 Silver (Cortex-A55) 1.8GHz",
-   "cores": 8,
-   "max_ghz": 2.96,
-   "caches": "L3 2MB",
-   "memory": "LPDDR4X 4266MT/s",
-   "gpu": "Adreno 640",
-   "gpu_key": "adreno640",
-   "gpu_clock": "672MHz",
-   "gpu_cores": "768ALUs",
-   "features": "X24 LTE Modem / Bluetooth 5.0",
-   "year": "2019",
-   "tier": "sub-flagship",
-   "antutu": "465807",
-   "antutu_cpu": "338527",
-   "antutu_gpu": "127280",
-   "ludashi": "392648",
-   "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版",
-   "form": "phone",
-   "src": "socpk"
-  },
-  {
-   "id": "sm8150-ac",
-   "codes": [
-    "SM8150-AC"
-   ],
-   "names": [
-    "骁龙 860",
     "Qualcomm Snapdragon 860",
+    "骁龙 855+",
+    "骁龙 860",
+    "骁龙855 Plus",
     "骁龙860"
    ],
    "name": "骁龙 860",
@@ -3127,8 +3094,13 @@
    "features": "X24 LTE Modem / Bluetooth 5.0",
    "year": "2021",
    "tier": "sub-flagship",
+   "antutu": "465807",
+   "antutu_cpu": "338527",
+   "antutu_gpu": "127280",
+   "ludashi": "392648",
+   "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版",
    "form": "phone",
-   "devices": "小米平板 5"
+   "src": "socpk"
   },
   {
    "id": "sm8150",
@@ -3372,9 +3344,9 @@
    "features": "X63 5G Modem / FastConnect 7800 Wi-Fi 7 / Bluetooth 5.4",
    "year": "2024",
    "tier": "mid",
-   "antutu": "994559",
-   "antutu_cpu": "568831",
-   "antutu_gpu": "425728",
+   "antutu": "1002543",
+   "antutu_cpu": "580858",
+   "antutu_gpu": "421685",
    "ludashi": "718859",
    "devices": "Pad 7",
    "form": "phone",
@@ -4195,12 +4167,12 @@
    "name": "骁龙8 超级至尊版 Gen 6",
    "name_en": "高通 骁龙8 超级至尊版 Gen 6",
    "brand": "高通",
-   "cpu": "2×5.07GHz Oryon Prime + 3×4.03GHz Oryon Performance + 3×3.74GHz Oryon Performance",
+   "cpu": "2×5.01GHz Oryon Prime + 3×4.03GHz Oryon Performance + 3×3.74GHz Oryon Performance",
    "cores": 8,
-   "max_ghz": 5.07,
-   "antutu": "2912164",
-   "antutu_cpu": "1161762",
-   "antutu_gpu": "1750402",
+   "max_ghz": 5.01,
+   "antutu": "2941308",
+   "antutu_cpu": "1183347",
+   "antutu_gpu": "1757961",
    "ludashi": "1467056",
    "devices": "Signature 27、Magic9 Pro Max、16、12 Pro+",
    "form": "phone",
@@ -4221,9 +4193,9 @@
    "cores": 8,
    "max_ghz": 4.55,
    "gpu": "Mali G2",
-   "antutu": "2801365",
-   "antutu_cpu": "1162281",
-   "antutu_gpu": "1639084",
+   "antutu": "2914579",
+   "antutu_cpu": "1207803",
+   "antutu_gpu": "1706777",
    "ludashi": "1496365",
    "form": "phone",
    "src": "antutu"
@@ -4244,9 +4216,9 @@
    "max_ghz": 4.21,
    "gpu": "Mali G1",
    "year": "2026",
-   "antutu": "2097349",
-   "antutu_cpu": "1007659",
-   "antutu_gpu": "1089690",
+   "antutu": "2076408",
+   "antutu_cpu": "1004446",
+   "antutu_gpu": "1071961",
    "ludashi": "1344549",
    "form": "phone",
    "src": "antutu"
@@ -4264,9 +4236,9 @@
    "cpu": "1×4.21GHz C1-Ultra + 3×3.5GHz C1-Premiuim + 4×2.7GHz C1-Pro",
    "cores": 8,
    "max_ghz": 4.21,
-   "antutu": "2083797",
-   "antutu_cpu": "957273",
-   "antutu_gpu": "1126524",
+   "antutu": "1982721",
+   "antutu_cpu": "937273",
+   "antutu_gpu": "1045448",
    "ludashi": "1375229",
    "form": "phone",
    "src": "antutu"
@@ -4290,9 +4262,9 @@
    "gpu": "Immortalis-G925",
    "gpu_key": "mali925",
    "year": "2026",
-   "antutu": "1842492",
-   "antutu_cpu": "901907",
-   "antutu_gpu": "940585",
+   "antutu": "1849017",
+   "antutu_cpu": "915364",
+   "antutu_gpu": "933653",
    "ludashi": "1087519",
    "form": "phone",
    "src": "antutu"
@@ -4313,246 +4285,11 @@
    "process": "3nm",
    "gpu": "Immortalis-G925",
    "gpu_key": "mali925",
-   "antutu": "1835027",
-   "antutu_cpu": "887236",
-   "antutu_gpu": "947791",
+   "antutu": "1807599",
+   "antutu_cpu": "873999",
+   "antutu_gpu": "933600",
    "ludashi": "1114009",
    "devices": "vivo X200 Pro、OPPO Find X8 Pro",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "9400e",
-   "codes": [
-    "MT6989T_E"
-   ],
-   "names": [
-    "联发科技 天玑9400e",
-    "天玑9400e"
-   ],
-   "name": "天玑9400e",
-   "name_en": "联发科技 天玑9400e",
-   "brand": "联发科",
-   "cpu": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720",
-   "cores": 8,
-   "max_ghz": 3.4,
-   "year": "2025",
-   "antutu": "1529930",
-   "antutu_cpu": "773600",
-   "antutu_gpu": "756330",
-   "ludashi": "966825",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "8s-gen-4",
-   "codes": [
-    "SM8735"
-   ],
-   "names": [
-    "高通 骁龙8s Gen 4",
-    "骁龙8s Gen 4"
-   ],
-   "name": "骁龙8s Gen 4",
-   "name_en": "高通 骁龙8s Gen 4",
-   "brand": "高通",
-   "process": "4nm",
-   "cpu": "1×3.2GHz Cortex-X4 + 3×3.0GHz Cortex-A720 + 2×2.8GHz Cortex-A720 + 2×2.0GHz Cortex-A720",
-   "cores": 8,
-   "max_ghz": 3.2,
-   "gpu": "Adreno 825",
-   "gpu_key": "adreno825",
-   "antutu": "1523460",
-   "antutu_cpu": "729993",
-   "antutu_gpu": "793467",
-   "ludashi": "996259",
-   "devices": "一加 Ace5 Pro、iQOO Z10 Turbo+",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "soc-a324d056",
-   "codes": [
-    "MT6989W/TCZA",
-    "MT8796W/TNZA"
-   ],
-   "names": [
-    "联发科技 天玑9300+",
-    "天玑9300+"
-   ],
-   "name": "天玑9300+",
-   "name_en": "联发科技 天玑9300+",
-   "brand": "联发科",
-   "process": "4nm",
-   "gpu": "Immortalis-G720",
-   "gpu_key": "mali720",
-   "antutu": "1452612",
-   "antutu_cpu": "740355",
-   "antutu_gpu": "712257",
-   "ludashi": "898343",
-   "devices": "红米 K70 Ultra、真我 GT6",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "8500-elite",
-   "codes": [],
-   "names": [
-    "联发科技 天玑8500 Elite",
-    "天玑8500 Elite"
-   ],
-   "name": "天玑8500 Elite",
-   "name_en": "联发科技 天玑8500 Elite",
-   "brand": "联发科",
-   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
-   "cores": 8,
-   "max_ghz": 3.4,
-   "antutu": "1390468",
-   "antutu_cpu": "674244",
-   "antutu_gpu": "716224",
-   "ludashi": "887765",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "8500-super",
-   "codes": [
-    "MT6899Z_O/TZA"
-   ],
-   "names": [
-    "联发科技 天玑8500 Super",
-    "天玑8500 Super"
-   ],
-   "name": "天玑8500 Super",
-   "name_en": "联发科技 天玑8500 Super",
-   "brand": "联发科",
-   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
-   "cores": 8,
-   "max_ghz": 3.4,
-   "antutu": "1358742",
-   "antutu_cpu": "674535",
-   "antutu_gpu": "684207",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "8550-super",
-   "codes": [
-    "MT6899Z_T/TZA"
-   ],
-   "names": [
-    "联发科技 天玑8550 Super",
-    "天玑8550 Super"
-   ],
-   "name": "天玑8550 Super",
-   "name_en": "联发科技 天玑8550 Super",
-   "brand": "联发科",
-   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
-   "cores": 8,
-   "max_ghz": 3.4,
-   "antutu": "1352732",
-   "antutu_cpu": "686946",
-   "antutu_gpu": "665786",
-   "ludashi": "975329",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "8400-max",
-   "codes": [
-    "MT6899Z_B/ZA",
-    "MT6899_B/ZA"
-   ],
-   "names": [
-    "联发科技 天玑8400-Max",
-    "天玑8400-Max"
-   ],
-   "name": "天玑8400-Max",
-   "name_en": "联发科技 天玑8400-Max",
-   "brand": "联发科",
-   "cpu": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725",
-   "cores": 8,
-   "max_ghz": 3.25,
-   "antutu": "1327167",
-   "antutu_cpu": "686832",
-   "antutu_gpu": "640335",
-   "ludashi": "930063",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "soc-bc03baec",
-   "codes": [
-    "MT6899Z_D/ZA",
-    "MT6899_D/ZA"
-   ],
-   "names": [
-    "联发科技 天玑8450",
-    "天玑8450"
-   ],
-   "name": "天玑8450",
-   "name_en": "联发科技 天玑8450",
-   "brand": "联发科",
-   "antutu": "1321939",
-   "antutu_cpu": "679062",
-   "antutu_gpu": "642877",
-   "ludashi": "951255",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "soc-dbbc923e",
-   "codes": [],
-   "names": [
-    "联发科技 天玑8500 竞速版",
-    "天玑8500 竞速版"
-   ],
-   "name": "天玑8500 竞速版",
-   "name_en": "联发科技 天玑8500 竞速版",
-   "brand": "联发科",
-   "antutu": "1321684",
-   "antutu_cpu": "602298",
-   "antutu_gpu": "719386",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "soc-ae81a5df",
-   "codes": [],
-   "names": [
-    "联发科技 天玑8500 满血版",
-    "天玑8500 满血版"
-   ],
-   "name": "天玑8500 满血版",
-   "name_en": "联发科技 天玑8500 满血版",
-   "brand": "联发科",
-   "antutu": "1302780",
-   "antutu_cpu": "661699",
-   "antutu_gpu": "641081",
-   "ludashi": "889373",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "8500-ultra",
-   "codes": [
-    "MT6899Z_A/TZA"
-   ],
-   "names": [
-    "联发科技 天玑8500-Ultra",
-    "天玑8500-Ultra"
-   ],
-   "name": "天玑8500-Ultra",
-   "name_en": "联发科技 天玑8500-Ultra",
-   "brand": "联发科",
-   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
-   "cores": 8,
-   "max_ghz": 3.4,
-   "antutu": "1300797",
-   "antutu_cpu": "672403",
-   "antutu_gpu": "628394",
-   "ludashi": "894941",
-   "devices": "Poco X8 Pro",
    "form": "phone",
    "src": "antutu"
   },
@@ -4574,10 +4311,83 @@
    "cores": 10,
    "max_ghz": 3.3,
    "year": "2025",
-   "antutu": "1288409",
-   "antutu_cpu": "687559",
-   "antutu_gpu": "600850",
+   "antutu": "1578222",
+   "antutu_cpu": "799615",
+   "antutu_gpu": "778607",
    "devices": "Galaxy Z Flip7、Galaxy S26 FE",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "8s-gen-4",
+   "codes": [
+    "SM8735"
+   ],
+   "names": [
+    "高通 骁龙8s Gen 4",
+    "骁龙8s Gen 4"
+   ],
+   "name": "骁龙8s Gen 4",
+   "name_en": "高通 骁龙8s Gen 4",
+   "brand": "高通",
+   "process": "4nm",
+   "cpu": "1×3.2GHz Cortex-X4 + 3×3.0GHz Cortex-A720 + 2×2.8GHz Cortex-A720 + 2×2.0GHz Cortex-A720",
+   "cores": 8,
+   "max_ghz": 3.2,
+   "gpu": "Adreno 825",
+   "gpu_key": "adreno825",
+   "antutu": "1502673",
+   "antutu_cpu": "714849",
+   "antutu_gpu": "787824",
+   "ludashi": "996259",
+   "devices": "一加 Ace5 Pro、iQOO Z10 Turbo+",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-a324d056",
+   "codes": [
+    "MT6989W/TCZA",
+    "MT8796W/TNZA"
+   ],
+   "names": [
+    "联发科技 天玑9300+",
+    "天玑9300+"
+   ],
+   "name": "天玑9300+",
+   "name_en": "联发科技 天玑9300+",
+   "brand": "联发科",
+   "process": "4nm",
+   "gpu": "Immortalis-G720",
+   "gpu_key": "mali720",
+   "antutu": "1500539",
+   "antutu_cpu": "752705",
+   "antutu_gpu": "747834",
+   "ludashi": "898343",
+   "devices": "红米 K70 Ultra、真我 GT6",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "9400e",
+   "codes": [
+    "MT6989T_E"
+   ],
+   "names": [
+    "联发科技 天玑9400e",
+    "天玑9400e"
+   ],
+   "name": "天玑9400e",
+   "name_en": "联发科技 天玑9400e",
+   "brand": "联发科",
+   "cpu": "1×3.4GHz Cortex-X4 + 3×2.85GHz Cortex-X4 + 4×2.0GHz Cortex-A720",
+   "cores": 8,
+   "max_ghz": 3.4,
+   "year": "2025",
+   "antutu": "1499708",
+   "antutu_cpu": "758044",
+   "antutu_gpu": "741664",
+   "ludashi": "966825",
    "form": "phone",
    "src": "antutu"
   },
@@ -4594,10 +4404,189 @@
    "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
    "cores": 8,
    "max_ghz": 3.4,
-   "antutu": "1247157",
-   "antutu_cpu": "502459",
-   "antutu_gpu": "744698",
+   "antutu": "1423053",
+   "antutu_cpu": "684264",
+   "antutu_gpu": "738789",
    "ludashi": "928025",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "8500-elite",
+   "codes": [],
+   "names": [
+    "联发科技 天玑8500 Elite",
+    "天玑8500 Elite"
+   ],
+   "name": "天玑8500 Elite",
+   "name_en": "联发科技 天玑8500 Elite",
+   "brand": "联发科",
+   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
+   "cores": 8,
+   "max_ghz": 3.4,
+   "antutu": "1367154",
+   "antutu_cpu": "659176",
+   "antutu_gpu": "707978",
+   "ludashi": "887765",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "8500-super",
+   "codes": [
+    "MT6899Z_O/TZA"
+   ],
+   "names": [
+    "联发科技 天玑8500 Super",
+    "天玑8500 Super"
+   ],
+   "name": "天玑8500 Super",
+   "name_en": "联发科技 天玑8500 Super",
+   "brand": "联发科",
+   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
+   "cores": 8,
+   "max_ghz": 3.4,
+   "antutu": "1356477",
+   "antutu_cpu": "665118",
+   "antutu_gpu": "691359",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-dbbc923e",
+   "codes": [],
+   "names": [
+    "联发科技 天玑8500 竞速版",
+    "天玑8500 竞速版"
+   ],
+   "name": "天玑8500 竞速版",
+   "name_en": "联发科技 天玑8500 竞速版",
+   "brand": "联发科",
+   "antutu": "1321684",
+   "antutu_cpu": "602298",
+   "antutu_gpu": "719386",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-bc03baec",
+   "codes": [
+    "MT6899Z_D/ZA",
+    "MT6899_D/ZA"
+   ],
+   "names": [
+    "联发科技 天玑8450",
+    "天玑8450"
+   ],
+   "name": "天玑8450",
+   "name_en": "联发科技 天玑8450",
+   "brand": "联发科",
+   "antutu": "1300302",
+   "antutu_cpu": "665592",
+   "antutu_gpu": "634710",
+   "ludashi": "951255",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "8400-max",
+   "codes": [
+    "MT6899Z_B/ZA",
+    "MT6899_B/ZA"
+   ],
+   "names": [
+    "联发科技 天玑8400-Max",
+    "天玑8400-Max"
+   ],
+   "name": "天玑8400-Max",
+   "name_en": "联发科技 天玑8400-Max",
+   "brand": "联发科",
+   "cpu": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725",
+   "cores": 8,
+   "max_ghz": 3.25,
+   "antutu": "1291506",
+   "antutu_cpu": "669482",
+   "antutu_gpu": "622024",
+   "ludashi": "930063",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "8500-ultra",
+   "codes": [
+    "MT6899Z_A/TZA"
+   ],
+   "names": [
+    "联发科技 天玑8500-Ultra",
+    "天玑8500-Ultra"
+   ],
+   "name": "天玑8500-Ultra",
+   "name_en": "联发科技 天玑8500-Ultra",
+   "brand": "联发科",
+   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
+   "cores": 8,
+   "max_ghz": 3.4,
+   "antutu": "1275999",
+   "antutu_cpu": "652396",
+   "antutu_gpu": "623603",
+   "ludashi": "894941",
+   "devices": "Poco X8 Pro",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "8550-super",
+   "codes": [
+    "MT6899Z_T/TZA"
+   ],
+   "names": [
+    "联发科技 天玑8550 Super",
+    "天玑8550 Super"
+   ],
+   "name": "天玑8550 Super",
+   "name_en": "联发科技 天玑8550 Super",
+   "brand": "联发科",
+   "cpu": "1×3.4GHz Cortex-A725 + 3×3.2GHz Cortex-A725 + 4×2.2GHz Cortex-A725",
+   "cores": 8,
+   "max_ghz": 3.4,
+   "antutu": "1254688",
+   "antutu_cpu": "619753",
+   "antutu_gpu": "634935",
+   "ludashi": "975329",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-ae81a5df",
+   "codes": [],
+   "names": [
+    "联发科技 天玑8500 满血版",
+    "天玑8500 满血版"
+   ],
+   "name": "天玑8500 满血版",
+   "name_en": "联发科技 天玑8500 满血版",
+   "brand": "联发科",
+   "antutu": "1205264",
+   "antutu_cpu": "599048",
+   "antutu_gpu": "606216",
+   "ludashi": "889373",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-a797ad47",
+   "codes": [],
+   "names": [
+    "联发科技 天玑8400 满血版",
+    "天玑8400 满血版"
+   ],
+   "name": "天玑8400 满血版",
+   "name_en": "联发科技 天玑8400 满血版",
+   "brand": "联发科",
+   "antutu": "1201802",
+   "antutu_cpu": "639105",
+   "antutu_gpu": "562697",
+   "ludashi": "844748",
    "form": "phone",
    "src": "antutu"
   },
@@ -4617,28 +4606,11 @@
    "cpu": "1×3.25GHz Cortex-A725 + 3×3.0GHz Cortex-A725 + 4×2.1GHz Cortex-A725",
    "cores": 8,
    "max_ghz": 3.25,
-   "antutu": "1227294",
-   "antutu_cpu": "665278",
-   "antutu_gpu": "562016",
+   "antutu": "1192934",
+   "antutu_cpu": "646382",
+   "antutu_gpu": "546552",
    "ludashi": "821779",
    "devices": "Poco X7 Pro、Redmi Turbo 4",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
-   "id": "soc-a797ad47",
-   "codes": [],
-   "names": [
-    "联发科技 天玑8400 满血版",
-    "天玑8400 满血版"
-   ],
-   "name": "天玑8400 满血版",
-   "name_en": "联发科技 天玑8400 满血版",
-   "brand": "联发科",
-   "antutu": "1224860",
-   "antutu_cpu": "664203",
-   "antutu_gpu": "560657",
-   "ludashi": "844748",
    "form": "phone",
    "src": "antutu"
   },
@@ -4654,9 +4626,9 @@
    "name": "天玑9200+",
    "name_en": "联发科技 天玑9200+",
    "brand": "联发科",
-   "antutu": "1090404",
-   "antutu_cpu": "619264",
-   "antutu_gpu": "471140",
+   "antutu": "1079214",
+   "antutu_cpu": "608258",
+   "antutu_gpu": "470956",
    "ludashi": "767415",
    "devices": "Reno12 Pro、iQOO Neo 8 Pro、13T Pro",
    "form": "phone",
@@ -4677,10 +4649,30 @@
    "cpu": "1×3.35GHz Cortex-A715 + 3×3.2GHz Cortex-A715 + 4×2.2GHz Cortex-A510",
    "cores": 8,
    "max_ghz": 3.35,
-   "antutu": "965049",
-   "antutu_cpu": "486715",
-   "antutu_gpu": "478334",
+   "antutu": "966241",
+   "antutu_cpu": "481660",
+   "antutu_gpu": "484581",
    "devices": "GT 30 Pro",
+   "form": "phone",
+   "src": "antutu"
+  },
+  {
+   "id": "soc-4f474ad4",
+   "codes": [
+    "MT6897Z_D/ZA"
+   ],
+   "names": [
+    "联发科技 天玑8350",
+    "天玑8350"
+   ],
+   "name": "天玑8350",
+   "name_en": "联发科技 天玑8350",
+   "brand": "联发科",
+   "antutu": "948153",
+   "antutu_cpu": "484508",
+   "antutu_gpu": "463645",
+   "ludashi": "668007",
+   "devices": "Edge 60 Pro、Xiaoxin Pad Pro 2025",
    "form": "phone",
    "src": "antutu"
   },
@@ -4699,9 +4691,9 @@
    "cpu": "1×3.35GHz Cortex-A715 + 3×3.2GHz Cortex-A715 + 4×2.2GHz Cortex-A510",
    "cores": 8,
    "max_ghz": 3.35,
-   "antutu": "894877",
-   "antutu_cpu": "492051",
-   "antutu_gpu": "402826",
+   "antutu": "911567",
+   "antutu_cpu": "479667",
+   "antutu_gpu": "431900",
    "ludashi": "656326",
    "devices": "Poco X6 Pro、14T",
    "form": "phone",
@@ -4727,26 +4719,6 @@
    "src": "antutu"
   },
   {
-   "id": "soc-4f474ad4",
-   "codes": [
-    "MT6897Z_D/ZA"
-   ],
-   "names": [
-    "联发科技 天玑8350",
-    "天玑8350"
-   ],
-   "name": "天玑8350",
-   "name_en": "联发科技 天玑8350",
-   "brand": "联发科",
-   "antutu": "807642",
-   "antutu_cpu": "473825",
-   "antutu_gpu": "473705",
-   "ludashi": "668007",
-   "devices": "Edge 60 Pro、Xiaoxin Pad Pro 2025",
-   "form": "phone",
-   "src": "antutu"
-  },
-  {
    "id": "7-gen-4",
    "codes": [
     "SM7750"
@@ -4761,11 +4733,11 @@
    "cpu": "1×2.8GHz Cortex-A720 + 4×2.4GHz Cortex-A720 + 3×1.84GHz Cortex-A520",
    "cores": 8,
    "max_ghz": 2.8,
-   "antutu": "798597",
-   "antutu_cpu": "474107",
-   "antutu_gpu": "324490",
+   "antutu": "797430",
+   "antutu_cpu": "489332",
+   "antutu_gpu": "308098",
    "ludashi": "522528",
-   "devices": "V80",
+   "devices": "Edge 70、V80",
    "form": "phone",
    "src": "antutu"
   },
@@ -5841,12 +5813,10 @@
     "MT6789I"
    ],
    "names": [
-    "联发科技 Helio G100-Ultra",
     "联发科技 曦力G100-Ultra",
-    "Helio G100-Ultra",
     "曦力G100-Ultra"
    ],
-   "name": "Helio G100-Ultra",
+   "name": "曦力G100-Ultra",
    "name_en": "联发科技 曦力G100-Ultra",
    "brand": "联发科",
    "cpu": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
@@ -5890,12 +5860,10 @@
     "MT6789H"
    ],
    "names": [
-    "联发科技 Helio G100",
     "联发科技 曦力G100",
-    "Helio G100",
     "曦力G100"
    ],
-   "name": "Helio G100",
+   "name": "曦力G100",
    "name_en": "联发科技 曦力G100",
    "brand": "联发科",
    "cpu": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
@@ -6021,12 +5989,10 @@
     "MT8781V/CAZA"
    ],
    "names": [
-    "联发科技 Helio G100-Ultimate",
     "联发科技 曦力G100-Ultimate",
-    "Helio G100-Ultimate",
     "曦力G100-Ultimate"
    ],
-   "name": "Helio G100-Ultimate",
+   "name": "曦力G100-Ultimate",
    "name_en": "联发科技 曦力G100-Ultimate",
    "brand": "联发科",
    "cpu": "2×2.2GHz Cortex-A76 + 6×2.0GHz Cortex-A55",
@@ -10437,7 +10403,7 @@
     "sm8975"
    ],
    "SM8150P": [
-    "sm8150-ab"
+    "sm8150-ac"
    ],
    "SM8250AC": [
     "sm8250-ac"
@@ -10453,9 +10419,6 @@
    ],
    "SM7250": [
     "sm7250-ab"
-   ],
-   "SM8150-AB": [
-    "sm8150-ab"
    ]
   },
   "loose": {
@@ -11738,7 +11701,7 @@
     "sm8975"
    ],
    "SM8150P": [
-    "sm8150-ab"
+    "sm8150-ac"
    ],
    "SM8250AC": [
     "sm8250-ac"
@@ -11751,9 +11714,6 @@
    ],
    "SM7250": [
     "sm7250-ab"
-   ],
-   "SM8150-AB": [
-    "sm8150-ab"
    ]
   }
  },

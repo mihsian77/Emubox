@@ -1,164 +1,164 @@
 {
- "updated_at": "2026-11-12T23:32:56.336Z",
+ "updated_at": "2026-11-13T23:32:46.662Z",
  "source": "the412banner/emulator-ranking + t3st31/Ranking-Emulators-Download（每日自动刷新）",
  "insights": {
   "total_projects": 59,
-  "total_downloads": 66862251,
-  "total_stars": 96090,
+  "total_downloads": 67008615,
+  "total_stars": 96380,
   "trending14": [
    {
     "repo": "the412banner/banners-turnip",
-    "delta": 366838,
-    "date": "2026-11-12"
+    "delta": 332439,
+    "date": "2026-11-13"
    },
    {
     "repo": "brunodev85/winlator",
-    "delta": 304397,
-    "date": "2026-11-12"
+    "delta": 301303,
+    "date": "2026-11-13"
    },
    {
     "repo": "k11mch1/adrenotoolsdrivers",
-    "delta": 257499,
-    "date": "2026-11-12"
+    "delta": 250578,
+    "date": "2026-11-13"
    },
    {
     "repo": "azahar-emu/azahar",
-    "delta": 203652,
-    "date": "2026-11-12"
+    "delta": 210526,
+    "date": "2026-11-13"
    },
    {
     "repo": "stevenmxz/freedreno_turnip-ci",
-    "delta": 197701,
-    "date": "2026-11-12"
+    "delta": 198802,
+    "date": "2026-11-13"
    },
    {
     "repo": "jacojayy/star",
-    "delta": 81910,
-    "date": "2026-11-12"
+    "delta": 92019,
+    "date": "2026-11-13"
    },
    {
     "repo": "armsx2/armsx2",
-    "delta": 80485,
-    "date": "2026-11-12"
+    "delta": 81565,
+    "date": "2026-11-13"
    },
    {
     "repo": "armsx2/armsx3",
-    "delta": 74571,
-    "date": "2026-11-12"
+    "delta": 72503,
+    "date": "2026-11-13"
    },
    {
     "repo": "trixarian/nethersx2-patch",
-    "delta": 64218,
-    "date": "2026-11-12"
+    "delta": 65037,
+    "date": "2026-11-13"
    },
    {
     "repo": "stevenmxz/winlator-ludashi",
-    "delta": 62222,
-    "date": "2026-11-12"
+    "delta": 64054,
+    "date": "2026-11-13"
    },
    {
     "repo": "producdevity/gamehub-lite",
-    "delta": 54539,
-    "date": "2026-11-12"
+    "delta": 54185,
+    "date": "2026-11-13"
    },
    {
     "repo": "ashnar2602/x360-mobile---official",
-    "delta": 51608,
-    "date": "2026-11-12"
+    "delta": 52742,
+    "date": "2026-11-13"
    },
    {
     "repo": "whitebelyash/adrenotoolsdrivers",
-    "delta": 43853,
-    "date": "2026-11-12"
+    "delta": 43940,
+    "date": "2026-11-13"
    },
    {
     "repo": "whitebelyash/freedreno_turnip-ci",
-    "delta": 43853,
-    "date": "2026-11-12"
+    "delta": 43940,
+    "date": "2026-11-13"
    },
    {
-    "repo": "fcharan/winlatormali",
-    "delta": 41571,
-    "date": "2026-11-12"
+    "repo": "utkarshdalal/gamenative",
+    "delta": 41300,
+    "date": "2026-11-13"
    }
   ],
-  "trend_base_date": "2026-10-30",
-  "trend_latest_date": "2026-11-12",
+  "trend_base_date": "2026-10-31",
+  "trend_latest_date": "2026-11-13",
   "category_downloads": [
    {
     "category": "Winlator",
     "label": "Winlator 专区",
-    "downloads": 23362587
+    "downloads": 23409419
    },
    {
     "category": "Nintendo 3DS",
     "label": "任天堂 3DS",
-    "downloads": 17319067
+    "downloads": 17341765
    },
    {
     "category": "Emulator PS2",
     "label": "PS2 模拟",
-    "downloads": 6384039
+    "downloads": 6396148
    },
    {
     "category": "PSVITA",
     "label": "PS Vita",
-    "downloads": 4345080
+    "downloads": 4345596
    },
    {
     "category": "PC Emulator",
     "label": "PC 模拟器",
-    "downloads": 3255865
+    "downloads": 3290066
    },
    {
     "category": "Wii U Emulator",
     "label": "Wii U 模拟",
-    "downloads": 2938206
+    "downloads": 2940633
    },
    {
     "category": "GameHub",
     "label": "GameHub 专区",
-    "downloads": 2700988
+    "downloads": 2708758
    },
    {
     "category": "Emulator PS3",
     "label": "PS3 模拟",
-    "downloads": 2363199
+    "downloads": 2369652
    },
    {
     "category": "GameNative",
     "label": "GameNative 专区",
-    "downloads": 1455453
+    "downloads": 1459924
    },
    {
     "category": "Sega Dreamcast",
     "label": "Dreamcast 模拟",
-    "downloads": 931687
+    "downloads": 933443
    },
    {
     "category": "Xbox",
     "label": "Xbox 模拟",
-    "downloads": 899658
+    "downloads": 905640
    },
    {
     "category": "Nintendo GameCube / Wii",
     "label": "NGC-Wii 模拟",
-    "downloads": 794588
+    "downloads": 795343
    },
    {
     "category": "All In One",
     "label": "聚合前端",
-    "downloads": 107129
+    "downloads": 107507
    },
    {
     "category": "Emulator PS5",
     "label": "PS5 模拟",
-    "downloads": 2935
+    "downloads": 2945
    },
    {
     "category": "GAME",
     "label": "游戏",
-    "downloads": 1770
+    "downloads": 1776
    },
    {
     "category": "Nintendo Switch Emulator",
@@ -166,7 +166,7 @@
     "downloads": 0
    }
   ],
-  "weekly_releases": 30
+  "weekly_releases": 26
  },
  "recipes": [
   {
@@ -442,13 +442,13 @@
    "category": "Winlator",
    "official": true,
    "channel": "stable",
-   "downloads_total": 16855268,
-   "stars": 19938,
+   "downloads_total": 16878605,
+   "stars": 19957,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-11-02T17:21:07Z",
    "homepage": "https://winlator.org",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
-   "forks": 1963,
+   "forks": 1970,
    "watchers": 368,
    "created_at": "2023-07-26T13:02:11Z",
    "license": "LGPL-2.1",
@@ -465,14 +465,14 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads_total": 9180511,
-   "stars": 8651,
+   "downloads_total": 9200513,
+   "stars": 8665,
    "description": "An open-source 3DS emulator project based on Citra.",
    "pushed_at": "2026-11-12T18:44:51Z",
    "homepage": "https://azahar-emu.org/",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/azahar.png",
-   "forks": 825,
-   "watchers": 152,
+   "forks": 829,
+   "watchers": 153,
    "created_at": "2024-03-04T21:08:59Z",
    "license": "GPL-3.0",
    "topics": [],
@@ -488,8 +488,8 @@
    "category": "Nintendo 3DS",
    "official": false,
    "channel": "stable",
-   "downloads_total": 8138556,
-   "stars": 2775,
+   "downloads_total": 8141252,
+   "stars": 2776,
    "description": "A Nintendo 3DS Emulator",
    "pushed_at": "2025-11-14T11:04:59Z",
    "homepage": "https://citra-emu.org",
@@ -516,8 +516,8 @@
    "category": "PSVITA",
    "official": false,
    "channel": "stable",
-   "downloads_total": 4345080,
-   "stars": 1669,
+   "downloads_total": 4345596,
+   "stars": 1670,
    "description": "Public releases and CI for the Vita3K Android app",
    "pushed_at": "2025-02-22T16:30:58Z",
    "homepage": "https://vita3k.org",
@@ -539,8 +539,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads_total": 3661584,
-   "stars": 2772,
+   "downloads_total": 3666757,
+   "stars": 2775,
    "description": "Continuation of NetherSX2 based on AetherSX2 4248",
    "pushed_at": "2026-09-22T04:21:34Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -569,8 +569,8 @@
    "category": "Wii U Emulator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 2938206,
-   "stars": 1239,
+   "downloads_total": 2940633,
+   "stars": 1240,
    "description": "Android port for the cemu emulator",
    "pushed_at": "2026-09-12T17:30:42Z",
    "homepage": "https://cemu.info",
@@ -598,14 +598,14 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 1701290,
-   "stars": 1338,
+   "downloads_total": 1708122,
+   "stars": 1348,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-11-11T21:08:26Z",
    "homepage": "https://winlator.org",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
-   "forks": 113,
-   "watchers": 48,
+   "forks": 115,
+   "watchers": 45,
    "created_at": "2025-08-21T16:37:04Z",
    "license": "GPL-3.0",
    "topics": [],
@@ -621,8 +621,8 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads_total": 1624436,
-   "stars": 2110,
+   "downloads_total": 1628809,
+   "stars": 2113,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-07-03T18:28:52Z",
    "homepage": "https://www.emuready.com/",
@@ -644,6 +644,29 @@
    "latest_date": "2026-07-02T19:43:40Z"
   },
   {
+   "id": "droid-deck-droiddeck",
+   "name": "DroidDeck",
+   "repo": "Droid-Deck/DroidDeck",
+   "repo_url": "https://github.com/Droid-Deck/DroidDeck",
+   "category": "PC Emulator",
+   "official": false,
+   "channel": "stable",
+   "downloads_total": 1595933,
+   "stars": 19896,
+   "description": "DroidDeck brings the SteamOS experience to Android",
+   "pushed_at": "2026-11-13T23:09:16Z",
+   "homepage": "",
+   "logo_url": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
+   "forks": 1011,
+   "watchers": 114,
+   "created_at": "2026-09-24T15:14:13Z",
+   "license": "GPL-3.0",
+   "topics": [],
+   "archived": false,
+   "latest_tag": "0.7.1",
+   "latest_date": "2026-11-10T12:35:34Z"
+  },
+  {
    "id": "trixarian-nethersx2-classic",
    "name": "NetherSX2 Classic",
    "repo": "Trixarian/NetherSX2-classic",
@@ -651,8 +674,8 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads_total": 1578269,
-   "stars": 1231,
+   "downloads_total": 1580151,
+   "stars": 1234,
    "description": "Continuation of NetherSX2 based on AetherSX2 3668",
    "pushed_at": "2026-06-29T12:01:14Z",
    "homepage": "https://discord.gg/xRh3NnYyMa",
@@ -674,29 +697,6 @@
    "latest_date": "2025-12-25T12:22:14Z"
   },
   {
-   "id": "droid-deck-droiddeck",
-   "name": "DroidDeck",
-   "repo": "Droid-Deck/DroidDeck",
-   "repo_url": "https://github.com/Droid-Deck/DroidDeck",
-   "category": "PC Emulator",
-   "official": false,
-   "channel": "stable",
-   "downloads_total": 1562901,
-   "stars": 19689,
-   "description": "DroidDeck brings the SteamOS experience to Android",
-   "pushed_at": "2026-11-12T23:07:51Z",
-   "homepage": "",
-   "logo_url": "https://the412banner.github.io/emulator-ranking/logos/droiddeck.png",
-   "forks": 997,
-   "watchers": 114,
-   "created_at": "2026-09-24T15:14:13Z",
-   "license": "GPL-3.0",
-   "topics": [],
-   "archived": false,
-   "latest_tag": "0.7.1",
-   "latest_date": "2026-11-10T12:35:34Z"
-  },
-  {
    "id": "utkarshdalal-gamenative",
    "name": "GameNative",
    "repo": "utkarshdalal/GameNative",
@@ -704,13 +704,13 @@
    "category": "GameNative",
    "official": false,
    "channel": "stable",
-   "downloads_total": 1455453,
-   "stars": 11830,
+   "downloads_total": 1459924,
+   "stars": 11836,
    "description": "Native PC gaming with Steam, Epic, GOG and Amazon integrations on Android",
-   "pushed_at": "2026-11-12T15:42:27Z",
+   "pushed_at": "2026-11-13T17:20:57Z",
    "homepage": "https://gamenative.app",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/gamenative.png",
-   "forks": 502,
+   "forks": 505,
    "watchers": 68,
    "created_at": "2025-04-21T11:25:27Z",
    "license": "GPL-3.0",
@@ -732,10 +732,10 @@
    "category": "Emulator PS2",
    "official": false,
    "channel": "stable",
-   "downloads_total": 1144186,
-   "stars": 2476,
+   "downloads_total": 1149240,
+   "stars": 2483,
    "description": "ARMSX2 - The Playstation 2 Emulator for ARM64 Platforms",
-   "pushed_at": "2026-11-12T20:47:11Z",
+   "pushed_at": "2026-11-13T20:58:49Z",
    "homepage": "https://armsx2.net/",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/armsx2.png",
    "forks": 232,
@@ -744,8 +744,8 @@
    "license": "GPL-3.0",
    "topics": [],
    "archived": false,
-   "latest_tag": "nightly-20261112",
-   "latest_date": "2026-11-12T11:58:10Z"
+   "latest_tag": "nightly-20261113",
+   "latest_date": "2026-11-13T04:53:50Z"
   },
   {
    "id": "longjunyu2-winlator",
@@ -755,7 +755,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 1029722,
+   "downloads_total": 1029908,
    "stars": 548,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-01-05T23:43:15Z",
@@ -778,13 +778,13 @@
    "category": "Sega Dreamcast",
    "official": false,
    "channel": "stable",
-   "downloads_total": 931687,
-   "stars": 2652,
+   "downloads_total": 933443,
+   "stars": 2654,
    "description": "Flycast is a multiplatform Sega Dreamcast, Naomi, Naomi 2 and Atomiswave emulator",
-   "pushed_at": "2026-11-12T16:31:51Z",
+   "pushed_at": "2026-11-13T12:32:31Z",
    "homepage": "https://flycast.se",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/flycast.png",
-   "forks": 412,
+   "forks": 413,
    "watchers": 74,
    "created_at": "2018-04-27T11:14:36Z",
    "license": "GPL-2.0",
@@ -806,8 +806,8 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads_total": 868962,
-   "stars": 1343,
+   "downloads_total": 869519,
+   "stars": 1342,
    "description": "",
    "pushed_at": "2026-08-29T13:27:19Z",
    "homepage": "",
@@ -829,7 +829,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 863207,
+   "downloads_total": 863824,
    "stars": 1119,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-12-09T22:36:49Z",
@@ -852,8 +852,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 830996,
-   "stars": 696,
+   "downloads_total": 831259,
+   "stars": 695,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-04-19T02:53:06Z",
    "homepage": "https://winlator.org",
@@ -875,7 +875,7 @@
    "category": "Nintendo GameCube / Wii",
    "official": false,
    "channel": "stable",
-   "downloads_total": 794588,
+   "downloads_total": 795343,
    "stars": 283,
    "description": "A fork of Dolphin MMJR2 - with added VBI Skip hack and further fixes ported over from Dolphin Official.",
    "pushed_at": "2025-08-03T09:27:46Z",
@@ -898,7 +898,7 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads_total": 780271,
+   "downloads_total": 781484,
    "stars": 762,
    "description": "An experimental Android PS3 emulator, ported and optimized based on RPCS3. ",
    "pushed_at": "2026-10-05T09:08:05Z",
@@ -921,7 +921,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 775665,
+   "downloads_total": 776255,
    "stars": 755,
    "description": "",
    "pushed_at": "2026-05-04T03:29:50Z",
@@ -944,12 +944,148 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 736365,
-   "stars": 520,
+   "downloads_total": 739409,
+   "stars": 523,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-10-31T22:06:38Z",
    "homepage": "https://winlator.org",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/winlator.png",
+   "releases": [
+    {
+     "tag": "bionic-mali-1.2.1",
+     "name": "Winlator Mali Bionic 1.2.1",
+     "date": "2026-10-29T08:08:48Z",
+     "body": "# Winlator Mali Bionic 1.2.1\n\nA fixes-and-polish update to 1.2.\n\n## ⚠️ Reinstall Required!\nUninstall the old version and install 1.2.1 fresh. Back up your game saves first (Save Manager, or copy them out of your container). Containers made on 1.2 are not carried over.\n\n## Fixes for 1.2 user reports\n- Fixed a reboot on some MediaTek Mali phones (JM Mali).\n- Fixed a crash when opening a shortcut.\n- Fixed the controller binding editor.\n- Fixed the stutter when holding D-pad right.\n- Fixed File Manager not opening (it needed `libcdio.dll`), and File Manager hanging on x86_64 Wine (replaced with Bannerlator's newer `wfm.exe` / `winhandler.exe`).\n\n## Graphics and performance\n- **Fullscreen modes:** Fit, Stretch, Fill and Integer, plus screen alignment (Center, Top, Bottom half), set per container or per game and changeable live in Display & Session.\n- **EGL stripes fixed:** CPU writes into the window buffer are flushed per X batch.\n- **ZeroFG:** the default multiplier is capped at the display refresh rate (40 fps on a 60 Hz screen now gives 1.5x instead of 2x with dropped frames).\n- **Gladio:** refuses OpenGL contexts above 3.3 again; libGL stripped of debug info (1.48 MB to 488 KB).\n- *",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_Mali_1.2.1_Bionic_AnTuTu.apk",
+       "size": 445108313,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2.1/Winlator_Mali_1.2.1_Bionic_AnTuTu.apk"
+      },
+      {
+       "name": "Winlator_Mali_1.2.1_Bionic_Ludashi.apk",
+       "size": 445108312,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2.1/Winlator_Mali_1.2.1_Bionic_Ludashi.apk"
+      },
+      {
+       "name": "Winlator_Mali_1.2.1_Bionic_Standard.apk",
+       "size": 445108291,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2.1/Winlator_Mali_1.2.1_Bionic_Standard.apk"
+      }
+     ]
+    },
+    {
+     "tag": "bionic-mali-1.2",
+     "name": "Winlator Mali Bionic 1.2",
+     "date": "2026-10-22T19:34:17Z",
+     "body": "Winlator Mali Bionic v1.2\n\nWinlator Mali Bionic v1.2 is a major architectural overhaul over v1.1, introducing a native EGL rendering engine, ZeroFG Vulkan compute frame interpolation, a redesigned UI with Madeira Liquid Glass touch controls, two selectable BCn layers, hardware performance tools, kernel-direct telemetry, and a cloud-powered community configuration ecosystem.\n\n⚠️ Reinstall Required!\n\n<details>\n<summary>🖥️ Native EGL Rendering Engine & Gladio Integration</summary><ul>\n<li><strong>High-Performance Native EGL Architecture:</strong> Migrated from the legacy v1.1 rendering stack (<code>GLRenderer</code>, <code>DisplayX</code>, <code>VirGL</code>, <code>blit_converter</code>, and Java <code>EffectComposer</code>) to Pipetto-crypto's native C++ EGL renderer at <code>app/src/main/cpp/winlator/renderer/egl.cpp</code>.</li>\n<li><strong>Elimination of Legacy Overhead:</strong> Removed the legacy DisplayX layer (<code>displayx.cpp</code>, <code>DisplayXView</code>), VirGL (<code>VirGLRendererComponent</code>), and <code>blit_converter.cpp</code>, eliminating over 3,500 lines of redundant CPU blit and synchronization code.</li>\n<li><strong>Gladio Native OpenGL Engine:</strong> In",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator_Mali_1.2_Bionic_AnTuTu.apk",
+       "size": 405894433,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2/Winlator_Mali_1.2_Bionic_AnTuTu.apk"
+      },
+      {
+       "name": "Winlator_Mali_1.2_Bionic_Ludashi.apk",
+       "size": 405894446,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2/Winlator_Mali_1.2_Bionic_Ludashi.apk"
+      },
+      {
+       "name": "Winlator_Mali_1.2_Bionic_Standard.apk",
+       "size": 405894421,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.2/Winlator_Mali_1.2_Bionic_Standard.apk"
+      }
+     ]
+    },
+    {
+     "tag": "bionic-mali-1.1",
+     "name": "Winlator Mali Bionic 1.1",
+     "date": "2026-07-09T19:05:29Z",
+     "body": "Winlator Mali Bionic v1.1\n\n🚀 New Features\n\n- Added Fake HDR.\n- Added a Universal FPS Limiter.\n- Added a Sharpness option.\n- Added GTA V Optimization toggle in Shortcut Settings.\n- Added DXVK Config toggle with built-in pre-made configuration presets.\n- Automatically generates a dxvk.conf file for each container based on the selected preset.\n- Added new DXVK versions.\n- Added the new GameNative Vulkan Wrapper.\n- Added new Box64 and FEX presets.\n\n---\n\n🎮 Unreal Engine 3 Preset\n\n- Added a dedicated Unreal Engine 3 preset.\n- Tested with X-Men Origins: Wolverine for improved compatibility and performance.\n\n---\n\n⚙️ Hybrid x86 FEXCore\n\n- Added a custom Hybrid x86 FEXCore.\n\nWhat does it do?\n\n- Improves compatibility while maintaining high performance.\n- Fixes physics issues in supported games that normally require x86 Reduced Precision to be completely disabled.\n\nWhy is it better?\n\nNormally, disabling x86 Reduced Precision forces software emulation for all x86 code, which can significantly reduce performance.\n\nHybrid x86 only uses software emulation where it is actually needed (such as physics calculations), while allowing the rest of the game to run natively for much better performance.\n\nT",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "Winlator-Mali-1.1-Antutu.apk",
+       "size": 789162895,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.1/Winlator-Mali-1.1-Antutu.apk"
+      },
+      {
+       "name": "Winlator-Mali-1.1-Ludashi.apk",
+       "size": 789162895,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.1/Winlator-Mali-1.1-Ludashi.apk"
+      },
+      {
+       "name": "Winlator-Mali-1.1.apk",
+       "size": 789150601,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.1/Winlator-Mali-1.1.apk"
+      }
+     ]
+    },
+    {
+     "tag": "bionic-mali-1.0",
+     "name": "Winlator Mali Bionic 1.0 ( Updated Again )",
+     "date": "2026-06-28T19:47:19Z",
+     "body": "Winlator Mali Bionic v1.0\n\nNew Features\n\n- Multiple Vulkan Wrapper Selection — Select between Wrapper, Wrapper-Leegao, and Wrapper V2 on a per-container basis.\n- ASTC Transcoding — Native ASTC texture transcoding using a modified version of leegao's bcn_layer with improved performance, memory usage, and stability.\n- ETC2 Transcoding — Native ETC2 texture transcoding using a modified version of leegao's bcn_layer with improved performance, memory usage, and stability.\n- Apex Frame Generation — Based on Motion Compute Frame Interpolator (MCFI), with additional implementation and optimizations for improved performance, stability, and compatibility. Apex also utilizes GPU resources alongside the game and may impact performance depending on your device.\n- Advanced HUD — Enhanced in-game overlay based on Winlator Ludashi's HUD with additional refinements.\n- Unified Control System — XInput, DInput, and Exclusive input modes have been unified into a single control system.\n- Graphics Driver Manager — Install and manage Vulkan Wrappers and bcn_layer directly from local storage. User-installed drivers automatically take priority over bundled versions.\n- Gyro View — Control the in-game camera ",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "leegao_bcn.tzst",
+       "size": 1868111,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.0/leegao_bcn.tzst"
+      },
+      {
+       "name": "Winlator-Mali.Updated.Again.-Antutu.apk",
+       "size": 711936195,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.0/Winlator-Mali.Updated.Again.-Antutu.apk"
+      },
+      {
+       "name": "Winlator-Mali.Updated.Again.-Ludashi.apk",
+       "size": 711936195,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.0/Winlator-Mali.Updated.Again.-Ludashi.apk"
+      },
+      {
+       "name": "Winlator-Mali.Updated.Again.apk",
+       "size": 711936195,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/bionic-mali-1.0/Winlator-Mali.Updated.Again.apk"
+      }
+     ]
+    },
+    {
+     "tag": "2.0",
+     "name": "2.0",
+     "date": "2024-11-30T10:01:20Z",
+     "body": "# Added\n\n• Latest Box64 Is Added In Proot Version\n\n• Added Cube D3D & SphereMap 3D Test \n\n• Added D3D9 Wrapper By ThirteenAG In Start Menu → Install →  WineD3D → Experimental \n\n• Added Core Fonts\n\n• Added Additional x86 and X64 Visual C Packages\n\n• Added Xna Framework \n\n• Added An Option To Backup And Import Registry And Saves Of Container \n\n• Many Other Things Are Also Added \n\n# New Game Presets \n\n• Fixed And Added Back Skyrim Game Preset \n\n• Added Virtua Tennis 3 & 4 Game Preset \n\n• Added Silent Hill Home Coming Game Preset \n\n# Changes\n\n• Wine 9.2 Is Added And Made Default In Glibc \n\n• Game UX Is Disabled By Default ( This Fixes Virtua Tennis 4 And More ) \n\n• The Fixes Section Has Been Updated \n\n• Some Games Presets Are Updated \n\n• Many Other Things Are Changed And Updated \n\n# Note \n\n• I Decided To Only Upload Proot_Antutu And Glibc From Now\n\n• Delete The Old Apk And Install The New One \n\n• Proot Is The Recommended Version \n\n• Glibc Apk Is Updated Again On Dec 1 2024 . Pls Update \n",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "WinMali_Glibc.apk",
+       "size": 630562783,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/2.0/WinMali_Glibc.apk"
+      },
+      {
+       "name": "WinMali_Proot_Antutu.apk",
+       "size": 595862618,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/2.0/WinMali_Proot_Antutu.apk"
+      }
+     ]
+    },
+    {
+     "tag": "1.9",
+     "name": "1.9",
+     "date": "2024-11-13T13:31:30Z",
+     "body": "Changes : \n\n•  Proot Builds Are Now Based On Winlator 8.0 Finally More Compatibility \n\n• 2.1 Is As Set As The Default GL VERSION\n\n• Disable Vertex Array BGRA Is Disabled By Default \n\n• Default Gpu Model In Proot Builds Is Now Set To Nvdia GeForce 9800GT So Oblivion Launcher And More Can Detect And Give Settings \n\n• Box64 Version 0.2.8 From Winlator 7.1 Is Now The Default Version\n\nAdded :\n\n• WineD3D 9.20 Added \n\n• BOX64_MMAP32 Environment Variable Added For Proot Builds\n\n• More Things Are Added Which I Can't Remember Now Sorry \n\nUpdated : \n\n• Updated The 3D Test ( Use This Instead Cube D3D Test It Is Removed Now )\n\n• Updated VC Redist ( Improves Stability If Installed )\n\n• Prince Of Persia 2008 And Prince Of Persia The Forgotten Sands Game Presets Are Added \n\nRemoved : \n\n• Lot Of Unnecessary Things Are Removed \n\nNote : \n\n• To Fix Audio Issue On PES Games Just Turn Off Wine Esync In Container Settings \n\n• Skyrim Preset Is Now Removed From Proot Build Because Winlator 8.0 Doesn't Support To Disable Wow64 ( You Can Still Play Skyrim In WinlatorMali 1.8 And 1.7 )\n\n• Delete The Old Apk And Install New One\n\n• Overall Balanced Performance And Improved Compatibility On Proot Builds .\n\n• Pro",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "WinMali_Proot_Antutu.apk",
+       "size": 504173656,
+       "url": "https://github.com/GunaCharanTeja/WinlatorMali/releases/download/1.9/WinMali_Proot_Antutu.apk"
+      }
+     ]
+    }
+   ],
    "forks": 48,
    "watchers": 38,
    "created_at": "2024-07-19T14:24:18Z",
@@ -967,7 +1103,7 @@
    "category": "Emulator PS3",
    "official": false,
    "channel": "stable",
-   "downloads_total": 713966,
+   "downloads_total": 718649,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -990,7 +1126,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "prerelease",
-   "downloads_total": 635420,
+   "downloads_total": 639529,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -1013,13 +1149,13 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 494904,
+   "downloads_total": 495100,
    "stars": 728,
    "description": "",
    "pushed_at": "2025-02-28T07:48:56Z",
    "homepage": "",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/horizon.png",
-   "forks": 101,
+   "forks": 102,
    "watchers": 45,
    "created_at": "2024-05-09T17:49:00Z",
    "license": "",
@@ -1036,7 +1172,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads_total": 406540,
+   "downloads_total": 407623,
    "stars": 568,
    "description": "GameHub ReVanced — extended with GOG, Epic & Amazon game libraries, Component Manager, Winlator HUD, per-game controls & configs, and more. Built via apktool smali patching.",
    "pushed_at": "2026-09-28T21:24:36Z",
@@ -1059,7 +1195,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 303849,
+   "downloads_total": 304063,
    "stars": 561,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-03-18T01:28:27Z",
@@ -1089,7 +1225,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable",
-   "downloads_total": 261009,
+   "downloads_total": 262878,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -1112,10 +1248,10 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads_total": 253837,
+   "downloads_total": 254782,
    "stars": 182,
    "description": "ReVanced patches for GameHub — BannerHub features as true ReVanced patches",
-   "pushed_at": "2026-11-12T20:57:20Z",
+   "pushed_at": "2026-11-13T17:53:55Z",
    "homepage": "",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/bannerhub-v6.png",
    "forks": 10,
@@ -1135,13 +1271,13 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads_total": 234485,
-   "stars": 537,
+   "downloads_total": 235694,
+   "stars": 541,
    "description": "Bannerlator — run Windows PC games and apps on Android (Wine + Box64/86). A personal, community-driven continuation of the discontinued Winlator Star Bionic project. GitHub Actions builds + releases.",
-   "pushed_at": "2026-11-12T22:29:16Z",
+   "pushed_at": "2026-11-13T22:30:15Z",
    "homepage": "",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/bannerlator.png",
-   "forks": 71,
+   "forks": 72,
    "watchers": 15,
    "created_at": "2026-06-18T23:19:14Z",
    "license": "GPL-3.0",
@@ -1158,12 +1294,492 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 210261,
-   "stars": 449,
+   "downloads_total": 220581,
+   "stars": 450,
    "description": "WinHub - The brand new, opensource one-stop place for all your games, now on Android.",
-   "pushed_at": "2026-11-12T21:13:46Z",
+   "pushed_at": "2026-11-13T21:07:15Z",
    "homepage": "https://winhub-emu.vercel.app/",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/star.png",
+   "releases": [
+    {
+     "tag": "1.2",
+     "name": "WinHub 1.2",
+     "date": "2026-11-09T06:09:56Z",
+     "body": "<p align=\"center\">\n<img src=\"https://raw.githubusercontent.com/winhub-emu/winhub/refs/heads/master/logo.png\" width=\"1500\" height=\"500\" alt=\"WinHub\" />\n</p>\n\n<p align=\"center\">\n<img src=\"https://img.shields.io/badge/release-1.2-ff2d9b?style=for-the-badge\" alt=\"1.2\" />\n&nbsp;<img src=\"https://img.shields.io/badge/versionCode-92-7a4cff?style=for-the-badge\" alt=\"versionCode 92\" />\n</p>\n\n# WinHub 1.2\n\nRun Windows apps and games on Android — no PC and no root required.\n\n**WinHub 1.2 is about looks and controls.** 15 new Deck themes, a Deck-style Controls tab, OpenGL and Mods in the XMB game settings, a rebuilt fake-HDR look, and a tidier Storage tab. Unreal Engine HDR is removed.\n\n<!-- update-summary: WinHub 1.2: 15 new Deck themes, a Deck-style Controls tab, OpenGL and Mods in the XMB game settings, a better fake-HDR look and a tidier Storage tab. Unreal Engine HDR is removed. -->\n\n# What's New — everything since 1.1\n\n## 🎨 15 new Deck themes\n\nThe theme picker grows from **7 to 22**. Every new theme is dark, recolours the whole app (popups and touch controls included) and shows up in **Deck Settings → Theme**, **Appearance** and the **first-run wizard**.\n\n| | Theme | Accent | Look |\n|---",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "update.json",
+       "size": 4489,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/update.json"
+      },
+      {
+       "name": "WinHub-1.2-ludashi-from-0.1.wh",
+       "size": 28561041,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-ludashi-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.2-ludashi-from-1.0.wh",
+       "size": 10194579,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-ludashi-from-1.0.wh"
+      },
+      {
+       "name": "WinHub-1.2-ludashi-from-1.1.wh",
+       "size": 10194579,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-ludashi-from-1.1.wh"
+      },
+      {
+       "name": "WinHub-1.2-ludashi.apk",
+       "size": 576084197,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-ludashi.apk"
+      },
+      {
+       "name": "WinHub-1.2-pubg-from-0.1.wh",
+       "size": 28559861,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-pubg-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.2-pubg-from-1.0.wh",
+       "size": 10194003,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-pubg-from-1.0.wh"
+      },
+      {
+       "name": "WinHub-1.2-pubg-from-1.1.wh",
+       "size": 10194003,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-pubg-from-1.1.wh"
+      },
+      {
+       "name": "WinHub-1.2-pubg.apk",
+       "size": 576083990,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-pubg.apk"
+      },
+      {
+       "name": "WinHub-1.2-standard-from-0.1.wh",
+       "size": 28561993,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-standard-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.2-standard-from-1.0.wh",
+       "size": 10194943,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-standard-from-1.0.wh"
+      },
+      {
+       "name": "WinHub-1.2-standard-from-1.1.wh",
+       "size": 10194943,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-standard-from-1.1.wh"
+      },
+      {
+       "name": "WinHub-1.2-standard.apk",
+       "size": 576084179,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.2/WinHub-1.2-standard.apk"
+      }
+     ]
+    },
+    {
+     "tag": "1.1",
+     "name": "WinHub 1.1",
+     "date": "2026-11-08T11:31:10Z",
+     "body": "<p align=\"center\">\n<img src=\"https://raw.githubusercontent.com/winhub-emu/winhub/refs/heads/master/logo.png\" width=\"1500\" height=\"500\" alt=\"WinHub\" />\n</p>\n\n<p align=\"center\">\n<img src=\"https://img.shields.io/badge/release-1.1-ff2d9b?style=for-the-badge\" alt=\"1.1\" />\n&nbsp;<img src=\"https://img.shields.io/badge/versionCode-91-7a4cff?style=for-the-badge\" alt=\"Versione 91\" />\n</p>\n\n> If you want to post this on Reddit (specifically r/EmulationOnAndroid), please include an AI Disclaimer, otherwise your post **will** be removed.\n\n# WinHub 1.1\n\nRun Windows apps and games on Android — no PC and no root required.\n\n**WinHub 1.1 is about first impressions and logs.** A first-run setup wizard for fresh installs, and a Deck-style Log Manager, log viewer and Report a problem dialog.\n\n<!-- update-summary: WinHub 1.1: a first-run setup wizard (layout, theme, extra contents, Social Hub sign-in) and a Deck-style Log Manager, log viewer and Report a problem dialog. -->\n\n> ⚠️ **The setup wizard is new in this release.** If the first install misbehaves, report it with the new Report a problem dialog.\n\n# What's New — everything since 1.0\n\n## 🧭 First-run setup wizard\n\nA fresh install no longer starts d",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "update.json",
+       "size": 3380,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/update.json"
+      },
+      {
+       "name": "WinHub-1.1-ludashi-from-0.1.wh",
+       "size": 27988683,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-ludashi-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.1-ludashi-from-1.0.wh",
+       "size": 9622921,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-ludashi-from-1.0.wh"
+      },
+      {
+       "name": "WinHub-1.1-ludashi.apk",
+       "size": 577597674,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-ludashi.apk"
+      },
+      {
+       "name": "WinHub-1.1-pubg-from-0.1.wh",
+       "size": 27992767,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-pubg-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.1-pubg-from-1.0.wh",
+       "size": 9624465,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-pubg-from-1.0.wh"
+      },
+      {
+       "name": "WinHub-1.1-pubg.apk",
+       "size": 577597500,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-pubg.apk"
+      },
+      {
+       "name": "WinHub-1.1-standard-from-0.1.wh",
+       "size": 27989771,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-standard-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.1-standard-from-1.0.wh",
+       "size": 9623397,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-standard-from-1.0.wh"
+      },
+      {
+       "name": "WinHub-1.1-standard.apk",
+       "size": 577597608,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.1/WinHub-1.1-standard.apk"
+      }
+     ]
+    },
+    {
+     "tag": "1.0",
+     "name": "WinHub 1.0",
+     "date": "2026-11-07T16:20:32Z",
+     "body": "<p align=\"center\">\n<img src=\"https://raw.githubusercontent.com/winhub-emu/winhub/refs/heads/master/logo.png\" width=\"1500\" height=\"500\" alt=\"WinHub\" />\n</p>\n\n<p align=\"center\">\n<img src=\"https://img.shields.io/badge/release-1.0-ff2d9b?style=for-the-badge\" alt=\"1.0\" />\n&nbsp;<img src=\"https://img.shields.io/badge/versionCode-90-7a4cff?style=for-the-badge\" alt=\"versionCode 90\" />\n</p>\n\n# WinHub 1.0\n\nRun Windows apps and games on Android — no PC and no root required.\n\n**WinHub 1.0 is about controllers, the HUD and OpenGL.** A brand new controller engine (Hermes) with real hot-plug, rumble and Direct XInput, a rebuilt Fusion HUD, Fast OpenGL through Mesa + Zink, a Sync selector, a Music Player and a lot of portrait and Deck polish.\n\n<!-- update-summary: WinHub 1.0: the Hermes controller engine with Direct XInput, a rebuilt Fusion HUD, Fast OpenGL, a Sync selector, a Music Player and portrait and Deck polish. -->\n\n> ⚠️ **Hermes and Fast OpenGL are new in this release.** If a controller or an OpenGL game misbehaves, turn the setting off for that container or game and report it.\n\n# What's New — everything since 0.1\n\n## 🎮 Hermes controller engine\n\nA new way to get your controller into the g",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "update.json",
+       "size": 2297,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/update.json"
+      },
+      {
+       "name": "WinHub-1.0-ludashi-from-0.1.wh",
+       "size": 27888159,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/WinHub-1.0-ludashi-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.0-ludashi.apk",
+       "size": 577496283,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/WinHub-1.0-ludashi.apk"
+      },
+      {
+       "name": "WinHub-1.0-pubg-from-0.1.wh",
+       "size": 27887859,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/WinHub-1.0-pubg-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.0-pubg.apk",
+       "size": 577496141,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/WinHub-1.0-pubg.apk"
+      },
+      {
+       "name": "WinHub-1.0-standard-from-0.1.wh",
+       "size": 27888695,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/WinHub-1.0-standard-from-0.1.wh"
+      },
+      {
+       "name": "WinHub-1.0-standard.apk",
+       "size": 577496214,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.0/WinHub-1.0-standard.apk"
+      }
+     ]
+    },
+    {
+     "tag": "0.1",
+     "name": "WinHub - Early Preview",
+     "date": "2026-11-05T12:58:47Z",
+     "body": "<p align=\"center\">\n<img src=\"https://raw.githubusercontent.com/winhub-emu/winhub/refs/heads/master/logo.png\" width=\"1500\" height=\"500\" alt=\"WinHub\" />\n</p>\n\n<!-- update-summary: WinHub 0.1-beta: a revamped UI, new EGL and SurfaceDirect renderers, Social Hub game configs, Mali support and a mod loader. -->\n# 📜 WinHub - Early Preview\n\n## 🚀 Version 0.1-beta\n\n> This page covers everything new in this release, grouped by what you will actually notice. 🚀\n\n**Jump to:** [🎨 New UI](#-a-fully-revamped-ui) · [🖼️ Renderers](#️-new-renderers-egl-and-surfacedirect) · [💬 Social Hub & Game Configs](#-social-hub-and-game-configs) · [🟢 Mali](#-new-mali-support) · [🧩 Mod Loader](#-mod-loader) · [🔄 Updater](#-updater) · [🛠️ Other improvements](#️-other-improvements) · [🗑️ Removed](#️-removed) · [🙏 Credits](#-credits)\n\n---\n\n## 🎨 A fully revamped UI\n\nWinHub now looks and feels like a console. Everything was rebuilt around a **Deck-style shell** that works fully with a gamepad **and** with touch, in landscape **and** in portrait.\n\n### 🕹️ The Deck shell (landscape)\n- 🏠 **Console-style Home.** A top-left carousel of your games with big glowing covers, a launch zoom when you press play, a blurred cover back",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "update.json",
+       "size": 1080,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/0.1/update.json"
+      },
+      {
+       "name": "WinHub-0.1-ludashi.apk",
+       "size": 570813229,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/0.1/WinHub-0.1-ludashi.apk"
+      },
+      {
+       "name": "WinHub-0.1-pubg.apk",
+       "size": 570812858,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/0.1/WinHub-0.1-pubg.apk"
+      },
+      {
+       "name": "WinHub-0.1-standard.apk",
+       "size": 570812900,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/0.1/WinHub-0.1-standard.apk"
+      }
+     ]
+    },
+    {
+     "tag": "ignore",
+     "name": "IGNORE",
+     "date": "2026-09-27T10:58:30Z",
+     "body": "ignore this, its just a test for winhub",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "1.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/1.json"
+      },
+      {
+       "name": "10.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/10.json"
+      },
+      {
+       "name": "2.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/2.json"
+      },
+      {
+       "name": "3.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/3.json"
+      },
+      {
+       "name": "4.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/4.json"
+      },
+      {
+       "name": "5.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/5.json"
+      },
+      {
+       "name": "6.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/6.json"
+      },
+      {
+       "name": "7.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/7.json"
+      },
+      {
+       "name": "8.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/8.json"
+      },
+      {
+       "name": "9.json",
+       "size": 19,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/ignore/9.json"
+      }
+     ]
+    },
+    {
+     "tag": "1.3",
+     "name": "star 1.3 - UI redesigns, Vegas Engine built in, New FPS Counter, New in-game menu redesign",
+     "date": "2026-06-09T05:37:13Z",
+     "body": "<img src=\"https://github.com/jacojayy/star/blob/main/20260418_134945.png\" width=\"1500\" height=\"500\" alt=\"star\" />\n</p>\n\n**After a lot of previews, star 1.3 is here. We had some juicy changes made! But first of all, credits!**\n\n- @jacojayy: All of the changes, excluding the Vegas work.\n- @leegao: Helping in Vegas. It was a pleasure to work and chat with you, hope we will do it again in the future!\n- @isygold: Developing Vegas\n\n### NOTE\n- The Vegas FrameGen still doesnt work. \n- When installing Proton / Wine versions, do not panic. It will install over time, just wait!\n\n## Changelog\n- Redesigned the in-game ui:\n     - The in-game ui menu now has a modern and sleek look, making the experience way more fresh and easier.\n- Redesigned FPS Counter\n     - The FPS Counter is now horizontal by default and can be customized via the in game menu.\n- Integrated Vegas into star.\n- Removed contents tab:\n     - Contents can now be installed directly in the container / shortcut settings.\n- Revamped shortcut tab\n- Made the shortcut image size 2:3\n- Removed the appearance tab to make the experience less buggy\n- Defaulted the theme to AMOLED.\n- Added the OneUI / HyperOS fix to the Wrapper settings.\n   ",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "star-ludashi-1.3.apk",
+       "size": 630320047,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3/star-ludashi-1.3.apk"
+      },
+      {
+       "name": "star-pubg-1.3.apk",
+       "size": 630319903,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3/star-pubg-1.3.apk"
+      },
+      {
+       "name": "star-standard-1.3.apk",
+       "size": 630320079,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3/star-standard-1.3.apk"
+      }
+     ]
+    },
+    {
+     "tag": "1.3-preview3",
+     "name": "Star Nightly - 1.3-preview3",
+     "date": "2026-06-01T05:15:23Z",
+     "body": "<img src=\"https://github.com/jacojayy/star/blob/main/20260418_134945.png\" width=\"1500\" height=\"500\" alt=\"star\" />\n</p>\n\n## Changelog\n\n| Commit | Title |\n|--------|--------|\n| `5e8403b` | fix: skip Binding.NONE in handleInputEvent (phantom keycode-0 on button tap) |\n| `55cf95d` | fix: InputControls crash + drawIcon regressions |\n| `ca13e7f` | ported from cmod 13: add reactive visual feedback for virtual controls. elements now render a translucent fill while actively pressed (or toggled), using low‑alpha overlays across BUTTON, D‑Pad, Range, Stick, and Trackpad types. invalidate on touch transitions to ensure immediate redraw. |\n| `1f5778f` | Delete app/src/main/java/com/winlator/star/inputcontrols/ControlElement.java |\n| `d547dca` | replace InputControlsFragment.java |\n| `d9c8d13` | delete InputControlsFragment.java |\n| `e54dd77` | replace old virtual gamepad with the new one |\n| `4f7c661` | delete app/src/main/assets/inputcontrols/profiles/controls-3.icp |\n| `e3ff7c4` | Remove feature and documentation sections from README |\n| `7ce9a4a` | fix: replaced the proton-9-arm64ec download URL to the custom star one to fix controller issues. |\n",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "star-ludashi-1.3-preview3.apk",
+       "size": 611692035,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3-preview3/star-ludashi-1.3-preview3.apk"
+      },
+      {
+       "name": "star-pubg-1.3-preview3.apk",
+       "size": 611691967,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3-preview3/star-pubg-1.3-preview3.apk"
+      },
+      {
+       "name": "star-standard-1.3-preview3.apk",
+       "size": 611692007,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3-preview3/star-standard-1.3-preview3.apk"
+      }
+     ]
+    },
+    {
+     "tag": "1.3-preview",
+     "name": "Star Nightly - 1.3-preview",
+     "date": "2026-05-29T17:51:44Z",
+     "body": "<img src=\"https://github.com/jacojayy/star/blob/main/20260418_134945.png\" width=\"1500\" height=\"500\" alt=\"star\" />\n</p>\n\n## Changelog\n\n| Commit | Title |\n|--------|--------|\n| `7ce9a4a` | fix: replaced the proton-9-arm64ec download URL to the custom star one to fix controller issues. |",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "star-ludashi-1.3-preview.apk",
+       "size": 611691831,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3-preview/star-ludashi-1.3-preview.apk"
+      },
+      {
+       "name": "star-pubg-1.3-preview.apk",
+       "size": 611691775,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3-preview/star-pubg-1.3-preview.apk"
+      },
+      {
+       "name": "star-standard-1.3-preview.apk",
+       "size": 611691807,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/1.3-preview/star-standard-1.3-preview.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star-nightly-c23d14c",
+     "name": "star Nightly -git_c23d14c",
+     "date": "2026-05-09T16:19:54Z",
+     "body": "## Changelog\n\n| Commit | Title |\n|--------|--------|\n| `c23d14c` | feat: replace dxvk-2.3.1 with 2.7.1.1-sdk36-arm64ec |\n| `e8ff646` | feat: add adrenotools turnip-sdk36 driver asset |\n| `4c5c666` | chore: update turnip driver version strings from 25.1.0 to turnip-sdk36, matching the released 1.2 |\n| `30d65e0` | junk: delete unnecessary files (7) |\n| `2b31625` | junk: delete unnecessary files (6) |\n| `316bef9` | junk: delete unnecessary files (5) |\n| `02baac5` | junk: delete unnecessary files (4) |\n| `ce58b9b` | junk: delete unnecessary files (3) |\n| `5e4bf43` | junk: delete unnecessary files (2) |\n| `259ab2b` | junk: delete unnecessary files (1) |\n\n\n",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "star-compose-v-c23d14c.apk",
+       "size": 615450849,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star-nightly-c23d14c/star-compose-v-c23d14c.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star-nightly-8c80ae6",
+     "name": "star Nightly -git_8c80ae6",
+     "date": "2026-05-09T21:40:41Z",
+     "body": "## Changelog\n\n| Commit | Title |\n|--------|--------|\n| `8c80ae6` | fix(container): WinComponents dropdown stale-display on Builtin/Native toggle |\n| `b0a826c` | Merge feature/adreno-driver-downloader into beta4 |\n| `f096f2d` | refactor(adreno): swap to Nightlies JSON sources + theme-token migration |\n| `a0a74e9` | feat(adreno): add online driver download sheet to AdrenoTools screen |",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "star-compose-v-8c80ae6.apk",
+       "size": 615492385,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star-nightly-8c80ae6/star-compose-v-8c80ae6.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star-nightly-4491070",
+     "name": "star Nightly -git_4491070",
+     "date": "2026-05-08T17:54:28Z",
+     "body": "## Changelog\n\n| Commit | Title |\n|--------|--------|\n| `4491070` | Fix formatting in README.md contributors section |\n| `4492f75` | fix(workflow): use heredoc syntax for $GITHUB_ENV multi-line CHANGELOG |\n| `9fc3bba` | Refactor changelog generation in release workflow |\n| `5099c91` | Merge remote-tracking branch 'origin/fix/default-contents-url' into beta4-test |\n| `4870f8e` | Merge remote-tracking branch 'origin/fix/topbar-actions-race' into beta4-test |\n| `3633ca5` | chore(contents): point default contents URL at The412Banner/winlator-contents |\n| `bdffc29` | fix(topbar): set actions via LaunchedEffect to win the parent-clear race |\n| `0cb2943` | feat(shortcuts): PE icon extraction fallback for SGDB-miss covers |\n| `989bac7` | fix(shortcuts): use container drive map for EXE path + add cover art |\n| `07612f3` | fix(shortcuts): support EXE import + tell the truth in the toast |\n\n\n",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "star-compose-v-4491070.apk",
+       "size": 607767558,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star-nightly-4491070/star-compose-v-4491070.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star-nightly-3d2b2dd",
+     "name": "star Nightly -git_3d2b2dd",
+     "date": "2026-05-08T05:41:20Z",
+     "body": "",
+     "prerelease": true,
+     "assets": [
+      {
+       "name": "star-compose-v-3d2b2dd.apk",
+       "size": 607751850,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star-nightly-3d2b2dd/star-compose-v-3d2b2dd.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star.bionic-revamp",
+     "name": "star Bionic REVAMPED - Fully converted UI to Jetpack compose, Timeline Semaphore patches in default Turnip and store integration optimizations.",
+     "date": "2026-05-06T20:04:37Z",
+     "body": "<img src=\"https://github.com/jacojayy/star/blob/main/20260418_134945.png\" width=\"1500\" height=\"500\" alt=\"star\" />  \n</p>\n\n**After a long wait, we finally converted the old Java XML UI to the new Jetpack Compose UI. We also implemented Timeline Semaphore patches to a specific Turnip to have no regressions on newer DXVKs. Not only that, but the stores integration has been improved.**\n\n# Changelog\n- Fully converted Java XML UI to Jetpack Compose, giving the most unique look ever. This is the only Winlator fork to have this, big jump!\n- Modified controller implementation to work with the Jetpack Compose UI. This was broken before.\n- Modified the default Turnip to one with Timeline Semaphore patches built in, deleting regressions with newer DXVKs.\n- Stores implementation has been improved. Steam isnt fully working, we would need to implement Pluvia or something else to manage all the Steam stuff like GameNative does.\n- Rewrote controller implementation to work with the Jetpack compose UI\n- Updated the first installing screen\n\n**NOTE:** Even tho the container menu shows box64 0.3.7, it uses the one you chose. Its just a visual bug.\n\n# DXVK 2.5+ fix\n- Utilize the DXVK below with the defau",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "sdk36-arm64ec-2.7.1-1.wcp",
+       "size": 7996905,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.bionic-revamp/sdk36-arm64ec-2.7.1-1.wcp"
+      },
+      {
+       "name": "starREVAMPED.apk",
+       "size": 610026794,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.bionic-revamp/starREVAMPED.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star.bionic-1-1",
+     "name": "star Bionic 1.1 | Built-in Game Stores Update (Steam, Epic Games and GOG)",
+     "date": "2026-04-15T17:26:08Z",
+     "body": "<img src=\"https://raw.githubusercontent.com/jacojayy/star/refs/heads/main/logo.png\" width=\"1500\" height=\"500\" alt=\"star\" />  \n</p>\n\n**After a long wait, the time is here. We have successfuly implemented the built-in game stores such as Epic Games, Steam, GOG, Amazon Games to maximize your experience.**\n\n# Changelog\n- Implemented built-in game stores such as Amazon Games, Steam, GOG and Epic Games to make the ultimate Winlator experience. Now you're be able to enjoy your own game library in the stores just by a single login in the selected game store\n- Added the different versions of wrapper, now you can switch the wrapper versions to any version that you would like to use\n- Fixed the add shortcut function doesn't work properly\n- Fixed frontend support\n- Completely rebuilt start menu in container\n- Revamped main menu UI adding titles to each section\n- General localization fixes\n- Small revamp of UI in general\n- Wrapper has been reworked.\n\n# Documentation of the work done\nhttps://github.com/The412Banner/BannerHub/tree/main/game-store-reports",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "starBionic1-1.apk",
+       "size": 593799666,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.bionic-1-1/starBionic1-1.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star.bionic-1",
+     "name": "star Bionic V1.0 - Stable Release",
+     "date": "2026-03-18T23:58:30Z",
+     "body": "<img src=\"https://raw.githubusercontent.com/jacojayy/star/refs/heads/main/logo.png\" width=\"1500\" height=\"500\" alt=\"star\" />  \n</p>\n\n**After a long wait, the Bionic version of star is finally released. We have so many huge changes here in this version, we promise.**\n\n# Changelog\n- Implemented a new FPS Counter\n    - You can now easily manager your FPS Counter in the container menu. You can adjust It however you like, adding CPU Temperaturs, GPU Load or just having a simple FPS Counter.\n\n- Graphics Engine implemented (thanks to @StevenMXZ)\n    - You can now use a new Super Resolution setting, a DLS Color Boost setting and most importantly, the HDR, like the one used in GameHub directly in the container!\n\n- Reimplemented the Save Manager from winlator cmod @coffincolors\n    - You can now easily manager your save datas without even entering the container, by simply going in the menu and going in the saves page.\n \n- Reimplemented the export and import container feature.\n     - Self explainatory.\n\n- Revamped the layout of the shortcut menu, inspired from winlator bionic by @de0ver\n     - With the addition of sort, switch-able layout into grid or list and ability to import shortcut from i",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "star-Bionic_antutu.apk",
+       "size": 573422898,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.bionic-1/star-Bionic_antutu.apk"
+      },
+      {
+       "name": "star-Bionic_ludashi.apk",
+       "size": 573422896,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.bionic-1/star-Bionic_ludashi.apk"
+      },
+      {
+       "name": "star-Bionic_original.apk",
+       "size": 573422912,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.bionic-1/star-Bionic_original.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star.11-2",
+     "name": "star 11-2 | Stable Release",
+     "date": "2026-01-09T04:20:27Z",
+     "body": "<img src=\"https://raw.githubusercontent.com/jacojayy/star/refs/heads/main/logo.png\" width=\"1500\" height=\"500\" alt=\"star\" />  \n</p>\n\n**Small update of star emulator v11 are now released! Check them out what we have changed in this release!**\n\n# Changelog\n- Added USB storage permission like winlator bionic\n- Fixed and restored the online components in the start menu\n- Improved the default environment variables\n- Added several new environment variables for experimental in the glibc, ported from winlator bionic\n- Small fixes",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "star-11.apk",
+       "size": 202693836,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.11-2/star-11.apk"
+      }
+     ]
+    },
+    {
+     "tag": "star.11-1",
+     "name": "star 11-1 | Stable Release",
+     "date": "2025-12-23T11:27:12Z",
+     "body": "<img src=\"https://raw.githubusercontent.com/jacojayy/star/refs/heads/main/logo.png\" width=\"1500\" height=\"500\" alt=\"star\" />  \n</p>\n\n**After a long time, star 11-1 is released! We dropped some huge updates! Check them out below!**\n\n# Changelog\n- Ported all of the features from 10.1 v3 afei:\n  - Contents Tab (dxvk,box64 etc.)\n  - Hostei Settings, aka star Settings (terminal, backup, rootfs manager etc.)\n  - Foreground notification services\n- Added many features in the XServer menu (inside the container) (move cursor to touchpoint, toggle orientation and pause/resume)\n- Added DXVK d3d9 boost game fps for mali devices in the start menu (thanks to Isygold)\n- Added new options for TU_DEBUG env (forcecb and nocb) from Winlator Bionic\n- Some improvements have been made in the environment variables settings\n- Recompiled default box64 and replaced it with a self compiled one.\n- Modified the default wallpapers to match star \n- Updated FPS counter to match star\n-----------\nSome contents, as DXVK, wont install properly because they arent put in the repository. We will fix it soon.",
+     "prerelease": false,
+     "assets": [
+      {
+       "name": "star-11.apk",
+       "size": 202697930,
+       "url": "https://github.com/winhub-emu/winhub/releases/download/star.11-1/star-11.apk"
+      }
+     ]
+    }
+   ],
    "forks": 24,
    "watchers": 21,
    "created_at": "2025-05-01T18:07:27Z",
@@ -1181,7 +1797,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 184467,
+   "downloads_total": 184826,
    "stars": 339,
    "description": "Simple Modification of ExaGear: Windows Emulator (^^)",
    "pushed_at": "2025-02-25T11:41:52Z",
@@ -1207,7 +1823,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 182149,
+   "downloads_total": 183395,
    "stars": 757,
    "description": "An Android app for playing Windows games from Steam, Epic Games, GOG, and more on your device.",
    "pushed_at": "2026-11-02T13:31:16Z",
@@ -1237,8 +1853,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 152785,
-   "stars": 226,
+   "downloads_total": 152997,
+   "stars": 227,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-05-12T18:19:19Z",
    "homepage": "https://winlator.org",
@@ -1283,13 +1899,13 @@
    "category": "All In One",
    "official": false,
    "channel": "stable",
-   "downloads_total": 107129,
-   "stars": 4504,
+   "downloads_total": 107507,
+   "stars": 4508,
    "description": "All in one emulator on Android!",
    "pushed_at": "2026-10-16T09:07:56Z",
    "homepage": "https://lemuroid.com",
    "logo_url": "https://the412banner.github.io/emulator-ranking/logos/lemuroid.png",
-   "forks": 414,
+   "forks": 417,
    "watchers": 54,
    "created_at": "2019-12-09T13:55:34Z",
    "license": "GPL-3.0",
@@ -1313,7 +1929,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 101384,
+   "downloads_total": 101481,
    "stars": 143,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-06-28T11:07:57Z",
@@ -1336,7 +1952,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 100445,
+   "downloads_total": 100461,
    "stars": 1721,
    "description": "Lightweight unofficial Steam client for Android",
    "pushed_at": "2026-02-23T19:23:53Z",
@@ -1363,7 +1979,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 94938,
+   "downloads_total": 95098,
    "stars": 130,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-11-09T06:17:38Z",
@@ -1386,7 +2002,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 85660,
+   "downloads_total": 85725,
    "stars": 34,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-05-26T11:10:39Z",
@@ -1409,7 +2025,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 72116,
+   "downloads_total": 72206,
    "stars": 141,
    "description": "Android application for running Steam games with Proton/Wine and Box86/Box64",
    "pushed_at": "2026-04-29T14:09:07Z",
@@ -1432,7 +2048,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 64839,
+   "downloads_total": 64848,
    "stars": 156,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2025-08-24T22:41:56Z",
@@ -1455,7 +2071,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads_total": 33062,
+   "downloads_total": 33215,
    "stars": 66,
    "description": "BannerHub Lite — BannerHub features patched into GameHub Lite 5.1.4",
    "pushed_at": "2026-05-21T21:17:38Z",
@@ -1478,7 +2094,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 30994,
+   "downloads_total": 31011,
    "stars": 28,
    "description": "Android application for running Windows applications with Wine and Box86/Box64",
    "pushed_at": "2026-03-22T01:01:37Z",
@@ -1501,7 +2117,7 @@
    "category": "PC Emulator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 21869,
+   "downloads_total": 21877,
    "stars": 80,
    "description": "",
    "pushed_at": "2025-06-26T21:09:18Z",
@@ -1524,8 +2140,8 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 10747,
-   "stars": 223,
+   "downloads_total": 10865,
+   "stars": 225,
    "description": "Windows apps/games emulator for standalone OpenXR headsets.",
    "pushed_at": "2026-10-09T17:41:04Z",
    "homepage": "https://winlatorxr.github.io/",
@@ -1554,7 +2170,7 @@
    "category": "GameHub",
    "official": false,
    "channel": "stable",
-   "downloads_total": 8413,
+   "downloads_total": 8420,
    "stars": 47,
    "description": "GameHub Lite is a community-maintained modified version of GameHub for education purposes",
    "pushed_at": "2026-01-06T21:01:46Z",
@@ -1577,7 +2193,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 7221,
+   "downloads_total": 7222,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -1600,7 +2216,7 @@
    "category": "Xbox",
    "official": false,
    "channel": "stable",
-   "downloads_total": 3229,
+   "downloads_total": 3233,
    "stars": 17,
    "description": "",
    "pushed_at": "2026-03-08T18:10:12Z",
@@ -1623,7 +2239,7 @@
    "category": "Emulator PS5",
    "official": false,
    "channel": "stable",
-   "downloads_total": 2935,
+   "downloads_total": 2945,
    "stars": 0,
    "description": "",
    "pushed_at": "",
@@ -1646,7 +2262,7 @@
    "category": "Winlator",
    "official": false,
    "channel": "stable",
-   "downloads_total": 2428,
+   "downloads_total": 2432,
    "stars": 21,
    "description": "APKs of Pipetto-crypto's Winlator Bionic",
    "pushed_at": "2026-05-07T20:44:04Z",
@@ -1660,6 +2276,29 @@
    "archived": true,
    "latest_tag": "2026-05-03",
    "latest_date": "2026-05-03T01:49:34Z"
+  },
+  {
+   "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
+   "name": "Exiled Kingdoms Multiplayer",
+   "repo": "winlatorbrasil/Exiled-Kingdoms-Multiplayer",
+   "repo_url": "https://github.com/winlatorbrasil/Exiled-Kingdoms-Multiplayer",
+   "category": "GAME",
+   "official": false,
+   "channel": "stable",
+   "downloads_total": 1776,
+   "stars": 11,
+   "description": "Multiplayer",
+   "pushed_at": "2026-04-24T23:48:07Z",
+   "homepage": "",
+   "logo_url": "https://the412banner.github.io/emulator-ranking/logos/drivers.png",
+   "forks": 2,
+   "watchers": 1,
+   "created_at": "2026-04-18T09:42:39Z",
+   "license": "",
+   "topics": [],
+   "archived": false,
+   "latest_tag": "Exiled-Kingdoms-Multiplayer-2.0",
+   "latest_date": "2026-04-24T23:48:07Z"
   },
   {
    "id": "duckyduckg-winlator",
@@ -1683,29 +2322,6 @@
    "archived": false,
    "latest_tag": "8de79b1",
    "latest_date": "2026-04-05T07:31:59Z"
-  },
-  {
-   "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
-   "name": "Exiled Kingdoms Multiplayer",
-   "repo": "winlatorbrasil/Exiled-Kingdoms-Multiplayer",
-   "repo_url": "https://github.com/winlatorbrasil/Exiled-Kingdoms-Multiplayer",
-   "category": "GAME",
-   "official": false,
-   "channel": "stable",
-   "downloads_total": 1770,
-   "stars": 11,
-   "description": "Multiplayer",
-   "pushed_at": "2026-04-24T23:48:07Z",
-   "homepage": "",
-   "logo_url": "https://the412banner.github.io/emulator-ranking/logos/drivers.png",
-   "forks": 2,
-   "watchers": 1,
-   "created_at": "2026-04-18T09:42:39Z",
-   "license": "",
-   "topics": [],
-   "archived": false,
-   "latest_tag": "Exiled-Kingdoms-Multiplayer-2.0",
-   "latest_date": "2026-04-24T23:48:07Z"
   },
   {
    "id": "j4mcu-builds-gamehub-lite-redmagic",

@@ -253,9 +253,9 @@
   },
   "三星 Exynos 2400": {
    "level": "level1",
-   "total_score": "935838",
-   "cpu_score": "559029",
-   "gpu_score": "376809",
+   "total_score": "1379530",
+   "cpu_score": "713739",
+   "gpu_score": "665791",
    "cores": [
     {
      "count": 1,
@@ -284,9 +284,9 @@
   },
   "三星 Exynos 2500": {
    "level": "level1",
-   "total_score": "1288409",
-   "cpu_score": "687559",
-   "gpu_score": "600850",
+   "total_score": "1578222",
+   "cpu_score": "799615",
+   "gpu_score": "778607",
    "cores": [
     {
      "count": 1,
@@ -2947,9 +2947,9 @@
   },
   "联发科技 天玑8300-Ultra": {
    "level": "level1",
-   "total_score": "894877",
-   "cpu_score": "492051",
-   "gpu_score": "402826",
+   "total_score": "911567",
+   "cpu_score": "479667",
+   "gpu_score": "431900",
    "cores": [
     {
      "count": 1,
@@ -2973,9 +2973,9 @@
   },
   "联发科技 天玑8350-Ultimate": {
    "level": "level1",
-   "total_score": "965049",
-   "cpu_score": "486715",
-   "gpu_score": "478334",
+   "total_score": "966241",
+   "cpu_score": "481660",
+   "gpu_score": "484581",
    "cores": [
     {
      "count": 1,
@@ -2999,9 +2999,9 @@
   },
   "联发科技 天玑8400-Max": {
    "level": "level1",
-   "total_score": "1327167",
-   "cpu_score": "686832",
-   "gpu_score": "640335",
+   "total_score": "1291506",
+   "cpu_score": "669482",
+   "gpu_score": "622024",
    "cores": [
     {
      "count": 1,
@@ -3025,9 +3025,9 @@
   },
   "联发科技 天玑8400-Ultra": {
    "level": "level1",
-   "total_score": "1227294",
-   "cpu_score": "665278",
-   "gpu_score": "562016",
+   "total_score": "1192934",
+   "cpu_score": "646382",
+   "gpu_score": "546552",
    "cores": [
     {
      "count": 1,
@@ -3051,9 +3051,9 @@
   },
   "联发科技 天玑8500 Elite": {
    "level": "level1",
-   "total_score": "1390468",
-   "cpu_score": "674244",
-   "gpu_score": "716224",
+   "total_score": "1367154",
+   "cpu_score": "659176",
+   "gpu_score": "707978",
    "cores": [
     {
      "count": 1,
@@ -3077,9 +3077,9 @@
   },
   "联发科技 天玑8500 Super": {
    "level": "level1",
-   "total_score": "1358742",
-   "cpu_score": "674535",
-   "gpu_score": "684207",
+   "total_score": "1356477",
+   "cpu_score": "665118",
+   "gpu_score": "691359",
    "cores": [
     {
      "count": 1,
@@ -3103,9 +3103,9 @@
   },
   "联发科技 天玑8500-Ultra": {
    "level": "level1",
-   "total_score": "1300797",
-   "cpu_score": "672403",
-   "gpu_score": "628394",
+   "total_score": "1275999",
+   "cpu_score": "652396",
+   "gpu_score": "623603",
    "cores": [
     {
      "count": 1,
@@ -3129,9 +3129,9 @@
   },
   "联发科技 天玑8550 Elite": {
    "level": "level1",
-   "total_score": "1247157",
-   "cpu_score": "502459",
-   "gpu_score": "744698",
+   "total_score": "1423053",
+   "cpu_score": "684264",
+   "gpu_score": "738789",
    "cores": [
     {
      "count": 1,
@@ -3155,9 +3155,9 @@
   },
   "联发科技 天玑8550 Super": {
    "level": "level1",
-   "total_score": "1352732",
-   "cpu_score": "686946",
-   "gpu_score": "665786",
+   "total_score": "1254688",
+   "cpu_score": "619753",
+   "gpu_score": "634935",
    "cores": [
     {
      "count": 1,
@@ -3501,9 +3501,9 @@
   },
   "谷歌 Tensor G3": {
    "level": "level1",
-   "total_score": "800832",
-   "cpu_score": "441836",
-   "gpu_score": "358996",
+   "total_score": "801718",
+   "cpu_score": "437769",
+   "gpu_score": "363949",
    "cores": [
     {
      "count": 1,
@@ -3527,9 +3527,9 @@
   },
   "谷歌 Tensor G4": {
    "level": "level1",
-   "total_score": "925515",
-   "cpu_score": "521122",
-   "gpu_score": "404393",
+   "total_score": "883853",
+   "cpu_score": "482506",
+   "gpu_score": "401347",
    "cores": [
     {
      "count": 1,
@@ -4155,9 +4155,9 @@
   },
   "高通 骁龙7 Gen 4": {
    "level": "level1",
-   "total_score": "798597",
-   "cpu_score": "474107",
-   "gpu_score": "324490",
+   "total_score": "797430",
+   "cpu_score": "489332",
+   "gpu_score": "308098",
    "cores": [
     {
      "count": 1,
@@ -4207,9 +4207,9 @@
   },
   "高通 骁龙7+ Gen 3": {
    "level": "level1",
-   "total_score": "994559",
-   "cpu_score": "568831",
-   "gpu_score": "425728",
+   "total_score": "1002543",
+   "cpu_score": "580858",
+   "gpu_score": "421685",
    "cores": [
     {
      "count": 1,
@@ -4546,9 +4546,9 @@
   },
   "高通 骁龙8 Gen 2": {
    "level": "level1",
-   "total_score": "1034945",
-   "cpu_score": "610530",
-   "gpu_score": "424415",
+   "total_score": "1038499",
+   "cpu_score": "606195",
+   "gpu_score": "432304",
    "cores": [
     {
      "count": 1,
@@ -4577,9 +4577,9 @@
   },
   "高通 骁龙8 Gen 3": {
    "level": "level1",
-   "total_score": "1473128",
-   "cpu_score": "708427",
-   "gpu_score": "764701",
+   "total_score": "1459232",
+   "cpu_score": "693860",
+   "gpu_score": "765372",
    "cores": [
     {
      "count": 1,
@@ -4874,9 +4874,9 @@
   },
   "高通 骁龙8s Gen 3": {
    "level": "level1",
-   "total_score": "1061206",
-   "cpu_score": "576655",
-   "gpu_score": "484551",
+   "total_score": "1034812",
+   "cpu_score": "564979",
+   "gpu_score": "469833",
    "cores": [
     {
      "count": 1,

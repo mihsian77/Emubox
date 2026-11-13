@@ -1007,152 +1007,152 @@
 {
 "rank": 1,
 "name": "AMD Ryzen 9 9950X3D2",
-"score": "1490149"
+"score": "1490277"
 },
 {
 "rank": 2,
 "name": "AMD Ryzen 9 9950X3D",
-"score": "1434297"
+"score": "1434671"
 },
 {
 "rank": 3,
 "name": "AMD Ryzen 9 9950X",
-"score": "1358169"
+"score": "1358247"
 },
 {
 "rank": 4,
 "name": "Intel Core Ultra 7 270K Plus",
-"score": "1309810"
+"score": "1309734"
 },
 {
 "rank": 5,
 "name": "Intel Core Ultra 9 285K",
-"score": "1305970"
+"score": "1305858"
 },
 {
 "rank": 6,
 "name": "Intel Core i9-14900KS",
-"score": "1229913"
+"score": "1228193"
 },
 {
 "rank": 7,
 "name": "AMD Ryzen 9 7950X",
-"score": "1218343"
+"score": "1217972"
 },
 {
 "rank": 8,
 "name": "13th Gen Intel Core i9-13900KS",
-"score": "1205088"
+"score": "1204857"
 },
 {
 "rank": 9,
 "name": "Intel Core i9-14900KF",
-"score": "1204266"
+"score": "1204232"
 },
 {
 "rank": 10,
 "name": "Intel Core i9-14900K",
-"score": "1201041"
+"score": "1200432"
 },
 {
 "rank": 11,
 "name": "AMD Ryzen 9 7950X3D",
-"score": "1192831"
+"score": "1193206"
 },
 {
 "rank": 12,
 "name": "13th Gen Intel Core i9-13900K",
-"score": "1189753"
+"score": "1189755"
 },
 {
 "rank": 13,
 "name": "13th Gen Intel Core i9-13900KF",
-"score": "1181202"
+"score": "1181344"
 },
 {
 "rank": 14,
 "name": "Intel Core Ultra 7 265K",
-"score": "1154704"
+"score": "1154673"
 },
 {
 "rank": 15,
 "name": "AMD Ryzen 9 9900X",
-"score": "1135553"
+"score": "1135515"
 },
 {
 "rank": 16,
 "name": "AMD Ryzen 9 9900X3D",
-"score": "1133677"
+"score": "1133835"
 },
 {
 "rank": 17,
-"name": "Intel Core Ultra 7 265KF",
-"score": "1128986"
+"name": "Intel Core Ultra 9 285",
+"score": "1129919"
 },
 {
 "rank": 18,
-"name": "Intel Core Ultra 9 285",
-"score": "1128018"
+"name": "Intel Core Ultra 7 265KF",
+"score": "1128771"
 },
 {
 "rank": 19,
 "name": "Intel Core i7-14700K",
-"score": "1094795"
+"score": "1094506"
 },
 {
 "rank": 20,
 "name": "Intel Core i7-14700KF",
-"score": "1093395"
+"score": "1093415"
 },
 {
 "rank": 21,
 "name": "Intel Core Ultra 5 250K Plus",
-"score": "1040430"
+"score": "1040311"
 },
 {
 "rank": 22,
 "name": "Intel Core Ultra 5 250KF Plus",
-"score": "1039036"
+"score": "1038504"
 },
 {
 "rank": 23,
 "name": "AMD Ryzen Threadripper 3970X",
-"score": "1021068"
+"score": "1019508"
 },
 {
 "rank": 24,
 "name": "AMD Ryzen 9 7900X",
-"score": "1014321"
+"score": "1014622"
 },
 {
 "rank": 25,
 "name": "Intel Core Ultra 7 265F",
-"score": "1014225"
+"score": "1013613"
 },
 {
 "rank": 26,
 "name": "13th Gen Intel Core i7-13700K",
-"score": "1007092"
+"score": "1006964"
 },
 {
 "rank": 27,
 "name": "13th Gen Intel Core i7-13700KF",
-"score": "1002532"
+"score": "1002569"
 },
 {
 "rank": 28,
 "name": "13th Gen Intel Core i9-13900F",
-"score": "998862"
+"score": "998883"
 },
 {
 "rank": 29,
 "name": "Intel Core Ultra 7 265",
-"score": "998099"
+"score": "997722"
 },
 {
 "rank": 30,
 "name": "Intel Core i9-14900",
-"score": "966809"
+"score": "965471"
 },
 {
 "rank": 31,
@@ -1167,42 +1167,42 @@
 {
 "rank": 33,
 "name": "AMD Ryzen 7 9850X3D",
-"score": "940081"
+"score": "940067"
 },
 {
 "rank": 34,
 "name": "13th Gen Intel Core i9-13900",
-"score": "937038"
+"score": "937030"
 },
 {
 "rank": 35,
 "name": "Intel Core i9-14900F",
-"score": "921138"
+"score": "924163"
 },
 {
 "rank": 36,
 "name": "Intel Core Ultra 7 255HX",
-"score": "918672"
+"score": "918432"
 },
 {
 "rank": 37,
 "name": "AMD Ryzen 7 9800X3D",
-"score": "914937"
+"score": "914961"
 },
 {
 "rank": 38,
 "name": "12th Gen Intel Core i9-12900KS",
-"score": "909244"
+"score": "909640"
 },
 {
 "rank": 39,
 "name": "AMD Ryzen 9 5900XT",
-"score": "893847"
+"score": "893863"
 },
 {
 "rank": 40,
 "name": "13th Gen Intel Core i7-13790F",
-"score": "886452"
+"score": "886696"
 },
 {
 "rank": 41,
@@ -1211,168 +1211,168 @@
 },
 {
 "rank": 42,
-"name": "13th Gen Intel Core i7-13700F",
-"score": "881208"
+"name": "AMD Ryzen 9 5950X",
+"score": "881246"
 },
 {
 "rank": 43,
-"name": "AMD Ryzen 9 5950X",
-"score": "881135"
+"name": "13th Gen Intel Core i7-13700F",
+"score": "880916"
 },
 {
 "rank": 44,
 "name": "Intel Core Ultra 5 245K",
-"score": "875333"
+"score": "875309"
 },
 {
 "rank": 45,
 "name": "Intel Core Ultra 5 245KF",
-"score": "873074"
+"score": "872952"
 },
 {
 "rank": 46,
 "name": "13th Gen Intel Core i5-13600KF",
-"score": "867998"
+"score": "867993"
 },
 {
 "rank": 47,
 "name": "Intel Core i7-14700F",
-"score": "866809"
+"score": "866494"
 },
 {
 "rank": 48,
 "name": "Intel Core i7-14790F",
-"score": "865505"
+"score": "865896"
 },
 {
 "rank": 49,
 "name": "AMD Ryzen 7 9700X",
-"score": "864014"
+"score": "863942"
 },
 {
 "rank": 50,
 "name": "13th Gen Intel Core i5-13600K",
-"score": "859712"
+"score": "859808"
 },
 {
 "rank": 51,
 "name": "Intel Core i5-14600KF",
-"score": "857662"
+"score": "857604"
 },
 {
 "rank": 52,
 "name": "Intel Core i5-14600K",
-"score": "849842"
+"score": "849867"
 },
 {
 "rank": 53,
 "name": "12th Gen Intel Core i9-12900K",
-"score": "846000"
+"score": "846153"
 },
 {
 "rank": 54,
 "name": "13th Gen Intel Core i7-13700",
-"score": "843416"
+"score": "843431"
 },
 {
 "rank": 55,
+"name": "12th Gen Intel Core i9-12900KF",
+"score": "841644"
+},
+{
+"rank": 56,
 "name": "Intel Core Ultra 5 235",
 "score": "841582"
 },
 {
-"rank": 56,
-"name": "12th Gen Intel Core i9-12900KF",
-"score": "841393"
-},
-{
 "rank": 57,
 "name": "Intel Core i7-14700",
-"score": "838245"
+"score": "838270"
 },
 {
 "rank": 58,
 "name": "12th Gen Intel Core i9-12900F",
-"score": "788308"
+"score": "788175"
 },
 {
 "rank": 59,
 "name": "AMD Ryzen 7 7700X",
-"score": "785105"
+"score": "784235"
 },
 {
 "rank": 60,
 "name": "AMD Ryzen 9 5900X",
-"score": "779436"
+"score": "779346"
 },
 {
 "rank": 61,
 "name": "Intel Core i5-14600",
-"score": "776679"
+"score": "777241"
 },
 {
 "rank": 62,
 "name": "AMD Ryzen 7 7700",
-"score": "769360"
+"score": "769427"
 },
 {
 "rank": 63,
 "name": "Intel Core Ultra 5 235HX",
-"score": "765742"
+"score": "765825"
 },
 {
 "rank": 64,
 "name": "12th Gen Intel Core i7-12700K",
-"score": "756498"
+"score": "756388"
 },
 {
 "rank": 65,
 "name": "12th Gen Intel Core i7-12700KF",
-"score": "754459"
+"score": "754535"
 },
 {
 "rank": 66,
 "name": "AMD EPYC 9T24",
-"score": "749285"
+"score": "746517"
 },
 {
 "rank": 67,
 "name": "AMD Ryzen 5 9600X",
-"score": "734401"
+"score": "734424"
 },
 {
 "rank": 68,
 "name": "AMD Ryzen 9 5900",
-"score": "732924"
+"score": "732990"
 },
 {
 "rank": 69,
 "name": "12th Gen Intel Core i9-12900",
-"score": "725808"
+"score": "724062"
 },
 {
 "rank": 70,
 "name": "AMD Ryzen 7 7800X3D",
-"score": "722175"
+"score": "722208"
 },
 {
 "rank": 71,
 "name": "Intel Core Ultra 5 230F",
-"score": "704974"
+"score": "704799"
 },
 {
 "rank": 72,
 "name": "AMD Ryzen 5 9500F",
-"score": "698619"
+"score": "698488"
 },
 {
 "rank": 73,
 "name": "12th Gen Intel Core i7-12700F",
-"score": "696489"
+"score": "696473"
 },
 {
 "rank": 74,
 "name": "AMD Ryzen 7 8700F",
-"score": "695148"
+"score": "694689"
 },
 {
 "rank": 75,
@@ -1382,17 +1382,17 @@
 {
 "rank": 76,
 "name": "Intel Core Ultra 5 225",
-"score": "691207"
+"score": "691505"
 },
 {
 "rank": 77,
 "name": "13th Gen Intel Core i5-13500",
-"score": "691063"
+"score": "690846"
 },
 {
 "rank": 78,
 "name": "Intel Core i9-10980XE",
-"score": "685559"
+"score": "686072"
 },
 {
 "rank": 79,
@@ -1402,22 +1402,22 @@
 {
 "rank": 80,
 "name": "12th Gen Intel Core i7-12700",
-"score": "676280"
+"score": "676387"
 },
 {
 "rank": 81,
 "name": "AMD Ryzen 9 3950X",
-"score": "672732"
+"score": "672951"
 },
 {
 "rank": 82,
 "name": "Intel Core Ultra 5 225F",
-"score": "670873"
+"score": "670868"
 },
 {
 "rank": 83,
 "name": "AMD Ryzen 5 7600X",
-"score": "654029"
+"score": "653709"
 },
 {
 "rank": 84,
@@ -1427,22 +1427,22 @@
 {
 "rank": 85,
 "name": "13th Gen Intel Core i5-13490F",
-"score": "643662"
+"score": "643530"
 },
 {
 "rank": 86,
 "name": "12th Gen Intel Core i5-12600KF",
-"score": "643495"
+"score": "643452"
 },
 {
 "rank": 87,
 "name": "12th Gen Intel Core i5-12600K",
-"score": "639818"
+"score": "639849"
 },
 {
 "rank": 88,
 "name": "AMD Ryzen 5 7600",
-"score": "632716"
+"score": "632524"
 },
 {
 "rank": 89,
@@ -1452,52 +1452,52 @@
 {
 "rank": 90,
 "name": "Intel Core i5-14490F",
-"score": "627482"
+"score": "627503"
 },
 {
 "rank": 91,
 "name": "AMD Ryzen 5 7500F",
-"score": "625143"
+"score": "625136"
 },
 {
 "rank": 92,
 "name": "AMD Ryzen 7 5800X",
-"score": "623942"
+"score": "624127"
 },
 {
 "rank": 93,
 "name": "13th Gen Intel Core i5-13400F",
-"score": "621400"
+"score": "621196"
 },
 {
 "rank": 94,
 "name": "13th Gen Intel Core i5-13400",
-"score": "615961"
+"score": "615966"
 },
 {
 "rank": 95,
 "name": "Intel Core i5-14400F",
-"score": "601746"
+"score": "601759"
 },
 {
 "rank": 96,
 "name": "Intel Core i9-10940X",
-"score": "601581"
+"score": "601696"
 },
 {
 "rank": 97,
 "name": "AMD Ryzen 7 5800X3D",
-"score": "600447"
+"score": "600211"
 },
 {
 "rank": 98,
-"name": "Intel Core i5-14500",
-"score": "598818"
+"name": "AMD Ryzen 7 5700X",
+"score": "598411"
 },
 {
 "rank": 99,
-"name": "AMD Ryzen 7 5700X",
-"score": "598375"
+"name": "Intel Core i5-14500",
+"score": "594890"
 },
 {
 "rank": 100,
@@ -1507,17 +1507,17 @@
 {
 "rank": 101,
 "name": "AMD Ryzen 7 5800",
-"score": "591368"
+"score": "591209"
 },
 {
 "rank": 102,
 "name": "Intel Core i5-14400",
-"score": "589235"
+"score": "589207"
 },
 {
 "rank": 103,
 "name": "AMD Ryzen 5 7600X3D",
-"score": "588380"
+"score": "587443"
 },
 {
 "rank": 104,
@@ -1532,12 +1532,12 @@
 {
 "rank": 106,
 "name": "13th Gen Intel Core i5-13500T",
-"score": "583541"
+"score": "584210"
 },
 {
 "rank": 107,
 "name": "AMD Ryzen 5 8400F",
-"score": "581751"
+"score": "581980"
 },
 {
 "rank": 108,
@@ -1547,27 +1547,27 @@
 {
 "rank": 109,
 "name": "AMD Ryzen 7 5700X3D",
-"score": "573340"
+"score": "573302"
 },
 {
 "rank": 110,
 "name": "Intel Core i9-10900KF",
-"score": "570571"
+"score": "571308"
 },
 {
 "rank": 111,
 "name": "Intel Core i9-10900K",
-"score": "568257"
+"score": "568433"
 },
 {
 "rank": 112,
 "name": "AMD Ryzen 9 3900X",
-"score": "566509"
+"score": "566503"
 },
 {
 "rank": 113,
 "name": "Intel Core i9-7940X",
-"score": "562438"
+"score": "561081"
 },
 {
 "rank": 114,
@@ -1577,42 +1577,42 @@
 {
 "rank": 115,
 "name": "Intel Core i9-10850K",
-"score": "555540"
+"score": "555787"
 },
 {
 "rank": 116,
 "name": "Intel Core i5-14500T",
-"score": "552559"
+"score": "553702"
 },
 {
 "rank": 117,
 "name": "AMD Ryzen 7 5700G with Radeon Graphics",
-"score": "552068"
+"score": "551986"
 },
 {
 "rank": 118,
-"name": "13th Gen Intel Core i5-13400TEF",
-"score": "550531"
+"name": "AMD Ryzen 9 3900",
+"score": "549535"
 },
 {
 "rank": 119,
-"name": "AMD Ryzen 9 3900",
-"score": "549200"
+"name": "13th Gen Intel Core i5-13400TEF",
+"score": "549154"
 },
 {
 "rank": 120,
 "name": "Intel Core i9-11900K",
-"score": "547770"
+"score": "547666"
 },
 {
 "rank": 121,
 "name": "Intel Core i7-11700K",
-"score": "539385"
+"score": "539241"
 },
 {
 "rank": 122,
 "name": "12th Gen Intel Core i5-12600",
-"score": "534202"
+"score": "533258"
 },
 {
 "rank": 123,
@@ -1622,22 +1622,22 @@
 {
 "rank": 124,
 "name": "AMD Ryzen 5 5600XT",
-"score": "529697"
+"score": "529779"
 },
 {
 "rank": 125,
 "name": "Intel Core i9-11900KF",
-"score": "527904"
+"score": "527972"
 },
 {
 "rank": 126,
 "name": "Intel Core i7-11700KF",
-"score": "524919"
+"score": "524841"
 },
 {
 "rank": 127,
 "name": "AMD Ryzen 5 5600X",
-"score": "523271"
+"score": "523293"
 },
 {
 "rank": 128,
@@ -1646,33 +1646,33 @@
 },
 {
 "rank": 129,
-"name": "AMD Ryzen 5 5600T",
-"score": "518295"
+"name": "Intel Core Ultra 5 325",
+"score": "518362"
 },
 {
 "rank": 130,
-"name": "Intel Core Ultra 5 325",
-"score": "518277"
+"name": "AMD Ryzen 5 5600T",
+"score": "518322"
 },
 {
 "rank": 131,
 "name": "AMD Ryzen 5 5600",
-"score": "512893"
+"score": "512867"
 },
 {
 "rank": 132,
 "name": "Intel Core i9-10900F",
-"score": "511594"
+"score": "511796"
 },
 {
 "rank": 133,
 "name": "12th Gen Intel Core i5-12490F",
-"score": "509031"
+"score": "509020"
 },
 {
 "rank": 134,
 "name": "Intel Core i9-11900F",
-"score": "507056"
+"score": "507408"
 },
 {
 "rank": 135,
@@ -1682,7 +1682,7 @@
 {
 "rank": 136,
 "name": "Intel Core i9-11900",
-"score": "503740"
+"score": "503310"
 },
 {
 "rank": 137,
@@ -1692,102 +1692,102 @@
 {
 "rank": 138,
 "name": "12th Gen Intel Core i5-12500",
-"score": "501579"
+"score": "502039"
 },
 {
 "rank": 139,
 "name": "Intel Core i9-10900",
-"score": "499715"
+"score": "499876"
 },
 {
 "rank": 140,
 "name": "12th Gen Intel Core i5-12400F",
-"score": "498235"
+"score": "498228"
 },
 {
 "rank": 141,
 "name": "Intel Core i9-9900KS",
-"score": "496763"
+"score": "496134"
 },
 {
 "rank": 142,
 "name": "AMD Ryzen Threadripper 2950X",
-"score": "495054"
+"score": "494546"
 },
 {
 "rank": 143,
 "name": "12th Gen Intel Core i5-12400",
-"score": "486863"
+"score": "486795"
 },
 {
 "rank": 144,
-"name": "Intel Core 5 205H",
-"score": "485680"
+"name": "AMD Ryzen 5 5600GT with Radeon Graphics",
+"score": "485678"
 },
 {
 "rank": 145,
-"name": "AMD Ryzen 5 5600GT with Radeon Graphics",
-"score": "485563"
+"name": "Intel Core 5 205H",
+"score": "485189"
 },
 {
 "rank": 146,
-"name": "Intel Core i7-10700KF",
-"score": "484254"
+"name": "Intel Core i7-11700F",
+"score": "484270"
 },
 {
 "rank": 147,
-"name": "Intel Core i7-11700F",
-"score": "484193"
+"name": "Intel Core i7-10700KF",
+"score": "484117"
 },
 {
 "rank": 148,
-"name": "Intel Core i9-9900X",
-"score": "483590"
+"name": "Intel Core i7-11700",
+"score": "483066"
 },
 {
 "rank": 149,
-"name": "Intel Core i7-11700",
-"score": "483023"
+"name": "Intel Core i7-10700K",
+"score": "482115"
 },
 {
 "rank": 150,
-"name": "Intel Core i7-10700K",
-"score": "482173"
+"name": "AMD Ryzen 5 5600G with Radeon Graphics",
+"score": "481004"
 },
 {
 "rank": 151,
-"name": "AMD Ryzen 5 5600G with Radeon Graphics",
-"score": "480993"
+"name": "AMD Ryzen 5 5500GT with Radeon Graphics",
+"score": "479064"
 },
 {
 "rank": 152,
 "name": "Intel Core i7-11700B",
-"score": "479680"
+"score": "478626"
 },
 {
 "rank": 153,
 "name": "Intel Core i9-11900KB",
-"score": "479677"
+"score": "478281"
 },
 {
 "rank": 154,
-"name": "AMD Ryzen 5 5500GT with Radeon Graphics",
-"score": "478997"
+"name": "Intel Core i9-9900X",
+"score": "475572"
 },
 {
 "rank": 155,
 "name": "Intel Core i9-7900X",
-"score": "471971"
+"score": "472106"
 },
 {
 "rank": 156,
 "name": "AMD Ryzen 5 5500X3D",
-"score": "467775"
+"score": "467788"
 },
 {
 "rank": 157,
 "name": "AMD Ryzen 5 5500",
-"score": "467286"
+"score": "467241"
 },
 {
 "rank": 158,
@@ -1797,17 +1797,17 @@
 {
 "rank": 159,
 "name": "AMD Ryzen 5 PRO 5650G with Radeon Graphics",
-"score": "463639"
+"score": "463724"
 },
 {
 "rank": 160,
 "name": "Intel Core i5-11600KF",
-"score": "463569"
+"score": "463509"
 },
 {
 "rank": 161,
 "name": "Intel Core i9-9900KF",
-"score": "463488"
+"score": "463174"
 },
 {
 "rank": 162,
@@ -1817,82 +1817,82 @@
 {
 "rank": 163,
 "name": "Intel Core i9-9900K",
-"score": "461299"
+"score": "461092"
 },
 {
 "rank": 164,
 "name": "Intel Core i5-11600K",
-"score": "457013"
+"score": "456824"
 },
 {
 "rank": 165,
 "name": "Intel Core i7-10700F",
-"score": "445687"
+"score": "445671"
 },
 {
 "rank": 166,
 "name": "AMD Ryzen 7 3800X",
-"score": "445405"
+"score": "445573"
 },
 {
 "rank": 167,
 "name": "Intel Core i7-10700",
-"score": "442518"
+"score": "442451"
 },
 {
 "rank": 168,
 "name": "Intel Core i3-14100F",
-"score": "441246"
+"score": "441295"
 },
 {
 "rank": 169,
 "name": "Intel Core i5-14401TEF",
-"score": "440557"
+"score": "440597"
 },
 {
 "rank": 170,
 "name": "13th Gen Intel Core i3-13100F",
-"score": "438961"
+"score": "439068"
 },
 {
 "rank": 171,
-"name": "AMD Ryzen Threadripper 1950X",
-"score": "438288"
+"name": "Intel Core i3-14100",
+"score": "437987"
 },
 {
 "rank": 172,
-"name": "Intel Core i3-14100",
-"score": "437916"
+"name": "AMD Ryzen Threadripper 1950X",
+"score": "437795"
 },
 {
 "rank": 173,
 "name": "AMD Ryzen 7 3700X",
-"score": "437055"
+"score": "437034"
 },
 {
 "rank": 174,
 "name": "AMD Ryzen 5 PRO 5650GE with Radeon Graphics",
-"score": "434681"
+"score": "434824"
 },
 {
 "rank": 175,
 "name": "12th Gen Intel Core i5-12500T",
-"score": "434000"
+"score": "434003"
 },
 {
 "rank": 176,
 "name": "AMD Ryzen 7 7735U with Radeon Graphics",
-"score": "427324"
+"score": "427450"
 },
 {
 "rank": 177,
 "name": "AMD Ryzen 7 PRO 4750G with Radeon Graphics",
-"score": "427248"
+"score": "426827"
 },
 {
 "rank": 178,
 "name": "13th Gen Intel Core i3-13100",
-"score": "426755"
+"score": "426236"
 },
 {
 "rank": 179,
@@ -1902,92 +1902,92 @@
 {
 "rank": 180,
 "name": "Intel Core i7-6950X",
-"score": "424512"
+"score": "424897"
 },
 {
 "rank": 181,
 "name": "Intel Core i9-9900",
-"score": "420259"
+"score": "420426"
 },
 {
 "rank": 182,
 "name": "Intel Core i7-9800X",
-"score": "419150"
+"score": "419282"
 },
 {
 "rank": 183,
 "name": "12th Gen Intel Core i3-12300",
-"score": "417034"
+"score": "418561"
 },
 {
 "rank": 184,
 "name": "12th Gen Intel Core i5-12400T",
-"score": "415323"
+"score": "415492"
 },
 {
 "rank": 185,
 "name": "Intel Core i7-9700KF",
-"score": "413698"
+"score": "413737"
 },
 {
 "rank": 186,
 "name": "Intel Core i5-11600",
-"score": "413016"
+"score": "412846"
 },
 {
 "rank": 187,
 "name": "Intel Core i7-9700K",
-"score": "411934"
+"score": "411919"
 },
 {
 "rank": 188,
 "name": "Intel Core i7-7820X",
-"score": "410446"
+"score": "410536"
 },
 {
 "rank": 189,
-"name": "12th Gen Intel Core i3-12100F",
-"score": "408929"
+"name": "Intel Core Ultra 5 235U",
+"score": "409598"
 },
 {
 "rank": 190,
-"name": "Intel Core Ultra 5 235U",
-"score": "404882"
+"name": "12th Gen Intel Core i3-12100F",
+"score": "408943"
 },
 {
 "rank": 191,
 "name": "Intel Core i5-11400F",
-"score": "404528"
+"score": "404466"
 },
 {
 "rank": 192,
 "name": "Intel Core i5-10600KF",
-"score": "403329"
+"score": "403284"
 },
 {
 "rank": 193,
 "name": "Intel Core i5-11500",
-"score": "401766"
+"score": "401598"
 },
 {
 "rank": 194,
 "name": "Intel Core i5-10600K",
-"score": "400153"
+"score": "400137"
 },
 {
 "rank": 195,
 "name": "12th Gen Intel Core i3-12100",
-"score": "399848"
+"score": "399830"
 },
 {
 "rank": 196,
 "name": "AMD Ryzen 7 4700LE",
-"score": "399775"
+"score": "399759"
 },
 {
 "rank": 197,
 "name": "Intel Core i5-11400",
-"score": "393572"
+"score": "393531"
 },
 {
 "rank": 198,
@@ -1997,42 +1997,42 @@
 {
 "rank": 199,
 "name": "Intel Core i7-9700F",
-"score": "383953"
+"score": "384002"
 },
 {
 "rank": 200,
 "name": "Intel Core i7-8086K",
-"score": "383245"
+"score": "383398"
 },
 {
 "rank": 201,
 "name": "Intel Core i7-6900K",
-"score": "381564"
+"score": "381296"
 },
 {
 "rank": 202,
 "name": "Intel Core i7-8700K",
-"score": "380476"
+"score": "380432"
 },
 {
 "rank": 203,
 "name": "Intel Core i5-10600",
-"score": "379112"
+"score": "379391"
 },
 {
 "rank": 204,
 "name": "Intel Core i7-9700",
-"score": "379014"
+"score": "379179"
 },
 {
 "rank": 205,
 "name": "12th Gen Intel Core i3-12300T",
-"score": "378085"
+"score": "377917"
 },
 {
 "rank": 206,
 "name": "AMD Ryzen 5 3600XT",
-"score": "377804"
+"score": "377721"
 },
 {
 "rank": 207,
@@ -2042,102 +2042,102 @@
 {
 "rank": 208,
 "name": "AMD Ryzen 5 3600X",
-"score": "368268"
+"score": "368288"
 },
 {
 "rank": 209,
 "name": "Intel Core i5-10500",
-"score": "365893"
+"score": "365887"
 },
 {
 "rank": 210,
 "name": "12th Gen Intel Core i3-12100T",
-"score": "364390"
+"score": "364422"
 },
 {
 "rank": 211,
 "name": "Intel Core i7-8700",
-"score": "363983"
+"score": "363967"
 },
 {
 "rank": 212,
 "name": "Intel Core i5-10505",
-"score": "361454"
+"score": "361393"
 },
 {
 "rank": 213,
-"name": "AMD Ryzen 5 PRO 3600",
-"score": "361296"
+"name": "Intel Core i7-10700T",
+"score": "360357"
 },
 {
 "rank": 214,
+"name": "AMD Ryzen 5 PRO 3600",
+"score": "359751"
+},
+{
+"rank": 215,
 "name": "AMD Ryzen 7 170 with Radeon Graphics",
 "score": "358997"
 },
 {
-"rank": 215,
-"name": "Intel Core i7-10700T",
-"score": "358396"
-},
-{
 "rank": 216,
-"name": "Intel Core i5-10400F",
-"score": "357508"
+"name": "Intel Core i7-11700T",
+"score": "357968"
 },
 {
 "rank": 217,
-"name": "Intel Core i7-11700T",
-"score": "357103"
+"name": "Intel Core i5-10400F",
+"score": "357487"
 },
 {
 "rank": 218,
 "name": "AMD Ryzen 5 3600",
-"score": "356705"
+"score": "356684"
 },
 {
 "rank": 219,
-"name": "AMD Ryzen 5 PRO 4650G with Radeon Graphics",
-"score": "354610"
+"name": "AMD Ryzen 3 5300G with Radeon Graphics",
+"score": "356398"
 },
 {
 "rank": 220,
-"name": "Intel Core i5-10500FE",
-"score": "353598"
+"name": "AMD Ryzen 5 PRO 4650G with Radeon Graphics",
+"score": "354612"
 },
 {
 "rank": 221,
-"name": "AMD Ryzen 3 5300G with Radeon Graphics",
-"score": "353484"
+"name": "Intel Core i5-10500FE",
+"score": "353580"
 },
 {
 "rank": 222,
 "name": "AMD Ryzen 7 2700X",
-"score": "353380"
+"score": "353265"
 },
 {
 "rank": 223,
 "name": "AMD Ryzen 5 4500",
-"score": "349433"
+"score": "349506"
 },
 {
 "rank": 224,
 "name": "Intel Core i5-10400",
-"score": "348321"
+"score": "348295"
 },
 {
 "rank": 225,
 "name": "AMD Ryzen 5 4600G with Radeon Graphics",
-"score": "347410"
+"score": "347004"
 },
 {
 "rank": 226,
 "name": "AMD Ryzen 5 PRO 4650GE with Radeon Graphics",
-"score": "343330"
+"score": "343136"
 },
 {
 "rank": 227,
 "name": "Intel Core i5-9600KF",
-"score": "343011"
+"score": "342937"
 },
 {
 "rank": 228,
@@ -2147,22 +2147,22 @@
 {
 "rank": 229,
 "name": "Intel Core i7-7800X",
-"score": "340869"
+"score": "340986"
 },
 {
 "rank": 230,
 "name": "Intel Core 3 304",
-"score": "339047"
+"score": "339250"
 },
 {
 "rank": 231,
 "name": "Intel Core i5-9600K",
-"score": "338418"
+"score": "338505"
 },
 {
 "rank": 232,
 "name": "Intel Core i5-8600K",
-"score": "330902"
+"score": "330839"
 },
 {
 "rank": 233,
@@ -2172,37 +2172,37 @@
 {
 "rank": 234,
 "name": "Intel Core i7-5960X",
-"score": "326670"
+"score": "326831"
 },
 {
 "rank": 235,
+"name": "Intel Core i5-11400T",
+"score": "326330"
+},
+{
+"rank": 236,
 "name": "Intel Core i5-10600T",
 "score": "325777"
 },
 {
-"rank": 236,
-"name": "Intel Core i5-9600",
-"score": "324048"
-},
-{
 "rank": 237,
-"name": "Intel Core i5-11400T",
-"score": "322229"
+"name": "Intel Core i5-9600",
+"score": "324011"
 },
 {
 "rank": 238,
 "name": "Intel Core i5-9500F",
-"score": "321273"
+"score": "321235"
 },
 {
 "rank": 239,
 "name": "Intel Core i5-8600",
-"score": "316158"
+"score": "316057"
 },
 {
 "rank": 240,
 "name": "Intel Core i7-7700K",
-"score": "315732"
+"score": "315628"
 },
 {
 "rank": 241,
@@ -2212,37 +2212,37 @@
 {
 "rank": 242,
 "name": "Intel Core i5-11500T",
-"score": "315069"
+"score": "315244"
 },
 {
 "rank": 243,
 "name": "Intel Core i7-6850K",
-"score": "312880"
+"score": "312845"
 },
 {
 "rank": 244,
 "name": "12th Gen Intel Core i5-1235U",
-"score": "312543"
+"score": "312351"
 },
 {
 "rank": 245,
 "name": "Intel Core i5-9500",
-"score": "311642"
+"score": "311550"
 },
 {
 "rank": 246,
 "name": "Intel Core i5-9400F",
-"score": "310733"
+"score": "310709"
 },
 {
 "rank": 247,
 "name": "AMD Ryzen 7 2700",
-"score": "308748"
+"score": "308804"
 },
 {
 "rank": 248,
 "name": "Intel Core i5-8500",
-"score": "307594"
+"score": "307585"
 },
 {
 "rank": 249,
@@ -2252,62 +2252,62 @@
 {
 "rank": 250,
 "name": "Intel Core i5-10500T",
-"score": "305778"
+"score": "305704"
 },
 {
 "rank": 251,
 "name": "12th Gen Intel Core i3-1220P",
-"score": "303678"
+"score": "303598"
 },
 {
 "rank": 252,
 "name": "Intel Core i7-6800K",
-"score": "299310"
+"score": "299209"
 },
 {
 "rank": 253,
 "name": "AMD Ryzen 3 3300X 4-Core",
-"score": "298494"
+"score": "299113"
 },
 {
 "rank": 254,
 "name": "Intel Core i5-8400",
-"score": "297717"
+"score": "297732"
 },
 {
 "rank": 255,
 "name": "Intel Core i5-9400",
-"score": "296829"
+"score": "296929"
 },
 {
 "rank": 256,
 "name": "Intel Core i3-10105F",
-"score": "296398"
+"score": "296378"
 },
 {
 "rank": 257,
 "name": "AMD Ryzen 5 2600X",
-"score": "296326"
+"score": "296308"
 },
 {
 "rank": 258,
 "name": "Intel Core i3-9350KF",
-"score": "293521"
+"score": "293523"
 },
 {
 "rank": 259,
 "name": "AMD Ryzen 5 3500X",
-"score": "293402"
+"score": "293413"
 },
 {
 "rank": 260,
 "name": "AMD Ryzen 5 3500",
-"score": "293164"
+"score": "293199"
 },
 {
 "rank": 261,
 "name": "Intel Core i7-8700T",
-"score": "292805"
+"score": "292788"
 },
 {
 "rank": 262,
@@ -2317,7 +2317,7 @@
 {
 "rank": 263,
 "name": "Intel Core i7-6700K",
-"score": "289609"
+"score": "289613"
 },
 {
 "rank": 264,
@@ -2327,27 +2327,27 @@
 {
 "rank": 265,
 "name": "Intel Core i3-10105",
-"score": "288347"
+"score": "288361"
 },
 {
 "rank": 266,
 "name": "Intel Core i5-10400T",
-"score": "286894"
+"score": "287517"
 },
 {
 "rank": 267,
 "name": "Intel Core i3-10100",
-"score": "284609"
+"score": "284633"
 },
 {
 "rank": 268,
-"name": "AMD Ryzen 5 2600",
-"score": "279983"
+"name": "Intel Core i7-7700",
+"score": "279987"
 },
 {
 "rank": 269,
-"name": "Intel Core i7-7700",
-"score": "279978"
+"name": "AMD Ryzen 5 2600",
+"score": "279986"
 },
 {
 "rank": 270,
@@ -2357,27 +2357,27 @@
 {
 "rank": 271,
 "name": "AMD Ryzen 5 1600X",
-"score": "278718"
+"score": "278781"
 },
 {
 "rank": 272,
 "name": "AMD Ryzen 5 PRO 2600",
-"score": "276600"
+"score": "276842"
 },
 {
 "rank": 273,
 "name": "AMD Ryzen 3 4100 4-Core",
-"score": "273977"
+"score": "273861"
 },
 {
 "rank": 274,
-"name": "AMD Ryzen 3 4300G with Radeon Graphics",
-"score": "272067"
+"name": "Intel Core i3-8350K",
+"score": "272126"
 },
 {
 "rank": 275,
-"name": "Intel Core i3-8350K",
-"score": "272004"
+"name": "AMD Ryzen 3 4300G with Radeon Graphics",
+"score": "272067"
 },
 {
 "rank": 276,
@@ -2387,17 +2387,17 @@
 {
 "rank": 277,
 "name": "Intel Core i7-5820K",
-"score": "271094"
+"score": "271076"
 },
 {
 "rank": 278,
 "name": "Intel Core i5-7600K",
-"score": "269550"
+"score": "269489"
 },
 {
 "rank": 279,
 "name": "AMD Ryzen 3 3100 4-Core",
-"score": "267083"
+"score": "267067"
 },
 {
 "rank": 280,
@@ -2407,142 +2407,142 @@
 {
 "rank": 281,
 "name": "Intel Core i3-9300",
-"score": "263680"
+"score": "263717"
 },
 {
 "rank": 282,
 "name": "Intel Core i5-8600T",
-"score": "263037"
+"score": "263134"
 },
 {
 "rank": 283,
-"name": "Intel Core i3-9100F",
-"score": "259918"
+"name": "AMD Ryzen 5 PRO 1600",
+"score": "260030"
 },
 {
 "rank": 284,
-"name": "AMD Ryzen 5 PRO 1600",
-"score": "259810"
+"name": "Intel Core i3-9100F",
+"score": "259950"
 },
 {
 "rank": 285,
 "name": "AMD Ryzen 5 1600",
-"score": "258922"
+"score": "258906"
 },
 {
 "rank": 286,
 "name": "Intel Core i7-6700",
-"score": "257081"
+"score": "257079"
 },
 {
 "rank": 287,
 "name": "Intel Core i5-7600",
-"score": "255827"
+"score": "255811"
 },
 {
 "rank": 288,
 "name": "Intel Core i7-5775C",
-"score": "255299"
+"score": "255441"
 },
 {
 "rank": 289,
 "name": "Intel Core i7-4790K",
-"score": "252962"
+"score": "252930"
 },
 {
 "rank": 290,
 "name": "Intel Core i5-9500T",
-"score": "252674"
+"score": "252630"
 },
 {
 "rank": 291,
 "name": "Intel Core i3-9100",
-"score": "252610"
+"score": "252555"
 },
 {
 "rank": 292,
 "name": "Intel Pentium G7400",
-"score": "252270"
+"score": "252228"
 },
 {
 "rank": 293,
 "name": "Intel Core i5-8500T",
-"score": "248404"
+"score": "248276"
 },
 {
 "rank": 294,
 "name": "Intel Core i3-10105T",
-"score": "248083"
+"score": "248105"
 },
 {
 "rank": 295,
 "name": "Intel Core i5-6600K",
-"score": "244968"
+"score": "244932"
 },
 {
 "rank": 296,
 "name": "Intel Core i5-9400T",
-"score": "244088"
+"score": "244250"
 },
 {
 "rank": 297,
 "name": "Intel Core i3-10100T",
-"score": "243323"
+"score": "243417"
 },
 {
 "rank": 298,
 "name": "Intel Core i3-8300",
-"score": "240186"
+"score": "240279"
 },
 {
 "rank": 299,
 "name": "Intel Core i5-7500",
-"score": "238640"
+"score": "238660"
 },
 {
 "rank": 300,
 "name": "Intel Core i3-8100",
-"score": "235610"
+"score": "235608"
 },
 {
 "rank": 301,
 "name": "Intel Core i5-6600",
-"score": "234676"
+"score": "234669"
 },
 {
 "rank": 302,
 "name": "Intel Core i5-8400T",
-"score": "233553"
+"score": "233850"
 },
 {
 "rank": 303,
 "name": "Intel Core i5-5675C",
-"score": "231755"
+"score": "231813"
 },
 {
 "rank": 304,
 "name": "AMD Ryzen 5 PRO 3400G with Radeon Vega Graphics",
-"score": "231276"
+"score": "231358"
 },
 {
 "rank": 305,
 "name": "Intel Core i7-7700T",
-"score": "230819"
+"score": "231099"
 },
 {
 "rank": 306,
 "name": "AMD Ryzen 5 3400G with Radeon Vega Graphics",
-"score": "229956"
+"score": "230043"
 },
 {
 "rank": 307,
 "name": "Intel Core i7-4790",
-"score": "227386"
+"score": "227396"
 },
 {
 "rank": 308,
 "name": "Intel Core i7-4770K",
-"score": "226714"
+"score": "226699"
 },
 {
 "rank": 309,
@@ -2552,42 +2552,42 @@
 {
 "rank": 310,
 "name": "Intel Core i7-6700T",
-"score": "223360"
+"score": "223379"
 },
 {
 "rank": 311,
 "name": "Intel Core i7-4771",
-"score": "221769"
+"score": "221788"
 },
 {
 "rank": 312,
 "name": "Intel Core i7-4770",
-"score": "221684"
+"score": "221730"
 },
 {
 "rank": 313,
 "name": "Intel Celeron G6900",
-"score": "220045"
+"score": "220006"
 },
 {
 "rank": 314,
 "name": "Intel Core i5-7400",
-"score": "219745"
+"score": "219781"
 },
 {
 "rank": 315,
 "name": "Intel Core i5-7600T",
-"score": "219697"
+"score": "219553"
 },
 {
 "rank": 316,
 "name": "Intel Core i3-9100T",
-"score": "218027"
+"score": "217993"
 },
 {
 "rank": 317,
 "name": "Intel Core i5-6500",
-"score": "217621"
+"score": "217672"
 },
 {
 "rank": 318,
@@ -2597,7 +2597,7 @@
 {
 "rank": 319,
 "name": "AMD Ryzen 5 1500X",
-"score": "214159"
+"score": "214251"
 },
 {
 "rank": 320,
@@ -2606,13 +2606,13 @@
 },
 {
 "rank": 321,
-"name": "Intel Core i5-4690K",
-"score": "213521"
+"name": "Intel Core i7-4790S",
+"score": "213558"
 },
 {
 "rank": 322,
-"name": "Intel Core i7-4790S",
-"score": "213496"
+"name": "Intel Core i5-4690K",
+"score": "213514"
 },
 {
 "rank": 323,
@@ -2622,32 +2622,32 @@
 {
 "rank": 324,
 "name": "AMD Ryzen 5 2400G with Radeon Vega Graphics",
-"score": "212366"
+"score": "212342"
 },
 {
 "rank": 325,
-"name": "Intel Core i5-6600T",
-"score": "211418"
+"name": "AMD Ryzen 5 PRO 2400G with Radeon Vega Graphics",
+"score": "211530"
 },
 {
 "rank": 326,
-"name": "AMD Ryzen 5 PRO 2400G with Radeon Vega Graphics",
-"score": "211200"
+"name": "Intel Core i5-6600T",
+"score": "211183"
 },
 {
 "rank": 327,
 "name": "Intel Core i5-6402P",
-"score": "209661"
+"score": "209693"
 },
 {
 "rank": 328,
 "name": "Intel Core i7-4770S",
-"score": "207487"
+"score": "207493"
 },
 {
 "rank": 329,
 "name": "Intel Core i3-7350K",
-"score": "207228"
+"score": "207050"
 },
 {
 "rank": 330,
@@ -2657,12 +2657,12 @@
 {
 "rank": 331,
 "name": "Intel Core i5-4670K",
-"score": "206834"
+"score": "206893"
 },
 {
 "rank": 332,
 "name": "Intel Core i5-4690",
-"score": "206780"
+"score": "206784"
 },
 {
 "rank": 333,
@@ -2671,63 +2671,63 @@
 },
 {
 "rank": 334,
-"name": "Intel Core i7-3970X",
-"score": "203432"
+"name": "Intel Core i7-4930K",
+"score": "203221"
 },
 {
 "rank": 335,
-"name": "Intel Core i7-4930K",
-"score": "203094"
-},
-{
-"rank": 336,
 "name": "AMD Ryzen 3 2300X",
 "score": "203037"
 },
 {
-"rank": 337,
+"rank": 336,
 "name": "Intel Core i3-8100T",
-"score": "202776"
+"score": "202942"
+},
+{
+"rank": 337,
+"name": "Intel Core i5-6400",
+"score": "202738"
 },
 {
 "rank": 338,
-"name": "Intel Core i5-6400",
-"score": "202732"
+"name": "Intel Core i7-3970X",
+"score": "201960"
 },
 {
 "rank": 339,
 "name": "Intel Core i5-7500T",
-"score": "201161"
+"score": "201221"
 },
 {
 "rank": 340,
 "name": "Intel Core i5-4670",
-"score": "201145"
+"score": "201152"
 },
 {
 "rank": 341,
 "name": "Intel Core i7-3960X",
-"score": "199733"
+"score": "199420"
 },
 {
 "rank": 342,
 "name": "AMD Ryzen 3 3200G with Radeon Vega Graphics",
-"score": "197128"
+"score": "197203"
 },
 {
 "rank": 343,
 "name": "Intel Core i5-4690S",
-"score": "196395"
+"score": "196529"
 },
 {
 "rank": 344,
 "name": "Intel Core i5-4590",
-"score": "195124"
+"score": "195121"
 },
 {
 "rank": 345,
 "name": "AMD Ryzen 5 2400GE with Radeon Vega Graphics",
-"score": "193158"
+"score": "193476"
 },
 {
 "rank": 346,
@@ -2741,98 +2741,98 @@
 },
 {
 "rank": 348,
-"name": "Intel Core i5-4570",
-"score": "190406"
+"name": "Intel Core i7-4790T",
+"score": "190829"
 },
 {
 "rank": 349,
-"name": "Intel Core i7-4790T",
-"score": "189381"
+"name": "Intel Core i5-4570",
+"score": "190428"
 },
 {
 "rank": 350,
 "name": "Intel Core i5-4670S",
-"score": "188760"
+"score": "188609"
 },
 {
 "rank": 351,
 "name": "Intel Core i7-3930K",
-"score": "188441"
+"score": "188528"
 },
 {
 "rank": 352,
 "name": "AMD Ryzen 5 1400",
-"score": "187976"
+"score": "187991"
 },
 {
 "rank": 353,
 "name": "AMD Ryzen 3 2200G with Radeon Vega Graphics",
-"score": "186920"
+"score": "186948"
 },
 {
 "rank": 354,
 "name": "AMD Ryzen 3 PRO 2200G with Radeon Vega Graphics",
-"score": "185883"
+"score": "185936"
 },
 {
 "rank": 355,
 "name": "Intel Core i5-6500T",
-"score": "185596"
+"score": "185803"
 },
 {
 "rank": 356,
 "name": "Intel Core i3-7100",
-"score": "185505"
+"score": "185483"
 },
 {
 "rank": 357,
 "name": "Intel Core i3-6300",
-"score": "184807"
+"score": "184767"
 },
 {
 "rank": 358,
 "name": "Intel Core i5-4590S",
-"score": "182385"
+"score": "182328"
 },
 {
 "rank": 359,
 "name": "Intel Core i5-7400T",
-"score": "182336"
+"score": "182279"
 },
 {
 "rank": 360,
 "name": "Intel Core i5-4460",
-"score": "180468"
+"score": "180483"
 },
 {
 "rank": 361,
 "name": "Intel Core i5-4570S",
-"score": "179146"
+"score": "179107"
 },
 {
 "rank": 362,
 "name": "Intel Core i3-6320",
-"score": "178572"
+"score": "178815"
 },
 {
 "rank": 363,
 "name": "Intel Core i5-4440",
-"score": "175544"
+"score": "175459"
 },
 {
 "rank": 364,
 "name": "Intel Core i3-6100",
-"score": "175252"
+"score": "175311"
 },
 {
 "rank": 365,
 "name": "Intel Core i7 X 980",
-"score": "173786"
+"score": "173760"
 },
 {
 "rank": 366,
 "name": "Intel Core i3-6098P",
-"score": "171641"
+"score": "172966"
 },
 {
 "rank": 367,
@@ -2842,12 +2842,12 @@
 {
 "rank": 368,
 "name": "Intel Core i5-4430",
-"score": "169974"
+"score": "169989"
 },
 {
 "rank": 369,
 "name": "Intel Core i5-4460S",
-"score": "169768"
+"score": "169815"
 },
 {
 "rank": 370,
@@ -2857,92 +2857,92 @@
 {
 "rank": 371,
 "name": "Intel Core i5-4570R",
-"score": "168534"
+"score": "168553"
 },
 {
 "rank": 372,
 "name": "Intel Core i5-6400T",
-"score": "168162"
+"score": "168201"
 },
 {
 "rank": 373,
 "name": "AMD FX -8350",
-"score": "167711"
+"score": "167517"
 },
 {
 "rank": 374,
 "name": "Intel Core i5-4440S",
-"score": "164636"
+"score": "164844"
 },
 {
 "rank": 375,
-"name": "AMD Ryzen 3 1200",
-"score": "164100"
+"name": "Intel Pentium G6500",
+"score": "164579"
 },
 {
 "rank": 376,
-"name": "Intel Pentium G6500",
-"score": "163872"
+"name": "AMD Ryzen 3 1200",
+"score": "164033"
 },
 {
 "rank": 377,
 "name": "Intel Core i7-3770K",
-"score": "163729"
+"score": "163785"
 },
 {
 "rank": 378,
 "name": "Intel Pentium G6405",
-"score": "161743"
+"score": "161769"
 },
 {
 "rank": 379,
 "name": "Intel Core i3-7100T",
-"score": "161573"
+"score": "161343"
 },
 {
 "rank": 380,
 "name": "Intel Core i5-4670T",
-"score": "160196"
+"score": "160896"
 },
 {
 "rank": 381,
 "name": "Intel Core i7-4820K",
-"score": "160133"
+"score": "160127"
 },
 {
 "rank": 382,
 "name": "Intel Core i5-4430S",
-"score": "159231"
+"score": "159272"
 },
 {
 "rank": 383,
 "name": "Intel N97",
-"score": "158614"
+"score": "158471"
 },
 {
 "rank": 384,
-"name": "Intel Core i3-4370",
-"score": "158032"
+"name": "Intel Core i7-4765T",
+"score": "158092"
 },
 {
 "rank": 385,
-"name": "Intel Core i7-4765T",
-"score": "158032"
+"name": "Intel Core i3-4370",
+"score": "158002"
 },
 {
 "rank": 386,
 "name": "Intel Pentium G6400",
-"score": "157526"
+"score": "157545"
 },
 {
 "rank": 387,
 "name": "Intel Core i7-3770",
-"score": "157519"
+"score": "157541"
 },
 {
 "rank": 388,
 "name": "Intel Core i7-2700K",
-"score": "156732"
+"score": "156827"
 },
 {
 "rank": 389,
@@ -2956,78 +2956,78 @@
 },
 {
 "rank": 391,
-"name": "Intel Core i3-6100T",
-"score": "151245"
+"name": "Intel Core i3-4350",
+"score": "151405"
 },
 {
 "rank": 392,
-"name": "Intel Core i3-4350",
-"score": "151227"
+"name": "Intel Core i3-6100T",
+"score": "151201"
 },
 {
 "rank": 393,
 "name": "AMD FX -8320",
-"score": "150697"
+"score": "150645"
 },
 {
 "rank": 394,
 "name": "Intel Core i3-4360",
-"score": "150272"
+"score": "150241"
 },
 {
 "rank": 395,
 "name": "Intel Core i7-2600K",
-"score": "150006"
+"score": "150071"
 },
 {
 "rank": 396,
-"name": "Intel Core i3-4170",
-"score": "148701"
+"name": "AMD Ryzen Embedded R2314 with Radeon Graphics",
+"score": "149069"
 },
 {
 "rank": 397,
-"name": "AMD Ryzen Embedded R2314 with Radeon Graphics",
-"score": "148574"
+"name": "Intel Core i3-4170",
+"score": "148705"
 },
 {
 "rank": 398,
 "name": "AMD FX -8150",
-"score": "148350"
+"score": "148051"
 },
 {
 "rank": 399,
 "name": "Intel Core i7-3770S",
-"score": "147469"
+"score": "147563"
 },
 {
 "rank": 400,
 "name": "AMD FX -8300",
-"score": "146794"
+"score": "146780"
 },
 {
 "rank": 401,
 "name": "Intel Core i5-4590T",
-"score": "146466"
+"score": "146585"
 },
 {
 "rank": 402,
 "name": "Intel Pentium G5420",
-"score": "144748"
+"score": "144734"
 },
 {
 "rank": 403,
 "name": "Intel Core i7-2600",
-"score": "144683"
+"score": "144700"
 },
 {
 "rank": 404,
 "name": "Intel Pentium G5500",
-"score": "144436"
+"score": "144433"
 },
 {
 "rank": 405,
 "name": "Intel Core i3-4160",
-"score": "143453"
+"score": "143343"
 },
 {
 "rank": 406,
@@ -3037,117 +3037,117 @@
 {
 "rank": 407,
 "name": "Intel Pentium G5400",
-"score": "141749"
+"score": "141751"
 },
 {
 "rank": 408,
 "name": "Intel Core i3-4330",
-"score": "141681"
+"score": "141586"
 },
 {
 "rank": 409,
 "name": "Intel Core i5-2550K",
-"score": "141509"
+"score": "141524"
 },
 {
 "rank": 410,
 "name": "Intel Core i5-3570K",
-"score": "140371"
+"score": "140320"
 },
 {
 "rank": 411,
 "name": "Intel Core i3-4150",
-"score": "140250"
+"score": "140249"
 },
 {
 "rank": 412,
 "name": "AMD Athlon 3000G with Radeon Vega Graphics",
-"score": "137459"
+"score": "137461"
 },
 {
 "rank": 413,
 "name": "Intel Pentium G4600",
-"score": "137135"
+"score": "137096"
 },
 {
 "rank": 414,
 "name": "Intel Core i5-3570",
-"score": "137014"
+"score": "137050"
 },
 {
 "rank": 415,
 "name": "Intel Celeron G5925",
-"score": "136098"
+"score": "136239"
 },
 {
 "rank": 416,
 "name": "Intel Core i3-4130",
-"score": "135914"
+"score": "135926"
 },
 {
 "rank": 417,
 "name": "Intel Pentium G4560",
-"score": "135218"
+"score": "135255"
 },
 {
 "rank": 418,
 "name": "Intel Pentium G6400T",
-"score": "135121"
+"score": "135165"
 },
 {
 "rank": 419,
 "name": "Intel Core i5-3550",
-"score": "132842"
+"score": "132866"
 },
 {
 "rank": 420,
 "name": "Intel Core i5-2500K",
-"score": "132354"
+"score": "132475"
 },
 {
 "rank": 421,
 "name": "Intel Celeron G5905",
-"score": "131750"
+"score": "131767"
 },
 {
 "rank": 422,
 "name": "Intel Core i5-4570T",
-"score": "130658"
+"score": "130469"
 },
 {
 "rank": 423,
 "name": "AMD FX -8120",
-"score": "129651"
+"score": "129665"
 },
 {
 "rank": 424,
 "name": "Intel Core i3-4170T",
-"score": "129155"
+"score": "128950"
 },
 {
 "rank": 425,
 "name": "Intel Core i5-3470",
-"score": "128759"
+"score": "128754"
 },
 {
 "rank": 426,
 "name": "Intel Pentium G4500",
-"score": "128387"
+"score": "128568"
 },
 {
 "rank": 427,
-"name": "Intel Celeron G5920",
-"score": "128200"
+"name": "Intel Core i5-3570S",
+"score": "128379"
 },
 {
 "rank": 428,
-"name": "Intel Core i5-3570S",
-"score": "128169"
+"name": "Intel Celeron G5920",
+"score": "128221"
 },
 {
 "rank": 429,
 "name": "AMD FX -6300",
-"score": "128142"
+"score": "128151"
 },
 {
 "rank": 430,
@@ -3157,17 +3157,17 @@
 {
 "rank": 431,
 "name": "Intel Core i5-4460T",
-"score": "127143"
+"score": "127275"
 },
 {
 "rank": 432,
 "name": "Intel Core i5-3450",
-"score": "125880"
+"score": "125868"
 },
 {
 "rank": 433,
 "name": "AMD Athlon 200GE with Radeon Vega Graphics",
-"score": "125822"
+"score": "125846"
 },
 {
 "rank": 434,
@@ -3177,17 +3177,17 @@
 {
 "rank": 435,
 "name": "Intel Celeron G5900",
-"score": "124717"
+"score": "124725"
 },
 {
 "rank": 436,
 "name": "Intel Core i5-2500",
-"score": "124361"
+"score": "124371"
 },
 {
 "rank": 437,
 "name": "Intel Core i3-4160T",
-"score": "124292"
+"score": "124212"
 },
 {
 "rank": 438,
@@ -3202,12 +3202,12 @@
 {
 "rank": 440,
 "name": "Intel Pentium G4400",
-"score": "122269"
+"score": "122294"
 },
 {
 "rank": 441,
 "name": "Intel Core i7-2600S",
-"score": "121730"
+"score": "122065"
 },
 {
 "rank": 442,
@@ -3222,12 +3222,12 @@
 {
 "rank": 444,
 "name": "Intel Core i5-3350P",
-"score": "119408"
+"score": "119429"
 },
 {
 "rank": 445,
 "name": "Intel Core i5-3470S",
-"score": "119300"
+"score": "119296"
 },
 {
 "rank": 446,
@@ -3237,7 +3237,7 @@
 {
 "rank": 447,
 "name": "Intel Core i5-2380P",
-"score": "118305"
+"score": "118284"
 },
 {
 "rank": 448,
@@ -3247,32 +3247,32 @@
 {
 "rank": 449,
 "name": "AMD PRO A12-9800 R7, 12 COMPUTE CORES 4C+8G",
-"score": "116690"
+"score": "116784"
 },
 {
 "rank": 450,
+"name": "Intel Core i3-4130T",
+"score": "116775"
+},
+{
+"rank": 451,
 "name": "Intel Core i3-4150T",
 "score": "115993"
 },
 {
-"rank": 451,
+"rank": 452,
 "name": "AMD FX -8100",
 "score": "115678"
 },
 {
-"rank": 452,
-"name": "Intel Core i5-2400",
-"score": "115593"
-},
-{
 "rank": 453,
-"name": "Intel Core i3-4130T",
-"score": "115475"
+"name": "Intel Core i5-2400",
+"score": "115629"
 },
 {
 "rank": 454,
 "name": "AMD FX -6100",
-"score": "115367"
+"score": "115448"
 },
 {
 "rank": 455,
@@ -3282,47 +3282,47 @@
 {
 "rank": 456,
 "name": "Intel Core i5-3330",
-"score": "114892"
+"score": "114891"
 },
 {
 "rank": 457,
 "name": "Intel Celeron G4930",
-"score": "114599"
+"score": "114619"
 },
 {
 "rank": 458,
 "name": "Intel Core i5-3340",
-"score": "114426"
+"score": "114362"
 },
 {
 "rank": 459,
 "name": "AMD A10-9700 RADEON R7, 10 COMPUTE CORES 4C+6G",
-"score": "113905"
+"score": "113943"
 },
 {
 "rank": 460,
 "name": "Intel Core i5-2320",
-"score": "113780"
+"score": "113747"
 },
 {
 "rank": 461,
-"name": "AMD PRO A10-8770 R7, 10 COMPUTE CORES 4C+6G",
-"score": "113610"
+"name": "AMD Athlon X4 970",
+"score": "113629"
 },
 {
 "rank": 462,
 "name": "AMD A10-6800K with Radeon HD Graphics",
-"score": "113426"
+"score": "113560"
 },
 {
 "rank": 463,
-"name": "AMD PRO A10-9700 R7, 10 COMPUTE CORES 4C+6G",
-"score": "112945"
+"name": "AMD PRO A10-8770 R7, 10 COMPUTE CORES 4C+6G",
+"score": "113500"
 },
 {
 "rank": 464,
-"name": "AMD A10-7850K Radeon R7, 12 Compute Cores 4C+8G",
-"score": "112082"
+"name": "AMD PRO A10-9700 R7, 10 COMPUTE CORES 4C+6G",
+"score": "112945"
 },
 {
 "rank": 465,
@@ -3331,158 +3331,158 @@
 },
 {
 "rank": 466,
-"name": "AMD Athlon X4 970",
-"score": "112007"
+"name": "AMD A10-7850K Radeon R7, 12 Compute Cores 4C+8G",
+"score": "111916"
 },
 {
 "rank": 467,
 "name": "Intel Pentium G4560T",
-"score": "111375"
+"score": "111408"
 },
 {
 "rank": 468,
 "name": "Intel Celeron G4900",
-"score": "111336"
+"score": "111397"
 },
 {
 "rank": 469,
 "name": "Intel Core i5-2310",
-"score": "109935"
+"score": "109913"
 },
 {
 "rank": 470,
 "name": "AMD A10-7860K Radeon R7, 12 Compute Cores 4C+8G",
-"score": "109429"
+"score": "109384"
 },
 {
 "rank": 471,
 "name": "AMD FX -870K",
-"score": "108968"
+"score": "109077"
 },
 {
 "rank": 472,
 "name": "AMD A10 PRO-7800B R7, 12 Compute Cores 4C+8G",
-"score": "108710"
+"score": "108674"
 },
 {
 "rank": 473,
 "name": "AMD A8-7680 Radeon R7, 10 Compute Cores 4C+6G",
-"score": "108469"
+"score": "108664"
 },
 {
 "rank": 474,
 "name": "AMD FX -4300",
-"score": "107815"
+"score": "108012"
 },
 {
 "rank": 475,
+"name": "AMD A10-6790K with Radeon HD Graphics",
+"score": "107662"
+},
+{
+"rank": 476,
 "name": "AMD Athlon X4 845",
 "score": "107581"
 },
 {
-"rank": 476,
-"name": "Intel Pentium G4400T",
-"score": "107461"
-},
-{
 "rank": 477,
-"name": "AMD Athlon X4 860K",
-"score": "107209"
+"name": "Intel Pentium G4400T",
+"score": "107444"
 },
 {
 "rank": 478,
-"name": "AMD A10-6790K with Radeon HD Graphics",
-"score": "107164"
+"name": "AMD Athlon X4 860K",
+"score": "107187"
 },
 {
 "rank": 479,
 "name": "AMD A10-6700 with Radeon HD Graphics",
-"score": "107065"
+"score": "107022"
 },
 {
 "rank": 480,
 "name": "Intel Core i5-2300",
-"score": "107049"
+"score": "107013"
 },
 {
 "rank": 481,
 "name": "Intel Core i5-3330S",
-"score": "106565"
+"score": "106623"
 },
 {
 "rank": 482,
 "name": "AMD A10-7800 Radeon R7, 12 Compute Cores 4C+8G",
-"score": "106415"
+"score": "106423"
 },
 {
 "rank": 483,
 "name": "AMD Ryzen Embedded R2312 with Radeon Graphics",
-"score": "106132"
+"score": "106208"
 },
 {
 "rank": 484,
-"name": "Intel Celeron N5095",
-"score": "105916"
+"name": "Intel Celeron G3930",
+"score": "105949"
 },
 {
 "rank": 485,
-"name": "Intel Celeron G3930",
-"score": "105896"
+"name": "Intel Celeron N5095",
+"score": "105895"
 },
 {
 "rank": 486,
-"name": "Intel Celeron N5095A",
-"score": "105478"
+"name": "AMD PRO A10-8750B R7, 12 Compute Cores 4C+8G",
+"score": "105762"
 },
 {
 "rank": 487,
-"name": "AMD Athlon X4 870K",
-"score": "105386"
+"name": "Intel Celeron N5095A",
+"score": "105533"
 },
 {
 "rank": 488,
-"name": "Intel Celeron G4930T",
-"score": "105027"
+"name": "AMD Athlon X4 870K",
+"score": "105377"
 },
 {
 "rank": 489,
-"name": "AMD A8-9600 RADEON R7, 10 COMPUTE CORES 4C+6G",
-"score": "104925"
+"name": "Intel Celeron G4930T",
+"score": "104999"
 },
 {
 "rank": 490,
-"name": "Intel Core i5-2500S",
-"score": "104877"
+"name": "AMD A8-9600 RADEON R7, 10 COMPUTE CORES 4C+6G",
+"score": "104990"
 },
 {
 "rank": 491,
-"name": "AMD A8-7600 Radeon R7, 10 Compute Cores 4C+6G",
-"score": "104861"
+"name": "Intel Core i5-2500S",
+"score": "104876"
 },
 {
 "rank": 492,
-"name": "AMD A8 PRO-7600B R7, 10 Compute Cores 4C+6G",
-"score": "104743"
+"name": "AMD A8-7600 Radeon R7, 10 Compute Cores 4C+6G",
+"score": "104874"
 },
 {
 "rank": 493,
-"name": "Intel Celeron G4900T",
-"score": "104135"
+"name": "AMD A8 PRO-7600B R7, 10 Compute Cores 4C+6G",
+"score": "104670"
 },
 {
 "rank": 494,
-"name": "AMD A10-7700K Radeon R7, 10 Compute Cores 4C+6G",
-"score": "103982"
+"name": "Intel Celeron G4900T",
+"score": "103886"
 },
 {
 "rank": 495,
-"name": "AMD A10-5800K with Radeon HD Graphics",
-"score": "103869"
+"name": "AMD A10-7700K Radeon R7, 10 Compute Cores 4C+6G",
+"score": "103837"
 },
 {
 "rank": 496,
-"name": "AMD PRO A10-8750B R7, 12 Compute Cores 4C+8G",
-"score": "103287"
+"name": "AMD A10-5800K with Radeon HD Graphics",
+"score": "103831"
 },
 {
 "rank": 497,
@@ -3492,119 +3492,119 @@
 {
 "rank": 498,
 "name": "Intel Celeron G3900",
-"score": "102436"
+"score": "102437"
 },
 {
 "rank": 499,
 "name": "AMD A8-7650K Radeon R7, 10 Compute Cores 4C+6G",
-"score": "102261"
+"score": "102310"
 },
 {
 "rank": 500,
 "name": "AMD Athlon X4 760K",
-"score": "101376"
+"score": "101348"
 }
 ],
 "desktop_gpu": [
 {
 "rank": 1,
 "name": "NVIDIA GeForce RTX 5090 32GB",
-"score": "1905169"
+"score": "1904475"
 },
 {
 "rank": 2,
 "name": "NVIDIA GeForce RTX 5090 D 32GB",
-"score": "1895510"
+"score": "1894306"
 },
 {
 "rank": 3,
 "name": "NVIDIA GeForce RTX 5090 D V2 24GB",
-"score": "1875027"
+"score": "1874952"
 },
 {
 "rank": 4,
 "name": "NVIDIA GeForce RTX 4090 24GB",
-"score": "1391687"
+"score": "1391318"
 },
 {
 "rank": 5,
 "name": "NVIDIA GeForce RTX 4090 D 24GB",
-"score": "1257966"
+"score": "1257925"
 },
 {
 "rank": 6,
 "name": "AMD Radeon RX 7900 XTX 24GB",
-"score": "1233127"
+"score": "1233257"
 },
 {
 "rank": 7,
 "name": "NVIDIA GeForce RTX 5080 16GB",
-"score": "1150955"
+"score": "1150912"
 },
 {
 "rank": 8,
 "name": "AMD Radeon RX 7900 XT 20GB",
-"score": "1004548"
+"score": "1004525"
 },
 {
 "rank": 9,
 "name": "AMD Radeon RX 9070 XT 16GB",
-"score": "995617"
+"score": "995585"
 },
 {
 "rank": 10,
 "name": "NVIDIA GeForce RTX 4080 SUPER 16GB",
-"score": "974234"
+"score": "974176"
 },
 {
 "rank": 11,
 "name": "NVIDIA GeForce RTX 4080 SUPER 32GB",
-"score": "961643"
+"score": "961740"
 },
 {
 "rank": 12,
 "name": "NVIDIA GeForce RTX 4080 16GB",
-"score": "961575"
+"score": "961386"
 },
 {
 "rank": 13,
 "name": "NVIDIA GeForce RTX 5070 Ti 16GB",
-"score": "925853"
+"score": "925860"
 },
 {
 "rank": 14,
 "name": "NVIDIA GeForce RTX 3090 Ti 24GB",
-"score": "900714"
+"score": "900849"
 },
 {
 "rank": 15,
 "name": "AMD Radeon RX 9070 16GB",
-"score": "896128"
+"score": "896267"
 },
 {
 "rank": 16,
 "name": "AMD Radeon RX 6950 XT 16GB",
-"score": "860006"
+"score": "860081"
 },
 {
 "rank": 17,
 "name": "AMD Radeon RX 6900 XT 16GB",
-"score": "817993"
+"score": "818067"
 },
 {
 "rank": 18,
 "name": "AMD Radeon RX 7900 GRE 16GB",
-"score": "812094"
+"score": "812025"
 },
 {
 "rank": 19,
 "name": "NVIDIA GeForce RTX 3090 24GB",
-"score": "801257"
+"score": "801293"
 },
 {
 "rank": 20,
 "name": "NVIDIA GeForce RTX 3080 Ti 12GB",
-"score": "797037"
+"score": "797096"
 },
 {
 "rank": 21,
@@ -3614,212 +3614,212 @@
 {
 "rank": 22,
 "name": "NVIDIA GeForce RTX 4070 Ti SUPER 16GB",
-"score": "793634"
+"score": "793647"
 },
 {
 "rank": 23,
 "name": "AMD Radeon RX 6800 XT 16GB",
-"score": "777799"
+"score": "777825"
 },
 {
 "rank": 24,
 "name": "AMD Radeon RX 7800 XT 16GB",
-"score": "764130"
+"score": "764055"
 },
 {
 "rank": 25,
 "name": "NVIDIA GeForce RTX 5070 12GB",
-"score": "763461"
+"score": "763429"
 },
 {
 "rank": 26,
 "name": "NVIDIA GeForce RTX 4090 Laptop GPU 16GB",
-"score": "749233"
+"score": "749348"
 },
 {
 "rank": 27,
 "name": "NVIDIA GeForce RTX 3080 12GB",
-"score": "739124"
+"score": "738889"
 },
 {
 "rank": 28,
 "name": "NVIDIA GeForce RTX 4070 Ti 12GB",
-"score": "714959"
+"score": "714921"
 },
 {
 "rank": 29,
 "name": "AMD Radeon RX 9070 GRE 12GB",
-"score": "710505"
+"score": "710408"
 },
 {
 "rank": 30,
 "name": "NVIDIA GeForce RTX 3080 10GB",
-"score": "702451"
+"score": "702416"
 },
 {
 "rank": 31,
 "name": "NVIDIA GeForce RTX 4070 SUPER 12GB",
-"score": "666253"
+"score": "666242"
 },
 {
 "rank": 32,
 "name": "AMD Radeon RX 6800 16GB",
-"score": "644283"
+"score": "644186"
 },
 {
 "rank": 33,
 "name": "AMD Radeon RX 7700 XT 12GB",
-"score": "615196"
+"score": "615171"
 },
 {
 "rank": 34,
 "name": "NVIDIA GeForce RTX 4080 Laptop GPU 12GB",
-"score": "610477"
+"score": "610225"
 },
 {
 "rank": 35,
 "name": "NVIDIA TITAN RTX 24GB",
-"score": "585922"
+"score": "587887"
 },
 {
 "rank": 36,
 "name": "NVIDIA GeForce RTX 3070 Ti 8GB",
-"score": "581804"
+"score": "581763"
 },
 {
 "rank": 37,
 "name": "AMD Radeon RX 560 12GB",
-"score": "542913"
+"score": "542922"
 },
 {
 "rank": 38,
 "name": "NVIDIA GeForce RTX 2080 Ti 11GB",
-"score": "539433"
+"score": "539426"
 },
 {
 "rank": 39,
 "name": "NVIDIA GeForce RTX 4070 12GB",
-"score": "537109"
+"score": "537049"
 },
 {
 "rank": 40,
 "name": "AMD Radeon RX 6750 XT 12GB",
-"score": "535056"
+"score": "534981"
 },
 {
 "rank": 41,
 "name": "NVIDIA GeForce RTX 3070 8GB",
-"score": "527489"
+"score": "527460"
 },
 {
 "rank": 42,
 "name": "NVIDIA TITAN V 12GB",
-"score": "517933"
+"score": "517921"
 },
 {
 "rank": 43,
 "name": "NVIDIA GeForce RTX 5060 Ti 16GB",
-"score": "511684"
+"score": "511697"
 },
 {
 "rank": 44,
 "name": "AMD Radeon RX 6750 GRE 12GB",
-"score": "509361"
+"score": "509359"
 },
 {
 "rank": 45,
 "name": "AMD Radeon RX 6700 XT 12GB",
-"score": "508466"
+"score": "508443"
 },
 {
 "rank": 46,
 "name": "NVIDIA GeForce RTX 5060 Ti 8GB",
-"score": "508167"
+"score": "508162"
 },
 {
 "rank": 47,
 "name": "AMD Radeon RX 9060 XT 16GB",
-"score": "505568"
+"score": "505519"
 },
 {
 "rank": 48,
 "name": "NVIDIA Tesla V100-SXM2-16GB",
-"score": "500507"
+"score": "501076"
 },
 {
 "rank": 49,
 "name": "AMD Radeon RX 9060 XT 8GB",
-"score": "499796"
+"score": "499749"
 },
 {
 "rank": 50,
 "name": "NVIDIA GeForce RTX 3080 Laptop GPU 8GB",
-"score": "475930"
+"score": "475888"
 },
 {
 "rank": 51,
 "name": "NVIDIA GeForce RTX 3080 Ti Laptop GPU 16GB",
-"score": "475082"
+"score": "475252"
 },
 {
 "rank": 52,
 "name": "NVIDIA TITAN Xp 12GB",
-"score": "469674"
+"score": "469822"
 },
 {
 "rank": 53,
 "name": "NVIDIA GeForce RTX 3080 Laptop GPU 16GB",
-"score": "466121"
+"score": "465937"
 },
 {
 "rank": 54,
 "name": "NVIDIA GeForce RTX 3060 Ti 8GB",
-"score": "455553"
+"score": "455520"
 },
 {
 "rank": 55,
 "name": "NVIDIA GeForce RTX 5060 8GB",
-"score": "455133"
+"score": "455116"
 },
 {
 "rank": 56,
 "name": "NVIDIA GeForce GTX 1080 Ti 11GB",
-"score": "445937"
+"score": "445949"
 },
 {
 "rank": 57,
-"name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
-"score": "443025"
+"name": "AMD Radeon RX 7800M 12GB",
+"score": "443333"
 },
 {
 "rank": 58,
-"name": "AMD Radeon RX 7800M 12GB",
-"score": "442044"
+"name": "NVIDIA GeForce RTX 2080 SUPER 8GB",
+"score": "443007"
 },
 {
 "rank": 59,
 "name": "NVIDIA GeForce RTX 3070 Laptop GPU 8GB",
-"score": "440477"
+"score": "440501"
 },
 {
 "rank": 60,
 "name": "AMD Radeon RX 6700 10GB",
-"score": "437418"
+"score": "437449"
 },
 {
 "rank": 61,
 "name": "AMD Radeon RX 6750 GRE 10GB",
-"score": "435706"
+"score": "435725"
 },
 {
 "rank": 62,
 "name": "NVIDIA TITAN X (Pascal) 12GB",
-"score": "434805"
+"score": "434667"
 },
 {
 "rank": 63,
 "name": "AMD Radeon RX 560 10GB",
-"score": "429551"
+"score": "429857"
 },
 {
 "rank": 64,
@@ -3829,32 +3829,32 @@
 {
 "rank": 65,
 "name": "NVIDIA GeForce RTX 4060 Ti 8GB",
-"score": "418588"
+"score": "418543"
 },
 {
 "rank": 66,
 "name": "NVIDIA GeForce RTX 4060 Ti 16GB",
-"score": "416423"
+"score": "416446"
 },
 {
 "rank": 67,
 "name": "NVIDIA GeForce RTX 2080 8GB",
-"score": "413988"
+"score": "413922"
 },
 {
 "rank": 68,
 "name": "AMD Radeon RX 7650 GRE 8GB",
-"score": "412952"
+"score": "412935"
 },
 {
 "rank": 69,
 "name": "AMD Radeon RX 7600 8GB",
-"score": "410816"
+"score": "410825"
 },
 {
 "rank": 70,
 "name": "NVIDIA Quadro RTX 5000 16GB",
-"score": "409549"
+"score": "409929"
 },
 {
 "rank": 71,
@@ -3864,42 +3864,42 @@
 {
 "rank": 72,
 "name": "AMD Radeon RX 7600 XT 16GB",
-"score": "405620"
+"score": "405499"
 },
 {
 "rank": 73,
 "name": "AMD Radeon RX 7600 XT 8GB",
-"score": "399181"
+"score": "399241"
 },
 {
 "rank": 74,
 "name": "AMD Radeon VII 16GB",
-"score": "396117"
+"score": "396173"
 },
 {
 "rank": 75,
 "name": "AMD Radeon RX 6650 XT 8GB",
-"score": "392401"
+"score": "392422"
 },
 {
 "rank": 76,
 "name": "AMD Radeon Pro VII 16GB",
-"score": "388776"
+"score": "388823"
 },
 {
 "rank": 77,
 "name": "NVIDIA GeForce RTX 2070 SUPER 8GB",
-"score": "386262"
+"score": "386277"
 },
 {
 "rank": 78,
 "name": "AMD Radeon RX 6600 XT 8GB",
-"score": "383015"
+"score": "383029"
 },
 {
 "rank": 79,
 "name": "NVIDIA GeForce RTX 4070 Laptop GPU 8GB",
-"score": "382487"
+"score": "382399"
 },
 {
 "rank": 80,
@@ -3919,7 +3919,7 @@
 {
 "rank": 83,
 "name": "AMD Radeon RX 5700 XT 8GB",
-"score": "360668"
+"score": "360690"
 },
 {
 "rank": 84,
@@ -3929,132 +3929,132 @@
 {
 "rank": 85,
 "name": "NVIDIA GeForce RTX 2070 Super with Max-Q Design 8GB",
-"score": "354443"
+"score": "354079"
 },
 {
 "rank": 86,
 "name": "NVIDIA GeForce RTX 4060 Laptop GPU 8GB",
-"score": "353373"
+"score": "353217"
 },
 {
 "rank": 87,
 "name": "AMD Radeon RX 560 8GB",
-"score": "353144"
+"score": "352929"
 },
 {
 "rank": 88,
 "name": "NVIDIA GeForce RTX 4060 8GB",
-"score": "352387"
+"score": "352360"
 },
 {
 "rank": 89,
 "name": "NVIDIA GeForce RTX 3060 Laptop GPU 6GB",
-"score": "350828"
+"score": "350744"
 },
 {
 "rank": 90,
 "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
-"score": "347141"
+"score": "347017"
 },
 {
 "rank": 91,
 "name": "AMD Radeon Pro W5700 8GB",
-"score": "345083"
+"score": "343612"
 },
 {
 "rank": 92,
 "name": "NVIDIA GeForce RTX 3060 12GB",
-"score": "341917"
+"score": "341901"
 },
 {
 "rank": 93,
 "name": "NVIDIA GeForce RTX 2070 8GB",
-"score": "337056"
+"score": "337046"
 },
 {
 "rank": 94,
 "name": "AMD Radeon RX 7600M XT 8GB",
-"score": "335389"
+"score": "335398"
 },
 {
 "rank": 95,
 "name": "NVIDIA GeForce GTX 1080 8GB",
-"score": "334936"
+"score": "334946"
 },
 {
 "rank": 96,
 "name": "NVIDIA GeForce RTX 2060 SUPER 8GB",
-"score": "331073"
+"score": "331035"
 },
 {
 "rank": 97,
 "name": "AMD Radeon RX 6600 8GB",
-"score": "330129"
+"score": "330118"
 },
 {
 "rank": 98,
 "name": "AMD Radeon RX 6600M 8GB",
-"score": "329703"
+"score": "329529"
 },
 {
 "rank": 99,
 "name": "AMD Radeon RX 5700 8GB",
-"score": "328648"
+"score": "328632"
 },
 {
 "rank": 100,
 "name": "NVIDIA GeForce RTX 5050 8GB",
-"score": "323180"
+"score": "323231"
 },
 {
 "rank": 101,
 "name": "AMD Radeon Pro 5600M 8GB",
-"score": "320876"
+"score": "320894"
 },
 {
 "rank": 102,
 "name": "NVIDIA Quadro RTX 4000 8GB",
-"score": "320597"
+"score": "320614"
 },
 {
 "rank": 103,
 "name": "AMD Radeon RX Vega 64 8GB",
-"score": "320142"
+"score": "320086"
 },
 {
 "rank": 104,
 "name": "AMD Radeon Pro W5700X 8GB",
-"score": "314575"
+"score": "314516"
 },
 {
 "rank": 105,
 "name": "NVIDIA GeForce RTX 2070 with Max-Q Design 8GB",
-"score": "313821"
+"score": "313538"
 },
 {
 "rank": 106,
 "name": "NVIDIA Quadro P5000 16GB",
-"score": "308635"
+"score": "308619"
 },
 {
 "rank": 107,
 "name": "NVIDIA GeForce GTX 1070 Ti 8GB",
-"score": "307697"
+"score": "307688"
 },
 {
 "rank": 108,
 "name": "AMD Radeon RX 6600 LE 8GB",
-"score": "304056"
+"score": "304044"
 },
 {
 "rank": 109,
 "name": "NVIDIA GeForce RTX 2060 12GB",
-"score": "303214"
+"score": "303051"
 },
 {
 "rank": 110,
 "name": "NVIDIA GeForce RTX 3060 8GB",
-"score": "299715"
+"score": "299690"
 },
 {
 "rank": 111,
@@ -4064,112 +4064,112 @@
 {
 "rank": 112,
 "name": "NVIDIA GeForce RTX 2060 6GB",
-"score": "294399"
+"score": "294365"
 },
 {
 "rank": 113,
 "name": "AMD Radeon RX 5600 XT 6GB",
-"score": "289807"
+"score": "289782"
 },
 {
 "rank": 114,
 "name": "AMD Radeon RX Vega 56 8GB",
-"score": "287701"
+"score": "287637"
 },
 {
 "rank": 115,
 "name": "NVIDIA RTX 2000 Ada Generation 16GB",
-"score": "286850"
+"score": "287050"
 },
 {
 "rank": 116,
-"name": "NVIDIA GeForce RTX 4050 Laptop GPU 6GB",
-"score": "283871"
+"name": "AMD Radeon PRO WX 8200 8GB",
+"score": "285527"
 },
 {
 "rank": 117,
-"name": "AMD Radeon PRO WX 8200 8GB",
-"score": "283385"
+"name": "NVIDIA GeForce RTX 4050 Laptop GPU 6GB",
+"score": "283727"
 },
 {
 "rank": 118,
 "name": "NVIDIA GeForce GTX 980 Ti 6GB",
-"score": "283186"
+"score": "283171"
 },
 {
 "rank": 119,
 "name": "AMD Radeon RX Vega 8GB",
-"score": "278875"
+"score": "278830"
 },
 {
 "rank": 120,
 "name": "NVIDIA GeForce GTX 1070 8GB",
-"score": "274471"
+"score": "274467"
 },
 {
 "rank": 121,
-"name": "AMD Radeon RX 5600 OEM 6GB",
-"score": "268122"
+"name": "NVIDIA Quadro RTX 3000 6GB",
+"score": "268468"
 },
 {
 "rank": 122,
-"name": "NVIDIA Quadro RTX 3000 6GB",
-"score": "268064"
+"name": "AMD Radeon RX 5600 OEM 6GB",
+"score": "268194"
 },
 {
 "rank": 123,
 "name": "NVIDIA GeForce GTX TITAN X 12GB",
-"score": "267623"
+"score": "267698"
 },
 {
 "rank": 124,
 "name": "NVIDIA GeForce RTX 2060 with Max-Q Design 6GB",
-"score": "256555"
+"score": "256345"
 },
 {
 "rank": 125,
 "name": "NVIDIA GeForce RTX 3050 8GB",
-"score": "246701"
+"score": "246667"
 },
 {
 "rank": 126,
 "name": "NVIDIA Quadro P4000 8GB",
-"score": "238187"
+"score": "238184"
 },
 {
 "rank": 127,
 "name": "NVIDIA GeForce GTX 1660 Ti 6GB",
-"score": "235371"
+"score": "235303"
 },
 {
 "rank": 128,
 "name": "NVIDIA GeForce GTX 1660 SUPER 6GB",
-"score": "223050"
+"score": "223018"
 },
 {
 "rank": 129,
 "name": "NVIDIA GeForce RTX 3050 Ti Laptop GPU 8GB",
-"score": "221008"
+"score": "220903"
 },
 {
 "rank": 130,
 "name": "NVIDIA GeForce RTX 3050 OEM 8GB",
-"score": "220535"
+"score": "220216"
 },
 {
 "rank": 131,
 "name": "AMD Radeon R9 Fury Series 4GB",
-"score": "219720"
+"score": "219656"
 },
 {
 "rank": 132,
 "name": "NVIDIA GeForce GTX 980 4GB",
-"score": "213468"
+"score": "213475"
 },
 {
 "rank": 133,
 "name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
-"score": "212759"
+"score": "212628"
 },
 {
 "rank": 134,
@@ -4178,53 +4178,53 @@
 },
 {
 "rank": 135,
-"name": "NVIDIA GeForce RTX 3050 Laptop GPU 8GB",
-"score": "200076"
-},
-{
-"rank": 136,
 "name": "AMD Radeon RX 5500 XT 4GB",
 "score": "200035"
 },
 {
+"rank": 136,
+"name": "NVIDIA GeForce RTX 3050 Laptop GPU 8GB",
+"score": "200021"
+},
+{
 "rank": 137,
 "name": "NVIDIA GeForce GTX 1660 6GB",
-"score": "199082"
+"score": "199052"
 },
 {
 "rank": 138,
 "name": "AMD Radeon RX 590 Series 8GB",
-"score": "199027"
+"score": "199014"
 },
 {
 "rank": 139,
 "name": "AMD Radeon RX 5500 4GB",
-"score": "198926"
+"score": "198946"
 },
 {
 "rank": 140,
 "name": "NVIDIA GeForce GTX 1060 6GB",
-"score": "198501"
+"score": "198502"
 },
 {
 "rank": 141,
 "name": "AMD Radeon RX 5500 XT 8GB",
-"score": "198060"
+"score": "198051"
 },
 {
 "rank": 142,
 "name": "AMD Radeon RX 5500 8GB",
-"score": "195146"
+"score": "195153"
 },
 {
 "rank": 143,
 "name": "NVIDIA GeForce RTX 3050 6GB",
-"score": "194251"
+"score": "194244"
 },
 {
 "rank": 144,
 "name": "AMD Radeon RX 580 8GB",
-"score": "193530"
+"score": "193585"
 },
 {
 "rank": 145,
@@ -4239,32 +4239,32 @@
 {
 "rank": 147,
 "name": "NVIDIA GeForce GTX 1060 3GB",
-"score": "181321"
+"score": "181303"
 },
 {
 "rank": 148,
 "name": "NVIDIA GeForce GTX 1060 5GB",
-"score": "180929"
+"score": "180928"
 },
 {
 "rank": 149,
-"name": "AMD Radeon RX 6500 XT 4GB",
-"score": "179523"
+"name": "NVIDIA GeForce GTX 1060 3GB",
+"score": "179687"
 },
 {
 "rank": 150,
-"name": "NVIDIA GeForce GTX 1060 3GB",
-"score": "179072"
+"name": "AMD Radeon RX 6500 XT 4GB",
+"score": "179503"
 },
 {
 "rank": 151,
 "name": "NVIDIA GeForce GTX 1060 3GB",
-"score": "178679"
+"score": "178684"
 },
 {
 "rank": 152,
 "name": "AMD Radeon RX 580 Series 8GB",
-"score": "178586"
+"score": "178606"
 },
 {
 "rank": 153,
@@ -4279,47 +4279,47 @@
 {
 "rank": 155,
 "name": "AMD Radeon R9 390 Series 4GB",
-"score": "175353"
+"score": "175162"
 },
 {
 "rank": 156,
 "name": "NVIDIA GeForce GTX 1060 6GB",
-"score": "174780"
+"score": "174818"
 },
 {
 "rank": 157,
 "name": "AMD Radeon R9 390 Series 8GB",
-"score": "172583"
+"score": "172505"
 },
 {
 "rank": 158,
 "name": "AMD Radeon RX 480 8GB",
-"score": "172142"
+"score": "172167"
 },
 {
 "rank": 159,
 "name": "AMD Radeon RX 580 Series 4GB",
-"score": "172000"
+"score": "171971"
 },
 {
 "rank": 160,
 "name": "AMD Radeon RX 590 GME 8GB",
-"score": "171894"
+"score": "171918"
 },
 {
 "rank": 161,
 "name": "AMD Radeon RX 480 Graphics 8GB",
-"score": "171280"
+"score": "171279"
 },
 {
 "rank": 162,
 "name": "NVIDIA GeForce GTX 970 4GB",
-"score": "170939"
+"score": "170940"
 },
 {
 "rank": 163,
 "name": "AMD Radeon RX 480 Series 4GB",
-"score": "169804"
+"score": "169904"
 },
 {
 "rank": 164,
@@ -4329,22 +4329,22 @@
 {
 "rank": 165,
 "name": "AMD ASUS Radeon RX 580 Series 8GB",
-"score": "169658"
+"score": "169728"
 },
 {
 "rank": 166,
 "name": "AMD Radeon RX 480 Graphics 4GB",
-"score": "167774"
+"score": "167800"
 },
 {
 "rank": 167,
 "name": "NVIDIA GeForce GTX 1650 SUPER 4GB",
-"score": "166691"
+"score": "166707"
 },
 {
 "rank": 168,
 "name": "NVIDIA GeForce GTX TITAN 6GB",
-"score": "166337"
+"score": "166283"
 },
 {
 "rank": 169,
@@ -4354,32 +4354,32 @@
 {
 "rank": 170,
 "name": "AMD Radeon RX 570 Series 8GB",
-"score": "163999"
+"score": "164126"
 },
 {
 "rank": 171,
 "name": "AMD Radeon RX 570 Series 4GB",
-"score": "163132"
+"score": "163128"
 },
 {
 "rank": 172,
 "name": "NVIDIA Quadro P2200 5GB",
-"score": "161899"
+"score": "161964"
 },
 {
 "rank": 173,
 "name": "AMD Radeon RX 580 2048SP 4GB",
-"score": "160897"
+"score": "160911"
 },
 {
 "rank": 174,
 "name": "AMD Radeon RX 580 2048SP 8GB",
-"score": "160250"
+"score": "160251"
 },
 {
 "rank": 175,
 "name": "NVIDIA Quadro T2000 4GB",
-"score": "159663"
+"score": "159885"
 },
 {
 "rank": 176,
@@ -4389,42 +4389,42 @@
 {
 "rank": 177,
 "name": "AMD Radeon RX 470 Series 8GB",
-"score": "155984"
+"score": "155976"
 },
 {
 "rank": 178,
 "name": "AMD Radeon RX 560XT 4GB",
-"score": "155583"
+"score": "155516"
 },
 {
 "rank": 179,
 "name": "AMD Radeon RX 470 Graphics 8GB",
-"score": "154057"
+"score": "154173"
 },
 {
 "rank": 180,
 "name": "AMD ASUS Radeon RX 570 Series 4GB",
-"score": "153498"
+"score": "153277"
 },
 {
 "rank": 181,
-"name": "AMD Radeon RX 560XT 8GB",
-"score": "152318"
-},
-{
-"rank": 182,
 "name": "AMD Radeon Pro WX 7100 Graphics 8GB",
 "score": "152301"
 },
 {
+"rank": 182,
+"name": "AMD Radeon RX 560XT 8GB",
+"score": "152238"
+},
+{
 "rank": 183,
 "name": "AMD Radeon RX 470 Graphics 4GB",
-"score": "150982"
+"score": "150995"
 },
 {
 "rank": 184,
 "name": "NVIDIA GeForce GTX 780 3GB",
-"score": "149672"
+"score": "149719"
 },
 {
 "rank": 185,
@@ -4434,17 +4434,17 @@
 {
 "rank": 186,
 "name": "NVIDIA Quadro P2000 5GB",
-"score": "148788"
+"score": "148745"
 },
 {
 "rank": 187,
 "name": "AMD Radeon RX 470 Series 4GB",
-"score": "148601"
+"score": "148572"
 },
 {
 "rank": 188,
 "name": "NVIDIA Quadro K6000 12GB",
-"score": "148363"
+"score": "148352"
 },
 {
 "rank": 189,
@@ -4454,32 +4454,32 @@
 {
 "rank": 190,
 "name": "AMD Radeon RX 6550M 4GB",
-"score": "146384"
+"score": "146339"
 },
 {
 "rank": 191,
 "name": "AMD Radeon RX 6400 4GB",
-"score": "144553"
+"score": "144560"
 },
 {
 "rank": 192,
 "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
-"score": "142123"
+"score": "142180"
 },
 {
 "rank": 193,
 "name": "AMD Radeon RX560XT Series 8GB",
-"score": "140464"
+"score": "140511"
 },
 {
 "rank": 194,
 "name": "NVIDIA GeForce GTX 1650 4GB",
-"score": "137346"
+"score": "137285"
 },
 {
 "rank": 195,
 "name": "AMD Radeon R9 380 Series 2GB",
-"score": "132460"
+"score": "132526"
 },
 {
 "rank": 196,
@@ -4489,7 +4489,7 @@
 {
 "rank": 197,
 "name": "AMD Radeon R9 380 Series 4GB",
-"score": "131580"
+"score": "131596"
 },
 {
 "rank": 198,
@@ -4499,17 +4499,17 @@
 {
 "rank": 199,
 "name": "AMD Radeon 780M Graphics 8GB",
-"score": "124145"
+"score": "124334"
 },
 {
 "rank": 200,
 "name": "AMD Radeon R9 200 Series 4GB",
-"score": "123561"
+"score": "123408"
 },
 {
 "rank": 201,
 "name": "NVIDIA GeForce GTX 1050 Ti 4GB",
-"score": "123309"
+"score": "123302"
 },
 {
 "rank": 202,
@@ -4519,32 +4519,32 @@
 {
 "rank": 203,
 "name": "AMD Radeon RX 560 4GB",
-"score": "120357"
+"score": "118426"
 },
 {
 "rank": 204,
+"name": "AMD Radeon R9 200 Series 3GB",
+"score": "114716"
+},
+{
+"rank": 205,
 "name": "AMD Radeon R9 200 / HD 7900 Series 3GB",
 "score": "114680"
 },
 {
-"rank": 205,
-"name": "AMD Radeon R9 200 Series 3GB",
-"score": "114584"
-},
-{
 "rank": 206,
 "name": "NVIDIA Quadro M4000 8GB",
-"score": "112932"
+"score": "112884"
 },
 {
 "rank": 207,
 "name": "NVIDIA GeForce GTX 960 4GB",
-"score": "109485"
+"score": "109465"
 },
 {
 "rank": 208,
 "name": "NVIDIA GeForce GTX 960 2GB",
-"score": "108638"
+"score": "108631"
 },
 {
 "rank": 209,
@@ -4554,52 +4554,52 @@
 {
 "rank": 210,
 "name": "AMD Radeon R9 200 Series 6GB",
-"score": "107611"
+"score": "107621"
 },
 {
 "rank": 211,
 "name": "AMD Radeon 780M Graphics 512MB",
-"score": "107172"
+"score": "107151"
 },
 {
 "rank": 212,
 "name": "NVIDIA GeForce GTX 1050 2GB",
-"score": "105273"
+"score": "105318"
 },
 {
 "rank": 213,
 "name": "AMD Radeon HD 7900 Series 3GB",
-"score": "104963"
+"score": "104883"
 },
 {
 "rank": 214,
 "name": "AMD Radeon 760M Graphics 512MB",
-"score": "101233"
+"score": "101425"
 },
 {
 "rank": 215,
 "name": "NVIDIA GeForce GTX 1050 3GB",
-"score": "100323"
+"score": "100468"
 },
 {
 "rank": 216,
 "name": "NVIDIA GeForce GTX 950 2GB",
-"score": "98649"
+"score": "98627"
 },
 {
 "rank": 217,
 "name": "NVIDIA GeForce GTX 770 2GB",
-"score": "98195"
+"score": "98177"
 },
 {
 "rank": 218,
 "name": "NVIDIA GeForce GTX 1050 4GB",
-"score": "97679"
+"score": "97670"
 },
 {
 "rank": 219,
 "name": "NVIDIA GeForce GTX 770 4GB",
-"score": "96497"
+"score": "96509"
 },
 {
 "rank": 220,
@@ -4614,42 +4614,42 @@
 {
 "rank": 222,
 "name": "AMD Radeon RX Vega M GL Graphics 4GB",
-"score": "93713"
+"score": "93715"
 },
 {
 "rank": 223,
 "name": "NVIDIA GeForce GTX 680 2GB",
-"score": "92417"
+"score": "92472"
 },
 {
 "rank": 224,
 "name": "NVIDIA Quadro P1000 4GB",
-"score": "91205"
+"score": "91348"
 },
 {
 "rank": 225,
 "name": "NVIDIA Quadro K5200 8GB",
-"score": "90262"
+"score": "90450"
 },
 {
 "rank": 226,
 "name": "NVIDIA GeForce GTX 1630 4GB",
-"score": "86301"
+"score": "86467"
 },
 {
 "rank": 227,
 "name": "NVIDIA GeForce GTX 670 4GB",
-"score": "85252"
+"score": "85384"
 },
 {
 "rank": 228,
 "name": "NVIDIA GeForce GTX 670 2GB",
-"score": "84647"
+"score": "84692"
 },
 {
 "rank": 229,
 "name": "AMD Radeon Pro WX 5100 Graphics 8GB",
-"score": "83529"
+"score": "83669"
 },
 {
 "rank": 230,
@@ -4658,253 +4658,253 @@
 },
 {
 "rank": 231,
-"name": "AMD Radeon R9 200 Series 2GB",
-"score": "80162"
-},
-{
-"rank": 232,
 "name": "NVIDIA GeForce GTX 780 Ti 4GB",
 "score": "80156"
 },
 {
+"rank": 232,
+"name": "AMD Radeon R9 200 Series 2GB",
+"score": "80154"
+},
+{
 "rank": 233,
 "name": "NVIDIA Quadro M2000 4GB",
-"score": "79728"
+"score": "79848"
 },
 {
 "rank": 234,
-"name": "AMD Radeon RX 460 Series 4GB",
-"score": "78994"
+"name": "AMD Radeon Pro WX 5100 8GB",
+"score": "79805"
 },
 {
 "rank": 235,
-"name": "NVIDIA GeForce GTX 760 2GB",
-"score": "78376"
+"name": "AMD Radeon RX 460 Series 4GB",
+"score": "78977"
 },
 {
 "rank": 236,
-"name": "NVIDIA GeForce GTX 760 4GB",
-"score": "78336"
+"name": "NVIDIA GeForce GTX 760 2GB",
+"score": "78377"
 },
 {
 "rank": 237,
-"name": "AMD Radeon RX 560 Series 2GB",
-"score": "78081"
+"name": "NVIDIA GeForce GTX 760 4GB",
+"score": "78273"
 },
 {
 "rank": 238,
-"name": "NVIDIA GeForce GTX 750 Ti 2GB",
-"score": "77178"
+"name": "AMD Radeon RX 560 Series 2GB",
+"score": "78076"
 },
 {
 "rank": 239,
-"name": "NVIDIA GeForce GTX 965M 4GB",
-"score": "77044"
+"name": "NVIDIA GeForce GTX 750 Ti 2GB",
+"score": "77171"
 },
 {
 "rank": 240,
-"name": "AMD Radeon RX 560 Series 4GB",
-"score": "76988"
+"name": "NVIDIA GeForce GTX 965M 4GB",
+"score": "77070"
 },
 {
 "rank": 241,
-"name": "AMD Radeon RX 460 Graphics 4GB",
-"score": "76923"
+"name": "AMD Radeon RX 560 Series 4GB",
+"score": "76992"
 },
 {
 "rank": 242,
-"name": "AMD Radeon R7 370 Series 2GB",
-"score": "76902"
+"name": "AMD Radeon RX 460 Graphics 4GB",
+"score": "76926"
 },
 {
 "rank": 243,
-"name": "AMD Radeon RX 460 Graphics 2GB",
-"score": "76173"
+"name": "AMD Radeon R7 370 Series 2GB",
+"score": "76925"
 },
 {
 "rank": 244,
-"name": "AMD Radeon R7 370 Series 4GB",
-"score": "75099"
+"name": "AMD Radeon RX 460 Graphics 2GB",
+"score": "76209"
 },
 {
 "rank": 245,
-"name": "AMD Radeon R9 270 2GB",
-"score": "74848"
+"name": "AMD Radeon R7 370 Series 4GB",
+"score": "75102"
 },
 {
 "rank": 246,
-"name": "NVIDIA GeForce GTX 750 Ti 1GB",
-"score": "74706"
+"name": "AMD Radeon R9 270 2GB",
+"score": "74804"
 },
 {
 "rank": 247,
-"name": "AMD Radeon 740M Graphics 512MB",
-"score": "73705"
+"name": "NVIDIA GeForce GTX 750 Ti 1GB",
+"score": "74737"
 },
 {
 "rank": 248,
+"name": "AMD Radeon 740M Graphics 512MB",
+"score": "74078"
+},
+{
+"rank": 249,
 "name": "NVIDIA Quadro P600 4GB",
 "score": "73676"
 },
 {
-"rank": 249,
-"name": "AMD Radeon R9 370 series 2GB",
-"score": "73061"
-},
-{
 "rank": 250,
-"name": "NVIDIA GeForce GTX 750 Ti 4GB",
-"score": "72705"
+"name": "AMD Radeon R9 370 series 2GB",
+"score": "73125"
 },
 {
 "rank": 251,
-"name": "NVIDIA GeForce GTX 750 4GB",
-"score": "72152"
+"name": "NVIDIA GeForce GTX 750 Ti 4GB",
+"score": "72744"
 },
 {
 "rank": 252,
-"name": "NVIDIA Quadro K5000 4GB",
-"score": "71664"
+"name": "NVIDIA GeForce GTX 750 4GB",
+"score": "72051"
 },
 {
 "rank": 253,
-"name": "NVIDIA GeForce GTX 750 2GB",
-"score": "71213"
+"name": "NVIDIA Quadro K5000 4GB",
+"score": "71655"
 },
 {
 "rank": 254,
-"name": "NVIDIA Quadro K4200 4GB",
-"score": "70614"
+"name": "NVIDIA GeForce GTX 750 2GB",
+"score": "71208"
 },
 {
 "rank": 255,
-"name": "NVIDIA GeForce GTX 960M 4GB",
-"score": "70241"
+"name": "NVIDIA Quadro K4200 4GB",
+"score": "70761"
 },
 {
 "rank": 256,
 "name": "NVIDIA GeForce GTX 750 1GB",
-"score": "70218"
+"score": "70204"
 },
 {
 "rank": 257,
-"name": "NVIDIA Quadro P620 2GB",
-"score": "69842"
+"name": "NVIDIA GeForce GTX 960M 4GB",
+"score": "70193"
 },
 {
 "rank": 258,
-"name": "AMD Radeon R9 270 1024SP 2GB",
-"score": "69679"
+"name": "NVIDIA Quadro P620 2GB",
+"score": "69768"
 },
 {
 "rank": 259,
-"name": "AMD Radeon R9 370 Series 4GB",
-"score": "69448"
+"name": "AMD Radeon R9 270 1024SP 2GB",
+"score": "69562"
 },
 {
 "rank": 260,
+"name": "AMD Radeon R9 370 Series 4GB",
+"score": "69458"
+},
+{
+"rank": 261,
 "name": "AMD Radeon Pro WX 4100 4GB",
 "score": "68652"
 },
 {
-"rank": 261,
+"rank": 262,
 "name": "NVIDIA GeForce GTX 950M 4GB",
-"score": "68571"
+"score": "68550"
 },
 {
-"rank": 262,
+"rank": 263,
 "name": "NVIDIA GeForce GTX 660 Ti 3GB",
 "score": "68528"
 },
 {
-"rank": 263,
-"name": "NVIDIA GeForce GTX 660 Ti 2GB",
-"score": "68446"
-},
-{
 "rank": 264,
-"name": "NVIDIA Quadro K2200 4GB",
-"score": "67864"
+"name": "NVIDIA GeForce GTX 660 Ti 2GB",
+"score": "68422"
 },
 {
 "rank": 265,
-"name": "AMD Radeon HD 7800 Series 2GB",
-"score": "67279"
+"name": "NVIDIA Quadro K2200 4GB",
+"score": "67866"
 },
 {
 "rank": 266,
+"name": "AMD Radeon HD 7800 Series 2GB",
+"score": "67258"
+},
+{
+"rank": 267,
 "name": "AMD RADEON R9 M290X 2GB",
 "score": "66735"
 },
 {
-"rank": 267,
+"rank": 268,
 "name": "NVIDIA GeForce GTX 775M 2GB",
 "score": "66563"
 },
 {
-"rank": 268,
+"rank": 269,
+"name": "NVIDIA GeForce GTX 950M 2GB",
+"score": "66466"
+},
+{
+"rank": 270,
 "name": "AMD Radeon HD 7800 Series 4GB",
 "score": "66434"
 },
 {
-"rank": 269,
-"name": "NVIDIA GeForce GTX 950M 2GB",
-"score": "66263"
-},
-{
-"rank": 270,
-"name": "NVIDIA GeForce GTX 850M 2GB",
-"score": "63734"
-},
-{
 "rank": 271,
+"name": "NVIDIA GeForce GTX 850M 2GB",
+"score": "63591"
+},
+{
+"rank": 272,
 "name": "NVIDIA GeForce GTX 660 2GB",
 "score": "63121"
 },
 {
-"rank": 272,
-"name": "NVIDIA GeForce GTX 850M 1GB",
-"score": "62555"
-},
-{
 "rank": 273,
 "name": "AMD Radeon HD 7800 Series 1GB",
-"score": "62445"
+"score": "62482"
 },
 {
 "rank": 274,
+"name": "NVIDIA GeForce GTX 850M 1GB",
+"score": "62388"
+},
+{
+"rank": 275,
 "name": "AMD Radeon Pro WX 3200 Series 4GB",
 "score": "62063"
 },
 {
-"rank": 275,
-"name": "NVIDIA GeForce GTX 960M 2GB",
-"score": "61663"
-},
-{
 "rank": 276,
 "name": "AMD Radeon RX 550 Series 4GB",
-"score": "60991"
+"score": "60983"
 },
 {
 "rank": 277,
-"name": "NVIDIA GeForce GTX 660 3GB",
-"score": "60449"
+"name": "NVIDIA Quadro M620 2GB",
+"score": "60447"
 },
 {
 "rank": 278,
-"name": "NVIDIA Quadro M620 2GB",
-"score": "60144"
+"name": "NVIDIA GeForce GTX 660 3GB",
+"score": "60435"
 },
 {
 "rank": 279,
 "name": "NVIDIA Quadro P600 2GB",
-"score": "59581"
+"score": "59673"
 },
 {
 "rank": 280,
 "name": "NVIDIA GeForce GTX 650 Ti BOOST 2GB",
-"score": "58861"
+"score": "58885"
 },
 {
 "rank": 281,
@@ -4914,117 +4914,117 @@
 {
 "rank": 282,
 "name": "NVIDIA Quadro K1200 4GB",
-"score": "58529"
+"score": "58411"
 },
 {
 "rank": 283,
 "name": "AMD Radeon RX 640 4GB",
-"score": "58393"
+"score": "58409"
 },
 {
 "rank": 284,
 "name": "NVIDIA GeForce GTX 570 1GB",
-"score": "57838"
+"score": "57836"
 },
 {
 "rank": 285,
 "name": "AMD Radeon Graphics 512MB",
-"score": "57544"
+"score": "57552"
 },
 {
 "rank": 286,
 "name": "AMD Radeon RX550/550 Series 4GB",
-"score": "56441"
+"score": "56436"
 },
 {
 "rank": 287,
 "name": "AMD Radeon RX 550X 4GB",
-"score": "56017"
+"score": "55974"
 },
 {
 "rank": 288,
 "name": "NVIDIA GeForce GTX 745 2GB",
-"score": "55812"
+"score": "55817"
 },
 {
 "rank": 289,
 "name": "NVIDIA GeForce GTX 745 4GB",
-"score": "55495"
+"score": "55498"
 },
 {
 "rank": 290,
 "name": "AMD Radeon RX550/550 Series 2GB",
-"score": "55382"
+"score": "55418"
 },
 {
 "rank": 291,
 "name": "AMD Radeon 550 Series 4GB",
-"score": "54570"
+"score": "54642"
 },
 {
 "rank": 292,
 "name": "AMD Radeon HD 6900 Series 2GB",
-"score": "53218"
+"score": "53221"
 },
 {
 "rank": 293,
 "name": "AMD Radeon Pro WX 3100 4GB",
-"score": "53107"
+"score": "53104"
 },
 {
 "rank": 294,
 "name": "AMD Radeon RX 550 4GB",
-"score": "52572"
+"score": "52561"
 },
 {
 "rank": 295,
 "name": "NVIDIA GeForce GTX 650 Ti BOOST 1GB",
-"score": "52225"
+"score": "52159"
 },
 {
 "rank": 296,
-"name": "AMD ASUS Radeon RX 550 Series 4GB",
-"score": "52106"
-},
-{
-"rank": 297,
 "name": "NVIDIA GeForce GPU 2GB",
 "score": "52049"
 },
 {
+"rank": 297,
+"name": "AMD ASUS Radeon RX 550 Series 4GB",
+"score": "52026"
+},
+{
 "rank": 298,
 "name": "NVIDIA GeForce GTX 1050 Ti 2GB",
-"score": "51819"
+"score": "51735"
 },
 {
 "rank": 299,
 "name": "NVIDIA GeForce GTX 560 Ti 1GB",
-"score": "51364"
+"score": "51372"
 },
 {
 "rank": 300,
 "name": "AMD Radeon RX 550 2GB",
-"score": "50882"
+"score": "50837"
 },
 {
 "rank": 301,
 "name": "NVIDIA GeForce GTX 560 Ti 2GB",
-"score": "50367"
+"score": "50364"
 },
 {
 "rank": 302,
 "name": "AMD Radeon R7 360 Series 2GB",
-"score": "46255"
+"score": "46215"
 },
 {
 "rank": 303,
 "name": "NVIDIA Quadro K4000 3GB",
-"score": "46118"
+"score": "46150"
 },
 {
 "rank": 304,
 "name": "AMD ASUS Radeon RX 550 Series 2GB",
-"score": "45459"
+"score": "45449"
 },
 {
 "rank": 305,
@@ -5034,27 +5034,27 @@
 {
 "rank": 306,
 "name": "AMD Radeon R9 360 4GB",
-"score": "44148"
+"score": "44209"
 },
 {
 "rank": 307,
 "name": "AMD Radeon Vega 11 Graphics 2GB",
-"score": "43955"
+"score": "43882"
 },
 {
 "rank": 308,
 "name": "NVIDIA Quadro K620 2GB",
-"score": "43717"
+"score": "43663"
 },
 {
 "rank": 309,
 "name": "AMD Radeon R9 360 2GB",
-"score": "43299"
+"score": "43322"
 },
 {
 "rank": 310,
 "name": "NVIDIA GeForce GTX 560 1GB",
-"score": "43283"
+"score": "43280"
 },
 {
 "rank": 311,
@@ -5064,7 +5064,7 @@
 {
 "rank": 312,
 "name": "AMD Radeon RX Vega 11 Graphics 2GB",
-"score": "42344"
+"score": "42373"
 },
 {
 "rank": 313,
@@ -5074,22 +5074,22 @@
 {
 "rank": 314,
 "name": "AMD Radeon R7 360 Series 4GB",
-"score": "41895"
+"score": "41896"
 },
 {
 "rank": 315,
 "name": "AMD Radeon Vega 11 Graphics 1GB",
-"score": "40325"
+"score": "40216"
 },
 {
 "rank": 316,
 "name": "AMD Radeon RX Vega 11 Graphics 1GB",
-"score": "40072"
+"score": "40080"
 },
 {
 "rank": 317,
 "name": "NVIDIA GeForce GTX 650 Ti 1GB",
-"score": "39004"
+"score": "38997"
 },
 {
 "rank": 318,
@@ -5099,57 +5099,57 @@
 {
 "rank": 319,
 "name": "NVIDIA GeForce GTX 460 1GB",
-"score": "38659"
+"score": "38658"
 },
 {
 "rank": 320,
 "name": "NVIDIA GeForce GTX 650 Ti 2GB",
-"score": "38603"
+"score": "38554"
 },
 {
 "rank": 321,
 "name": "AMD Radeon HD 5800 Series 1GB",
-"score": "38356"
+"score": "38226"
 },
 {
 "rank": 322,
 "name": "AMD Radeon HD 6800 Series 1GB",
-"score": "38102"
+"score": "38114"
 },
 {
 "rank": 323,
 "name": "AMD Radeon R7 450 4GB",
-"score": "38094"
+"score": "38102"
 },
 {
 "rank": 324,
 "name": "AMD Radeon HD 6800 Series 2GB",
-"score": "36814"
+"score": "36829"
 },
 {
 "rank": 325,
 "name": "AMD Radeon HD 7700 Series 2GB",
-"score": "35964"
+"score": "35961"
 },
 {
 "rank": 326,
 "name": "AMD Radeon HD 7700 Series 1GB",
-"score": "35921"
+"score": "35912"
 },
 {
 "rank": 327,
 "name": "AMD Radeon RX Vega 11 Graphics 512MB",
-"score": "35654"
+"score": "35812"
 },
 {
 "rank": 328,
 "name": "AMD Radeon HD 7700 Series 4GB",
-"score": "34742"
+"score": "34725"
 },
 {
 "rank": 329,
 "name": "AMD Radeon R9 M360 2GB",
-"score": "34716"
+"score": "34718"
 },
 {
 "rank": 330,
@@ -5163,18 +5163,18 @@
 },
 {
 "rank": 332,
-"name": "AMD Radeon R7 350 Series 2GB",
-"score": "33810"
+"name": "NVIDIA GeForce GTX 460 SE 1GB",
+"score": "33841"
 },
 {
 "rank": 333,
-"name": "NVIDIA GeForce GTX 460 SE 1GB",
-"score": "33792"
+"name": "AMD Radeon R7 350 Series 2GB",
+"score": "33816"
 },
 {
 "rank": 334,
 "name": "NVIDIA GeForce GTX 560 SE 1GB",
-"score": "32839"
+"score": "32838"
 },
 {
 "rank": 335,
@@ -5189,42 +5189,42 @@
 {
 "rank": 337,
 "name": "NVIDIA GeForce GTX 650 1GB",
-"score": "30730"
+"score": "30736"
 },
 {
 "rank": 338,
 "name": "NVIDIA GeForce GTX 650 2GB",
-"score": "30666"
+"score": "30668"
 },
 {
 "rank": 339,
 "name": "NVIDIA GeForce GT 740 1GB",
-"score": "30314"
+"score": "30322"
 },
 {
 "rank": 340,
 "name": "NVIDIA GeForce GTX 645 1GB",
-"score": "29531"
+"score": "29792"
 },
 {
 "rank": 341,
 "name": "NVIDIA GeForce GT 1030 2GB",
-"score": "29388"
+"score": "29395"
 },
 {
 "rank": 342,
 "name": "NVIDIA GeForce GT 740 2GB",
-"score": "29030"
+"score": "29044"
 },
 {
 "rank": 343,
 "name": "NVIDIA GeForce GT 755M 1GB",
-"score": "28747"
+"score": "28737"
 },
 {
 "rank": 344,
 "name": "AMD Radeon R7 350 Series 4GB",
-"score": "27905"
+"score": "27912"
 },
 {
 "rank": 345,
@@ -5234,127 +5234,127 @@
 {
 "rank": 346,
 "name": "AMD Radeon RX 6500XT 16MB",
-"score": "27300"
+"score": "27533"
 },
 {
 "rank": 347,
 "name": "NVIDIA GeForce GTX 550 Ti 1GB",
-"score": "27054"
+"score": "27046"
 },
 {
 "rank": 348,
 "name": "AMD Radeon R7 200 Series 1GB",
-"score": "25748"
+"score": "25769"
 },
 {
 "rank": 349,
 "name": "NVIDIA GeForce GT 750M 1GB",
-"score": "25711"
+"score": "25720"
 },
 {
 "rank": 350,
 "name": "AMD Radeon R7 350 2GB",
-"score": "25648"
+"score": "25671"
 },
 {
 "rank": 351,
 "name": "NVIDIA Quadro K2000 2GB",
-"score": "25527"
+"score": "25547"
 },
 {
 "rank": 352,
 "name": "AMD Radeon R7 200 Series 2GB",
-"score": "23329"
+"score": "23378"
 },
 {
 "rank": 353,
 "name": "NVIDIA GeForce GT 640 1GB",
-"score": "23190"
+"score": "23165"
 },
 {
 "rank": 354,
-"name": "AMD Radeon R7 340 4GB",
-"score": "22875"
+"name": "NVIDIA Quadro 4000 2GB",
+"score": "22111"
 },
 {
 "rank": 355,
-"name": "NVIDIA Quadro 4000 2GB",
-"score": "22120"
+"name": "NVIDIA GeForce GT 740 4GB",
+"score": "21955"
 },
 {
 "rank": 356,
-"name": "NVIDIA GeForce GT 740 4GB",
-"score": "21994"
+"name": "NVIDIA GeForce GT 640 4GB",
+"score": "21861"
 },
 {
 "rank": 357,
-"name": "NVIDIA GeForce GT 640 4GB",
-"score": "21895"
+"name": "AMD Radeon HD 5700 Series 1GB",
+"score": "21224"
 },
 {
 "rank": 358,
-"name": "AMD Radeon HD 5700 Series 1GB",
-"score": "21230"
-},
-{
-"rank": 359,
 "name": "AMD ATI Radeon HD 5700 Series 1GB",
 "score": "21127"
 },
 {
+"rank": 359,
+"name": "AMD Radeon R7 340 4GB",
+"score": "20859"
+},
+{
 "rank": 360,
 "name": "AMD Radeon HD 6700 Series 1GB",
-"score": "20491"
+"score": "20475"
 },
 {
 "rank": 361,
 "name": "NVIDIA GeForce GTS 450 1GB",
-"score": "20299"
+"score": "20327"
 },
 {
 "rank": 362,
 "name": "NVIDIA GeForce GT 640 2GB",
-"score": "19894"
+"score": "19904"
 },
 {
 "rank": 363,
 "name": "AMD Radeon HD 6700 Series 4GB",
-"score": "19241"
+"score": "19237"
 },
 {
 "rank": 364,
 "name": "NVIDIA GeForce GTS 450 4GB",
-"score": "18392"
+"score": "18407"
 },
 {
 "rank": 365,
 "name": "NVIDIA GeForce GT 1030 4GB",
-"score": "18062"
+"score": "18066"
 },
 {
 "rank": 366,
 "name": "NVIDIA GeForce GTX 550 Ti 2GB",
-"score": "18009"
+"score": "17998"
 },
 {
 "rank": 367,
-"name": "NVIDIA GeForce GTS 450 2GB",
-"score": "17903"
-},
-{
-"rank": 368,
 "name": "NVIDIA GeForce GTX 550 Ti 4GB",
 "score": "17900"
 },
 {
+"rank": 368,
+"name": "NVIDIA GeForce GTS 450 2GB",
+"score": "17891"
+},
+{
 "rank": 369,
 "name": "NVIDIA GeForce GT 730 1GB",
-"score": "17474"
+"score": "17473"
 },
 {
 "rank": 370,
 "name": "AMD Radeon R7 430 2GB",
-"score": "17466"
+"score": "17464"
 },
 {
 "rank": 371,
@@ -5364,7 +5364,7 @@
 {
 "rank": 372,
 "name": "NVIDIA GeForce GT 730 2GB",
-"score": "16615"
+"score": "16612"
 },
 {
 "rank": 373,
@@ -5374,12 +5374,12 @@
 {
 "rank": 374,
 "name": "AMD Radeon R7 200 Series 4GB",
-"score": "15959"
+"score": "15967"
 },
 {
 "rank": 375,
 "name": "NVIDIA GeForce GT 1010 4GB",
-"score": "15303"
+"score": "15263"
 },
 {
 "rank": 376,
@@ -5389,22 +5389,22 @@
 {
 "rank": 377,
 "name": "AMD Radeon R7 250 2GB",
-"score": "15075"
+"score": "15077"
 },
 {
 "rank": 378,
 "name": "AMD Radeon HD 6670 1GB",
-"score": "15032"
+"score": "15055"
 },
 {
 "rank": 379,
-"name": "AMD Radeon HD 7670M 4GB",
-"score": "14381"
+"name": "AMD Radeon HD 6700 Series 2GB",
+"score": "14532"
 },
 {
 "rank": 380,
-"name": "AMD Radeon HD 6700 Series 2GB",
-"score": "14270"
+"name": "AMD Radeon HD 7670M 4GB",
+"score": "14375"
 },
 {
 "rank": 381,
@@ -5414,12 +5414,12 @@
 {
 "rank": 382,
 "name": "AMD Radeon HD 7600 Series 4GB",
-"score": "13886"
+"score": "13892"
 },
 {
 "rank": 383,
 "name": "AMD Radeon HD 7670 4GB",
-"score": "13606"
+"score": "13604"
 },
 {
 "rank": 384,
@@ -5429,12 +5429,12 @@
 {
 "rank": 385,
 "name": "AMD Radeon HD 7600 Series 1GB",
-"score": "13401"
+"score": "13381"
 },
 {
 "rank": 386,
 "name": "AMD Radeon R5 Graphics 512MB",
-"score": "13185"
+"score": "13115"
 },
 {
 "rank": 387,
@@ -5449,107 +5449,107 @@
 {
 "rank": 389,
 "name": "AMD FirePro W2100 2GB",
-"score": "12503"
+"score": "12504"
 },
 {
 "rank": 390,
 "name": "AMD Radeon R5 430 2GB",
-"score": "12416"
+"score": "12423"
 },
 {
 "rank": 391,
 "name": "AMD Radeon R5 340 1GB",
-"score": "12202"
+"score": "12200"
 },
 {
 "rank": 392,
 "name": "NVIDIA GeForce GT 440 1GB",
-"score": "12145"
+"score": "12134"
 },
 {
 "rank": 393,
 "name": "AMD Radeon 520 2GB",
-"score": "12051"
+"score": "12077"
 },
 {
 "rank": 394,
 "name": "NVIDIA GeForce GT 730 4GB",
-"score": "11974"
+"score": "11947"
 },
 {
 "rank": 395,
 "name": "AMD Radeon R7 340 2GB",
-"score": "11888"
+"score": "11743"
 },
 {
 "rank": 396,
 "name": "AMD Radeon R7 240 Series 2GB",
-"score": "11717"
+"score": "11688"
 },
 {
 "rank": 397,
 "name": "AMD Radeon R5 Graphics 1GB",
-"score": "11513"
+"score": "11549"
 },
 {
 "rank": 398,
 "name": "AMD Radeon HD 7570 1GB",
-"score": "11512"
+"score": "11516"
 },
 {
 "rank": 399,
 "name": "NVIDIA Quadro K600 1GB",
-"score": "11428"
+"score": "11427"
 },
 {
 "rank": 400,
 "name": "NVIDIA GeForce GT 630 1GB",
-"score": "11405"
+"score": "11410"
 },
 {
 "rank": 401,
 "name": "AMD Radeon HD 7570 4GB",
-"score": "11391"
+"score": "11381"
 },
 {
 "rank": 402,
 "name": "NVIDIA Quadro K420 2GB",
-"score": "11346"
+"score": "11347"
 },
 {
 "rank": 403,
 "name": "NVIDIA GeForce GT 720 2GB",
-"score": "11159"
+"score": "11156"
 },
 {
 "rank": 404,
 "name": "NVIDIA GeForce GTS 450 512MB",
-"score": "11134"
+"score": "11120"
 },
 {
 "rank": 405,
 "name": "NVIDIA GeForce GT 720 1GB",
-"score": "10954"
+"score": "10943"
 },
 {
 "rank": 406,
 "name": "NVIDIA GeForce GT 710 1GB",
-"score": "10835"
+"score": "10841"
 },
 {
 "rank": 407,
 "name": "NVIDIA GeForce GT 710 2GB",
-"score": "10823"
+"score": "10815"
 },
 {
 "rank": 408,
 "name": "NVIDIA GeForce GT 630 2GB",
-"score": "10661"
+"score": "10663"
 },
 {
 "rank": 409,
 "name": "AMD Radeon HD 6700 Series 512MB",
-"score": "10534"
+"score": "10437"
 },
 {
 "rank": 410,
@@ -5568,18 +5568,18 @@
 },
 {
 "rank": 413,
-"name": "AMD Radeon HD 6600A Series 1GB",
-"score": "9847"
-},
-{
-"rank": 414,
 "name": "AMD Radeon HD 6700M Series 512MB",
 "score": "9845"
 },
 {
+"rank": 414,
+"name": "AMD Radeon HD 6600A Series 1GB",
+"score": "9842"
+},
+{
 "rank": 415,
 "name": "AMD Radeon HD 6670 2GB",
-"score": "9817"
+"score": "9802"
 },
 {
 "rank": 416,
@@ -5589,17 +5589,17 @@
 {
 "rank": 417,
 "name": "NVIDIA Quadro 600 1GB",
-"score": "9416"
+"score": "9418"
 },
 {
 "rank": 418,
 "name": "AMD Radeon HD 6570 1GB",
-"score": "9049"
+"score": "9060"
 },
 {
 "rank": 419,
 "name": "AMD Radeon HD 5700 Series 512MB",
-"score": "8803"
+"score": "8770"
 },
 {
 "rank": 420,
@@ -5609,22 +5609,22 @@
 {
 "rank": 421,
 "name": "AMD Radeon 520 1GB",
-"score": "8726"
+"score": "8730"
 },
 {
 "rank": 422,
 "name": "NVIDIA GeForce GT 630 4GB",
-"score": "8670"
+"score": "8671"
 },
 {
 "rank": 423,
 "name": "AMD Radeon HD 5600/5700 512MB",
-"score": "8424"
+"score": "8452"
 },
 {
 "rank": 424,
 "name": "AMD Radeon HD 6570 2GB",
-"score": "8383"
+"score": "8382"
 },
 {
 "rank": 425,
@@ -5633,18 +5633,18 @@
 },
 {
 "rank": 426,
-"name": "NVIDIA GeForce GT 430 1GB",
-"score": "8176"
+"name": "AMD Radeon HD 5570 1GB",
+"score": "8204"
 },
 {
 "rank": 427,
-"name": "AMD Radeon HD 5570 1GB",
-"score": "8097"
+"name": "NVIDIA GeForce GT 430 1GB",
+"score": "8186"
 },
 {
 "rank": 428,
 "name": "NVIDIA GeForce GT 430 2GB",
-"score": "8075"
+"score": "8065"
 },
 {
 "rank": 429,
@@ -5654,17 +5654,17 @@
 {
 "rank": 430,
 "name": "AMD Radeon HD 6500 Series 2GB",
-"score": "7941"
+"score": "7939"
 },
 {
 "rank": 431,
 "name": "NVIDIA GeForce GT 630 512MB",
-"score": "7877"
+"score": "7793"
 },
 {
 "rank": 432,
 "name": "AMD Radeon R5 340 2GB",
-"score": "7443"
+"score": "7468"
 },
 {
 "rank": 433,
@@ -5679,17 +5679,17 @@
 {
 "rank": 435,
 "name": "AMD Radeon R5 240 1GB",
-"score": "6902"
+"score": "6928"
 },
 {
 "rank": 436,
 "name": "AMD Radeon R5 340X 2GB",
-"score": "6711"
+"score": "6710"
 },
 {
 "rank": 437,
 "name": "AMD Radeon HD 7660D 512MB",
-"score": "6638"
+"score": "6670"
 },
 {
 "rank": 438,
@@ -5714,7 +5714,7 @@
 {
 "rank": 442,
 "name": "AMD Radeon R2 Graphics 512MB",
-"score": "6325"
+"score": "6221"
 },
 {
 "rank": 443,
@@ -5728,475 +5728,470 @@
 },
 {
 "rank": 445,
-"name": "NVIDIA GeForce GT 625 1GB",
-"score": "5913"
+"name": "NVIDIA GeForce GT 430 512MB",
+"score": "5796"
 },
 {
 "rank": 446,
-"name": "NVIDIA GeForce GT 430 512MB",
-"score": "5794"
-},
-{
-"rank": 447,
 "name": "AMD Radeon HD 5500 Series 512MB",
 "score": "5738"
 },
 {
-"rank": 448,
+"rank": 447,
 "name": "NVIDIA GeForce GT 620 1GB",
-"score": "5737"
+"score": "5735"
+},
+{
+"rank": 448,
+"name": "NVIDIA GeForce GT 705 2GB",
+"score": "5562"
 },
 {
 "rank": 449,
 "name": "NVIDIA GeForce GT 520M 1GB",
-"score": "5562"
-},
-{
-"rank": 450,
-"name": "NVIDIA GeForce GT 705 2GB",
 "score": "5561"
 },
 {
-"rank": 451,
+"rank": 450,
 "name": "NVIDIA GeForce GT 620 2GB",
-"score": "5340"
+"score": "5342"
 },
 {
-"rank": 452,
+"rank": 451,
 "name": "AMD Radeon R5 M240 2GB",
 "score": "5289"
 },
 {
-"rank": 453,
+"rank": 452,
 "name": "AMD Radeon HD 7560D 256MB",
 "score": "5210"
 },
 {
-"rank": 454,
+"rank": 453,
 "name": "NVIDIA GeForce GT 705 1GB",
-"score": "5177"
+"score": "5168"
+},
+{
+"rank": 454,
+"name": "AMD Radeon HD 6550D 512MB",
+"score": "5142"
 },
 {
 "rank": 455,
-"name": "AMD Radeon HD 6550D 512MB",
-"score": "5061"
+"name": "AMD Radeon HD8490 1GB",
+"score": "4995"
 },
 {
 "rank": 456,
-"name": "AMD Radeon HD8490 1GB",
-"score": "5000"
-},
-{
-"rank": 457,
 "name": "AMD Radeon HD8490 2GB",
 "score": "4888"
 },
 {
-"rank": 458,
+"rank": 457,
 "name": "AMD Radeon HD 7470 1GB",
-"score": "4871"
+"score": "4869"
 },
 {
-"rank": 459,
+"rank": 458,
 "name": "AMD Radeon HD 8470 Graphics 1GB",
 "score": "4830"
 },
 {
-"rank": 460,
+"rank": 459,
 "name": "AMD Radeon HD 7000 series 1GB",
 "score": "4815"
 },
 {
-"rank": 461,
+"rank": 460,
 "name": "AMD Radeon R5 235 1GB",
 "score": "4812"
 },
 {
-"rank": 462,
+"rank": 461,
 "name": "AMD Radeon R5 A220 2GB",
-"score": "4784"
+"score": "4783"
 },
 {
-"rank": 463,
+"rank": 462,
 "name": "AMD Radeon HD 7000 series 2GB",
 "score": "4593"
 },
 {
-"rank": 464,
+"rank": 463,
 "name": "AMD Radeon HD 8470 2GB",
-"score": "4585"
+"score": "4590"
+},
+{
+"rank": 464,
+"name": "AMD Radeon R5 235 2GB",
+"score": "4550"
 },
 {
 "rank": 465,
-"name": "AMD Radeon R5 235 2GB",
-"score": "4555"
-},
-{
-"rank": 466,
 "name": "AMD Radeon HD 6400 Series 1GB",
 "score": "4410"
 },
 {
-"rank": 467,
+"rank": 466,
 "name": "NVIDIA GeForce 605 1GB",
-"score": "4402"
+"score": "4403"
 },
 {
-"rank": 468,
+"rank": 467,
 "name": "AMD Radeon R5 M240 4GB",
 "score": "4343"
 },
 {
-"rank": 469,
+"rank": 468,
 "name": "NVIDIA GeForce GT 520 1GB",
-"score": "4322"
+"score": "4324"
+},
+{
+"rank": 469,
+"name": "AMD Radeon HD 8470 Graphics 512MB",
+"score": "4211"
 },
 {
 "rank": 470,
-"name": "AMD Radeon HD 8470 Graphics 512MB",
-"score": "4212"
+"name": "NVIDIA GeForce GT 520 2GB",
+"score": "4198"
 },
 {
 "rank": 471,
-"name": "NVIDIA GeForce GT 520 2GB",
-"score": "4196"
-},
-{
-"rank": 472,
 "name": "AMD Radeon HD 8370D 512MB",
 "score": "4151"
 },
 {
-"rank": 473,
+"rank": 472,
 "name": "NVIDIA GeForce GT 610 1GB",
 "score": "4128"
 },
 {
-"rank": 474,
-"name": "AMD Radeon HD 7450 1GB",
-"score": "4123"
-},
-{
-"rank": 475,
+"rank": 473,
 "name": "AMD Radeon HD 7400 Series 1GB",
 "score": "4122"
 },
 {
-"rank": 476,
+"rank": 474,
 "name": "AMD Radeon HD 7450 Graphics 1GB",
 "score": "4121"
 },
 {
-"rank": 477,
-"name": "AMD Radeon HD 6450 Graphics 1GB",
-"score": "4113"
+"rank": 475,
+"name": "AMD Radeon HD 7450 1GB",
+"score": "4114"
 },
 {
-"rank": 478,
+"rank": 476,
+"name": "AMD Radeon HD 6450 Graphics 1GB",
+"score": "4109"
+},
+{
+"rank": 477,
 "name": "NVIDIA GeForce GT 610 2GB",
 "score": "4064"
 },
 {
-"rank": 479,
+"rank": 478,
 "name": "AMD Radeon HD 6530D 512MB",
-"score": "3906"
+"score": "3885"
+},
+{
+"rank": 479,
+"name": "AMD Radeon HD 6450 1GB",
+"score": "3670"
 },
 {
 "rank": 480,
-"name": "AMD Radeon HD 6450 1GB",
-"score": "3673"
-},
-{
-"rank": 481,
 "name": "AMD Radeon HD 7300 Series 1GB",
 "score": "3597"
 },
 {
-"rank": 482,
+"rank": 481,
 "name": "AMD Radeon HD 8350 1GB",
 "score": "3597"
 },
 {
-"rank": 483,
+"rank": 482,
 "name": "AMD Radeon HD 7350 1GB",
 "score": "3587"
 },
 {
-"rank": 484,
+"rank": 483,
 "name": "NVIDIA GeForce 605 512MB",
-"score": "3454"
+"score": "3457"
+},
+{
+"rank": 484,
+"name": "AMD Radeon R5 200 Series 1GB",
+"score": "3409"
 },
 {
 "rank": 485,
-"name": "AMD Radeon R5 200 Series 1GB",
-"score": "3406"
+"name": "AMD Radeon HD 6450 2GB",
+"score": "3365"
 },
 {
 "rank": 486,
-"name": "AMD Radeon HD 6450 2GB",
-"score": "3358"
+"name": "AMD Radeon R5 200 Series 2GB",
+"score": "3269"
 },
 {
 "rank": 487,
-"name": "AMD Radeon R5 200 Series 2GB",
-"score": "3268"
+"name": "AMD Radeon HD 6450 512MB",
+"score": "3196"
 },
 {
 "rank": 488,
-"name": "AMD Radeon HD 6450 512MB",
-"score": "3187"
-},
-{
-"rank": 489,
 "name": "NVIDIA GeForce GT 520 512MB",
 "score": "3125"
 },
 {
-"rank": 490,
+"rank": 489,
 "name": "AMD ATI Radeon HD 5450 1GB",
 "score": "3039"
 },
 {
-"rank": 491,
+"rank": 490,
 "name": "AMD Radeon R5 230 1GB",
 "score": "3001"
 },
 {
-"rank": 492,
+"rank": 491,
 "name": "AMD Radeon R5 230 2GB",
 "score": "2963"
 },
 {
-"rank": 493,
+"rank": 492,
 "name": "AMD ATI Radeon HD 5400 Series 1GB",
 "score": "2692"
 },
 {
-"rank": 494,
+"rank": 493,
 "name": "AMD Radeon HD 5450 1GB",
-"score": "2677"
+"score": "2679"
+},
+{
+"rank": 494,
+"name": "AMD Radeon R5 220 1GB",
+"score": "2637"
 },
 {
 "rank": 495,
-"name": "AMD Radeon R5 220 1GB",
-"score": "2638"
-},
-{
-"rank": 496,
 "name": "AMD Radeon R5 220 2GB",
 "score": "2601"
 },
 {
-"rank": 497,
+"rank": 496,
 "name": "AMD Radeon HD 6350 Graphics 512MB",
 "score": "2588"
 },
 {
-"rank": 498,
+"rank": 497,
 "name": "AMD Radeon HD 5450 2GB",
 "score": "2526"
 },
 {
-"rank": 499,
+"rank": 498,
 "name": "AMD Radeon HD 5450 512MB",
-"score": "2397"
+"score": "2393"
 }
 ],
 "laptop_cpu": [
 {
 "rank": 1,
 "name": "AMD Ryzen 9 9955HX3D",
-"score": "1196450"
+"score": "1196304"
 },
 {
 "rank": 2,
 "name": "Intel Core Ultra 9 285HX",
-"score": "1094108"
+"score": "1093560"
 },
 {
 "rank": 3,
 "name": "Intel Core Ultra 9 290HX Plus",
-"score": "1089297"
+"score": "1089867"
 },
 {
 "rank": 4,
 "name": "AMD Ryzen 9 9955HX",
-"score": "1081318"
+"score": "1081065"
 },
 {
 "rank": 5,
 "name": "Intel Core Ultra 9 275HX",
-"score": "1040238"
+"score": "1040191"
 },
 {
 "rank": 6,
 "name": "AMD Ryzen 9 7945HX3D with Radeon Graphics",
-"score": "1012928"
+"score": "1012877"
 },
 {
 "rank": 7,
 "name": "AMD Ryzen 9 7945HX with Radeon Graphics",
-"score": "985558"
+"score": "985592"
 },
 {
 "rank": 8,
 "name": "Intel Core Ultra 7 270HX Plus",
-"score": "974855"
+"score": "974645"
 },
 {
 "rank": 9,
 "name": "AMD Ryzen 9 9850HX",
-"score": "954210"
+"score": "953566"
 },
 {
 "rank": 10,
 "name": "AMD Ryzen 9 8945HX with Radeon Graphics",
-"score": "949799"
+"score": "949748"
 },
 {
 "rank": 11,
 "name": "Intel Core Ultra 7 265HX",
-"score": "943687"
+"score": "942642"
 },
 {
 "rank": 12,
 "name": "AMD Ryzen 9 7940HX with Radeon Graphics",
-"score": "915037"
+"score": "915210"
 },
 {
 "rank": 13,
 "name": "AMD Ryzen 9 8940HX with Radeon Graphics",
-"score": "905219"
+"score": "905077"
 },
 {
 "rank": 14,
 "name": "Intel Core i9-14900HX",
-"score": "872897"
+"score": "872791"
 },
 {
 "rank": 15,
 "name": "13th Gen Intel Core i9-13980HX",
-"score": "865597"
+"score": "865453"
 },
 {
 "rank": 16,
 "name": "Intel Core Ultra 7 251HX",
-"score": "864316"
+"score": "864449"
 },
 {
 "rank": 17,
 "name": "13th Gen Intel Core i9-13950HX",
-"score": "840189"
+"score": "840484"
 },
 {
 "rank": 18,
 "name": "13th Gen Intel Core i9-13900HX",
-"score": "807162"
+"score": "807193"
 },
 {
 "rank": 19,
 "name": "13th Gen Intel Core i7-13850HX",
-"score": "805373"
+"score": "806552"
 },
 {
 "rank": 20,
 "name": "Intel Core i7-14700HX",
-"score": "802018"
+"score": "802032"
 },
 {
 "rank": 21,
 "name": "AMD Ryzen 9 7845HX with Radeon Graphics",
-"score": "797225"
+"score": "797815"
 },
 {
 "rank": 22,
 "name": "Intel Core Ultra X9 388H",
-"score": "791267"
+"score": "791196"
 },
 {
 "rank": 23,
 "name": "AMD Ryzen 7 8840HX with Radeon Graphics",
-"score": "786724"
+"score": "786829"
 },
 {
 "rank": 24,
 "name": "AMD Ryzen 7 7840HX with Radeon Graphics",
-"score": "785988"
+"score": "784937"
 },
 {
 "rank": 25,
 "name": "Intel Core Ultra X9 378H",
-"score": "780314"
+"score": "782854"
 },
 {
 "rank": 26,
 "name": "Intel Core Ultra X7 358H",
-"score": "760140"
+"score": "759917"
 },
 {
 "rank": 27,
 "name": "Intel Core 7 245HX",
-"score": "756696"
+"score": "756613"
 },
 {
 "rank": 28,
 "name": "Intel Core i7-14650HX",
-"score": "739447"
+"score": "739413"
 },
 {
 "rank": 29,
 "name": "Intel Core Ultra 9 386H",
-"score": "738034"
+"score": "737969"
 },
 {
 "rank": 30,
 "name": "Intel Core Ultra 7 356H",
-"score": "698813"
+"score": "698964"
 },
 {
 "rank": 31,
 "name": "13th Gen Intel Core i7-13645HX",
-"score": "688065"
+"score": "689056"
 },
 {
 "rank": 32,
 "name": "13th Gen Intel Core i7-13700HX",
-"score": "664911"
+"score": "664745"
 },
 {
 "rank": 33,
 "name": "13th Gen Intel Core i7-13650HX",
-"score": "659601"
+"score": "659633"
 },
 {
 "rank": 34,
-"name": "Intel Core i5-14500HX",
-"score": "657625"
+"name": "13th Gen Intel Core i9-13900HK",
+"score": "657737"
 },
 {
 "rank": 35,
-"name": "13th Gen Intel Core i9-13900HK",
-"score": "657547"
+"name": "Intel Core i5-14500HX",
+"score": "657025"
 },
 {
 "rank": 36,
 "name": "12th Gen Intel Core i9-12950HX",
-"score": "652960"
+"score": "653032"
 },
 {
 "rank": 37,
 "name": "Intel Core Ultra 9 285H",
-"score": "649171"
+"score": "649184"
 },
 {
 "rank": 38,
 "name": "Intel Core Ultra 7 265H",
-"score": "644150"
+"score": "645259"
 },
 {
 "rank": 39,
 "name": "AMD Ryzen 7 7745HX with Radeon Graphics",
-"score": "643634"
+"score": "643717"
 },
 {
 "rank": 40,
@@ -6206,127 +6201,127 @@
 {
 "rank": 41,
 "name": "Intel Core Ultra 5 338H",
-"score": "639673"
+"score": "639718"
 },
 {
 "rank": 42,
 "name": "12th Gen Intel Core i7-12800HX",
-"score": "638984"
+"score": "638956"
 },
 {
 "rank": 43,
 "name": "12th Gen Intel Core i9-12900HX",
-"score": "635410"
+"score": "635264"
 },
 {
 "rank": 44,
 "name": "Intel Core 9 270H",
-"score": "634999"
+"score": "635130"
 },
 {
 "rank": 45,
 "name": "AMD Ryzen 7 8745H with Radeon 780M Graphics",
-"score": "632356"
+"score": "632529"
 },
 {
 "rank": 46,
 "name": "12th Gen Intel Core i7-12850HX",
-"score": "631786"
+"score": "631531"
 },
 {
 "rank": 47,
 "name": "AMD Ryzen 7 8745HX with Radeon Graphics",
-"score": "622628"
+"score": "622647"
 },
 {
 "rank": 48,
 "name": "13th Gen Intel Core i7-13700H",
-"score": "619514"
+"score": "619609"
 },
 {
 "rank": 49,
 "name": "13th Gen Intel Core i9-13900H",
-"score": "618944"
+"score": "619014"
 },
 {
 "rank": 50,
 "name": "Intel Core Ultra 7 255H",
-"score": "617742"
+"score": "617544"
 },
 {
 "rank": 51,
 "name": "Intel Core Ultra 5 336H",
-"score": "612662"
+"score": "612663"
 },
 {
 "rank": 52,
 "name": "13th Gen Intel Core i7-13800H",
-"score": "602643"
+"score": "603258"
 },
 {
 "rank": 53,
 "name": "AMD Ryzen 7 7840H with Radeon 780M Graphics",
-"score": "599933"
+"score": "599927"
 },
 {
 "rank": 54,
 "name": "13th Gen Intel Core i9-13905H",
-"score": "596348"
+"score": "595146"
 },
 {
 "rank": 55,
 "name": "AMD Ryzen 7 7840HS with Radeon 780M Graphics",
-"score": "594937"
+"score": "594834"
 },
 {
 "rank": 56,
 "name": "Intel Core i5-14450HX",
-"score": "590162"
+"score": "589893"
 },
 {
 "rank": 57,
 "name": "12th Gen Intel Core i9-12900H",
-"score": "589815"
+"score": "589733"
 },
 {
 "rank": 58,
 "name": "13th Gen Intel Core i5-13500HX",
-"score": "589115"
+"score": "589188"
 },
 {
 "rank": 59,
 "name": "Intel Core Ultra 5 225H",
-"score": "583938"
+"score": "583920"
 },
 {
 "rank": 60,
 "name": "Intel Core Ultra 9 185H",
-"score": "582179"
+"score": "581838"
 },
 {
 "rank": 61,
 "name": "13th Gen Intel Core i5-13450HX",
-"score": "581450"
+"score": "581606"
 },
 {
 "rank": 62,
 "name": "13th Gen Intel Core i7-13620H",
-"score": "576946"
+"score": "577052"
 },
 {
 "rank": 63,
 "name": "12th Gen Intel Core i7-12700H",
-"score": "560966"
+"score": "561079"
 },
 {
 "rank": 64,
 "name": "Intel Core 7 240H",
-"score": "559533"
+"score": "559832"
 },
 {
 "rank": 65,
 "name": "12th Gen Intel Core i9-12900HK",
-"score": "549265"
+"score": "549883"
 },
 {
 "rank": 66,
@@ -6336,57 +6331,57 @@
 {
 "rank": 67,
 "name": "Intel Core 7 250H",
-"score": "536525"
+"score": "536484"
 },
 {
 "rank": 68,
 "name": "12th Gen Intel Core i7-12800H",
-"score": "533281"
+"score": "533194"
 },
 {
 "rank": 69,
 "name": "AMD Ryzen 7 PRO 6850H with Radeon Graphics",
-"score": "531973"
+"score": "531784"
 },
 {
 "rank": 70,
 "name": "AMD Ryzen 7 7735H with Radeon Graphics",
-"score": "526907"
+"score": "526922"
 },
 {
 "rank": 71,
 "name": "Intel Core Ultra 7 155H",
-"score": "526217"
+"score": "525919"
 },
 {
 "rank": 72,
 "name": "AMD Ryzen 9 6900HX with Radeon Graphics",
-"score": "525915"
+"score": "525742"
 },
 {
 "rank": 73,
 "name": "13th Gen Intel Core i5-13500H",
-"score": "520946"
+"score": "520984"
 },
 {
 "rank": 74,
 "name": "AMD Ryzen 7 7435HS",
-"score": "518413"
+"score": "518377"
 },
 {
 "rank": 75,
 "name": "Intel Core Ultra 7 165H",
-"score": "517334"
+"score": "517499"
 },
 {
 "rank": 76,
 "name": "Intel Core 5 220H",
-"score": "516599"
+"score": "516439"
 },
 {
 "rank": 77,
 "name": "12th Gen Intel Core i7-12650H",
-"score": "514139"
+"score": "514234"
 },
 {
 "rank": 78,
@@ -6395,78 +6390,78 @@
 },
 {
 "rank": 79,
-"name": "AMD Ryzen 9 6900HS with Radeon Graphics",
-"score": "510142"
+"name": "Intel Core Ultra 5 125H",
+"score": "509812"
 },
 {
 "rank": 80,
-"name": "Intel Core Ultra 5 125H",
-"score": "509890"
+"name": "AMD Ryzen 9 6900HS with Radeon Graphics",
+"score": "509695"
 },
 {
 "rank": 81,
 "name": "AMD Ryzen 7 6800H with Radeon Graphics",
-"score": "508112"
+"score": "508118"
 },
 {
 "rank": 82,
 "name": "AMD Ryzen 7 7435H",
-"score": "504524"
+"score": "504550"
 },
 {
 "rank": 83,
 "name": "AMD Ryzen 7 6800HS with Radeon Graphics",
-"score": "502853"
+"score": "503122"
 },
 {
 "rank": 84,
 "name": "AMD Ryzen 7 7735HS with Radeon Graphics",
-"score": "501183"
+"score": "501088"
 },
 {
 "rank": 85,
 "name": "AMD Ryzen 7 H 170 with Radeon Graphics",
-"score": "499397"
+"score": "499112"
 },
 {
 "rank": 86,
 "name": "AMD Ryzen 9 5900HX with Radeon Graphics",
-"score": "495166"
+"score": "495272"
 },
 {
 "rank": 87,
 "name": "AMD Ryzen 7 PRO 6850HS with Radeon Graphics",
-"score": "486889"
+"score": "486108"
 },
 {
 "rank": 88,
 "name": "12th Gen Intel Core i5-12500H",
-"score": "483484"
+"score": "483569"
 },
 {
 "rank": 89,
-"name": "Intel Core Ultra 7 256V",
-"score": "481040"
+"name": "Intel Core i9-11980HK",
+"score": "480297"
 },
 {
 "rank": 90,
-"name": "Intel Core i9-11980HK",
-"score": "480353"
+"name": "Intel Core Ultra 7 256V",
+"score": "480282"
 },
 {
 "rank": 91,
-"name": "AMD Ryzen 7 5800H with Radeon Graphics",
-"score": "479502"
+"name": "Intel Core Ultra 5 135H",
+"score": "479686"
 },
 {
 "rank": 92,
-"name": "Intel Core Ultra 5 135H",
-"score": "478936"
+"name": "AMD Ryzen 7 5800H with Radeon Graphics",
+"score": "479481"
 },
 {
 "rank": 93,
 "name": "Intel Xeon W-11955M",
-"score": "472504"
+"score": "472718"
 },
 {
 "rank": 94,
@@ -6476,32 +6471,32 @@
 {
 "rank": 95,
 "name": "12th Gen Intel Core i5-12600H",
-"score": "462169"
+"score": "462243"
 },
 {
 "rank": 96,
 "name": "Intel Core Ultra 7 266V",
-"score": "461997"
+"score": "461166"
 },
 {
 "rank": 97,
-"name": "Intel Core Ultra 7 268V",
-"score": "453245"
+"name": "AMD Ryzen 7 PRO 6850U with Radeon Graphics",
+"score": "452975"
 },
 {
 "rank": 98,
-"name": "AMD Ryzen 7 PRO 6850U with Radeon Graphics",
-"score": "453132"
+"name": "Intel Core Ultra 7 268V",
+"score": "452123"
 },
 {
 "rank": 99,
 "name": "Intel Core i9-11900H",
-"score": "450659"
+"score": "450875"
 },
 {
 "rank": 100,
 "name": "AMD Ryzen 9 5900HS with Radeon Graphics",
-"score": "447345"
+"score": "447728"
 },
 {
 "rank": 101,
@@ -6511,67 +6506,67 @@
 {
 "rank": 102,
 "name": "Intel Core 5 210H",
-"score": "445765"
+"score": "445691"
 },
 {
 "rank": 103,
 "name": "AMD Ryzen 5 6600H with Radeon Graphics",
-"score": "443563"
+"score": "443611"
 },
 {
 "rank": 104,
 "name": "Intel Core Ultra 7 258V",
-"score": "443527"
+"score": "443547"
 },
 {
 "rank": 105,
 "name": "AMD Ryzen 7 6800HS Creator Edition",
-"score": "442654"
+"score": "442651"
 },
 {
 "rank": 106,
 "name": "Intel Core i7-11800H",
-"score": "441844"
+"score": "441792"
 },
 {
 "rank": 107,
 "name": "12th Gen Intel Core i5-12450HX",
-"score": "439601"
+"score": "439401"
 },
 {
 "rank": 108,
 "name": "AMD Ryzen 5 7535H with Radeon Graphics",
-"score": "439248"
+"score": "439273"
 },
 {
 "rank": 109,
 "name": "Intel Core Ultra 5 226V",
-"score": "438409"
+"score": "438141"
 },
 {
 "rank": 110,
 "name": "AMD Ryzen 7 6800U with Radeon Graphics",
-"score": "436432"
+"score": "436451"
 },
 {
 "rank": 111,
 "name": "AMD Ryzen 5 7535HS with Radeon Graphics",
-"score": "435441"
+"score": "435211"
 },
 {
 "rank": 112,
 "name": "Intel Core i9-11950H",
-"score": "434322"
+"score": "434297"
 },
 {
 "rank": 113,
-"name": "13th Gen Intel Core i5-13420H",
-"score": "433607"
+"name": "Intel Core Ultra 5 228V",
+"score": "433640"
 },
 {
 "rank": 114,
-"name": "Intel Core Ultra 5 228V",
-"score": "433177"
+"name": "13th Gen Intel Core i5-13420H",
+"score": "433547"
 },
 {
 "rank": 115,
@@ -6586,12 +6581,12 @@
 {
 "rank": 117,
 "name": "Intel Core i7-11850H",
-"score": "431034"
+"score": "431283"
 },
 {
 "rank": 118,
 "name": "Intel Core Ultra 5 238V",
-"score": "428449"
+"score": "428953"
 },
 {
 "rank": 119,
@@ -6601,7 +6596,7 @@
 {
 "rank": 120,
 "name": "12th Gen Intel Core i5-12450H",
-"score": "423804"
+"score": "423746"
 },
 {
 "rank": 121,
@@ -6611,92 +6606,92 @@
 {
 "rank": 122,
 "name": "13th Gen Intel Core i7-1370P",
-"score": "417320"
+"score": "415888"
 },
 {
 "rank": 123,
 "name": "AMD Ryzen 5 5600H with Radeon Graphics",
-"score": "415320"
+"score": "415380"
 },
 {
 "rank": 124,
-"name": "AMD Ryzen 7 5800U with Radeon Graphics",
-"score": "411579"
+"name": "AMD Ryzen 9 PRO 5950H with Radeon Graphics",
+"score": "412072"
 },
 {
 "rank": 125,
+"name": "AMD Ryzen 7 5800U with Radeon Graphics",
+"score": "411724"
+},
+{
+"rank": 126,
 "name": "Intel Core 7 350",
 "score": "410248"
 },
 {
-"rank": 126,
-"name": "AMD Ryzen 9 PRO 5950H with Radeon Graphics",
-"score": "409927"
-},
-{
 "rank": 127,
 "name": "AMD Ryzen 5 6600HS Creator Edition",
-"score": "408323"
+"score": "408121"
 },
 {
 "rank": 128,
 "name": "12th Gen Intel Core i7-1280P",
-"score": "407261"
+"score": "407473"
 },
 {
 "rank": 129,
 "name": "AMD Ryzen 7 7730U with Radeon Graphics",
-"score": "402638"
+"score": "402721"
 },
 {
 "rank": 130,
 "name": "AMD Ryzen 5 150 with Radeon Graphics",
-"score": "401315"
+"score": "401830"
 },
 {
 "rank": 131,
 "name": "AMD Ryzen 7 5825U with Radeon Graphics",
-"score": "399171"
+"score": "398859"
 },
 {
 "rank": 132,
 "name": "12th Gen Intel Core i5-1250P",
-"score": "397216"
+"score": "397055"
 },
 {
 "rank": 133,
 "name": "AMD Ryzen 5 PRO 6650U with Radeon Graphics",
-"score": "396367"
+"score": "396392"
 },
 {
 "rank": 134,
 "name": "12th Gen Intel Core i7-1270P",
-"score": "394358"
+"score": "394386"
 },
 {
 "rank": 135,
-"name": "Intel Core Ultra 7 255U",
-"score": "393215"
+"name": "Intel Xeon W-11855M",
+"score": "392923"
 },
 {
 "rank": 136,
-"name": "Intel Xeon W-11855M",
-"score": "392989"
+"name": "AMD Ryzen 9 4900HS with Radeon Graphics",
+"score": "392122"
 },
 {
 "rank": 137,
-"name": "AMD Ryzen 5 6600U with Radeon Graphics",
-"score": "391789"
+"name": "Intel Core Ultra 7 255U",
+"score": "391898"
 },
 {
 "rank": 138,
-"name": "AMD Ryzen 9 4900HS with Radeon Graphics",
-"score": "391737"
+"name": "AMD Ryzen 5 6600U with Radeon Graphics",
+"score": "391665"
 },
 {
 "rank": 139,
 "name": "Intel Core i9-10980HK",
-"score": "391377"
+"score": "391258"
 },
 {
 "rank": 140,
@@ -6706,7 +6701,7 @@
 {
 "rank": 141,
 "name": "13th Gen Intel Core i7-1360P",
-"score": "389731"
+"score": "389314"
 },
 {
 "rank": 142,
@@ -6716,167 +6711,167 @@
 {
 "rank": 143,
 "name": "AMD Ryzen 9 4900H with Radeon Graphics",
-"score": "387473"
+"score": "387631"
 },
 {
 "rank": 144,
 "name": "Intel Core i5-11500H",
-"score": "387013"
+"score": "386595"
 },
 {
 "rank": 145,
 "name": "AMD Ryzen 7 4800HS with Radeon Graphics",
-"score": "386430"
+"score": "386494"
 },
 {
 "rank": 146,
 "name": "Intel Xeon W-10885M",
-"score": "385129"
+"score": "385142"
 },
 {
 "rank": 147,
 "name": "13th Gen Intel Core i5-1340P",
-"score": "384008"
+"score": "383368"
 },
 {
 "rank": 148,
-"name": "Intel Core i7-10875H",
-"score": "381093"
+"name": "Intel Core i7-11600H",
+"score": "381516"
 },
 {
 "rank": 149,
-"name": "Intel Core i7-11600H",
-"score": "381053"
+"name": "Intel Core i7-10875H",
+"score": "381107"
 },
 {
 "rank": 150,
 "name": "Intel Core i5-11400H",
-"score": "379990"
+"score": "380049"
 },
 {
 "rank": 151,
 "name": "12th Gen Intel Core i7-1260P",
-"score": "379217"
+"score": "379235"
 },
 {
 "rank": 152,
-"name": "Intel Core 7 150U",
-"score": "375158"
+"name": "Intel Core Ultra 5 135U",
+"score": "374904"
 },
 {
 "rank": 153,
-"name": "Intel Core Ultra 5 135U",
-"score": "373970"
+"name": "Intel Core 7 150U",
+"score": "374670"
 },
 {
 "rank": 154,
 "name": "Intel Core 5 315",
-"score": "373707"
+"score": "373780"
 },
 {
 "rank": 155,
 "name": "AMD Ryzen 7 PRO 5850U with Radeon Graphics",
-"score": "371216"
+"score": "371205"
 },
 {
 "rank": 156,
 "name": "Intel Xeon E-2286M",
-"score": "370864"
+"score": "371055"
 },
 {
 "rank": 157,
 "name": "AMD Ryzen 7 5800HS Creator Edition",
-"score": "369620"
+"score": "369617"
 },
 {
 "rank": 158,
-"name": "Intel Core Ultra 5 125U",
-"score": "367449"
+"name": "Intel Core Ultra 7 165U",
+"score": "367538"
 },
 {
 "rank": 159,
-"name": "Intel Core Ultra 7 165U",
-"score": "367441"
+"name": "AMD Ryzen 5 7535U with Radeon Graphics",
+"score": "366627"
 },
 {
 "rank": 160,
-"name": "AMD Ryzen 5 7535U with Radeon Graphics",
-"score": "366786"
+"name": "Intel Core i5-11260H",
+"score": "366494"
 },
 {
 "rank": 161,
-"name": "Intel Core i5-11260H",
-"score": "366477"
+"name": "Intel Core Ultra 5 125U",
+"score": "366145"
 },
 {
 "rank": 162,
 "name": "AMD Ryzen 5 7530U with Radeon Graphics",
-"score": "365839"
+"score": "365886"
 },
 {
 "rank": 163,
-"name": "13th Gen Intel Core i5-1345U",
-"score": "364888"
+"name": "12th Gen Intel Core i5-1240P",
+"score": "364684"
 },
 {
 "rank": 164,
-"name": "12th Gen Intel Core i5-1240P",
-"score": "364689"
+"name": "13th Gen Intel Core i5-1345U",
+"score": "363761"
 },
 {
 "rank": 165,
 "name": "AMD Ryzen 5 5625U with Radeon Graphics",
-"score": "362667"
+"score": "362761"
 },
 {
 "rank": 166,
-"name": "Intel CC150",
-"score": "362331"
+"name": "AMD Ryzen 5 5600U with Radeon Graphics",
+"score": "362142"
 },
 {
 "rank": 167,
-"name": "AMD Ryzen 5 5600U with Radeon Graphics",
-"score": "362121"
+"name": "Intel CC150",
+"score": "361792"
 },
 {
 "rank": 168,
 "name": "AMD Ryzen 5 7430U with Radeon Graphics",
-"score": "360846"
+"score": "360642"
 },
 {
 "rank": 169,
 "name": "Intel Core i7-10870H",
-"score": "358938"
+"score": "358933"
 },
 {
 "rank": 170,
 "name": "Intel Core i9-10885H",
-"score": "358451"
+"score": "358370"
 },
 {
 "rank": 171,
 "name": "13th Gen Intel Core i7-1355U",
-"score": "356185"
+"score": "355891"
 },
 {
 "rank": 172,
 "name": "13th Gen Intel Core i7-1365U",
-"score": "355853"
+"score": "355694"
 },
 {
 "rank": 173,
 "name": "13th Gen Intel Core i5-1335U",
-"score": "355143"
+"score": "355121"
 },
 {
 "rank": 174,
 "name": "Intel Core 5 120U",
-"score": "350527"
+"score": "350694"
 },
 {
 "rank": 175,
 "name": "AMD Ryzen 5 5560U with Radeon Graphics",
-"score": "349656"
+"score": "349702"
 },
 {
 "rank": 176,
@@ -6886,52 +6881,52 @@
 {
 "rank": 177,
 "name": "12th Gen Intel Core i5-1245U",
-"score": "345628"
+"score": "345381"
 },
 {
 "rank": 178,
-"name": "Intel Core i9-9980HK",
-"score": "344195"
+"name": "12th Gen Intel Core i7-1265U",
+"score": "344228"
 },
 {
 "rank": 179,
-"name": "12th Gen Intel Core i7-1265U",
-"score": "343945"
+"name": "Intel Core i9-9980HK",
+"score": "344039"
 },
 {
 "rank": 180,
 "name": "AMD Ryzen 5 PRO 5650U with Radeon Graphics",
-"score": "342513"
+"score": "342434"
 },
 {
 "rank": 181,
 "name": "AMD Ryzen 7 4800U with Radeon Graphics",
-"score": "336461"
+"score": "336699"
 },
 {
 "rank": 182,
 "name": "AMD Ryzen 3 5400U with Radeon Graphics",
-"score": "336087"
+"score": "336187"
 },
 {
 "rank": 183,
 "name": "AMD Ryzen 7 5700U with Radeon Graphics",
-"score": "330439"
+"score": "330314"
 },
 {
 "rank": 184,
 "name": "Intel Xeon W-10855M",
-"score": "328982"
+"score": "328357"
 },
 {
 "rank": 185,
 "name": "AMD Ryzen 5 4600H with Radeon Graphics",
-"score": "324177"
+"score": "324243"
 },
 {
 "rank": 186,
 "name": "Intel Core i7-10850H",
-"score": "323772"
+"score": "323917"
 },
 {
 "rank": 187,
@@ -6941,22 +6936,22 @@
 {
 "rank": 188,
 "name": "AMD Ryzen 5 PRO 5675U with Radeon Graphics",
-"score": "322004"
+"score": "321995"
 },
 {
 "rank": 189,
 "name": "Intel Core i5-10500H",
-"score": "320390"
+"score": "320607"
 },
 {
 "rank": 190,
 "name": "Intel Core i7-10750H",
-"score": "317015"
+"score": "317059"
 },
 {
 "rank": 191,
 "name": "Intel Xeon E-2186M",
-"score": "315196"
+"score": "315187"
 },
 {
 "rank": 192,
@@ -6966,12 +6961,12 @@
 {
 "rank": 193,
 "name": "Intel Core i7-8700B",
-"score": "314547"
+"score": "314599"
 },
 {
 "rank": 194,
 "name": "12th Gen Intel Core i7-1255U",
-"score": "314360"
+"score": "314476"
 },
 {
 "rank": 195,
@@ -6981,27 +6976,27 @@
 {
 "rank": 196,
 "name": "AMD Ryzen 3 7330U with Radeon Graphics",
-"score": "311708"
+"score": "311428"
 },
 {
 "rank": 197,
 "name": "Intel Core i9-9880H",
-"score": "307770"
+"score": "307696"
 },
 {
 "rank": 198,
 "name": "Intel Xeon E-2276M",
-"score": "306957"
+"score": "307298"
 },
 {
 "rank": 199,
 "name": "Intel Core i7-9750HF",
-"score": "303366"
+"score": "303057"
 },
 {
 "rank": 200,
 "name": "Intel Xeon E-2176M",
-"score": "302339"
+"score": "302811"
 },
 {
 "rank": 201,
@@ -7011,57 +7006,57 @@
 {
 "rank": 202,
 "name": "AMD Ryzen 7 PRO 4750U with Radeon Graphics",
-"score": "298102"
+"score": "297920"
 },
 {
 "rank": 203,
 "name": "13th Gen Intel Core i5-1334U",
-"score": "290875"
+"score": "290981"
 },
 {
 "rank": 204,
 "name": "Intel Core i7-11370H",
-"score": "288961"
+"score": "288898"
 },
 {
 "rank": 205,
 "name": "Intel Core i7-9750H",
-"score": "286358"
+"score": "286338"
 },
 {
 "rank": 206,
 "name": "12th Gen Intel Core i3-1215U",
-"score": "284525"
+"score": "283942"
 },
 {
 "rank": 207,
 "name": "Intel Core i9-8950HK",
-"score": "283151"
+"score": "282980"
 },
 {
 "rank": 208,
 "name": "AMD Ryzen 5 5500U with Radeon Graphics",
-"score": "282751"
+"score": "282736"
 },
 {
 "rank": 209,
 "name": "Intel Core i7-9850H",
-"score": "280382"
+"score": "280436"
 },
 {
 "rank": 210,
 "name": "AMD Ryzen 5 4600U with Radeon Graphics",
-"score": "279942"
+"score": "279725"
 },
 {
 "rank": 211,
 "name": "12th Gen Intel Core i7-1260U",
-"score": "279711"
+"score": "279170"
 },
 {
 "rank": 212,
 "name": "AMD Ryzen 7 4700U with Radeon Graphics",
-"score": "278988"
+"score": "279094"
 },
 {
 "rank": 213,
@@ -7071,37 +7066,37 @@
 {
 "rank": 214,
 "name": "Intel Core i7-8750H",
-"score": "276409"
+"score": "276442"
 },
 {
 "rank": 215,
 "name": "Intel Core Ultra 5 115U",
-"score": "275296"
+"score": "274790"
 },
 {
 "rank": 216,
 "name": "Intel Core i5-11300H",
-"score": "272532"
+"score": "272580"
 },
 {
 "rank": 217,
 "name": "Intel Core i5-1155G7",
-"score": "271483"
+"score": "271504"
 },
 {
 "rank": 218,
 "name": "Intel Core i7-1195G7",
-"score": "271045"
+"score": "271057"
 },
 {
 "rank": 219,
 "name": "Intel Core i5-11320H",
-"score": "270581"
+"score": "270681"
 },
 {
 "rank": 220,
 "name": "Intel Core i7-8850H",
-"score": "270518"
+"score": "270532"
 },
 {
 "rank": 221,
@@ -7111,47 +7106,47 @@
 {
 "rank": 222,
 "name": "AMD Ryzen 5 PRO 4650U with Radeon Graphics",
-"score": "269308"
+"score": "269404"
 },
 {
 "rank": 223,
 "name": "Intel Core i7-11390H",
-"score": "265994"
+"score": "266030"
 },
 {
 "rank": 224,
 "name": "Intel Core i5-10300H",
-"score": "264546"
+"score": "264544"
 },
 {
 "rank": 225,
 "name": "Intel Core i7-1185G7",
-"score": "263219"
+"score": "263201"
 },
 {
 "rank": 226,
 "name": "Intel Core i5-10200H",
-"score": "261928"
+"score": "261982"
 },
 {
 "rank": 227,
 "name": "Intel Core i5-1145G7",
-"score": "257462"
+"score": "257500"
 },
 {
 "rank": 228,
 "name": "Intel Core i5-10400H",
-"score": "255652"
+"score": "255618"
 },
 {
 "rank": 229,
 "name": "AMD Ryzen 5 4500U with Radeon Graphics",
-"score": "255587"
+"score": "255456"
 },
 {
 "rank": 230,
 "name": "Intel Pentium 8505",
-"score": "251987"
+"score": "251632"
 },
 {
 "rank": 231,
@@ -7161,52 +7156,52 @@
 {
 "rank": 232,
 "name": "Intel Core i5-9400H",
-"score": "248121"
+"score": "248115"
 },
 {
 "rank": 233,
 "name": "Intel Core i7-8809G",
-"score": "246248"
+"score": "246744"
 },
 {
 "rank": 234,
 "name": "Intel Core i5-1135G7",
-"score": "245535"
+"score": "245539"
 },
 {
 "rank": 235,
 "name": "Intel Core i7-1165G7",
-"score": "245319"
+"score": "245454"
 },
 {
 "rank": 236,
 "name": "12th Gen Intel Core i5-1230U",
-"score": "244120"
+"score": "243001"
 },
 {
 "rank": 237,
 "name": "Intel Core i5-9300HF",
-"score": "241973"
+"score": "241867"
 },
 {
 "rank": 238,
 "name": "Intel Core i7-8705G",
-"score": "240503"
+"score": "240705"
 },
 {
 "rank": 239,
 "name": "AMD Ryzen 3 5300U with Radeon Graphics",
-"score": "239848"
+"score": "239899"
 },
 {
 "rank": 240,
 "name": "Intel Core i7-7820HK",
-"score": "239483"
+"score": "239443"
 },
 {
 "rank": 241,
 "name": "Intel Core i5-9300H",
-"score": "237446"
+"score": "237436"
 },
 {
 "rank": 242,
@@ -7216,17 +7211,17 @@
 {
 "rank": 243,
 "name": "Intel Core i7-7920HQ",
-"score": "236135"
+"score": "236441"
 },
 {
 "rank": 244,
 "name": "Intel Core i5-8300H",
-"score": "235986"
+"score": "236045"
 },
 {
 "rank": 245,
 "name": "Intel Core i3-1125G4",
-"score": "234456"
+"score": "235307"
 },
 {
 "rank": 246,
@@ -7235,1273 +7230,1273 @@
 },
 {
 "rank": 247,
-"name": "Intel Core i7-8569U",
-"score": "232991"
+"name": "Intel Core i7-1068NG7",
+"score": "232620"
 },
 {
 "rank": 248,
-"name": "Intel Core i7-1068NG7",
-"score": "232648"
+"name": "Intel Xeon E3-1545M v5",
+"score": "232531"
 },
 {
 "rank": 249,
 "name": "12th Gen Intel Core i7-1250U",
-"score": "231859"
+"score": "231490"
 },
 {
 "rank": 250,
-"name": "Intel Xeon E3-1545M v5",
-"score": "231699"
-},
-{
-"rank": 251,
-"name": "Intel Core i5-8400H",
-"score": "230072"
-},
-{
-"rank": 252,
 "name": "Intel Core i5-1038NG7",
 "score": "229275"
 },
 {
-"rank": 253,
+"rank": 251,
 "name": "AMD Ryzen 5 7520U with Radeon Graphics",
-"score": "229082"
+"score": "229013"
+},
+{
+"rank": 252,
+"name": "Intel Core i5-8400H",
+"score": "228594"
+},
+{
+"rank": 253,
+"name": "Intel Xeon E3-1535M v5",
+"score": "226769"
 },
 {
 "rank": 254,
 "name": "Intel Core i7-8706G",
-"score": "227399"
+"score": "226427"
 },
 {
 "rank": 255,
-"name": "Intel Xeon E3-1535M v5",
-"score": "226652"
+"name": "Intel Xeon E3-1505M v6",
+"score": "226155"
 },
 {
 "rank": 256,
-"name": "Intel Xeon E3-1505M v6",
-"score": "226238"
+"name": "Intel Core i7-8559U",
+"score": "225516"
 },
 {
 "rank": 257,
-"name": "Intel Core i7-8559U",
-"score": "225405"
+"name": "Intel Core 3 N355",
+"score": "224555"
 },
 {
 "rank": 258,
-"name": "Intel Core 3 N355",
-"score": "224011"
+"name": "Intel Core i7-7700HQ",
+"score": "222812"
 },
 {
 "rank": 259,
-"name": "Intel Core i7-7700HQ",
-"score": "222796"
-},
-{
-"rank": 260,
 "name": "Intel Core i7-6770HQ",
 "score": "222785"
 },
 {
+"rank": 260,
+"name": "Intel Core i5-8259U",
+"score": "221927"
+},
+{
 "rank": 261,
 "name": "AMD Ryzen 3 7320U with Radeon Graphics",
-"score": "222224"
+"score": "221747"
 },
 {
 "rank": 262,
-"name": "Intel Core i5-8259U",
-"score": "221962"
+"name": "Intel Core i7-6820HK",
+"score": "220014"
 },
 {
 "rank": 263,
-"name": "Intel Core i7-6820HK",
-"score": "219962"
+"name": "Intel Core i3-N305",
+"score": "219192"
 },
 {
 "rank": 264,
-"name": "Intel Core i3-N305",
-"score": "219446"
+"name": "Intel Core i7-7820HQ",
+"score": "218678"
 },
 {
 "rank": 265,
-"name": "Intel Core i7-7820HQ",
-"score": "219173"
-},
-{
-"rank": 266,
 "name": "Intel Core i5-8305G",
 "score": "218091"
 },
 {
-"rank": 267,
+"rank": 266,
 "name": "AMD Custom 04053PeiInit Entry",
 "score": "217960"
 },
 {
-"rank": 268,
+"rank": 267,
 "name": "Intel Core i7-1180G7",
-"score": "216840"
+"score": "217098"
+},
+{
+"rank": 268,
+"name": "Intel Xeon E3-1505M v5",
+"score": "215425"
 },
 {
 "rank": 269,
-"name": "Intel Xeon E3-1505M v5",
-"score": "215696"
-},
-{
-"rank": 270,
 "name": "AMD Ryzen 3 4300U with Radeon Graphics",
 "score": "214622"
 },
 {
-"rank": 271,
+"rank": 270,
 "name": "Intel Core i5-1140G7",
-"score": "212930"
+"score": "213896"
+},
+{
+"rank": 271,
+"name": "Intel Core i5-7440HQ",
+"score": "206341"
 },
 {
 "rank": 272,
-"name": "Intel Core i5-7440HQ",
-"score": "206445"
+"name": "Intel Core i5-8279U",
+"score": "205810"
 },
 {
 "rank": 273,
-"name": "Intel Core i5-8279U",
-"score": "205251"
+"name": "Intel Core i7-6700HQ",
+"score": "204903"
 },
 {
 "rank": 274,
-"name": "Intel Core i7-6700HQ",
-"score": "204932"
+"name": "Intel Core i7-5700HQ",
+"score": "204429"
 },
 {
 "rank": 275,
-"name": "Intel Core i7-5700HQ",
-"score": "204378"
+"name": "Intel Core i7-4930MX",
+"score": "203777"
 },
 {
 "rank": 276,
-"name": "Intel Core i7-4930MX",
-"score": "203575"
-},
-{
-"rank": 277,
-"name": "Intel Core i7-4980HQ",
-"score": "203148"
-},
-{
-"rank": 278,
 "name": "Intel Core i7-10810U",
 "score": "203030"
 },
 {
-"rank": 279,
+"rank": 277,
 "name": "Intel Core i5-8257U",
-"score": "202875"
+"score": "202706"
+},
+{
+"rank": 278,
+"name": "Intel Core i7-6820HQ",
+"score": "201819"
+},
+{
+"rank": 279,
+"name": "Intel Core i7-4980HQ",
+"score": "201276"
 },
 {
 "rank": 280,
-"name": "Intel Core i7-6820HQ",
-"score": "201973"
+"name": "Intel Core i7-6920HQ",
+"score": "200530"
 },
 {
 "rank": 281,
-"name": "Intel Core i7-6920HQ",
-"score": "200465"
+"name": "Intel Core i7-4940MX",
+"score": "200274"
 },
 {
 "rank": 282,
-"name": "Intel Core i7-4940MX",
-"score": "199839"
+"name": "Intel Core i7-1160G7",
+"score": "198961"
 },
 {
 "rank": 283,
-"name": "Intel Core i7-1160G7",
-"score": "199068"
+"name": "Intel Core i3-1115G4",
+"score": "198746"
 },
 {
 "rank": 284,
-"name": "Intel Core i3-1115G4",
-"score": "198803"
+"name": "Intel Core i5-7300HQ",
+"score": "197552"
 },
 {
 "rank": 285,
-"name": "Intel Core i5-7300HQ",
-"score": "197517"
+"name": "Intel Core i5-6440HQ",
+"score": "196882"
 },
 {
 "rank": 286,
-"name": "Intel Core i5-6440HQ",
-"score": "196927"
+"name": "Intel Core i7-1065G7",
+"score": "195984"
 },
 {
 "rank": 287,
-"name": "Intel Core i7-1065G7",
-"score": "195826"
+"name": "AMD Ryzen 7 3750H with Radeon Vega Mobile Gfx",
+"score": "195755"
 },
 {
 "rank": 288,
-"name": "AMD Ryzen 7 3750H with Radeon Vega Mobile Gfx",
-"score": "195714"
+"name": "Intel Core i7-4910MQ",
+"score": "195102"
 },
 {
 "rank": 289,
 "name": "Intel Core i7-10610U",
-"score": "195024"
+"score": "194965"
 },
 {
 "rank": 290,
-"name": "Intel Core i7-4910MQ",
-"score": "193856"
+"name": "Intel Core i5-8350U",
+"score": "193757"
 },
 {
 "rank": 291,
 "name": "Intel Core i7-4900MQ",
-"score": "193699"
+"score": "193197"
 },
 {
 "rank": 292,
-"name": "Intel Core i5-8350U",
-"score": "193695"
+"name": "Intel Core i7-10710U",
+"score": "192565"
 },
 {
 "rank": 293,
-"name": "Intel Core i7-10710U",
-"score": "192092"
+"name": "Intel Core i5-10310U",
+"score": "190149"
 },
 {
 "rank": 294,
-"name": "Intel Core i5-10310U",
-"score": "190081"
+"name": "Intel Core i7-1060NG7",
+"score": "189129"
 },
 {
 "rank": 295,
-"name": "Intel Core i7-1060NG7",
-"score": "188435"
+"name": "Intel Core i5-1035G7",
+"score": "186667"
 },
 {
 "rank": 296,
-"name": "Intel Core i5-1035G7",
-"score": "186658"
+"name": "Intel Core i7-4870HQ",
+"score": "186154"
 },
 {
 "rank": 297,
-"name": "Intel Core i7-4870HQ",
-"score": "186404"
+"name": "Intel Core i5-1035G1",
+"score": "185984"
 },
 {
 "rank": 298,
-"name": "Intel Core i5-1035G1",
-"score": "185961"
+"name": "Intel Core i7-4810MQ",
+"score": "184929"
 },
 {
 "rank": 299,
-"name": "Intel Core i7-4810MQ",
-"score": "185087"
+"name": "Intel Core i5-6300HQ",
+"score": "183453"
 },
 {
 "rank": 300,
-"name": "Intel Core i5-6300HQ",
-"score": "183428"
+"name": "Intel Core i7-8650U",
+"score": "182417"
 },
 {
 "rank": 301,
 "name": "Intel Core i7-4720HQ",
-"score": "182501"
+"score": "182410"
 },
 {
 "rank": 302,
-"name": "Intel Core i7-8650U",
-"score": "182442"
+"name": "Intel Core i7-4770HQ",
+"score": "182111"
 },
 {
 "rank": 303,
-"name": "Intel Core i7-4770HQ",
-"score": "182155"
+"name": "Intel Core i7-4800MQ",
+"score": "181771"
 },
 {
 "rank": 304,
-"name": "Intel Core i7-4800MQ",
-"score": "181825"
-},
-{
-"rank": 305,
 "name": "Intel Core i7-4860HQ",
 "score": "180479"
 },
 {
-"rank": 306,
+"rank": 305,
 "name": "Intel Core i7-4710HQ",
-"score": "180443"
+"score": "180380"
+},
+{
+"rank": 306,
+"name": "Intel Core i7-8665U",
+"score": "178368"
 },
 {
 "rank": 307,
-"name": "Intel Core i7-8665U",
-"score": "178595"
+"name": "AMD Ryzen 5 3550H with Radeon Vega Mobile Gfx",
+"score": "177647"
 },
 {
 "rank": 308,
-"name": "AMD Ryzen 5 3550H with Radeon Vega Mobile Gfx",
-"score": "177587"
+"name": "Intel Core i5-8365U",
+"score": "177584"
 },
 {
 "rank": 309,
-"name": "Intel Core i5-8365U",
-"score": "177484"
+"name": "Intel Core i7-10510U",
+"score": "177119"
 },
 {
 "rank": 310,
-"name": "Intel Core i7-10510U",
-"score": "177038"
+"name": "Intel Core i7-4750HQ",
+"score": "175786"
 },
 {
 "rank": 311,
-"name": "Intel Core i7-4750HQ",
-"score": "175828"
+"name": "Intel Core i7-4712HQ",
+"score": "175718"
 },
 {
 "rank": 312,
-"name": "Intel Core i7-4712HQ",
-"score": "175706"
+"name": "Intel Core i5-10210U",
+"score": "175589"
 },
 {
 "rank": 313,
-"name": "Intel Core i5-10210U",
-"score": "175554"
+"name": "Intel Core i7-4700HQ",
+"score": "174464"
 },
 {
 "rank": 314,
-"name": "Intel Core i7-4700HQ",
-"score": "174650"
-},
-{
-"rank": 315,
 "name": "Intel Core i7-4850HQ",
 "score": "173915"
 },
 {
-"rank": 316,
-"name": "Intel Core i5-1130G7",
-"score": "173621"
-},
-{
-"rank": 317,
+"rank": 315,
 "name": "Intel Core i7-4710MQ",
 "score": "173274"
 },
 {
-"rank": 318,
+"rank": 316,
+"name": "Intel Core i5-1130G7",
+"score": "173242"
+},
+{
+"rank": 317,
 "name": "Intel Core i7-8550U",
-"score": "171947"
+"score": "171925"
+},
+{
+"rank": 318,
+"name": "Intel Core i7-4700MQ",
+"score": "170479"
 },
 {
 "rank": 319,
-"name": "Intel Core i7-4700MQ",
-"score": "170521"
+"name": "Intel Core i5-8250U",
+"score": "169769"
 },
 {
 "rank": 320,
-"name": "Intel Core i5-8250U",
-"score": "169745"
+"name": "Intel Core i5-8265U",
+"score": "169602"
 },
 {
 "rank": 321,
 "name": "AMD Ryzen 7 3700U with Radeon Vega Mobile Gfx",
-"score": "169619"
+"score": "169571"
 },
 {
 "rank": 322,
-"name": "Intel Core i5-8265U",
-"score": "169531"
+"name": "Intel Core i7-8565U",
+"score": "168807"
 },
 {
 "rank": 323,
-"name": "Intel Core i7-8565U",
-"score": "168895"
+"name": "AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx",
+"score": "167231"
 },
 {
 "rank": 324,
-"name": "Intel Core i3-8109U",
-"score": "167265"
+"name": "Intel Core i3-1005G1",
+"score": "167181"
 },
 {
 "rank": 325,
-"name": "AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx",
-"score": "167200"
+"name": "Intel Core i3-8109U",
+"score": "167158"
 },
 {
 "rank": 326,
-"name": "Intel Core i3-1005G1",
-"score": "167085"
+"name": "Intel Pentium 7505",
+"score": "167015"
 },
 {
 "rank": 327,
-"name": "Intel Pentium 7505",
-"score": "166765"
-},
-{
-"rank": 328,
 "name": "Intel Core i3-N300",
 "score": "166390"
 },
 {
-"rank": 329,
+"rank": 328,
 "name": "Intel Core i5-1035G4",
-"score": "164620"
+"score": "164961"
 },
 {
-"rank": 330,
+"rank": 329,
 "name": "Intel Core i7-4702HQ",
 "score": "164489"
 },
 {
-"rank": 331,
+"rank": 330,
 "name": "Intel Core i7-4712MQ",
-"score": "162787"
+"score": "162758"
+},
+{
+"rank": 331,
+"name": "Intel Core i7-4702MQ",
+"score": "159212"
 },
 {
 "rank": 332,
-"name": "Intel Core i7-4702MQ",
-"score": "159161"
+"name": "AMD Ryzen 5 3501U with Radeon Vega Mobile Gfx",
+"score": "157849"
 },
 {
 "rank": 333,
-"name": "AMD Ryzen 5 3501U with Radeon Vega Mobile Gfx",
-"score": "158183"
+"name": "AMD Ryzen 5 2500U with Radeon Vega Mobile Gfx",
+"score": "156608"
 },
 {
 "rank": 334,
-"name": "AMD Ryzen 5 2500U with Radeon Vega Mobile Gfx",
-"score": "156601"
+"name": "AMD Ryzen 3 3300U with Radeon Vega Mobile Gfx",
+"score": "155421"
 },
 {
 "rank": 335,
-"name": "AMD Ryzen 3 3300U with Radeon Vega Mobile Gfx",
-"score": "155486"
+"name": "Intel Core i5-7360U",
+"score": "153003"
 },
 {
 "rank": 336,
-"name": "Intel Core i5-7360U",
-"score": "152970"
-},
-{
-"rank": 337,
 "name": "Intel Core i7-7567U",
 "score": "152882"
 },
 {
-"rank": 338,
+"rank": 337,
 "name": "Intel N150",
-"score": "150846"
+"score": "151038"
+},
+{
+"rank": 338,
+"name": "Intel Core i5-7267U",
+"score": "150478"
 },
 {
 "rank": 339,
-"name": "Intel Core i5-7267U",
-"score": "150661"
-},
-{
-"rank": 340,
 "name": "Intel Core i7-3940XM",
 "score": "149262"
 },
 {
-"rank": 341,
+"rank": 340,
 "name": "Intel Pentium 6805",
 "score": "148524"
 },
 {
-"rank": 342,
+"rank": 341,
 "name": "Intel N95",
-"score": "147884"
+"score": "147899"
 },
 {
-"rank": 343,
+"rank": 342,
 "name": "Intel Core i3-8121U",
 "score": "147723"
 },
 {
-"rank": 344,
+"rank": 343,
 "name": "Intel N100",
-"score": "147671"
+"score": "147409"
+},
+{
+"rank": 344,
+"name": "AMD Ryzen 7 2700U with Radeon Vega Mobile Gfx",
+"score": "146325"
 },
 {
 "rank": 345,
-"name": "AMD Ryzen 7 2700U with Radeon Vega Mobile Gfx",
-"score": "146465"
+"name": "Intel Core i3-8145U",
+"score": "146163"
 },
 {
 "rank": 346,
 "name": "Intel Core i7-3840QM",
-"score": "146170"
+"score": "146123"
 },
 {
 "rank": 347,
-"name": "Intel Core i3-8145U",
-"score": "146154"
-},
-{
-"rank": 348,
 "name": "Intel Core i7-6567U",
 "score": "145699"
 },
 {
-"rank": 349,
+"rank": 348,
 "name": "Intel Core i7-7600U",
-"score": "145679"
+"score": "145648"
+},
+{
+"rank": 349,
+"name": "Intel Core i3-10110U",
+"score": "145541"
 },
 {
 "rank": 350,
-"name": "Intel Core i3-10110U",
-"score": "145529"
+"name": "Intel Core i5-7260U",
+"score": "142899"
 },
 {
 "rank": 351,
-"name": "Intel Core i5-7260U",
-"score": "142568"
-},
-{
-"rank": 352,
 "name": "Intel Core i5-1030NG7",
 "score": "142445"
 },
 {
-"rank": 353,
+"rank": 352,
 "name": "Intel Core i7-7500U",
-"score": "141972"
+"score": "141974"
 },
 {
-"rank": 354,
+"rank": 353,
 "name": "Intel Core i7-6498DU",
 "score": "140795"
 },
 {
-"rank": 355,
+"rank": 354,
 "name": "Intel Core i7-7660U",
-"score": "138527"
+"score": "138454"
+},
+{
+"rank": 355,
+"name": "Intel Core i5-6267U",
+"score": "138234"
 },
 {
 "rank": 356,
-"name": "Intel Core i5-6267U",
-"score": "138096"
+"name": "Intel Core i3-8130U",
+"score": "138185"
 },
 {
 "rank": 357,
-"name": "Intel Core i3-8130U",
-"score": "138062"
+"name": "Intel Core i7-6560U",
+"score": "137143"
 },
 {
 "rank": 358,
-"name": "Intel Core i7-6560U",
-"score": "137560"
+"name": "Intel Core i5-7300U",
+"score": "136662"
 },
 {
 "rank": 359,
-"name": "Intel Core i5-7300U",
-"score": "136757"
+"name": "Intel N200",
+"score": "136407"
 },
 {
 "rank": 360,
-"name": "Intel N200",
-"score": "136390"
+"name": "Intel Core i5-7200U",
+"score": "135794"
 },
 {
 "rank": 361,
-"name": "Intel Core i5-7200U",
-"score": "135806"
+"name": "Intel Core i7-6600U",
+"score": "135493"
 },
 {
 "rank": 362,
-"name": "Intel Core i7-6600U",
-"score": "135591"
+"name": "Intel Core i7-3820QM",
+"score": "134414"
 },
 {
 "rank": 363,
-"name": "Intel Core i7-3820QM",
-"score": "134467"
+"name": "Intel Core i5-6360U",
+"score": "133803"
 },
 {
 "rank": 364,
-"name": "Intel Core i5-6360U",
-"score": "134258"
-},
-{
-"rank": 365,
 "name": "Intel Core i5-5287U",
 "score": "133769"
 },
 {
-"rank": 366,
+"rank": 365,
 "name": "Intel Core i7-6650U",
 "score": "133319"
 },
 {
-"rank": 367,
+"rank": 366,
 "name": "Intel Core i7-3740QM",
-"score": "132935"
+"score": "133097"
+},
+{
+"rank": 367,
+"name": "AMD Ryzen 3 2300U with Radeon Vega Mobile Gfx",
+"score": "132835"
 },
 {
 "rank": 368,
-"name": "AMD Ryzen 3 2300U with Radeon Vega Mobile Gfx",
-"score": "132573"
+"name": "Intel Core i7-6500U",
+"score": "131232"
 },
 {
 "rank": 369,
-"name": "Intel Core i7-6500U",
-"score": "131225"
+"name": "Intel Core i7-4610M",
+"score": "130150"
 },
 {
 "rank": 370,
-"name": "Intel Core i7-4610M",
-"score": "130089"
-},
-{
-"rank": 371,
 "name": "Intel Core i5-6198DU",
 "score": "128370"
 },
 {
-"rank": 372,
+"rank": 371,
 "name": "Intel Core i5-6300U",
-"score": "127791"
+"score": "127746"
+},
+{
+"rank": 372,
+"name": "Intel Core i5-10210Y",
+"score": "127724"
 },
 {
 "rank": 373,
-"name": "Intel Core i5-10210Y",
-"score": "127448"
-},
-{
-"rank": 374,
 "name": "Intel Core i7-4600M",
 "score": "127446"
 },
 {
+"rank": 374,
+"name": "Intel Core i7-3720QM",
+"score": "126818"
+},
+{
 "rank": 375,
 "name": "Intel Core i5-5257U",
-"score": "126859"
+"score": "126536"
 },
 {
 "rank": 376,
-"name": "Intel Core i7-3720QM",
-"score": "126530"
-},
-{
-"rank": 377,
 "name": "Intel Core i5-6260U",
 "score": "125295"
 },
 {
-"rank": 378,
+"rank": 377,
 "name": "Intel Core i7-4578U",
 "score": "125073"
 },
 {
-"rank": 379,
+"rank": 378,
 "name": "Intel Core i7-3615QM",
-"score": "123753"
+"score": "123759"
+},
+{
+"rank": 379,
+"name": "Intel Core i5-4200H",
+"score": "123208"
 },
 {
 "rank": 380,
-"name": "Intel Core i5-4200H",
-"score": "123274"
+"name": "Intel Core i7-5600U",
+"score": "122891"
 },
 {
 "rank": 381,
-"name": "Intel Core i7-5600U",
-"score": "122900"
+"name": "Intel Core i5-4210H",
+"score": "122288"
 },
 {
 "rank": 382,
-"name": "Intel Core i5-4210H",
-"score": "122271"
+"name": "Intel Core i5-6200U",
+"score": "120246"
 },
 {
 "rank": 383,
-"name": "Intel Core i5-6200U",
-"score": "120224"
-},
-{
-"rank": 384,
 "name": "Intel Core i7-5557U",
 "score": "119879"
 },
 {
-"rank": 385,
+"rank": 384,
 "name": "Intel Core i5-4278U",
-"score": "119782"
+"score": "119870"
+},
+{
+"rank": 385,
+"name": "AMD Ryzen 3 3250U with Radeon Graphics",
+"score": "119501"
 },
 {
 "rank": 386,
-"name": "AMD Ryzen 3 3250U with Radeon Graphics",
-"score": "119514"
+"name": "Intel Core i7-3630QM",
+"score": "119483"
 },
 {
 "rank": 387,
-"name": "Intel Core i7-3630QM",
-"score": "119464"
+"name": "Intel Core i7-3635QM",
+"score": "118962"
 },
 {
 "rank": 388,
-"name": "Intel Core i7-3635QM",
-"score": "119198"
-},
-{
-"rank": 389,
 "name": "Intel Core i7-5650U",
 "score": "118940"
 },
 {
-"rank": 390,
+"rank": 389,
 "name": "Intel Core i7-5500U",
-"score": "117580"
+"score": "117630"
+},
+{
+"rank": 390,
+"name": "Intel Core i7-4558U",
+"score": "117516"
 },
 {
 "rank": 391,
-"name": "Intel Core i5-4300M",
-"score": "117389"
+"name": "Intel Core i7-3610QM",
+"score": "117330"
 },
 {
 "rank": 392,
-"name": "Intel Core i7-3610QM",
-"score": "117209"
+"name": "Intel Core i5-4300M",
+"score": "117281"
 },
 {
 "rank": 393,
-"name": "Intel Core i7-4558U",
-"score": "117207"
+"name": "Intel Core i5-4310M",
+"score": "116815"
 },
 {
 "rank": 394,
-"name": "Intel Core i5-4310M",
-"score": "116736"
+"name": "Intel Core i5-4210M",
+"score": "115303"
 },
 {
 "rank": 395,
-"name": "Intel Core i5-4210M",
-"score": "115264"
+"name": "Intel Core i7-10510Y",
+"score": "114708"
 },
 {
 "rank": 396,
-"name": "Intel Core i7-10510Y",
-"score": "114556"
+"name": "Intel Core i5-5350U",
+"score": "114270"
 },
 {
 "rank": 397,
-"name": "Intel Core i5-5350U",
-"score": "114211"
-},
-{
-"rank": 398,
 "name": "AMD Ryzen 3 2200U with Radeon Vega Mobile Gfx",
 "score": "114201"
 },
 {
-"rank": 399,
+"rank": 398,
 "name": "AMD Athlon Silver 3050U with Radeon Graphics",
-"score": "114067"
+"score": "114126"
 },
 {
-"rank": 400,
+"rank": 399,
 "name": "Intel Core i5-4288U",
 "score": "113965"
 },
 {
-"rank": 401,
+"rank": 400,
 "name": "Intel Core i7-2860QM",
 "score": "113477"
 },
 {
-"rank": 402,
+"rank": 401,
 "name": "Intel Core i3-1000NG4",
 "score": "112662"
 },
 {
-"rank": 403,
+"rank": 402,
 "name": "Intel Core i3-7130U",
-"score": "111721"
+"score": "111527"
+},
+{
+"rank": 403,
+"name": "Intel Core i5-4200M",
+"score": "110719"
 },
 {
 "rank": 404,
-"name": "Intel Core i5-4200M",
-"score": "110760"
+"name": "Intel Core i3-7100U",
+"score": "110692"
 },
 {
 "rank": 405,
-"name": "Intel Core i3-7100U",
-"score": "110662"
+"name": "Intel Core i5-4258U",
+"score": "110512"
 },
 {
 "rank": 406,
-"name": "Intel Core i5-4258U",
-"score": "110444"
+"name": "Intel Pentium GOLD 6500Y",
+"score": "110263"
 },
 {
 "rank": 407,
 "name": "Intel Core i5-5300U",
-"score": "110356"
+"score": "110254"
 },
 {
 "rank": 408,
-"name": "Intel Pentium GOLD 6500Y",
-"score": "110143"
+"name": "Intel Core i7-3632QM",
+"score": "109743"
 },
 {
 "rank": 409,
-"name": "Intel Core i7-3632QM",
-"score": "109815"
+"name": "Intel Core i7-3612QM",
+"score": "107280"
 },
 {
 "rank": 410,
 "name": "Intel Core i7-4600U",
-"score": "107477"
+"score": "107190"
 },
 {
 "rank": 411,
-"name": "Intel Core i7-3612QM",
-"score": "107265"
+"name": "Intel Celeron N5105",
+"score": "106665"
 },
 {
 "rank": 412,
-"name": "Intel Celeron N5105",
-"score": "106649"
-},
-{
-"rank": 413,
 "name": "AMD FX-9830P RADEON R7, 12 COMPUTE CORES 4C+8G",
 "score": "105896"
 },
 {
-"rank": 414,
+"rank": 413,
 "name": "Intel Core i5-5250U",
-"score": "105469"
+"score": "105587"
+},
+{
+"rank": 414,
+"name": "Intel Core i7-2760QM",
+"score": "104445"
 },
 {
 "rank": 415,
-"name": "Intel Core i7-2760QM",
-"score": "104501"
-},
-{
-"rank": 416,
 "name": "Intel Core i5-4310U",
 "score": "104436"
 },
 {
-"rank": 417,
+"rank": 416,
 "name": "Intel Core i3-6100U",
-"score": "103594"
+"score": "103507"
+},
+{
+"rank": 417,
+"name": "Intel Core i5-5200U",
+"score": "103192"
 },
 {
 "rank": 418,
 "name": "Intel Core i5-8210Y",
-"score": "103318"
+"score": "103059"
 },
 {
 "rank": 419,
-"name": "Intel Core i5-5200U",
-"score": "103211"
+"name": "AMD Ryzen 3 3200U with Radeon Vega Mobile Gfx",
+"score": "102895"
 },
 {
 "rank": 420,
-"name": "AMD Ryzen 3 3200U with Radeon Vega Mobile Gfx",
-"score": "102713"
+"name": "Intel Core i7-4510U",
+"score": "102557"
 },
 {
 "rank": 421,
-"name": "Intel Core i7-4510U",
-"score": "102552"
+"name": "Intel Core m3-8100Y",
+"score": "101393"
 },
 {
 "rank": 422,
 "name": "Intel Core i7-2820QM",
-"score": "101144"
+"score": "100638"
 },
 {
 "rank": 423,
-"name": "Intel Core m3-8100Y",
-"score": "100896"
+"name": "Intel Core i7-4500U",
+"score": "99748"
 },
 {
 "rank": 424,
-"name": "Intel Core i7-4500U",
-"score": "99864"
+"name": "Intel Core i3-4100M",
+"score": "98791"
 },
 {
 "rank": 425,
-"name": "Intel Core i3-4100M",
-"score": "98481"
+"name": "Intel Core i7-2720QM",
+"score": "98540"
 },
 {
 "rank": 426,
-"name": "Intel Core i7-2720QM",
-"score": "98197"
+"name": "Intel Core i3-7020U",
+"score": "98043"
 },
 {
 "rank": 427,
-"name": "Intel Core i3-7020U",
-"score": "98069"
-},
-{
-"rank": 428,
 "name": "Intel Core i7-2675QM",
 "score": "97980"
 },
 {
-"rank": 429,
+"rank": 428,
 "name": "Intel Core i7-4650U",
-"score": "97197"
+"score": "97131"
 },
 {
-"rank": 430,
+"rank": 429,
 "name": "Intel Core i5-7Y57",
 "score": "95717"
 },
 {
+"rank": 430,
+"name": "Intel Core i5-4300U",
+"score": "95353"
+},
+{
 "rank": 431,
 "name": "Intel Celeron 5805",
-"score": "95325"
+"score": "95282"
 },
 {
 "rank": 432,
-"name": "Intel Core i5-4300U",
-"score": "95119"
+"name": "AMD A10-9630P RADEON R5, 10 COMPUTE CORES 4C+6G",
+"score": "95074"
 },
 {
 "rank": 433,
-"name": "AMD A10-9630P RADEON R5, 10 COMPUTE CORES 4C+6G",
-"score": "95098"
-},
-{
-"rank": 434,
 "name": "Intel Core i3-10100Y",
 "score": "93653"
 },
 {
-"rank": 435,
+"rank": 434,
 "name": "AMD FX-8800P Radeon R7, 12 Compute Cores 4C+8G",
 "score": "92463"
 },
 {
-"rank": 436,
+"rank": 435,
 "name": "Intel Core i7-2670QM",
-"score": "92411"
+"score": "92441"
 },
 {
-"rank": 437,
+"rank": 436,
 "name": "Intel Core i7-2635QM",
 "score": "92329"
 },
 {
-"rank": 438,
+"rank": 437,
 "name": "Intel Celeron N5100",
-"score": "92216"
+"score": "92246"
+},
+{
+"rank": 438,
+"name": "Intel Pentium Silver N6000",
+"score": "92085"
 },
 {
 "rank": 439,
-"name": "Intel Core i3-6006U",
-"score": "91970"
+"name": "Intel Core i5-4260U",
+"score": "92069"
 },
 {
 "rank": 440,
-"name": "Intel Core i5-4260U",
-"score": "91910"
+"name": "Intel Core i3-6006U",
+"score": "91942"
 },
 {
 "rank": 441,
-"name": "Intel Pentium Silver N6000",
-"score": "91724"
+"name": "Intel Celeron 6305",
+"score": "91511"
 },
 {
 "rank": 442,
 "name": "Intel Core i7-3540M",
-"score": "91503"
+"score": "91168"
 },
 {
 "rank": 443,
-"name": "Intel Celeron 6305",
-"score": "91430"
+"name": "Intel Core i5-4210U",
+"score": "91067"
 },
 {
 "rank": 444,
-"name": "Intel Core i5-4210U",
-"score": "91038"
+"name": "Intel Core i5-3380M",
+"score": "90974"
 },
 {
 "rank": 445,
-"name": "Intel Core i5-3380M",
-"score": "90995"
+"name": "Intel Core i7-3520M",
+"score": "90140"
 },
 {
 "rank": 446,
-"name": "Intel Core i7-3520M",
-"score": "90137"
-},
-{
-"rank": 447,
 "name": "Intel Core i5-4250U",
 "score": "89668"
 },
 {
-"rank": 448,
+"rank": 447,
 "name": "Intel Core i5-7Y54",
-"score": "89442"
+"score": "89073"
+},
+{
+"rank": 448,
+"name": "Intel Core m3-7Y30",
+"score": "86457"
 },
 {
 "rank": 449,
-"name": "Intel Core m3-7Y30",
-"score": "86429"
+"name": "Intel Core i5-4200U",
+"score": "85904"
 },
 {
 "rank": 450,
 "name": "Intel Core i5-3360M",
-"score": "86139"
+"score": "85842"
 },
 {
 "rank": 451,
-"name": "Intel Core i5-4200U",
-"score": "85951"
+"name": "Intel Core i7-7Y75",
+"score": "84906"
 },
 {
 "rank": 452,
-"name": "Intel Core i7-7Y75",
-"score": "84863"
+"name": "Intel Core i5-3340M",
+"score": "83927"
 },
 {
 "rank": 453,
-"name": "Intel Core i5-3340M",
-"score": "83833"
+"name": "Intel Pentium 4415U",
+"score": "83796"
 },
 {
 "rank": 454,
 "name": "Intel Core i3-5005U",
-"score": "83548"
+"score": "83497"
 },
 {
 "rank": 455,
-"name": "Intel Pentium 4415U",
-"score": "83485"
+"name": "Intel Core i7-2640M",
+"score": "82639"
 },
 {
 "rank": 456,
-"name": "Intel Core i7-2640M",
-"score": "82660"
+"name": "Intel Core m3-6Y30",
+"score": "82544"
 },
 {
 "rank": 457,
-"name": "Intel Core m3-6Y30",
-"score": "82507"
+"name": "Intel Core i7-2630QM",
+"score": "82427"
 },
 {
 "rank": 458,
-"name": "Intel Core i7-2630QM",
-"score": "82419"
+"name": "Intel Core i5-3320M",
+"score": "81976"
 },
 {
 "rank": 459,
-"name": "Intel Core i5-3320M",
-"score": "81965"
-},
-{
-"rank": 460,
 "name": "Intel Pentium 5405U",
 "score": "81550"
 },
 {
-"rank": 461,
+"rank": 460,
 "name": "Intel Core i7-3687U",
 "score": "81250"
 },
 {
-"rank": 462,
+"rank": 461,
 "name": "AMD FX-9800P RADEON R7, 12 COMPUTE CORES 4C+8G",
 "score": "80460"
 },
 {
+"rank": 462,
+"name": "Intel Core m5-6Y54",
+"score": "80416"
+},
+{
 "rank": 463,
 "name": "AMD A12-9700P RADEON R7, 10 COMPUTE CORES 4C+6G",
-"score": "80232"
+"score": "80276"
 },
 {
 "rank": 464,
-"name": "Intel Core m5-6Y54",
-"score": "80138"
+"name": "AMD RX-425BB with AMD Radeon R6 Graphics",
+"score": "79639"
 },
 {
 "rank": 465,
 "name": "Intel Core i5-3230M",
-"score": "79604"
+"score": "79616"
 },
 {
 "rank": 466,
-"name": "AMD RX-425BB with AMD Radeon R6 Graphics",
-"score": "79489"
+"name": "Intel Core i3-5010U",
+"score": "79527"
 },
 {
 "rank": 467,
-"name": "Intel Core i3-5010U",
-"score": "79457"
+"name": "AMD A10-9620P RADEON R5, 10 COMPUTE CORES 4C+6G",
+"score": "79292"
 },
 {
 "rank": 468,
-"name": "AMD A10-9620P RADEON R5, 10 COMPUTE CORES 4C+6G",
-"score": "79230"
+"name": "Intel Core i5-8200Y",
+"score": "79292"
 },
 {
 "rank": 469,
-"name": "Intel Core i5-8200Y",
-"score": "79225"
-},
-{
-"rank": 470,
 "name": "AMD A12-9720P RADEON R7, 12 COMPUTE CORES 4C+8G",
 "score": "79019"
 },
 {
+"rank": 470,
+"name": "Intel Core i5-2540M",
+"score": "78415"
+},
+{
 "rank": 471,
 "name": "Intel Core i7-2620M",
-"score": "78449"
+"score": "78113"
 },
 {
 "rank": 472,
-"name": "Intel Core i5-2540M",
-"score": "78248"
+"name": "Intel Core i7-3667U",
+"score": "76972"
 },
 {
 "rank": 473,
-"name": "Intel Core i7-3667U",
-"score": "77170"
+"name": "Intel Core i5-3210M",
+"score": "76686"
 },
 {
 "rank": 474,
-"name": "Intel Core i5-3210M",
-"score": "76679"
+"name": "Intel Celeron J4125",
+"score": "76221"
 },
 {
 "rank": 475,
-"name": "Intel Celeron J4125",
-"score": "76285"
+"name": "AMD A10-5757M with Radeon HD Graphics",
+"score": "75663"
 },
 {
 "rank": 476,
-"name": "AMD A10-5757M with Radeon HD Graphics",
-"score": "75582"
+"name": "Intel Pentium 4405U",
+"score": "75428"
 },
 {
 "rank": 477,
-"name": "Intel Pentium 4405U",
-"score": "75415"
+"name": "Intel Core i7-3537U",
+"score": "74888"
 },
 {
 "rank": 478,
-"name": "Intel Core i7-3537U",
-"score": "74869"
-},
-{
-"rank": 479,
 "name": "Intel Core M-5Y10c",
 "score": "74626"
 },
 {
+"rank": 479,
+"name": "Intel Core m5-6Y57",
+"score": "73435"
+},
+{
 "rank": 480,
 "name": "Intel Core i7 M 640",
-"score": "73186"
+"score": "73321"
 },
 {
 "rank": 481,
-"name": "Intel Core m5-6Y57",
-"score": "72964"
+"name": "Intel Core i5-2520M",
+"score": "72339"
 },
 {
 "rank": 482,
-"name": "Intel Core i5-2520M",
-"score": "72286"
-},
-{
-"rank": 483,
 "name": "AMD A10-7400P Radeon R6, 10 Compute Cores 4C+6G",
 "score": "71962"
 },
 {
-"rank": 484,
+"rank": 483,
 "name": "AMD A10-9600P RADEON R5, 10 COMPUTE CORES 4C+6G",
-"score": "71818"
+"score": "71960"
+},
+{
+"rank": 484,
+"name": "Intel Core M-5Y71",
+"score": "71470"
 },
 {
 "rank": 485,
-"name": "Intel Core M-5Y71",
-"score": "71572"
-},
-{
-"rank": 486,
 "name": "AMD A9-9410 RADEON R5, 5 COMPUTE CORES 2C+3G",
 "score": "71356"
 },
 {
-"rank": 487,
+"rank": 486,
 "name": "Intel Core i7-3517U",
 "score": "71352"
 },
 {
-"rank": 488,
+"rank": 487,
 "name": "Intel Core i5-3437U",
 "score": "71132"
 },
 {
-"rank": 489,
+"rank": 488,
 "name": "Intel Core i3-4030U",
-"score": "70968"
+"score": "70981"
+},
+{
+"rank": 489,
+"name": "AMD A9-9420 RADEON R5, 5 COMPUTE CORES 2C+3G",
+"score": "70907"
 },
 {
 "rank": 490,
-"name": "AMD A9-9420 RADEON R5, 5 COMPUTE CORES 2C+3G",
-"score": "70957"
-},
-{
-"rank": 491,
 "name": "Intel Pentium Silver N5000",
 "score": "70776"
 },
 {
-"rank": 492,
+"rank": 491,
 "name": "Intel Celeron N4120",
 "score": "70716"
 },
 {
-"rank": 493,
+"rank": 492,
 "name": "Intel Core m7-6Y75",
 "score": "70673"
 },
 {
-"rank": 494,
+"rank": 493,
 "name": "Intel Core i7 M 620",
-"score": "70255"
+"score": "70256"
 },
 {
-"rank": 495,
+"rank": 494,
 "name": "Intel Pentium Silver N5030",
 "score": "70166"
 },
 {
-"rank": 496,
+"rank": 495,
 "name": "Intel Core i5-2450M",
-"score": "69869"
+"score": "69894"
 },
 {
-"rank": 497,
+"rank": 496,
 "name": "AMD A10-5750M with Radeon HD Graphics",
 "score": "69546"
 },
 {
-"rank": 498,
+"rank": 497,
 "name": "Intel Celeron N4500",
-"score": "69414"
+"score": "69412"
+},
+{
+"rank": 498,
+"name": "Intel Core i5-3427U",
+"score": "68994"
 },
 {
 "rank": 499,
 "name": "Intel Celeron J4105",
-"score": "68866"
+"score": "68774"
 },
 {
 "rank": 500,
-"name": "Intel Core i5-3427U",
-"score": "68672"
+"name": "Intel Core i5-2415M",
+"score": "67737"
 }
 ]
 }

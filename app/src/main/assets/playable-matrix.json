@@ -355,7 +355,7 @@
 "src": "socpk"
 },
 "8350-ultimate": {
-"s": 247.7,
+"s": 264.4,
 "src": "antutu"
 },
 "8400-max": {
@@ -367,15 +367,15 @@
 "src": "family"
 },
 "8500-elite": {
-"s": 372.8,
+"s": 340.4,
 "src": "antutu"
 },
 "8500-super": {
-"s": 372.8,
+"s": 334.5,
 "src": "antutu"
 },
 "8500-ultra": {
-"s": 277.8,
+"s": 281.9,
 "src": "antutu"
 },
 "8541e": {
@@ -383,11 +383,11 @@
 "src": "antutu"
 },
 "8550-elite": {
-"s": 372.8,
+"s": 351.5,
 "src": "antutu"
 },
 "8550-super": {
-"s": 338.5,
+"s": 293.7,
 "src": "antutu"
 },
 "8581e": {
@@ -399,7 +399,7 @@
 "src": "antutu"
 },
 "8s-gen-4": {
-"s": 379.9,
+"s": 373.2,
 "src": "antutu"
 },
 "9000s1": {
@@ -439,7 +439,7 @@
 "src": "antutu"
 },
 "9600m": {
-"s": 422.4,
+"s": 412.7,
 "src": "antutu"
 },
 "990e": {
@@ -491,7 +491,7 @@
 "src": "antutu"
 },
 "exynos-2500": {
-"s": 272.0,
+"s": 368.2,
 "src": "antutu"
 },
 "exynos-7870": {
@@ -523,7 +523,7 @@
 "src": "antutu"
 },
 "g3x-gen-2": {
-"s": 247.7,
+"s": 263.6,
 "src": "antutu"
 },
 "gs101-whitechapel-s5p9845": {
@@ -987,7 +987,7 @@
 "src": "antutu"
 },
 "qcm8550": {
-"s": 248.6,
+"s": 264.9,
 "src": "antutu"
 },
 "qcs2290": {
@@ -1011,7 +1011,7 @@
 "src": "antutu"
 },
 "qcs8550": {
-"s": 243.2,
+"s": 223.5,
 "src": "antutu"
 },
 "rk3326": {
@@ -1290,10 +1290,6 @@
 "s": 78.6,
 "src": "socpk"
 },
-"sm8150-ab": {
-"s": 86.5,
-"src": "socpk"
-},
 "sm8150-ac": {
 "s": 86.5,
 "src": "socpk"
@@ -1387,7 +1383,7 @@
 "src": "antutu"
 },
 "soc-4f474ad4": {
-"s": 247.7,
+"s": 242.8,
 "src": "antutu"
 },
 "soc-50de5fd7": {
@@ -1431,7 +1427,7 @@
 "src": "antutu"
 },
 "soc-ae81a5df": {
-"s": 282.0,
+"s": 278.4,
 "src": "antutu"
 },
 "soc-b13e87d6": {
@@ -1443,7 +1439,7 @@
 "src": "antutu"
 },
 "soc-bc03baec": {
-"s": 286.1,
+"s": 293.5,
 "src": "antutu"
 },
 "soc-c3b8becc": {
@@ -1455,7 +1451,7 @@
 "src": "antutu"
 },
 "soc-dbbc923e": {
-"s": 372.8,
+"s": 344.5,
 "src": "antutu"
 },
 "soc-f22c90b8": {
@@ -1559,7 +1555,7 @@
 "src": "socpk"
 },
 "xr2-gen-2": {
-"s": 218.3,
+"s": 163.7,
 "src": "antutu"
 }
 },

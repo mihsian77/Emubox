@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-12T23:53:23Z",
+ "generated_at": "2026-11-13T23:53:37Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -258,7 +258,7 @@
    "modelName": "Pocket Flip 2 - SD",
    "brandName": "Retroid",
    "socName": "Snapdragon 865",
-   "listingsCount": 514,
+   "listingsCount": 512,
    "keys": [
     "pocketflip2sd",
     "retroidpocketflip2sd"
@@ -313,7 +313,7 @@
    "modelName": "Odin 3 Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Elite",
-   "listingsCount": 225,
+   "listingsCount": 227,
    "keys": [
     "odin3max",
     "aynodin3max"
@@ -379,7 +379,7 @@
    "modelName": "Odin 2 Pro",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 153,
+   "listingsCount": 154,
    "keys": [
     "odin2pro",
     "aynodin2pro"
@@ -401,7 +401,7 @@
    "modelName": "Poco X7 Pro",
    "brandName": "Xiaomi",
    "socName": "Dimensity 8400 Ultra",
-   "listingsCount": 140,
+   "listingsCount": 141,
    "keys": [
     "pocox7pro",
     "xiaomipocox7pro"
@@ -419,6 +419,17 @@
    ]
   },
   {
+   "id": "851c6e38-607d-4d23-b11b-900ce96b9984",
+   "modelName": "Odin 2",
+   "brandName": "AYN",
+   "socName": "Snapdragon 8 Gen 2",
+   "listingsCount": 122,
+   "keys": [
+    "odin2",
+    "aynodin2"
+   ]
+  },
+  {
    "id": "c0215117-4f4d-4a3b-b4db-31e51958d819",
    "modelName": "Air X",
    "brandName": "MANGMI",
@@ -427,17 +438,6 @@
    "keys": [
     "airx",
     "mangmiairx"
-   ]
-  },
-  {
-   "id": "851c6e38-607d-4d23-b11b-900ce96b9984",
-   "modelName": "Odin 2",
-   "brandName": "AYN",
-   "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 121,
-   "keys": [
-    "odin2",
-    "aynodin2"
    ]
   },
   {
@@ -2036,6 +2036,17 @@
    ]
   },
   {
+   "id": "4a0b3576-316a-408f-95c5-be5a531eeb18",
+   "modelName": "Pixel 8a",
+   "brandName": "Google",
+   "socName": "Tensor G3",
+   "listingsCount": 10,
+   "keys": [
+    "pixel8a",
+    "googlepixel8a"
+   ]
+  },
+  {
    "id": "f2af0341-090a-4d5d-b7ba-7c2fe3b03011",
    "modelName": "Y700 2023",
    "brandName": "Lenovo",
@@ -2165,17 +2176,6 @@
    "keys": [
     "win4",
     "gpdwin4"
-   ]
-  },
-  {
-   "id": "4a0b3576-316a-408f-95c5-be5a531eeb18",
-   "modelName": "Pixel 8a",
-   "brandName": "Google",
-   "socName": "Tensor G3",
-   "listingsCount": 9,
-   "keys": [
-    "pixel8a",
-    "googlepixel8a"
    ]
   },
   {
@@ -3950,6 +3950,17 @@
    ]
   },
   {
+   "id": "38188da4-6918-4adc-8f5a-75572c6375f7",
+   "modelName": "C75",
+   "brandName": "Realme",
+   "socName": "Helio G92 Max",
+   "listingsCount": 3,
+   "keys": [
+    "c75",
+    "realmec75"
+   ]
+  },
+  {
    "id": "7a2f3ec6-59ca-4b1e-9458-ebf043cb1fd5",
    "modelName": "10 Air",
    "brandName": "RedMagic",
@@ -4629,17 +4640,6 @@
    "keys": [
     "c67",
     "realmec67"
-   ]
-  },
-  {
-   "id": "38188da4-6918-4adc-8f5a-75572c6375f7",
-   "modelName": "C75",
-   "brandName": "Realme",
-   "socName": "Helio G92 Max",
-   "listingsCount": 2,
-   "keys": [
-    "c75",
-    "realmec75"
    ]
   },
   {
@@ -9057,7 +9057,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3420,
+   "listings": 3421,
    "description": ""
   },
   {
@@ -9070,7 +9070,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 2025,
+   "listings": 2026,
    "description": "**Free, open-source PC gaming via Steam, on Android.** Play your favorite PC games directly on your Android device. Just log in to Steam, install your game, and start playing, with full cloud save support."
   },
   {
@@ -9149,7 +9149,7 @@
    "systems": [
     "nintendo_3ds"
    ],
-   "listings": 256,
+   "listings": 257,
    "description": "Azahar is an open-source 3DS emulator project based on Citra. It was created from the merging of PabloMK7's Citra fork and the Lime3DS project, both of which emerged shortly after Citra was taken down. The goal of this project is to be the de-facto platform for future development"
   },
   {
@@ -9469,7 +9469,7 @@
    "systems": [
     "sony_playstation_3"
    ],
-   "listings": 6,
+   "listings": 8,
    "description": ""
   },
   {
