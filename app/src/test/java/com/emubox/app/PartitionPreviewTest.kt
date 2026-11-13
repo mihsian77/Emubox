@@ -1,14 +1,23 @@
 package com.emubox.app
 
 import android.content.Context
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.hasScrollAction
+import androidx.compose.ui.test.hasScrollToIndexAction
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToNode
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.emubox.app.ui.theme.EmuBoxTheme
@@ -705,6 +714,12 @@ class PartitionPreviewTest {
             }
         }
         settle(6)
+        // 首屏被「本机驱动适配推荐」占满，Qualcomm 卡片在下面几屏；
+        // LazyColumn 里没滚到的 item 不会组合，语义树里也就没有，必须先滚过去
+        // 顶部筛选 chip 行也是可滚动的，用 ScrollToIndex 只框住 LazyColumn
+        compose.onNode(hasScrollAction() and hasScrollToIndexAction())
+            .performScrollToNode(hasText("高通驱动", substring = true))
+        settle(2)
         save("p2c-qualcomm-collapsed.png")
         // 折叠态就能看到「· N 天前」，不用展开
         compose.onNodeWithText("天前", substring = true).assertExists()
@@ -960,6 +975,78 @@ class PartitionPreviewTest {
         compose.onNodeWithText("驱动组件 44").performClick()
         settle(2)
         save("p7b-news-driver.png")
+    }
+
+    /**
+     * 可玩库：设备页第三子分区。芯片注入骁龙 8 Elite（极客湾 GPU 分 489），
+     * Robolectric 下 Build.SOC_MODEL 为空，不注入就只能是「芯片未识别」。
+     */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h1900dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun p9aPlayableLibrary() {
+        val ctx = ApplicationProvider.getApplicationContext<Context>()
+        val soc = SocResolver.resolve(
+            ctx, SocIdentity(socModel = "SM8750-AB", platform = "", hardware = "")
+        )
+        val entries = emulatorEntries(400)
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .verticalScroll(rememberScrollState())
+                                .padding(16.dp)
+                        ) {
+                            PlayableLibrarySection(
+                                entries = entries,
+                                onOpenPlatform = {},
+                                socOverride = soc
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p9a-playable-library.png")
+    }
+
+    /**
+     * 可玩库·中端对照：骁龙 680（GPU 分 18.5）——验证「吃力」组出现、
+     * 且内存门槛不会把低端机的结论再压低（4GB 段）。
+     */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h1900dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun p9bPlayableLibraryMidrange() {
+        val ctx = ApplicationProvider.getApplicationContext<Context>()
+        val soc = SocResolver.resolve(
+            ctx, SocIdentity(socModel = "SM6225", platform = "", hardware = "")
+        )
+        val entries = emulatorEntries(400)
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .verticalScroll(rememberScrollState())
+                                .padding(16.dp)
+                        ) {
+                            PlayableLibrarySection(
+                                entries = entries,
+                                onOpenPlatform = {},
+                                socOverride = soc
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p9b-playable-midrange.png")
     }
 
     /** 样本：真实仓库 + 真实文件名，时间相对当前倒推，覆盖「已解析 / 未解析」两种分组 */

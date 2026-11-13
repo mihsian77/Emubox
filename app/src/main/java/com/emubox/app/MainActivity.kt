@@ -311,6 +311,9 @@ class MainActivity : ComponentActivity() {
                 var globalSearchOpen by remember { mutableStateOf(false) }
                 // 设备页推荐卡 → 驱动专区文件级跳转：待展开的驱动仓库 id（registry entry id）
                 var pendingDriverRepo by remember { mutableStateOf<String?>(null) }
+                // 设备页可玩库 → 模拟器页平台筛选。nonce 用于重复点同一平台时也能再次触发。
+                var playableSeed by remember { mutableStateOf("") }
+                var playableSeedNonce by remember { mutableIntStateOf(0) }
                 var guideReturnTab by rememberSaveable { mutableStateOf(AppScreen.DEVICE) }
                 var guideTopic by rememberSaveable { mutableStateOf<String?>(null) }
                 var guideDriverMode by rememberSaveable { mutableStateOf(false) }
@@ -963,7 +966,13 @@ class MainActivity : ComponentActivity() {
                                             modifier = Modifier.padding(padding),
                                             deviceInfo = deviceInfo,
                                             isLoading = isLoading,
+                                            entries = emulatorEntries,
                                             guideSignal = deviceGuideSignal.value,
+                                            onOpenPlatform = { platform ->
+                                                playableSeed = platform
+                                                playableSeedNonce++
+                                                currentScreen = AppScreen.EMULATORS
+                                            },
                                             onNavigateToDrivers = { currentScreen = AppScreen.DRIVERS },
                                             onOpenDriverFiles = { repoId ->
                                                 pendingDriverRepo = repoId
@@ -1198,6 +1207,8 @@ class MainActivity : ComponentActivity() {
                                             modifier = Modifier.padding(padding),
                                             entries = emulatorEntries,
                                             insights = emulatorInsights,
+                                            platformSeed = playableSeed,
+                                            platformSeedNonce = playableSeedNonce,
                                             onDownload = { entry ->
                                                 AppDownloadScope.launch {
                                                     downloadEmulator(appContext, entry)

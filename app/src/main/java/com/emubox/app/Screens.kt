@@ -6393,8 +6393,12 @@ fun DeviceScreen(
     modifier: Modifier = Modifier,
     deviceInfo: DeviceInfo?,
     isLoading: Boolean,
+    /** 主库条目：可玩库要统计「每个平台库里有几个能装的」 */
+    entries: List<EmulatorEntry> = emptyList(),
     onNavigateToDrivers: (() -> Unit)? = null,
     onOpenDriverFiles: ((String) -> Unit)? = null,
+    /** 点可玩库里的平台 → 跳到模拟器页并带上该平台筛选 */
+    onOpenPlatform: ((String) -> Unit)? = null,
     /** 顶栏指南按钮的触发信号（自增计数）：>0 时打开指南 */
     guideSignal: Int = 0
 ) {
@@ -6475,7 +6479,7 @@ fun DeviceScreen(
             tabs = listOf(
                 appString(R.string.device_tab_overview),
                 appString(R.string.device_tab_perf),
-                appString(R.string.device_tab_test),
+                appString(R.string.device_tab_playable),
             ),
             selected = deviceTab,
             onSelect = { index ->
@@ -6807,7 +6811,7 @@ fun DeviceScreen(
 
         // 渲染实测（自研内核）：直接出图，而不是只给一行 FPS 文字
         // 有已下载驱动时可在卡片内切换「系统驱动 / 指定驱动」，实现换驱动实测
-        if (deviceTab == 2) item(key = "driver_render_check") {
+        if (deviceTab == 1) item(key = "driver_render_check") {
             DriverRenderCheckCard(
                 drivers = driverTargets,
                 onBenchResult = { benchmarkResult = it },
@@ -6815,13 +6819,23 @@ fun DeviceScreen(
         }
 
         // ── 已下载驱动检测：解压 .zip → dlopen .so → 采集 Vulkan 能力 → 与系统驱动对比 ──
-        if (deviceTab == 2) item(key = "driver_detect_header") {
+        if (deviceTab == 1) item(key = "driver_detect_header") {
             SectionHeader(appString(R.string.driver_detection_title))
         }
 
-        if (deviceTab == 2) item(key = "driver_detect_list") {
+        if (deviceTab == 1) item(key = "driver_detect_list") {
             DriverDetectionList(
                 systemDevice = vulkanPayload?.devices?.firstOrNull()
+            )
+        }
+
+        // 可玩库：把「本机芯片」换算成「哪些平台跑得动」。
+        // 放第三个子分区而不是塞进性能页：性能页回答「这台有多强」，
+        // 可玩库回答「所以能玩什么」，后者才是用户打开设备页的动机。
+        if (deviceTab == 2) item(key = "playable_library") {
+            PlayableLibrarySection(
+                entries = entries,
+                onOpenPlatform = { onOpenPlatform?.invoke(it) }
             )
         }
         }
@@ -11011,7 +11025,10 @@ fun EmulatorScreen(
     modifier: Modifier = Modifier,
     entries: List<EmulatorEntry>,
     insights: EmulatorInsights = EmulatorInsights(),
-    onDownload: (EmulatorEntry) -> Unit
+    onDownload: (EmulatorEntry) -> Unit,
+    /** 从设备页「可玩库」跳过来时带的平台值（ps2 / switch …）；n>0 才生效 */
+    platformSeed: String = "",
+    platformSeedNonce: Int = 0
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -11039,6 +11056,19 @@ fun EmulatorScreen(
     // 中间插一层「家族」后，机型只在家族内出现，长尾也能全部列出。
     var filterPlatform by rememberSaveable { mutableStateOf("all") }
     var filterFamily by rememberSaveable { mutableStateOf("all") }
+
+    // 可玩库跳转：平台值不在前 18 个机型里时，直接设 filterPlatform 会选中一个看不见的 chip，
+    // 所以先用一条样本条目反查它属于哪个分区与家族，把三级筛选一起摆到位。
+    LaunchedEffect(platformSeed, platformSeedNonce) {
+        if (platformSeed.isNotBlank() && platformSeed != "all") {
+            val sample = entries.firstOrNull { it.platforms.contains(platformSeed) }
+            if (sample != null) {
+                filterSection = sample.section
+                filterFamily = sample.platformFamilies.firstOrNull() ?: "all"
+            }
+            filterPlatform = platformSeed
+        }
+    }
     val familyOrder = remember(entries, filterSection) {
         val count = HashMap<String, Int>()
         entries.filter { filterSection == "all" || it.section == filterSection }

@@ -4,6 +4,7 @@ import androidx.test.core.app.ApplicationProvider
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -70,8 +71,10 @@ class SocKnowledgeTest {
 
     @Test
     fun `GPU 型号兜底仍可命中`() {
-        // SoC 名识别不出来时，靠渲染器解析的 GPU 型号兜底
-        assertEquals("骁龙 855", SocKnowledgeStore.find("", "640", context)?.name)
+        // SoC 名识别不出来时，靠渲染器解析的 GPU 型号兜底；
+        // 只有唯一候选才采用——Adreno 640 被 855 / 855+ / 860 三颗共用，
+        // 猜其中任何一颗都会让另两台机器显示错的芯片，宁可返回 null。
+        assertNull("640 是三颗共用，不应猜", SocKnowledgeStore.find("", "640", context))
         assertEquals("骁龙 845", SocKnowledgeStore.find("", "630", context)?.name)
         assertEquals("骁龙 835", SocKnowledgeStore.find("", "540", context)?.name)
     }

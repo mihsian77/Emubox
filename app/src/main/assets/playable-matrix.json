@@ -1,0 +1,1567 @@
+{
+"benchmark": {
+"base": "骁龙 865 = 100",
+"name": "极客湾 手机芯片 GPU 性能排行",
+"note": "模拟器主要吃 GPU。src=socpk 为极客湾实测；family 为同族变体均值；antutu 为按安兔兔 GPU 分保序回归折算，已乘 0.85 保守系数，界面应显示约等于号",
+"source": "socpk.com"
+},
+"experimental": [
+{
+"key": "ps3",
+"label": "PlayStation 3",
+"reason": "RPCS3 系安卓移植，目前仅演示级"
+},
+{
+"key": "xbox360",
+"label": "Xbox 360",
+"reason": "Xenia 系安卓移植，兼容性极低"
+},
+{
+"key": "ps4",
+"label": "PlayStation 4",
+"reason": "shadPS4 系，仅少数独立游戏可进"
+},
+{
+"key": "ps5",
+"label": "PlayStation 5",
+"reason": "仅有移植工具，无通用模拟能力"
+},
+{
+"key": "switch2",
+"label": "Nintendo Switch 2",
+"reason": "尚无可用模拟器"
+}
+],
+"generated": "2026-11-13",
+"platforms": [
+{
+"key": "ps2",
+"label": "PlayStation 2",
+"match": [
+"ps2"
+],
+"minRamMb": 4096,
+"note": "AetherSX2 系；2x 分辨率需再上一档",
+"ok": 85,
+"smooth": 120
+},
+{
+"key": "gamecube",
+"label": "GameCube",
+"match": [
+"gamecube"
+],
+"minRamMb": 3072,
+"note": "Dolphin 系，1x 基本满帧",
+"ok": 42,
+"smooth": 65
+},
+{
+"key": "wii",
+"label": "Wii",
+"match": [
+"wii"
+],
+"minRamMb": 3072,
+"note": "与 GameCube 同源，动作游戏略吃 GPU",
+"ok": 46,
+"smooth": 70
+},
+{
+"key": "3ds",
+"label": "Nintendo 3DS",
+"match": [
+"3ds"
+],
+"minRamMb": 3072,
+"note": "双屏渲染，实际帧率受 CPU 影响更大",
+"ok": 40,
+"smooth": 60
+},
+{
+"key": "psvita",
+"label": "PS Vita",
+"match": [
+"psvita"
+],
+"minRamMb": 4096,
+"note": "Vita3K 仍在早期，兼容性比帧率更成问题",
+"ok": 80,
+"smooth": 120
+},
+{
+"key": "switch",
+"label": "Nintendo Switch",
+"match": [
+"switch"
+],
+"minRamMb": 6144,
+"note": "需 8 Gen 1 级别以上，且强依赖散热",
+"ok": 350,
+"smooth": 600
+},
+{
+"key": "wiiu",
+"label": "Wii U",
+"match": [
+"wiiu"
+],
+"minRamMb": 6144,
+"note": "Cemu 系安卓移植，仅少数游戏可进",
+"ok": 420,
+"smooth": 650
+},
+{
+"key": "psp",
+"label": "PSP",
+"match": [
+"psp"
+],
+"minRamMb": 2048,
+"note": "PPSSPP 2x 分辨率也很轻松",
+"ok": 16,
+"smooth": 28
+},
+{
+"key": "dreamcast",
+"label": "Dreamcast",
+"match": [
+"dreamcast"
+],
+"minRamMb": 2048,
+"note": "Flycast 系",
+"ok": 13,
+"smooth": 22
+},
+{
+"key": "saturn",
+"label": "Sega Saturn",
+"match": [
+"saturn"
+],
+"minRamMb": 2048,
+"note": "Yaba Sanshiro 系",
+"ok": 9,
+"smooth": 15
+},
+{
+"key": "n64",
+"label": "Nintendo 64",
+"match": [
+"n64"
+],
+"minRamMb": 2048,
+"note": "Mupen64Plus / RetroArch 核心",
+"ok": 7,
+"smooth": 12
+},
+{
+"key": "nds",
+"label": "Nintendo DS",
+"match": [
+"nds"
+],
+"minRamMb": 1536,
+"note": "2D 为主，近十年芯片全部满帧",
+"ok": 3,
+"smooth": 5
+},
+{
+"key": "ps1",
+"label": "PlayStation",
+"match": [
+"ps1"
+],
+"minRamMb": 1536,
+"note": "DuckStation 系，2x 内部分辨率无压力",
+"ok": 4,
+"smooth": 8
+},
+{
+"key": "classic",
+"label": "8/16 位机与街机",
+"match": [
+"gb",
+"gbc",
+"gba",
+"snes",
+"nes",
+"mega-drive",
+"master-system",
+"game-gear",
+"arcade",
+"msx",
+"pc-engine",
+"neo-geo",
+"wonderswan",
+"atari-2600",
+"colecovision",
+"sg-1000",
+"virtual-boy",
+"atari-lynx",
+"neo-geo-pocket",
+"c64",
+"zx-spectrum",
+"amstrad-cpc",
+"atari-st",
+"pc-98",
+"pc-6001",
+"pico-8",
+"apple2",
+"vectrex",
+"intellivision"
+],
+"minRamMb": 1024,
+"note": "GBA / SFC / MD / 街机 / MSX 等",
+"ok": 2,
+"smooth": 4
+},
+{
+"key": "pc",
+"label": "Windows 游戏（Wine 转译）",
+"match": [
+"windows-pc",
+"dos"
+],
+"minRamMb": 6144,
+"note": "还受 CPU 单核与转译层限制，GPU 只是门槛之一",
+"ok": 120,
+"smooth": 300
+}
+],
+"scores": {
+"4-gen-5": {
+"s": 30.9,
+"src": "antutu"
+},
+"4s-gen-2": {
+"s": 14.3,
+"src": "antutu"
+},
+"6-gen-3": {
+"s": 49.0,
+"src": "antutu"
+},
+"6-gen-4": {
+"s": 53.7,
+"src": "antutu"
+},
+"6-gen-5": {
+"s": 64.1,
+"src": "antutu"
+},
+"6360-max": {
+"s": 23.1,
+"src": "antutu"
+},
+"6500-elite": {
+"s": 23.1,
+"src": "antutu"
+},
+"65x": {
+"s": 6.1,
+"src": "antutu"
+},
+"662-iot": {
+"s": 23.0,
+"src": "antutu"
+},
+"665-iot": {
+"s": 23.1,
+"src": "antutu"
+},
+"6s-gen-3": {
+"s": 30.9,
+"src": "antutu"
+},
+"6s-gen-4": {
+"s": 44.8,
+"src": "antutu"
+},
+"7-gen-3": {
+"s": 93.4,
+"src": "antutu"
+},
+"7-gen-4": {
+"s": 157.1,
+"src": "antutu"
+},
+"7025-ultra": {
+"s": 30.9,
+"src": "antutu"
+},
+"7200-ultra": {
+"s": 106.5,
+"src": "socpk"
+},
+"7300-energy": {
+"s": 72.6,
+"src": "antutu"
+},
+"7300-ultra": {
+"s": 49.0,
+"src": "antutu"
+},
+"7300e": {
+"s": 44.8,
+"src": "antutu"
+},
+"7300x": {
+"s": 49.0,
+"src": "antutu"
+},
+"7360-super": {
+"s": 49.0,
+"src": "antutu"
+},
+"7400-super": {
+"s": 55.8,
+"src": "antutu"
+},
+"7400-ultimate": {
+"s": 97.8,
+"src": "antutu"
+},
+"7400-ultra": {
+"s": 51.9,
+"src": "antutu"
+},
+"8-gen-1-uc": {
+"s": 155.2,
+"src": "antutu"
+},
+"8-gen-6": {
+"s": 538.0,
+"src": "antutu"
+},
+"8000a": {
+"s": 91.0,
+"src": "family"
+},
+"800t": {
+"s": 33.7,
+"src": "antutu"
+},
+"8100-max": {
+"s": 115.3,
+"src": "family"
+},
+"820e": {
+"s": 52.9,
+"src": "family"
+},
+"8300-ultra": {
+"s": 264.2,
+"src": "socpk"
+},
+"8350-ultimate": {
+"s": 247.7,
+"src": "antutu"
+},
+"8400-max": {
+"s": 329.7,
+"src": "socpk"
+},
+"8400-ultra": {
+"s": 329.7,
+"src": "family"
+},
+"8500-elite": {
+"s": 372.8,
+"src": "antutu"
+},
+"8500-super": {
+"s": 372.8,
+"src": "antutu"
+},
+"8500-ultra": {
+"s": 277.8,
+"src": "antutu"
+},
+"8541e": {
+"s": 5.8,
+"src": "antutu"
+},
+"8550-elite": {
+"s": 372.8,
+"src": "antutu"
+},
+"8550-super": {
+"s": 338.5,
+"src": "antutu"
+},
+"8581e": {
+"s": 7.0,
+"src": "antutu"
+},
+"865-iot": {
+"s": 55.9,
+"src": "antutu"
+},
+"8s-gen-4": {
+"s": 379.9,
+"src": "antutu"
+},
+"9000s1": {
+"s": 74.0,
+"src": "antutu"
+},
+"900t": {
+"s": 64.1,
+"src": "antutu"
+},
+"9010e": {
+"s": 139.9,
+"src": "family"
+},
+"9010l": {
+"s": 139.9,
+"src": "family"
+},
+"9020a": {
+"s": 153.2,
+"src": "family"
+},
+"9400e": {
+"s": 501.5,
+"src": "family"
+},
+"9500m": {
+"s": 654.8,
+"src": "family"
+},
+"9500s": {
+"s": 654.8,
+"src": "family"
+},
+"9600-pro": {
+"s": 538.0,
+"src": "antutu"
+},
+"9600m": {
+"s": 422.4,
+"src": "antutu"
+},
+"990e": {
+"s": 73.1,
+"src": "antutu"
+},
+"a100": {
+"s": 6.1,
+"src": "antutu"
+},
+"a133": {
+"s": 6.1,
+"src": "antutu"
+},
+"a311d2": {
+"s": 33.7,
+"src": "antutu"
+},
+"a523": {
+"s": 14.1,
+"src": "antutu"
+},
+"a63": {
+"s": 5.9,
+"src": "antutu"
+},
+"ac8257": {
+"s": 6.1,
+"src": "antutu"
+},
+"bcm2711-4b": {
+"s": 2.6,
+"src": "socpk"
+},
+"exynos-1280": {
+"s": 33.7,
+"src": "antutu"
+},
+"exynos-1330": {
+"s": 23.1,
+"src": "antutu"
+},
+"exynos-1380": {
+"s": 44.8,
+"src": "antutu"
+},
+"exynos-1480": {
+"s": 126.6,
+"src": "antutu"
+},
+"exynos-2500": {
+"s": 272.0,
+"src": "antutu"
+},
+"exynos-7870": {
+"s": 5.9,
+"src": "antutu"
+},
+"exynos-7872": {
+"s": 6.4,
+"src": "antutu"
+},
+"exynos-7880": {
+"s": 7.3,
+"src": "antutu"
+},
+"g100": {
+"s": 23.1,
+"src": "antutu"
+},
+"g100-ultimate": {
+"s": 27.8,
+"src": "antutu"
+},
+"g100-ultra": {
+"s": 27.8,
+"src": "antutu"
+},
+"g3x-gen-1": {
+"s": 157.0,
+"src": "antutu"
+},
+"g3x-gen-2": {
+"s": 247.7,
+"src": "antutu"
+},
+"gs101-whitechapel-s5p9845": {
+"s": 136.6,
+"src": "socpk"
+},
+"gs201-cloudripper-s5p9855": {
+"s": 156.5,
+"src": "antutu"
+},
+"gs301-zuma-s5p9865": {
+"s": 177.6,
+"src": "socpk"
+},
+"gs401-zuma-pro-s5p9875": {
+"s": 193.2,
+"src": "socpk"
+},
+"h6": {
+"s": 6.0,
+"src": "antutu"
+},
+"h616": {
+"s": 6.1,
+"src": "antutu"
+},
+"h618": {
+"s": 6.6,
+"src": "antutu"
+},
+"helio-a20": {
+"s": 6.0,
+"src": "antutu"
+},
+"helio-g200": {
+"s": 27.8,
+"src": "antutu"
+},
+"helio-g25": {
+"s": 6.4,
+"src": "antutu"
+},
+"helio-g35": {
+"s": 6.6,
+"src": "antutu"
+},
+"helio-g36": {
+"s": 6.4,
+"src": "antutu"
+},
+"helio-g37": {
+"s": 6.5,
+"src": "antutu"
+},
+"helio-g70": {
+"s": 14.1,
+"src": "antutu"
+},
+"helio-g81-ultra": {
+"s": 14.1,
+"src": "antutu"
+},
+"helio-g88": {
+"s": 14.3,
+"src": "antutu"
+},
+"helio-g95": {
+"s": 30.9,
+"src": "antutu"
+},
+"helio-g96": {
+"s": 23.1,
+"src": "antutu"
+},
+"helio-g99-ultra": {
+"s": 30.7,
+"src": "family"
+},
+"helio-p65": {
+"s": 14.1,
+"src": "antutu"
+},
+"hi3660": {
+"s": 25.4,
+"src": "socpk"
+},
+"jlq-jr510": {
+"s": 6.3,
+"src": "antutu"
+},
+"kirin710": {
+"s": 27.3,
+"src": "socpk"
+},
+"kirin710a": {
+"s": 20.4,
+"src": "family"
+},
+"kirin710f": {
+"s": 13.4,
+"src": "socpk"
+},
+"kirin8000": {
+"s": 91.0,
+"src": "socpk"
+},
+"kirin810": {
+"s": 21.9,
+"src": "socpk"
+},
+"kirin820": {
+"s": 52.9,
+"src": "socpk"
+},
+"kirin9000": {
+"s": 142.5,
+"src": "socpk"
+},
+"kirin9000e": {
+"s": 140.0,
+"src": "socpk"
+},
+"kirin9000s": {
+"s": 131.5,
+"src": "socpk"
+},
+"kirin9000sl": {
+"s": 107.6,
+"src": "socpk"
+},
+"kirin9000wl": {
+"s": 107.3,
+"src": "socpk"
+},
+"kirin9000wm": {
+"s": 72.1,
+"src": "socpk"
+},
+"kirin9010": {
+"s": 139.9,
+"src": "socpk"
+},
+"kirin9020": {
+"s": 153.2,
+"src": "socpk"
+},
+"kirin950": {
+"s": 11.8,
+"src": "socpk"
+},
+"kirin970": {
+"s": 31.7,
+"src": "socpk"
+},
+"kirin980": {
+"s": 37.2,
+"src": "socpk"
+},
+"kirin985": {
+"s": 59.5,
+"src": "socpk"
+},
+"kirin990": {
+"s": 86.4,
+"src": "socpk"
+},
+"msm8937": {
+"s": 6.8,
+"src": "socpk"
+},
+"msm8940": {
+"s": 5.9,
+"src": "antutu"
+},
+"msm8952": {
+"s": 6.1,
+"src": "antutu"
+},
+"msm8953": {
+"s": 6.8,
+"src": "socpk"
+},
+"msm8953pro": {
+"s": 6.6,
+"src": "antutu"
+},
+"msm8956": {
+"s": 9.5,
+"src": "antutu"
+},
+"msm8974ac": {
+"s": 7.3,
+"src": "antutu"
+},
+"msm8976": {
+"s": 14.1,
+"src": "antutu"
+},
+"msm8976pro": {
+"s": 14.1,
+"src": "antutu"
+},
+"msm8992": {
+"s": 15.2,
+"src": "socpk"
+},
+"msm8994": {
+"s": 21.9,
+"src": "socpk"
+},
+"msm8996-pro": {
+"s": 33.1,
+"src": "socpk"
+},
+"msm8998": {
+"s": 41.6,
+"src": "socpk"
+},
+"mt6750": {
+"s": 5.8,
+"src": "antutu"
+},
+"mt6755": {
+"s": 5.8,
+"src": "antutu"
+},
+"mt6757": {
+"s": 6.5,
+"src": "antutu"
+},
+"mt6757cd": {
+"s": 6.1,
+"src": "antutu"
+},
+"mt6761": {
+"s": 6.0,
+"src": "antutu"
+},
+"mt6762": {
+"s": 6.2,
+"src": "antutu"
+},
+"mt6763": {
+"s": 6.6,
+"src": "antutu"
+},
+"mt6765": {
+"s": 7.4,
+"src": "socpk"
+},
+"mt6769t": {
+"s": 17.0,
+"src": "socpk"
+},
+"mt6769z": {
+"s": 17.1,
+"src": "socpk"
+},
+"mt6771": {
+"s": 13.7,
+"src": "socpk"
+},
+"mt6779": {
+"s": 22.1,
+"src": "socpk"
+},
+"mt6785v-cc": {
+"s": 33.0,
+"src": "socpk"
+},
+"mt6789": {
+"s": 30.7,
+"src": "socpk"
+},
+"mt6789u": {
+"s": 30.7,
+"src": "family"
+},
+"mt6789x": {
+"s": 30.7,
+"src": "family"
+},
+"mt6797": {
+"s": 9.0,
+"src": "socpk"
+},
+"mt6797x": {
+"s": 14.1,
+"src": "antutu"
+},
+"mt6799": {
+"s": 22.2,
+"src": "socpk"
+},
+"mt6833": {
+"s": 28.8,
+"src": "socpk"
+},
+"mt6833p": {
+"s": 21.9,
+"src": "socpk"
+},
+"mt6853t": {
+"s": 42.9,
+"src": "socpk"
+},
+"mt6853v-za": {
+"s": 27.2,
+"src": "socpk"
+},
+"mt6873": {
+"s": 37.9,
+"src": "socpk"
+},
+"mt6875": {
+"s": 52.9,
+"src": "socpk"
+},
+"mt6877": {
+"s": 33.7,
+"src": "antutu"
+},
+"mt6877t": {
+"s": 56.3,
+"src": "socpk"
+},
+"mt6877v": {
+"s": 56.4,
+"src": "socpk"
+},
+"mt6883z-cza": {
+"s": 73.8,
+"src": "family"
+},
+"mt6885": {
+"s": 60.4,
+"src": "socpk"
+},
+"mt6886": {
+"s": 106.5,
+"src": "family"
+},
+"mt6886vb-cza": {
+"s": 106.5,
+"src": "family"
+},
+"mt6889": {
+"s": 87.1,
+"src": "socpk"
+},
+"mt6891": {
+"s": 88.7,
+"src": "socpk"
+},
+"mt6893": {
+"s": 94.6,
+"src": "socpk"
+},
+"mt6893zb-cza": {
+"s": 94.6,
+"src": "family"
+},
+"mt6893zd-cza": {
+"s": 94.6,
+"src": "family"
+},
+"mt6895": {
+"s": 115.3,
+"src": "socpk"
+},
+"mt6895za-cza": {
+"s": 91.0,
+"src": "family"
+},
+"mt6895zb-tcza": {
+"s": 115.3,
+"src": "family"
+},
+"mt6896": {
+"s": 133.2,
+"src": "socpk"
+},
+"mt6896za-cza": {
+"s": 133.2,
+"src": "family"
+},
+"mt6896zb-cza": {
+"s": 133.2,
+"src": "family"
+},
+"mt6897": {
+"s": 264.2,
+"src": "family"
+},
+"mt6899": {
+"s": 329.7,
+"src": "family"
+},
+"mt6899zc-za": {
+"s": 329.7,
+"src": "family"
+},
+"mt6899ze-za": {
+"s": 329.7,
+"src": "family"
+},
+"mt6983": {
+"s": 142.5,
+"src": "socpk"
+},
+"mt6985": {
+"s": 296.8,
+"src": "socpk"
+},
+"mt6989": {
+"s": 452.5,
+"src": "socpk"
+},
+"mt6991": {
+"s": 501.5,
+"src": "socpk"
+},
+"mt6993": {
+"s": 654.8,
+"src": "socpk"
+},
+"mt8797": {
+"s": 85.5,
+"src": "socpk"
+},
+"o1": {
+"s": 484.7,
+"src": "socpk"
+},
+"o3": {
+"s": 538.0,
+"src": "antutu"
+},
+"p7885": {
+"s": 44.8,
+"src": "antutu"
+},
+"qcm4290": {
+"s": 22.6,
+"src": "antutu"
+},
+"qcm4325": {
+"s": 23.1,
+"src": "antutu"
+},
+"qcm4490": {
+"s": 30.3,
+"src": "antutu"
+},
+"qcm5430": {
+"s": 33.7,
+"src": "antutu"
+},
+"qcm6490": {
+"s": 97.8,
+"src": "antutu"
+},
+"qcm8550": {
+"s": 248.6,
+"src": "antutu"
+},
+"qcs2290": {
+"s": 6.7,
+"src": "antutu"
+},
+"qcs4290": {
+"s": 23.1,
+"src": "antutu"
+},
+"qcs4490": {
+"s": 30.1,
+"src": "antutu"
+},
+"qcs5430": {
+"s": 44.8,
+"src": "antutu"
+},
+"qcs6490": {
+"s": 97.8,
+"src": "antutu"
+},
+"qcs8550": {
+"s": 243.2,
+"src": "antutu"
+},
+"rk3326": {
+"s": 6.1,
+"src": "antutu"
+},
+"rk3399": {
+"s": 14.1,
+"src": "antutu"
+},
+"rk3562": {
+"s": 10.5,
+"src": "antutu"
+},
+"rk3566": {
+"s": 7.8,
+"src": "antutu"
+},
+"rk3568": {
+"s": 8.3,
+"src": "antutu"
+},
+"rk3588": {
+"s": 85.8,
+"src": "antutu"
+},
+"s5e3830": {
+"s": 10.2,
+"src": "antutu"
+},
+"s5e7420": {
+"s": 15.0,
+"src": "socpk"
+},
+"s5e7570": {
+"s": 5.8,
+"src": "antutu"
+},
+"s5e7580": {
+"s": 6.1,
+"src": "antutu"
+},
+"s5e7885": {
+"s": 9.0,
+"src": "antutu"
+},
+"s5e7904": {
+"s": 7.1,
+"src": "antutu"
+},
+"s5e880": {
+"s": 23.1,
+"src": "antutu"
+},
+"s5e8890": {
+"s": 26.4,
+"src": "socpk"
+},
+"s5e8895": {
+"s": 36.6,
+"src": "socpk"
+},
+"s5e9610": {
+"s": 14.3,
+"src": "antutu"
+},
+"s5e9611": {
+"s": 16.6,
+"src": "antutu"
+},
+"s5e9630": {
+"s": 37.2,
+"src": "socpk"
+},
+"s5e9810": {
+"s": 49.1,
+"src": "socpk"
+},
+"s5e9815": {
+"s": 56.4,
+"src": "socpk"
+},
+"s5e9820": {
+"s": 75.7,
+"src": "socpk"
+},
+"s5e9825": {
+"s": 74.1,
+"src": "antutu"
+},
+"s5e9830": {
+"s": 87.6,
+"src": "socpk"
+},
+"s5e9840": {
+"s": 124.9,
+"src": "socpk"
+},
+"s5e9925": {
+"s": 157.8,
+"src": "socpk"
+},
+"s5e9945": {
+"s": 312.9,
+"src": "socpk"
+},
+"s900": {
+"s": 14.3,
+"src": "antutu"
+},
+"s905x4": {
+"s": 6.1,
+"src": "antutu"
+},
+"s922x": {
+"s": 16.0,
+"src": "socpk"
+},
+"s9863a": {
+"s": 5.8,
+"src": "socpk"
+},
+"sdm439": {
+"s": 6.9,
+"src": "socpk"
+},
+"sdm450": {
+"s": 6.1,
+"src": "antutu"
+},
+"sdm630": {
+"s": 9.3,
+"src": "antutu"
+},
+"sdm632": {
+"s": 6.4,
+"src": "antutu"
+},
+"sdm636": {
+"s": 11.6,
+"src": "socpk"
+},
+"sdm660": {
+"s": 16.5,
+"src": "socpk"
+},
+"sdm670": {
+"s": 18.9,
+"src": "antutu"
+},
+"sdm710": {
+"s": 27.3,
+"src": "socpk"
+},
+"sdm712": {
+"s": 23.1,
+"src": "antutu"
+},
+"sdm845": {
+"s": 44.7,
+"src": "socpk"
+},
+"sm4250": {
+"s": 11.3,
+"src": "antutu"
+},
+"sm4350": {
+"s": 32.3,
+"src": "socpk"
+},
+"sm4350-ac": {
+"s": 32.3,
+"src": "family"
+},
+"sm4375": {
+"s": 35.7,
+"src": "socpk"
+},
+"sm4450": {
+"s": 22.2,
+"src": "socpk"
+},
+"sm6115": {
+"s": 14.7,
+"src": "socpk"
+},
+"sm6125": {
+"s": 15.1,
+"src": "socpk"
+},
+"sm6150": {
+"s": 18.1,
+"src": "socpk"
+},
+"sm6225": {
+"s": 18.5,
+"src": "socpk"
+},
+"sm6350": {
+"s": 30.9,
+"src": "antutu"
+},
+"sm6375": {
+"s": 41.0,
+"src": "socpk"
+},
+"sm6450": {
+"s": 54.4,
+"src": "socpk"
+},
+"sm7125": {
+"s": 30.4,
+"src": "antutu"
+},
+"sm7150-aa": {
+"s": 33.9,
+"src": "family"
+},
+"sm7150-ab": {
+"s": 33.9,
+"src": "socpk"
+},
+"sm7150-ac": {
+"s": 27.8,
+"src": "antutu"
+},
+"sm7225": {
+"s": 35.3,
+"src": "socpk"
+},
+"sm7250-ab": {
+"s": 42.3,
+"src": "socpk"
+},
+"sm7250-ac": {
+"s": 33.7,
+"src": "antutu"
+},
+"sm7325": {
+"s": 61.4,
+"src": "socpk"
+},
+"sm7325-ae": {
+"s": 61.4,
+"src": "family"
+},
+"sm7325-af": {
+"s": 71.7,
+"src": "socpk"
+},
+"sm7350-ab": {
+"s": 67.8,
+"src": "socpk"
+},
+"sm7435-ab": {
+"s": 70.7,
+"src": "socpk"
+},
+"sm7450-ab": {
+"s": 73.5,
+"src": "socpk"
+},
+"sm7475-ab": {
+"s": 163.7,
+"src": "socpk"
+},
+"sm7635": {
+"s": 55.9,
+"src": "antutu"
+},
+"sm7675-ab": {
+"s": 255.5,
+"src": "socpk"
+},
+"sm8150": {
+"s": 78.6,
+"src": "socpk"
+},
+"sm8150-ab": {
+"s": 86.5,
+"src": "socpk"
+},
+"sm8150-ac": {
+"s": 86.5,
+"src": "socpk"
+},
+"sm8250": {
+"s": 100.0,
+"src": "socpk"
+},
+"sm8250-ab": {
+"s": 107.1,
+"src": "socpk"
+},
+"sm8250-ac": {
+"s": 105.6,
+"src": "socpk"
+},
+"sm8350": {
+"s": 123.4,
+"src": "socpk"
+},
+"sm8350-ac": {
+"s": 123.4,
+"src": "socpk"
+},
+"sm8450": {
+"s": 188.7,
+"src": "socpk"
+},
+"sm8475": {
+"s": 219.0,
+"src": "socpk"
+},
+"sm8550-ab": {
+"s": 315.5,
+"src": "socpk"
+},
+"sm8635": {
+"s": 255.8,
+"src": "socpk"
+},
+"sm8650-ab": {
+"s": 424.7,
+"src": "socpk"
+},
+"sm8750-ab": {
+"s": 489.2,
+"src": "socpk"
+},
+"sm8845": {
+"s": 458.9,
+"src": "socpk"
+},
+"sm8850-ac": {
+"s": 611.0,
+"src": "socpk"
+},
+"soc-049c64e2": {
+"s": 43.2,
+"src": "antutu"
+},
+"soc-05e498e1": {
+"s": 64.1,
+"src": "antutu"
+},
+"soc-0f1e40d3": {
+"s": 60.4,
+"src": "antutu"
+},
+"soc-1091d24c": {
+"s": 321.8,
+"src": "socpk"
+},
+"soc-159c4cd9": {
+"s": 23.1,
+"src": "antutu"
+},
+"soc-15f3e44a": {
+"s": 93.4,
+"src": "antutu"
+},
+"soc-37a41d42": {
+"s": 49.0,
+"src": "antutu"
+},
+"soc-42b561ed": {
+"s": 501.5,
+"src": "family"
+},
+"soc-4e66e50b": {
+"s": 23.1,
+"src": "antutu"
+},
+"soc-4f474ad4": {
+"s": 247.7,
+"src": "antutu"
+},
+"soc-50de5fd7": {
+"s": 57.4,
+"src": "antutu"
+},
+"soc-57ebde8f": {
+"s": 142.5,
+"src": "family"
+},
+"soc-595348b8": {
+"s": 42.7,
+"src": "antutu"
+},
+"soc-74edade1": {
+"s": 23.1,
+"src": "antutu"
+},
+"soc-969a84a5": {
+"s": 91.0,
+"src": "socpk"
+},
+"soc-9eaeebbc": {
+"s": 87.9,
+"src": "antutu"
+},
+"soc-a324d056": {
+"s": 452.5,
+"src": "family"
+},
+"soc-a797ad47": {
+"s": 329.7,
+"src": "family"
+},
+"soc-ab7062b6": {
+"s": 30.9,
+"src": "antutu"
+},
+"soc-ac89308f": {
+"s": 44.8,
+"src": "antutu"
+},
+"soc-ae81a5df": {
+"s": 282.0,
+"src": "antutu"
+},
+"soc-b13e87d6": {
+"s": 23.1,
+"src": "antutu"
+},
+"soc-b70aa3c6": {
+"s": 30.9,
+"src": "antutu"
+},
+"soc-bc03baec": {
+"s": 286.1,
+"src": "antutu"
+},
+"soc-c3b8becc": {
+"s": 49.0,
+"src": "antutu"
+},
+"soc-c7087581": {
+"s": 80.4,
+"src": "antutu"
+},
+"soc-dbbc923e": {
+"s": 372.8,
+"src": "antutu"
+},
+"soc-f22c90b8": {
+"s": 147.0,
+"src": "antutu"
+},
+"sq1": {
+"s": 167.1,
+"src": "socpk"
+},
+"synaptics-vs680": {
+"s": 14.3,
+"src": "antutu"
+},
+"t124-logan": {
+"s": 25.6,
+"src": "socpk"
+},
+"t210-erista": {
+"s": 32.2,
+"src": "socpk"
+},
+"t510": {
+"s": 14.1,
+"src": "antutu"
+},
+"t603": {
+"s": 6.1,
+"src": "antutu"
+},
+"t606": {
+"s": 8.7,
+"src": "socpk"
+},
+"t610": {
+"s": 13.1,
+"src": "socpk"
+},
+"t612": {
+"s": 14.1,
+"src": "antutu"
+},
+"t616": {
+"s": 9.7,
+"src": "socpk"
+},
+"t618": {
+"s": 16.8,
+"src": "socpk"
+},
+"t700": {
+"s": 17.8,
+"src": "antutu"
+},
+"t710": {
+"s": 15.4,
+"src": "antutu"
+},
+"t7250": {
+"s": 14.1,
+"src": "antutu"
+},
+"t740": {
+"s": 17.4,
+"src": "socpk"
+},
+"t750": {
+"s": 23.1,
+"src": "antutu"
+},
+"t7510": {
+"s": 15.0,
+"src": "antutu"
+},
+"t760": {
+"s": 39.7,
+"src": "socpk"
+},
+"t765": {
+"s": 25.3,
+"src": "socpk"
+},
+"t770": {
+"s": 45.8,
+"src": "socpk"
+},
+"t820": {
+"s": 50.6,
+"src": "socpk"
+},
+"t8200": {
+"s": 23.1,
+"src": "antutu"
+},
+"ums312": {
+"s": 6.1,
+"src": "antutu"
+},
+"v670": {
+"s": 10.5,
+"src": "socpk"
+},
+"xr2-gen-2": {
+"s": 218.3,
+"src": "antutu"
+}
+},
+"version": "1.0.0"
+}
