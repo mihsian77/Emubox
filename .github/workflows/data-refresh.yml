@@ -18,6 +18,12 @@ on:
 permissions:
   contents: write
 
+# 所有直推 main 的数据工作流共用同一互斥组：并发推送互相覆盖会
+# non-fast-forward 失败，排队执行即可（数据任务错峰，实际几乎不排队）
+concurrency:
+  group: data-push-main
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest

@@ -23,6 +23,11 @@ on:
 permissions:
   contents: write
 
+# 与数据工作流共用互斥组，防并发推送 main 冲突
+concurrency:
+  group: data-push-main
+  cancel-in-progress: false
+
 jobs:
   refresh-downloads:
     runs-on: ubuntu-latest
