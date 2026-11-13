@@ -11,8 +11,30 @@ jobs:
   release:
     name: 构建并发布 Release
     runs-on: ubuntu-latest
+    # 只处理正式版 tag（v1.4.0 这类）。预发布由 ci.yml 维护固定的 v1.4.0-pre，
+    # 这里若也响应 pre tag，每打一次就多一条 release，列表就会堆成一串。
+    if: ${{ !contains(github.ref_name, 'pre') && !contains(github.ref_name, 'rc') }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: 拉取自研渲染内核（闭源 AAR）
+        env:
+          DRIVERCHECK_TOKEN: ${{ secrets.DRIVERCHECK_TOKEN }}
+        run: |
+          # 正式版与 CI 用同一份依赖；缺了这步 assembleRelease 会直接找不到 drivercheck.aar
+          if [ -z "$DRIVERCHECK_TOKEN" ]; then
+            echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
+            exit 1
+          fi
+          mkdir -p app/libs
+          AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+                  -H "Accept: application/vnd.github+json" \
+                  https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
+                | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
+          curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+            -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
+            "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
+          ls -l app/libs/drivercheck.aar
 
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
@@ -45,22 +67,43 @@ jobs:
       - name: 授予 Gradle 执行权限
         run: chmod +x gradlew
 
+      - name: 从 tag 解析正式版本号
+        id: ver
+        run: |
+          # 正式版 tag 形如 v1.4.0；versionCode 段位与预发布一致（1.4.0 → 10_400_000 + 999），
+          # 末段 999 是正式版专用值，必定大于同版本任一预发布（预发布只用 1–899）。
+          TAG="${GITHUB_REF_NAME#v}"
+          IFS=. read -r MAJ MIN PATCH <<< "$TAG"
+          CODE=$(( MAJ * 10000000 + MIN * 100000 + PATCH * 1000 + 999 ))
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "name=$TAG" >> "$GITHUB_OUTPUT"
+          echo "正式版本号: $TAG ($CODE)"
+
       - name: 编译 Release APK
-        run: ./gradlew assembleRelease --no-daemon
+        run: ./gradlew assembleRelease --no-daemon -PemuboxVersionCode=${{ steps.ver.outputs.code }} -PemuboxVersionName=${{ steps.ver.outputs.name }}
 
       - name: 重命名 APK
         run: |
-          TAG="${GITHUB_REF_NAME}"
+          TAG="${{ steps.ver.outputs.name }}"
           cp app/build/outputs/apk/release/app-release.apk "EmuBox-${TAG}.apk"
           ls -la "EmuBox-${TAG}.apk"
 
       - name: 发布到 GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          name: EmuBox ${{ steps.ver.outputs.name }}
           files: EmuBox-*.apk
           # 不用自动生成的 "What's Changed + 提交者" 列表：这个项目是独立开发，
           # 更新日志按「功能/修复」写成人话，维护在 .github/release-notes.md
           body_path: .github/release-notes.md
-          # tag 带 pre 的一律标记为预发布，不占用「最新正式版」的位置
-          prerelease: ${{ contains(github.ref_name, 'pre') }}
-          make_latest: ${{ contains(github.ref_name, 'pre') && 'false' || 'true' }}
+          # 预发布不走本工作流（见 job 级 if），到这里一定是正式版
+          prerelease: false
+          make_latest: true
+
+      - name: 收掉同版本的预发布条目
+        run: |
+          # 正式版落地后，v1.4.0-pre 就没有存在意义了：
+          # 留着会让列表里同时出现「1.4.0」和「1.4.0 预发布」两条，用户不知道下哪个。
+          gh release delete "v${{ steps.ver.outputs.name }}-pre" --yes --cleanup-tag 2>/dev/null || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

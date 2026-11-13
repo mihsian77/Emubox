@@ -35,16 +35,18 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 从 [Releases](https://github.com/mihsian77/Emubox/releases) 获取最新 APK。最低系统要求 Android 9.0（API 28）。
 
-想拿最新构建（可能未正式发布）时，直接拉 `preview` 预发布标签——每次 push main 由 CI 自动覆盖更新。
+想拿最新构建（可能未正式发布）时，直接下 Releases 列表里那条「EmuBox x.y.0（预发布）」——同一个 tag 每次 push main 由 CI 覆盖更新。
 
 ## 版本
 
-版本分正式版与预发布：
+版本分正式版与预发布，Release 页面上永远只有「上一个正式版 + 当前预发布」两条：
 
-- **正式版** — `x.y.0`（如 1.4.0），`y` 代表功能批次，每完成一批改动定稿发布；带 Latest 徽标，Release notes 从 [CHANGELOG.md](CHANGELOG.md) 生成。
-- **预发布** — `x.y.z`（z > 0，如 1.3.6），开发中的中间构建，push main 后由 CI 自动发布，带 "Pre-release" 徽标并置顶显示；想尝鲜最新改动就下它，正式列表不乱。
+- **正式版** — `x.y.0`（如 1.4.0），`y` 代表功能批次，每完成一批改动定稿发布；带 Latest 徽标。
+- **预发布** — 固定 `vx.y.0-pre`（如 `v1.4.0-pre`），整个功能批次只有这一条。每次构建由 CI 移动 tag 到最新提交、覆盖同名 APK、刷新日志正文，不新增条目；正式版发布后这条预发布自动删掉。
 
-Releases 页面：顶部 Latest 框 = 最新正式版；列表第一行 = 最新预发布构建。
+App 里的版本号形如 `1.4.0-pre.312`（末段是 CI 构建序号，不进 tag）；正式版安装包版本号必定大于同批次任一预发布，可直接覆盖安装。
+
+Releases 页面：顶部 Latest 框 = 最新正式版；列表第一行 = 当前批次的预发布构建。
 
 ## 构建
 
@@ -68,7 +70,7 @@ python3 scripts/check-i18n.py
 
 ## CI
 
-push / PR 到 main 时，`ci.yml` 依次执行 i18n 校验、Android Lint、Debug/Release 编译，上传 Lint 报告与 APK，并把 Release APK 覆盖更新到 `preview` 预发布标签（最新构建入口）。正式发布走 tag `v*` 触发的 `release.yml`。
+push / PR 到 main 时，`ci.yml` 依次执行 i18n 校验、Android Lint、Debug/Release 编译，上传 Lint 报告与 APK，并把 Release APK 覆盖更新到当前批次的 `vx.y.0-pre` 预发布条目（tag 随之移动，列表不增条目）。正式发布走 tag `v*` 触发的 `release.yml`；带 `pre` / `rc` 的 tag 不会被它当成正式版。
 
 ## 项目结构
 

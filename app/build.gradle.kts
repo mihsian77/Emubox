@@ -5,6 +5,14 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// 版本号由 CI 注入，本地构建走默认值。
+// 规则：versionCode = 主*10_000_000 + 次*100_000 + 修订*1_000 + 末段，
+// 末段 1–899 留给预发布（取 CI run number），999 专给正式版，
+// 保证「1.4.0 正式版 > 1.4.0 的任一预发布 > 1.3.0」，同段内预发布递增、可覆盖安装。
+// 预发布 tag 固定 v1.4.0-pre，构建序号只进 versionName，不进 tag 名。
+val injectedVersionCode = (project.findProperty("emuboxVersionCode") as String?)?.toIntOrNull()
+val injectedVersionName = project.findProperty("emuboxVersionName") as String?
+
 android {
     namespace = "com.emubox.app"
     compileSdk {
@@ -17,8 +25,8 @@ android {
         applicationId = "com.emubox.app"
         minSdk = 28
         targetSdk = 37
-        versionCode = 38
-        versionName = "1.4.0-pre.5"
+        versionCode = injectedVersionCode ?: 10_400_001
+        versionName = injectedVersionName ?: "1.4.0-pre"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
