@@ -48,19 +48,21 @@ CID_CHANNEL = {
 CHANNEL_SECTION = {
     "数码之家": "device",
     "软件之家": "emulator", "Win11": "emulator", "微软": "emulator",
-    "Linux": "emulator", "游戏电竞": "emulator", "Windows": "emulator",
+    "Linux": "emulator", "游戏电竞": "tech", "Windows": "emulator",
     "苹果": "tech", "智能时代": "tech", "智车之家": "tech",
     "业界": "tech", "网络": "tech", "科学探索": "tech",
     "手机": "device", "数码": "device", "穿戴": "device", "VR": "device",
     "安卓": "device",
     "汽车": "tech", "鸿蒙": "tech",
 }
-# 标题关键词 → 分区 fallback（未映射 cid / 无 cid 时用；模拟器宽覆盖：游戏/Linux/软件工具都收）
+# 标题关键词 → 分区 fallback（未映射 cid / 无 cid 时用）
+# 注意：不放裸「模拟器」——中文里它是游戏品类词（巴士模拟器 / 赛车模拟器），
+# 会把整篇游戏新闻判成模拟器分区；只认品牌名与「安卓/手游模拟器」限定词。
 SECTION_WORDS = [
-    ("emulator", ["模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu", "Dolphin", "PCSX2",
-                  "PPSSPP", "RPCS3", "Xenia", "Citra", "MAME", "DuckStation", "AetherSX2", "Vita3K",
-                  "Skyline", "Winlator", "Wine", "Box64", "Proton", "DXVK", "VKD3D", "Mesa", "Rufus",
-                  "Linux"]),
+    ("emulator", ["安卓模拟器", "手游模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu",
+                  "Dolphin", "PCSX2", "PPSSPP", "RPCS3", "Xenia", "Citra", "MAME", "DuckStation",
+                  "AetherSX2", "Vita3K", "Skyline", "Winlator", "Wine", "Box64", "Proton",
+                  "DXVK", "VKD3D", "Mesa"]),
     ("device", ["手机", "安卓", "Android", "电脑", "平板", "折叠屏", "芯片", "骁龙", "天玑", "麒麟",
                 "SoC", "GPU", "显卡", "处理器", "VR", "耳机", "显示器"]),
 ]
