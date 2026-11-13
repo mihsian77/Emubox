@@ -23,6 +23,26 @@
       "caution": "",
       "generated": true
     },
+    "amaral-adreno": {
+      "fit": "Turnip Amaral 构建集，Mesa 27.0.0-devel，分 oneui / standard 两套构建环境，带 GPU 型号目录",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "ankaturnip": {
+      "fit": "Adreno 8xx 的 Mesa Turnip，带 Anka 补丁，专为 Anka Native 构建",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
     "apexspan-panvk-g57": {
       "fit": "面向 Mali-G57 MC2（天玑 6300）的实验性 PanVK，支持 Termux:X11 硬件加速",
       "how": [
@@ -88,6 +108,16 @@
     },
     "dkdndje-g720": {
       "fit": "Mali-G720 MC8 XHYN V Vulkan 驱动包",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "droiddeck-drivers": {
+      "fit": "DroidDeck 官方每周构建的 Turnip 驱动包，同时出 Android 与 ARM Linux 两套，Mesa 27.0.0-devel 基线",
       "how": [
         "下载 zip 解压或直接导入",
         "模拟器「设置 → 驱动」里选中",
@@ -263,8 +293,28 @@
       "caution": "",
       "generated": true
     },
+    "malisx2": {
+      "fit": "Mali v7/v9/v11 的 Vulkan 驱动，基于原厂 kbase 内核驱动，供 ARMSX2、Dolphin、hakuX、Vita3K-Plus 等自定义驱动模拟器使用",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
     "martuniy-panvk": {
       "fit": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "maxi000q-drivers": {
+      "fit": "按 GPU 型号分包的 Turnip / PanVK 改版驱动合集：Adreno 619、Adreno 830、Mali G1 Ultra、Mali G76 共 5 个包。",
       "how": [
         "下载 zip 解压或直接导入",
         "模拟器「设置 → 驱动」里选中",
@@ -339,6 +389,26 @@
         "内核需支持 Kbase/CSF，否则加载不了"
       ],
       "caution": "实验项目，README 明确警告可能卡死应用、GPU 故障、需要重启设备"
+    },
+    "panvk-kirin990": {
+      "fit": "华为 P40 / Kirin 990（Mali-G76 MC16）的 PanVK 驱动，基于原厂 mali_kbase",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "ps5-vulkan": {
+      "fit": "PS5 原生 Vulkan 1.4 驱动，基于 Mesa/RADV，通过 CTS 验证。",
+      "how": [
+        "下载驱动包",
+        "Winlator 容器「显卡驱动」里导入",
+        "重启容器生效"
+      ],
+      "caution": "",
+      "generated": true
     },
     "ref4ik": {
       "fit": "备选合集，Adrenotools 场景下的 Wine / Box64 / DXVK 打包",
@@ -432,6 +502,26 @@
         "下载 .adpkg / .zip 驱动包",
         "模拟器「设置 → 驱动」里导入并选中",
         "回到游戏重启（部分模拟器要重开容器）"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "turnip-722-duo": {
+      "fit": "针对 Adreno 722 调优的 Turnip 驱动（Duo 版），Mesa 基线较新",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "turnip-enhanced": {
+      "fit": "面向骁龙安卓生态额外适配的 Turnip 构建，中文社区称「超级 Turnip」",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
       ],
       "caution": "",
       "generated": true
