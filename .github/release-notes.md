@@ -22,17 +22,17 @@
 - 新增「动态」子分区：各驱动仓库的发布日志按时间汇总，带变更类型徽章（新增支持 / 修复 / 性能 / 破坏性），英文自动翻译，可切回原文
 - 首次进入驱动分区的说明改为项目自身的加载声明：驱动以原生方式加载、来自第三方作者、失败可随时删除；「稍后」只关本次，不再替用户确认
 - 驱动检测支持驱动包依赖闭包：跨机型高通包的 `libgsl.so` / `libllvm-glnext.so` 按驱动自身目录解析，缺库时直接报出库名，不再是一句 `dlopen failed`
-- 驱动仓库补到 61 个：Amaral / AnkaTurnip / DroidDeck / MaliSX2 / MaxQ / PanVK Kirin 990 / PS5 RADV / Turnip Duo（Adreno 722）/ Turnip Enhanced（超级 Turnip），每条都写了适用机型与安装步骤
+- 驱动仓库补到 57 个：新增 Amaral / AnkaTurnip / DroidDeck / MaliSX2 / PanVK Kirin 990 / Turnip Duo（Adreno 722），每条都写了适用机型与安装步骤。另有 4 个只有源码、没有任何可下载包的仓（Turnip-Enhanced、PS5_Vulkan、maxi000q/drivers、panvk-mtk）移出驱动区——它们在这里只会渲染成一个红色的「没有可用的发布版本」
 
 ### 模拟器
 
 - 详情页新增「发布文件」清单：进页面第一屏就回答共几个文件、手机能不能直接装、安卓包 / 桌面包 / 源码各几个。以前要翻到最底下的版本卡再展开才看得到文件名，「给了桌面包没有安卓包」这类误导只能靠用户自己发现
-- 文件数量改用归好类的口径：不再把 sha256sums、`.sig` 这类校验文件算进「共 N 个」。354 条里原来有 131 条的「共 N 个」和自己的明细对不上（Termux 写 48、实际装包 40）
+- 文件数量改用归好类的口径：不再把 sha256sums、`.sig` 这类校验文件算进「共 N 个」。353 条里原来有 131 条的「共 N 个」和自己的明细对不上（Termux 写 48、实际装包 40）
 - 版本资产补架构标签（arm64 / armv7 / x64 / x86 / 通用），文件名被截断时也能选对包；发布日志默认折叠 4 行，点「展开全部日志」再看全文
 - 桌面模拟器在安卓端装不了，卡片标「仅桌面 · Windows / macOS / Linux」，多生态保留但不假装能装
 - 项目简介改用 README 首段提炼的一句话（没有 README 用仓库 About，再没有用发布说明），302 条里 294 条有摘要
 - 项目列表补社区下载量名次勋章（只给进榜的挂，其余不硬排名次）与能跑什么标签（Switch 2 · PS2 · Citra 分支）
-- 注册表扩到 354 条：新增 Termux:X11 与 XinputBridge，MiceWine 从主机模拟改归 Windows 兼容层
+- 注册表扩到 353 条：新增 Termux:X11 与 XinputBridge，MiceWine 从主机模拟改归 Windows 兼容层。清掉 8 条实测打不开的源：ProsperoEden / Torzu 上游 404 与 451，BananaNative、NeXium 迁到自建 GitLab 后改指新址，AzaharPlus 的 ★25 空壳 fork 退场
 
 ### 设备与芯片
 

@@ -1,6 +1,6 @@
 {
   "version": "1.1.1",
-  "updated_at": "2026-11-12T11:20:00Z",
+  "updated_at": "2026-11-13T16:10:00Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -360,8 +360,8 @@
         ]
       },
       "updated_at": "2026-11-10T00:48:38Z",
-      "latest_tag": "v27.0.0-20261110",
-      "latest_date": "2026-11-10T00:48:38Z",
+      "latest_tag": "v27.0.0-20261113-r2",
+      "latest_date": "2026-11-13T00:00:00Z",
       "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ **A8xx** didn't build this run, so it isn't included.\n\n> ❌ **Banners-AIO** didn't build this run, so it isn't included.\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`1c87c60`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/1c87c60187064c60a10378fa79e20debf0941f97) |\n| **Commit title** | tu: WFI before reading registers that were just written |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-"
     },
     {
@@ -681,8 +681,8 @@
         ]
       },
       "updated_at": "2026-11-05T08:58:40Z",
-      "latest_tag": "tu_v3U",
-      "latest_date": "2026-11-05T08:58:40Z",
+      "latest_tag": "tu_v4N-PR3",
+      "latest_date": "2026-11-09T00:00:00Z",
       "latest_body": "> [!WARNING]\r\n> **Experimental build.** Expect bugs, glitches, regressions and the occasional\r\n> broken build. This project is **not affiliated with** Mesa, Qualcomm, Google,\r\n> or any application used to test it. Please **do not** report issues caused by\r\n> these builds to the Mesa project or to whitebelyash.\r\n\r\n# Turnip A81X - V3U\r\n\r\nAdrenoTools driver package (`libvulkan_freedreno.so` + `meta.json`) that brings up **Adreno 810 / 812** and the wider **Adreno 8XX** family on Vulkan through the "
     },
     {
@@ -821,8 +821,8 @@
         ]
       },
       "updated_at": "2026-11-09T15:50:20Z",
-      "latest_tag": "v1.2.9",
-      "latest_date": "2026-11-09T15:50:20Z",
+      "latest_tag": "v1.2.10",
+      "latest_date": "2026-11-10T00:00:00Z",
       "latest_body": "Mesa Turnip for Adreno. v1.2.9 is v1.2.8 with one addition: the driver now starts on the Adreno 825 (Snapdragon 8s Gen 4, SM8735). Nothing else changed.\n\nDownload `turnip_faux123_v1.2.9.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.2.8\n\n- Adreno 825: added to the driver's GPU table, using the same settings as the Adreno 829. Before v1.2.9 the driver did not recognize the Adreno 825 and did not start on it.\n- Every other Adreno:"
     },
     {
@@ -891,8 +891,8 @@
         ]
       },
       "updated_at": "2026-09-30T19:18:38Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "v0.0.2-alpha",
+      "latest_date": "2026-09-30T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -926,8 +926,8 @@
         ]
       },
       "updated_at": "2026-10-28T08:57:57Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "fourfectvk-g57-v0.1.0-test9",
+      "latest_date": "2026-10-28T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -961,8 +961,8 @@
         ]
       },
       "updated_at": "2026-10-01T15:32:36Z",
-      "latest_tag": "build-2026-10-01-152609-2699094",
-      "latest_date": "2026-10-01T15:32:36Z",
+      "latest_tag": "panvk-test3",
+      "latest_date": "2026-10-02T00:00:00Z",
       "latest_body": "## PanVK + Zink for Termux (aarch64, native build)\r\n\r\nBuilt natively inside Termux (`termux/termux-docker:aarch64`)\r\non `ubuntu-24.04-arm`.\r\n\r\n**Build date (UTC):** `2026-10-01`\r\n**Build time (UTC):** `152609`\r\n**Commit:** `26990947b05665a0745439a2d7cfb664e7c8ba2c`\r\n**Build types:** `[\"debugoptimized\",\"release\"]`\r\n**Upstream sync:** `true`\r\n\r\n### What is included\r\n- **PanVK** — Vulkan driver for Mali-G57 (Valhall JM) via kbase\r\n- **Zink** — Gallium driver that provides OpenGL/GLES on top of\r\n  V"
     },
     {
@@ -1073,44 +1073,6 @@
       "latest_body": "First experimental public build of Mesa 26.2-rc1 (PanVK) with custom Turnip OpenGL stubs for stock Android devices."
     },
     {
-      "id": "bkaneko-mtk",
-      "name": "BkaNeko PanVK MTK",
-      "owner": "BkaNeko",
-      "repo": "panvk-mtk-driver",
-      "api_url": "https://api.github.com/repos/BkaNeko/panvk-mtk-driver/releases",
-      "gpu_vendor": "mali",
-      "gpu_arch": [
-        "valhall-v10"
-      ],
-      "gpu_models": [
-        "G610",
-        "G615",
-        "G710",
-        "G715",
-        "G720",
-        "G920",
-        "G925"
-      ],
-      "driver_type": "panvk",
-      "frontend": "CSF",
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 9,
-      "description": "MTK Mali PanVK kbase 驱动，Redmi Note 11T 测试",
-      "notes": "源码构建型：仓库内 build-scripts/driver/patches，无 release 资产，需自行编译",
-      "companion": [],
-      "filters": {
-        "default": [
-          "panvk"
-        ]
-      },
-      "updated_at": "2026-08-21T05:58:05Z",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_body": ""
-    },
-    {
       "id": "faux123-ace",
       "name": "faux123 PanVK Ace (G610)",
       "owner": "faux123",
@@ -1138,8 +1100,8 @@
         ]
       },
       "updated_at": "2026-11-07T10:42:10Z",
-      "latest_tag": "v1.1.4",
-      "latest_date": "2026-11-07T10:42:10Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T00:00:00Z",
       "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
@@ -1172,8 +1134,8 @@
         ]
       },
       "updated_at": "2026-11-07T10:42:18Z",
-      "latest_tag": "v1.1.4",
-      "latest_date": "2026-11-07T10:42:18Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T00:00:00Z",
       "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
@@ -1205,8 +1167,8 @@
         ]
       },
       "updated_at": "2026-10-01T19:47:49Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "v0.1.0-xhyn",
+      "latest_date": "2026-10-01T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -1237,8 +1199,8 @@
         ]
       },
       "updated_at": "2026-06-04T17:39:38Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "v0.3.5",
+      "latest_date": "2026-06-04T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -1300,8 +1262,8 @@
         ]
       },
       "updated_at": "2026-10-19T22:27:02Z",
-      "latest_tag": "v1.8.0",
-      "latest_date": "2026-10-19T22:27:02Z",
+      "latest_tag": "v1.9.0",
+      "latest_date": "2026-11-11T00:00:00Z",
       "latest_body": "RADV for Samsung Xclipse GPUs. This release loads BC6H and BC7 textures about twice as fast\r\nand adds a build for Bannerlator's Wayland mode.\r\n\r\n## What's new\r\n\r\n- **BC6H and BC7 textures load about twice as fast.** The driver converts these formats on the GPU\r\n  when a game loads them, and that conversion is now much quicker. For a 2048x2048 texture on the\r\n  Xclipse 920: BC7 about 4 ms instead of 10, BC6H about 2.5 ms instead of 5. Games that stream many\r\n  textures should stutter less while l"
     },
     {
@@ -1538,8 +1500,8 @@
         ]
       },
       "updated_at": "2026-10-10T21:28:37Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "Panvk-Mali-6",
+      "latest_date": "2026-10-08T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -1567,8 +1529,8 @@
         ]
       },
       "updated_at": "2026-10-08T13:57:15Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "PDXVK-2.4.1-GPLASYNC-2",
+      "latest_date": "2026-10-08T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -1705,8 +1667,8 @@
         "default": []
       },
       "updated_at": "2026-11-07T10:42:13Z",
-      "latest_tag": "v1.1.4",
-      "latest_date": "2026-11-07T10:42:13Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T00:00:00Z",
       "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
@@ -1739,8 +1701,8 @@
         "default": []
       },
       "updated_at": "2026-11-07T10:42:15Z",
-      "latest_tag": "v1.1.4",
-      "latest_date": "2026-11-07T10:42:15Z",
+      "latest_tag": "v1.1.6",
+      "latest_date": "2026-11-11T00:00:00Z",
       "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
@@ -1781,8 +1743,8 @@
         "default": []
       },
       "updated_at": "2026-10-18T11:53:44Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "panvk-rc3-switch-safety2",
+      "latest_date": "2026-10-12T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -1862,8 +1824,8 @@
         "default": []
       },
       "updated_at": "2026-10-13T08:59:34Z",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "Lemon-Ade-v0.0.7",
+      "latest_date": "2026-10-13T00:00:00Z",
       "latest_body": ""
     },
     {
@@ -2311,119 +2273,10 @@
         ]
       },
       "updated_at": "",
-      "latest_tag": "",
-      "latest_date": "",
+      "latest_tag": "v1.3.0",
+      "latest_date": "2026-11-11T00:00:00Z",
       "latest_body": "",
       "pushed_at": "2026-11-11T00:00:00Z"
-    },
-    {
-      "id": "turnip-enhanced",
-      "name": "Turnip Enhanced（超级 Turnip）",
-      "owner": "LFRon",
-      "repo": "Turnip-Enhanced",
-      "api_url": "https://api.github.com/repos/LFRon/Turnip-Enhanced/releases",
-      "gpu_vendor": "adreno",
-      "gpu_arch": [
-        "6xx",
-        "7xx",
-        "8xx"
-      ],
-      "gpu_models": [],
-      "driver_type": "turnip",
-      "frontend": null,
-      "target_emulator": "generic",
-      "package_format": "zip",
-      "maturity": "experimental",
-      "stars": 5,
-      "description": "面向骁龙安卓生态额外适配的 Turnip 构建，中文社区称「超级 Turnip」",
-      "notes": "2026-11-12 收录。作者自述 use at your own risk；无 release，走仓库分发",
-      "companion": [],
-      "filters": {
-        "default": [
-          "Turnip",
-          "Enhanced"
-        ]
-      },
-      "updated_at": "",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_body": "",
-      "pushed_at": "2026-11-01T00:00:00Z"
-    },
-    {
-      "id": "maxi000q-drivers",
-      "name": "MaxQ 驱动合集",
-      "owner": "maxi000q",
-      "repo": "drivers",
-      "api_url": "https://api.github.com/repos/maxi000q/drivers/contents",
-      "gpu_vendor": "any",
-      "gpu_arch": [
-        "adreno-6xx",
-        "adreno-8xx",
-        "valhall-g1",
-        "bifrost-g76"
-      ],
-      "gpu_models": [
-        "619",
-        "830",
-        "G1 Ultra",
-        "G76"
-      ],
-      "driver_type": "component",
-      "frontend": null,
-      "target_emulator": "consolefivepro",
-      "package_format": "zip",
-      "maturity": "beta",
-      "stars": 0,
-      "description": "按 GPU 型号分包的 Turnip / PanVK 改版驱动合集：Adreno 619、Adreno 830、Mali G1 Ultra、Mali G76 共 5 个包。",
-      "notes": "2026-11-12 改判收录。前次以「★0 且无 release」判为无效，实际仓库根目录就有 5 个可直接用的驱动 zip（3.2–6.1MB），符合「驱动必须有对应仓库」的口径，无 release 不等于无产物。为 ConsoleFivePro 配套分发。",
-      "companion": [],
-      "filters": {
-        "default": [
-          "MaxQ",
-          "Turnip",
-          "PanVK"
-        ]
-      },
-      "updated_at": "2026-10-30T00:00:00Z",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_body": "",
-      "pushed_at": "2026-10-30T00:00:00Z"
-    },
-    {
-      "id": "ps5-vulkan",
-      "name": "PS5 Vulkan Driver (RADV)",
-      "owner": "mihawk-99",
-      "repo": "ps5_vulkan",
-      "api_url": "https://api.github.com/repos/mihawk-99/ps5_vulkan",
-      "gpu_vendor": "any",
-      "gpu_arch": [
-        "rdna2"
-      ],
-      "gpu_models": [
-        "PS5 Oberon"
-      ],
-      "driver_type": "radv",
-      "frontend": null,
-      "target_emulator": "ps5-native",
-      "package_format": "none",
-      "maturity": "experimental",
-      "stars": 121,
-      "description": "PS5 原生 Vulkan 1.4 驱动，基于 Mesa/RADV，通过 CTS 验证。",
-      "notes": "2026-11-13 补录。★121，11-10 仍在推。仓库只出源码不出二进制，符合「驱动必须有对应仓库」的口径；能力上填补 PS5 侧无 Vulkan 驱动的空白。",
-      "companion": [],
-      "filters": {
-        "default": [
-          "RADV",
-          "PS5"
-        ]
-      },
-      "updated_at": "2026-11-10T00:00:00Z",
-      "latest_tag": "",
-      "latest_date": "",
-      "latest_body": "",
-      "pushed_at": "2026-11-10T00:00:00Z"
     }
   ]
 }

@@ -51,6 +51,10 @@
 - 驱动注册表补到 61 个源：Amaral Adreno Tools、AnkaTurnip、DroidDeck 官方驱动集、MaliSX2、MaxQ 驱动合集、PanVK Kirin 990、PS5 Vulkan（RADV）、Turnip Duo（Adreno 722）、Turnip Enhanced（超级 Turnip）。九条仓库均已核实存在，并同步重新生成 `source-profiles.json` 的适用机型与安装步骤
 
 ### Fixed
+- 驱动区 4 个「只有源码、一个可下载包都没有」的仓移出注册表：Turnip-Enhanced（mesa 纯源码 fork，0 release / 0 tag）、PS5_Vulkan（只出 Actions 产物、需登录，且是 PS5 硬件驱动，安卓侧装不上）、maxi000q/drivers（空仓）、panvk-mtk（纯源码）。驱动区是按 release 拉文件列表的，这类条目进去只会渲染成红色「没有可用的发布版本」。余下 57 条逐个核过产物
+- 模拟器区 8 条源按实测修正：ProsperoEden 仓库与 release 资产双双 404、Torzu 上游转 451（DMCA）进 dead；BananaNative 与 NeXium 迁到自建 GitLab 后改指新址（前者 v0.1.5 → v0.3.14，直链实测可用）；Termux 增强镜像的 `repo_url` 原本错填成官方 `termux/termux-app`；AzaharPlus 的 ★25 空壳 fork（纯源码、Play 链接指向 Lime3DS、15 个月未推）移入 `emulator-retired.json`。条目 354 → 353
+- 驱动版本号补齐：57 条里 9 条一直没记版本（界面显示空），现已按上游补上；另 9 条上游确实发了新版（Banners-Turnip `20261110`→`20261113-r2`、faux123 五个仓 `1.1.4`→`1.1.6`、RADV Xclipse `1.8.0`→`1.9.0` 等）
+- 预发布包号与 versionCode 对齐：`NAME` 取 `GITHUB_RUN_NUMBER`、`CODE` 取 `% 900 + 1`，同一个构建序号在两处不同，导致 `1.4.0-pre.442` 配 `10400443`。改为两处都用同一个 `BUILD`
 - 骁龙 855 Plus 被认成骁龙 860：`sm8150-ac` 一条把 855+ 的三种写法和 860 混在别名里，按「命中键最长」取到 860（名字、机型、跑分全是 855+ 的）。按部件号拆成 `sm8150-ab`（855+）与 `sm8150-ac`（860）两条，860 的跑分没有同口径来源，留空而不是抄 855+ 的
 - 同一系列两套写法：`曦力 G99` 与 `Helio G96` 并排出现，统一为 Helio，旧写法保留在别名里不影响识别
 - 深色模式弱文字发虚：`onSurfaceFaint/Fainter` 提到 4.5:1 以上，散落的 `alpha=0.4~0.8` 文字统一收敛；亮色背景压到 `#E9ECF3`，纯白卡片不再和背景糊成一片

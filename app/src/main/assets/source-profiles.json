@@ -88,16 +88,6 @@
       ],
       "caution": "夜间版不稳定，出问题先切回主线版本"
     },
-    "bkaneko-mtk": {
-      "fit": "MTK Mali PanVK kbase 驱动，Redmi Note 11T 测试",
-      "how": [
-        "下载 zip 解压或直接导入",
-        "模拟器「设置 → 驱动」里选中",
-        "回到游戏重启"
-      ],
-      "caution": "",
-      "generated": true
-    },
     "diskdvd-a8xx": {
       "fit": "Adreno 810/829 想试新补丁时用。基于 whitebelyash 的 gen8，额外加了 A8XX 补丁",
       "how": [
@@ -313,16 +303,6 @@
       "caution": "",
       "generated": true
     },
-    "maxi000q-drivers": {
-      "fit": "按 GPU 型号分包的 Turnip / PanVK 改版驱动合集：Adreno 619、Adreno 830、Mali G1 Ultra、Mali G76 共 5 个包。",
-      "how": [
-        "下载 zip 解压或直接导入",
-        "模拟器「设置 → 驱动」里选中",
-        "回到游戏重启"
-      ],
-      "caution": "",
-      "generated": true
-    },
     "minegraph-panvk": {
       "fit": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "how": [
@@ -396,16 +376,6 @@
         "下载 zip 解压或直接导入",
         "模拟器「设置 → 驱动」里选中",
         "回到游戏重启"
-      ],
-      "caution": "",
-      "generated": true
-    },
-    "ps5-vulkan": {
-      "fit": "PS5 原生 Vulkan 1.4 驱动，基于 Mesa/RADV，通过 CTS 验证。",
-      "how": [
-        "下载驱动包",
-        "Winlator 容器「显卡驱动」里导入",
-        "重启容器生效"
       ],
       "caution": "",
       "generated": true
@@ -508,16 +478,6 @@
     },
     "turnip-722-duo": {
       "fit": "针对 Adreno 722 调优的 Turnip 驱动（Duo 版），Mesa 基线较新",
-      "how": [
-        "下载 zip 解压或直接导入",
-        "模拟器「设置 → 驱动」里选中",
-        "回到游戏重启"
-      ],
-      "caution": "",
-      "generated": true
-    },
-    "turnip-enhanced": {
-      "fit": "面向骁龙安卓生态额外适配的 Turnip 构建，中文社区称「超级 Turnip」",
       "how": [
         "下载 zip 解压或直接导入",
         "模拟器「设置 → 驱动」里选中",

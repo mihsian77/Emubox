@@ -1,6 +1,6 @@
 {
   "version": "1.3.1",
-  "updated_at": "2026-11-12T10:45:00Z",
+  "updated_at": "2026-11-13T16:10:00Z",
   "emulators": [
     {
       "id": "termux",
@@ -26394,7 +26394,7 @@
       "hosts": [
         "ps5"
       ],
-      "status": "active",
+      "status": "dead",
       "needs_review": false,
       "method": "emulation",
       "latest_tag": "v1.005.000",
@@ -26508,7 +26508,7 @@
       "downloads_basis": "none",
       "download_url": "https://github.com/Swordpdf/ProsperoEden/releases/download/v1.005.000/ProsperoEden-v1.005.000.zip",
       "download_kind": "official-site",
-      "note": "zip 运行包，非 apk 直链 | 2026-11-04 修：README 明写 PS5 port of Eden，原 hosts=android/method=recomp 错误",
+      "note": "2026-11-13 实测：仓库 404，v1.005.000 的 release 资产也 404，无可下载物",
       "pushed_at": "2026-10-18T03:56:25Z",
       "summary": "An unofficial Eden emulator port for PlayStation 5 homebrew",
       "artifacts": {
@@ -30364,8 +30364,8 @@
       "family_label": "Termux 系",
       "owner": "jiaxinchen-max",
       "repo": "jiaxinchen-max/termux-app",
-      "repo_url": "https://github.com/termux/termux-app",
-      "homepage": "https://f-droid.org/packages/com.termux/",
+      "repo_url": "https://github.com/jiaxinchen-max/termux-app",
+      "homepage": "https://github.com/jiaxinchen-max/termux-app",
       "description": "Termux 活跃 fork：持续跟进官方主线并补发 APK 直链",
       "logo_url": "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/icons/termux-jiaxinchen.png",
       "source": "official-web",
@@ -30777,7 +30777,7 @@
       "stars": 71,
       "downloads_latest": 44,
       "downloads_basis": "latest-lower-bound",
-      "download_url": "https://f-droid.org/packages/com.termux/",
+      "download_url": "https://github.com/jiaxinchen-max/termux-app/releases",
       "download_kind": "f-droid",
       "distribution": "f-droid",
       "builds": [
@@ -30791,7 +30791,7 @@
           "tag": "1.0.8"
         }
       ],
-      "note": "溯源结论：本条为 Termux 官方本体（非「增强镜像」）。官方 F-Droid 包 com.termux，源码 termux/termux-app（★64007），GitHub release v0.119.0-beta.3 附 15 个 APK 资产",
+      "note": "2026-11-13 修正：repo 是 jiaxinchen-max 的 fork，repo_url 原本错填成官方 termux/termux-app",
       "pushed_at": "2026-11-06T17:37:58Z",
       "summary": "Termux is an Android terminal application and Linux environment.",
       "logo_source": "bundled",
@@ -36836,66 +36836,6 @@
       ]
     },
     {
-      "id": "azaharplus-android",
-      "name": "AzaharPlus",
-      "category": "主机模拟",
-      "section": "console-emulation",
-      "family": "azahar",
-      "family_label": "Azahar 系",
-      "owner": "f4mrfaux",
-      "repo": "f4mrfaux/AzaharPlus",
-      "repo_url": "https://github.com/f4mrfaux/AzaharPlus",
-      "homepage": "",
-      "description": "Azahar 3DS 模拟器增强 fork（f4mrfaux，★25）：恢复 3DS 文件直接支持、官方服务器下载系统文件等特性；仓库为纯源码（无 release 资产），APK 见社区分发（待核）。",
-      "logo_url": "",
-      "official": true,
-      "source": "github",
-      "kind": "emulator",
-      "runtime": "android-native",
-      "platforms": [
-        "3ds"
-      ],
-      "hosts": [
-        "android"
-      ],
-      "status": "active",
-      "needs_review": false,
-      "method": "emulation",
-      "latest_tag": "",
-      "latest_date": "",
-      "channel": "prerelease",
-      "latest_body": "纯源码仓库，无正式 release；APK 见社区分发",
-      "latest_apk_name": "",
-      "latest_apk_url": "",
-      "latest_apk_size": 0,
-      "releases": [],
-      "stars": 26,
-      "forks": 4,
-      "watchers": 3,
-      "downloads_total": 0,
-      "downloads_basis": "none",
-      "download_url": "https://play.google.com/store/apps/details?id=io.github.lime3ds.android",
-      "download_kind": "play",
-      "distribution": "play",
-      "note": "Play 分发（README 标注）",
-      "pushed_at": "2025-08-19T17:12:08Z",
-      "summary": "AzaharPlus is a fork of the Azahar 3DS emulator that restores some features.",
-      "artifacts": {
-        "apk": 0,
-        "android_zip": 0,
-        "ipa": 0,
-        "libretro_core": 0,
-        "desktop": 0,
-        "console": 0,
-        "source": 0,
-        "total": 0
-      },
-      "android_ready": false,
-      "platform_families": [
-        "nintendo"
-      ]
-    },
-    {
       "id": "afeimod-linbox-winemu",
       "name": "Linbox WinEmu",
       "category": "主机模拟",
@@ -39509,8 +39449,8 @@
       "family": "nexium-switch1",
       "family_label": "NeXium",
       "owner": "nexium-emu",
-      "repo": "nexium-emu/nexium",
-      "repo_url": "https://github.com/nexium-emu/nexium",
+      "repo": "",
+      "repo_url": "https://git.mythrax-rs.org/nexium-emu/nexium",
       "homepage": "https://nexium-emu.org",
       "description": "Nintendo Switch 1 Homebrew Emulator",
       "logo_url": "",
@@ -39524,7 +39464,7 @@
       "hosts": [
         "android"
       ],
-      "status": "stale",
+      "status": "active",
       "needs_review": false,
       "method": "emulation",
       "latest_tag": "",
@@ -39540,10 +39480,10 @@
       "watchers": 1,
       "downloads_total": 0,
       "downloads_basis": "none",
-      "download_url": "https://github.com/nexium-emu/nexium-nightly/releases/download/nightly/nexium-android-arm64.apk",
+      "download_url": "https://nexium-emu.org",
       "download_kind": "official-site",
       "distribution": "official-site",
-      "note": "2026-11-12 复核：主仓 404，nightly 分发仓仍在发 APK，下载可用，状态降为 stale。",
+      "note": "2026-11-13 复核：源码迁至 git.mythrax-rs.org，官网 nexium-emu.org 提供 nightly 下载；原先指向 github.com/nexium-emu/nexium-nightly 的直链已 404，改为落到官网",
       "pushed_at": "2026-11-06T02:26:26Z",
       "summary": "A Nintendo Switch emulator written in Rust.",
       "artifacts": {
@@ -44901,7 +44841,7 @@
         "linux",
         "macos"
       ],
-      "status": "community",
+      "status": "dead",
       "needs_review": false,
       "method": "emulation",
       "latest_tag": "",
@@ -44918,7 +44858,7 @@
       "downloads_total": 0,
       "downloads_basis": "none",
       "distribution": "source-only",
-      "note": "2026-11-04 复核：源码只在 Tor 隐藏服务；明网 NotABug 镜像 404，GitHub litucks/torzu（★501）自 2024-07-09 起被 DMCA 封锁（451），free-git.org 返回 530。官方不发布安卓包；桌面端可用第三方 pkgforge-dev/Torzu-AppImage 构建",
+      "note": "2026-11-13 实测：github.com/litucks/torzu 返回 451（DMCA），notabug 镜像 404",
       "community_sources": [
         {
           "repo": "https://github.com/pkgforge-dev/Torzu-AppImage",
@@ -54106,8 +54046,8 @@
       "section": "console-emulation",
       "owner": "moceure",
       "repo": "moceure/BananaNative",
-      "repo_url": "https://github.com/moceure/BananaNative",
-      "homepage": "",
+      "repo_url": "https://git.eden-emu.dev/moceure/BananaNative",
+      "homepage": "https://git.eden-emu.dev/moceure/BananaNative",
       "description": "BananaNative：Switch 原生层（nxnative），把 NVN 调用直接转成 Vulkan，不做系统模拟；实验性、非官方",
       "logo_url": "",
       "official": false,
@@ -54120,15 +54060,15 @@
       "hosts": [
         "android"
       ],
-      "status": "dead",
+      "status": "active",
       "needs_review": false,
       "method": "translation",
-      "latest_tag": "v0.1.5",
-      "latest_date": "2026-11-05T20:11:07Z",
+      "latest_tag": "v0.3.14",
+      "latest_date": "2026-11-12T00:00:00Z",
       "channel": "prerelease",
       "latest_body": "## Banana Native v0.1.5\n\nInstall over v0.1.4 (or update in the app): saves, packs and settings are kept. Shaders already on your phone carry over in seconds, no shader update needed.\n\n**New**\n- **Pokémon Pokopia (`0400A3A01EE4C000`) is playable**: about 60 fps on the system driver and on Turnip. Game resolution works for it.\n- **Text boxes**: when a game asks you to type, a text box opens (OK or Cancel). Before, the game could get stuck.\n- **FSR 1 upscaling** (optional): in the game's panel › Upscaling, with a sharpness slider. Sharper picture when the game is scaled up, e.g. at Phone 720p.\n- **Donkey Kong Bananza (`040074A01BF12000`): dynamic resolution works**, thanks to correct GPU timing (Game settings › GPU timing).\n- **Phone Prepare** builds only the shaders a game needs when the app knows them (8,157 instead of 131,426 for Pokémon Pokopia (`0400A3A01EE4C000`)).\n\n**Known issues**\n- Pokémon Pokopia (`0400A3A01EE4C000`): the sky is black.\n\n**Thanks** to everyone who sent fixes:\n- [Raphix91](https://github.com/Raphix91): Pokémon Pokopia (`0400A3A01EE4C000`) support, large shader libraries, Game resolution for it, the packer on Linux (#28, #29, #30).\n- [ligne12](https://github.co",
       "latest_apk_name": "banana-native-v0.1.5.apk",
-      "latest_apk_url": "https://github.com/moceure/BananaNative/releases/download/v0.1.5/banana-native-v0.1.5.apk",
+      "latest_apk_url": "https://git.eden-emu.dev/moceure/BananaNative/releases/download/v0.3.14/banana-native-v0.3.14.apk",
       "latest_apk_size": 32489920,
       "releases": [
         {
@@ -54217,7 +54157,7 @@
           "tag": "v0.1.4"
         }
       ],
-      "note": "2026-11-12 复核：GitHub 仓库已 404（此前正常），媒体报道 11-10 仍在更新 v0.1.5。判为下架而非弃坑，保留条目作索引，不给下载链接。",
+      "note": "2026-11-13 复核：GitHub 上的 moceure/BananaNative 已 404，主线迁到自建 GitLab，v0.3.14 直链可用",
       "license": "MIT",
       "topics": [],
       "pushed_at": "2026-11-05T20:11:07Z",
@@ -54240,7 +54180,8 @@
       "distribution": "release-apk",
       "platform_families": [
         "nintendo"
-      ]
+      ],
+      "download_url": "https://git.eden-emu.dev/moceure/BananaNative/releases"
     },
     {
       "id": "tasvideos-bizhawk",

@@ -135,7 +135,9 @@ jobs:
           # 末段 build 留 0–899 给预发布，999 留给正式版，保证同版本号下正式版包能覆盖预发布包装的那个
           BUILD=$(( GITHUB_RUN_NUMBER % 900 + 1 ))
           CODE=$(( MAJ * 10000000 + MIN * 100000 + PATCH * 1000 + BUILD ))
-          NAME="${BASE}-pre.${GITHUB_RUN_NUMBER}"
+          # pre 号必须取 BUILD 而不是 GITHUB_RUN_NUMBER：CODE 用的是 BUILD，
+          # 两处不一致会让 versionName 与 versionCode 末段差 1（pre.442 配 10400443）
+          NAME="${BASE}-pre.${BUILD}"
           echo "base=$BASE" >> "$GITHUB_OUTPUT"
           echo "tag=v${BASE}-pre" >> "$GITHUB_OUTPUT"
           echo "code=$CODE" >> "$GITHUB_OUTPUT"

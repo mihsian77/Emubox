@@ -405,5 +405,66 @@
     "repo_status": "404",
     "pushed_at": "",
     "summary": "🆕 Winlator_Brasil_10.1, Winlator_Brasil_10.1_AI e Winlator Brasil CLT – Novas Versões\\n\\nEsta atualização traz duas versões, **Winlator Bras…"
+  },
+  {
+    "id": "azaharplus-android",
+    "name": "AzaharPlus",
+    "category": "主机模拟",
+    "section": "console-emulation",
+    "family": "azahar",
+    "family_label": "Azahar 系",
+    "owner": "f4mrfaux",
+    "repo": "f4mrfaux/AzaharPlus",
+    "repo_url": "https://github.com/f4mrfaux/AzaharPlus",
+    "homepage": "",
+    "description": "Azahar 3DS 模拟器增强 fork（f4mrfaux，★25）：恢复 3DS 文件直接支持、官方服务器下载系统文件等特性；仓库为纯源码（无 release 资产），APK 见社区分发（待核）。",
+    "logo_url": "",
+    "official": true,
+    "source": "github",
+    "kind": "emulator",
+    "runtime": "android-native",
+    "platforms": [
+      "3ds"
+    ],
+    "hosts": [
+      "android"
+    ],
+    "status": "active",
+    "needs_review": false,
+    "method": "emulation",
+    "latest_tag": "",
+    "latest_date": "",
+    "channel": "prerelease",
+    "latest_body": "纯源码仓库，无正式 release；APK 见社区分发",
+    "latest_apk_name": "",
+    "latest_apk_url": "",
+    "latest_apk_size": 0,
+    "releases": [],
+    "stars": 26,
+    "forks": 4,
+    "watchers": 3,
+    "downloads_total": 0,
+    "downloads_basis": "none",
+    "download_url": "https://play.google.com/store/apps/details?id=io.github.lime3ds.android",
+    "download_kind": "play",
+    "distribution": "play",
+    "note": "2026-11-13 退役：仓库纯源码无 release 资产；download_url 指向 Play 上的 Lime3DS（不是本项目）；最后推送 2025-08-19。同名主流 fork 为 AzaharPlus/AzaharPlus（★1449），已单独收录",
+    "pushed_at": "2025-08-19T17:12:08Z",
+    "summary": "AzaharPlus is a fork of the Azahar 3DS emulator that restores some features.",
+    "artifacts": {
+      "apk": 0,
+      "android_zip": 0,
+      "ipa": 0,
+      "libretro_core": 0,
+      "desktop": 0,
+      "console": 0,
+      "source": 0,
+      "total": 0
+    },
+    "android_ready": false,
+    "platform_families": [
+      "nintendo"
+    ],
+    "skip": "no_artifact"
   }
 ]

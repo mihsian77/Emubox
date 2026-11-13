@@ -1,0 +1,153 @@
+[
+  {
+    "id": "turnip-enhanced",
+    "name": "Turnip Enhanced（超级 Turnip）",
+    "owner": "LFRon",
+    "repo": "Turnip-Enhanced",
+    "api_url": "https://api.github.com/repos/LFRon/Turnip-Enhanced/releases",
+    "gpu_vendor": "adreno",
+    "gpu_arch": [
+      "6xx",
+      "7xx",
+      "8xx"
+    ],
+    "gpu_models": [],
+    "driver_type": "turnip",
+    "frontend": null,
+    "target_emulator": "generic",
+    "package_format": "zip",
+    "maturity": "experimental",
+    "stars": 5,
+    "description": "面向骁龙安卓生态额外适配的 Turnip 构建，中文社区称「超级 Turnip」",
+    "notes": "2026-11-12 收录。作者自述 use at your own risk；无 release，走仓库分发",
+    "companion": [],
+    "filters": {
+      "default": [
+        "Turnip",
+        "Enhanced"
+      ]
+    },
+    "updated_at": "",
+    "latest_tag": "",
+    "latest_date": "",
+    "latest_body": "",
+    "pushed_at": "2026-11-01T00:00:00Z",
+    "retired_reason": "LFRon/Turnip-Enhanced：mesa 纯源码 fork，0 release、0 tag，无可下载包"
+  },
+  {
+    "id": "ps5-vulkan",
+    "name": "PS5 Vulkan Driver (RADV)",
+    "owner": "mihawk-99",
+    "repo": "ps5_vulkan",
+    "api_url": "https://api.github.com/repos/mihawk-99/ps5_vulkan",
+    "gpu_vendor": "any",
+    "gpu_arch": [
+      "rdna2"
+    ],
+    "gpu_models": [
+      "PS5 Oberon"
+    ],
+    "driver_type": "radv",
+    "frontend": null,
+    "target_emulator": "ps5-native",
+    "package_format": "none",
+    "maturity": "experimental",
+    "stars": 121,
+    "description": "PS5 原生 Vulkan 1.4 驱动，基于 Mesa/RADV，通过 CTS 验证。",
+    "notes": "2026-11-13 补录。★121，11-10 仍在推。仓库只出源码不出二进制，符合「驱动必须有对应仓库」的口径；能力上填补 PS5 侧无 Vulkan 驱动的空白。",
+    "companion": [],
+    "filters": {
+      "default": [
+        "RADV",
+        "PS5"
+      ]
+    },
+    "updated_at": "2026-11-10T00:00:00Z",
+    "latest_tag": "",
+    "latest_date": "",
+    "latest_body": "",
+    "pushed_at": "2026-11-10T00:00:00Z",
+    "retired_reason": "mihawk-99/ps5_vulkan：只出 GitHub Actions 产物（需登录），无 release；且为 PS5 硬件驱动，安卓侧装不上"
+  },
+  {
+    "id": "maxi000q-drivers",
+    "name": "MaxQ 驱动合集",
+    "owner": "maxi000q",
+    "repo": "drivers",
+    "api_url": "https://api.github.com/repos/maxi000q/drivers/contents",
+    "gpu_vendor": "any",
+    "gpu_arch": [
+      "adreno-6xx",
+      "adreno-8xx",
+      "valhall-g1",
+      "bifrost-g76"
+    ],
+    "gpu_models": [
+      "619",
+      "830",
+      "G1 Ultra",
+      "G76"
+    ],
+    "driver_type": "component",
+    "frontend": null,
+    "target_emulator": "consolefivepro",
+    "package_format": "zip",
+    "maturity": "beta",
+    "stars": 0,
+    "description": "按 GPU 型号分包的 Turnip / PanVK 改版驱动合集：Adreno 619、Adreno 830、Mali G1 Ultra、Mali G76 共 5 个包。",
+    "notes": "2026-11-12 改判收录。前次以「★0 且无 release」判为无效，实际仓库根目录就有 5 个可直接用的驱动 zip（3.2–6.1MB），符合「驱动必须有对应仓库」的口径，无 release 不等于无产物。为 ConsoleFivePro 配套分发。",
+    "companion": [],
+    "filters": {
+      "default": [
+        "MaxQ",
+        "Turnip",
+        "PanVK"
+      ]
+    },
+    "updated_at": "2026-10-30T00:00:00Z",
+    "latest_tag": "",
+    "latest_date": "",
+    "latest_body": "",
+    "pushed_at": "2026-10-30T00:00:00Z",
+    "retired_reason": "maxi000q/drivers：空仓，0 release、0 tag、0 star"
+  },
+  {
+    "id": "bkaneko-mtk",
+    "name": "BkaNeko PanVK MTK",
+    "owner": "BkaNeko",
+    "repo": "panvk-mtk-driver",
+    "api_url": "https://api.github.com/repos/BkaNeko/panvk-mtk-driver/releases",
+    "gpu_vendor": "mali",
+    "gpu_arch": [
+      "valhall-v10"
+    ],
+    "gpu_models": [
+      "G610",
+      "G615",
+      "G710",
+      "G715",
+      "G720",
+      "G920",
+      "G925"
+    ],
+    "driver_type": "panvk",
+    "frontend": "CSF",
+    "target_emulator": "generic",
+    "package_format": "zip",
+    "maturity": "experimental",
+    "stars": 9,
+    "description": "MTK Mali PanVK kbase 驱动，Redmi Note 11T 测试",
+    "notes": "源码构建型：仓库内 build-scripts/driver/patches，无 release 资产，需自行编译",
+    "companion": [],
+    "filters": {
+      "default": [
+        "panvk"
+      ]
+    },
+    "updated_at": "2026-08-21T05:58:05Z",
+    "latest_tag": "",
+    "latest_date": "",
+    "latest_body": "",
+    "retired_reason": "BkaNeko/panvk-mtk-driver：纯源码，0 release、0 tag"
+  }
+]
