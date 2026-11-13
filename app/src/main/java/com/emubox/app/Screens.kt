@@ -110,6 +110,11 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
     // 记录（id 不同但 fileName+subPath 相同），按文件名+子路径只显示一条
     val completed = DownloadsManager.completedDownloads
         .distinctBy { it.fileName.lowercase() to it.subPath }
+    // 按项目（GitHub 仓库）归组：同一项目的多个版本、多个文件合成一张卡。
+    // 归属从下载 URL 解析，1.4.0 之前的旧记录解析不出，退回下载目录分类。
+    val downloadGroups = remember(completed) { groupCompletedDownloads(completed) }
+    // 组展开状态：单文件组直接展开（多一次点击没意义），多文件组默认收起
+    val expandedGroups = remember { mutableStateMapOf<String, Boolean>() }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val completedBytes = completed.sumOf { it.sizeBytes }
@@ -412,320 +417,332 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                     )
                 }
 
-                completed.forEach { file ->
-                    item(key = "completed_${file.id}") {
-                        var showDeleteDialog by remember { mutableStateOf(false) }
-                        var showMetaDialog by remember { mutableStateOf(false) }
-                        var metaInfo by remember { mutableStateOf<DriverMetaParser.DriverMeta?>(null) }
-                        var metaLoading by remember { mutableStateOf(false) }
-                        var archiveScan by remember { mutableStateOf<ArchiveScan?>(null) }
-                        val isDriverPkg = remember(file.fileName) { DriverMetaParser.isDriverPackage(file.fileName) }
-                        val displayPath = remember(file.filePath) { getFullPath(file.filePath, context) }
+                downloadGroups.forEach { group ->
+                    val groupOpen = expandedGroups[group.key] ?: (group.files.size <= 1)
+                    item(key = "download_group_${group.key}") {
+                        DownloadProjectHeader(
+                            group = group,
+                            expanded = groupOpen,
+                            onToggle = { expandedGroups[group.key] = !groupOpen }
+                        )
+                    }
+                    if (groupOpen) {
+                        group.files.forEach { file ->
+                            item(key = "completed_${file.id}") {
+                                var showDeleteDialog by remember { mutableStateOf(false) }
+                                var showMetaDialog by remember { mutableStateOf(false) }
+                                var metaInfo by remember { mutableStateOf<DriverMetaParser.DriverMeta?>(null) }
+                                var metaLoading by remember { mutableStateOf(false) }
+                                var archiveScan by remember { mutableStateOf<ArchiveScan?>(null) }
+                                val isDriverPkg = remember(file.fileName) { DriverMetaParser.isDriverPackage(file.fileName) }
+                                val displayPath = remember(file.filePath) { getFullPath(file.filePath, context) }
 
-                        Card(
-                            modifier = Modifier.fillMaxWidth(),
-                            shape = RoundedCornerShape(24.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceVariant
-                            )
-                        ) {
-                            Column(
-                                modifier = Modifier.padding(18.dp),
-                                verticalArrangement = Arrangement.spacedBy(12.dp)
-                            ) {
-                                Row(verticalAlignment = Alignment.Top) {
-                                    Surface(
-                                        shape = RoundedCornerShape(16.dp),
-                                        color = MaterialTheme.colorScheme.tertiaryContainer
-                                    ) {
-                                        Icon(
-                                            Icons.Default.InsertDriveFile,
-                                            contentDescription = null,
-                                            modifier = Modifier.padding(11.dp),
-                                            tint = MaterialTheme.colorScheme.onTertiaryContainer
-                                        )
-                                    }
-                                    Spacer(Modifier.width(12.dp))
-                                    Column(modifier = Modifier.weight(1f)) {
-                                        Text(
-                                            text = file.fileName,
-                                            style = MaterialTheme.typography.titleMedium,
-                                            maxLines = 2
-                                        )
-                                        Text(
-                                            "${formatBytes(file.sizeBytes)} • ${formatDate(file.timestamp)}",
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                    Icon(
-                                        Icons.Default.CheckCircle,
-                                        contentDescription = appString(R.string.downloaded),
-                                        tint = MaterialTheme.colorScheme.primary
-                                    )
-                                }
-
-                                Surface(
+                                Card(
                                     modifier = Modifier.fillMaxWidth(),
-                                    shape = RoundedCornerShape(16.dp),
-                                    color = MaterialTheme.colorScheme.surface
-                                ) {
-                                    Row(
-                                        modifier = Modifier.padding(12.dp),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Icon(
-                                            Icons.Default.FolderOpen,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(18.dp),
-                                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                        Spacer(Modifier.width(8.dp))
-                                        Text(
-                                            displayPath,
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            maxLines = 2
-                                        )
-                                    }
-                                }
-
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                                ) {
-                                    FilledTonalButton(
-                                        onClick = {
-                                            val uri = exportFileUri(context, file.filePath)
-                                            val intent = Intent(Intent.ACTION_VIEW).apply {
-                                                // 按扩展名推断 MIME：像系统文件管理器一样，
-                                                // 让"打开方式"自动展开可打开该类型的所有应用
-                                                setDataAndType(uri, mimeTypeForFileName(file.fileName))
-                                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                            }
-                                            try {
-                                                context.startActivity(Intent.createChooser(intent, openWithLabel))
-                                            } catch (e: Exception) {
-                                                // 无可用打开程序（zip/so 等常见于文件管理器）：降级用
-                                                // octet-stream 再试一次（部分文件管理器按通用类型兜底展示）
-                                                try {
-                                                    val fallback = Intent(Intent.ACTION_VIEW).apply {
-                                                        setDataAndType(uri, "application/octet-stream")
-                                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                                    }
-                                                    context.startActivity(Intent.createChooser(fallback, openWithLabel))
-                                                } catch (e2: Exception) {
-                                                    Toast.makeText(
-                                                        context,
-                                                        appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-                                                }
-                                            }
-                                        },
-                                        modifier = Modifier.weight(1f),
-                                        shape = RoundedCornerShape(16.dp)
-                                    ) {
-                                        Icon(Icons.Default.OpenInNew, contentDescription = null)
-                                        Spacer(Modifier.width(7.dp))
-                                        Text(appString(R.string.open))
-                                    }
-
-                                    OutlinedButton(
-                                        onClick = {
-                                            val uri = exportFileUri(context, file.filePath)
-                                            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                                                type = "application/octet-stream"
-                                                putExtra(Intent.EXTRA_STREAM, uri)
-                                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                            }
-                                            // 包一层：没有能接收分享的 App 时给提示，不再直接崩
-                                            runCatching {
-                                                context.startActivity(Intent.createChooser(shareIntent, shareChooserLabel))
-                                            }.onFailure {
-                                                Toast.makeText(
-                                                    context,
-                                                    appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                            }
-                                        },
-                                        modifier = Modifier.weight(1f),
-                                        shape = RoundedCornerShape(16.dp)
-                                    ) {
-                                        Icon(Icons.Default.Share, contentDescription = null)
-                                        Spacer(Modifier.width(7.dp))
-                                        Text(appString(R.string.share))
-                                    }
-
-                                    FilledTonalIconButton(
-                                        onClick = { showDeleteDialog = true },
-                                        colors = IconButtonDefaults.filledTonalIconButtonColors(
-                                            containerColor = MaterialTheme.colorScheme.errorContainer,
-                                            contentColor = MaterialTheme.colorScheme.onErrorContainer
-                                        )
-                                    ) {
-                                        Icon(Icons.Default.DeleteOutline, contentDescription = appString(R.string.delete))
-                                    }
-                                }
-
-                                // 所有文件类型都提供"查看信息"：驱动包解析 meta.json，其他文件展示基础信息
-                                OutlinedButton(
-                                    onClick = {
-                                        metaLoading = true
-                                        scope.launch {
-                                            // 防御性包裹：个别异常文件（坏 zip / 特殊路径）解析失败时
-                                            // Toast 提示而不是让 App 闪退
-                                            runCatching {
-                                                metaInfo = if (isDriverPkg) {
-                                                    DriverMetaParser.parse(context, file.filePath)
-                                                } else {
-                                                    null
-                                                }
-                                                // 非驱动压缩包：轻量扫描内部文件，推断组件类型
-                                                archiveScan = if (!isDriverPkg && (file.fileName.endsWith(".zip", true) || file.fileName.endsWith(".adpkg", true))) {
-                                                    scanArchiveEntries(file.filePath)
-                                                } else {
-                                                    null
-                                                }
-                                            }.onFailure { e ->
-                                                android.util.Log.w("EmuBox", "parse file info failed", e)
-                                                Toast.makeText(
-                                                    context,
-                                                    appStringFor(context, SettingsManager.getAppLanguage(), R.string.file_info_error),
-                                                    Toast.LENGTH_LONG
-                                                ).show()
-                                            }
-                                            metaLoading = false
-                                            showMetaDialog = true
-                                        }
-                                    },
-                                    modifier = Modifier.fillMaxWidth(),
-                                    shape = RoundedCornerShape(16.dp),
-                                    enabled = !metaLoading
-                                ) {
-                                    Icon(Icons.Default.Info, contentDescription = null)
-                                    Spacer(Modifier.width(7.dp))
-                                    Text(
-                                        if (metaLoading) appString(R.string.meta_loading)
-                                        else if (isDriverPkg) appString(R.string.view_package_info)
-                                        else appString(R.string.view_file_info)
+                                    shape = RoundedCornerShape(24.dp),
+                                    colors = CardDefaults.cardColors(
+                                        containerColor = MaterialTheme.colorScheme.surfaceVariant
                                     )
-                                }
-                            }
-                        }
-
-                        if (showDeleteDialog) {
-                            AlertDialog(
-                                onDismissRequest = { showDeleteDialog = false },
-                                icon = { Icon(Icons.Default.DeleteOutline, contentDescription = null) },
-                                title = { Text(appString(R.string.delete_file)) },
-                                text = { Text(appString(R.string.delete_confirm, file.fileName)) },
-                                confirmButton = {
-                                    Button(
-                                        onClick = {
-                                            scope.launch {
-                                                val deleted = deleteFile(context, file)
-                                                // 无论删除成败都移除记录：避免 file:// 死文件记录
-                                                // 卡住下载库导致"无法重新下载"（文件在权限恢复后可再删）
-                                                DownloadsManager.removeCompleted(file.id)
-                                                if (!deleted) {
-                                                    Toast.makeText(
-                                                        context,
-                                                        "文件已删除失败（权限不足），但已从列表移除，可重新下载",
-                                                        Toast.LENGTH_LONG
-                                                    ).show()
-                                                }
-                                                showDeleteDialog = false
-                                            }
-                                        },
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = MaterialTheme.colorScheme.error,
-                                            contentColor = MaterialTheme.colorScheme.onError
-                                        )
+                                ) {
+                                    Column(
+                                        modifier = Modifier.padding(18.dp),
+                                        verticalArrangement = Arrangement.spacedBy(12.dp)
                                     ) {
-                                        Text(appString(R.string.delete))
-                                    }
-                                },
-                                dismissButton = {
-                                    TextButton(onClick = { showDeleteDialog = false }) {
-                                        Text(appString(R.string.cancel))
-                                    }
-                                }
-                            )
-                        }
-
-                        if (showMetaDialog) {
-                            AlertDialog(
-                                onDismissRequest = { showMetaDialog = false },
-                                icon = { Icon(Icons.Default.Info, contentDescription = null) },
-                                title = {
-                                    Text(
-                                        if (isDriverPkg) appString(R.string.driver_package_info)
-                                        else appString(R.string.file_info_title)
-                                    )
-                                },
-                                text = {
-                                    if (metaInfo == null || metaInfo!!.isEmpty()) {
-                                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                            if (metaInfo == null) {
-                                                // 非驱动文件：基础信息 + 用途说明（按文件名/扩展名推断）
-                                                FileInfoRow(appString(R.string.file_name), file.fileName)
-                                                FileInfoRow(
-                                                    appString(R.string.file_type),
-                                                    file.fileName.substringAfterLast('.', "").uppercase().ifEmpty { "—" }
+                                        Row(verticalAlignment = Alignment.Top) {
+                                            Surface(
+                                                shape = RoundedCornerShape(16.dp),
+                                                color = MaterialTheme.colorScheme.tertiaryContainer
+                                            ) {
+                                                Icon(
+                                                    Icons.Default.InsertDriveFile,
+                                                    contentDescription = null,
+                                                    modifier = Modifier.padding(11.dp),
+                                                    tint = MaterialTheme.colorScheme.onTertiaryContainer
                                                 )
-                                                FileInfoRow(appString(R.string.file_purpose), filePurposeHint(file.fileName))
-                                                val scan = archiveScan
-                                                if (scan != null && scan.keyFiles.isNotEmpty()) {
-                                                    FileInfoRow(appString(R.string.archive_kind), scan.kind)
-                                                    Text(
-                                                        appString(R.string.archive_contains, scan.totalEntries),
-                                                        style = MaterialTheme.typography.bodySmall,
-                                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                                    )
-                                                    Spacer(Modifier.height(4.dp))
-                                                    scan.keyFiles.forEach { so ->
-                                                        Text(
-                                                            "• $so",
-                                                            style = MaterialTheme.typography.labelSmall,
-                                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                            maxLines = 1,
-                                                            overflow = TextOverflow.Ellipsis
-                                                        )
-                                                    }
-                                                }
-                                                FileInfoRow(appString(R.string.file_size), formatBytes(file.sizeBytes))
-                                                FileInfoRow(appString(R.string.file_path), displayPath)
-                                                FileInfoRow(appString(R.string.file_time), formatDate(file.timestamp))
-                                            } else {
-                                                Text(appString(R.string.meta_not_found))
                                             }
-                                        }
-                                    } else {
-                                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                            MetaRow(appString(R.string.meta_name), metaInfo!!.name)
-                                            MetaRow(appString(R.string.meta_driver_version), metaInfo!!.driverVersion)
-                                            MetaRow(appString(R.string.meta_vendor), metaInfo!!.vendor)
-                                            MetaRow(appString(R.string.meta_author), metaInfo!!.author)
-                                            MetaRow(appString(R.string.meta_package_version), metaInfo!!.packageVersion)
-                                            MetaRow(appString(R.string.meta_min_api), metaInfo!!.minApi)
-                                            MetaRow(appString(R.string.meta_library), metaInfo!!.libraryName)
-                                            if (metaInfo!!.description.isNotBlank()) {
-                                                Spacer(Modifier.height(4.dp))
+                                            Spacer(Modifier.width(12.dp))
+                                            Column(modifier = Modifier.weight(1f)) {
                                                 Text(
-                                                    metaInfo!!.description,
+                                                    text = file.fileName,
+                                                    style = MaterialTheme.typography.titleMedium,
+                                                    maxLines = 2
+                                                )
+                                                Text(
+                                                    "${formatBytes(file.sizeBytes)} • ${formatDate(file.timestamp)}",
                                                     style = MaterialTheme.typography.bodySmall,
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                                 )
                                             }
+                                            Icon(
+                                                Icons.Default.CheckCircle,
+                                                contentDescription = appString(R.string.downloaded),
+                                                tint = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
+
+                                        Surface(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            shape = RoundedCornerShape(16.dp),
+                                            color = MaterialTheme.colorScheme.surface
+                                        ) {
+                                            Row(
+                                                modifier = Modifier.padding(12.dp),
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                Icon(
+                                                    Icons.Default.FolderOpen,
+                                                    contentDescription = null,
+                                                    modifier = Modifier.size(18.dp),
+                                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                                )
+                                                Spacer(Modifier.width(8.dp))
+                                                Text(
+                                                    displayPath,
+                                                    style = MaterialTheme.typography.bodySmall,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                    maxLines = 2
+                                                )
+                                            }
+                                        }
+
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                        ) {
+                                            FilledTonalButton(
+                                                onClick = {
+                                                    val uri = exportFileUri(context, file.filePath)
+                                                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                                                        // 按扩展名推断 MIME：像系统文件管理器一样，
+                                                        // 让"打开方式"自动展开可打开该类型的所有应用
+                                                        setDataAndType(uri, mimeTypeForFileName(file.fileName))
+                                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                                    }
+                                                    try {
+                                                        context.startActivity(Intent.createChooser(intent, openWithLabel))
+                                                    } catch (e: Exception) {
+                                                        // 无可用打开程序（zip/so 等常见于文件管理器）：降级用
+                                                        // octet-stream 再试一次（部分文件管理器按通用类型兜底展示）
+                                                        try {
+                                                            val fallback = Intent(Intent.ACTION_VIEW).apply {
+                                                                setDataAndType(uri, "application/octet-stream")
+                                                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                                            }
+                                                            context.startActivity(Intent.createChooser(fallback, openWithLabel))
+                                                        } catch (e2: Exception) {
+                                                            Toast.makeText(
+                                                                context,
+                                                                appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
+                                                                Toast.LENGTH_SHORT
+                                                            ).show()
+                                                        }
+                                                    }
+                                                },
+                                                modifier = Modifier.weight(1f),
+                                                shape = RoundedCornerShape(16.dp)
+                                            ) {
+                                                Icon(Icons.Default.OpenInNew, contentDescription = null)
+                                                Spacer(Modifier.width(7.dp))
+                                                Text(appString(R.string.open))
+                                            }
+
+                                            OutlinedButton(
+                                                onClick = {
+                                                    val uri = exportFileUri(context, file.filePath)
+                                                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                                                        type = "application/octet-stream"
+                                                        putExtra(Intent.EXTRA_STREAM, uri)
+                                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                                    }
+                                                    // 包一层：没有能接收分享的 App 时给提示，不再直接崩
+                                                    runCatching {
+                                                        context.startActivity(Intent.createChooser(shareIntent, shareChooserLabel))
+                                                    }.onFailure {
+                                                        Toast.makeText(
+                                                            context,
+                                                            appStringFor(context, SettingsManager.getAppLanguage(), R.string.no_app_to_open),
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
+                                                },
+                                                modifier = Modifier.weight(1f),
+                                                shape = RoundedCornerShape(16.dp)
+                                            ) {
+                                                Icon(Icons.Default.Share, contentDescription = null)
+                                                Spacer(Modifier.width(7.dp))
+                                                Text(appString(R.string.share))
+                                            }
+
+                                            FilledTonalIconButton(
+                                                onClick = { showDeleteDialog = true },
+                                                colors = IconButtonDefaults.filledTonalIconButtonColors(
+                                                    containerColor = MaterialTheme.colorScheme.errorContainer,
+                                                    contentColor = MaterialTheme.colorScheme.onErrorContainer
+                                                )
+                                            ) {
+                                                Icon(Icons.Default.DeleteOutline, contentDescription = appString(R.string.delete))
+                                            }
+                                        }
+
+                                        // 所有文件类型都提供"查看信息"：驱动包解析 meta.json，其他文件展示基础信息
+                                        OutlinedButton(
+                                            onClick = {
+                                                metaLoading = true
+                                                scope.launch {
+                                                    // 防御性包裹：个别异常文件（坏 zip / 特殊路径）解析失败时
+                                                    // Toast 提示而不是让 App 闪退
+                                                    runCatching {
+                                                        metaInfo = if (isDriverPkg) {
+                                                            DriverMetaParser.parse(context, file.filePath)
+                                                        } else {
+                                                            null
+                                                        }
+                                                        // 非驱动压缩包：轻量扫描内部文件，推断组件类型
+                                                        archiveScan = if (!isDriverPkg && (file.fileName.endsWith(".zip", true) || file.fileName.endsWith(".adpkg", true))) {
+                                                            scanArchiveEntries(file.filePath)
+                                                        } else {
+                                                            null
+                                                        }
+                                                    }.onFailure { e ->
+                                                        android.util.Log.w("EmuBox", "parse file info failed", e)
+                                                        Toast.makeText(
+                                                            context,
+                                                            appStringFor(context, SettingsManager.getAppLanguage(), R.string.file_info_error),
+                                                            Toast.LENGTH_LONG
+                                                        ).show()
+                                                    }
+                                                    metaLoading = false
+                                                    showMetaDialog = true
+                                                }
+                                            },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            shape = RoundedCornerShape(16.dp),
+                                            enabled = !metaLoading
+                                        ) {
+                                            Icon(Icons.Default.Info, contentDescription = null)
+                                            Spacer(Modifier.width(7.dp))
+                                            Text(
+                                                if (metaLoading) appString(R.string.meta_loading)
+                                                else if (isDriverPkg) appString(R.string.view_package_info)
+                                                else appString(R.string.view_file_info)
+                                            )
                                         }
                                     }
-                                },
-                                confirmButton = {
-                                    TextButton(onClick = { showMetaDialog = false }) { Text(appString(R.string.close)) }
                                 }
-                            )
+
+                                if (showDeleteDialog) {
+                                    AlertDialog(
+                                        onDismissRequest = { showDeleteDialog = false },
+                                        icon = { Icon(Icons.Default.DeleteOutline, contentDescription = null) },
+                                        title = { Text(appString(R.string.delete_file)) },
+                                        text = { Text(appString(R.string.delete_confirm, file.fileName)) },
+                                        confirmButton = {
+                                            Button(
+                                                onClick = {
+                                                    scope.launch {
+                                                        val deleted = deleteFile(context, file)
+                                                        // 无论删除成败都移除记录：避免 file:// 死文件记录
+                                                        // 卡住下载库导致"无法重新下载"（文件在权限恢复后可再删）
+                                                        DownloadsManager.removeCompleted(file.id)
+                                                        if (!deleted) {
+                                                            Toast.makeText(
+                                                                context,
+                                                                "文件已删除失败（权限不足），但已从列表移除，可重新下载",
+                                                                Toast.LENGTH_LONG
+                                                            ).show()
+                                                        }
+                                                        showDeleteDialog = false
+                                                    }
+                                                },
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = MaterialTheme.colorScheme.error,
+                                                    contentColor = MaterialTheme.colorScheme.onError
+                                                )
+                                            ) {
+                                                Text(appString(R.string.delete))
+                                            }
+                                        },
+                                        dismissButton = {
+                                            TextButton(onClick = { showDeleteDialog = false }) {
+                                                Text(appString(R.string.cancel))
+                                            }
+                                        }
+                                    )
+                                }
+
+                                if (showMetaDialog) {
+                                    AlertDialog(
+                                        onDismissRequest = { showMetaDialog = false },
+                                        icon = { Icon(Icons.Default.Info, contentDescription = null) },
+                                        title = {
+                                            Text(
+                                                if (isDriverPkg) appString(R.string.driver_package_info)
+                                                else appString(R.string.file_info_title)
+                                            )
+                                        },
+                                        text = {
+                                            if (metaInfo == null || metaInfo!!.isEmpty()) {
+                                                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                                    if (metaInfo == null) {
+                                                        // 非驱动文件：基础信息 + 用途说明（按文件名/扩展名推断）
+                                                        FileInfoRow(appString(R.string.file_name), file.fileName)
+                                                        FileInfoRow(
+                                                            appString(R.string.file_type),
+                                                            file.fileName.substringAfterLast('.', "").uppercase().ifEmpty { "—" }
+                                                        )
+                                                        FileInfoRow(appString(R.string.file_purpose), filePurposeHint(file.fileName))
+                                                        val scan = archiveScan
+                                                        if (scan != null && scan.keyFiles.isNotEmpty()) {
+                                                            FileInfoRow(appString(R.string.archive_kind), scan.kind)
+                                                            Text(
+                                                                appString(R.string.archive_contains, scan.totalEntries),
+                                                                style = MaterialTheme.typography.bodySmall,
+                                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                            )
+                                                            Spacer(Modifier.height(4.dp))
+                                                            scan.keyFiles.forEach { so ->
+                                                                Text(
+                                                                    "• $so",
+                                                                    style = MaterialTheme.typography.labelSmall,
+                                                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                                    maxLines = 1,
+                                                                    overflow = TextOverflow.Ellipsis
+                                                                )
+                                                            }
+                                                        }
+                                                        FileInfoRow(appString(R.string.file_size), formatBytes(file.sizeBytes))
+                                                        FileInfoRow(appString(R.string.file_path), displayPath)
+                                                        FileInfoRow(appString(R.string.file_time), formatDate(file.timestamp))
+                                                    } else {
+                                                        Text(appString(R.string.meta_not_found))
+                                                    }
+                                                }
+                                            } else {
+                                                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                                    MetaRow(appString(R.string.meta_name), metaInfo!!.name)
+                                                    MetaRow(appString(R.string.meta_driver_version), metaInfo!!.driverVersion)
+                                                    MetaRow(appString(R.string.meta_vendor), metaInfo!!.vendor)
+                                                    MetaRow(appString(R.string.meta_author), metaInfo!!.author)
+                                                    MetaRow(appString(R.string.meta_package_version), metaInfo!!.packageVersion)
+                                                    MetaRow(appString(R.string.meta_min_api), metaInfo!!.minApi)
+                                                    MetaRow(appString(R.string.meta_library), metaInfo!!.libraryName)
+                                                    if (metaInfo!!.description.isNotBlank()) {
+                                                        Spacer(Modifier.height(4.dp))
+                                                        Text(
+                                                            metaInfo!!.description,
+                                                            style = MaterialTheme.typography.bodySmall,
+                                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        confirmButton = {
+                                            TextButton(onClick = { showMetaDialog = false }) { Text(appString(R.string.close)) }
+                                        }
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -770,6 +787,123 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                     }
                 }
             }
+        }
+    }
+}
+
+/** 下载库的项目分组：同一 GitHub 仓库（或同一目录分类）下的文件归为一组 */
+private data class DownloadGroup(
+    val key: String,
+    val label: String,
+    val versions: List<String>,
+    val files: List<DownloadsManager.CompletedDownload>
+) {
+    val sizeBytes: Long get() = files.sumOf { it.sizeBytes }
+    val latestAt: Long get() = files.maxOfOrNull { it.timestamp } ?: 0L
+}
+
+/**
+ * 按项目归组，组间按最近下载时间倒序、组内按时间倒序。
+ *
+ * 不按文件名猜项目：归属要么来自下载 URL（准确），要么明确退回
+ * 「目录分类 / 扩展名」这种能一眼看懂的弱分组，不做模糊匹配。
+ */
+private fun groupCompletedDownloads(
+    files: List<DownloadsManager.CompletedDownload>
+): List<DownloadGroup> = files
+    .groupBy { it.projectKey }
+    .map { (key, list) ->
+        val sorted = list.sortedByDescending { it.timestamp }
+        DownloadGroup(
+            key = key,
+            label = sorted.first().projectLabel,
+            versions = sorted.map { it.versionLabel }.filter { it.isNotBlank() }.distinct(),
+            files = sorted
+        )
+    }
+    .sortedByDescending { it.latestAt }
+
+@Composable
+private fun DownloadProjectHeader(
+    group: DownloadGroup,
+    expanded: Boolean,
+    onToggle: () -> Unit
+) {
+    val meta = buildString {
+        append(appString(R.string.download_group_files, group.files.size))
+        append(" · ")
+        append(formatBytes(group.sizeBytes))
+        if (group.versions.size > 1) {
+            append(" · ")
+            append(appString(R.string.download_group_versions, group.versions.size))
+        }
+        append(" · ")
+        // 相对时间而非完整日期：组头一行要同时放文件数/体积/版本，绝对日期会被截断
+        append(formatRelativeTimeMs(group.latestAt))
+    }
+    Card(
+        onClick = onToggle,
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(22.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 13.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                shape = RoundedCornerShape(14.dp),
+                color = MaterialTheme.colorScheme.tertiaryContainer
+            ) {
+                Icon(
+                    Icons.Default.Folder,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(9.dp)
+                        .size(18.dp),
+                    tint = MaterialTheme.colorScheme.onTertiaryContainer
+                )
+            }
+            Spacer(Modifier.width(11.dp))
+            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = group.label,
+                        style = MaterialTheme.typography.titleSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    // 版本号放标题行右侧：分组后用户最想知道「这组是不是我要的版本」
+                    group.versions.firstOrNull()?.let { v ->
+                        Spacer(Modifier.width(6.dp))
+                        Surface(
+                            shape = RoundedCornerShape(6.dp),
+                            color = MaterialTheme.colorScheme.secondaryContainer
+                        ) {
+                            Text(
+                                text = v,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                maxLines = 1
+                            )
+                        }
+                    }
+                }
+                Text(
+                    text = meta,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Fusion.OnSurfaceFaint,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Icon(
+                imageVector = if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }

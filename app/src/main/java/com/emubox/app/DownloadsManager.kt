@@ -41,8 +41,13 @@ object DownloadsManager {
         val speedBytesPerSec: Long = 0L,
         val subPath: String = "",
         /** 最近一次失败的 HTTP 码/异常，UI 展示便于定位下载失败根因 */
-        val lastError: String? = null
+        val lastError: String? = null,
+        /** 未加速的原始下载地址，用于解析项目归属（url 可能已被改写成代理域名） */
+        val sourceUrl: String = ""
     ) {
+        /** 解析项目归属时优先用未加速的直链 */
+        val originUrl: String get() = sourceUrl.ifBlank { url }
+
         fun toJson(): JSONObject = JSONObject().apply {
             put("fileName", fileName)
             put("progress", progress)
@@ -55,6 +60,7 @@ object DownloadsManager {
             put("speedBytesPerSec", speedBytesPerSec)
             put("subPath", subPath)
             put("lastError", lastError)
+            put("sourceUrl", sourceUrl)
         }
 
         companion object {
@@ -85,7 +91,8 @@ object DownloadsManager {
                     usesMediaStore = json.optBoolean("usesMediaStore", false),
                     speedBytesPerSec = 0L,
                     subPath = json.optString("subPath", ""),
-                    lastError = if (json.has("lastError")) json.optString("lastError") else null
+                    lastError = if (json.has("lastError")) json.optString("lastError") else null,
+                    sourceUrl = json.optString("sourceUrl", "")
                 )
             }
         }
@@ -97,8 +104,27 @@ object DownloadsManager {
         val filePath: String,
         val sizeBytes: Long,
         val timestamp: Long,
-        val subPath: String = ""
+        val subPath: String = "",
+        /**
+         * 原始下载 URL（未加速）。用于解析项目归属，让下载库能按仓库分组。
+         * 1.4.0 之前产生的记录没有这个字段，解析不出来时退回 subPath 分组。
+         */
+        val sourceUrl: String = ""
     ) {
+        /** 项目归属（owner/repo/tag），解析不出为 null */
+        val origin: DownloadOrigin? by lazy { DownloadOrigins.parse(sourceUrl) }
+
+        /** 分组键：同仓库多版本合成一组；解析不出时按下载目录分类兜底 */
+        val projectKey: String by lazy {
+            origin?.key ?: DownloadOrigins.fallbackKey(fileName, subPath)
+        }
+
+        val projectLabel: String by lazy {
+            origin?.label ?: DownloadOrigins.fallbackLabel(subPath, fileName)
+        }
+
+        val versionLabel: String by lazy { origin?.versionLabel.orEmpty() }
+
         fun toJson(): JSONObject = JSONObject().apply {
             put("id", id)
             put("fileName", fileName)
@@ -106,6 +132,7 @@ object DownloadsManager {
             put("sizeBytes", sizeBytes)
             put("timestamp", timestamp)
             put("subPath", subPath)
+            put("sourceUrl", sourceUrl)
         }
 
         companion object {
@@ -122,7 +149,8 @@ object DownloadsManager {
                     filePath = filePath,
                     sizeBytes = sizeBytes,
                     timestamp = timestamp,
-                    subPath = subPath
+                    subPath = subPath,
+                    sourceUrl = json.optString("sourceUrl", "")
                 )
             }
         }
@@ -219,7 +247,8 @@ object DownloadsManager {
                     d.outputUri.ifBlank { "/unknown" },
                     d.downloadedBytes,
                     System.currentTimeMillis(),
-                    d.subPath
+                    d.subPath,
+                    sourceUrl = d.originUrl
                 )
             )
         }
@@ -236,7 +265,9 @@ object DownloadsManager {
         outputUri: String,
         usesMediaStore: Boolean,
         totalBytes: Long = 0L,
-        subPath: String = ""
+        subPath: String = "",
+        /** 未加速的原始下载地址；为空时退回 url 本身解析项目归属 */
+        sourceUrl: String = ""
     ) {
         _activeDownloads[fileName] = ActiveDownload(
             fileName = fileName,
@@ -247,7 +278,8 @@ object DownloadsManager {
             url = url,
             outputUri = outputUri,
             usesMediaStore = usesMediaStore,
-            subPath = subPath
+            subPath = subPath,
+            sourceUrl = sourceUrl.ifBlank { url }
         )
         saveActiveDownloads(force = true)
         syncDownloadService()
@@ -350,6 +382,8 @@ object DownloadsManager {
     }
 
     fun completeDownload(fileName: String, filePath: String, sizeBytes: Long, subPath: String = "") {
+        // 项目归属要从下载中的记录里取，remove 之后就没了
+        val sourceUrl = _activeDownloads[fileName]?.sourceUrl.orEmpty()
         _activeDownloads.remove(fileName)
         saveActiveDownloads(force = true)
 
@@ -366,7 +400,8 @@ object DownloadsManager {
                 filePath,
                 sizeBytes,
                 System.currentTimeMillis(),
-                subPath
+                subPath,
+                sourceUrl = sourceUrl
             )
         )
         saveCompletedDownloads()
@@ -393,7 +428,8 @@ object DownloadsManager {
                     d.outputUri.ifBlank { "/unknown" },
                     d.downloadedBytes,
                     System.currentTimeMillis(),
-                    d.subPath
+                    d.subPath,
+                    sourceUrl = d.originUrl
                 )
             )
             saveActiveDownloads(force = true)
@@ -418,6 +454,13 @@ object DownloadsManager {
     fun removeCompleted(id: String) {
         _completedDownloads.removeAll { it.id == id }
         saveCompletedDownloads()
+    }
+
+    /** 仅供截图/单元测试注入样本记录，不参与业务逻辑 */
+    @androidx.annotation.VisibleForTesting
+    fun replaceCompletedForTest(items: List<CompletedDownload>) {
+        _completedDownloads.clear()
+        _completedDownloads.addAll(items)
     }
 
     fun clearCompleted() {

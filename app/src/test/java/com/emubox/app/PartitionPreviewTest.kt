@@ -46,6 +46,8 @@ class PartitionPreviewTest {
         SettingsManager.init(ctx)
         // 预热内置离线新闻副本：否则截图时新闻区块还停在异步加载前的「共 0 条」
         NewsRepository.loadFromAssets(ctx)
+        // 下载记录是进程级单例，上个用例灌的样本会漏到下一个用例
+        DownloadsManager.replaceCompletedForTest(emptyList())
     }
 
     // ── 数据准备 ────────────────────────────────────────────────
@@ -886,6 +888,80 @@ class PartitionPreviewTest {
         }
         settle(10)
         save("p6-downloads.png")
+    }
+
+    /**
+     * 下载库按项目分组：4 个组，其中「单文件的组」直接展开，
+     * 其余多文件组收起，只显示「N 个文件 · 大小 · 时间」。
+     */
+    @Test
+    fun p6bDownloadsGrouped() {
+        DownloadsManager.replaceCompletedForTest(downloadSamples())
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DownloadsScreen(onBack = {}, showBack = true)
+                    }
+                }
+            }
+        }
+        settle(4)
+        save("p6b-downloads-grouped.png")
+    }
+
+    @Test
+    fun p6cDownloadsGroupExpanded() {
+        DownloadsManager.replaceCompletedForTest(downloadSamples())
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DownloadsScreen(onBack = {}, showBack = true)
+                    }
+                }
+            }
+        }
+        settle(4)
+        compose.onNodeWithText("Adreno-Tools-Drivers").performClick()
+        settle(2)
+        save("p6c-downloads-group-expanded.png")
+    }
+
+    /** 样本：真实仓库 + 真实文件名，时间相对当前倒推，覆盖「已解析 / 未解析」两种分组 */
+    private fun downloadSamples(): List<DownloadsManager.CompletedDownload> {
+        val now = System.currentTimeMillis()
+        val hour = 3_600_000L
+        fun item(
+            id: String,
+            name: String,
+            sizeMb: Long,
+            hoursAgo: Long,
+            url: String,
+            subPath: String = "Drivers"
+        ) = DownloadsManager.CompletedDownload(
+            id = id,
+            fileName = name,
+            filePath = "/storage/emulated/0/Download/EmuBox/$subPath/$name",
+            sizeBytes = sizeMb * 1024 * 1024,
+            timestamp = now - hoursAgo * hour,
+            subPath = subPath,
+            sourceUrl = url
+        )
+        return listOf(
+            // 组 1：同一仓库三个版本 → 收起
+            item("d1", "Turnip-26.2.zip", 52, 3, "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v26.2/Turnip-26.2.zip"),
+            item("d2", "Turnip-26.1.zip", 51, 26, "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v26.1/Turnip-26.1.zip"),
+            item("d3", "Turnip-26.0.zip", 50, 120, "https://github.com/StevenMXZ/Adreno-Tools-Drivers/releases/download/v26.0/Turnip-26.0.zip"),
+            // 组 2：另一仓库两个文件 → 收起
+            item("d4", "AdrenoTools-v25.1-a7xx.zip", 38, 8, "https://github.com/K11MCH1/AdrenoToolsDrivers/releases/download/v25.1/AdrenoTools-v25.1-a7xx.zip"),
+            item("d5", "AdrenoTools-v25.1-a6xx.zip", 36, 30, "https://github.com/K11MCH1/AdrenoToolsDrivers/releases/download/v25.1/AdrenoTools-v25.1-a6xx.zip"),
+            // 组 3：单个文件 → 直接展开
+            item("d6", "EmuBox-1.4.0-pre.apk", 49, 1, "https://github.com/mihsian77/Emubox/releases/download/v1.4.0-pre/EmuBox-1.4.0-pre.apk", "Apps"),
+            // 组 4：无 sourceUrl 的旧记录 → 按目录兜底归到「Drivers」
+            item("d7", "mesa-turnip-24.3.zip", 44, 200, ""),
+            item("d8", "dxvk-2.4.1.wcp", 12, 210, "")
+        )
     }
 
     @Test

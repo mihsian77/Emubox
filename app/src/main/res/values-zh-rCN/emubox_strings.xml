@@ -407,6 +407,8 @@
     <string name="guide_d7vk_tip2">有些老游戏提供 OpenGL 或 Glide 渲染器，可能效果更好。</string>
     <string name="guide_d7vk_tip3">老游戏通常需要图形转译层之外的游戏特定修复。</string>
     <string name="active_downloads_count">%1$d 个进行中的下载</string>
+    <string name="download_group_files">%1$d 个文件</string>
+    <string name="download_group_versions">%1$d 个版本</string>
     <string name="open_with">打开方式</string>
     <string name="system_downloads_folder">系统下载文件夹</string>
     <string name="custom_folder">自定义文件夹</string>

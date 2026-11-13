@@ -1053,7 +1053,9 @@ private suspend fun downloadFileWithProgress(
             url = url,
             outputUri = outputUri.toString(),
             usesMediaStore = usesMediaStore,
-            subPath = subPath
+            subPath = subPath,
+            // 项目归属靠原始直链解析，url 可能已被改写成代理域名
+            sourceUrl = originalUrl ?: extractOriginalUrlIfAccelerated(url) ?: url
         )
         Toast.makeText(context, "Download started: $uniqueFileName", Toast.LENGTH_SHORT).show()
     }

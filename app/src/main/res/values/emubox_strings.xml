@@ -410,6 +410,8 @@
     <string name="guide_d7vk_tip2">Some old games offer OpenGL or Glide renderers that may work better.</string>
     <string name="guide_d7vk_tip3">Legacy games often need game-specific fixes beyond the graphics translation layer.</string>
     <string name="active_downloads_count">%1$d active downloads</string>
+    <string name="download_group_files">%1$d files</string>
+    <string name="download_group_versions">%1$d versions</string>
     <string name="open_with">Open with</string>
     <string name="system_downloads_folder">System Downloads folder</string>
     <string name="custom_folder">Custom folder</string>
