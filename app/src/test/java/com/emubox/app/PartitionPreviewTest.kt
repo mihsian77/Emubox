@@ -14,6 +14,7 @@ import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasScrollToIndexAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
@@ -972,7 +973,9 @@ class PartitionPreviewTest {
             }
         }
         settle(6)
-        compose.onNodeWithText("驱动组件 44").performClick()
+        // 分类 chip 带实时条数（如「驱动组件 44」），条数随每日新闻刷新变化，
+        // 按 testTag 定位而不是拼死文本，避免数据一刷新测试就挂
+        compose.onNodeWithTag("news_category_driver").performClick()
         settle(2)
         save("p7b-news-driver.png")
     }

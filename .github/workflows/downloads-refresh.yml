@@ -23,6 +23,11 @@ on:
 permissions:
   contents: write
 
+# 与数据工作流共用互斥组，防并发推送 main 冲突
+concurrency:
+  group: data-push-main
+  cancel-in-progress: false
+
 jobs:
   refresh-downloads:
     runs-on: ubuntu-latest
@@ -46,12 +51,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/fetch_downloads.py --api --limit ${{ inputs.limit || 0 }}
 
+      - name: 重建派生文件（downloads 字段会进索引与离线包）
+        # registry 的 downloads 变了但索引没重建 → ci-data.yml 索引对账必挂
+        run: python3 scripts/build_index.py
+
       - name: 有变化则提交
         run: |
-          if ! git diff --quiet -- emulator-registry.json; then
+          PATHS="emulator-registry.json \
+                 emulator-index.json \
+                 emulator-details-*.json \
+                 app/src/main/assets/emulator-offline.json"
+          if ! git diff --quiet -- $PATHS; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add emulator-registry.json
+            git add $PATHS
             git commit -m "chore(downloads): 每周刷新 release 下载量"
             git push
           else

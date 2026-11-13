@@ -50,6 +50,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -208,14 +209,29 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                             SpecItem(appString(R.string.stored), formatBytes(completedBytes)),
                         )
                     )
-                    // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位「扫不出」根因
+                    // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位「扫不出」根因。
+                    // 「扫描未完成/目录不可读」意味着文件列表可能缺块，之前用 11sp 浅灰脚注，
+                    // 实测整行几乎看不见（截图里直接被当装饰忽略），降级状态改为可见告警行。
                     val scanNote = DownloadsManager.lastScanNote
                     if (scanNote.isNotBlank()) {
-                        Text(
-                            scanNote,
-                            fontSize = 11.sp,
-                            color = Fusion.OnSurfaceFaint,
-                        )
+                        val degraded = scanNote.contains("未完成") || scanNote.contains("不可读")
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            if (degraded) {
+                                Icon(
+                                    Icons.Default.Warning,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.size(14.dp)
+                                )
+                                Spacer(Modifier.width(6.dp))
+                            }
+                            Text(
+                                scanNote,
+                                fontSize = if (degraded) 12.sp else 11.sp,
+                                color = if (degraded) MaterialTheme.colorScheme.error
+                                else Fusion.OnSurfaceFaint,
+                            )
+                        }
                     }
                 }
             }
@@ -681,9 +697,10 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                             )
                                         },
                                         text = {
-                                            if (metaInfo == null || metaInfo!!.isEmpty()) {
+                                            val mi = metaInfo
+                                            if (mi == null || mi.isEmpty()) {
                                                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                                    if (metaInfo == null) {
+                                                    if (mi == null) {
                                                         // 非驱动文件：基础信息 + 用途说明（按文件名/扩展名推断）
                                                         FileInfoRow(appString(R.string.file_name), file.fileName)
                                                         FileInfoRow(
@@ -719,17 +736,17 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                                 }
                                             } else {
                                                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                                    MetaRow(appString(R.string.meta_name), metaInfo!!.name)
-                                                    MetaRow(appString(R.string.meta_driver_version), metaInfo!!.driverVersion)
-                                                    MetaRow(appString(R.string.meta_vendor), metaInfo!!.vendor)
-                                                    MetaRow(appString(R.string.meta_author), metaInfo!!.author)
-                                                    MetaRow(appString(R.string.meta_package_version), metaInfo!!.packageVersion)
-                                                    MetaRow(appString(R.string.meta_min_api), metaInfo!!.minApi)
-                                                    MetaRow(appString(R.string.meta_library), metaInfo!!.libraryName)
-                                                    if (metaInfo!!.description.isNotBlank()) {
+                                                    MetaRow(appString(R.string.meta_name), mi.name)
+                                                    MetaRow(appString(R.string.meta_driver_version), mi.driverVersion)
+                                                    MetaRow(appString(R.string.meta_vendor), mi.vendor)
+                                                    MetaRow(appString(R.string.meta_author), mi.author)
+                                                    MetaRow(appString(R.string.meta_package_version), mi.packageVersion)
+                                                    MetaRow(appString(R.string.meta_min_api), mi.minApi)
+                                                    MetaRow(appString(R.string.meta_library), mi.libraryName)
+                                                    if (mi.description.isNotBlank()) {
                                                         Spacer(Modifier.height(4.dp))
                                                         Text(
-                                                            metaInfo!!.description,
+                                                            mi.description,
                                                             style = MaterialTheme.typography.bodySmall,
                                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                                         )
@@ -1881,10 +1898,11 @@ private fun AcceleratorSettingsCard() {
                 }
             }
 
-            if (mode == Accelerator.Mode.AUTO && autoResult != null) {
+            val autoRes = autoResult
+            if (mode == Accelerator.Mode.AUTO && autoRes != null) {
                 Spacer(Modifier.height(12.dp))
                 Text(
-                    text = appString(R.string.accelerator_auto_result, autoResult!!.first, autoResult!!.second),
+                    text = appString(R.string.accelerator_auto_result, autoRes.first, autoRes.second),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -6574,8 +6592,10 @@ fun DeviceScreen(
                     }
                 }
             }
-        } else if (vulkanPayload != null && vulkanPayload!!.devices.isNotEmpty()) {
-            val device = vulkanPayload!!.devices[0]
+        } else {
+            val vp = vulkanPayload
+            if (vp != null && vp.devices.isNotEmpty()) {
+                val device = vp.devices[0]
 
             item(key = "vulkan_overview") {
                 Card(
@@ -6803,6 +6823,7 @@ fun DeviceScreen(
                     )
                 }
             }
+            }
         }
 
         // GPU 跑分并入「实测」子分区的驱动实测卡：同一份驱动、同一次测试里
@@ -6897,8 +6918,12 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
     }
 
     // 展示口径：本机有报告 → 本机；否则用同 SoC 聚合表（不再引导去官网）
-    val deviceSystems = compat?.systems.orEmpty()
-    val socSystems = socCompat?.systems.orEmpty()
+    // 快照：下方 when 里不再二次读状态（后台协程可能在两次读取间把它置空，!! 会 NPE）
+    val compatSnapshot = compat
+    val socCompatSnapshot = socCompat
+    val matchSnapshot = match
+    val deviceSystems = compatSnapshot?.systems.orEmpty()
+    val socSystems = socCompatSnapshot?.systems.orEmpty()
     val useDevice = deviceSystems.isNotEmpty()
     val rows = if (useDevice) deviceSystems.size else socSystems.size
 
@@ -6915,12 +6940,13 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                     Text(appString(R.string.emuready_title), style = MaterialTheme.typography.titleSmall)
                     val deviceLine = when {
                         loading && rows == 0 -> appString(R.string.emuready_loading)
-                        useDevice -> "${compat!!.brandName} ${compat!!.modelName} · ${compat!!.socName}"
-                        socCompat != null -> {
-                            val n = socCompat!!.devices.size.coerceAtLeast(1)
-                            appString(R.string.emuready_soc_line, socCompat!!.soc, n)
+                        useDevice -> compatSnapshot?.let { "${it.brandName} ${it.modelName} · ${it.socName}" }
+                            ?: appString(R.string.emuready_no_data)
+                        socCompatSnapshot != null -> {
+                            val n = socCompatSnapshot.devices.size.coerceAtLeast(1)
+                            appString(R.string.emuready_soc_line, socCompatSnapshot.soc, n)
                         }
-                        match != null -> "${match!!.device.brandName} ${match!!.device.modelName} · ${appString(R.string.emuready_no_report)}"
+                        matchSnapshot != null -> "${matchSnapshot.device.brandName} ${matchSnapshot.device.modelName} · ${appString(R.string.emuready_no_report)}"
                         else -> appString(R.string.emuready_no_data)
                     }
                     Text(
@@ -6937,7 +6963,7 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
             Spacer(Modifier.height(6.dp))
             val (badge, tint) = when {
                 useDevice -> appString(R.string.emuready_badge_device) to MaterialTheme.colorScheme.primary
-                socCompat != null -> appString(R.string.emuready_badge_soc) to MaterialTheme.colorScheme.secondary
+                socCompatSnapshot != null -> appString(R.string.emuready_badge_soc) to MaterialTheme.colorScheme.secondary
                 else -> appString(R.string.emuready_badge_none) to MaterialTheme.colorScheme.outline
             }
             Surface(shape = RoundedCornerShape(6.dp), color = tint.copy(alpha = 0.14f)) {
@@ -7968,6 +7994,8 @@ private fun DriverDetectionList(
                     Spacer(Modifier.height(10.dp))
                     Divider()
                     Spacer(Modifier.height(6.dp))
+                    // 快照：map 状态在两次读取间可能被后台协程改写，先取一次
+                    val brForId = benchmarkResults[download.id]
                     when {
                         benchmarkingId == download.id -> {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -7979,8 +8007,8 @@ private fun DriverDetectionList(
                                 )
                             }
                         }
-                        benchmarkResults[download.id] != null -> {
-                            val br = benchmarkResults[download.id]!!
+                        brForId != null -> {
+                            val br = brForId
                             if (br.success) {
                                 Text(
                                     "该驱动实测（${br.deviceName}）",
@@ -8722,8 +8750,8 @@ private fun DriverReleaseDialog(item: DriverNewsItem, onDismiss: () -> Unit) {
     val scope = rememberCoroutineScope()
     var translated by remember { mutableStateOf<String?>(null) }
     var translating by remember { mutableStateOf(false) }
-    val baseText = item.body.trim()
-    val showText = translated ?: baseText
+    val baseText = cleanReleaseNotes(item.body)
+    val showText = cleanReleaseNotes(translated ?: baseText)
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f),
@@ -10635,7 +10663,7 @@ private fun NewsRowItem(item: NewsItem) {
                 if (item.commentCount > 0) {
                     Spacer(Modifier.width(6.dp))
                     Text(
-                        "· ${item.commentCount}评",
+                        "· ${item.commentCount} 条评论",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -10735,8 +10763,9 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                             }
                             // Release 正文是 Markdown 原文，直接 Text 渲染会把 ## / ** / [文字](网址)
                             // 原样显示出来；翻译结果已是纯文本，不再处理
-                            val shownBody = remember(item.id, translated, baseText) {
-                                if (translated != null) translated!!.trim()
+                            val transSnapshot = translated
+                            val shownBody = remember(item.id, transSnapshot, baseText) {
+                                if (transSnapshot != null) transSnapshot.trim()
                                 else if (isOfficial) cleanReleaseBody(baseText)
                                 else baseText
                             }
@@ -11656,6 +11685,8 @@ private fun VersionDiffDialog(
                     )
                 }
                 HorizontalDivider()
+                // 快照：commits 是状态委托，when 各分支只读快照，避免后台协程置空后 !! 崩
+                val cmts = commits
                 when {
                     fromIdx == toIdx || from == null || to == null -> {
                         Text(
@@ -11671,10 +11702,10 @@ private fun VersionDiffDialog(
                             Text(appString(R.string.version_diff_loading), style = MaterialTheme.typography.bodySmall)
                         }
                     }
-                    commits != null && commits!!.isNotEmpty() -> {
+                    cmts != null && cmts.isNotEmpty() -> {
                         // 摘要行
                         Text(
-                            appString(R.string.version_diff_commits, commits!!.size, from.tag, to.tag),
+                            appString(R.string.version_diff_commits, cmts.size, from.tag, to.tag),
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -11685,7 +11716,7 @@ private fun VersionDiffDialog(
                                 onClick = {
                                     scope.launch {
                                         translating = true
-                                        val joined = commits!!.joinToString("\n") { it.message }
+                                        val joined = cmts.joinToString("\n") { it.message }
                                         translated = translateReleaseNotes(joined) ?: joined
                                         translating = false
                                     }
@@ -11701,11 +11732,11 @@ private fun VersionDiffDialog(
                             }
                         }
                         // 提交列表（译文优先）
-                        val shown = translated ?: commits!!.joinToString("\n") { it.message }
+                        val shown = translated ?: cmts.joinToString("\n") { it.message }
                         if (translated != null) {
                             Text(shown, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface)
                         } else {
-                            commits!!.forEach { c ->
+                            cmts.forEach { c ->
                                 Column {
                                     Text(c.message, style = MaterialTheme.typography.bodySmall, maxLines = 3, overflow = TextOverflow.Ellipsis)
                                     Text(
@@ -12201,10 +12232,11 @@ private fun EmulatorRecipesCard(recipes: List<EmulatorRecipe>) {
 private fun FusionFilterChip(
     label: String,
     selected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(10.dp))
             .background(
                 if (selected) Brush.linearGradient(colors = listOf(Fusion.GradientStart, Fusion.GradientEnd))
@@ -13326,7 +13358,9 @@ internal fun EmulatorDetailDialog(
                     }
                 }
                 // EmuReady 社区数据入口（按模拟器名匹配，命中才显示）
-                if (!emuReadyLoading && emuReadyInfo != null && emuReadyInfo!!.listingsCount > 0) {
+                // 快照：emuReadyInfo 是状态委托，两次读取间可能被后台协程置空
+                val erInfo = emuReadyInfo
+                if (!emuReadyLoading && erInfo != null && erInfo.listingsCount > 0) {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
                         color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f),
@@ -13349,7 +13383,7 @@ internal fun EmulatorDetailDialog(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text("EmuReady 社区数据", style = MaterialTheme.typography.titleSmall)
                                 Text(
-                                    "该模拟器在 EmuReady 有 ${emuReadyInfo!!.listingsCount} 条兼容性报告 · 点击查看推荐设置",
+                                    "该模拟器在 EmuReady 有 ${erInfo.listingsCount} 条兼容性报告 · 点击查看推荐设置",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,
@@ -13517,7 +13551,9 @@ internal fun EmulatorDetailDialog(
                                     // 这层嵌套滚动几乎拖不动，还把资产列表推到屏幕外。
                                     // 改成默认 4 行、点一下展开，进来的第一眼就能看到文件名。
                                     var logExpanded by remember(rel.tag) { mutableStateOf(false) }
-                                    val logText = translatedMap[rel.tag] ?: rel.body
+                                    // 官方日志是 Markdown 原文：不清理会直接露出 "## 标题"、
+                                    // "**粗体**" 星号和 [文字](链接) 裸链接（见 Termux 详情实测）
+                                    val logText = cleanReleaseNotes(translatedMap[rel.tag] ?: rel.body)
                                     Text(
                                         logText,
                                         style = MaterialTheme.typography.bodySmall,
@@ -14637,7 +14673,9 @@ fun NewsFeedScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     var newsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     var query by remember { mutableStateOf("") }
-    var category by remember { mutableStateOf("all") }
+    // 默认落在「模拟器」而不是「全部」：实测全部 267 条里 107 条是泛科技（相机、显示器、
+    // 汽车、AI 论文），首屏全是与模拟器/驱动无关的内容，产品定位直接被冲散。
+    var category by remember { mutableStateOf("emulator") }
     var typeFilter by remember { mutableStateOf("") }
     var reloadToken by remember { mutableStateOf(0) }
     var refreshing by remember { mutableStateOf(false) }
@@ -14742,7 +14780,8 @@ fun NewsFeedScreen(modifier: Modifier = Modifier) {
                             FusionFilterChip(
                                 label = "${newsCategoryText(c)} $n",
                                 selected = category == c,
-                                onClick = { category = c; typeFilter = "" }
+                                onClick = { category = c; typeFilter = "" },
+                                modifier = Modifier.testTag("news_category_$c")
                             )
                         }
                     }
