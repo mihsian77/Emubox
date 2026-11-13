@@ -32,14 +32,31 @@ jobs:
         run: |
           python3 scripts/aggregate-recipes.py --clone
 
+      - name: 重建派生文件（索引/离线包/源说明）
+        # registry 或 catalog 变了必须重建，否则下次 push 触发数据校验必挂：
+        # ci-data.yml 会用 build_index.py / build_source_profiles.py 重新生成并对账
+        run: |
+          python3 scripts/build_index.py
+          python3 scripts/build_source_profiles.py
+
       - name: 有变化则提交
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! git diff --quiet -- driver-registry.json app/src/main/assets/driver-registry.json catalog/catalog.json emulator-ranking.json emulator-registry.json app/src/main/assets/winlator-recipes.json; then
+          PATHS="driver-registry.json \
+                 app/src/main/assets/driver-registry.json \
+                 catalog/catalog.json \
+                 emulator-ranking.json \
+                 emulator-registry.json \
+                 app/src/main/assets/winlator-recipes.json \
+                 emulator-index.json \
+                 emulator-details-*.json \
+                 app/src/main/assets/emulator-offline.json \
+                 app/src/main/assets/source-profiles.json"
+          if ! git diff --quiet -- $PATHS; then
             git config user.name "emubox-ci[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add driver-registry.json app/src/main/assets/driver-registry.json catalog/catalog.json emulator-ranking.json emulator-registry.json app/src/main/assets/winlator-recipes.json
+            git add $PATHS
             git commit -m "chore: 每日刷新驱动/模拟器/排行/配置推荐数据"
             # checkout 默认无推送权限，显式带 token 推送
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"

@@ -50,6 +50,8 @@ jobs:
           python3 scripts/aggregate-recipes.py --clone
           # registry 变了必须重建索引，否则 App 首屏还是旧数据
           python3 scripts/build_index.py
+          # driver-registry 变了也要重刷源说明，否则 profile-check 对账必挂
+          python3 scripts/build_source_profiles.py
 
       # 3) EmuReady 目录（仅标准库）
       - name: 刷新 EmuReady 目录
@@ -98,6 +100,10 @@ jobs:
                  emulator-registry.json \
                  app/src/main/assets/winlator-recipes.json \
                  app/src/main/assets/emuready-catalog.json \
+                 emulator-index.json \
+                 emulator-details-*.json \
+                 app/src/main/assets/emulator-offline.json \
+                 app/src/main/assets/source-profiles.json \
                  ranking-history ranking.json \
                  app/src/main/assets/bench app/src/main/assets/soc_master.json bench-data"
           if git diff --quiet -- $PATHS; then
