@@ -17,7 +17,7 @@ VALID_SOURCES = {"github", "gitea", "gitlab", "gitee", "notabug",
                  "official-web", "official-play", "community-archive"}
 BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}
 # 已知的自建 Gitea / Forgejo 实例。source=gitea 的 repo_url 必须落在其一。
-GITEA_HOSTS = ("git.eden-emu.dev", "git.ryujinx.app")
+GITEA_HOSTS = ("git.eden-emu.dev", "git.ryujinx.app", "git.mythrax-rs.org")
 # 桌面 / libretro 条目的分发物本就是 zip / tar.gz / AppImage / exe，
 # 对它们套用「安卓安装包」扩展名黑名单属于误判。
 DESKTOP_RUNTIMES = {"desktop", "libretro"}
