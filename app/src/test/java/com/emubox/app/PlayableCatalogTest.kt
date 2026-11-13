@@ -88,4 +88,45 @@ class PlayableCatalogTest {
         assertEquals(1, r.platforms.first { it.key == "switch" }.appCount)
         assertEquals(0, r.platforms.first { it.key == "gamecube" }.appCount)
     }
+
+    /** 差距要能算成「再补多少分」，这是界面上最可执行的一个数字。 */
+    @Test
+    fun `差距按门槛四舍五入`() {
+        val r = report("SM8750-AB") // 489.2 分
+        val sw = r.platforms.first { it.key == "switch" } // 流畅线 600
+        assertEquals(111, sw.gapToNextTier(r.score))
+        assertEquals(111, sw.pointsToSmooth(r.score!!))
+        // PS2 已达标，差距必须是 0 而不是负数
+        val ps2 = r.platforms.first { it.key == "ps2" }
+        assertEquals(0, ps2.gapToNextTier(r.score))
+        assertEquals(0, ps2.pointsToSmooth(r.score!!))
+    }
+
+    /**
+     * 结论句与「下一步」都挂在「离流畅线最近的平台」上：
+     * 旗舰机没有吃力平台，但 Switch 仍差一口，这条链路不能空。
+     */
+    @Test
+    fun `旗舰的最近未达标平台与驱动建议`() {
+        val r = report("SM8750-AB")
+        assertEquals(null, r.nearTight) // 489 分下没有平台掉到「吃力」
+        assertEquals("switch", r.nearBelowSmooth?.key)
+        assertEquals("Turnip", r.driverHint)
+        // 天玑 9300 是 Immortalis（ARM Mali 系），开源驱动走 PanVK
+        assertEquals("PanVK", report("MT6989").driverHint)
+    }
+
+    /** 同芯片社区实测：8 Elite 能对上 EmuReady，且只在该平台有足够报告时才挂上去。 */
+    @Test
+    fun `同芯片社区实测挂到平台行`() {
+        val r = report("SM8750-AB")
+        assertEquals("Snapdragon 8 Elite", r.evidenceSoc)
+        val sw = r.platforms.first { it.key == "switch" }
+        assertNotNull("Switch 在同芯片下有上千条报告，必须挂上", sw.evidence)
+        assertTrue(sw.evidence!!.listings >= 20)
+        // 报告太少（8 Elite 的 PS2 只有 12 条）时宁可不显示：3 个人的意见不算证据
+        assertEquals(null, r.platforms.first { it.key == "ps2" }.evidence)
+        // 复古合集没有对应的 EmuReady 平台，不能硬塞一条空证据
+        assertEquals(null, r.platforms.first { it.key == "classic" }.evidence)
+    }
 }

@@ -1052,6 +1052,44 @@ class PartitionPreviewTest {
         save("p9b-playable-midrange.png")
     }
 
+    /**
+     * 可玩库·展开态：旗舰芯片上把「差一口气」的 Switch 展开，验证
+     * 精确门槛、同芯片实测与「在库里查看」都在同一行内可见。
+     */
+    @Test
+    @Config(sdk = [35], qualifiers = "w411dp-h2900dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
+    fun p9cPlayableLibraryExpanded() {
+        val ctx = ApplicationProvider.getApplicationContext<Context>()
+        val soc = SocResolver.resolve(
+            ctx, SocIdentity(socModel = "SM8750-AB", platform = "", hardware = "")
+        )
+        val entries = emulatorEntries(400)
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .verticalScroll(rememberScrollState())
+                                .padding(16.dp)
+                        ) {
+                            PlayableLibrarySection(
+                                entries = entries,
+                                onOpenPlatform = {},
+                                socOverride = soc,
+                                onOpenDrivers = {},
+                                defaultExpandedKey = "switch"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p9c-playable-expanded.png")
+    }
+
     /** 样本：真实仓库 + 真实文件名，时间相对当前倒推，覆盖「已解析 / 未解析」两种分组 */
     private fun downloadSamples(): List<DownloadsManager.CompletedDownload> {
         val now = System.currentTimeMillis()

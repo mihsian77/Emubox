@@ -84,6 +84,9 @@ jobs:
           node scripts/bench/fetch_soc_specs.js
           python3 scripts/bench/build_specs.py
           python3 scripts/soc/build_master.py --fetch
+          # 可玩库矩阵的输入是 soc_master，必须紧跟其后重建；
+          # 否则芯片库每天更新、可玩库分数停在生成那天
+          python3 scripts/build_playable.py
 
       - name: 同步内置数据到 assets
         continue-on-error: true
@@ -110,6 +113,7 @@ jobs:
                  emulator-details-*.json \
                  app/src/main/assets/emulator-offline.json \
                  app/src/main/assets/source-profiles.json \
+                 app/src/main/assets/playable-matrix.json \
                  ranking-history ranking.json \
                  app/src/main/assets/bench app/src/main/assets/soc_master.json bench-data"
           if git diff --quiet -- $PATHS; then

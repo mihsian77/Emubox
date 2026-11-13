@@ -6856,7 +6856,8 @@ fun DeviceScreen(
         if (deviceTab == 2) item(key = "playable_library") {
             PlayableLibrarySection(
                 entries = entries,
-                onOpenPlatform = { onOpenPlatform?.invoke(it) }
+                onOpenPlatform = { onOpenPlatform?.invoke(it) },
+                onOpenDrivers = onNavigateToDrivers
             )
         }
         }
