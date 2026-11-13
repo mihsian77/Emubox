@@ -39455,7 +39455,7 @@
       "description": "Nintendo Switch 1 Homebrew Emulator",
       "logo_url": "",
       "official": false,
-      "source": "github",
+      "source": "gitea",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
@@ -54051,7 +54051,7 @@
       "description": "BananaNative：Switch 原生层（nxnative），把 NVN 调用直接转成 Vulkan，不做系统模拟；实验性、非官方",
       "logo_url": "",
       "official": false,
-      "source": "github",
+      "source": "gitea",
       "kind": "emulator",
       "runtime": "android-native",
       "platforms": [
