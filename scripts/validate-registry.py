@@ -12,11 +12,21 @@ driver_type, companion(数组)
 """
 import json
 import os
+import re
 import sys
 
 REQUIRED = ["id", "name", "owner", "repo", "api_url", "gpu_vendor", "gpu_arch",
             "gpu_models", "driver_type", "companion"]
 ARRAY_FIELDS = ["gpu_arch", "gpu_models", "companion"]
+
+# 网盘/搬运站一律不能作为分发来源。与 validate-schema.py 同一套词表：
+# 驱动区此前只校验字段完整性，漏了来源检查，这里补齐。
+NETDISK_RE = re.compile(
+    r"(123pan|123684|123865|123912|pan\.baidu\.com|aliyundrive|alipan\.com|"
+    r"pan\.quark\.cn|quark\.cn|lanzou[a-z]?\.com|9k9k|huangt\.cn|ctfile|weiyun\.com|"
+    r"mega\.nz|mega\.io|mediafire\.com|drive\.google\.com|docs\.google\.com|"
+    r"1drv\.ms|onedrive\.live\.com|jianguoyun\.com|pan\.xunlei\.com|115\.com)", re.I)
+SOURCE_FIELDS = ["api_url", "homepage", "download_url", "repo_url"]
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES = [
@@ -40,6 +50,11 @@ def validate(path):
         for legacy in ("label", "vendor", "target", "chipset", "priority"):
             if legacy in r:
                 errors.append(f"{rid}: 含排行榜格式残留字段 {legacy}")
+        # 来源必须是可追溯的官方/社区仓库，网盘与搬运站不算来源
+        for field in SOURCE_FIELDS:
+            v = r.get(field)
+            if isinstance(v, str) and NETDISK_RE.search(v):
+                errors.append(f"{rid}: {field} 指向网盘/搬运站，不能作为分发来源：{v[:70]}")
     return repos, errors
 
 def main():

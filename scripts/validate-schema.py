@@ -83,7 +83,10 @@ URL_RE = re.compile(r"^https?://", re.I)
 # 这条规则防止它们再被批量录回来。
 NETDISK_RE = re.compile(
     r"(123pan|123684|123865|123912|pan\.baidu\.com|aliyundrive|alipan\.com|"
-    r"pan\.quark\.cn|lanzou[a-z]?\.com|9k9k|huangt\.cn|ctfile|weiyun\.com)", re.I)
+    r"pan\.quark\.cn|quark\.cn|lanzou[a-z]?\.com|9k9k|huangt\.cn|ctfile|weiyun\.com|"
+    # 2026-11-14：国外网盘同样不能当来源（MEGA / MediaFire / Google Drive / OneDrive / 坚果云）
+    r"mega\.nz|mega\.io|mediafire\.com|drive\.google\.com|docs\.google\.com|"
+    r"1drv\.ms|onedrive\.live\.com|jianguoyun\.com)", re.I)
 
 
 def check_entry(path, i, e):
