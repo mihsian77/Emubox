@@ -67,8 +67,8 @@
     <string name="theme_purple">Purple</string>
     <string name="theme_orange">Orange</string>
     <string name="theme_cn">CN Edition</string>
-    <string name="sources">Sources</string>
-    <string name="sources_desc">Manage the remote catalog that tells EmuBox where to fetch releases.</string>
+    <string name="sources">Driver Match</string>
+    <string name="sources_desc">Filter driver builds by the device GPU and architecture.</string>
     <string name="source_catalog">Source catalog</string>
     <string name="source_catalog_desc">EmuBox refreshes this JSON automatically. Driver files stay on the original upstream repositories, so new releases appear without rebuilding the app.</string>
     <string name="catalog_url">Catalog URL</string>
@@ -736,6 +736,17 @@ How to verify in emulator:
     <string name="news_source_official">GitHub official</string>
     <string name="news_empty">No news yet. Check back later.</string>
     <string name="news_type_all">All Types</string>
+    <string name="news_feed_subtitle">Drivers, components, devices and industry in one place</string>
+    <string name="news_chip_component">Component</string>
+    <string name="news_chip_device">Device</string>
+    <string name="news_chip_tech">Tech</string>
+    <string name="news_feed_count">%1$d items</string>
+    <string name="news_feed_empty">No matching news</string>
+    <string name="news_feed_hint">Search title, type or keyword</string>
+    <string name="news_feed_updated">Updated %1$s</string>
+    <string name="news_day_today">Today</string>
+    <string name="news_day_yesterday">Yesterday</string>
+    <string name="related_partitions">Related</string>
 
     <string name="news_eco_title">Chip &amp; Device News</string>
     <string name="news_driver_title">Driver News</string>

@@ -67,8 +67,8 @@
     <string name="theme_purple">紫色</string>
     <string name="theme_orange">橙色</string>
     <string name="theme_cn">国内版</string>
-    <string name="sources">资源来源</string>
-    <string name="sources_desc">管理告诉 EmuBox 从哪里获取版本的远程目录。</string>
+    <string name="sources">驱动匹配</string>
+    <string name="sources_desc">按本机 GPU 与架构筛选可用的驱动版本。</string>
     <string name="source_catalog">资源目录</string>
     <string name="source_catalog_desc">EmuBox 会自动刷新此 JSON。驱动文件仍保留在原始上游仓库中，因此新版本无需重新编译应用即可出现。</string>
     <string name="catalog_url">目录 URL</string>
@@ -733,6 +733,17 @@
     <string name="news_source_official">GitHub 官方更新</string>
     <string name="news_empty">暂无新闻，稍后再来。</string>
     <string name="news_type_all">全部类型</string>
+    <string name="news_feed_subtitle">驱动、组件、设备与行业，一处看全</string>
+    <string name="news_chip_component">组件</string>
+    <string name="news_chip_device">设备</string>
+    <string name="news_chip_tech">科技</string>
+    <string name="news_feed_count">共 %1$d 条</string>
+    <string name="news_feed_empty">没有匹配的资讯</string>
+    <string name="news_feed_hint">搜标题、类型或关键词</string>
+    <string name="news_feed_updated">更新于 %1$s</string>
+    <string name="news_day_today">今天</string>
+    <string name="news_day_yesterday">昨天</string>
+    <string name="related_partitions">相关分区</string>
 
     <string name="news_eco_title">芯片与设备动态</string>
     <string name="news_driver_title">驱动资讯</string>

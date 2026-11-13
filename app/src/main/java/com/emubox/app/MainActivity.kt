@@ -57,6 +57,7 @@ private enum class AppScreen {
     COMPONENTS,
     EMULATORS,
     RUNTIME,
+    NEWS,
     DOWNLOADS,
     SETTINGS,
     GUIDE
@@ -69,6 +70,7 @@ private val AppScreen.labelRes: Int
         AppScreen.COMPONENTS -> R.string.tab_component
         AppScreen.EMULATORS -> R.string.tab_emulator
         AppScreen.RUNTIME -> R.string.tab_runtime
+        AppScreen.NEWS -> R.string.tab_news_short
         AppScreen.DOWNLOADS -> R.string.tab_download
         AppScreen.SETTINGS -> R.string.tab_settings
         AppScreen.GUIDE -> R.string.tab_driver
@@ -92,6 +94,7 @@ private enum class AppTab(
         setOf(AppScreen.DRIVERS, AppScreen.COMPONENTS, AppScreen.GUIDE), AppScreen.DRIVERS
     ),
     RUNTIME(Icons.Default.Apps, R.string.tab_runtime, setOf(AppScreen.RUNTIME), AppScreen.RUNTIME),
+    NEWS(Icons.Default.Article, R.string.tab_news_short, setOf(AppScreen.NEWS), AppScreen.NEWS),
     MINE(
         Icons.Default.Person, R.string.tab_mine,
         setOf(AppScreen.SETTINGS, AppScreen.DOWNLOADS), AppScreen.SETTINGS
@@ -292,6 +295,19 @@ class MainActivity : ComponentActivity() {
                 // 记忆当前分区 / 指南来源：转屏、系统深浅色切换会重建 Activity，
                 // 用 rememberSaveable 保住，避免用户被弹回「设备」页
                 var currentScreen by rememberSaveable { mutableStateOf(AppScreen.DEVICE) }
+                // 分区内「相关分区」跳转：只处理底部导航的一级分区，其它目标忽略
+                val goToPartition: (String) -> Unit = { target ->
+                    currentScreen = when (target) {
+                        "devices" -> AppScreen.DEVICE
+                        "emulators" -> AppScreen.EMULATORS
+                        "drivers" -> AppScreen.DRIVERS
+                        "components" -> AppScreen.COMPONENTS
+                        "runtime" -> AppScreen.RUNTIME
+                        "news" -> AppScreen.NEWS
+                        "downloads" -> AppScreen.DOWNLOADS
+                        else -> currentScreen
+                    }
+                }
                 var globalSearchOpen by remember { mutableStateOf(false) }
                 // 设备页推荐卡 → 驱动专区文件级跳转：待展开的驱动仓库 id（registry entry id）
                 var pendingDriverRepo by remember { mutableStateOf<String?>(null) }
@@ -1078,7 +1094,8 @@ class MainActivity : ComponentActivity() {
                                             driverSourceUpdatedAt = driverSourceUpdatedAt,
                                             driverSourceStars = driverSourceStars,
                                             pendingRepo = pendingDriverRepo,
-                                            onPendingRepoConsumed = { pendingDriverRepo = null }
+                                            onPendingRepoConsumed = { pendingDriverRepo = null },
+                                            onNavigate = goToPartition
                                         )
                                     }
                                 }
@@ -1123,7 +1140,8 @@ class MainActivity : ComponentActivity() {
                                                     downloadComponent(appContext, component)
                                                 }
                                             },
-                                            onOpenGuide = { openGuide(null, driverMode = false) }
+                                            onOpenGuide = { openGuide(null, driverMode = false) },
+                                            onNavigate = goToPartition
                                         )
                                     }
                                 }
@@ -1194,8 +1212,11 @@ class MainActivity : ComponentActivity() {
                                         AppDownloadScope.launch {
                                             downloadRuntimeLibrary(appContext, component)
                                         }
-                                    }
+                                    },
+                                    onNavigate = goToPartition
                                 )
+
+                                AppScreen.NEWS -> NewsFeedScreen()
 
                                 AppScreen.DOWNLOADS -> DownloadsScreen(
                                     onBack = { currentScreen = AppScreen.SETTINGS },

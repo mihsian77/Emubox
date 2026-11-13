@@ -928,6 +928,40 @@ class PartitionPreviewTest {
         save("p6c-downloads-group-expanded.png")
     }
 
+    /** 资讯总入口：原四个分区各揣一份新闻，现在合成一个一级分区 */
+    @Test
+    fun p7aNewsFeed() {
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        NewsFeedScreen()
+                    }
+                }
+            }
+        }
+        settle(6)
+        save("p7a-news-feed.png")
+    }
+
+    /** 切到「驱动」分类：类型 chips 行出现，验证二级筛选生效 */
+    @Test
+    fun p7bNewsDriverCategory() {
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        NewsFeedScreen()
+                    }
+                }
+            }
+        }
+        settle(6)
+        compose.onNodeWithText("驱动组件 44").performClick()
+        settle(2)
+        save("p7b-news-driver.png")
+    }
+
     /** 样本：真实仓库 + 真实文件名，时间相对当前倒推，覆盖「已解析 / 未解析」两种分组 */
     private fun downloadSamples(): List<DownloadsManager.CompletedDownload> {
         val now = System.currentTimeMillis()
