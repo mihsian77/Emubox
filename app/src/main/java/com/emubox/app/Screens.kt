@@ -14658,7 +14658,9 @@ fun NewsFeedScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     var newsItems by remember { mutableStateOf<List<NewsItem>?>(null) }
     var query by remember { mutableStateOf("") }
-    var category by remember { mutableStateOf("all") }
+    // 默认落在「模拟器」而不是「全部」：实测全部 267 条里 107 条是泛科技（相机、显示器、
+    // 汽车、AI 论文），首屏全是与模拟器/驱动无关的内容，产品定位直接被冲散。
+    var category by remember { mutableStateOf("emulator") }
     var typeFilter by remember { mutableStateOf("") }
     var reloadToken by remember { mutableStateOf(0) }
     var refreshing by remember { mutableStateOf(false) }
