@@ -22,6 +22,7 @@
 - 新增「动态」子分区：各驱动仓库的发布日志按时间汇总，带变更类型徽章（新增支持 / 修复 / 性能 / 破坏性），英文自动翻译，可切回原文
 - 首次进入驱动分区的说明改为项目自身的加载声明：驱动以原生方式加载、来自第三方作者、失败可随时删除；「稍后」只关本次，不再替用户确认
 - 驱动检测支持驱动包依赖闭包：跨机型高通包的 `libgsl.so` / `libllvm-glnext.so` 按驱动自身目录解析，缺库时直接报出库名，不再是一句 `dlopen failed`
+- 驱动仓库补到 61 个：Amaral / AnkaTurnip / DroidDeck / MaliSX2 / MaxQ / PanVK Kirin 990 / PS5 RADV / Turnip Duo（Adreno 722）/ Turnip Enhanced（超级 Turnip），每条都写了适用机型与安装步骤
 
 ### 模拟器
 

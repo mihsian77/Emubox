@@ -48,8 +48,11 @@
 - 模拟器项目列表：社区下载量名次勋章（前 3 名金银铜，只给进榜的 59 条挂，其余不硬排名次）、平台/家族标签行（Switch 2 · PS2 · Citra 分支）、作者头像兜底
 - 新闻列表支持标签筛选：官方组件按类型（Wine / Proton / Turnip），资讯按主题（芯片 / 系统 / 手机 / AI），合并成一排、按条数排序，这就是各标签的分类页入口
 - Release 正文按纯文本渲染：清理 `#` / `**` / `[文字](网址)` 等 Markdown 标记，正文内嵌图（GitHub user-attachments）单独展示
+- 驱动注册表补到 61 个源：Amaral Adreno Tools、AnkaTurnip、DroidDeck 官方驱动集、MaliSX2、MaxQ 驱动合集、PanVK Kirin 990、PS5 Vulkan（RADV）、Turnip Duo（Adreno 722）、Turnip Enhanced（超级 Turnip）。九条仓库均已核实存在，并同步重新生成 `source-profiles.json` 的适用机型与安装步骤
 
 ### Fixed
+- 骁龙 855 Plus 被认成骁龙 860：`sm8150-ac` 一条把 855+ 的三种写法和 860 混在别名里，按「命中键最长」取到 860（名字、机型、跑分全是 855+ 的）。按部件号拆成 `sm8150-ab`（855+）与 `sm8150-ac`（860）两条，860 的跑分没有同口径来源，留空而不是抄 855+ 的
+- 同一系列两套写法：`曦力 G99` 与 `Helio G96` 并排出现，统一为 Helio，旧写法保留在别名里不影响识别
 - 深色模式弱文字发虚：`onSurfaceFaint/Fainter` 提到 4.5:1 以上，散落的 `alpha=0.4~0.8` 文字统一收敛；亮色背景压到 `#E9ECF3`，纯白卡片不再和背景糊成一片
 - 下载「一点就自动暂停、必须再点一次」：下载协程原来跑在 `rememberCoroutineScope()`，切分区/列表项回收/Activity 重建都会取消它，取消在传输层等价于暂停。改为全局作用域
 - 驱动声明弹窗按钮「点不动、只能重启」：弹窗开关读的是 SharedPreferences，写盘不触发重组，条件恒为真。改为可观察状态，点「稍后」只关本次、不替用户确认
