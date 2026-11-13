@@ -209,14 +209,29 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                             SpecItem(appString(R.string.stored), formatBytes(completedBytes)),
                         )
                     )
-                    // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位「扫不出」根因
+                    // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位「扫不出」根因。
+                    // 「扫描未完成/目录不可读」意味着文件列表可能缺块，之前用 11sp 浅灰脚注，
+                    // 实测整行几乎看不见（截图里直接被当装饰忽略），降级状态改为可见告警行。
                     val scanNote = DownloadsManager.lastScanNote
                     if (scanNote.isNotBlank()) {
-                        Text(
-                            scanNote,
-                            fontSize = 11.sp,
-                            color = Fusion.OnSurfaceFaint,
-                        )
+                        val degraded = scanNote.contains("未完成") || scanNote.contains("不可读")
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            if (degraded) {
+                                Icon(
+                                    Icons.Default.Warning,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.size(14.dp)
+                                )
+                                Spacer(Modifier.width(6.dp))
+                            }
+                            Text(
+                                scanNote,
+                                fontSize = if (degraded) 12.sp else 11.sp,
+                                color = if (degraded) MaterialTheme.colorScheme.error
+                                else Fusion.OnSurfaceFaint,
+                            )
+                        }
                     }
                 }
             }
