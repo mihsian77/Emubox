@@ -10648,7 +10648,7 @@ private fun NewsRowItem(item: NewsItem) {
                 if (item.commentCount > 0) {
                     Spacer(Modifier.width(6.dp))
                     Text(
-                        "· ${item.commentCount}评",
+                        "· ${item.commentCount} 条评论",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
