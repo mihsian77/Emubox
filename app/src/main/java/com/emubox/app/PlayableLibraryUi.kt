@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 
 /** 物理内存（MB）。拿到 0 表示读不到，调用方按「不设门槛」处理。 */
 private fun totalRamMb(context: Context): Long = runCatching {
@@ -268,7 +269,7 @@ private fun PlayableSummaryCard(
             } else {
                 Row(verticalAlignment = Alignment.Bottom) {
                     Text(
-                        (if (report.scoreSrc == "socpk") "" else "≈") + score.toInt().toString(),
+                        (if (report.scoreSrc == "socpk") "" else "≈") + score.roundToInt().toString(),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -431,7 +432,7 @@ private fun PlayablePlatformRow(
                     gap != null && gap > 0 -> appString(R.string.playable_gap, gap)
                     else -> appString(
                         R.string.playable_score_pair_short,
-                        score.toInt(),
+                        score.roundToInt(),
                         platform.smooth
                     )
                 },
