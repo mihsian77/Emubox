@@ -50,6 +50,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -12216,10 +12217,11 @@ private fun EmulatorRecipesCard(recipes: List<EmulatorRecipe>) {
 private fun FusionFilterChip(
     label: String,
     selected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(10.dp))
             .background(
                 if (selected) Brush.linearGradient(colors = listOf(Fusion.GradientStart, Fusion.GradientEnd))
@@ -14759,7 +14761,8 @@ fun NewsFeedScreen(modifier: Modifier = Modifier) {
                             FusionFilterChip(
                                 label = "${newsCategoryText(c)} $n",
                                 selected = category == c,
-                                onClick = { category = c; typeFilter = "" }
+                                onClick = { category = c; typeFilter = "" },
+                                modifier = Modifier.testTag("news_category_$c")
                             )
                         }
                     }

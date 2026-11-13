@@ -24,7 +24,8 @@ class EmuReadyStoreTest {
     @Test
     fun 目录加载完整() {
         assertTrue("设备目录应不少于 700 台", EmuReadyStore.devices(context).size >= 700)
-        assertEquals(20, EmuReadyStore.systems(context).size)
+        // 系统表随数据刷新增删，锁下限不锁死条数（旧断言 20 条已被 21 条数据打挂）
+        assertTrue("系统列表应不少于 20 条", EmuReadyStore.systems(context).size >= 20)
         assertTrue("模拟器应不少于 40 个", EmuReadyStore.emulators(context).size >= 40)
     }
 
