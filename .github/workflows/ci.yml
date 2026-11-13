@@ -31,7 +31,7 @@ jobs:
         run: python3 scripts/check-i18n.py
 
   lint:
-    name: Android Lint 检查
+    name: Lint 与单元测试
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -68,6 +68,16 @@ jobs:
         with:
           name: lint-report
           path: app/build/reports/lint-results-debug.html
+      # 仓库有 18 个单元测试文件（Robolectric/Roborazzi），此前 CI 只编译从不执行，
+      # 逻辑回归完全没被拦。单测在 lint 之后串行跑，失败即阻断合并。
+      - name: 运行单元测试
+        run: ./gradlew testDebugUnitTest --no-daemon
+      - name: 上传测试报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: app/build/reports/tests/testDebugUnitTest
 
   build:
     name: 编译检查
