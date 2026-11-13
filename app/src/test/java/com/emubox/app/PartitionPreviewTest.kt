@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
@@ -228,6 +229,45 @@ class PartitionPreviewTest {
                 platforms = o.optJSONArray("platforms")?.let { a ->
                     (0 until a.length()).mapNotNull { i -> a.optString(i).takeIf(String::isNotBlank) }
                 } ?: emptyList(),
+                platformFamilies = o.optJSONArray("platform_families")?.let { a ->
+                    (0 until a.length()).mapNotNull { i -> a.optString(i).takeIf(String::isNotBlank) }
+                } ?: emptyList(),
+                subcategory = o.optString("subcategory"),
+                artifacts = o.optJSONObject("artifacts")?.let { a ->
+                    EmulatorArtifacts(
+                        apk = a.optInt("apk", 0),
+                        androidZip = a.optInt("android_zip", 0),
+                        ipa = a.optInt("ipa", 0),
+                        libretroCore = a.optInt("libretro_core", 0),
+                        desktop = a.optInt("desktop", 0),
+                        console = a.optInt("console", 0),
+                        source = a.optInt("source", 0),
+                        total = a.optInt("total", 0)
+                    )
+                } ?: EmulatorArtifacts(),
+                androidReady = o.optBoolean("android_ready", false),
+                // 详情截图需要真实版本卡：不解析 releases 就只能看到空态，
+                // 验证不出「发布文件块」与下方「全部版本与文件」的配合。
+                releases = o.optJSONArray("releases")?.let { ra ->
+                    (0 until minOf(ra.length(), 5)).map { j ->
+                        val r = ra.getJSONObject(j)
+                        EmulatorRelease(
+                            tag = r.optString("tag"),
+                            date = r.optString("date"),
+                            body = r.optString("body"),
+                            assets = r.optJSONArray("assets")?.let { aa ->
+                                (0 until aa.length()).map { k ->
+                                    val a2 = aa.getJSONObject(k)
+                                    EmulatorAsset(
+                                        name = a2.optString("name"),
+                                        size = a2.optLong("size"),
+                                        url = a2.optString("url")
+                                    )
+                                }
+                            } ?: emptyList()
+                        )
+                    }
+                } ?: emptyList(),
                 description = o.optString("description"),
                 summary = o.optString("summary"),
                 owner = o.optString("owner"),
@@ -291,6 +331,53 @@ class PartitionPreviewTest {
     }
 
     @Test
+    fun p2bDriverActivity() {
+        // 驱动「动态」子分区：各源最新 release 汇总 + 变更类型徽章
+        val ctx = ApplicationProvider.getApplicationContext<Context>()
+        val entries = DriverRegistryRepository.loadFromAssets(ctx).orEmpty()
+        println("驱动注册表 ${entries.size} 条，其中有版本号的 ${entries.count { it.latestTag.isNotBlank() }} 条")
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DriverScreen(
+                            deviceInfo = onePlus13(),
+                            isLoading = false,
+                            turnipSourceId = "",
+                            turnipSources = emptyList(),
+                            turnipReleases = emptyList(),
+                            panvkSourceId = "",
+                            panvkSources = emptyList(),
+                            panvkReleases = emptyList(),
+                            qualcommSourceId = "",
+                            qualcommSources = emptyList(),
+                            qualcommReleases = emptyList(),
+                            xclipseSourceId = "",
+                            xclipseSources = emptyList(),
+                            xclipseReleases = emptyList(),
+                            wrapperSourceId = "",
+                            wrapperSources = emptyList(),
+                            wrapperReleases = emptyList(),
+                            wrapperItems = emptyList(),
+                            driverEntries = entries,
+                            onTurnipSourceChange = {},
+                            onPanvkSourceChange = {},
+                            onQualcommSourceChange = {},
+                            onXclipseSourceChange = {},
+                            onWrapperSourceChange = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        settle(4)
+        compose.onNodeWithText("动态").performClick()
+        settle(2)
+        save("p2b-driver-activity.png")
+    }
+
+    @Test
     fun p2Drivers() {
         val sources = turnipSources().filter {
             it.supportedSeries.isEmpty() || "8xx" in it.supportedSeries
@@ -340,6 +427,109 @@ class PartitionPreviewTest {
         }
         settle(2)
         save("p2-drivers.png")
+    }
+
+    /** 切到 Turnip 子分区：推荐卡应让位，首屏直接是源列表（用户在找具体源时不该再被大卡挡） */
+    @Test
+    fun p2fDriverTabTurnip() {
+        val sources = turnipSources().filter {
+            it.supportedSeries.isEmpty() || "8xx" in it.supportedSeries
+        }
+        val picked = sources.firstOrNull { it.id == "stevenmxz" } ?: sources.first()
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DriverScreen(
+                            deviceInfo = onePlus13(),
+                            isLoading = false,
+                            turnipSourceId = picked.id,
+                            turnipSources = sources,
+                            turnipReleases = releasesFor(picked, "8xx"),
+                            panvkSourceId = "",
+                            panvkSources = emptyList(),
+                            panvkReleases = emptyList(),
+                            qualcommSourceId = "",
+                            qualcommSources = emptyList(),
+                            qualcommReleases = emptyList(),
+                            xclipseSourceId = "",
+                            xclipseSources = emptyList(),
+                            xclipseReleases = emptyList(),
+                            wrapperSourceId = "",
+                            wrapperSources = emptyList(),
+                            wrapperReleases = emptyList(),
+                            wrapperItems = emptyList(),
+                            onTurnipSourceChange = {},
+                            onPanvkSourceChange = {},
+                            onQualcommSourceChange = {},
+                            onXclipseSourceChange = {},
+                            onWrapperSourceChange = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        settle(4)
+        runCatching {
+            compose.onNodeWithText("Turnip").performClick()
+            compose.waitForIdle()
+        }
+        settle(2)
+        save("p2f-driver-tab-turnip.png")
+    }
+
+    /**
+     * 推荐项展开态：折叠时每个推荐只露最新版的第一个文件，
+     * 展开后应多出旧版本与其余文件。验证「展开」不是假的。
+     */
+    @Test
+    fun p2eDriverRecommendExpanded() {
+        val sources = turnipSources().filter {
+            it.supportedSeries.isEmpty() || "8xx" in it.supportedSeries
+        }
+        val picked = sources.firstOrNull { it.id == "stevenmxz" } ?: sources.first()
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        DriverScreen(
+                            deviceInfo = onePlus13(),
+                            isLoading = false,
+                            turnipSourceId = picked.id,
+                            turnipSources = sources,
+                            turnipReleases = releasesFor(picked, "8xx"),
+                            panvkSourceId = "",
+                            panvkSources = emptyList(),
+                            panvkReleases = emptyList(),
+                            qualcommSourceId = "",
+                            qualcommSources = emptyList(),
+                            qualcommReleases = emptyList(),
+                            xclipseSourceId = "",
+                            xclipseSources = emptyList(),
+                            xclipseReleases = emptyList(),
+                            wrapperSourceId = "",
+                            wrapperSources = emptyList(),
+                            wrapperReleases = emptyList(),
+                            wrapperItems = emptyList(),
+                            onTurnipSourceChange = {},
+                            onPanvkSourceChange = {},
+                            onQualcommSourceChange = {},
+                            onXclipseSourceChange = {},
+                            onWrapperSourceChange = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        settle(6)
+        runCatching {
+            compose.onAllNodesWithText("共 4 个文件 · 展开")[0].performClick()
+            compose.waitForIdle()
+        }
+        settle(2)
+        save("p2e-driver-recommend-expanded.png")
     }
 
     /** Mali 设备：按设备匹配时 PanVK 分区才会出现（骁龙设备默认隐藏 Mali 专用驱动） */
@@ -542,7 +732,9 @@ class PartitionPreviewTest {
 
     @Test
     fun p4Emulators() {
-        val entries = emulatorEntries(24)
+        // 全量条目：三级筛选的家族行需要跨分区统计才会出现，
+        // 只截 24 条时「主机模拟」里凑不满 3 族，看不出二级效果
+        val entries = emulatorEntries(400)
         println("模拟器条目 ${entries.size} 条")
         compose.setContent {
             ProvideAppLanguage(AppLanguage.CHINESE) {
@@ -555,6 +747,115 @@ class PartitionPreviewTest {
         }
         settle(4)
         save("p4-emulators.png")
+    }
+
+    @Test
+    fun p4bEmulatorFamilyFilter() {
+        // 点「索尼系」后的第二张：验证家族行有选中态、机型行只剩 PS 系 8 种
+        val entries = emulatorEntries(400)
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        EmulatorScreen(entries = entries, onDownload = {})
+                    }
+                }
+            }
+        }
+        settle(4)
+        compose.onNodeWithText("主机模拟").performClick()
+        settle(2)
+        compose.onNodeWithText("索尼系").performClick()
+        settle(2)
+        save("p4b-emulator-family.png")
+    }
+
+    @Test
+    fun p4fWindowsCompatGroups() {
+        // 这 50 条里 49 条同属 PC 平台家族，套平台家族时二级只有 1 个 chip、被直接隐藏。
+        // 换成容器方案后应出现 Winlator 系 / GameHub 系 / BannerHub 系 / 其他容器 / 启动器与工具 / 桌面主机端。
+        val entries = emulatorEntries(400)
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        EmulatorScreen(entries = entries, onDownload = {})
+                    }
+                }
+            }
+        }
+        settle(4)
+        compose.onAllNodesWithText("Windows 兼容")[0].performClick()
+        settle(2)
+        save("p4f-windows-compat-groups.png")
+
+        // 进「Winlator 系」：23 条改版的二级结果，同时验证机型行已隐藏（容器下面没有机型）
+        compose.onAllNodesWithText("Winlator 系")[0].performClick()
+        settle(2)
+        save("p4f-windows-compat-winlator.png")
+    }
+
+    @Test
+    fun p4gFrontendToolKinds() {
+        // 前端工具区原来 22 条无家族、10 条按「服务的主机」归类（PS5 工具落索尼系），
+        // 二级语义是错的。改按类型分：前端启动器 / 工具 / 独立模拟器。
+        val entries = emulatorEntries(400)
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        EmulatorScreen(entries = entries, onDownload = {})
+                    }
+                }
+            }
+        }
+        settle(4)
+        compose.onAllNodesWithText("前端工具")[0].performClick()
+        settle(2)
+        save("p4g-frontend-tool-kinds.png")
+    }
+
+    /**
+     * 详情页「发布文件」区块：三张图分别对应三种真实情况——
+     * 有安卓包 / 只有桌面端与源码 / 发布页完全没传文件。
+     * 第二、三种以前在界面上完全看不出来，用户点下载才发现装不上。
+     */
+    private fun shotDetail(title: String, entry: EmulatorEntry, name: String) {
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    EmulatorDetailDialog(
+                        initialEntry = entry,
+                        onDismiss = {},
+                        onDownloadAsset = { _, n -> println("下载 $n") }
+                    )
+                }
+            }
+        }
+        settle(6)
+        save(name)
+        println("$title · artifacts=${entry.artifacts} androidReady=${entry.androidReady}")
+    }
+
+    @Test
+    fun p4cDetailWithApk() {
+        val all = emulatorEntries(400)
+        val e = all.first { it.artifacts.installableOnPhone >= 3 }
+        shotDetail("有安卓包", e, "p4c-detail-apk.png")
+    }
+
+    @Test
+    fun p4dDetailDesktopOnly() {
+        val all = emulatorEntries(400)
+        val e = all.first { it.artifacts.total > 0 && it.artifacts.installableOnPhone == 0 }
+        shotDetail("只有桌面端", e, "p4d-detail-desktop-only.png")
+    }
+
+    @Test
+    fun p4eDetailNoArtifact() {
+        val all = emulatorEntries(400)
+        val e = all.first { it.artifacts.total == 0 }
+        shotDetail("无产物", e, "p4e-detail-no-artifact.png")
     }
 
     @Test

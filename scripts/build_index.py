@@ -34,6 +34,14 @@ INDEX_FIELDS = [
     "stars", "forks", "watchers", "downloads_total", "downloads_latest",
     "downloads_basis", "download_url", "download_kind", "distribution",
     "note", "repo_status", "dead", "dead_reason", "pushed_at",
+    # 二级分类用：8 个硬件家族，由 platforms 派生
+    "platform_families",
+    # 二级分类的另一种轴：windows-compat 按容器方案、frontend-tool 按类型，
+    # 由 scripts/derive_subcategory.py 派生（这两个分区套平台家族会失效）
+    "subcategory",
+    # 产物构成：列表卡片右上角「有 3 个可安装包」的标记、详情页产物清单、
+    # 「只看能直接装的」筛选都靠它。以前只在主库里、没下沉，App 侧等于没有。
+    "artifacts", "android_ready",
 ]
 
 # 只有点进详情页才需要的

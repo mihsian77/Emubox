@@ -3871,7 +3871,15 @@ private fun DriverRecommendRow(
             else -> {
                 // 最新一个非预发布版算推荐版本
                 val recommendedTag = list.firstOrNull { !it.prerelease }?.tagName
-                list.take(2).forEach { release ->
+                // 三个推荐项各摊两版、每版三个文件，加起来近 900dp——首屏被灌满，
+                // 搜索框和源列表全被推到屏幕外。默认只露最新版的第一个文件，
+                // 点一下才展开旧版本与其余文件：「先给答案，细节按需」。
+                var expanded by remember(entry.id) { mutableStateOf(false) }
+                val newest = list.first()
+                val newestFiles = newest.assets.filter { isDownloadableAsset(it.name) }
+                val releasesToShow = if (expanded) list.take(2) else listOf(newest)
+
+                releasesToShow.forEach { release ->
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
@@ -3904,42 +3912,52 @@ private fun DriverRecommendRow(
                             )
                         }
                     }
-                    release.assets
-                        .filter { isDownloadableAsset(it.name) }
-                        .take(3)
-                        .forEach { asset ->
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clip(RoundedCornerShape(10.dp))
-                                    .clickable { onDownload(asset) }
-                                    .padding(horizontal = 10.dp, vertical = 8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    Icons.Default.Download,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(16.dp),
-                                    tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
-                                )
+                    val files = release.assets.filter { isDownloadableAsset(it.name) }
+                    val shown = if (expanded) files.take(3) else files.take(1)
+                    shown.forEach { asset ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(10.dp))
+                                .clickable { onDownload(asset) }
+                                .padding(horizontal = 10.dp, vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Default.Download,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                asset.name,
+                                modifier = Modifier.weight(1f),
+                                style = MaterialTheme.typography.bodySmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            if (asset.sizeBytes > 0) {
                                 Spacer(Modifier.width(8.dp))
                                 Text(
-                                    asset.name,
-                                    modifier = Modifier.weight(1f),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
+                                    formatBytes(asset.sizeBytes),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
                                 )
-                                if (asset.sizeBytes > 0) {
-                                    Spacer(Modifier.width(8.dp))
-                                    Text(
-                                        formatBytes(asset.sizeBytes),
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
-                                    )
-                                }
                             }
                         }
+                    }
+                }
+                if (newestFiles.size > 1 || list.size > 1) {
+                    // 不写「共 30 个版本」：展开只多给一个旧版本，写总数会让人以为点开能看到全部 30 版
+                    Text(
+                        if (expanded) "收起" else "共 ${newestFiles.size} 个文件 · 展开",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .padding(start = 10.dp, top = 2.dp)
+                            .clickable { expanded = !expanded }
+                    )
                 }
                 if (onOpenDriverFiles != null) {
                     TextButton(onClick = { onOpenDriverFiles(entry.id) }) {
@@ -8430,18 +8448,59 @@ private data class DriverNewsItem(
     val date: String,
     val body: String,
     val zipName: String,
-    val apiUrl: String
+    val apiUrl: String,
+    /** 从发布说明判出的变更类型（新增支持 / 修复 / 性能 / 破坏性） */
+    val kinds: List<String> = emptyList()
 )
+
+/**
+ * 从发布说明判变更类型。驱动日志基本是英文，按关键词归类即可，
+ * 目的是让用户扫一眼知道「这次值不值得更新」，不是做语义理解。
+ */
+private fun driverChangeKinds(body: String): List<String> {
+    if (body.isBlank()) return emptyList()
+    val b = body.lowercase()
+    val out = mutableListOf<String>()
+    if (listOf("support", "add ", "added", "new device", "enable", "introduce").any { b.contains(it) }) {
+        out += "新增支持"
+    }
+    if (listOf("fix", "fixed", "bug", "crash", "hang", "regression").any { b.contains(it) }) {
+        out += "修复"
+    }
+    if (listOf("performance", "faster", "speed", "optimi", "latency", "fps").any { b.contains(it) }) {
+        out += "性能"
+    }
+    if (listOf("breaking", "drop", "removed", "deprecat").any { b.contains(it) }) {
+        out += "破坏性"
+    }
+    return out.take(3)
+}
+
+/** 变更类型徽章配色：绿=新增 / 蓝=修复 / 橙=性能 / 红=破坏性 */
+private fun driverKindColor(kind: String): Color = when (kind) {
+    "新增支持" -> Color(0xFF2E7D32)
+    "修复" -> Color(0xFF1565C0)
+    "性能" -> Color(0xFFEF6C00)
+    else -> Color(0xFFC62828)
+}
 
 /** 驱动更新动态卡：全源最新 release 汇总（折叠，默认展示最近 6 条） */
 @Composable
 private fun DriverNewsCard(
     items: List<DriverNewsItem>,
-    loading: Boolean,
-    onRefresh: () -> Unit
+    loading: Boolean
 ) {
-    var expanded by remember { mutableStateOf(false) }
+    // 原来是折叠卡（默认只露 6 条），实际没人会去展开——改成平铺区块：
+    // 全量按时间倒序、按家族筛选、每条带变更类型徽章
+    var familyFilter by remember { mutableStateOf("all") }
     var detailItem by remember { mutableStateOf<DriverNewsItem?>(null) }
+    // 家族顺序固定：Turnip / 高通 / PanVK / Xclipse / Wrapper。
+    // 按「首次出现」排会让高通（只有 1 条、且最旧）掉到屏幕外，用户以为没有这类。
+    val families = remember(items) {
+        listOf("turnip", "qualcomm", "panvk", "xclipse", "wrapper")
+            .filter { f -> items.any { it.family == f } }
+    }
+    val shown = if (familyFilter == "all") items else items.filter { it.family == familyFilter }
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp)) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -8450,15 +8509,11 @@ private fun DriverNewsCard(
                 Spacer(Modifier.width(6.dp))
                 Text(appString(R.string.driver_news_title), style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
-                IconButton(onClick = onRefresh, modifier = Modifier.size(28.dp)) {
-                    Icon(Icons.Default.Refresh, contentDescription = appString(R.string.refresh),
-                        modifier = Modifier.size(16.dp))
-                }
-                IconButton(onClick = { expanded = !expanded }, modifier = Modifier.size(28.dp)) {
-                    Icon(
-                        if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                        contentDescription = null, modifier = Modifier.size(18.dp),
-                        tint = MaterialTheme.colorScheme.primary
+                if (items.isNotEmpty()) {
+                    Text(
+                        "${shown.size} 条",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -8474,7 +8529,31 @@ private fun DriverNewsCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             } else {
-                val shown = if (expanded) items else items.take(6)
+                // 家族筛选：驱动更新混杂 Turnip / 高通 / PanVK / Wrapper，
+                // 用户通常只关心自己 GPU 那一类
+                if (families.size > 1) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        listOf("all").plus(families).forEach { f ->
+                            FusionFilterChip(
+                                label = when (f) {
+                                    "all" -> "全部"
+                                    "panvk" -> appString(R.string.driver_family_panvk)
+                                    "qualcomm" -> appString(R.string.driver_family_qualcomm)
+                                    "turnip" -> appString(R.string.driver_family_turnip)
+                                    "xclipse" -> "Xclipse"
+                                    "wrapper" -> "Wrapper"
+                                    else -> f
+                                },
+                                selected = familyFilter == f,
+                                onClick = { familyFilter = f }
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(6.dp))
+                }
                 Spacer(Modifier.height(4.dp))
                 shown.forEach { item ->
                     val context = LocalContext.current
@@ -8526,6 +8605,27 @@ private fun DriverNewsCard(
                                 style = MaterialTheme.typography.labelMedium,
                                 maxLines = 1, overflow = TextOverflow.Ellipsis
                             )
+                            if (item.kinds.isNotEmpty()) {
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                                    modifier = Modifier.padding(top = 2.dp)
+                                ) {
+                                    item.kinds.forEach { k ->
+                                        Box(
+                                            modifier = Modifier
+                                                .clip(RoundedCornerShape(4.dp))
+                                                .background(driverKindColor(k).copy(alpha = 0.12f))
+                                                .padding(horizontal = 4.dp, vertical = 1.dp)
+                                        ) {
+                                            Text(
+                                                k,
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = driverKindColor(k)
+                                            )
+                                        }
+                                    }
+                                }
+                            }
                             if (item.zipName.isNotBlank()) {
                                 Text(
                                     item.zipName,
@@ -8543,15 +8643,6 @@ private fun DriverNewsCard(
                         )
                     }
                     if (item != shown.last()) HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
-                }
-                if (!expanded && items.size > 6) {
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        appString(R.string.driver_news_more, items.size - 6),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.clickable { expanded = true }
-                    )
                 }
             }
         }
@@ -8958,6 +9049,15 @@ private fun DriverInfoChip(label: String, value: String) {
  * 驱动 Tab：仅展示驱动专区（Turnip + Qualcomm）。
  * 从 DriverHubScreen 拆分而来，设备摘要移至设备 Tab。
  */
+/** 驱动子分区索引：原来全是裸数字，加一个「动态」就得整体错位，用常量钉住 */
+private const val DRIVER_TAB_ALL = 0
+private const val DRIVER_TAB_ACTIVITY = 1
+private const val DRIVER_TAB_TURNIP = 2
+private const val DRIVER_TAB_QUALCOMM = 3
+private const val DRIVER_TAB_PANVK = 4
+private const val DRIVER_TAB_XCLIPSE = 5
+private const val DRIVER_TAB_WRAPPER = 6
+
 @Composable
 fun DriverScreen(
     modifier: Modifier = Modifier,
@@ -8979,6 +9079,8 @@ fun DriverScreen(
     wrapperSources: List<TurnipSource>,
     wrapperReleases: List<GithubRelease>,
     wrapperItems: List<WrapperItem> = emptyList(),
+    /** 驱动注册表全量条目：用于「动态」子分区汇总各源最新发布 */
+    driverEntries: List<DriverRegistryEntry> = emptyList(),
     onTurnipSourceChange: (String) -> Unit,
     onPanvkSourceChange: (String) -> Unit,
     onQualcommSourceChange: (String) -> Unit,
@@ -9108,13 +9210,44 @@ fun DriverScreen(
     val headerHint = appString(R.string.driver_search_hint)
 
     // 五类驱动分开展示：原来 5 个区块全竖排，一屏只够看一个源，找另一个系列要滑很久。
-    // 0 全部 / 1 Turnip / 2 高通 / 3 PanVK / 4 Xclipse / 5 Wrapper
-    var driverTab by remember { mutableStateOf(0) }
+    // 「动态」排第二位：驱动区用户最常问的是「我该换驱动了吗」，这是唯一能回答的入口；
+    // 放末尾会被挤到屏幕外（7 个标签在 411dp 上放不下，必须横滑才看得到）。
+    var driverTab by remember { mutableStateOf(DRIVER_TAB_ALL) }
+
+    // 「动态」子分区数据：各驱动源最新一条 release，按时间倒序。
+    // 驱动没有媒体新闻源，更新日志就是它唯一的动态；这里把 tag / 日期 / 日志 / 文件名
+    // 汇总成时间流，并按发布说明判出变更类型，替代原来那张没人展开的折叠卡。
+    val driverNews = remember(driverEntries) {
+        driverEntries
+            .filter { it.latestTag.isNotBlank() }
+            .sortedByDescending { it.latestDate }
+            .map { d ->
+                DriverNewsItem(
+                    sourceName = d.name,
+                    family = when (d.driverType) {
+                        "panvk" -> "panvk"
+                        "qualcomm" -> "qualcomm"
+                        "wrapper" -> "wrapper"
+                        "component" -> "wrapper"
+                        else -> if (d.gpuVendor == "xclipse") "xclipse" else "turnip"
+                    },
+                    tag = d.latestTag,
+                    // registry 存的是 epoch ms，UI 侧统一用 ISO 字符串（formatRelativeTime 认这个）
+                    date = if (d.latestDate > 0)
+                        java.time.Instant.ofEpochMilli(d.latestDate).toString() else "",
+                    body = d.latestBody,
+                    zipName = "",
+                    apiUrl = d.apiUrl,
+                    kinds = driverChangeKinds(d.latestBody)
+                )
+            }
+    }
 
     Column(modifier = modifier.fillMaxSize()) {
     SectionTabs(
         tabs = listOf(
             appString(R.string.driver_tab_all),
+            "动态",
             "Turnip",
             appString(R.string.qualcomm_driver),
             "PanVK",
@@ -9149,15 +9282,45 @@ fun DriverScreen(
                     }
                 }
             },
+            // 本机推荐前置：用户打开驱动区的第一句话是「我这台该装哪个」，
+            // 不是「一共有哪些仓库」。设备摘要 + 推荐卡放进头部（搜索框之上），
+            // 下面仍是可继续下滑的完整源列表——两条路径都保留，只是顺序换了。
+            // 只在「全部」子分区显示：切到 Turnip / 动态时用户已经在找具体东西，
+            // 再压一张大卡会挡住列表。
             headerContext = if (deviceInfo != null) {
-                { DriverDeviceSummaryCard(deviceInfo = deviceInfo) }
+                {
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        DriverDeviceSummaryCard(deviceInfo = deviceInfo)
+                        if (driverTab == DRIVER_TAB_ALL) {
+                            DriverRecommendationCard(
+                                deviceInfo = deviceInfo,
+                                onNavigateToDrivers = null
+                            )
+                        }
+                    }
+                }
             } else null,
-            searchPlaceholder = headerHint,
+            searchPlaceholder = if (driverTab == DRIVER_TAB_ACTIVITY) {
+                "搜索更新（驱动名 / 版本 / 日志）"
+            } else headerHint,
             // 一条源都没有时不显示「0 个驱动源」——下面已有专门的空态卡，重复说两次没有意义
             resultCount = (filteredTurnip.size + filteredPanvk.size + filteredQualcomm.size +
                 filteredXclipse.size + filteredWrapper.size).takeIf { it > 0 },
             resultLabel = { appString(R.string.driver_result_count, it) },
         )
+
+        // 「动态」子分区：驱动更新流独立成页，不与源选择/版本列表挤在一起。
+        // 顶部搜索框在动态页也可用——按驱动名 / 版本号 / 日志正文过滤，
+        // 用户常搜「v849」「a8xx」这类版本机型代号。
+        if (driverTab == DRIVER_TAB_ACTIVITY) item(key = "driver_activity") {
+            val q = driverQuery.trim()
+            val news = if (q.isBlank()) driverNews
+            else driverNews.filter {
+                it.sourceName.contains(q, true) || it.tag.contains(q, true) ||
+                    it.body.contains(q, true) || it.zipName.contains(q, true)
+            }
+            DriverNewsCard(items = news, loading = isLoading)
+        }
 
         if (isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
             item(key = "driver_loading") {
@@ -9176,7 +9339,7 @@ fun DriverScreen(
 
         // 源列表始终展示（releases 失败时 DriverReleasePicker 显示空态提示），
         // 避免整个驱动区块因 releases 拉取失败而消失（修复"驱动专区空白"）。
-        if (filteredTurnip.isNotEmpty() && showTurnipSection && (driverTab == 0 || driverTab == 1)) {
+        if (filteredTurnip.isNotEmpty() && showTurnipSection && (driverTab == DRIVER_TAB_ALL || driverTab == DRIVER_TAB_TURNIP)) {
             item(key = "turnip_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9198,7 +9361,7 @@ fun DriverScreen(
         }
 
         // ── PanVK 驱动专区：Mesa Panfrost 开源 Mali 驱动独立区块 ──
-        if (filteredPanvk.isNotEmpty() && showPanvkSection && (driverTab == 0 || driverTab == 3)) {
+        if (filteredPanvk.isNotEmpty() && showPanvkSection && (driverTab == DRIVER_TAB_ALL || driverTab == DRIVER_TAB_PANVK)) {
             item(key = "panvk_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9222,7 +9385,7 @@ fun DriverScreen(
             }
         }
 
-        if (showQualcomm && showQualcommSection && filteredQualcomm.isNotEmpty() && (driverTab == 0 || driverTab == 2)) {
+        if (showQualcomm && showQualcommSection && filteredQualcomm.isNotEmpty() && (driverTab == DRIVER_TAB_ALL || driverTab == DRIVER_TAB_QUALCOMM)) {
             item(key = "qualcomm_section") {
                 DriverCardDynamic(
                     title = appString(R.string.qualcomm_driver),
@@ -9246,7 +9409,7 @@ fun DriverScreen(
         }
 
         // ── 三星 Xclipse 驱动专区：Exynos RDNA GPU（Exynos 2200/2400）独立区块 ──
-        if (filteredXclipse.isNotEmpty() && showXclipseSection && (driverTab == 0 || driverTab == 4)) {
+        if (filteredXclipse.isNotEmpty() && showXclipseSection && (driverTab == DRIVER_TAB_ALL || driverTab == DRIVER_TAB_XCLIPSE)) {
             item(key = "xclipse_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -9274,7 +9437,7 @@ fun DriverScreen(
         // Wrapper 专区：三源（banner/fristoner/winx）单区块并列，源切换弹窗可选。
         // banner 源为 wrappers.json 清单型：展开区显示清单卡（集成在 TurnipDriverSection
         // 的 catalogItems 分支），不占满页面；fristoner/winx 为 release 型展开显示版本卡。
-        if (filteredWrapper.isNotEmpty() && showWrapperSection && (driverTab == 0 || driverTab == 5)) {
+        if (filteredWrapper.isNotEmpty() && showWrapperSection && (driverTab == DRIVER_TAB_ALL || driverTab == DRIVER_TAB_WRAPPER)) {
             item(key = "wrapper_section") {
                 TurnipDriverSection(
                     adrenoSeries = deviceInfo?.adrenoSeries,
@@ -10135,6 +10298,43 @@ private fun emulatorPlatformLabel(platform: String): String = when (platform) {
     "android" -> "安卓"
     "visual-novel" -> "视觉小说"
     "multi" -> "多平台"
+    // 以下为 2026-11-12 补齐：数据里在用、但此前落到 else 直接显示 key 的平台
+    "nc2000" -> "文曲星 NC2000"
+    "atari-st" -> "Atari ST"
+    "atari-2600" -> "Atari 2600"
+    "atari-jaguar" -> "Atari Jaguar"
+    "atari-lynx" -> "Atari Lynx"
+    "amiga" -> "Amiga"
+    "amstrad-cpc" -> "Amstrad CPC"
+    "apple2" -> "Apple II"
+    "c64" -> "C64"
+    "msx" -> "MSX"
+    "pc-88" -> "PC-88"
+    "pc-98" -> "PC-98"
+    "pc-6001" -> "PC-6001"
+    "pc-engine" -> "PC Engine"
+    "mega-drive" -> "Mega Drive"
+    "master-system" -> "Master System"
+    "game-gear" -> "Game Gear"
+    "sg-1000" -> "SG-1000"
+    "colecovision" -> "ColecoVision"
+    "neo-geo" -> "Neo Geo"
+    "neo-geo-pocket" -> "Neo Geo Pocket"
+    "wonderswan" -> "WonderSwan"
+    "virtual-boy" -> "Virtual Boy"
+    "pocketstation" -> "PocketStation"
+    "philips-p2000" -> "Philips P2000"
+    "zeebo" -> "Zeebo"
+    "zx-spectrum" -> "ZX Spectrum"
+    "model3" -> "Model 3"
+    "java-me" -> "J2ME"
+    "brew" -> "BREW"
+    "symbian" -> "Symbian"
+    "windows-mobile" -> "Windows Mobile"
+    "pico-8" -> "PICO-8"
+    "adventure" -> "文字冒险"
+    "web" -> "网页"
+    "wiiu" -> "Wii U"
     else -> platform
 }
 
@@ -10152,6 +10352,150 @@ private fun emulatorSectionLabel(section: String): String = when (section) {
     "vn-engine" -> "视觉小说引擎"
     else -> section
 }
+
+/**
+ * 平台家族顺序：按条目数从多到少排（任天堂 89 / 索尼 46 在前），
+ * 让最常点的两组落在拇指够得着的左侧。
+ */
+private val EMULATOR_FAMILY_ORDER = listOf(
+    "nintendo", "sony", "retro-computer", "sega",
+    "arcade-handheld", "pc", "microsoft", "mobile-legacy"
+)
+
+/**
+ * 二级轴按分区换。统一套平台家族会让两个分区失效：
+ * windows-compat 49/50 全落 pc 一族（二级被「少于 3 族隐藏」吞掉），
+ * frontend-tool 22 条无家族、剩下 10 条按「服务的主机」归类（PS5 工具落索尼系）。
+ * 所以这两个分区改按容器方案 / 类型分，键值由 scripts/derive_subcategory.py 派生。
+ */
+private val SECTION_FAMILY_ORDER = mapOf(
+    "windows-compat" to listOf(
+        "winlator", "gamehub", "bannerhub", "other-container", "launcher-tool", "desktop"
+    ),
+    "frontend-tool" to listOf("frontend", "tool", "emulator"),
+)
+
+/** 第三级「具体机型」只在这两个分区有意义；容器方案/类型分组下面没有机型可言 */
+private val SECTION_WITH_PLATFORM_ROW = setOf("all", "console-emulation", "native-port")
+
+private fun emulatorFamilyKeys(e: EmulatorEntry, section: String): List<String> =
+    when (section) {
+        "windows-compat", "frontend-tool" ->
+            listOfNotNull(e.subcategory.takeIf { it.isNotBlank() })
+        else -> e.platformFamilies
+    }
+
+/** 二级 chip 文案：同一套 key 在不同分区含义不同（frontend 在前端区是「启动器」，不是平台） */
+private fun emulatorFamilyLabel(section: String, family: String): String = when (section) {
+    "windows-compat" -> when (family) {
+        "winlator" -> "Winlator 系"
+        "gamehub" -> "GameHub 系"
+        "bannerhub" -> "BannerHub 系"
+        "other-container" -> "其他容器"
+        "launcher-tool" -> "启动器与工具"
+        "desktop" -> "桌面 / 主机端"
+        else -> family
+    }
+    "frontend-tool" -> when (family) {
+        "frontend" -> "前端启动器"
+        "tool" -> "工具"
+        "emulator" -> "独立模拟器"
+        else -> family
+    }
+    else -> emulatorFamilyLabel(family)
+}
+
+/** 家族标签：一级分区太粗（主机模拟 223 条），家族是「先认厂商，再认机型」的中间层 */
+private fun emulatorFamilyLabel(family: String): String = when (family) {
+    "sony" -> "索尼系"
+    "nintendo" -> "任天堂系"
+    "microsoft" -> "微软系"
+    "sega" -> "世嘉系"
+    "arcade-handheld" -> "街机与掌机"
+    "retro-computer" -> "复古电脑"
+    "mobile-legacy" -> "老移动系统"
+    "pc" -> "PC 与移动端"
+    else -> family
+}
+
+/**
+ * 家族 → 机型。用于「进了家族只看自家机型」：
+ * 一条多机型条目可能 platforms=[dreamcast, gb]，落 sega + nintendo 两个家族，
+ * 不按这张表过滤的话，「世嘉系」下面会冒出 GB，「微软系」下面会冒出 PS3。
+ * 与 scripts/derive_platform_families.py 的 FAMILIES 一一对应，改一边要改两边。
+ */
+private val EMULATOR_FAMILY_PLATFORMS: Map<String, Set<String>> = mapOf(
+    "sony" to setOf("ps1", "ps2", "ps3", "ps4", "ps5", "psp", "psvita", "pocketstation"),
+    "nintendo" to setOf(
+        "nes", "snes", "n64", "gamecube", "wii", "wiiu", "switch", "switch2",
+        "gb", "gbc", "gba", "nds", "3ds", "virtual-boy"
+    ),
+    "microsoft" to setOf("xbox", "xbox360"),
+    "sega" to setOf(
+        "dreamcast", "saturn", "mega-drive", "master-system", "game-gear",
+        "sg-1000", "model3"
+    ),
+    "arcade-handheld" to setOf(
+        "arcade", "neo-geo", "neo-geo-pocket", "wonderswan", "pc-engine",
+        "atari-2600", "atari-jaguar", "atari-lynx", "colecovision"
+    ),
+    "retro-computer" to setOf(
+        "dos", "amiga", "c64", "msx", "apple2", "pc-98", "zx-spectrum",
+        "atari-st", "pc-6001", "amstrad-cpc", "philips-p2000", "nc2000", "pico-8"
+    ),
+    "mobile-legacy" to setOf("java-me", "symbian", "brew", "windows-mobile", "zeebo"),
+    "pc" to setOf("windows-pc", "ios", "web"),
+)
+
+/**
+ * 模拟器搜索文本：覆盖「用户实际会输入的东西」。
+ * 原来只匹配 name/summary/description，搜「EX-Emulators.zip」「世嘉」「ps2」
+ * 全部落空——用户以为库里没有，其实是没进匹配字段。
+ * 平台、家族、分区、分类都同时写英文 key 和中文标签，中英文都能搜到。
+ */
+private fun emulatorSearchText(e: EmulatorEntry): String = buildString {
+    append(e.name).append(' ')
+    append(e.nameZh).append(' ')
+    append(e.summary).append(' ')
+    append(e.description).append(' ')
+    append(e.owner).append(' ')
+    append(e.repo).append(' ')
+    append(e.latestTag).append(' ')
+    append(e.latestApkName).append(' ')
+    e.platforms.forEach { append(it).append(' ').append(emulatorPlatformLabel(it)).append(' ') }
+    e.platformFamilies.forEach { append(it).append(' ').append(emulatorFamilyLabel(it)).append(' ') }
+    // Windows 兼容/前端工具的二级键（winlator / frontend…）也要能搜到中文标签
+    if (e.subcategory.isNotBlank()) {
+        append(e.subcategory).append(' ').append(emulatorFamilyLabel(e.section, e.subcategory)).append(' ')
+    }
+    append(e.section).append(' ').append(emulatorSectionLabel(e.section)).append(' ')
+    append(e.category).append(' ').append(emulatorCategoryLabel(e.category))
+}.lowercase()
+
+/** 驱动搜索文本：驱动包文件名（wrapper zip）是用户最常搜的东西，必须进匹配 */
+private fun driverSearchText(d: DriverRegistryEntry): String = buildString {
+    append(d.name).append(' ')
+    append(d.description).append(' ')
+    append(d.notes).append(' ')
+    append(d.owner).append(' ')
+    append(d.repo).append(' ')
+    // gpu_vendor 存的是 adreno / mali / xclipse，用户会输入「骁龙」「高通」
+    append(
+        when (d.gpuVendor) {
+            "adreno" -> "adreno 高通 骁龙 snapdragon"
+            "mali" -> "mali arm 马里"
+            "xclipse" -> "xclipse 三星 samsung rdna"
+            else -> d.gpuVendor
+        }
+    ).append(' ')
+    append(d.driverType).append(' ')
+    append(d.packageFormat).append(' ')
+    append(d.frontend.orEmpty()).append(' ')
+    append(d.targetEmulator).append(' ')
+    append(d.latestTag).append(' ')
+    d.gpuModels.forEach { append(it).append(' ') }
+    d.gpuArch.forEach { append(it).append(' ') }
+}.lowercase()
 
 private fun emulatorCategoryLabel(category: String): String = when (category) {
     "Winlator" -> "Winlator 专区"
@@ -10905,30 +11249,60 @@ fun EmulatorScreen(
         entries.forEach { if (it.section.isNotBlank()) seen.add(it.section) }
         EMULATOR_SECTION_ORDER.filter { it in seen } .ifEmpty { seen.toList() }
     }
-    // 二级维度用「模拟的目标平台」：主机模拟里 200 条，用户真正想筛的是 PS2 / Switch / 3DS，
-    // 而不是再筛一次「主机模拟」。
+    // 三级筛选：分区（5 类）→ 平台家族（8 个谱系）→ 具体机型。
+    // 二级原来是具体平台平铺（前 18 个），PS5 / Switch / DOS 混在一行，
+    // 且第 19 名之后的平台（atari-2600、colecovision、pico-8…）没有任何入口。
+    // 中间插一层「家族」后，机型只在家族内出现，长尾也能全部列出。
     var filterPlatform by rememberSaveable { mutableStateOf("all") }
-    val platformOrder = remember(entries, filterSection) {
+    var filterFamily by rememberSaveable { mutableStateOf("all") }
+    val familyOrder = remember(entries, filterSection) {
         val count = HashMap<String, Int>()
         entries.filter { filterSection == "all" || it.section == filterSection }
-            .forEach { e -> e.platforms.forEach { count[it] = (count[it] ?: 0) + 1 } }
-        count.entries.sortedWith(compareByDescending<Map.Entry<String, Int>> { it.value }.thenBy { it.key })
-            .map { it.key }
-            .take(18)
+            .forEach { e ->
+                emulatorFamilyKeys(e, filterSection).forEach { count[it] = (count[it] ?: 0) + 1 }
+            }
+        val order = SECTION_FAMILY_ORDER[filterSection] ?: EMULATOR_FAMILY_ORDER
+        val hit = order.filter { (count[it] ?: 0) > 0 }
+        // 只有一两族时插这行没意义（视觉小说 3 条、老移动 13 条都不值得多一次点击）
+        if (hit.size >= 3) hit else emptyList()
+    }
+    val platformOrder = remember(entries, filterSection, filterFamily) {
+        if (filterSection !in SECTION_WITH_PLATFORM_ROW) emptyList() else {
+            val count = HashMap<String, Int>()
+            val own = EMULATOR_FAMILY_PLATFORMS[filterFamily]
+            entries.filter { filterSection == "all" || it.section == filterSection }
+                .filter { filterFamily == "all" || it.platformFamilies.contains(filterFamily) }
+                .forEach { e ->
+                    e.platforms.forEach { p ->
+                        // 选了家族就只收自家机型，别把跨家族条目的其它机型也列出来
+                        if (own == null || p in own) count[p] = (count[p] ?: 0) + 1
+                    }
+                }
+            val sorted = count.entries
+                .sortedWith(compareByDescending<Map.Entry<String, Int>> { it.value }.thenBy { it.key })
+                .map { it.key }
+            // 进了具体家族就全列（家族内最多几十个机型），「全部」时才截断防爆行
+            if (filterFamily == "all") sorted.take(18) else sorted
+        }
     }
 
-    val filtered = remember(entries, filterSection, filterPlatform, sortMode, searchQuery, onlyFav, favorites) {
+    // 搜索索引：一次算好 354 条的匹配文本，别在每次按键时重拼字符串。
+    val searchIndex = remember(entries) {
+        entries.associate { it.id to emulatorSearchText(it) }
+    }
+
+    val filtered = remember(entries, filterSection, filterFamily, filterPlatform, sortMode, searchQuery, onlyFav, favorites, searchIndex) {
         val base = entries
             .filter { filterSection == "all" || it.section == filterSection }
+            .filter { filterFamily == "all" || emulatorFamilyKeys(it, filterSection).contains(filterFamily) }
             .filter { filterPlatform == "all" || it.platforms.contains(filterPlatform) }
         val favFiltered = if (onlyFav) base.filter { it.id in favorites } else base
-        val searched = if (searchQuery.isBlank()) favFiltered
-        else favFiltered.filter {
-            it.name.contains(searchQuery, ignoreCase = true) ||
-                it.summary.contains(searchQuery, ignoreCase = true) ||
-                it.description.contains(searchQuery, ignoreCase = true) ||
-                it.category.contains(searchQuery, ignoreCase = true) ||
-                emulatorCategoryLabel(it.category).contains(searchQuery, ignoreCase = true)
+        // 空格分词 = AND：搜「索尼 ps2」要求两个词都命中，而不是匹配整串
+        val terms = searchQuery.trim().lowercase().split(Regex("\\s+")).filter { it.isNotBlank() }
+        val searched = if (terms.isEmpty()) favFiltered
+        else favFiltered.filter { e ->
+            val hay = searchIndex[e.id].orEmpty()
+            terms.all { t -> hay.contains(t) }
         }
         when (sortMode) {
             "stars" -> searched.sortedByDescending { it.stars }
@@ -11061,25 +11435,52 @@ fun EmulatorScreen(
                             selected = filterSection == sec,
                             onClick = {
                                 filterSection = sec
-                                // 切分区时平台重置，否则会停在上一个分区才有的平台上
+                                // 切分区时下面两级一起重置，否则会停在上一个分区才有的家族/机型上
+                                filterFamily = "all"
                                 filterPlatform = "all"
                             }
                         )
                     }
                 }
                 Spacer(Modifier.height(6.dp))
-                // 二级：该分区里出现的模拟平台（按条目数排序，取前 18 个）
-                Row(
-                    modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    listOf("all").plus(platformOrder).forEach { p ->
-                        FusionFilterChip(
-                            label = if (p == "all") appString(R.string.emulator_platform_all)
-                            else emulatorPlatformLabel(p),
-                            selected = filterPlatform == p,
-                            onClick = { filterPlatform = p }
-                        )
+                // 二级：主机模拟/原生移植按平台家族，Windows 兼容按容器方案，前端工具按类型。
+                // 少于 3 组的分区不出这一行——插一层等于多一次点击。
+                if (familyOrder.isNotEmpty()) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        listOf("all").plus(familyOrder).forEach { f ->
+                            FusionFilterChip(
+                                label = if (f == "all") {
+                                    if (filterSection == "console-emulation") "全部厂商" else "全部"
+                                } else emulatorFamilyLabel(filterSection, f),
+                                selected = filterFamily == f,
+                                onClick = {
+                                    filterFamily = f
+                                    // 换家族时机型必须重置：PS2 不属于任天堂系
+                                    filterPlatform = "all"
+                                }
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(6.dp))
+                }
+                // 三级：具体机型。进了家族就全列（家族内不会有几十个），
+                // 「全部」时截断 18 个，避免一行滑不到头。容器/类型分组下面没有机型，整行不出。
+                if (platformOrder.isNotEmpty()) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        listOf("all").plus(platformOrder).forEach { p ->
+                            FusionFilterChip(
+                                label = if (p == "all") appString(R.string.emulator_platform_all)
+                                else emulatorPlatformLabel(p),
+                                selected = filterPlatform == p,
+                                onClick = { filterPlatform = p }
+                            )
+                        }
                     }
                 }
                 Spacer(Modifier.height(8.dp))
@@ -11211,6 +11612,9 @@ if (emuTab == 0) item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan)
                             FilledTonalButton(
                                 onClick = {
                                     searchQuery = ""
+                                    // 三级筛选任一层都可能把结果筛空，一键重置要全部回到「全部」
+                                    filterSection = "all"
+                                    filterFamily = "all"
                                     filterPlatform = "all"
                                     onlyFav = false
                                 },
@@ -12889,8 +13293,106 @@ private fun assetTypeLabel(name: String): String = when {
 }
 
 /** 模拟器详情：全部 releases 全部文件，每个文件可下载，日志可翻译 */
+/**
+ * 发布页里的校验和/签名文件。列出来只会让用户误下一堆 .sha256，
+ * 也不能装、也不能看。数量统计和列表都要用过滤后的口径，否则「12 个文件」
+ * 下面只列 6 行，用户会以为加载不全。
+ */
+private fun isNoiseAsset(name: String): Boolean {
+    val n = name.lowercase()
+    return n.endsWith(".sha256") || n.endsWith(".sha512") || n.endsWith(".sha1") ||
+        n.endsWith(".md5") || n.endsWith(".sig") || n.endsWith(".asc") ||
+        n.endsWith(".zsync") || n.endsWith(".blockmap") ||
+        // 有的项目不加扩展名，直接叫 xxx_sha256sums（Termux 就是这样）
+        n.contains("sha256sum") || n.contains("sha512sum") || n.contains("md5sum")
+}
+
+/**
+ * 从文件名认架构。选包时这是第二个要判断的东西（第一是「是不是安卓包」），
+ * 但文件名长到必被截断，截掉的多半正是 arm64/armeabi 这一段。
+ */
+private fun assetArchLabel(name: String): String {
+    val n = name.lowercase()
+    return when {
+        "arm64-v8a" in n || "arm64" in n || "aarch64" in n -> "arm64"
+        "armeabi-v7a" in n || "armv7" in n || "armeabi" in n -> "armv7"
+        "x86_64" in n || "x64" in n || "amd64" in n -> "x64"
+        "x86" in n || "i686" in n || "i386" in n -> "x86"
+        "universal" in n || "all" in n.split('.', '-', '_') -> "通用"
+        else -> ""
+    }
+}
+
+/** 产物明细：只列非零项，手机能用的排前面（用户先关心「能不能装」） */
+private fun artifactBreakdown(a: EmulatorArtifacts): String = buildList {
+    if (a.apk > 0) add("安卓包 ${a.apk}")
+    if (a.androidZip > 0) add("安卓 zip ${a.androidZip}")
+    if (a.ipa > 0) add("iOS 包 ${a.ipa}")
+    if (a.libretroCore > 0) add("RetroArch 核心 ${a.libretroCore}")
+    if (a.desktop > 0) add("桌面端 ${a.desktop}")
+    if (a.console > 0) add("主机端 ${a.console}")
+    if (a.source > 0) add("源码 ${a.source}")
+}.joinToString(" · ")
+
+/**
+ * 发布文件清单：在详情页顶部就回答「这版到底给了什么」。
+ * 以前要翻到最底下的版本卡、再展开，才能看见文件名；而「给了桌面包没有安卓包」
+ * 正是用户最容易被误导的地方（点下载，装不上）。
+ *
+ * 无产物时不再单给一个「去下载页」按钮——底栏已经有「官网获取」，同一个动作
+ * 同屏出现两次只会让用户以为要走两套流程。
+ */
 @Composable
-private fun EmulatorDetailDialog(
+private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
+    val a = entry.artifacts
+    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp)) {
+        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("发布文件", style = MaterialTheme.typography.titleSmall)
+                Spacer(Modifier.weight(1f))
+                Text(
+                    if (a.isEmpty) "无" else "共 ${a.displayTotal} 个",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            when {
+                a.isEmpty -> {
+                    Text(
+                        "作者没把安装包传到发布页，改在官网、网盘或 Discord 分发。用下方「官网获取」过去找。",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                else -> {
+                    val phone = a.installableOnPhone
+                    Text(
+                        when {
+                            phone > 0 -> "手机可直接安装 · $phone 个"
+                            a.recognized > 0 -> "手机装不了 · 只有桌面端或源码"
+                            else -> "发布页 ${a.total} 个文件都不是手机安装包"
+                        },
+                        style = MaterialTheme.typography.labelLarge,
+                        color = if (phone > 0) MaterialTheme.colorScheme.primary
+                        else MaterialTheme.colorScheme.error
+                    )
+                    val detail = artifactBreakdown(a)
+                    if (detail.isNotBlank()) {
+                        Text(
+                            detail,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** internal 仅为截图测试可见（私有函数无法在测试里单独渲染，只能靠点击列表绕一圈）。 */
+@Composable
+internal fun EmulatorDetailDialog(
     initialEntry: EmulatorEntry,
     onDismiss: () -> Unit,
     onDownloadAsset: (url: String, name: String) -> Unit
@@ -13069,6 +13571,7 @@ private fun EmulatorDetailDialog(
                     }
                 }
                 HorizontalDivider()
+                ArtifactSummaryBlock(entry = entry)
                 Text(
                     appString(R.string.emulator_all_versions, entry.releases.size),
                     style = MaterialTheme.typography.labelLarge,
@@ -13080,8 +13583,11 @@ private fun EmulatorDetailDialog(
                         shape = RoundedCornerShape(16.dp)
                     ) {
                         Column(Modifier.padding(14.dp)) {
+                            // 上面刚说「共 48 个文件」，这里又说「暂无发布版本」会自相矛盾。
+                            // 真实原因是版本明细在详情分片里、离线或分片没拉到，说清楚即可。
                             Text(
-                                appString(R.string.emulator_no_releases),
+                                if (entry.artifacts.total > 0) "版本明细需联网加载，可先到仓库页查看具体文件"
+                                else appString(R.string.emulator_no_releases),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -13112,7 +13618,8 @@ private fun EmulatorDetailDialog(
                     }
                 }
                 entry.releases.forEach { rel ->
-                    val totalSize = rel.assets.sumOf { it.size }
+                    val visibleAssets = rel.assets.filterNot { isNoiseAsset(it.name) }
+                    val totalSize = visibleAssets.sumOf { it.size }
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp)
@@ -13134,9 +13641,9 @@ private fun EmulatorDetailDialog(
                                     Spacer(Modifier.height(2.dp))
                                     Text(
                                         buildString {
-                                            append(rel.date)
-                                            if (rel.assets.isNotEmpty()) {
-                                                append(" · ${rel.assets.size} 个文件")
+                                            append(shortDate(rel.date))
+                                            if (visibleAssets.isNotEmpty()) {
+                                                append(" · ${visibleAssets.size} 个文件")
                                                 append(" · ${assetSizeText(totalSize)}")
                                             }
                                         },
@@ -13195,25 +13702,41 @@ private fun EmulatorDetailDialog(
                                             }
                                         }
                                     }
+                                    // 日志原先固定 200dp 高、内部再套一层滚动：在弹窗整体滚动里
+                                    // 这层嵌套滚动几乎拖不动，还把资产列表推到屏幕外。
+                                    // 改成默认 4 行、点一下展开，进来的第一眼就能看到文件名。
+                                    var logExpanded by remember(rel.tag) { mutableStateOf(false) }
+                                    val logText = translatedMap[rel.tag] ?: rel.body
                                     Text(
-                                        translatedMap[rel.tag] ?: rel.body,
+                                        logText,
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        maxLines = if (logExpanded) Int.MAX_VALUE else 4,
+                                        overflow = TextOverflow.Ellipsis,
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .heightIn(max = 200.dp)
-                                            .verticalScroll(rememberScrollState())
+                                            .clickable { logExpanded = !logExpanded }
                                     )
+                                    if (logText.count { it == '\n' } > 3) {
+                                        Text(
+                                            if (logExpanded) "收起日志" else "展开全部日志",
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.primary,
+                                            modifier = Modifier
+                                                .padding(top = 2.dp)
+                                                .clickable { logExpanded = !logExpanded }
+                                        )
+                                    }
                                     Spacer(Modifier.height(6.dp))
                                 }
-                                if (rel.assets.isEmpty()) {
+                                if (visibleAssets.isEmpty()) {
                                     Text(
                                         appString(R.string.emulator_no_assets),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
-                                rel.assets.forEach { asset ->
+                                visibleAssets.forEach { asset ->
                                     Row(
                                         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
                                         verticalAlignment = Alignment.CenterVertically
@@ -13233,7 +13756,11 @@ private fun EmulatorDetailDialog(
                                                 overflow = TextOverflow.Ellipsis
                                             )
                                             Text(
-                                                assetSizeText(asset.size),
+                                                buildString {
+                                                    append(assetSizeText(asset.size))
+                                                    val arch = assetArchLabel(asset.name)
+                                                    if (arch.isNotEmpty()) append(" · ").append(arch)
+                                                },
                                                 style = MaterialTheme.typography.labelSmall,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                                             )
@@ -14050,22 +14577,21 @@ fun GlobalSearchSheet(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 } else {
-                    val q = query.trim().lowercase()
-                    val emuHits = emulators.filter {
-                        it.name.lowercase().contains(q) || it.category.lowercase().contains(q) ||
-                            it.description.lowercase().contains(q)
+                    // 全局搜索与分区内搜索共用同一套匹配文本，避免「分区里搜得到、全局搜不到」
+                    val emuIndex = emulators.associate { it.id to emulatorSearchText(it) }
+                    val drvIndex = drivers.associate { it.id to driverSearchText(it) }
+                    val terms = query.trim().lowercase().split(Regex("\\s+")).filter { it.isNotBlank() }
+                    fun hit(hay: String?) = hay != null && terms.all { t -> hay.contains(t) }
+                    val emuHits = emulators.filter { hit(emuIndex[it.id]) }
+                    val drvHits = drivers.filter { hit(drvIndex[it.id]) }
+                    val compHits = componentNames.filter { n -> terms.all { n.lowercase().contains(it) } }
+                    val rtHits = runtimes.filter { r ->
+                        val hay = (r.name + " " + r.description + " " + r.category.name).lowercase()
+                        terms.all { t -> hay.contains(t) }
                     }
-                    val drvHits = drivers.filter {
-                        it.name.lowercase().contains(q) || it.description.lowercase().contains(q) ||
-                            it.notes.lowercase().contains(q) || it.gpuVendor.lowercase().contains(q)
-                    }
-                    val compHits = componentNames.filter { it.lowercase().contains(q) }
-                    val rtHits = runtimes.filter {
-                        it.name.lowercase().contains(q) || it.description.lowercase().contains(q) ||
-                            it.category.name.lowercase().contains(q)
-                    }
-                    val dlHits = downloads.filter {
-                        it.fileName.lowercase().contains(q) || it.subPath.lowercase().contains(q)
+                    val dlHits = downloads.filter { d ->
+                        val hay = (d.fileName + " " + d.subPath).lowercase()
+                        terms.all { t -> hay.contains(t) }
                     }
                     if (emuHits.isEmpty() && drvHits.isEmpty() && compHits.isEmpty() && rtHits.isEmpty() && dlHits.isEmpty()) {
                         Text(

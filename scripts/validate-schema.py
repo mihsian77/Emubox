@@ -45,6 +45,14 @@ ALLOWED = set(REQUIRED) | {
     "community_port", "requires_original", "logo_source",
     # 中文名/中文作品名：原生移植项目原名是英文，列表里补一行译名（人工核对）
     "name_zh",
+    # 2026-11-12 新增：按发布文件列表解析出的产物统计与安卓可安装判定
+    "artifacts", "android_ready",
+    # 伴随应用/构件：原生移植常需搭配输入桥、驱动或额外 wrapper
+    "companion",
+    # 平台家族（8 个硬件谱系，由 platforms 派生，供二级分类 chip 使用）
+    "platform_families",
+    # 二级分类的另一种轴：windows-compat 按容器方案、frontend-tool 按类型
+    "subcategory",
 }
 
 # 枚举值取自真实数据分布，不是猜的：
@@ -55,7 +63,9 @@ CHANNELS = {"stable", "prerelease"}
 RUNTIMES = {"android-native", "desktop", "winlator", "libretro",
             "console-homebrew", "ps5-homebrew"}
 HOSTS = {"android", "windows", "macos", "linux", "ios",
-         "ps5", "wii", "gamecube", "harmonyos"}
+         "ps5", "wii", "gamecube", "harmonyos",
+         # 主机 homebrew 宿主：izpsx 跑 Switch 2、emufive 跑已越狱 PS4
+         "switch2", "ps4"}
 STATUS = {"active", "stale", "dead", "archived", "community"}
 KINDS = {"emulator", "port", "frontend", "tool", "engine"}
 DOWNLOADS_BASIS = {"lifetime", "latest-lower-bound", "none"}
@@ -63,7 +73,7 @@ DOWNLOADS_BASIS = {"lifetime", "latest-lower-bound", "none"}
 INT_FIELDS = ["stars", "forks", "watchers", "downloads_total",
               "downloads_latest", "latest_apk_size"]
 LIST_FIELDS = ["platforms", "hosts", "topics", "releases", "builds",
-               "community_sources"]
+               "community_sources", "platform_families"]
 BOOL_FIELDS = ["official", "dead", "needs_review", "archived"]
 
 URL_RE = re.compile(r"^https?://", re.I)
@@ -148,6 +158,10 @@ def check_entry(path, i, e):
     # nightly.link 的 artifact 直链路径末段是数字 id，但资产名是 apk，属合法
     ok_apk = apk.endswith((".apk", ".aab")) or (
         "nightly.link" in apk and apk_name.endswith((".apk", ".aab")))
+    # 安卓包常打成 zip 发（EX-Emulators.zip / nc2000_*.zip / FivePocket-*-android.zip），
+    # distribution=android-archive 即属此列，扩展名不是 apk 也算合法可安装分发。
+    if e.get("distribution") == "android-archive" and apk.endswith(".zip"):
+        ok_apk = True
     if apk and not ok_apk:
         p.append(f"{where}: latest_apk_url 不是 apk/aab：{apk.rsplit('/', 1)[-1][:50]}")
 

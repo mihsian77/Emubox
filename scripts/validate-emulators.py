@@ -10,7 +10,9 @@ import urllib.request
 REG = "emulator-registry.json"
 DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 "strato-emulator", "ryujinx-official",
-                "ovsky-sumi-emu", "skyline-official", "drastic"}
+                "ovsky-sumi-emu", "skyline-official", "drastic",
+                # 2026-11-12：11-10 还在发 v0.1.5，随后仓库 404，判版权下架
+                "moceure-banananative"}
 VALID_SOURCES = {"github", "gitea", "gitlab", "gitee", "notabug",
                  "official-web", "official-play", "community-archive"}
 BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}
@@ -81,7 +83,12 @@ def main():
                 # 桌面条目：只要不是明显不可执行的文件（json/md/txt）即视为合法分发物
                 if low.endswith((".json", ".md", ".txt")):
                     problems.append(f"[{eid}] 桌面分发物不应是文档文件: {apk[-30:]}")
-            elif any(low.endswith(x) for x in BAD_EXT) and "RetroArch" not in (e.get("note") or ""):
+            elif (any(low.endswith(x) for x in BAD_EXT)
+                  and e.get("distribution") != "android-archive"
+                  and "RetroArch" not in (e.get("note") or "")):
+                # 安卓包大量打成 zip 发（EX-Emulators.zip / nc2000_*.zip /
+                # FivePocket-*-android.zip），distribution=android-archive 即属此列，
+                # 按扩展名判死会误杀。只有 distribution 不是 android-archive 时才算可疑。
                 problems.append(f"[{eid}] 下载直链为可疑文件类型(非安装包): {apk[-30:]}")
         elif not dead and e.get("source") in ("github", "gitlab", "gitea", "notabug"):
             # 活跃代码源条目应有下载或明确 note
@@ -96,7 +103,12 @@ def main():
                "ps5",
                # 主机 homebrew 宿主：dborth 的 GX 系列（Snes9x/VBA/FCE Ultra）跑在
                # GameCube/Wii 上，不是 PC 软件，也不该算 desktop。
-               "gamecube", "wii"}
+               "gamecube", "wii",
+               # 2026-11-12 补：izpsx 跑在 Switch 2（需 IZ2S 平台权限），
+               # emufive 跑在已越狱 PS4 上通过 Linux 跑 PS5 游戏。
+               # 二者都是 console-homebrew，hosts 写主机名才是真实语义；
+               # 以前白名单没收这两个值，导致把正确数据判成非法。
+               "switch2", "ps4"}
     for e in ems:
         eid = e.get("id")
         if "method" not in e:

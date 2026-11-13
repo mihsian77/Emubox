@@ -48,6 +48,39 @@ data class EmulatorRelease(
     val assets: List<EmulatorAsset> = emptyList()
 )
 
+/**
+ * 一个项目在最新发布里「实际给了什么」。五类分开，是因为用户关心的问题不同：
+ * 安卓用户只问 apk/androidZip 有没有，桌面用户问 desktop，开发者问 source。
+ */
+data class EmulatorArtifacts(
+    val apk: Int = 0,
+    val androidZip: Int = 0,
+    val ipa: Int = 0,
+    val libretroCore: Int = 0,
+    val desktop: Int = 0,
+    val console: Int = 0,
+    val source: Int = 0,
+    val total: Int = 0
+) {
+    /** 手机上能直接装的（安卓 apk / 安卓 zip / iOS ipa） */
+    val installableOnPhone: Int get() = apk + androidZip + ipa
+
+    /**
+     * 归好类的产物数。`total` 是发布页的资产总数，含 sha256sums、.sig、说明图片等
+     * 校验/说明文件——354 条里有 131 条两者对不上（Termux：total 48、装包 40）。
+     * 界面上一律用这个值，避免「共 48 个」下面只列出 40 个的自相矛盾。
+     */
+    val recognized: Int get() = apk + androidZip + ipa + libretroCore + desktop + console + source
+
+    /** 界面上报的「共 N 个」：优先归好类的数，全没认出来才退回资产总数 */
+    val displayTotal: Int get() = if (recognized > 0) recognized else total
+
+    val isEmpty: Boolean get() = total == 0
+
+    /** 有没有「不是手机包」的产物：只有桌面或源码时必须提前告知，别让用户白下 */
+    val onlyOtherPlatforms: Boolean get() = installableOnPhone == 0 && total > 0
+}
+
 data class EmulatorEntry(
     val id: String,
     val name: String,
@@ -62,6 +95,29 @@ data class EmulatorEntry(
     val section: String = "",
     /** 模拟的目标平台：ps2 / switch / 3ds / windows-pc …（用于二级筛选） */
     val platforms: List<String> = emptyList(),
+    /**
+     * 平台家族（8 个硬件谱系：sony / nintendo / microsoft / sega /
+     * arcade-handheld / retro-computer / mobile-legacy / pc）。
+     * 由 registry 的 `platform_families` 派生，供「分区 → 家族 → 机型」三级筛选的中间层。
+     * 空值表示该条目描述的是形态（multi）或题材（visual-novel），不属任何硬件谱系。
+     */
+    val platformFamilies: List<String> = emptyList(),
+    /**
+     * 二级分类的另一种轴。只有两个分区用：
+     * windows-compat -> winlator / gamehub / bannerhub / other-container / launcher-tool / desktop
+     * frontend-tool  -> frontend / tool / emulator
+     * 这两个分区套平台家族会失效（前者 49/50 都在 pc 一族，后者 22 条无家族），
+     * 由 scripts/derive_subcategory.py 从 id/name/kind 派生。
+     */
+    val subcategory: String = "",
+    /**
+     * 发布产物构成。按「解析资产文件名」统计，不是数 release 条数——
+     * 安卓包常打成 zip（EX-Emulators.zip / FivePocket-*-android.zip），
+     * 只看扩展名会把 100 多条判成「没有安卓产物」。
+     */
+    val artifacts: EmulatorArtifacts = EmulatorArtifacts(),
+    /** 是否有能直接装到安卓手机上的产物（apk / 安卓 zip / ipa 之外的都不算） */
+    val androidReady: Boolean = false,
     val description: String,
     /**
      * 中文一句话摘要：优先用 README 首段，没有 README 时用仓库 About，
@@ -214,6 +270,23 @@ object EmulatorRegistryRepository {
                         platforms = obj.optJSONArray("platforms")?.let { arr ->
                             (0 until arr.length()).mapNotNull { i -> arr.optString(i).takeIf(String::isNotBlank) }
                         } ?: emptyList(),
+                        platformFamilies = obj.optJSONArray("platform_families")?.let { arr ->
+                            (0 until arr.length()).mapNotNull { i -> arr.optString(i).takeIf(String::isNotBlank) }
+                        } ?: emptyList(),
+                        subcategory = obj.optString("subcategory"),
+                        artifacts = obj.optJSONObject("artifacts")?.let { a ->
+                            EmulatorArtifacts(
+                                apk = a.optInt("apk", 0),
+                                androidZip = a.optInt("android_zip", 0),
+                                ipa = a.optInt("ipa", 0),
+                                libretroCore = a.optInt("libretro_core", 0),
+                                desktop = a.optInt("desktop", 0),
+                                console = a.optInt("console", 0),
+                                source = a.optInt("source", 0),
+                                total = a.optInt("total", 0)
+                            )
+                        } ?: EmulatorArtifacts(),
+                        androidReady = obj.optBoolean("android_ready", false),
                         description = obj.optString("description"),
                         summary = obj.optString("summary"),
                         owner = if (slash > 0) repoFull.substring(0, slash) else "",

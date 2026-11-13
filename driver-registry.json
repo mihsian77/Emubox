@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
-  "updated_at": "2026-11-03T03:38:17Z",
+  "version": "1.1.1",
+  "updated_at": "2026-11-12T11:20:00Z",
   "description": "EmuHub 驱动仓库注册表，按 GPU 厂商/架构/型号自动分类匹配",
   "repositories": [
     {
@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5185,
+      "stars": 5180,
       "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1255,
+      "stars": 1212,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 922,
+      "stars": 912,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -270,7 +270,7 @@
       "target_emulator": "generic",
       "package_format": "magisk",
       "maturity": "stable",
-      "stars": 223,
+      "stars": 222,
       "description": "Turnip Magisk 模块构建脚本，适合有 root 的用户",
       "notes": "Magisk 模块格式，需要 root",
       "companion": [],
@@ -333,7 +333,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 244,
+      "stars": 239,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-12T20:58:44Z",
-      "latest_tag": "v27.0.0-20261112-r5",
-      "latest_date": "2026-11-12T20:58:44Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`de9afd5`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/de9afd5d2a223897ae7aa43734ca83a517522b0f) |\n| **Commit title** | torx: Depend on idep_mesautilformat for generated format headers |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-12 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--"
+      "updated_at": "2026-11-10T00:48:38Z",
+      "latest_tag": "v27.0.0-20261110",
+      "latest_date": "2026-11-10T00:48:38Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ **A8xx** didn't build this run, so it isn't included.\n\n> ❌ **Banners-AIO** didn't build this run, so it isn't included.\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`1c87c60`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/1c87c60187064c60a10378fa79e20debf0941f97) |\n| **Commit title** | tu: WFI before reading registers that were just written |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -412,7 +412,7 @@
       "target_emulator": "generic",
       "package_format": "magisk",
       "maturity": "ci",
-      "stars": 167,
+      "stars": 166,
       "description": "Magisk 模块形态的 Turnip CI 构建，每两周自动发布",
       "notes": "Magisk 模块格式，需要 root",
       "companion": [],
@@ -475,7 +475,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 490,
+      "stars": 489,
       "description": "作者自述为不稳定构建（sloppy），主要改善 A8xx；除非明确知道要它，否则别当默认选项",
       "notes": "",
       "companion": [],
@@ -541,7 +541,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "ci",
-      "stars": 19,
+      "stars": 18,
       "description": "GitHub Actions 每日从源码编译 Turnip，Winlator 可用",
       "notes": "每日更新，注意 DXVK 2.4.1+ 有性能回退",
       "companion": [],
@@ -636,7 +636,7 @@
       "target_emulator": "eden",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 53,
+      "stars": 52,
       "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
       "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
       "companion": [],
@@ -704,7 +704,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 47,
+      "stars": 46,
       "description": "whitebelyash 的分支，补 A810 / A829，同时提供 Magisk 模块",
       "notes": "",
       "companion": [],
@@ -737,7 +737,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "alpha",
-      "stars": 8,
+      "stars": 7,
       "description": "A810 专用 Turnip，含 autotuner 自动调优版本",
       "notes": "有 autotuner 和 S2 两个版本",
       "companion": [],
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 117,
+      "stars": 112,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -811,7 +811,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 27,
+      "stars": 26,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -820,10 +820,10 @@
           "Turnip"
         ]
       },
-      "updated_at": "2026-11-10T18:43:07Z",
-      "latest_tag": "v1.2.10",
-      "latest_date": "2026-11-10T18:43:07Z",
-      "latest_body": "Mesa Turnip for Adreno. v1.2.10 is v1.2.9 plus 11 bug fixes taken from upstream Mesa. Speed is the same as v1.2.9.\n\nDownload `turnip_faux123_v1.2.10.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.2.9\n\n- Adreno 8xx (Odin 3, Adreno 825, 829, 830): large buffers over 1 GiB no longer wrap to almost nothing. Unreal Engine 5.5 and newer games create these through vkd3d-proton (for example in GameNative).\n- Adreno 8xx: fixed partial fa"
+      "updated_at": "2026-11-09T15:50:20Z",
+      "latest_tag": "v1.2.9",
+      "latest_date": "2026-11-09T15:50:20Z",
+      "latest_body": "Mesa Turnip for Adreno. v1.2.9 is v1.2.8 with one addition: the driver now starts on the Adreno 825 (Snapdragon 8s Gen 4, SM8735). Nothing else changed.\n\nDownload `turnip_faux123_v1.2.9.adpkg.zip` below and import it in your app's AdrenoTools driver picker. Do not unzip it.\n\n## What changed since v1.2.8\n\n- Adreno 825: added to the driver's GPU table, using the same settings as the Adreno 829. Before v1.2.9 the driver did not recognize the Adreno 825 and did not start on it.\n- Every other Adreno:"
     },
     {
       "id": "fristoner-g57",
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 149,
+      "stars": 140,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -878,7 +878,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "alpha",
-      "stars": 34,
+      "stars": 33,
       "description": "Mali-G52（Bifrost JM）PanVK，V7 起支持几何着色器，仍是 alpha",
       "notes": "G52 早期支持，可能不稳定",
       "companion": [
@@ -983,7 +983,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 50,
+      "stars": 48,
       "description": "Mali-G720（天玑9300/9200+）CSF PanVK 实验驱动",
       "notes": "CSF 架构，native Vulkan",
       "companion": [],
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 144,
+      "stars": 133,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1057,7 +1057,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 28,
+      "stars": 27,
       "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
       "notes": "覆盖型号较广",
       "companion": [],
@@ -1137,10 +1137,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-11-11T05:57:41Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:41Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-07T10:42:10Z",
+      "latest_tag": "v1.1.4",
+      "latest_date": "2026-11-07T10:42:10Z",
+      "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
       "id": "faux123-rg556",
@@ -1160,7 +1160,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 19,
+      "stars": 13,
       "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
       "notes": "掌机设备专用",
       "companion": [
@@ -1171,10 +1171,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-11-11T05:57:46Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:46Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-07T10:42:18Z",
+      "latest_tag": "v1.1.4",
+      "latest_date": "2026-11-07T10:42:18Z",
+      "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
       "id": "dkdndje-g720",
@@ -1289,7 +1289,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 61,
+      "stars": 54,
       "description": "JimVulkan 的 radv-xclipse：把 Mesa RADV 移植到三星 Xclipse GPU",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1299,10 +1299,10 @@
           "Xclipse"
         ]
       },
-      "updated_at": "2026-11-11T22:39:02Z",
-      "latest_tag": "v1.9.0",
-      "latest_date": "2026-11-11T22:39:02Z",
-      "latest_body": "RADV for Samsung Xclipse GPUs, build `cc87fdf`. It contains\r\nfixes that passed our tests but haven't been confirmed in the games they're aimed at yet, so it can\r\nbehave worse than the last build in some games. Please report what you find, good or bad.\r\n\r\nThere are now three packages, all built from the same source:\r\n\r\n| Package | For |\r\n|---|---|\r\n| `radv-xclipse-27.0.0-devel-cc87fdf.zip` | Eden, Winlator and other Android apps that load a Vulkan driver from a zip |\r\n| `radv-xclipse-wayland-27.0"
+      "updated_at": "2026-10-19T22:27:02Z",
+      "latest_tag": "v1.8.0",
+      "latest_date": "2026-10-19T22:27:02Z",
+      "latest_body": "RADV for Samsung Xclipse GPUs. This release loads BC6H and BC7 textures about twice as fast\r\nand adds a build for Bannerlator's Wayland mode.\r\n\r\n## What's new\r\n\r\n- **BC6H and BC7 textures load about twice as fast.** The driver converts these formats on the GPU\r\n  when a game loads them, and that conversion is now much quicker. For a 2048x2048 texture on the\r\n  Xclipse 920: BC7 about 4 ms instead of 10, BC6H about 2.5 ms instead of 5. Games that stream many\r\n  textures should stutter less while l"
     },
     {
       "id": "winnative-drivers",
@@ -1352,7 +1352,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 101,
+      "stars": 99,
       "description": "WinNative 团队构建的 Turnip 合集，按设备分批发布",
       "notes": "同时提供 Android 包与 Linux 变体",
       "companion": [],
@@ -1414,7 +1414,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 279,
+      "stars": 275,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1462,7 +1462,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 85,
+      "stars": 73,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1593,7 +1593,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 21,
+      "stars": 20,
       "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
       "companion": [],
@@ -1626,7 +1626,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 112,
+      "stars": 103,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1704,10 +1704,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-11-11T05:57:44Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:44Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-07T10:42:13Z",
+      "latest_tag": "v1.1.4",
+      "latest_date": "2026-11-07T10:42:13Z",
+      "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
       "id": "faux123-rp4pro",
@@ -1738,10 +1738,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-11-11T05:57:50Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:50Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-07T10:42:15Z",
+      "latest_tag": "v1.1.4",
+      "latest_date": "2026-11-07T10:42:15Z",
+      "latest_body": "**Tessellation is now as fast as Arm's driver on the Mali-G610 and G710 phones, and about 3.4 times faster than v1.1.3 on the G57 (RG556).** All four repositories ship the same package, `panvk_faux123_v1.1.4.adpkg.zip`, with the same bytes. If you use v1.1.3, update to this one.\n\nDownload `panvk_faux123_v1.1.4.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### Tessellation (Trails from Zero and other DX11 games that tessellate)\n\nTrails from Zero draws about 500 small te"
     },
     {
       "id": "lukevalen-kbase",
@@ -1853,7 +1853,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 10,
+      "stars": 9,
       "notes": "Lemon-Ade-v0.0.7 2026-10-13；配合 Lemon Project Switch 模拟器使用",
       "companion": [
         "ghaelv-lemon-project"
@@ -1882,7 +1882,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 45,
+      "stars": 44,
       "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
       "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
       "companion": [],
@@ -1912,7 +1912,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "stable",
-      "stars": 140,
+      "stars": 139,
       "description": "BannerHub Wrapper 目录：wmali-wrapper/compat-bcn/gamenative/original 等 14 个 Vulkan/GL 包装层",
       "notes": "wrappers-v1 2026-07-20（App 读仓库 wrappers.json 清单，不依赖 release 标签顺序；Rutabaga/linuxfs/steamdeck 等混装 release 已过滤）",
       "companion": [],
@@ -1943,7 +1943,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 21,
+      "stars": 20,
       "description": "FristOneRR Vulkan wrapper，配合 FristOneRR PanVK on Mali (kbase) 使用",
       "notes": "v3.0 2026-10-20；含 SHA256SUMS",
       "companion": [
@@ -1976,7 +1976,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 45,
+      "stars": 44,
       "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "notes": "wrappers 标签 2026-08-31（strict 过滤只读该标签，v0.9.x 为 App 本体、drivers_0.9 为三星驱动已收驱动区 companion、community-configs 社区配置不收录）",
       "companion": [
@@ -2043,7 +2043,7 @@
       },
       "strict_filter": true,
       "updated_at": "2026-10-13T03:33:30Z",
-      "stars": 140,
+      "stars": 139,
       "latest_tag": "rutabaga-drivers-v1",
       "latest_date": "2026-10-13T03:33:30Z",
       "latest_body": "Rutabaga Turnip (Mesa freedreno) Vulkan drivers for Adreno, repackaged from GameHub as AdrenoTools zips (meta.json + libvulkan_freedreno.so).\n\n- **Rutabaga-26.10.10**: Mesa 26.3.0-devel git-b00479181d. Newest: Uncharted A6xx/A7xx compat + SSBO emulation, Assassin's Creed IV work, indexed-draw hang workaround (witcher3-hdr branch).\n- **Rutabaga-26.09.24**: Mesa 26.3.0-devel git-511bc6093f. First Rutabaga build (R33): Uncharted + Onimusha profiles, Wave32 option, mesh-shader opt-out.\n- **Rutabaga-"
@@ -2109,6 +2109,321 @@
       "latest_tag": "turnip-gamehub-26.3-dd-gmem-pwrmax",
       "latest_date": "2026-11-03T02:25:45Z",
       "latest_body": "### Turnip GameHub 26.3 — Experimental\r\n\r\n**Features & Improvements**\r\n- GameHub Turnip 26.3 base.\r\n- GMEM autotuning optimization (11 → 10).\r\n- KGSL PWR_MAX power management patches.\r\n- Periodic GPU power refresh.\r\n- \r\n**Notes:** Experimental release. Performance and stability improvements are not guaranteed.\r\n\r\n**Credits:** Mesa3D, GameHub, DroidDeck"
+    },
+    {
+      "id": "droiddeck-drivers",
+      "name": "DroidDeck 官方驱动集",
+      "owner": "Droid-Deck",
+      "repo": "Drivers",
+      "api_url": "https://api.github.com/repos/Droid-Deck/Drivers/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "6xx",
+        "7xx",
+        "8xx"
+      ],
+      "gpu_models": [],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "droiddeck",
+      "package_format": "zip",
+      "maturity": "ci",
+      "stars": 35,
+      "description": "DroidDeck 官方每周构建的 Turnip 驱动包，同时出 Android 与 ARM Linux 两套，Mesa 27.0.0-devel 基线",
+      "notes": "2026-11-12 收录。与 DroidDeck 客户端同源，装 DroidDeck 后可在其驱动选择器直接导入。Mesa 27.0.0-devel @34c83ff",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip",
+          "DroidDeck"
+        ]
+      },
+      "updated_at": "2026-11-12T02:22:47Z",
+      "latest_tag": "DD-Turnip-v0.6.0",
+      "latest_date": "2026-11-12T02:22:47Z",
+      "latest_body": "**Mesa:** 27.0.0-devel @ [`34c83ff13b3b1d914280c8902d170b60f1e3b161`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/34c83ff13b3b1d914280c8902d170b60f1e3b161)\n**Recipe:** [`570daf3c3d`](https://github.com/Droid-Deck/Drivers/commit/570daf3c3d8a1d2f3b7659b0e0dbc2b30e0d8249)\n**Previous release:** [DD-Turnip-v0.5.0](https://github.com/Droid-Deck/Drivers/releases/tag/DD-Turnip-v0.5.0)\n\nTurnip (Mesa ",
+      "pushed_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "id": "malisx2",
+      "name": "MaliSX2",
+      "owner": "bmdhacks",
+      "repo": "malisx2",
+      "api_url": "https://api.github.com/repos/bmdhacks/malisx2/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "valhall-v7",
+        "valhall-v9",
+        "valhall-v11"
+      ],
+      "gpu_models": [],
+      "driver_type": "panvk",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "beta",
+      "stars": 128,
+      "description": "Mali v7/v9/v11 的 Vulkan 驱动，基于原厂 kbase 内核驱动，供 ARMSX2、Dolphin、hakuX、Vita3K-Plus 等自定义驱动模拟器使用",
+      "notes": "2026-11-12 收录。Mali 侧目前型号覆盖最全的第三方驱动包；同 owner 的 armsx2-turnip 为 Adreno 分支，挂 companion",
+      "companion": [
+        "bmdhacks/armsx2-turnip"
+      ],
+      "filters": {
+        "default": [
+          "MaliSX2",
+          "Mali"
+        ]
+      },
+      "updated_at": "2026-11-12T04:55:23Z",
+      "latest_tag": "v0.5.0",
+      "latest_date": "2026-11-12T04:55:23Z",
+      "latest_body": "Vulkan driver for Arm Mali GPUs, for Android and for ARM Linux. On Android it is loaded by emulators that support custom GPU drivers: ARMSX2 (PlayStation 2), Dolphin (GameCube and Wii), hakuX (Xbox) and Vita3K-Plus (PlayStation Vita). On ARM Linux it is for ARMSX2.\n\n**More Mali GPUs are supported, and there is now a Linux package.**\n\n- **Mali-G31, G51, G52, G76**\n- **Mali-G57, G68, G77, G78, G78AE",
+      "pushed_at": "2026-11-12T00:00:00Z"
+    },
+    {
+      "id": "ankaturnip",
+      "name": "AnkaTurnip",
+      "owner": "EddizEge",
+      "repo": "AnkaTurnip",
+      "api_url": "https://api.github.com/repos/EddizEge/AnkaTurnip/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "8xx"
+      ],
+      "gpu_models": [],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "anka-native",
+      "package_format": "zip",
+      "maturity": "stable",
+      "stars": 17,
+      "description": "Adreno 8xx 的 Mesa Turnip，带 Anka 补丁，专为 Anka Native 构建",
+      "notes": "2026-11-12 收录。Anka Native 的配套驱动，从 App 内 GPU 驱动设置导入。Mesa 基线 db6c407",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip",
+          "Anka"
+        ]
+      },
+      "updated_at": "2026-11-08T16:32:27Z",
+      "latest_tag": "v1.0.0",
+      "latest_date": "2026-11-08T16:32:27Z",
+      "latest_body": "Anka Turnip 1.0.0: Mesa Turnip (base db6c407) with the Anka patches in patches/, built for Anka Native on Adreno 8xx. Install the zip from Anka Native's GPU driver setting. Check the download with SHA256SUMS.txt. Tested only on a POCO F8 Pro (Adreno 830) with Ocarina of Time; see README for details and known issues.",
+      "pushed_at": "2026-11-08T00:00:00Z"
+    },
+    {
+      "id": "turnip-722-duo",
+      "name": "Turnip Duo (Adreno 722)",
+      "owner": "sherft2607",
+      "repo": "turnip-adreno722-duo",
+      "api_url": "https://api.github.com/repos/sherft2607/turnip-adreno722-duo/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "7xx"
+      ],
+      "gpu_models": [
+        "722"
+      ],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "beta",
+      "stars": 57,
+      "description": "针对 Adreno 722 调优的 Turnip 驱动（Duo 版），Mesa 基线较新",
+      "notes": "2026-11-12 收录。Adreno 722 是 2026 年中端主力（骁龙 6 Gen 4 / 7s Gen 3），专用构建少",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip",
+          "722"
+        ]
+      },
+      "updated_at": "2026-10-24T22:58:13Z",
+      "latest_tag": "5.1",
+      "latest_date": "2026-10-24T22:58:13Z",
+      "latest_body": "## Support & Feedback\r\n- Report issues or share benchmarks: https://github.com/sherft2607/turnip-adreno722-duo/issues",
+      "pushed_at": "2026-10-26T00:00:00Z"
+    },
+    {
+      "id": "amaral-adreno",
+      "name": "Amaral Adreno Tools",
+      "owner": "rickamaral94",
+      "repo": "Amaral-Adreno-Tools",
+      "api_url": "https://api.github.com/repos/rickamaral94/Amaral-Adreno-Tools/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "6xx",
+        "7xx",
+        "8xx"
+      ],
+      "gpu_models": [],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "stable",
+      "stars": 12,
+      "description": "Turnip Amaral 构建集，Mesa 27.0.0-devel，分 oneui / standard 两套构建环境，带 GPU 型号目录",
+      "notes": "2026-11-12 收录。发布件含 BUILD_MANIFEST（可追溯到 Mesa commit fd8ef2b）与 GPU_CATALOG，是少数把构建来源写清楚的分发",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip",
+          "Amaral"
+        ]
+      },
+      "updated_at": "2026-10-31T13:17:54Z",
+      "latest_tag": "mesa-27.0.0-devel-v5.8.17.1",
+      "latest_date": "2026-10-31T13:17:54Z",
+      "latest_body": "# Turnip Amaral 27.0.0-devel v5.8.17.1\n\n## Classificação\n\n**Latest estável.**\n\n## Base rastreável\n\n- Mesa: `27.0.0-devel`\n- Mesa commit: `fd8ef2befafd01190e33f12dbfd109b924c8ebc3`\n- Mesa HEAD: asahi: drop NIR_PASS from poly_nir_lower_gs calls\n- Commit anterior: `378a5dc61b982b7d36e744cf44407e6b55dc98b7`\n- Vulkan headers: `1.4.366`\n- Backend: Turnip/Freedreno + KGSL\n- ABI: Android AArch64 (`armv8-a",
+      "pushed_at": "2026-11-11T00:00:00Z"
+    },
+    {
+      "id": "panvk-kirin990",
+      "name": "PanVK Kirin 990",
+      "owner": "soulexit",
+      "repo": "panvk-kirin990",
+      "api_url": "https://api.github.com/repos/soulexit/panvk-kirin990/releases",
+      "gpu_vendor": "mali",
+      "gpu_arch": [
+        "bifrost-g76"
+      ],
+      "gpu_models": [
+        "g76"
+      ],
+      "driver_type": "panvk",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "experimental",
+      "stars": 9,
+      "description": "华为 P40 / Kirin 990（Mali-G76 MC16）的 PanVK 驱动，基于原厂 mali_kbase",
+      "notes": "2026-11-12 收录。该 owner 按「SoC × 运行环境」拆了多个仓，本条为 Kirin 990 主条，Bifrost 另一仓挂 companion",
+      "companion": [
+        "soulexit/panvk-bifrost-soulexit"
+      ],
+      "filters": {
+        "default": [
+          "PanVK",
+          "Kirin"
+        ]
+      },
+      "updated_at": "",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "pushed_at": "2026-11-11T00:00:00Z"
+    },
+    {
+      "id": "turnip-enhanced",
+      "name": "Turnip Enhanced（超级 Turnip）",
+      "owner": "LFRon",
+      "repo": "Turnip-Enhanced",
+      "api_url": "https://api.github.com/repos/LFRon/Turnip-Enhanced/releases",
+      "gpu_vendor": "adreno",
+      "gpu_arch": [
+        "6xx",
+        "7xx",
+        "8xx"
+      ],
+      "gpu_models": [],
+      "driver_type": "turnip",
+      "frontend": null,
+      "target_emulator": "generic",
+      "package_format": "zip",
+      "maturity": "experimental",
+      "stars": 5,
+      "description": "面向骁龙安卓生态额外适配的 Turnip 构建，中文社区称「超级 Turnip」",
+      "notes": "2026-11-12 收录。作者自述 use at your own risk；无 release，走仓库分发",
+      "companion": [],
+      "filters": {
+        "default": [
+          "Turnip",
+          "Enhanced"
+        ]
+      },
+      "updated_at": "",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "pushed_at": "2026-11-01T00:00:00Z"
+    },
+    {
+      "id": "maxi000q-drivers",
+      "name": "MaxQ 驱动合集",
+      "owner": "maxi000q",
+      "repo": "drivers",
+      "api_url": "https://api.github.com/repos/maxi000q/drivers/contents",
+      "gpu_vendor": "any",
+      "gpu_arch": [
+        "adreno-6xx",
+        "adreno-8xx",
+        "valhall-g1",
+        "bifrost-g76"
+      ],
+      "gpu_models": [
+        "619",
+        "830",
+        "G1 Ultra",
+        "G76"
+      ],
+      "driver_type": "component",
+      "frontend": null,
+      "target_emulator": "consolefivepro",
+      "package_format": "zip",
+      "maturity": "beta",
+      "stars": 0,
+      "description": "按 GPU 型号分包的 Turnip / PanVK 改版驱动合集：Adreno 619、Adreno 830、Mali G1 Ultra、Mali G76 共 5 个包。",
+      "notes": "2026-11-12 改判收录。前次以「★0 且无 release」判为无效，实际仓库根目录就有 5 个可直接用的驱动 zip（3.2–6.1MB），符合「驱动必须有对应仓库」的口径，无 release 不等于无产物。为 ConsoleFivePro 配套分发。",
+      "companion": [],
+      "filters": {
+        "default": [
+          "MaxQ",
+          "Turnip",
+          "PanVK"
+        ]
+      },
+      "updated_at": "2026-10-30T00:00:00Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "pushed_at": "2026-10-30T00:00:00Z"
+    },
+    {
+      "id": "ps5-vulkan",
+      "name": "PS5 Vulkan Driver (RADV)",
+      "owner": "mihawk-99",
+      "repo": "ps5_vulkan",
+      "api_url": "https://api.github.com/repos/mihawk-99/ps5_vulkan",
+      "gpu_vendor": "any",
+      "gpu_arch": [
+        "rdna2"
+      ],
+      "gpu_models": [
+        "PS5 Oberon"
+      ],
+      "driver_type": "radv",
+      "frontend": null,
+      "target_emulator": "ps5-native",
+      "package_format": "none",
+      "maturity": "experimental",
+      "stars": 121,
+      "description": "PS5 原生 Vulkan 1.4 驱动，基于 Mesa/RADV，通过 CTS 验证。",
+      "notes": "2026-11-13 补录。★121，11-10 仍在推。仓库只出源码不出二进制，符合「驱动必须有对应仓库」的口径；能力上填补 PS5 侧无 Vulkan 驱动的空白。",
+      "companion": [],
+      "filters": {
+        "default": [
+          "RADV",
+          "PS5"
+        ]
+      },
+      "updated_at": "2026-11-10T00:00:00Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": "",
+      "pushed_at": "2026-11-10T00:00:00Z"
     }
   ]
 }
