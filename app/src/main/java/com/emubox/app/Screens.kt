@@ -8735,8 +8735,8 @@ private fun DriverReleaseDialog(item: DriverNewsItem, onDismiss: () -> Unit) {
     val scope = rememberCoroutineScope()
     var translated by remember { mutableStateOf<String?>(null) }
     var translating by remember { mutableStateOf(false) }
-    val baseText = item.body.trim()
-    val showText = translated ?: baseText
+    val baseText = cleanReleaseNotes(item.body)
+    val showText = cleanReleaseNotes(translated ?: baseText)
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f),
@@ -13536,7 +13536,9 @@ internal fun EmulatorDetailDialog(
                                     // 这层嵌套滚动几乎拖不动，还把资产列表推到屏幕外。
                                     // 改成默认 4 行、点一下展开，进来的第一眼就能看到文件名。
                                     var logExpanded by remember(rel.tag) { mutableStateOf(false) }
-                                    val logText = translatedMap[rel.tag] ?: rel.body
+                                    // 官方日志是 Markdown 原文：不清理会直接露出 "## 标题"、
+                                    // "**粗体**" 星号和 [文字](链接) 裸链接（见 Termux 详情实测）
+                                    val logText = cleanReleaseNotes(translatedMap[rel.tag] ?: rel.body)
                                     Text(
                                         logText,
                                         style = MaterialTheme.typography.bodySmall,
