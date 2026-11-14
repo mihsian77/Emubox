@@ -61,11 +61,15 @@ object NewsRepository {
                     add(
                         NewsItem(
                             id = o.optString("id"),
-                            title = decodeHtmlEntities(o.optString("title", "")).trim().take(140),
+                            title = truncateSafely(
+                                stripInlineMarkdown(decodeHtmlEntities(o.optString("title", ""))).trim(), 140
+                            ),
                             url = o.optString("url"),
                             publishedAt = o.optLong("published_at", 0L),
                             category = o.optString("category", "general"),
-                            summary = decodeHtmlEntities(o.optString("summary", "")).trim().take(160),
+                            summary = truncateSafely(
+                                stripInlineMarkdown(decodeHtmlEntities(o.optString("summary", ""))).trim(), 160
+                            ),
                             type = o.optString("type", ""),
                             body = decodeHtmlEntities(o.optString("body", "")),
                             tag = o.optString("tag", ""),
@@ -133,6 +137,31 @@ private val NAMED_ENTITIES = mapOf(
     "nbsp" to " ", "middot" to "·", "hellip" to "…", "mdash" to "—", "ndash" to "–",
     "ldquo" to "“", "rdquo" to "”", "lsquo" to "‘", "rsquo" to "’", "times" to "×"
 )
+
+/**
+ * 摘要/标题来自各项目 README 与 release 正文，常带 `**粗体**`、`[文字](链接)`。
+ * 客户端必须自己再过一遍：数据每天重生成，源站格式不受我们控制。
+ */
+internal fun stripInlineMarkdown(raw: String): String {
+    if (raw.isEmpty()) return raw
+    var t = raw
+        .replace(Regex("!\\[([^]]*)]\\([^)]*\\)"), "$1")
+        .replace(Regex("\\[([^]]+)]\\([^)]*\\)"), "$1")
+        .replace(Regex("`([^`]+)`"), "$1")
+        .replace(Regex("(?m)^\\s{0,3}#{1,6}\\s+"), "")
+        .replace(Regex("(\\*\\*|__)(.+?)\\1"), "$2")
+    // 截断经常把成对标记切成半个，剩下的标记符号直接清掉
+    t = t.replace("**", "")
+    return t.trim()
+}
+
+/** 按 UTF-16 长度截断，但不切断代理对（否则 emoji 会变成两个乱码方块） */
+internal fun truncateSafely(s: String, max: Int): String {
+    if (max <= 0) return ""
+    if (s.length <= max) return s
+    val cut = if (Character.isHighSurrogate(s[max - 1])) max - 1 else max
+    return s.substring(0, cut)
+}
 
 internal fun decodeHtmlEntities(raw: String): String {
     if (raw.isEmpty() || '&' !in raw) return raw

@@ -47,14 +47,20 @@ private fun resourcesForLanguage(context: Context, language: AppLanguage): Resou
 
 @Composable
 fun appString(@StringRes id: Int, vararg args: Any): String =
-    LocalAppResources.current.getString(id, *args)
+    LocalAppResources.current.let { res ->
+        // 无参调用必须走无参重载：带占位符（%1$d）的串被 emptyArray 调用时，
+        // Resources.getString 会抛 MissingFormatArgumentException 直接崩页。
+        if (args.isEmpty()) res.getString(id) else res.getString(id, *args)
+    }
 
 fun appStringFor(
     context: Context,
     language: AppLanguage,
     @StringRes id: Int,
     vararg args: Any
-): String = resourcesForLanguage(context, language).getString(id, *args)
+): String = resourcesForLanguage(context, language).let { res ->
+    if (args.isEmpty()) res.getString(id) else res.getString(id, *args)
+}
 
 /**
  * BannerHub wrappers.json 清单汉化（2026-10-26 v2）：

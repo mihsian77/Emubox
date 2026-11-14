@@ -646,6 +646,7 @@
     <string name="runtime_status_upstream">需上游</string>
     <string name="runtime_status_pending">待手动</string>
     <string name="runtime_no_download">无可下载文件</string>
+    <string name="runtime_loading">正在读取运行库清单…</string>
     <string name="runtime_load_failed">运行库清单加载失败</string>
     <string name="runtime_load_failed_hint">检查网络后重试。清单通过 MirrorHub 加速从 GitHub 拉取。</string>
     <string name="retry">重试</string>
@@ -896,6 +897,7 @@
     <string name="bench_gpu_phys_title">GPU 算力对照</string>
     <string name="bench_gpu_phys_local">本机 GPU</string>
     <string name="bench_gpu_phys_desk">最接近的桌面卡</string>
+    <string name="bench_gpu_phys_rel_label">相对桌面</string>
     <string name="bench_gpu_phys_rel">算力 %1$d%% · 带宽 %2$d%%</string>
     <string name="bench_gpu_phys_note">手机 GPU 与桌面显卡没有同口径跑分，这里只按 FP32 算力与内存带宽做量级对齐；实际游戏还受驱动、发热与 API 支持影响。数据按厂商公开规格推算（±10%）。</string>
     <string name="bench_gpu_phys_none">该 GPU 未收录算力数据，上方为跑分数据。</string>

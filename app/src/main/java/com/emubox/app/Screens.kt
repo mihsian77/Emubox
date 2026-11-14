@@ -1341,7 +1341,9 @@ private fun formatRelativeTime(iso: String): String {
             diffMs < 60_000 -> "刚刚"
             diffMs < 3_600_000 -> "${diffMs / 60_000} 分钟前"
             diffMs < 86_400_000 -> "${diffMs / 3_600_000} 小时前"
-            diffMs < 30L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
+            // 一周内说「N 天前」，超过就写死日期：避免「28 天前」这种
+            // 既算不清又跟发布日期混淆的口径。
+            diffMs < 7L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
             else -> {
                 val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 sdf.format(Date(parsed.toEpochMilli()))
@@ -1373,7 +1375,8 @@ private fun formatRelativeTimeMs(epochMs: Long): String {
         diffMs < 3_600_000 -> "${diffMs / 60_000} 分钟前"
         // 48 小时内精确到小时：25h 显示"25 小时前"而非"1 天前"，驱动/组件源统一
         diffMs < 48L * 3_600_000 -> "${diffMs / 3_600_000} 小时前"
-        diffMs < 30L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
+        // 与 formatRelativeTime 同口径：一周以上直接给日期
+        diffMs < 7L * 86_400_000 -> "${diffMs / 86_400_000} 天前"
         else -> {
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             sdf.format(Date(epochMs))
@@ -3820,7 +3823,9 @@ private fun DriverRecommendationCard(
             val routeColor = when (route.turnipSupport) {
                 TurnipSupport.FULL -> Color(0xFF2E7D32)
                 TurnipSupport.PARTIAL -> Color(0xFFE65100)
-                TurnipSupport.NONE -> Color(0xFFC62828)
+                // 不支持 Turnip 不等于「这条推荐是危险操作」：Mali 设备的
+                // 「主推 PanVK」被染成红色后，用户会读成警告而不是路线。
+                TurnipSupport.NONE -> MaterialTheme.colorScheme.onSecondaryContainer
             }
             Text(
                 "主推 ${route.primaryRoute} · 备选 ${route.secondaryRoute}",
@@ -9910,13 +9915,20 @@ fun RuntimeLibraryScreen(
         }
 
         if (isLoading) {
-            Box(
+            // 只转圈不给字，整屏看起来像白屏/数据缺失；补一句在做什么
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 48.dp),
-                contentAlignment = Alignment.Center
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CircularProgressIndicator()
+                Spacer(Modifier.height(12.dp))
+                Text(
+                    appString(R.string.runtime_loading),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         } else if (loadError) {
             RuntimeEmptyState(onRetry = {
@@ -10150,60 +10162,66 @@ private fun RuntimeComponentCard(
             }
 
             // 安装方式子标签 + 来源 + 大小
+            // 三段文字挤一行时，未加权的 Text 会互抢宽度，右列在窄屏被裁出卡片外。
+            // 这里把它拆成两行：第一行只放「标签 + 提供方 + 大小」，来源单独一行。
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(modifier = Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
-                    if (component.installTag.isNotBlank()) {
-                        Surface(
-                            shape = RoundedCornerShape(6.dp),
-                            color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
-                        ) {
-                            Text(
-                                text = component.installTag,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                            )
-                        }
-                        Spacer(Modifier.width(6.dp))
-                    }
-                    if (component.provider.isNotBlank()) {
+                if (component.installTag.isNotBlank()) {
+                    Surface(
+                        shape = RoundedCornerShape(6.dp),
+                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
+                    ) {
                         Text(
-                            text = component.provider,
+                            text = component.installTag,
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.outline,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                         )
                     }
-                    if (component.sourceInfo.url.isNotBlank()) {
-                        Spacer(Modifier.width(6.dp))
-                        Text(
-                            text = "来源·${component.sourceInfo.name}",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.clickable {
-                                runCatching {
-                                    context.startActivity(
-                                        Intent(Intent.ACTION_VIEW, Uri.parse(component.sourceInfo.url))
-                                    )
-                                }
-                            }
-                        )
-                    }
+                    Spacer(Modifier.width(6.dp))
+                }
+                if (component.provider.isNotBlank()) {
+                    Text(
+                        text = component.provider,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.outline,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        // 大小先按自身宽度测量，剩余的才给提供方，窄屏不会互相挤掉
+                        modifier = Modifier.weight(1f)
+                    )
                 }
                 if (component.fileSize > 0) {
                     Text(
                         text = formatFileSize(component.fileSize),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.outline
+                        color = MaterialTheme.colorScheme.outline,
+                        maxLines = 1,
+                        softWrap = false,
+                        modifier = Modifier.padding(start = 8.dp)
                     )
                 }
+            }
+            if (component.sourceInfo.url.isNotBlank()) {
+                Text(
+                    text = "来源·${component.sourceInfo.name}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            runCatching {
+                                context.startActivity(
+                                    Intent(Intent.ACTION_VIEW, Uri.parse(component.sourceInfo.url))
+                                )
+                            }
+                        }
+                )
             }
 
             // 总包徽章（仅总包组件）
@@ -11495,7 +11513,10 @@ if (emuTab == 0) item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan)
                 }
             }
         }
-        flatItems.forEach { entry ->
+        // 项目网格只属于「项目」tab。旧实现无条件铺满全部条目，
+        // 推荐/动态的概览块被排到第 353 张卡之后，两个 tab 首屏逐像素相同。
+        val gridEntries = if (emuTab == 0) flatItems else emptyList()
+        gridEntries.forEach { entry ->
             item(key = entry.id, span = { GridItemSpan(if (viewMode == "list") maxLineSpan else 1) }) {
                 if (viewMode == "list") {
                     EmulatorListRow(
@@ -14110,7 +14131,7 @@ private fun BenchEngineCard(context: Context, gpuModel: String = "") {
                         value = "${g.deskName}（${g.deskTf32} TFLOPS / ${g.deskBwGbs} GB/s）"
                     )
                     InfoRow(
-                        label = appString(R.string.bench_gpu_phys_rel),
+                        label = appString(R.string.bench_gpu_phys_rel_label),
                         value = appString(R.string.bench_gpu_phys_rel, g.tfPct, g.bwPct)
                     )
                     Spacer(Modifier.height(4.dp))

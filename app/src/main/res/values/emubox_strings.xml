@@ -649,6 +649,7 @@ How to verify in emulator:
     <string name="runtime_status_upstream">Needs upstream</string>
     <string name="runtime_status_pending">Pending manual</string>
     <string name="runtime_no_download">No download available</string>
+    <string name="runtime_loading">Reading runtime catalog…</string>
     <string name="runtime_load_failed">Failed to load runtime catalog</string>
     <string name="runtime_load_failed_hint">Check network connection and retry. The catalog is fetched from GitHub via MirrorHub acceleration.</string>
     <string name="retry">Retry</string>
@@ -899,6 +900,7 @@ Continuing means you understand the above.</string>
     <string name="bench_gpu_phys_title">GPU compute reference</string>
     <string name="bench_gpu_phys_local">This GPU</string>
     <string name="bench_gpu_phys_desk">Closest desktop card</string>
+    <string name="bench_gpu_phys_rel_label">vs desktop</string>
     <string name="bench_gpu_phys_rel">Compute %1$d%% · bandwidth %2$d%%</string>
     <string name="bench_gpu_phys_note">Phone GPUs and desktop cards have no common benchmark, so this only aligns FP32 compute and memory bandwidth. Real games also depend on drivers, thermals and API support. Derived from vendor specs (±10%).</string>
     <string name="bench_gpu_phys_none">No compute reference for this GPU — benchmark-only data is shown above.</string>

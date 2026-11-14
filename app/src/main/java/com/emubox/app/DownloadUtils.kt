@@ -470,8 +470,17 @@ private fun renameOrphanOnDisk(context: Context, desiredName: String, subPath: S
 
 /** 文件名清洗：替换路径分隔符/通配符等非法字符。下载与"已下载"判断共用同一规则 */
 fun sanitizeFileName(name: String): String {
-    return name.replace(Regex("[\\\\/:*?\"<>|]"), "_")
+    val cleaned = name.replace(Regex("[\\\\/:*?\"<>|]"), "_").trim()
+    // "." / ".." 会让 File(dir, name) 指回上级目录；空名同样不可用
+    if (cleaned.isEmpty() || cleaned.all { it == '.' }) return "_"
+    // 超长名在多数文件系统上直接写失败：保留扩展名，截掉中间
+    if (cleaned.length <= MAX_FILE_NAME_CHARS) return cleaned
+    val dot = cleaned.lastIndexOf('.')
+    val ext = if (dot in 1 until cleaned.length && cleaned.length - dot <= 12) cleaned.substring(dot) else ""
+    return cleaned.substring(0, MAX_FILE_NAME_CHARS - ext.length) + ext
 }
+
+private const val MAX_FILE_NAME_CHARS = 120
 
 /** 在 DocumentFile 树中按相对路径查找子目录（不创建），不存在返回 null */
 private fun findSubDirectory(root: DocumentFile, subPath: String): DocumentFile? {
