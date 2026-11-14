@@ -3341,7 +3341,8 @@ private fun CollapsedSourceHint(name: String, latestPublishedAt: String?) {
     if (!latestPublishedAt.isNullOrBlank()) {
         Spacer(Modifier.width(2.dp))
         val relTime = formatRelativeTime(latestPublishedAt)
-        // formatRelativeTime 返回「刚刚 / N 分钟前 / N 小时前 / N 天前 / N 个月前」
+        // formatRelativeTime 返回「刚刚 / N 分钟前 / N 小时前 / N 天前 / yyyy-MM-dd」
+        // 超一周直接给日期，所以只有一周内才算「新鲜」高亮。
         val fresh = relTime == "刚刚" || (relTime.endsWith("前") && !relTime.contains("天")
             && !relTime.contains("个月"))
         Text(

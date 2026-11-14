@@ -13,7 +13,9 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasScrollToIndexAction
 import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.onAllNodes
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
@@ -722,8 +724,11 @@ class PartitionPreviewTest {
             .performScrollToNode(hasText("高通驱动", substring = true))
         settle(2)
         save("p2c-qualcomm-collapsed.png")
-        // 折叠态就能看到「· N 天前」，不用展开
-        compose.onNodeWithText("天前", substring = true).assertExists()
+        // 折叠态就能看到更新时间，不用展开：一周内给「N 天前」，超过一周给具体日期
+        val updateHint = Regex("""^(\d+ (天|小时|分钟)前|刚刚|\d{4}-\d{2}-\d{2})$""")
+        compose.onAllNodes(hasText { updateHint.matches(it.trim()) })
+            .onFirst()
+            .assertExists()
     }
 
     @Test
