@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-13T23:53:37Z",
+ "generated_at": "2026-11-14T22:45:27Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -247,7 +247,7 @@
    "modelName": "Thor Pro",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 620,
+   "listingsCount": 621,
    "keys": [
     "thorpro",
     "aynthorpro"
@@ -1695,6 +1695,17 @@
    ]
   },
   {
+   "id": "1a7014fd-de6b-4375-946d-f6733caea95c",
+   "modelName": "15",
+   "brandName": "Xiaomi",
+   "socName": "Snapdragon 8 Elite",
+   "listingsCount": 14,
+   "keys": [
+    "15",
+    "xiaomi15"
+   ]
+  },
+  {
    "id": "19f85760-64c7-4064-84f7-3f4b1b81d1a4",
    "modelName": "Phone 3a",
    "brandName": "Nothing",
@@ -1791,17 +1802,6 @@
    "keys": [
     "14tpro",
     "xiaomi14tpro"
-   ]
-  },
-  {
-   "id": "1a7014fd-de6b-4375-946d-f6733caea95c",
-   "modelName": "15",
-   "brandName": "Xiaomi",
-   "socName": "Snapdragon 8 Elite",
-   "listingsCount": 13,
-   "keys": [
-    "15",
-    "xiaomi15"
    ]
   },
   {
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6268,
+   "listings": 6269,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9319,7 +9319,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 45,
+   "listings": 46,
    "description": ""
   },
   {
