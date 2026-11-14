@@ -15,10 +15,11 @@ val injectedVersionName = project.findProperty("emuboxVersionName") as String?
 
 android {
     namespace = "com.emubox.app"
+    // 编译目标与 targetSdk 对齐到 Android 17（API 37，2026-06 已正式发布）。
+    // 之前是 36.1（Android 16 QPR2）编译、却按 37 声明适配：等于用旧 SDK 备新考纲，
+    // 编译期发现不了任何 37 的行为变更问题。大屏强制自适应这类变化只能靠对齐版本暴露。
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
+        version = release(37)
     }
 
     defaultConfig {
