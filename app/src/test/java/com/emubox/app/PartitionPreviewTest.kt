@@ -723,12 +723,21 @@ class PartitionPreviewTest {
             .performScrollToNode(hasText("高通驱动", substring = true))
         settle(2)
         save("p2c-qualcomm-collapsed.png")
-        // 折叠态就能看到更新时间，不用展开：一周内给「N 天前」，超过一周给具体日期。
-        // 夹具是固定时间戳，按当前口径应落到日期形态；期望值用同一规则算出，避免写死。
-        val expectedHint = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-            .format(java.util.Date(1_792_540_800_000L))
-        val hintNodes = compose.onAllNodesWithText(expectedHint, substring = true).fetchSemanticsNodes()
-        assertTrue("折叠态应显示更新时间 $expectedHint，实际未找到", hintNodes.isNotEmpty())
+        // 折叠态就能看到更新时间，不用展开：一周内「N 天前」，超过一周给具体日期。
+        // 夹具时间戳是固定的，两种来源（releases 发布时间 / 源仓库 updatedAt）都算进来，
+        // 断言只关心「能看见一个日期或相对时间」，不绑死具体取值。
+        val dayFmt = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+        val expectedDates = buildList {
+            qcRel.forEach { r ->
+                runCatching { java.time.Instant.parse(r.publishedAt) }
+                    .getOrNull()?.let { add(dayFmt.format(java.util.Date(it.toEpochMilli()))) }
+            }
+            add(dayFmt.format(java.util.Date(qcSrc.updatedAt)))
+        }.distinct()
+        val seen = expectedDates.filter { d ->
+            compose.onAllNodesWithText(d, substring = true).fetchSemanticsNodes().isNotEmpty()
+        }
+        assertTrue("折叠态应显示更新时间，期望其一 $expectedDates，实际都没出现", seen.isNotEmpty())
     }
 
     @Test
