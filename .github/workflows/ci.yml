@@ -12,14 +12,11 @@ on:
       - 'bench-data/**'
       - 'catalog/**'
       - 'app/src/main/assets/**/*.json'
+  # PR 上不加 paths 过滤：这三个 job 是 main 的必需检查，被跳过就等于
+  # "Expected — waiting for status to be reported"，PR 会永远卡在合并按钮上。
+  # 纯数据 PR 因此也会编译一次，代价可接受（数据刷新走 push，不受影响）。
   pull_request:
     branches: [main]
-    paths-ignore:
-      - '*.json'
-      - 'ranking-history/**'
-      - 'bench-data/**'
-      - 'catalog/**'
-      - 'app/src/main/assets/**/*.json'
 
 jobs:
   i18n-check:
