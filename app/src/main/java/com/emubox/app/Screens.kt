@@ -3530,19 +3530,26 @@ private fun DeviceConclusionBlock(
  * GPU 显示名。
  *
  * detectGpuModel 只返回数字（740/720），Mali、Immortalis 直接拼 "Adreno" 会误导，
- * 所以先从 renderer 里取完整型号（Mali-G720 / Immortalis-G720），取不到再按 Adreno 数字拼。
+ * 所以先从 renderer 里取完整型号（Mali-G720 / Immortalis-G720 / Mali-G57），
+ * 取不到再按厂商拼前缀——不能默认拼 Adreno：展锐的 Mali-G57 曾显示成「Adreno 57」。
  */
-private fun gpuDisplayName(info: DeviceInfo): String {
+internal fun gpuDisplayName(info: DeviceInfo): String {
     val renderer = info.gpuRenderer.orEmpty()
-    Regex("(?:Mali|Immortalis)[\\s-]*G\\d{3,4}[A-Z]*", RegexOption.IGNORE_CASE)
+    // G 后可能是两位数（G31/G52/G57/G76），写死 3-4 位会把整个 Mali 分支漏掉
+    Regex("(?:Mali|Immortalis)[\\s-]*G\\d{2,4}[A-Z]*", RegexOption.IGNORE_CASE)
         .find(renderer)?.value?.replaceFirstChar { it.uppercase() }
         ?.let { return it }
+    Regex("Xclipse[\\s-]*\\d{3,4}", RegexOption.IGNORE_CASE)
+        .find(renderer)?.value?.let { return it }
+    val model = info.gpuModel
     return when {
+        model.isBlank() || model == "unknown" -> renderer.ifBlank { "—" }
         // gpuModel 有时已是「Adreno 750」全名，直接拼会变成「Adreno Adreno 750」
-        info.gpuModel != "unknown" ->
-            if (info.gpuModel.contains("Adreno", true)) info.gpuModel else "Adreno ${info.gpuModel}"
-        info.adrenoSeries != "unknown" -> "Adreno ${info.adrenoSeries}"
-        else -> renderer.ifBlank { "—" }
+        model.contains("Adreno", true) -> model
+        info.gpuVendor == GpuVendor.ADRENO -> "Adreno $model"
+        info.gpuVendor == GpuVendor.MALI -> "Mali-G$model"
+        info.gpuVendor == GpuVendor.XCLIPSE -> "Xclipse $model"
+        else -> model
     }
 }
 
@@ -3760,10 +3767,14 @@ private fun DriverRecommendationCard(
 ) {
     var recommendations by remember(deviceInfo) { mutableStateOf<List<DriverMatchResult>?>(null) }
     var loadFailed by remember(deviceInfo) { mutableStateOf(false) }
+    // 「没匹配到」与「没加载出来」是两件事：前者是数据结论，后者是故障。
+    // 原来合并成一个 loadFailed，导致 Adreno 750 加载失败时显示「未匹配到适配驱动」。
+    var matchedNothing by remember(deviceInfo) { mutableStateOf(false) }
     val context = LocalContext.current
 
     LaunchedEffect(deviceInfo) {
         loadFailed = false
+        matchedNothing = false
         try {
             val result = withContext(Dispatchers.IO) {
                 val entries = DriverRegistryRepository.load(context = context)
@@ -3775,7 +3786,7 @@ private fun DriverRecommendationCard(
                 else matched.filter { it.score >= 100 }.take(1) // 实验性兜底：型号命中但非 stable，最多 1 条
                 picks.sortedByDescending { it.entry.stars }.take(3)
             }
-            if (result.isEmpty()) loadFailed = true else recommendations = result
+            if (result.isEmpty()) matchedNothing = true else recommendations = result
         } catch (e: Exception) {
             loadFailed = true
         }
@@ -3825,6 +3836,13 @@ private fun DriverRecommendationCard(
 
             when {
                 loadFailed -> {
+                    Text(
+                        appString(R.string.driver_recommend_failed),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+                }
+                matchedNothing -> {
                     Text(
                         appString(R.string.driver_recommend_empty),
                         style = MaterialTheme.typography.bodyMedium,
@@ -8670,6 +8688,8 @@ private fun DriverNewsCard(
                                     when (item.family) {
                                         "panvk" -> Color(0xFF1E88E5).copy(alpha = 0.15f)
                                         "qualcomm" -> Color(0xFFF4511E).copy(alpha = 0.15f)
+                                        "xclipse" -> Color(0xFF7C3AED).copy(alpha = 0.15f)
+                                        "wrapper" -> Color(0xFF616161).copy(alpha = 0.15f)
                                         else -> Color(0xFF43A047).copy(alpha = 0.15f)
                                     }
                                 )
@@ -8679,12 +8699,16 @@ private fun DriverNewsCard(
                                 when (item.family) {
                                     "panvk" -> appString(R.string.driver_family_panvk)
                                     "qualcomm" -> appString(R.string.driver_family_qualcomm)
+                                    "xclipse" -> appString(R.string.driver_family_xclipse)
+                                    "wrapper" -> appString(R.string.driver_family_wrapper)
                                     else -> appString(R.string.driver_family_turnip)
                                 },
                                 style = MaterialTheme.typography.labelSmall,
                                 color = when (item.family) {
                                     "panvk" -> Color(0xFF1E88E5)
                                     "qualcomm" -> Color(0xFFF4511E)
+                                    "xclipse" -> Color(0xFF7C3AED)
+                                    "wrapper" -> Color(0xFF616161)
                                     else -> Color(0xFF43A047)
                                 }
                             )
@@ -13687,12 +13711,14 @@ private fun socScoreText(raw: String): String {
     return if (v >= 10_000) String.format("%.1f万", v / 10_000.0) else raw
 }
 
-/** 制程写法转中文：TSMC N3E → 台积电 3nm，Samsung 4LPP+ → 三星 4nm。 */
-private fun formatProcess(raw: String): String {
+/** 制程写法转中文：TSMC N3E → 台积电 3nm，TSMC N12 → 台积电 12nm，Samsung 4LPP+ → 三星 4nm。 */
+internal fun formatProcess(raw: String): String {
     if (raw.isBlank()) return raw
     var s = raw.replace("TSMC", "台积电").replace("Samsung", "三星")
         .replace("SMIC", "中芯国际").replace("Intel", "英特尔")
-    Regex("N(\\d)([A-Z]*)").find(s)?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
+    // 节点号可能是两位数（N12 / N10），只吃一位会把「N12」拆成「1nm」+ 残留「2」
+    Regex("(?<![A-Za-z])N(\\d{1,2})([A-Z]*)").find(s)
+        ?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
     Regex("(\\d+)LPP\\+?").find(s)?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
     Regex("(\\d+)LP\\+?").find(s)?.let { s = s.replace(it.value, it.groupValues[1] + "nm") }
     return s.trim()
