@@ -1,7 +1,7 @@
 {
  "version": "1.1.0",
  "note": "芯片主表。主键是部件号（SM/MT/S5E/SDM/MSM/GS/KIRIN），不是营销名——同一颗芯片在极客湾/安兔兔/鲁大师写法互不相同（Elite 被安兔兔译作「至尊版」，安兔兔 Gen5 紧贴而英文站 Gen 5 带空格），设备上报的也只有部件号。匹配顺序：match.exact 精确 → match.loose 剥后缀 → platforms 平台代号 → GPU+核心数兜底。loose 命中多条说明该代号对应多个市场名（MT6769=G70/G80/G85），应显示平台族而非猜一个。",
- "generated": "2026-11-13",
+ "generated": "2026-11-14",
  "socs": [
   {
    "id": "s5e9945",
@@ -2087,11 +2087,10 @@
     "MT8789V/T"
    ],
    "names": [
-    "曦力 G90T",
-    "MediaTek Helio G90T",
-    "Helio G90T"
+    "Helio G90T",
+    "MediaTek Helio G90T"
    ],
-   "name": "曦力 G90T",
+   "name": "Helio G90T",
    "name_en": "MediaTek Helio G90T",
    "brand": "联发科",
    "process": "TSMC 12nm",
@@ -3067,15 +3066,11 @@
   {
    "id": "sm8150-ac",
    "codes": [
-    "SM8150-AC",
-    "SM8150P"
+    "SM8150-AC"
    ],
    "names": [
-    "Qualcomm Snapdragon 855+",
-    "Qualcomm Snapdragon 860",
-    "骁龙 855+",
     "骁龙 860",
-    "骁龙855 Plus",
+    "Qualcomm Snapdragon 860",
     "骁龙860"
    ],
    "name": "骁龙 860",
@@ -3098,6 +3093,41 @@
    "antutu_cpu": "338527",
    "antutu_gpu": "127280",
    "ludashi": "392648",
+   "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版",
+   "form": "phone",
+   "src": "socpk"
+  },
+  {
+   "id": "sm8150-ab",
+   "codes": [
+    "SM8150-AB",
+    "SM8150P"
+   ],
+   "names": [
+    "骁龙 855+",
+    "Qualcomm Snapdragon 855+",
+    "骁龙855 Plus"
+   ],
+   "name": "骁龙 855+",
+   "name_en": "Qualcomm Snapdragon 855+",
+   "brand": "高通",
+   "process": "TSMC N7",
+   "cpu": "1×Kryo 485 Prime (Cortex-A76) 2.96GHz + 3×Kryo 485 Gold (Cortex-A76) 2.42GHz + 4×Kryo 485 Silver (Cortex-A55) 1.8GHz",
+   "cores": 8,
+   "max_ghz": 2.96,
+   "caches": "L3 2MB",
+   "memory": "LPDDR4X 4266MT/s",
+   "gpu": "Adreno 640",
+   "gpu_key": "adreno640",
+   "gpu_clock": "672MHz",
+   "gpu_cores": "768ALUs",
+   "features": "X24 LTE Modem（可外挂 X50 5G）/ Bluetooth 5.0",
+   "year": "2019",
+   "tier": "flagship",
+   "antutu": "490803",
+   "antutu_cpu": "363520",
+   "antutu_gpu": "127283",
+   "ludashi": "386509",
    "devices": "一加 7T Pro、ROG Phone II、Redmi K20 Pro 尊享版",
    "form": "phone",
    "src": "socpk"
@@ -9367,6 +9397,12 @@
    "SM8150-AC": [
     "sm8150-ac"
    ],
+   "SM8150-AB": [
+    "sm8150-ab"
+   ],
+   "SM8150P": [
+    "sm8150-ab"
+   ],
    "SM8150": [
     "sm8150"
    ],
@@ -10402,9 +10438,6 @@
    "SM8975": [
     "sm8975"
    ],
-   "SM8150P": [
-    "sm8150-ac"
-   ],
    "SM8250AC": [
     "sm8250-ac"
    ],
@@ -10775,6 +10808,12 @@
    ],
    "SM8150-AC": [
     "sm8150-ac"
+   ],
+   "SM8150-AB": [
+    "sm8150-ab"
+   ],
+   "SM8150P": [
+    "sm8150-ab"
    ],
    "SM8150": [
     "sm8150"
@@ -11699,9 +11738,6 @@
    ],
    "SM8975": [
     "sm8975"
-   ],
-   "SM8150P": [
-    "sm8150-ac"
    ],
    "SM8250AC": [
     "sm8250-ac"

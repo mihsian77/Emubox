@@ -15,6 +15,9 @@
   覆盖面           antutu_soc.json 全集（271 条手机 SoC，从骁龙 425 到 2026 新品）
   CPU/频率         soc_specs.json（安兔兔 clusters 解析，215 条有核心构成）
   部件号           part_numbers.json（极客湾不收的老款与变体：骁龙 Plus、Helio P/G）
+                  其中 codes_override / name_override 是上游标错时的权威修正：
+                  极客湾把 855+ 与 860 都写成 SM8150-AC，不覆盖就会合并成一颗芯片。
+                  改芯片名或部件号要改本表，直接改 soc_master.json 次日会被刷新覆盖。
   跑分             antutu_soc.json（V10 总分/CPU/GPU）、ludashi.json（SoC 榜）
   人工覆盖         bench_meta.json 的 aliases（安兔兔译名与本站不一致的旗舰）
   常见机型         soc_knowledge.json 的 devices
@@ -404,7 +407,14 @@ def main():
             # part_numbers 补的正是极客湾没给号的那一段（三星 Exynos、麒麟、老骁龙）
             pe = part_by_name.get(normalize(name)) or part_by_name.get(normalize(name_en)) \
                 or part_by_name.get(strip_vendor(name)) or part_by_name.get(strip_vendor(name_en))
-            if pe:
+            if pe and pe.get('name_override'):
+                # 厂商改名（曦力 → Helio）只改展示名，不影响 id 与代号
+                name = pe['name_override']
+            if pe and pe.get('codes_override'):
+                # 上游代号标错时以本表为准：极客湾把 855+ 与 860 都写成 SM8150-AC，
+                # 合并后两颗芯片会互相污染，必须由本表钉死各自的部件号
+                codes = list(pe['codes'])
+            elif pe:
                 codes = list(dict.fromkeys(codes + pe['codes']))
 
             # 华为：极客湾 19 颗一颗代号都不给，但华为设备的 ro.board.platform

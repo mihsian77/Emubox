@@ -391,12 +391,15 @@
   },
   {
    "codes": [
-    "SM8150-AC"
+    "SM8150-AB",
+    "SM8150P"
    ],
    "name": "骁龙 855+",
    "name_en": "Snapdragon 855+",
    "brand": "高通",
-   "year": "2019"
+   "year": "2019",
+   "codes_override": true,
+   "_why": "极客湾把 855+ 与 860 都标成 SM8150-AC，合并后两颗芯片互相污染"
   },
   {
    "codes": [
@@ -576,7 +579,9 @@
    "name": "曦力 G90T",
    "name_en": "Helio G90T",
    "brand": "联发科",
-   "year": "2019"
+   "year": "2019",
+   "name_override": "Helio G90T",
+   "_why": "「曦力」是联发科技早期的中文译名，官方现用 Helio"
   },
   {
    "codes": [
@@ -1069,6 +1074,18 @@
    "name_en": "SC9863A",
    "brand": "紫光展锐",
    "year": "2018"
+  },
+  {
+   "codes": [
+    "SM8150-AC"
+   ],
+   "name": "骁龙 860",
+   "name_en": "Snapdragon 860",
+   "brand": "高通",
+   "year": "2021",
+   "codes_override": true,
+   "gpu": "Adreno 640",
+   "_why": "855+ 的加强版，代号与 855+ 不同（SM8150-AB）"
   }
  ],
  "vendor_platforms": {
