@@ -125,4 +125,10 @@ jobs:
           git add $PATHS
           git commit -m "chore(data): 每日刷新 $(date -u +%F)"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git push origin HEAD:main
+          # main 可能被人工合并或别的数据任务推进；裸 push 会 non-fast-forward，
+          # 这次抓到的数据就丢了。先 rebase 再推，最多重试三次。
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main || { git rebase --abort || true; exit 1; }
+            git push origin HEAD:main && break
+            sleep 5
+          done

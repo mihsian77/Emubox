@@ -64,7 +64,13 @@ jobs:
             git add app/src/main/assets/bench app/src/main/assets/soc_master.json bench-data
             git commit -m "chore: 刷新跑分数据"
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-            git push origin HEAD:main
+            # main 可能被人工合并或别的数据任务推进；裸 push 会 non-fast-forward，
+            # 这次抓到的数据就丢了。先 rebase 再推，最多重试三次。
+            for i in 1 2 3; do
+              git pull --rebase --autostash origin main || { git rebase --abort || true; exit 1; }
+              git push origin HEAD:main && break
+              sleep 5
+            done
           else
             echo "跑分数据无变化，跳过提交"
           fi

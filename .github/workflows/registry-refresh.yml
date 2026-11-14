@@ -65,7 +65,13 @@ jobs:
             git commit -m "chore: 每日刷新驱动/模拟器/排行/配置推荐数据"
             # checkout 默认无推送权限，显式带 token 推送
             git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-            git push origin HEAD:main
+            # main 可能被人工合并或别的数据任务推进；裸 push 会 non-fast-forward，
+            # 这次抓到的数据就丢了。先 rebase 再推，最多重试三次。
+            for i in 1 2 3; do
+              git pull --rebase --autostash origin main || { git rebase --abort || true; exit 1; }
+              git push origin HEAD:main && break
+              sleep 5
+            done
           else
             echo "无变化，跳过提交"
           fi
