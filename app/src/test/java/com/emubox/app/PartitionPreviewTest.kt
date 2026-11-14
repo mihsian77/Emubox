@@ -13,9 +13,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasScrollToIndexAction
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.onAllNodes
 import androidx.compose.ui.test.onAllNodesWithText
-import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
@@ -27,6 +25,7 @@ import com.emubox.app.ui.theme.EmuBoxTheme
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.json.JSONArray
 import org.json.JSONObject
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -724,11 +723,12 @@ class PartitionPreviewTest {
             .performScrollToNode(hasText("高通驱动", substring = true))
         settle(2)
         save("p2c-qualcomm-collapsed.png")
-        // 折叠态就能看到更新时间，不用展开：一周内给「N 天前」，超过一周给具体日期
-        val updateHint = Regex("""^(\d+ (天|小时|分钟)前|刚刚|\d{4}-\d{2}-\d{2})$""")
-        compose.onAllNodes(hasText { updateHint.matches(it.trim()) })
-            .onFirst()
-            .assertExists()
+        // 折叠态就能看到更新时间，不用展开：一周内给「N 天前」，超过一周给具体日期。
+        // 夹具是固定时间戳，按当前口径应落到日期形态；期望值用同一规则算出，避免写死。
+        val expectedHint = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+            .format(java.util.Date(1_792_540_800_000L))
+        val hintNodes = compose.onAllNodesWithText(expectedHint, substring = true).fetchSemanticsNodes()
+        assertTrue("折叠态应显示更新时间 $expectedHint，实际未找到", hintNodes.isNotEmpty())
     }
 
     @Test
