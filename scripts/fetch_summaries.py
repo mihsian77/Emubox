@@ -107,6 +107,9 @@ def clean(text):
         line = MD_LINK.sub(r"\1", line)
         line = re.sub(r"\(https?://[^)]+\)", "", line)
         line = HTML_TAG.sub(" ", line)
+        # 被截断的 HTML 片段会留下裸属性（alt="Get it on F-Droid"），这不是简介
+        line = re.sub(r'\b(?:alt|class|src|title|width|height|style|target|rel|href)\s*=\s*"[^"]*"', " ", line)
+        line = re.sub(r"\b(?:alt|class|src|title|style)\s*=\s*'[^']*'", " ", line)
         line = line.replace("**", "").replace("__", "")
         line = re.sub(r"\s+", " ", line).strip(" >|*-·•=")
         if len(line) < 8:
