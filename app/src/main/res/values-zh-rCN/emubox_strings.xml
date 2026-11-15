@@ -862,9 +862,12 @@
     <string name="playable_verdict_playable">%1$d 个平台跑得动，%2$s 差 %3$d 分</string>
     <string name="playable_verdict_gap">%1$d 个平台跑得动，%2$s 还差 %3$d 分</string>
     <string name="playable_ram_requirement">需 %1$s GB 内存，本机 %2$s GB，会掉帧</string>
-    <string name="playable_evidence">同芯片 %1$d 条报告 · 社区 %2$d 分 · 推荐 %3$s</string>
-    <string name="playable_evidence_plain">同芯片 %1$d 条报告 · 社区 %2$d 分</string>
-    <string name="playable_evidence_note">社区分是玩家主观打分，与档位口径不同；两者冲突时以实测为准。</string>
+    <string name="playable_evidence">同芯片 %1$d 条报告 · %2$d 款游戏 · 社区 %3$d 分 · 推荐 %4$s</string>
+    <string name="playable_evidence_plain">同芯片 %1$d 条报告 · %2$d 款游戏 · 社区 %3$d 分</string>
+    <string name="playable_evidence_chip">实测 %1$d</string>
+    <string name="playable_evidence_note">社区分是同芯片机型上「被试游戏」的平均评价，各机型测的游戏不同，分数不能横向比较；档位仍按芯片估算。</string>
+    <string name="playable_evidence_lower">实测比估算低一档，档位仍按芯片分——测试游戏集合不同，低分不等于这台跑不动。</string>
+    <string name="playable_evidence_higher">实测比估算高一档，档位仍按芯片分——分数偏高多见于只测轻量游戏的机型。</string>
     <string name="playable_open_apps">在库里查看 %1$d 款</string>
     <string name="playable_experimental_title">实验性平台</string>
     <string name="playable_next_driver">下一步 · 装 %1$s 驱动</string>
@@ -893,7 +896,7 @@
     <string name="emuready_best_emu">最佳 %1$s</string>
     <string name="emuready_listings">%1$d 条报告</string>
     <string name="emuready_expand_more">展开全部 %1$d 个平台</string>
-    <string name="emuready_source_note">数据：EmuReady 社区报告，离线包 %1$s</string>
+    <string name="emuready_source_note">数据：EmuReady 社区报告，按同芯片机型聚合，不提供逐条详情；离线包 %1$s</string>
     <string name="bench_gpu_phys_title">GPU 算力对照</string>
     <string name="bench_gpu_phys_local">本机 GPU</string>
     <string name="bench_gpu_phys_desk">最接近的桌面卡</string>

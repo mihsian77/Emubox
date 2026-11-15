@@ -865,9 +865,12 @@ Continuing means you understand the above.</string>
     <string name="playable_verdict_playable">%1$d platforms run; %2$s is %3$d points short</string>
     <string name="playable_verdict_gap">%1$d platforms run; %2$s is %3$d points short</string>
     <string name="playable_ram_requirement">Needs %1$s GB RAM, this device has %2$s GB — expect frame drops</string>
-    <string name="playable_evidence">%1$d reports on this chip · %2$d/100 · best: %3$s</string>
-    <string name="playable_evidence_plain">%1$d reports on this chip · %2$d/100</string>
-    <string name="playable_evidence_note">Community scores are player ratings, not the same scale as tiers. When they disagree, trust the reports.</string>
+    <string name="playable_evidence">%1$d reports · %2$d games on this chip · %3$d/100 · best: %4$s</string>
+    <string name="playable_evidence_plain">%1$d reports · %2$d games on this chip · %3$d/100</string>
+    <string name="playable_evidence_chip">%1$d tested</string>
+    <string name="playable_evidence_note">Community scores average the games people tested on devices with this chip. Devices test different games, so scores are not comparable across chips; tiers still come from the chip estimate.</string>
+    <string name="playable_evidence_lower">Reports score one tier lower. The tier still follows the chip estimate: different game sets, so a low score does not mean this device cannot run it.</string>
+    <string name="playable_evidence_higher">Reports score one tier higher. The tier still follows the chip estimate: higher scores usually mean only lightweight games were tested.</string>
     <string name="playable_open_apps">Browse %1$d in library</string>
     <string name="playable_experimental_title">Experimental platforms</string>
     <string name="playable_next_driver">Next · install the %1$s driver</string>
@@ -896,7 +899,7 @@ Continuing means you understand the above.</string>
     <string name="emuready_best_emu">best %1$s</string>
     <string name="emuready_listings">%1$d reports</string>
     <string name="emuready_expand_more">Show all %1$d platforms</string>
-    <string name="emuready_source_note">Source: EmuReady community reports, bundled %1$s</string>
+    <string name="emuready_source_note">Source: EmuReady community reports aggregated per chip; per-report details are not included. Bundled %1$s</string>
     <string name="bench_gpu_phys_title">GPU compute reference</string>
     <string name="bench_gpu_phys_local">This GPU</string>
     <string name="bench_gpu_phys_desk">Closest desktop card</string>

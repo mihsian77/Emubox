@@ -11,17 +11,28 @@ enum class PlayGrade { SMOOTH, PLAYABLE, TIGHT, UNKNOWN }
  * 同芯片的社区实测（来自 EmuReady 按 SoC 聚合的报告）。
  *
  * 它和档位是两套口径：档位由 GPU 分 + 内存推出，这里的 score 是玩家对
- * 「这台机器跑这个平台」的主观打分（0~100）。两者并列的意义是互相校验，
- * 冲突时以实测为准——档位不知道散热、驱动和具体游戏。
+ * 「这台机器跑这个平台」的主观打分（0~100）。
+ *
+ * 注意 score **不能当判据、也不能横向比较**。它是「同芯片机型上被测游戏的
+ * 平均评价」，而各机型的测试游戏集合完全不同：入门机用户只测轻量游戏，
+ * 分数自然好看。实测数据里 Helio P35 的 Switch 是 75 分、骁龙 8 Elite 只有
+ * 58 分，但 P35 根本跑不动 Switch。所以这里只把它当参考证据展示，
+ * 判档仍由估算负责——两者不同档时界面要说明原因，而不是悄悄改档。
  */
 data class PlayEvidence(
     val listings: Int,
+    /** 这批报告覆盖的游戏数：报告多但游戏少（同一款刷了几十次）不算广 */
+    val uniqueGames: Int,
     val score: Int,
     val bestEmulator: String,
     /** 报告来自哪台同芯片机型，说明同名 SoC 也有个体差异 */
     val device: String,
     val confidence: String
 )
+
+/** 社区分折算档位的分界，与设备页兼容性卡片的 80 / 60 同一套色阶。 */
+private const val EVIDENCE_SMOOTH = 80
+private const val EVIDENCE_PLAYABLE = 60
 
 data class PlayablePlatform(
     val key: String,
@@ -40,6 +51,23 @@ data class PlayablePlatform(
     /** 同芯片社区实测；没有足够报告时为 null，界面不显示这一行 */
     val evidence: PlayEvidence? = null
 ) {
+    /**
+     * 社区实测折算的档位。只用来和估算对照，不参与判档——理由见 [PlayEvidence] 注释：
+     * 各机型的测试游戏集合不同，分数不可横向比较，拿它判档会让 P35 排在 8 Elite 前面。
+     */
+    val evidenceGrade: PlayGrade?
+        get() = evidence?.let {
+            when {
+                it.score >= EVIDENCE_SMOOTH -> PlayGrade.SMOOTH
+                it.score >= EVIDENCE_PLAYABLE -> PlayGrade.PLAYABLE
+                else -> PlayGrade.TIGHT
+            }
+        }
+
+    /** 实测与估算不同档。界面据此给一句解释，避免用户看到「两个结论打架」。 */
+    val evidenceDiffers: Boolean
+        get() = grade != PlayGrade.UNKNOWN && evidenceGrade != null && evidenceGrade != grade
+
     /** 距离下一档还差多少分：已达标为 0。用于「差 111 分」这类可执行提示。 */
     fun gapToNextTier(score: Double?): Int? {
         if (score == null) return null
@@ -294,6 +322,7 @@ object PlayableCatalog {
                 evidence = sys?.takeIf { it.listings >= MIN_EVIDENCE_LISTINGS }?.let {
                     PlayEvidence(
                         listings = it.listings,
+                        uniqueGames = it.uniqueGames,
                         score = it.score,
                         bestEmulator = it.bestEmulator,
                         device = it.device,

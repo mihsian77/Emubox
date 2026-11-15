@@ -129,4 +129,49 @@ class PlayableCatalogTest {
         // 复古合集没有对应的 EmuReady 平台，不能硬塞一条空证据
         assertEquals(null, r.platforms.first { it.key == "classic" }.evidence)
     }
+
+    /**
+     * 实测只做对照，不改档位。
+     *
+     * 实测里 Helio P35 的 Switch 是 75 分、骁龙 8 Elite 只有 58 分；若按实测判档，
+     * P35 会比 8 Elite 更「能跑 Switch」。分数是「同芯片机型上被测游戏的平均评价」，
+     * 各机型测的游戏集合不同，所以只能当参考展示。这条锁住「不上调、不下调」两侧。
+     */
+    @Test
+    fun `实测折算的档位不改变判档`() {
+        val p = PlayablePlatform(
+            key = "switch",
+            label = "Switch",
+            grade = PlayGrade.TIGHT,
+            smooth = 600,
+            ok = 350,
+            minRamMb = 6144,
+            note = "",
+            match = emptyList(),
+            appCount = 0,
+            evidence = PlayEvidence(
+                listings = 22,
+                uniqueGames = 16,
+                score = 75,
+                bestEmulator = "Yuzu",
+                device = "Redmi 10C",
+                confidence = "medium"
+            )
+        )
+        // 75 分按色阶折算成「勉强」，但档位必须还是「吃力」
+        assertEquals(PlayGrade.PLAYABLE, p.evidenceGrade)
+        assertTrue(p.evidenceDiffers)
+        assertEquals(PlayGrade.TIGHT, p.grade)
+    }
+
+    /** 真实数据：入门芯片也能挂上实测，且档位不被它拉高。 */
+    @Test
+    fun `入门芯片的实测不会把档位拉高`() {
+        val r = report("MT6765") // 曦力 P35，GPU 分 7.4
+        val sw = r.platforms.first { it.key == "switch" }
+        assertEquals(PlayGrade.TIGHT, sw.grade)
+        assertNotNull("P35 在同芯片下有 22 条 Switch 报告", sw.evidence)
+        assertEquals(PlayGrade.PLAYABLE, sw.evidenceGrade)
+        assertTrue(sw.evidenceDiffers)
+    }
 }

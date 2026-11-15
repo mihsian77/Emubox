@@ -426,20 +426,32 @@ private fun PlayablePlatformRow(
                 modifier = Modifier.weight(1f)
             )
             Spacer(Modifier.width(10.dp))
-            Text(
-                when {
-                    score == null -> gradeLabel(platform.grade)
-                    gap != null && gap > 0 -> appString(R.string.playable_gap, gap)
-                    else -> appString(
-                        R.string.playable_score_pair_short,
-                        score.roundToInt(),
-                        platform.smooth
+            Column(horizontalAlignment = Alignment.End) {
+                Text(
+                    when {
+                        score == null -> gradeLabel(platform.grade)
+                        gap != null && gap > 0 -> appString(R.string.playable_gap, gap)
+                        else -> appString(
+                            R.string.playable_score_pair_short,
+                            score.roundToInt(),
+                            platform.smooth
+                        )
+                    },
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.SemiBold,
+                    color = color
+                )
+                // 有同芯片实测时收起态就给出来：这是第二个影响判断的信息，
+                // 藏在展开层等于只有点开的人才知道「别人实际跑成什么样」。
+                platform.evidence?.let { ev ->
+                    Spacer(Modifier.height(1.dp))
+                    Text(
+                        appString(R.string.playable_evidence_chip, ev.score),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                },
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.SemiBold,
-                color = color
-            )
+                }
+            }
             Icon(
                 Icons.Default.ChevronRight,
                 contentDescription = null,
@@ -483,11 +495,17 @@ private fun PlayablePlatformRow(
                 Spacer(Modifier.height(6.dp))
                 Text(
                     if (ev.bestEmulator.isBlank()) {
-                        appString(R.string.playable_evidence_plain, ev.listings, ev.score)
+                        appString(
+                            R.string.playable_evidence_plain,
+                            ev.listings,
+                            ev.uniqueGames,
+                            ev.score
+                        )
                     } else {
                         appString(
                             R.string.playable_evidence,
                             ev.listings,
+                            ev.uniqueGames,
                             ev.score,
                             ev.bestEmulator
                         )
@@ -495,6 +513,20 @@ private fun PlayablePlatformRow(
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+                // 两个结论不同档时必须给一句原因，否则用户会觉得界面自相矛盾。
+                if (platform.evidenceDiffers) {
+                    val lower = (platform.evidenceGrade?.ordinal ?: 0) > platform.grade.ordinal
+                    Spacer(Modifier.height(3.dp))
+                    Text(
+                        appString(
+                            if (lower) R.string.playable_evidence_lower
+                            else R.string.playable_evidence_higher
+                        ),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = if (lower) MaterialTheme.colorScheme.error
+                        else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
             if (platform.appCount > 0) {
                 Spacer(Modifier.height(10.dp))
