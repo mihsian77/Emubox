@@ -416,55 +416,6 @@ def trim_promo(s: str) -> str:
     return PROMO_SPLIT.split(s)[0].strip().rstrip("：:。 ")
 
 
-def fetch_news_body(url: str) -> str:
-    """抓文章正文（post_content 容器 → 纯文本，div 深度计数取完整容器），供 App 内全文阅读；失败返回空串。"""
-    try:
-        html = _fetch_text(url, timeout=15)
-        # IT之家移动版改版后正文容器由 post_content 改为 news-content，
-        # 旧类名找不到导致所有新文章正文全空、每次运行都全量重抓。两个都试。
-        i = html.find('class="post_content')
-        if i < 0:
-            i = html.find('class="news-content')
-        if i < 0:
-            return ""
-        start = html.rfind("<div", 0, i + 1)
-        if start < 0:
-            start = i
-        # div 深度计数：正文容器可能内嵌 div（如投稿致谢行），按深度取到容器真正闭合
-        depth = 0
-        p = start
-        seg = html[start:]
-        while p < len(html):
-            nxt = re.search(r"<div[\s>]|</div>", html[p:])
-            if not nxt:
-                break
-            tag = html[p + nxt.start():p + nxt.end()]
-            if tag.startswith("</"):
-                depth -= 1
-                if depth == 0:
-                    seg = html[start:p + nxt.end()]
-                    break
-            else:
-                depth += 1
-            p += nxt.end()
-        seg = re.sub(r"<script.*?</script>", "", seg, flags=re.S)
-        seg = re.sub(r"<style.*?</style>", "", seg, flags=re.S)
-        seg = re.sub(r"<!--.*?-->", "", seg, flags=re.S)
-        seg = re.sub(r"<br\s*/?>", "\n", seg)
-        seg = re.sub(r"</p>", "\n", seg)
-        seg = re.sub(r"<[^>]+>", "", seg)
-        seg = htmllib.unescape(seg).replace("\u00a0", " ")
-        seg = re.sub(r"\n{3,}", "\n\n", seg).strip()
-        # 去掉投稿致谢/关注引导等模板噪声行（非正文内容）
-        seg = re.sub(r"(?m)^(点此|关注我们|微信关注|更多阅读|责任编辑|未经授权|欢迎关注|"
-                     r"扫描二维码|点击上方|加星标|设为星标|感谢\S*网友|.*直达链接|.*广告声明.*|"
-                     r"京东.*(券|红包)|淘宝.*红包|.*点此抽红包|.*券后.*|.*点击(下方卡片|宝贝|弹出页面).*|"
-                     r".*点此领券.*|.*领券.*)$", "", seg)
-        return hide_source(re.sub(r"\n{2,}", "\n", seg).strip())
-    except Exception:
-        return ""
-
-
 def parse_rss(xml_text: str):
     root = ET.fromstring(xml_text)
     items = []
@@ -721,15 +672,9 @@ def main():
     try:
         api_items = fetch_ithome_api(max_pages=12) + fetch_ithome_soft()
         # 正文抓取范围：emulator/device 全量 + tech 最新 20 条（控制 CI 时长与反爬频率）
-        body_targets = [it for it in api_items if it["category"] in ("emulator", "device")][:60]
-        body_targets += [it for it in api_items if it["category"] == "tech"][:20]
-        body_map = {}
-        for it in body_targets:
-            b = fetch_news_body(it["url"])
-            if b:
-                body_map[it["url"]] = b
-            time.sleep(0.3)
-        fresh_news = [{**it, "body": body_map.get(it["url"], "")} for it in api_items]
+        # 只收标题、摘要与原文链接：不抓取、不存储第三方正文，
+        # 弹窗内展示摘要并给出「打开原文」，阅读与流量都留在原站。
+        fresh_news = [{**it, "body": ""} for it in api_items]
     except Exception as e:
         print(f"资讯官方接口抓取失败（继续用官方源）: {e}", file=sys.stderr)
 
@@ -821,26 +766,8 @@ def main():
     # 资讯条目补抓一次完整正文（增量：已非空的跳过）。
     # 旧库同 id（= 同 url）条目已抓到的正文直接继承：merged 每次以 fresh_news
     # 重建，旧条目的 body 不会自动带过来；不继承的话每次运行都要全量重抓一遍。
-    old_body = {it["id"]: it["body"] for it in old
-                if it.get("body") and "ithome.com" in it.get("url", "")}
-    inherited = 0
-    for it in merged:
-        if not it.get("body") and it["id"] in old_body:
-            b = old_body[it["id"]]
-            it["body"] = b
-            it["summary"] = it.get("summary") or b[:180]
-            inherited += 1
-    if inherited:
-        print(f"从旧库继承正文 {inherited} 条", file=sys.stderr)
-    # 剩余仍无正文的（新文章或正文源变了）才补抓一次。
-    missing = [it for it in merged if "ithome.com" in it.get("url", "") and not it.get("body")]
-    if missing:
-        print(f"补抓 {len(missing)} 条资讯正文（历史条目旧解析器未抓到）…", file=sys.stderr)
-        for it in missing:
-            b = fetch_news_body(it["url"])
-            if b:
-                it["body"] = b
-                it["summary"] = it.get("summary") or b[:180]
+    # 历史条目里残留的第三方正文已随本次运行清空（见文件末尾统一收敛），
+    # 不再做正文继承或补抓：正文既不写入，也就无需修补。
     # 纯促销导购标题（红包/秒杀/价格对比/国补价等）整条丢弃，不占资讯位
     merged = [
         it for it in merged
@@ -874,6 +801,11 @@ def main():
     official_items = [it for it in merged if it.get("type")]
     other_items = [it for it in merged if not it.get("type")]
     merged = (official_items + other_items)[:300]
+
+    # 资讯条目只保留标题、摘要与链接；官方 release 日志属于发布说明，保留正文。
+    for it in merged:
+        if not it.get("type"):
+            it["body"] = ""
 
     data = {
         "version": 3,
