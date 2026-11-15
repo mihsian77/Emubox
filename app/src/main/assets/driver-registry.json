@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5189,
+      "stars": 5192,
       "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1277,
+      "stars": 1282,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 927,
+      "stars": 931,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -333,7 +333,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 252,
+      "stars": 257,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-14T21:02:20Z",
-      "latest_tag": "v27.0.0-20261114-r4",
-      "latest_date": "2026-11-14T21:02:20Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`c9ce420`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/c9ce420e39bc5d97d3e54ef54ec9603a45772bb2) |\n| **Commit title** | vulkan: fix lookup of VkRenderingAttachmentLocationInfo |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-14 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--- | :--- "
+      "updated_at": "2026-11-15T20:41:35Z",
+      "latest_tag": "v27.0.0-20261115-r3",
+      "latest_date": "2026-11-15T20:41:35Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`7c839c8`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/7c839c81bf20bd4772d551d0fb01383d9eeb956e) |\n| **Commit title** | dzn: Apply all dependencies in CmdWaitEvents2 |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-15 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |\n| :--- | :--- | :--- | :--- | :--- |\n|"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -636,7 +636,7 @@
       "target_emulator": "eden",
       "package_format": "adpkg",
       "maturity": "beta",
-      "stars": 53,
+      "stars": 54,
       "description": "上游 Mesa + GPU enablement 补丁，专为 Adreno A830/A840 的 eden 模拟器修复",
       "notes": "基于 whitebelyash mesa-tu8 gen8 分支构建；针对 eden（使用 adrenotools 的模拟器）修复 A830/A840",
       "companion": [],
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 122,
+      "stars": 124,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -811,7 +811,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 29,
+      "stars": 30,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 162,
+      "stars": 166,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 149,
+      "stars": 151,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1090,7 +1090,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 12,
+      "stars": 16,
       "description": "GameForce Ace 掌机 Mali-G610 PanVK",
       "notes": "掌机设备专用",
       "companion": [],
@@ -1099,10 +1099,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-11-11T05:57:41Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:41Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-15T20:33:41Z",
+      "latest_tag": "v1.1.7",
+      "latest_date": "2026-11-15T20:33:41Z",
+      "latest_body": "**Fixes the black 3D screen on the newest Mali GPUs (G720, G920, G925) in Eden-based Switch emulators, and brings a big PS2 frame-rate gain on the older Mali GPUs (G57, G77).** All four repositories ship the same package, `panvk_faux123_v1.1.7.adpkg.zip`, with the same bytes. If you use v1.1.6, you can update.\n\nDownload `panvk_faux123_v1.1.7.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more black 3D scene on the Mali-G720, G920 and G925.** Som"
     },
     {
       "id": "faux123-rg556",
@@ -1122,7 +1122,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 23,
+      "stars": 22,
       "description": "Anbernic RG556 掌机 Mali-G57 PanVK",
       "notes": "掌机设备专用",
       "companion": [
@@ -1133,10 +1133,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-11-11T05:57:46Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:46Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-15T20:33:49Z",
+      "latest_tag": "v1.1.7",
+      "latest_date": "2026-11-15T20:33:49Z",
+      "latest_body": "**Fixes the black 3D screen on the newest Mali GPUs (G720, G920, G925) in Eden-based Switch emulators, and brings a big PS2 frame-rate gain on the older Mali GPUs (G57, G77).** All four repositories ship the same package, `panvk_faux123_v1.1.7.adpkg.zip`, with the same bytes. If you use v1.1.6, you can update.\n\nDownload `panvk_faux123_v1.1.7.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more black 3D scene on the Mali-G720, G920 and G925.** Som"
     },
     {
       "id": "dkdndje-g720",
@@ -1251,7 +1251,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 69,
+      "stars": 70,
       "description": "JimVulkan 的 radv-xclipse：把 Mesa RADV 移植到三星 Xclipse GPU",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1376,7 +1376,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 286,
+      "stars": 287,
       "description": "基于 Mesa 26.3 的优化定制 Turnip，分 ULTIMATE 与 Universal 两版",
       "notes": "IR3 编译器优化 + 4GB 着色器缓存，塞尔达 TOTK/BOTW 花屏修复",
       "companion": [],
@@ -1424,7 +1424,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 95,
+      "stars": 98,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1555,7 +1555,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 21,
+      "stars": 22,
       "description": "Mesa 26.3.0 PanVK 多 Mali 型号（G610/G615/G710/G715/G720）kbase/CSF 构建，G610 含 vkd3d/D3D12 修复",
       "notes": "wonderkast02 的 fork 扩展（multi-GPU）；实测 release 含 meta.json + libvulkan_panfrost.so 合规，活跃（2026-10-06）",
       "companion": [],
@@ -1588,7 +1588,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 121,
+      "stars": 123,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1666,10 +1666,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-11-11T05:57:44Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:44Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-15T20:33:43Z",
+      "latest_tag": "v1.1.7",
+      "latest_date": "2026-11-15T20:33:43Z",
+      "latest_body": "**Fixes the black 3D screen on the newest Mali GPUs (G720, G920, G925) in Eden-based Switch emulators, and brings a big PS2 frame-rate gain on the older Mali GPUs (G57, G77).** All four repositories ship the same package, `panvk_faux123_v1.1.7.adpkg.zip`, with the same bytes. If you use v1.1.6, you can update.\n\nDownload `panvk_faux123_v1.1.7.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more black 3D scene on the Mali-G720, G920 and G925.** Som"
     },
     {
       "id": "faux123-rp4pro",
@@ -1690,7 +1690,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 16,
+      "stars": 18,
       "notes": "v1.0.0 起与 ace/pixel7/rg556 四仓发布同一 adpkg 包（同名同字节），四设备全部实测；活跃（2026-10-29 v1.1.3 修 WWE 12 掉 GPU）",
       "companion": [
         "faux123-ace",
@@ -1700,10 +1700,10 @@
       "filters": {
         "default": []
       },
-      "updated_at": "2026-11-11T05:57:50Z",
-      "latest_tag": "v1.1.6",
-      "latest_date": "2026-11-11T05:57:50Z",
-      "latest_body": "**Brings back the full speed of the older Mali GPUs (G57, G77) in heavy memory scenes, without giving up the memory saving that keeps big games alive.** All four repositories ship the same package, `panvk_faux123_v1.1.6.adpkg.zip`, with the same bytes. If you use v1.1.5, you can update.\n\nDownload `panvk_faux123_v1.1.6.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **The older Mali GPUs (G57, G77) are fast again in scenes that use a lot of GPU memory."
+      "updated_at": "2026-11-15T20:33:46Z",
+      "latest_tag": "v1.1.7",
+      "latest_date": "2026-11-15T20:33:46Z",
+      "latest_body": "**Fixes the black 3D screen on the newest Mali GPUs (G720, G920, G925) in Eden-based Switch emulators, and brings a big PS2 frame-rate gain on the older Mali GPUs (G57, G77).** All four repositories ship the same package, `panvk_faux123_v1.1.7.adpkg.zip`, with the same bytes. If you use v1.1.6, you can update.\n\nDownload `panvk_faux123_v1.1.7.adpkg.zip` and import it in your app's driver manager. Do not unzip it.\n\n### What changes\n\n- **No more black 3D scene on the Mali-G720, G920 and G925.** Som"
     },
     {
       "id": "lukevalen-kbase",
@@ -1844,7 +1844,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 46,
+      "stars": 47,
       "description": "WinXclipse 随包驱动：Xclipse530/Xclipse540 构建，Winlator 三星 Exynos 分支专用",
       "notes": "strict 过滤只读含 Xclipse 的 release（drivers_0.9）；community-configs/App 本体等混装标签不进入 Xclipse 区",
       "companion": [],
@@ -1938,7 +1938,7 @@
       "target_emulator": "winlator",
       "package_format": "tzst",
       "maturity": "beta",
-      "stars": 46,
+      "stars": 47,
       "description": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "notes": "wrappers 标签 2026-08-31（strict 过滤只读该标签，v0.9.x 为 App 本体、drivers_0.9 为三星驱动已收驱动区 companion、community-configs 社区配置不收录）",
       "companion": [
@@ -2168,10 +2168,10 @@
           "Anka"
         ]
       },
-      "updated_at": "2026-11-08T16:32:27Z",
-      "latest_tag": "v1.0.0",
-      "latest_date": "2026-11-08T16:32:27Z",
-      "latest_body": "Anka Turnip 1.0.0: Mesa Turnip (base db6c407) with the Anka patches in patches/, built for Anka Native on Adreno 8xx. Install the zip from Anka Native's GPU driver setting. Check the download with SHA256SUMS.txt. Tested only on a POCO F8 Pro (Adreno 830) with Ocarina of Time; see README for details and known issues.",
+      "updated_at": "2026-11-15T18:37:13Z",
+      "latest_tag": "v1.0.1",
+      "latest_date": "2026-11-15T18:37:13Z",
+      "latest_body": "Anka Turnip 1.0.1: Mesa Turnip (base db6c407, as in 1.0.0) with the Anka patches, built for Anka Native on Adreno 8xx. It ships together with Anka Native 0.3.0 (https://github.com/EddizEge/AnkaNative/releases/tag/v0.3.0).\nIt is 1.0.0 plus two fixes from newer Mesa. It does **not** fix the Adreno 840 hang (Anka Native [#5](https://github.com/EddizEge/AnkaNative/issues/5)).\n\n### What is new\n\n- Unused shader stage base registers are cleared on Adreno 8xx (Mesa 78fd465cef84, patch 0008).\n- The drive",
       "pushed_at": "2026-11-08T00:00:00Z"
     },
     {
@@ -2226,7 +2226,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "stable",
-      "stars": 12,
+      "stars": 13,
       "description": "Turnip Amaral 构建集，Mesa 27.0.0-devel，分 oneui / standard 两套构建环境，带 GPU 型号目录",
       "notes": "2026-11-12 收录。发布件含 BUILD_MANIFEST（可追溯到 Mesa commit fd8ef2b）与 GPU_CATALOG，是少数把构建来源写清楚的分发",
       "companion": [],
