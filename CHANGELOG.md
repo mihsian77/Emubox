@@ -28,7 +28,7 @@
 - 驱动专区更新动态栏：release 标题 + 日志弹窗，英文自动翻译 + 查看原文
 - EmuReady 深度接入：设备页兼容评分卡（品牌+型号 → 社区兼容得分）、模拟器详情弹窗社区报告入口、多关键词 + socName 兜底识别
 - 平台标注：桌面模拟器在安卓端装不了，卡片标「仅桌面 · Windows/macOS/Linux」，多生态保留但不假装能装
-- 图标取图流水线 `scripts/fetch_icons.py`：仓库约定路径探测 + APK 内 launcher 图标 Range 提取（不下载整包）+ 人工复核对照表，口径见 `docs/icons.md`
+- 图标补全流水线 `scripts/fetch_icons.py`：按各项目公开仓库的约定路径探测图标 + 人工复核对照表，口径见 `docs/icons.md`
 - 模拟器注册表治理：多平台源（GitLab / Gitea / NotABug / Gitee）release 拉取、图标补全、APK 直链修正、来源合规分级与失效标记、release 日志补录、123 盘直达卡片（网盘来源/路径/提取码/打开）
 - 注册表扩到 354 条：新增 Termux:X11（X11 图形服务端，nightly APK）与 XinputBridge（Termux-X11 下手柄映射 XInput，含 APK + winefiles）；MiceWine 从主机模拟改归 Windows 兼容层。工具类按「有没有安卓安装包」判收——InputBridge 产物只有 PC 平台（AppImage/Flatpak/tar.gz），未收
 - 校验脚本口径修正：`distribution=android-archive` 的 zip 安卓包不再按扩展名判死；`hosts` 白名单补 switch2 / ps4（izpsx 跑 Switch 2、emufive 跑越狱 PS4，是真实宿主）；`artifacts` / `android_ready` / `companion` / `platform_families` 登记进 schema
