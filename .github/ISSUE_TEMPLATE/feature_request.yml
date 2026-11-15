@@ -1,0 +1,46 @@
+name: 功能建议
+description: 想要的新能力，或对现有流程的改进
+title: "[建议] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先说清「现在卡在哪」，再说「想要什么」。前者比后者重要——同一件事可能有更省事的做法。
+
+        注意：这个 App 的定位是**清单 + 下载器**，不做模拟器本体、不做游戏分发、不做整合包。
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 现在的问题
+      description: 具体到某一步，不要写「不够好用」
+      placeholder: |
+        每次换手机都要重新找一遍驱动。想知道某个驱动在我的 GPU 上
+        别人实测过没有，现在只能去论坛翻。
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: 你希望它怎么做
+      placeholder: 在驱动卡片上直接显示「同 GPU 机型实测通过 12 次」。
+    validations:
+      required: true
+
+  - type: textarea
+    id: alt
+    attributes:
+      label: 现在怎么绕过去的
+      description: 有替代做法的话写一句，能判断这事有多急
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: 确认
+      options:
+        - label: 这个需求不涉及分发第三方 APK、整合包或破解补丁
+          required: true

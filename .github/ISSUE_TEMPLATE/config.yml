@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全漏洞
+    url: https://github.com/mihsian77/Emubox/security/advisories/new
+    about: 发现安全问题请走私密报告，不要开公开 issue
+  - name: 使用说明
+    url: https://mihsian77.github.io/Emubox/
+    about: 下载、安装、驱动匹配的问题先看这里
+  - name: 参与贡献
+    url: https://github.com/mihsian77/Emubox/blob/main/CONTRIBUTING.md
+    about: 提交规范、数据校验流程、不接受的内容

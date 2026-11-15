@@ -123,6 +123,17 @@ App 内所有 GitHub 资源（驱动、组件、运行库、资源目录）的�
 
 二次分发或修改本项目时，请保留 MirrorHub 来源声明。加速节点仅做下载转发，节点本身不作为本项目的收费卖点。
 
+## 参与
+
+清单里的每一条都应该是真的：版本号对、链接能下、分类没错。所以**改对一条数据比加一个功能更有用**。
+
+- 数据错了、链接失效、条目缺失 → 用[数据修正](https://github.com/mihsian77/Emubox/issues/new?template=data_fix.yml)模板，附上项目自己的一手来源链接
+- 界面异常、崩溃、下载失败 → 用[报告问题](https://github.com/mihsian77/Emubox/issues/new?template=bug_report.yml)模板，写清机型和系统版本
+- 安全漏洞 → **不要开公开 issue**，走[私密报告](https://github.com/mihsian77/Emubox/security/advisories/new)
+- 提交代码的规范、构建步骤、不接受的内容 → [CONTRIBUTING.md](CONTRIBUTING.md)
+
+不接受网盘链接、整合包、破解补丁、需要登录才能拿到的东西。
+
 ## 开源协议
 
 MIT License。

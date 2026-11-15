@@ -1,0 +1,77 @@
+name: 数据修正
+description: 版本号过期、下载链接失效、分类错误、条目缺失
+title: "[数据] "
+labels: ["data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        清单里的每一条都应该能被第三方复核。所以**来源链接是必填项**——没有链接的修正没法验证，只能关掉。
+
+        一手来源指：项目自己的 GitHub Releases 页面、官网下载页、作者公告。二手来源（论坛转帖、搬运站、群聊截图）不算。
+
+  - type: input
+    id: entry
+    attributes:
+      label: 涉及哪个条目
+      description: 填名字即可，知道 id 更好（id 形如 `eden-emulator-releases`）
+      placeholder: "Eden / eden-emulator-releases"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: field
+    attributes:
+      label: 哪里不对
+      options:
+        - 版本号 / 发布时间过期
+        - 下载链接失效（404、文件被删）
+        - 分类或分区放错
+        - 简介描述与实际不符
+        - 项目已停更 / 已归档 / 改名
+        - 条目缺失（清单里没有这个项目）
+        - 图标不对
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: current
+    attributes:
+      label: 现在显示的是
+      placeholder: "v0.0.3（2026-09-12）"
+    validations:
+      required: true
+
+  - type: input
+    id: correct
+    attributes:
+      label: 应该是
+      placeholder: "v0.0.4（2026-11-10）"
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: 来源链接
+      description: 必须是项目自己的页面，能直接看到正确值
+      placeholder: "https://github.com/eden-emulator/Releases/releases"
+    validations:
+      required: true
+
+  - type: textarea
+    id: note
+    attributes:
+      label: 补充说明
+      description: 改名、迁移到新仓库、作者声明不再维护这类情况，写一句就够
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: 是否愿意自己提 PR
+      options:
+        - label: 我可以直接改 `emulator-registry.json` 并提 PR（流程见 CONTRIBUTING.md）
+          required: false

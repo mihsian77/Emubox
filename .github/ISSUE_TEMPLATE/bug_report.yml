@@ -1,0 +1,87 @@
+name: 报告问题
+description: 界面异常、崩溃、下载失败、数据错误
+title: "[问题] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        填得越具体，越可能被修。三步以内能复现的问题最优先。
+
+        - 安全漏洞请**不要**发在这里，看 [SECURITY.md](https://github.com/mihsian77/Emubox/blob/main/SECURITY.md)
+        - 只是想加个条目 / 改个版本号，用「数据修正」模板
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 问题类型
+      options:
+        - 崩溃 / 闪退
+        - 界面显示异常（错位、截断、看不清）
+        - 下载失败 / 安装失败
+        - 数据错误（版本号、链接、分类不对）
+        - 功能不工作（检测、测速、解压）
+        - 翻译 / 文案
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 一句话说清现象，再补细节
+      placeholder: |
+        点驱动页的「下载」后进度条卡在 0%，等 30 秒报「网络错误」。
+        同一个包在浏览器里能下。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开 App，进「驱动专区」
+        2. 选 Adreno 7xx → Turnip v26
+        3. 点下载
+        4. 进度卡 0%，30 秒后报错
+    validations:
+      required: true
+
+  - type: input
+    id: appversion
+    attributes:
+      label: App 版本
+      description: 设置页底部，形如 1.4.0-pre.442
+      placeholder: "1.4.0-pre.442"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: 机型与系统
+      description: 机型 / Android 版本 / GPU，三项都要
+      placeholder: "Redmi K70 / Android 15 / Adreno 740"
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 截图或报错文字
+      description: 截图直接拖进来。驱动实测的报错可以在实测结果页点「导出日志」
+      placeholder: 把截图拖到这个框里，或粘贴报错原文
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 我搜过已有 issue，没有重复
+          required: true
+        - label: 这是 EmuBox 的问题，不是上游模拟器/驱动本身的问题
+          required: false
