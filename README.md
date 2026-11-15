@@ -14,9 +14,20 @@
 
 EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)（MIT 协议，作者 Rodrigo Castro），在其基础上重做了界面、资源目录与下载链路，面向国内 Winlator / Eden / GameHub 等模拟环境用户。
 
+<p align="center">
+  <img src="docs/assets/screens/01-library.png" width="196" alt="模拟器库">
+  <img src="docs/assets/screens/03-runtime.png" width="196" alt="运行库专区">
+  <img src="docs/assets/screens/04-settings.png" width="196" alt="设置">
+  <img src="docs/assets/screens/02-dark.png" width="196" alt="深色模式">
+</p>
+
+<p align="center"><sub>模拟器库 · 运行库专区 · 设置 · 深色模式（界面真实渲染，非设计稿）</sub></p>
+
 ---
 
-> GitHub 下载 APK 限速，或暂时不想安装 App？可使用[网页版备选](https://mihsian77.github.io/EmuHub/)（EmuHub 导航站，独立仓库，已归档只读），在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
+> **官网** — [mihsian77.github.io/Emubox](https://mihsian77.github.io/Emubox/)：功能介绍、界面截图与常见问题。
+>
+> **不想装 App？** 可用[网页版备选](https://mihsian77.github.io/EmuHub/)（EmuHub 导航站，独立仓库，已归档只读）在浏览器内直接下载常用驱动与组件。网页版功能有限，完整体验请使用 App。
 
 ---
 

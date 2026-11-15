@@ -25,7 +25,7 @@ import java.io.File
  */
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-@Config(sdk = [34], qualifiers = "w411dp-h891dp-xhdpi", shadows = [ShadowNativeVulkanBridge::class])
+@Config(sdk = [34], qualifiers = "w411dp-h891dp-xxhdpi", shadows = [ShadowNativeVulkanBridge::class])
 class ScreenRenderTest {
 
     @get:Rule
@@ -39,6 +39,13 @@ class ScreenRenderTest {
 
     /** 截图目录：默认 build/screenshots，可用 -Dscreenshot.dir=... 覆盖（不写死绝对路径） */
     private fun save(name: String) {
+        // 页面里的清单（运行库、组件、社区数据）走 IO 协程拉取，结果回到主线程才重组。
+        // 直接取帧会截到「正在读取…」的加载态，所以先给数据留出到位窗口，再推进一次帧。
+        runCatching {
+            compose.waitForIdle()
+            Thread.sleep(2500)
+            compose.waitForIdle()
+        }
         val dir = File(System.getProperty("screenshot.dir") ?: "build/screenshots")
         dir.mkdirs()
         val out = File(dir, File(name).name)
