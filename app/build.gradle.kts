@@ -53,7 +53,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            // R8：代码压缩 + 混淆 + 资源收缩。
+            // 开启前实测 dex 45.95MB（占 APK 88%），因为未使用的类、反射元数据、
+            // Kotlin 标准库全部原样打包。Compose / Coil / 协程均有官方 consumer 规则，
+            // 项目自身无反射式实例化，JNI 方法名由下方 proguard 规则保留。
+            isMinifyEnabled = true
+            isShrinkResources = true
             // 有 keystore.properties 时用正式签名，否则回退 debug 签名
             signingConfig = run {
                 val props = Properties()
