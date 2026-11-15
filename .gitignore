@@ -61,3 +61,7 @@ schema-audit.json
 download-source-audit.json
 audit-report.json
 resolve-report.json
+
+# 抓取原始中间件与审计产物：只留加工后的数据，原始榜单/审计结果不进仓库
+bench-data/*_raw.json
+download-source-audit.json

@@ -35,7 +35,6 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 
 | 文件 | 生成脚本 | 说明 |
 | --- | --- | --- |
-| `download-source-audit.json` | `audit_download_sources.py` | 下载源分级审计 |
 | `schema-audit.json` | `migrate_schema.py` | 分类体系证据 |
 
 两者都是核对用的中间结果，跑完看完即可，已在 `.gitignore` 里排除。
@@ -69,5 +68,5 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
    这些只是「有人转存了一份」，不构成一手来源。
 2. **停更却不写原因**：`dead: true` 必须带 `dead_reason`，否则详情页只剩一个灰名字。
 
-历史上 40 多条只有 123 盘镜像的条目已逐条复核（见 `docs/download-source-audit.md`），
+历史上 40 多条只有 123 盘镜像的条目已逐条复核，
 目前全库 0 条依赖网盘分发；仍在库里的「无下载」条目都是官方站/Play 分发或纯源码项目。
