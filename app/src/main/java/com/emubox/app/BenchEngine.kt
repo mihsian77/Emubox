@@ -616,7 +616,9 @@ object BenchEngine {
                     val y = yearMap[n] ?: continue
                     add(Triple(y, n.removePrefix("高通 "), s))
                 }
-            }.sortedBy { it.first }
+            // 同年内按分数升序：同年条目原先沿用榜单顺序，出现「865 Plus 排在 865 前」。
+            // 分数高的是同代加强版，排在基础版之后才符合型号语义。
+            }.sortedWith(compareBy<Triple<String, String, Long>> { it.first }.thenBy { it.third })
         }
         // 其他家族：沿用 aliases 的 family 字段 + year 字段
         return buildList {
@@ -628,7 +630,7 @@ object BenchEngine {
                 val n = JSONArray(o.optString("keys")).optString(0)
                 add(Triple(y, n, s))
             }
-        }.sortedBy { it.first }
+        }.sortedWith(compareBy<Triple<String, String, Long>> { it.first }.thenBy { it.third })
     }
 
     private var antutuCache: JSONArray? = null

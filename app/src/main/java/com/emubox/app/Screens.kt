@@ -5029,7 +5029,6 @@ fun assessGameSupport(
 ): List<GameSupportEval> {
     val out = mutableListOf<GameSupportEval>()
     val vk13 = apiVersion.startsWith("1.3") || apiVersion.startsWith("1.4")
-    val vk12 = apiVersion.startsWith("1.2") || vk13
     val coverage = criticalExtCoverage(extensions)
     // 扩展充足：关键集覆盖 >= 70% 且必备 swapchain/maintenance1 齐全
     val rich = coverage >= 0.7f &&
@@ -5037,10 +5036,13 @@ fun assessGameSupport(
     val coverageNote = "关键扩展覆盖 ${(coverage * 100).toInt()}%（DXVK 依赖集）"
     when (driverType) {
         "turnip" -> {
-            out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "DXVK 2.7.3 转译成熟，社区 171+ 配置验证")
+            out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "DXVK 转译成熟，社区配置量大；具体版本以驱动源为准")
             out += if (rich) GameSupportEval("Windows D3D10/11（DXVK）", "基本能跑", "Turnip 扩展齐全，多数 3A 可玩（$coverageNote）")
                 else GameSupportEval("Windows D3D10/11（DXVK）", "可能能跑", "关键扩展覆盖不足（$coverageNote）")
-            out += GameSupportEval("Windows D3D12（VKD3D）", if (vk13) "可能能跑" else "可能能跑", if (vk13) "Vulkan 1.3 支持，转译问题仍多" else "需 Vulkan 1.2+，黑屏概率高")
+            out += GameSupportEval(
+                "Windows D3D12（VKD3D）", "可能能跑",
+                if (vk13) "Vulkan 1.3 支持，转译问题仍多" else "仅 Vulkan 1.2，黑屏概率更高"
+            )
             out += if (isAdrenoDevice) GameSupportEval("Switch 游戏（Eden/Citron）", if (vk13 && rich) "基本能跑" else "可能能跑", "Eden 对 Adreno 优化，需完整 Vulkan 特性")
                 else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "GPU 非 Adreno，兼容性以实测为准")
         }
@@ -5060,7 +5062,7 @@ fun assessGameSupport(
         else -> { // qualcomm 系统驱动
             out += GameSupportEval("Windows D3D8/9（DXVK）", "基本能跑", "系统驱动稳定，DXVK 成熟")
             out += GameSupportEval("Windows D3D10/11（DXVK）", "基本能跑", "高通官方 Vulkan 完整")
-            out += GameSupportEval("Windows D3D12（VKD3D）", if (vk13) "可能能跑" else "可能能跑", "Vulkan 1.3 支持则 D3D12 可尝试")
+            out += GameSupportEval("Windows D3D12（VKD3D）", "可能能跑", "Vulkan 1.3 支持则 D3D12 可尝试")
             out += if (isAdrenoDevice) GameSupportEval("Switch 游戏（Eden/Citron）", "基本能跑", "系统驱动 + Eden 优化组合")
                 else GameSupportEval("Switch 游戏（Eden/Citron）", "可能能跑", "视设备 GPU 支持而定")
         }
@@ -7143,18 +7145,23 @@ private fun CompatRow(
             )
         }
         Spacer(Modifier.width(8.dp))
+        val scoreColor = when {
+            score >= 80 -> Color(0xFF2E7D32)
+            score >= 60 -> Color(0xFFF9A825)
+            else -> Color(0xFFC62828)
+        }
+        // 低置信（样本少）用描边样式：同样的 90 分，12 条报告和 200 条报告不该长得一样「实」。
+        // 分数为事实不改，改的是它看起来有多确定。
+        val lowSample = confidence != "high" && confidence != "medium"
         Surface(
             shape = RoundedCornerShape(8.dp),
-            color = when {
-                score >= 80 -> Color(0xFF2E7D32)
-                score >= 60 -> Color(0xFFF9A825)
-                else -> Color(0xFFC62828)
-            }
+            color = if (lowSample) scoreColor.copy(alpha = 0.12f) else scoreColor,
+            border = if (lowSample) BorderStroke(1.dp, scoreColor.copy(alpha = 0.7f)) else null
         ) {
             Text(
                 "$score",
                 style = MaterialTheme.typography.labelLarge,
-                color = Color.White,
+                color = if (lowSample) scoreColor else Color.White,
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
             )
         }
