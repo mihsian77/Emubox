@@ -74,6 +74,22 @@ class ScreenRenderTest {
         return (0 until minOf(limit, arr.length())).map { i -> toEntry(arr.getJSONObject(i)) }
     }
 
+    /** 社区排行：App 里由 MainActivity 合并，截图测试照同一规则补名次，否则徽章永远是空的 */
+    private fun loadRanking(): Map<String, Int> {
+        val f = repoFile("emulator-ranking.json")
+        if (!f.exists()) return emptyMap()
+        val arr = runCatching { JSONObject(f.readText()).optJSONArray("emulators") }.getOrNull()
+            ?: return emptyMap()
+        val out = HashMap<String, Int>()
+        for (i in 0 until arr.length()) {
+            val o = arr.getJSONObject(i)
+            out[o.optString("id")] = i + 1
+            val repo = o.optString("repo")
+            if (repo.isNotBlank()) out["repo:$repo"] = i + 1
+        }
+        return out
+    }
+
     private fun toEntry(o: JSONObject) = EmulatorEntry(
         id = o.optString("id"),
         name = o.optString("name"),
@@ -97,7 +113,15 @@ class ScreenRenderTest {
         latestDate = o.optString("latest_date"),
         latestBody = o.optString("latest_body"),
         logoUrl = o.optString("logo_url"),
-        note = o.optString("note")
+        note = o.optString("note"),
+        // 平台标签、筛选都靠这两个字段，之前测试夹具漏了，
+        // 导致「卡片上到底有没有平台标签」这件事在截图里根本验不出来。
+        platforms = o.optJSONArray("platforms")?.let { a ->
+            (0 until a.length()).map { a.optString(it) }
+        } ?: emptyList(),
+        hosts = o.optJSONArray("hosts")?.let { a ->
+            (0 until a.length()).map { a.optString(it) }
+        } ?: emptyList()
     )
 
     @Test
@@ -130,8 +154,11 @@ class ScreenRenderTest {
 
     @Test
     fun renderEmulatorScreen() {
-        val entries = loadEmulators(12)
-        println("注入模拟器条目: ${entries.size} 条")
+        val ranking = loadRanking()
+        val entries = loadEmulators(12).map { e ->
+            e.copy(rank = ranking[e.id] ?: ranking["repo:${e.repo}"] ?: 0)
+        }
+        println("注入模拟器条目: ${entries.size} 条，带名次 ${entries.count { it.rank > 0 }} 条")
         compose.setContent {
             ProvideAppLanguage(AppLanguage.CHINESE) {
                 EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {

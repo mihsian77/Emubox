@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-EmuHub-CN i18n 校验脚本
+EmuBox i18n 校验脚本
 功能：
 1. 检查默认(values)与各语言(values-*)的词条完整性（漏译/多译）
 2. 检查占位符一致性（%1$s, %1$d, %% 等）
-3. 扫描 Kotlin 源码中的硬编码用户可见字符串（Toast/Text/Button 等）
-4. 检查空翻译
+3. **检查默认 values 里是否混入中文**（默认语言是英文，中文只该出现在 values-zh-rCN）
+4. 扫描 Kotlin 源码中的硬编码用户可见字符串（中文），仅告警
 用法：python3 scripts/check-i18n.py [--strict]
 退出码：0=通过，1=有错误
 """
@@ -19,27 +19,33 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RES_DIR = PROJECT_ROOT / "app" / "src" / "main" / "res"
 KOTLIN_DIR = PROJECT_ROOT / "app" / "src" / "main" / "java"
 
+# 资源文件名。这里必须和 res/values 下的真实文件一致：
+# 之前写成 emuhub_strings.xml（拼错），结果 848 条主文案一条都没被检查，
+# 校验一直「通过」，实际默认英文里躺着 29 条中文没人发现。
+STRING_FILES = ["strings.xml", "emubox_strings.xml"]
+
 # 需要检查的语言目录（除默认 values 外）
 TARGET_LOCALES = ["zh-rCN"]
 
+CJK_RE = re.compile(r"[\u4e00-\u9fff]")
+
+# 默认（英文）里允许保留中文的词条：
+# 语言选择器按惯例用母语自称，翻成英文反而让中文用户找不到自己的语言。
+DEFAULT_CJK_ALLOWLIST = {
+    "language_chinese",
+}
+
 # 硬编码检测：Kotlin 中直接传入字符串字面量的用户可见 API
 HARDCODED_PATTERNS = [
-    (r'Toast\.makeText\([^,]+,\s*"([^"]+)"', "Toast 硬编码"),
-    (r'Text\(\s*"([^"]{2,})"', "Text 硬编码"),
-    (r'title\s*=\s*"([^"]{2,})"', "title 硬编码"),
-    (r'label\s*=\s*\{?\s*Text\(\s*"([^"]{2,})"', "label 硬编码"),
+    (r'Toast\.makeText\([^,]+,\s*"([^"]*[\u4e00-\u9fff][^"]*)"', "Toast 硬编码"),
+    (r'Text\(\s*"([^"]*[\u4e00-\u9fff][^"]*)"', "Text 硬编码"),
+    (r'title\s*=\s*"([^"]*[\u4e00-\u9fff][^"]*)"', "title 硬编码"),
+    (r'label\s*=\s*\{?\s*Text\(\s*"([^"]*[\u4e00-\u9fff][^"]*)"', "label 硬编码"),
 ]
-
-# 允许的硬编码（技术字符串、非用户可见、调试用）
-HARDCODED_ALLOWLIST = {
-    "EmuHub-Android/1.0",  # User-Agent
-    "application/octet-stream",  # MIME type
-    "https://", "http://",  # URL 前缀检查
-}
 
 
 def parse_strings(xml_path: Path) -> dict:
-    """解析 strings.xml / emuhub_strings.xml，返回 {name: text}"""
+    """解析 strings.xml / emubox_strings.xml，返回 {name: text}"""
     result = {}
     if not xml_path.exists():
         return result
@@ -59,16 +65,32 @@ def parse_strings(xml_path: Path) -> dict:
 def collect_all_strings(values_dir: Path) -> dict:
     """收集一个 values 目录下所有 strings 文件的词条"""
     all_strings = {}
-    for xml_file in ["strings.xml", "emuhub_strings.xml"]:
+    for xml_file in STRING_FILES:
         all_strings.update(parse_strings(values_dir / xml_file))
     return all_strings
 
 
 def extract_placeholders(text: str) -> list:
     """提取字符串中的格式化占位符"""
-    # 匹配 %1$s, %1$d, %s, %d, %%
     pattern = r'(%\d+\$[sd]|%[sd]|%%)'
     return sorted(re.findall(pattern, text))
+
+
+def check_default_locale(default_strings: dict) -> int:
+    """默认 values 是英文。混进中文 = 英文界面直接露中文，属于硬错误。"""
+    bad = [
+        (name, text) for name, text in default_strings.items()
+        if CJK_RE.search(text) and name not in DEFAULT_CJK_ALLOWLIST
+    ]
+    if not bad:
+        print("  ✅ [values] 默认语言无中文残留")
+        return 0
+    print(f"  ❌ [values] 默认语言混入 {len(bad)} 条中文（英文界面会直接显示中文）:")
+    for name, text in bad[:20]:
+        print(f"      - {name}: {text[:50]}")
+    if len(bad) > 20:
+        print(f"      ... 还有 {len(bad) - 20} 条")
+    return len(bad)
 
 
 def check_locale(default_strings: dict, locale: str) -> int:
@@ -128,7 +150,7 @@ def check_locale(default_strings: dict, locale: str) -> int:
 
 
 def scan_hardcoded_strings() -> int:
-    """扫描 Kotlin 源码中的硬编码用户可见字符串"""
+    """扫描 Kotlin 源码中的硬编码中文，仅告警不阻断（存量大，逐步清）"""
     warnings = 0
     if not KOTLIN_DIR.exists():
         return 0
@@ -143,43 +165,35 @@ def scan_hardcoded_strings() -> int:
         for pattern, desc in HARDCODED_PATTERNS:
             for match in re.finditer(pattern, content):
                 text = match.group(1)
-                # 跳过允许列表
-                if text in HARDCODED_ALLOWLIST:
-                    continue
-                # 跳过纯技术字符串（含 /、:、. 等且无中文/空格的短串）
-                if re.match(r'^[a-zA-Z0-9_./:-]+$', text) and len(text) < 30:
-                    continue
-                # 计算行号
                 line_num = content[:match.start()].count('\n') + 1
                 warnings += 1
-                if warnings <= 30:
+                if warnings <= 20:
                     print(f"  ⚠️  [{rel_path}:{line_num}] {desc}: \"{text[:50]}\"")
 
     if warnings == 0:
-        print("  ✅ 未发现硬编码用户可见字符串")
+        print("  ✅ 未发现硬编码中文")
     else:
-        print(f"  ⚠️  共发现 {warnings} 处疑似硬编码（建议审查，非阻断）")
-    return 0  # 硬编码仅警告，不阻断
+        print(f"  ⚠️  共发现 {warnings} 处硬编码中文（建议抽到资源，非阻断）")
+    return 0
 
 
 def main():
-    strict = "--strict" in sys.argv
     print("=" * 60)
-    print("EmuHub-CN i18n 校验")
+    print("EmuBox i18n 校验")
     print("=" * 60)
 
-    # 收集默认语言词条
     default_strings = collect_all_strings(RES_DIR / "values")
-    print(f"\n📋 默认语言词条数: {len(default_strings)}")
+    print(f"\n📋 默认语言（英文）词条数: {len(default_strings)}")
 
     total_errors = 0
 
-    # 检查各语言
+    print("\n🔍 默认语言纯净度:")
+    total_errors += check_default_locale(default_strings)
+
     print("\n🔍 翻译完整性检查:")
     for locale in TARGET_LOCALES:
         total_errors += check_locale(default_strings, locale)
 
-    # 硬编码扫描
     print("\n🔍 硬编码字符串扫描:")
     scan_hardcoded_strings()
 

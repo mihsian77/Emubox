@@ -164,7 +164,7 @@
     <string name="emulator_region">模拟器专区</string>
     <string name="emulator_desc">常用安卓模拟器汇总，官方来源与最新版本。</string>
     <string name="emulator_search_hint">搜索模拟器与移植项目</string>
-    <string name="emulator_platform_all">全部平台</string>
+    <string name="emulator_platform_all">全部机型</string>
     <string name="emulator_cat_all">全部</string>
     <string name="emulator_sort_popular">热门下载</string>
     <string name="emulator_sort_stars">最多 Star</string>
@@ -192,6 +192,7 @@
     <string name="emulator_channel_prerelease">预发布</string>
     <string name="emulator_hosts_desktop_only">仅桌面</string>
     <string name="emulator_badge_official">官方</string>
+    <string name="emulator_badge_dead">已停更</string>
     <string name="emulator_all_versions">全部版本与文件（%d）</string>
     <string name="emulator_no_releases">暂无发布版本，可在仓库查看</string>
     <string name="emulator_no_assets">该版本未附带可下载文件</string>
@@ -267,6 +268,7 @@
     <string name="component_vkd3d_subtitle">Direct3D 12 转 Vulkan</string>
     <string name="component_d7vk_subtitle">Direct3D 7 转 Vulkan</string>
     <string name="runtime_component">运行时组件</string>
+    <string name="runtime_source_from">来源·%1$s</string>
     <string name="turnip_driver">Turnip 驱动</string>
     <string name="turnip_desc_8xx">适用于 Adreno 8xx / Gen8 设备的 Turnip 构建。</string>
     <string name="turnip_desc_6_7">适用于 Adreno 6xx 和 7xx 设备的 Mesa Turnip 构建。</string>
@@ -906,4 +908,7 @@
     <string name="bench_gpu_phys_none">该 GPU 未收录算力数据，上方为跑分数据。</string>
     <string name="bench_emu_source">EmuReady 社区实测 · %1$d 个平台</string>
     <string name="bench_emu_no_data">该芯片暂无社区实测报告。没有数据就不给估算，避免误导。</string>
+    <string name="source_bundle_title">来源级捆绑包</string>
+    <string name="source_bundle_subtitle">一键下载各组件源最新一套文件，直观对比来源特色</string>
+    <string name="source_bundle_btn">下载捆绑包</string>
 </resources>

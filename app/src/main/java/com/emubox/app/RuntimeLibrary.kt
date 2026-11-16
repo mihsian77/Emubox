@@ -36,7 +36,10 @@ data class RuntimeComponent(
         return when {
             actions.contains("install_fonts") || actions.contains("register_font") ||
                 actions.contains("replace_font") -> "字体包"
-            actions.contains("install_exe") || actions.contains("install_msi") -> "安装包（解压拷贝）"
+            // 标签要能塞进半屏卡片的窄列：原来写「安装包（解压拷贝）」，
+            // 在 130dp 宽的推荐位里被折成「解压 / 拷贝」两行，还把右侧大小挤掉。
+            // 解压拷贝是安装方式，属于详情页信息，标签只留「安装包」。
+            actions.contains("install_exe") || actions.contains("install_msi") -> "安装包"
             actions.contains("archive_extract") || actions.contains("copy_dll") ||
                 actions.contains("copy_file") -> "DLL 复制包"
             actions.contains("set_windows") || actions.contains("set_register_key") -> "系统环境"

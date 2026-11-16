@@ -120,11 +120,13 @@ fun PageTitleRow(
                 overflow = TextOverflow.Ellipsis,
             )
             if (!subtitle.isNullOrBlank()) {
+                // 原先固定 1 行，说明句只要超一行就被省略号切掉；设置页
+                // 「更新日志与新闻正文走机器翻译…」这类完整句子永远读不全。
                 Text(
                     subtitle,
                     fontSize = 11.sp,
                     color = Fusion.OnSurfaceFaint,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )
             }
@@ -450,11 +452,13 @@ fun SectionHeader(
                 color = Fusion.OnSurfaceDim,
             )
             if (!subtitle.isNullOrBlank()) {
+                // 原先固定 1 行，说明句只要超一行就被省略号切掉；设置页
+                // 「更新日志与新闻正文走机器翻译…」这类完整句子永远读不全。
                 Text(
                     subtitle,
                     fontSize = 11.sp,
                     color = Fusion.OnSurfaceFaint,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )
             }

@@ -8384,19 +8384,28 @@ private fun DriverDetectionList(
 
 @Composable
 private fun InfoRow(label: String, value: String) {
+    // 之前用 SpaceBetween + 都不限宽：遇到「网络 / AI:NPU: Hexagon AI Engine /
+    // X75 5G Modem / …」这种长字段，Text 会一路往右画到屏幕外，被父容器直接裁掉，
+    // 连省略号都没有。改成按权重分配行宽，value 右对齐、最多三行。
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        verticalAlignment = Alignment.Top
     ) {
         Text(
             label,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.weight(1f, fill = false)
         )
+        Spacer(Modifier.width(12.dp))
         Text(
             value,
             style = MaterialTheme.typography.bodySmall,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Medium,
+            textAlign = androidx.compose.ui.text.style.TextAlign.End,
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(2f)
         )
     }
 }
@@ -10215,7 +10224,7 @@ private fun RuntimeComponentCard(
             }
             if (component.sourceInfo.url.isNotBlank()) {
                 Text(
-                    text = "来源·${component.sourceInfo.name}",
+                    text = appString(R.string.runtime_source_from, component.sourceInfo.name),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.primary,
                     maxLines = 1,
@@ -12488,6 +12497,76 @@ private fun EmulatorHeroCard(
     }
 }
 
+/** 桌面宿主集合：win/mac/linux 归一类，卡片上只显示「桌面」，不铺开三个词 */
+private val DESKTOP_HOSTS = setOf("windows", "macos", "linux", "win", "mac")
+
+/**
+ * 支持平台简标：安卓 / 桌面 / 全平台。
+ *
+ * 卡片和列表都挂在项目名后面，回答用户第一眼最关心的问题「这东西我手机上能不能装」。
+ * 不用 A/PC 这类字母简写：两个汉字在 labelSmall 下只有 20dp 出头，不比字母宽多少，
+ * 但不需要额外图例，第一次看也懂。
+ */
+private fun emulatorHostLabel(hosts: List<String>): String {
+    val h = hosts.map { it.lowercase() }.toSet()
+    val android = "android" in h
+    val desktop = h.any { it in DESKTOP_HOSTS }
+    return when {
+        android && desktop -> "全平台"
+        android -> "安卓"
+        desktop -> "桌面"
+        else -> ""   // 主机自制程序（wii/ps4）或未知：不臆造标签
+    }
+}
+
+/** 排行榜名次徽章：前三金银铜，其余中性色。rank=0 表示不在社区榜内，不显示 */
+@Composable
+private fun EmulatorRankBadge(rank: Int, modifier: Modifier = Modifier) {
+    if (rank !in 1..99) return
+    val rankColor = when (rank) {
+        1 -> Color(0xFFE0A82E)
+        2 -> Color(0xFFA8B4C4)
+        3 -> Color(0xFFC0764A)
+        else -> MaterialTheme.colorScheme.onSurfaceVariant
+    }
+    Surface(
+        modifier = modifier,
+        shape = RoundedCornerShape(6.dp),
+        color = rankColor.copy(alpha = 0.16f)
+    ) {
+        Text(
+            "#$rank",
+            modifier = Modifier.padding(horizontal = 5.dp, vertical = 1.dp),
+            style = MaterialTheme.typography.labelSmall,
+            fontWeight = FontWeight.Bold,
+            color = rankColor,
+            maxLines = 1,
+            softWrap = false
+        )
+    }
+}
+
+/** 平台标签：安卓可用用主色（能装），仅桌面用第三色（要提醒） */
+@Composable
+private fun EmulatorHostBadge(hosts: List<String>, modifier: Modifier = Modifier) {
+    val label = emulatorHostLabel(hosts)
+    if (label.isBlank()) return
+    val androidReady = hosts.any { it.equals("android", ignoreCase = true) }
+    val container = if (androidReady) MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
+    else MaterialTheme.colorScheme.tertiary.copy(alpha = 0.12f)
+    val fg = if (androidReady) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary
+    Surface(modifier = modifier, shape = RoundedCornerShape(5.dp), color = container) {
+        Text(
+            label,
+            modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
+            style = MaterialTheme.typography.labelSmall,
+            color = fg,
+            maxLines = 1,
+            softWrap = false
+        )
+    }
+}
+
 @Composable
 private fun EmulatorCard(
     entry: EmulatorEntry,
@@ -12542,18 +12621,31 @@ private fun EmulatorCard(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
                 )
-                if (entry.official) {
-                    Spacer(Modifier.width(4.dp))
-                    Surface(
-                        shape = RoundedCornerShape(6.dp),
-                        color = MaterialTheme.colorScheme.primary
-                    ) {
-                        Text(
-                            appString(R.string.emulator_badge_official),
-                            modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onPrimary
-                        )
+            }
+            // 名次 / 平台 / 官方：单独一行。
+            // 塞进标题行会重演「ShadPS4 被压成 ShadPS / 4」的逐字断行——
+            // 半屏卡片只有 ~190dp，头像 + 名称 + 三个徽章放不下。
+            val hostLabel = emulatorHostLabel(entry.hosts)
+            if (entry.rank in 1..99 || hostLabel.isNotBlank() || entry.official) {
+                Spacer(Modifier.height(3.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    EmulatorRankBadge(entry.rank)
+                    EmulatorHostBadge(entry.hosts)
+                    if (entry.official) {
+                        Surface(
+                            shape = RoundedCornerShape(6.dp),
+                            color = MaterialTheme.colorScheme.primary
+                        ) {
+                            Text(
+                                appString(R.string.emulator_badge_official),
+                                modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
                     }
                 }
             }
@@ -12593,10 +12685,13 @@ private fun EmulatorCard(
             if (entry.hosts.isNotEmpty() && !entry.hosts.contains("android")) {
                 Spacer(Modifier.height(2.dp))
                 Text(
+                    // 平台徽章已经说了「桌面」，这行只补「具体哪几个桌面系统」。
+                    // 全称 Windows/macOS/Linux 在半屏卡片里必被截成 "…Windows/macOS/Li"，
+                    // 去掉 a 字尾改成 Win/Mac/Linux，一行放得下。
                     appString(R.string.emulator_hosts_desktop_only) + " · " + entry.hosts.joinToString("/") {
                         when (it) {
-                            "windows" -> "Windows"
-                            "macos" -> "macOS"
+                            "windows" -> "Win"
+                            "macos" -> "Mac"
                             "linux" -> "Linux"
                             else -> it
                         }
@@ -12628,7 +12723,9 @@ private fun EmulatorCard(
                     cardBlurb,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 2,
+                    // 两行装不下 40 字的中文简介，几乎每条都在句子中间断掉。
+                    // 卡片是双列，多一行只多 16dp，换整句可读性值。
+                    maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -12997,27 +13094,7 @@ private fun EmulatorListRow(
                         modifier = Modifier.weight(1f)
                     )
                     // 社区下载量名次：只给有统计的项目挂，前三是金银铜
-                    if (entry.rank in 1..99) {
-                        Spacer(Modifier.width(5.dp))
-                        val rankColor = when (entry.rank) {
-                            1 -> Color(0xFFE0A82E)
-                            2 -> Color(0xFFA8B4C4)
-                            3 -> Color(0xFFC0764A)
-                            else -> MaterialTheme.colorScheme.onSurfaceVariant
-                        }
-                        Surface(
-                            shape = RoundedCornerShape(6.dp),
-                            color = rankColor.copy(alpha = 0.16f)
-                        ) {
-                            Text(
-                                "#${entry.rank}",
-                                modifier = Modifier.padding(horizontal = 5.dp, vertical = 1.dp),
-                                style = MaterialTheme.typography.labelSmall,
-                                fontWeight = FontWeight.Bold,
-                                color = rankColor
-                            )
-                        }
-                    }
+                    EmulatorRankBadge(entry.rank, Modifier.padding(start = 5.dp))
                     if (entry.official) {
                         Spacer(Modifier.width(4.dp))
                         Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.primary) {
@@ -13033,7 +13110,7 @@ private fun EmulatorListRow(
                         Spacer(Modifier.width(4.dp))
                         Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.errorContainer) {
                             Text(
-                                "已停更",
+                                appString(R.string.emulator_badge_dead),
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onErrorContainer
@@ -13079,29 +13156,23 @@ private fun EmulatorListRow(
                         emulatorPlatformLabel(p).takeIf { it.isNotBlank() }?.let { add(it) }
                     }
                     if (entry.hosts.isNotEmpty() && "android" !in entry.hosts) {
-                        add(
-                            entry.hosts.joinToString("/") { h ->
-                                when (h.lowercase()) {
-                                    "windows" -> "Windows"
-                                    "macos" -> "macOS"
-                                    "linux" -> "Linux"
-                                    else -> h
-                                }
-                            }
-                        )
+                        // 平台简标（安卓/桌面）已经单独用带色徽章表达，
+                        // 这里不再拼一遍 Windows/macOS/Linux 占位置。
                     }
                     entry.topics
                         .filter { t -> t.length in 2..18 && t.lowercase() !in EMULATOR_TOPIC_NOISE }
                         .take(2)
                         .forEach { add("#$it") }
                 }
-                if (goalTags.isNotEmpty()) {
+                val hostLabel = emulatorHostLabel(entry.hosts)
+                if (goalTags.isNotEmpty() || hostLabel.isNotBlank()) {
                     Spacer(Modifier.height(3.dp))
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        goalTags.take(4).forEach { tag ->
+                        EmulatorHostBadge(entry.hosts)
+                        goalTags.take(3).forEach { tag ->
                             Surface(
                                 shape = RoundedCornerShape(5.dp),
                                 color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f)
