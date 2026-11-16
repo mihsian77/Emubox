@@ -39,9 +39,11 @@ ALLOWED = set(REQUIRED) | {
     "needs_review", "method", "latest_tag", "latest_date", "channel",
     "latest_body", "latest_apk_name", "latest_apk_url", "latest_apk_size",
     "releases", "stars", "forks", "watchers", "downloads_total",
-    "downloads_latest", "downloads_basis", "download_url", "download_kind",
+    "downloads_lifetime", "downloads_latest", "downloads_basis",
+    "download_url", "download_kind",
     "distribution", "builds", "note", "license", "topics", "community_sources",
-    "repo_status", "dead", "dead_reason", "created_at", "archived", "pushed_at",
+    "repo_status", "dead", "dead_reason", "dead_auto", "created_at",
+    "archived", "pushed_at",
     "community_port", "requires_original", "logo_source",
     # 中文名/中文作品名：原生移植项目原名是英文，列表里补一行译名（人工核对）
     "name_zh",
@@ -71,10 +73,10 @@ KINDS = {"emulator", "port", "frontend", "tool", "engine"}
 DOWNLOADS_BASIS = {"lifetime", "latest-lower-bound", "none"}
 
 INT_FIELDS = ["stars", "forks", "watchers", "downloads_total",
-              "downloads_latest", "latest_apk_size"]
+              "downloads_lifetime", "downloads_latest", "latest_apk_size"]
 LIST_FIELDS = ["platforms", "hosts", "topics", "releases", "builds",
                "community_sources", "platform_families"]
-BOOL_FIELDS = ["official", "dead", "needs_review", "archived"]
+BOOL_FIELDS = ["official", "dead", "dead_auto", "needs_review", "archived"]
 
 URL_RE = re.compile(r"^https?://", re.I)
 

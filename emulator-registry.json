@@ -354,7 +354,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "emulator",
-      "downloads": 11283572,
       "downloads_lifetime": 11283572
     },
     {
@@ -843,7 +842,6 @@
         "sony"
       ],
       "subcategory": "tool",
-      "downloads": 235132,
       "downloads_lifetime": 235132
     },
     {
@@ -1061,7 +1059,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 4773350,
       "downloads_lifetime": 4773350
     },
     {
@@ -1180,7 +1177,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 55733,
       "downloads_lifetime": 55733
     },
     {
@@ -1324,7 +1320,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 16931364,
       "downloads_lifetime": 16931364
     },
     {
@@ -1555,7 +1550,6 @@
         "pc"
       ],
       "subcategory": "launcher-tool",
-      "downloads": 1696577,
       "downloads_lifetime": 1696577
     },
     {
@@ -1825,8 +1819,8 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 5303409,
-      "downloads_lifetime": 5303409
+      "downloads_lifetime": 5303409,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "dolphin",
@@ -2277,7 +2271,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 632540,
       "downloads_lifetime": 632540
     },
     {
@@ -2407,8 +2400,8 @@
       "distribution": "source-only",
       "platform_families": [],
       "subcategory": "frontend",
-      "downloads": 47816,
-      "downloads_lifetime": 47816
+      "downloads_lifetime": 47816,
+      "note": "libretro 核心，需配合 RetroArch 等前端使用。"
     },
     {
       "id": "utkarshdalal-gamenative",
@@ -2578,7 +2571,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 1468702,
       "downloads_lifetime": 1468702
     },
     {
@@ -3058,7 +3050,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 3872607,
       "downloads_lifetime": 3872607
     },
     {
@@ -3254,7 +3245,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 407907,
       "downloads_lifetime": 407907
     },
     {
@@ -3503,8 +3493,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 11756540,
-      "downloads_lifetime": 11756540
+      "downloads_lifetime": 11756540,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "azahar-emu-azahar",
@@ -4237,7 +4227,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 9243211,
       "downloads_lifetime": 9243211
     },
     {
@@ -4491,7 +4480,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 398257,
       "downloads_lifetime": 398257
     },
     {
@@ -5044,7 +5032,6 @@
         "nintendo",
         "pc"
       ],
-      "downloads": 16407263,
       "downloads_lifetime": 16407263
     },
     {
@@ -5400,7 +5387,6 @@
       },
       "android_ready": true,
       "platform_families": [],
-      "downloads": 1538123,
       "downloads_lifetime": 1538123
     },
     {
@@ -5604,7 +5590,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 2540462,
       "downloads_lifetime": 2540462
     },
     {
@@ -5899,7 +5884,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 1059880,
       "downloads_lifetime": 1059880
     },
     {
@@ -6083,7 +6067,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 867166,
       "downloads_lifetime": 867166
     },
     {
@@ -6302,7 +6285,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 795696,
       "downloads_lifetime": 795696
     },
     {
@@ -6443,7 +6425,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "frontend",
-      "downloads": 108453,
       "downloads_lifetime": 108453
     },
     {
@@ -7025,8 +7006,8 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 4657644,
-      "downloads_lifetime": 4657644
+      "downloads_lifetime": 4657644,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "touchhle",
@@ -7240,7 +7221,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 241187,
       "downloads_lifetime": 241187
     },
     {
@@ -7716,8 +7696,8 @@
         "retro-computer",
         "pc"
       ],
-      "downloads": 1527919,
-      "downloads_lifetime": 1527919
+      "downloads_lifetime": 1527919,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "termux-zero",
@@ -7881,7 +7861,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "emulator",
-      "downloads": 81974,
       "downloads_lifetime": 81974
     },
     {
@@ -7992,7 +7971,8 @@
       },
       "android_ready": false,
       "distribution": "no-artifact",
-      "platform_families": []
+      "platform_families": [],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "weihuoya-citra",
@@ -8211,7 +8191,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 9924218,
       "downloads_lifetime": 9924218,
       "name_zh": "Citra 的微火分支"
     },
@@ -8355,7 +8334,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 3677828,
       "downloads_lifetime": 3677828
     },
     {
@@ -8498,7 +8476,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 227387,
       "downloads_lifetime": 227387
     },
     {
@@ -8765,7 +8742,6 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 937491,
       "downloads_lifetime": 937491
     },
     {
@@ -8923,7 +8899,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 251764,
       "downloads_lifetime": 251764
     },
     {
@@ -9127,7 +9102,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 750309,
       "downloads_lifetime": 750309
     },
     {
@@ -9304,8 +9278,8 @@
         "nintendo",
         "arcade-handheld"
       ],
-      "downloads": 518371,
-      "downloads_lifetime": 518371
+      "downloads_lifetime": 518371,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "armsx2-armsx2",
@@ -9642,7 +9616,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 1355932,
       "downloads_lifetime": 1355932
     },
     {
@@ -9892,7 +9865,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 157069,
       "downloads_lifetime": 157069
     },
     {
@@ -10136,7 +10108,6 @@
         "pc"
       ],
       "subcategory": "gamehub",
-      "downloads": 1638935,
       "downloads_lifetime": 1638935
     },
     {
@@ -10336,7 +10307,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 12756,
       "downloads_lifetime": 12756
     },
     {
@@ -10664,8 +10634,8 @@
         "retro-computer",
         "arcade-handheld"
       ],
-      "downloads": 541326,
-      "downloads_lifetime": 541326
+      "downloads_lifetime": 541326,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "dosbox-staging",
@@ -10905,8 +10875,8 @@
         "retro-computer",
         "pc"
       ],
-      "downloads": 301833,
-      "downloads_lifetime": 301833
+      "downloads_lifetime": 301833,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "mchughalex-skate3recomp",
@@ -11119,7 +11089,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 151876,
       "downloads_lifetime": 151876
     },
     {
@@ -11263,7 +11232,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 1016479,
       "downloads_lifetime": 1016479
     },
     {
@@ -11406,7 +11374,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 100498,
       "downloads_lifetime": 100498
     },
     {
@@ -11548,7 +11515,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 4346827,
       "downloads_lifetime": 4346827
     },
     {
@@ -11778,8 +11744,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 428882,
-      "downloads_lifetime": 428882
+      "downloads_lifetime": 428882,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "fbneo",
@@ -11970,7 +11936,6 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 150397,
       "downloads_lifetime": 150397
     },
     {
@@ -12245,7 +12210,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 41629,
       "downloads_lifetime": 41629
     },
     {
@@ -12513,7 +12477,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 677480,
       "downloads_lifetime": 677480
     },
     {
@@ -12794,7 +12757,6 @@
         "nintendo",
         "pc"
       ],
-      "downloads": 86718,
       "downloads_lifetime": 86718
     },
     {
@@ -12988,7 +12950,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 1723744,
       "downloads_lifetime": 1723744
     },
     {
@@ -13139,7 +13100,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 63696,
       "downloads_lifetime": 63696
     },
     {
@@ -13283,7 +13243,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 2945935,
       "downloads_lifetime": 2945935,
       "name_zh": "Wii U 模拟器，安卓移植版"
     },
@@ -13427,7 +13386,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 1584606,
       "downloads_lifetime": 1584606
     },
     {
@@ -13698,8 +13656,8 @@
         "retro-computer",
         "pc"
       ],
-      "downloads": 54013,
-      "downloads_lifetime": 54013
+      "downloads_lifetime": 54013,
+      "note": "libretro 核心，需配合 RetroArch 等前端使用。"
     },
     {
       "id": "coffincolors-winlator",
@@ -13817,7 +13775,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 865226,
       "downloads_lifetime": 865226
     },
     {
@@ -13989,7 +13946,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 271835,
       "downloads_lifetime": 271835
     },
     {
@@ -14177,7 +14133,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 727381,
       "downloads_lifetime": 727381
     },
     {
@@ -14413,7 +14368,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 153115,
       "downloads_lifetime": 153115
     },
     {
@@ -14568,7 +14522,6 @@
       },
       "android_ready": true,
       "platform_families": [],
-      "downloads": 24602,
       "downloads_lifetime": 24602
     },
     {
@@ -14900,8 +14853,8 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 623035,
-      "downloads_lifetime": 623035
+      "downloads_lifetime": 623035,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "xodiosx-xodos",
@@ -15070,7 +15023,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 777552,
       "downloads_lifetime": 777552
     },
     {
@@ -15213,7 +15165,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 784095,
       "downloads_lifetime": 784095
     },
     {
@@ -15515,7 +15466,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 459978,
       "downloads_lifetime": 459978
     },
     {
@@ -15734,7 +15684,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 185848,
       "downloads_lifetime": 185848
     },
     {
@@ -15834,7 +15783,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 495677,
       "downloads_lifetime": 495677
     },
     {
@@ -15977,7 +15925,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 269668,
       "downloads_lifetime": 269668
     },
     {
@@ -16151,7 +16098,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 831958,
       "downloads_lifetime": 831958
     },
     {
@@ -16424,7 +16370,6 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 80677,
       "downloads_lifetime": 80677
     },
     {
@@ -16567,7 +16512,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 254780,
       "downloads_lifetime": 254780
     },
     {
@@ -16896,7 +16840,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 111959,
       "downloads_lifetime": 111959
     },
     {
@@ -17039,7 +16982,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 2135687,
       "downloads_lifetime": 2135687
     },
     {
@@ -18124,7 +18066,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 26189,
       "downloads_lifetime": 26189
     },
     {
@@ -18292,7 +18233,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 649279,
       "downloads_lifetime": 649279
     },
     {
@@ -18626,7 +18566,6 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 296622,
       "downloads_lifetime": 296622
     },
     {
@@ -18856,7 +18795,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 56990,
       "downloads_lifetime": 56990
     },
     {
@@ -19154,8 +19092,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 132801,
-      "downloads_lifetime": 132801
+      "downloads_lifetime": 132801,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "the412banner-bannerhub",
@@ -19498,7 +19436,6 @@
         "pc"
       ],
       "subcategory": "bannerhub",
-      "downloads": 410088,
       "downloads_lifetime": 410088
     },
     {
@@ -19641,7 +19578,6 @@
       },
       "android_ready": true,
       "platform_families": [],
-      "downloads": 9399,
       "downloads_lifetime": 9399
     },
     {
@@ -19779,7 +19715,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 304675,
       "downloads_lifetime": 304675
     },
     {
@@ -19983,7 +19918,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 1030245,
       "downloads_lifetime": 1030245
     },
     {
@@ -20126,7 +20060,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 266560,
       "downloads_lifetime": 266560
     },
     {
@@ -20297,7 +20230,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 745844,
       "downloads_lifetime": 745844
     },
     {
@@ -20405,7 +20337,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 4046,
       "downloads_lifetime": 4046
     },
     {
@@ -20654,7 +20585,6 @@
         "pc"
       ],
       "subcategory": "bannerhub",
-      "downloads": 1413278,
       "downloads_lifetime": 1413278
     },
     {
@@ -20800,7 +20730,6 @@
         "nintendo"
       ],
       "downloads_latest": 3078,
-      "downloads": 115896,
       "downloads_lifetime": 115896
     },
     {
@@ -20868,7 +20797,8 @@
       "distribution": "no-artifact",
       "platform_families": [
         "retro-computer"
-      ]
+      ],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "n3xox1-nxemu",
@@ -21000,7 +20930,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 7774,
       "downloads_lifetime": 7774
     },
     {
@@ -21060,7 +20989,8 @@
       "distribution": "no-artifact",
       "platform_families": [
         "sega"
-      ]
+      ],
+      "note": "安卓版经官网分发，GitHub 不提供安装包。"
     },
     {
       "id": "xhyn-ph-exagear-302",
@@ -21161,7 +21091,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 185757,
       "downloads_lifetime": 185757
     },
     {
@@ -21459,7 +21388,6 @@
       },
       "android_ready": true,
       "platform_families": [],
-      "downloads": 21568,
       "downloads_lifetime": 21568
     },
     {
@@ -21596,8 +21524,8 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 14366,
-      "downloads_lifetime": 14366
+      "downloads_lifetime": 14366,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "wpr-wp7-8",
@@ -21689,7 +21617,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 49556,
       "downloads_lifetime": 49556
     },
     {
@@ -21918,7 +21845,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 37505,
       "downloads_lifetime": 37505
     },
     {
@@ -22061,7 +21987,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 580960,
       "downloads_lifetime": 580960
     },
     {
@@ -22254,7 +22179,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 39567,
       "downloads_lifetime": 39567
     },
     {
@@ -22400,7 +22324,6 @@
         "nintendo",
         "pc"
       ],
-      "downloads": 797003,
       "downloads_lifetime": 797003
     },
     {
@@ -22548,7 +22471,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 151367,
       "downloads_lifetime": 151367
     },
     {
@@ -23073,7 +22995,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 60627,
       "downloads_lifetime": 60627
     },
     {
@@ -23258,7 +23179,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 24113,
       "downloads_lifetime": 24113
     },
     {
@@ -23578,8 +23498,8 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 96105,
-      "downloads_lifetime": 96105
+      "downloads_lifetime": 96105,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "emucorev-android",
@@ -23746,7 +23666,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 162862,
       "downloads_lifetime": 162862
     },
     {
@@ -23914,7 +23833,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 83846,
       "downloads_lifetime": 83846
     },
     {
@@ -24052,7 +23970,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 107310,
       "downloads_lifetime": 107310
     },
     {
@@ -24669,7 +24586,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 153470,
       "downloads_lifetime": 153470
     },
     {
@@ -24799,7 +24715,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 11222,
       "downloads_lifetime": 11222
     },
     {
@@ -24945,7 +24860,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 455538,
       "downloads_lifetime": 455538
     },
     {
@@ -25593,7 +25507,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 2089,
       "downloads_lifetime": 2089
     },
     {
@@ -25924,7 +25837,6 @@
       },
       "android_ready": true,
       "platform_families": [],
-      "downloads": 6543,
       "downloads_lifetime": 6543
     },
     {
@@ -26203,8 +26115,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 7038,
-      "downloads_lifetime": 7038
+      "downloads_lifetime": 7038,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "the412banner-bannerhub-revanced",
@@ -26529,7 +26441,6 @@
         "pc"
       ],
       "subcategory": "bannerhub",
-      "downloads": 257090,
       "downloads_lifetime": 257090
     },
     {
@@ -26673,7 +26584,6 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 2281,
       "downloads_lifetime": 2281,
       "name_zh": "Pico-8 掌机模拟器"
     },
@@ -27043,7 +26953,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 64880,
       "downloads_lifetime": 64880
     },
     {
@@ -27185,7 +27094,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 114166,
       "downloads_lifetime": 114166
     },
     {
@@ -27447,7 +27355,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 33271,
       "downloads_lifetime": 33271
     },
     {
@@ -27597,7 +27504,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 101669,
       "downloads_lifetime": 101669
     },
     {
@@ -27727,7 +27633,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 72379,
       "downloads_lifetime": 72379
     },
     {
@@ -27873,7 +27778,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 57523,
       "downloads_lifetime": 57523
     },
     {
@@ -28053,7 +27957,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 95423,
       "downloads_lifetime": 95423
     },
     {
@@ -28322,7 +28225,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 15211,
       "downloads_lifetime": 15211
     },
     {
@@ -28521,7 +28423,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 6513,
       "downloads_lifetime": 6513,
       "dead": true,
       "dead_auto": true,
@@ -28669,7 +28570,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 14405,
       "downloads_lifetime": 14405
     },
     {
@@ -28882,7 +28782,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 3084,
       "downloads_lifetime": 3084
     },
     {
@@ -29025,8 +28924,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 611,
-      "downloads_lifetime": 611
+      "downloads_lifetime": 611,
+      "note": "libretro 核心，需配合 RetroArch 等前端使用。"
     },
     {
       "id": "ryubing-emulator",
@@ -29268,7 +29167,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 26178,
       "downloads_lifetime": 26178,
       "name_zh": "《塞尔达传说：时之笛》安卓/iOS 移植"
     },
@@ -29654,7 +29552,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 17942,
       "downloads_lifetime": 17942
     },
     {
@@ -29797,7 +29694,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 22209,
       "downloads_lifetime": 22209
     },
     {
@@ -29858,7 +29754,8 @@
       "android_ready": false,
       "platform_families": [
         "nintendo"
-      ]
+      ],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "prospero-eden-encore",
@@ -29956,8 +29853,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 3849,
-      "downloads_lifetime": 3849
+      "downloads_lifetime": 3849,
+      "note": "PS5 自制程序，安卓端不可用。"
     },
     {
       "id": "jaycore-mobox-patched",
@@ -30089,7 +29986,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 21905,
       "downloads_lifetime": 21905
     },
     {
@@ -30392,7 +30288,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 9137,
       "downloads_lifetime": 9137
     },
     {
@@ -30632,7 +30527,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "emulator",
-      "downloads": 2396,
       "downloads_lifetime": 2396
     },
     {
@@ -31169,7 +31063,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 3423,
       "downloads_lifetime": 3423
     },
     {
@@ -31503,7 +31396,6 @@
         "pc"
       ],
       "subcategory": "bannerhub",
-      "downloads": 33523,
       "downloads_lifetime": 33523
     },
     {
@@ -33333,7 +33225,6 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 11274,
       "downloads_lifetime": 11274
     },
     {
@@ -33475,7 +33366,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 7505,
       "downloads_lifetime": 7505
     },
     {
@@ -33591,7 +33481,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 1684,
       "downloads_lifetime": 1684
     },
     {
@@ -34314,7 +34203,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 3733,
       "downloads_lifetime": 3733
     },
     {
@@ -34429,7 +34317,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 3464,
       "downloads_lifetime": 3464
     },
     {
@@ -34605,9 +34492,9 @@
         "pc"
       ],
       "subcategory": "desktop",
-      "downloads": 2554,
       "downloads_lifetime": 2554,
-      "logo_url": "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/icons/yifengling0-vintagepomelopro.png"
+      "logo_url": "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/icons/yifengling0-vintagepomelopro.png",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "afeimod-winlator-glibc",
@@ -34755,7 +34642,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 89409,
       "downloads_lifetime": 89409
     },
     {
@@ -34982,7 +34868,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 12342,
       "downloads_lifetime": 12342
     },
     {
@@ -35089,7 +34974,6 @@
         "pc"
       ],
       "subcategory": "gamehub",
-      "downloads": 8423,
       "downloads_lifetime": 8423
     },
     {
@@ -36517,7 +36401,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "emulator",
-      "downloads": 1727,
       "downloads_lifetime": 1727
     },
     {
@@ -36676,7 +36559,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 85901,
       "downloads_lifetime": 85901
     },
     {
@@ -36822,7 +36704,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 3567,
       "downloads_lifetime": 3567
     },
     {
@@ -36971,7 +36852,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 31040,
       "downloads_lifetime": 31040
     },
     {
@@ -37256,7 +37136,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 2508,
       "downloads_lifetime": 2508
     },
     {
@@ -37396,7 +37275,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 4908,
       "downloads_lifetime": 4908
     },
     {
@@ -37497,7 +37375,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 2967,
       "downloads_lifetime": 2967
     },
     {
@@ -37848,7 +37725,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "frontend",
-      "downloads": 1206,
       "downloads_lifetime": 1206
     },
     {
@@ -37982,7 +37858,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 916,
       "downloads_lifetime": 916
     },
     {
@@ -38230,7 +38105,6 @@
         "pc"
       ],
       "subcategory": "launcher-tool",
-      "downloads": 38991,
       "downloads_lifetime": 38991,
       "name_zh": "Mali 设备上的 Windows 游戏启动器"
     },
@@ -38376,7 +38250,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 2441,
       "downloads_lifetime": 2441
     },
     {
@@ -38740,8 +38613,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 89891,
-      "downloads_lifetime": 89891
+      "downloads_lifetime": 89891,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "termux-plus",
@@ -39004,7 +38877,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 7227,
       "downloads_lifetime": 7227,
       "name_zh": "WinNative 每夜构建"
     },
@@ -39429,7 +39301,6 @@
       },
       "android_ready": false,
       "platform_families": [],
-      "downloads": 435,
       "downloads_lifetime": 435
     },
     {
@@ -39546,7 +39417,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 2700,
       "downloads_lifetime": 2700
     },
     {
@@ -39660,7 +39530,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 3238,
       "downloads_lifetime": 3238
     },
     {
@@ -39720,7 +39589,8 @@
       "android_ready": false,
       "platform_families": [
         "nintendo"
-      ]
+      ],
+      "note": "安卓版经官网分发，GitHub 不提供安装包。"
     },
     {
       "id": "handylynx",
@@ -39964,7 +39834,6 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 709,
       "downloads_lifetime": 709
     },
     {
@@ -40132,7 +40001,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 2134,
       "downloads_lifetime": 2134
     },
     {
@@ -40745,7 +40613,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 1218,
       "downloads_lifetime": 1218
     },
     {
@@ -40895,7 +40762,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 874,
       "downloads_lifetime": 874,
       "name_zh": "《班卓熊大冒险 2》安卓原生移植"
     },
@@ -41096,7 +40962,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 100,
       "downloads_lifetime": 100
     },
     {
@@ -41212,7 +41077,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 551,
       "downloads_lifetime": 551
     },
     {
@@ -41380,7 +41244,6 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 1286,
       "downloads_lifetime": 1286
     },
     {
@@ -41491,7 +41354,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 473,
       "downloads_lifetime": 473
     },
     {
@@ -41635,7 +41497,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 1776,
       "downloads_lifetime": 1776
     },
     {
@@ -41779,8 +41640,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 96,
-      "downloads_lifetime": 96
+      "downloads_lifetime": 96,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "winlatorbrasil-exiled-kingdoms-multiplayer",
@@ -41868,7 +41729,6 @@
       "platform_families": [
         "pc"
       ],
-      "downloads": 1814,
       "downloads_lifetime": 1814
     },
     {
@@ -42179,7 +42039,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "emulator",
-      "downloads": 209,
       "downloads_lifetime": 209
     },
     {
@@ -42453,7 +42312,6 @@
         "pc"
       ],
       "subcategory": "other-container",
-      "downloads": 471,
       "downloads_lifetime": 471
     },
     {
@@ -42776,7 +42634,6 @@
       "distribution": "release-apk",
       "platform_families": [],
       "subcategory": "desktop",
-      "downloads": 773,
       "downloads_lifetime": 773
     },
     {
@@ -43045,7 +42902,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 382,
       "downloads_lifetime": 382
     },
     {
@@ -43340,7 +43196,6 @@
         "pc"
       ],
       "subcategory": "launcher-tool",
-      "downloads": 16849,
       "downloads_lifetime": 16849,
       "name_zh": "Mali 驱动能力探测工具"
     },
@@ -43485,7 +43340,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 50,
       "downloads_lifetime": 50
     },
     {
@@ -43573,7 +43427,6 @@
         "pc"
       ],
       "subcategory": "gamehub",
-      "downloads": 724,
       "downloads_lifetime": 724
     },
     {
@@ -43854,7 +43707,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 18,
       "downloads_lifetime": 18
     },
     {
@@ -44367,7 +44219,6 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 62561,
       "downloads_lifetime": 62561
     },
     {
@@ -45126,7 +44977,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 82,
       "downloads_lifetime": 82
     },
     {
@@ -45407,7 +45257,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 77384,
       "downloads_lifetime": 77384
     },
     {
@@ -45477,7 +45326,8 @@
       "android_ready": false,
       "platform_families": [
         "nintendo"
-      ]
+      ],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "yuzu-official",
@@ -45950,7 +45800,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 725222,
       "downloads_lifetime": 725222
     },
     {
@@ -46114,8 +45963,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 12833,
-      "downloads_lifetime": 12833
+      "downloads_lifetime": 12833,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "lnpandy-nx2apple",
@@ -46419,7 +46268,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 565934,
       "downloads_lifetime": 565934
     },
     {
@@ -46601,8 +46449,8 @@
         "nintendo"
       ],
       "subcategory": "tool",
-      "downloads": 32499,
-      "downloads_lifetime": 32499
+      "downloads_lifetime": 32499,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "yebot32-xenra",
@@ -46758,7 +46606,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 24389,
       "downloads_lifetime": 24389
     },
     {
@@ -46817,7 +46664,8 @@
       "distribution": "no-artifact",
       "platform_families": [
         "microsoft"
-      ]
+      ],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "project64-project64",
@@ -46875,7 +46723,8 @@
       "distribution": "no-artifact",
       "platform_families": [
         "nintendo"
-      ]
+      ],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "liji32-sameboy",
@@ -47116,8 +46965,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 776320,
-      "downloads_lifetime": 776320
+      "downloads_lifetime": 776320,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "par274-sharpemu",
@@ -47293,8 +47142,8 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 106034,
-      "downloads_lifetime": 106034
+      "downloads_lifetime": 106034,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "vita3k-vita3k",
@@ -47420,7 +47269,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 2522,
       "downloads_lifetime": 2522
     },
     {
@@ -47576,8 +47424,8 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 1122714,
-      "downloads_lifetime": 1122714
+      "downloads_lifetime": 1122714,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "trekawek-coffee-gb",
@@ -47813,8 +47661,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 7937,
-      "downloads_lifetime": 7937
+      "downloads_lifetime": 7937,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "ymir-emu-ymir",
@@ -48121,8 +47969,8 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 122423,
-      "downloads_lifetime": 122423
+      "downloads_lifetime": 122423,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "grumpycoders-pcsx-redux",
@@ -48182,7 +48030,8 @@
       "distribution": "no-artifact",
       "platform_families": [
         "sony"
-      ]
+      ],
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "has207-xenia-edge",
@@ -48362,8 +48211,8 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 48231,
-      "downloads_lifetime": 48231
+      "downloads_lifetime": 48231,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "dborth-snes9xgx",
@@ -48564,8 +48413,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 430230,
-      "downloads_lifetime": 430230
+      "downloads_lifetime": 430230,
+      "note": "主机自制程序，安卓端不可直接安装。"
     },
     {
       "id": "dirkwhoffmann-virtualc64",
@@ -48695,8 +48544,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 62636,
-      "downloads_lifetime": 62636
+      "downloads_lifetime": 62636,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "dirkwhoffmann-vamiga",
@@ -48826,8 +48675,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 57540,
-      "downloads_lifetime": 57540
+      "downloads_lifetime": 57540,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "dborth-vbagx",
@@ -49013,8 +48862,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 255040,
-      "downloads_lifetime": 255040
+      "downloads_lifetime": 255040,
+      "note": "主机自制程序，安卓端不可直接安装。"
     },
     {
       "id": "dborth-fceugx",
@@ -49217,8 +49066,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 333265,
-      "downloads_lifetime": 333265
+      "downloads_lifetime": 333265,
+      "note": "主机自制程序，安卓端不可直接安装。"
     },
     {
       "id": "m5devs-openrom",
@@ -49524,8 +49373,8 @@
       "distribution": "desktop-build",
       "platform_families": [],
       "subcategory": "tool",
-      "downloads": 7759,
-      "downloads_lifetime": 7759
+      "downloads_lifetime": 7759,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "drhelius-geargrafx",
@@ -50034,8 +49883,8 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 60013,
-      "downloads_lifetime": 60013
+      "downloads_lifetime": 60013,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "jay-day-rmg-k",
@@ -50212,8 +50061,8 @@
         "nintendo"
       ],
       "subcategory": "frontend",
-      "downloads": 81543,
-      "downloads_lifetime": 81543
+      "downloads_lifetime": 81543,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "copperlinehq-copperline",
@@ -50605,8 +50454,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 10365,
-      "downloads_lifetime": 10365
+      "downloads_lifetime": 10365,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "shanytc-snes9x",
@@ -51100,8 +50949,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 32368,
-      "downloads_lifetime": 32368
+      "downloads_lifetime": 32368,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "shadps4-emu-shadnet",
@@ -51216,8 +51065,8 @@
         "sony"
       ],
       "subcategory": "tool",
-      "downloads": 57,
-      "downloads_lifetime": 57
+      "downloads_lifetime": 57,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "crazyriddler-xbased",
@@ -51398,8 +51247,8 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 15568,
-      "downloads_lifetime": 15568
+      "downloads_lifetime": 15568,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "ivanizag-izapple2",
@@ -51593,8 +51442,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 2643,
-      "downloads_lifetime": 2643
+      "downloads_lifetime": 2643,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "pcsx2-mymcpp",
@@ -51872,8 +51721,8 @@
         "sony"
       ],
       "subcategory": "tool",
-      "downloads": 6252,
-      "downloads_lifetime": 6252
+      "downloads_lifetime": 6252,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "eighttails-pc6001vx",
@@ -52030,8 +51879,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 7117,
-      "downloads_lifetime": 7117
+      "downloads_lifetime": 7117,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "keklick1337-rps5e",
@@ -52187,8 +52036,8 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 591,
-      "downloads_lifetime": 591
+      "downloads_lifetime": 591,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "tixul-ngpcraft-emulator",
@@ -52405,7 +52254,6 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 5063,
       "downloads_lifetime": 5063
     },
     {
@@ -52607,7 +52455,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 1226,
       "downloads_lifetime": 1226
     },
     {
@@ -52865,8 +52712,8 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 3613,
-      "downloads_lifetime": 3613
+      "downloads_lifetime": 3613,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "jberclaz-turbostage",
@@ -53079,8 +52926,8 @@
         "retro-computer"
       ],
       "subcategory": "frontend",
-      "downloads": 2032,
-      "downloads_lifetime": 2032
+      "downloads_lifetime": 2032,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "habib256-pom2",
@@ -53389,8 +53236,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 3327,
-      "downloads_lifetime": 3327
+      "downloads_lifetime": 3327,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "eryski-cosmou",
@@ -53708,7 +53555,6 @@
         "nintendo"
       ],
       "subcategory": "frontend",
-      "downloads": 1257,
       "downloads_lifetime": 1257
     },
     {
@@ -53896,8 +53742,8 @@
       "platform_families": [
         "arcade-handheld"
       ],
-      "downloads": 2755,
-      "downloads_lifetime": 2755
+      "downloads_lifetime": 2755,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "frantriems-vkrt-nes-remaster",
@@ -53981,8 +53827,8 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 129,
-      "downloads_lifetime": 129
+      "downloads_lifetime": 129,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "winhub-emu-winhub",
@@ -54268,7 +54114,6 @@
       ],
       "subcategory": "other-container",
       "downloads_latest": 36,
-      "downloads": 242889,
       "downloads_lifetime": 242889
     },
     {
@@ -54478,7 +54323,6 @@
         "sony"
       ],
       "downloads_latest": 35,
-      "downloads": 483,
       "downloads_lifetime": 483
     },
     {
@@ -54606,7 +54450,6 @@
       "platform_families": [],
       "subcategory": "frontend",
       "downloads_latest": 972,
-      "downloads": 9507,
       "downloads_lifetime": 9507
     },
     {
@@ -54925,8 +54768,8 @@
       "distribution": "source-only",
       "platform_families": [],
       "downloads_latest": 159568,
-      "downloads": 1588244,
-      "downloads_lifetime": 1588244
+      "downloads_lifetime": 1588244,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "drhelius-gearboy",
@@ -55463,8 +55306,8 @@
         "nintendo"
       ],
       "downloads_latest": 434,
-      "downloads": 66339,
-      "downloads_lifetime": 66339
+      "downloads_lifetime": 66339,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "rosalie241-rmg",
@@ -55665,8 +55508,8 @@
         "nintendo"
       ],
       "downloads_latest": 1190,
-      "downloads": 571939,
-      "downloads_lifetime": 571939
+      "downloads_lifetime": 571939,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "drhelius-gearsystem",
@@ -56206,8 +56049,8 @@
         "sega"
       ],
       "downloads_latest": 461,
-      "downloads": 73036,
-      "downloads_lifetime": 73036
+      "downloads_lifetime": 73036,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "nextendonetwork-ryujinx-nextendo",
@@ -56629,8 +56472,8 @@
         "nintendo"
       ],
       "downloads_latest": 1312,
-      "downloads": 7172,
-      "downloads_lifetime": 7172
+      "downloads_lifetime": 7172,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "mattias800-prosper",
@@ -56886,8 +56729,8 @@
         "sony"
       ],
       "downloads_latest": 279,
-      "downloads": 1416,
-      "downloads_lifetime": 1416
+      "downloads_lifetime": 1416,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "colinpitrat-caprice32",
@@ -57062,8 +56905,8 @@
         "retro-computer"
       ],
       "downloads_latest": 118,
-      "downloads": 2577,
-      "downloads_lifetime": 2577
+      "downloads_lifetime": 2577,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "drhelius-gearcoleco",
@@ -57599,8 +57442,8 @@
         "arcade-handheld"
       ],
       "downloads_latest": 285,
-      "downloads": 29437,
-      "downloads_lifetime": 29437
+      "downloads_lifetime": 29437,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "drhelius-gearlynx",
@@ -58136,8 +57979,8 @@
         "arcade-handheld"
       ],
       "downloads_latest": 131,
-      "downloads": 33637,
-      "downloads_lifetime": 33637
+      "downloads_lifetime": 33637,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "istark-ps5pcem",
@@ -58378,8 +58221,8 @@
         "sony"
       ],
       "downloads_latest": 552,
-      "downloads": 6805,
-      "downloads_lifetime": 6805
+      "downloads_lifetime": 6805,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "blueminder-supermodel-dojo",
@@ -58590,8 +58433,8 @@
         "sega"
       ],
       "downloads_latest": 255,
-      "downloads": 4577,
-      "downloads_lifetime": 4577
+      "downloads_lifetime": 4577,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "igloo-garage-model-3-vulkan",
@@ -58807,8 +58650,8 @@
         "sega"
       ],
       "downloads_latest": 125,
-      "downloads": 3412,
-      "downloads_lifetime": 3412
+      "downloads_lifetime": 3412,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "dirtbagxon-model3emu-code-sinden",
@@ -59019,8 +58862,8 @@
         "sega"
       ],
       "downloads_latest": 12,
-      "downloads": 15147,
-      "downloads_lifetime": 15147
+      "downloads_lifetime": 15147,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "mentalfoundry-pokket",
@@ -59186,8 +59029,8 @@
         "sony"
       ],
       "downloads_latest": 43,
-      "downloads": 985,
-      "downloads_lifetime": 985
+      "downloads_lifetime": 985,
+      "note": "libretro 核心，需配合 RetroArch 等前端使用。"
     },
     {
       "id": "dborth-dosbox-wii",
@@ -59342,8 +59185,8 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 7068,
-      "downloads_lifetime": 7068
+      "downloads_lifetime": 7068,
+      "note": "主机自制程序，安卓端不可直接安装。"
     },
     {
       "id": "p2000t-m2000",
@@ -59559,8 +59402,8 @@
         "retro-computer"
       ],
       "downloads_latest": 70,
-      "downloads": 1243,
-      "downloads_lifetime": 1243
+      "downloads_lifetime": 1243,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "zortos293-lichii",
@@ -59997,8 +59840,8 @@
         "nintendo"
       ],
       "downloads_latest": 64762,
-      "downloads": 1857739,
-      "downloads_lifetime": 1857739
+      "downloads_lifetime": 1857739,
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "psx2-izzy2lost",
@@ -60146,7 +59989,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 74642,
       "downloads_lifetime": 74642
     },
     {
@@ -60505,7 +60347,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 15508,
       "downloads_lifetime": 15508
     },
     {
@@ -60657,7 +60498,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 24759,
       "downloads_lifetime": 24759
     },
     {
@@ -60831,7 +60671,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 19573,
       "downloads_lifetime": 19573
     },
     {
@@ -61017,7 +60856,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 11019,
       "downloads_lifetime": 11019
     },
     {
@@ -61139,7 +60977,6 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 5729,
       "downloads_lifetime": 5729
     },
     {
@@ -61488,7 +61325,6 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 1747,
       "downloads_lifetime": 1747
     },
     {
@@ -61763,7 +61599,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 1811,
       "downloads_lifetime": 1811
     },
     {
@@ -61952,7 +61787,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 511,
       "downloads_lifetime": 511
     },
     {
@@ -62141,7 +61975,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 152936,
       "downloads_lifetime": 152936
     },
     {
@@ -62243,7 +62076,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "tool",
-      "downloads": 1190,
       "downloads_lifetime": 1190
     },
     {
@@ -62384,7 +62216,6 @@
       "android_ready": true,
       "platform_families": [],
       "subcategory": "tool",
-      "downloads": 18357,
       "downloads_lifetime": 18357
     },
     {
@@ -62519,7 +62350,6 @@
       "platform_families": [
         "mobile-legacy"
       ],
-      "downloads": 123,
       "downloads_lifetime": 123
     },
     {
@@ -62754,7 +62584,6 @@
         "pc"
       ],
       "subcategory": "launcher-tool",
-      "downloads": 29100,
       "downloads_lifetime": 29100
     },
     {
@@ -62979,7 +62808,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 1153,
       "downloads_lifetime": 1153
     },
     {
@@ -63275,7 +63103,6 @@
         "sony",
         "microsoft"
       ],
-      "downloads": 1054,
       "downloads_lifetime": 1054,
       "latest_body": "v3.6.0 — Native Controller Support, Smart Touch Controls & Menu Touch\n\nThis release brings full native controller support with analog driving and vibration, a smart touch HUD that adapts to what you are doing (on foot, driving, flying, parachuting, cutscenes), direct touch in the pause menu and map, the phone keyboard for in-game text boxes,, and fewer shader stutters on first play.\n\n. Online Mode\n\nLegal & Disclaimer\nThis project is an unofficial compatibility layer and launcher. It does not include any game data, audio, textures or other assets belonging to Rockstar Games or Take-Two Interactive. Users must provide their own legally obtained copy of the game files. The engine is based on open-source GPL-3.0 projects (muguet and GLUE 5); their source code and licenses remain available from their authors.",
       "name_zh": "《侠盗猎车手 5》安卓原生移植"
@@ -63495,7 +63322,6 @@
         "sony",
         "microsoft"
       ],
-      "downloads": 89371,
       "downloads_lifetime": 89371,
       "latest_body": "# XHYN V 0.3 Preview 2 — launcher startup fix\n\nPreview 1 could close immediately without showing the launcher. Its rebuilt APK omitted 146 original artwork files required during application startup. Preview 2 restores those files, preserves their authentication and touch icons, and adds checks using the final signed APK's own resources.\n\nInstall **XHYN-V-0.3-Preview2.apk** over Preview 1; the app ID and release key are unchanged, and the version code is newer. There is no need to uninstall first. **XHYN V Bridge stays at 0.1.0**; an already installed copy does not need updating.\n\nAll 0.3 features remain: the 1.7.57 multiplayer base, LAN free roam, room chat, shared vehicles, street races, themes, XHYN graphics/DXVK controls and diagnostics. See the full [changelog and multiplayer guide](https://github.com/XHYN-PH/XHYN-V-reborn/blob/v0.3-preview2/README.md).\n\n**Development preview:** startup and launcher checks pass in the host Android test environment. Physical-device gameplay, GPU behavior, multiplayer and Bridge VPN connections remain untested. Native heap/resource-cleanup and BC texture-copy problems remain open. This is custom free roam, not GTA Online; missions are not synchro",
       "name_zh": "《侠盗猎车手 5》安卓移植"
@@ -63628,9 +63454,9 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 19410,
       "downloads_lifetime": 19410,
-      "latest_body": "You need **Xbox360 Call of Duty 3 (USA, Europe).iso** file for install!\n\n> **Still in development: bugs can and will occur.**\n> *Még fejlesztés alatt: hibák előfordulhatnak.*\n\nThe first release since [0.4.0](https://github.com/FrankHUN88453/CoD3Recomp/releases/tag/v0.4.0): one executable that keeps itself up to date, the game's own menus played with the mouse, prompts that name your keys, and a faster renderer.\n\n## New\n\n- **One file: `CoD3SP_s.exe`.** FFmpeg's libraries for the sound and the films are built into it; nothing else to unpack.\n- **Updates itself.** At every start it asks GitHub for a newer release; if there is one, it downloads it, replaces itself and starts the new version. Turn it off with `auto_update = 0` under `[game]` in `CoD3Recomp.ini`, or start it with `--no-update`.\n- **New first start.** The console window asks whether this is a fresh install (choose your disc image, then the folder to install into) or the game is already installed (choose the game's main folder, the one with `default.xex`).\n- **The main folder is the game folder.** Your saves are kept in its `save` folder. Saves from 0.4.0 (the `saves` folder beside the old `CoD3.exe`) are copied over the f"
+      "latest_body": "You need **Xbox360 Call of Duty 3 (USA, Europe).iso** file for install!\n\n> **Still in development: bugs can and will occur.**\n> *Még fejlesztés alatt: hibák előfordulhatnak.*\n\nThe first release since [0.4.0](https://github.com/FrankHUN88453/CoD3Recomp/releases/tag/v0.4.0): one executable that keeps itself up to date, the game's own menus played with the mouse, prompts that name your keys, and a faster renderer.\n\n## New\n\n- **One file: `CoD3SP_s.exe`.** FFmpeg's libraries for the sound and the films are built into it; nothing else to unpack.\n- **Updates itself.** At every start it asks GitHub for a newer release; if there is one, it downloads it, replaces itself and starts the new version. Turn it off with `auto_update = 0` under `[game]` in `CoD3Recomp.ini`, or start it with `--no-update`.\n- **New first start.** The console window asks whether this is a fresh install (choose your disc image, then the folder to install into) or the game is already installed (choose the game's main folder, the one with `default.xex`).\n- **The main folder is the game folder.** Your saves are kept in its `save` folder. Saves from 0.4.0 (the `saves` folder beside the old `CoD3.exe`) are copied over the f",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "uncharted-android",
@@ -63773,7 +63599,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 12746,
       "downloads_lifetime": 12746,
       "latest_body": "uncharted-android 0.3.4 (base: uncharted_pc 0.3.14) - **beta**: Uncharted 3's desert chapters are drawn right - Drake's desert clothes from chapter 16 on and the horses of chapters 19 and 20 were stretched across the screen, on every device. **No game files are included**: you need your own decrypted dump of the collection (version 1.02 of the executables). Please attach the log to a report (Saves and logs > Copy the log).\n\n**Fixed**\n- **Uncharted 3: Drake's desert clothes from chapter 16 on and the horses of chapters 19 and 20 were drawn as stretched triangles** (#35). The port runs the game's many small skinning jobs in batches, and that code knew one vertex layout for each of the game's skinning shaders. From chapter 16 on the game has a second one (32-bit normals and tangents) for the models with cloth or morph targets - Drake's desert outfit, the horses' blankets and reins - and the batch wrote those vertices at the wrong places. It reads the layout of every job now and batches both; a layout it does not know goes the ordinary way and is named in the log. Thanks to @sergeymetallic, who traced the glitch to the batch, and to @tranhuythang1704 for the save the horses were checke"
     },
@@ -63886,7 +63711,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 18841,
       "downloads_lifetime": 18841,
       "latest_body": "# The Last of Us Remastered — Daedalus Android v0.1.1\n\nThis update expands game compatibility and improves the overall Android experience.\n\n### What's New\n\n- Game update 1.11 support, including compatible executables and updated graphics and resolution patches.\n- Updated Turnip drivers: Gen8 V39 Patched and R2 for older Adreno GPUs.\n- Improved interface: new app icon, redesigned dialogs and log viewer, and cleaner in-game menus.\n- Additional stability and rendering fixes, particularly for supported 1.11 game files.\n\n**Game compatibility:** Versions 1.00 and 1.11 — CUSA00552, CUSA00554, CUSA00556, CUSA00557, CUSA00559 (requires a compatible executable).\n\n**Requirements:** Android 11+, ARM64 and Vulkan. Game files are not included.\n\n### Credits & References\n\n**Android fork:** [erickmendes22](https://github.com/erickmendes22) / [Daedalus Emulator](https://www.youtube.com/@daedalusemulator).\n\n**Based on:** [ravencaio/tlou-remastered-pc](https://github.com/ravencaio/tlou-remastered-pc), with credits to all upstream contributors.\n\n**Upstream projects:** [shadPS4](https://github.com/shadps4-emu/shadPS4) · [FEX-Emu](https://github.com/FEX-Emu/FEX) · [Bloodborne-Android](https://github.com/"
     },
@@ -64082,7 +63906,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 3368,
       "downloads_lifetime": 3368,
       "latest_body": "# Swap2-Native 0.1.8.9-beta\n\nThe frame rate cap of Zelda: Ocarina of Time can be chosen again, so the game keeps real time.\n\n**Install over 0.1.8.8-beta (or any 0.1.5-beta and later).** Games, packs, mods and saves are kept. The shaders do not change.\n\n## Fixed\n\n- **Zelda's frame rate cap was greyed out.** Its Game settings and the in-game panel said the game picks its own frame rate and offered no cap. A Zelda left at \"The game's own\" then moved forward 1/30 of a second each frame, so below 30 fps it ran in slow motion (about 0.7 of real time at 21 fps on our POCO F7 Ultra).\n  - The cap now offers **30 fps** and **60 fps** for Zelda again, in its Game settings and in the in-game panel. Pick 30 fps (the default) to keep real time; 0.1.8.8-beta's fix makes it hold down to 20 fps.\n  - Switching back to \"The game's own\" while the game runs now takes effect at once.\n- If Zelda still runs slowly after updating, open Zelda once: the app then sees the new cap choices. Then set **Frame rate cap** to **30 fps** or **Default** in Zelda's Game settings.\n\n## If your game stops\n\n- **A game that closes, or the shader update that does not finish:** run the **Automatic diagnosis** (Game settings ›",
       "name_zh": "Switch 2 游戏原生运行工具"
@@ -64238,7 +64061,6 @@
         "sony",
         "microsoft"
       ],
-      "downloads": 29970,
       "downloads_lifetime": 29970,
       "latest_body": "Pre-release. Same app and signing key as before: install over it (or UPDATE NOW in the launcher), your data stays. **Tested on my own phone (OPPO Find X8 Ultra, Snapdragon 8 Elite / Adreno 830).** This build turns on the speed-ups below and fixes the black title screen on phones whose graphics chip cannot read the game's compressed textures (Mali and others): if you had that, please try it and tell me (launcher: Report a problem).\n\n## What's new in 0.3.3\n**v0.3.3: a lot faster on weak machines and phones, and the black title screen on some phones is fixed.**\n\nOver the last two days I measured dozens of small speed-ups in my renderer on a weak laptop and kept only the ones that clearly paid. Until now they were all switched\noff for players. Now they are on for everyone, on PC and on phones, and the pictures should look the same.\n\n### Faster\n\n- **The game runs faster almost everywhere, most of all on weak machines and phones.** The game spent time on work nobody sees: re-reading the same data every frame,\n  copying pictures nobody looked at, recording crowd members that my renderer then threw away, and threads waiting on each other. On my Surface Pro 6 (Intel UHD 620\n  graphics), aft"
     },
@@ -64406,7 +64228,6 @@
         "sony",
         "microsoft"
       ],
-      "downloads": 9002,
       "downloads_lifetime": 9002,
       "latest_body": "# FivePocket 1.1.5 — the first update\n\n**Play the 2013 open-world classic natively on Android, the AYN Thor, iPad and iPhone, from your own Xbox 360 discs.**\nFivePocket is a static recompilation with a new renderer, not an emulator. No game code, data or shaders are in any\ndownload: the FivePocket Builder makes everything from your own discs, on your own computer.\n\n**This update needs new game code.** Run this version's builder on your discs again (Android: build a new package and\nimport it; iOS and Duo: build and sign the app again). With older game code the new rows say \"Not available in this\nversion\".\n\n## New\n\n- **Sandbox** (both Android apps): a second choice on the Play tab, next to Story Mode. Free roam on its own save, copied\n  from your story saves the first time; your story saves are never changed. Story missions are held back and the trainer\n  is always on. Sandbox needs at least one story save.\n- **GTA Online's world, offline** (both Android apps): the Online entry. Everything runs on the device; nothing connects to\n  any online service. Tested on the Thor: free roam, the race tutorial, the phone and its apps (including Snapmatic), and\n  the game's own Interaction Menu b",
       "name_zh": "《侠盗猎车手 5》安卓移植"
@@ -64507,10 +64328,10 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 301,
       "downloads_lifetime": 301,
       "latest_body": "PlayStation emulation on **Switch 2**, with native ARM64 execution, an SD game library, persistent memory cards and individual control profiles for up to four players.\n\n**Requires [IZ2S Panel / IZ2S Platform](https://github.com/byizmysh/IZ2S-Platform) and successfully acquired Filesystem access (FS).** Enable FS before starting the launcher and wait for confirmation in the panel.\n\n## Controller switching fix\n\nIn **Controls → Player 1 → Device**, choose **AUTO**. Attached Joy-Con take over in handheld mode even if a wireless Pro Controller remains connected; docking returns Player 1 to the first external controller. The change applies to both gameplay and menus. Manual device choices and the other players keep their assignments.\n\nThis updates the existing **0.5.1** release. **Reinstall the updated package even if 0.5.1 is already installed** to receive the fix.\n\n## Downloads\n\n- **izpsx-emulator-0.5.1.izm** — install through the platform's App library; choose RAM or SD.\n- **izpsx-emulator-0.5.1-sd.zip** — native SD entry and matching engine asset for an already initialized compatible launcher.\n- **izpsx-emulator-0.5.1-source.zip** / **source.tar.gz** — complete corresponding source, ",
-      "name_zh": "Switch 2 上的 PS1 模拟器"
+      "name_zh": "Switch 2 上的 PS1 模拟器",
+      "note": "主机自制程序，安卓端不可直接安装。"
     },
     {
       "id": "genx",
@@ -64640,9 +64461,9 @@
       "platform_families": [
         "sega"
       ],
-      "downloads": 749,
       "downloads_lifetime": 749,
-      "latest_body": "Fixes for the games reported on GitHub, PlayStation controllers, and the\nMaster System's Light Phaser and paddle.\n\n**Download:** `GenX-v1.1.4-win64.zip`. Unzip it anywhere and run `genx.exe`.\nTo update, replace your old `genx.exe` with the new one. Your settings and\nsaves stay where they are.\n\n### New\n\n- **PlayStation controllers.** A DualShock 4 or DualSense is recognised and\n  laid out like an Xbox pad, with its own button names in the Input tab. A\n  DualShock 3 works through DsHidMini.\n- **Automatic controller choice.** GenX uses whatever pad is plugged in, and\n  the keyboard when there's none. New installs start on it; pick it in\n  **Configure → Input** if you already have settings.\n- **Master System Light Phaser and Paddle Control**, aimed with the mouse,\n  plugged in by themselves for the games that need them.\n- **Light gun games get their gun by themselves**, on the Mega Drive and the\n  Sega CD.\n\n### Fixed\n\n- **Pier Solar** now plays and saves.\n- **Back to the Future Part III (Europe)** starts on the Master System and\n  the Mega Drive. Other European games that need a 50Hz console get one.\n- **50Hz games no longer run 20% fast**, including Fantastic Dizzy.\n- **Shadow and hig"
+      "latest_body": "Fixes for the games reported on GitHub, PlayStation controllers, and the\nMaster System's Light Phaser and paddle.\n\n**Download:** `GenX-v1.1.4-win64.zip`. Unzip it anywhere and run `genx.exe`.\nTo update, replace your old `genx.exe` with the new one. Your settings and\nsaves stay where they are.\n\n### New\n\n- **PlayStation controllers.** A DualShock 4 or DualSense is recognised and\n  laid out like an Xbox pad, with its own button names in the Input tab. A\n  DualShock 3 works through DsHidMini.\n- **Automatic controller choice.** GenX uses whatever pad is plugged in, and\n  the keyboard when there's none. New installs start on it; pick it in\n  **Configure → Input** if you already have settings.\n- **Master System Light Phaser and Paddle Control**, aimed with the mouse,\n  plugged in by themselves for the games that need them.\n- **Light gun games get their gun by themselves**, on the Mega Drive and the\n  Sega CD.\n\n### Fixed\n\n- **Pier Solar** now plays and saves.\n- **Back to the Future Part III (Europe)** starts on the Master System and\n  the Mega Drive. Other European games that need a 50Hz console get one.\n- **50Hz games no longer run 20% fast**, including Fantastic Dizzy.\n- **Shadow and hig",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "cemu-plus",
@@ -64782,7 +64603,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 2332,
       "downloads_lifetime": 2332,
       "latest_body": "Android build of Cemu Plus, a fork of the Cemu Android port with Lossless Scaling frame generation.\n\n## What's new\n\n### Game updates\n- **Use update** in the settings of a game, under Update, turns its installed update off, and the game runs as its base version. It's only shown for games with an update, and applies the next time the game starts. The game card shows the version the game runs as\n- Games whose update doesn't work in Cemu have it off by default, with a note under the switch saying it's recommended off. **Why?** opens the reason\n\n### Fixes\n- ZombiU no longer stays on a black screen after the Ubisoft logo. Its update (v32) doesn't work in Cemu, so it's off by default and ZombiU runs as its base version\n\n\n## Frame generation setup\n1. Copy `Lossless.dll` from your own copy of Lossless Scaling (its installation folder on Windows) to your device.\n2. In Cemu Plus open **Settings → Graphics settings → Frame generation (Lossless Scaling)** and tap **Select Lossless.dll**.\n3. Enable frame generation there or from the in-game menu, where the multiplier, target frame rate and motion estimation resolution can be changed while playing.\n\nFrame generation requires the Vulkan memory mod"
     },
@@ -64946,7 +64766,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 15038,
       "downloads_lifetime": 15038,
       "latest_body": "**Citron Upstream Commit:** [`7dc47ba`](https://github.com/citron-neo/emulator/commit/7dc47bab8469fabf810fccf88f938f4e75fe3852)\n\nThis build is based on the latest Citron emulator source code from the upstream repository.\n\n**Build Details:**\n- Platform: Windows (x64)\n- Toolchains: Clangtron and native clang-cl/MSVC ABI\n- Build Type: Nightly\n- Date: 2026-11-06\n",
       "name_zh": "Switch 模拟器，每夜构建"
@@ -65133,9 +64952,9 @@
       "platform_families": [
         "microsoft"
       ],
-      "downloads": 1242,
       "downloads_lifetime": 1242,
-      "latest_body": "Title: v2.6 – Xbox 360 games through Xenia, Xbox and Xenia settings tabs\nRepository description:\nExperimental, unofficial fork of xemu (original Xbox emulator) with a console-style dashboard, Xbox 360 games through your own Xenia, one-click 60 FPS patches, upscaling filters, CPU/GPU boost with per-game settings, and tools for finding out why a game is slow. Not supported by the xemu project.\n---\nRelease body (paste into the GitHub release):\n> [!IMPORTANT]\n> Experimental, unofficial fork of xemu for trying out UI improvements. Not supported by the xemu project: please don't ask about it in xemu's Discord or GitHub.\n\nWhat's new in v2.6\nXbox 360 games, through your own Xenia. xemu does not emulate the Xbox 360, and this fork still doesn't include or change any 360 emulator. If you download Xenia or Xenia Canary yourself, the library can now list your 360 games and start them in it.\nTurn on Show Xbox 360 games on the new Xenia tab and choose your `xenia.exe` / `xenia_canary.exe`. Your game folders are scanned for disc images (.iso), extracted games with a `default.xex`, .xex files, Games on Demand and Xbox Live Arcade packages.\nGames get a 360 badge, and the library has All / Xbox / Xb"
+      "latest_body": "Title: v2.6 – Xbox 360 games through Xenia, Xbox and Xenia settings tabs\nRepository description:\nExperimental, unofficial fork of xemu (original Xbox emulator) with a console-style dashboard, Xbox 360 games through your own Xenia, one-click 60 FPS patches, upscaling filters, CPU/GPU boost with per-game settings, and tools for finding out why a game is slow. Not supported by the xemu project.\n---\nRelease body (paste into the GitHub release):\n> [!IMPORTANT]\n> Experimental, unofficial fork of xemu for trying out UI improvements. Not supported by the xemu project: please don't ask about it in xemu's Discord or GitHub.\n\nWhat's new in v2.6\nXbox 360 games, through your own Xenia. xemu does not emulate the Xbox 360, and this fork still doesn't include or change any 360 emulator. If you download Xenia or Xenia Canary yourself, the library can now list your 360 games and start them in it.\nTurn on Show Xbox 360 games on the new Xenia tab and choose your `xenia.exe` / `xenia_canary.exe`. Your game folders are scanned for disc images (.iso), extracted games with a `default.xex`, .xex files, Games on Demand and Xbox Live Arcade packages.\nGames get a 360 badge, and the library has All / Xbox / Xb",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "shadps4-qtlauncher",
@@ -65221,9 +65040,9 @@
         "sony"
       ],
       "subcategory": "frontend",
-      "downloads": 73536,
       "downloads_lifetime": 73536,
-      "latest_body": "Auto-generated release for the latest commit to main."
+      "latest_body": "Auto-generated release for the latest commit to main.",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "emuze",
@@ -65483,9 +65302,9 @@
       "android_ready": false,
       "platform_families": [],
       "subcategory": "frontend",
-      "downloads": 8904,
       "downloads_lifetime": 8904,
-      "latest_body": "# 0.60.1 is out\n\nThere was a bug in the AppImage Updater Code. To fix this i have to revert to the old AppImage build and wait several weeks to ensure a smooth update process."
+      "latest_body": "# 0.60.1 is out\n\nThere was a bug in the AppImage Updater Code. To fix this i have to revert to the old AppImage build and wait several weeks to ensure a smooth update process.",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "romsieve",
@@ -65690,9 +65509,9 @@
       "android_ready": false,
       "platform_families": [],
       "subcategory": "frontend",
-      "downloads": 596,
       "downloads_lifetime": 596,
-      "latest_body": "RomSieve 1.2.2 can write an archive that holds a single game as it is, instead of extracting its content: a disc image\nof several gigabytes is neither decompressed nor compressed again. Your settings, profiles and journals stay as they\nare, and a sort made with an earlier version can still be undone.\n\n## New\n\n### Preserve single-game archives\n\n- **An archive written as it is.** The new option **Preserve single-game archives**, in the *Writing the files* frame of\n  the **Output** step, writes a source archive (ZIP, 7z, RAR) as it is when it holds a single game (one file, or a\n  descriptor and its tracks) and the sort keeps every file it holds. The archive is copied, moved or linked, according\n  to the mode. An archive that holds one more file, such as a readme or a `.nfo`, has its content extracted, as before.\n- **Named after its game.** The archive takes the name the DAT gives its file, with its own extension: `tetris.7z`,\n  which holds `tetris.gb` identified as `Tetris (World).gb`, becomes `Tetris (World).7z`. The files it holds keep\n  their names.\n- **Counted as an archive.** The space needed on the destination and the FAT32 warning count the size of the archive,\n  and **Verify c"
+      "latest_body": "RomSieve 1.2.2 can write an archive that holds a single game as it is, instead of extracting its content: a disc image\nof several gigabytes is neither decompressed nor compressed again. Your settings, profiles and journals stay as they\nare, and a sort made with an earlier version can still be undone.\n\n## New\n\n### Preserve single-game archives\n\n- **An archive written as it is.** The new option **Preserve single-game archives**, in the *Writing the files* frame of\n  the **Output** step, writes a source archive (ZIP, 7z, RAR) as it is when it holds a single game (one file, or a\n  descriptor and its tracks) and the sort keeps every file it holds. The archive is copied, moved or linked, according\n  to the mode. An archive that holds one more file, such as a readme or a `.nfo`, has its content extracted, as before.\n- **Named after its game.** The archive takes the name the DAT gives its file, with its own extension: `tetris.7z`,\n  which holds `tetris.gb` identified as `Tetris (World).gb`, becomes `Tetris (World).7z`. The files it holds keep\n  their names.\n- **Counted as an archive.** The space needed on the destination and the FAT32 warning count the size of the archive,\n  and **Verify c",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "winlite",
@@ -65833,7 +65652,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 1943,
       "downloads_lifetime": 1943,
       "latest_body": "# WinLite v1.4.0\n\n## Overview\nA release focused on rendering smoothness, a new X11 server and Steam support.\n\n---\n\n## 🎮 BETA - Steam\n- Steam client support added.\n\n---\n\n## 🖥️ X11 server (rewritten in Rust)\nThe built-in X server has been rewritten from scratch in Rust and now covers much more of the X11 protocol.\n\n**What you get**\n- **Stability.** Memory-safe code removes a whole class of crashes and hangs.\n- **Better game and launcher compatibility.** Newer screen-configuration (RANDR 1.2) and rendering extensions are supported, so Wine, launchers and games see a more complete environment.\n- **Proper mouse cursors.** System cursors are drawn from a built-in cursor set, and colored/semi-transparent and animated cursors are supported.\n- **Better frame pacing.** Frame presentation is synchronized with the real display refresh rate and with fences, which gives the renderer and the FPS limiter an accurate clock to work from.\n- **Faster window drawing.** The shared frame buffer is locked once per operation instead of repeatedly, and more drawing requests (lines, rectangles, area clears) are handled directly.\n- **Input.** Pointer warping now works, which matters for games that recenter th"
     },
@@ -66110,7 +65928,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 46225,
       "downloads_lifetime": 46225,
       "latest_body": "## What's New\n\n- **Root performance profile:** device-aware, root-manager permission-gated CPU/GPU governor and I/O scheduler controls, with restoration of previous settings when gameplay pauses or exits. Device information is available in Settings and the Performance dialog. Supported controls depend on the device kernel and root manager.\n- **Steam integration and download improvements:** browse the Store and library, install Windows depots, manage downloads, view friends/chat, profile, achievements, badges, and Steam News, and create game shortcuts. Download progress now reflects compressed bytes transferred separately from installed size; removing the app from Recents pauses active downloads Experimental Need Feedback.\n- **Import graphics wrappers:** import local `.tzst` wrappers through Android's file picker. Archives are validated before they are added to the driver list.\n- **PanVK release tracking(Auto Update):** browse release feeds from zenithblue-oss, GunaCharanTeja, FristOneRR, Noysz, and Faux123.\n- **Liquid Glass Enhanced:** dialogs and custom popups use adaptive backdrop blur, falling back to app-side blur when Android disables cross-window blur.\n- **UI fixes and polish"
     },
@@ -66372,9 +66189,9 @@
         "pc"
       ],
       "subcategory": "desktop",
-      "downloads": 7021,
       "downloads_lifetime": 7021,
-      "latest_body": "# Steam64 setup, one step at a time\n\n**Experimental prerelease · Build145 · Known issue: Steam can freeze after the third game exit. This update improves setup; it does not fix that stability issue.**\n\n## What’s new\n\n- **Install Steam64 in the launcher:** downloads the matched Steam/browser packages from Valve over HTTPS, verifies sizes/SHA-256 and installs with rollback. Cancel/retry, Verify/Repair and Return to previous environment are available.\n- **Four clear actions:** Install Steam → Connect LocalDevVPN → Pair this device → Enable JIT. Runtime preparation is automatic, signing/address checks remain mandatory, completed steps are checked/skipped and the view follows the next action.\n- **Pair in iDeck:** starts the existing on-device pairing immediately with live instructions/PIN, without hunting through JIT settings. iOS calls the pairing host Madeira. Advanced methods/import/recovery/account/auto-start settings are collapsed.\n- **Data stays yours:** the original environment remains intact; no auth cache, game or save is silently transferred. Use Valve’s own login and Steam Guard yourself.\n\n## Install and test\n\nDownload `iDeck-0.1.3-alpha.6-build145.ipa` and `SHA256SUMS`, veri"
+      "latest_body": "# Steam64 setup, one step at a time\n\n**Experimental prerelease · Build145 · Known issue: Steam can freeze after the third game exit. This update improves setup; it does not fix that stability issue.**\n\n## What’s new\n\n- **Install Steam64 in the launcher:** downloads the matched Steam/browser packages from Valve over HTTPS, verifies sizes/SHA-256 and installs with rollback. Cancel/retry, Verify/Repair and Return to previous environment are available.\n- **Four clear actions:** Install Steam → Connect LocalDevVPN → Pair this device → Enable JIT. Runtime preparation is automatic, signing/address checks remain mandatory, completed steps are checked/skipped and the view follows the next action.\n- **Pair in iDeck:** starts the existing on-device pairing immediately with live instructions/PIN, without hunting through JIT settings. iOS calls the pairing host Madeira. Advanced methods/import/recovery/account/auto-start settings are collapsed.\n- **Data stays yours:** the original environment remains intact; no auth cache, game or save is silently transferred. Use Valve’s own login and Steam Guard yourself.\n\n## Install and test\n\nDownload `iDeck-0.1.3-alpha.6-build145.ipa` and `SHA256SUMS`, veri",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "playden-ps5",
@@ -66579,10 +66396,10 @@
         "pc"
       ],
       "subcategory": "desktop",
-      "downloads": 140682,
       "downloads_lifetime": 140682,
       "latest_body": "Community recipes are here: Game settings lists the settings other players shared for a game, with how well they ran, and you can share your own with no GitHub account. Games can run at 120 Hz on a VRR display, you can save your own presets, and turn a game's DLC on or off. Playden starts faster with many games, and keeps your data through a crash. New runtime kit 0.28 gives 32-bit games up to 4 GB of memory, lets Project Zomboid load a world again, runs Steam games from Steam's own folder, and fixes Euro Truck Simulator 2 with mods, Metro 2033 Redux, Spider-Man: Web of Shadows, Need for Speed III and more.\n\n> [!WARNING]\n> Alpha software. Playden signs in to your real Steam account and reads and writes your Steam Cloud saves. Read [Before you use it](https://github.com/leolobato/playden-ps5#before-you-use-it) first.\n\n## Downloads\n\n| File | What it is |\n| --- | --- |\n| `playden-ps5-0.11.0.zip` | The Playden app (the `FAKE77031` folder), the console tools (`tools/`), the README, the compatibility list and the license files. |\n| `playden-kit-0.28.zip` | Runtime kit 0.28. Playden downloads it by itself; you need this file only to install the kit by hand. |\n| `playden-update.json` | Use",
-      "name_zh": "PS5 相关工具"
+      "name_zh": "PS5 相关工具",
+      "note": "PS5 自制程序，安卓端不可用。"
     },
     {
       "id": "zeraps5",
@@ -66831,9 +66648,9 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 1056,
       "downloads_lifetime": 1056,
-      "latest_body": "<p><img src=\"https://raw.githubusercontent.com/zeraps5/ZeraPS5-Releases/main/docs/zeraps5-logo.png\" alt=\"ZeraPS5\" width=\"240\"></p>\n\n**Modern Vulkan paths with fallbacks, unified internal-resolution controls, older-CPU instruction compatibility and native memory/thread safety fixes.**\n\nExperimental Windows x64 release, maintained by **metallrockdev**. Build **984**, source **0d269bb8de1cdc4dce31f4d689d8fef0d675d700**. Contributors' credits and component licenses are preserved.\n\n[Windows ZIP](https://github.com/zeraps5/ZeraPS5-Releases/releases/download/v0.1.1-b984/ZeraPS5-v0.1.1-b984-win64.zip) · [Matching source](https://github.com/zeraps5/ZeraPS5-Releases/releases/download/v0.1.1-b984/ZeraPS5-v0.1.1-b984-win64-source.zip) · [Compatibility](https://github.com/zeraps5/ZeraPS5-Releases/blob/main/COMPATIBILITY.md) · [Technical changelog](https://github.com/zeraps5/ZeraPS5-Releases/blob/main/CHANGELOG.md)\n\n## Changes since b898\n\n- **Vulkan capabilities and fallbacks.** Request Vulkan 1.4 when the loader and device support it. Use dynamic rendering, additional dynamic state, push descriptors and timeline semaphores where available; retain the earlier fallback paths. Vulkan 1.4 is not a "
+      "latest_body": "<p><img src=\"https://raw.githubusercontent.com/zeraps5/ZeraPS5-Releases/main/docs/zeraps5-logo.png\" alt=\"ZeraPS5\" width=\"240\"></p>\n\n**Modern Vulkan paths with fallbacks, unified internal-resolution controls, older-CPU instruction compatibility and native memory/thread safety fixes.**\n\nExperimental Windows x64 release, maintained by **metallrockdev**. Build **984**, source **0d269bb8de1cdc4dce31f4d689d8fef0d675d700**. Contributors' credits and component licenses are preserved.\n\n[Windows ZIP](https://github.com/zeraps5/ZeraPS5-Releases/releases/download/v0.1.1-b984/ZeraPS5-v0.1.1-b984-win64.zip) · [Matching source](https://github.com/zeraps5/ZeraPS5-Releases/releases/download/v0.1.1-b984/ZeraPS5-v0.1.1-b984-win64-source.zip) · [Compatibility](https://github.com/zeraps5/ZeraPS5-Releases/blob/main/COMPATIBILITY.md) · [Technical changelog](https://github.com/zeraps5/ZeraPS5-Releases/blob/main/CHANGELOG.md)\n\n## Changes since b898\n\n- **Vulkan capabilities and fallbacks.** Request Vulkan 1.4 when the loader and device support it. Use dynamic rendering, additional dynamic state, push descriptors and timeline semaphores where available; retain the earlier fallback paths. Vulkan 1.4 is not a ",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "vba-m",
@@ -67186,9 +67003,9 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 7256760,
       "downloads_lifetime": 7256760,
-      "latest_body": "We have finally added working color correction. The initial code was done by Squall-Leonhart (<danialhorton@hotmail.com>) and is not in the Git history, with the config added by Rafael Kitover (<rkitover@gmail.com>), then everything was put together by Andy Vandijck (<andyvand@gmail.com>).\n\n* 034447fa - libretro: Fix GB Show Border option was reversed. [negativeExponent]\n* 1fda4f4b - Update libretro header [negativeExponent]\n* 050507ff - libretro: Fixed segfault when loading invalid or unsupported game [negativeExponent]\n* c7db3a4c - libretro: Fix missing break statement in MBC5 state handler [negativeExponent]\n* 20bf9bf3 - GB: Fix undefined behavior in gbDrawLine [negativeExponent]\n* b96da415 - GBA: Fix affine BG reference point update timing during HBLANK/VBLANK [negativeExponent]\n* 339f71fd - Fix joysticks with SDL video [rkitover]\n* c9d61758 - Default statusbar=true [rkitover]\n* 53bc1c17 - Default bilinear=false, hide_menu_bar=false [rkitover]\n* 49773388 - Fix 3d6cad6d for revert of 56ea6456 [rkitover]\n* f86ab610 - fix wiiu libretro build [eric]\n* f6046a5d - Fix apple, windows libretro builds [eric]\n* e0cbf10c - Fix out-of-bounds access [negativeExponent]\n* 5d5a9f7e - Replace c"
+      "latest_body": "We have finally added working color correction. The initial code was done by Squall-Leonhart (<danialhorton@hotmail.com>) and is not in the Git history, with the config added by Rafael Kitover (<rkitover@gmail.com>), then everything was put together by Andy Vandijck (<andyvand@gmail.com>).\n\n* 034447fa - libretro: Fix GB Show Border option was reversed. [negativeExponent]\n* 1fda4f4b - Update libretro header [negativeExponent]\n* 050507ff - libretro: Fixed segfault when loading invalid or unsupported game [negativeExponent]\n* c7db3a4c - libretro: Fix missing break statement in MBC5 state handler [negativeExponent]\n* 20bf9bf3 - GB: Fix undefined behavior in gbDrawLine [negativeExponent]\n* b96da415 - GBA: Fix affine BG reference point update timing during HBLANK/VBLANK [negativeExponent]\n* 339f71fd - Fix joysticks with SDL video [rkitover]\n* c9d61758 - Default statusbar=true [rkitover]\n* 53bc1c17 - Default bilinear=false, hide_menu_bar=false [rkitover]\n* 49773388 - Fix 3d6cad6d for revert of 56ea6456 [rkitover]\n* f86ab610 - fix wiiu libretro build [eric]\n* f6046a5d - Fix apple, windows libretro builds [eric]\n* e0cbf10c - Fix out-of-bounds access [negativeExponent]\n* 5d5a9f7e - Replace c",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "nc2000",
@@ -67319,7 +67136,6 @@
       "platform_families": [
         "retro-computer"
       ],
-      "downloads": 1218,
       "downloads_lifetime": 1218,
       "latest_body": "The released binaries don't include any roms.\nTo run the emulator you will need to put roms folder into the same folder as nc2000.exe/nc2000mac.\n\nChange:\n1 rewritten nand emulation, which better respects hardware behavior.\n2 new cmd `power_save`, which allows change emulator power_save settings without restart. see [模拟器命令](https://github.com/wangyu-/NC2000/wiki/%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%91%BD%E4%BB%A4)\n3 new option `--baud-rate-override`, see [红外/串口通信](https://github.com/wangyu-/NC2000/wiki/%E7%BA%A2%E5%A4%96-%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1)\n\n----------\n$${\\color{red} 目前nc2000系列只缺nc2010(哈電族)，如果你有nc2010的真机或者rom请联系}$$ ywang.se@gmail.com\n\nRom Files:\n[BaiduNetdisk](https://pan.baidu.com/s/1YJ7o0Ci1JeoreEtllU3-2A?pwd=cx2a) (code: cx2a)  \n[MEGA](https://mega.nz/file/DuxQEZgJ#O7utoWLVxuC2-jKXvuKTroZl5C_rtL0BRXqB72Guwbw)\n\nDisclaimer:\n1 The roms were collected from internet. They're shared here only for nostalgia and hardware preservation. Don't use for any commerical purpose. (rom从网上搜集，仅供怀旧，不要用于商业用途)\n2 Extracting, redistributing proprietary assets contained within these files (such as third-party dictionaries or licensed software) is strictly prohibited. (禁止提取词典数据和官方软件)"
     },
@@ -67526,7 +67342,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 5359,
       "downloads_lifetime": 5359,
       "latest_body": "## EmuFive 1.0.8: big games run much faster\n\n### What's new\n- **Games with very large buffers run much faster.** 1.0.7 uploaded every recently used buffer whole each frame, which for a game like Teardown meant over 3 GB per frame. Now only small buffers (up to 4 MB) are uploaded that way; large ones are tracked by page again. Teardown on a PS4 Pro went from under 1 FPS to about 2.4 FPS. DREDGE keeps its 1.0.7 speed and clean sound.\n- **A new emulator build** (KytyPS5 589bd14 with EmuFive patches 0001–0032).\n\n### Teardown and other big games: more GPU memory\nTeardown also needs the GPU to be allowed up to 5 GB of system RAM, or it stops with GPU out of memory. Use the `bootargs.txt` of [PS4 Multiboot v1.5.0-beta-5](https://github.com/blue0x1/ps4-multiboot/releases/tag/v1.5.0-beta.5) (copy it to `/data/linux/boot/` over FTP), or add `amdgpu.gttsize=5120 ttm.pages_limit=1310720` to the end of the line in your own.\n\n### Update\nSettings, System, Software update. No restart is needed. Coming from 1.0.6 or earlier, it installs 1.0.7 first, which also updates the PS4 Mesa (see the 1.0.7 notes).\n\nFrom 1.0.3 or earlier, start the update once by hand (see the README's Changelog).\n\n### New ins",
       "name_zh": "在 PS4 上运行 PS5 游戏"
@@ -67662,10 +67477,10 @@
       "android_ready": false,
       "platform_families": [],
       "subcategory": "tool",
-      "downloads": 2788,
       "downloads_lifetime": 2788,
       "latest_body": "**Game Format Converter 2.1.0** (formerly CHD Manager) adds a lot of formats. Everything new is described honestly in the README, including what was and wasn't tested.\n\n## What's new\n\n- **A new name.** CHD Manager is now Game Format Converter, because it converts far more than CHDs. It lives at a new repository address with new file names. **If you have an older CHD Manager, download this release once by hand: the old program can't find it by itself.** Your settings and keys don't carry over; put them in again under Settings for the optional features that use them.\n- **Xbox 360:** ZAR (for Xenia), ISO and game folders. Hex-named download packages (Xbox Live Arcade, Games on Demand) aren't discs, so they are refused with an explanation.\n- **Original Xbox:** a full dump becomes a trimmed `.xiso.iso` (7.8 GB down to just the game); also game folders and CHD.\n- **PlayStation 3:** game folder to ISO and back, split pieces joined, `.pkg` packages unpacked and packed (with your own RPCS3 or your own key).\n- **Nintendo Switch:** NSP to XCI and back, bundles with the newest update and DLC, one NSP per title, swapping in a newer update. **Switch 2:** folder to NUP and back (experimental).\n- ",
-      "name_zh": "游戏镜像格式转换工具（原 CHD Manager）"
+      "name_zh": "游戏镜像格式转换工具（原 CHD Manager）",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "lichii-enhanced",
@@ -67826,9 +67641,9 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 6303,
       "downloads_lifetime": 6303,
-      "latest_body": "# Changelog\n- Updated Threaded Interpreter\n- Pre-decode Interpreter Cache \n- Single Core CPU Mode options\n- Guest RAM NSExtension offloading\n- Experimental A9+ compatibility (mileage may vary, support for devices with A13 and below is limited)\n- Move Virtual Controller to Safe Area\n- Add No ROMs View\n- Direct Jumping support for the JIT Recompiler\n- Fix Page Fault with older GPUs\n- Make Statistics Overlay Asynchronous\n- Improved Cube map support (#3)\n- Fix Controllers with analogue triggers triggering incorrectly\n- UI bug fixes\n\n**Make sure to assign the Universal Script in StikDebug**\n\n**Full Changelog**: https://github.com/stossy11/MeloCafe/compare/1.0...1.1"
+      "latest_body": "# Changelog\n- Updated Threaded Interpreter\n- Pre-decode Interpreter Cache \n- Single Core CPU Mode options\n- Guest RAM NSExtension offloading\n- Experimental A9+ compatibility (mileage may vary, support for devices with A13 and below is limited)\n- Move Virtual Controller to Safe Area\n- Add No ROMs View\n- Direct Jumping support for the JIT Recompiler\n- Fix Page Fault with older GPUs\n- Make Statistics Overlay Asynchronous\n- Improved Cube map support (#3)\n- Fix Controllers with analogue triggers triggering incorrectly\n- UI bug fixes\n\n**Make sure to assign the Universal Script in StikDebug**\n\n**Full Changelog**: https://github.com/stossy11/MeloCafe/compare/1.0...1.1",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "anka-windows",
@@ -68097,9 +67912,9 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 7576,
       "downloads_lifetime": 7576,
-      "latest_body": "**Anka 1.1.2** brings a newer second core for Zelda: Ocarina of Time, controller rumble in Switch 2 games, a set of emulation fixes for Donkey Kong Bananza, and launchers that no longer call PowerShell.\n\nBuilt from [`anka`](https://github.com/EddizEge/Anka/tree/anka) at `140d784a7e4d12a8361233105a0fd08fa0ab2bfa`; `anka.exe` and `anka-cli.exe` carry this commit. The second core, `core2\\anka-core2-cli.exe`, is built from its own commit, `bd5a5f74d519eece6a1ddc05f24bf540c5c03ee6`; its source is `Anka-1.1.2-core2-source.zip`.\n\n## Updating\n\nClose Anka, unzip **`Anka-1.1.2-win64.zip`** into your Anka folder and replace the files. Take the whole zip, the `core2` folder too. Your `user` folder (settings, keys, firmware and saves) stays as it is. `anka-config.ps1` from older versions is no longer used and can be deleted.\n\nNew to Anka: unzip into a new, empty folder, start `anka.exe`, and install your own keys and firmware (the [1.0.0 notes](https://github.com/EddizEge/Anka/releases/tag/anka-v1.0.0) have the quick start).\n\n## Zelda: Ocarina of Time (second core)\n\n- Core 2 moves to a newer [Lichii](https://github.com/zortos293/Lichii) `nx2` base (commit `879b616b1b`, 10 Nov 2026). The window "
+      "latest_body": "**Anka 1.1.2** brings a newer second core for Zelda: Ocarina of Time, controller rumble in Switch 2 games, a set of emulation fixes for Donkey Kong Bananza, and launchers that no longer call PowerShell.\n\nBuilt from [`anka`](https://github.com/EddizEge/Anka/tree/anka) at `140d784a7e4d12a8361233105a0fd08fa0ab2bfa`; `anka.exe` and `anka-cli.exe` carry this commit. The second core, `core2\\anka-core2-cli.exe`, is built from its own commit, `bd5a5f74d519eece6a1ddc05f24bf540c5c03ee6`; its source is `Anka-1.1.2-core2-source.zip`.\n\n## Updating\n\nClose Anka, unzip **`Anka-1.1.2-win64.zip`** into your Anka folder and replace the files. Take the whole zip, the `core2` folder too. Your `user` folder (settings, keys, firmware and saves) stays as it is. `anka-config.ps1` from older versions is no longer used and can be deleted.\n\nNew to Anka: unzip into a new, empty folder, start `anka.exe`, and install your own keys and firmware (the [1.0.0 notes](https://github.com/EddizEge/Anka/releases/tag/anka-v1.0.0) have the quick start).\n\n## Zelda: Ocarina of Time (second core)\n\n- Core 2 moves to a newer [Lichii](https://github.com/zortos293/Lichii) `nx2` base (commit `879b616b1b`, 10 Nov 2026). The window ",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "recomp-launcher",
@@ -68231,9 +68046,9 @@
       "android_ready": false,
       "platform_families": [],
       "subcategory": "tool",
-      "downloads": 13456,
       "downloads_lifetime": 13456,
-      "latest_body": "## What's Changed\n* Game list: a tab per platform by @sp00nznet in https://github.com/sp00nznet/recomp-launcher/pull/11\n\n\n**Full Changelog**: https://github.com/sp00nznet/recomp-launcher/compare/v0.5.0...v0.6.0"
+      "latest_body": "## What's Changed\n* Game list: a tab per platform by @sp00nznet in https://github.com/sp00nznet/recomp-launcher/pull/11\n\n\n**Full Changelog**: https://github.com/sp00nznet/recomp-launcher/compare/v0.5.0...v0.6.0",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "anyps5-arm",
@@ -68504,7 +68319,6 @@
         "sony"
       ],
       "subcategory": "tool",
-      "downloads": 2789,
       "downloads_lifetime": 2789,
       "latest_body": "**Unmodified upstream main, untested.**\n\nUpstream commit: [`0694c4cbd6f2df1e7cc95a6681746b4de40d1e70`](https://github.com/boykopovar/AnyPS5/commit/0694c4cbd6f2df1e7cc95a6681746b4de40d1e70) (2026-11-16T06:35:22Z, git describe `v0.1.5-6215-g0694c4cb`): Merge pull request #20578 from SP4C3B4R-8/perf/vertex-inputs-behind-gpu-write\n\nBuilt by AnyPS5-ARM's CI from boykopovar/AnyPS5 main as it is, with nothing of AnyPS5-ARM's in it (so no phone controller and no full screen or window size settings): the relinker and the libraries upstream's own release packaging makes, for Windows (WinLibs GCC 15.2, the libraries as .zip) and Linux (Ubuntu 22.04, GCC 12: glibc 2.35 or newer; the libraries as .tar.gz). The unpatched libraries are left out. Only the build and the smoke tests upstream has of AnyPS5-ARM's set ran; no game was tried.\n\nIt is neither an upstream release nor an AnyPS5-ARM one. AnyPS5 Desktop offers it only on its Nightly update channel, and only once it is signed on the release Mac (tools/release/sign_nightly.sh): until then the launchers refuse it. The Mac launcher does not offer it.\n\n<!-- upstream-commit: 0694c4cbd6f2df1e7cc95a6681746b4de40d1e70 -->\n"
     },
@@ -68787,9 +68601,9 @@
         "sony"
       ],
       "subcategory": "tool",
-      "downloads": 1876,
       "downloads_lifetime": 1876,
-      "latest_body": "AnyPS5 Studio 1.5.1 updates the bundled AnyPS5 core from v0.1.2 to **[v0.1.4](https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.4)**.\n\n## Changes\n- **AnyPS5 core v0.1.4**: the bundled relinker and system libraries now come from the latest upstream release. Existing installs switch to it automatically the next time Studio starts, and each game receives the new libraries on its next launch.\n- **Relink hint**: Studio now remembers which core relinked each game. If a game was relinked with an earlier core, the launch log says so and suggests relinking it in Relinker Studio if it fails to start.\n- **Verified core downloads**: the bundled core is checked against the SHA-256 checksums AnyPS5 publishes for the release; a mismatch stops the build.\n- The NID inspector's \"Python 3 not found\" message now points to the correct re-audit button.\n\n## After updating\nIf a game that worked before no longer starts, open **Relinker Studio** and relink it.\n\n**Full Changelog**: https://github.com/ramsforge/AnyPS5-Studio/compare/v1.5.0...v1.5.1\n"
+      "latest_body": "AnyPS5 Studio 1.5.1 updates the bundled AnyPS5 core from v0.1.2 to **[v0.1.4](https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.4)**.\n\n## Changes\n- **AnyPS5 core v0.1.4**: the bundled relinker and system libraries now come from the latest upstream release. Existing installs switch to it automatically the next time Studio starts, and each game receives the new libraries on its next launch.\n- **Relink hint**: Studio now remembers which core relinked each game. If a game was relinked with an earlier core, the launch log says so and suggests relinking it in Relinker Studio if it fails to start.\n- **Verified core downloads**: the bundled core is checked against the SHA-256 checksums AnyPS5 publishes for the release; a mismatch stops the build.\n- The NID inspector's \"Python 3 not found\" message now points to the correct re-audit button.\n\n## After updating\nIf a game that worked before no longer starts, open **Relinker Studio** and relink it.\n\n**Full Changelog**: https://github.com/ramsforge/AnyPS5-Studio/compare/v1.5.0...v1.5.1\n",
+      "note": "桌面端模拟器，安卓端无官方版本。"
     },
     {
       "id": "termux-x11",
@@ -68912,7 +68726,6 @@
       "distribution": "release-apk",
       "platform_families": [],
       "subcategory": "tool",
-      "downloads": 1037,
       "downloads_lifetime": 1037
     },
     {
@@ -69120,7 +68933,6 @@
         "pc"
       ],
       "subcategory": "winlator",
-      "downloads": 6706,
       "downloads_lifetime": 6706,
       "latest_body": "# Winlator 中文版 (Wine 11) v1.0.0\n\n基于 [Winlator 11.1](https://github.com/brunodev85/winlator) 深度定制:\n\n## 主要变化\n- **Wine 10.10 -> Wine 11.15**: 移植 brunodev85 全部定制补丁 (Android 存储符号链接、GPU 信息上报、X11 窗口属性等) 至 Wine 11.15 新 WoW64 模式 (x86_64-unix + i386/x86_64 双架构 PE)\n- **esync -> fastsync**: 移除旧 esync 机制, 使用 Wine 11 原生 fastsync, 同步性能更好\n- **完整中文支持**:\n  - Android 界面全面中文翻译 (values-zh-rCN)\n  - 内置 Noto Sans CJK SC 中文字体 + fontconfig 中文别名\n  - rootfs 注入 zh_CN.UTF-8 locale (glibc + X11)\n  - Wine 前缀注册表中文字体替换 (宋体/SimSun -> Noto Sans CJK SC)\n  - 新建容器默认中文环境\n\n## 下载安装\n直接下载下方 APK (约 325 MB) 安装即可, 无需额外组件。首次启动会自动解包 rootfs。\n\n## 技术说明\n- APK 为 debug 签名, 与官方 Winlator 签名不同, 两者不可互相覆盖安装\n- 由 GitHub Actions 全自动云端编译: Wine (约 50 分钟) -> rootfs 注入中文化 -> Gradle 打包\n- 构建配方见仓库 `wine/`、`chinese/`、`.github/workflows/build.yml`\n"
     },
@@ -69220,7 +69032,6 @@
       "platform_families": [
         "sony"
       ],
-      "downloads": 803,
       "downloads_lifetime": 803,
       "latest_body": "Automatic build of `8a8fc68c` (ci: release notes mention the one-time uninstall of v0.1.0-alpha).\n\nInstall **KytyPS5-Android-0.1.0-nightly.6.apk**. The Turnip GPU driver is bundled. Nightlies install over each other.\nComing from v0.1.0-alpha? Uninstall it once first; it was signed with a different key.\nSHA-256: `cd5e51c18637dc6afc3fff525699dd4716cb265ef742c2a38bb213664c22cf03`\n\nStatus, roadmap and how to help: [docs/android](https://github.com/tarek369/KytyPS5-Android/tree/android-boot-wip/docs/android).\n\nRecent changes:\n- ci: release notes mention the one-time uninstall of v0.1.0-alpha (8a8fc68c)\n- docs(android): GPU front-end speed-up in status, roadmap and knobs (ead7ee9e)\n- perf(kernel): split placement only while the GPU thread runs two-stage (6e680602)\n- perf(kernel): KYTY_CPU_PLACE split mode, default on Android with KYTY_PIPE_SPIN (0d787ce9)\n- perf(renderer): KYTY_PIPE_SPIN bounded spin in the GPU front/record/walk handoffs (bcab3cad)\n- docs(android): upstream sync in status, round 2 in roadmap (9aff7151)\n- fix(renderer): Current() accepts an active scheduler again (da554882)\n- ci: build the Android FFmpeg (PIC, static) instead of the desktop package (9e3705e3)\n- gpu: prese",
       "name_zh": "PS5 模拟器安卓移植"
@@ -69463,7 +69274,6 @@
         "pc"
       ],
       "subcategory": "launcher-tool",
-      "downloads": 16461,
       "downloads_lifetime": 16461,
       "latest_body": "# DroidDeck-Mali v0.4.0-beta.1 (Build 45) — Beta\n\n**Esta es una beta: no es una versión final.** Se instala encima de la build anterior sin\nperder datos (runtime y Steam se conservan; misma firma). Probada en **POCO X6 Pro\n(Dimensity 8300-Ultra, Mali-G615 MC6)**, y pensada para **cualquier dispositivo con GPU Mali CSF**.\n\n---\n\n## 🎮 Novedades respecto a la versión anterior\n\n- **Los juegos ya se ejecutan.** Ya no se quedan en el logo. Aún pueden tener caídas de\n  fps, pero son mucho más estables.\n- **HUD personalizable (estilo Winlator).** El mando en pantalla se edita con **perfiles con\n  nombre**: duplica, añade, elimina y cambia de perfil para cada juego. Cada control tiene\n  **forma** (círculo, redondeado, cuadrado) y **tamaño del 40 % al 250 %**; el d-pad se\n  separa en flechas al agrandarlo; el touchpad queda sin etiqueta; la barra superior se\n  puede **ocultar** y recuperar; los controles ya colocados **no se mueven** al añadir\n  otros, y todo se guarda automáticamente al soltar.\n- **Joystick de cámara (ratón).** Control nuevo para juegos 3D: mantén pulsado fuera del\n  centro y mueve la cámara. Cuanto más grande lo pongas, más rápido gira.\n- **Importación de juegos externos.**"
     },
@@ -69607,7 +69417,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 85299,
       "downloads_lifetime": 85299,
       "name_zh": "《塞尔达传说：梅祖拉的假面》安卓移植"
     },
@@ -69709,7 +69518,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 65334,
       "downloads_lifetime": 65334,
       "name_zh": "《马力欧赛车 64》安卓移植"
     },
@@ -69821,7 +69629,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 20857,
       "downloads_lifetime": 20857,
       "name_zh": "《班卓熊大冒险》安卓移植（AurelioB 构建）"
     },
@@ -69963,7 +69770,6 @@
       },
       "android_ready": true,
       "platform_families": [],
-      "downloads": 30171,
       "downloads_lifetime": 30171,
       "name_zh": "《塞尔达传说：黄昏公主》安卓移植"
     },
@@ -70117,7 +69923,6 @@
       "platform_families": [
         "nintendo"
       ],
-      "downloads": 7726,
       "downloads_lifetime": 7726,
       "name_zh": "《塞尔达传说：时之笛》重编译安卓版"
     }

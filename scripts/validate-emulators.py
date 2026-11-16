@@ -12,7 +12,12 @@ DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 "strato-emulator", "ryujinx-official",
                 "ovsky-sumi-emu", "skyline-official", "drastic",
                 # 2026-11-12：11-10 还在发 v0.1.5，随后仓库 404，判版权下架
-                "moceure-banananative"}
+                "moceure-banananative",
+                # 2026-11-16：自动复核 GitHub 返回 404/451 后标记，仓库确已下架
+                "metroidprimeport", "odrannnn-metroidprime2port",
+                "prosperoeden-ps5", "afeimod-linbox", "eden-nx2-zuan",
+                "nextendonetwork-ryujinx-nextendo", "lichii-enhanced",
+                "torzu-emulator"}
 VALID_SOURCES = {"github", "gitea", "gitlab", "gitee", "notabug",
                  "official-web", "official-play", "community-archive"}
 BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}

@@ -254,7 +254,7 @@
       "caution": "提取包不保证和你机器的 GPU 版本对得上，版本号差太多容易起不来"
     },
     "koadzba-droid": {
-      "fit": "Mali Bifrost 系 Panfrost Vulkan，基于 Mesa 24.0.5，2026-06 后未再推送",
+      "fit": "面向 Mali Bifrost 的 Panfrost Vulkan 驱动，基于 Mesa 24.0.5。",
       "how": [
         "下载 zip 解压或直接导入",
         "模拟器「设置 → 驱动」里选中",
@@ -399,8 +399,12 @@
       "generated": true
     },
     "rutabaga-gfx": {
-      "fit": "Rutabaga GPU 虚拟化库（Rust），供 Cuttlefish 等虚拟设备使用；仓库只发源码，没有驱动包",
-      "how": [],
+      "fit": "Rutabaga GPU 虚拟化库，Rust 编写，供 Cuttlefish 等虚拟设备使用。",
+      "how": [
+        "下载 .wcp 组件包",
+        "Winlator「组件」里导入",
+        "容器组件设置里切成这个版本"
+      ],
       "caution": "",
       "generated": true
     },
@@ -432,7 +436,7 @@
       "caution": "同一仓库里还发高通闭源驱动，别和 Turnip 包混装；8xx 用错包会花屏"
     },
     "stevenmxz-adrenotools": {
-      "fit": "Adrenotools 驱动合集（zip），2026-01 后未再推送",
+      "fit": "AdrenoTools 驱动合集，以 zip 包分发。",
       "how": [
         "下载 zip 解压或直接导入",
         "模拟器「设置 → 驱动」里选中",
@@ -467,7 +471,7 @@
       "caution": "以 .wcp 打包为主，老版本 Winlator 可能不认"
     },
     "tiagosouza": {
-      "fit": "按日期打快照的 Turnip 包，文件名带 Mesa 与 Vulkan 版本号，最近一次为 2026-08",
+      "fit": "按日期打包快照的 Turnip 驱动，包名含 Mesa 与 Vulkan 版本号。",
       "how": [
         "下载 .adpkg / .zip 驱动包",
         "模拟器「设置 → 驱动」里导入并选中",
@@ -535,7 +539,7 @@
       "caution": "每月 1 日、15 日自动构建，未逐机型验证；A8XX 除 gralloc 外已接近上游可用，出问题换回 StevenMXZ 稳定版"
     },
     "winlatorcomponents": {
-      "fit": "Winlator 组件分发：VKD3D 3.1.0 GameSir 定制构建（.wcp，3.2MB）+ Turnip GameHub 26.3 GMEM/PWR_MAX 实验版（zip，2.6MB），首版即带完整标签与构建日志",
+      "fit": "Winlator 组件分发，含 VKD3D 与 Turnip 构建。",
       "how": [
         "下载 .wcp 组件包",
         "Winlator「组件」里导入",
