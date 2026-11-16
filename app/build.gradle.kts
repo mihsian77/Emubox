@@ -53,12 +53,16 @@ android {
 
     buildTypes {
         release {
-            // R8：代码压缩 + 混淆 + 资源收缩。
+            // R8：代码压缩 + 混淆（资源收缩已关闭，原因见下方 isShrinkResources 注释）。
             // 开启前实测 dex 45.95MB（占 APK 88%），因为未使用的类、反射元数据、
             // Kotlin 标准库全部原样打包。Compose / Coil / 协程均有官方 consumer 规则，
             // 项目自身无反射式实例化，JNI 方法名由下方 proguard 规则保留。
             isMinifyEnabled = true
-            isShrinkResources = true
+            // 资源收缩在 AGP 9.1 + R8 全模式下不可靠：R8 把 R.string 常量内联进调用点后，
+            // 收缩器的可达性追踪失效，实测误删 19 个有代码引用的字符串（tab_device /
+            // tab_settings / driver_cmp_* 等），真机渲染即抛 Resources$NotFoundException。
+            // 瘦身收益全在 isMinifyEnabled（dex 45.95MB → 3.4MB），资源收缩只省约 0.36MB。
+            isShrinkResources = false
             // 有 keystore.properties 时用正式签名，否则回退 debug 签名
             signingConfig = run {
                 val props = Properties()
