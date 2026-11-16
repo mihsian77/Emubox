@@ -37,7 +37,7 @@ ALLOWED = set(REQUIRED) | {
     "section", "family", "family_label", "owner", "summary", "logo_url",
     "official", "source", "kind", "runtime", "platforms", "hosts", "status",
     "needs_review", "method", "latest_tag", "latest_date", "channel",
-    "latest_body", "latest_apk_name", "latest_apk_url", "latest_apk_size",
+    "latest_body", "latest_apk_name", "latest_apk_url", "latest_apk_size", "latest_apk_tag",
     "releases", "stars", "forks", "watchers", "downloads_total",
     "downloads_lifetime", "downloads_latest", "downloads_basis",
     "download_url", "download_kind",
@@ -71,6 +71,10 @@ HOSTS = {"android", "windows", "macos", "linux", "ios",
 STATUS = {"active", "stale", "dead", "archived", "community"}
 KINDS = {"emulator", "port", "frontend", "tool", "engine"}
 DOWNLOADS_BASIS = {"lifetime", "latest-lower-bound", "none"}
+
+# artifacts 子字段（解析器读 snake_case，界面按它算「共 N 个」）
+ARTIFACT_KEYS = {"apk", "android_zip", "ipa", "libretro_core",
+                 "desktop", "console", "source", "total"}
 
 INT_FIELDS = ["stars", "forks", "watchers", "downloads_total",
               "downloads_lifetime", "downloads_latest", "latest_apk_size"]
@@ -137,6 +141,26 @@ def check_entry(path, i, e):
     basis = e.get("downloads_basis")
     if basis is not None and basis not in DOWNLOADS_BASIS:
         p.append(f"{where}: downloads_basis={basis!r} 未知口径")
+
+    # artifacts 的子字段名曾写成 camelCase（androidZip），解析器读的是
+    # android_zip，结果界面「发布文件」永远显示「无」，而校验一路绿灯。
+    # 子结构也要按白名单卡住。
+    art = e.get("artifacts")
+    if art is not None:
+        if not isinstance(art, dict):
+            p.append(f"{where}: artifacts 应为对象")
+        else:
+            unknown = set(art) - ARTIFACT_KEYS
+            if unknown:
+                p.append(f"{where}: artifacts 含未登记子字段 {sorted(unknown)}")
+            for kk, vv in art.items():
+                if kk in ARTIFACT_KEYS and not isinstance(vv, int):
+                    p.append(f"{where}: artifacts.{kk} 应为整数")
+            if isinstance(art.get("total"), int) and art["total"] == 0:
+                # total 是界面判空的依据，为 0 会让「发布文件」块整体不显示
+                rec = sum(art.get(k, 0) for k in ARTIFACT_KEYS if k != "total")
+                if rec > 0:
+                    p.append(f"{where}: artifacts.total=0 但已识别 {rec} 个产物，界面会显示「无」")
 
     # 有 latest_apk_url 却没版本号，详情页会出现「空版本 + 有安装包」
     if e.get("latest_apk_url") and not e.get("latest_tag"):
