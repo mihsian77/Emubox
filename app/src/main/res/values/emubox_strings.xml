@@ -183,7 +183,7 @@
     <string name="emulator_insights_visits">%1$s total visits</string>
     <string name="emulator_insights_online">%1$d online now</string>
     <string name="emulator_news_title">Latest updates</string>
-    <string name="emulator_news_no_body">No changelog for this release.</string>
+    <string name="emulator_news_no_body">This release has no notes, only downloads.</string>
     <string name="emulator_trending_title">Trending (14-day growth)</string>
     <string name="emulator_trending_period">%1$s → %2$s</string>
     <string name="emulator_cat_share_title">Downloads by category</string>

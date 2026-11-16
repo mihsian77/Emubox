@@ -389,6 +389,101 @@ class ScreenRenderTest {
         save("09-detail-assets.png")
     }
 
+    /**
+     * 动态列表摘要：数据源是各项目的 release 正文，325 条里 137 条第一行是
+     * `# 版本号` / `## New Contributors` / `<p align="center">` / `> [!NOTE]` / `![uuid](url)`。
+     * 直接取第一行，列表上显示的就是标记原文，用户读不出这一版改了什么。
+     */
+    @Test
+    fun renderReleaseDigest() {
+        val emus = loadEmulators(400).filter { it.latestBody.isNotBlank() }
+        fun unreadable(body: String): Boolean {
+            val first = body.trim().lineSequence().firstOrNull()?.trim().orEmpty()
+            return first.startsWith("#") || first.startsWith(">") ||
+                first.startsWith("![") || (first.startsWith("<") && first.contains(">"))
+        }
+        val samples = emus.filter { unreadable(it.latestBody) }.take(5)
+        println("摘要样本 ${samples.size} 条，不可读首行共 ${emus.count { unreadable(it.latestBody) }}/${emus.size}")
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Text("修复前（release 正文第一行）", style = MaterialTheme.typography.labelMedium)
+                            samples.forEach { e ->
+                                Text(
+                                    "${e.name} · ${e.latestTag}",
+                                    style = MaterialTheme.typography.labelMedium
+                                )
+                                Text(
+                                    e.latestBody.trim().lines().firstOrNull()?.take(90).orEmpty(),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    maxLines = 2, overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            HorizontalDivider()
+                            Text("修复后（剥标记 + 取正文首句）", style = MaterialTheme.typography.labelMedium)
+                            samples.forEach { e ->
+                                Text(
+                                    "${e.name} · ${e.latestTag}",
+                                    style = MaterialTheme.typography.labelMedium
+                                )
+                                Text(
+                                    releaseDigest(e.latestBody),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    maxLines = 2, overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        save("10-release-digest.png")
+    }
+
+    /**
+     * 详情页标题：这是项目名在全 App 的最后一站。标题原来固定 1 行，
+     * 名字带括号后缀的条目（`Ryujinx Canary Builds（ADEMOLA200）`）在这里也被截断，
+     * 用户在界面上找不到任何地方能看到完整名字。
+     */
+    @Test
+    fun renderLongDetailTitle() {
+        val ids = listOf("ryujinx-canary-ademola", "the412banner-bannerhub-lite")
+        val picked = ids.mapNotNull { id -> loadEmulators(400).firstOrNull { it.id == id } }
+        println("长标题样本: " + picked.joinToString { it.name })
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("修复前（标题 1 行）", style = MaterialTheme.typography.labelMedium)
+                            picked.forEach { e ->
+                                Text(
+                                    e.name,
+                                    style = MaterialTheme.typography.titleLarge,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            HorizontalDivider()
+                            Text("修复后（标题 2 行 + 软断行）", style = MaterialTheme.typography.labelMedium)
+                            picked.forEach { e ->
+                                Text(
+                                    softBreakLong(e.name),
+                                    style = MaterialTheme.typography.titleLarge,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        save("11-long-detail-title.png")
+    }
+
     /** 从详情分片读 releases（结构与 build_index.py 输出一致；分片号不查表，直接找） */
     private fun loadReleases(id: String): List<EmulatorRelease> {
         var d: JSONObject? = null

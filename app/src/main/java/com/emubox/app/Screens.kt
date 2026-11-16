@@ -5379,6 +5379,50 @@ private fun cleanReleaseNotes(raw: String): String = decodeHtmlEntities(stripHtm
     .replace(Regex("[ \\t]+\n"), "\n")
     .trim()
 
+/** GitHub 自动生成的章节名：剥掉 `##` 之后就是这些词，拿它当摘要等于什么都没说 */
+private val RELEASE_BOILERPLATE = setOf(
+    "what's changed", "whats changed", "new contributors", "full changelog",
+    "changelog", "download", "installation", "install", "notes",
+    "other changes", "changes", "new features", "bug fixes", "breaking changes",
+    "deprecations", "documentation", "misc", "internal", "assets",
+)
+
+/**
+ * 纯哈希串：GitHub 上传图片的 alt 常是 UUID 或附件 ID
+ * （`![67180280-3c47-4c2e-a9a0-a086a57949dc](…)`），剥掉图片语法后只剩这串，
+ * 拿它当摘要等于给用户看一串随机字符。判据是「字母数字多、但全是十六进制、没有空格」。
+ */
+private fun looksLikeHashLine(line: String): Boolean {
+    val alnum = line.filter { it.isLetterOrDigit() }
+    return alnum.length >= 20 && alnum.all { it in "0123456789abcdefABCDEF" }
+}
+
+/**
+ * 动态列表的一句话摘要。
+ *
+ * 直接拿 release 正文第一行是错的：325 条有正文的项目里 137 条（42%）第一行是
+ * `# 版本号`、`## New Contributors`、`<p align="center">`、`> [!NOTE]`、`![uuid](url)`。
+ * 用户在动态列表看到的就是 `<h3>⚠️Important Release Candidate...` 这种原文，
+ * 无法判断这一版到底改了什么。
+ *
+ * 做法：先按日志清洗规则剥标记，再取第一条「有实质内容」的行——
+ * 字母数字够多（≥6，排除 `---`、`· ` 这种残留），且不是纯哈希串。
+ */
+internal fun releaseDigest(body: String, maxLen: Int = 300): String {
+    val lines = cleanReleaseNotes(body).split('\n').map { it.trim() }.filter { it.isNotEmpty() }
+    // 兜底故意不回到 lines.first()：有些项目的正文只有下载按钮和图片，
+    // 过滤完一行不剩，回落到第一行又是一串 UUID 或残留标签，等于没修。
+    // 这种情况返回空串，由调用方显示「这一版没写更新说明」。
+    val pick = lines.firstOrNull { line ->
+        line.count { it.isLetterOrDigit() } >= 6 &&
+            !looksLikeHashLine(line) &&
+            line.lowercase().trimEnd(':') !in RELEASE_BOILERPLATE
+    }.orEmpty()
+    // 摘要走的是 2 行定高布局，120 字已经超了；这里只防单行超长拖慢排版，
+    // 真正的截断交给 Text 的 maxLines，避免在词中间硬切。
+    return if (pick.length <= maxLen) pick else pick.take(maxLen).trimEnd() + "…"
+}
+
 /** R4：官方日志按 Markdown 标题段落拆分，返回 (段落标题, 段落正文) 列表 */
 private fun splitChangelogSections(text: String): List<Pair<String?, String>> {
     val titleRe = Regex("^\\s*(#{1,6})\\s+(.*)$")
@@ -7145,7 +7189,10 @@ private fun CompatRow(
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Column(modifier = Modifier.weight(1f)) {
-            Text(name, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            // 这里是兼容报告的行，数据源里设备名带括号后缀的很多
+            // （`Nintendo Switch Lite (Modchipped, HWFLY RP2040)`），单行放不下就只剩前半截，
+            // 而这一行点不开、没有别的出口，所以给两行。
+            LongFieldText(name, style = MaterialTheme.typography.bodyMedium, maxLines = 2)
             val conf = when (confidence) {
                 "high" -> appString(R.string.emuready_conf_high)
                 "medium" -> appString(R.string.emuready_conf_mid)
@@ -11910,7 +11957,13 @@ private fun stripHtmlForLog(raw: String): String = raw
     .replace(Regex("<img[^>]*>", RegexOption.IGNORE_CASE), "")
     .replace(Regex("<br\\s*/?>", RegexOption.IGNORE_CASE), "\n")
     .replace(Regex("</(p|div|li|h[1-6])>", RegexOption.IGNORE_CASE), "\n")
-    .replace(Regex("<[^>]{1,300}>"), "")
+    // 标签内允许任意长度：`<source media="…" srcset="https://…">` 带上长 URL 轻松过 300 字符，
+    // 原来卡在 300 就整段漏剥，正文里直接露出属性原文。
+    // `<` 后面必须是字母 / `/` / `!`，这样 `a < b > c` 这种比较式不会被当成标签吃掉。
+    .replace(Regex("<[a-zA-Z/!][^>]*>"), "")
+    // 孤立标签残行：入库时正文按字符数截断，正好切在标签中间（`<source … srcset="https://github`），
+    // 没有闭合 `>` 任何标签正则都剥不掉。整行以 `<` 开头的丢掉，正文里的 `a < b` 不受影响。
+    .replace(Regex("(?m)^[ \\t]*<[^\\n]*$"), "")
 
 private fun changelogLines(body: String): List<String> =
     decodeHtmlEntities(stripHtmlForLog(body))
@@ -12113,8 +12166,10 @@ private fun EmulatorNewsCard(
                                 color = Fusion.OnSurface,
                                 maxLines = 2)
                             Spacer(Modifier.height(2.dp))
+                            // 原来直接取 release 正文第一行：42% 的项目第一行是 `##`、`>`、
+                            // `<p>` 这类标记，列表里显示的就是标记原文。改成剥标记后取正文首句。
                             Text(
-                                e.latestBody.trim().lines().firstOrNull()?.take(90) ?: appString(R.string.emulator_news_no_body),
+                                releaseDigest(e.latestBody).ifBlank { appString(R.string.emulator_news_no_body) },
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Fusion.OnSurfaceDim,
                                 maxLines = 2, overflow = TextOverflow.Ellipsis
@@ -13576,10 +13631,12 @@ internal fun EmulatorDetailDialog(
                     }
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    // 详情页是这个项目名的最后一站：这里再截断，全 App 就没有任何地方能看到全名。
+                    // 实测有项目名（含括号后缀）超过 22sp 单行宽度，给两行兜住。
                     Text(
-                        entry.name,
+                        softBreakLong(entry.name),
                         style = MaterialTheme.typography.titleLarge,
-                        maxLines = 1,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f)
                     )
