@@ -17,6 +17,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -25,6 +26,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -49,9 +51,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -478,10 +482,10 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                             }
                                             Spacer(Modifier.width(12.dp))
                                             Column(modifier = Modifier.weight(1f)) {
-                                                Text(
-                                                    text = file.fileName,
+                                                LongFieldText(
+                                                    file.fileName,
                                                     style = MaterialTheme.typography.titleMedium,
-                                                    maxLines = 2
+                                                    maxLines = 3
                                                 )
                                                 Text(
                                                     "${formatBytes(file.sizeBytes)} • ${formatDate(file.timestamp)}",
@@ -4023,11 +4027,17 @@ private fun DriverRecommendRow(
                     val files = release.assets.filter { isDownloadableAsset(it.name) }
                     val shown = if (expanded) files.take(3) else files.take(1)
                     shown.forEach { asset ->
+                        // 长按看完整文件名：点击已经是下载，不能再抢；但只给 3 行，
+                        // 万一还有更长的产物名，用户至少有个能看到全文的入口。
+                        var showFullName by remember(asset.name) { mutableStateOf(false) }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clip(RoundedCornerShape(10.dp))
-                                .clickable { onDownload(asset) }
+                                .combinedClickable(
+                                    onClick = { onDownload(asset) },
+                                    onLongClick = { showFullName = true }
+                                )
                                 .padding(horizontal = 10.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -4038,21 +4048,29 @@ private fun DriverRecommendRow(
                                 tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
                             )
                             Spacer(Modifier.width(8.dp))
-                            Text(
-                                asset.name,
-                                modifier = Modifier.weight(1f),
-                                style = MaterialTheme.typography.bodySmall,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                            if (asset.sizeBytes > 0) {
-                                Spacer(Modifier.width(8.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                // 原来 1 行：71 字符的 Termux 产物名只剩前 30 来个字符，
+                                // 6 个包截断后长得一模一样，ABI 和 debug/release 全在尾部
+                                LongFieldText(
+                                    asset.name,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    maxLines = 3
+                                )
+                                // 副行直接把「装得上吗」讲清楚：架构 + 类型 + 大小
                                 Text(
-                                    formatBytes(asset.sizeBytes),
+                                    buildString {
+                                        val arch = assetArchLabel(asset.name)
+                                        if (arch.isNotBlank()) append(arch).append(" · ")
+                                        append(assetTypeLabel(asset.name))
+                                        if (asset.sizeBytes > 0) append(" · ").append(formatBytes(asset.sizeBytes))
+                                    },
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f)
                                 )
                             }
+                        }
+                        if (showFullName) {
+                            FullNameDialog(asset.name) { showFullName = false }
                         }
                     }
                 }
@@ -5318,6 +5336,8 @@ private fun ReleaseChangelog(release: GithubRelease?) {
                                     showTranslated = false
                                 },
                                 label = {
+                                    // 章节 chip 只能 1 行：chip 会跟着文字撑宽，
+                                    // 多行会把整排筛选挤到换行。章节名是「新增/修复」这类短词
                                     Text(
                                         sec.first ?: appString(R.string.changelog_section_body),
                                         maxLines = 1
@@ -5528,7 +5548,7 @@ private fun DriverReleasePicker(
                 modifier = Modifier.fillMaxWidth().menuAnchor(),
                 label = { Text(appString(R.string.file)) },
                 shape = RoundedCornerShape(18.dp),
-                maxLines = 1
+                maxLines = 2
             )
             if ((selectedRelease?.assets?.size ?: 0) > 1) {
                 ExposedDropdownMenu(
@@ -5539,13 +5559,15 @@ private fun DriverReleasePicker(
                         DropdownMenuItem(
                             text = {
                                 Column {
-                                    Text(
+                                    // 下拉里同样要能分辨 ABI：2 行只够看到前缀
+                                    LongFieldText(
                                         asset.name,
-                                        maxLines = 2,
-                                        overflow = TextOverflow.Ellipsis
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        maxLines = 3
                                     )
                                     Text(
-                                        formatBytes(asset.sizeBytes),
+                                        formatBytes(asset.sizeBytes) +
+                                            assetArchLabel(asset.name).let { if (it.isBlank()) "" else " · $it" },
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -5764,12 +5786,11 @@ private fun WrapperCatalogSection(
                         modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
+                        LongFieldText(
                             item.url.substringAfterLast('/'),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
+                            maxLines = 2,
                             modifier = Modifier.weight(1f)
                         )
                         if (item.fileSizeBytes > 0) {
@@ -5823,11 +5844,10 @@ private fun DriverVersionCard(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = release.tagName,
+                LongFieldText(
+                    release.tagName,
                     style = MaterialTheme.typography.labelLarge,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 2,
                     modifier = Modifier.weight(1f)
                 )
                 if (isLatest) {
@@ -6024,18 +6044,18 @@ private fun ComponentBundleSection(sources: List<ComponentSource>) {
                             text = source.description,
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 1,
+                            maxLines = 2,
                             overflow = TextOverflow.Ellipsis
                         )
                         // 最新整包信息：tag + 稳定/夜版徽标 + 资产数 + 发布时间
                         if (result != null && result.tag != null) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                Text(
-                                    text = result.tag,
+                                LongFieldText(
+                                    result.tag,
                                     style = MaterialTheme.typography.labelSmall,
                                     color = Fusion.GradientStart,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
+                                    maxLines = 2,
+                                    modifier = Modifier.weight(1f, fill = false)
                                 )
                                 Spacer(Modifier.width(6.dp))
                                 Surface(
@@ -7727,11 +7747,10 @@ private fun DriverDetectionList(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(
+                            LongFieldText(
                                 download.fileName,
                                 style = MaterialTheme.typography.bodyMedium,
-                                maxLines = 2,
-                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                                maxLines = 3
                             )
                             Text(
                                 "${"%.1f".format(download.sizeBytes / 1024.0 / 1024.0)} MB",
@@ -8737,10 +8756,10 @@ private fun DriverNewsCard(
                         }
                         Spacer(Modifier.width(8.dp))
                         Column(Modifier.weight(1f)) {
-                            Text(
+                            LongFieldText(
                                 "${item.sourceName} · ${item.tag}",
                                 style = MaterialTheme.typography.labelMedium,
-                                maxLines = 1, overflow = TextOverflow.Ellipsis
+                                maxLines = 2
                             )
                             if (item.kinds.isNotEmpty()) {
                                 Row(
@@ -8764,11 +8783,11 @@ private fun DriverNewsCard(
                                 }
                             }
                             if (item.zipName.isNotBlank()) {
-                                Text(
+                                LongFieldText(
                                     item.zipName,
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    maxLines = 1, overflow = TextOverflow.Ellipsis
+                                    maxLines = 2
                                 )
                             }
                         }
@@ -10707,9 +10726,10 @@ private fun NewsRowItem(item: NewsItem) {
                 Spacer(Modifier.height(1.dp))
                 Text(
                     item.summary,
+                    // 摘要是一句话，1 行只够看半句主谓宾；2 行能读完整句
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -12078,9 +12098,9 @@ private fun EmulatorNewsCard(
                         )
                         Spacer(Modifier.width(10.dp))
                         Column(Modifier.weight(1f)) {
-                            Text("${e.name} · ${e.latestTag}", style = MaterialTheme.typography.labelMedium,
+                            LongFieldText("${e.name} · ${e.latestTag}", style = MaterialTheme.typography.labelMedium,
                                 color = Fusion.OnSurface,
-                                maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                maxLines = 2)
                             Spacer(Modifier.height(2.dp))
                             Text(
                                 e.latestBody.trim().lines().firstOrNull()?.take(90) ?: appString(R.string.emulator_news_no_body),
@@ -12432,10 +12452,10 @@ private fun EmulatorHeroCard(
                     )
                 }
                 Text(
-                    "$categoryLabel · ${entry.latestTag.ifBlank { "latest" }}",
+                    softBreakLong("$categoryLabel · ${entry.latestTag.ifBlank { "latest" }}"),
                     fontSize = 12.sp,
                     color = Fusion.OnSurfaceDim,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
                 Row(
@@ -12674,10 +12694,11 @@ private fun EmulatorCard(
                 Text(
                     // 只显示日期：原始值为 "2026-08-19T11:06:00Z"，在卡片里被截成
                     // "…2026-08-19T11:06…"，末尾一截毫秒毫无信息量。
-                    "${entry.latestTag} · ${shortDate(entry.latestDate)}",
+                    // tag 仍按软断点折行：shadPS4 的 tag 有 71 字符，单行会把日期挤掉
+                    softBreakLong("${entry.latestTag} · ${shortDate(entry.latestDate)}"),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -12943,13 +12964,14 @@ private fun EmulatorCompareDialog(
                     )
                     stats.forEachIndexed { i, s ->
                         Text(
-                            s.latestTag.ifBlank { "—" },
+                            // 对比表每列只有约 85dp，71 字符的 tag 必须按 _ - 断行
+                            softBreakLong(s.latestTag.ifBlank { "—" }),
                             style = MaterialTheme.typography.labelSmall,
                             fontWeight = FontWeight.Medium,
                             color = if (stats.maxByOrNull { it.daysSinceUpdate }?.daysSinceUpdate == s.daysSinceUpdate && s.daysSinceUpdate >= 0)
                                 MaterialTheme.colorScheme.primary
                             else MaterialTheme.colorScheme.onSurface,
-                            maxLines = 2,
+                            maxLines = 3,
                             overflow = TextOverflow.Ellipsis,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.weight(1f)
@@ -13189,14 +13211,14 @@ private fun EmulatorListRow(
                 }
                 Spacer(Modifier.height(2.dp))
                 Text(
-                    buildString {
+                    softBreakLong(buildString {
                         append(entry.latestTag.ifBlank { "暂无版本" })
                         if (entry.latestDate.isNotBlank()) append(" · ${entry.latestDate.take(10)}")
                         append(" · 下载 ${emulatorDownloadCount(entry.downloads)}")
-                    },
+                    }),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -13251,7 +13273,115 @@ private fun assetSizeText(size: Long): String = when {
     else -> "$size B"
 }
 
-private fun assetTypeLabel(name: String): String = when {
+/**
+ * 长字段软断行：在 `_` `-` `+` `/` 之后插入零宽空格（U+200B），扩展名整体保留。
+ *
+ * 为什么非做不可：Termux 一次发 6 个产物，
+ * `termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_arm64-v8a.apk`
+ * 前 33 个字符一模一样，真正决定装得上装不上的是尾部的 apt 版本、
+ * debug/release 和 ABI。单行截断后六行看起来完全一致，用户按名字选必然下错包
+ * （arm64 包装到 armeabi 设备上直接 INSTALL_FAILED_NO_MATCHING_ABIS）。
+ *
+ * 默认断行规则只认空格和连字符，遇到 `_` 连成一串的标识符会整段溢出或被硬切，
+ * 断在哪里完全不可控。插入 ZWSP 等于把这些位置标成「可以断」，渲染器
+ * 就会优先在语义边界折行。
+ */
+internal fun softBreakLong(text: String): String {
+    if (text.isBlank()) return text
+    val dot = text.lastIndexOf('.')
+    // 扩展名最长 `.tar.gz`；超过 8 个字符说明这个点属于版本号或域名，不能当扩展名切
+    val suffix = if (dot > 0 && text.length - dot <= 8 && text.indexOf('/', dot) < 0) {
+        text.substring(dot)
+    } else ""
+    var head = if (suffix.isEmpty()) text else text.substring(0, dot)
+
+    // ABI 串整体保护：`arm64-v8a` 自带连字符，不保护会被拆成
+    // 「…debug_arm64-」+「v8a.apk」，架构名读起来是断的。
+    // 用私用区字符占位，绕开后面按 `-` 插断点这一步。
+    val held = LinkedHashMap<String, String>()
+    for (abi in ABI_TOKENS) {
+        val re = Regex(Regex.escape(abi), RegexOption.IGNORE_CASE)
+        head = re.replace(head) { m ->
+            val key = "\uE000${held.size}\uE001"
+            held[key] = m.value
+            key
+        }
+    }
+    head = head.replace(Regex("([_\\-+/])"), "$1\u200B")
+    for ((k, v) in held) head = head.replace(k, v)
+    return head + suffix
+}
+
+/** 断行时整体保留的标识符：这些串内部的 `-` 不属于可读断点 */
+private val ABI_TOKENS = listOf(
+    "arm64-v8a", "armeabi-v7a", "armeabi", "x86_64", "aarch64", "universal"
+)
+
+/**
+ * 长字段文本：文件名、tag、URL 这类不能按普通句子折行的内容。
+ *
+ * 和直接用 Text 的区别只有两点：走 [softBreakLong] 得到可控断点，
+ * 行数上限默认给 3 行（71 字符的最长产物名在半屏宽度下正好放得下）。
+ */
+@Composable
+internal fun LongFieldText(
+    text: String,
+    style: TextStyle,
+    maxLines: Int = 3,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+) {
+    Text(
+        softBreakLong(text),
+        modifier = modifier,
+        style = style,
+        color = color,
+        maxLines = maxLines,
+        softWrap = true,
+        overflow = TextOverflow.Ellipsis,
+    )
+}
+
+/**
+ * 完整文件名弹窗：3 行仍然放不下的超长名（或用户想核对 ABI）走这里。
+ *
+ * 复制出去的是原始字符串，零宽空格全部剥掉——不剥的话粘到终端或文件管理器里
+ * 文件名会带隐藏字符，改名、校验哈希都会对不上。
+ */
+@Composable
+private fun FullNameDialog(name: String, onDismiss: () -> Unit) {
+    val clipboard = LocalClipboardManager.current
+    var copied by remember(name) { mutableStateOf(false) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(appString(R.string.asset_full_name)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                SelectionContainer {
+                    Text(name, style = MaterialTheme.typography.bodyMedium)
+                }
+                Text(
+                    appString(R.string.file_purpose) + "：" + filePurposeHint(name),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                clipboard.setText(AnnotatedString(name))
+                copied = true
+            }) {
+                Text(appString(if (copied) R.string.copied else R.string.copy))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(appString(R.string.close)) }
+        }
+    )
+}
+
+internal fun assetTypeLabel(name: String): String = when {
     name.endsWith(".apk", true) -> "APK"
     name.endsWith(".zip", true) || name.endsWith(".7z", true) || name.endsWith(".tar.gz", true) ||
         name.endsWith(".tgz", true) || name.endsWith(".tar", true) -> "压缩包"
@@ -13280,7 +13410,7 @@ private fun isNoiseAsset(name: String): Boolean {
  * 从文件名认架构。选包时这是第二个要判断的东西（第一是「是不是安卓包」），
  * 但文件名长到必被截断，截掉的多半正是 arm64/armeabi 这一段。
  */
-private fun assetArchLabel(name: String): String {
+internal fun assetArchLabel(name: String): String {
     val n = name.lowercase()
     return when {
         "arm64-v8a" in n || "arm64" in n || "aarch64" in n -> "arm64"
@@ -13517,7 +13647,7 @@ internal fun EmulatorDetailDialog(
                                     "该模拟器在 EmuReady 有 ${erInfo.listingsCount} 条兼容性报告 · 点击查看推荐设置",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    maxLines = 1,
+                                    maxLines = 2,
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
@@ -13608,11 +13738,10 @@ internal fun EmulatorDetailDialog(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Column(modifier = Modifier.weight(1f)) {
-                                    Text(
+                                    LongFieldText(
                                         rel.tag,
                                         style = MaterialTheme.typography.titleSmall,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
+                                        maxLines = 2
                                     )
                                     Spacer(Modifier.height(2.dp))
                                     Text(
@@ -13715,8 +13844,20 @@ internal fun EmulatorDetailDialog(
                                     )
                                 }
                                 visibleAssets.forEach { asset ->
+                                    var showFullName by remember(asset.name) { mutableStateOf(false) }
                                     Row(
-                                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clip(RoundedCornerShape(8.dp))
+                                            .combinedClickable(
+                                                onClick = {
+                                                    if (asset.url.isNotBlank() && !(entry.dead && !isArchive)) {
+                                                        onDownloadAsset(asset.url, asset.name)
+                                                    }
+                                                },
+                                                onLongClick = { showFullName = true }
+                                            )
+                                            .padding(vertical = 4.dp),
                                         verticalAlignment = Alignment.CenterVertically
                                     ) {
                                         Icon(
@@ -13727,11 +13868,12 @@ internal fun EmulatorDetailDialog(
                                         )
                                         Spacer(Modifier.width(6.dp))
                                         Column(modifier = Modifier.weight(1f)) {
-                                            Text(
+                                            // 单行只剩前 30 来个字符，Termux 的 6 个包
+                                            // 截断后完全一样，ABI 和 debug/release 看不到
+                                            LongFieldText(
                                                 asset.name,
                                                 style = MaterialTheme.typography.bodySmall,
-                                                maxLines = 1,
-                                                overflow = TextOverflow.Ellipsis
+                                                maxLines = 3
                                             )
                                             Text(
                                                 buildString {
@@ -13769,6 +13911,9 @@ internal fun EmulatorDetailDialog(
                                                 else MaterialTheme.colorScheme.outline
                                             )
                                         }
+                                    }
+                                    if (showFullName) {
+                                        FullNameDialog(asset.name) { showFullName = false }
                                     }
                                 }
                             }

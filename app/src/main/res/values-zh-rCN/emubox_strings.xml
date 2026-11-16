@@ -195,6 +195,9 @@
     <string name="emulator_badge_dead">已停更</string>
     <string name="emulator_dead_banner">已停止维护：%1$s</string>
     <string name="emulator_dead_unknown">仓库已失效/被移除</string>
+    <string name="asset_full_name">完整文件名</string>
+    <string name="copy">复制</string>
+    <string name="copied">已复制</string>
     <string name="emulator_all_versions">全部版本与文件（%d）</string>
     <string name="emulator_no_releases">暂无发布版本，可在仓库查看</string>
     <string name="emulator_no_assets">该版本未附带可下载文件</string>

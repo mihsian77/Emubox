@@ -1,5 +1,13 @@
 package com.emubox.app
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -287,5 +295,58 @@ class ScreenRenderTest {
             }
         }
         save("07-drivers.png")
+    }
+
+    /**
+     * 长文件名断行回归：Termux 一次发 6 个产物，前 33 个字符完全相同，
+     * 区分它们的 apt 版本、debug/release、ABI 全在尾部。
+     * 单行截断后六行看起来一样，用户按名字选必然下错包。
+     */
+    @Test
+    fun renderLongAssetNames() {
+        // 真实产物名，直接从仓库数据里取，不手写
+        val names = listOf(
+            "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_arm64-v8a.apk",
+            "termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_armeabi-v7a.apk",
+            "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_arm64-v8a.apk",
+            "termux-app_v0.119.0-beta.3.1+apt-android-5-github-debug_armeabi-v7a.apk",
+            "pre-release-shadPS4-2026-11-15-312cfbae77821627aa511bdee8717e1b7c3c9a23",
+            "azaharplus-2126.2-A-android_coexists_with_azahar.apk"
+        )
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text("修复前（1 行截断）", style = MaterialTheme.typography.labelMedium)
+                            names.forEach { n ->
+                                Text(
+                                    n,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            HorizontalDivider()
+                            Text("修复后（软断行 + 3 行 + ABI 副行）", style = MaterialTheme.typography.labelMedium)
+                            names.forEach { n ->
+                                Column {
+                                    LongFieldText(n, style = MaterialTheme.typography.bodySmall, maxLines = 3)
+                                    Text(
+                                        buildString {
+                                            val arch = assetArchLabel(n)
+                                            if (arch.isNotBlank()) append(arch).append(" · ")
+                                            append(assetTypeLabel(n))
+                                        },
+                                        style = MaterialTheme.typography.labelSmall
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        save("08-long-names.png")
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": "1.3.1",
-  "updated_at": "2026-11-16T14:10:00Z",
+  "updated_at": "2026-11-16T17:10:00Z",
   "emulators": [
     {
       "id": "termux",
@@ -45805,7 +45805,7 @@
     {
       "id": "shirai91-nx2android",
       "name": "nx2android",
-      "name_zh": "把 Switch 游戏转成安卓原生 APK 的移植工具",
+      "name_zh": "Switch 转安卓",
       "category": "原生移植",
       "section": "native-port",
       "family": "shirai91-nx2android",
@@ -45964,12 +45964,12 @@
         "nintendo"
       ],
       "downloads_lifetime": 12833,
-      "note": "桌面端模拟器，安卓端无官方版本。"
+      "note": "需自备游戏本体，仅生成移植包，不含游戏数据。"
     },
     {
       "id": "lnpandy-nx2apple",
       "name": "NX2Apple",
-      "name_zh": "把 Switch 游戏转成 iOS / macOS 原生程序的工具",
+      "name_zh": "Switch 转 iOS/macOS",
       "category": "原生移植",
       "section": "native-port",
       "family": "lnpandy-nx2apple",
@@ -67479,8 +67479,8 @@
       "subcategory": "tool",
       "downloads_lifetime": 2788,
       "latest_body": "**Game Format Converter 2.1.0** (formerly CHD Manager) adds a lot of formats. Everything new is described honestly in the README, including what was and wasn't tested.\n\n## What's new\n\n- **A new name.** CHD Manager is now Game Format Converter, because it converts far more than CHDs. It lives at a new repository address with new file names. **If you have an older CHD Manager, download this release once by hand: the old program can't find it by itself.** Your settings and keys don't carry over; put them in again under Settings for the optional features that use them.\n- **Xbox 360:** ZAR (for Xenia), ISO and game folders. Hex-named download packages (Xbox Live Arcade, Games on Demand) aren't discs, so they are refused with an explanation.\n- **Original Xbox:** a full dump becomes a trimmed `.xiso.iso` (7.8 GB down to just the game); also game folders and CHD.\n- **PlayStation 3:** game folder to ISO and back, split pieces joined, `.pkg` packages unpacked and packed (with your own RPCS3 or your own key).\n- **Nintendo Switch:** NSP to XCI and back, bundles with the newest update and DLC, one NSP per title, swapping in a newer update. **Switch 2:** folder to NUP and back (experimental).\n- ",
-      "name_zh": "游戏镜像格式转换工具（原 CHD Manager）",
-      "note": "桌面端模拟器，安卓端无官方版本。"
+      "name_zh": "镜像格式转换",
+      "note": "桌面工具，无安卓版本。"
     },
     {
       "id": "lichii-enhanced",
@@ -69630,7 +69630,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 20857,
-      "name_zh": "《班卓熊大冒险》安卓移植（AurelioB 构建）"
+      "name_zh": "班卓熊安卓移植"
     },
     {
       "id": "igawa6-dusklight-android",

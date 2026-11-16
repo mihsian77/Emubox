@@ -101,6 +101,29 @@ fix(ui): 深色模式下驱动卡片分数对比度
 
 改文案后跑 `python3 scripts/build_index.py` 重建索引，`emulator-offline.json` 会同步更新。
 
+## 长字段怎么排版
+
+文件名、版本 tag 这类「后缀决定含义」的字符串，不许用单行 `maxLines = 1` 收尾。
+Termux 一次发六个产物，`termux-app_v0.119.0-beta.3.1+apt-android-7-github-debug_arm64-v8a.apk`
+前 33 个字符完全相同，区分它们的 apt 版本、debug/release 和 ABI 全在尾部——
+单行截断后六行长得一模一样，选错就是 `INSTALL_FAILED_NO_MATCHING_ABIS`。
+
+| 内容 | 最小行数 | 组件 |
+|---|---|---|
+| 下载文件名、直链文件名 | 3 | `LongFieldText` |
+| 版本 tag | 2 | `LongFieldText` |
+| 描述、摘要、备注 | 2（详情页必须完整） | 普通 `Text` |
+
+规矩有三条：
+
+1. **断行要可控**：长串走 `LongFieldText`（内部 `softBreakLong` 在 `_ - + /` 后插零宽空格），
+   否则渲染器会在一串看起来一样的前缀之后硬切，断点位置完全随机。ABI 串（`arm64-v8a`）整体保护，不拆。
+2. **必须有第二条信息**：文件名旁边给出架构（arm64/armv7/x64）与类型（APK/压缩包），
+   即使用户不读完整文件名也能判断装不装得上。
+3. **超长留出口**：下载行整行长按弹「完整文件名」，可复制（复制时剥掉零宽空格）。
+
+`python3 scripts/check-truncation.py` 会拦下违反上表的改动，已接入 CI。
+
 ## 许可
 
 代码 MIT。提交的贡献按同一许可授权。

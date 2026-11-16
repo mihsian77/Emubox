@@ -30,6 +30,10 @@ jobs:
       # note 只允许写「为什么没有下载按钮」。规则见 CONTRIBUTING.md。
       - name: 检查项目文案规范
         run: python3 scripts/check-copy.py
+      # 截断闸门：文件名要 3 行、版本 tag 要 2 行。maxLines = 1 是合法代码，
+      # 编译和 Lint 都不会报，只有把 71 字符的产物名画到屏幕上才看得出问题。
+      - name: 检查长字段行数
+        run: python3 scripts/check-truncation.py
 
   lint:
     name: Lint 与单元测试

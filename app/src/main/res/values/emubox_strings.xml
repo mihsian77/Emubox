@@ -195,6 +195,9 @@
     <string name="emulator_badge_dead">Discontinued</string>
     <string name="emulator_dead_banner">No longer maintained: %1$s</string>
     <string name="emulator_dead_unknown">repository removed or unreachable</string>
+    <string name="asset_full_name">Complete file name</string>
+    <string name="copy">Copy</string>
+    <string name="copied">Copied</string>
     <string name="emulator_all_versions">All versions &amp; files (%d)</string>
     <string name="emulator_no_releases">No releases yet — check the repository</string>
     <string name="emulator_no_assets">This release has no downloadable files</string>
