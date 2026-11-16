@@ -169,7 +169,9 @@ fun detectSocBrand(socName: String): SocBrand = when {
             SocBrand("高通", 0xFF0A6ED1, "高通")
         socName.contains("mediatek", ignoreCase = true) ->
             SocBrand("联发科", 0xFF1B6AC7, "联发科")
-        else -> SocBrand("SoC", 0xFF546E7A, socName.take(12))
+        // 12 字会把「Qualcomm Snapdragon 8 Gen 3」砍成「Qualcomm Sna」；
+        // 这里只是未知品牌的兜底徽章，放宽到 24 字后仍由界面换行处理
+        else -> SocBrand("SoC", 0xFF546E7A, socName.take(24))
     }
 }
 
@@ -194,7 +196,7 @@ fun detectGpuSocBrand(gpuModel: String, gpuVendor: GpuVendor): SocBrand = when (
     GpuVendor.MALI -> SocBrand("ARM", 0xFF1B6AC7, "Mali")
     GpuVendor.POWERVR -> SocBrand("Imagination", 0xFF546E7A, "PowerVR")
     GpuVendor.XCLIPSE -> SocBrand("展锐", 0xFF00A0E9, "展锐")
-    GpuVendor.UNKNOWN -> SocBrand("SoC", 0xFF546E7A, gpuModel.take(12))
+    GpuVendor.UNKNOWN -> SocBrand("SoC", 0xFF546E7A, gpuModel.take(24))
 }
 
 private fun getGpuRenderer(): String {

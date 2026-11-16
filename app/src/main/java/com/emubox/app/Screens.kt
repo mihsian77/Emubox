@@ -5368,7 +5368,7 @@ private fun ReleaseChangelog(release: GithubRelease?) {
  * GitHub release 正文是 Markdown，这里不引入完整 Markdown 渲染库，
  * 只剥离常见标记（标题/粗体/代码/链接/图片/引用/列表前缀），保留纯文本与换行。
  */
-private fun cleanReleaseNotes(raw: String): String = raw
+private fun cleanReleaseNotes(raw: String): String = decodeHtmlEntities(stripHtmlForLog(raw))
     .replace(Regex("(?m)^\\s{0,3}#{1,6}\\s+"), "")
     .replace(Regex("!\\[([^]]*)]\\(\\s*[^)]*\\)"), "$1")
     .replace(Regex("\\[([^]]+)]\\(\\s*[^)]*\\)"), "$1")
@@ -6490,7 +6490,9 @@ fun DeviceScreen(
             .map { dl ->
                 DriverTarget(
                     id = dl.id,
-                    label = dl.fileName.substringBeforeLast('.').take(24),
+                    // 不砍到 24 字：`Turnip_Gen8_v26.0_R2_A6xx` 与 `_A7xx`
+                    // 的区别正好在尾部，砍完两个驱动在检测提示里长得一样
+                    label = dl.fileName.substringBeforeLast('.'),
                     packagePath = dl.filePath,
                 )
             }
@@ -8269,9 +8271,10 @@ private fun DriverDetectionList(
             if (dlA != null && dlB != null) {
                 val resA = adrenotoolsResults[idA]
                 val resB = adrenotoolsResults[idB]
-                val shortName: (String) -> String = { s ->
-                    if (s.length > 22) s.take(22) + "…" else s
-                }
+                // 原来在这里按 22 字砍一刀：`Turnip_Gen8_v26.0_R2_A6xx` 变成
+                // `Turnip_Gen8_v26.0_R2_A`，两个驱动的区别（A6xx/A7xx）正好被砍掉。
+                // CompareRow 里的 Text 本来就是自动换行，没有任何截断的必要。
+                val shortName: (String) -> String = { it }
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(20.dp)
@@ -11902,8 +11905,16 @@ private fun VersionPicker(
 }
 
 /** 更新日志按行拆分，过滤标题/链接/分隔线（同 t3st31 changelogLines） */
+/** 更新日志里的 HTML：很多项目直接发 HTML，不剥就是一堆 <p align="center"><img src=… */
+private fun stripHtmlForLog(raw: String): String = raw
+    .replace(Regex("<img[^>]*>", RegexOption.IGNORE_CASE), "")
+    .replace(Regex("<br\\s*/?>", RegexOption.IGNORE_CASE), "\n")
+    .replace(Regex("</(p|div|li|h[1-6])>", RegexOption.IGNORE_CASE), "\n")
+    .replace(Regex("<[^>]{1,300}>"), "")
+
 private fun changelogLines(body: String): List<String> =
-    body.split('\n')
+    decodeHtmlEntities(stripHtmlForLog(body))
+        .split('\n')
         .map { it.trim() }
         .filter {
             it.isNotBlank() &&

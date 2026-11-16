@@ -129,7 +129,18 @@ class ScreenRenderTest {
         } ?: emptyList(),
         hosts = o.optJSONArray("hosts")?.let { a ->
             (0 until a.length()).map { a.optString(it) }
-        } ?: emptyList()
+        } ?: emptyList(),
+        // 产物统计与安卓可用性：详情页顶部「发布文件」块全靠它，
+        // 夹具漏了就会显示「无」，与下面的文件列表自相矛盾
+        artifacts = o.optJSONObject("artifacts")?.let { a ->
+            EmulatorArtifacts(
+                apk = a.optInt("apk"), androidZip = a.optInt("android_zip"),
+                ipa = a.optInt("ipa"), libretroCore = a.optInt("libretro_core"),
+                desktop = a.optInt("desktop"), console = a.optInt("console"),
+                source = a.optInt("source"), total = a.optInt("total")
+            )
+        } ?: EmulatorArtifacts(),
+        androidReady = o.optBoolean("android_ready", false)
     )
 
     @Test
@@ -348,5 +359,59 @@ class ScreenRenderTest {
             }
         }
         save("08-long-names.png")
+    }
+
+    /**
+     * 详情页资产列表：下载列表的文件名是用户真正要读的东西。
+     * 这里用真实注册表条目 + 真实分片里的 releases，不造数据。
+     */
+    @Test
+    fun renderDetailAssets() {
+        // 挑一个「最新版给了多个同类 APK」的条目：这类最容易被截断误导
+        val entry = loadEmulators(400).firstOrNull { it.id == "ranggacasper-mostwanted-android" }
+            ?: loadEmulators(400).first { it.latestApkName.isNotBlank() }
+        val withReleases = entry.copy(releases = loadReleases(entry.id))
+        println("详情页条目: ${entry.id}，releases=${withReleases.releases.size}")
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        EmulatorDetailDialog(
+                            initialEntry = withReleases,
+                            onDismiss = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        save("09-detail-assets.png")
+    }
+
+    /** 从详情分片读 releases（结构与 build_index.py 输出一致；分片号不查表，直接找） */
+    private fun loadReleases(id: String): List<EmulatorRelease> {
+        var d: JSONObject? = null
+        for (shard in 0..7) {
+            val f = repoFile("emulator-details-$shard.json")
+            if (!f.exists()) continue
+            val details = JSONObject(f.readText()).optJSONObject("details") ?: continue
+            d = details.optJSONObject(id) ?: continue
+            break
+        }
+        val dd = d ?: return emptyList()
+        val arr = dd.optJSONArray("releases") ?: return emptyList()
+        return (0 until arr.length()).map { i ->
+            val r = arr.getJSONObject(i)
+            val assetsArr = r.optJSONArray("assets")
+            EmulatorRelease(
+                tag = r.optString("tag"),
+                date = r.optString("date"),
+                body = r.optString("body"),
+                assets = if (assetsArr == null) emptyList() else (0 until assetsArr.length()).map { j ->
+                    val a = assetsArr.getJSONObject(j)
+                    EmulatorAsset(name = a.optString("name"), size = a.optLong("size"), url = a.optString("url"))
+                }
+            )
+        }
     }
 }
