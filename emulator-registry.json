@@ -1,6 +1,6 @@
 {
   "version": "1.3.1",
-  "updated_at": "2026-11-16T09:44:37Z",
+  "updated_at": "2026-11-16T14:10:00Z",
   "emulators": [
     {
       "id": "termux",
@@ -27782,7 +27782,7 @@
     },
     {
       "id": "ref4ik-winlator-ref4ik-",
-      "name": "Winlator Ref4ik",
+      "name": "CronyX",
       "category": "Windows 兼容层",
       "section": "windows-compat",
       "family": "winlator",
@@ -27803,7 +27803,7 @@
       "hosts": [
         "android"
       ],
-      "status": "archived",
+      "status": "active",
       "needs_review": false,
       "method": "translation",
       "latest_tag": "V3",
@@ -27935,10 +27935,10 @@
       "watchers": 0,
       "downloads_total": 89123,
       "downloads_basis": "lifetime",
-      "download_url": "https://github.com/REF4IK/winlator-ref4ik-/releases",
+      "download_url": "https://github.com/REF4IK/CronyX-/releases",
       "download_kind": "github-releases",
       "distribution": "release-apk",
-      "repo_status": "archived",
+      "repo_status": "",
       "pushed_at": "2026-11-09T06:17:38Z",
       "summary": "Winlator is an Android application that lets you to run Windows (x86_64) applications with Wine and Box86/Box64.",
       "logo_source": "bundled",
@@ -54473,7 +54473,7 @@
       "hosts": [
         "android"
       ],
-      "status": "dead",
+      "status": "active",
       "needs_review": false,
       "method": "translation",
       "latest_tag": "v0.3.26",
@@ -54575,9 +54575,9 @@
       "pushed_at": "2026-11-15T22:36:48+01:00",
       "downloads_basis": "latest-lower-bound",
       "summary": "Play your own copies of Donkey Kong Bananza and Mario Kart World natively on Android.",
-      "repo_status": "404",
-      "dead": true,
-      "dead_reason": "2026-11-12 复核：GitHub 仓库 404。项目 2026-11-09/10 仍有提交（v0.1.5），疑因版权投诉下架，非开发者弃坑。",
+      "repo_status": "ok",
+      "dead": false,
+      "dead_reason": "",
       "artifacts": {
         "apk": 5,
         "android_zip": 0,

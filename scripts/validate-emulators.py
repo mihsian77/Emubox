@@ -11,13 +11,15 @@ REG = "emulator-registry.json"
 DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 "strato-emulator", "ryujinx-official",
                 "ovsky-sumi-emu", "skyline-official", "drastic",
-                # 2026-11-12：11-10 还在发 v0.1.5，随后仓库 404，判版权下架
-                "moceure-banananative",
                 # 2026-11-16：自动复核 GitHub 返回 404/451 后标记，仓库确已下架
                 "metroidprimeport", "odrannnn-metroidprime2port",
                 "prosperoeden-ps5", "afeimod-linbox", "eden-nx2-zuan",
                 "nextendonetwork-ryujinx-nextendo", "lichii-enhanced",
                 "torzu-emulator"}
+# 注意：这份清单是「已确认下架」的快照，不是判死规则。
+# moceure-banananative 曾在这里，但它的主仓在 Eden 自建 Gitea（git.eden-emu.dev），
+# 拿 GitHub 的 404 去判一个 Gitea 项目的死是错的：11-15 还发了 v0.3.26。
+# 加新条目之前先确认「这个 source 对应的平台」确实 404，别再跨平台判死。
 VALID_SOURCES = {"github", "gitea", "gitlab", "gitee", "notabug",
                  "official-web", "official-play", "community-archive"}
 BAD_EXT = {".json", ".md", ".txt", ".whp", ".whpx", ".zip", ".tar.gz", ".7z"}
