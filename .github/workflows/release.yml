@@ -82,6 +82,11 @@ jobs:
       - name: 编译 Release APK
         run: ./gradlew assembleRelease --no-daemon -PemuboxVersionCode=${{ steps.ver.outputs.code }} -PemuboxVersionName=${{ steps.ver.outputs.name }}
 
+      - name: 校验 APK 资源完整性
+        # 正式包与预发布包同一道闸：缺失被引用的字符串会在真机渲染时崩溃，
+        # 而编译与单测都发现不了（单测不经过 R8）。详见脚本头部说明。
+        run: python3 scripts/check-apk-resources.py
+
       - name: 重命名 APK
         run: |
           TAG="${{ steps.ver.outputs.name }}"

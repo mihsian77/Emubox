@@ -154,6 +154,11 @@ jobs:
         run: ./gradlew assembleDebug --no-daemon -PemuboxVersionCode=${{ steps.ver.outputs.code }} -PemuboxVersionName=${{ steps.ver.outputs.name }}
       - name: 编译 Release APK
         run: ./gradlew assembleRelease --no-daemon -PemuboxVersionCode=${{ steps.ver.outputs.code }} -PemuboxVersionName=${{ steps.ver.outputs.name }}
+      - name: 校验 APK 资源完整性
+        # 闸门：代码里每个 R.string 引用都必须能在包内找到。R8 内联常量后资源收缩器
+        # 会误判可达性、静默删掉仍在使用的字符串；此类缺陷编译与单测都拦不住
+        # （单测跑 debug 变体），只会在真机渲染时崩，必须在发布前由脚本兜住。
+        run: python3 scripts/check-apk-resources.py
       - name: 上传 APK 产物
         uses: actions/upload-artifact@v4
         with:
