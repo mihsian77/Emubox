@@ -12617,8 +12617,11 @@ private fun EmulatorCard(
                 )
             }
             // 卡片上原来放的是 APK 文件名（"Winlator_11.2.apk"），既占一行又被截断，
-            // 用户看不出什么。换成 README 摘要，一眼知道这东西是干什么的。
-            val cardBlurb = entry.summary.ifBlank { entry.description }
+            // 用户看不出什么。换成一句话简介，一眼知道这东西是干什么的。
+            // 顺序是「中文简介优先、上游原文兜底」：description 是我们按统一标准写的
+            // 中文一句话，summary 是上游 README 首段（多为英文）。之前反着来，
+            // 结果七成卡片在给中文用户看英文原句。
+            val cardBlurb = entry.description.ifBlank { entry.summary }
             if (cardBlurb.isNotBlank()) {
                 Spacer(Modifier.height(3.dp))
                 Text(
@@ -13385,9 +13388,8 @@ internal fun EmulatorDetailDialog(
                         color = MaterialTheme.colorScheme.primary
                     )
                 }
-                // 优先展示 README 提炼的摘要（说清「这是什么、能跑什么」），
-                // 没有再用作者在仓库 About 里写的原文
-                val blurb = entry.summary.ifBlank { entry.description }
+                // 中文简介优先，上游原文兜底（理由同列表卡片）
+                val blurb = entry.description.ifBlank { entry.summary }
                 if (blurb.isNotBlank()) {
                     Text(
                         blurb,
