@@ -13155,10 +13155,8 @@ private fun EmulatorListRow(
                     entry.platforms.take(3).forEach { p ->
                         emulatorPlatformLabel(p).takeIf { it.isNotBlank() }?.let { add(it) }
                     }
-                    if (entry.hosts.isNotEmpty() && "android" !in entry.hosts) {
-                        // 平台简标（安卓/桌面）已经单独用带色徽章表达，
-                        // 这里不再拼一遍 Windows/macOS/Linux 占位置。
-                    }
+                    // 宿主系统不再在这里拼：平台简标（安卓/桌面）已经用带色徽章
+                    // 挂在同一行最左边，再拼一遍 Windows/macOS/Linux 只是重复。
                     entry.topics
                         .filter { t -> t.length in 2..18 && t.lowercase() !in EMULATOR_TOPIC_NOISE }
                         .take(2)
@@ -13413,7 +13411,10 @@ internal fun EmulatorDetailDialog(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            "已停止维护：${entry.deadReason.ifBlank { "仓库已失效/被移除" }}",
+                            appString(
+                                R.string.emulator_dead_banner,
+                                entry.deadReason.ifBlank { appString(R.string.emulator_dead_unknown) }
+                            ),
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onErrorContainer
@@ -13428,6 +13429,9 @@ internal fun EmulatorDetailDialog(
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f)
                     )
+                    // 详情页是全宽，名次和平台标签直接跟在标题后面，和卡片口径一致
+                    EmulatorRankBadge(entry.rank, Modifier.padding(start = 6.dp))
+                    EmulatorHostBadge(entry.hosts, Modifier.padding(start = 6.dp))
                     if (entry.official) {
                         Spacer(Modifier.width(6.dp))
                         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primary) {
