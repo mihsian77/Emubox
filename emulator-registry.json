@@ -36038,7 +36038,7 @@
       "repo_url": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita",
       "homepage": "https://play.google.com/store/apps/details?id=org.mupen64plusae.v3.fzurita",
       "description": "Mupen64Plus 的 Android 前端，模拟核心开源。",
-      "logo_url": "",
+      "logo_url": "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/icons/m64plusfz.png",
       "official": false,
       "source": "official-web",
       "kind": "emulator",
@@ -36094,7 +36094,8 @@
       "android_ready": false,
       "platform_families": [
         "nintendo"
-      ]
+      ],
+      "logo_source": "owner-avatar"
     },
     {
       "id": "malibridge",
@@ -60444,7 +60445,7 @@
       "repo_url": "https://notabug.org/litucks/torzu",
       "homepage": "https://notabug.org/litucks/torzu",
       "description": "任天堂 Switch 模拟器，主仓位于 Tor 网络，不发布二进制。",
-      "logo_url": "",
+      "logo_url": "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/icons/torzu-emulator.png",
       "official": true,
       "source": "notabug",
       "kind": "emulator",
@@ -60507,7 +60508,8 @@
       "dead": true,
       "dead_auto": true,
       "dead_reason": "仓库已删除或转为私有（GitHub 404）",
-      "download_url": ""
+      "download_url": "",
+      "logo_source": "owner-avatar"
     },
     {
       "id": "touchhle",
