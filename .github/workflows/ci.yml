@@ -26,6 +26,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: 运行 i18n 校验
         run: python3 scripts/check-i18n.py
+      # 文案规范：description 必须是中文一句话，不得夹带星数/日期/审核笔记；
+      # note 只允许写「为什么没有下载按钮」。规则见 CONTRIBUTING.md。
+      - name: 检查项目文案规范
+        run: python3 scripts/check-copy.py
 
   lint:
     name: Lint 与单元测试
