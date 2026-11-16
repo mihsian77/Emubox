@@ -13494,6 +13494,19 @@ private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
+                    // 卡片上的「下载」直接给 latest_apk_url，而它是脚本从所有版本里
+                    // 挑出来的，16 条挑到的不是最新版（openmsx 挑到 0.15，最新 22.0）。
+                    // 详情页必须说清这个包来自哪一版，否则用户以为装的是新版。
+                    val apkTag = entry.latestApkTag
+                    if (apkTag.isNotBlank() && apkTag != entry.latestTag) {
+                        Text(
+                            softBreakLong("下载按钮提供的是 $apkTag 的安装包，不是最新的 ${entry.latestTag}"),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.tertiary,
+                            maxLines = 3,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             }
         }

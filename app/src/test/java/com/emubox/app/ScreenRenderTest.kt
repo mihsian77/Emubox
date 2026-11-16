@@ -113,6 +113,7 @@ class ScreenRenderTest {
         latestApkUrl = o.optString("latest_apk_url"),
         latestApkName = o.optString("latest_apk_name"),
         latestApkSize = o.optLong("latest_apk_size"),
+        latestApkTag = o.optString("latest_apk_tag"),
         pushedAt = o.optString("pushed_at"),
         stars = o.optLong("stars"),
         forks = o.optLong("forks"),

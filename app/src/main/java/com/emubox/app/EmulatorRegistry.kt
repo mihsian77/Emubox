@@ -134,6 +134,8 @@ data class EmulatorEntry(
     val latestApkUrl: String = "",
     val latestApkName: String = "",
     val latestApkSize: Long = 0L,
+    /** latestApkUrl 所属的版本 tag：它不一定是 latestTag（脚本从所有版本里挑能装的） */
+    val latestApkTag: String = "",
     val pushedAt: String = "",
     val stars: Long = 0L,
     val forks: Long = 0L,
@@ -301,6 +303,7 @@ object EmulatorRegistryRepository {
                         latestApkUrl = obj.optString("latest_apk_url").ifBlank { firstApk?.optString("url").orEmpty() },
                         latestApkName = obj.optString("latest_apk_name").ifBlank { firstApk?.optString("name").orEmpty() },
                         latestApkSize = obj.optLong("latest_apk_size", 0L).takeIf { it > 0 } ?: firstApk?.optLong("size", 0L) ?: 0L,
+                        latestApkTag = obj.optString("latest_apk_tag"),
                         pushedAt = obj.optString("pushed_at"),
                         // 字段名统一后只认 logo_url；不再回退作者头像，
                         // 空值交给 UI 的字母牌（见 ProjectAvatar）。
