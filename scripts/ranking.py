@@ -52,9 +52,12 @@ def parse_dt(s):
     if not s:
         return None
     try:
-        return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+        d = datetime.fromisoformat(str(s).replace("Z", "+00:00"))
     except ValueError:
         return None
+    # 上游 latest_date 有不带时区的写法（如 2026-11-15T10:30:00）。naive 与
+    # now()（aware）相减会抛 TypeError，统一按 UTC 补时区。
+    return d if d.tzinfo is not None else d.replace(tzinfo=timezone.utc)
 
 
 def days_since(s):
@@ -173,7 +176,8 @@ def attach_deltas(rows, hist):
 
     oldest_date, oldest = hist[0]
     latest_date, latest = hist[-1]
-    span = (datetime.fromisoformat(latest_date) - datetime.fromisoformat(oldest_date)).days
+    d_latest, d_oldest = parse_dt(latest_date), parse_dt(oldest_date)
+    span = (d_latest - d_oldest).days if (d_latest and d_oldest) else 0
     for r in rows:
         delta = 0
         for mid in r["member_ids"]:

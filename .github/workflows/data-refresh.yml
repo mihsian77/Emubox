@@ -8,6 +8,12 @@ name: 每日数据刷新（合并提交）
 #
 # 为什么每步 continue-on-error：单点失败（比如 Playwright 装不上、某个站点临时 502）
 # 不能连累其他数据，最后统一提交已成功的那部分。
+#
+# ⚠ 2026-11 修复：原先第 2 步把 6 个脚本串在同一个 `run: |` 里，GitHub Actions 用
+# `bash -e` 执行，第一个脚本崩溃后同 block 内后续脚本全部不执行；加上整步
+# continue-on-error: true，工作流一直显示绿色，数据静默冻结了 11 天都没人发现。
+# 现在改为：一个脚本一个 step（崩溃不相互连累），并在最后用「检查刷新结果」把任一
+# 步骤的失败升级为 job 失败（红色 + 报错信息），数据陈旧不再无声无息。
 
 on:
   schedule:
@@ -39,33 +45,60 @@ jobs:
         with:
           node-version: "22"
 
-      # 1) 榜单快照必须最先跑：下载量历史增量补不回来
+      # ── 1) 榜单快照必须最先跑：下载量历史增量补不回来 ──────────────
       - name: 榜单快照
+        id: ranking
         continue-on-error: true
         run: python3 scripts/ranking.py
 
-      # 2) 驱动 / 模拟器 / 排行 / 配置推荐
-      - name: 刷新驱动与模拟器元数据
+      # ── 2) 驱动 / 模拟器 / 排行 / 配置推荐（拆成独立 step）──────────
+      - name: 刷新驱动源
+        id: registry
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python3 scripts/refresh-registry.py
-          python3 scripts/refresh-ranking.py
-          python3 scripts/refresh-emulator-registry.py
-          python3 scripts/aggregate-recipes.py --clone
-          # registry 变了必须重建索引，否则 App 首屏还是旧数据
-          python3 scripts/build_index.py
-          # driver-registry 变了也要重刷源说明，否则 profile-check 对账必挂
-          python3 scripts/build_source_profiles.py
+        run: python3 scripts/refresh-registry.py
 
-      # 3) EmuReady 目录（仅标准库）
+      - name: 刷新模拟器排行榜
+        id: ranking_refresh
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/refresh-ranking.py
+
+      - name: 刷新模拟器元数据
+        id: emulator_registry
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/refresh-emulator-registry.py
+
+      - name: 聚合配置推荐
+        id: recipes
+        continue-on-error: true
+        run: python3 scripts/aggregate-recipes.py --clone
+
+      # registry 变了必须重建索引，否则 App 首屏还是旧数据
+      - name: 重建索引与离线兜底
+        id: build_index
+        continue-on-error: true
+        run: python3 scripts/build_index.py
+
+      # driver-registry 变了也要重刷源说明，否则 profile-check 对账必挂
+      - name: 重建源说明
+        id: source_profiles
+        continue-on-error: true
+        run: python3 scripts/build_source_profiles.py
+
+      # ── 3) EmuReady 目录（仅标准库）─────────────────────────────
       - name: 刷新 EmuReady 目录
+        id: emuready
         continue-on-error: true
         run: python3 scripts/refresh-emuready.py
 
-      # 4) 跑分数据
+      # ── 4) 跑分数据 ────────────────────────────────────────────
       - name: 安装 Playwright 与 Chromium
+        id: playwright
         continue-on-error: true
         run: |
           npm init -y
@@ -73,29 +106,75 @@ jobs:
           sudo npx playwright install-deps chromium
           npx playwright install chromium
 
-      - name: 抓取并解析跑分
+      - name: 抓取跑分
+        id: bench_fetch
         continue-on-error: true
         run: |
           node scripts/bench/fetch_antutu.js
           node scripts/bench/fetch_ludashi.js
+
+      - name: 解析跑分
+        id: bench_parse
+        continue-on-error: true
+        run: |
           python3 scripts/bench/parse_bench.py
           python3 scripts/bench/check_bench.py
           python3 scripts/bench/build_meta.py
+
+      - name: 抓取芯片规格
+        id: soc_fetch
+        continue-on-error: true
+        run: |
           node scripts/bench/fetch_soc_specs.js
           python3 scripts/bench/build_specs.py
           python3 scripts/soc/build_master.py --fetch
-          # 可玩库矩阵的输入是 soc_master，必须紧跟其后重建；
-          # 否则芯片库每天更新、可玩库分数停在生成那天
-          python3 scripts/build_playable.py
+
+      # 可玩库矩阵的输入是 soc_master，必须紧跟其后重建；
+      # 否则芯片库每天更新、可玩库分数停在生成那天
+      - name: 重建可玩库矩阵
+        id: playable
+        continue-on-error: true
+        run: python3 scripts/build_playable.py
 
       - name: 同步内置数据到 assets
+        id: sync_assets
         continue-on-error: true
         run: |
           mkdir -p app/src/main/assets/bench
-          cp bench-data/antutu_soc.json app/src/main/assets/bench/antutu_soc.json
-          cp bench-data/ludashi.json app/src/main/assets/bench/ludashi.json
-          cp bench-data/manifest.json app/src/main/assets/bench/manifest.json
-          cp bench-data/soc_specs.json app/src/main/assets/bench/soc_specs.json
+          for f in antutu_soc ludashi manifest soc_specs; do
+            if [ -f "bench-data/$f.json" ]; then
+              cp "bench-data/$f.json" "app/src/main/assets/bench/$f.json"
+            else
+              echo "::warning::bench-data/$f.json 不存在，跳过"
+            fi
+          done
+
+      # ── 5) 汇总检查：任一步骤失败则 job 标红（修复「静默失败」）────
+      - name: 检查刷新结果
+        if: always()
+        run: |
+          failed=""
+          check() { if [ "$2" = "failure" ]; then failed="$failed $1"; fi; }
+          check 榜单快照          "${{ steps.ranking.outcome }}"
+          check 刷新驱动源        "${{ steps.registry.outcome }}"
+          check 刷新排行榜        "${{ steps.ranking_refresh.outcome }}"
+          check 刷新模拟器元数据  "${{ steps.emulator_registry.outcome }}"
+          check 聚合配置推荐      "${{ steps.recipes.outcome }}"
+          check 重建索引          "${{ steps.build_index.outcome }}"
+          check 重建源说明        "${{ steps.source_profiles.outcome }}"
+          check 刷新EmuReady      "${{ steps.emuready.outcome }}"
+          check 安装Playwright    "${{ steps.playwright.outcome }}"
+          check 抓取跑分          "${{ steps.bench_fetch.outcome }}"
+          check 解析跑分          "${{ steps.bench_parse.outcome }}"
+          check 抓取芯片规格      "${{ steps.soc_fetch.outcome }}"
+          check 重建可玩库        "${{ steps.playable.outcome }}"
+          check 同步assets        "${{ steps.sync_assets.outcome }}"
+          if [ -n "$failed" ]; then
+            echo "::error::以下刷新步骤失败，数据可能陈旧：$failed"
+            echo "刷新失败步骤：$failed" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "全部刷新步骤成功" >> "$GITHUB_STEP_SUMMARY"
 
       - name: 有变化则合并提交一次
         if: always()
