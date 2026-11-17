@@ -1,0 +1,45 @@
+name: 官网发布
+
+# 只发 docs/。原来的 Pages 走「main 分支 /docs 目录」模式，这个模式没有路径过滤：
+# 改一行 Kotlin 也会重建一次站点，一年多下来部署记录里九成以上和 docs/ 无关。
+# 换成 Actions 发布后，触发条件写在 paths 里，部署记录只在官网真的变了才增加。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时刻只允许一个发布；不取消进行中的那次，避免站点停在半发布状态
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: 发布 docs/
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 打包站点
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: 发布
+        id: deployment
+        uses: actions/deploy-pages@v4
