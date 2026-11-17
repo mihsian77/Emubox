@@ -42,7 +42,7 @@ class DownloadOriginTest {
 
     @Test
     fun `raw githubusercontent 能解析`() {
-        val o = parse("https://raw.githubusercontent.com/mihsian77/Emubox/main/driver-registry.json")
+        val o = parse("https://raw.githubusercontent.com/mihsian77/Emubox/main/data/driver-registry.json")
         assertEquals("mihsian77", o?.owner)
         assertEquals("Emubox", o?.repo)
         assertEquals("main", o?.version)

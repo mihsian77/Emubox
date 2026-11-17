@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
-/** 新闻条目（news-data.json 由 CI 每日刷新；官方组件/运行库条目带 type 字段） */
+/** 新闻条目（data/news-data.json 由 CI 每日刷新；官方组件/运行库条目带 type 字段） */
 data class NewsItem(
     val id: String,
     val title: String,
@@ -34,12 +34,12 @@ data class NewsItem(
         } }
 }
 
-/** 新闻仓库：远程加载 news-data.json（GitHub raw + jsDelivr），失败兜底内置离线副本。
+/** 新闻仓库：远程加载 data/news-data.json（GitHub raw + jsDelivr），失败兜底内置离线副本。
  *  离线副本由 scripts/refresh-news.py 与 CI 同步，App 无网也能展示最近一期。 */
 object NewsRepository {
 
     private const val NEWS_URL_PRIMARY =
-        "https://raw.githubusercontent.com/mihsian77/Emubox/main/news-data.json"
+        "https://raw.githubusercontent.com/mihsian77/Emubox/main/data/news-data.json"
     private const val OFFLINE_ASSET = "news_offline.json"
 
     @Volatile

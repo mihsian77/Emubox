@@ -62,7 +62,7 @@ object SourceProfiles {
         return out
     }
 
-    /** 驱动/组件源（按 catalog.json 与 driver-registry.json 的源 id） */
+    /** 驱动/组件源（按 catalog.json 与 data/driver-registry.json 的源 id） */
     fun ofSource(context: Context, id: String?): SourceProfile? {
         if (id.isNullOrBlank()) return null
         ensureLoaded(context)

@@ -25,7 +25,7 @@ data class DriverRegistryEntry(
     val packageFormat: String,      // adpkg / zip / so / magisk / wcp
     val maturity: String,           // stable / beta / alpha / ci / experimental
     val stars: Int,
-    /** 仓库最近推送时间（epoch ms，由 driver-registry.json 内置，CI 每日刷新） */
+    /** 仓库最近推送时间（epoch ms，由 data/driver-registry.json 内置，CI 每日刷新） */
     val updatedAt: Long = 0L,
     /** 最新 release 版本号（CI 每日刷新，驱动更新提示数据源） */
     val latestTag: String = "",
@@ -53,7 +53,7 @@ data class DriverMatchResult(
 )
 
 /**
- * 驱动注册表仓库：远程加载 driver-registry.json，根据设备 GPU 自动匹配。
+ * 驱动注册表仓库：远程加载 data/driver-registry.json，根据设备 GPU 自动匹配。
  *
  * 修改原因：上游硬编码驱动源且只有 Adreno，新增 30+ 仓库（含 Mali PanVK 全系列），
  *           需要结构化注册表 + 自动匹配，用户不用自己判断该下哪个驱动。
@@ -63,7 +63,7 @@ data class DriverMatchResult(
 object DriverRegistryRepository {
 
     private const val REGISTRY_URL_PRIMARY =
-        "https://raw.githubusercontent.com/mihsian77/Emubox/main/driver-registry.json"
+        "https://raw.githubusercontent.com/mihsian77/Emubox/main/data/driver-registry.json"
     private const val ASSETS_REGISTRY = "driver-registry.json"
 
     /** 成熟度排序权重，越小越优先 */
@@ -98,7 +98,7 @@ object DriverRegistryRepository {
         "G925" to ("valhall-v10" to "CSF")
     )
 
-    /** 网络不可用时的全量兜底：读 App 内置 driver-registry.json（39 源），
+    /** 网络不可用时的全量兜底：读 App 内置 data/driver-registry.json（39 源），
      *  避免远程拉取失败后只剩几个硬编码源（用户实测"驱动仓库大量丢失"根因）。 */
     private var cachedAssets: List<DriverRegistryEntry>? = null
     fun loadFromAssets(context: Context?): List<DriverRegistryEntry>? {

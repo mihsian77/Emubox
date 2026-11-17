@@ -3236,7 +3236,7 @@ private fun DeviceGuideComponentRec(deviceInfo: DeviceInfo?) {
     val vendor = deviceInfo?.gpuVendor
     val isAdreno = vendor == GpuVendor.ADRENO
     val isMali = vendor == GpuVendor.MALI
-    // 真实驱动匹配：driver-registry.json 按当前 GPU 评分排序，优先展示推荐条目
+    // 真实驱动匹配：data/driver-registry.json 按当前 GPU 评分排序，优先展示推荐条目
     val registryDrivers = remember(deviceInfo) {
         DriverRegistryRepository.loadFromAssets(ctx)
             ?.let { DriverRegistryRepository.match(deviceInfo, it) }
@@ -14993,7 +14993,7 @@ private fun RelatedPartitionRow(current: String, onNavigate: (String) -> Unit) {
 
 /* ─────────────────────────── 资讯总入口 ─────────────────────────── */
 
-// news-data.json 实际只有这 5 类。历史上还有 eco / general 两个值，
+// data/news-data.json 实际只有这 5 类。历史上还有 eco / general 两个值，
 // 现已被 device / tech 取代，不放进筛选行（放进去只会是 0 条的死 chip）。
 private val NEWS_FEED_CATEGORIES = listOf("emulator", "driver", "component", "device", "tech")
 
@@ -15042,7 +15042,7 @@ private fun newsDayLabel(dayStartMs: Long): String {
 }
 
 /** 资讯总入口：原来设备 / 组件 / 运行库 / 模拟器四处各揣一份新闻，
- *  同一份 news-data.json 被加载四次、按 category 切成四段，谁也看不全。
+ *  同一份 data/news-data.json 被加载四次、按 category 切成四段，谁也看不全。
  *  合并成一个一级分区：分类 chips（真实 category）+ 类型 chips（Turnip / Wine 等）+ 按天分组。 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

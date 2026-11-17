@@ -36,7 +36,7 @@ import java.io.File
 
 /**
  * 七个分区的实况预览：每个分区一张图，数据全部来自仓库里的真实清单
- * （catalog.json / 各源 contents.json / GitHub releases / emulator-registry.json），
+ * （catalog.json / 各源 contents.json / GitHub releases / data/emulator-registry.json），
  * 不编造条目。设备参数取一加 13（PJZ110 / 骁龙 8 Elite / Adreno 830 / 16GB / Android 15）。
  *
  * 说明：JVM 上无法加载 Vulkan 原生库，也拿不到真实下载目录与真实网络实时数据，
@@ -67,7 +67,7 @@ class PartitionPreviewTest {
         javaClass.classLoader!!.getResourceAsStream("preview/$name")!!
             .bufferedReader().readText()
 
-    /** 仓库根目录下的数据文件（emulator-registry.json 在仓库根，不在 assets） */
+    /** 仓库根目录下的数据文件（data/emulator-registry.json 在仓库根，不在 assets） */
     /** assets/icons/<id>.webp 存在就用本地文件，模拟 App 的「本地图标优先」 */
     private fun localIconOr(id: String, remote: String): String {
         val f = repoFile("app/src/main/assets/icons/$id.webp")
@@ -224,7 +224,7 @@ class PartitionPreviewTest {
     }
 
     private fun emulatorEntries(limit: Int): List<EmulatorEntry> {
-        val text = repoFile("emulator-registry.json").readText().trimStart()
+        val text = repoFile("data/emulator-registry.json").readText().trimStart()
         val arr = if (text.startsWith("[")) {
             JSONArray(text)
         } else {

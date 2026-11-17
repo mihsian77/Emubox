@@ -14,17 +14,17 @@ import java.util.concurrent.TimeUnit
 // 首屏只拉索引（约 340KB）。完整 registry 3.2MB，91% 是 releases，
 // 那是点进详情页才需要的东西，拆到 emulator-details-N.json 按需取。
 const val DEFAULT_EMULATOR_INDEX_URL =
-    "https://raw.githubusercontent.com/mihsian77/Emubox/main/emulator-index.json"
+    "https://raw.githubusercontent.com/mihsian77/Emubox/main/data/emulator-index.json"
 
 const val DEFAULT_EMULATOR_DETAILS_URL =
-    "https://raw.githubusercontent.com/mihsian77/Emubox/main/emulator-details-%d.json"
+    "https://raw.githubusercontent.com/mihsian77/Emubox/main/data/emulator-details-%d.json"
 
 /** 完整注册表 URL：仅作兼容保留（老版本客户端、外部脚本仍可能引用） */
 const val DEFAULT_EMULATOR_REGISTRY_URL =
-    "https://raw.githubusercontent.com/mihsian77/Emubox/main/emulator-registry.json"
+    "https://raw.githubusercontent.com/mihsian77/Emubox/main/data/emulator-registry.json"
 
 const val DEFAULT_EMULATOR_RANKING_URL =
-    "https://raw.githubusercontent.com/mihsian77/Emubox/main/emulator-ranking.json"
+    "https://raw.githubusercontent.com/mihsian77/Emubox/main/data/emulator-ranking.json"
 
 private const val OFFLINE_ASSET = "emulator-offline.json"
 
@@ -623,7 +623,7 @@ object EmulatorInsightsRepository {
         )
     }
 
-    /** 从远程 emulator-ranking.json 拉取 insights（与排行同一文件），失败返回空 */
+    /** 从远程 data/emulator-ranking.json 拉取 insights（与排行同一文件），失败返回空 */
     suspend fun fetchRemoteInsights(): EmulatorInsights = withContext(Dispatchers.IO) {
         runCatching {
             val body = RemoteData.fetchText(DEFAULT_EMULATOR_RANKING_URL) ?: return@runCatching null

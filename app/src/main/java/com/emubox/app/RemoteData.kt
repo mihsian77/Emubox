@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
  * 现在改成多通道竞速：同时向两个镜像发起请求，谁先返回完整响应就用谁，
  * 并把胜出的通道记住，下次优先走它。
  *
- * 实测（2026-11，news-data.json 680KB）：
+ * 实测（2026-11，data/news-data.json 680KB）：
  *   ghfast.top          2.8s  200
  *   gh-proxy.org        4.0s  200
  *   cdn.jsdelivr.net    5.1s  200

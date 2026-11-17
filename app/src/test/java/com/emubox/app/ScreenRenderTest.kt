@@ -70,7 +70,7 @@ class ScreenRenderTest {
 
     /** 把真实注册表 JSON 转成页面需要的数据对象 */
     private fun loadEmulators(limit: Int): List<EmulatorEntry> {
-        val text = repoFile("emulator-registry.json").readText()
+        val text = repoFile("data/emulator-registry.json").readText()
         val trimmed = text.trimStart()
         val arr = if (trimmed.startsWith("[")) {
             JSONArray(trimmed)
@@ -84,7 +84,7 @@ class ScreenRenderTest {
 
     /** 社区排行：App 里由 MainActivity 合并，截图测试照同一规则补名次，否则徽章永远是空的 */
     private fun loadRanking(): Map<String, Int> {
-        val f = repoFile("emulator-ranking.json")
+        val f = repoFile("data/emulator-ranking.json")
         if (!f.exists()) return emptyMap()
         val arr = runCatching { JSONObject(f.readText()).optJSONArray("emulators") }.getOrNull()
             ?: return emptyMap()
@@ -554,7 +554,7 @@ class ScreenRenderTest {
     private fun loadReleases(id: String): List<EmulatorRelease> {
         var d: JSONObject? = null
         for (shard in 0..7) {
-            val f = repoFile("emulator-details-$shard.json")
+            val f = repoFile("data/emulator-details-$shard.json")
             if (!f.exists()) continue
             val details = JSONObject(f.readText()).optJSONObject("details") ?: continue
             d = details.optJSONObject(id) ?: continue
