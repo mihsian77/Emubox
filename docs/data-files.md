@@ -6,11 +6,11 @@
 
 | 文件 | 谁读 | 说明 |
 | --- | --- | --- |
-| `emulator-index.json` | App `EmulatorRegistry` | **首屏索引**，约 500KB，全部条目的卡片字段 + `detail_shard` |
+| `data/emulator-index.json` | App `EmulatorRegistry` | **首屏索引**，约 500KB，全部条目的卡片字段 + `detail_shard` |
 | `emulator-details-0..7.json` | App `EmulatorRegistry` | 详情分片，进详情页只拉该条目所在那一片 |
-| `emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（releases 已剥离，只剩列表字段） |
-| `news-data.json` | App `NewsRepository` | 新闻，CI 每日两次刷新 |
-| `driver-registry.json` | App `DriverRegistryRepository` | 驱动源注册表 |
+| `data/emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（releases 已剥离，只剩列表字段） |
+| `data/news-data.json` | App `NewsRepository` | 新闻，CI 每日两次刷新 |
+| `data/driver-registry.json` | App `DriverRegistryRepository` | 驱动源注册表 |
 | `app/src/main/assets/source-profiles.json` | App `SourceProfiles` | 驱动/组件源的「给谁用 · 怎么装 · 注意」文案 |
 
 加速节点源清单 `sources.json` 由上游 [EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP) 维护，不在本仓库。
@@ -18,7 +18,7 @@
 `app/src/main/assets/emulator-offline.json` 是索引的离线副本（约 500KB），
 首启无网时用它出首屏，不再在 Kotlin 里手写内置列表。
 
-**为什么不直接用 `emulator-registry.json`**：4MB 出头，其中绝大部分是 `releases`
+**为什么不直接用 `data/emulator-registry.json`**：4MB 出头，其中绝大部分是 `releases`
 （每个版本 × 每个资产）。首屏只需要卡片上的二十来个字段，却要先把整包下完。
 拆开后首屏流量降到索引大小（-88% 左右）。三份文件必须同步生成，
 CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
@@ -27,9 +27,9 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 
 | 文件 | 谁读 | 说明 |
 | --- | --- | --- |
-| `emulator-registry.json` | 构建脚本 | 全量清单（3.2MB），`build_index.py` 的输入 |
-| `ranking.json` + `ranking-history/` | `scripts/gen_ranking_board.py` | 家族聚合榜，网页榜单源 |
-| `emulator-retired.json` | 人工 | 已退役模拟器记录（含复核理由） |
+| `data/emulator-registry.json` | 构建脚本 | 全量清单（3.2MB），`build_index.py` 的输入 |
+| `data/ranking.json` + `data/ranking-history/` | `scripts/gen_ranking_board.py` | 家族聚合榜，网页榜单源 |
+| `data/emulator-retired.json` | 人工 | 已退役模拟器记录（含复核理由） |
 | `catalog/source-profiles.json` | `build_source_profiles.py` | 驱动/组件说明的手写文案（可直接改，改完重跑脚本） |
 
 ## 审计产物（不入库）
@@ -47,7 +47,7 @@ CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 
 ## 字段命名约定
 
-一律 snake_case，别名不再接受（`emulator-registry.json` / `emulator-ranking.json`）：
+一律 snake_case，别名不再接受（`data/emulator-registry.json` / `data/emulator-ranking.json`）：
 
 | 现行 | 已废 |
 | --- | --- |

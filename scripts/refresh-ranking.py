@@ -5,7 +5,7 @@
 主源 the412banner/emulator-ranking（字段最全：logo/homepage/stars/description/pushedAt），
 t3st31/Ranking-Emulators-Download 补其独有条目。两个站均为静态 GitHub Pages JSON，每日自动更新。
 排除 Drivers 分类（驱动走驱动专区，不混入模拟器）。
-输出：仓库根目录 emulator-ranking.json（条目列表字段；releases 只留给 registry 未收录的独有条目）。
+输出：仓库根目录 data/emulator-ranking.json（条目列表字段；releases 只留给 registry 未收录的独有条目）。
 """
 import json, os, sys, time, urllib.request
 
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import RELEASE_BODY_LIMIT, clip_body  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "emulator-ranking.json")
+OUT = os.path.join(ROOT, "data/emulator-ranking.json")
 
 T412 = "https://the412banner.github.io/emulator-ranking/data/rankings.json"
 T412_CACHE = "/tmp/t412_rankings.json"  # 本地缓存（4.7MB 大文件，云 IP 直连易中断；存在且合法时优先）
@@ -168,7 +168,7 @@ def main():
         # 降级：t331 站大文件（14MB）云 IP 直连易中断，用上次产物的 t331 独有条目兜底
         # （t331 独有 = 上次快照里 repo 不在 t412 的条目，多为已封禁存档，note 已标注）
         try:
-            old = json.load(open(os.path.join(ROOT, "emulator-ranking.json"), encoding="utf-8"))
+            old = json.load(open(os.path.join(ROOT, "data/emulator-ranking.json"), encoding="utf-8"))
             old_entries = old.get("emulators") or []
             t412_repos = {e.get("repo", "").lower() for e in (t412.get("results") or [])}
             t331r = [e for e in old_entries if e.get("repo", "").lower() not in t412_repos]
@@ -396,12 +396,12 @@ def main():
     # 404 项目重新加回列表。
     try:
         reg_ids = {e["id"] for e in json.load(
-            open(os.path.join(ROOT, "emulator-registry.json"), encoding="utf-8"))["emulators"]}
+            open(os.path.join(ROOT, "data/emulator-registry.json"), encoding="utf-8"))["emulators"]}
     except Exception:
         reg_ids = set()
     try:
         retired_ids = {e.get("id") for e in json.load(
-            open(os.path.join(ROOT, "emulator-retired.json"), encoding="utf-8"))}
+            open(os.path.join(ROOT, "data/emulator-retired.json"), encoding="utf-8"))}
     except Exception:
         retired_ids = set()
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""把 desc_overrides.py 里的统一简介写回 emulator-registry.json。
+"""把 desc_overrides.py 里的统一简介写回 data/emulator-registry.json。
 
 只改 description 字段（卡片与详情页展示的文案），summary 保留上游原文不动——
 它仍是「这句话是从哪来的」的凭证，也是新条目的翻译底稿。
@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from desc_overrides import OVERRIDES  # noqa: E402
 
-REGISTRY = os.path.join(ROOT, "emulator-registry.json")
+REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 
 
 def main():

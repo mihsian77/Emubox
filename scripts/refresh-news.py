@@ -1,4 +1,4 @@
-"""刷新 news-data.json：资讯源（模拟器/生态/泛科技）+ 组件与运行库官方 GitHub releases。
+"""刷新 data/news-data.json：资讯源（模拟器/生态/泛科技）+ 组件与运行库官方 GitHub releases。
 
 数据源：
 - 资讯 RSS：仅供 emulator / eco / general。该源几乎不报道 DXVK/Wine 类生态，
@@ -24,7 +24,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(REPO_ROOT, "news-data.json")
+OUT = os.path.join(REPO_ROOT, "data/news-data.json")
 OFFLINE = os.path.join(REPO_ROOT, "app", "src", "main", "assets", "news_offline.json")
 UA = "EmuHub-CN news-refresh/1.3 (+https://github.com/mihsian77/EmuHub-CN)"
 
@@ -297,7 +297,7 @@ OFFICIAL_SOURCES = [
     ("butilly/box64", "component", "WOWBox64", "tag", "WOWBox64"),
     ("ValveSoftware/Proton", "component", "Proton", "release", "Proton"),
     ("GloriousEggroll/proton-ge-custom", "component", "Proton", "release", "GE-Proton"),
-    # 驱动官方源（driver 分类专属；与 driver-registry.json 同名仓库对齐）
+    # 驱动官方源（driver 分类专属；与 data/driver-registry.json 同名仓库对齐）
     ("K11MCH1/AdrenoToolsDrivers", "driver", "K11MCH1 AdrenoTools", "release", "K11MCH1 AdrenoTools"),
     ("StevenMXZ/Adrenotools-Drivers", "driver", "StevenMXZ Adrenotools", "release", "StevenMXZ Adrenotools"),
     ("MrPurple666/purple-turnip", "driver", "Purple-Turnip", "release", "Purple-Turnip"),

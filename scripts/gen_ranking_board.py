@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""把 ranking.json 渲染成一页可点的榜单（自包含 HTML，无外部依赖）。"""
+"""把 data/ranking.json 渲染成一页可点的榜单（自包含 HTML，无外部依赖）。"""
 import json
 import os
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RANK = os.path.join(ROOT, "ranking.json")
+RANK = os.path.join(ROOT, "data/ranking.json")
 OUT = "/workspace/模拟器区排行榜-方案预览.html"
 
 METHOD_ZH = {

@@ -5,7 +5,7 @@ import json, html
 from datetime import datetime
 
 ROWS = json.load(open("/tmp/rows.json", encoding="utf-8"))
-REG = json.load(open("emulator-registry.json", encoding="utf-8"))
+REG = json.load(open("data/emulator-registry.json", encoding="utf-8"))
 TOTAL = len(REG["emulators"])
 
 PLAT = {

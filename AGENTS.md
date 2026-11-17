@@ -42,7 +42,7 @@
 
 ## 提交前检查（2026-11-04 新增）
 
-- 改过 `emulator-registry.json` 后，必须跑 `bash scripts/rebuild_gaps.sh`，确认 validate 全通过、总表数字与条目数一致。
+- 改过 `data/emulator-registry.json` 后，必须跑 `bash scripts/rebuild_gaps.sh`，确认 validate 全通过、总表数字与条目数一致。
 - 新增条目要同步检查三处：缺口总表、App 内置列表（`EmulatorRegistry.kt` 的 `builtInRegistry()`）、App 端图标/简介。
 - 内置列表是两份来源的合并，容易搞混：`scripts/emu_builtin_block.txt` 由 `refresh-ranking.py` 从社区排行生成，只覆盖排行榜里的条目（当前 63 条），**不跟随 registry**；`builtInRegistry()` 里还有约 70 条从 registry 精选的条目，只能手工加。新增条目若不在排行榜数据里，跑 `refresh-ranking.py` 不会带出来。
 - 涉及「仓库打不开」的结论，必须区分 404 与 451（DMCA），并记录封锁时间；不得写成「项目不存在」。
@@ -57,7 +57,7 @@
 原因不是坏了，是判定口径没定下来——"什么样的项目该收、按什么筛"还没形成
 可稳定执行的规则，先跑自动收录只会把噪音固化进库。
 
-现阶段录入一律人工：写 `emulator-registry.json` → 跑 `scripts/validate-emulators.py`
+现阶段录入一律人工：写 `data/emulator-registry.json` → 跑 `scripts/validate-emulators.py`
 → 跑 `bash scripts/rebuild_gaps.sh`。等口径定稿后再重建自动通道。
 
 重新设计时必须遵守的三条（沿用旧结论）：

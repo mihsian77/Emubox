@@ -22,7 +22,7 @@ import argparse, json, os, re, struct, sys, urllib.error, urllib.request, zlib
 from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REGISTRY = os.path.join(ROOT, "emulator-registry.json")
+REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 ICON_DIR = os.path.join(ROOT, "icons")
 RESULT = os.path.join(ROOT, "icons", "resolved.json")
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}

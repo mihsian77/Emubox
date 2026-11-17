@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """模拟器官方 registry 数据补全脚本
 
-emulator-registry.json（官方渠道占位：Termux/PPSSPP/RetroArch/Dolphin/DuckStation/Vita3K）
+data/emulator-registry.json（官方渠道占位：Termux/PPSSPP/RetroArch/Dolphin/DuckStation/Vita3K）
 是静态维护文件，两源排行不含这些项目。本脚本每日用 GitHub API 给每条补全：
 - releases 数组（tag/date/body/assets，最新在前）
 - latest_tag / latest_date / latest_apk_url / latest_apk_name
@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import BODY_LIMIT, RELEASE_BODY_LIMIT, clip_body  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REGISTRY = os.path.join(ROOT, "emulator-registry.json")
+REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 

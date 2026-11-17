@@ -6,7 +6,7 @@ App 里三个分区看着相近，实际是三套互不相干的数据。
 
 | 分区 | 数据从哪来 | 谁在更新 | 条目规模 |
 |---|---|---|---|
-| **驱动** | `driver-registry.json` 登记仓库 + 各仓 GitHub releases | 仓库每天 02:40 | 52 个仓库 |
+| **驱动** | `data/driver-registry.json` 登记仓库 + 各仓 GitHub releases | 仓库每天 02:40 | 52 个仓库 |
 | **组件** | 6 份社区 `contents.json` 清单，App 运行时直连 | 清单维护者发新构建 | 536 个版本名（去重） |
 | **运行库** | `The412Banner/winlator-contents` 的 `components.json` + 7 条官方直链 | **人工补录，不自动跟踪** | 124 条 |
 
@@ -78,4 +78,4 @@ D7VK（base 11 / arm64ec 11 / nightly 1）。
 - 组件源缺类型 → 改 `scripts/refresh-news.py` 的 `OFFICIAL_SOURCES`，`type` 必须与本文第一节的类型名逐字一致。
 - 组件清单地址变了 → 改 `SourceCatalog.kt` 的 `componentSources`。
 - 运行库要换版本 → 改 `winlator-contents` 上游清单，或在 `RuntimeLibraryRepository.kt` 的 `officialEntries` 里加直链。
-- 驱动仓登记 → 改 `driver-registry.json`。
+- 驱动仓登记 → 改 `data/driver-registry.json`。

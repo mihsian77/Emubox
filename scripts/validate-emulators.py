@@ -7,7 +7,7 @@ import re
 import sys
 import urllib.request
 
-REG = "emulator-registry.json"
+REG = "data/emulator-registry.json"
 DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 "strato-emulator", "ryujinx-official",
                 "ovsky-sumi-emu", "skyline-official", "drastic",

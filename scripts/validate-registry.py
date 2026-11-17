@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""校验 driver-registry.json 与 app/src/main/assets/driver-registry.json 的 schema 完整性。
+"""校验 data/driver-registry.json 与 app/src/main/assets/driver-registry.json 的 schema 完整性。
 
 背景：registry 曾混入排行榜格式条目（Weab-chan）且 StevenMXZ 缺 companion 字段，
 App 旧版 parseRegistry 用强制 getString/getJSONArray，任一条目缺字段 → 整个解析
@@ -30,7 +30,7 @@ SOURCE_FIELDS = ["api_url", "homepage", "download_url", "repo_url"]
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES = [
-    os.path.join(ROOT, "driver-registry.json"),
+    os.path.join(ROOT, "data/driver-registry.json"),
     os.path.join(ROOT, "app", "src", "main", "assets", "driver-registry.json"),
 ]
 

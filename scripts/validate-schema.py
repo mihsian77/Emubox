@@ -13,7 +13,7 @@ import json
 import re
 import sys
 
-FILES = ["emulator-registry.json", "emulator-ranking.json"]
+FILES = ["data/emulator-registry.json", "data/emulator-ranking.json"]
 
 # 已退役的字段名 → 现行字段名。出现在数据里就是迁移没做干净。
 RENAMED = {

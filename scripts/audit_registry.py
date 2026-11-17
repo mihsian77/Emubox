@@ -301,7 +301,7 @@ def main():
     limit = None
     if "--limit" in sys.argv:
         limit = int(sys.argv[sys.argv.index("--limit") + 1])
-    reg = json.load(open(os.path.join(ROOT, "emulator-registry.json"), encoding="utf-8"))
+    reg = json.load(open(os.path.join(ROOT, "data/emulator-registry.json"), encoding="utf-8"))
     ems = reg["emulators"][:limit] if limit else reg["emulators"]
 
     results, done = [], [0]

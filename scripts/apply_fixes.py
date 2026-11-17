@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""把审计 / 发布面探测结果写回 emulator-registry.json。
+"""把审计 / 发布面探测结果写回 data/emulator-registry.json。
 
 只做「有据可查」的写入：
   - 版本字段用 GitHub 最新非草稿 release 覆盖（tag/date/body/资产）
@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import BODY_LIMIT, clip_body  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REG = os.path.join(ROOT, "emulator-registry.json")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 TOKEN = open(os.path.expanduser("~/.codebuddy/.secrets/gh-token")).read().strip()
 
 

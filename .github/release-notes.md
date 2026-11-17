@@ -63,6 +63,6 @@
 
 ### 数据与性能
 
-- 首屏数据拆包：`emulator-index.json`（374KB）+ 详情分片，首屏流量从 3.2MB 降到 374KB（-89%）
+- 首屏数据拆包：`data/emulator-index.json`（374KB）+ 详情分片，首屏流量从 3.2MB 降到 374KB（-89%）
 - 图标全量入库：113 张自托管，剔除单色填充 / 空壳 / 宣传图 15 张；缺失时退到首字母字母牌
 - 校验口径修正：`distribution=android-archive` 的 zip 安卓包不再按扩展名判死；`hosts` 白名单补 switch2 / ps4

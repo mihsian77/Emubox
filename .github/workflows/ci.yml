@@ -7,8 +7,8 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - '*.json'
-      - 'ranking-history/**'
+      - 'data/*.json'
+      - 'data/ranking-history/**'
       - 'bench-data/**'
       - 'catalog/**'
       - 'app/src/main/assets/**/*.json'

@@ -181,19 +181,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PATHS="driver-registry.json \
+          PATHS="data/driver-registry.json \
                  app/src/main/assets/driver-registry.json \
                  catalog/catalog.json \
-                 emulator-ranking.json \
-                 emulator-registry.json \
+                 data/emulator-ranking.json \
+                 data/emulator-registry.json \
                  app/src/main/assets/winlator-recipes.json \
                  app/src/main/assets/emuready-catalog.json \
-                 emulator-index.json \
-                 emulator-details-*.json \
+                 data/emulator-index.json \
+                 data/emulator-details-*.json \
                  app/src/main/assets/emulator-offline.json \
                  app/src/main/assets/source-profiles.json \
                  app/src/main/assets/playable-matrix.json \
-                 ranking-history ranking.json \
+                 data/ranking-history data/ranking.json \
                  app/src/main/assets/bench app/src/main/assets/soc_master.json bench-data"
           if git diff --quiet -- $PATHS; then
             echo "无变化，跳过提交"

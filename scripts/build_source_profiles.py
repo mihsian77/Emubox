@@ -5,7 +5,7 @@
 两级来源，都不许编：
 
 1. catalog/source-profiles.json —— 手写文案。只写能从 README / 发布说明里读到的事实。
-2. driver-registry.json —— 手写文案没覆盖的源（注册表里 40 多条），用已有字段拼：
+2. data/driver-registry.json —— 手写文案没覆盖的源（注册表里 40 多条），用已有字段拼：
    - fit      取该条目的 description（此前已按仓库自述写过，不是新编）
    - how      按 driver_type / package_format / target_emulator 决定装法
               （adpkg 导入、magisk 刷入、wcp 组件、wrapper 挂载……都是格式本身决定的）
@@ -25,7 +25,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HAND = os.path.join(ROOT, "catalog", "source-profiles.json")
-REGISTRY = os.path.join(ROOT, "driver-registry.json")
+REGISTRY = os.path.join(ROOT, "data/driver-registry.json")
 OUT = os.path.join(ROOT, "app", "src", "main", "assets", "source-profiles.json")
 
 RISK_LEAD = re.compile(r"^(需|仅|只能|实验|不稳|混有|注意|留意|CI|Magisk|带|含)")

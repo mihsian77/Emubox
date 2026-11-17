@@ -13,7 +13,7 @@ fork 谱系/内部核对笔记的编辑腔、以及空值。用户看到的是�
 5. 平台/机种用通行中文名，英文专有名词保留原文（Vulkan、Adreno、Switch 等）。
 
 用法：python3 scripts/apply_desc_overrides.py
-脚本只会改 emulator-registry.json 里能对上 id 的条目，未匹配的会报错提示。
+脚本只会改 data/emulator-registry.json 里能对上 id 的条目，未匹配的会报错提示。
 """
 
 OVERRIDES = {

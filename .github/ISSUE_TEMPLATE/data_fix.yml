@@ -73,5 +73,5 @@ body:
     attributes:
       label: 是否愿意自己提 PR
       options:
-        - label: 我可以直接改 `emulator-registry.json` 并提 PR（流程见 CONTRIBUTING.md）
+        - label: 我可以直接改 `data/emulator-registry.json` 并提 PR（流程见 CONTRIBUTING.md）
           required: false

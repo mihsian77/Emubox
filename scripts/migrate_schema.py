@@ -93,7 +93,7 @@ def main():
     args = ap.parse_args()
 
     tok = token()
-    path = os.path.join(ROOT, "emulator-registry.json")
+    path = os.path.join(ROOT, "data/emulator-registry.json")
     data = json.load(open(path, encoding="utf-8"))
     es = data["emulators"]
     todo = [e for e in es if (e.get("repo") or "").count("/") == 1]

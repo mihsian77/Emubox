@@ -12,9 +12,9 @@
 
 本脚本做四件事：
   ① 家族聚合：fork 不再单独占榜位（22 个家族、92 条会塌成 22 行）
-  ② 历史快照：每天存一份 ranking-history/YYYY-MM-DD.json，攒够才有真增量
+  ② 历史快照：每天存一份 data/ranking-history/YYYY-MM-DD.json，攒够才有真增量
   ③ 口径标注：只有 GitHub release 下载的项目才进下载榜，官网/网盘分发的标 out-of-scope
-  ④ 输出 ranking.json（App 直接读）+ 榜单 HTML
+  ④ 输出 data/ranking.json（App 直接读）+ 榜单 HTML
 
 用法：
   python3 scripts/ranking.py            # 计算 + 落快照 + 出榜单
@@ -28,9 +28,9 @@ from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REG = os.path.join(ROOT, "emulator-registry.json")
-OUT = os.path.join(ROOT, "ranking.json")
-HIST_DIR = os.path.join(ROOT, "ranking-history")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
+OUT = os.path.join(ROOT, "data/ranking.json")
+HIST_DIR = os.path.join(ROOT, "data/ranking-history")
 HTML = os.path.join(ROOT, "ranking-board.html")
 
 SECTION_ORDER = ["console-emulation", "windows-compat", "native-port", "vn-engine", "virtualization", "frontend-tool"]

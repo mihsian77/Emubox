@@ -17,7 +17,7 @@ import json
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REG = os.path.join(ROOT, "emulator-registry.json")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 AUDIT = os.path.join(ROOT, "audit-report.json")
 OUT_CSV = os.path.join(ROOT, "缺口清单.csv")
 OUT_MD = os.path.join(ROOT, "缺口清单.md")

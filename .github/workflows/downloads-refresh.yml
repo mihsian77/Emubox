@@ -1,7 +1,7 @@
 name: 每周补下载量
 
 # 做什么：把所有走 GitHub Releases 分发的项目，按 release asset 的
-# download_count 重新累加，写回 emulator-registry.json 的 downloads 字段。
+# download_count 重新累加，写回 data/emulator-registry.json 的 downloads 字段。
 #
 # 为什么单独一个工作流、而不是塞进 discovery：
 #   它是「补数」，不新增条目、不改任何判定字段，直推 main 风险极低；
@@ -57,9 +57,9 @@ jobs:
 
       - name: 有变化则提交
         run: |
-          PATHS="emulator-registry.json \
-                 emulator-index.json \
-                 emulator-details-*.json \
+          PATHS="data/emulator-registry.json \
+                 data/emulator-index.json \
+                 data/emulator-details-*.json \
                  app/src/main/assets/emulator-offline.json"
           if ! git diff --quiet -- $PATHS; then
             git config user.name "emubox-ci[bot]"

@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """把 registry 拆成「首屏索引 + 按需详情」。
 
-背景：emulator-registry.json 3.2MB，其中 91% 是 `releases`（每条 5 个版本 ×
+背景：data/emulator-registry.json 3.2MB，其中 91% 是 `releases`（每条 5 个版本 ×
 assets 列表）。App 首屏只用到卡片上的十几二十个字段，却要先把 3MB 下完。
 
 拆分后：
-  emulator-index.json        首屏：卡片 + 筛选 + 排序需要的字段，目标 < 400KB
+  data/emulator-index.json        首屏：卡片 + 筛选 + 排序需要的字段，目标 < 400KB
   emulator-details-N.json    详情：releases / 更新日志 / 构建列表，8 片，进详情页只拉一片
   app/src/main/assets/emulator-offline.json  离线兜底，内容同 index
 
@@ -20,9 +20,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import derive_apk_tag  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "emulator-registry.json")
-INDEX = os.path.join(ROOT, "emulator-index.json")
-SHARD_TPL = os.path.join(ROOT, "emulator-details-{}.json")
+SRC = os.path.join(ROOT, "data/emulator-registry.json")
+INDEX = os.path.join(ROOT, "data/emulator-index.json")
+SHARD_TPL = os.path.join(ROOT, "data/emulator-details-{}.json")
 OFFLINE = os.path.join(ROOT, "app", "src", "main", "assets", "emulator-offline.json")
 
 SHARDS = 8

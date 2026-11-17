@@ -39,7 +39,7 @@ echo "sdk.dir=/path/to/android-sdk" > local.properties
 
 `app/libs/drivercheck.aar` 是驱动实测的内核，不在公开仓库里。CI 通过 `DRIVERCHECK_TOKEN` 从私有仓下载；本地编译缺这个文件时，涉及实测的功能会拿不到实现，其余部分正常。这不影响你改界面或数据。
 
-改动 `emulator-registry.json` 之后必须跑：
+改动 `data/emulator-registry.json` 之后必须跑：
 
 ```bash
 python3 scripts/validate-emulators.py
@@ -80,7 +80,7 @@ fix(ui): 深色模式下驱动卡片分数对比度
 
 ## 项目文案怎么写
 
-`emulator-registry.json` 里每条有三个文案字段，职责不同，不要混用：
+`data/emulator-registry.json` 里每条有三个文案字段，职责不同，不要混用：
 
 | 字段 | 谁写 | 给谁看 | 规则 |
 |---|---|---|---|

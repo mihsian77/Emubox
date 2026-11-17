@@ -21,7 +21,7 @@ import os
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REG = os.path.join(ROOT, "emulator-registry.json")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 OUT_MD = os.path.join(ROOT, "docs", "download-source-audit.md")
 OUT_JSON = os.path.join(ROOT, "download-source-audit.json")
 

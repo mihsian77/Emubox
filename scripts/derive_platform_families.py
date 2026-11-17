@@ -13,7 +13,7 @@
 """
 import json
 
-REG = "/tmp/eb/emulator-registry.json"
+REG = "/tmp/eb/data/emulator-registry.json"
 
 FAMILIES = {
     "sony": ("索尼系", {

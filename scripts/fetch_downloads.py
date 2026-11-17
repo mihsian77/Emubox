@@ -32,7 +32,7 @@ import urllib.error
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REG = os.path.join(ROOT, "emulator-registry.json")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 CACHE = os.path.join(ROOT, ".cache", "release-downloads.json")
 TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
 

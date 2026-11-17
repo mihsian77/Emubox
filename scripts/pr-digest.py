@@ -24,9 +24,9 @@ RISK_PATHS = {
     "app/src/main/assets/": "内置数据",
 }
 RISK_FILES = {
-    "emulator-registry.json": "模拟器注册表",
-    "driver-registry.json": "驱动注册表",
-    "news-data.json": "新闻数据",
+    "data/emulator-registry.json": "模拟器注册表",
+    "data/driver-registry.json": "驱动注册表",
+    "data/news-data.json": "新闻数据",
 }
 
 

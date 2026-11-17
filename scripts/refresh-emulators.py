@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""刷新 emulator-registry.json：拉取各模拟器 GitHub 仓库活跃度与最新版本。
+"""刷新 data/emulator-registry.json：拉取各模拟器 GitHub 仓库活跃度与最新版本。
 
 - 对每个有 owner/repo 的条目：
   - 拉 repo 元数据（pushed_at / stargazers_count）
@@ -21,7 +21,7 @@ if not TOKEN:
     sys.exit(1)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REGISTRY = os.path.join(REPO_ROOT, "emulator-registry.json")
+REGISTRY = os.path.join(REPO_ROOT, "data/emulator-registry.json")
 
 API = "https://api.github.com/repos/{owner}/{repo}"
 API_RELEASES = API + "/releases?per_page=5"
@@ -100,7 +100,7 @@ def main():
         with open(REGISTRY, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             f.write("\n")
-        print("emulator-registry.json 已更新")
+        print("data/emulator-registry.json 已更新")
     else:
         print("无变化")
 

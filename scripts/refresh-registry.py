@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""刷新 driver-registry.json 与 catalog/catalog.json 的仓库活跃度元数据。
+"""刷新 data/driver-registry.json 与 catalog/catalog.json 的仓库活跃度元数据。
 
 - 提取两个文件中所有 GitHub 仓库（apiUrl / manifestUrl 解析 owner/repo）
 - 用 GITHUB_TOKEN 拉取 pushed_at + stargazers_count
@@ -24,7 +24,7 @@ if not TOKEN:
     sys.exit(1)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REGISTRY = os.path.join(REPO_ROOT, "driver-registry.json")
+REGISTRY = os.path.join(REPO_ROOT, "data/driver-registry.json")
 REGISTRY_ASSETS = os.path.join(REPO_ROOT, "app", "src", "main", "assets", "driver-registry.json")
 CATALOG = os.path.join(REPO_ROOT, "catalog", "catalog.json")
 

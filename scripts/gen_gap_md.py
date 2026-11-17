@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 rows = json.load(open("/tmp/rows.json", encoding="utf-8"))
-reg = json.load(open("emulator-registry.json", encoding="utf-8"))
+reg = json.load(open("data/emulator-registry.json", encoding="utf-8"))
 TOTAL = len(reg["emulators"])
 
 PLAT = {

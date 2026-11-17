@@ -119,10 +119,10 @@ def main():
         "mali_combos": {g: {'configs': mali_cnt[g], 'top': top3(c)}
                         for g, c in sorted(mali_by_gpu.items(), key=lambda x: -sum(x[1].values()))},
     }
-    # 官方层：从 emulator-ranking.json 同步入门配置（Adreno/Mali 各一条）
+    # 官方层：从 data/emulator-ranking.json 同步入门配置（Adreno/Mali 各一条）
     try:
         er = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                                         'emulator-ranking.json')))
+                                         'data/emulator-ranking.json')))
         recipes = er.get('recipes', [])
         if recipes:
             out['official_recipes'] = recipes

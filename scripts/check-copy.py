@@ -17,7 +17,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REGISTRY = os.path.join(ROOT, "emulator-registry.json")
+REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 
 # description 里不该出现的：可变数字、内部流程词、谱系考据
 DESC_BANNED = [

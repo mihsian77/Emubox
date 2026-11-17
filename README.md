@@ -118,13 +118,13 @@ app/src/main/
 
 | 文件 | 内容 |
 |---|---|
-| `driver-registry.json` | 驱动条目 |
-| `emulator-registry.json` | 模拟器条目（列表用） |
-| `emulator-details-*.json` | 模拟器详情分片，按条目哈希取一片 |
-| `emulator-ranking.json` | 外部社区排行与趋势 |
-| `news-data.json` | 资讯聚合 |
-| `ranking.json` + `ranking-history/` | 家族聚合榜，用于网页榜单 |
-| `speedtest.bin` | 加速节点测速用的固定文件，App 按 URL 直取 |
+| `data/driver-registry.json` | 驱动条目 |
+| `data/emulator-registry.json` | 模拟器条目（列表用） |
+| `data/emulator-details-*.json` | 模拟器详情分片，按条目哈希取一片 |
+| `data/emulator-ranking.json` | 外部社区排行与趋势 |
+| `data/news-data.json` | 资讯聚合 |
+| `data/ranking.json` + `data/ranking-history/` | 家族聚合榜，用于网页榜单 |
+| `data/speedtest.bin` | 加速节点测速用的固定文件，App 按 URL 直取 |
 
 ## 驱动来源
 
@@ -135,7 +135,7 @@ app/src/main/
 - **三星 Xclipse（AMD RDNA）**：与上述两家均不兼容，独立分类
 - **通用 / 厂商系统驱动**：不绑定具体型号
 
-条数以 [`driver-registry.json`](driver-registry.json) 为准，随每日数据刷新增减，不在文档里写死。
+条数以 [`data/driver-registry.json`](data/driver-registry.json) 为准，随每日数据刷新增减，不在文档里写死。
 
 驱动包标准格式为 zip（adpkg），内含 `meta.json`（名称、版本、厂商、最低 API、驱动库名）与驱动本体 `.so`。注册表随 App 版本更新，来源均为公开开源社区；为避免驱动源被收集滥用，此处不列具体仓库地址。
 

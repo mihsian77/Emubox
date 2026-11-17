@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""由 audit-report.json + emulator-registry.json 生成 /tmp/rows.json。
+"""由 audit-report.json + data/emulator-registry.json 生成 /tmp/rows.json。
 
 补齐此前缺失的一步：原 /tmp/rows.json 是一次性脚本产物，无法复现。
 本脚本只做字段合并，不新增/删除任何条目，缺口判定沿用 audit 结果。
@@ -9,7 +9,7 @@ import json, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIT = os.path.join(ROOT, "audit-report.json")
-REG = os.path.join(ROOT, "emulator-registry.json")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 OUT = "/tmp/rows.json"
 
 

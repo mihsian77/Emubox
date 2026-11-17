@@ -22,7 +22,7 @@ windows-compat 的归组靠 id+name 正则，命中不了就按 runtime 落桌�
 import json
 import re
 
-REG = "/tmp/eb/emulator-registry.json"
+REG = "/tmp/eb/data/emulator-registry.json"
 
 # windows-compat：按 id+name 匹配，顺序即优先级（winlator 改版常带别的词）
 COMPAT_RULES = [

@@ -6,7 +6,7 @@
 2. 仓库 About 描述     —— README 缺失或首段是徽章墙时的兜底
 3. 最近发布说明首句     —— 前两者都没有的仓库（大量 fork 属于这种）
 
-输出写到 emulator-registry.json 的 `summary` 字段；`description` 保留作者原文不动。
+输出写到 data/emulator-registry.json 的 `summary` 字段；`description` 保留作者原文不动。
 
 用法：
     python3 scripts/fetch_summaries.py --limit 20 --dry   # 抽样看质量
@@ -22,7 +22,7 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REG = os.path.join(ROOT, "emulator-registry.json")
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 CACHE = os.path.join(ROOT, "data", "readme-cache")
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; emubox-summary/1.0)"}
