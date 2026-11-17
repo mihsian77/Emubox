@@ -568,5 +568,90 @@
  "zfitness-nixport": {
   "url": "icons/zfitness-nixport.png",
   "via": "apk"
+ },
+ "buku313-skate3-mobile": {
+  "url": "icons/buku313-skate3-mobile.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "dorpxp-driftdroid": {
+  "url": "icons/dorpxp-driftdroid.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "udarmolota-rimdroid": {
+  "url": "icons/udarmolota-rimdroid.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "1nsec-naruto-the-broken-bond-android-port": {
+  "url": "icons/1nsec-naruto-the-broken-bond-android-port.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "mekcck-mhgu-relink": {
+  "url": "icons/mekcck-mhgu-relink.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "ramazangithub-sandboxrts-android": {
+  "url": "icons/ramazangithub-sandboxrts-android.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "gl1ch5555-f1-2012-android": {
+  "url": "icons/gl1ch5555-f1-2012-android.png",
+  "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "maccabluu-blubox360": {
+  "url": "icons/maccabluu-blubox360.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "papertop221-ppsspp-turbo": {
+  "url": "icons/papertop221-ppsspp-turbo.png",
+  "path": "res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "sj0404-collab-winlator-hybrid-dxvk": {
+  "url": "icons/sj0404-collab-winlator-hybrid-dxvk.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "daryan044-tessera-linux": {
+  "url": "icons/daryan044-tessera-linux.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "beauty114514-trierarch-app": {
+  "url": "icons/beauty114514-trierarch-app.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "flamelaunchers-flamelauncher-android": {
+  "url": "icons/flamelaunchers-flamelauncher-android.png",
+  "path": "app/src/main/ic_launcher-playstore.png",
+  "via": "repo"
+ },
+ "julioferrero-pocket-foundry": {
+  "url": "icons/julioferrero-pocket-foundry.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "dear-ded-spektralab-x": {
+  "url": "icons/dear-ded-spektralab-x.png",
+  "path": "fastlane/metadata/android/en-US/images/icon.png",
+  "via": "repo"
+ },
+ "360goo-emulator-studio": {
+  "url": "icons/360goo-emulator-studio.png",
+  "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "abdellahduere-art-psx-nova": {
+  "url": "icons/abdellahduere-art-psx-nova.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
  }
 }
