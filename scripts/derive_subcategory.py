@@ -20,9 +20,11 @@ windows-compat 的归组靠 id+name 正则，命中不了就按 runtime 落桌�
 正则覆盖不到的新条目会在末尾报「未归组」，不静默塞进 other。
 """
 import json
+import os
 import re
 
-REG = "/tmp/eb/data/emulator-registry.json"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 
 # windows-compat：按 id+name 匹配，顺序即优先级（winlator 改版常带别的词）
 COMPAT_RULES = [
@@ -33,11 +35,22 @@ COMPAT_RULES = [
     ("launcher-tool", r"droiddeck|malibridge|panplay|panprobe"),
 ]
 
+# 新收条目里没有共同关键词的容器/桌面方案，按 id 显式登记（比放宽正则安全）
+EXTRA_OTHER = {
+    "worstpossibleuserlol-wincore", "cobrabm12-fexdroid", "tedin7-pons",
+    "daryan044-tessera-linux", "beauty114514-trierarch-app", "droidtop-droidtop",
+}
+
 # frontend-tool：直接用 kind，不另造词
 FRONTEND_KINDS = {"frontend", "tool", "emulator"}
 
 
 def compat_group(e):
+    if e.get("id") in EXTRA_OTHER:
+        return "other-container"
+    # runtime 已是 winlator 的条目按容器组兜底，避免名字没关键词就掉进未归组
+    if e.get("runtime") == "winlator":
+        return "winlator"
     s = f"{e.get('id', '')} {e.get('name', '')}".lower()
     for key, pat in COMPAT_RULES:
         if re.search(pat, s):

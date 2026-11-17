@@ -12,8 +12,10 @@
   因为它们描述的是「形态」或「题材」，不是「哪台机器」。
 """
 import json
+import os
 
-REG = "/tmp/eb/data/emulator-registry.json"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REG = os.path.join(ROOT, "data/emulator-registry.json")
 
 FAMILIES = {
     "sony": ("索尼系", {
@@ -41,7 +43,7 @@ FAMILIES = {
     "mobile-legacy": ("老移动系统", {
         "java-me", "symbian", "brew", "windows-mobile", "zeebo",
     }),
-    "pc": ("PC 与移动端", {"windows-pc", "ios", "web"}),
+    "pc": ("PC 与移动端", {"windows-pc", "ios", "web", "android"}),
 }
 
 # 显式声明不收进家族的取值：形态/题材，不是硬件

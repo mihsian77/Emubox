@@ -155,8 +155,12 @@ def load_registry():
     return json.load(open(REGISTRY, encoding="utf-8"))["emulators"]
 
 
-def cmd_probe(limit):
-    ems = [e for e in load_registry() if e.get("repo") and "/" in e["repo"]][:limit or None]
+def cmd_probe(limit, ids=None):
+    # --ids 之前没接进 probe 分支，带 --ids 也会把全库重跑一遍并覆盖已有图标
+    ems = [e for e in load_registry() if e.get("repo") and "/" in e["repo"]]
+    if ids:
+        ems = [e for e in ems if e["id"] in ids]
+    ems = ems[:limit or None]
     hits = {}
 
     os.makedirs(ICON_DIR, exist_ok=True)
@@ -275,7 +279,7 @@ def main():
     ap.add_argument("--ids", default="")
     a = ap.parse_args()
     if a.probe:
-        cmd_probe(a.limit)
+        cmd_probe(a.limit, [x for x in a.ids.split(",") if x])
     elif a.apk:
         cmd_apk(a.limit, [x for x in a.ids.split(",") if x])
     elif a.sheet:
