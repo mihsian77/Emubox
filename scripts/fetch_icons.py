@@ -26,7 +26,8 @@ REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 ICON_DIR = os.path.join(ROOT, "icons")
 RESULT = os.path.join(ROOT, "icons", "resolved.json")
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-PROXY = "https://ghfast.top/"
+# ghfast.top 2026-11 起对 release 资产返回空；换成实测可用的 gh-proxy
+PROXY = "https://gh-proxy.com/"
 
 # F-Droid / 常见 Android 工程约定，命中即停
 CANDIDATE_PATHS = [
