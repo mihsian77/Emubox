@@ -1,7 +1,7 @@
 # EmuBox UI 排版规格
 
 > 信息架构定案于 2026-11-07，此后导航又扩过两轮（资讯独立成一级入口、指南并入驱动）。
-> 本文记录排版与信息架构的约定，**现状以 `MainActivity.kt` 的导航定义与 `Screens.kt` 的实现为准**。
+> 本文记录排版与信息架构的约定，**现状以 `MainActivity.kt` 的导航定义与各分区界面文件（`EmulatorScreen.kt`、`DriverScreen.kt`、`DeviceScreen.kt` 等）的实现为准**。
 > 本文只管**排版与信息架构**，颜色见 `ui/theme/Color.kt`。
 
 ## 一、一级导航

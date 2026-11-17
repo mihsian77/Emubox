@@ -97,7 +97,20 @@ push / PR 到 main 时，`ci.yml` 依次跑 i18n 校验、文案规范、长字�
 app/src/main/
 ├── java/com/emubox/app/
 │   ├── MainActivity.kt        # 导航、分区装配、各页数据拉取
-│   ├── Screens.kt             # 各分区界面与通用组件
+│   ├── EmulatorScreen.kt      # 模拟器库：列表、筛选、搜索
+│   ├── EmulatorUi.kt          # 模拟器卡片、对比、版本差异
+│   ├── EmulatorDetailDialog.kt# 模拟器详情页
+│   ├── DriverScreen.kt        # 驱动分区：动态、版本、框架
+│   ├── DriverCards.kt         # 驱动卡片、来源选择、更新日志
+│   ├── DeviceScreen.kt        # 设备检测与驱动推荐
+│   ├── ComponentScreens.kt    # 组件分区
+│   ├── RuntimeLibraryScreen.kt# 运行库分区
+│   ├── DownloadsScreen.kt     # 下载库
+│   ├── SettingsScreen.kt      # 设置
+│   ├── ComponentGuideScreen.kt# 兼容指南
+│   ├── NewsFeedScreen.kt      # 资讯流与全局搜索
+│   ├── UiFormat.kt            # 通用格式化（时间/体积/头像）
+│   ├── SharedUi.kt            # 跨分区共享的搜索框与筛选标签
 │   ├── EmulatorRegistry.kt    # 模拟器注册表读取、模型与筛选
 │   ├── DownloadService.kt     # 前台下载服务
 │   ├── DownloadsManager.kt    # 下载队列、断点续传、本地文件扫描

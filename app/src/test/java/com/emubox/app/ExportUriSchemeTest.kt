@@ -9,7 +9,7 @@ import org.robolectric.annotation.Config
 import java.io.File
 
 /**
- * 锁定下载库"打开 / 分享"按钮构造 Uri 的行为（Screens.kt 中的内联逻辑）。
+ * 锁定下载库"打开 / 分享"按钮构造 Uri 的行为（`DownloadsScreen.kt` 中的内联逻辑）。
  *
  * 背景：从 Android 7.0（API 24）起，把 file:// 的 Uri 通过 Intent 交给其他 App
  * 会抛 FileUriExposedException。此测试只验证"当前代码走到哪条分支"，
@@ -19,7 +19,7 @@ import java.io.File
 @Config(sdk = [34])
 class ExportUriSchemeTest {
 
-    /** 与 Screens.kt:538 / 579 一模一样的构造方式 */
+    /** 与 `DownloadsScreen.kt` 的 `exportFileUri()` 构造方式一致（调用点 535 / 573 行） */
     private fun exportUri(filePath: String): Uri =
         if (filePath.startsWith("content://")) {
             Uri.parse(filePath)
