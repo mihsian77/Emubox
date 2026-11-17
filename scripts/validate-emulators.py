@@ -13,10 +13,14 @@ DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 "ovsky-sumi-emu", "skyline-official", "drastic",
                 # 2026-11-16：自动复核 GitHub 返回 404/451 后标记，仓库确已下架
                 "metroidprimeport", "odrannnn-metroidprime2port",
-                "prosperoeden-ps5", "afeimod-linbox", "eden-nx2-zuan",
+                "prosperoeden-ps5", "eden-nx2-zuan",
                 "nextendonetwork-ryujinx-nextendo", "lichii-enhanced",
-                "torzu-emulator"}
+                "torzu-emulator",
+                # 2026-11-17：citron-neo/ci 返回 451，脚本已判死但没有登记进清单
+                "citron-ci"}
 # 注意：这份清单是「已确认下架」的快照，不是判死规则。
+# afeimod-linbox 曾在这里，但 11-16 还在发新版（GitHub 当日 404 属于误判），
+# 已移出：清单只记「现在确实打不开」的，判死仍交给刷新脚本每日复核。
 # moceure-banananative 曾在这里，但它的主仓在 Eden 自建 Gitea（git.eden-emu.dev），
 # 拿 GitHub 的 404 去判一个 Gitea 项目的死是错的：11-15 还发了 v0.3.26。
 # 加新条目之前先确认「这个 source 对应的平台」确实 404，别再跨平台判死。

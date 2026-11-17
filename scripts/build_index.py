@@ -16,6 +16,9 @@ import json
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import derive_apk_tag  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "emulator-registry.json")
 INDEX = os.path.join(ROOT, "emulator-index.json")
@@ -30,7 +33,7 @@ INDEX_FIELDS = [
     "repo", "repo_url", "homepage", "description", "summary", "logo_url",
     "official", "source", "kind", "runtime", "platforms", "hosts", "status",
     "needs_review", "method", "latest_tag", "latest_date", "channel",
-    "latest_apk_name", "latest_apk_url", "latest_apk_size",
+    "latest_apk_name", "latest_apk_url", "latest_apk_size", "latest_apk_tag",
     "stars", "forks", "watchers", "downloads_total", "downloads_latest",
     "downloads_basis", "download_url", "download_kind", "distribution",
     "note", "repo_status", "dead", "dead_reason", "pushed_at",
@@ -72,6 +75,9 @@ def main():
     index_entries, shards = [], {k: {} for k in range(SHARDS)}
     for e in ems:
         item = {k: e[k] for k in INDEX_FIELDS if k in e}
+        # 下载包归属版本按 URL 反查，不信 registry 里存的值：
+        # 旧数据里这一栏是手工补的，和 URL 对不上时详情页会弹出错误的版本提示。
+        item["latest_apk_tag"] = derive_apk_tag(e.get("latest_apk_url"), e.get("releases"))
         item["detail_shard"] = shard_of[e["id"]]
         index_entries.append(item)
 

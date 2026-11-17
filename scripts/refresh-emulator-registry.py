@@ -12,6 +12,9 @@ CI 内带 GITHUB_TOKEN 跑；本地无 token 时跳过，保证可重复运行�
 import json, os, re, sys, time, urllib.error, urllib.request
 from urllib.parse import quote
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import BODY_LIMIT, RELEASE_BODY_LIMIT, clip_body  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(ROOT, "emulator-registry.json")
 
@@ -75,7 +78,7 @@ def _norm_releases(rels, platform):
                 "tag": r.get("tag_name", ""),
                 "name": r.get("name", ""),
                 "date": r.get("released_at", ""),
-                "body": (r.get("description") or "").replace("\r", "")[:1200],
+                "body": clip_body(r.get("description"), RELEASE_BODY_LIMIT),
                 "prerelease": False,
                 "assets": [],
             })
@@ -84,7 +87,7 @@ def _norm_releases(rels, platform):
                 "tag": r.get("tag_name", ""),
                 "name": r.get("name", ""),
                 "date": r.get("published_at") or r.get("created_at") or "",
-                "body": (r.get("body") or "").replace("\r", "")[:1200],
+                "body": clip_body(r.get("body"), RELEASE_BODY_LIMIT),
                 "prerelease": bool(r.get("prerelease")),
                 "assets": [{
                     "name": a["name"],
@@ -143,7 +146,7 @@ def fetch_meta_and_releases(repo, source="", repo_url=""):
             "tag": r.get("tag_name", ""),
             "name": r.get("name", ""),
             "date": r.get("published_at", ""),
-            "body": (r.get("body") or "").replace("\r", "")[:1200],
+            "body": clip_body(r.get("body"), RELEASE_BODY_LIMIT),
             "prerelease": bool(r.get("prerelease")),
             "assets": assets,
         })
@@ -266,7 +269,7 @@ def main():
             r0 = rels[0]
             e["latest_tag"] = r0["tag"]
             e["latest_date"] = r0["date"]
-            e["latest_body"] = (r0.get("body") or "")[:2000]
+            e["latest_body"] = clip_body(r0.get("body"), BODY_LIMIT)
             e["channel"] = "prerelease" if r0.get("prerelease") else "stable"
             # 下载包仍优先取当前版本的 asset；当前版本只有源码包时，回退到最近一个带 APK 的版本，
             # 避免发个 source-only 的 nighty 就把「下载」按钮抹掉。
@@ -280,9 +283,13 @@ def main():
                 e["latest_apk_name"] = a0["name"]
                 e["latest_apk_url"] = a0["url"]
                 e["latest_apk_size"] = int(a0.get("size") or 0)
+                # 记下这个包属于哪一版：回退到旧版时详情页要照实说明，
+                # 否则用户以为装的是最新版。跟着 URL 一起写，两者永远同源。
+                e["latest_apk_tag"] = target.get("tag") or ""
             elif not e.get("latest_apk_url"):
                 e["latest_apk_name"] = ""
                 e["latest_apk_url"] = ""
+                e["latest_apk_tag"] = ""
         changed = True
     if changed:
         d["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())

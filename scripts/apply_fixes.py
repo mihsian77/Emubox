@@ -13,6 +13,9 @@
 import json, os, re, sys, time, urllib.error, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import BODY_LIMIT, clip_body  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "emulator-registry.json")
 TOKEN = open(os.path.expanduser("~/.codebuddy/.secrets/gh-token")).read().strip()
@@ -93,11 +96,12 @@ def refresh(e):
             return e["id"], upd
         upd["latest_tag"] = top["tag_name"]
         upd["latest_date"] = (top.get("published_at") or "")[:19] + "Z" if top.get("published_at") else e.get("latest_date", "")
-        upd["latest_body"] = (top.get("body") or "")[:1500]
+        upd["latest_body"] = clip_body(top.get("body"), BODY_LIMIT)
         apk = next((a for a in top.get("assets") or [] if re.search(r"\.(apk|apks)$", a["name"], re.I)), None)
         if apk:
             upd.update({"latest_apk_name": apk["name"], "latest_apk_url": apk["browser_download_url"],
-                        "latest_apk_size": apk["size"], "distribution": "release-apk"})
+                        "latest_apk_size": apk["size"], "latest_apk_tag": top["tag_name"],
+                        "distribution": "release-apk"})
         else:
             z = next((a for a in top.get("assets") or []
                       if a["name"].lower().endswith((".zip", ".7z")) and re.search(r"android|apk", a["name"], re.I)), None)

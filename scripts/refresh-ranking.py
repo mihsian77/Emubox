@@ -9,6 +9,9 @@ t3st31/Ranking-Emulators-Download 补其独有条目。两个站均为静态 Git
 """
 import json, os, sys, time, urllib.request
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import RELEASE_BODY_LIMIT, clip_body  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "emulator-ranking.json")
 
@@ -98,12 +101,11 @@ def norm_releases(rels):
             "size": int(a.get("size") or 0),
             "url": a.get("url", ""),
         } for a in (r.get("assets") or []) if a.get("name")]
-        body = (r.get("body") or "").replace("\r", "")
         out.append({
             "tag": r.get("tag", ""),
             "name": r.get("name", ""),
             "date": r.get("date", ""),
-            "body": body[:1200],
+            "body": clip_body(r.get("body"), RELEASE_BODY_LIMIT),
             "prerelease": bool(r.get("prerelease")),
             "assets": assets,
         })
@@ -131,7 +133,7 @@ def gh_releases(repo):
             "tag": r.get("tag_name", ""),
             "name": r.get("name", ""),
             "date": r.get("published_at", ""),
-            "body": (r.get("body") or "").replace("\r", "")[:1200],
+            "body": clip_body(r.get("body"), RELEASE_BODY_LIMIT),
             "prerelease": bool(r.get("prerelease")),
             "assets": assets,
         })

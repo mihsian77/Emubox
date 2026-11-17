@@ -13,6 +13,9 @@ import os
 import re
 import sys
 import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from common import DRIVER_BODY_LIMIT, clip_body  # noqa: E402
 import urllib.request
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -55,7 +58,8 @@ def fetch_repo_meta(owner: str, repo: str, retries: int = 3):
                 rel = api_get(f"https://api.github.com/repos/{owner}/{repo}/releases/latest")
                 released = rel.get("published_at", "")
                 latest_tag = rel.get("tag_name", "")
-                latest_body = (rel.get("body") or "")[:500]
+                # 驱动卡片只放一两行说明，500 字符够用；走统一截断避免切在标签中间
+                latest_body = clip_body(rel.get("body"), DRIVER_BODY_LIMIT)
             except Exception:
                 released = ""
             d = api_get(f"https://api.github.com/repos/{owner}/{repo}")
