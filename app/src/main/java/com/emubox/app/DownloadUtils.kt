@@ -316,10 +316,14 @@ suspend fun downloadDriverAsset(context: Context, driverName: String, url: Strin
 
 suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
     val url = entry.latestApkUrl.ifBlank { return }
-    val fileName = sanitizeFileName(
+    // nightly.link 这类直链的末段是构建编号（"10980418963"），不带扩展名，
+    // 下载下来的文件既点不开也不像安装包。注册表里的 latest_apk_name 存着
+    // 作者上传时的真名，优先用它；两处都没有时兜底补 .apk。
+    val rawName = entry.latestApkName.ifBlank {
         Uri.decode(url.substringAfterLast("/").substringBefore("?"))
-            .ifBlank { "${entry.name}.apk" }
-    )
+    }
+    val withExt = if (rawName.contains('.')) rawName else "$rawName.apk"
+    val fileName = sanitizeFileName(withExt.ifBlank { "${entry.name}.apk" })
     val category = "Emulators"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(url)

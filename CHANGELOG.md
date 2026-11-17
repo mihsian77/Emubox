@@ -51,6 +51,8 @@
 - 驱动注册表补到 61 个源：Amaral Adreno Tools、AnkaTurnip、DroidDeck 官方驱动集、MaliSX2、MaxQ 驱动合集、PanVK Kirin 990、PS5 Vulkan（RADV）、Turnip Duo（Adreno 722）、Turnip Enhanced（超级 Turnip）。九条仓库均已核实存在，并同步重新生成 `source-profiles.json` 的适用机型与安装步骤
 
 ### Fixed
+- 详情页「发布文件」卡与版本卡数字口径统一：头部「共 N 个」改数最新 release 里的可下载资产，与下方版本卡同一过滤器。此前头部用注册表归类数（openMSX 只认出 1 个源码包）、版本卡按文件数出 5 个，同一弹窗两个数字
+- 直链下载的文件名不再裸奔：卡片与弹窗的下载按钮优先用注册表里作者上传的原文件名，URL 末段（nightly.link 的构建编号如 `10980418963`）没有扩展名时补 `.apk`，下载完成即可直接点击安装
 - 驱动区 4 个「只有源码、一个可下载包都没有」的仓移出注册表：Turnip-Enhanced（mesa 纯源码 fork，0 release / 0 tag）、PS5_Vulkan（只出 Actions 产物、需登录，且是 PS5 硬件驱动，安卓侧装不上）、maxi000q/drivers（空仓）、panvk-mtk（纯源码）。驱动区是按 release 拉文件列表的，这类条目进去只会渲染成红色「没有可用的发布版本」。余下 57 条逐个核过产物
 - 模拟器区 8 条源按实测修正：ProsperoEden 仓库与 release 资产双双 404、Torzu 上游转 451（DMCA）进 dead；BananaNative 与 NeXium 迁到自建 GitLab 后改指新址（前者 v0.1.5 → v0.3.14，直链实测可用）；Termux 增强镜像的 `repo_url` 原本错填成官方 `termux/termux-app`；AzaharPlus 的 ★25 空壳 fork（纯源码、Play 链接指向 Lime3DS、15 个月未推）移入 `data/emulator-retired.json`。条目 354 → 353
 - 驱动版本号补齐：57 条里 9 条一直没记版本（界面显示空），现已按上游补上；另 9 条上游确实发了新版（Banners-Turnip `20261110`→`20261113-r2`、faux123 五个仓 `1.1.4`→`1.1.6`、RADV Xclipse `1.8.0`→`1.9.0` 等）

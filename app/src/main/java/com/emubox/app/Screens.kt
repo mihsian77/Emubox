@@ -13512,11 +13512,20 @@ private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
     val a = entry.artifacts
     Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp)) {
         Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+            // 口径与下方版本卡一致：数最新 release 的全部资产（版本卡标题写的是
+            // "${release.assets.size} 个文件"）。之前用注册表的归类数
+            // （openMSX 只认出 1 个源码包），同一张弹窗出现「共 1 个」与「7 个文件」。
+            val newestCount = entry.releases.firstOrNull()?.assets?.size ?: 0
+            val totalCount = when {
+                newestCount > 0 -> newestCount
+                a.displayTotal > 0 -> a.displayTotal
+                else -> 0
+            }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("发布文件", style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
                 Text(
-                    if (a.isEmpty) "无" else "共 ${a.displayTotal} 个",
+                    if (totalCount == 0) "无" else "共 $totalCount 个",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -13530,7 +13539,7 @@ private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
             val apkTag = entry.latestApkTag
             val olderApk = hasDirect && apkTag.isNotBlank() && apkTag != entry.latestTag
             when {
-                a.isEmpty -> {
+                totalCount == 0 -> {
                     Text(
                         if (hasDirect) "发布页没有附件，安装包由项目自己的构建产物直链提供，点下方「下载」即可。"
                         else "作者没把安装包传到发布页，改在官网、网盘或 Discord 分发。用下方「官网获取」过去找。",
@@ -14010,10 +14019,10 @@ internal fun EmulatorDetailDialog(
                     // 发布页没有附件、包走 nightly.link 或作者 CDN 的条目，弹窗里
                     // 一个可点的文件都没有，只能退出去再点卡片——这里补主按钮。
                     if (canDownload) {
-                        val apkName = entry.latestApkName.ifBlank {
+                        val rawName = entry.latestApkName.ifBlank {
                             entry.latestApkUrl.substringAfterLast('/').substringBefore('?')
-                                .ifBlank { "${entry.id}.apk" }
-                        }
+                        }.ifBlank { entry.id }
+                        val apkName = if (rawName.contains('.')) rawName else "$rawName.apk"
                         Button(
                             onClick = { onDownloadAsset(entry.latestApkUrl, apkName) },
                             shape = RoundedCornerShape(12.dp)
