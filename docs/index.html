@@ -12,6 +12,9 @@
 <meta property="og:image" content="https://mihsian77.github.io/Emubox/assets/og.png">
 <meta property="og:url" content="https://mihsian77.github.io/Emubox/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbf8f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17150f" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://mihsian77.github.io/Emubox/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232E2B26'/%3E%3Cpath d='M9 10l3 6-3 6h3l3-6-3-6zM17 10l3 6-3 6h3l3-6-3-6z' fill='%23C98A3D'/%3E%3C/svg%3E">
 <style>
   :root {
@@ -336,7 +339,7 @@
         </a>
       </div>
       <div class="meta">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Android 9 及以上</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Android 9+ · 64 位</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.4 8.2-8 9-4.6-.8-8-4-8-9V7z"/></svg>MIT 开源</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18"/></svg>简体中文 / English</span>
       </div>
@@ -344,7 +347,7 @@
 
     <div class="phone-stage">
       <div class="phone">
-        <img src="assets/screens/02-dark.png" alt="EmuBox 模拟器库：按热度排序的社区模拟器项目卡片" width="1233" height="2673" fetchpriority="high" decoding="async">
+        <img src="assets/screens/02-dark.png" alt="EmuBox 模拟器库（深色主题）：按热度排序的社区项目，卡片标注平台、下载量与名次" width="1233" height="2673" fetchpriority="high" decoding="async">
       </div>
     </div>
   </div>
@@ -382,7 +385,7 @@
     </div>
     <div class="shots">
       <figure class="shot">
-        <div class="frame"><img src="assets/screens/01-library.png" alt="模拟器库：社区项目聚合，含更新与下载量" loading="lazy" decoding="async"></div>
+        <div class="frame"><img src="assets/screens/01-library.png" alt="模拟器库：按热门排序，卡片带平台标签、下载量与名次" loading="lazy" decoding="async"></div>
         <figcaption>模拟器库 · 亮色</figcaption>
       </figure>
       <figure class="shot">
@@ -463,6 +466,14 @@
     <div class="sec-head">
       <h2>常见问题</h2>
     </div>
+
+    <details>
+      <summary>我的手机能装吗？</summary>
+      <div class="ans">
+        <p>需要 <strong>Android 9.0 及以上</strong>，且是 <strong>64 位（arm64-v8a）</strong>设备。2019 年之后的中高端机基本都满足。</p>
+        <p>安装包只打 64 位架构，体积因此从 47MB 降到约 6MB。32 位机型（armeabi-v7a）没有对应版本，装上会提示「应用与设备不兼容」——这是机型限制，不是安装包损坏。</p>
+      </div>
+    </details>
 
     <details>
       <summary>需要 root 吗？</summary>

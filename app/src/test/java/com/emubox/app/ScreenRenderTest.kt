@@ -172,12 +172,22 @@ class ScreenRenderTest {
         save("01-device.png")
     }
 
-    @Test
-    fun renderEmulatorScreen() {
+    /**
+     * 门面截图要能让人一眼认出这是什么 App：按社区排行取名次靠前的条目，
+     * 别按 JSON 顺序取前 12 条——那会挑出一堆冷门移植，访客一个都不认识。
+     */
+    private fun loadHotEmulators(limit: Int): List<EmulatorEntry> {
         val ranking = loadRanking()
-        val entries = loadEmulators(12).map { e ->
+        val all = loadEmulators(400).map { e ->
             e.copy(rank = ranking[e.id] ?: ranking["repo:${e.repo}"] ?: 0)
         }
+        val hot = all.filter { it.rank > 0 }.sortedBy { it.rank }.take(limit)
+        return if (hot.size >= limit) hot else hot + all.filter { it.rank == 0 }.take(limit - hot.size)
+    }
+
+    @Test
+    fun renderEmulatorScreen() {
+        val entries = loadHotEmulators(12)
         println("注入模拟器条目: ${entries.size} 条，带名次 ${entries.count { it.rank > 0 }} 条")
         compose.setContent {
             ProvideAppLanguage(AppLanguage.CHINESE) {
@@ -246,7 +256,7 @@ class ScreenRenderTest {
 
     @Test
     fun renderEmulatorDark() {
-        val entries = loadEmulators(8)
+        val entries = loadHotEmulators(8)
         compose.setContent {
             ProvideAppLanguage(AppLanguage.CHINESE) {
                 EmuBoxTheme(themeMode = ThemeMode.AMOLED, colorTheme = ColorTheme.EMUHUB) {

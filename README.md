@@ -2,26 +2,26 @@
 
 <div align="center">
 
-[![爱发电 · 支持开发者](https://img.shields.io/badge/爱发电-支持开发者-e85d5d?style=for-the-badge&logo=heart&logoColor=white)](https://afdian.com/a/moon279)
 [![下载 Release](https://img.shields.io/badge/下载-Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white)](https://github.com/mihsian77/Emubox/releases)
+[![爱发电 · 支持开发者](https://img.shields.io/badge/爱发电-支持开发者-e85d5d?style=for-the-badge&logo=heart&logoColor=white)](https://afdian.com/a/moon279)
+
+[![许可](https://img.shields.io/badge/许可-MIT-blue.svg?style=flat-square)](LICENSE)
+[![平台](https://img.shields.io/badge/平台-Android%209%2B-green.svg?style=flat-square)](https://github.com/mihsian77/Emubox/releases)
+[![界面](https://img.shields.io/badge/界面-简体中文%20%2F%20English-8957e5.svg?style=flat-square)](#功能)
 
 </div>
-
-[![许可](https://img.shields.io/badge/许可-MIT-blue.svg)](LICENSE)
-[![平台](https://img.shields.io/badge/平台-Android-green.svg)](https://github.com/mihsian77/Emubox/releases)
 
 > 安卓 Windows 模拟环境的驱动、组件与运行库下载管理器。完整中文界面、国内下载加速、按设备自动匹配。
 
 EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP)（MIT 协议，作者 Rodrigo Castro），在其基础上重做了界面、资源目录与下载链路，面向国内 Winlator / Eden / GameHub 等模拟环境用户。
 
 <p align="center">
-  <img src="docs/assets/screens/01-library.png" width="196" alt="模拟器库">
-  <img src="docs/assets/screens/03-runtime.png" width="196" alt="运行库专区">
-  <img src="docs/assets/screens/04-settings.png" width="196" alt="设置">
-  <img src="docs/assets/screens/02-dark.png" width="196" alt="深色模式">
+  <img src="docs/assets/screens/01-library.png" width="240" alt="模拟器库：按热门排序，卡片带平台标签、下载量与名次">
+  <img src="docs/assets/screens/03-runtime.png" width="240" alt="运行库专区：VC++、.NET 等依赖，附中文用途与安装方式">
+  <img src="docs/assets/screens/02-dark.png" width="240" alt="深色主题：AMOLED 纯黑，OLED 屏省电">
 </p>
 
-<p align="center"><sub>模拟器库 · 运行库专区 · 设置 · 深色模式（界面真实渲染，非设计稿）</sub></p>
+<p align="center"><sub>模拟器库 · 运行库专区 · 深色主题（界面真实渲染，非设计稿）</sub></p>
 
 ---
 
@@ -33,10 +33,14 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ## 功能
 
-- **驱动专区** — Turnip（高通 Adreno）、PanVK（ARM Mali）、三星 Xclipse 三类 GPU 驱动，内置驱动源注册表，按 GPU 家族、架构、型号、目标平台、成熟度分类
+六个一级入口：首页（设备）· 模拟器 · 驱动 · 运行库 · 资讯 · 我的（下载、设置）。
+
+- **设备页** — 读 GPU 型号、Adreno / Mali 代际、安卓版本与运行内存，按匹配度排出这台机器能用的驱动；同芯片实测给出可玩档位；可在设置关闭，改看全量列表
+- **模拟器库** — 数百个模拟器与移植项目的可安装包，按平台、架构、更新状态分类；卡片直接下载，长按看完整文件名与用途
+- **驱动专区** — Turnip（高通 Adreno）、PanVK（ARM Mali）、三星 Xclipse 三类 GPU 驱动，按 GPU 家族、架构、型号、目标平台、成熟度分类
 - **组件专区** — Wine / Proton、Box64 / FEXCore / WOWBox64、DXVK / VKD3D-Proton / D7VK 等图形与转译组件，聚合多个上游目录
 - **运行库专区** — VC++ 运行库、.NET、解码器、字体、DirectX 等 Winlator 常用依赖，附中文用途说明与安装指引
-- **按设备匹配** — 自动识别 GPU 型号、Adreno / Mali 代际、安卓版本与运行内存，驱动按匹配度排序推荐；可在设置关闭以查看全部
+- **资讯** — 上游项目动态按项目聚合，剥掉 HTML 只留正文，不用点进仓库看 release
 - **国内下载加速** — 接入 [MirrorHub](https://github.com/mihsian77/MirrorHub) 维护的加速节点，自动测速选优，也可手动切换或关闭
 - **下载管理** — 暂停 / 继续 / 断点续传，按类型分目录存放，下载库可扫描本地已有文件、查看包内 `meta.json` 信息
 - **组件指南** — 说明每个组件的作用、优先选择、适用场景与切换时机
@@ -44,20 +48,22 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 ## 下载
 
-从 [Releases](https://github.com/mihsian77/Emubox/releases) 获取最新 APK。最低系统要求 Android 9.0（API 28）。
+从 [Releases](https://github.com/mihsian77/Emubox/releases) 获取最新 APK。
+
+**要求**：Android 9.0（API 28）及以上，**arm64-v8a（64 位）**。安装包只打 64 位架构，32 位机型（armeabi-v7a）没有对应版本，装了会报「应用与设备不兼容」。
 
 想拿最新构建（可能未正式发布）时，直接下 Releases 列表里那条「EmuBox x.y.0（预发布）」——同一个 tag 每次 push main 由 CI 覆盖更新。
 
 ## 版本
 
-版本分正式版与预发布，Release 页面上永远只有「上一个正式版 + 当前预发布」两条：
+版本分正式版与预发布：
 
-- **正式版** — `x.y.0`（如 1.4.0），`y` 代表功能批次，每完成一批改动定稿发布；带 Latest 徽标。
+- **正式版** — `x.y.0`（如 1.3.0），`y` 代表功能批次，每完成一批改动定稿发布；带 Latest 徽标。
 - **预发布** — 固定 `vx.y.0-pre`（如 `v1.4.0-pre`），整个功能批次只有这一条。每次构建由 CI 移动 tag 到最新提交、覆盖同名 APK、刷新日志正文，不新增条目；正式版发布后这条预发布自动删掉。
 
-App 里的版本号形如 `1.4.0-pre.312`（末段是 CI 构建序号，不进 tag）；正式版安装包版本号必定大于同批次任一预发布，可直接覆盖安装。
+所以 Releases 列表里正式版随批次累积，预发布始终只有当前这一条。
 
-Releases 页面：顶部 Latest 框 = 最新正式版；列表第一行 = 当前批次的预发布构建。
+App 里的版本号形如 `1.4.0-pre.312`（末段是 CI 构建序号，不进 tag）；正式版安装包版本号必定大于同批次任一预发布，可直接覆盖安装。想确认装的是哪一版，看「设置 → 关于」。
 
 ## 构建
 
@@ -65,7 +71,7 @@ Releases 页面：顶部 Latest 框 = 最新正式版；列表第一行 = 当前
 
 ```bash
 git clone https://github.com/mihsian77/Emubox.git
-cd emubox
+cd Emubox
 ./gradlew assembleDebug
 ```
 
@@ -79,28 +85,46 @@ python3 scripts/check-i18n.py
 
 检查漏译 / 多译、占位符一致性、空翻译与 Kotlin 硬编码。
 
+改界面时还有两道本地闸门：`scripts/check-copy.py` 查文案规范（中英优先、不写内部视角说明），`scripts/check-truncation.py` 查长字段行数——文件名类字段至少给 3 行，版本号类至少 2 行。
+
 ## CI
 
-push / PR 到 main 时，`ci.yml` 依次执行 i18n 校验、Android Lint、Debug/Release 编译，上传 Lint 报告与 APK，并把 Release APK 覆盖更新到当前批次的 `vx.y.0-pre` 预发布条目（tag 随之移动，列表不增条目）。正式发布走 tag `v*` 触发的 `release.yml`；带 `pre` / `rc` 的 tag 不会被它当成正式版。
+push / PR 到 main 时，`ci.yml` 依次跑 i18n 校验、文案规范、长字段行数闸门、Android Lint、单元测试，再编译 Debug / Release，校验 APK 资源完整性，最后把 Release APK 覆盖更新到当前批次的 `vx.y.0-pre` 预发布条目（tag 随之移动，列表不增条目）。正式发布走 tag `v*` 触发的 `release.yml`；带 `pre` / `rc` 的 tag 不会被它当成正式版。
 
 ## 项目结构
 
 ```
 app/src/main/
 ├── java/com/emubox/app/
-│   ├── Accelerator.kt        # 加速节点管理、延迟与带宽测速、URL 重写
-│   ├── Screens.kt            # 各专区与设置界面
-│   ├── SourceCatalog.kt      # 驱动与组件资源目录
-│   ├── RuntimeLibrary.kt     # 运行库目录与中文说明
-│   ├── DownloadUtils.kt      # 下载逻辑与文件命名
-│   ├── NativeVulkanBridge.kt # Vulkan 采集 / 跑分 JNI 桥
-│   ├── HardwareUtils.kt      # 设备硬件识别
-│   └── ui/theme/             # 主题与配色
-├── cpp/vulkan_collector.cpp  # native Vulkan 信息采集与基准
+│   ├── MainActivity.kt        # 导航、分区装配、各页数据拉取
+│   ├── Screens.kt             # 各分区界面与通用组件
+│   ├── EmulatorRegistry.kt    # 模拟器注册表读取、模型与筛选
+│   ├── DownloadService.kt     # 前台下载服务
+│   ├── DownloadsManager.kt    # 下载队列、断点续传、本地文件扫描
+│   ├── Accelerator.kt         # 加速节点管理、测速、URL 重写
+│   ├── HardwareUtils.kt       # 设备硬件识别
+│   ├── PlayableCatalog.kt     # 可玩库：同芯片实测与档位
+│   ├── NativeVulkanBridge.kt  # Vulkan 采集 / 跑分 JNI 桥
+│   ├── RuntimeLibrary.kt      # 运行库目录与中文说明
+│   ├── SourceCatalog.kt       # 驱动与组件资源目录
+│   └── ui/theme/              # 主题与配色
+├── cpp/vulkan_collector.cpp   # native Vulkan 信息采集与基准
 └── res/
-    ├── values/               # 英文（默认）
-    └── values-zh-rCN/        # 简体中文
+    ├── values/                # 英文（默认）
+    └── values-zh-rCN/         # 简体中文
 ```
+
+根目录的数据文件由 `scripts/` 下的刷新脚本生成，App 启动时按需拉取；历史版本可能缓存了旧地址，所以文件名与位置保持稳定：
+
+| 文件 | 内容 |
+|---|---|
+| `driver-registry.json` | 驱动条目 |
+| `emulator-registry.json` | 模拟器条目（列表用） |
+| `emulator-details-*.json` | 模拟器详情分片，按条目哈希取一片 |
+| `emulator-ranking.json` | 外部社区排行与趋势 |
+| `news-data.json` | 资讯聚合 |
+| `ranking.json` + `ranking-history/` | 家族聚合榜，用于网页榜单 |
+| `speedtest.bin` | 加速节点测速用的固定文件，App 按 URL 直取 |
 
 ## 驱动来源
 

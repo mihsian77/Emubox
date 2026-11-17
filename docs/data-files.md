@@ -1,25 +1,26 @@
 # 数据文件说明
 
-仓库根目录的 JSON 分三类，别再把它们当垃圾数据删：
+仓库根目录的 JSON 按用途分三类。它们由 CI 生成、App 直接拉取，不是构建产物，不要顺手清理。
 
 ## App 直接读
 
 | 文件 | 谁读 | 说明 |
 | --- | --- | --- |
-| `emulator-index.json` | App `EmulatorRegistry` | **首屏索引**，374KB，302 条的卡片字段 + `detail_shard` |
-| `emulator-details-0..7.json` | App `EmulatorRegistry` | 详情分片，每片 230~390KB，进详情页只拉一片 |
-| `emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（57KB；releases 已剥离，只剩列表字段） |
+| `emulator-index.json` | App `EmulatorRegistry` | **首屏索引**，约 500KB，全部条目的卡片字段 + `detail_shard` |
+| `emulator-details-0..7.json` | App `EmulatorRegistry` | 详情分片，进详情页只拉该条目所在那一片 |
+| `emulator-ranking.json` | App `EmulatorRegistry` | 榜单与 insights（releases 已剥离，只剩列表字段） |
 | `news-data.json` | App `NewsRepository` | 新闻，CI 每日两次刷新 |
 | `driver-registry.json` | App `DriverRegistryRepository` | 驱动源注册表 |
 | `app/src/main/assets/source-profiles.json` | App `SourceProfiles` | 驱动/组件源的「给谁用 · 怎么装 · 注意」文案 |
-| `sources.json` | App `Accelerator` | 加速节点源清单 |
 
-`app/src/main/assets/emulator-offline.json` 是索引的离线副本（369KB），
+加速节点源清单 `sources.json` 由上游 [EmuHub-APP](https://github.com/Rodrig02005/EmuHub-APP) 维护，不在本仓库。
+
+`app/src/main/assets/emulator-offline.json` 是索引的离线副本（约 500KB），
 首启无网时用它出首屏，不再在 Kotlin 里手写内置列表。
 
-**为什么不直接用 `emulator-registry.json`**：3.2MB，其中 2243KB 是 `releases`
+**为什么不直接用 `emulator-registry.json`**：4MB 出头，其中绝大部分是 `releases`
 （每个版本 × 每个资产）。首屏只需要卡片上的二十来个字段，却要先把整包下完。
-拆开后首屏流量 3269KB → 374KB（-89%）。三份文件必须同步生成，
+拆开后首屏流量降到索引大小（-88% 左右）。三份文件必须同步生成，
 CI 的 `index-check` 会在 registry 改了但索引没重建时直接失败。
 
 ## 全量源（不直接被 App 读）
