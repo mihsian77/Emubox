@@ -13521,10 +13521,19 @@ private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+            // 卡片上的「下载」给的是 latest_apk_url，它不一定是最新版的包：
+            // 最新版只发源码/桌面包时，脚本会回退到更早那个带 APK 的版本。
+            // 所以这里的口径要跟按钮对齐——只说「最新版有什么」会出现
+            // 「手机装不了」旁边挂着下载按钮的矛盾说法。
+            val hasDirect = entry.latestApkUrl.isNotBlank() &&
+                !(entry.dead && entry.source != "community-archive")
+            val apkTag = entry.latestApkTag
+            val olderApk = hasDirect && apkTag.isNotBlank() && apkTag != entry.latestTag
             when {
                 a.isEmpty -> {
                     Text(
-                        "作者没把安装包传到发布页，改在官网、网盘或 Discord 分发。用下方「官网获取」过去找。",
+                        if (hasDirect) "发布页没有附件，安装包由项目自己的构建产物直链提供，点下方「下载」即可。"
+                        else "作者没把安装包传到发布页，改在官网、网盘或 Discord 分发。用下方「官网获取」过去找。",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -13534,12 +13543,18 @@ private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
                     Text(
                         when {
                             phone > 0 -> "手机可直接安装 · $phone 个"
+                            // 按钮能给包时，先说清它是哪一版，别让用户以为装的是最新版
+                            olderApk -> softBreakLong("最新版没有安卓包 · 下载按钮给的是 $apkTag")
+                            hasDirect -> "最新版没有安卓包 · 下载按钮给的是单独提供的安装包"
                             a.recognized > 0 -> "手机装不了 · 只有桌面端或源码"
                             else -> "发布页 ${a.total} 个文件都不是手机安装包"
                         },
                         style = MaterialTheme.typography.labelLarge,
-                        color = if (phone > 0) MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.error
+                        color = when {
+                            phone > 0 -> MaterialTheme.colorScheme.primary
+                            olderApk || hasDirect -> MaterialTheme.colorScheme.tertiary
+                            else -> MaterialTheme.colorScheme.error
+                        }
                     )
                     val detail = artifactBreakdown(a)
                     if (detail.isNotBlank()) {
@@ -13547,19 +13562,6 @@ private fun ArtifactSummaryBlock(entry: EmulatorEntry) {
                             detail,
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                    // 卡片上的「下载」直接给 latest_apk_url，而它是脚本从所有版本里
-                    // 挑出来的，16 条挑到的不是最新版（openmsx 挑到 0.15，最新 22.0）。
-                    // 详情页必须说清这个包来自哪一版，否则用户以为装的是新版。
-                    val apkTag = entry.latestApkTag
-                    if (apkTag.isNotBlank() && apkTag != entry.latestTag) {
-                        Text(
-                            softBreakLong("下载按钮提供的是 $apkTag 的安装包，不是最新的 ${entry.latestTag}"),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.tertiary,
-                            maxLines = 3,
-                            overflow = TextOverflow.Ellipsis
                         )
                     }
                 }
@@ -13584,6 +13586,8 @@ internal fun EmulatorDetailDialog(
         entry = EmulatorRegistryRepository.loadDetail(context, initialEntry)
     }
     val isArchive = entry.source == "community-archive"
+    // 卡片上的「下载」给的也是这个链接，两处口径必须一致
+    val canDownload = entry.latestApkUrl.isNotBlank() && !(entry.dead && !isArchive)
     var expandedTag by remember { mutableStateOf(entry.releases.firstOrNull()?.tag) }
     var translatedMap by remember { mutableStateOf<Map<String, String?>>(emptyMap()) }
     var translatingTag by remember { mutableStateOf<String?>(null) }
@@ -14003,6 +14007,20 @@ internal fun EmulatorDetailDialog(
                 }
                 HorizontalDivider()
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    // 发布页没有附件、包走 nightly.link 或作者 CDN 的条目，弹窗里
+                    // 一个可点的文件都没有，只能退出去再点卡片——这里补主按钮。
+                    if (canDownload) {
+                        val apkName = entry.latestApkName.ifBlank {
+                            entry.latestApkUrl.substringAfterLast('/').substringBefore('?')
+                                .ifBlank { "${entry.id}.apk" }
+                        }
+                        Button(
+                            onClick = { onDownloadAsset(entry.latestApkUrl, apkName) },
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Text(appString(R.string.emulator_download), maxLines = 1)
+                        }
+                    }
                     if (entry.repoLink.isNotBlank() && !(entry.dead && !isArchive)) {
                         OutlinedButton(
                             onClick = {

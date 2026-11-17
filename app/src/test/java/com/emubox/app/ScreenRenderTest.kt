@@ -494,6 +494,62 @@ class ScreenRenderTest {
         save("11-long-detail-title.png")
     }
 
+    /**
+     * 发布文件说明与下载按钮必须说同一件事。
+     * openmsx 的最新版只发源码和桌面包，按钮回退到 RELEASE_0_15_0 的旧 APK：
+     * 修前这块写「手机装不了」却挂着下载按钮，用户不知道点下去会装到哪个版本。
+     */
+    @Test
+    fun renderApkVersionNote() {
+        val all = loadEmulators(400)
+        val entry = all.firstOrNull { it.id == "openmsx" }
+            ?: all.first { it.latestApkTag.isNotBlank() && it.latestApkTag != it.latestTag }
+        val withReleases = entry.copy(releases = loadReleases(entry.id))
+        println("版本说明样本: ${entry.id}，包=${entry.latestApkTag}，最新=${entry.latestTag}")
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        EmulatorDetailDialog(
+                            initialEntry = withReleases,
+                            onDismiss = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        save("12-apk-version-note.png")
+    }
+
+    /**
+     * 发布页没有附件、包走构建产物直链的条目（nightly.link / 作者 CDN）。
+     * 修前这块统一写「作者没把安装包传到发布页」，可旁边的按钮就能直接下载。
+     */
+    @Test
+    fun renderDirectOnlyApk() {
+        val all = loadEmulators(400)
+        val entry = all.first { e ->
+            e.artifacts.isEmpty && e.latestApkUrl.isNotBlank()
+        }
+        val withReleases = entry.copy(releases = loadReleases(entry.id))
+        println("直链样本: ${entry.id}，链接=${entry.latestApkUrl.take(60)}")
+        compose.setContent {
+            ProvideAppLanguage(AppLanguage.CHINESE) {
+                EmuBoxTheme(themeMode = ThemeMode.LIGHT, colorTheme = ColorTheme.EMUHUB) {
+                    Surface(Modifier.fillMaxSize()) {
+                        EmulatorDetailDialog(
+                            initialEntry = withReleases,
+                            onDismiss = {},
+                            onDownloadAsset = { _, _ -> }
+                        )
+                    }
+                }
+            }
+        }
+        save("13-direct-only-apk.png")
+    }
+
     /** 从详情分片读 releases（结构与 build_index.py 输出一致；分片号不查表，直接找） */
     private fun loadReleases(id: String): List<EmulatorRelease> {
         var d: JSONObject? = null
