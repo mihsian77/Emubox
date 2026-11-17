@@ -102,13 +102,16 @@ app/src/main/
 │   ├── EmulatorDetailDialog.kt# 模拟器详情页
 │   ├── DriverScreen.kt        # 驱动分区：动态、版本、框架
 │   ├── DriverCards.kt         # 驱动卡片、来源选择、更新日志
+│   ├── DriverDetectionUi.kt   # 驱动检测、Vulkan 详情、驱动动态
 │   ├── DeviceScreen.kt        # 设备检测与驱动推荐
+│   ├── DeviceUi.kt            # 设备共用件：品牌标识、路径结论、使用说明
 │   ├── ComponentScreens.kt    # 组件分区
 │   ├── RuntimeLibraryScreen.kt# 运行库分区
 │   ├── DownloadsScreen.kt     # 下载库
 │   ├── SettingsScreen.kt      # 设置
 │   ├── ComponentGuideScreen.kt# 兼容指南
 │   ├── NewsFeedScreen.kt      # 资讯流与全局搜索
+│   ├── SocBenchUi.kt          # 芯片知识卡与跑分档位
 │   ├── UiFormat.kt            # 通用格式化（时间/体积/头像）
 │   ├── SharedUi.kt            # 跨分区共享的搜索框与筛选标签
 │   ├── EmulatorRegistry.kt    # 模拟器注册表读取、模型与筛选
