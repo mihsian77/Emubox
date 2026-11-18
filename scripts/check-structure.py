@@ -47,8 +47,16 @@ IMPLICIT_OK = {
 FUN_DECL = re.compile(
     r'^(\s*)'
     r'(?:(?:private|internal|public|protected|inline|suspend|override|open|'
-    r'operator|infix|tailrec|external|actual|expect)\s+)*'
+    r'operator|infix|tailrec|external|actual|expect|abstract)\s+)*'
     r'fun\s+'
+)
+
+# 同缩进处出现这些关键字，说明上一个声明已经结束（无花括号的表达式体或抽象声明）
+DECL_START = re.compile(
+    r'^\s*(?:@\w+.*|'
+    r'(?:(?:private|internal|public|protected|inline|suspend|override|open|'
+    r'operator|infix|tailrec|external|actual|expect|abstract|const)\s+)*'
+    r'(?:fun|class|object|interface|val|var|companion|init)\b)'
 )
 
 
@@ -78,8 +86,13 @@ def depths(lines):
 def functions(lines):
     """列出 (起始行, 结束行, 名称)。任意缩进层级。
 
-    结束行 = 深度回落到声明前深度的第一行。表达式体函数（fun x() = ...）
-    没有自己的花括号，记 1 行，不参与超长判定。
+    函数体左花括号可能不在声明行：参数多的 Compose 组件常写成
+        internal fun Foo(
+            a: String,
+            b: Int
+        ) {
+    只看声明行会把这类函数当成「无花括号的表达式体」记 1 行，整类漏检。
+    这里向后找函数体起点，遇到同层新声明即放弃，最后按深度回落定位结束行。
     """
     dep = depths(lines)
     out = []
@@ -94,11 +107,32 @@ def functions(lines):
         nm = re.match(r'(?:<[^>]*>\s*)?(?:[\w.<>?,\s\[\]:]+?\.)?([A-Za-z_]\w*)', rest)
         name = nm.group(1) if nm else '?'
         d0 = dep[i - 1] if i else 0
-        if dep[i] <= d0:
+
+        if dep[i] > d0:
+            body = i
+        else:
+            body = None
+            for j in range(i + 1, min(i + 40, len(lines))):
+                if dep[j] < d0:
+                    break
+                # 同层又出现一个声明：上一个没有花括号，已经结束。
+                # 用「行首深度」（dep[j-1]）判断，不能用行尾深度——`fun block() {`
+                # 这一行本身就把深度抬高了，用行尾深度会把它错认成上一个函数的函数体。
+                if (dep[j - 1] if j else 0) == d0 and DECL_START.match(lines[j]):
+                    break
+                if dep[j] > d0:
+                    body = j
+                    break
+                # 表达式体：= 后没有花括号
+                if re.search(r'\)\s*(?::\s*[^=]+)?=\s*', lines[j]) and '{' not in lines[j]:
+                    break
+
+        if body is None:
             out.append((i, i, name))
             continue
-        end = i
-        for j in range(i, len(lines)):
+
+        end = body
+        for j in range(body, len(lines)):
             if dep[j] == d0:
                 end = j
                 break

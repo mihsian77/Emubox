@@ -9,6 +9,12 @@
   "functions": {
     "MainActivity.kt::onCreate": 1065,
     "DownloadsScreen.kt::DownloadsScreen": 706,
-    "SocBenchUi.kt::BenchEngineCard": 341
+    "EmulatorScreen.kt::EmulatorScreen": 571,
+    "EmulatorDetailDialog.kt::EmulatorDetailDialog": 482,
+    "DeviceScreen.kt::DeviceScreen": 475,
+    "DriverScreen.kt::DriverScreen": 467,
+    "DriverDetectionUi.kt::DriverDetectionList": 439,
+    "SocBenchUi.kt::BenchEngineCard": 341,
+    "SettingsScreen.kt::SettingsScreen": 340
   }
 }
