@@ -124,6 +124,18 @@ Termux 一次发六个产物，`termux-app_v0.119.0-beta.3.1+apt-android-7-githu
 
 `python3 scripts/check-truncation.py` 会拦下违反上表的改动，已接入 CI。
 
+## 代码结构
+
+`python3 scripts/check-structure.py` 在 CI 里拦三样：
+
+| 项 | 上限 | 为什么 |
+|---|---|---|
+| 单文件行数 | 2500 | 曾出现 15250 行的单文件，拆开后要有东西防止重新堆回去 |
+| 单个顶层函数行数 | 1200 | 函数过千行后，`remember` 状态归属和 recomposition 范围都难以追溯 |
+| 未用 import | 0 | Kotlin 编译器不报，Lint 的 `UnusedImport` 只是 warning，CI 不因 warning 失败 |
+
+阈值取「当前最大值 + 余量」，不是理想值。要往下压，先改脚本里的 `LIMIT_FILE` / `LIMIT_FUN`，再让 CI 逼着拆。
+
 ## 许可
 
 代码 MIT。提交的贡献按同一许可授权。

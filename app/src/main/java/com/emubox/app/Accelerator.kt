@@ -7,7 +7,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.JSONArray
 import java.util.concurrent.TimeUnit
 
 private const val TAG = "EmuBoxAccelerator"

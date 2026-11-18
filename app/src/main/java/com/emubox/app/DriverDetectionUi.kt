@@ -1,5 +1,6 @@
 package com.emubox.app
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.animation.*
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.filled.*
 import coil.compose.AsyncImage
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
@@ -444,697 +446,887 @@ internal fun DriverDetectionList(
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        // 检测覆盖面说明：明确 AdrenoTools 实测的能力边界
-        Surface(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(18.dp),
-            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
-        ) {
-            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        DetectionScopeNote()
+        DriverDetectionCards(
+            drivers = downloadedDrivers,
+            context = context,
+            systemDevice = systemDevice,
+            detectionResults = detectionResults,
+            detectingId = detectingId,
+            driverMetas = driverMetas,
+            exportFlags = exportFlags,
+            benchmarkResults = benchmarkResults,
+            benchmarkingId = benchmarkingId,
+            adrenotoolsResults = adrenotoolsResults,
+            renderResults = renderResults,
+            adrenotoolsTestingId = adrenotoolsTestingId,
+            compareSelection = compareSelection,
+            testWithAdrenoTools = testWithAdrenoTools,
+            benchmarkDriver = benchmarkDriver,
+            checkExportable = checkExportable,
+            onMetaParsed = { id, meta -> driverMetas = driverMetas + (id to meta) },
+            onDetectionResult = { id, payload -> detectionResults = detectionResults + (id to payload) }
+        )
+        DriverComparePanel(
+            drivers = downloadedDrivers,
+            context = context,
+            compareSelection = compareSelection,
+            driverMetas = driverMetas,
+            adrenotoolsResults = adrenotoolsResults,
+            adrenotoolsTestingId = adrenotoolsTestingId,
+            testWithAdrenoTools = testWithAdrenoTools,
+            onMetaParsed = { id, meta -> driverMetas = driverMetas + (id to meta) }
+        )
+    }
+}
+
+@Composable
+private fun DetectionScopeNote() {
+    // 检测覆盖面说明：明确 AdrenoTools 实测的能力边界
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+    ) {
+        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text(
+                appString(R.string.detection_coverage_title),
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Text(
+                appString(R.string.detection_coverage_desc),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun DriverDetectionCards(
+    drivers: List<DownloadsManager.CompletedDownload>,
+    context: Context,
+    systemDevice: VulkanDeviceInfo?,
+    detectionResults: Map<String, VulkanInfoPayload>,
+    detectingId: String?,
+    driverMetas: Map<String, DriverMetaParser.DriverMeta?>,
+    exportFlags: Map<String, Boolean?>,
+    benchmarkResults: Map<String, BenchmarkResult>,
+    benchmarkingId: String?,
+    adrenotoolsResults: Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>,
+    renderResults: Map<String, org.json.JSONObject>,
+    adrenotoolsTestingId: String?,
+    compareSelection: SnapshotStateList<String>,
+    testWithAdrenoTools: (String, String) -> Unit,
+    benchmarkDriver: (String, String) -> Unit,
+    checkExportable: (String, String) -> Unit,
+    onMetaParsed: (String, DriverMetaParser.DriverMeta?) -> Unit,
+    onDetectionResult: (String, VulkanInfoPayload) -> Unit
+) {
+    drivers.forEach { download ->
+        DriverRowCard(
+            download = download,
+            context = context,
+            systemDevice = systemDevice,
+            detectionResults = detectionResults,
+            detectingId = detectingId,
+            driverMetas = driverMetas,
+            exportFlags = exportFlags,
+            benchmarkResults = benchmarkResults,
+            benchmarkingId = benchmarkingId,
+            adrenotoolsResults = adrenotoolsResults,
+            renderResults = renderResults,
+            adrenotoolsTestingId = adrenotoolsTestingId,
+            compareSelection = compareSelection,
+            testWithAdrenoTools = testWithAdrenoTools,
+            benchmarkDriver = benchmarkDriver,
+            checkExportable = checkExportable,
+            onMetaParsed = onMetaParsed,
+            onDetectionResult = onDetectionResult
+        )
+    }
+}
+
+@Composable
+private fun DriverRowCard(
+    download: DownloadsManager.CompletedDownload,
+    context: Context,
+    systemDevice: VulkanDeviceInfo?,
+    detectionResults: Map<String, VulkanInfoPayload>,
+    detectingId: String?,
+    driverMetas: Map<String, DriverMetaParser.DriverMeta?>,
+    exportFlags: Map<String, Boolean?>,
+    benchmarkResults: Map<String, BenchmarkResult>,
+    benchmarkingId: String?,
+    adrenotoolsResults: Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>,
+    renderResults: Map<String, org.json.JSONObject>,
+    adrenotoolsTestingId: String?,
+    compareSelection: SnapshotStateList<String>,
+    testWithAdrenoTools: (String, String) -> Unit,
+    benchmarkDriver: (String, String) -> Unit,
+    checkExportable: (String, String) -> Unit,
+    onMetaParsed: (String, DriverMetaParser.DriverMeta?) -> Unit,
+    onDetectionResult: (String, VulkanInfoPayload) -> Unit
+) {
+    val result = detectionResults[download.id]
+    val isDetecting = detectingId == download.id
+    val meta = driverMetas[download.id]
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp)
+    ) {
+        Column(Modifier.padding(14.dp)) {
+            DriverRowHeader(
+                download = download,
+                context = context,
+                result = result,
+                isDetecting = isDetecting,
+                meta = meta,
+                adrenotoolsTestingId = adrenotoolsTestingId,
+                testWithAdrenoTools = testWithAdrenoTools,
+                onMetaParsed = onMetaParsed,
+                onDetectionResult = onDetectionResult
+            )
+            DriverMetaSection(meta)
+            DriverAdrenoToolsSection(
+                download = download,
+                systemDevice = systemDevice,
+                adrenotoolsResults = adrenotoolsResults,
+                renderResults = renderResults
+            )
+            DriverBenchmarkSection(
+                download = download,
+                exportFlags = exportFlags,
+                benchmarkResults = benchmarkResults,
+                benchmarkingId = benchmarkingId,
+                benchmarkDriver = benchmarkDriver,
+                checkExportable = checkExportable
+            )
+            DriverDetectionResultSection(result, systemDevice)
+            DriverCompareToggle(download, compareSelection)
+        }
+    }
+}
+
+@Composable
+private fun DriverRowHeader(
+    download: DownloadsManager.CompletedDownload,
+    context: Context,
+    result: VulkanInfoPayload?,
+    isDetecting: Boolean,
+    meta: DriverMetaParser.DriverMeta?,
+    adrenotoolsTestingId: String?,
+    testWithAdrenoTools: (String, String) -> Unit,
+    onMetaParsed: (String, DriverMetaParser.DriverMeta?) -> Unit,
+    onDetectionResult: (String, VulkanInfoPayload) -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            LongFieldText(
+                download.fileName,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 3
+            )
+            Text(
+                "${"%.1f".format(download.sizeBytes / 1024.0 / 1024.0)} MB",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        if (isDetecting || adrenotoolsTestingId == download.id) {
+            CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
+        } else {
+            Button(
+                onClick = {
+                    // 只读 meta.json 判定打包格式：
+                    // - VENDOR_SYSTEM：厂商系统提取驱动（需 root/系统级安装），
+                    //   AdrenoTools 也无法加载，保留说明提示。
+                    // - ADRENOTOOLS_PACKAGE / 其他：AdrenoTools 实测——
+                    //   以模拟器同款路径在 App 内加载 turnip/panvk 驱动，
+                    //   采集实例/设备扩展 + 跑分（崩溃隔离在 fork 子进程）。
+                    val parsed = meta
+                        ?: runCatching { DriverMetaParser.parse(context, download.filePath) }.getOrNull()
+                    onMetaParsed(download.id, parsed)
+                    val type = parsed?.driverType()
+                        ?: DriverMetaParser.DriverType.UNKNOWN
+                    if (type == DriverMetaParser.DriverType.VENDOR_SYSTEM) {
+                        val payload = VulkanInfoPayload(
+                            success = false,
+                            errorCode = "VENDOR_SYSTEM_DRIVER",
+                            errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
+                            loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
+                            deviceCount = 0,
+                            devices = emptyList()
+                        )
+                        onDetectionResult(download.id, payload)
+                    } else {
+                        testWithAdrenoTools(download.id, download.filePath)
+                    }
+                },
+                contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
+            ) {
+                Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(16.dp))
+                Spacer(Modifier.width(6.dp))
                 Text(
-                    appString(R.string.detection_coverage_title),
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Text(
-                    appString(R.string.detection_coverage_desc),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    if (result != null) appString(R.string.redetect) else appString(R.string.view_driver_info),
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
         }
+    }
+}
 
-        downloadedDrivers.forEach { download ->
-            val result = detectionResults[download.id]
-            val isDetecting = detectingId == download.id
-            val meta = driverMetas[download.id]
+@Composable
+private fun DriverMetaSection(meta: DriverMetaParser.DriverMeta?) {
+    // meta.json 驱动信息（自动解析后直接展示，这是该驱动包的真实身份信息）
+    if (meta != null && !meta.isEmpty()) {
+        Spacer(Modifier.height(10.dp))
+        Divider()
+        Spacer(Modifier.height(8.dp))
+        if (meta.name.isNotBlank())
+            InfoRow(appString(R.string.meta_name), meta.name)
+        if (meta.packageVersion.isNotBlank())
+            InfoRow(appString(R.string.meta_package_version), meta.packageVersion)
+        if (meta.driverVersion.isNotBlank())
+            InfoRow(appString(R.string.meta_driver_version), meta.driverVersion)
+        if (meta.vendor.isNotBlank())
+            InfoRow(appString(R.string.meta_vendor), meta.vendor)
+        if (meta.author.isNotBlank())
+            InfoRow(appString(R.string.meta_author), meta.author)
+        if (meta.minApi.isNotBlank())
+            InfoRow(appString(R.string.meta_min_api), meta.minApi)
+        if (meta.description.isNotBlank())
+            InfoRow("驱动说明", meta.description)
+        InfoRow(
+            "驱动类型",
+            when (meta.driverType()) {
+                DriverMetaParser.DriverType.VENDOR_SYSTEM -> "厂商系统提取（需 root/系统级安装，App 内不可加载）"
+                DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> "AdrenoTools 打包（模拟器注入加载，App 内以 fork 隔离实测）"
+                else -> "未声明/其他（App 内按通用路径尝试）"
+            }
+        )
+    }
+}
 
+@Composable
+private fun DriverAdrenoToolsSection(
+    download: DownloadsManager.CompletedDownload,
+    systemDevice: VulkanDeviceInfo?,
+    adrenotoolsResults: Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>,
+    renderResults: Map<String, org.json.JSONObject>
+) {
+    // ── AdrenoTools 实测结果（M4）：实例/设备扩展、设备属性、兼容、跑分 ──
+    // 加载路径与 Winlator/GameHub/Eden 一致，是当前最接近模拟器内真实
+    // 行为的 App 内驱动验证方式。
+    val adtTest = adrenotoolsResults[download.id]
+    if (adtTest != null) {
+        Spacer(Modifier.height(10.dp))
+        Divider()
+        Spacer(Modifier.height(6.dp))
+        val (adtCollect, adtBench) = adtTest
+        if (adtCollect.success) {
+            Text(
+                "AdrenoTools 实测",
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.height(4.dp))
+            InfoRow("实例扩展", "${adtCollect.instanceExtCount} 个")
+            val dev = adtCollect.devices.firstOrNull()
+            if (dev != null) {
+                InfoRow("设备", dev.deviceName)
+                InfoRow("API 版本", dev.apiVersion)
+                InfoRow("驱动版本", dev.driverVersion)
+                InfoRow("设备扩展", "${dev.extensions.size} 个")
+                // 关键扩展缺失提示：DXVK/VKD3D 转译依赖的关键扩展逐项对照
+                val extNames = dev.extensions.map { it.name }
+                val missingCritical = CRITICAL_DXVK_EXTS.filter { it !in extNames }
+                if (missingCritical.isNotEmpty()) {
+                    Spacer(Modifier.height(4.dp))
+                    Surface(
+                        shape = RoundedCornerShape(10.dp),
+                        color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.5f),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Text(
+                                "缺失关键扩展 ${missingCritical.size}/${CRITICAL_DXVK_EXTS.size}（影响转译层功能）",
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onErrorContainer
+                            )
+                            Text(
+                                missingCritical.joinToString("、"),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onErrorContainer,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+                }
+                // 兼容徽章：驱动面向 GPU 厂商 vs 当前设备 GPU 厂商
+                val sysVendor = systemDevice?.vendorId
+                val compat = when (dev.vendorId) {
+                    sysVendor -> "与当前设备 GPU 同厂商（预计可加载）"
+                    else -> "驱动面向 ${vendorName(dev.vendorId)}，本机为 ${vendorName(sysVendor)}，加载结果以实测为准"
+                }
+                InfoRow("GPU 兼容", compat)
+            if (adtBench.success) {
+                Spacer(Modifier.height(6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(
+                        "综合 ${adtBench.totalScore}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                    )
+                    Text(
+                        "带宽 ${"%.1f".format(adtBench.fillBandwidthGBs)} GB/s",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Text(
+                        "拷贝 ${"%.1f".format(adtBench.copyBandwidthGBs)} GB/s",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            } else {
+                Text(
+                    "跑分失败：${adtBench.errorCode ?: "?"} ${adtBench.errorMessage ?: ""}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+            // ── 渲染测试（vktest 同款）：离屏渲染三角形 60 帧测 FPS ──
+            val renderRes = renderResults[download.id]
+            if (renderRes != null) {
+                Spacer(Modifier.height(6.dp))
+                if (renderRes.optBoolean("success")) {
+                    val mode = renderRes.optString("mode", "graphics")
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Text(
+                            "渲染测试 ${"%.1f".format(renderRes.optDouble("fps", 0.0))} FPS",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                        )
+                        val avgMs = renderRes.optDouble("avgFrameMs", 0.0)
+                        if (avgMs > 0.0) {
+                            Text(
+                                "帧耗时 ${"%.2f".format(avgMs)} ms",
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+                        val frames = renderRes.optInt("frameCount", -1)
+                        if (frames > 0) {
+                            Text("${frames} 帧", style = MaterialTheme.typography.bodySmall)
+                        }
+                        val gbs = renderRes.optDouble("copyBandwidthGBs", 0.0)
+                        if (gbs > 0.0) {
+                            Text(
+                                "拷贝 ${"%.1f".format(gbs)} GB/s",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
+                    if (mode == "copy-render") {
+                        Text(
+                            "兼容模式：fill+copy 渲染链验证（turnip graphics pipeline 编译崩溃，已绕开），读回校验 " +
+                                (if (renderRes.optBoolean("readbackOk", false)) "通过" else "失败"),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else {
+                        Text(
+                            "离屏渲染 256×256 彩色三角形（vktest 同款图形管线，每帧同步提交）",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                } else {
+                    var renderErrExpanded by remember { mutableStateOf(false) }
+                    val renderErrMsg = renderRes.optString("errorMessage", "")
+                    Text(
+                        "渲染测试失败：${renderRes.optString("errorCode", "?")} $renderErrMsg",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error,
+                        maxLines = if (renderErrExpanded) Int.MAX_VALUE else 2,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { renderErrExpanded = !renderErrExpanded }
+                    )
+                    if (!renderErrExpanded && renderErrMsg.length > 48) {
+                        Text(
+                            "点击展开完整内容",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.clickable { renderErrExpanded = true }
+                        )
+                    }
+                }
+            }
+            Spacer(Modifier.height(8.dp))
+            // 游戏支持评估：按实测驱动类型分级（独立于跑分，实测成功即显示）
+            val evalDriverType = when (dev.vendorId) {
+                0x5143 -> "turnip"
+                0x13B5 -> "panvk"
+                else -> "system"
+            }
+            val evals = assessGameSupport(
+                driverType = evalDriverType,
+                isAdrenoDevice = (systemDevice?.vendorId ?: 0) == 0x5143,
+                isMaliDevice = (systemDevice?.vendorId ?: 0) == 0x13B5,
+                extensions = dev.extensions.map { it.name },
+                apiVersion = dev.apiVersion
+            )
+            Column(Modifier.padding(top = 4.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                    Spacer(Modifier.width(6.dp))
+                    Text("基于驱动能力静态评估，非实测运行", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                evals.forEach { e ->
+                    Row(Modifier.padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
+                        val color = when (e.level) {
+                            "基本能跑" -> Color(0xFF2E7D32)
+                            "可能能跑" -> Color(0xFFF9A825)
+                            else -> Color(0xFFC62828)
+                        }
+                        Box(Modifier.size(8.dp).clip(CircleShape).background(color))
+                        Spacer(Modifier.width(6.dp))
+                        Text(e.title, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        Spacer(Modifier.weight(1f))
+                        Text(e.level, style = MaterialTheme.typography.bodySmall, color = color, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
+                    }
+                }
+                Text(
+                    evals.firstOrNull()?.note ?: "",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2
+                )
+            }
+        }
+        } else {
+            // 实测不可用：驱动加载失败多为驱动与当前 GPU 不匹配或系统限制
+            // （SELinux/kgsl），并非包损坏——包信息已展示，可到模拟器内验证。
+            val adtErr = adtCollect.errorCode ?: "?"
+            Text(
+                if (adtErr == "ADRENOTOOLS_OPEN_FAILED")
+                    "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
+                else
+                    "AdrenoTools 实测失败：$adtErr ${adtCollect.errorMessage ?: ""}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun DriverBenchmarkSection(
+    download: DownloadsManager.CompletedDownload,
+    exportFlags: Map<String, Boolean?>,
+    benchmarkResults: Map<String, BenchmarkResult>,
+    benchmarkingId: String?,
+    benchmarkDriver: (String, String) -> Unit,
+    checkExportable: (String, String) -> Unit
+) {
+    // ── 实测：App 内加载驱动（fork 子进程隔离，崩溃只死子进程）──
+    // 驱动需导出 vk_icdGetInstanceProcAddr / vkGetInstanceProcAddr（ICD 入口）；
+    // 能否真正初始化 GPU 取决于设备 SELinux 是否允许 App 访问 GPU 节点。
+    Spacer(Modifier.height(10.dp))
+    Divider()
+    Spacer(Modifier.height(6.dp))
+    // 快照：map 状态在两次读取间可能被后台协程改写，先取一次
+    val brForId = benchmarkResults[download.id]
+    when {
+        benchmarkingId == download.id -> {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                Spacer(Modifier.width(10.dp))
+                Text(
+                    appString(R.string.benchmark_loading_driver),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+        }
+        brForId != null -> {
+            val br = brForId
+            if (br.success) {
+                Text(
+                    "该驱动实测（${br.deviceName}）",
+                    style = MaterialTheme.typography.bodySmall,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                )
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    "fork 隔离直载驱动跑分；失败多为 SELinux 限制 GPU 节点访问",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(4.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(
+                        "综合 ${br.totalScore}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                    )
+                    Text(
+                        "带宽 ${"%.1f".format(br.fillBandwidthGBs)} GB/s",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            } else {
+                Text(
+                    "实测失败：${br.errorCode ?: "?"} ${br.errorMessage ?: ""}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+            Spacer(Modifier.height(6.dp))
+            OutlinedButton(
+                onClick = { benchmarkDriver(download.id, download.filePath) },
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+            ) {
+                Text(appString(R.string.benchmark_rerun), style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        exportFlags[download.id] == true -> {
+            Button(
+                onClick = { benchmarkDriver(download.id, download.filePath) },
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+            ) {
+                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(
+                appString(R.string.benchmark_isolated_hint),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        exportFlags[download.id] == false -> {
+            // 静态检查未确认 ICD 入口（自写解析器对 turnip 有误判史），
+            // 不拦截实测——native AdrenoTools 加载才是权威判断。
+            Button(
+                onClick = { benchmarkDriver(download.id, download.filePath) },
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+            ) {
+                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
+                Spacer(Modifier.width(6.dp))
+                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(
+                appString(R.string.benchmark_static_hint),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        else -> {
+            // 懒检查：进页面不解压大 .so，点按钮才检查 ICD 入口并实测
+            TextButton(
+                onClick = { checkExportable(download.id, download.filePath) },
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+            ) {
+                Text(appString(R.string.benchmark_check_export), style = MaterialTheme.typography.bodySmall)
+            }
+        }
+    }
+}
+
+@Composable
+private fun DriverDetectionResultSection(
+    result: VulkanInfoPayload?,
+    systemDevice: VulkanDeviceInfo?
+) {
+    if (result != null) {
+        Spacer(Modifier.height(10.dp))
+        if (result.errorCode == "ADRENOTOOLS_PACKAGE") {
+            // 模拟器专用格式：这是正常的格式说明，不是错误，用中性信息色
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f)
+            ) {
+                Column(Modifier.padding(10.dp)) {
+                    Text(
+                        appString(R.string.adrenotools_format_title),
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+                    Spacer(Modifier.height(3.dp))
+                    Text(
+                        appString(R.string.adrenotools_format_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.85f)
+                    )
+                }
+            }
+        } else if (!result.success) {
+            val errMsg = when (result.errorCode) {
+                "EXTRACT_FAILED" -> appString(R.string.detection_error_extract)
+                "VENDOR_SYSTEM_DRIVER" -> (result.errorMessage
+                    ?: "厂商系统提取驱动，无法在 App 内检测，请在模拟器内加载验证")
+
+                "UNKNOWN_PACKAGE" -> (result.errorMessage
+                    ?: appString(R.string.unknown_package_hint))
+                "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
+                "ENUM_DEVICES_MISSING", "DRIVER_CRASHED" -> appString(R.string.detection_error_adrenotools)
+                "ADRENOTOOLS_OPEN_FAILED" -> "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
+                "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
+                else -> {
+                    val raw = result.errorMessage ?: ""
+                    if (raw.contains("not resolved", ignoreCase = true) || raw.contains("dlopen", ignoreCase = true))
+                        appString(R.string.detection_error_adrenotools)
+                    else
+                        appString(R.string.detection_failed, raw.ifEmpty { result.errorCode ?: "" })
+                }
+            }
+            Text(
+                errMsg,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
+            )
+        } else if (result.devices.isNotEmpty()) {
+            val d = result.devices[0]
+            Text(
+                d.deviceName,
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+            )
+            Spacer(Modifier.height(4.dp))
+            InfoRow("Vulkan API", d.apiVersion)
+            InfoRow(appString(R.string.meta_driver_version), d.driverVersion)
+            if (d.driverName.isNotEmpty()) InfoRow(appString(R.string.vulkan_driver_name), d.driverName)
+            InfoRow(appString(R.string.vulkan_extensions), "${d.extensions.size}")
+            InfoRow(appString(R.string.vulkan_memory_types), "${d.memoryTypes.size}")
+            InfoRow(appString(R.string.vulkan_queue_families), "${d.queueFamilies.size}")
+
+            if (systemDevice != null) {
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    appString(R.string.compare_system),
+                    style = MaterialTheme.typography.bodySmall,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Spacer(Modifier.height(4.dp))
+                val extDiff = d.extensions.size - systemDevice.extensions.size
+                InfoRow(appString(R.string.api_version), "${d.apiVersion}（系统 ${systemDevice.apiVersion}）")
+                InfoRow(
+                    appString(R.string.vulkan_extensions),
+                    "${d.extensions.size}（系统 ${systemDevice.extensions.size}，${if (extDiff > 0) "+$extDiff" else if (extDiff < 0) extDiff.toString() else appString(R.string.same)}）"
+                )
+                val compatible = d.deviceName == systemDevice.deviceName
+                InfoRow(
+                    appString(R.string.gpu_compatibility),
+                    if (compatible) appString(R.string.gpu_compatible) else appString(R.string.gpu_not_compatible, d.deviceName)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun DriverCompareToggle(
+    download: DownloadsManager.CompletedDownload,
+    compareSelection: SnapshotStateList<String>
+) {
+    // ── 双选实测对比（M4）：勾选本驱动参与 AdrenoTools 并排实测 ──
+    Spacer(Modifier.height(8.dp))
+    val inCompare = download.id in compareSelection
+    OutlinedButton(
+        onClick = {
+            if (inCompare) {
+                compareSelection.remove(download.id)
+            } else {
+                if (compareSelection.size >= 2) compareSelection.removeAt(0)
+                compareSelection.add(download.id)
+            }
+        },
+        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+        colors = if (inCompare) ButtonDefaults.outlinedButtonColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
+        ) else ButtonDefaults.outlinedButtonColors()
+    ) {
+        Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(15.dp))
+        Spacer(Modifier.width(6.dp))
+        Text(
+            if (inCompare) "已选对比（点击取消）" else "加入对比",
+            style = MaterialTheme.typography.bodySmall
+        )
+    }
+}
+
+
+
+@Composable
+private fun DriverComparePanel(
+    drivers: List<DownloadsManager.CompletedDownload>,
+    context: Context,
+    compareSelection: SnapshotStateList<String>,
+    driverMetas: Map<String, DriverMetaParser.DriverMeta?>,
+    adrenotoolsResults: Map<String, Pair<VulkanInfoPayload, BenchmarkResult>>,
+    adrenotoolsTestingId: String?,
+    testWithAdrenoTools: (String, String) -> Unit,
+    onMetaParsed: (String, DriverMetaParser.DriverMeta?) -> Unit
+) {
+    // ── AdrenoTools 双选实测对比（M4）：同机同条件并排比跑分/扩展 ──
+    if (compareSelection.size == 2) {
+        val idA = compareSelection[0]
+        val idB = compareSelection[1]
+        val dlA = drivers.firstOrNull { it.id == idA }
+        val dlB = drivers.firstOrNull { it.id == idB }
+        if (dlA != null && dlB != null) {
+            val resA = adrenotoolsResults[idA]
+            val resB = adrenotoolsResults[idB]
+            // 原来在这里按 22 字砍一刀：`Turnip_Gen8_v26.0_R2_A6xx` 变成
+            // `Turnip_Gen8_v26.0_R2_A`，两个驱动的区别（A6xx/A7xx）正好被砍掉。
+            // CompareRow 里的 Text 本来就是自动换行，没有任何截断的必要。
+            val shortName: (String) -> String = { it }
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Column(Modifier.padding(14.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            LongFieldText(
-                                download.fileName,
-                                style = MaterialTheme.typography.bodyMedium,
-                                maxLines = 3
-                            )
-                            Text(
-                                "${"%.1f".format(download.sizeBytes / 1024.0 / 1024.0)} MB",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                        if (isDetecting || adrenotoolsTestingId == download.id) {
-                            CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
-                        } else {
-                            Button(
-                                onClick = {
-                                    // 只读 meta.json 判定打包格式：
-                                    // - VENDOR_SYSTEM：厂商系统提取驱动（需 root/系统级安装），
-                                    //   AdrenoTools 也无法加载，保留说明提示。
-                                    // - ADRENOTOOLS_PACKAGE / 其他：AdrenoTools 实测——
-                                    //   以模拟器同款路径在 App 内加载 turnip/panvk 驱动，
-                                    //   采集实例/设备扩展 + 跑分（崩溃隔离在 fork 子进程）。
-                                    val parsed = meta
-                                        ?: runCatching { DriverMetaParser.parse(context, download.filePath) }.getOrNull()
-                                    driverMetas = driverMetas + (download.id to parsed)
-                                    val type = parsed?.driverType()
-                                        ?: DriverMetaParser.DriverType.UNKNOWN
-                                    if (type == DriverMetaParser.DriverType.VENDOR_SYSTEM) {
-                                        val payload = VulkanInfoPayload(
-                                            success = false,
-                                            errorCode = "VENDOR_SYSTEM_DRIVER",
-                                            errorMessage = "厂商系统提取驱动（需 root/系统级安装），无法在 App 内检测，请在模拟器内加载验证",
-                                            loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
-                                            deviceCount = 0,
-                                            devices = emptyList()
-                                        )
-                                        detectionResults = detectionResults + (download.id to payload)
-                                    } else {
-                                        testWithAdrenoTools(download.id, download.filePath)
-                                    }
-                                },
-                                contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
-                            ) {
-                                Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(Modifier.width(6.dp))
-                                Text(
-                                    if (result != null) appString(R.string.redetect) else appString(R.string.view_driver_info),
-                                    style = MaterialTheme.typography.bodySmall
-                                )
-                            }
-                        }
-                    }
-
-                    // meta.json 驱动信息（自动解析后直接展示，这是该驱动包的真实身份信息）
-                    if (meta != null && !meta.isEmpty()) {
-                        Spacer(Modifier.height(10.dp))
-                        Divider()
-                        Spacer(Modifier.height(8.dp))
-                        if (meta.name.isNotBlank())
-                            InfoRow(appString(R.string.meta_name), meta.name)
-                        if (meta.packageVersion.isNotBlank())
-                            InfoRow(appString(R.string.meta_package_version), meta.packageVersion)
-                        if (meta.driverVersion.isNotBlank())
-                            InfoRow(appString(R.string.meta_driver_version), meta.driverVersion)
-                        if (meta.vendor.isNotBlank())
-                            InfoRow(appString(R.string.meta_vendor), meta.vendor)
-                        if (meta.author.isNotBlank())
-                            InfoRow(appString(R.string.meta_author), meta.author)
-                        if (meta.minApi.isNotBlank())
-                            InfoRow(appString(R.string.meta_min_api), meta.minApi)
-                        if (meta.description.isNotBlank())
-                            InfoRow("驱动说明", meta.description)
-                        InfoRow(
-                            "驱动类型",
-                            when (meta.driverType()) {
-                                DriverMetaParser.DriverType.VENDOR_SYSTEM -> "厂商系统提取（需 root/系统级安装，App 内不可加载）"
-                                DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> "AdrenoTools 打包（模拟器注入加载，App 内以 fork 隔离实测）"
-                                else -> "未声明/其他（App 内按通用路径尝试）"
-                            }
-                        )
-                    }
-
-                    // ── AdrenoTools 实测结果（M4）：实例/设备扩展、设备属性、兼容、跑分 ──
-                    // 加载路径与 Winlator/GameHub/Eden 一致，是当前最接近模拟器内真实
-                    // 行为的 App 内驱动验证方式。
-                    val adtTest = adrenotoolsResults[download.id]
-                    if (adtTest != null) {
-                        Spacer(Modifier.height(10.dp))
-                        Divider()
-                        Spacer(Modifier.height(6.dp))
-                        val (adtCollect, adtBench) = adtTest
-                        if (adtCollect.success) {
-                            Text(
-                                "AdrenoTools 实测",
-                                style = MaterialTheme.typography.bodySmall,
-                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                            Spacer(Modifier.height(4.dp))
-                            InfoRow("实例扩展", "${adtCollect.instanceExtCount} 个")
-                            val dev = adtCollect.devices.firstOrNull()
-                            if (dev != null) {
-                                InfoRow("设备", dev.deviceName)
-                                InfoRow("API 版本", dev.apiVersion)
-                                InfoRow("驱动版本", dev.driverVersion)
-                                InfoRow("设备扩展", "${dev.extensions.size} 个")
-                                // 关键扩展缺失提示：DXVK/VKD3D 转译依赖的关键扩展逐项对照
-                                val extNames = dev.extensions.map { it.name }
-                                val missingCritical = CRITICAL_DXVK_EXTS.filter { it !in extNames }
-                                if (missingCritical.isNotEmpty()) {
-                                    Spacer(Modifier.height(4.dp))
-                                    Surface(
-                                        shape = RoundedCornerShape(10.dp),
-                                        color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.5f),
-                                        modifier = Modifier.fillMaxWidth()
-                                    ) {
-                                        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                                            Text(
-                                                "缺失关键扩展 ${missingCritical.size}/${CRITICAL_DXVK_EXTS.size}（影响转译层功能）",
-                                                style = MaterialTheme.typography.labelSmall,
-                                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                                                color = MaterialTheme.colorScheme.onErrorContainer
-                                            )
-                                            Text(
-                                                missingCritical.joinToString("、"),
-                                                style = MaterialTheme.typography.labelSmall,
-                                                color = MaterialTheme.colorScheme.onErrorContainer,
-                                                maxLines = 2,
-                                                overflow = TextOverflow.Ellipsis
-                                            )
-                                        }
-                                    }
-                                }
-                                // 兼容徽章：驱动面向 GPU 厂商 vs 当前设备 GPU 厂商
-                                val sysVendor = systemDevice?.vendorId
-                                val compat = when (dev.vendorId) {
-                                    sysVendor -> "与当前设备 GPU 同厂商（预计可加载）"
-                                    else -> "驱动面向 ${vendorName(dev.vendorId)}，本机为 ${vendorName(sysVendor)}，加载结果以实测为准"
-                                }
-                                InfoRow("GPU 兼容", compat)
-                            if (adtBench.success) {
-                                Spacer(Modifier.height(6.dp))
-                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    Text(
-                                        "综合 ${adtBench.totalScore}",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.primary,
-                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
-                                    )
-                                    Text(
-                                        "带宽 ${"%.1f".format(adtBench.fillBandwidthGBs)} GB/s",
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                    Text(
-                                        "拷贝 ${"%.1f".format(adtBench.copyBandwidthGBs)} GB/s",
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                }
-                            } else {
-                                Text(
-                                    "跑分失败：${adtBench.errorCode ?: "?"} ${adtBench.errorMessage ?: ""}",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.error
-                                )
-                            }
-                            // ── 渲染测试（vktest 同款）：离屏渲染三角形 60 帧测 FPS ──
-                            val renderRes = renderResults[download.id]
-                            if (renderRes != null) {
-                                Spacer(Modifier.height(6.dp))
-                                if (renderRes.optBoolean("success")) {
-                                    val mode = renderRes.optString("mode", "graphics")
-                                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                        Text(
-                                            "渲染测试 ${"%.1f".format(renderRes.optDouble("fps", 0.0))} FPS",
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.primary,
-                                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
-                                        )
-                                        val avgMs = renderRes.optDouble("avgFrameMs", 0.0)
-                                        if (avgMs > 0.0) {
-                                            Text(
-                                                "帧耗时 ${"%.2f".format(avgMs)} ms",
-                                                style = MaterialTheme.typography.bodySmall
-                                            )
-                                        }
-                                        val frames = renderRes.optInt("frameCount", -1)
-                                        if (frames > 0) {
-                                            Text("${frames} 帧", style = MaterialTheme.typography.bodySmall)
-                                        }
-                                        val gbs = renderRes.optDouble("copyBandwidthGBs", 0.0)
-                                        if (gbs > 0.0) {
-                                            Text(
-                                                "拷贝 ${"%.1f".format(gbs)} GB/s",
-                                                style = MaterialTheme.typography.bodySmall,
-                                                color = MaterialTheme.colorScheme.primary
-                                            )
-                                        }
-                                    }
-                                    if (mode == "copy-render") {
-                                        Text(
-                                            "兼容模式：fill+copy 渲染链验证（turnip graphics pipeline 编译崩溃，已绕开），读回校验 " +
-                                                (if (renderRes.optBoolean("readbackOk", false)) "通过" else "失败"),
-                                            style = MaterialTheme.typography.labelSmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    } else {
-                                        Text(
-                                            "离屏渲染 256×256 彩色三角形（vktest 同款图形管线，每帧同步提交）",
-                                            style = MaterialTheme.typography.labelSmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                } else {
-                                    var renderErrExpanded by remember { mutableStateOf(false) }
-                                    val renderErrMsg = renderRes.optString("errorMessage", "")
-                                    Text(
-                                        "渲染测试失败：${renderRes.optString("errorCode", "?")} $renderErrMsg",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.error,
-                                        maxLines = if (renderErrExpanded) Int.MAX_VALUE else 2,
-                                        overflow = TextOverflow.Ellipsis,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .clickable { renderErrExpanded = !renderErrExpanded }
-                                    )
-                                    if (!renderErrExpanded && renderErrMsg.length > 48) {
-                                        Text(
-                                            "点击展开完整内容",
-                                            style = MaterialTheme.typography.labelSmall,
-                                            color = MaterialTheme.colorScheme.primary,
-                                            modifier = Modifier.clickable { renderErrExpanded = true }
-                                        )
-                                    }
-                                }
-                            }
-                            Spacer(Modifier.height(8.dp))
-                            // 游戏支持评估：按实测驱动类型分级（独立于跑分，实测成功即显示）
-                            val evalDriverType = when (dev.vendorId) {
-                                0x5143 -> "turnip"
-                                0x13B5 -> "panvk"
-                                else -> "system"
-                            }
-                            val evals = assessGameSupport(
-                                driverType = evalDriverType,
-                                isAdrenoDevice = (systemDevice?.vendorId ?: 0) == 0x5143,
-                                isMaliDevice = (systemDevice?.vendorId ?: 0) == 0x13B5,
-                                extensions = dev.extensions.map { it.name },
-                                apiVersion = dev.apiVersion
-                            )
-                            Column(Modifier.padding(top = 4.dp)) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text("游戏支持评估", style = MaterialTheme.typography.labelMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-                                    Spacer(Modifier.width(6.dp))
-                                    Text("基于驱动能力静态评估，非实测运行", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                }
-                                evals.forEach { e ->
-                                    Row(Modifier.padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
-                                        val color = when (e.level) {
-                                            "基本能跑" -> Color(0xFF2E7D32)
-                                            "可能能跑" -> Color(0xFFF9A825)
-                                            else -> Color(0xFFC62828)
-                                        }
-                                        Box(Modifier.size(8.dp).clip(CircleShape).background(color))
-                                        Spacer(Modifier.width(6.dp))
-                                        Text(e.title, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                        Spacer(Modifier.weight(1f))
-                                        Text(e.level, style = MaterialTheme.typography.bodySmall, color = color, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
-                                    }
-                                }
-                                Text(
-                                    evals.firstOrNull()?.note ?: "",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    maxLines = 2
-                                )
-                            }
-                        }
-                        } else {
-                            // 实测不可用：驱动加载失败多为驱动与当前 GPU 不匹配或系统限制
-                            // （SELinux/kgsl），并非包损坏——包信息已展示，可到模拟器内验证。
-                            val adtErr = adtCollect.errorCode ?: "?"
-                            Text(
-                                if (adtErr == "ADRENOTOOLS_OPEN_FAILED")
-                                    "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
-                                else
-                                    "AdrenoTools 实测失败：$adtErr ${adtCollect.errorMessage ?: ""}",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    }
-
-                    // ── 实测：App 内加载驱动（fork 子进程隔离，崩溃只死子进程）──
-                    // 驱动需导出 vk_icdGetInstanceProcAddr / vkGetInstanceProcAddr（ICD 入口）；
-                    // 能否真正初始化 GPU 取决于设备 SELinux 是否允许 App 访问 GPU 节点。
+                    Text(
+                        "驱动对比",
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        "有实测结果时并排展示采集+跑分；实测不可用时回退 meta.json 静态对比",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                     Spacer(Modifier.height(10.dp))
-                    Divider()
-                    Spacer(Modifier.height(6.dp))
-                    // 快照：map 状态在两次读取间可能被后台协程改写，先取一次
-                    val brForId = benchmarkResults[download.id]
-                    when {
-                        benchmarkingId == download.id -> {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
-                                Spacer(Modifier.width(10.dp))
-                                Text(
-                                    appString(R.string.benchmark_loading_driver),
-                                    style = MaterialTheme.typography.bodySmall
-                                )
-                            }
+                    if (resA != null && resB != null) {
+                        val (cA, bA) = resA
+                        val (cB, bB) = resB
+                        val dA = cA.devices.firstOrNull()
+                        val dB = cB.devices.firstOrNull()
+                        CompareRow("驱动", shortName(dlA.fileName), shortName(dlB.fileName))
+                        if (bA.success && bB.success) {
+                            CompareRow("综合跑分", "${bA.totalScore}", "${bB.totalScore}")
+                            CompareRow("填充带宽 GB/s", "%.1f".format(bA.fillBandwidthGBs), "%.1f".format(bB.fillBandwidthGBs))
+                            CompareRow("拷贝带宽 GB/s", "%.1f".format(bA.copyBandwidthGBs), "%.1f".format(bB.copyBandwidthGBs))
+                        } else {
+                            CompareRow(
+                                "跑分",
+                                if (bA.success) "OK" else (bA.errorCode ?: "失败"),
+                                if (bB.success) "OK" else (bB.errorCode ?: "失败")
+                            )
                         }
-                        brForId != null -> {
-                            val br = brForId
-                            if (br.success) {
-                                Text(
-                                    "该驱动实测（${br.deviceName}）",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
-                                )
-                                Spacer(Modifier.height(2.dp))
-                                Text(
-                                    "fork 隔离直载驱动跑分；失败多为 SELinux 限制 GPU 节点访问",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                                Spacer(Modifier.height(4.dp))
-                                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    Text(
-                                        "综合 ${br.totalScore}",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.primary,
-                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
-                                    )
-                                    Text(
-                                        "带宽 ${"%.1f".format(br.fillBandwidthGBs)} GB/s",
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                }
-                            } else {
-                                Text(
-                                    "实测失败：${br.errorCode ?: "?"} ${br.errorMessage ?: ""}",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.error
-                                )
-                            }
+                        CompareRow("实例扩展", "${cA.instanceExtCount}", "${cB.instanceExtCount}")
+                        CompareRow("设备扩展", "${dA?.extensions?.size ?: 0}", "${dB?.extensions?.size ?: 0}")
+                        CompareRow("关键扩展覆盖", "${"%.0f".format(criticalExtCoverage(dA?.extensions?.map { it.name } ?: emptyList()) * 100)}%", "${"%.0f".format(criticalExtCoverage(dB?.extensions?.map { it.name } ?: emptyList()) * 100)}%")
+                        CompareRow("API 版本", dA?.apiVersion ?: "—", dB?.apiVersion ?: "—")
+                        CompareRow("GPU", dA?.deviceName ?: "—", dB?.deviceName ?: "—")
+                        val scoreA = bA.totalScore
+                        val scoreB = bB.totalScore
+                        if (scoreA > 0 || scoreB > 0) {
                             Spacer(Modifier.height(6.dp))
-                            OutlinedButton(
-                                onClick = { benchmarkDriver(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
-                            ) {
-                                Text(appString(R.string.benchmark_rerun), style = MaterialTheme.typography.bodySmall)
+                            val winner = when {
+                                scoreA > scoreB -> shortName(dlA.fileName)
+                                scoreB > scoreA -> shortName(dlB.fileName)
+                                else -> "持平"
+                            }
+                            Text(
+                                "综合跑分更高：$winner",
+                                style = MaterialTheme.typography.bodySmall,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
+                    } else {
+                        // ── meta.json 静态对比：实测未跑/失败时也有真实信息可比 ──
+                        val metaA = driverMetas[idA]
+                        val metaB = driverMetas[idB]
+                        val typeLabel: (DriverMetaParser.DriverType) -> String = { t ->
+                            when (t) {
+                                DriverMetaParser.DriverType.VENDOR_SYSTEM -> "厂商系统提取"
+                                DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> "AdrenoTools 打包"
+                                else -> "未声明/其他"
                             }
                         }
-                        exportFlags[download.id] == true -> {
-                            Button(
-                                onClick = { benchmarkDriver(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
-                            ) {
-                                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(Modifier.width(6.dp))
-                                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
-                            }
-                            Spacer(Modifier.height(4.dp))
+                        CompareRow("驱动", shortName(dlA.fileName), shortName(dlB.fileName))
+                        if (metaA != null && metaB != null) {
+                            CompareRow("名称", metaA.name, metaB.name)
+                            CompareRow("包版本", metaA.packageVersion, metaB.packageVersion)
+                            CompareRow("驱动版本", metaA.driverVersion, metaB.driverVersion)
+                            CompareRow("厂商", metaA.vendor, metaB.vendor)
+                            CompareRow("作者", metaA.author, metaB.author)
+                            CompareRow("驱动类型", typeLabel(metaA.driverType()), typeLabel(metaB.driverType()))
+                        } else {
                             Text(
-                                appString(R.string.benchmark_isolated_hint),
+                                "驱动包 meta.json 信息待解析（点击下方按钮触发解析+实测）",
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        exportFlags[download.id] == false -> {
-                            // 静态检查未确认 ICD 入口（自写解析器对 turnip 有误判史），
-                            // 不拦截实测——native AdrenoTools 加载才是权威判断。
-                            Button(
-                                onClick = { benchmarkDriver(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
-                            ) {
-                                Icon(Icons.Default.Bolt, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(Modifier.width(6.dp))
-                                Text(appString(R.string.benchmark_run_driver), style = MaterialTheme.typography.bodySmall)
-                            }
-                            Spacer(Modifier.height(4.dp))
-                            Text(
-                                appString(R.string.benchmark_static_hint),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                        else -> {
-                            // 懒检查：进页面不解压大 .so，点按钮才检查 ICD 入口并实测
-                            TextButton(
-                                onClick = { checkExportable(download.id, download.filePath) },
-                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
-                            ) {
-                                Text(appString(R.string.benchmark_check_export), style = MaterialTheme.typography.bodySmall)
-                            }
-                        }
-                    }
-
-                    if (result != null) {
-                        Spacer(Modifier.height(10.dp))
-                        if (result.errorCode == "ADRENOTOOLS_PACKAGE") {
-                            // 模拟器专用格式：这是正常的格式说明，不是错误，用中性信息色
-                            Surface(
-                                shape = RoundedCornerShape(12.dp),
-                                color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f)
-                            ) {
-                                Column(Modifier.padding(10.dp)) {
-                                    Text(
-                                        appString(R.string.adrenotools_format_title),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer
-                                    )
-                                    Spacer(Modifier.height(3.dp))
-                                    Text(
-                                        appString(R.string.adrenotools_format_hint),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.85f)
-                                    )
+                        Spacer(Modifier.height(6.dp))
+                        val running = adrenotoolsTestingId != null
+                        Button(
+                            onClick = {
+                                // 先补解析 meta（若缺），再依次实测
+                                if (metaA == null) {
+                                    val parsedA = runCatching { DriverMetaParser.parse(context, dlA.filePath) }.getOrNull()
+                                    if (parsedA != null) onMetaParsed(idA, parsedA)
                                 }
-                            }
-                        } else if (!result.success) {
-                            val errMsg = when (result.errorCode) {
-                                "EXTRACT_FAILED" -> appString(R.string.detection_error_extract)
-                                "VENDOR_SYSTEM_DRIVER" -> (result.errorMessage
-                                    ?: "厂商系统提取驱动，无法在 App 内检测，请在模拟器内加载验证")
-
-                                "UNKNOWN_PACKAGE" -> (result.errorMessage
-                                    ?: appString(R.string.unknown_package_hint))
-                                "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
-                                "ENUM_DEVICES_MISSING", "DRIVER_CRASHED" -> appString(R.string.detection_error_adrenotools)
-                                "ADRENOTOOLS_OPEN_FAILED" -> "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
-                                "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
-                                else -> {
-                                    val raw = result.errorMessage ?: ""
-                                    if (raw.contains("not resolved", ignoreCase = true) || raw.contains("dlopen", ignoreCase = true))
-                                        appString(R.string.detection_error_adrenotools)
-                                    else
-                                        appString(R.string.detection_failed, raw.ifEmpty { result.errorCode ?: "" })
+                                if (metaB == null) {
+                                    val parsedB = runCatching { DriverMetaParser.parse(context, dlB.filePath) }.getOrNull()
+                                    if (parsedB != null) onMetaParsed(idB, parsedB)
                                 }
-                            }
-                            Text(
-                                errMsg,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.error
-                            )
-                        } else if (result.devices.isNotEmpty()) {
-                            val d = result.devices[0]
-                            Text(
-                                d.deviceName,
-                                style = MaterialTheme.typography.bodySmall,
-                                fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
-                            )
-                            Spacer(Modifier.height(4.dp))
-                            InfoRow("Vulkan API", d.apiVersion)
-                            InfoRow(appString(R.string.meta_driver_version), d.driverVersion)
-                            if (d.driverName.isNotEmpty()) InfoRow(appString(R.string.vulkan_driver_name), d.driverName)
-                            InfoRow(appString(R.string.vulkan_extensions), "${d.extensions.size}")
-                            InfoRow(appString(R.string.vulkan_memory_types), "${d.memoryTypes.size}")
-                            InfoRow(appString(R.string.vulkan_queue_families), "${d.queueFamilies.size}")
-
-                            if (systemDevice != null) {
-                                Spacer(Modifier.height(8.dp))
-                                Text(
-                                    appString(R.string.compare_system),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Spacer(Modifier.height(4.dp))
-                                val extDiff = d.extensions.size - systemDevice.extensions.size
-                                InfoRow(appString(R.string.api_version), "${d.apiVersion}（系统 ${systemDevice.apiVersion}）")
-                                InfoRow(
-                                    appString(R.string.vulkan_extensions),
-                                    "${d.extensions.size}（系统 ${systemDevice.extensions.size}，${if (extDiff > 0) "+$extDiff" else if (extDiff < 0) extDiff.toString() else appString(R.string.same)}）"
-                                )
-                                val compatible = d.deviceName == systemDevice.deviceName
-                                InfoRow(
-                                    appString(R.string.gpu_compatibility),
-                                    if (compatible) appString(R.string.gpu_compatible) else appString(R.string.gpu_not_compatible, d.deviceName)
-                                )
-                            }
-                        }
-                    }
-
-                    // ── 双选实测对比（M4）：勾选本驱动参与 AdrenoTools 并排实测 ──
-                    Spacer(Modifier.height(8.dp))
-                    val inCompare = download.id in compareSelection
-                    OutlinedButton(
-                        onClick = {
-                            if (inCompare) {
-                                compareSelection.remove(download.id)
+                                testWithAdrenoTools(idA, dlA.filePath)
+                                testWithAdrenoTools(idB, dlB.filePath)
+                            },
+                            enabled = !running
+                        ) {
+                            if (running) {
+                                CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+                                Spacer(Modifier.width(8.dp))
+                                Text("实测中…", style = MaterialTheme.typography.bodySmall)
                             } else {
-                                if (compareSelection.size >= 2) compareSelection.removeAt(0)
-                                compareSelection.add(download.id)
+                                Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(16.dp))
+                                Spacer(Modifier.width(6.dp))
+                                Text("解析+实测对比", style = MaterialTheme.typography.bodySmall)
                             }
-                        },
-                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
-                        colors = if (inCompare) ButtonDefaults.outlinedButtonColors(
-                            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
-                        ) else ButtonDefaults.outlinedButtonColors()
-                    ) {
-                        Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(15.dp))
-                        Spacer(Modifier.width(6.dp))
-                        Text(
-                            if (inCompare) "已选对比（点击取消）" else "加入对比",
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                    }
-                }
-            }
-        }
-
-        // ── AdrenoTools 双选实测对比（M4）：同机同条件并排比跑分/扩展 ──
-        if (compareSelection.size == 2) {
-            val idA = compareSelection[0]
-            val idB = compareSelection[1]
-            val dlA = downloadedDrivers.firstOrNull { it.id == idA }
-            val dlB = downloadedDrivers.firstOrNull { it.id == idB }
-            if (dlA != null && dlB != null) {
-                val resA = adrenotoolsResults[idA]
-                val resB = adrenotoolsResults[idB]
-                // 原来在这里按 22 字砍一刀：`Turnip_Gen8_v26.0_R2_A6xx` 变成
-                // `Turnip_Gen8_v26.0_R2_A`，两个驱动的区别（A6xx/A7xx）正好被砍掉。
-                // CompareRow 里的 Text 本来就是自动换行，没有任何截断的必要。
-                val shortName: (String) -> String = { it }
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(20.dp)
-                ) {
-                    Column(Modifier.padding(14.dp)) {
-                        Text(
-                            "驱动对比",
-                            style = MaterialTheme.typography.titleSmall,
-                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
-                        )
+                        }
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            "有实测结果时并排展示采集+跑分；实测不可用时回退 meta.json 静态对比",
+                            "实测受 App 进程环境限制（SELinux/glibc），失败时以上 meta 静态对比仍可作为版本/作者/类型依据；性能请在模拟器内验证",
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 3
                         )
-                        Spacer(Modifier.height(10.dp))
-                        if (resA != null && resB != null) {
-                            val (cA, bA) = resA
-                            val (cB, bB) = resB
-                            val dA = cA.devices.firstOrNull()
-                            val dB = cB.devices.firstOrNull()
-                            CompareRow("驱动", shortName(dlA.fileName), shortName(dlB.fileName))
-                            if (bA.success && bB.success) {
-                                CompareRow("综合跑分", "${bA.totalScore}", "${bB.totalScore}")
-                                CompareRow("填充带宽 GB/s", "%.1f".format(bA.fillBandwidthGBs), "%.1f".format(bB.fillBandwidthGBs))
-                                CompareRow("拷贝带宽 GB/s", "%.1f".format(bA.copyBandwidthGBs), "%.1f".format(bB.copyBandwidthGBs))
-                            } else {
-                                CompareRow(
-                                    "跑分",
-                                    if (bA.success) "OK" else (bA.errorCode ?: "失败"),
-                                    if (bB.success) "OK" else (bB.errorCode ?: "失败")
-                                )
-                            }
-                            CompareRow("实例扩展", "${cA.instanceExtCount}", "${cB.instanceExtCount}")
-                            CompareRow("设备扩展", "${dA?.extensions?.size ?: 0}", "${dB?.extensions?.size ?: 0}")
-                            CompareRow("关键扩展覆盖", "${"%.0f".format(criticalExtCoverage(dA?.extensions?.map { it.name } ?: emptyList()) * 100)}%", "${"%.0f".format(criticalExtCoverage(dB?.extensions?.map { it.name } ?: emptyList()) * 100)}%")
-                            CompareRow("API 版本", dA?.apiVersion ?: "—", dB?.apiVersion ?: "—")
-                            CompareRow("GPU", dA?.deviceName ?: "—", dB?.deviceName ?: "—")
-                            val scoreA = bA.totalScore
-                            val scoreB = bB.totalScore
-                            if (scoreA > 0 || scoreB > 0) {
-                                Spacer(Modifier.height(6.dp))
-                                val winner = when {
-                                    scoreA > scoreB -> shortName(dlA.fileName)
-                                    scoreB > scoreA -> shortName(dlB.fileName)
-                                    else -> "持平"
-                                }
-                                Text(
-                                    "综合跑分更高：$winner",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
-                                    color = MaterialTheme.colorScheme.tertiary
-                                )
-                            }
-                        } else {
-                            // ── meta.json 静态对比：实测未跑/失败时也有真实信息可比 ──
-                            val metaA = driverMetas[idA]
-                            val metaB = driverMetas[idB]
-                            val typeLabel: (DriverMetaParser.DriverType) -> String = { t ->
-                                when (t) {
-                                    DriverMetaParser.DriverType.VENDOR_SYSTEM -> "厂商系统提取"
-                                    DriverMetaParser.DriverType.ADRENOTOOLS_PACKAGE -> "AdrenoTools 打包"
-                                    else -> "未声明/其他"
-                                }
-                            }
-                            CompareRow("驱动", shortName(dlA.fileName), shortName(dlB.fileName))
-                            if (metaA != null && metaB != null) {
-                                CompareRow("名称", metaA.name, metaB.name)
-                                CompareRow("包版本", metaA.packageVersion, metaB.packageVersion)
-                                CompareRow("驱动版本", metaA.driverVersion, metaB.driverVersion)
-                                CompareRow("厂商", metaA.vendor, metaB.vendor)
-                                CompareRow("作者", metaA.author, metaB.author)
-                                CompareRow("驱动类型", typeLabel(metaA.driverType()), typeLabel(metaB.driverType()))
-                            } else {
-                                Text(
-                                    "驱动包 meta.json 信息待解析（点击下方按钮触发解析+实测）",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                            Spacer(Modifier.height(6.dp))
-                            val running = adrenotoolsTestingId != null
-                            Button(
-                                onClick = {
-                                    // 先补解析 meta（若缺），再依次实测
-                                    if (metaA == null) {
-                                        val parsedA = runCatching { DriverMetaParser.parse(context, dlA.filePath) }.getOrNull()
-                                        if (parsedA != null) driverMetas = driverMetas + (idA to parsedA)
-                                    }
-                                    if (metaB == null) {
-                                        val parsedB = runCatching { DriverMetaParser.parse(context, dlB.filePath) }.getOrNull()
-                                        if (parsedB != null) driverMetas = driverMetas + (idB to parsedB)
-                                    }
-                                    testWithAdrenoTools(idA, dlA.filePath)
-                                    testWithAdrenoTools(idB, dlB.filePath)
-                                },
-                                enabled = !running
-                            ) {
-                                if (running) {
-                                    CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
-                                    Spacer(Modifier.width(8.dp))
-                                    Text("实测中…", style = MaterialTheme.typography.bodySmall)
-                                } else {
-                                    Icon(Icons.Default.CompareArrows, contentDescription = null, modifier = Modifier.size(16.dp))
-                                    Spacer(Modifier.width(6.dp))
-                                    Text("解析+实测对比", style = MaterialTheme.typography.bodySmall)
-                                }
-                            }
-                            Spacer(Modifier.height(4.dp))
-                            Text(
-                                "实测受 App 进程环境限制（SELinux/glibc），失败时以上 meta 静态对比仍可作为版本/作者/类型依据；性能请在模拟器内验证",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                maxLines = 3
-                            )
-                        }
-                        Spacer(Modifier.height(6.dp))
-                        TextButton(onClick = { compareSelection.clear() }) {
-                            Text("清除选择", style = MaterialTheme.typography.bodySmall)
-                        }
+                    }
+                    Spacer(Modifier.height(6.dp))
+                    TextButton(onClick = { compareSelection.clear() }) {
+                        Text("清除选择", style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }
         }
     }
 }
+
 
 @Composable
 internal fun InfoRow(label: String, value: String) {

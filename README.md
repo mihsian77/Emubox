@@ -85,11 +85,11 @@ python3 scripts/check-i18n.py
 
 检查漏译 / 多译、占位符一致性、空翻译与 Kotlin 硬编码。
 
-改界面时还有两道本地闸门：`scripts/check-copy.py` 查文案规范（中英优先、不写内部视角说明），`scripts/check-truncation.py` 查长字段行数——文件名类字段至少给 3 行，版本号类至少 2 行。
+改界面时还有三道本地闸门：`scripts/check-copy.py` 查文案规范（中英优先、不写内部视角说明），`scripts/check-truncation.py` 查长字段行数——文件名类字段至少给 3 行，版本号类至少 2 行，`scripts/check-structure.py` 查代码结构——单文件 2500 行、单函数 1200 行、未用 import 清零。
 
 ## CI
 
-push / PR 到 main 时，`ci.yml` 依次跑 i18n 校验、文案规范、长字段行数闸门、Android Lint、单元测试，再编译 Debug / Release，校验 APK 资源完整性，最后把 Release APK 覆盖更新到当前批次的 `vx.y.0-pre` 预发布条目（tag 随之移动，列表不增条目）。正式发布走 tag `v*` 触发的 `release.yml`；带 `pre` / `rc` 的 tag 不会被它当成正式版。
+push / PR 到 main 时，`ci.yml` 依次跑 i18n 校验、文案规范、长字段行数闸门、代码结构闸门、Android Lint、单元测试，再编译 Debug / Release，校验 APK 资源完整性，最后把 Release APK 覆盖更新到当前批次的 `vx.y.0-pre` 预发布条目（tag 随之移动，列表不增条目）。正式发布走 tag `v*` 触发的 `release.yml`；带 `pre` / `rc` 的 tag 不会被它当成正式版。
 
 ## 项目结构
 

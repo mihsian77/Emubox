@@ -34,6 +34,11 @@ jobs:
       # 编译和 Lint 都不会报，只有把 71 字符的产物名画到屏幕上才看得出问题。
       - name: 检查长字段行数
         run: python3 scripts/check-truncation.py
+      # 结构闸门：单文件 / 单函数行数上限、未用 import 清零。这三样编译器都不管，
+      # Lint 的 UnusedImport 只是 warning，CI 不因 warning 失败——上次拆 Screens.kt
+      # 一次带出 1090 条未用 import，就是这么漏过去的。
+      - name: 检查代码结构
+        run: python3 scripts/check-structure.py
 
   lint:
     name: Lint 与单元测试
