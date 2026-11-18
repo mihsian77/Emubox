@@ -2,6 +2,7 @@ package com.emubox.app
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
@@ -17,6 +18,8 @@ import java.util.zip.ZipInputStream
  * native 层可直接 dlopen 该 .so 采集 Vulkan 能力。
  */
 object DriverExtractor {
+
+    private const val TAG = "EmuBoxDriverExtractor"
 
     private const val DRIVERS_DIR = "drivers"
 
@@ -58,7 +61,11 @@ object DriverExtractor {
                     val so = File(dir, libraryName)
                     if (so.exists()) return so
                 }
-            } catch (_: Exception) { }
+            } catch (e: Exception) {
+                // meta.json 坏了不阻断加载，但要留证：兜底会取目录下第一个 .so，
+                // 包里有多份驱动时可能挑错，表现为进游戏花屏而日志一片空白。
+                Log.w(TAG, "读取驱动 meta.json 失败，退回按扩展名取 .so：$driverId", e)
+            }
         }
         // 兜底：目录下第一个 .so 文件
         return dir.listFiles { f -> f.extension == "so" }?.firstOrNull()
@@ -103,7 +110,11 @@ object DriverExtractor {
                             try {
                                 val meta = JSONObject(metaText)
                                 libraryName = sanitizeLibraryName(meta.optString("libraryName", ""))
-                            } catch (_: Exception) { }
+                            } catch (e: Exception) {
+                                // 解析失败时 libraryName 保持 null，主驱动只能按「名字含 vulkan」推断。
+                                // 包本身可能仍可用，所以只报警不中断，但必须留下可追的证据。
+                                Log.w(TAG, "驱动包 meta.json 解析失败，主驱动将按文件名推断：$driverId", e)
+                            }
                         } else if (name.endsWith(".so")) {
                             // 文件名同样净化：只允许单层文件名，避免路径穿越
                             val safeName = sanitizeLibraryName(name)

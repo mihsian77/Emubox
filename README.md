@@ -85,7 +85,7 @@ python3 scripts/check-i18n.py
 
 检查漏译 / 多译、占位符一致性、空翻译与 Kotlin 硬编码。
 
-改界面时还有三道本地闸门：`scripts/check-copy.py` 查文案规范（中英优先、不写内部视角说明），`scripts/check-truncation.py` 查长字段行数——文件名类字段至少给 3 行，版本号类至少 2 行，`scripts/check-structure.py` 查代码结构——单文件 2500 行、单函数 1200 行、未用 import 清零。
+改界面时还有三道本地闸门：`scripts/check-copy.py` 查文案规范（中英优先、不写内部视角说明），`scripts/check-truncation.py` 查长字段行数——文件名类字段至少给 3 行，版本号类至少 2 行，`scripts/check-structure.py` 查代码结构——单文件 1500 行、单函数 300 行、未用 import 清零；已超标项记在 `scripts/structure-baseline.json`，只许变小。
 
 ## CI
 
@@ -123,7 +123,9 @@ app/src/main/
 │   ├── NativeVulkanBridge.kt  # Vulkan 采集 / 跑分 JNI 桥
 │   ├── RuntimeLibrary.kt      # 运行库目录与中文说明
 │   ├── SourceCatalog.kt       # 驱动与组件资源目录
-│   └── ui/theme/              # 主题与配色
+│   └── ui/
+│       ├── template/          # 列表型页面模板（搜索栏、分组、空态）
+│       └── theme/             # 主题与配色
 ├── cpp/vulkan_collector.cpp   # native Vulkan 信息采集与基准
 └── res/
     ├── values/                # 英文（默认）

@@ -1,0 +1,14 @@
+{
+  "_comment": "结构闸门豁免名单。数字是当前的实测值，只能往下调。任何一项再涨 1 行，CI 就红。拆小了请同步下调这里的数字，否则棘轮不会真的往前转。新增条目必须附理由。",
+  "_generated_at": "2026-11-19",
+  "files": {
+    "DriverCards.kt": 2298,
+    "DriverDetectionUi.kt": 2096,
+    "EmulatorUi.kt": 1797
+  },
+  "functions": {
+    "MainActivity.kt::onCreate": 1065,
+    "DownloadsScreen.kt::DownloadsScreen": 706,
+    "SocBenchUi.kt::BenchEngineCard": 341
+  }
+}
