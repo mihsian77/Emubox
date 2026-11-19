@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-18T01:23:54Z",
+ "generated_at": "2026-11-19T00:49:27Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -192,7 +192,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1625,
+   "listingsCount": 1630,
    "keys": [
     "thormax",
     "aynthormax"
@@ -247,7 +247,7 @@
    "modelName": "Thor Pro",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 621,
+   "listingsCount": 623,
    "keys": [
     "thorpro",
     "aynthorpro"
@@ -280,7 +280,7 @@
    "modelName": "Pocket 6",
    "brandName": "Retroid",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 379,
+   "listingsCount": 386,
    "keys": [
     "pocket6",
     "retroidpocket6"
@@ -302,7 +302,7 @@
    "modelName": "Pocket G2",
    "brandName": "Retroid",
    "socName": "Snapdragon G2 Gen 2",
-   "listingsCount": 247,
+   "listingsCount": 248,
    "keys": [
     "pocketg2",
     "retroidpocketg2"
@@ -353,6 +353,17 @@
    ]
   },
   {
+   "id": "8ad7aae7-d8f8-4577-92a1-49b72f101001",
+   "modelName": "Thor Base",
+   "brandName": "AYN",
+   "socName": "Snapdragon 8 Gen 2",
+   "listingsCount": 157,
+   "keys": [
+    "thorbase",
+    "aynthorbase"
+   ]
+  },
+  {
    "id": "1b219767-3d66-4f7c-9f7c-d4405088c248",
    "modelName": "Poco X6 Pro",
    "brandName": "Xiaomi",
@@ -361,17 +372,6 @@
    "keys": [
     "pocox6pro",
     "xiaomipocox6pro"
-   ]
-  },
-  {
-   "id": "8ad7aae7-d8f8-4577-92a1-49b72f101001",
-   "modelName": "Thor Base",
-   "brandName": "AYN",
-   "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 155,
-   "keys": [
-    "thorbase",
-    "aynthorbase"
    ]
   },
   {
@@ -401,7 +401,7 @@
    "modelName": "Poco X7 Pro",
    "brandName": "Xiaomi",
    "socName": "Dimensity 8400 Ultra",
-   "listingsCount": 141,
+   "listingsCount": 142,
    "keys": [
     "pocox7pro",
     "xiaomipocox7pro"
@@ -958,6 +958,17 @@
    ]
   },
   {
+   "id": "17c2508f-dd36-40d2-9004-bb0631894ac3",
+   "modelName": "Moto G20",
+   "brandName": "Motorola",
+   "socName": "Tiger T700",
+   "listingsCount": 30,
+   "keys": [
+    "motog20",
+    "motorolamotog20"
+   ]
+  },
+  {
    "id": "25dadeab-6cc2-4b23-845a-38a39f35379f",
    "modelName": "12R",
    "brandName": "OnePlus",
@@ -1002,6 +1013,17 @@
    ]
   },
   {
+   "id": "2229fb65-b509-44b7-9178-e58a9ad79154",
+   "modelName": "13",
+   "brandName": "OnePlus",
+   "socName": "Snapdragon 8 Elite",
+   "listingsCount": 29,
+   "keys": [
+    "13",
+    "oneplus13"
+   ]
+  },
+  {
    "id": "39dd5045-3fe1-430e-aabe-19ef0b78a078",
    "modelName": "Galaxy S21 Ultra",
    "brandName": "Samsung",
@@ -1010,17 +1032,6 @@
    "keys": [
     "galaxys21ultra",
     "samsunggalaxys21ultra"
-   ]
-  },
-  {
-   "id": "2229fb65-b509-44b7-9178-e58a9ad79154",
-   "modelName": "13",
-   "brandName": "OnePlus",
-   "socName": "Snapdragon 8 Elite",
-   "listingsCount": 28,
-   "keys": [
-    "13",
-    "oneplus13"
    ]
   },
   {
@@ -1054,17 +1065,6 @@
    "keys": [
     "v60thinq",
     "lgv60thinq"
-   ]
-  },
-  {
-   "id": "17c2508f-dd36-40d2-9004-bb0631894ac3",
-   "modelName": "Moto G20",
-   "brandName": "Motorola",
-   "socName": "Tiger T700",
-   "listingsCount": 27,
-   "keys": [
-    "motog20",
-    "motorolamotog20"
    ]
   },
   {
@@ -2124,6 +2124,17 @@
    ]
   },
   {
+   "id": "041add7f-e4a8-46e6-9588-f93db856bb28",
+   "modelName": "Galaxy Tab A9+",
+   "brandName": "Samsung",
+   "socName": "Helio G99",
+   "listingsCount": 10,
+   "keys": [
+    "galaxytaba9",
+    "samsunggalaxytaba9"
+   ]
+  },
+  {
    "id": "46deef0a-1743-4688-aa3b-bb3b82b5f512",
    "modelName": "X100 Ultra",
    "brandName": "Vivo",
@@ -2143,6 +2154,17 @@
    "keys": [
     "pad7pro",
     "xiaomipad7pro"
+   ]
+  },
+  {
+   "id": "89aaaafe-ee30-47bd-ad5c-db90153ec876",
+   "modelName": "Redmi Note 14",
+   "brandName": "Xiaomi",
+   "socName": "Helio G99",
+   "listingsCount": 10,
+   "keys": [
+    "redminote14",
+    "xiaomiredminote14"
    ]
   },
   {
@@ -2267,17 +2289,6 @@
    ]
   },
   {
-   "id": "041add7f-e4a8-46e6-9588-f93db856bb28",
-   "modelName": "Galaxy Tab A9+",
-   "brandName": "Samsung",
-   "socName": "Helio G99",
-   "listingsCount": 9,
-   "keys": [
-    "galaxytaba9",
-    "samsunggalaxytaba9"
-   ]
-  },
-  {
    "id": "74ef8d0f-b496-47e7-b080-f263dc0b2c4b",
    "modelName": "Galaxy Tab S9 FE+",
    "brandName": "Samsung",
@@ -2308,17 +2319,6 @@
    "keys": [
     "s26ultra",
     "samsungs26ultra"
-   ]
-  },
-  {
-   "id": "89aaaafe-ee30-47bd-ad5c-db90153ec876",
-   "modelName": "Redmi Note 14",
-   "brandName": "Xiaomi",
-   "socName": "Helio G99",
-   "listingsCount": 9,
-   "keys": [
-    "redminote14",
-    "xiaomiredminote14"
    ]
   },
   {
@@ -4093,6 +4093,17 @@
    ]
   },
   {
+   "id": "53cc6394-a1a5-407b-b52c-50486ba8cff5",
+   "modelName": "S25 Edge",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 8 Elite",
+   "listingsCount": 3,
+   "keys": [
+    "s25edge",
+    "samsungs25edge"
+   ]
+  },
+  {
    "id": "844b5af4-4d87-4b4c-b3fc-9ed057870b74",
    "modelName": "Playstation 3",
    "brandName": "Sony",
@@ -4797,17 +4808,6 @@
    ]
   },
   {
-   "id": "53cc6394-a1a5-407b-b52c-50486ba8cff5",
-   "modelName": "S25 Edge",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 8 Elite",
-   "listingsCount": 2,
-   "keys": [
-    "s25edge",
-    "samsungs25edge"
-   ]
-  },
-  {
    "id": "d0809d97-7e5e-4369-89c8-1e77ec720f3e",
    "modelName": "Xperia 1 II",
    "brandName": "Sony",
@@ -5487,6 +5487,28 @@
    "keys": [
     "reno11pro",
     "opporeno11pro"
+   ]
+  },
+  {
+   "id": "740e3c70-efc4-4354-ac31-5529fd95b789",
+   "modelName": "Reno12",
+   "brandName": "Oppo",
+   "socName": "Dimensity 8250",
+   "listingsCount": 1,
+   "keys": [
+    "reno12",
+    "opporeno12"
+   ]
+  },
+  {
+   "id": "a234f380-f0f5-4e9d-b958-12f10c54fb5b",
+   "modelName": "Reno12 Pro",
+   "brandName": "Oppo",
+   "socName": "Dimensity 9200+",
+   "listingsCount": 1,
+   "keys": [
+    "reno12pro",
+    "opporeno12pro"
    ]
   },
   {
@@ -7866,28 +7888,6 @@
    ]
   },
   {
-   "id": "740e3c70-efc4-4354-ac31-5529fd95b789",
-   "modelName": "Reno12",
-   "brandName": "Oppo",
-   "socName": "Dimensity 8250",
-   "listingsCount": 0,
-   "keys": [
-    "reno12",
-    "opporeno12"
-   ]
-  },
-  {
-   "id": "a234f380-f0f5-4e9d-b958-12f10c54fb5b",
-   "modelName": "Reno12 Pro",
-   "brandName": "Oppo",
-   "socName": "Dimensity 9200+",
-   "listingsCount": 0,
-   "keys": [
-    "reno12pro",
-    "opporeno12pro"
-   ]
-  },
-  {
    "id": "d9a822db-b32c-4bf3-ae01-27a9a76bd178",
    "modelName": "Portal",
    "brandName": "Pimax",
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6270,
+   "listings": 6280,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9057,7 +9057,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3421,
+   "listings": 3424,
    "description": ""
   },
   {
@@ -9201,7 +9201,7 @@
    "systems": [
     "sony_playstation_vita"
    ],
-   "listings": 170,
+   "listings": 172,
    "description": ""
   },
   {
@@ -9297,6 +9297,19 @@
    "description": ""
   },
   {
+   "id": "435a39f7-72d1-4e98-b633-f0fe25280fcc",
+   "name": "DroidDeck",
+   "logo": "",
+   "repositoryUrl": "https://github.com/Droid-Deck/DroidDeck",
+   "officialUrl": "https://github.com/Droid-Deck/DroidDeck",
+   "androidRepoUrl": "https://github.com/Droid-Deck/DroidDeck",
+   "systems": [
+    "microsoft_windows"
+   ],
+   "listings": 53,
+   "description": ""
+  },
+  {
    "id": "6bd54238-4f6e-4164-9b44-962ef0a0778c",
    "name": "Ryujinx/Ryubing",
    "logo": "ryujinx.png",
@@ -9310,19 +9323,6 @@
    "description": ""
   },
   {
-   "id": "435a39f7-72d1-4e98-b633-f0fe25280fcc",
-   "name": "DroidDeck",
-   "logo": "",
-   "repositoryUrl": "https://github.com/Droid-Deck/DroidDeck",
-   "officialUrl": "https://github.com/Droid-Deck/DroidDeck",
-   "androidRepoUrl": "https://github.com/Droid-Deck/DroidDeck",
-   "systems": [
-    "microsoft_windows"
-   ],
-   "listings": 46,
-   "description": ""
-  },
-  {
    "id": "ad8a11af-daed-4567-8787-fa0b29dc3a6e",
    "name": "ARMSX2",
    "logo": "armsx2.png",
@@ -9332,7 +9332,7 @@
    "systems": [
     "sony_playstation_2"
    ],
-   "listings": 42,
+   "listings": 44,
    "description": "ARMSX2 is a new open source emulator for the PS2, it is based on the PCSX2 emulator and aims to be the next step in PS2 emulation on Android, as well as cross platform support for iOS and other ARM Platforms."
   },
   {
@@ -9414,7 +9414,7 @@
    "systems": [
     "microsoft_xbox_360"
    ],
-   "listings": 18,
+   "listings": 20,
    "description": ""
   },
   {
@@ -9444,6 +9444,19 @@
    "description": ""
   },
   {
+   "id": "d887dca2-3217-4e79-ae7f-35f876935271",
+   "name": "ARMSX3",
+   "logo": "",
+   "repositoryUrl": "https://github.com/ARMSX2/ARMSX3",
+   "officialUrl": "https://github.com/ARMSX2/ARMSX3",
+   "androidRepoUrl": "https://github.com/ARMSX2/ARMSX3",
+   "systems": [
+    "sony_playstation_3"
+   ],
+   "listings": 10,
+   "description": ""
+  },
+  {
    "id": "3385d246-1da9-4574-8a40-0fb3e4012c50",
    "name": "Lemuroid",
    "logo": "lemuroid.png",
@@ -9455,19 +9468,6 @@
     "nintendo_ds",
     "sony_playstation_portable",
     "sony_playstation"
-   ],
-   "listings": 9,
-   "description": ""
-  },
-  {
-   "id": "d887dca2-3217-4e79-ae7f-35f876935271",
-   "name": "ARMSX3",
-   "logo": "",
-   "repositoryUrl": "https://github.com/ARMSX2/ARMSX3",
-   "officialUrl": "https://github.com/ARMSX2/ARMSX3",
-   "androidRepoUrl": "https://github.com/ARMSX2/ARMSX3",
-   "systems": [
-    "sony_playstation_3"
    ],
    "listings": 9,
    "description": ""

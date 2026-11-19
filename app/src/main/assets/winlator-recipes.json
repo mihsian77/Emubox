@@ -1,11 +1,11 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-18T00:00:00Z",
+ "updated_at": "2026-11-19T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
   "Adreno-830": {
-   "configs": 345,
+   "configs": 346,
    "top": [
     {
      "combo": [
@@ -27,7 +27,7 @@
       ]
      ],
      "count": 33,
-     "share": 9.6
+     "share": 9.5
     },
     {
      "combo": [
@@ -49,7 +49,7 @@
       ]
      ],
      "count": 24,
-     "share": 7.0
+     "share": 6.9
     },
     {
      "combo": [
@@ -76,7 +76,7 @@
    ]
   },
   "Adreno-840": {
-   "configs": 224,
+   "configs": 226,
    "top": [
     {
      "combo": [
@@ -98,7 +98,7 @@
       ]
      ],
      "count": 23,
-     "share": 10.3
+     "share": 10.2
     },
     {
      "combo": [
@@ -119,8 +119,8 @@
        "2.8"
       ]
      ],
-     "count": 7,
-     "share": 3.1
+     "count": 8,
+     "share": 3.5
     },
     {
      "combo": [
@@ -427,7 +427,7 @@
    ]
   },
   "Mali-G615": {
-   "configs": 128,
+   "configs": 130,
    "top": [
     {
      "combo": [
@@ -449,7 +449,7 @@
       ]
      ],
      "count": 27,
-     "share": 21.1
+     "share": 20.8
     },
     {
      "combo": [
@@ -470,8 +470,8 @@
        "2.8"
       ]
      ],
-     "count": 10,
-     "share": 7.8
+     "count": 11,
+     "share": 8.5
     },
     {
      "combo": [
@@ -498,7 +498,7 @@
    ]
   },
   "Mali-G720": {
-   "configs": 118,
+   "configs": 119,
    "top": [
     {
      "combo": [
@@ -520,7 +520,7 @@
       ]
      ],
      "count": 14,
-     "share": 11.9
+     "share": 11.8
     },
     {
      "combo": [
@@ -542,7 +542,7 @@
       ]
      ],
      "count": 12,
-     "share": 10.2
+     "share": 10.1
     },
     {
      "combo": [
@@ -853,7 +853,7 @@
    ]
   },
   "Adreno-610": {
-   "configs": 66,
+   "configs": 67,
    "top": [
     {
      "combo": [
@@ -875,7 +875,7 @@
       ]
      ],
      "count": 4,
-     "share": 6.1
+     "share": 6.0
     },
     {
      "combo": [
@@ -897,7 +897,7 @@
       ]
      ],
      "count": 4,
-     "share": 6.1
+     "share": 6.0
     },
     {
      "combo": [
@@ -1115,6 +1115,77 @@
     }
    ]
   },
+  "Adreno-725": {
+   "configs": 43,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "FEX-2607+76-Nightly-37265b109-PPA-unix-0"
+      ],
+      [
+       "GPU",
+       "Turnip v26.2.0-R8"
+      ],
+      [
+       "VKD3D",
+       "None"
+      ]
+     ],
+     "count": 3,
+     "share": 7.0
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.5.3-1-gplasync-arm64ec-0"
+      ],
+      [
+       "FEXCore",
+       "FEXCore-2611-PPA-unix-0"
+      ],
+      [
+       "GPU",
+       "Turnip v26.3.0-R5"
+      ],
+      [
+       "VKD3D",
+       "3.0b-0"
+      ]
+     ],
+     "count": 2,
+     "share": 4.7
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.3.1-arm64ec-gplasync"
+      ],
+      [
+       "FEXCore",
+       "FEXCore-2611-PPA-unix-0"
+      ],
+      [
+       "GPU",
+       "Turnip v26.3.0-R5"
+      ],
+      [
+       "VKD3D",
+       "2.12-0"
+      ]
+     ],
+     "count": 2,
+     "share": 4.7
+    }
+   ]
+  },
   "Adreno-619": {
    "configs": 43,
    "top": [
@@ -1179,77 +1250,6 @@
      ],
      "count": 2,
      "share": 4.7
-    }
-   ]
-  },
-  "Adreno-725": {
-   "configs": 42,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "FEX-2607+76-Nightly-37265b109-PPA-unix-0"
-      ],
-      [
-       "GPU",
-       "Turnip v26.2.0-R8"
-      ],
-      [
-       "VKD3D",
-       "None"
-      ]
-     ],
-     "count": 3,
-     "share": 7.1
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.5.3-1-gplasync-arm64ec-0"
-      ],
-      [
-       "FEXCore",
-       "FEXCore-2611-PPA-unix-0"
-      ],
-      [
-       "GPU",
-       "Turnip v26.3.0-R5"
-      ],
-      [
-       "VKD3D",
-       "3.0b-0"
-      ]
-     ],
-     "count": 2,
-     "share": 4.8
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.3.1-0"
-      ],
-      [
-       "FEXCore",
-       "FEX-2604-Nightly-9681559d5-476"
-      ],
-      [
-       "GPU",
-       "Mesa Turnip v26.3.0-20260912"
-      ],
-      [
-       "VKD3D",
-       "2.14.1-0"
-      ]
-     ],
-     "count": 1,
-     "share": 2.4
     }
    ]
   },
@@ -1325,7 +1325,7 @@
    ]
   },
   "Mali-G925": {
-   "configs": 37,
+   "configs": 39,
    "top": [
     {
      "combo": [
@@ -1347,7 +1347,7 @@
       ]
      ],
      "count": 5,
-     "share": 13.5
+     "share": 12.8
     },
     {
      "combo": [
@@ -1369,7 +1369,7 @@
       ]
      ],
      "count": 2,
-     "share": 5.4
+     "share": 5.1
     },
     {
      "combo": [
@@ -1391,7 +1391,7 @@
       ]
      ],
      "count": 2,
-     "share": 5.4
+     "share": 5.1
     }
    ]
   },
@@ -1885,7 +1885,7 @@
    ]
   },
   "Adreno-640": {
-   "configs": 17,
+   "configs": 18,
    "top": [
     {
      "combo": [
@@ -1907,7 +1907,7 @@
       ]
      ],
      "count": 2,
-     "share": 11.8
+     "share": 11.1
     },
     {
      "combo": [
@@ -1925,7 +1925,7 @@
       ]
      ],
      "count": 1,
-     "share": 5.9
+     "share": 5.6
     },
     {
      "combo": [
@@ -1947,7 +1947,7 @@
       ]
      ],
      "count": 1,
-     "share": 5.9
+     "share": 5.6
     }
    ]
   },
@@ -3368,7 +3368,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 175,
+   "configs": 176,
    "top": [
     {
      "combo": [
@@ -3394,7 +3394,7 @@
       ]
      ],
      "count": 57,
-     "share": 32.6
+     "share": 32.4
     },
     {
      "combo": [
@@ -3420,7 +3420,7 @@
       ]
      ],
      "count": 18,
-     "share": 10.3
+     "share": 10.2
     },
     {
      "combo": [
@@ -3446,7 +3446,7 @@
       ]
      ],
      "count": 15,
-     "share": 8.6
+     "share": 8.5
     }
    ]
   },
@@ -4363,6 +4363,89 @@
     }
    ]
   },
+  "Adreno-650": {
+   "configs": 3,
+   "top": [
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.4.3"
+      ],
+      [
+       "Driver",
+       "wrapper"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2605"
+      ],
+      [
+       "Wine",
+       "proton-9.0-x86_64"
+      ]
+     ],
+     "count": 1,
+     "share": 33.3
+    },
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.4.3"
+      ],
+      [
+       "Driver",
+       "wrapper"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2605"
+      ],
+      [
+       "Wine",
+       "proton-10-arm64ec"
+      ]
+     ],
+     "count": 1,
+     "share": 33.3
+    },
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.4.3"
+      ],
+      [
+       "Driver",
+       "wrapper"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2605"
+      ],
+      [
+       "Wine",
+       "10.0-X86_64-1"
+      ]
+     ],
+     "count": 1,
+     "share": 33.3
+    }
+   ]
+  },
   "Mali-G78": {
    "configs": 3,
    "top": [
@@ -4443,63 +4526,6 @@
      ],
      "count": 1,
      "share": 33.3
-    }
-   ]
-  },
-  "Adreno-650": {
-   "configs": 2,
-   "top": [
-    {
-     "combo": [
-      [
-       "Box64",
-       "0.4.3"
-      ],
-      [
-       "Driver",
-       "wrapper"
-      ],
-      [
-       "DxWrapper",
-       "dxvk+vkd3d"
-      ],
-      [
-       "FEX",
-       "2605"
-      ],
-      [
-       "Wine",
-       "proton-9.0-x86_64"
-      ]
-     ],
-     "count": 1,
-     "share": 50.0
-    },
-    {
-     "combo": [
-      [
-       "Box64",
-       "0.4.3"
-      ],
-      [
-       "Driver",
-       "wrapper"
-      ],
-      [
-       "DxWrapper",
-       "dxvk+vkd3d"
-      ],
-      [
-       "FEX",
-       "2605"
-      ],
-      [
-       "Wine",
-       "proton-10-arm64ec"
-      ]
-     ],
-     "count": 1,
-     "share": 50.0
     }
    ]
   },
