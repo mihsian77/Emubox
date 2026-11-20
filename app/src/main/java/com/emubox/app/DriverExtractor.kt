@@ -36,6 +36,17 @@ object DriverExtractor {
     /** 条目数上限：正常驱动包 10~50 个条目，一万条足够覆盖，超出视为异常包 */
     private const val MAX_ENTRIES = 10_000
 
+    /**
+     * 非本机 ABI 的目录标记。本 App 只出 arm64，包里同时带 32 位库时不能收：
+     * 条目名会扁平化成同一个文件名，后写覆盖先写，最终可能只剩 32 位那份，
+     * dlopen 必失败，而报错只会说「驱动崩溃」。
+     * 只排除明确的外部 ABI 名，不要求必须出现 arm64——中性目录（如 lib/）照收。
+     */
+    private val FOREIGN_ABI = Regex(
+        """(^|/)(armeabi|armeabi-v7a|armv7|armv7a|x86|x86_64|mips|mips64|riscv32|riscv64)(/|$)""",
+        RegexOption.IGNORE_CASE
+    )
+
     /** 驱动提取后的根目录：filesDir/drivers/ */
     fun driversRoot(context: Context): File = File(context.filesDir, DRIVERS_DIR)
 
@@ -67,8 +78,11 @@ object DriverExtractor {
                 Log.w(TAG, "读取驱动 meta.json 失败，退回按扩展名取 .so：$driverId", e)
             }
         }
-        // 兜底：目录下第一个 .so 文件
-        return dir.listFiles { f -> f.extension == "so" }?.firstOrNull()
+        // 兜底：优先名字带 vulkan 的，再按文件名排序取第一个。
+        // 不能用 firstOrNull()：listFiles 的返回顺序由文件系统决定，
+        // 同一份驱动在不同次启动可能挑到不同的 .so（依赖库 vs 主驱动）。
+        val candidates = dir.listFiles { f -> f.extension == "so" }?.sortedBy { it.name }.orEmpty()
+        return candidates.firstOrNull { it.name.contains("vulkan", true) } ?: candidates.firstOrNull()
     }
 
     /**
@@ -80,8 +94,20 @@ object DriverExtractor {
      * @return 提取后的 .so 文件，失败返回 null
      */
     fun extract(context: Context, zipUri: Uri, driverId: String): File? {
-        val dir = driverDir(context, driverId)
-        dir.mkdirs()
+        val root = driversRoot(context).apply { mkdirs() }
+        val safeId = sanitizeId(driverId)
+        val dir = File(root, safeId)
+        // 先写同级 staging，成功后再整体换掉 dir。
+        // 直接往 dir 里覆盖写有两个后果：旧 .so 残留（挑主驱动时可能挑到上一版的），
+        // 中途失败留下半截目录。staging 保证「要么新版、要么旧版」。
+        val staging = File(root, "$safeId.staging")
+        val backup = File(root, "$safeId.old")
+        staging.deleteRecursively()
+        backup.deleteRecursively()
+        if (!staging.mkdirs()) {
+            Log.w(TAG, "无法创建驱动提取临时目录：$driverId")
+            return null
+        }
 
         var libraryName: String? = null
         var soFile: File? = null
@@ -92,7 +118,13 @@ object DriverExtractor {
         var totalWritten = 0L
 
         try {
-            context.contentResolver.openInputStream(zipUri)?.use { input ->
+            val stream = context.contentResolver.openInputStream(zipUri)
+            if (stream == null) {
+                Log.w(TAG, "驱动包无法打开（URI 打不开或已失效）：$driverId")
+                staging.deleteRecursively()
+                return null
+            }
+            stream.use { input ->
                 ZipInputStream(input).use { zip ->
                     var entry = zip.nextEntry
                     var entryCount = 0
@@ -101,12 +133,13 @@ object DriverExtractor {
                         if (++entryCount > MAX_ENTRIES) {
                             throw IOException("驱动包条目数超限（>$MAX_ENTRIES），已中止")
                         }
-                        val name = entry.name.substringAfterLast('/')
+                        val entryPath = entry.name
+                        val name = entryPath.substringAfterLast('/')
 
                         if (name == "meta.json") {
                             // 限长读取：防止异常包用超大 meta.json 占满内存
                             val metaText = readLimited(zip, MAX_META_BYTES).toString(Charsets.UTF_8)
-                            File(dir, "meta.json").writeText(metaText)
+                            File(staging, "meta.json").writeText(metaText)
                             try {
                                 val meta = JSONObject(metaText)
                                 libraryName = sanitizeLibraryName(meta.optString("libraryName", ""))
@@ -116,17 +149,24 @@ object DriverExtractor {
                                 Log.w(TAG, "驱动包 meta.json 解析失败，主驱动将按文件名推断：$driverId", e)
                             }
                         } else if (name.endsWith(".so")) {
-                            // 文件名同样净化：只允许单层文件名，避免路径穿越
-                            val safeName = sanitizeLibraryName(name)
-                            if (safeName != null) {
-                                val outFile = File(dir, safeName)
-                                FileOutputStream(outFile).use { out ->
-                                    totalWritten = copyLimited(zip, out, totalWritten)
+                            // 只收本机 ABI：本 App 只出 arm64，加载 32 位库必失败。
+                            // 条目名扁平化后 armeabi-v7a/libvulkan.so 与 arm64-v8a/libvulkan.so 同名，
+                            // 后写覆盖先写，最终可能只剩 32 位那份。
+                            if (FOREIGN_ABI.containsMatchIn(entryPath)) {
+                                Log.i(TAG, "跳过非 arm64 条目：$entryPath")
+                            } else {
+                                // 文件名同样净化：只允许单层文件名，避免路径穿越
+                                val safeName = sanitizeLibraryName(name)
+                                if (safeName != null) {
+                                    val outFile = File(staging, safeName)
+                                    FileOutputStream(outFile).use { out ->
+                                        totalWritten = copyLimited(zip, out, totalWritten)
+                                    }
+                                    // 设置可执行权限（native dlopen 需要）
+                                    outFile.setReadable(true, false)
+                                    outFile.setExecutable(true, false)
+                                    extractedSos += outFile
                                 }
-                                // 设置可执行权限（native dlopen 需要）
-                                outFile.setReadable(true, false)
-                                outFile.setExecutable(true, false)
-                                extractedSos += outFile
                             }
                         }
 
@@ -136,9 +176,11 @@ object DriverExtractor {
                 }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
-            // 清理部分提取的文件
-            dir.deleteRecursively()
+            // 失败只清 staging，绝不动已装好的驱动目录：
+            // 以前这里 deleteRecursively(dir)，用户装好 v891.14 后任何一次失败的重测
+            // 都会把它删掉，之后所有测试都报「未找到 .so」。
+            Log.w(TAG, "驱动包提取失败，保留已装版本：$driverId", e)
+            staging.deleteRecursively()
             return null
         }
 
@@ -151,12 +193,33 @@ object DriverExtractor {
         val targetName = libraryName
         val extracted = soFile
         if (targetName != null && extracted != null && extracted.name != targetName) {
-            val renamed = File(dir, targetName)
+            val renamed = File(staging, targetName)
             // 重命名失败时保留原文件，避免把 soFile 指向不存在的路径
             if (extracted.renameTo(renamed)) soFile = renamed
         }
 
-        return soFile
+        val picked = soFile ?: run {
+            Log.w(TAG, "驱动包里没有可用的 .so：$driverId")
+            staging.deleteRecursively()
+            return null
+        }
+
+        // staging → dir 原子替换：要么新版，要么旧版，不出现半截状态
+        if (dir.exists() && !dir.renameTo(backup)) {
+            Log.w(TAG, "旧驱动目录无法让位，放弃本次提取：$driverId")
+            staging.deleteRecursively()
+            return null
+        }
+        if (!staging.renameTo(dir)) {
+            // 换不上去就把旧版放回来，不能让用户手里两个都没有
+            if (backup.exists()) backup.renameTo(dir)
+            Log.w(TAG, "驱动目录替换失败，已回滚旧版：$driverId")
+            staging.deleteRecursively()
+            return null
+        }
+        backup.deleteRecursively()
+
+        return File(dir, picked.name).takeIf { it.exists() }
     }
 
     /** 删除已提取的驱动文件 */
