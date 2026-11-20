@@ -49,6 +49,8 @@ ALLOWED = set(REQUIRED) | {
     "name_zh",
     # 2026-11-12 新增：按发布文件列表解析出的产物统计与安卓可安装判定
     "artifacts", "android_ready",
+    # 2026-11-20 新增：android_ready 的判定依据（release 发布资产 / 人工核实 / 无依据）
+    "android_ready_source",
     # 伴随应用/构件：原生移植常需搭配输入桥、驱动或额外 wrapper
     "companion",
     # 平台家族（8 个硬件谱系，由 platforms 派生，供二级分类 chip 使用）
@@ -70,6 +72,20 @@ HOSTS = {"android", "windows", "macos", "linux", "ios",
          "switch2", "ps4"}
 STATUS = {"active", "stale", "dead", "archived", "community"}
 KINDS = {"emulator", "port", "frontend", "tool", "engine"}
+# download_kind 曾是三对近义方言并存（github-releases / github-release、
+# play / official-play / google-play、official-site / official-web）+ 341 条空值。
+# 2026-11-20 由 scripts/derive_download_kind.py 统一为「链接指向哪种获取方式」，
+# 取值只能从下面这张表里长，新增先登记。
+DOWNLOAD_KINDS = {
+    "github-release", "google-play", "official-site", "desktop-build",
+    "libretro-core", "zip", "nightly", "f-droid",
+    "forgejo-release", "gitea-release", "gitlab-release", "ps5-package",
+    "source-only",
+}
+
+# android_ready 的三态：True=有可安装制品，False=确认没有，None=没核过。
+# 以前只有布尔，「官网分发」的项目一律记 false，等于拿「我们没看到」冒充「不支持」。
+ANDROID_SOURCES = {"release", "manual", "unknown"}
 DOWNLOADS_BASIS = {"lifetime", "latest-lower-bound", "none"}
 
 # artifacts 子字段（解析器读 snake_case，界面按它算「共 N 个」）
@@ -138,6 +154,26 @@ def check_entry(path, i, e):
     kd = e.get("kind")
     if kd is not None and kd not in KINDS:
         p.append(f"{where}: kind={kd!r} 不在 {sorted(KINDS)}")
+    dk = e.get("download_kind")
+    if path.endswith("emulator-registry.json") and dk is None:
+        p.append(f"{where}: 缺 download_kind（空值让「可下载性」统计失真，"
+                 f"跑 scripts/derive_download_kind.py 派生）")
+    elif dk is not None and dk not in DOWNLOAD_KINDS:
+        p.append(f"{where}: download_kind={dk!r} 不在 {sorted(DOWNLOAD_KINDS)}")
+
+    # android_ready 三态：None=没核过，别用 false 冒充「不支持」
+    ar = e.get("android_ready")
+    if ar is not None and not isinstance(ar, bool):
+        p.append(f"{where}: android_ready 应为布尔或 null，实为 {type(ar).__name__}")
+    src = e.get("android_ready_source")
+    if src is not None and src not in ANDROID_SOURCES:
+        p.append(f"{where}: android_ready_source={src!r} 不在 {sorted(ANDROID_SOURCES)}")
+    if src == "manual" and ar is not True:
+        p.append(f"{where}: 人工核实过却没置 true（android_ready={ar!r}）")
+    if src == "unknown" and ar is not None:
+        p.append(f"{where}: 依据 unknown 就别给结论（android_ready={ar!r}，应为 null）")
+    if ar is not None and src is None:
+        p.append(f"{where}: 有 android_ready 结论但没写来源")
     basis = e.get("downloads_basis")
     if basis is not None and basis not in DOWNLOADS_BASIS:
         p.append(f"{where}: downloads_basis={basis!r} 未知口径")

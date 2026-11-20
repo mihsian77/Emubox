@@ -44,7 +44,7 @@ INDEX_FIELDS = [
     "subcategory",
     # 产物构成：列表卡片右上角「有 3 个可安装包」的标记、详情页产物清单、
     # 「只看能直接装的」筛选都靠它。以前只在主库里、没下沉，App 侧等于没有。
-    "artifacts", "android_ready",
+    "artifacts", "android_ready", "android_ready_source",
 ]
 
 # 只有点进详情页才需要的
