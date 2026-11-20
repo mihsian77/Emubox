@@ -94,10 +94,10 @@ class DriverTestService : Service() {
         runCatching {
             val file = File(filesDir, "driver_test_${resultId}.json")
             file.writeText(json.toString())
-            // 清理旧结果与启动标记，避免主进程读到过期文件
-            filesDir.listFiles()?.filter {
-                it.name.startsWith("driver_test_") && it.name != file.name
-            }?.forEach { it.delete() }
+            // 只清本轮自己的启动标记。
+            // 以前这里按 startsWith("driver_test_") 扫全目录删除：同时点「检测」和「跑分」时，
+            // 两条链路会互删对方的结果文件与标记，双双超时、双双报「驱动崩溃」。
+            // .step 日志留给主进程读崩溃步骤，不在这里删。
             File(filesDir, "driver_test_${resultId}.started").delete()
         }
     }

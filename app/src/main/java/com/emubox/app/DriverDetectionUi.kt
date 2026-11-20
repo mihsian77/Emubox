@@ -134,88 +134,17 @@ internal fun DriverDetectionList(
         (tmp.absolutePath.ensureTrailingSlash()) to context.applicationInfo.nativeLibraryDir
     }
 
-    // 独立进程实测（vktest 同构）：:drivertest service 进程系统全新启动，
-    // 无主进程已初始化的系统 Vulkan/GPU 状态，adrenotools 加载 turnip/panvk
-    // 不再受 fork 继承 GPU 状态冲突影响（DRIVER_CRASHED 根因修复）。
-    // 驱动崩溃只杀 service 进程，主进程无感；结果经 files 下 JSON 回传轮询。
-    var servicePollingId by remember { mutableStateOf<String?>(null) }
-    LaunchedEffect(servicePollingId) {
-        val id = servicePollingId ?: return@LaunchedEffect
-        val dl = downloadedDrivers.firstOrNull { it.id == id }
-        if (dl == null) { servicePollingId = null; return@LaunchedEffect }
-        val resultFile = DriverTestService.resultFile(context, id)
-        val startedFile = File(context.filesDir, "driver_test_${id}.started")
-        val deadline = System.currentTimeMillis() + 25_000L
-        while (System.currentTimeMillis() < deadline) {
-            resultFile.deleteOnExit()
-            if (resultFile.exists()) {
-                val raw = runCatching { resultFile.readText() }.getOrNull()
-                if (raw != null && raw.isNotBlank()) {
-                    try {
-                        val result = org.json.JSONObject(raw)
-                        if (result.has("collect")) {
-                            val payload = VulkanInfoPayload.fromJson(result.getJSONObject("collect").toString())
-                            // 分阶段写盘后 benchmark/render 可能缺失（后段崩溃），部分结果照常展示
-                            val brJson = result.optJSONObject("benchmark")
-                            val br = if (brJson != null) BenchmarkResult.fromJson(brJson.toString())
-                                else BenchmarkResult(
-                                    success = false, errorCode = "STAGE_CRASHED",
-                                    errorMessage = "跑分/渲染阶段进程崩溃，采集结果已保留", deviceName = "",
-                                    fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0, computeGFLOPS = 0.0,
-                                    computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
-                                    totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0,
-                                    timestampPeriodNs = 0.0
-                                )
-                            adrenotoolsResults = adrenotoolsResults + (id to (payload to br))
-                            if (result.has("render")) {
-                                renderResults = renderResults + (id to result.getJSONObject("render"))
-                            }
-                            detectionResults = detectionResults + (id to payload)
-                        } else {
-                            detectionResults = detectionResults + (id to VulkanInfoPayload(
-                                success = false,
-                                errorCode = result.optString("errorCode", "SERVICE_FAILED"),
-                                errorMessage = result.optString("errorMessage", "独立进程实测失败"),
-                                loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
-                                deviceCount = 0, devices = emptyList()
-                            ))
-                        }
-                        resultFile.delete()
-                        adrenotoolsTestingId = null
-                        servicePollingId = null
-                        return@LaunchedEffect
-                    } catch (e: Exception) {
-                        // 结果未写完或格式异常，继续轮询
-                    }
-                }
-            }
-            delay(300)
-        }
-        // 超时判定：启动标记仍在 → 驱动加载崩溃把独立进程带走了（进程被杀）；
-        // 启动标记不在 → 服务未启动/参数异常。
-        val crashed = startedFile.exists()
-        adrenotoolsTestingId = null
-        servicePollingId = null
-        detectionResults = detectionResults + (id to VulkanInfoPayload(
-            success = false,
-            errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-            errorMessage = if (crashed) {
-                "驱动加载崩溃（独立进程被杀，App 未受影响）。可能为驱动包与 App 内置 AdrenoTools 运行时版本不匹配，或需在模拟器内验证"
-            } else {
-                "独立进程实测未启动，请重试"
-            },
-            loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
-            deviceCount = 0, devices = emptyList()
-        ))
-    }
-
     // AdrenoTools 实测：分阶段独立进程（collect → benchmark → render）。
     // 每个阶段一个全新 :drivertest 进程、进程内只加载一次驱动（vktest 同构），
     // 规避同进程重复 mapping import 导致 turnip GSL 状态冲突崩溃（STAGE_CRASHED 根因）。
     // 单阶段崩溃只丢该阶段结果，其余阶段照常展示。
     fun startStageService(resultId: String, stage: String, dir: String, name: String, tmp: String, hook: String) {
         DriverTestService.resultFile(context, resultId).delete()
-        File(context.filesDir, "driver_test_${resultId}.started").writeText("1")
+        // 启动标记只由 DriverTestService 在 onStartCommand 里写，主进程不预写。
+        // 以前这里先 writeText("1") 再 startService：服务有没有起来标记都在，
+        // 于是「服务被 ROM 拦下 / 后台限制 / 参数异常」统统被判成「驱动崩溃」，
+        // SERVICE_NOT_STARTED 永远不可达。这里只清理上一轮残留。
+        File(context.filesDir, "driver_test_${resultId}.started").delete()
         val intent = android.content.Intent(context, DriverTestService::class.java).apply {
             putExtra("driverDir", dir)
             putExtra("driverName", name)
@@ -236,7 +165,9 @@ internal fun DriverDetectionList(
     }
 
     // 轮询单个阶段结果文件（25s 窗口）。返回结果 JSON，超时/崩溃返回 null。
-    fun pollStageResult(resultId: String): org.json.JSONObject? {
+    // suspend + delay：三阶段串行最长 75 秒，Thread.sleep 会占死一个 IO 线程且不响应取消，
+    // 用户离开页面后仍会把整段跑完。
+    suspend fun pollStageResult(resultId: String): org.json.JSONObject? {
         val deadline = System.currentTimeMillis() + 25_000L
         while (System.currentTimeMillis() < deadline) {
             val rf = DriverTestService.resultFile(context, resultId)
@@ -250,7 +181,7 @@ internal fun DriverDetectionList(
                     }
                 }
             }
-            Thread.sleep(300)
+            delay(300)
         }
         return null
     }
@@ -375,8 +306,9 @@ internal fun DriverDetectionList(
                     val dir = (soFile.parent ?: soFile.absolutePath).ensureTrailingSlash()
                     val benchResultId = "bench_$id"
                     DriverTestService.resultFile(context, benchResultId).delete()
+                    // 同上：启动标记交给 service 写，主进程只清残留
                     val startedFile = File(context.filesDir, "driver_test_${benchResultId}.started")
-                    File(context.filesDir, "driver_test_${benchResultId}.started").writeText("1")
+                    startedFile.delete()
                     val intent = android.content.Intent(context, DriverTestService::class.java).apply {
                         putExtra("driverDir", dir)
                         putExtra("driverName", soFile.name)
@@ -408,6 +340,10 @@ internal fun DriverDetectionList(
                                             totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
                                         ))
                                     } else {
+                                        // 结果文件已落盘但字段不全（可能正在写）。
+                                        // continue 会跳过循环末尾的 sleep，导致 25 秒满速空转读文件，
+                                        // 白烧一个核；先让出这一段再继续。
+                                        Thread.sleep(300)
                                         continue
                                     }
                                     rf.delete()
