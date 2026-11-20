@@ -213,7 +213,7 @@
     <string name="emulator_result_count">%1$d results</string>
     <string name="emulator_filter_empty">No emulators match the current filters</string>
     <string name="emulator_filter_detail">Query: %1$s%2$s</string>
-    <string name="emulator_fav_only"> · favorites only</string>
+    <string name="emulator_fav_only">" · favorites only"</string>
     <string name="clear_filters">Clear filters</string>
     <string name="emulator_sort_by">Sort</string>
     <string name="compare_limit_hint">Up to 3 items can be compared</string>
@@ -691,7 +691,7 @@ How to verify in emulator:
     <string name="file_size">Size</string>
     <string name="file_time">Downloaded</string>
     <string name="file_path">Path</string>
-    <string name="emulator_updated_prefix">Updated </string>
+    <string name="emulator_updated_prefix">"Updated "</string>
     <string name="driver_search_hint">Search driver sources</string>
     <string name="driver_result_count">%1$d driver sources</string>
     <string name="search_hint">Search emulators</string>
