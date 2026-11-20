@@ -1,6 +1,6 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-19T00:00:00Z",
+ "updated_at": "2026-11-20T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
@@ -75,8 +75,75 @@
     }
    ]
   },
+  "Mali-G57": {
+   "configs": 228,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 33,
+     "share": 14.5
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 22,
+     "share": 9.6
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 5,
+     "share": 2.2
+    }
+   ]
+  },
   "Adreno-840": {
-   "configs": 226,
+   "configs": 227,
    "top": [
     {
      "combo": [
@@ -98,7 +165,7 @@
       ]
      ],
      "count": 23,
-     "share": 10.2
+     "share": 10.1
     },
     {
      "combo": [
@@ -143,73 +210,6 @@
      ],
      "count": 5,
      "share": 2.2
-    }
-   ]
-  },
-  "Mali-G57": {
-   "configs": 221,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 33,
-     "share": 14.9
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 22,
-     "share": 10.0
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 5,
-     "share": 2.3
     }
    ]
   },
@@ -3368,7 +3368,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 176,
+   "configs": 177,
    "top": [
     {
      "combo": [
@@ -3394,7 +3394,7 @@
       ]
      ],
      "count": 57,
-     "share": 32.4
+     "share": 32.2
     },
     {
      "combo": [
@@ -3451,7 +3451,7 @@
    ]
   },
   "Mali-G720": {
-   "configs": 168,
+   "configs": 169,
    "top": [
     {
      "combo": [
@@ -3477,7 +3477,7 @@
       ]
      ],
      "count": 28,
-     "share": 16.7
+     "share": 16.6
     },
     {
      "combo": [
@@ -3503,7 +3503,7 @@
       ]
      ],
      "count": 20,
-     "share": 11.9
+     "share": 11.8
     },
     {
      "combo": [
@@ -3866,7 +3866,7 @@
    ]
   },
   "Mali-G925": {
-   "configs": 17,
+   "configs": 18,
    "top": [
     {
      "combo": [
@@ -3892,7 +3892,33 @@
       ]
      ],
      "count": 4,
-     "share": 23.5
+     "share": 22.2
+    },
+    {
+     "combo": [
+      [
+       "Box64",
+       "0.4.3"
+      ],
+      [
+       "Driver",
+       "wrapper"
+      ],
+      [
+       "DxWrapper",
+       "dxvk+vkd3d"
+      ],
+      [
+       "FEX",
+       "2605"
+      ],
+      [
+       "Wine",
+       "10.0-4-arm64ec-16"
+      ]
+     ],
+     "count": 2,
+     "share": 11.1
     },
     {
      "combo": [
@@ -3918,33 +3944,7 @@
       ]
      ],
      "count": 2,
-     "share": 11.8
-    },
-    {
-     "combo": [
-      [
-       "Box64",
-       "0.4.3"
-      ],
-      [
-       "Driver",
-       "wrapper-gamenative"
-      ],
-      [
-       "DxWrapper",
-       "dxvk+vkd3d"
-      ],
-      [
-       "FEX",
-       "2601"
-      ],
-      [
-       "Wine",
-       "proton-10-arm64ec"
-      ]
-     ],
-     "count": 2,
-     "share": 11.8
+     "share": 11.1
     }
    ]
   },

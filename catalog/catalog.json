@@ -26,7 +26,7 @@
         ]
       },
       "updatedAt": 1794066683000,
-      "stars": 1314
+      "stars": 1321
     },
     {
       "id": "whitebelyash",
@@ -49,7 +49,7 @@
         ]
       },
       "updatedAt": 1789825064000,
-      "stars": 492
+      "stars": 494
     },
     {
       "id": "k11mch1",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5195
+      "stars": 5199
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 940
+      "stars": 949
     },
     {
       "id": "banner",
@@ -123,7 +123,7 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1795048708000,
+      "updatedAt": 1795132610000,
       "stars": 263
     },
     {
@@ -214,7 +214,7 @@
         ]
       },
       "updatedAt": 1794136780000,
-      "stars": 127
+      "stars": 129
     },
     {
       "id": "panvk-g720",
@@ -234,7 +234,7 @@
         ]
       },
       "updatedAt": 1790289737000,
-      "stars": 55
+      "stars": 54
     }
   ],
   "qualcommSources": [
@@ -247,7 +247,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1314,
+      "stars": 1321,
       "updatedAt": 1794066683000
     },
     {
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5195,
+      "stars": 5199,
       "updatedAt": 1768398883000
     },
     {
@@ -283,7 +283,7 @@
       "description": "WinNative 的 Windows 兼容组件包。",
       "experimental": false,
       "archived": true,
-      "updatedAt": 1795001639000
+      "updatedAt": 1795089817000
     },
     {
       "id": "xnick",
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative 与 Winlator 的自动构建组件，含 Sarek 与 GPLAsync 分支。",
       "experimental": true,
-      "updatedAt": 1795004968000
+      "updatedAt": 1795089044000
     },
     {
       "id": "banner-components",
