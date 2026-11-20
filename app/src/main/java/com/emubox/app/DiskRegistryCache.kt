@@ -1,6 +1,7 @@
 package com.emubox.app
 
 import android.content.Context
+import android.util.Log
 import java.io.File
 
 /**
@@ -39,7 +40,10 @@ object DiskRegistryCache {
             val f = file(context, key)
             f.parentFile?.mkdirs()
             f.writeText(body)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            // 缓存写不进去不影响主流程（下次冷启动重新拉），但必须留痕：
+            // 静默失败时「为什么每次都冷启动」无从排查。
+            Log.w(TAG, "注册表磁盘缓存写入失败：$key", e)
         }
     }
 }

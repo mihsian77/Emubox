@@ -1155,7 +1155,7 @@ private suspend fun downloadFileWithProgress(
         if (control?.paused == true || control?.cancelled == true) break
 
         if (attempt < MAX_ATTEMPTS) {
-            // 指数退避：1s → 2s → 4s，给网络恢复时间
+            // 指数退避：1s → 2s → 4s → 8s → 16s → 32s（最后一次），累计最多约 63 秒
             val backoffMs = (1L shl (attempt - 1)) * 1000L
             Log.i(TAG, "下载失败，${backoffMs / 1000}s 后重试（第 ${attempt + 1}/$MAX_ATTEMPTS 次）")
             withContext(Dispatchers.Main) {

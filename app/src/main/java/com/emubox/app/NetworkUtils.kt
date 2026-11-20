@@ -1,5 +1,6 @@
 package com.emubox.app
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -98,6 +99,9 @@ private val githubClient by lazy {
 // returned immediately and silently re-fetched in background (SWR),
 // so data self-refreshes without a manual pull-to-refresh.
 private const val CACHE_TTL_MS = 3 * 60 * 1000L
+
+/** 日志标签：后台刷新失败与解析失败都走这里，便于按 tag 过滤 */
+private const val TAG = "EmuBoxNetwork"
 private data class CacheEntry<T>(val data: T, val timestamp: Long)
 private val releaseCache = ConcurrentHashMap<String, CacheEntry<List<GithubRelease>>>()
 private val componentCache = ConcurrentHashMap<String, CacheEntry<Map<String, List<Component>>>>()
@@ -139,7 +143,10 @@ private fun refreshReleasesInBackground(apiUrl: String) {
     scope.launch {
         try {
             refreshReleases(apiUrl)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            // 后台静默刷新：失败不影响已经返回的缓存，但必须留痕，
+            // 否则「数据一直是旧的」在日志里查不到任何原因。
+            Log.w(TAG, "后台刷新 release 失败：$apiUrl", e)
         } finally {
             inFlightReleases.remove(apiUrl)
             scope.cancel()
@@ -390,7 +397,8 @@ suspend fun fetchWrappersCatalog(manifestUrl: String): List<WrapperItem> = withC
         if (inFlightWrappers.add(manifestUrl)) {
             val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
             scope.launch {
-                try { refreshWrappers(manifestUrl) } catch (_: Exception) {
+                try { refreshWrappers(manifestUrl) } catch (e: Exception) {
+                    Log.w(TAG, "后台刷新 wrapper 清单失败：$manifestUrl", e)
                 } finally {
                     inFlightWrappers.remove(manifestUrl)
                     scope.cancel()
@@ -449,7 +457,8 @@ suspend fun fetchComponentsFromUrl(manifestUrl: String): Map<String, List<Compon
             if (inFlightComponents.add(manifestUrl)) {
                 val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
                 scope.launch {
-                    try { refreshComponents(manifestUrl) } catch (_: Exception) {
+                    try { refreshComponents(manifestUrl) } catch (e: Exception) {
+                        Log.w(TAG, "后台刷新组件清单失败：$manifestUrl", e)
                     } finally {
                         inFlightComponents.remove(manifestUrl)
                         scope.cancel()
