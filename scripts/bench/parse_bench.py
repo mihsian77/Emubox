@@ -60,11 +60,19 @@ def main():
     raw_l=json.load(open(os.path.join(BASE,'ludashi_raw.json')))
     antutu={}; counts={}
     for k,v in raw_a['levels'].items():
-        antutu[k]=parse_antutu(v['txt']); counts['antutu_'+k]=len(antutu[k])
-    ludashi={}; 
+        antutu[k]=parse_antutu(v['txt']); counts['antutu_'+k]=len(antutu[k])    ludashi={}; 
     for k in ['phone','soc','desktop_cpu','desktop_gpu','laptop_cpu']:
         ludashi[k]=parse_ludashi(raw_l[k]['txt']); counts['ludashi_'+k]=len(ludashi[k])
-    json.dump(antutu, open(os.path.join(BASE,'antutu_soc.json'),'w'), ensure_ascii=False, indent=0)
+    # 榜单本身自描述：文件里带上抓取时间与条数，
+    # 避免「同一颗 SoC 两次抓取差 3554 分，却看不出这份是哪天的」
+    antutu_out={'_meta':{
+        'source':'https://www.antutu.com/ranking/soc?level={1,2,3}',
+        'fetched_at':raw_a.get('fetched_at'),
+        'counts':{k:len(v) for k,v in antutu.items()},
+        'note':'与同目录 manifest.json 同批次抓取；UI 显示采集月份时以此为准'
+    }}
+    antutu_out.update(antutu)
+    json.dump(antutu_out, open(os.path.join(BASE,'antutu_soc.json'),'w'), ensure_ascii=False, indent=0)
     json.dump(ludashi, open(os.path.join(BASE,'ludashi.json'),'w'), ensure_ascii=False, indent=0)
     manifest={
         'sources':{

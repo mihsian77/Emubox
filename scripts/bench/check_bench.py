@@ -4,6 +4,9 @@ import json, os, sys
 BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'bench-data'))
 a = json.load(open(os.path.join(BASE,'antutu_soc.json')))
 l = json.load(open(os.path.join(BASE,'ludashi.json')))
+# 只统计榜单数组：_meta 等元数据键不是数据行
+a = {k: v for k, v in a.items() if isinstance(v, list)}
+l = {k: v for k, v in l.items() if isinstance(v, list)}
 a_total = sum(len(v) for v in a.values())
 l_total = sum(len(v) for v in l.values())
 ok = True

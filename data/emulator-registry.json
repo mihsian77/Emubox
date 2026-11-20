@@ -1,6 +1,6 @@
 {
   "version": "1.3.1",
-  "updated_at": "2026-11-20T06:07:52Z",
+  "updated_at": "2026-11-20T19:19:36Z",
   "emulators": [
     {
       "id": "1nsec-naruto-the-broken-bond-android-port",
@@ -3773,7 +3773,7 @@
       ],
       "downloads_lifetime": 7576,
       "latest_body": "**Anka 1.1.2** brings a newer second core for Zelda: Ocarina of Time, controller rumble in Switch 2 games, a set of emulation fixes for Donkey Kong Bananza, and launchers that no longer call PowerShell.\n\nBuilt from [`anka`](https://github.com/EddizEge/Anka/tree/anka) at `140d784a7e4d12a8361233105a0fd08fa0ab2bfa`; `anka.exe` and `anka-cli.exe` carry this commit. The second core, `core2\\anka-core2-cli.exe`, is built from its own commit, `bd5a5f74d519eece6a1ddc05f24bf540c5c03ee6`; its source is `Anka-1.1.2-core2-source.zip`.\n\n## Updating\n\nClose Anka, unzip **`Anka-1.1.2-win64.zip`** into your Anka folder and replace the files. Take the whole zip, the `core2` folder too. Your `user` folder (settings, keys, firmware and saves) stays as it is. `anka-config.ps1` from older versions is no longer used and can be deleted.\n\nNew to Anka: unzip into a new, empty folder, start `anka.exe`, and install your own keys and firmware (the [1.0.0 notes](https://github.com/EddizEge/Anka/releases/tag/anka-v1.0.0) have the quick start).\n\n## Zelda: Ocarina of Time (second core)",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -4943,7 +4943,7 @@
       "subcategory": "tool",
       "downloads_lifetime": 1876,
       "latest_body": "AnyPS5 Studio 1.5.1 updates the bundled AnyPS5 core from v0.1.2 to **[v0.1.4](https://github.com/boykopovar/AnyPS5/releases/tag/v0.1.4)**.\n\n## Changes\n- **AnyPS5 core v0.1.4**: the bundled relinker and system libraries now come from the latest upstream release. Existing installs switch to it automatically the next time Studio starts, and each game receives the new libraries on its next launch.\n- **Relink hint**: Studio now remembers which core relinked each game. If a game was relinked with an earlier core, the launch log says so and suggests relinking it in Relinker Studio if it fails to start.\n- **Verified core downloads**: the bundled core is checked against the SHA-256 checksums AnyPS5 publishes for the release; a mismatch stops the build.\n- The NID inspector's \"Python 3 not found\" message now points to the correct re-audit button.\n\n## After updating\nIf a game that worked before no longer starts, open **Relinker Studio** and relink it.\n\n**Full Changelog**: https://github.com/ramsforge/AnyPS5-Studio/compare/v1.5.0...v1.5.1\n",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -5563,7 +5563,7 @@
         "arcade-handheld"
       ],
       "downloads_lifetime": 541326,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -5765,7 +5765,7 @@
       ],
       "downloads_latest": 1312,
       "downloads_lifetime": 7172,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -9599,7 +9599,7 @@
       ],
       "downloads_latest": 255,
       "downloads_lifetime": 4577,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -11053,7 +11053,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 11756540,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -11955,7 +11955,7 @@
       "platform_families": [
         "nintendo"
       ],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器镜像；安卓版另有官方分发渠道。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -12696,7 +12696,7 @@
       ],
       "downloads_lifetime": 19410,
       "latest_body": "You need **Xbox360 Call of Duty 3 (USA, Europe).iso** file for install!\n\n> **Still in development: bugs can and will occur.**\n> *Még fejlesztés alatt: hibák előfordulhatnak.*\n\nThe first release since [0.4.0](https://github.com/FrankHUN88453/CoD3Recomp/releases/tag/v0.4.0): one executable that keeps itself up to date, the game's own menus played with the mouse, prompts that name your keys, and a faster renderer.\n\n## New\n\n- **One file: `CoD3SP_s.exe`.** FFmpeg's libraries for the sound and the films are built into it; nothing else to unpack.\n- **Updates itself.** At every start it asks GitHub for a newer release; if there is one, it downloads it, replaces itself and starts the new version. Turn it off with `auto_update = 0` under `[game]` in `CoD3Recomp.ini`, or start it with `--no-update`.\n- **New first start.** The console window asks whether this is a fresh install (choose your disc image, then the folder to install into) or the game is already installed (choose the game's main folder, the one with `default.xex`).",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -13509,7 +13509,7 @@
       ],
       "downloads_latest": 118,
       "downloads_lifetime": 2577,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -14049,7 +14049,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 10365,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "libretro-core",
       "android_ready_source": "release"
@@ -14344,7 +14344,7 @@
         "microsoft"
       ],
       "downloads_lifetime": 15568,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -17229,7 +17229,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 57540,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -17363,7 +17363,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 62636,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -17578,7 +17578,7 @@
       ],
       "downloads_latest": 12,
       "downloads_lifetime": 15147,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -18405,7 +18405,7 @@
         "arcade-handheld"
       ],
       "downloads_lifetime": 3613,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -19270,7 +19270,7 @@
         "pc"
       ],
       "downloads_lifetime": 301833,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -19748,7 +19748,7 @@
         "pc"
       ],
       "downloads_lifetime": 1527919,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -20352,7 +20352,7 @@
       ],
       "downloads_latest": 434,
       "downloads_lifetime": 66339,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "libretro-core",
       "android_ready_source": "release"
@@ -20892,7 +20892,7 @@
       ],
       "downloads_latest": 285,
       "downloads_lifetime": 29437,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "libretro-core",
       "android_ready_source": "release"
@@ -21405,7 +21405,7 @@
         "arcade-handheld"
       ],
       "downloads_lifetime": 60013,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -21944,7 +21944,7 @@
       ],
       "downloads_latest": 131,
       "downloads_lifetime": 33637,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "libretro-core",
       "android_ready_source": "release"
@@ -22488,7 +22488,7 @@
       ],
       "downloads_latest": 461,
       "downloads_lifetime": 73036,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -25770,7 +25770,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 7117,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -27481,7 +27481,7 @@
       "subcategory": "frontend",
       "downloads_lifetime": 8904,
       "latest_body": "# 0.60.1 is out\n\nThere was a bug in the AppImage Updater Code. To fix this i have to revert to the old AppImage build and wait several weeks to ensure a smooth update process.",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -28518,7 +28518,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 428882,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -29565,7 +29565,7 @@
         "sega"
       ],
       "downloads_lifetime": 96105,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -29982,7 +29982,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 129,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -30499,7 +30499,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 132801,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -31021,7 +31021,7 @@
       ],
       "downloads_lifetime": 749,
       "latest_body": "Fixes for the games reported on GitHub, PlayStation controllers, and the\nMaster System's Light Phaser and paddle.\n\n**Download:** `GenX-v1.1.4-win64.zip`. Unzip it anywhere and run `genx.exe`.\nTo update, replace your old `genx.exe` with the new one. Your settings and\nsaves stay where they are.\n\n### New\n\n- **PlayStation controllers.** A DualShock 4 or DualSense is recognised and\n  laid out like an Xbox pad, with its own button names in the Input tab. A\n  DualShock 3 works through DsHidMini.\n- **Automatic controller choice.** GenX uses whatever pad is plugged in, and\n  the keyboard when there's none. New installs start on it; pick it in\n  **Configure → Input** if you already have settings.\n- **Master System Light Phaser and Paddle Control**, aimed with the mouse,\n  plugged in by themselves for the games that need them.\n- **Light gun games get their gun by themselves**, on the Mega Drive and the\n  Sega CD.\n\n### Fixed\n\n- **Pier Solar** now plays and saves.\n- **Back to the Future Part III (Europe)** starts on the Master System and\n  the Mega Drive. Other European games that need a 50Hz console get one.\n- **50Hz games no longer run 20% fast**, including Fantastic Dizzy.",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -32133,7 +32133,7 @@
       "platform_families": [
         "sony"
       ],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -32921,7 +32921,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 3327,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -33844,7 +33844,7 @@
         "microsoft"
       ],
       "downloads_lifetime": 48231,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -35540,7 +35540,7 @@
       "subcategory": "desktop",
       "downloads_lifetime": 7021,
       "latest_body": "# Steam64 setup, one step at a time\n\n**Experimental prerelease · Build145 · Known issue: Steam can freeze after the third game exit. This update improves setup; it does not fix that stability issue.**\n\n## What’s new\n\n- **Install Steam64 in the launcher:** downloads the matched Steam/browser packages from Valve over HTTPS, verifies sizes/SHA-256 and installs with rollback. Cancel/retry, Verify/Repair and Return to previous environment are available.\n- **Four clear actions:** Install Steam → Connect LocalDevVPN → Pair this device → Enable JIT. Runtime preparation is automatic, signing/address checks remain mandatory, completed steps are checked/skipped and the view follows the next action.\n- **Pair in iDeck:** starts the existing on-device pairing immediately with live instructions/PIN, without hunting through JIT settings. iOS calls the pairing host Madeira. Advanced methods/import/recovery/account/auto-start settings are collapsed.\n- **Data stays yours:** the original environment remains intact; no auth cache, game or save is silently transferred. Use Valve’s own login and Steam Guard yourself.\n\n## Install and test",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -35903,7 +35903,7 @@
       ],
       "downloads_latest": 125,
       "downloads_lifetime": 3412,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -36601,7 +36601,7 @@
       ],
       "downloads_latest": 552,
       "downloads_lifetime": 6805,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -36908,7 +36908,7 @@
         "retro-computer"
       ],
       "downloads_lifetime": 2643,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -38009,7 +38009,7 @@
       ],
       "subcategory": "frontend",
       "downloads_lifetime": 81543,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -38452,7 +38452,7 @@
       ],
       "subcategory": "frontend",
       "downloads_lifetime": 2032,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -39851,7 +39851,7 @@
         "sony"
       ],
       "downloads_lifetime": 591,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -40671,7 +40671,7 @@
         "sega"
       ],
       "downloads_lifetime": 14366,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "世嘉土星模拟器，官方提供 Android 版。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -41912,7 +41912,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 776320,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -43277,7 +43277,7 @@
       "platform_families": [],
       "subcategory": "tool",
       "downloads_lifetime": 7759,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -45382,7 +45382,7 @@
       ],
       "downloads_latest": 279,
       "downloads_lifetime": 1416,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -46761,7 +46761,7 @@
       ],
       "downloads_lifetime": 6303,
       "latest_body": "## What's Changed\n- Fix/ios motion by @jkcoxson in https://github.com/stossy11/MeloCafe/pull/6\n- Updated Interpreter\n- Improved Support for A9+\n- Fix Vertex Buffer OOB Reads\n- Improved Settings UI\n- External ROM Folder support\n- Improved RAM Limit Bypass (AppStore Compliance requires iOS 26+, Swap has been added for iOS 18 and below)\n- Fix Auto CPU Mode\n- Improve Recompiler Handling\n- Add Thread QoS\n- Update Worker Event Handling \n\n## New Contributors\n* @jkcoxson made their first contribution in https://github.com/stossy11/MeloCafe/pull/6\n\n**Full Changelog**: https://github.com/stossy11/MeloCafe/compare/1.1...1.2\n\n# Sideloaded Version will come soon (Technical Difficulties). TestFlight: [Here](https://testflight.apple.com/join/gdCgh2fE)",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -47807,7 +47807,7 @@
         "arcade-handheld"
       ],
       "downloads_lifetime": 518371,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -52144,7 +52144,7 @@
       "platform_families": [
         "retro-computer"
       ],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "PC-98 模拟器，官方提供 Android 版。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -54219,7 +54219,7 @@
       ],
       "downloads_latest": 70,
       "downloads_lifetime": 1243,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -54974,7 +54974,7 @@
         "sony"
       ],
       "downloads_lifetime": 106034,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "release"
@@ -55247,7 +55247,7 @@
         "sony"
       ],
       "downloads_lifetime": 5303409,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -55529,7 +55529,7 @@
       ],
       "subcategory": "tool",
       "downloads_lifetime": 6252,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -57835,7 +57835,7 @@
       "platform_families": [
         "nintendo"
       ],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -59145,7 +59145,7 @@
       "subcategory": "tool",
       "downloads_lifetime": 13456,
       "latest_body": "## What's Changed\n* Game list: a tab per platform by @sp00nznet in https://github.com/sp00nznet/recomp-launcher/pull/11\n\n\n**Full Changelog**: https://github.com/sp00nznet/recomp-launcher/compare/v0.5.0...v0.6.0",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -60643,7 +60643,7 @@
       "subcategory": "frontend",
       "downloads_lifetime": 596,
       "latest_body": "RomSieve 1.3.0 applies your patches (translations, fixes, hacks) to the ROMs of your collection without ever modifying\nthem, and organizes the destination for Batocera, RetroPie, ES-DE, Recalbox or MiSTer. Your settings, profiles and\njournals stay as they are, and a sort made with an earlier version can still be undone.\n\n## New\n\n### Patches\n\n- **A folder of patches.** The new **Patches** card of the **Collection** step takes a folder of IPS, IPS32, UPS and BPS\n  patches, loose or in ZIP, 7z or RAR archives. Each patch whose original ROM is identified in the source gives a\n  patched version, a new file: the original ROM is never modified, nor is the patch.\n- **Matched by their checksum.** A UPS or a BPS is matched by the checksum it records. An IPS is matched by the CRC32\n  in its name (`Game (T-En) [47E70E08].ips`) or in its readme, with or without the copier header of the ROM. For the\n  NES, older patches made for the iNES 1.0 header of the time are found too.\n- **Named after the original ROM.** `Game (Japan) (T-En).bps` applied to `Game (Japan).sfc` gives\n  `Game (Japan) [T-En].sfc`, next to the original ROM. For the NES and the Lynx, the header of the original ROM is",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -60847,7 +60847,7 @@
       ],
       "downloads_latest": 1190,
       "downloads_lifetime": 571939,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -61558,7 +61558,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 7038,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -61841,7 +61841,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 96,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -62283,7 +62283,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 89891,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -63389,7 +63389,7 @@
       "android_ready": true,
       "distribution": "no-artifact",
       "platform_families": [],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "官方提供 Android 版，可从官网下载；桌面版另见官网。",
       "latest_apk_tag": "",
       "android_ready_source": "manual"
     },
@@ -64035,7 +64035,7 @@
       ],
       "subcategory": "tool",
       "downloads_lifetime": 57,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -64345,7 +64345,7 @@
       "subcategory": "frontend",
       "downloads_lifetime": 73536,
       "latest_body": "Auto-generated release for the latest commit to main.",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -64842,7 +64842,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 32368,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -67063,7 +67063,7 @@
       ],
       "subcategory": "tool",
       "downloads_lifetime": 32499,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "unknown"
@@ -67970,7 +67970,7 @@
         "arcade-handheld"
       ],
       "downloads_lifetime": 623035,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -69588,7 +69588,7 @@
       "platform_families": [],
       "downloads_latest": 159568,
       "downloads_lifetime": 1588244,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "release"
@@ -74311,7 +74311,7 @@
         "arcade-handheld"
       ],
       "downloads_lifetime": 2755,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -74551,7 +74551,7 @@
         "nintendo"
       ],
       "downloads_lifetime": 7937,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "release"
     },
@@ -76387,7 +76387,7 @@
       ],
       "downloads_lifetime": 7256760,
       "latest_body": "We have finally added working color correction. The initial code was done by Squall-Leonhart (<danialhorton@hotmail.com>) and is not in the Git history, with the config added by Rafael Kitover (<rkitover@gmail.com>), then everything was put together by Andy Vandijck (<andyvand@gmail.com>).\n\n* 034447fa - libretro: Fix GB Show Border option was reversed. [negativeExponent]\n* 1fda4f4b - Update libretro header [negativeExponent]\n* 050507ff - libretro: Fixed segfault when loading invalid or unsupported game [negativeExponent]\n* c7db3a4c - libretro: Fix missing break statement in MBC5 state handler [negativeExponent]\n* 20bf9bf3 - GB: Fix undefined behavior in gbDrawLine [negativeExponent]\n* b96da415 - GBA: Fix affine BG reference point update timing during HBLANK/VBLANK [negativeExponent]\n* 339f71fd - Fix joysticks with SDL video [rkitover]\n* c9d61758 - Default statusbar=true [rkitover]\n* 53bc1c17 - Default bilinear=false, hide_menu_bar=false [rkitover]\n* 49773388 - Fix 3d6cad6d for revert of 56ea6456 [rkitover]\n* f86ab610 - fix wiiu libretro build [eric]\n* f6046a5d - Fix apple, windows libretro builds [eric]\n* e0cbf10c - Fix out-of-bounds access [negativeExponent]",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -83451,7 +83451,7 @@
         "microsoft"
       ],
       "downloads_lifetime": 4657644,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -83639,7 +83639,7 @@
       ],
       "downloads_lifetime": 1242,
       "latest_body": "Title: v2.6 – Xbox 360 games through Xenia, Xbox and Xenia settings tabs\nRepository description:\nExperimental, unofficial fork of xemu (original Xbox emulator) with a console-style dashboard, Xbox 360 games through your own Xenia, one-click 60 FPS patches, upscaling filters, CPU/GPU boost with per-game settings, and tools for finding out why a game is slow. Not supported by the xemu project.\n---\nRelease body (paste into the GitHub release):\n> [!IMPORTANT]\n> Experimental, unofficial fork of xemu for trying out UI improvements. Not supported by the xemu project: please don't ask about it in xemu's Discord or GitHub.\n\nWhat's new in v2.6\nXbox 360 games, through your own Xenia. xemu does not emulate the Xbox 360, and this fork still doesn't include or change any 360 emulator. If you download Xenia or Xenia Canary yourself, the library can now list your 360 games and start them in it.\nTurn on Show Xbox 360 games on the new Xenia tab and choose your `xenia.exe` / `xenia_canary.exe`. Your game folders are scanned for disc images (.iso), extracted games with a `default.xex`, .xex files, Games on Demand and Xbox Live Arcade packages.",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -83945,7 +83945,7 @@
         "microsoft"
       ],
       "downloads_lifetime": 1122714,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -84007,7 +84007,7 @@
       "platform_families": [
         "microsoft"
       ],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -85264,7 +85264,7 @@
       "subcategory": "desktop",
       "downloads_lifetime": 2554,
       "logo_url": "https://cdn.jsdelivr.net/gh/mihsian77/Emubox@main/icons/yifengling0-vintagepomelopro.png",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "source-only",
       "android_ready_source": "unknown"
@@ -85575,7 +85575,7 @@
         "sega"
       ],
       "downloads_lifetime": 122423,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"
@@ -86025,7 +86025,7 @@
       "platform_families": [
         "nintendo"
       ],
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "Switch 模拟器分支，官方提供 Android 版。",
       "latest_apk_tag": "",
       "download_kind": "forgejo-release",
       "android_ready_source": "unknown"
@@ -87711,7 +87711,7 @@
       ],
       "downloads_lifetime": 1056,
       "latest_body": "<p><img src=\"https://raw.githubusercontent.com/zeraps5/ZeraPS5-Releases/main/docs/zeraps5-logo.png\" alt=\"ZeraPS5\" width=\"240\"></p>\n\n**Modern Vulkan paths with fallbacks, unified internal-resolution controls, older-CPU instruction compatibility and native memory/thread safety fixes.**\n\nExperimental Windows x64 release, maintained by **metallrockdev**. Build **984**, source **0d269bb8de1cdc4dce31f4d689d8fef0d675d700**. Contributors' credits and component licenses are preserved.\n\n[Windows ZIP](https://github.com/zeraps5/ZeraPS5-Releases/releases/download/v0.1.1-b984/ZeraPS5-v0.1.1-b984-win64.zip) · [Matching source](https://github.com/zeraps5/ZeraPS5-Releases/releases/download/v0.1.1-b984/ZeraPS5-v0.1.1-b984-win64-source.zip) · [Compatibility](https://github.com/zeraps5/ZeraPS5-Releases/blob/main/COMPATIBILITY.md) · [Technical changelog](https://github.com/zeraps5/ZeraPS5-Releases/blob/main/CHANGELOG.md)\n\n## Changes since b898",
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "android_ready_source": "unknown"
     },
@@ -88723,7 +88723,7 @@
       ],
       "downloads_latest": 64762,
       "downloads_lifetime": 1857739,
-      "note": "桌面端模拟器，安卓端无官方版本。",
+      "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "",
       "download_kind": "desktop-build",
       "android_ready_source": "release"

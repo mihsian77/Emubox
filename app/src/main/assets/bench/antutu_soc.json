@@ -1,4 +1,14 @@
 {
+"_meta": {
+"source": "https://www.antutu.com/ranking/soc?level={1,2,3}",
+"fetched_at": "2026-11-18T01:24:15.787Z",
+"counts": {
+"level1": 271,
+"level2": 271,
+"level3": 48
+},
+"note": "与同目录 manifest.json 同批次抓取；UI 显示采集月份时以此为准"
+},
 "level1": [
 {
 "rank": 1,
