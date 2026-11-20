@@ -17,7 +17,12 @@ DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 "nextendonetwork-ryujinx-nextendo", "lichii-enhanced",
                 "torzu-emulator",
                 # 2026-11-17：citron-neo/ci 返回 451，脚本已判死但没有登记进清单
-                "citron-ci"}
+                "citron-ci",
+                # 2026-11-20：每日刷新把这几条标了 dead 却没同步清单，CI 因此一直红着。
+                # 逐个实测均 404，且搜不到同名新仓（不是改名）：sj0404-collab 名下两个仓消失，
+                # simipoB 整个账号已不存在。后两条是本库 11-18 收录的，作者删号。
+                "sj0404-collab-symbiosis", "sj0404-collab-winlator-hybrid-dxvk",
+                "simipob-arceus-native-android", "simipob-galar-native-android"}
 # 注意：这份清单是「已确认下架」的快照，不是判死规则。
 # afeimod-linbox 曾在这里，但 11-16 还在发新版（GitHub 当日 404 属于误判），
 # 已移出：清单只记「现在确实打不开」的，判死仍交给刷新脚本每日复核。
