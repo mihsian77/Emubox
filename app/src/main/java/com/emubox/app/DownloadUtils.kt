@@ -100,30 +100,33 @@ private val forceFreshResume = ConcurrentHashMap<String, Boolean>()
 /**
  * Pause by closing the current HTTP call. The partial file and metadata stay on disk.
  * Resume opens a new HTTP Range request, so pausing also survives process death.
+ *
+ * 参数是 [activeDownloadKey]（subPath + fileName），不是裸文件名——同名文件
+ * 可能同时存在于两个子目录下，只传名字会暂停到另一个任务上。
  */
-fun pauseActiveDownload(fileName: String) {
-    val control = downloadControls[fileName] ?: return
+fun pauseActiveDownload(key: String) {
+    val control = downloadControls[key] ?: return
     control.paused = true
-    DownloadsManager.pauseDownload(fileName)
+    DownloadsManager.pauseDownload(key)
     control.call?.cancel()
 }
 
 /** Resume either an in-memory pause or a download restored after relaunching the app. */
-fun resumeActiveDownload(context: Context, fileName: String) {
-    val restored = DownloadsManager.activeDownloads[fileName] ?: return
+fun resumeActiveDownload(context: Context, key: String) {
+    val restored = DownloadsManager.activeDownloads[key] ?: return
     if (restored.status != DownloadStatus.PAUSED) return
 
-    DownloadsManager.resumeDownload(fileName)
+    DownloadsManager.resumeDownload(key)
     val appContext = context.applicationContext
 
     persistedDownloadScope.launch {
         // If Pause just cancelled the previous call, let its finally block release this name first.
-        while (downloadControls.containsKey(fileName)) {
+        while (downloadControls.containsKey(key)) {
             delay(50)
         }
 
         val current = withContext(Dispatchers.Main) {
-            DownloadsManager.activeDownloads[fileName]
+            DownloadsManager.activeDownloads[key]
         } ?: return@launch
 
         if (current.status == DownloadStatus.CANCELLING) return@launch
@@ -132,11 +135,11 @@ fun resumeActiveDownload(context: Context, fileName: String) {
 }
 
 /** Cancel immediately and remove both the persisted state and partial file. */
-fun cancelActiveDownload(context: Context, fileName: String) {
-    val state = DownloadsManager.activeDownloads[fileName] ?: return
-    DownloadsManager.markCancelling(fileName)
+fun cancelActiveDownload(context: Context, key: String) {
+    val state = DownloadsManager.activeDownloads[key] ?: return
+    DownloadsManager.markCancelling(key)
 
-    val control = downloadControls[fileName]
+    val control = downloadControls[key]
     if (control != null) {
         control.cancelled = true
         control.call?.cancel()
@@ -148,8 +151,8 @@ fun cancelActiveDownload(context: Context, fileName: String) {
     persistedDownloadScope.launch {
         deletePartialOutput(appContext, state.outputUri.takeIf { it.isNotBlank() }?.let(Uri::parse))
         withContext(Dispatchers.Main) {
-            DownloadsManager.failDownload(fileName)
-            Toast.makeText(appContext, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
+            DownloadsManager.failDownload(key)
+            Toast.makeText(appContext, "Download cancelled: ${state.fileName}", Toast.LENGTH_SHORT).show()
         }
     }
 }
@@ -621,13 +624,13 @@ private fun openOutputStream(context: Context, uri: Uri, append: Boolean): Outpu
 
 private suspend fun persistAndThrowPause(
     output: OutputStream,
-    fileName: String,
+    key: String,
     downloadedBytes: Long
 ): Nothing {
     runCatching { output.flush() }
     withContext(Dispatchers.Main) {
-        DownloadsManager.updateProgress(fileName, downloadedBytes)
-        DownloadsManager.pauseDownload(fileName)
+        DownloadsManager.updateProgress(key, downloadedBytes)
+        DownloadsManager.pauseDownload(key)
     }
     throw DownloadPausedException()
 }
@@ -635,7 +638,7 @@ private suspend fun persistAndThrowPause(
 private suspend fun copyWithProgress(
     input: InputStream,
     output: OutputStream,
-    fileName: String,
+    key: String,
     control: DownloadControl,
     startingBytes: Long
 ): Long {
@@ -651,14 +654,14 @@ private suspend fun copyWithProgress(
         currentCoroutineContext().ensureActive()
 
         if (control.cancelled) throw CancellationException("Download cancelled")
-        if (control.paused) persistAndThrowPause(output, fileName, totalRead)
+        if (control.paused) persistAndThrowPause(output, key, totalRead)
 
         val bytesRead = try {
             input.read(buffer)
         } catch (error: IOException) {
             when {
                 control.cancelled -> throw CancellationException("Download cancelled")
-                control.paused -> persistAndThrowPause(output, fileName, totalRead)
+                control.paused -> persistAndThrowPause(output, key, totalRead)
                 else -> throw error
             }
         }
@@ -681,26 +684,26 @@ private suspend fun copyWithProgress(
                 val deltaBytes = (last.second - first.second).coerceAtLeast(0L)
                 val speed = (deltaBytes / elapsedSec).toLong()
                 withContext(Dispatchers.Main) {
-                    DownloadsManager.updateSpeed(fileName, speed)
+                    DownloadsManager.updateSpeed(key, speed)
                 }
             }
 
             withContext(Dispatchers.Main) {
-                DownloadsManager.updateProgress(fileName, totalRead)
+                DownloadsManager.updateProgress(key, totalRead)
             }
             // 慢下载检测：传入当前进度
             val currentTotal = withContext(Dispatchers.Main) {
-                DownloadsManager.activeDownloads[fileName]?.totalBytes ?: 0L
+                DownloadsManager.activeDownloads[key]?.totalBytes ?: 0L
             }
-            SlowDownloadDetector.onProgress(fileName, totalRead, currentTotal)
+            SlowDownloadDetector.onProgress(key, totalRead, currentTotal)
             lastUiUpdate = now
         }
     }
 
     output.flush()
     withContext(Dispatchers.Main) {
-        DownloadsManager.updateProgress(fileName, totalRead)
-        DownloadsManager.updateSpeed(fileName, 0L)
+        DownloadsManager.updateProgress(key, totalRead)
+        DownloadsManager.updateSpeed(key, 0L)
     }
     return totalRead
 }
@@ -812,17 +815,18 @@ private suspend fun transferExistingDownload(
     expectedSha256: String? = null
 ): Boolean = withContext(Dispatchers.IO) transfer@{
     val fileName = state.fileName
+    val key = state.key
     val outputUri = state.outputUri.takeIf { it.isNotBlank() }?.let(Uri::parse)
         ?: run {
             withContext(Dispatchers.Main) {
-                DownloadsManager.failDownload(fileName)
+                DownloadsManager.failDownload(key)
                 Toast.makeText(context, "Cannot resume $fileName: partial file is missing", Toast.LENGTH_LONG).show()
             }
             return@transfer false
         }
 
     val control = DownloadControl()
-    downloadControls[fileName] = control
+    downloadControls[key] = control
 
     try {
         var requestedOffset = if (resume) state.downloadedBytes.coerceAtLeast(0L) else 0L
@@ -836,7 +840,7 @@ private suspend fun transferExistingDownload(
         }
 
         withContext(Dispatchers.Main) {
-            DownloadsManager.markConnecting(fileName)
+            DownloadsManager.markConnecting(key)
         }
 
         val call = downloadClient.newCall(requestBuilder.build())
@@ -851,10 +855,10 @@ private suspend fun transferExistingDownload(
                 if (response.code == 416 && requestedOffset > 0L) {
                     val localBytes = outputFileSize(context, outputUri)
                     if (localBytes >= requestedOffset) {
-                        forceFreshResume.remove(fileName)
+                        forceFreshResume.remove(key)
                         withContext(Dispatchers.Main) {
                             DownloadsManager.completeDownload(
-                                fileName,
+                                key,
                                 outputPath(outputUri),
                                 requestedOffset,
                                 state.subPath
@@ -866,14 +870,14 @@ private suspend fun transferExistingDownload(
                     deletePartialOutput(context, outputUri)
                     // 关键：标记该文件强制从头下载，下一轮 resume=false 不再带 Range，
                     // 否则重试循环会 416→删→再 416 死循环（用户实测根因）。
-                    forceFreshResume[fileName] = true
+                    forceFreshResume[key] = true
                     withContext(Dispatchers.Main) {
-                        DownloadsManager.setLastError(fileName, "HTTP 416 续传偏移与本地不符，已清空，下一轮从头下载")
+                        DownloadsManager.setLastError(key, "HTTP 416 续传偏移与本地不符，已清空，下一轮从头下载")
                     }
                     throw IOException("HTTP 416 partial mismatch")
                 }
                 withContext(Dispatchers.Main) {
-                    DownloadsManager.setLastError(fileName, "HTTP ${response.code}")
+                    DownloadsManager.setLastError(key, "HTTP ${response.code}")
                 }
                 throw IOException("HTTP ${response.code}")
             }
@@ -886,7 +890,7 @@ private suspend fun transferExistingDownload(
             if (requestedOffset > 0L && !serverAcceptedResume) {
                 requestedOffset = 0L
                 withContext(Dispatchers.Main) {
-                    DownloadsManager.updateProgress(fileName, 0L)
+                    DownloadsManager.updateProgress(key, 0L)
                     Toast.makeText(
                         context,
                         "This source cannot resume $fileName; restarting from 0%",
@@ -904,8 +908,8 @@ private suspend fun transferExistingDownload(
             }
 
             withContext(Dispatchers.Main) {
-                DownloadsManager.updateTotalBytes(fileName, totalBytes)
-                DownloadsManager.markDownloading(fileName)
+                DownloadsManager.updateTotalBytes(key, totalBytes)
+                DownloadsManager.markDownloading(key)
             }
 
             val totalWritten = body.byteStream().use { input ->
@@ -913,7 +917,7 @@ private suspend fun transferExistingDownload(
                     copyWithProgress(
                         input = input,
                         output = output,
-                        fileName = fileName,
+                        key = key,
                         control = control,
                         startingBytes = requestedOffset
                     )
@@ -933,7 +937,7 @@ private suspend fun transferExistingDownload(
                     Log.e(TAG, "完整性校验失败 fileName=$fileName expected=$expected actual=$actual")
                     deletePartialOutput(context, outputUri)
                     withContext(Dispatchers.Main) {
-                        DownloadsManager.failDownload(fileName)
+                        DownloadsManager.failDownload(key)
                         DownloadsManager.setLastError(
                             fileName,
                             "文件校验失败：内容与发布方指纹不一致，可能被篡改或传输损坏，已删除"
@@ -952,14 +956,14 @@ private suspend fun transferExistingDownload(
             publishMediaStoreFile(context, outputUri, state.usesMediaStore)
             withContext(Dispatchers.Main) {
                 runCatching {
-                    forceFreshResume.remove(fileName)
-                    DownloadsManager.completeDownload(fileName, outputPath(outputUri), totalWritten, state.subPath)
+                    forceFreshResume.remove(key)
+                    DownloadsManager.completeDownload(key, outputPath(outputUri), totalWritten, state.subPath)
                     Toast.makeText(context, "Download complete: $fileName", Toast.LENGTH_LONG).show()
                 }.onFailure { e ->
                     // 记录回写失败：先删掉已写文件再标记失败，防止"无记录+磁盘有文件"的死文件
                     Log.e(TAG, "completeDownload 回写失败，清理文件防死文件", e)
                     deletePartialOutput(context, outputUri)
-                    DownloadsManager.failDownload(fileName)
+                    DownloadsManager.failDownload(key)
                 }
             }
             return@transfer true
@@ -967,7 +971,7 @@ private suspend fun transferExistingDownload(
     } catch (_: DownloadPausedException) {
         // Keep the partial URI + byte count. It can be resumed after app/process recreation.
         withContext(NonCancellable + Dispatchers.Main) {
-            DownloadsManager.pauseDownload(fileName)
+            DownloadsManager.pauseDownload(key)
         }
         return@transfer false
     } catch (cancelled: CancellationException) {
@@ -976,14 +980,14 @@ private suspend fun transferExistingDownload(
                 deletePartialOutput(context, outputUri)
             }
             withContext(NonCancellable + Dispatchers.Main) {
-                DownloadsManager.failDownload(fileName)
+                DownloadsManager.failDownload(key)
                 Toast.makeText(context, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
             }
             return@transfer false
         } else {
             // Activity/process lifecycle cancellation should preserve the partial download.
             withContext(NonCancellable + Dispatchers.Main) {
-                DownloadsManager.pauseDownload(fileName)
+                DownloadsManager.pauseDownload(key)
             }
             throw cancelled
         }
@@ -995,7 +999,7 @@ private suspend fun transferExistingDownload(
 
             control.paused -> {
                 withContext(NonCancellable + Dispatchers.Main) {
-                    DownloadsManager.pauseDownload(fileName)
+                    DownloadsManager.pauseDownload(key)
                 }
                 return@transfer false
             }
@@ -1003,7 +1007,7 @@ private suspend fun transferExistingDownload(
             control.cancelled -> {
                 deletePartialOutput(context, outputUri)
                 withContext(Dispatchers.Main) {
-                    DownloadsManager.failDownload(fileName)
+                    DownloadsManager.failDownload(key)
                     Toast.makeText(context, "Download cancelled: $fileName", Toast.LENGTH_SHORT).show()
                 }
                 return@transfer false
@@ -1015,14 +1019,14 @@ private suspend fun transferExistingDownload(
                 Log.e(TAG, "Download failed: ${state.url}", error)
                 val brief = (error.message ?: error.javaClass.simpleName).take(120)
                 withContext(Dispatchers.Main) {
-                    DownloadsManager.setLastError(fileName, brief)
+                    DownloadsManager.setLastError(key, brief)
                 }
                 return@transfer false
             }
         }
     } finally {
         control.call = null
-        downloadControls.remove(fileName, control)
+        downloadControls.remove(key, control)
     }
     return@transfer false
 }
@@ -1038,6 +1042,18 @@ private suspend fun downloadFileWithProgress(
 ) = withContext(Dispatchers.IO) download@{
     val folderUri = SettingsManager.getDownloadFolderUri()?.let(Uri::parse)
     val uniqueFileName = getUniqueFileName(context, folderUri, originalDesiredName, subPath)
+    val key = activeDownloadKey(uniqueFileName, subPath)
+
+    // 同一文件连点两次：getUniqueFileName 只在同一 subPath 内查重，两次会拿到同一个
+    // 名字，这里必须拦住——否则会建两个 outputUri、两条流往同一个 key 写进度。
+    if (withContext(Dispatchers.Main) { DownloadsManager.isActive(key, subPath) }) {
+        Log.i(TAG, "已在下载中，忽略重复请求：$key")
+        withContext(Dispatchers.Main) {
+            Toast.makeText(context, "Already downloading: $uniqueFileName", Toast.LENGTH_SHORT).show()
+        }
+        return@download
+    }
+
     val usesMediaStore = folderUri == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
     val outputUri = createOutputUri(context, folderUri, uniqueFileName, subPath)
 
@@ -1074,7 +1090,7 @@ private suspend fun downloadFileWithProgress(
     }
 
     val state = withContext(Dispatchers.Main) {
-        DownloadsManager.activeDownloads[uniqueFileName]
+        DownloadsManager.activeDownloads[key]
     } ?: return@download
 
     // ── 自动重试 + 加速/直连自动切换（配合断点续传）────────────
@@ -1092,7 +1108,7 @@ private suspend fun downloadFileWithProgress(
     for (attempt in 1..MAX_ATTEMPTS) {
         // 每轮从 DownloadsManager 取最新状态（保留已下载字节，支持续传）
         val current = withContext(Dispatchers.Main) {
-            DownloadsManager.activeDownloads[uniqueFileName]
+            DownloadsManager.activeDownloads[key]
         } ?: return@download
 
         // 本轮节点选择（多加速节点轮换）：
@@ -1115,13 +1131,13 @@ private suspend fun downloadFileWithProgress(
         if (targetUrl != lastErrorUrl) {
             Log.i(TAG, "下载重试第 $attempt/$MAX_ATTEMPTS 次，来源: $usedNodeId : $targetUrl")
             withContext(Dispatchers.Main) {
-                DownloadsManager.updateUrl(uniqueFileName, targetUrl)
+                DownloadsManager.updateUrl(key, targetUrl)
             }
             lastErrorUrl = targetUrl
         }
 
         // 第 1 次全新下载；失败后保留 partial，后续轮次续传
-        val forceFresh = forceFreshResume[uniqueFileName] == true
+        val forceFresh = forceFreshResume[key] == true
         success = try {
             transferExistingDownload(
                 context,
@@ -1151,7 +1167,7 @@ private suspend fun downloadFileWithProgress(
         }
 
         // 主动暂停/取消时不自动重试（transfer 内部已处理状态）
-        val control = downloadControls[uniqueFileName]
+        val control = downloadControls[key]
         if (control?.paused == true || control?.cancelled == true) break
 
         if (attempt < MAX_ATTEMPTS) {
@@ -1169,7 +1185,7 @@ private suspend fun downloadFileWithProgress(
         // 重试全部用尽：清理 partial 并标记失败
         deletePartialOutput(context, outputUri)
         withContext(Dispatchers.Main) {
-            DownloadsManager.failDownload(uniqueFileName)
+            DownloadsManager.failDownload(key)
             Toast.makeText(
                 context,
                 context.getString(R.string.toast_download_failed, uniqueFileName),

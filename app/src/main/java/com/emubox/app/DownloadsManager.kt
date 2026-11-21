@@ -21,6 +21,22 @@ private const val KEY_COMPLETED_DOWNLOADS = "completed_downloads"
 private const val KEY_ACTIVE_DOWNLOADS = "active_downloads"
 private const val ACTIVE_PERSIST_INTERVAL_MS = 1_000L
 
+/**
+ * 活动下载表的键。
+ *
+ * 文件名只在同一子目录内唯一：两个驱动可以都叫 libvulkan.so，分别落在
+ * Drivers/Turnip 和 Drivers/Adreno 下。以前整张表拿 fileName 当键，后启动的
+ * 那个会顶掉前一个的整条记录——前者的进度回写到后者身上，前者下载完成时
+ * 又把后者的记录删掉，「下的是 A、下载库里记成 B、B 的进度归零」全从这里来。
+ *
+ * subPath 直接用 '/' 拼，等于磁盘相对路径，好读好查；fileName 已经在
+ * sanitizeFileName 里剥掉 '/',所以拼接与还原都无歧义。
+ */
+fun activeDownloadKey(fileName: String, subPath: String): String {
+    val dir = subPath.trim('/')
+    return if (dir.isBlank()) fileName else "$dir/$fileName"
+}
+
 enum class DownloadStatus {
     CONNECTING,
     DOWNLOADING,
@@ -47,6 +63,9 @@ object DownloadsManager {
     ) {
         /** 解析项目归属时优先用未加速的直链 */
         val originUrl: String get() = sourceUrl.ifBlank { url }
+
+        /** 活动下载表的键，见 [activeDownloadKey] */
+        val key: String get() = activeDownloadKey(fileName, subPath)
 
         fun toJson(): JSONObject = JSONObject().apply {
             put("fileName", fileName)
@@ -156,6 +175,7 @@ object DownloadsManager {
         }
     }
 
+    /** 键是 [activeDownloadKey]（subPath + fileName），不是裸文件名 */
     private val _activeDownloads = mutableStateMapOf<String, ActiveDownload>()
     private val _completedDownloads = mutableStateListOf<CompletedDownload>()
     private lateinit var prefs: SharedPreferences
@@ -229,7 +249,7 @@ object DownloadsManager {
         for (i in 0 until jsonArray.length()) {
             runCatching { ActiveDownload.fromJson(jsonArray.getJSONObject(i)) }
                 .getOrNull()
-                ?.let { restored -> _activeDownloads[restored.fileName] = restored }
+                ?.let { restored -> _activeDownloads[restored.key] = restored }
         }
 
         // 恢复时兜底收尾：字节已达标的任务直接转 completed，避免"文件下载完但状态
@@ -237,7 +257,7 @@ object DownloadsManager {
         // 未达标任务统一归一为 PAUSED（可手动续传），不再以 CONNECTING 假象阻塞。
         val ready = _activeDownloads.values.filter { it.totalBytes > 0L && it.downloadedBytes >= it.totalBytes }
         ready.forEach { d ->
-            _activeDownloads.remove(d.fileName)
+            _activeDownloads.remove(d.key)
             _completedDownloads.removeAll { it.fileName.equals(d.fileName, ignoreCase = true) && it.subPath == d.subPath }
             _completedDownloads.add(
                 0,
@@ -253,7 +273,7 @@ object DownloadsManager {
             )
         }
         _activeDownloads.values.forEach { d ->
-            _activeDownloads[d.fileName] = d.copy(status = DownloadStatus.PAUSED)
+            _activeDownloads[d.key] = d.copy(status = DownloadStatus.PAUSED)
         }
         saveActiveDownloads(force = true)
         saveCompletedDownloads()
@@ -269,7 +289,7 @@ object DownloadsManager {
         /** 未加速的原始下载地址；为空时退回 url 本身解析项目归属 */
         sourceUrl: String = ""
     ) {
-        _activeDownloads[fileName] = ActiveDownload(
+        _activeDownloads[activeDownloadKey(fileName, subPath)] = ActiveDownload(
             fileName = fileName,
             progress = 0,
             totalBytes = totalBytes.coerceAtLeast(0L),
@@ -286,15 +306,15 @@ object DownloadsManager {
     }
 
     /** Update the size after the server sends the response headers without resetting progress. */
-    fun updateTotalBytes(fileName: String, totalBytes: Long) {
-        _activeDownloads[fileName]?.let { current ->
+    fun updateTotalBytes(key: String, totalBytes: Long) {
+        _activeDownloads[key]?.let { current ->
             val safeTotal = totalBytes.coerceAtLeast(0L)
             val progress = if (safeTotal > 0L) {
                 ((current.downloadedBytes.toDouble() / safeTotal) * 100).toInt().coerceIn(0, 100)
             } else {
                 current.progress
             }
-            _activeDownloads[fileName] = current.copy(
+            _activeDownloads[key] = current.copy(
                 progress = progress,
                 totalBytes = safeTotal
             )
@@ -302,61 +322,61 @@ object DownloadsManager {
         }
     }
 
-    fun setLastError(fileName: String, error: String?) {
+    fun setLastError(key: String, error: String?) {
         if (error == null) return
-        _activeDownloads[fileName]?.let { d ->
-            _activeDownloads[fileName] = d.copy(lastError = error)
+        _activeDownloads[key]?.let { d ->
+            _activeDownloads[key] = d.copy(lastError = error)
         }
     }
 
-    fun markConnecting(fileName: String) {
-        _activeDownloads[fileName]?.let { current ->
+    fun markConnecting(key: String) {
+        _activeDownloads[key]?.let { current ->
             if (current.status != DownloadStatus.CANCELLING) {
-                _activeDownloads[fileName] = current.copy(status = DownloadStatus.CONNECTING)
+                _activeDownloads[key] = current.copy(status = DownloadStatus.CONNECTING)
                 saveActiveDownloads(force = true)
                 syncDownloadService()
             }
         }
     }
 
-    fun markDownloading(fileName: String) {
-        _activeDownloads[fileName]?.let { current ->
+    fun markDownloading(key: String) {
+        _activeDownloads[key]?.let { current ->
             if (current.status != DownloadStatus.PAUSED && current.status != DownloadStatus.CANCELLING) {
-                _activeDownloads[fileName] = current.copy(status = DownloadStatus.DOWNLOADING)
+                _activeDownloads[key] = current.copy(status = DownloadStatus.DOWNLOADING)
                 saveActiveDownloads(force = true)
             }
         }
     }
 
-    fun pauseDownload(fileName: String) {
-        _activeDownloads[fileName]?.let { current ->
+    fun pauseDownload(key: String) {
+        _activeDownloads[key]?.let { current ->
             if (current.status != DownloadStatus.CANCELLING) {
-                _activeDownloads[fileName] = current.copy(status = DownloadStatus.PAUSED)
+                _activeDownloads[key] = current.copy(status = DownloadStatus.PAUSED)
                 saveActiveDownloads(force = true)
             }
         }
     }
 
-    fun resumeDownload(fileName: String) {
-        markConnecting(fileName)
+    fun resumeDownload(key: String) {
+        markConnecting(key)
     }
 
-    fun markCancelling(fileName: String) {
-        _activeDownloads[fileName]?.let { current ->
-            _activeDownloads[fileName] = current.copy(status = DownloadStatus.CANCELLING)
+    fun markCancelling(key: String) {
+        _activeDownloads[key]?.let { current ->
+            _activeDownloads[key] = current.copy(status = DownloadStatus.CANCELLING)
             saveActiveDownloads(force = true)
         }
     }
 
-    fun updateProgress(fileName: String, downloadedBytes: Long) {
-        _activeDownloads[fileName]?.let { current ->
+    fun updateProgress(key: String, downloadedBytes: Long) {
+        _activeDownloads[key]?.let { current ->
             val safeDownloaded = downloadedBytes.coerceAtLeast(0L)
             val progress = if (current.totalBytes > 0L) {
                 ((safeDownloaded.toDouble() / current.totalBytes) * 100).toInt().coerceIn(0, 100)
             } else {
                 0
             }
-            _activeDownloads[fileName] = current.copy(
+            _activeDownloads[key] = current.copy(
                 progress = progress,
                 downloadedBytes = safeDownloaded
             )
@@ -365,26 +385,28 @@ object DownloadsManager {
     }
 
     /** 自动重试切换来源时更新 URL（不重置已下载字节）。 */
-    fun updateUrl(fileName: String, newUrl: String) {
-        _activeDownloads[fileName]?.let { current ->
+    fun updateUrl(key: String, newUrl: String) {
+        _activeDownloads[key]?.let { current ->
             if (current.url != newUrl) {
-                _activeDownloads[fileName] = current.copy(url = newUrl)
+                _activeDownloads[key] = current.copy(url = newUrl)
                 saveActiveDownloads(force = true)
             }
         }
     }
 
     /** 更新实时下载速度（字节/秒），不触发持久化（速度是临时值） */
-    fun updateSpeed(fileName: String, speedBytesPerSec: Long) {
-        _activeDownloads[fileName]?.let { current ->
-            _activeDownloads[fileName] = current.copy(speedBytesPerSec = speedBytesPerSec)
+    fun updateSpeed(key: String, speedBytesPerSec: Long) {
+        _activeDownloads[key]?.let { current ->
+            _activeDownloads[key] = current.copy(speedBytesPerSec = speedBytesPerSec)
         }
     }
 
-    fun completeDownload(fileName: String, filePath: String, sizeBytes: Long, subPath: String = "") {
-        // 项目归属要从下载中的记录里取，remove 之后就没了
-        val sourceUrl = _activeDownloads[fileName]?.sourceUrl.orEmpty()
-        _activeDownloads.remove(fileName)
+    fun completeDownload(key: String, filePath: String, sizeBytes: Long, subPath: String = "") {
+        // 项目归属和文件名都要从下载中的记录里取，remove 之后就没了
+        val record = _activeDownloads[key]
+        val sourceUrl = record?.sourceUrl.orEmpty()
+        val fileName = record?.fileName ?: key.substringAfterLast('/')
+        _activeDownloads.remove(key)
         saveActiveDownloads(force = true)
 
         // 覆盖下载：若已有同名同路径记录则移除旧记录，避免下载库出现两个同名
@@ -408,18 +430,18 @@ object DownloadsManager {
         syncDownloadService()
     }
 
-    fun failDownload(fileName: String, error: String? = null) {
+    fun failDownload(key: String, error: String? = null) {
         if (error != null) {
-            _activeDownloads[fileName]?.let { d ->
-                _activeDownloads[fileName] = d.copy(lastError = error)
+            _activeDownloads[key]?.let { d ->
+                _activeDownloads[key] = d.copy(lastError = error)
             }
         }
         // 兜底：若字节已下载完整（下载过程完成但状态回写失败），转 completed 而非标失败，
         // 根治"明明下载完了却提示失败、重下又提示已存在"的矛盾状态。
-        val d = _activeDownloads[fileName]
+        val d = _activeDownloads[key]
         if (d != null && d.totalBytes > 0L && d.downloadedBytes >= d.totalBytes) {
-            _activeDownloads.remove(fileName)
-            _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) && it.subPath == d.subPath }
+            _activeDownloads.remove(key)
+            _completedDownloads.removeAll { it.fileName.equals(d.fileName, ignoreCase = true) && it.subPath == d.subPath }
             _completedDownloads.add(
                 0,
                 CompletedDownload(
@@ -437,9 +459,13 @@ object DownloadsManager {
             syncDownloadService()
             return
         }
-        _activeDownloads.remove(fileName)
-        // 失败时同步清理同名 completed 残留：文件可能从未真正落盘，避免"重新下载提示已存在"
-        _completedDownloads.removeAll { it.fileName.equals(fileName, ignoreCase = true) }
+        _activeDownloads.remove(key)
+        // 失败时同步清理同一条 completed 残留：文件可能从未真正落盘，避免"重新下载提示已存在"。
+        // 限定 subPath——跨目录的同名文件是另一个文件；以前这里不带 subPath，
+        // 一次下载失败会顺手删掉别的目录里的同名记录。
+        if (d != null) {
+            _completedDownloads.removeAll { it.fileName.equals(d.fileName, ignoreCase = true) && it.subPath == d.subPath }
+        }
         saveActiveDownloads(force = true)
         saveCompletedDownloads()
         syncDownloadService()
@@ -463,6 +489,13 @@ object DownloadsManager {
         _completedDownloads.addAll(items)
     }
 
+    /** 同上，用于验证活动表的键不会让同名不同目录的下载互相覆盖 */
+    @androidx.annotation.VisibleForTesting
+    fun replaceActiveForTest(items: List<ActiveDownload>) {
+        _activeDownloads.clear()
+        items.forEach { _activeDownloads[it.key] = it }
+    }
+
     fun clearCompleted() {
         _completedDownloads.clear()
         saveCompletedDownloads()
@@ -471,6 +504,14 @@ object DownloadsManager {
     /** 下载目录中是否已存在同名文件（completed 记录或磁盘扫描结果） */
     fun existsCompleted(fileName: String, subPath: String): Boolean =
         _completedDownloads.any { it.fileName.equals(fileName, ignoreCase = true) && it.subPath == subPath }
+
+    /**
+     * 这个文件是否已经有一条活动下载记录。
+     * 同一个文件连点两次会走到这里：第二次必须拦住，否则会再建一个 outputUri、
+     * 两条下载流写同一个 key 的进度，界面进度来回跳。
+     */
+    fun isActive(fileName: String, subPath: String): Boolean =
+        _activeDownloads.containsKey(activeDownloadKey(fileName, subPath))
 
     /**
      * 扫描下载目录中磁盘已有、但未记录在 completed 列表里的文件（卸载重装 / 外部放入）。

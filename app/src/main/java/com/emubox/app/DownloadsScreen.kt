@@ -193,8 +193,8 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                     )
                 }
 
-                active.forEach { (name, download) ->
-                    item(key = "active_$name") {
+                active.forEach { (key, download) ->
+                    item(key = "active_$key") {
                         Card(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(24.dp),
@@ -221,9 +221,9 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     Spacer(Modifier.width(12.dp))
                                     Column(modifier = Modifier.weight(1f)) {
                                         Text(
-                                            text = name,
+                                            text = download.fileName,
                                             style = MaterialTheme.typography.titleMedium,
-                                            maxLines = 2
+                                            maxLines = 3
                                         )
                                         Text(
                                             when (download.status) {
@@ -331,9 +331,9 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     FilledTonalButton(
                                         onClick = {
                                             if (download.status == DownloadStatus.PAUSED) {
-                                                resumeActiveDownload(context, name)
+                                                resumeActiveDownload(context, key)
                                             } else {
-                                                pauseActiveDownload(name)
+                                                pauseActiveDownload(key)
                                             }
                                         },
                                         enabled = download.status != DownloadStatus.CANCELLING,
@@ -353,7 +353,7 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
                                     }
 
                                     OutlinedButton(
-                                        onClick = { cancelActiveDownload(context, name) },
+                                        onClick = { cancelActiveDownload(context, key) },
                                         enabled = download.status != DownloadStatus.CANCELLING,
                                         modifier = Modifier.weight(1f),
                                         shape = RoundedCornerShape(16.dp),
