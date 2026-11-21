@@ -60,7 +60,8 @@ def main():
     raw_l=json.load(open(os.path.join(BASE,'ludashi_raw.json')))
     antutu={}; counts={}
     for k,v in raw_a['levels'].items():
-        antutu[k]=parse_antutu(v['txt']); counts['antutu_'+k]=len(antutu[k])    ludashi={}; 
+        antutu[k]=parse_antutu(v['txt']); counts['antutu_'+k]=len(antutu[k])
+    ludashi={}
     for k in ['phone','soc','desktop_cpu','desktop_gpu','laptop_cpu']:
         ludashi[k]=parse_ludashi(raw_l[k]['txt']); counts['ludashi_'+k]=len(ludashi[k])
     # 榜单本身自描述：文件里带上抓取时间与条数，
