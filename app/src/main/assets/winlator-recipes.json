@@ -356,7 +356,7 @@
    ]
   },
   "Adreno-740": {
-   "configs": 170,
+   "configs": 171,
    "top": [
     {
      "combo": [
@@ -400,7 +400,7 @@
       ]
      ],
      "count": 10,
-     "share": 5.9
+     "share": 5.8
     },
     {
      "combo": [
@@ -409,12 +409,8 @@
        "2.7.3"
       ],
       [
-       "FEXCore",
-       "2508"
-      ],
-      [
        "GPU",
-       "Turnip Adreno Driver T30 (@Mr_Purple_666)"
+       "turnip-sdk36"
       ],
       [
        "VKD3D",
@@ -422,7 +418,7 @@
       ]
      ],
      "count": 4,
-     "share": 2.4
+     "share": 2.3
     }
    ]
   },
@@ -1012,8 +1008,8 @@
        "2.8"
       ]
      ],
-     "count": 10,
-     "share": 19.2
+     "count": 9,
+     "share": 17.3
     },
     {
      "combo": [
@@ -3368,7 +3364,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 177,
+   "configs": 178,
    "top": [
     {
      "combo": [
@@ -3394,7 +3390,7 @@
       ]
      ],
      "count": 57,
-     "share": 32.2
+     "share": 32.0
     },
     {
      "combo": [
@@ -3420,7 +3416,7 @@
       ]
      ],
      "count": 18,
-     "share": 10.2
+     "share": 10.1
     },
     {
      "combo": [
@@ -3446,12 +3442,12 @@
       ]
      ],
      "count": 15,
-     "share": 8.5
+     "share": 8.4
     }
    ]
   },
   "Mali-G720": {
-   "configs": 169,
+   "configs": 170,
    "top": [
     {
      "combo": [
@@ -3477,7 +3473,7 @@
       ]
      ],
      "count": 28,
-     "share": 16.6
+     "share": 16.5
     },
     {
      "combo": [
@@ -3529,7 +3525,7 @@
       ]
      ],
      "count": 14,
-     "share": 8.3
+     "share": 8.2
     }
    ]
   },

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-21T00:18:44Z",
+ "generated_at": "2026-11-21T23:41:48Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -192,7 +192,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1634,
+   "listingsCount": 1635,
    "keys": [
     "thormax",
     "aynthormax"
@@ -214,7 +214,7 @@
    "modelName": "11 Pro",
    "brandName": "RedMagic",
    "socName": "Snapdragon 8 Elite Gen 5",
-   "listingsCount": 1504,
+   "listingsCount": 1507,
    "keys": [
     "11pro",
     "redmagic11pro"
@@ -694,6 +694,17 @@
    ]
   },
   {
+   "id": "5a8588db-4ba4-43c6-9c3f-12ec57dd3a7f",
+   "modelName": "Galaxy S23 Ultra (SD)",
+   "brandName": "Samsung",
+   "socName": "Snapdragon 8 Gen 2",
+   "listingsCount": 54,
+   "keys": [
+    "galaxys23ultra",
+    "samsunggalaxys23ultra"
+   ]
+  },
+  {
    "id": "e83a0a1f-abe8-4b03-ab51-4c616fd0d681",
    "modelName": "Odin 3 Ultra",
    "brandName": "AYN",
@@ -702,17 +713,6 @@
    "keys": [
     "odin3ultra",
     "aynodin3ultra"
-   ]
-  },
-  {
-   "id": "5a8588db-4ba4-43c6-9c3f-12ec57dd3a7f",
-   "modelName": "Galaxy S23 Ultra (SD)",
-   "brandName": "Samsung",
-   "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 52,
-   "keys": [
-    "galaxys23ultra",
-    "samsunggalaxys23ultra"
    ]
   },
   {
@@ -1321,6 +1321,17 @@
    ]
   },
   {
+   "id": "207c2e86-ee10-48f5-b506-f468d6d34d3a",
+   "modelName": "Galaxy A56 5G",
+   "brandName": "Samsung",
+   "socName": "Exynos 1580",
+   "listingsCount": 19,
+   "keys": [
+    "galaxya565g",
+    "samsunggalaxya565g"
+   ]
+  },
+  {
    "id": "7b999210-40ae-4490-8ea7-c43ec0be6cfe",
    "modelName": "X200 Pro",
    "brandName": "Vivo",
@@ -1373,17 +1384,6 @@
    "keys": [
     "x7b",
     "honorx7b"
-   ]
-  },
-  {
-   "id": "207c2e86-ee10-48f5-b506-f468d6d34d3a",
-   "modelName": "Galaxy A56 5G",
-   "brandName": "Samsung",
-   "socName": "Exynos 1580",
-   "listingsCount": 18,
-   "keys": [
-    "galaxya565g",
-    "samsunggalaxya565g"
    ]
   },
   {
@@ -1860,6 +1860,17 @@
    ]
   },
   {
+   "id": "b126ecd3-db3a-4d9e-b38e-b4beac749b73",
+   "modelName": "Galaxy A32 4G",
+   "brandName": "Samsung",
+   "socName": "Helio G80",
+   "listingsCount": 12,
+   "keys": [
+    "galaxya324g",
+    "samsunggalaxya324g"
+   ]
+  },
+  {
    "id": "266b60fa-5daa-4441-a5ab-502a84f63f63",
    "modelName": "Galaxy S24+",
    "brandName": "Samsung",
@@ -2168,6 +2179,17 @@
    ]
   },
   {
+   "id": "d4618d51-8089-4877-95fd-0103bc810336",
+   "modelName": "RG 35",
+   "brandName": "Anbernic",
+   "socName": "RK3326",
+   "listingsCount": 9,
+   "keys": [
+    "rg35",
+    "anbernicrg35"
+   ]
+  },
+  {
    "id": "7321c463-26db-4ca9-9935-403a28f9d873",
    "modelName": "RG34XXSP",
    "brandName": "Anbernic",
@@ -2267,17 +2289,6 @@
    ]
   },
   {
-   "id": "b126ecd3-db3a-4d9e-b38e-b4beac749b73",
-   "modelName": "Galaxy A32 4G",
-   "brandName": "Samsung",
-   "socName": "Helio G80",
-   "listingsCount": 9,
-   "keys": [
-    "galaxya324g",
-    "samsunggalaxya324g"
-   ]
-  },
-  {
    "id": "ff2bf2d7-8d42-4d5a-9596-abf494893e10",
    "modelName": "Galaxy A33 5G",
    "brandName": "Samsung",
@@ -2319,17 +2330,6 @@
    "keys": [
     "s26ultra",
     "samsungs26ultra"
-   ]
-  },
-  {
-   "id": "d4618d51-8089-4877-95fd-0103bc810336",
-   "modelName": "RG 35",
-   "brandName": "Anbernic",
-   "socName": "RK3326",
-   "listingsCount": 8,
-   "keys": [
-    "rg35",
-    "anbernicrg35"
    ]
   },
   {
@@ -2685,6 +2685,17 @@
    ]
   },
   {
+   "id": "0185d36c-91fe-4591-87d5-4a49ce1872a3",
+   "modelName": "Galaxy S21",
+   "brandName": "Samsung",
+   "socName": "Exynos 2100",
+   "listingsCount": 7,
+   "keys": [
+    "galaxys21",
+    "samsunggalaxys21"
+   ]
+  },
+  {
    "id": "3b2da106-d8c8-4803-90b9-b9a45a390100",
    "modelName": "Galaxy Tab S8",
    "brandName": "Samsung",
@@ -2924,17 +2935,6 @@
    "keys": [
     "galaxys10",
     "samsunggalaxys10"
-   ]
-  },
-  {
-   "id": "0185d36c-91fe-4591-87d5-4a49ce1872a3",
-   "modelName": "Galaxy S21",
-   "brandName": "Samsung",
-   "socName": "Exynos 2100",
-   "listingsCount": 6,
-   "keys": [
-    "galaxys21",
-    "samsunggalaxys21"
    ]
   },
   {
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6286,
+   "listings": 6290,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9057,7 +9057,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3426,
+   "listings": 3427,
    "description": ""
   },
   {
@@ -9083,7 +9083,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1922,
+   "listings": 1923,
    "description": "Citron - Nintendo Homebrew Emulator 🍋 Welcome to Citron, a cutting-edge Nintendo Homebrew emulator designed to deliver an optimized experience for playing your favorite games and exploring new ones. Citron is a high-performance and easy-to-use emulator, tailored for enthusiasts a"
   },
   {
@@ -9096,7 +9096,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1854,
+   "listings": 1855,
    "description": ""
   },
   {
@@ -9123,7 +9123,7 @@
     "nintendo_gamecube",
     "nintendo_wii"
    ],
-   "listings": 379,
+   "listings": 381,
    "description": ""
   },
   {
@@ -9149,7 +9149,7 @@
    "systems": [
     "nintendo_3ds"
    ],
-   "listings": 258,
+   "listings": 259,
    "description": "Azahar is an open-source 3DS emulator project based on Citra. It was created from the merging of PabloMK7's Citra fork and the Lime3DS project, both of which emerged shortly after Citra was taken down. The goal of this project is to be the de-facto platform for future development"
   },
   {
@@ -9162,7 +9162,7 @@
    "systems": [
     "sony_playstation_portable"
    ],
-   "listings": 254,
+   "listings": 256,
    "description": ""
   },
   {
