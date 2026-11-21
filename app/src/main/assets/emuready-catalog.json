@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-20T00:59:40Z",
+ "generated_at": "2026-11-21T00:18:44Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -192,7 +192,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1630,
+   "listingsCount": 1634,
    "keys": [
     "thormax",
     "aynthormax"
@@ -214,7 +214,7 @@
    "modelName": "11 Pro",
    "brandName": "RedMagic",
    "socName": "Snapdragon 8 Elite Gen 5",
-   "listingsCount": 1501,
+   "listingsCount": 1504,
    "keys": [
     "11pro",
     "redmagic11pro"
@@ -280,7 +280,7 @@
    "modelName": "Pocket 6",
    "brandName": "Retroid",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 387,
+   "listingsCount": 388,
    "keys": [
     "pocket6",
     "retroidpocket6"
@@ -401,7 +401,7 @@
    "modelName": "Poco X7 Pro",
    "brandName": "Xiaomi",
    "socName": "Dimensity 8400 Ultra",
-   "listingsCount": 142,
+   "listingsCount": 143,
    "keys": [
     "pocox7pro",
     "xiaomipocox7pro"
@@ -1167,6 +1167,17 @@
    ]
   },
   {
+   "id": "3d4dcab0-7e1c-48f0-8920-15356cc2bf05",
+   "modelName": "Edge 50 Fusion",
+   "brandName": "Motorola",
+   "socName": "Snapdragon 6 Gen 1",
+   "listingsCount": 23,
+   "keys": [
+    "edge50fusion",
+    "motorolaedge50fusion"
+   ]
+  },
+  {
    "id": "fc4ef9e4-8df9-48b7-97b4-c9cace9a417f",
    "modelName": "Galaxy Tab S9",
    "brandName": "Samsung",
@@ -1208,17 +1219,6 @@
    "keys": [
     "hot504g",
     "infinixhot504g"
-   ]
-  },
-  {
-   "id": "3d4dcab0-7e1c-48f0-8920-15356cc2bf05",
-   "modelName": "Edge 50 Fusion",
-   "brandName": "Motorola",
-   "socName": "Snapdragon 6 Gen 1",
-   "listingsCount": 21,
-   "keys": [
-    "edge50fusion",
-    "motorolaedge50fusion"
    ]
   },
   {
@@ -1981,6 +1981,17 @@
    ]
   },
   {
+   "id": "89aaaafe-ee30-47bd-ad5c-db90153ec876",
+   "modelName": "Redmi Note 14",
+   "brandName": "Xiaomi",
+   "socName": "Helio G99",
+   "listingsCount": 11,
+   "keys": [
+    "redminote14",
+    "xiaomiredminote14"
+   ]
+  },
+  {
    "id": "b3e462f3-49d3-4c1c-bed7-d20525467bae",
    "modelName": "Redmi Note 7",
    "brandName": "Xiaomi",
@@ -2157,17 +2168,6 @@
    ]
   },
   {
-   "id": "89aaaafe-ee30-47bd-ad5c-db90153ec876",
-   "modelName": "Redmi Note 14",
-   "brandName": "Xiaomi",
-   "socName": "Helio G99",
-   "listingsCount": 10,
-   "keys": [
-    "redminote14",
-    "xiaomiredminote14"
-   ]
-  },
-  {
    "id": "7321c463-26db-4ca9-9935-403a28f9d873",
    "modelName": "RG34XXSP",
    "brandName": "Anbernic",
@@ -2319,6 +2319,17 @@
    "keys": [
     "s26ultra",
     "samsungs26ultra"
+   ]
+  },
+  {
+   "id": "d4618d51-8089-4877-95fd-0103bc810336",
+   "modelName": "RG 35",
+   "brandName": "Anbernic",
+   "socName": "RK3326",
+   "listingsCount": 8,
+   "keys": [
+    "rg35",
+    "anbernicrg35"
    ]
   },
   {
@@ -2784,17 +2795,6 @@
    ]
   },
   {
-   "id": "d4618d51-8089-4877-95fd-0103bc810336",
-   "modelName": "RG 35",
-   "brandName": "Anbernic",
-   "socName": "RK3326",
-   "listingsCount": 6,
-   "keys": [
-    "rg35",
-    "anbernicrg35"
-   ]
-  },
-  {
    "id": "6cd313ad-cb57-4b7c-b28d-8f5e12afb895",
    "modelName": "Pixel 7",
    "brandName": "Google",
@@ -3158,6 +3158,17 @@
    ]
   },
   {
+   "id": "6ea507aa-09c1-459c-b46b-8ccc3027317a",
+   "modelName": "Hot 50 Pro",
+   "brandName": "Infinix",
+   "socName": "Helio G100",
+   "listingsCount": 5,
+   "keys": [
+    "hot50pro",
+    "infinixhot50pro"
+   ]
+  },
+  {
    "id": "c910e8f3-092a-41eb-8237-a2750fbaf5bd",
    "modelName": "Xbox One",
    "brandName": "Microsoft",
@@ -3430,17 +3441,6 @@
    "keys": [
     "mate10",
     "huaweimate10"
-   ]
-  },
-  {
-   "id": "6ea507aa-09c1-459c-b46b-8ccc3027317a",
-   "modelName": "Hot 50 Pro",
-   "brandName": "Infinix",
-   "socName": "Helio G100",
-   "listingsCount": 4,
-   "keys": [
-    "hot50pro",
-    "infinixhot50pro"
    ]
   },
   {
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6281,
+   "listings": 6286,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9057,7 +9057,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3424,
+   "listings": 3426,
    "description": ""
   },
   {
@@ -9070,7 +9070,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 2026,
+   "listings": 2029,
    "description": "**Free, open-source PC gaming via Steam, on Android.** Play your favorite PC games directly on your Android device. Just log in to Steam, install your game, and start playing, with full cloud save support."
   },
   {
@@ -9083,7 +9083,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1921,
+   "listings": 1922,
    "description": "Citron - Nintendo Homebrew Emulator 🍋 Welcome to Citron, a cutting-edge Nintendo Homebrew emulator designed to deliver an optimized experience for playing your favorite games and exploring new ones. Citron is a high-performance and easy-to-use emulator, tailored for enthusiasts a"
   },
   {
@@ -9096,7 +9096,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1853,
+   "listings": 1854,
    "description": ""
   },
   {
@@ -9149,7 +9149,7 @@
    "systems": [
     "nintendo_3ds"
    ],
-   "listings": 257,
+   "listings": 258,
    "description": "Azahar is an open-source 3DS emulator project based on Citra. It was created from the merging of PabloMK7's Citra fork and the Lime3DS project, both of which emerged shortly after Citra was taken down. The goal of this project is to be the de-facto platform for future development"
   },
   {
@@ -9201,7 +9201,7 @@
    "systems": [
     "sony_playstation_vita"
    ],
-   "listings": 172,
+   "listings": 173,
    "description": ""
   },
   {
@@ -9240,7 +9240,7 @@
    "systems": [
     "sony_playstation_3"
    ],
-   "listings": 140,
+   "listings": 141,
    "description": ""
   },
   {

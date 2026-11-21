@@ -43,7 +43,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 5199,
+      "stars": 5200,
       "description": "Skyline / Strato / Vita3K / Yuzu 通用的 Adreno 驱动集，A6xx–A7xx 型号覆盖最广",
       "notes": "长期维护，兼容性最好",
       "companion": [],
@@ -105,7 +105,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 1321,
+      "stars": 1323,
       "description": "从 Mesa 源码自动构建 Turnip，同时提供高通官方驱动",
       "notes": "通用 turnip 源；最新 v891.7 为 Honor 固件提取的闭源 Qualcomm 驱动（A8xx），混有闭源包，安装前留意",
       "companion": [],
@@ -206,7 +206,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 949,
+      "stars": 954,
       "description": "第三方 Turnip 编译，一套包覆盖 A6xx / A7xx / A8xx，每日跟进上游",
       "notes": "活跃：2026-08-17 T30-toasted 发布；turnip + adrenotools 通用",
       "companion": [],
@@ -280,10 +280,10 @@
           "Mesa"
         ]
       },
-      "updated_at": "2026-09-18T20:04:43Z",
-      "latest_tag": "19_sep_2026",
-      "latest_date": "2026-09-18T20:04:43Z",
-      "latest_body": "## KernelSU and Magisk supported\n## Android 14 and above required to install\n\n* ✅ **Turnip (Vulkan driver)** upgraded to **Mesa 26.2.3**, synced with latest upstream changes.\n* ⚡ Continued **performance improvements** and **bug fixes** for various Vulkan games and applications.\n* 🎮 Enhanced compatibility and support for newer **Qualcomm Adreno GPUs**.\n* 🧩 Additional tuning for Android-specific driver quirks and rendering edge cases."
+      "updated_at": "2026-11-20T18:50:16Z",
+      "latest_tag": "20_nov_2026",
+      "latest_date": "2026-11-20T18:50:16Z",
+      "latest_body": "**Nov 20, 2026**: Updated Mesa to v26.3.1\n\n## KernelSU, Magisk, and APatch supported\n## Android 14 and above required to install\n\n* ✅ **Turnip (Vulkan driver)** upgraded to **Mesa 26.3.1**, synced with latest upstream changes.\n* ⚡ Continued **performance improvements** and **bug fixes** for various Vulkan games and applications.\n* 🎮 Enhanced compatibility and support for newer **Qualcomm Adreno GPUs**.\n* 🧩 Additional tuning for Android-specific driver quirks and rendering edge cases."
     },
     {
       "id": "banner",
@@ -333,7 +333,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "ci",
-      "stars": 263,
+      "stars": 265,
       "description": "自动构建最新 Mesa Turnip，bleeding-edge",
       "notes": "CI 自动构建，最新但可能不稳定",
       "companion": [],
@@ -359,10 +359,10 @@
           "710-720-Test"
         ]
       },
-      "updated_at": "2026-11-19T23:56:50Z",
-      "latest_tag": "v27.0.0-20261119-r4",
-      "latest_date": "2026-11-19T23:56:50Z",
-      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n> ❌ **A8xx** didn't build this run, so it isn't included.\n\n> ❌ **Banners-AIO** didn't build this run, so it isn't included.\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`cd38201`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/cd38201df6d9139ceeeb02e2fd0edd873de4ea10) |\n| **Commit title** | tu: Fix descriptor set alignment after descriptor pool reset |\n| **Vulkan version** | Vulkan 1.4.368 |"
+      "updated_at": "2026-11-20T22:47:01Z",
+      "latest_tag": "v27.0.0-20261120-r4",
+      "latest_date": "2026-11-20T22:47:01Z",
+      "latest_body": "> ⚠️ **Automated build** from Mesa `main`: checked by CI, **not tested on a device.**\n\n| Mesa | |\n| :--- | :--- |\n| **Commit** | [`901c006`](https://gitlab.freedesktop.org/mesa/mesa/-/commit/901c006e67bd5e467071c3643a95a618215b1020) |\n| **Commit title** | freedreno/common: fix A8XX VPC position cache size typos |\n| **Vulkan version** | Vulkan 1.4.368 |\n| **Date** | 2026-11-20 |\n\n### Downloads\n\n| Driver | GPUs | X11 / AdrenoTools | Bannerlator Wayland | Linux runtime |"
     },
     {
       "id": "ilhan-athn7-ci",
@@ -747,10 +747,10 @@
           "A810"
         ]
       },
-      "updated_at": "2026-10-11T09:43:37Z",
-      "latest_tag": "drnas-turnip-a810-s-ultimate-v1.0",
-      "latest_date": "2026-10-11T09:43:37Z",
-      "latest_body": "# Drnas-Turnip A810 S Ultimate v1.0\n\n**First public release of S Ultimate for Adreno 810**  \nAndroid AArch64 / KGSL · Mesa 26.3.0-devel · Vulkan Turnip\n\nThis release packages the **audited RC1 binary unchanged**. Only the installer's displayed name, package version and ZIP filename differ from RC1. No further autotuner changes were made after the successful RC1 Android CI build.\n\n## Features"
+      "updated_at": "2026-11-20T08:31:40Z",
+      "latest_tag": "drnas-a840-h3.0-decision-cache-mesa27",
+      "latest_date": "2026-11-20T08:31:40Z",
+      "latest_body": "# DRNAS Turnip A840 H3.0 — Decision Cache (Mesa 27)\n\n**Experimental public Release, NOT a stable or universally validated driver.**\nBuilt for **Adreno A840 only**, Android ARM64 / KGSL (min API 34), using Mesa 27.0.0-devel.\n\n- H3.0 bounded decision-cache experiment layered on the H2.9 A840 port.\n- Decision cache defaults ON; an internal A/B control is available via `TU_FRANE_A840_DECISION_CACHE=0`."
     },
     {
       "id": "vauzi-710",
@@ -772,7 +772,7 @@
       "target_emulator": "winlator",
       "package_format": "adpkg",
       "maturity": "stable",
-      "stars": 129,
+      "stars": 131,
       "description": "Adreno 710 / 720 / 722 的 Turnip，分 Winlator glibc 与通用两版",
       "notes": "710 用户首选",
       "companion": [],
@@ -811,7 +811,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 42,
+      "stars": 41,
       "description": "Adreno 8xx Turnip，修复显示损坏问题",
       "notes": "遇到花屏/显示异常时尝试",
       "companion": [],
@@ -843,7 +843,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 177,
+      "stars": 180,
       "description": "Mali-G57 PanVK 驱动，D3D11+DXVK 2.x 已可用，专为 Winlator 调优",
       "notes": "G57 用户首选，需配合 FristOneRR-Wrapper",
       "companion": [
@@ -1019,7 +1019,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "beta",
-      "stars": 166,
+      "stars": 169,
       "description": "独立 Mesa PanVK 驱动，直接通过 Android mali_kbase 通信，持续更新",
       "notes": "提供 android 和 glibc 两个 .so，beta 活跃开发中",
       "companion": [],
@@ -1057,7 +1057,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 29,
+      "stars": 30,
       "description": "Mesa 26.2 PanVK/KRAID 实验构建，多 Mali 型号支持",
       "notes": "覆盖型号较广",
       "companion": [],
@@ -1090,7 +1090,7 @@
       "target_emulator": "generic",
       "package_format": "so",
       "maturity": "experimental",
-      "stars": 21,
+      "stars": 23,
       "description": "GameForce Ace 掌机 Mali-G610 PanVK",
       "notes": "掌机设备专用",
       "companion": [],
@@ -1251,7 +1251,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 77,
+      "stars": 79,
       "description": "JimVulkan 的 radv-xclipse：把 Mesa RADV 移植到三星 Xclipse GPU",
       "notes": "v1.6.0 2026-10-13；替代原 Matheus-TestUser1 停更仓库",
       "companion": [],
@@ -1424,7 +1424,7 @@
       "target_emulator": "winlator",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 118,
+      "stars": 122,
       "description": "Mesa 官方 PanVK 上游移植：Mali 全架构（Bifrost/Valhall/CSF）免 root 运行于原厂 kbase",
       "notes": "v1.4.0（r8）基于 Mesa 27.0.0-devel，新增 Valhall 一代与 CSF（G610/G710/G615/G715/G720）支持；Vulkan 1.3（CSF 报 1.4），几何/曲面细分 compute 模拟，DXVK+zink 可用；实测机型覆盖 S10e/S20/S21/Tab S6 Lite/Tab S10+ 等",
       "companion": [],
@@ -1588,7 +1588,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "experimental",
-      "stars": 154,
+      "stars": 169,
       "description": "面向 Adreno 865 的 Turnip 修改版（TurnipZ），主打模拟器帧率与画面稳定",
       "notes": "对比 StevenMXZ R5 提升明显（Switch 模拟 5 款实测无崩溃）；仅 sysmem 无 GMEM；实测 zip 含 meta.json 合规，活跃（2026-10-11）",
       "companion": [],
@@ -1690,7 +1690,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 22,
+      "stars": 23,
       "notes": "v1.0.0 起与 ace/pixel7/rg556 四仓发布同一 adpkg 包（同名同字节），四设备全部实测；活跃（2026-10-29 v1.1.3 修 WWE 12 掉 GPU）",
       "companion": [
         "faux123-ace",
@@ -2028,7 +2028,7 @@
       "target_emulator": "generic",
       "package_format": "adpkg",
       "maturity": "experimental",
-      "stars": 2,
+      "stars": 3,
       "description": "Mali-G925 / Immortalis MC11 专用 Mesa PanVK（Mesa 27.0.0-devel，Kbase CSF 后端，Vulkan 1.4 报告值）",
       "notes": "zenithblue kbase 上游的 G925 实验分支（fork，PAN_ARCH=13 仅 CSF）；实验性质无 Vulkan 一致性，图像残留可能；DXVK 硬性要求 56/56、vkd3d 24/24 通过",
       "companion": [],
@@ -2037,10 +2037,10 @@
           "panvk"
         ]
       },
-      "updated_at": "2026-10-29T14:37:21Z",
-      "latest_tag": "mesa27-g925-bc-mip-priority-20261029",
-      "latest_date": "2026-10-29T14:37:21Z",
-      "latest_body": "## Mesa 27.0.0-devel G925 development build\n\nThis release publishes the Mesa 27.0.0-devel source update and a validated Android AArch64 ADPKG for Mali-G925 (`PAN_ARCH=13`) on Kbase CSF (Android API 35 minimum).\n\n### Changes\n- **BC mip priority:** decode multi-mip uploads, image copies, and zero initialization from the smallest mip upward, with a write dependency between levels. Enabled by default; set `PANVK_BC_MIP_PRIORITY=0` to restore the prior order. This does not implement sparse residency/"
+      "updated_at": "2026-11-20T21:49:05Z",
+      "latest_tag": "",
+      "latest_date": "",
+      "latest_body": ""
     },
     {
       "id": "winlatorcomponents",
@@ -2090,7 +2090,7 @@
       "target_emulator": "droiddeck",
       "package_format": "zip",
       "maturity": "ci",
-      "stars": 38,
+      "stars": 40,
       "description": "DroidDeck 官方每周构建的 Turnip 驱动包，同时出 Android 与 ARM Linux 两套，Mesa 27.0.0-devel 基线",
       "notes": "2026-11-12 收录。与 DroidDeck 客户端同源，装 DroidDeck 后可在其驱动选择器直接导入。Mesa 27.0.0-devel @34c83ff",
       "companion": [],
@@ -2124,7 +2124,7 @@
       "target_emulator": "generic",
       "package_format": "zip",
       "maturity": "beta",
-      "stars": 175,
+      "stars": 178,
       "description": "Mali v7/v9/v11 的 Vulkan 驱动，基于原厂 kbase 内核驱动，供 ARMSX2、Dolphin、hakuX、Vita3K-Plus 等自定义驱动模拟器使用",
       "notes": "2026-11-12 收录。Mali 侧目前型号覆盖最全的第三方驱动包；同 owner 的 armsx2-turnip 为 Adreno 分支，挂 companion",
       "companion": [
