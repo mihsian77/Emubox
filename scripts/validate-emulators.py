@@ -22,7 +22,12 @@ DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 # 逐个实测均 404，且搜不到同名新仓（不是改名）：sj0404-collab 名下两个仓消失，
                 # simipoB 整个账号已不存在。后两条是本库 11-18 收录的，作者删号。
                 "sj0404-collab-symbiosis", "sj0404-collab-winlator-hybrid-dxvk",
-                "simipob-arceus-native-android", "simipob-galar-native-android"}
+                "simipob-arceus-native-android", "simipob-galar-native-android",
+                # 2026-11-21：每日刷新又标了两个，同样没同步清单。
+                # afeimod/linbox 11-17 还在发 prefix-pack 版，今天 API 直连 404；
+                # 账号还在、名下 37 个仓库里没有它 —— 删库或转私有，用户都拿不到。
+                # ptyfyre 整个账号 404（与 simipoB 一样），mandarine-neo 随之失效。
+                "afeimod-linbox", "mandarineneo-3ds"}
 # 注意：这份清单是「已确认下架」的快照，不是判死规则。
 # afeimod-linbox 曾在这里，但 11-16 还在发新版（GitHub 当日 404 属于误判），
 # 已移出：清单只记「现在确实打不开」的，判死仍交给刷新脚本每日复核。
