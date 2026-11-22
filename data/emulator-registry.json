@@ -10108,7 +10108,7 @@
       "hosts": [
         "android"
       ],
-      "status": "active",
+      "status": "stale",
       "needs_review": false,
       "method": "recomp",
       "latest_tag": "v0.2.7",
@@ -10208,7 +10208,7 @@
       },
       "android_ready": true,
       "requires_original": true,
-      "note": "需自备游戏 dump；作者在 Discord 提供支持",
+      "note": "作者已在 README 声明停止维护，仅作存档。",
       "latest_body": "## NieR:Automata Android Recomp v0.2.7\n\n### Español\n- **Soporte multi-región y fix de modelos negros (PR #26 / PR #27):** Resolución automática `ADRP+LDR` para USA y Asia 1.0.3 (presenter y resolución dinámica mínima `0.6`) y firma ampliada de 8 instrucciones en `mesh_draw_hook` para evitar falsos matches y modelos/naves en negro.\n- **Corrección de reflejos/cubemaps negros:** Añadido `VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT` en texturas `2D_ARRAY` cuadradas de `6n` capas.\n- **Optimizaciones de rendimiento NVN:** Salida rápida con `memcmp` + comparación SIMD NEON ARM64 en write-backs (`apply_write_back`), pool de snapshots (`g_before_pool`) y pool de buffers spill (`g_staging_pool`) para reducir pausas de CPU y asignaciones de memoria por frame.\n- **Fix Android 10 (API 29) y diagonales en mando:** Guard de `InsetsController` para evitar crashes al iniciar en Android 10 y zona muerta radial 2D para sticks físicos.\n\n---\n\n### English\n- **Multi-region hooks & black models fix (PR #26 / PR #27):** Automatic `ADRP+LDR` slot resolution across USA and Asia 1.0.3 builds (presenter & dynamic-res floor `0.6`) plus expanded 8-instruction `mesh_draw_hook` signature to prevent black 3D models/ships.",
       "download_kind": "github-release",
       "platform_families": [
