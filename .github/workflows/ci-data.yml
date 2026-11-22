@@ -32,12 +32,29 @@ jobs:
         run: python3 scripts/validate-registry.py
 
   emulator-check:
-    name: 模拟器注册表校验
+    name: 模拟器注册表校验与派生一致性
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: 校验模拟器 registry（来源/dead/下载直链）
         run: python3 scripts/validate-emulators.py
+      # 格式漂移：往注册表里追加 45 条，本该只有 5.9k 行新增，实际却是 18.3 万行
+      # ——写回脚本用了 indent=1，文件是 indent=2，git 认为每行都变了。blame 全废、
+      # review 时真正的内容改动被淹没。这里只比「和上一版是否一致」，不规定用哪种风格。
+      - name: 检查 JSON 写回格式
+        run: python3 scripts/check-json-style.py
+      # 派生一致性：download_kind / android_ready_source / platform_families /
+      # subcategory 四个字段都由脚本从客观链接和平台值派生。手改数据后忘了重放，
+      # 字段就会和事实脱节（曾出现 105 条 android_ready=false 毫无依据）。
+      # 这里重跑一遍，要求零改动：脚本幂等，不幂等说明它自己有问题。
+      - name: 检查派生字段重放一致
+        run: |
+          python3 scripts/derive_download_kind.py
+          python3 scripts/derive_android_ready_source.py
+          python3 scripts/derive_platform_families.py
+          python3 scripts/derive_subcategory.py
+          git diff --exit-code data/emulator-registry.json \
+            || (echo "::error::派生字段与数据不符：本地跑这四个脚本并把结果一起提交" && exit 1)
 
   schema-check:
     name: 字段命名与类型

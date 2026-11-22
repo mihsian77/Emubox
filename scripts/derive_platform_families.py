@@ -88,8 +88,11 @@ def main():
         raise SystemExit(1)
 
     with open(REG, "w", encoding="utf-8") as f:
+        # 不加末尾换行：同一份 registry 由 4 个派生脚本轮流写，
+        # derive_download_kind / derive_android_ready_source 都不加，
+        # 这里加了就会出现「谁最后跑，文件末尾就随谁变」——每次跑完派生
+        # 都多一行假 diff，按行比对的检查永远过不了。
         json.dump(d, f, ensure_ascii=False, indent=2)
-        f.write("\n")
 
     print(f"已写入 {len(d['emulators'])} 条 platform_families")
     print(f"{'家族':<22}{'键':<18}{'条目数'}")

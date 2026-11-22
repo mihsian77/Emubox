@@ -94,8 +94,9 @@ def main():
         raise SystemExit(1)
 
     with open(REG, "w", encoding="utf-8") as f:
+        # 与其余三个派生脚本保持一致：不加末尾换行，否则每次重放都会
+        # 在文件末尾多出一行差异（详见 derive_platform_families.py 注释）。
         json.dump(d, f, ensure_ascii=False, indent=2)
-        f.write("\n")
 
     print(f"已写入 {len(d['emulators'])} 条 subcategory（仅两个分区有值）")
     for (section, sub), n in sorted(stat.items(), key=lambda kv: (kv[0][0], -kv[1])):
