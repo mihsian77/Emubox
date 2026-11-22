@@ -39,6 +39,11 @@ import re
 import sys
 import urllib.request
 
+# 本文件在 scripts/soc/ 下，直接执行时 sys.path[0] 是 scripts/soc，
+# 拿不到 scripts/jsonio.py，必须把上一级加进来
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from jsonio import save  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ASSETS = os.path.join(ROOT, 'app', 'src', 'main', 'assets')
 CACHE = os.path.join(ROOT, 'bench-data', 'socpk_chips.json')
@@ -134,8 +139,7 @@ def fetch_socpk():
     with urllib.request.urlopen(req, timeout=40) as r:
         data = json.load(r)
     os.makedirs(os.path.dirname(CACHE), exist_ok=True)
-    with open(CACHE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=1)
+    save(CACHE, data)
     return data
 
 
@@ -814,9 +818,7 @@ def main():
         'platforms': platforms,
         'vendors': part.get('vendor_platforms', {}),
     }
-    with open(OUT, 'w', encoding='utf-8') as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
-        f.write('\n')
+    save(OUT, out)
 
     ById = {s['id']: s for s in uniq}
     coded = sum(1 for s in uniq if s['codes'])

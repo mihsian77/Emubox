@@ -20,6 +20,8 @@ if not TOKEN:
     print("缺少 GITHUB_TOKEN", file=sys.stderr)
     sys.exit(1)
 
+from jsonio import save
+
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(REPO_ROOT, "data/emulator-registry.json")
 
@@ -97,9 +99,7 @@ def main():
 
     if changed:
         data["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        with open(REGISTRY, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-            f.write("\n")
+        save(REGISTRY, data)
         print("data/emulator-registry.json 已更新")
     else:
         print("无变化")

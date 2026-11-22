@@ -11,8 +11,9 @@
   非硬件值（multi / terminal / visual-novel / adventure）不进家族，
   因为它们描述的是「形态」或「题材」，不是「哪台机器」。
 """
-import json
 import os
+
+from jsonio import load, save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -58,8 +59,7 @@ P2F = {p: fam for fam, (_, ps) in FAMILIES.items() for p in ps}
 
 
 def main():
-    with open(REG, encoding="utf-8") as f:
-        d = json.load(f)
+    d = load(REG)
 
     unknown = set()
     stat = {k: 0 for k in FAMILIES}
@@ -87,12 +87,10 @@ def main():
         print("!! 未映射的平台值：", sorted(unknown))
         raise SystemExit(1)
 
-    with open(REG, "w", encoding="utf-8") as f:
-        # 不加末尾换行：同一份 registry 由 4 个派生脚本轮流写，
-        # derive_download_kind / derive_android_ready_source 都不加，
-        # 这里加了就会出现「谁最后跑，文件末尾就随谁变」——每次跑完派生
-        # 都多一行假 diff，按行比对的检查永远过不了。
-        json.dump(d, f, ensure_ascii=False, indent=2)
+    # 同一份 registry 由 4 个派生脚本轮流写，格式（缩进、末尾换行）必须由
+    # 文件现状决定而不是由「谁最后跑」决定。jsonio.save 会在写前嗅探原文件，
+    # 写出的字节与原来一致，四个脚本任意顺序重放都不会产生假 diff。
+    save(REG, d)
 
     print(f"已写入 {len(d['emulators'])} 条 platform_families")
     print(f"{'家族':<22}{'键':<18}{'条目数'}")

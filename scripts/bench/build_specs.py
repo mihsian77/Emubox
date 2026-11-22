@@ -10,6 +10,10 @@
 import json
 import os
 import re
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from jsonio import save, sniff  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SRC = os.path.join(ROOT, 'bench-data', 'antutu_soc.json')
@@ -54,6 +58,15 @@ def main():
                 wiki.setdefault(key, e)
         print(f'维基补全源: {len(wiki)} 条目')
 
+    # 上一版产物：维基源缺失时用它兜底，避免 process/gpu/year 整片被抹掉
+    prev = {}
+    if os.path.exists(OUT_BENCH):
+        try:
+            with open(OUT_BENCH, encoding='utf-8') as f:
+                prev = (json.load(f) or {}).get('socs') or {}
+        except (OSError, json.JSONDecodeError) as e:
+            print(f'[warn] 读不到上一版 soc_specs（{e}），制程/GPU 字段无法兜底')
+
     out = {'version': '1.0.0',
            'note': 'CPU 架构/频率来自安兔兔 SoC 天梯内置字段；制程/GPU/发布时间由维基列表管线补全（缺失留空）',
            'socs': {}}
@@ -87,12 +100,25 @@ def main():
                 entry['process'] = hit.get('process', '')
                 entry['gpu'] = hit.get('gpu', '')
                 entry['year'] = hit.get('year', '')
+        # 维基源缺失时沿用上一版：soc_specs_wiki_raw.json 被 .gitignore 排除，
+        # 只在 CI 里由 fetch_soc_specs.js 现抓。抓取失败时上面这段不会执行，
+        # 若直接覆盖就会把 200+ 条的制程/GPU/发布时间静默抹掉（实测 -288 行），
+        # 而 step 又带 continue-on-error，坏了也没人知道。
+        if not wiki:
+            old = prev.get(name) or {}
+            for field in ('process', 'gpu', 'year'):
+                # 空串也要原样保留：仓库里的历史条目就是「键在、值为空」，
+                # 只补非空值会让整个文件每次重放都丢掉这些键。
+                if field not in entry and field in old:
+                    entry[field] = old[field]
         out['socs'][name] = entry
 
     os.makedirs(os.path.dirname(OUT_BENCH), exist_ok=True)
     os.makedirs(os.path.dirname(OUT_ASSETS), exist_ok=True)
-    json.dump(out, open(OUT_BENCH, 'w'), ensure_ascii=False, indent=1)
-    json.dump(out, open(OUT_ASSETS, 'w'), ensure_ascii=False, indent=1)
+    # bench-data 与 assets 副本必须同字节：共用主文件嗅探出的 style
+    st = sniff(OUT_BENCH)
+    save(OUT_BENCH, out, style=st)
+    save(OUT_ASSETS, out, style=st)
     print(f'OK socs={len(out["socs"])} 有频率={len(out["socs"])-len(missing)} 缺={len(missing)}')
     if missing:
         print('缺频率:', missing)

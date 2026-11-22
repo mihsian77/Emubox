@@ -19,6 +19,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import derive_apk_tag  # noqa: E402
 
+from jsonio import save
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "data/emulator-registry.json")
 INDEX = os.path.join(ROOT, "data/emulator-index.json")
@@ -53,9 +55,8 @@ DETAIL_FIELDS = ["releases", "latest_body", "builds", "community_sources",
 
 
 def dump(path, obj, indent=None):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, separators=(",", ":") if indent is None else None,
-                  indent=indent)
+    # 写回走 jsonio：内容没变就不落盘，分片不会因为「重跑一次」而全部换 mtime
+    save(path, obj, indent=indent)
     return os.path.getsize(path)
 
 

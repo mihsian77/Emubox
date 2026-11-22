@@ -15,6 +15,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import BODY_LIMIT, clip_body  # noqa: E402
+from jsonio import save  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -159,8 +160,7 @@ def main():
     if "--dry" in sys.argv:
         return
     d["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    json.dump(d, open(REG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    open(REG, "a").write("\n")
+    save(REG, d)
 
 
 if __name__ == "__main__":

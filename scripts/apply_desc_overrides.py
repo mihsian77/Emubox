@@ -7,20 +7,20 @@
 
 带 --check 只报告覆盖率不动文件。
 """
-import json
 import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from desc_overrides import OVERRIDES  # noqa: E402
+from jsonio import load, save  # noqa: E402
 
 REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 
 
 def main():
     check_only = "--check" in sys.argv
-    doc = json.load(open(REGISTRY, encoding="utf-8"))
+    doc = load(REGISTRY)
     ems = doc.get("emulators") or []
     ids = {e["id"] for e in ems}
 
@@ -48,8 +48,7 @@ def main():
         return 0 if not missing and not uncovered else 1
 
     if changed:
-        with open(REGISTRY, "w", encoding="utf-8") as f:
-            json.dump(doc, f, ensure_ascii=False, indent=2)
+        save(REGISTRY, doc)
         print(f"\n已写回 {REGISTRY}")
     return 0
 

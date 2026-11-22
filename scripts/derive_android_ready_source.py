@@ -20,6 +20,8 @@ import os
 import sys
 from collections import Counter
 
+from jsonio import save
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
 
@@ -88,8 +90,9 @@ def main():
 
     if "--dry" in sys.argv:
         return
-    json.dump(d, open(REG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    open(REG, "a").write("\n")
+    # 写回走 jsonio：缩进与末尾换行跟着文件现状，不再由本脚本单方面决定。
+    # 它同时会跳过「内容没变」的写入，派生脚本重放两次不会改 mtime。
+    save(REG, d)
 
 
 if __name__ == "__main__":

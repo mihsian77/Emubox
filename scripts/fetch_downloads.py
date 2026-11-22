@@ -27,9 +27,10 @@ import argparse
 import json
 import os
 import sys
-import time
 import urllib.error
 import urllib.request
+
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -116,8 +117,7 @@ def main():
         print(f"[L1] 从 builds 聚合出下载数：{n} 条")
         with_dl = sum(1 for e in emus if e.get("downloads_latest") or e.get("downloads"))
         print(f"     有任意下载数：{with_dl}/{len(emus)} ({with_dl/len(emus)*100:.0f}%)")
-        with open(REG, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        save(REG, data)
 
     if args.api:
         if not TOKEN:
@@ -153,13 +153,10 @@ def main():
             if i % 10 == 0:
                 print(f"  {i}/{len(todo)} … 最近 {repo}={total}")
                 os.makedirs(os.path.dirname(CACHE), exist_ok=True)
-                with open(CACHE, "w", encoding="utf-8") as f:
-                    json.dump(cache, f, ensure_ascii=False)
+                save(CACHE, cache, indent=None)
         os.makedirs(os.path.dirname(CACHE), exist_ok=True)
-        with open(CACHE, "w", encoding="utf-8") as f:
-            json.dump(cache, f, ensure_ascii=False)
-        with open(REG, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        save(CACHE, cache, indent=None)
+        save(REG, data)
         print(f"[L2] 本次写入 {done} 个仓库")
 
 

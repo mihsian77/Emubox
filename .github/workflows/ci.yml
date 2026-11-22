@@ -45,6 +45,11 @@ jobs:
       # 跑分数据因此停更一天才发现。放在这里是因为这个 job 不装 JDK，最快。
       - name: 检查脚本语法
         run: python3 -m compileall -q scripts
+      # 写 JSON 只允许走 scripts/jsonio.py：它写前嗅探原文件格式（缩进/末尾换行），
+      # 内容没变就不落盘。直接调 json.dump 会让同一份数据文件的格式随「谁最后跑」
+      # 漂移——11-22 一次 45 条收录因此报出 18.3 万行假 diff。
+      - name: 检查 JSON 写入口
+        run: python3 scripts/check-json-writer.py
 
   lint:
     name: Lint 与单元测试
@@ -87,7 +92,9 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             ~/.m2/repository/org/robolectric
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties') }}
+          # key 必须包含 libs.versions.toml：否则升了依赖版本仍命中旧缓存，
+          # 拉到的 jar 与声明的版本对不上，构建结果变成「取决于缓存里有什么」。
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties', 'gradle/libs.versions.toml') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: 运行 Lint

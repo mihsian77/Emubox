@@ -3,7 +3,10 @@
 从 bench-data/antutu_soc.json + ludashi.json 实时解析真实分数，命中失败标 null（App 端显示数据缺失）
 输出: app/src/main/assets/bench/bench_meta.json
 """
-import json, os, re
+import json, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from jsonio import save  # noqa: E402
 
 BASE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 a = json.load(open(os.path.join(BASE, 'bench-data', 'antutu_soc.json')))
@@ -155,7 +158,7 @@ for sc in SAME_CHIP:
 
 out_path = os.path.join(BASE, 'app', 'src', 'main', 'assets', 'bench', 'bench_meta.json')
 os.makedirs(os.path.dirname(out_path), exist_ok=True)
-json.dump(meta, open(out_path, 'w'), ensure_ascii=False, indent=1)
+save(out_path, meta)
 print('written', out_path)
 hit = sum(1 for a_ in meta['aliases'] if a_['antutu_total'])
 print('aliases', len(meta['aliases']), '| antutu命中', hit, '| 缺失', len(meta['aliases'])-hit)

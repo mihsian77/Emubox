@@ -7,6 +7,8 @@
 """
 import json, os
 
+from jsonio import save  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIT = os.path.join(ROOT, "audit-report.json")
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -57,7 +59,7 @@ def main():
             "note": e.get("note", ""),
             "logo": bool(e.get("logo_url")),
         })
-    json.dump(rows, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    save(OUT, rows)
     print(f"rows: {len(rows)} / registry: {len(reg)}")
 
 

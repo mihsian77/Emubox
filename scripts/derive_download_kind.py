@@ -23,11 +23,12 @@ official-play / google-play、official-site / official-web 三对近义值，另
 
 用法: python3 scripts/derive_download_kind.py [--dry]
 """
-import json
 import os
 import re
 import sys
 from collections import Counter
+
+from jsonio import load, save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -97,9 +98,8 @@ def derive(e):
 
 
 def main():
-    d = json.load(open(REG, encoding="utf-8"))
+    d = load(REG)
     ems = d["emulators"]
-    before = Counter(e.get("download_kind") for e in ems)
     moves = Counter()
     changed = 0
     for e in ems:
@@ -124,8 +124,7 @@ def main():
 
     if "--dry" in sys.argv or not changed:
         return
-    json.dump(d, open(REG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    open(REG, "a").write("\n")
+    save(REG, d)
 
 
 if __name__ == "__main__":

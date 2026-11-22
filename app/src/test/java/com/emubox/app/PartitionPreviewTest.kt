@@ -47,6 +47,9 @@ import java.io.File
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [35], qualifiers = "w411dp-h905dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
 class PartitionPreviewTest {
+    /** 截图开关：只有 -PemuboxScreenshots=true 时才真渲染；CI 上只验证组合不崩。 */
+    private val screenshots = System.getProperty("emubox.screenshots") == "true"
+
 
     @get:Rule
     val compose = createComposeRule()
@@ -313,6 +316,7 @@ class PartitionPreviewTest {
 
     /** 截图目录：默认 build/screenshots，可用 -Dscreenshot.dir=... 覆盖（不写死绝对路径） */
     private fun save(name: String) {
+        if (!screenshots) return
         val dir = File(System.getProperty("screenshot.dir") ?: "build/screenshots")
         dir.mkdirs()
         val out = File(dir, File(name).name)
@@ -322,6 +326,13 @@ class PartitionPreviewTest {
 
     /** 让 Compose 的异步副作用有机会跑完（IO 线程 + 主线程帧都要推进） */
     private fun settle(rounds: Int = 44) {
+        // 不截图时没必要等数据到位：这些用例要验的是「组合不崩、节点在」，
+        // 等异步清单加载完再推进 44 帧只是为了截到有内容的画面。
+        // 每帧 500ms × 20 余处调用，一度占掉 CI 单测的大头。
+        if (!screenshots) {
+            compose.waitForIdle()
+            return
+        }
         repeat(rounds) {
             Thread.sleep(500)
             compose.mainClock.advanceTimeByFrame()

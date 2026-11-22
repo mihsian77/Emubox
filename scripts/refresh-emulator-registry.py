@@ -15,6 +15,8 @@ from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import BODY_LIMIT, RELEASE_BODY_LIMIT, clip_body  # noqa: E402
 
+from jsonio import save  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
 
@@ -298,7 +300,9 @@ def main():
         for e in d.get("emulators", []):
             e.pop("_section_evidence", None)
             e.pop("_family_evidence", None)
-        json.dump(d, open(REGISTRY, "w"), ensure_ascii=False, indent=2)
+        # 原来 open(REGISTRY, "w") 没写 encoding：Linux 上碰巧是 UTF-8，
+        # 在 Windows 上会按 GBK 写，中文简介直接变乱码。jsonio 固定 UTF-8。
+        save(REGISTRY, d)
         print(f"已更新 {len(d['emulators'])} 条，releases 总量: "
               f"{sum(len(e.get('releases') or []) for e in d['emulators'])}")
         print(f"失效标记 404={stats['dead404']} 451={stats['dead451']}；"

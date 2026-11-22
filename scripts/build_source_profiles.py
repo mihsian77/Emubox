@@ -22,6 +22,7 @@ import json
 import os
 import re
 import sys
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HAND = os.path.join(ROOT, "catalog", "source-profiles.json")
@@ -153,9 +154,7 @@ def main():
         return
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+    save(OUT, out)
     print(f"写入 {os.path.relpath(OUT, ROOT)}：手写 {len(hand.get('sources', {}))} + 生成 {added} = {len(sources)} 条源，"
           f"{len(out['componentTypes'])} 类组件")
 

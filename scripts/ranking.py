@@ -23,9 +23,10 @@
 import argparse
 import json
 import os
-import statistics
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from collections import defaultdict
+
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -164,8 +165,7 @@ def write_snapshot(emus):
         e["id"]: {"downloads": e.get("downloads_total") or 0, "stars": e.get("stars") or 0}
         for e in emus
     }
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(snap, f, ensure_ascii=False, separators=(",", ":"))
+    save(path, snap, indent=None)
     return path
 
 
@@ -306,8 +306,7 @@ def main():
         "boards": boards,
         "families": rows,
     }
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=1)
+    save(OUT, payload)
 
     print(f"家族 {len(rows)} 个（来自 {len(emus)} 条），下载可见 {with_dl} 条 "
           f"({payload['coverage']['downloads_visible_pct']}%)")

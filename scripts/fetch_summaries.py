@@ -21,6 +21,8 @@ import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
+from jsonio import save
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
 CACHE = os.path.join(ROOT, "data", "readme-cache")
@@ -231,7 +233,7 @@ def main():
         if s and s != e.get("summary"):
             e["summary"] = s
             changed += 1
-    json.dump(doc, open(REG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    save(REG, doc)
     print(f"写回 {changed} 条摘要")
 
 

@@ -10,6 +10,9 @@ plugins {
 // 末段 1–899 留给预发布（取 CI run number），999 专给正式版，
 // 保证「1.4.0 正式版 > 1.4.0 的任一预发布 > 1.3.0」，同段内预发布递增、可覆盖安装。
 // 预发布 tag 固定 v1.4.0-pre，构建序号只进 versionName，不进 tag 名。
+// 界面截图开关：默认关，本地需要看 UI 时 -PemuboxScreenshots=true
+val screenshotEnabled = (project.findProperty("emuboxScreenshots") as String?)?.toBoolean() ?: false
+
 val injectedVersionCode = (project.findProperty("emuboxVersionCode") as String?)?.toIntOrNull()
 val injectedVersionName = project.findProperty("emuboxVersionName") as String?
 
@@ -97,10 +100,18 @@ android {
     testOptions {
         // Robolectric 需要读取 res/assets 才能构造真实的 Context
         unitTests.isIncludeAndroidResources = true
-        unitTests.isReturnDefaultValues = true
-        // 界面截图录制开关：让 Roborazzi 在 JVM 上把 Compose 画成 PNG
+        // 不要再打开 isReturnDefaultValues：它让 android.jar 里未实现的方法
+        // 返回 false / 0 / null，于是「在生产代码里调了只有真机才有的 API」
+        // 不会报错、测试静默通过——门禁看着是绿的，实际什么也没验。
+        // 关掉后这类调用会抛 "not mocked"，暴露真问题；被测代码该用 Robolectric
+        // 就跑 Robolectric，而不是靠这个开关把异常吞掉。
+        //
+        // 截图默认不录：Roborazzi 只在 -PemuboxScreenshots=true 时把 Compose
+        // 画成 PNG（本地看 UI 用）。CI 上跑 166 个用例，其中 5 个是纯截图任务，
+        // 每次渲染 + 等数据到位要 2.5 秒以上，产物却没人看。
         unitTests.all {
-            it.systemProperty("roborazzi.test.record", "true")
+            it.systemProperty("emubox.screenshots", screenshotEnabled.toString())
+            it.systemProperty("roborazzi.test.record", screenshotEnabled.toString())
             it.systemProperty("roborazzi.test.verify", "false")
         }
     }
@@ -124,25 +135,25 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
     // 在 JVM 上模拟 Android 环境（Context / Uri / ContentResolver），无需真机
-    testImplementation("org.robolectric:robolectric:4.17")
-    testImplementation("androidx.test:core:1.7.0")
-    testImplementation("androidx.test.ext:junit:1.2.1")
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.junit)
     // Compose 界面在电脑上真实渲染成图片（无需模拟器/真机）
-    testImplementation("androidx.compose.ui:ui-test-junit4")
-    testImplementation("androidx.compose.ui:ui-test-manifest")
-    testImplementation("io.github.takahirom.roborazzi:roborazzi:1.77.0")
-    testImplementation("io.github.takahirom.roborazzi:roborazzi-compose:1.77.0")
+    testImplementation(libs.androidx.compose.ui.test.junit4)
+    testImplementation(libs.androidx.compose.ui.test.manifest)
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.roborazzi.compose)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    implementation("com.squareup.okhttp3:okhttp:5.4.0")
-    implementation("org.json:json:20260522")
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation(libs.okhttp)
+    implementation(libs.org.json)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.coil.compose)
-    implementation("androidx.documentfile:documentfile:1.1.0")
+    implementation(libs.androidx.documentfile)
     // 自研驱动渲染实测内核（私有仓 emubox-drivercheck 构建的 AAR，闭源分发）
     implementation(files("libs/drivercheck.aar"))
 }

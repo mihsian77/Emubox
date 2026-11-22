@@ -24,6 +24,7 @@ import json
 import os
 import re
 import sys
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOC_CSV = os.path.join(ROOT, "scripts", "soc", "data", "socpk-chip-gpu.csv")
@@ -262,9 +263,7 @@ def main():
         ],
         "scores": scores,
     }
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=0, sort_keys=True)
-        f.write("\n")
+    save(OUT, payload, indent=0, sort_keys=True)
 
     exact = sum(1 for v in scores.values() if v["src"] == "socpk")
     derived = sum(1 for v in scores.values() if v["src"] == "antutu")

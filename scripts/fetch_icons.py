@@ -20,6 +20,7 @@
 """
 import argparse, json, os, re, struct, sys, urllib.error, urllib.request, zlib
 from concurrent.futures import ThreadPoolExecutor
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY = os.path.join(ROOT, "data/emulator-registry.json")
@@ -238,7 +239,7 @@ def merge(hits):
         cur = json.load(open(RESULT, encoding="utf-8"))
     cur.update(hits)
     os.makedirs(os.path.dirname(RESULT), exist_ok=True)
-    json.dump(cur, open(RESULT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    save(RESULT, cur)
     print(f"累计 {len(cur)} 条")
 
 

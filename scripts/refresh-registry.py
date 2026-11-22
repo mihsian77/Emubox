@@ -16,6 +16,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DRIVER_BODY_LIMIT, clip_body  # noqa: E402
+from jsonio import save, sniff  # noqa: E402
 import urllib.request
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -171,10 +172,12 @@ def main():
         print("无变化，跳过提交")
         return
 
-    json.dump(registry, open(REGISTRY, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    # 同步 assets 副本（App 端实际读取此份），保持双副本一致
-    json.dump(registry, open(REGISTRY_ASSETS, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    json.dump(catalog, open(CATALOG, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    # 三份都走 jsonio。assets 副本与 data 主库必须字节一致（App 读的是副本），
+    # 所以两份共用同一个 style：各自嗅探的话，副本一旦被旧格式污染就永远对不齐。
+    style = sniff(REGISTRY)
+    save(REGISTRY, registry, style=style)
+    save(REGISTRY_ASSETS, registry, style=style)
+    save(CATALOG, catalog)
     print("已更新 registry/catalog（含 assets 副本）")
 
 

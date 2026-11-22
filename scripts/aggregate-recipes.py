@@ -20,6 +20,7 @@ import re
 import subprocess
 import sys
 import tempfile
+from jsonio import save
 
 BANNER_REPO = "https://github.com/The412Banner/bannerlator-game-configs.git"
 MALI_REPO = "https://github.com/GunaCharanTeja/Winlator-Mali-Community-Configs.git"
@@ -129,7 +130,7 @@ def main():
     except Exception as e:
         print('warn: 未同步 official_recipes', e, file=sys.stderr)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1)
+    save(OUT, out)
     print(f'OK  gpu={len(out["gpu_combos"])} mali={len(out["mali_combos"])} -> {OUT}')
 
 

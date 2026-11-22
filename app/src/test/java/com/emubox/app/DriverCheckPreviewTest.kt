@@ -36,6 +36,9 @@ import java.io.File
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [34], qualifiers = "w411dp-h891dp-xhdpi")
 class DriverCheckPreviewTest {
+    /** 截图开关：只有 -PemuboxScreenshots=true 时才真渲染；CI 上只验证组合不崩。 */
+    private val screenshots = System.getProperty("emubox.screenshots") == "true"
+
 
     @get:Rule
     val compose = createComposeRule()
@@ -94,6 +97,7 @@ class DriverCheckPreviewTest {
             }
         }
 
+        if (!screenshots) return
         val dir = File(System.getProperty("screenshot.dir") ?: "build/screenshots").apply { mkdirs() }
         val out = File(dir, "drivercheck-card.png")
         compose.onRoot().captureRoboImage(filePath = out.absolutePath)

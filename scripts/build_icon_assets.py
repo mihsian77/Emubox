@@ -11,9 +11,9 @@ App 侧逻辑见 `EmulatorRegistryRepository.applyLocalIcons`：命中清单就�
 `file:///android_asset/icons/<id>.webp`，没命中才回落到远程 `logo_url`。
 """
 import glob
-import json
 import os
 import sys
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "icons")
@@ -44,7 +44,7 @@ def main():
         total += os.path.getsize(out)
         ids.append(eid)
 
-    json.dump(ids, open(MANIFEST, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    save(MANIFEST, ids, indent=None)
     print(f"{len(ids)} 张 -> assets/icons，共 {total / 1024:.0f}KB，清单 {os.path.getsize(MANIFEST)}B")
 
 

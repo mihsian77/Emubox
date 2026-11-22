@@ -15,13 +15,13 @@ import html as htmllib
 import json
 import os
 import re
-import subprocess
 import sys
 import time
 import unicodedata
 import urllib.request
-import xml.etree.ElementTree as ET
 from collections import Counter
+
+from jsonio import save, sniff
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO_ROOT, "data/news-data.json")
@@ -365,12 +365,6 @@ def classify(title: str, summary: str) -> str:
     return "general"
 
 
-def fetch_rss():
-    req = urllib.request.Request(RSS_URL, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return resp.read().decode("utf-8")
-
-
 def strip_html(s: str) -> str:
     """去标签并解码 HTML 实体（`&#183;` → `·`、`&nbsp;` → 空格）。
 
@@ -414,29 +408,6 @@ PROMO_SPLIT = re.compile(r"直达链接|点此抽红包|点此领券|券后|无�
 def trim_promo(s: str) -> str:
     """摘要里的促销导购片段（直达链接/红包/领券等）之后的文字去掉，保留有效信息。"""
     return PROMO_SPLIT.split(s)[0].strip().rstrip("：:。 ")
-
-
-def parse_rss(xml_text: str):
-    root = ET.fromstring(xml_text)
-    items = []
-    for item in root.iter("item"):
-        t = item.findtext("title") or ""
-        link = item.findtext("link") or ""
-        desc = strip_html(item.findtext("description") or "")[:200]
-        pub = item.findtext("pubDate") or ""
-        if not t or not link:
-            continue
-        items.append({"title": hide_source(t.strip()), "url": link.strip(), "summary": hide_source(desc), "pubDate": pub})
-    return items
-
-
-def iso_epoch(pub_date: str):
-    """RSS pubDate → epoch 秒（无 GMT 解析依赖时返回 0）"""
-    try:
-        import email.utils
-        return int(email.utils.parsedate_to_datetime(pub_date).timestamp())
-    except Exception:
-        return 0
 
 
 def fetch_github_releases(repo: str, per_page: int = 6):
@@ -813,8 +784,10 @@ def main():
         "source": "aggregated",
         "items": merged,
     }
-    json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    json.dump(data, open(OFFLINE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    # data 主库与 assets 兜底副本共用同一个 style，两份保持字节一致
+    st = sniff(OUT)
+    save(OUT, data, style=st)
+    save(OFFLINE, data, style=st)
 
     print(f"资讯 {len(fresh_news)} 条 + 官方 {len(fresh_official)} 条 + 目录源 {len(fresh_extra)} 条，合并后 {len(merged)} 条")
     print("分类分布:", dict(Counter(it["category"] for it in merged)))

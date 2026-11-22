@@ -15,6 +15,8 @@
 import json, os, re, sys, time, threading, urllib.error, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
+from jsonio import save  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOKEN = open(os.path.expanduser("~/.codebuddy/.secrets/gh-token")).read().strip()
 
@@ -321,9 +323,7 @@ def main():
     with ThreadPoolExecutor(max_workers=5) as pool:
         results = list(pool.map(work, ems))
 
-    json.dump({"total": len(ems), "items": results},
-              open(os.path.join(ROOT, "audit-report.json"), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    save(os.path.join(ROOT, "audit-report.json"), {"total": len(ems), "items": results})
 
     # 汇总
     from collections import Counter

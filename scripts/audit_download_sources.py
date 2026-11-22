@@ -20,6 +20,8 @@ import json
 import os
 from collections import Counter, defaultdict
 
+from jsonio import save  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
 OUT_MD = os.path.join(ROOT, "docs", "download-source-audit.md")
@@ -201,17 +203,16 @@ def main():
         print(f"  {r['id']:<42s}{r['channel']:<16s}★{r['stars']}")
 
     os.makedirs(os.path.dirname(OUT_MD), exist_ok=True)
-    with open(OUT_JSON, "w", encoding="utf-8") as f:
-        json.dump({
-            "summary": {
-                "total": total, "tier_a": a_like, "tier_b": b_like, "tier_c": c_like,
-                "with_downloads": has_data,
-            },
-            "channels": {k: {"count": len(v), **dict(zip(("tier", "precision", "how"), CHANNEL_INFO.get(k, ("C", "无", ""))))}
-                         for k, v in by_channel.items()},
-            "entries": rows,
-            "probe": probe,
-        }, f, ensure_ascii=False, indent=1)
+    save(OUT_JSON, {
+        "summary": {
+            "total": total, "tier_a": a_like, "tier_b": b_like, "tier_c": c_like,
+            "with_downloads": has_data,
+        },
+        "channels": {k: {"count": len(v), **dict(zip(("tier", "precision", "how"), CHANNEL_INFO.get(k, ("C", "无", ""))))}
+                     for k, v in by_channel.items()},
+        "entries": rows,
+        "probe": probe,
+    })
 
     # Markdown
     lines = [

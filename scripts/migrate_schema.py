@@ -20,6 +20,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from infer import infer, builds_from_assets  # noqa: E402
+from jsonio import save  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOKEN_FILE = "/root/.codebuddy/.secrets/gh-token"
@@ -152,9 +153,8 @@ def main():
         print(" ", i)
 
     if args.write:
-        json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-        json.dump(audit, open(os.path.join(ROOT, "schema-audit.json"), "w", encoding="utf-8"),
-                  ensure_ascii=False, indent=1)
+        save(path, data)
+        save(os.path.join(ROOT, "schema-audit.json"), audit, indent=1)
         print(f"\n已写回 {path}，证据写入 schema-audit.json")
     else:
         print("\n（dry-run，未写盘。加 --write 落盘）")

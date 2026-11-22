@@ -35,6 +35,9 @@ import java.io.File
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [34], qualifiers = "w411dp-h891dp-xxhdpi", shadows = [ShadowNativeVulkanBridge::class])
 class ScreenRenderTest {
+    /** 截图开关：只有 -PemuboxScreenshots=true 时才真渲染；CI 上只验证组合不崩。 */
+    private val screenshots = System.getProperty("emubox.screenshots") == "true"
+
 
     @get:Rule
     val compose = createComposeRule()
@@ -47,6 +50,7 @@ class ScreenRenderTest {
 
     /** 截图目录：默认 build/screenshots，可用 -Dscreenshot.dir=... 覆盖（不写死绝对路径） */
     private fun save(name: String) {
+        if (!screenshots) return
         // 页面里的清单（运行库、组件、社区数据）走 IO 协程拉取，结果回到主线程才重组。
         // 直接取帧会截到「正在读取…」的加载态，所以先给数据留出到位窗口，再推进一次帧。
         runCatching {

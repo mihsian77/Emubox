@@ -19,9 +19,10 @@
 windows-compat 的归组靠 id+name 正则，命中不了就按 runtime 落桌面版；
 正则覆盖不到的新条目会在末尾报「未归组」，不静默塞进 other。
 """
-import json
 import os
 import re
+
+from jsonio import load, save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REG = os.path.join(ROOT, "data/emulator-registry.json")
@@ -62,8 +63,7 @@ def compat_group(e):
 
 
 def main():
-    with open(REG, encoding="utf-8") as f:
-        d = json.load(f)
+    d = load(REG)
 
     stat = {}
     ungrouped = []
@@ -93,10 +93,9 @@ def main():
             print("   ", x)
         raise SystemExit(1)
 
-    with open(REG, "w", encoding="utf-8") as f:
-        # 与其余三个派生脚本保持一致：不加末尾换行，否则每次重放都会
-        # 在文件末尾多出一行差异（详见 derive_platform_families.py 注释）。
-        json.dump(d, f, ensure_ascii=False, indent=2)
+    # 与其余三个派生脚本一致：写回走 jsonio，格式跟着文件现状走
+    # （详见 derive_platform_families.py 注释）。
+    save(REG, d)
 
     print(f"已写入 {len(d['emulators'])} 条 subcategory（仅两个分区有值）")
     for (section, sub), n in sorted(stat.items(), key=lambda kv: (kv[0][0], -kv[1])):

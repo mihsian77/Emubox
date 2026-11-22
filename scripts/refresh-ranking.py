@@ -11,6 +11,7 @@ import json, os, sys, time, urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import RELEASE_BODY_LIMIT, clip_body  # noqa: E402
+from jsonio import save
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data/emulator-ranking.json")
@@ -448,9 +449,7 @@ def main():
                        for c, n in sorted(cats.items(), key=lambda x: -x[1])],
         "emulators": emus,
     }
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(doc, f, ensure_ascii=False, indent=1)
-        f.write("\n")
+    save(OUT, doc)
     print(f"已更新：{len(emus)} 条 / {len(cats)} 分类 / {total_rel} releases / {total_as} 资产 / {os.path.getsize(OUT)/1024/1024:.2f} MB")
     print("分类:", cats)
 

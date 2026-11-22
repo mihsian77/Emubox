@@ -29,6 +29,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+from jsonio import save
 
 BASE = "https://www.emuready.com/api/mobile/trpc/"
 UA = "EmuHub-CN/1.0 (+https://github.com/mihsian77/Emubox)"
@@ -156,8 +157,7 @@ def main() -> int:
         "devices_per_soc": DEVICES_PER_SOC,
         "socs": out_socs,
     }
-    with open(OUT, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh, ensure_ascii=False, separators=(",", ":"))
+    save(OUT, payload, indent=None)
     print("写入 %s（%d 个 SoC，%.1f KB）" % (OUT, len(out_socs), os.path.getsize(OUT) / 1024))
     return 0
 

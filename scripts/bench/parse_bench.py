@@ -5,6 +5,9 @@
 """
 import json, os, re, sys
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from jsonio import save  # noqa: E402
+
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'bench-data')
 BASE = os.path.abspath(BASE)
 
@@ -123,7 +126,7 @@ def main():
                 'note':'与同目录 manifest.json 同批次抓取；UI 显示采集月份时以此为准'
             }}
             antutu_out.update(antutu)
-            json.dump(antutu_out, open(os.path.join(BASE,'antutu_soc.json'),'w'), ensure_ascii=False, indent=0)
+            save(os.path.join(BASE,'antutu_soc.json'), antutu_out)
     else:
         stale.append('antutu'); counts.update(count_existing('antutu_soc.json'))
 
@@ -145,7 +148,7 @@ def main():
             stale.append('ludashi'); counts.update(count_existing('ludashi.json'))
         else:
             for k,v in ludashi.items(): counts['ludashi_'+k]=len(v)
-            json.dump(ludashi, open(os.path.join(BASE,'ludashi.json'),'w'), ensure_ascii=False, indent=0)
+            save(os.path.join(BASE,'ludashi.json'), ludashi)
     else:
         stale.append('ludashi'); counts.update(count_existing('ludashi.json'))
 
@@ -189,7 +192,9 @@ def main():
         # 消费方（build_meta / App）可照常读，需要严格性时再看 sources[].status。
         'integrity':'partial' if stale else 'ok'
     }
-    json.dump(manifest, open(os.path.join(BASE,'manifest.json'),'w'), ensure_ascii=False, indent=2)
+    # 产物的缩进由各自文件现状决定：antutu_soc 是 indent=0、ludashi 是单行、
+    # manifest 是 indent=2。此前三处写死在这里，任一文件被统一重排就会天天假 diff。
+    save(os.path.join(BASE,'manifest.json'), manifest)
     for k,v in counts.items(): print(k, v)
     if stale:
         print('[partial] 本轮未更新的源：%s' % ', '.join(stale))

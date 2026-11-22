@@ -30,6 +30,9 @@ import java.io.File
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [35], qualifiers = "w411dp-h905dp-560dpi", shadows = [ShadowNativeVulkanBridge::class])
 class OnePlus13RenderTest {
+    /** 截图开关：只有 -PemuboxScreenshots=true 时才真渲染；CI 上只验证组合不崩。 */
+    private val screenshots = System.getProperty("emubox.screenshots") == "true"
+
 
     @get:Rule
     val compose = createComposeRule()
@@ -68,6 +71,7 @@ class OnePlus13RenderTest {
 
     /** 截图目录：默认 build/screenshots，可用 -Dscreenshot.dir=... 覆盖（不写死绝对路径） */
     private fun save(name: String) {
+        if (!screenshots) return
         val dir = File(System.getProperty("screenshot.dir") ?: "build/screenshots")
         dir.mkdirs()
         val out = File(dir, File(name).name)
