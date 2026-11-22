@@ -23,6 +23,8 @@ on:
 
 permissions:
   contents: write
+  # 刷新连续失败时开 issue：job 标红只出现在 Actions 页面，没人会去看
+  issues: write
 
 # 所有直推 main 的数据工作流共用同一互斥组：并发推送互相覆盖会
 # non-fast-forward 失败，排队执行即可（数据任务错峰，实际几乎不排队）
@@ -169,6 +171,22 @@ jobs:
           check 抓取芯片规格      "${{ steps.soc_fetch.outcome }}"
           check 重建可玩库        "${{ steps.playable.outcome }}"
           check 同步assets        "${{ steps.sync_assets.outcome }}"
+          # 跑分抓取失败不会让 step 变红：parse_bench 会标 stale、沿用上一版、
+          # 退出码 0。这种「绿着但数据没更新」比直接报错更难发现，单独判一次。
+          # 第一次 stale 只 warning（站点偶发超时很常见），连续两天才升级为失败：
+          # 连续多天同一个源抓不到，说明它已经废了，必须有人来看。
+          stale_report=$(python3 -c "import json;m=json.load(open('bench-data/manifest.json',encoding='utf-8'));print(' '.join(k+':'+str(v.get('stale_days',1)) for k,v in (m.get('sources') or {}).items() if v.get('status')=='stale'))" 2>/dev/null || true)
+          if [ -n "$stale_report" ]; then
+            echo "::warning::跑分源本轮未更新（源:连续天数）：$stale_report"
+            echo "跑分源未更新：$stale_report" >> "$GITHUB_STEP_SUMMARY"
+            for pair in $stale_report; do
+              days=${pair##*:}
+              case "$days" in ''|*[!0-9]*) days=1 ;; esac
+              if [ "$days" -ge 2 ]; then
+                failed="$failed 跑分源${pair%%:*}已连续${days}天未更新"
+              fi
+            done
+          fi
           if [ -n "$failed" ]; then
             echo "::error::以下刷新步骤失败，数据可能陈旧：$failed"
             echo "刷新失败步骤：$failed" >> "$GITHUB_STEP_SUMMARY"
@@ -211,3 +229,69 @@ jobs:
             git push origin HEAD:main && break
             sleep 5
           done
+
+      # ── 6) 失败通知：开 issue，恢复后自动关闭 ──────────────────────
+      # 只把 job 标红不够：这个 workflow 在凌晨跑，没人会去 Actions 页面看。
+      # 跑分链上次静默坏了四天，就是这么漏的——issue 至少会推到手机上。
+      - name: 失败时开 issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          TRIGGER: ${{ github.event_name }}
+        run: |
+          set -u
+          gh label create data-refresh --color B60205 \
+            --description "每日数据刷新失败" --force >/dev/null 2>&1 || true
+
+          # 数据停在哪天：读产物内的时间戳，不看 git 提交时间。
+          # antutu_soc.json 在 11-21 被提交过，内容里的 fetched_at 还是 11-18，
+          # 光看提交记录会以为数据是新的。
+          stale=$(python3 -c "
+          import json
+          try:
+              m = json.load(open('bench-data/manifest.json', encoding='utf-8'))
+          except Exception:
+              print('未知'); raise SystemExit
+          out = []
+          for k, v in (m.get('sources') or {}).items():
+              if v.get('status') == 'stale':
+                  out.append(k + ' 停在 ' + str(v.get('fetched_at') or '未知') + '（连续 ' + str(v.get('stale_days', 1)) + ' 天）')
+          print('；'.join(out) if out else 'manifest 未标记 stale')
+          " 2>/dev/null || echo "未知")
+
+          body=$(cat <<EOF
+          ## 每日数据刷新失败
+
+          - 运行：[#${{ github.run_id }}]($RUN_URL)
+          - 触发方式：\`$TRIGGER\`
+          - 失败明细：见运行页面最后一步「检查刷新结果」的报错
+          - 数据状态：$stale
+
+          修好失败步骤后，下一次定时运行成功会自动关闭本 issue。
+          EOF
+          )
+
+          existing=$(gh issue list --label data-refresh --state open --limit 1 \
+                     --json number --jq '.[0].number // empty' 2>/dev/null || true)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+            echo "已在 issue #$existing 追加本次失败" >> "${GITHUB_STEP_SUMMARY:-/dev/null}"
+          else
+            gh issue create --title "每日数据刷新失败 $(date -u +%F)" \
+              --label data-refresh --body "$body" \
+              || gh issue create --title "每日数据刷新失败 $(date -u +%F)" --body "$body"
+          fi
+
+      - name: 成功时关闭失败 issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -u
+          existing=$(gh issue list --label data-refresh --state open --limit 1 \
+                     --json number --jq '.[0].number // empty' 2>/dev/null || true)
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --comment "本次刷新全部步骤成功，数据已更新，自动关闭。"
+            echo "已关闭 issue #$existing" >> "${GITHUB_STEP_SUMMARY:-/dev/null}"
+          fi

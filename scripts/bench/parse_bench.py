@@ -171,9 +171,18 @@ def main():
         return ((prev.get('sources') or {}).get(src) or {}).get('fetched_at') or prev.get('fetched_at')
 
     def src(name,url,note,status,own_fetched_at):
-        return {'url':url,'count':counts,'status':status,
-                'fetched_at':own_fetched_at or prev_time(name),
-                'note':note}
+        d={'url':url,'count':counts,'status':status,
+           'fetched_at':own_fetched_at or prev_time(name),
+           'note':note}
+        # 连续没抓到的天数。只记 status='stale' 看不出「今天第一次」还是
+        # 「已经第四天」——后者说明这个源基本废了，workflow 要升级成红灯，
+        # 前者只值得一条 warning。成功时不留这个字段，免得每天多一行 diff。
+        if status=='stale':
+            try:
+                d['stale_days']=int(((prev.get('sources') or {}).get(name) or {}).get('stale_days') or 0)+1
+            except Exception:
+                d['stale_days']=1
+        return d
 
     manifest={
         'sources':{
@@ -197,6 +206,8 @@ def main():
     save(os.path.join(BASE,'manifest.json'), manifest)
     for k,v in counts.items(): print(k, v)
     if stale:
-        print('[partial] 本轮未更新的源：%s' % ', '.join(stale))
+        print('[partial] 本轮未更新的源：%s' % ', '.join(
+            '%s(连续%d天)' % (n, (manifest['sources'].get(n) or {}).get('stale_days', 1))
+            for n in stale))
 
 if __name__=='__main__': main()
