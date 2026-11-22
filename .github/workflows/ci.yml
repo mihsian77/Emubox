@@ -76,6 +76,20 @@ jobs:
           distribution: 'temurin'
       - name: 授予 Gradle 执行权限
         run: chmod +x gradlew
+      # Robolectric 跑一次要拉 android-all-instrumented（约 100MB，走 Maven Central）。
+      # CI 出口到 Maven 偶发超时 → MavenArtifactFetcher 抛 IOException → 整个门禁变红，
+      # 但代码本身没问题（2026-11-22 实测，本地 166 用例全绿、CI 上 2 个 classMethod 挂）。
+      # 缓存 ~/.m2 里的这一份，命中后不再下载；没命中时靠下面的重试兜住抖动。
+      - name: 缓存 Gradle 与 Robolectric 依赖
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.m2/repository/org/robolectric
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: 运行 Lint
         run: ./gradlew lint --no-daemon
       - name: 上传 Lint 报告
@@ -86,8 +100,15 @@ jobs:
           path: app/build/reports/lint-results-debug.html
       # 仓库有 18 个单元测试文件（Robolectric/Roborazzi），此前 CI 只编译从不执行，
       # 逻辑回归完全没被拦。单测在 lint 之后串行跑，失败即阻断合并。
+      # 失败重试一次：测试是幂等的，重试只为吃掉 Robolectric 依赖下载的偶发抖动，
+      # 真正的断言失败两次都会红，不会被掩盖。
       - name: 运行单元测试
-        run: ./gradlew testDebugUnitTest --no-daemon
+        run: |
+          ./gradlew testDebugUnitTest --no-daemon || {
+            echo "::warning::单元测试首次失败，10s 后重试一次（多为 Robolectric 依赖下载超时）"
+            sleep 10
+            ./gradlew testDebugUnitTest --no-daemon
+          }
       - name: 上传测试报告
         if: always()
         uses: actions/upload-artifact@v4
