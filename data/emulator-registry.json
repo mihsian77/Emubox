@@ -1,6 +1,6 @@
 {
   "version": "1.3.1",
-  "updated_at": "2026-11-22T17:45:40Z",
+  "updated_at": "2026-11-22T23:55:14Z",
   "emulators": [
     {
       "id": "1nsec-naruto-the-broken-bond-android-port",
@@ -274,7 +274,7 @@
           ]
         }
       ],
-      "stars": 2512,
+      "stars": 2515,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -523,7 +523,7 @@
       "latest_apk_name": "AbyssME-0.8.0-beta.1-armv7.apk",
       "latest_apk_url": "https://github.com/EriArk/JavaEmulator/releases/download/v0.8.0-beta.1/AbyssME-0.8.0-beta.1-armv7.apk",
       "latest_apk_size": 12415983,
-      "stars": 30,
+      "stars": 32,
       "forks": 1,
       "watchers": 0,
       "downloads_total": null,
@@ -1241,7 +1241,7 @@
         "macos",
         "ons"
       ],
-      "pushed_at": "2026-11-22T13:31:18Z",
+      "pushed_at": "2026-11-22T23:27:38Z",
       "summary": "A Godot-hosted, extensible multi-runtime platform for visual novels.",
       "artifacts": {
         "apk": 1,
@@ -3834,7 +3834,7 @@
       "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "download_kind": "github-release",
-      "pushed_at": "2026-11-21T18:34:18Z",
+      "pushed_at": "2026-11-22T20:42:28Z",
       "releases": [
         {
           "tag": "v0.2.41-arm",
@@ -4629,7 +4629,7 @@
           ]
         }
       ],
-      "stars": 60090,
+      "stars": 60247,
       "forks": 4362,
       "watchers": 419,
       "downloads_total": 0,
@@ -4656,7 +4656,7 @@
         }
       ],
       "note": "GitHub 未提供安卓安装包，请从官网获取。",
-      "pushed_at": "2026-11-22T17:39:50Z",
+      "pushed_at": "2026-11-22T23:45:00Z",
       "summary": "Tool for automatic executables porting to Linux and Windows.",
       "artifacts": {
         "apk": 0,
@@ -5525,7 +5525,7 @@
         "higan",
         "near"
       ],
-      "pushed_at": "2026-11-22T10:03:22Z",
+      "pushed_at": "2026-11-22T19:30:04Z",
       "summary": "ares is a multi-system emulator that began development on October 14th, 2004. It is a descendant of higan and bsnes, and focuses on accuracy and preservation.",
       "artifacts": {
         "apk": 0,
@@ -5739,7 +5739,7 @@
           ]
         }
       ],
-      "stars": 258,
+      "stars": 260,
       "forks": 14,
       "watchers": 7,
       "downloads_total": null,
@@ -5902,7 +5902,7 @@
           ]
         }
       ],
-      "stars": 324,
+      "stars": 325,
       "forks": 13,
       "watchers": 9,
       "downloads_total": 0,
@@ -5974,18 +5974,53 @@
       "latest_tag": "nightly-20261122",
       "latest_date": "2026-11-22T06:28:24Z",
       "channel": "prerelease",
-      "latest_body": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64-4K-pages.AppImage on most distros, or the 16K one on Asahi Linux and other Apple Silicon kernels (run getconf PAGESIZE if unsure)\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst, a 4K-page build\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst, a 4K-page build (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.",
-      "latest_apk_name": "ARMSX2-nightly-20261122-c9b6e89f34-Android-arm64.apk",
-      "latest_apk_url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-c9b6e89f34-Android-arm64.apk",
+      "latest_body": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64.AppImage, for 4K, 16K and 64K page kernels alike\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- Android: describe what applyPadButton does with p_range",
+      "latest_apk_name": "ARMSX2-nightly-20261122-6370337611-Android-arm64.apk",
+      "latest_apk_url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-Android-arm64.apk",
       "latest_apk_size": 70779497,
       "releases": [
         {
           "tag": "nightly-20261122",
-          "name": "ARMSX2 nightly 20261122 (c9b6e89f34)",
+          "name": "ARMSX2 nightly 20261122 (6370337611)",
           "date": "2026-11-22T06:28:24Z",
-          "body": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64-4K-pages.AppImage on most distros, or the 16K one on Asahi Linux and other Apple Silicon kernels (run getconf PAGESIZE if unsure)\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst, a 4K-page build\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst, a 4K-page build (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.",
+          "body": "Automated nightly build for community testing (unsigned).\n\nEvery download is named `ARMSX2-nightly-DATE-COMMIT-PLATFORM`, so builds\nfrom different nights stay distinguishable after you have downloaded them.\n\n- macOS arm64: macOS-arm64.tar.xz\n- Linux arm64: Linux-arm64.AppImage, for 4K, 16K and 64K page kernels alike\n- Windows arm64: Windows-arm64.zip\n- RetroArch on Linux arm64: Linux-arm64-libretro-core.tar.zst\n- Bare-display kmsdrm handhelds: Linux-arm64-SDL-handheld.tar.zst (Rocknix and Batocera run compositors, so use the Qt AppImage there instead)\n- Android: Android-arm64.apk (installs as ARMSX2 Nightly, alongside the stable app)\n- iOS: iOS-arm64.ipa, unsigned, sideload it (installs as ARMSX2 Nightly, alongside the stable app)\n\nComing from an old nightly? Nightlies are now a separate app, ARMSX2 Nightly, next to stable.\n\n- Android: stable cannot install over an old nightly. Back up your saves and memory cards, uninstall the old nightly, then install the stable APK.\n- iOS: your old nightly is the ARMSX2 iOS app and still has your saves. Copy them into ARMSX2 Nightly with the Files app.\n\n## What's new\n- Android: describe what applyPadButton does with p_range",
           "prerelease": true,
           "assets": [
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-Android-arm64.apk",
+              "size": 70779497,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-Android-arm64.apk"
+            },
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-iOS-arm64.ipa",
+              "size": 40930252,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-iOS-arm64.ipa"
+            },
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-Linux-arm64-libretro-core.tar.zst",
+              "size": 14634097,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-Linux-arm64-libretro-core.tar.zst"
+            },
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-Linux-arm64-SDL-handheld.tar.zst",
+              "size": 109509826,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-Linux-arm64-SDL-handheld.tar.zst"
+            },
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-Linux-arm64.AppImage",
+              "size": 63826440,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-Linux-arm64.AppImage"
+            },
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-macOS-arm64.tar.xz",
+              "size": 35361852,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-macOS-arm64.tar.xz"
+            },
+            {
+              "name": "ARMSX2-nightly-20261122-6370337611-Windows-arm64.zip",
+              "size": 48550458,
+              "url": "https://github.com/ARMSX2/ARMSX2/releases/download/nightly-20261122/ARMSX2-nightly-20261122-6370337611-Windows-arm64.zip"
+            },
             {
               "name": "ARMSX2-nightly-20261122-c9b6e89f34-Android-arm64.apk",
               "size": 70779497,
@@ -6250,7 +6285,7 @@
           "tag": "nightly-20261031"
         }
       ],
-      "pushed_at": "2026-11-22T09:04:58Z",
+      "pushed_at": "2026-11-22T23:24:54Z",
       "summary": "ARMSX2 is a free and open-source PlayStation 2 (PS2) emulator based on PCSX2.",
       "logo_source": "bundled",
       "artifacts": {
@@ -6298,14 +6333,28 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "1.7.1",
-      "latest_date": "2026-11-19T17:51:02Z",
+      "latest_tag": "ios-0.0.4",
+      "latest_date": "2026-11-22T18:51:36Z",
       "channel": "stable",
-      "latest_body": "# ARMSX3 1.7.1\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/9dfc0d72-dd76-48ba-a92c-87f84f7d2516\" />\n\n## Games\n- **Uncharted 2: Among Thieves, Super Street Fighter IV, Journey, and other games:** fixed the stop with \"Failed to compile fragment shader\" at the default Shader Precision (Low).\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/63cd78cf-4595-4326-8bc0-19c55bfe8fab\" />\n\n- **Ratchet & Clank: Tools of Destruction:** fixed the freeze on Cobalia (thanks Seeslo for testing).\n\n<img width=\"1920\" height=\"1080\" alt=\"image\" src=\"https://github.com/user-attachments/assets/bab34058-0bdf-4884-a8ff-93d789727eeb\" />\n\n-**Uncharted 3: Drake’s Deception** gets The Last of Us fix for freezes during play, since both games run the same job system, prevents freezes in UC3.\n\n<img width=\"1280\" height=\"720\" alt=\"image\" src=\"https://github.com/user-attachments/assets/c8e92266-8417-4b08-ba8e-d20280a4e5f6\" />\n\n## Save states\n- **Save states from 1.7 and earlier don't load in 1.7.1,** because RPCS3's font module update changed the save state format. In-game saves are not affected.",
+      "latest_body": "## Graphics and memory\n\n**Faster frame submission.** MoltenVK now turns each frame into Metal work on its own thread instead of on the graphics thread, so the graphics thread spends almost no time submitting a frame. Framebuffers are now freed only after the GPU has finished with them, which this needed. Thanks to RewindBox, whose work led to this.\n\n**Freed textures give their memory back.** Large texture allocations now get memory of their own, which goes back to iOS when the texture is freed. Before, one texture still in use kept a whole 64 MB block, and One Piece held 2.3 GB of blocks for 643 MB of textures. Thanks to RewindBox, whose work led to this.\n\n**Upload buffer space comes back sooner.** The texture upload buffer gives back finished space after every full GPU wait, where it held it until the next frame and swapped in a new buffer instead.\n\n**No stall on the first new shader.** The shader compiler's one-time setup now happens at boot. It used to land in gameplay, on the first shader a game hadn't shown before. Thanks to RewindBox, whose work led to this.\n\n**Black Ops II weapon.** The weapon in your hands no longer draws with its triangles over each other.",
       "latest_apk_name": "ARMSX3-1.7.1-a11-armv8.2-sdk30.apk",
       "latest_apk_url": "https://github.com/ARMSX2/ARMSX3/releases/download/1.7.1/ARMSX3-1.7.1-a11-armv8.2-sdk30.apk",
       "latest_apk_size": 79495409,
       "releases": [
+        {
+          "tag": "ios-0.0.4",
+          "name": "ARMSX3 for iOS 0.0.4 beta",
+          "date": "2026-11-22T18:51:36Z",
+          "body": "## Graphics and memory\n\n**Faster frame submission.** MoltenVK now turns each frame into Metal work on its own thread instead of on the graphics thread, so the graphics thread spends almost no time submitting a frame. Framebuffers are now freed only after the GPU has finished with them, which this needed. Thanks to RewindBox, whose work led to this.\n\n**Freed textures give their memory back.** Large texture allocations now get memory of their own, which goes back to iOS when the texture is freed. Before, one texture still in use kept a whole 64 MB block, and One Piece held 2.3 GB of blocks for 643 MB of textures. Thanks to RewindBox, whose work led to this.\n\n**Upload buffer space comes back sooner.** The texture upload buffer gives back finished space after every full GPU wait, where it held it until the next frame and swapped in a new buffer instead.\n\n**No stall on the first new shader.** The shader compiler's one-time setup now happens at boot. It used to land in gameplay, on the first shader a game hadn't shown before. Thanks to RewindBox, whose work led to this.\n\n**Black Ops II weapon.** The weapon in your hands no longer draws with its triangles over each other.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "ARMSX3-0.0.4.ipa",
+              "size": 46267291,
+              "url": "https://github.com/ARMSX2/ARMSX3/releases/download/ios-0.0.4/ARMSX3-0.0.4.ipa"
+            }
+          ]
+        },
         {
           "tag": "1.7.1",
           "name": "ARMSX3 1.7.1 ",
@@ -6391,23 +6440,9 @@
               "url": "https://github.com/ARMSX2/ARMSX3/releases/download/ios-0.0.2/ARMSX3-0.0.2.ipa"
             }
           ]
-        },
-        {
-          "tag": "ios-0.0.1",
-          "name": "ARMSX3 for iOS 0.0.1, the first public beta",
-          "date": "2026-11-08T22:11:15Z",
-          "body": "ARMSX3 for iOS is a PlayStation 3 emulator for iPhone and iPad. It runs the same RPCS3-based core as the ARMSX3 Android app, with an app built for iOS around it, and draws through Vulkan on MoltenVK. This is the first build I'm sharing with everyone. Treat it as a beta: some games already play well, many don't yet, and you will run into crashes I haven't seen. When you do, a report helps a lot, and the end of this post explains how to send one.\n\n## Contents\n\n- [What you need](#what-you-need)\n- [Installing](#installing)\n- [Setting up JIT](#setting-up-jit)\n- [Your games](#your-games)\n- [Installing games, updates and licences](#installing-games-updates-and-licences)\n- [Playing](#playing)\n- [Controls](#controls)\n- [Settings](#settings)\n- [Backgrounds and sounds](#backgrounds-and-sounds)\n- [Online and trophies](#online-and-trophies)\n- [Saves and backups](#saves-and-backups)\n- [Good to know](#good-to-know)\n- [Reporting problems](#reporting-problems)\n- [Thanks](#thanks)\n\n## What you need",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "ARMSX3-0.0.1.ipa",
-              "size": 40816535,
-              "url": "https://github.com/ARMSX2/ARMSX3/releases/download/ios-0.0.1/ARMSX3-0.0.1.ipa"
-            }
-          ]
         }
       ],
-      "stars": 1081,
+      "stars": 1083,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 506775,
@@ -6425,7 +6460,7 @@
           "tag": "1.6.2"
         }
       ],
-      "pushed_at": "2026-11-22T17:17:36Z",
+      "pushed_at": "2026-11-22T18:51:35Z",
       "summary": "Uses the latest RPCS3 upstream code (the recent ARM64 improvements included).",
       "logo_source": "bundled",
       "artifacts": {
@@ -7728,7 +7763,7 @@
           ]
         }
       ],
-      "stars": 8752,
+      "stars": 8758,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 8637312,
@@ -8824,7 +8859,7 @@
           ]
         }
       ],
-      "stars": 2150,
+      "stars": 2151,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -9080,7 +9115,7 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 50,
+      "stars": 51,
       "pushed_at": "2026-11-18T16:42:00Z",
       "releases": [
         {
@@ -10644,7 +10679,7 @@
           ]
         }
       ],
-      "stars": 20122,
+      "stars": 20137,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 16099710,
@@ -10987,7 +11022,7 @@
           ]
         }
       ],
-      "stars": 10237,
+      "stars": 10239,
       "forks": 1051,
       "watchers": 10086,
       "downloads_total": 4093974,
@@ -11342,7 +11377,7 @@
       "downloads_total": null,
       "downloads_basis": "none",
       "distribution": "release-apk",
-      "pushed_at": "2026-11-21T21:51:02Z",
+      "pushed_at": "2026-11-22T20:09:57Z",
       "releases": [
         {
           "tag": "v1.0.7",
@@ -12856,7 +12891,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 166,
+      "stars": 168,
       "forks": 21,
       "watchers": 156,
       "pushed_at": "2026-11-20T14:32:44Z",
@@ -13363,17 +13398,17 @@
           "assets": [
             {
               "name": "cap32-macos.zip",
-              "size": 815706,
+              "size": 815709,
               "url": "https://github.com/ColinPitrat/caprice32/releases/download/latest/cap32-macos.zip"
             },
             {
               "name": "cap32-win64.zip",
-              "size": 7608905,
+              "size": 5934107,
               "url": "https://github.com/ColinPitrat/caprice32/releases/download/latest/cap32-win64.zip"
             },
             {
               "name": "Caprice32.dmg",
-              "size": 1770727,
+              "size": 1770736,
               "url": "https://github.com/ColinPitrat/caprice32/releases/download/latest/Caprice32.dmg"
             }
           ]
@@ -13469,7 +13504,7 @@
           "tag": "latest"
         }
       ],
-      "pushed_at": "2026-11-22T10:31:53Z",
+      "pushed_at": "2026-11-22T21:40:57Z",
       "summary": "Caprice32 is a software emulator of the Amstrad CPC 8-bit home computer series running on Linux, macOS and Windows.",
       "artifacts": {
         "apk": 0,
@@ -14014,13 +14049,13 @@
           ]
         }
       ],
-      "stars": 145,
+      "stars": 146,
       "forks": 18,
       "watchers": 7,
       "downloads_total": null,
       "downloads_basis": "lifetime",
       "builds": [],
-      "pushed_at": "2026-11-22T17:09:11Z",
+      "pushed_at": "2026-11-22T18:58:19Z",
       "summary": "Website: copperline.dev Online demo: copperline.dev/try Chat: Discord",
       "artifacts": {
         "apk": 0,
@@ -14180,14 +14215,62 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "v1.2.3",
-      "latest_date": "2026-11-21T23:42:51Z",
+      "latest_tag": "v1.2.5",
+      "latest_date": "2026-11-22T22:32:48Z",
       "channel": "stable",
-      "latest_body": "## 1.2.3 (2026-11)\n\n### Fixes\n- Pirates: The Legend of Black Kat: the sea shows its reflections again,\n  without the white edges and the colour that changed as the camera moved.\n  The NV2A's offset textures (bump environment maps) read the coordinates\n  as they come, without dividing them by q, and xbased divided them.\n- Graphics cards whose Vulkan 1.3 driver lacks descriptor indexing (Intel\n  HD Graphics 5500 on Linux's Mesa hasvk) can start games (#378): xbased\n  asked for it even where it draws without it. When a game can't start for\n  the graphics driver, it now stops while the message shows, instead of\n  playing on with its sound.\n\n",
+      "latest_body": "## 1.2.5 (2026-11)\n\n### Fixes\n- Stereo: what a game sends to the centre or the rear speakers is heard\n  again (#402). The new audio path of 1.2.4 played only the front pair in\n  stereo, so Dynasty Warriors 5's officers' voice lines, which it sends to\n  the centre speaker even in stereo, were lost. The centre and the rears\n  now go into the front speakers as the console mixes them for its analog\n  out (at -3 dB, the LFE left out); 5.1 is as it was.\n\n",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
       "releases": [
+        {
+          "tag": "v1.2.5",
+          "name": "xbased 1.2.5",
+          "date": "2026-11-22T22:32:48Z",
+          "body": "## 1.2.5 (2026-11)\n\n### Fixes\n- Stereo: what a game sends to the centre or the rear speakers is heard\n  again (#402). The new audio path of 1.2.4 played only the front pair in\n  stereo, so Dynasty Warriors 5's officers' voice lines, which it sends to\n  the centre speaker even in stereo, were lost. The centre and the rears\n  now go into the front speakers as the console mixes them for its analog\n  out (at -3 dB, the LFE left out); 5.1 is as it was.\n\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 190,
+              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.5/SHA256SUMS.txt"
+            },
+            {
+              "name": "xbased-1.2.5-windows-x64.zip",
+              "size": 5767559,
+              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.5/xbased-1.2.5-windows-x64.zip"
+            },
+            {
+              "name": "xbased-1.2.5-x86_64.AppImage",
+              "size": 5667320,
+              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.5/xbased-1.2.5-x86_64.AppImage"
+            }
+          ]
+        },
+        {
+          "tag": "v1.2.4",
+          "name": "xbased 1.2.4",
+          "date": "2026-11-22T18:23:36Z",
+          "body": "## 1.2.4 (2026-11)\n\n### New\n- Sound as the console makes it (#375): the audio processor's own DSP\n  program, which many games use for their mix, their reverb and the like\n  and their 5.1 output, now runs recompiled to x86-64, and its speaker\n  outputs are what you hear. Each game plays its own mix and effects, and\n  in 5.1 every speaker gets what the game sends it.\n- Jay's Magic Patcher patches (#391): a .JMP file copied into the mods\n  folder shows up in its game's Mods & patches. It's offered only on the\n  executable it fits (its game, the builds its CRC-32s name, every record's\n  bytes there, offsets only on its region's release), and goes in whole or\n  not at all.\n\n### Fixes\n- Frame pacing in games that show each frame as soon as it's drawn (Star\n  Wars Republic Commando, #395): a frame that took a little longer moved\n  the limiter's timing, and about once a second two frames came out almost\n  together, at Original, Up to 60 and Up to 30 alike. A late frame now\n  keeps its place and the next one comes on time.\n- Tomb Raider: Legend: no more flashes of older frames while Lara moves.\n  The rows of a picture the game wrote with the CPU are uploaded as they",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 190,
+              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.4/SHA256SUMS.txt"
+            },
+            {
+              "name": "xbased-1.2.4-windows-x64.zip",
+              "size": 5766900,
+              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.4/xbased-1.2.4-windows-x64.zip"
+            },
+            {
+              "name": "xbased-1.2.4-x86_64.AppImage",
+              "size": 5667320,
+              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.4/xbased-1.2.4-x86_64.AppImage"
+            }
+          ]
+        },
         {
           "tag": "v1.2.3",
           "name": "xbased 1.2.3",
@@ -14259,54 +14342,6 @@
               "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.1/xbased-1.2.1-x86_64.AppImage"
             }
           ]
-        },
-        {
-          "tag": "v1.2.0",
-          "name": "xbased 1.2.0",
-          "date": "2026-11-21T00:30:24Z",
-          "body": "## xbased 1.2.0\n\nThis is the update I talked about in #353. Thanks to everyone who gave their\nopinion there, and to everyone who keeps reporting issues.\n\n### Why this update\n\n1.1.0 replaced xbased's GPU layer with a new one built around the graphics\nchip test program [nxdk_pgraph_tests](https://github.com/abaire/nxdk_pgraph_tests).\nIt matched the console in thousands of those tests, but in games it cost\nperformance, most of all on Intel GPUs and some AMD GPUs, and it brought\ngraphical glitches of its own. The Fast precision mode from 1.1.2 helped,\nbut it was never a full return to 1.0.104, and I haven't found a single\ngame where the extra precision was worth what it cost.\n\nSo 1.2.0 starts again from the GPU layer of 1.0.94, the last version before\nthat work began. Every game fix and improvement made since then has been\nbrought over to it. What's left out are the changes that were only there to\nmatch the test program. Everything outside the GPU layer (kernel, CPU,\naudio, input and interface) is the same as in 1.1.15, plus this version's\nown fixes. From now on the graphics work goes into the glitches that show\nup in games.\n\n### What this means for you",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "SHA256SUMS.txt",
-              "size": 190,
-              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.0/SHA256SUMS.txt"
-            },
-            {
-              "name": "xbased-1.2.0-windows-x64.zip",
-              "size": 5667659,
-              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.0/xbased-1.2.0-windows-x64.zip"
-            },
-            {
-              "name": "xbased-1.2.0-x86_64.AppImage",
-              "size": 5564920,
-              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.2.0/xbased-1.2.0-x86_64.AppImage"
-            }
-          ]
-        },
-        {
-          "tag": "v1.1.15",
-          "name": "xbased 1.1.15",
-          "date": "2026-11-18T00:13:49Z",
-          "body": "## 1.1.15 (2026-11)\n\n### Fixes\n- TOCA Race Driver 3 (and other games with DirectSound): no more random\n  crashes to the menu in the middle of a race. A sound that had just\n  finished could be reported to the game once more after it had let go of\n  it.\n\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "SHA256SUMS.txt",
-              "size": 192,
-              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.1.15/SHA256SUMS.txt"
-            },
-            {
-              "name": "xbased-1.1.15-windows-x64.zip",
-              "size": 5761010,
-              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.1.15/xbased-1.1.15-windows-x64.zip"
-            },
-            {
-              "name": "xbased-1.1.15-x86_64.AppImage",
-              "size": 5650936,
-              "url": "https://github.com/crazyriddler/xbased/releases/download/v1.1.15/xbased-1.1.15-x86_64.AppImage"
-            }
-          ]
         }
       ],
       "stars": 291,
@@ -14315,7 +14350,7 @@
       "downloads_total": null,
       "downloads_basis": "lifetime",
       "builds": [],
-      "pushed_at": "2026-11-21T23:42:51Z",
+      "pushed_at": "2026-11-22T22:32:47Z",
       "summary": "The original Xbox, on your PC. xbased is an original Xbox emulator for Windows and Linux, developed by crazyriddler .",
       "artifacts": {
         "apk": 0,
@@ -14496,7 +14531,7 @@
       "method": "translation",
       "runtime": "android-native",
       "subcategory": "other-container",
-      "stars": 333,
+      "stars": 334,
       "pushed_at": "2026-11-22T15:31:27Z",
       "releases": [
         {
@@ -15120,7 +15155,7 @@
           ]
         }
       ],
-      "stars": 510,
+      "stars": 511,
       "forks": 79,
       "watchers": 34,
       "downloads_total": null,
@@ -15372,7 +15407,7 @@
       "method": "recomp",
       "runtime": "android-native",
       "stars": 30,
-      "pushed_at": "2026-11-20T10:01:27Z",
+      "pushed_at": "2026-11-22T22:24:08Z",
       "releases": [
         {
           "tag": "v0.2.00-alpha-8",
@@ -15891,9 +15926,28 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 108,
-      "pushed_at": "2026-11-22T15:35:30Z",
+      "stars": 110,
+      "pushed_at": "2026-11-22T20:45:28Z",
       "releases": [
+        {
+          "tag": "v0.2.25",
+          "name": "v0.2.25",
+          "date": "2026-11-22T20:45:28Z",
+          "body": "Xbox button layout for controllers.\n\n## English\n\n**New**\n- ⚙ → \"Controller face buttons\": \"As on Switch\" (as before) or \"By letter (Xbox: A = A)\" (#36, #40). By letter, the button printed A works as A and the one printed X as X. Applies at once, no restart; the pause menu follows it. The on-screen touch buttons do not change.\n\n**Install:** installs over any earlier version and keeps your saves; no setup re-run needed. Android 10 or 11: `Diablo3-Mobile-v0.2.25-arm64-android10.apk`.\n\n## Русский\n\n**Новое**\n- ⚙ → «Кнопки A/B/X/Y геймпада»: «Как на Switch» (как раньше) или «По буквам (Xbox: A = A)» (#36, #40). По буквам кнопка с надписью A работает как A, с надписью X — как X. Срабатывает сразу, без перезапуска; меню паузы тоже следует выбору. Экранные сенсорные кнопки не меняются.\n\n**Установка:** ставится поверх любой прошлой версии, сохранения остаются; setup заново запускать не нужно. Android 10 или 11: `Diablo3-Mobile-v0.2.25-arm64-android10.apk`.\n\n## 简体中文\n\n**新增**\n- ⚙ →“手柄 A/B/X/Y 键”：“同 Switch”（与之前相同）或“按字母（Xbox：A = A）”（#36、#40）。按字母时，印着 A 的键就是 A，印着 X 的键就是 X。立即生效，无需重启；暂停菜单也随之改变。屏幕上的触控按键不变。",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Diablo3-Mobile-v0.2.25-arm64-android10.apk",
+              "size": 50038902,
+              "url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.25/Diablo3-Mobile-v0.2.25-arm64-android10.apk"
+            },
+            {
+              "name": "Diablo3-Mobile-v0.2.25-arm64.apk",
+              "size": 49981558,
+              "url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.25/Diablo3-Mobile-v0.2.25-arm64.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.2.24",
           "name": "v0.2.24",
@@ -15969,35 +16023,16 @@
               "url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.21/Diablo3-Mobile-v0.2.21-arm64.apk"
             }
           ]
-        },
-        {
-          "tag": "v0.2.20-test1",
-          "name": "0.2.20 - test build (vertex formats, GPU command memory)",
-          "date": "2026-11-16T09:26:08Z",
-          "body": "> [!CAUTION]\n> # ⚠️ TEST BUILD — NOT A RELEASE\n> ### This build is only for testing two engine changes before they go into a release. It may crash and behave incorrectly.\n> ### Back up your saves before installing. If you just want to play, stay on [0.2.20](https://github.com/Desm0nt/diablo3-port/releases/tag/v0.2.20).\n>\n> # ⚠️ ТЕСТОВАЯ СБОРКА — НЕ РЕЛИЗ\n> ### Эта сборка только для проверки двух изменений движка перед релизом. Может вылетать и вести себя некорректно.\n> ### Перед установкой сделайте копию сохранений. Если вы просто играете — оставайтесь на [0.2.20](https://github.com/Desm0nt/diablo3-port/releases/tag/v0.2.20).\n\n## English\n\nIt's 0.2.20 plus two changes in the graphics engine:\n- support for more vertex formats, with a fallback for GPUs that can't read some of them directly (some Mali, Xclipse and PowerVR GPUs): it may fix broken or missing geometry or crashes there. Nothing should change on Snapdragon (Adreno);\n- the game's GPU command memory is kept the way the Switch keeps it, so a command list is never reused while the game may still need it.\n\n- Installs over 0.2.20 and keeps your saves. To go back, install 0.2.20 over it.",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "Diablo3-Mobile-v0.2.20-test1-arm64-android10.apk",
-              "size": 49743990,
-              "url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.20-test1/Diablo3-Mobile-v0.2.20-test1-arm64-android10.apk"
-            },
-            {
-              "name": "Diablo3-Mobile-v0.2.20-test1-arm64.apk",
-              "size": 49686646,
-              "url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.20-test1/Diablo3-Mobile-v0.2.20-test1-arm64.apk"
-            }
-          ]
         }
       ],
-      "latest_tag": "v0.2.24",
-      "latest_date": "2026-11-22T15:35:30Z",
-      "latest_body": "Text input fix, frame output setting, lighter textures on Mali and PowerVR.\n\n## English\n\n**New**\n- ⚙ → \"Frame output on its own thread\": Auto / On / Off (applies on next launch). Auto works as in 0.2.22: on, and switched off by itself only if that thread really crashes twice. The phone closing the game to save battery does not count.\n\n**Fixed**\n- Naming a hero: OK no longer stays grey with \"finish choosing characters\" while the cursor is at the end of the name (Gboard, SwiftKey and other Latin keyboards).\n\n**Improved**\n- Mali and PowerVR phones: textures are unpacked on the GPU with a checked decoder and kept in a compact format, so they take less video memory. Nothing changes on Snapdragon (Adreno).\n- If the graphics driver fails, the log now says why, which helps fix such crashes.\n\n**Install:** installs over any earlier version and keeps your saves; no setup re-run needed. Android 10 or 11: `Diablo3-Mobile-v0.2.24-arm64-android10.apk`.\n\n## Русский\n\n**Новое**",
+      "latest_tag": "v0.2.25",
+      "latest_date": "2026-11-22T20:45:28Z",
+      "latest_body": "Xbox button layout for controllers.\n\n## English\n\n**New**\n- ⚙ → \"Controller face buttons\": \"As on Switch\" (as before) or \"By letter (Xbox: A = A)\" (#36, #40). By letter, the button printed A works as A and the one printed X as X. Applies at once, no restart; the pause menu follows it. The on-screen touch buttons do not change.\n\n**Install:** installs over any earlier version and keeps your saves; no setup re-run needed. Android 10 or 11: `Diablo3-Mobile-v0.2.25-arm64-android10.apk`.\n\n## Русский\n\n**Новое**\n- ⚙ → «Кнопки A/B/X/Y геймпада»: «Как на Switch» (как раньше) или «По буквам (Xbox: A = A)» (#36, #40). По буквам кнопка с надписью A работает как A, с надписью X — как X. Срабатывает сразу, без перезапуска; меню паузы тоже следует выбору. Экранные сенсорные кнопки не меняются.\n\n**Установка:** ставится поверх любой прошлой версии, сохранения остаются; setup заново запускать не нужно. Android 10 или 11: `Diablo3-Mobile-v0.2.25-arm64-android10.apk`.\n\n## 简体中文\n\n**新增**\n- ⚙ →“手柄 A/B/X/Y 键”：“同 Switch”（与之前相同）或“按字母（Xbox：A = A）”（#36、#40）。按字母时，印着 A 的键就是 A，印着 X 的键就是 X。立即生效，无需重启；暂停菜单也随之改变。屏幕上的触控按键不变。",
       "channel": "stable",
-      "latest_apk_name": "Diablo3-Mobile-v0.2.24-arm64-android10.apk",
-      "latest_apk_url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.24/Diablo3-Mobile-v0.2.24-arm64-android10.apk",
-      "latest_apk_size": 50034806,
-      "latest_apk_tag": "v0.2.24",
+      "latest_apk_name": "Diablo3-Mobile-v0.2.25-arm64-android10.apk",
+      "latest_apk_url": "https://github.com/Desm0nt/diablo3-port/releases/download/v0.2.25/Diablo3-Mobile-v0.2.25-arm64-android10.apk",
+      "latest_apk_size": 50038902,
+      "latest_apk_tag": "v0.2.25",
       "platform_families": [
         "nintendo"
       ],
@@ -16571,7 +16606,7 @@
       "latest_apk_size": 77464443,
       "latest_apk_tag": "v1.3",
       "distribution": "release-apk",
-      "stars": 146,
+      "stars": 147,
       "forks": 1,
       "watchers": 5,
       "downloads_total": null,
@@ -17390,14 +17425,38 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "6676dd4",
-      "latest_date": "2026-11-21T23:54:36Z",
+      "latest_tag": "983a025",
+      "latest_date": "2026-11-22T22:06:34Z",
       "channel": "stable",
       "latest_body": "",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
       "releases": [
+        {
+          "tag": "983a025",
+          "name": "0.4-550bd30-dbx",
+          "date": "2026-11-22T22:06:34Z",
+          "body": "",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "supermodel-Linux-0.4-550bd30.tgz",
+              "size": 2299204,
+              "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/983a025/supermodel-Linux-0.4-550bd30.tgz"
+            },
+            {
+              "name": "supermodel-macOS-0.4-550bd30.tgz",
+              "size": 7009924,
+              "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/983a025/supermodel-macOS-0.4-550bd30.tgz"
+            },
+            {
+              "name": "supermodel-Windows-0.4-550bd30.zip",
+              "size": 5365866,
+              "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/983a025/supermodel-Windows-0.4-550bd30.zip"
+            }
+          ]
+        },
         {
           "tag": "6676dd4",
           "name": "0.4-7a3ccb6-dbx",
@@ -17493,30 +17552,6 @@
               "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/859ecce/supermodel-Windows-0.4-0b82a98.zip"
             }
           ]
-        },
-        {
-          "tag": "9c25c7b",
-          "name": "0.4-3434abb-dbx",
-          "date": "2026-11-15T23:44:11Z",
-          "body": "",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "supermodel-Linux-0.4-3434abb.tgz",
-              "size": 2281751,
-              "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/9c25c7b/supermodel-Linux-0.4-3434abb.tgz"
-            },
-            {
-              "name": "supermodel-macOS-0.4-3434abb.tgz",
-              "size": 6993716,
-              "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/9c25c7b/supermodel-macOS-0.4-3434abb.tgz"
-            },
-            {
-              "name": "supermodel-Windows-0.4-3434abb.zip",
-              "size": 5354059,
-              "url": "https://github.com/DirtBagXon/model3emu-code-sinden/releases/download/9c25c7b/supermodel-Windows-0.4-3434abb.zip"
-            }
-          ]
         }
       ],
       "stars": 56,
@@ -17553,7 +17588,7 @@
           "tag": "96af5fe"
         }
       ],
-      "pushed_at": "2026-11-21T23:54:35Z",
+      "pushed_at": "2026-11-22T22:06:33Z",
       "summary": "This is a fork of Supermodel to add native Sinden light gun support.",
       "artifacts": {
         "apk": 0,
@@ -17960,7 +17995,7 @@
           ]
         }
       ],
-      "stars": 6204,
+      "stars": 6206,
       "forks": 438,
       "watchers": 49,
       "downloads_total": null,
@@ -18004,7 +18039,7 @@
           "tag": "v0.1.0-rc1"
         }
       ],
-      "pushed_at": "2026-11-22T15:43:41Z",
+      "pushed_at": "2026-11-22T23:09:57Z",
       "downloads_basis": "lifetime",
       "summary": "Eglantine is a free and opensource (FOSS) Switch 2 emulator, derived from Eden, Yuzu and Sudachi - started by developer Camille LaVey.",
       "artifacts": {
@@ -18459,12 +18494,12 @@
       "latest_tag": "nJoy",
       "latest_apk_url": "",
       "releases": [],
-      "stars": 15866,
+      "stars": 15869,
       "downloads_basis": "none",
       "download_url": "https://dolphin-emu.org/",
       "download_kind": "official-site",
       "note": "GitHub 未提供安卓安装包，请从官网获取。",
-      "pushed_at": "2026-11-22T14:58:03Z",
+      "pushed_at": "2026-11-22T22:47:09Z",
       "channel": "stable",
       "summary": "Dolphin is an emulator for running GameCube and Wii games on Windows, Linux, macOS, and recent Android devices.",
       "artifacts": {
@@ -18521,7 +18556,7 @@
       "latest_apk_name": "DolphinVR-Redux-v0.5-Quest.apk",
       "latest_apk_url": "https://github.com/iChris4/dolphinXR/releases/download/v0.5/DolphinVR-Redux-v0.5-Quest.apk",
       "latest_apk_size": 40415593,
-      "stars": 196,
+      "stars": 197,
       "forks": 21,
       "watchers": 0,
       "downloads_total": null,
@@ -20318,7 +20353,7 @@
           ]
         }
       ],
-      "stars": 1225,
+      "stars": 1227,
       "forks": 170,
       "watchers": 45,
       "downloads_total": null,
@@ -20352,7 +20387,7 @@
           "tag": "3.8.20"
         }
       ],
-      "pushed_at": "2026-11-22T01:03:37Z",
+      "pushed_at": "2026-11-22T23:29:55Z",
       "summary": "Gearboy is an accurate, cross-platform Game Boy / Game Boy Color / Super Game Boy emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MC…",
       "artifacts": {
         "apk": 0,
@@ -20892,7 +20927,7 @@
           "tag": "1.7.6"
         }
       ],
-      "pushed_at": "2026-11-22T00:19:58Z",
+      "pushed_at": "2026-11-22T23:29:59Z",
       "summary": "Gearcoleco is a very accurate, cross-platform ColecoVision and Coleco ADAM emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MCP serve…",
       "artifacts": {
         "apk": 0,
@@ -21406,7 +21441,7 @@
       "download_url": "https://github.com/drhelius/geargrafx/releases",
       "download_kind": "github-release",
       "builds": [],
-      "pushed_at": "2026-11-22T01:03:40Z",
+      "pushed_at": "2026-11-22T23:30:01Z",
       "summary": "Geargrafx is a very accurate, cross-platform TurboGrafx-16 / PC Engine / SuperGrafx / CD-ROM² / LD-ROM² emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArc…",
       "artifacts": {
         "apk": 0,
@@ -21944,7 +21979,7 @@
           "tag": "1.2.38"
         }
       ],
-      "pushed_at": "2026-11-22T01:03:42Z",
+      "pushed_at": "2026-11-22T23:30:03Z",
       "summary": "Gearlynx is a very accurate, cross-platform Atari Lynx emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedded MCP server for AI debugging a…",
       "artifacts": {
         "apk": 0,
@@ -22488,7 +22523,7 @@
           "tag": "3.9.24"
         }
       ],
-      "pushed_at": "2026-11-22T00:58:58Z",
+      "pushed_at": "2026-11-22T23:29:57Z",
       "summary": "Gearsystem is a very accurate, cross-platform Sega Master System / Game Gear / SG-1000 emulator written in C++ that runs on Windows, macOS, Linux, BSD and RetroArch, with an embedd…",
       "artifacts": {
         "apk": 0,
@@ -22716,12 +22751,12 @@
           ]
         }
       ],
-      "stars": 21321,
+      "stars": 21360,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 316398,
       "downloads_basis": "lifetime",
-      "pushed_at": "2026-11-22T17:35:28Z",
+      "pushed_at": "2026-11-22T22:56:20Z",
       "summary": "DroidDeck brings the SteamOS experience to Android: Steam Gaming Mode, full Linux desktop, integration with GOG, Epic Games, Xbox, and other storefronts, Steam VR, and more!",
       "artifacts": {
         "apk": 4,
@@ -23016,8 +23051,37 @@
       "runtime": "android-native",
       "subcategory": "other-container",
       "stars": 1,
-      "pushed_at": "2026-11-22T17:34:07Z",
+      "pushed_at": "2026-11-22T23:33:49Z",
       "releases": [
+        {
+          "tag": "v0.2.0-dev.3432",
+          "name": "droidtop v0.2.0-dev.3432",
+          "date": "2026-11-22T18:14:14Z",
+          "body": "### Changed\n- Internal changes: 1. Nothing looks different\n\n### Fixed\n- Apps with a droidtop plugin connect when they ask, also after they restart",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "changelog.json",
+              "size": 134553,
+              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3432/changelog.json"
+            },
+            {
+              "name": "droidtop-debug.apk",
+              "size": 252739526,
+              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3432/droidtop-debug.apk"
+            },
+            {
+              "name": "droidtop.apk",
+              "size": 213368643,
+              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3432/droidtop.apk"
+            },
+            {
+              "name": "release-info.json",
+              "size": 378,
+              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3432/release-info.json"
+            }
+          ]
+        },
         {
           "tag": "v0.2.0-dev.3430",
           "name": "droidtop v0.2.0-dev.3430",
@@ -23133,45 +23197,16 @@
               "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3427/release-info.json"
             }
           ]
-        },
-        {
-          "tag": "v0.2.0-dev.3426",
-          "name": "droidtop v0.2.0-dev.3426",
-          "date": "2026-11-22T09:03:26Z",
-          "body": "### Changed\n- Internal changes: 2. Nothing looks different",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "changelog.json",
-              "size": 133055,
-              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3426/changelog.json"
-            },
-            {
-              "name": "droidtop-debug.apk",
-              "size": 252732466,
-              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3426/droidtop-debug.apk"
-            },
-            {
-              "name": "droidtop.apk",
-              "size": 213362991,
-              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3426/droidtop.apk"
-            },
-            {
-              "name": "release-info.json",
-              "size": 378,
-              "url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3426/release-info.json"
-            }
-          ]
         }
       ],
-      "latest_tag": "v0.2.0-dev.3430",
-      "latest_date": "2026-11-22T16:26:56Z",
-      "latest_body": "### Changed\n- Browser, download sites, file hosts and debrid services are together under Settings > Internet",
+      "latest_tag": "v0.2.0-dev.3432",
+      "latest_date": "2026-11-22T18:14:14Z",
+      "latest_body": "### Changed\n- Internal changes: 1. Nothing looks different\n\n### Fixed\n- Apps with a droidtop plugin connect when they ask, also after they restart",
       "channel": "prerelease",
       "latest_apk_name": "droidtop.apk",
-      "latest_apk_url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3430/droidtop.apk",
-      "latest_apk_size": 213368071,
-      "latest_apk_tag": "v0.2.0-dev.3430",
+      "latest_apk_url": "https://github.com/Droidtop/droidtop/releases/download/v0.2.0-dev.3432/droidtop.apk",
+      "latest_apk_size": 213368643,
+      "latest_apk_tag": "v0.2.0-dev.3432",
       "platform_families": [
         "pc"
       ],
@@ -23609,7 +23644,7 @@
           ]
         }
       ],
-      "stars": 11043,
+      "stars": 11044,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -26115,7 +26150,7 @@
           "tag": "v0.1.3"
         }
       ],
-      "pushed_at": "2026-11-22T07:12:11Z",
+      "pushed_at": "2026-11-22T21:00:18Z",
       "summary": "EmuCoreA is a PSP library, launcher, and emulator frontend for Android. It pairs a purpose-built Compose interface with a vendored PPSSPP core that is built together with the app…",
       "logo_source": "bundled",
       "artifacts": {
@@ -26455,7 +26490,7 @@
           "tag": "v0.1.3"
         }
       ],
-      "pushed_at": "2026-11-22T07:12:20Z",
+      "pushed_at": "2026-11-22T21:00:27Z",
       "summary": "EmuCoreH is a Sega game library, launcher, and emulator frontend for Android.",
       "logo_source": "bundled",
       "artifacts": {
@@ -26726,7 +26761,7 @@
           ]
         }
       ],
-      "stars": 251,
+      "stars": 253,
       "forks": 7,
       "watchers": 9,
       "downloads_total": 0,
@@ -26792,14 +26827,33 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "v0.6.0",
-      "latest_date": "2026-11-16T09:54:01Z",
+      "latest_tag": "v0.6.1",
+      "latest_date": "2026-11-22T21:20:38Z",
       "channel": "stable",
-      "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.5.9...v0.6.0\n\nWhat's new: 0.6.0\n\n- Fixed saving the hidden left stick state.\n- Fixed disc swapping Dynasty Warriors 5, including the Load Original feature in Xtreme Legends.\n- Disabled experimental Vulkan warm-up to improve stability.",
-      "latest_apk_name": "EmuCoreX-0.6.0-parallel-v060.apk",
-      "latest_apk_url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.6.0/EmuCoreX-0.6.0-parallel-v060.apk",
-      "latest_apk_size": 81132062,
+      "latest_body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.6.0...v0.6.1\n\nWhat's new: 0.6.1\n\n- Added a new PS2 BIOS-style interface\n\n- Added an in-game Drivers tab with switching without restarting\n\n- Added performance profiles during initial setup and a new Ultra profile\n\n- The game library now updates automatically\n\n- Added RetroAchievements login directly from the in-game menu\n\n- Improved RetroAchievements Hardcore mode\n\n- Added in-game progress indicators and leaderboards\n\n- Improved graphics accuracy in Vulkan and OpenGL\n\n- Restored MaliSX2 compatibility with Mali-G620/G720\n\n- The control editor layout now matches the in-game layout\n\n- The side menu no longer opens automatically when rotating the screen\n\n- Updated libraries and improved stability",
+      "latest_apk_name": "EmuCoreX-0.6.1-parallel-v061.apk",
+      "latest_apk_url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.6.1/EmuCoreX-0.6.1-parallel-v061.apk",
+      "latest_apk_size": 82009135,
       "releases": [
+        {
+          "tag": "v0.6.1",
+          "name": "v0.6.1",
+          "date": "2026-11-22T21:20:38Z",
+          "body": "**Full Changelog**: https://github.com/sashkinbro/EmuCoreX/compare/v0.6.0...v0.6.1\n\nWhat's new: 0.6.1\n\n- Added a new PS2 BIOS-style interface\n\n- Added an in-game Drivers tab with switching without restarting\n\n- Added performance profiles during initial setup and a new Ultra profile\n\n- The game library now updates automatically\n\n- Added RetroAchievements login directly from the in-game menu\n\n- Improved RetroAchievements Hardcore mode\n\n- Added in-game progress indicators and leaderboards\n\n- Improved graphics accuracy in Vulkan and OpenGL\n\n- Restored MaliSX2 compatibility with Mali-G620/G720\n\n- The control editor layout now matches the in-game layout\n\n- The side menu no longer opens automatically when rotating the screen\n\n- Updated libraries and improved stability",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "EmuCoreX-0.6.1-parallel-v061.apk",
+              "size": 82009135,
+              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.6.1/EmuCoreX-0.6.1-parallel-v061.apk"
+            },
+            {
+              "name": "EmuCoreX.v0.6.1.apk",
+              "size": 78663066,
+              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.6.1/EmuCoreX.v0.6.1.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.6.0",
           "name": "v0.6.0",
@@ -26875,25 +26929,6 @@
               "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.7/EmuCoreX.v0.5.7.apk"
             }
           ]
-        },
-        {
-          "tag": "v0.5.6",
-          "name": "v0.5.6",
-          "date": "2026-11-09T19:21:59Z",
-          "body": "What's new: 0.5.6\n\n- Fixed issues in Hitman, GT4, and other games\n- For Mali GPUs, we recommend using the custom MaliSX2 driver\n- Other fixes and improvements",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "EmuCoreX-0.5.6-parallel-v056.apk",
-              "size": 77141038,
-              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.6/EmuCoreX-0.5.6-parallel-v056.apk"
-            },
-            {
-              "name": "EmuCoreX.v0.5.6.apk",
-              "size": 73895488,
-              "url": "https://github.com/sashkinbro/EmuCoreX/releases/download/v0.5.6/EmuCoreX.v0.5.6.apk"
-            }
-          ]
         }
       ],
       "stars": 251,
@@ -26914,7 +26949,7 @@
           "tag": "v0.5.4"
         }
       ],
-      "pushed_at": "2026-11-22T17:27:05Z",
+      "pushed_at": "2026-11-22T21:20:37Z",
       "summary": "EmuCoreX is a PlayStation 2 library, launcher, and emulator frontend for Android.",
       "logo_source": "bundled",
       "artifacts": {
@@ -26932,7 +26967,7 @@
         "sony"
       ],
       "downloads_lifetime": 83846,
-      "latest_apk_tag": "v0.6.0",
+      "latest_apk_tag": "v0.6.1",
       "download_kind": "github-release",
       "android_ready_source": "release"
     },
@@ -26963,22 +26998,51 @@
       "status": "active",
       "needs_review": true,
       "method": "emulation",
-      "latest_tag": "1.0.13",
-      "latest_date": "2026-11-21T11:40:41Z",
+      "latest_tag": "1.0.14",
+      "latest_date": "2026-11-22T20:40:03Z",
       "channel": "stable",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
-      "stars": 360,
+      "stars": 361,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
       "downloads_basis": "lifetime",
       "distribution": "source-only",
       "download_kind": "source-only",
-      "pushed_at": "2026-11-22T10:16:34Z",
+      "pushed_at": "2026-11-22T21:26:40Z",
       "note": "仅限已越狱的 PlayStation 4。",
       "releases": [
+        {
+          "tag": "1.0.14",
+          "name": "v1.0.14",
+          "date": "2026-11-22T20:40:03Z",
+          "body": "## EmuFive 1.0.14: more PS5 CPU instructions, memory stall close, smaller home screen\n\n### What's new\n- Fixed: games that stopped on the PS5 CPU's ADX instructions (`ADCX`, `ADOX`), such as Invincible VS and Dispatch (#64). The PS4's CPU doesn't have them, so EmuFive now replaces them.\n- More PS5 CPU instructions work on the PS4: `RDRAND`, `RDSEED`, `CLFLUSHOPT`, `CLWB`, `CLZERO`, `RDPRU`, `RDFSBASE` and `RDGSBASE`.\n- When the PS4 runs so low on memory that it stalls (under 64 MB free for a minute), the game is closed with a memory message, instead of the PS4 freezing.\n- The home screen uses less memory (about 170 MB less at 4K), leaving more for games.\n- Fixed: black blocks in canvas games in Internet (#74).\n\n### Update\nSettings, System, Software update. No restart needed: the home screen starts again by itself.\n\nFrom 1.0.3 or earlier, start the update once by hand (see the README's Changelog).\n\n### New installs\nUse the `ps5-ps4-rootfs.tar.xz` of this release.\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "emufive-1.0.14.tar",
+              "size": 8222720,
+              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.14/emufive-1.0.14.tar"
+            },
+            {
+              "name": "emufive-1.0.14.tar.sha256",
+              "size": 85,
+              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.14/emufive-1.0.14.tar.sha256"
+            },
+            {
+              "name": "ps5-ps4-rootfs.tar.xz",
+              "size": 388257896,
+              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.14/ps5-ps4-rootfs.tar.xz"
+            },
+            {
+              "name": "ps5-ps4-rootfs.tar.xz.sha256",
+              "size": 88,
+              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.14/ps5-ps4-rootfs.tar.xz.sha256"
+            }
+          ]
+        },
         {
           "tag": "1.0.13",
           "name": "v1.0.13",
@@ -27094,35 +27158,6 @@
               "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.10/ps5-ps4-rootfs.tar.xz.sha256"
             }
           ]
-        },
-        {
-          "tag": "1.0.9",
-          "name": "v1.0.9",
-          "date": "2026-11-18T07:47:25Z",
-          "body": "## EmuFive 1.0.9: faster 3D games, video clips, game info\n\n### What's new\n- **3D games run much faster.** New GPU-shared game memory puts game memory where the PS4's GPU reads and writes it in place, so buffers are no longer copied, tracked page by page, or read back. Teardown on a PS4 Pro: the menu scene went from 2.1 to 7 FPS, and in game it runs at 9–12 FPS (about 20 in light scenes). It is on by default; if a game hangs or runs out of memory, turn it off in Settings > Games > GPU-shared game memory.\n- **Fixes:** Teardown's crash in the main menu (it writes GPU commands from shaders), two crashes in long sessions, and a hang in Invincible VS.\n- **Video clips.** PS + Triangle starts recording, in a game too, and PS + Triangle again stops it (720p or 1080p at 30 FPS, with sound, up to 60 minutes). Clips are saved on the PS4 (`~/Videos`) or in `PS5-videos` on a USB drive (Settings > Storage). Media shows and plays them, and Share sends them to your phone like screenshots. The PS4's video encoder can't be used under Linux, so the CPU encodes: about one core for 720p.",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "emufive-1.0.9.tar",
-              "size": 8427520,
-              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.9/emufive-1.0.9.tar"
-            },
-            {
-              "name": "emufive-1.0.9.tar.sha256",
-              "size": 84,
-              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.9/emufive-1.0.9.tar.sha256"
-            },
-            {
-              "name": "ps5-ps4-rootfs.tar.xz",
-              "size": 388183644,
-              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.9/ps5-ps4-rootfs.tar.xz"
-            },
-            {
-              "name": "ps5-ps4-rootfs.tar.xz.sha256",
-              "size": 88,
-              "url": "https://github.com/blue0x1/EmuFive/releases/download/1.0.9/ps5-ps4-rootfs.tar.xz.sha256"
-            }
-          ]
         }
       ],
       "artifacts": {
@@ -27140,7 +27175,7 @@
         "sony"
       ],
       "downloads_lifetime": 5359,
-      "latest_body": "## EmuFive 1.0.13: cheat manager, Internet and keyboard fixes, .zar art\n\n### What's new\n- Cheat manager. Turn it on in Settings, Games, and a Cheats tile shows on the home screen. It downloads the PS5 cheats of the [HEN Cheats Collection](https://github.com/TeeKay87/HEN-Cheats-Collection) and lists your games that have cheats for their version. Pick the cheats you want; they are applied when the game starts. A game's menu shows how many are on.\n- Fixed: checkered blocks on web pages in Internet (#61).\n- Keyboard: R1 is Shift, L1 is Space, and Shift twice is caps lock (#61).\n- `.zar` games show their name, icon and background on the home screen (#54).\n\n### Update\nSettings, System, Software update. No restart needed: the home screen starts again by itself.\n\nFrom 1.0.3 or earlier, start the update once by hand (see the README's Changelog).\n\n### New installs\nUse the `ps5-ps4-rootfs.tar.xz` of this release.\n\n### Credits\nCheats: the HEN Cheats Collection by TeeKay87 and the cheat makers named in each file.\n",
+      "latest_body": "## EmuFive 1.0.14: more PS5 CPU instructions, memory stall close, smaller home screen\n\n### What's new\n- Fixed: games that stopped on the PS5 CPU's ADX instructions (`ADCX`, `ADOX`), such as Invincible VS and Dispatch (#64). The PS4's CPU doesn't have them, so EmuFive now replaces them.\n- More PS5 CPU instructions work on the PS4: `RDRAND`, `RDSEED`, `CLFLUSHOPT`, `CLWB`, `CLZERO`, `RDPRU`, `RDFSBASE` and `RDGSBASE`.\n- When the PS4 runs so low on memory that it stalls (under 64 MB free for a minute), the game is closed with a memory message, instead of the PS4 freezing.\n- The home screen uses less memory (about 170 MB less at 4K), leaving more for games.\n- Fixed: black blocks in canvas games in Internet (#74).\n\n### Update\nSettings, System, Software update. No restart needed: the home screen starts again by itself.\n\nFrom 1.0.3 or earlier, start the update once by hand (see the README's Changelog).\n\n### New installs\nUse the `ps5-ps4-rootfs.tar.xz` of this release.\n",
       "name_zh": "在 PS4 上运行 PS5 游戏",
       "latest_apk_tag": "",
       "android_ready_source": "release"
@@ -27253,7 +27288,7 @@
       "downloads_basis": "lifetime",
       "distribution": "desktop-build",
       "download_kind": "desktop-build",
-      "pushed_at": "2026-11-22T07:49:01Z",
+      "pushed_at": "2026-11-22T20:16:16Z",
       "releases": [
         {
           "tag": "v0.60.1",
@@ -28392,32 +28427,32 @@
           "tag": "interim-build",
           "name": "interim-build",
           "date": "2025-11-10T12:01:07Z",
-          "body": "Interim Builds - Latest auto builds off master branch - commit: d63670db0e72d3acf506103f8bc784268dab5c3b\nDate: 2026-11-21T17:31:19.0000000Z",
+          "body": "Interim Builds - Latest auto builds off master branch - commit: d38e642c6bf961797a7c9ab058a4c67b45611cf3\nDate: 2026-11-22T19:42:19.0000000Z",
           "prerelease": true,
           "assets": [
             {
               "name": "fceux-Darwin.dmg",
-              "size": 52829502,
+              "size": 52829918,
               "url": "https://github.com/TASEmulators/fceux/releases/download/interim-build/fceux-Darwin.dmg"
             },
             {
               "name": "fceux-ubuntu-x64.deb",
-              "size": 6681480,
+              "size": 6683342,
               "url": "https://github.com/TASEmulators/fceux/releases/download/interim-build/fceux-ubuntu-x64.deb"
             },
             {
               "name": "fceux-win32.zip",
-              "size": 4035885,
+              "size": 4035882,
               "url": "https://github.com/TASEmulators/fceux/releases/download/interim-build/fceux-win32.zip"
             },
             {
               "name": "fceux-win64-QtSDL.zip",
-              "size": 112575752,
+              "size": 112576177,
               "url": "https://github.com/TASEmulators/fceux/releases/download/interim-build/fceux-win64-QtSDL.zip"
             },
             {
               "name": "fceux-win64.zip",
-              "size": 4854683,
+              "size": 4854684,
               "url": "https://github.com/TASEmulators/fceux/releases/download/interim-build/fceux-win64.zip"
             }
           ]
@@ -28509,7 +28544,7 @@
       ],
       "license": "GPL-2.0",
       "topics": [],
-      "pushed_at": "2026-11-21T17:31:23Z",
+      "pushed_at": "2026-11-22T19:42:21Z",
       "summary": "An open source NES Emulator for Windows and Unix that features solid emulation accuracy and state of the art tools for power users. For some reason casual gamers use it too.",
       "artifacts": {
         "apk": 0,
@@ -28814,7 +28849,7 @@
           ]
         }
       ],
-      "stars": 4986,
+      "stars": 4992,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -28876,10 +28911,10 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 8441,
+      "stars": 8443,
       "forks": 446,
       "watchers": 8417,
-      "pushed_at": "2026-11-22T09:01:39Z",
+      "pushed_at": "2026-11-22T19:49:13Z",
       "latest_tag": "FEX-2611.1",
       "latest_date": "2026-11-11T19:23:54Z",
       "channel": "stable",
@@ -29825,7 +29860,7 @@
           "tag": "v2.7"
         }
       ],
-      "pushed_at": "2026-11-22T16:01:40Z",
+      "pushed_at": "2026-11-22T23:13:29Z",
       "summary": "Join us on our Discord server for a chat.",
       "logo_source": "bundled",
       "artifacts": {
@@ -30626,7 +30661,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 225,
+      "stars": 227,
       "forks": 18,
       "watchers": 213,
       "pushed_at": "2026-11-15T22:21:18Z",
@@ -30826,7 +30861,7 @@
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
-      "stars": 201,
+      "stars": 202,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
@@ -31088,10 +31123,10 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 155401,
+      "stars": 155420,
       "forks": 14228,
       "watchers": 154967,
-      "pushed_at": "2026-11-22T17:41:04Z",
+      "pushed_at": "2026-11-22T20:14:36Z",
       "latest_tag": "v5.0.1",
       "latest_date": "2026-10-08T06:44:27Z",
       "channel": "stable",
@@ -31483,7 +31518,7 @@
           ]
         }
       ],
-      "stars": 94,
+      "stars": 95,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -31678,7 +31713,7 @@
           ]
         }
       ],
-      "stars": 333,
+      "stars": 337,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -31907,12 +31942,12 @@
       "latest_apk_size": 4848079,
       "latest_apk_tag": "v2.2.0",
       "distribution": "release-apk",
-      "stars": 273,
+      "stars": 274,
       "forks": 10,
       "watchers": 4,
       "downloads_total": null,
       "downloads_basis": "none",
-      "pushed_at": "2026-11-20T18:44:30Z",
+      "pushed_at": "2026-11-22T20:17:49Z",
       "releases": [
         {
           "tag": "v2.2.0",
@@ -32132,7 +32167,7 @@
       "downloads_total": null,
       "downloads_basis": "none",
       "builds": [],
-      "pushed_at": "2026-11-22T16:08:51Z",
+      "pushed_at": "2026-11-22T21:23:28Z",
       "summary": "To discuss this emulator specifically, please join our Discord server:",
       "artifacts": {
         "apk": 0,
@@ -32410,7 +32445,7 @@
       "latest_apk_name": "GTA_V_v4.4.1_Release.apk",
       "latest_apk_url": "https://github.com/WALID1618Y/GTA-V-android-PORT/releases/download/Grand-V/GTA_V_v4.4.1_Release.apk",
       "latest_apk_size": 294759044,
-      "stars": 352,
+      "stars": 374,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
@@ -33258,7 +33293,7 @@
           ]
         }
       ],
-      "stars": 936,
+      "stars": 939,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -33483,7 +33518,7 @@
           ]
         }
       ],
-      "stars": 6147,
+      "stars": 6152,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -33510,7 +33545,7 @@
         }
       ],
       "note": "GitHub 未提供安卓安装包，请从官网获取。",
-      "pushed_at": "2026-11-22T17:01:45Z",
+      "pushed_at": "2026-11-22T19:04:10Z",
       "summary": "If you're having any trouble after reading through this `README`, feel free to ask for help in the Support text channels. Please keep in mind that we do not condone piracy.",
       "artifacts": {
         "apk": 0,
@@ -33846,7 +33881,7 @@
           ]
         }
       ],
-      "stars": 605,
+      "stars": 608,
       "forks": 57,
       "watchers": 20,
       "downloads_total": null,
@@ -34128,7 +34163,7 @@
           ]
         }
       ],
-      "stars": 56,
+      "stars": 57,
       "forks": 0,
       "watchers": 5,
       "downloads_total": 28,
@@ -34238,7 +34273,7 @@
       "latest_apk_name": "app-mainline-release.apk",
       "latest_apk_url": "https://github.com/pavelgajdo/Hokkaido/releases/download/android-0.7.1/app-mainline-release.apk",
       "latest_apk_size": 81044708,
-      "stars": 364,
+      "stars": 365,
       "forks": 15,
       "watchers": 0,
       "downloads_total": null,
@@ -34573,7 +34608,7 @@
           ]
         }
       ],
-      "stars": 767,
+      "stars": 768,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 487053,
@@ -34807,14 +34842,68 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "v1.4.2",
-      "latest_date": "2026-11-22T17:02:49Z",
+      "latest_tag": "v1.4.3",
+      "latest_date": "2026-11-22T23:30:49Z",
       "channel": "stable",
-      "latest_body": "HyperHLE v1.4.2\n\n## Changelog\n\n- [`a799710`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/a7997102805864bb92a1a8998c9c363f1b3bd664) **@KlugKlugTG**: Update README.md\n- [`89cb615`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/89cb615a1f43579a7559d0dac47b00a9075a7885) **@KlugKlugTG**: Fix ss13touch startup APIs and add dladdr emulation setting\n- [`8082f47`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/8082f47d02ae7978f23b83341770c97778968afd) **@KlugKlugTG**: Fix CGContextClip export arity\n- [`36329d1`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/36329d1486a16ac4d65ce854d17c60485689577e) **@KlugKlugTG**: Remove bogus CMSampleBufferGetDuration export\n- [`1df1875`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/1df1875f95253464c895379cefdcedf29ae06211) **@KlugKlugTG**: Implement remaining runtime/CoreVideo symbols from the ss13touch log\n- [`d9117a2`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/d9117a2bacb00c69019d17885c6808c4c4cbee4d) **@KlugKlugTG**: ns_dictionary: give raw guest dictionary instances a host object",
+      "latest_body": "HyperHLE v1.4.3\n\n## Changelog\n\n- [`3694fa8`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/3694fa8c9f9179e381837e20dd56f1e9e61c8e53) **@codex**: Fix immortal Objective-C allocation for guest subclasses\n- [`b72e34c`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/b72e34cfa0b5923625318e7fc58a78be1d74925c) **@codex**: Fix allocator regression test import\n- [`4ebf455`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/4ebf455c7baf43e48dae878616363598372b2b46) **@codex**: Complete libc locale entry points and enforce conversion buffer contracts\n- [`e699a22`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/e699a22262eb5e208432cbd998fc61054b1b8f70) **@codex**: Throttle compositor tree inspection to the display refresh rate\n- [`c0800a2`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/c0800a289192f44bbb751bbfbd8fc32340e68f5a) **@codex**: Implement CFNumber storage queries and complete C-locale conversions\n- [`cb4ee7d`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/cb4ee7d2200e1f05d4efa8fd1ac1c800cfa2837f) **@codex**: Implement Objective-C exception handling through the guest SjLj runtime",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": 0,
       "releases": [
+        {
+          "tag": "v1.4.3",
+          "name": "HyperHLE v1.4.3",
+          "date": "2026-11-22T23:30:49Z",
+          "body": "HyperHLE v1.4.3\n\n## Changelog\n\n- [`3694fa8`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/3694fa8c9f9179e381837e20dd56f1e9e61c8e53) **@codex**: Fix immortal Objective-C allocation for guest subclasses\n- [`b72e34c`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/b72e34cfa0b5923625318e7fc58a78be1d74925c) **@codex**: Fix allocator regression test import\n- [`4ebf455`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/4ebf455c7baf43e48dae878616363598372b2b46) **@codex**: Complete libc locale entry points and enforce conversion buffer contracts\n- [`e699a22`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/e699a22262eb5e208432cbd998fc61054b1b8f70) **@codex**: Throttle compositor tree inspection to the display refresh rate\n- [`c0800a2`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/c0800a289192f44bbb751bbfbd8fc32340e68f5a) **@codex**: Implement CFNumber storage queries and complete C-locale conversions\n- [`cb4ee7d`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/cb4ee7d2200e1f05d4efa8fd1ac1c800cfa2837f) **@codex**: Implement Objective-C exception handling through the guest SjLj runtime",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "HyperHLE-iOS-trollstore-permanent-jit.ipa",
+              "size": 45139450,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE-iOS-trollstore-permanent-jit.ipa"
+            },
+            {
+              "name": "HyperHLE-iOS-trollstore.ipa",
+              "size": 45139433,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE-iOS-trollstore.ipa"
+            },
+            {
+              "name": "HyperHLE-iOS-unsigned.ipa",
+              "size": 45134128,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE-iOS-unsigned.ipa"
+            },
+            {
+              "name": "HyperHLE_Android_AArch64.zip",
+              "size": 49348640,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE_Android_AArch64.zip"
+            },
+            {
+              "name": "HyperHLE_Linux_x86_64.zip",
+              "size": 43572262,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE_Linux_x86_64.zip"
+            },
+            {
+              "name": "HyperHLE_macOS_AArch64.zip",
+              "size": 43978058,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE_macOS_AArch64.zip"
+            },
+            {
+              "name": "HyperHLE_macOS_x86_64.zip",
+              "size": 45129987,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE_macOS_x86_64.zip"
+            },
+            {
+              "name": "HyperHLE_Windows_x86_64.zip",
+              "size": 41574613,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE_Windows_x86_64.zip"
+            },
+            {
+              "name": "HyperHLE_Windows_x86_64_Setup.exe",
+              "size": 33290532,
+              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.4.3/HyperHLE_Windows_x86_64_Setup.exe"
+            }
+          ]
+        },
         {
           "tag": "v1.4.2",
           "name": "HyperHLE v1.4.2",
@@ -35030,60 +35119,6 @@
               "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.12/HyperHLE_Windows_x86_64_Setup.exe"
             }
           ]
-        },
-        {
-          "tag": "v1.3.11",
-          "name": "HyperHLE v1.3.11",
-          "date": "2026-11-15T18:18:47Z",
-          "body": "HyperHLE v1.3.11\n\n## Changelog\n\n- [`2ffe8a2`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/2ffe8a2b26d59aea8c91f9b86ecc952140acf78d) **@KlugKlugTG**: RAM Limiter: add 32/64 MB presets and a Custom size keypad\n- [`4ecac1b`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/4ecac1bb7f2e0b5b0f6fbeffcbdd7fa714e1c8e4) **@KlugKlugTG**: Add a Quick menu option to the Emulation settings\n- [`dd43840`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/dd43840cfed09d8e776b59366ee7c6f24de56dda) **@KlugKlugTG**: Quick menu: draw the in-game button and its panel\n- [`2f390fa`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/2f390fa80c746e3a992f985f23c3a699fff846df) **@KlugKlugTG**: Quick menu: make Cheat Engine switch live and Exit return to the picker\n- [`1b7b969`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/1b7b9695bc76a1ace43908ea13bf0ef3520c41ab) **@KlugKlugTG**: Merge pull request #434 from KlugKlugTG/arena/fa636569-hyperhle-reborn\n- [`228546e`](https://github.com/KlugKlugTG/HyperHLE-Reborn/commit/228546e58233a8e7578ff9af1f10b4a8dbd88bde) **@KlugKlugTG**: uikit: put the keyboard frame in the keyboard notifications' userInfo\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "HyperHLE-iOS-trollstore-permanent-jit.ipa",
-              "size": 44792521,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE-iOS-trollstore-permanent-jit.ipa"
-            },
-            {
-              "name": "HyperHLE-iOS-trollstore.ipa",
-              "size": 44792504,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE-iOS-trollstore.ipa"
-            },
-            {
-              "name": "HyperHLE-iOS-unsigned.ipa",
-              "size": 44787199,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE-iOS-unsigned.ipa"
-            },
-            {
-              "name": "HyperHLE_Android_AArch64.zip",
-              "size": 48969444,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE_Android_AArch64.zip"
-            },
-            {
-              "name": "HyperHLE_Linux_x86_64.zip",
-              "size": 43230015,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE_Linux_x86_64.zip"
-            },
-            {
-              "name": "HyperHLE_macOS_AArch64.zip",
-              "size": 43573891,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE_macOS_AArch64.zip"
-            },
-            {
-              "name": "HyperHLE_macOS_x86_64.zip",
-              "size": 44714552,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE_macOS_x86_64.zip"
-            },
-            {
-              "name": "HyperHLE_Windows_x86_64.zip",
-              "size": 41195766,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE_Windows_x86_64.zip"
-            },
-            {
-              "name": "HyperHLE_Windows_x86_64_Setup.exe",
-              "size": 33089666,
-              "url": "https://github.com/KlugKlugTG/HyperHLE-Reborn/releases/download/v1.3.11/HyperHLE_Windows_x86_64_Setup.exe"
-            }
-          ]
         }
       ],
       "stars": 113,
@@ -35143,7 +35178,7 @@
         }
       ],
       "note": "暂无官方安装包。",
-      "pushed_at": "2026-11-22T17:39:19Z",
+      "pushed_at": "2026-11-22T23:30:49Z",
       "summary": "HyperHLE-Reborn is a community-maintained fork of HyperHLE, itself based on touchHLE. The user-facing name of this project is HyperHLE",
       "artifacts": {
         "apk": 0,
@@ -35337,7 +35372,7 @@
       "downloads_basis": "lifetime",
       "distribution": "source-only",
       "download_kind": "source-only",
-      "pushed_at": "2026-11-22T15:43:48Z",
+      "pushed_at": "2026-11-22T21:14:00Z",
       "releases": [
         {
           "tag": "v0.1.3-alpha.6",
@@ -38760,7 +38795,7 @@
           ]
         }
       ],
-      "stars": 299,
+      "stars": 303,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -39192,7 +39227,7 @@
       "method": "emulation",
       "runtime": "android-native",
       "stars": 0,
-      "pushed_at": "2026-11-22T17:41:02Z",
+      "pushed_at": "2026-11-22T21:21:00Z",
       "releases": [],
       "platform_families": [
         "nintendo"
@@ -39229,8 +39264,27 @@
       "method": "recomp",
       "runtime": "android-native",
       "stars": 211,
-      "pushed_at": "2026-11-22T00:53:20Z",
+      "pushed_at": "2026-11-22T19:45:46Z",
       "releases": [
+        {
+          "tag": "v0.9.3-beta.6",
+          "name": "Pocket Foundry 0.9.3-beta.6",
+          "date": "2026-11-22T20:07:23Z",
+          "body": "**Beta, for testing.** Install it by hand, or turn on Include prereleases for Pocket Foundry in Obtainium. It updates to the release once that's out.\n\nPlay your own copy of Factorio on Android: the official Linux ARM64 build, run without emulation on the phone's GPU.\n\n**Install:** open `pocket-foundry-0.9.3-beta.6.apk` on the phone (Android 10 or later) and import the Linux (arm64) .tar.xz from [factorio.com/download](https://factorio.com/download). Pocket Foundry then asks before downloading a driver for your GPU from pocket-foundry-drivers: Turnip on Adreno 6xx or newer, experimental builds on some Mali and Xclipse GPUs, Phone's OpenGL ES (MobileGlues) or the CPU elsewhere. Without downloads it plays through Phone's OpenGL ES (MobileGlues), which comes with the app, Phone's Vulkan (experimental) or an imported one. The app holds no part of Factorio: you bring your own copy. A new version installs over the last and keeps the game and saves; from 0.8, 0.9 installs as a new app next to the old one and brings its saves, mods and config over.",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "pocket-foundry-0.9.3-beta.6.apk",
+              "size": 16335047,
+              "url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.6/pocket-foundry-0.9.3-beta.6.apk"
+            },
+            {
+              "name": "SHA256SUMS",
+              "size": 98,
+              "url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.6/SHA256SUMS"
+            }
+          ]
+        },
         {
           "tag": "v0.9.3-beta.5",
           "name": "Pocket Foundry 0.9.3-beta.5",
@@ -39306,35 +39360,16 @@
               "url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.2/SHA256SUMS"
             }
           ]
-        },
-        {
-          "tag": "v0.9.3-beta.1",
-          "name": "Pocket Foundry 0.9.3-beta.1",
-          "date": "2026-11-19T00:21:05Z",
-          "body": "**Beta, for testing.** Install it by hand, or turn on Include prereleases for Pocket Foundry in Obtainium. It updates to the release once that's out.\n\nPlay your own copy of Factorio on Android: the official Linux ARM64 build, run without emulation on the phone's GPU.\n\n**Install:** open `pocket-foundry-0.9.3-beta.1.apk` on the phone (Android 10 or later) and import the Linux (arm64) .tar.xz from [factorio.com/download](https://factorio.com/download). Pocket Foundry then asks before downloading a driver for your GPU from pocket-foundry-drivers: Turnip on Adreno 6xx or newer, experimental builds on some Mali and Xclipse GPUs, Phone's OpenGL ES (MobileGlues) or the CPU elsewhere. Without downloads it plays through Phone's Vulkan (experimental) or an imported one. The app holds no part of Factorio: you bring your own copy. A new version installs over the last and keeps the game and saves; from 0.8, 0.9 installs as a new app next to the old one and brings its saves, mods and config over.",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "pocket-foundry-0.9.3-beta.1.apk",
-              "size": 12937851,
-              "url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.1/pocket-foundry-0.9.3-beta.1.apk"
-            },
-            {
-              "name": "SHA256SUMS",
-              "size": 98,
-              "url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.1/SHA256SUMS"
-            }
-          ]
         }
       ],
-      "latest_tag": "v0.9.3-beta.5",
-      "latest_date": "2026-11-22T01:19:49Z",
-      "latest_body": "**Beta, for testing.** Install it by hand, or turn on Include prereleases for Pocket Foundry in Obtainium. It updates to the release once that's out.\n\nPlay your own copy of Factorio on Android: the official Linux ARM64 build, run without emulation on the phone's GPU.\n\n**Install:** open `pocket-foundry-0.9.3-beta.5.apk` on the phone (Android 10 or later) and import the Linux (arm64) .tar.xz from [factorio.com/download](https://factorio.com/download). Pocket Foundry then asks before downloading a driver for your GPU from pocket-foundry-drivers: Turnip on Adreno 6xx or newer, experimental builds on some Mali and Xclipse GPUs, Phone's OpenGL ES (MobileGlues) or the CPU elsewhere. Without downloads it plays through Phone's OpenGL ES (MobileGlues), which comes with the app, Phone's Vulkan (experimental) or an imported one. The app holds no part of Factorio: you bring your own copy. A new version installs over the last and keeps the game and saves; from 0.8, 0.9 installs as a new app next to the old one and brings its saves, mods and config over.",
+      "latest_tag": "v0.9.3-beta.6",
+      "latest_date": "2026-11-22T20:07:23Z",
+      "latest_body": "**Beta, for testing.** Install it by hand, or turn on Include prereleases for Pocket Foundry in Obtainium. It updates to the release once that's out.\n\nPlay your own copy of Factorio on Android: the official Linux ARM64 build, run without emulation on the phone's GPU.\n\n**Install:** open `pocket-foundry-0.9.3-beta.6.apk` on the phone (Android 10 or later) and import the Linux (arm64) .tar.xz from [factorio.com/download](https://factorio.com/download). Pocket Foundry then asks before downloading a driver for your GPU from pocket-foundry-drivers: Turnip on Adreno 6xx or newer, experimental builds on some Mali and Xclipse GPUs, Phone's OpenGL ES (MobileGlues) or the CPU elsewhere. Without downloads it plays through Phone's OpenGL ES (MobileGlues), which comes with the app, Phone's Vulkan (experimental) or an imported one. The app holds no part of Factorio: you bring your own copy. A new version installs over the last and keeps the game and saves; from 0.8, 0.9 installs as a new app next to the old one and brings its saves, mods and config over.",
       "channel": "prerelease",
-      "latest_apk_name": "pocket-foundry-0.9.3-beta.5.apk",
-      "latest_apk_url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.5/pocket-foundry-0.9.3-beta.5.apk",
-      "latest_apk_size": 16339143,
-      "latest_apk_tag": "v0.9.3-beta.5",
+      "latest_apk_name": "pocket-foundry-0.9.3-beta.6.apk",
+      "latest_apk_url": "https://github.com/JulioFerrero/pocket-foundry/releases/download/v0.9.3-beta.6/pocket-foundry-0.9.3-beta.6.apk",
+      "latest_apk_size": 16335047,
+      "latest_apk_tag": "v0.9.3-beta.6",
       "platform_families": [
         "pc"
       ],
@@ -39633,7 +39668,7 @@
           ]
         }
       ],
-      "stars": 75,
+      "stars": 76,
       "forks": 3,
       "watchers": 1,
       "downloads_total": null,
@@ -40092,7 +40127,7 @@
       "latest_apk_name": "MH4U-1.0.2.apk",
       "latest_apk_url": "https://github.com/khorne-hub/4u-native/releases/download/v1.0.2/MH4U-1.0.2.apk",
       "latest_apk_size": 8578475,
-      "stars": 114,
+      "stars": 115,
       "forks": 6,
       "watchers": 8,
       "downloads_total": null,
@@ -40748,7 +40783,7 @@
           ]
         }
       ],
-      "stars": 12509,
+      "stars": 12538,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -40871,7 +40906,7 @@
       "stars": 7,
       "forks": 0,
       "watchers": 6,
-      "pushed_at": "2026-11-22T16:29:36Z",
+      "pushed_at": "2026-11-22T19:14:12Z",
       "latest_tag": "v0.5.0",
       "latest_date": "2026-11-21T20:05:31Z",
       "channel": "stable",
@@ -41748,7 +41783,7 @@
           ]
         }
       ],
-      "stars": 2247,
+      "stars": 2248,
       "forks": null,
       "watchers": null,
       "downloads_total": null,
@@ -41948,7 +41983,7 @@
           ]
         }
       ],
-      "stars": 102,
+      "stars": 103,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -42113,7 +42148,7 @@
           ]
         }
       ],
-      "stars": 128,
+      "stars": 129,
       "forks": 9,
       "watchers": 0,
       "downloads_total": 0,
@@ -42547,7 +42582,7 @@
           ]
         }
       ],
-      "stars": 8120,
+      "stars": 8135,
       "forks": 482,
       "watchers": 11,
       "downloads_total": null,
@@ -42572,7 +42607,7 @@
         }
       ],
       "note": "需 Apple 芯片 Mac 与 macOS 13 以上；iPhone / iPad 需 iOS 26 以上。",
-      "pushed_at": "2026-11-22T17:15:24Z",
+      "pushed_at": "2026-11-22T22:38:29Z",
       "requires_original": true,
       "downloads_basis": "lifetime",
       "summary": "Your Switch games, running on your iPhone.",
@@ -43193,7 +43228,7 @@
           "assets": []
         }
       ],
-      "stars": 507,
+      "stars": 508,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -43323,8 +43358,22 @@
       "method": "recomp",
       "runtime": "android-native",
       "stars": 23,
-      "pushed_at": "2026-11-19T14:13:37Z",
+      "pushed_at": "2026-11-22T19:02:48Z",
       "releases": [
+        {
+          "tag": "v0.2.6-alpha",
+          "name": "0.2.6-alpha - Open Alpha",
+          "date": "2026-11-22T19:02:34Z",
+          "body": "A small fix.\n\n### Fixed\n\n- **An external controller can play** (issue #6). Pressing Start on it used to bring up a\n  profile sign-in that never finished, because the game only took the handheld's own\n  controller as player 1.\n  - Now the controller you use is player 1: press a button on it, or push a stick or trigger\n    firmly, and it takes over. The handheld's own controller takes it back the same way.\n  - A controller connected while you play works too.\n  - Tested on the AYN Thor with its own controller. If you play with an external one, please\n    tell us in issue #6 how it goes.\n\n### Installing\n\n- **From 0.2.0-alpha to 0.2.5-alpha:** the launcher installs this update under **Launch Dragon\n  Age**. No Build again is needed. Your saves, game data and settings stay.\n- **From 0.1.9-alpha or earlier:** the launcher installs it too, and then shows **Build again**.\n  Choose it once (about eight minutes).\n",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "dao-recomp-android-0.2.6-alpha.apk",
+              "size": 76241951,
+              "url": "https://github.com/mabencs/Dragon-Age-Origins-Recomp-Android-Duo/releases/download/v0.2.6-alpha/dao-recomp-android-0.2.6-alpha.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.2.5-alpha",
           "name": "0.2.5-alpha - Open Alpha",
@@ -43380,30 +43429,16 @@
               "url": "https://github.com/mabencs/Dragon-Age-Origins-Recomp-Android-Duo/releases/download/v0.2.2-alpha/dao-recomp-android-0.2.2-alpha.apk"
             }
           ]
-        },
-        {
-          "tag": "v0.2.1-alpha",
-          "name": "0.2.1-alpha - Open Alpha",
-          "date": "2026-11-08T16:13:51Z",
-          "body": "### New\n\n- **On-screen controller size**, on the Game tab of Settings: from 50% to 150% (100% as\n  before). Smaller shows more of the game; bigger is easier to hit. Controls near an edge move\n  in as they grow, so none is cut off. It changes at once, in the game too.\n- **Adjust on-screen controls layout**, on the Game tab: drag each on-screen control - the\n  buttons, the D-pad, the sticks - where you want it. **Done**, small at the top, saves the layout\n  and takes you back to the settings (the controller's A, B or Start does too); **Reset** puts\n  everything back where it started. The game waits while you place them, and nothing you touch\n  reaches it.\n\n### Changed\n\n- **The launcher and the settings are on tabs:**\n  - **Launcher** - Launch, your files, Build, Saves, Mods and About (before the game only).\n  - **Visual** - frame rate, resolution, upscaling, frame generation, post-processing and the\n    rest of the picture.\n  - **Audio** - Headphones and Volume boost.\n  - **Performance** - Heat guard and the Performance tab/overlay.\n  - **Game** - button prompts, intro logos, the autosave, the second screen, the on-screen\n    controller and the cheats.",
-          "prerelease": true,
-          "assets": [
-            {
-              "name": "dao-recomp-android-0.2.1-alpha.apk",
-              "size": 75773207,
-              "url": "https://github.com/mabencs/Dragon-Age-Origins-Recomp-Android-Duo/releases/download/v0.2.1-alpha/dao-recomp-android-0.2.1-alpha.apk"
-            }
-          ]
         }
       ],
-      "latest_tag": "v0.2.5-alpha",
-      "latest_date": "2026-11-19T14:13:21Z",
-      "latest_body": "A small update.\n\n### Fixed\n\n- **A texture that the game uses twice in one draw is loaded once.** It used to be prepared\n  twice when it was out of date. This only happens while an area loads, a few times each, so\n  loading does slightly less work. Frame rates in play are unchanged.\n  - Checked in Circle Tower, Denerim's market, Orzammar's commons, the ruined temple of the\n    Urn and Lothering's chantry, on the AYN Thor.\n  - The fix comes from the Xenia Edge emulator project.\n\n### Installing\n\n- **From 0.2.0-alpha to 0.2.4-alpha:** the launcher installs this update under **Launch Dragon\n  Age**. No Build again is needed. Your saves, game data and settings stay.\n- **From 0.1.9-alpha or earlier:** the launcher installs it too, and then shows **Build again**.\n  Choose it once (about eight minutes).\n",
+      "latest_tag": "v0.2.6-alpha",
+      "latest_date": "2026-11-22T19:02:34Z",
+      "latest_body": "A small fix.\n\n### Fixed\n\n- **An external controller can play** (issue #6). Pressing Start on it used to bring up a\n  profile sign-in that never finished, because the game only took the handheld's own\n  controller as player 1.\n  - Now the controller you use is player 1: press a button on it, or push a stick or trigger\n    firmly, and it takes over. The handheld's own controller takes it back the same way.\n  - A controller connected while you play works too.\n  - Tested on the AYN Thor with its own controller. If you play with an external one, please\n    tell us in issue #6 how it goes.\n\n### Installing\n\n- **From 0.2.0-alpha to 0.2.5-alpha:** the launcher installs this update under **Launch Dragon\n  Age**. No Build again is needed. Your saves, game data and settings stay.\n- **From 0.1.9-alpha or earlier:** the launcher installs it too, and then shows **Build again**.\n  Choose it once (about eight minutes).\n",
       "channel": "prerelease",
-      "latest_apk_name": "dao-recomp-android-0.2.5-alpha.apk",
-      "latest_apk_url": "https://github.com/mabencs/Dragon-Age-Origins-Recomp-Android-Duo/releases/download/v0.2.5-alpha/dao-recomp-android-0.2.5-alpha.apk",
-      "latest_apk_size": 76241227,
-      "latest_apk_tag": "v0.2.5-alpha",
+      "latest_apk_name": "dao-recomp-android-0.2.6-alpha.apk",
+      "latest_apk_url": "https://github.com/mabencs/Dragon-Age-Origins-Recomp-Android-Duo/releases/download/v0.2.6-alpha/dao-recomp-android-0.2.6-alpha.apk",
+      "latest_apk_size": 76241951,
+      "latest_apk_tag": "v0.2.6-alpha",
       "platform_families": [
         "microsoft"
       ],
@@ -43913,7 +43948,7 @@
           ]
         }
       ],
-      "stars": 1056,
+      "stars": 1058,
       "forks": 36,
       "watchers": 583,
       "downloads_total": 3078,
@@ -43989,7 +44024,7 @@
       "latest_apk_name": "TOTKDroid-0.3.4-beta.apk",
       "latest_apk_url": "https://github.com/mamcjr/TOTKDroid/releases/download/v0.3.4-beta/TOTKDroid-0.3.4-beta.apk",
       "latest_apk_size": 23606014,
-      "stars": 336,
+      "stars": 337,
       "forks": 4,
       "watchers": 5,
       "downloads_total": 0,
@@ -46142,7 +46177,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 5975,
+      "stars": 5976,
       "forks": 741,
       "watchers": 5970,
       "pushed_at": "2022-06-16T23:14:57Z",
@@ -46837,7 +46872,7 @@
           ]
         }
       ],
-      "stars": 5237,
+      "stars": 5239,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -46875,7 +46910,7 @@
         }
       ],
       "note": "GitHub 未提供安卓安装包，请从官网获取。",
-      "pushed_at": "2026-11-18T17:06:24Z",
+      "pushed_at": "2026-11-22T21:56:38Z",
       "summary": "The goal is to do things right and fast, akin to blargSNES (but hopefully better). But also to, you know, have a fun challenge :)",
       "artifacts": {
         "apk": 0,
@@ -47001,7 +47036,7 @@
           ]
         }
       ],
-      "stars": 1772,
+      "stars": 1773,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -47427,7 +47462,7 @@
           ]
         }
       ],
-      "stars": 44,
+      "stars": 45,
       "forks": 0,
       "watchers": 1,
       "downloads_total": null,
@@ -48606,7 +48641,7 @@
           ]
         }
       ],
-      "stars": 7623,
+      "stars": 7625,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -49502,7 +49537,7 @@
       "method": "recomp",
       "runtime": "android-native",
       "stars": 15,
-      "pushed_at": "2026-11-22T03:44:29Z",
+      "pushed_at": "2026-11-22T21:50:54Z",
       "releases": [
         {
           "tag": "v0.1.27",
@@ -49610,7 +49645,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 7576,
+      "stars": 7579,
       "forks": 1784,
       "watchers": 7502,
       "pushed_at": "2026-10-17T13:51:27Z",
@@ -49957,7 +49992,7 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 1,
+      "stars": 2,
       "pushed_at": "2026-11-22T11:49:25Z",
       "releases": [],
       "platform_families": [
@@ -50512,7 +50547,7 @@
           ]
         }
       ],
-      "stars": 431,
+      "stars": 432,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -50567,7 +50602,7 @@
       "method": "recomp",
       "runtime": "android-native",
       "stars": 43,
-      "pushed_at": "2026-11-22T16:36:09Z",
+      "pushed_at": "2026-11-22T18:35:38Z",
       "releases": [
         {
           "tag": "protodroid-v0.15",
@@ -50694,7 +50729,7 @@
       "downloads_basis": "lifetime",
       "distribution": "android-archive",
       "download_kind": "zip",
-      "pushed_at": "2026-11-22T15:51:39Z",
+      "pushed_at": "2026-11-22T21:10:46Z",
       "releases": [
         {
           "tag": "20261120",
@@ -53228,7 +53263,7 @@
         }
       ],
       "note": "",
-      "pushed_at": "2026-11-22T00:44:01Z",
+      "pushed_at": "2026-11-22T23:49:04Z",
       "artifacts": {
         "apk": 1,
         "android_zip": 0,
@@ -53625,8 +53660,8 @@
       "family": "owaissseeee-godhandandroidport",
       "family_label": "God Hand Android（《神之手》安卓移植）",
       "owner": "owaissseeee",
-      "repo": "owaissseeee/GodHandAndroidPort",
-      "repo_url": "https://github.com/owaissseeee/GodHandAndroidPort",
+      "repo": "owaissseeee/godhand-android-port",
+      "repo_url": "https://github.com/owaissseeee/godhand-android-port",
       "homepage": "",
       "description": "PS2 版《神之手》静态重编译到安卓，针对触屏操作做了适配。",
       "summary": "",
@@ -53808,7 +53843,7 @@
           ]
         }
       ],
-      "stars": 1718,
+      "stars": 1719,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 99983,
@@ -54095,7 +54130,7 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 16,
+      "stars": 18,
       "pushed_at": "2026-11-22T12:49:50Z",
       "releases": [
         {
@@ -54794,7 +54829,7 @@
           ]
         }
       ],
-      "stars": 6695,
+      "stars": 6694,
       "forks": 598,
       "watchers": 105,
       "downloads_total": null,
@@ -55030,7 +55065,7 @@
           ]
         }
       ],
-      "stars": 16115,
+      "stars": 16120,
       "forks": 2402,
       "watchers": 15990,
       "downloads_total": 23349,
@@ -56045,14 +56080,14 @@
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": 0,
-      "stars": 1109,
+      "stars": 1110,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
       "downloads_basis": "lifetime",
       "distribution": "ps5-package",
       "download_kind": "ps5-package",
-      "pushed_at": "2026-11-22T03:17:53Z",
+      "pushed_at": "2026-11-22T23:05:12Z",
       "releases": [
         {
           "tag": "v0.12.0-beta.4",
@@ -56884,22 +56919,36 @@
       "status": "active",
       "needs_review": false,
       "method": "recomp",
-      "latest_tag": "v1.1",
-      "latest_date": "2026-11-21T18:22:40Z",
+      "latest_tag": "v1.2",
+      "latest_date": "2026-11-22T20:27:27Z",
       "channel": "stable",
-      "latest_body": "<!-- re4-min-version: 1.0 -->\n\nSmoother 30 and 60 FPS, new controls from mouse and keyboard to gamepad and touch, and fixes from the 1.0 reports. Already on 1.0? The app offers this update when it starts; your settings and saves stay.\n\n> [!IMPORTANT]\n> This app contains no game data. You need a dump of **your own** disc (`.iso` or `.rvz`, Wii NTSC-U `RB4E08`). Download the app only from this Releases page.\n\n> [!WARNING]\n> **Android 10:** phones with an Adreno 5xx GPU (Snapdragon 625, 630, 660, 835 and similar) on Android 10 are not supported: their Vulkan driver stops the game on its first screens. Android 11 or newer is recommended.\n\n> [!WARNING]\n> **Custom GPU drivers** (Turnip, malisx2 and others, Settings > Graphics > GPU Driver) are at your own risk: a driver that does not fit your phone can show wrong graphics, stutter or close the game. Something wrong? Switch back to the phone's own driver first, and say which driver you used when you report a problem.\n>",
-      "latest_apk_name": "re4wii-1.1-android-arm64.apk",
-      "latest_apk_url": "https://github.com/PotatoRecomp/RE4Wii-Android/releases/download/v1.1/re4wii-1.1-android-arm64.apk",
-      "latest_apk_size": 32267793,
-      "latest_apk_tag": "v1.1",
+      "latest_body": "<!-- re4-min-version: 1.0 -->\n\nFixes from the 1.1 reports: gamepads, mouse and keyboard, PowerVR and Adreno 7xx phones, and Play As crashes. Already on 1.0 or 1.1? The app offers this update when it starts; your settings and saves stay.\n\n> [!IMPORTANT]\n> This app contains no game data. You need a dump of **your own** disc (`.iso` or `.rvz`, Wii NTSC-U `RB4E08`). Download the app only from this Releases page.\n\n> [!WARNING]\n> **Android 10:** phones with an Adreno 5xx GPU (Snapdragon 625, 630, 660, 835 and similar) on Android 10 are not supported: their Vulkan driver stops the game on its first screens. Android 11 or newer is recommended.\n\n> [!WARNING]\n> **Custom GPU drivers** (Turnip, malisx2 and others, Settings > Graphics > GPU Driver) are at your own risk: a driver that does not fit your phone can show wrong graphics, stutter or close the game. Something wrong? Switch back to the phone's own driver first, and say which driver you used when you report a problem.\n>\n> **Render Resolution** (Settings > Display) above 2× makes the phone hot and slow. Start at 1× or 1.5× and go up only while the game stays at full speed.\n\n> [!TIP]\n> **Boost performance:**",
+      "latest_apk_name": "re4wii-1.2-android-arm64.apk",
+      "latest_apk_url": "https://github.com/PotatoRecomp/RE4Wii-Android/releases/download/v1.2/re4wii-1.2-android-arm64.apk",
+      "latest_apk_size": 32326105,
+      "latest_apk_tag": "v1.2",
       "distribution": "release-apk",
       "stars": 56,
       "forks": 0,
       "watchers": 2,
       "downloads_total": null,
       "downloads_basis": "none",
-      "pushed_at": "2026-11-21T18:22:40Z",
+      "pushed_at": "2026-11-22T20:27:27Z",
       "releases": [
+        {
+          "tag": "v1.2",
+          "name": "RE4 Wii Android 1.2",
+          "date": "2026-11-22T20:27:27Z",
+          "body": "<!-- re4-min-version: 1.0 -->\n\nFixes from the 1.1 reports: gamepads, mouse and keyboard, PowerVR and Adreno 7xx phones, and Play As crashes. Already on 1.0 or 1.1? The app offers this update when it starts; your settings and saves stay.\n\n> [!IMPORTANT]\n> This app contains no game data. You need a dump of **your own** disc (`.iso` or `.rvz`, Wii NTSC-U `RB4E08`). Download the app only from this Releases page.\n\n> [!WARNING]\n> **Android 10:** phones with an Adreno 5xx GPU (Snapdragon 625, 630, 660, 835 and similar) on Android 10 are not supported: their Vulkan driver stops the game on its first screens. Android 11 or newer is recommended.\n\n> [!WARNING]\n> **Custom GPU drivers** (Turnip, malisx2 and others, Settings > Graphics > GPU Driver) are at your own risk: a driver that does not fit your phone can show wrong graphics, stutter or close the game. Something wrong? Switch back to the phone's own driver first, and say which driver you used when you report a problem.\n>\n> **Render Resolution** (Settings > Display) above 2× makes the phone hot and slow. Start at 1× or 1.5× and go up only while the game stays at full speed.\n\n> [!TIP]\n> **Boost performance:**",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "re4wii-1.2-android-arm64.apk",
+              "size": 32326105,
+              "url": "https://github.com/PotatoRecomp/RE4Wii-Android/releases/download/v1.2/re4wii-1.2-android-arm64.apk"
+            }
+          ]
+        },
         {
           "tag": "v1.1",
           "name": "RE4 Wii Android 1.1",
@@ -57282,7 +57331,7 @@
           ]
         }
       ],
-      "stars": 14968,
+      "stars": 14969,
       "downloads_latest": 64568,
       "downloads_basis": "lifetime",
       "download_url": "https://www.ppsspp.org/files/1_20_4/ppsspp.apk",
@@ -57327,7 +57376,7 @@
         }
       ],
       "note": "安卓版经 Google Play 分发。",
-      "pushed_at": "2026-11-22T16:17:54Z",
+      "pushed_at": "2026-11-22T19:49:36Z",
       "summary": "PPSSPP - a fast and portable PSP emulator",
       "artifacts": {
         "apk": 0,
@@ -57694,7 +57743,7 @@
       "latest_apk_url": "",
       "latest_apk_size": null,
       "releases": [],
-      "stars": 3080,
+      "stars": 3081,
       "forks": null,
       "watchers": null,
       "downloads_total": null,
@@ -57802,7 +57851,7 @@
       "downloads_total": 0,
       "downloads_basis": "lifetime",
       "distribution": "no-artifact",
-      "pushed_at": "2026-11-22T17:42:06Z",
+      "pushed_at": "2026-11-22T23:52:22Z",
       "summary": "",
       "artifacts": {
         "apk": 0,
@@ -58018,7 +58067,7 @@
       "latest_apk_name": "PSX2_34_202610271120-release.apk",
       "latest_apk_url": "https://github.com/izzy2lost/PSX2/releases/download/1.3.2/PSX2_34_202610271120-release.apk",
       "latest_apk_size": 19998731,
-      "stars": 246,
+      "stars": 247,
       "forks": 30,
       "watchers": 0,
       "downloads_total": null,
@@ -58928,7 +58977,7 @@
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
-      "stars": 178,
+      "stars": 180,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
@@ -59810,11 +59859,11 @@
           ]
         }
       ],
-      "stars": 14676,
+      "stars": 14678,
       "downloads_basis": "lifetime",
       "download_url": "https://www.retroarch.com/",
       "download_kind": "official-site",
-      "pushed_at": "2026-11-22T17:30:46Z",
+      "pushed_at": "2026-11-22T23:09:13Z",
       "summary": "RetroArch is the reference frontend for the libretro API. Popular examples of implementations for this API includes video game system emulators and game engines as well as more gen…",
       "artifacts": {
         "apk": 0,
@@ -59941,7 +59990,7 @@
           ]
         }
       ],
-      "stars": 958,
+      "stars": 961,
       "forks": 16,
       "watchers": 424,
       "downloads_total": 0,
@@ -60085,7 +60134,7 @@
           ]
         }
       ],
-      "stars": 534,
+      "stars": 535,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 202720,
@@ -60284,10 +60333,10 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 14447,
+      "stars": 14450,
       "forks": 822,
       "watchers": 14392,
-      "pushed_at": "2026-11-22T17:26:11Z",
+      "pushed_at": "2026-11-22T23:50:35Z",
       "latest_tag": "5.5.0-beta.1",
       "latest_date": "2026-11-22T00:46:45Z",
       "channel": "prerelease",
@@ -60384,7 +60433,7 @@
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
-      "stars": 41,
+      "stars": 42,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
@@ -60840,7 +60889,7 @@
           "assets": []
         }
       ],
-      "stars": 20488,
+      "stars": 20490,
       "forks": 2572,
       "watchers": 20328,
       "downloads_total": 0,
@@ -61055,8 +61104,22 @@
       "method": "recomp",
       "runtime": "android-native",
       "stars": 0,
-      "pushed_at": "2026-11-22T09:25:26Z",
+      "pushed_at": "2026-11-22T21:32:54Z",
       "releases": [
+        {
+          "tag": "v0.7.6",
+          "name": "v0.7.6 - MaliSX2 0.6.0",
+          "date": "2026-11-22T21:47:36Z",
+          "body": "MaliSX2 updated to 0.6.0. The complete package, Display routing, PanVK r10 and Turnip T30 are unchanged.\n\n- Bundled MaliSX2 moved from 0.5.1 (`308fe121c7`) to 0.6.0 (`62d6d62423`); packaging verifies the archive SHA-256 `55b17293…47f8` and library SHA-256 `c1c8738f…76fb`.\n- Driver matrix updated for the new upstream list (adds G620/G720); G71/G72 stay on PanVK r10, system Vulkan remains the fallback.\n- APK: `0.7.6-android-port`, code 706, 43,020,844 bytes, SHA-256 `9e7a3be222a301da82364f456290afe68955a8593539b1e16799bcf3a955e7ea`; v3 signature verified; bundled `libvulkan_malisx2.so` matches the pinned library hash.\n- Device validation of the new driver is still pending; the launcher option alone does not prove presentation. Confirm `[vulkan-device] profile=` in logcat.\n\nInstalling over an existing build requires the same signing key (`$DM_ANDROID_TOOLS/debug.keystore`, or `--keystore PATH`).\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "D2R-Android-port-v0.7.6.apk",
+              "size": 43020844,
+              "url": "https://github.com/rufl/POORD2ROID/releases/download/v0.7.6/D2R-Android-port-v0.7.6.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.7.5",
           "name": "v0.7.5",
@@ -61112,30 +61175,16 @@
               "url": "https://github.com/rufl/POORD2ROID/releases/download/v0.7.2/D2R-Android-port-v0.7.2.apk"
             }
           ]
-        },
-        {
-          "tag": "v0.7.1",
-          "name": "v0.7.1",
-          "date": "2026-11-20T11:41:27Z",
-          "body": "## Changelog\n\n### Android Vulkan performance\n- Reuse deferred `post_op` metadata through a queue-serialized, 64-entry chunked freelist instead of allocating while recording and freeing on each GPU completion.\n- Widen conservative async-copy page Bloom filters from 512 to 8,192 bits and their representable range from 512 KiB to 8 MiB. The captured frame-1080 workload performed 9,305.67 checks/frame and 9,304.67 full FIFO-chain scans/frame before this change.\n- Preserve the original fence retirement, FIFO guest-memory publication, overflow fallback, and exact-chain validation semantics.\n\n### Verification\n- ARM64 game-host and APK build completed successfully.\n- APK metadata: `versionName=0.7.1-android-port`, `versionCode=701`.\n- Device A/B was unavailable; this release makes no measured FPS claim.\n\n### Artifact\n- `D2R-Android-port-v0.7.1-4f0933a.apk`\n- SHA-256: `fdc82bd5a33e9f081bf04c4cb8073358a50b9ebec5f48b85c0227323730c6312`",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "D2R-Android-port-v0.7.1-4f0933a.apk",
-              "size": 28700056,
-              "url": "https://github.com/rufl/POORD2ROID/releases/download/v0.7.1/D2R-Android-port-v0.7.1-4f0933a.apk"
-            }
-          ]
         }
       ],
-      "latest_tag": "v0.7.5",
-      "latest_date": "2026-11-22T09:26:03Z",
-      "latest_body": "v0.7.5 corrects the Android game surface orientation without dropping the complete package.\n\n- Reverted the v0.7.4 Vulkan swapchain preTransform selection after runtime evidence showed the native game framebuffer rotated while the Android touch overlay remained upright in landscape.\n- Restored the earlier working identity-preferred preTransform behavior, with currentTransform only as the fallback when identity is unsupported.\n- Retained the --game-run complete package-only APK, Java launcher/game activity, classes.dex, normal/large touch-layout profiles, ADPF, MaliSX2 0.5.1, PanVK r10, Display routing, and recent native changes.\n- versionName=0.7.5-android-port; versionCode=705; size=42,594,860 bytes; SHA-256=2ef8b49537a43766877f0924d62d6cf247146b0d2c5f7c59373890a265423238.\n- APK v3 signing and Android CI checks passed. No Android device was connected for final visual confirmation.",
+      "latest_tag": "v0.7.6",
+      "latest_date": "2026-11-22T21:47:36Z",
+      "latest_body": "MaliSX2 updated to 0.6.0. The complete package, Display routing, PanVK r10 and Turnip T30 are unchanged.\n\n- Bundled MaliSX2 moved from 0.5.1 (`308fe121c7`) to 0.6.0 (`62d6d62423`); packaging verifies the archive SHA-256 `55b17293…47f8` and library SHA-256 `c1c8738f…76fb`.\n- Driver matrix updated for the new upstream list (adds G620/G720); G71/G72 stay on PanVK r10, system Vulkan remains the fallback.\n- APK: `0.7.6-android-port`, code 706, 43,020,844 bytes, SHA-256 `9e7a3be222a301da82364f456290afe68955a8593539b1e16799bcf3a955e7ea`; v3 signature verified; bundled `libvulkan_malisx2.so` matches the pinned library hash.\n- Device validation of the new driver is still pending; the launcher option alone does not prove presentation. Confirm `[vulkan-device] profile=` in logcat.\n\nInstalling over an existing build requires the same signing key (`$DM_ANDROID_TOOLS/debug.keystore`, or `--keystore PATH`).\n",
       "channel": "stable",
-      "latest_apk_name": "D2R-Android-port-v0.7.5.apk",
-      "latest_apk_url": "https://github.com/rufl/POORD2ROID/releases/download/v0.7.5/D2R-Android-port-v0.7.5.apk",
-      "latest_apk_size": 42594860,
-      "latest_apk_tag": "v0.7.5",
+      "latest_apk_name": "D2R-Android-port-v0.7.6.apk",
+      "latest_apk_url": "https://github.com/rufl/POORD2ROID/releases/download/v0.7.6/D2R-Android-port-v0.7.6.apk",
+      "latest_apk_size": 43020844,
+      "latest_apk_tag": "v0.7.6",
       "platform_families": [
         "pc"
       ],
@@ -61169,7 +61218,7 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 6,
+      "stars": 7,
       "pushed_at": "2026-09-13T13:57:41Z",
       "releases": [
         {
@@ -61458,7 +61507,7 @@
           ]
         }
       ],
-      "stars": 211,
+      "stars": 212,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -62802,7 +62851,7 @@
           ]
         }
       ],
-      "stars": 192,
+      "stars": 191,
       "forks": 6,
       "watchers": 150,
       "downloads_total": 5399,
@@ -63314,7 +63363,7 @@
           "assets": []
         }
       ],
-      "stars": 2900,
+      "stars": 2899,
       "forks": 1475,
       "watchers": 2879,
       "downloads_total": 0,
@@ -63329,7 +63378,7 @@
         "multiplatform",
         "rpg-engine"
       ],
-      "pushed_at": "2026-11-22T15:08:07Z",
+      "pushed_at": "2026-11-22T20:34:38Z",
       "summary": "ScummVM allows you to play classic graphic point-and-click adventure games, text adventure games, and RPGs, as long as you already have the game data files.",
       "artifacts": {
         "apk": 0,
@@ -64022,40 +64071,40 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "Pre-release-shadPS4-2026-11-20-bf08ce9c160b6e53c8f85ac374be60032331e7ae",
-      "latest_date": "2026-11-20T07:22:19Z",
+      "latest_tag": "Pre-release-shadPS4-2026-11-22-bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405",
+      "latest_date": "2026-11-22T22:53:16Z",
       "channel": "prerelease",
-      "latest_body": "Full Changelog: [v.0.21.0...bf08ce9](https://github.com/shadps4-emu/shadPS4/compare/v.0.21.0...bf08ce9c160b6e53c8f85ac374be60032331e7ae)",
+      "latest_body": "Full Changelog: [v.0.21.0...bbc020e](https://github.com/shadps4-emu/shadPS4/compare/v.0.21.0...bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405)",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": 0,
       "releases": [
         {
-          "tag": "Pre-release-shadPS4-2026-11-20-bf08ce9c160b6e53c8f85ac374be60032331e7ae",
-          "name": "Pre-release-shadPS4-2026-11-20-bf08ce9",
-          "date": "2026-11-20T07:22:19Z",
-          "body": "Full Changelog: [v.0.21.0...bf08ce9](https://github.com/shadps4-emu/shadPS4/compare/v.0.21.0...bf08ce9c160b6e53c8f85ac374be60032331e7ae)",
+          "tag": "Pre-release-shadPS4-2026-11-22-bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405",
+          "name": "Pre-release-shadPS4-2026-11-22-bbc020e",
+          "date": "2026-11-22T22:53:16Z",
+          "body": "Full Changelog: [v.0.21.0...bbc020e](https://github.com/shadps4-emu/shadPS4/compare/v.0.21.0...bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405)",
           "prerelease": true,
           "assets": [
             {
-              "name": "shadps4-linux-sdl-2026-11-20-bf08ce9.zip",
-              "size": 33659888,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-20-bf08ce9c160b6e53c8f85ac374be60032331e7ae/shadps4-linux-sdl-2026-11-20-bf08ce9.zip"
+              "name": "shadps4-linux-sdl-2026-11-22-bbc020e.zip",
+              "size": 33824836,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-22-bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405/shadps4-linux-sdl-2026-11-22-bbc020e.zip"
             },
             {
-              "name": "shadps4-macos-sdl-2026-11-20-bf08ce9.zip",
-              "size": 37117323,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-20-bf08ce9c160b6e53c8f85ac374be60032331e7ae/shadps4-macos-sdl-2026-11-20-bf08ce9.zip"
+              "name": "shadps4-macos-sdl-2026-11-22-bbc020e.zip",
+              "size": 37305965,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-22-bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405/shadps4-macos-sdl-2026-11-22-bbc020e.zip"
             },
             {
-              "name": "shadps4-ubuntu64-2026-11-20-bf08ce9.zip",
-              "size": 45495506,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-20-bf08ce9c160b6e53c8f85ac374be60032331e7ae/shadps4-ubuntu64-2026-11-20-bf08ce9.zip"
+              "name": "shadps4-ubuntu64-2026-11-22-bbc020e.zip",
+              "size": 45669152,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-22-bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405/shadps4-ubuntu64-2026-11-22-bbc020e.zip"
             },
             {
-              "name": "shadps4-win64-sdl-2026-11-20-bf08ce9.zip",
-              "size": 31675926,
-              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-20-bf08ce9c160b6e53c8f85ac374be60032331e7ae/shadps4-win64-sdl-2026-11-20-bf08ce9.zip"
+              "name": "shadps4-win64-sdl-2026-11-22-bbc020e.zip",
+              "size": 31828656,
+              "url": "https://github.com/shadps4-emu/shadPS4/releases/download/Pre-release-shadPS4-2026-11-22-bbc020e5d0fcc959a4fe5bd9cdaa0205b0edf405/shadps4-win64-sdl-2026-11-22-bbc020e.zip"
             }
           ]
         },
@@ -64156,7 +64205,7 @@
           ]
         }
       ],
-      "stars": 34343,
+      "stars": 34348,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -64192,7 +64241,7 @@
         }
       ],
       "note": "GitHub 未提供安卓安装包，请从官网获取。",
-      "pushed_at": "2026-11-22T13:57:58Z",
+      "pushed_at": "2026-11-22T22:53:43Z",
       "summary": "shadPS4 is an early PlayStation 4 emulator for Windows, Linux and macOS written in C++.",
       "artifacts": {
         "apk": 0,
@@ -64256,7 +64305,7 @@
       "downloads_basis": "lifetime",
       "distribution": "desktop-build",
       "download_kind": "desktop-build",
-      "pushed_at": "2026-11-22T08:51:10Z",
+      "pushed_at": "2026-11-22T19:11:18Z",
       "releases": [
         {
           "tag": "shadPS4QtLauncher-2026-11-19-1c35b9b147a8e67474fba6500bdfc309bef6f8e1",
@@ -64944,7 +64993,7 @@
           ]
         }
       ],
-      "stars": 1934,
+      "stars": 1941,
       "forks": 108,
       "watchers": 10,
       "downloads_total": null,
@@ -65099,7 +65148,7 @@
           ]
         }
       ],
-      "stars": 138,
+      "stars": 140,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -65520,7 +65569,7 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 13,
+      "stars": 15,
       "pushed_at": "2026-11-18T08:52:31Z",
       "releases": [
         {
@@ -66512,13 +66561,13 @@
       "latest_apk_name": "SkyNetEmu-0.2.4-antutu.apk",
       "latest_apk_url": "https://github.com/skynetigor/SkyNetEmu/releases/download/v0.2.4/SkyNetEmu-0.2.4-antutu.apk",
       "latest_apk_size": 567402733,
-      "stars": 29,
+      "stars": 30,
       "forks": 4,
       "watchers": 0,
       "downloads_total": null,
       "downloads_basis": "lifetime",
       "distribution": "release-apk",
-      "pushed_at": "2026-11-21T14:34:58Z",
+      "pushed_at": "2026-11-22T23:39:11Z",
       "releases": [
         {
           "tag": "v0.2.4",
@@ -66993,7 +67042,7 @@
           ]
         }
       ],
-      "stars": 620,
+      "stars": 621,
       "forks": 32,
       "watchers": 8,
       "downloads_total": null,
@@ -67554,7 +67603,7 @@
           ]
         }
       ],
-      "stars": 1251,
+      "stars": 1252,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 2876791,
@@ -68085,7 +68134,7 @@
           ]
         }
       ],
-      "stars": 1392,
+      "stars": 1393,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 1535231,
@@ -68302,7 +68351,7 @@
           ]
         }
       ],
-      "stars": 229,
+      "stars": 230,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 145926,
@@ -68478,7 +68527,7 @@
           ]
         }
       ],
-      "stars": 5622,
+      "stars": 5630,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -68546,14 +68595,38 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "v0.4-20261121-git-7a3ccb6",
-      "latest_date": "2026-11-21T23:05:24Z",
+      "latest_tag": "v0.4-20261122-git-550bd30",
+      "latest_date": "2026-11-22T21:54:41Z",
       "channel": "stable",
-      "latest_body": "Automated release with builds for Windows, Linux, and macOS.\n\n**Full Changelog**: https://github.com/trzy/Supermodel/compare/v0.4-20261121-git-34ede1c...v0.4-20261121-git-7a3ccb6",
+      "latest_body": "Automated release with builds for Windows, Linux, and macOS.\n\n**Full Changelog**: https://github.com/trzy/Supermodel/compare/v0.4-20261121-git-7a3ccb6...v0.4-20261122-git-550bd30",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": 0,
       "releases": [
+        {
+          "tag": "v0.4-20261122-git-550bd30",
+          "name": "Supermodel v0.4-20261122-git-550bd30",
+          "date": "2026-11-22T21:54:41Z",
+          "body": "Automated release with builds for Windows, Linux, and macOS.\n\n**Full Changelog**: https://github.com/trzy/Supermodel/compare/v0.4-20261121-git-7a3ccb6...v0.4-20261122-git-550bd30",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "supermodel-0.4-20261122-git-550bd30-linux.tar.gz",
+              "size": 2370688,
+              "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261122-git-550bd30/supermodel-0.4-20261122-git-550bd30-linux.tar.gz"
+            },
+            {
+              "name": "supermodel-0.4-20261122-git-550bd30-macos.tar.gz",
+              "size": 7171553,
+              "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261122-git-550bd30/supermodel-0.4-20261122-git-550bd30-macos.tar.gz"
+            },
+            {
+              "name": "supermodel-0.4-20261122-git-550bd30-windows.zip",
+              "size": 5464163,
+              "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261122-git-550bd30/supermodel-0.4-20261122-git-550bd30-windows.zip"
+            }
+          ]
+        },
         {
           "tag": "v0.4-20261121-git-7a3ccb6",
           "name": "Supermodel v0.4-20261121-git-7a3ccb6",
@@ -68649,30 +68722,6 @@
               "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261121-git-d430b94/supermodel-0.4-20261121-git-d430b94-windows.zip"
             }
           ]
-        },
-        {
-          "tag": "v0.4-20261121-git-d91db8e",
-          "name": "Supermodel v0.4-20261121-git-d91db8e",
-          "date": "2026-11-21T13:52:32Z",
-          "body": "Automated release with builds for Windows, Linux, and macOS.\n\n## What's Changed\n* Model 1/2: blend translucency in linear light/color space by @toxieainc in https://github.com/trzy/Supermodel/pull/387\n\n\n**Full Changelog**: https://github.com/trzy/Supermodel/compare/v0.4-20261119-git-596f154...v0.4-20261121-git-d91db8e",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "supermodel-0.4-20261121-git-d91db8e-linux.tar.gz",
-              "size": 2368388,
-              "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261121-git-d91db8e/supermodel-0.4-20261121-git-d91db8e-linux.tar.gz"
-            },
-            {
-              "name": "supermodel-0.4-20261121-git-d91db8e-macos.tar.gz",
-              "size": 7162718,
-              "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261121-git-d91db8e/supermodel-0.4-20261121-git-d91db8e-macos.tar.gz"
-            },
-            {
-              "name": "supermodel-0.4-20261121-git-d91db8e-windows.zip",
-              "size": 5461872,
-              "url": "https://github.com/trzy/Supermodel/releases/download/v0.4-20261121-git-d91db8e/supermodel-0.4-20261121-git-d91db8e-windows.zip"
-            }
-          ]
         }
       ],
       "stars": 702,
@@ -68711,7 +68760,7 @@
         }
       ],
       "note": "GitHub 未提供安卓安装包，请从官网获取。",
-      "pushed_at": "2026-11-21T23:05:24Z",
+      "pushed_at": "2026-11-22T21:54:41Z",
       "summary": "Supermodel emulates Sega's Model 3 arcade platform, allowing you to relive state-of-the-art 3D arcade gaming as it existed from 1996 through 1999.",
       "artifacts": {
         "apk": 0,
@@ -68960,7 +69009,7 @@
           ]
         }
       ],
-      "stars": 628,
+      "stars": 629,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -69332,7 +69381,7 @@
           ]
         }
       ],
-      "stars": 4535,
+      "stars": 4536,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 97256,
@@ -70052,7 +70101,7 @@
           ]
         }
       ],
-      "stars": 65464,
+      "stars": 65478,
       "downloads_latest": 1965538,
       "downloads_basis": "lifetime",
       "download_url": "https://github.com/termux/termux-app/releases",
@@ -70596,7 +70645,7 @@
           "tag": "Release22"
         }
       ],
-      "pushed_at": "2026-11-22T13:35:30Z",
+      "pushed_at": "2026-11-22T19:53:29Z",
       "summary": "TermuxEnhanced - a fork of Termux aimed at improving the interface and expanding the capabilities of the application.",
       "logo_source": "bundled",
       "artifacts": {
@@ -73165,7 +73214,7 @@
           ]
         }
       ],
-      "stars": 187,
+      "stars": 189,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 215016,
@@ -73417,7 +73466,7 @@
           ]
         }
       ],
-      "stars": 562,
+      "stars": 563,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 187268,
@@ -73435,7 +73484,7 @@
           "tag": "3.1.8-mali-pre1"
         }
       ],
-      "pushed_at": "2026-11-22T16:13:06Z",
+      "pushed_at": "2026-11-22T23:53:00Z",
       "summary": "All coding, features, and changes in this project are developed with the assistance of Claude AI by Anthropic.",
       "logo_source": "bundled",
       "artifacts": {
@@ -74270,7 +74319,7 @@
           ]
         }
       ],
-      "stars": 71,
+      "stars": 72,
       "forks": 4,
       "watchers": 2,
       "downloads_total": null,
@@ -74643,7 +74692,7 @@
           ]
         }
       ],
-      "stars": 1246,
+      "stars": 1247,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 1510112,
@@ -74788,7 +74837,7 @@
           ]
         }
       ],
-      "stars": 2796,
+      "stars": 2799,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 3506965,
@@ -74864,7 +74913,7 @@
       "latest_apk_size": 42003988,
       "latest_apk_tag": "0.40.1",
       "distribution": "release-apk",
-      "stars": 385,
+      "stars": 389,
       "forks": 18,
       "watchers": 10,
       "downloads_total": null,
@@ -75246,7 +75295,7 @@
           ]
         }
       ],
-      "stars": 6511,
+      "stars": 6520,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -75572,12 +75621,12 @@
       "status": "active",
       "needs_review": false,
       "method": "recomp",
-      "latest_tag": "v0.3.5",
-      "latest_date": "2026-11-17T20:06:35Z",
+      "latest_tag": "v0.3.6",
+      "latest_date": "2026-11-22T18:46:41Z",
       "channel": "stable",
-      "latest_apk_name": "uncharted-android-0.3.5.apk",
-      "latest_apk_url": "https://github.com/revvv991/uncharted-android/releases/download/v0.3.5/uncharted-android-0.3.5.apk",
-      "latest_apk_size": 52505134,
+      "latest_apk_name": "uncharted-android-0.3.6.apk",
+      "latest_apk_url": "https://github.com/revvv991/uncharted-android/releases/download/v0.3.6/uncharted-android-0.3.6.apk",
+      "latest_apk_size": 52619822,
       "stars": 113,
       "forks": 0,
       "watchers": 0,
@@ -75585,8 +75634,22 @@
       "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "download_kind": "github-release",
-      "pushed_at": "2026-11-17T20:06:35Z",
+      "pushed_at": "2026-11-22T18:46:41Z",
       "releases": [
+        {
+          "tag": "v0.3.6",
+          "name": "uncharted-android 0.3.6 (beta)",
+          "date": "2026-11-22T18:46:41Z",
+          "body": "uncharted-android 0.3.6 (base: uncharted_pc 0.3.15) - **beta**: upstream uncharted_pc 0.3.15 is merged (Uncharted 3's Load Game hang and fixes for checkpoint loads and textures), a rare crash of Uncharted 1 is fixed, Uncharted 3 gains about 1 FPS without the frame rate limit, and the GPU skinning checks its own inputs, so the rare GPU fault storms can no longer start there. **No game files are included**: you need your own decrypted dump of the collection (version 1.02 of the executables). Please attach the log to a report (Saves and logs > Copy the log).\n\n**Fixed**\n- **Uncharted 1 could close now and then in play.** On the Retroid Pocket G2 this happened about once in three hours without the frame rate limit. A job of the game's scene update read an object whose two fields the game's other code had not filled yet. The update now waits up to about 1.6 ms for them, and if they are still empty it skips the one query that needs them; the game does not use that query's result. In a test that skipped the query every time for two minutes, the game played on unharmed.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "uncharted-android-0.3.6.apk",
+              "size": 52619822,
+              "url": "https://github.com/revvv991/uncharted-android/releases/download/v0.3.6/uncharted-android-0.3.6.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.3.5",
           "name": "uncharted-android 0.3.5 (beta)",
@@ -75642,20 +75705,6 @@
               "url": "https://github.com/revvv991/uncharted-android/releases/download/v0.3.2/uncharted-android-0.3.2.apk"
             }
           ]
-        },
-        {
-          "tag": "v0.3.1",
-          "name": "uncharted-android 0.3.1 (beta)",
-          "date": "2026-11-09T22:21:07Z",
-          "body": "uncharted-android 0.3.1 (base: uncharted_pc 0.3.14) - **beta**: the three games are playable on the Retroid Pocket G2 and on Adreno 8xx phones; expect bugs, and please attach the log to a report (Saves and logs > Copy the log). **No game files are included**: you need your own decrypted dump of the collection (version 1.02 of the executables).\n\n**Why beta:** since 0.3.0 the port does what it set out to do on both GPU families it was tested on, and the app covers setting up, playing and updating. What is left is bugs and speed, not missing parts. This is the first release that is not marked as a pre-release. Our numbers are not uncharted_pc's: this is uncharted-android 0.3.1 on top of uncharted_pc 0.3.14.\n\n**Fixed**",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "uncharted-android-0.3.1.apk",
-              "size": 52226606,
-              "url": "https://github.com/revvv991/uncharted-android/releases/download/v0.3.1/uncharted-android-0.3.1.apk"
-            }
-          ]
         }
       ],
       "companion": [
@@ -75687,8 +75736,8 @@
         "sony"
       ],
       "downloads_lifetime": 12746,
-      "latest_body": "uncharted-android 0.3.5 (base: uncharted_pc 0.3.14) - **beta**: Uncharted 3's spider rooms run at full speed (chapter 7 ran at 10-15 FPS on the Retroid Pocket G2), a rare hang or crash of Uncharted 3 is fixed, and the app now says what is wrong with a copy of the game instead of crashing or stalling without a word. **No game files are included**: you need your own decrypted dump of the collection (version 1.02 of the executables). Please attach the log to a report (Saves and logs > Copy the log).\n\n**Fixed**\n- **Uncharted 3: the rooms with the spider swarm ran at 10-15 FPS** - chapter 7, \"Stay in the Light\", and the swarm's return in chapter 11; on the Retroid Pocket G2 at 1280x720 the room now holds the 30 FPS limit (15.0 and 13.2 FPS before, 30.0 and 30.0 after, in two pairs of runs). One pixel shader of the swarm's material picks values from a small table by an index. The translated shader chose among all 84 of its registers at each of twelve such reads, more than the shader compiler of an Adreno has registers for, so it kept values in memory: 52 ms of GPU time a frame for a small part of the screen. The reads are now limited to the table (0.5 ms a frame); the picture is the same",
-      "latest_apk_tag": "v0.3.5",
+      "latest_body": "uncharted-android 0.3.6 (base: uncharted_pc 0.3.15) - **beta**: upstream uncharted_pc 0.3.15 is merged (Uncharted 3's Load Game hang and fixes for checkpoint loads and textures), a rare crash of Uncharted 1 is fixed, Uncharted 3 gains about 1 FPS without the frame rate limit, and the GPU skinning checks its own inputs, so the rare GPU fault storms can no longer start there. **No game files are included**: you need your own decrypted dump of the collection (version 1.02 of the executables). Please attach the log to a report (Saves and logs > Copy the log).\n\n**Fixed**\n- **Uncharted 1 could close now and then in play.** On the Retroid Pocket G2 this happened about once in three hours without the frame rate limit. A job of the game's scene update read an object whose two fields the game's other code had not filled yet. The update now waits up to about 1.6 ms for them, and if they are still empty it skips the one query that needs them; the game does not use that query's result. In a test that skipped the query every time for two minutes, the game played on unharmed.",
+      "latest_apk_tag": "v0.3.6",
       "android_ready_source": "release"
     },
     {
@@ -75961,7 +76010,7 @@
           ]
         }
       ],
-      "stars": 11977,
+      "stars": 11984,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 1318143,
@@ -75981,7 +76030,7 @@
           "tag": "v1.4.0-prerelease"
         }
       ],
-      "pushed_at": "2026-11-22T16:35:32Z",
+      "pushed_at": "2026-11-22T20:02:07Z",
       "summary": "Play the PC games you already own — from Steam, Epic and GOG — on your Android device, with cloud saves.",
       "logo_source": "bundled",
       "artifacts": {
@@ -76448,7 +76497,7 @@
       "needs_review": true,
       "method": "recomp",
       "runtime": "android-native",
-      "stars": 37,
+      "stars": 38,
       "pushed_at": "2026-11-19T10:25:20Z",
       "releases": [
         {
@@ -79898,7 +79947,7 @@
           ]
         }
       ],
-      "stars": 925,
+      "stars": 927,
       "forks": 33,
       "watchers": 781,
       "downloads_total": 168,
@@ -79930,7 +79979,7 @@
         "siglus",
         "tyrano"
       ],
-      "pushed_at": "2026-11-22T16:43:12Z",
+      "pushed_at": "2026-11-22T18:54:14Z",
       "summary": "基于 Tyranor 模拟器逆向重写 的多引擎视觉小说（Galgame）模拟器，面向 Android 平台。具体功能与兼容边界见 SPEC.md。",
       "logo_source": "bundled",
       "artifacts": {
@@ -80633,7 +80682,7 @@
           "tag": "nightly-34abac9d09ce"
         }
       ],
-      "pushed_at": "2026-11-22T01:20:48Z",
+      "pushed_at": "2026-11-22T23:42:59Z",
       "summary": "A standalone emulator for old mobile apps based on WIPI, SKVM or J2ME.",
       "logo_source": "bundled",
       "artifacts": {
@@ -80939,7 +80988,7 @@
           ]
         }
       ],
-      "stars": 563,
+      "stars": 564,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 297008,
@@ -82126,7 +82175,7 @@
       "downloads_basis": "lifetime",
       "distribution": "release-apk",
       "download_kind": "github-release",
-      "pushed_at": "2026-11-20T06:36:39Z",
+      "pushed_at": "2026-11-22T21:10:27Z",
       "releases": [
         {
           "tag": "1.4.1",
@@ -82410,7 +82459,7 @@
           ]
         }
       ],
-      "stars": 779,
+      "stars": 778,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 141006,
@@ -83458,7 +83507,7 @@
           ]
         }
       ],
-      "stars": 4294,
+      "stars": 4298,
       "forks": 622,
       "watchers": 4231,
       "downloads_total": 674,
@@ -83818,7 +83867,7 @@
           ]
         }
       ],
-      "stars": 222,
+      "stars": 224,
       "forks": 12,
       "watchers": 154,
       "downloads_total": 5600,
@@ -83887,14 +83936,52 @@
       "status": "active",
       "needs_review": false,
       "method": "emulation",
-      "latest_tag": "381ba37",
-      "latest_date": "2026-11-22T17:39:16Z",
+      "latest_tag": "5fe5ffd",
+      "latest_date": "2026-11-22T19:32:34Z",
       "channel": "stable",
-      "latest_body": "### Changes\n\n- [x64] Resolve a longjmp only at its function's own frame (`381ba37`)\n- [PPC] End functions at a branch to a declared __restgprlr_* (`e32344a`)\n\n**Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/e8f4be2...381ba37\n",
+      "latest_body": "### Changes\n\n- [Patcher] Fix crashes on patch files with missing or wrong-typed fields (`5fe5ffd`)\n\n**Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/9197b02...5fe5ffd\n",
       "latest_apk_name": "",
       "latest_apk_url": "",
       "latest_apk_size": null,
       "releases": [
+        {
+          "tag": "5fe5ffd",
+          "name": "5fe5ffd_canary_experimental",
+          "date": "2026-11-22T19:32:34Z",
+          "body": "### Changes\n\n- [Patcher] Fix crashes on patch files with missing or wrong-typed fields (`5fe5ffd`)\n\n**Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/9197b02...5fe5ffd\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "xenia_canary_linux.AppImage",
+              "size": 16554488,
+              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/5fe5ffd/xenia_canary_linux.AppImage"
+            },
+            {
+              "name": "xenia_canary_windows.7z",
+              "size": 4101217,
+              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/5fe5ffd/xenia_canary_windows.7z"
+            }
+          ]
+        },
+        {
+          "tag": "9197b02",
+          "name": "9197b02_canary_experimental",
+          "date": "2026-11-22T18:20:44Z",
+          "body": "### Changes\n\n- [UI] Draw the frame rate overlay in the presenter instead of imgui (`9197b02`)\n\n**Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/381ba37...9197b02\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "xenia_canary_linux.AppImage",
+              "size": 16558584,
+              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/9197b02/xenia_canary_linux.AppImage"
+            },
+            {
+              "name": "xenia_canary_windows.7z",
+              "size": 4099230,
+              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/9197b02/xenia_canary_windows.7z"
+            }
+          ]
+        },
         {
           "tag": "381ba37",
           "name": "381ba37_canary_experimental",
@@ -83951,53 +84038,15 @@
               "url": "https://github.com/xenia-canary/xenia-canary/releases/download/4ded40f/xenia_canary_windows.7z"
             }
           ]
-        },
-        {
-          "tag": "806e3db",
-          "name": "806e3db_canary_experimental",
-          "date": "2026-11-21T20:39:54Z",
-          "body": "### Changes\n\n- [x64] Exclude branches inside a callee's frame from longjmp resolution (`806e3db`)\n- [GPU] Handle PM4_EVENT_WRITE_CFL as an EVENT_WRITE_SHD fence write (`28c265e`)\n\n**Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/e6b1dbd...806e3db\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "xenia_canary_linux.AppImage",
-              "size": 16554488,
-              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/806e3db/xenia_canary_linux.AppImage"
-            },
-            {
-              "name": "xenia_canary_windows.7z",
-              "size": 4097739,
-              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/806e3db/xenia_canary_windows.7z"
-            }
-          ]
-        },
-        {
-          "tag": "e6b1dbd",
-          "name": "e6b1dbd_canary_experimental",
-          "date": "2026-11-21T17:50:55Z",
-          "body": "### Changes\n\n- [GPU] Display the guest frame rate in the title and an optional overlay (`e6b1dbd`)\n- [UI] Stop taking input once the last ImGui dialog closes (`8fca96b`)\n\n**Full changelog**: https://github.com/xenia-canary/xenia-canary/compare/8a9d2f1...e6b1dbd\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "xenia_canary_linux.AppImage",
-              "size": 16554488,
-              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/e6b1dbd/xenia_canary_linux.AppImage"
-            },
-            {
-              "name": "xenia_canary_windows.7z",
-              "size": 4096925,
-              "url": "https://github.com/xenia-canary/xenia-canary/releases/download/e6b1dbd/xenia_canary_windows.7z"
-            }
-          ]
         }
       ],
-      "stars": 2786,
+      "stars": 2787,
       "forks": 359,
       "watchers": 78,
       "downloads_total": null,
       "downloads_basis": "lifetime",
       "builds": [],
-      "pushed_at": "2026-11-22T17:39:16Z",
+      "pushed_at": "2026-11-22T19:32:34Z",
       "summary": "Xenia Canary is an experimental fork of the Xenia emulator. For more information, see the",
       "artifacts": {
         "apk": 0,
@@ -84054,7 +84103,7 @@
       "latest_apk_url": "",
       "latest_apk_size": null,
       "releases": [],
-      "stars": 9847,
+      "stars": 9849,
       "forks": null,
       "watchers": null,
       "downloads_total": null,
@@ -84220,7 +84269,7 @@
       "latest_apk_name": "XHYN-V-0.3-preview4.apk",
       "latest_apk_url": "https://github.com/XHYN-PH/XHYN-V-reborn/releases/download/v0.3-preview4/XHYN-V-0.3-preview4.apk",
       "latest_apk_size": 103353815,
-      "stars": 298,
+      "stars": 307,
       "forks": 0,
       "watchers": 0,
       "downloads_total": null,
@@ -84708,7 +84757,7 @@
           ]
         }
       ],
-      "stars": 597,
+      "stars": 599,
       "forks": 18,
       "watchers": 563,
       "downloads_total": 453,
@@ -85719,20 +85768,20 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 131,
+      "stars": 132,
       "forks": 8,
       "watchers": 124,
-      "pushed_at": "2026-11-22T03:46:44Z",
-      "latest_tag": "v0.10.74",
-      "latest_date": "2026-11-21T22:56:06Z",
+      "pushed_at": "2026-11-22T20:49:31Z",
+      "latest_tag": "v0.10.75",
+      "latest_date": "2026-11-22T20:49:31Z",
       "channel": "stable",
-      "latest_body": "## Changes\n\n- **Move and resize the touch buttons (Android and iOS).** A new section, **Controls › Touch and tilt › Move and resize touch buttons**, shows the game's screen with the touch buttons on it. Drag a button to move it. Tap a button to choose it, then use the **Size** slider to make it bigger or smaller. **Reset this button** and **Reset all buttons** put things back.\n- **A layout made on one screen still fits another.** Each button keeps its distance from the nearer side of the screen (or from the middle), so a layout you make on a wide phone still has your thumb buttons at the sides, and START in the middle, on a 16:9 tablet.\n- The game uses your layout for drawing the buttons and for where they react to touches. In races, the floating stick area follows the stick to its side of the screen.\n- If you never open the new section, nothing changes: the buttons look and work exactly as in 0.10.73.\n\nFor #443\n\n## Validation\n\n- **Touch button layout (PR #449):**",
+      "latest_body": "## Changes\n\n- **The update check now runs at most once an hour,** instead of once a day, so a new version shows up in the launcher sooner. It still sends no personal data, and you can turn it off under **General › Updates**. For #365\n- **Picking AVATAR without a VRM model no longer hangs.** Before, choosing AVATAR in the character ring when no model was set in the launcher stayed on Now Loading for ever. Now you race as an empty rider (the Avatar's gear and board), and for the first seconds of the loading screen a note says **NO AVATAR MODEL. CHOOSE ONE IN THE LAUNCHER**. If you already have a model, nothing changes.\n\n## Validation\n\n- **AVATAR without a model (Windows x64 package):** AVATAR was picked in Free Race with no model set. The race started with all 12 racers, the board raced with no rider drawn, and the note showed on the loading screen and was gone by the start. Picking Sonic the same way raced exactly as in 0.10.74.\n- **Update check:** on Windows and Linux, the launcher found the latest release when told it was an old version, and a second start within the hour sent no request (`skipped=checked_recently`).\n- **The rest, as in 0.10.74:**\n  - **Windows x64 package:**",
       "downloads_lifetime": 1424,
       "downloads_basis": "lifetime",
       "name_zh": "索尼克：自由竞速",
       "note": "需自备原版游戏数据与兼容手柄。",
-      "latest_apk_name": "FreeRidersRecompiled-0.10.74-android-arm64.apk",
-      "latest_apk_url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.74/FreeRidersRecompiled-0.10.74-android-arm64.apk",
+      "latest_apk_name": "FreeRidersRecompiled-0.10.75-android-arm64.apk",
+      "latest_apk_url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-android-arm64.apk",
       "latest_apk_size": 106341796,
       "artifacts": {
         "apk": 2,
@@ -85749,6 +85798,65 @@
       "method": "recomp",
       "logo_source": "owner-avatar",
       "releases": [
+        {
+          "tag": "v0.10.75",
+          "name": "v0.10.75 — Hourly update check, and AVATAR without a model",
+          "date": "2026-11-22T20:49:31Z",
+          "body": "## Changes\n\n- **The update check now runs at most once an hour,** instead of once a day, so a new version shows up in the launcher sooner. It still sends no personal data, and you can turn it off under **General › Updates**. For #365\n- **Picking AVATAR without a VRM model no longer hangs.** Before, choosing AVATAR in the character ring when no model was set in the launcher stayed on Now Loading for ever. Now you race as an empty rider (the Avatar's gear and board), and for the first seconds of the loading screen a note says **NO AVATAR MODEL. CHOOSE ONE IN THE LAUNCHER**. If you already have a model, nothing changes.\n\n## Validation\n\n- **AVATAR without a model (Windows x64 package):** AVATAR was picked in Free Race with no model set. The race started with all 12 racers, the board raced with no rider drawn, and the note showed on the loading screen and was gone by the start. Picking Sonic the same way raced exactly as in 0.10.74.\n- **Update check:** on Windows and Linux, the launcher found the latest release when told it was an old version, and a second start within the hour sent no request (`skipped=checked_recently`).\n- **The rest, as in 0.10.74:**\n  - **Windows x64 package:**",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FreeRidersRecompiled-0.10.75-android-arm64-licenses.zip",
+              "size": 78185,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-android-arm64-licenses.zip"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-android-arm64.apk",
+              "size": 106341796,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-android-arm64.apk"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-android-arm64.apk.idsig",
+              "size": 845187,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-android-arm64.apk.idsig"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-android10-arm64.apk",
+              "size": 106358180,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-android10-arm64.apk"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-android10-arm64.apk.idsig",
+              "size": 845187,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-android10-arm64.apk.idsig"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-ios-arm64.ipa",
+              "size": 44607300,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-ios-arm64.ipa"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-linux-x64.tar.gz",
+              "size": 62230898,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-linux-x64.tar.gz"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-macos-arm64.zip",
+              "size": 47811466,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-macos-arm64.zip"
+            },
+            {
+              "name": "FreeRidersRecompiled-0.10.75-windows-x64.zip",
+              "size": 69530303,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/FreeRidersRecompiled-0.10.75-windows-x64.zip"
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 1033,
+              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.75/SHA256SUMS.txt"
+            }
+          ]
+        },
         {
           "tag": "v0.10.74",
           "name": "v0.10.74 — Move and resize touch buttons",
@@ -85984,68 +86092,9 @@
               "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.71/SHA256SUMS.txt"
             }
           ]
-        },
-        {
-          "tag": "v0.10.70",
-          "name": "v0.10.70 — Update notice, and the Linux application menu",
-          "date": "2026-11-20T15:35:56Z",
-          "body": "## Changes\n\n- **Update notice (all platforms).** The launcher now tells you when a newer version is out.\n  - A green **Version X is available** button appears in the launcher's top bar. It opens the right download for your device in the browser: the Windows ZIP, the Linux archive, the Android 10+ or Android 9 APK you installed, or the macOS or iOS file. The launcher never downloads or installs anything by itself.\n  - It checks at most once a day and sends no personal data: no account, no cookies, only the launcher's version.\n  - It never slows the launcher down, and **Start game** never waits for it.\n  - You can turn it off under **General › Updates**.\n- **Linux: the application menu.** The launcher adds itself to your desktop's application menu, so you no longer need to open its folder to start it. It keeps the entry up to date if you move the folder.\n  - You can turn it off under **General › Desktop**. That removes the entry and its icon.\n\nFor #365\n\nThe game itself is the same as [v0.10.69](https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/tag/v0.10.69).\n\n## Validation\n\n- **Update notice:**",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "FreeRidersRecompiled-0.10.70-android-arm64-licenses.zip",
-              "size": 76844,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-android-arm64-licenses.zip"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-android-arm64.apk",
-              "size": 106276260,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-android-arm64.apk"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-android-arm64.apk.idsig",
-              "size": 845187,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-android-arm64.apk.idsig"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-android10-arm64.apk",
-              "size": 106292644,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-android10-arm64.apk"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-android10-arm64.apk.idsig",
-              "size": 845187,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-android10-arm64.apk.idsig"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-ios-arm64.ipa",
-              "size": 44576172,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-ios-arm64.ipa"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-linux-x64.tar.gz",
-              "size": 62190051,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-linux-x64.tar.gz"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-macos-arm64.zip",
-              "size": 47790365,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-macos-arm64.zip"
-            },
-            {
-              "name": "FreeRidersRecompiled-0.10.70-windows-x64.zip",
-              "size": 69484492,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/FreeRidersRecompiled-0.10.70-windows-x64.zip"
-            },
-            {
-              "name": "SHA256SUMS.txt",
-              "size": 1033,
-              "url": "https://github.com/YuutaTsubasa/Free-Riders-Recompiled/releases/download/v0.10.70/SHA256SUMS.txt"
-            }
-          ]
         }
       ],
-      "latest_apk_tag": "v0.10.74",
+      "latest_apk_tag": "v0.10.75",
       "platform_families": [
         "microsoft"
       ],
@@ -87012,7 +87061,7 @@
           ]
         }
       ],
-      "stars": 7752,
+      "stars": 7754,
       "forks": 0,
       "watchers": 0,
       "downloads_total": 0,
@@ -87597,7 +87646,7 @@
       "downloads_basis": "lifetime",
       "distribution": "desktop-build",
       "download_kind": "desktop-build",
-      "pushed_at": "2026-11-22T16:03:06Z",
+      "pushed_at": "2026-11-22T19:13:37Z",
       "releases": [
         {
           "tag": "v0.1.1-b1080",
@@ -87978,7 +88027,7 @@
       "latest_apk_name": "nx2android-v0.4.0-alpha03.apk",
       "latest_apk_url": "https://github.com/zFitness/nx2androidX/releases/download/v0.4.0-alpha03/nx2android-v0.4.0-alpha03.apk",
       "latest_apk_size": 258371171,
-      "stars": 335,
+      "stars": 343,
       "forks": 12,
       "watchers": 3,
       "downloads_total": null,
@@ -88785,7 +88834,7 @@
           ]
         }
       ],
-      "stars": 10055,
+      "stars": 10074,
       "forks": 351,
       "watchers": 45,
       "downloads_total": null,
@@ -88819,7 +88868,7 @@
           "tag": "build-75"
         }
       ],
-      "pushed_at": "2026-11-22T16:30:29Z",
+      "pushed_at": "2026-11-22T23:17:08Z",
       "summary": "Lichii is an experimental, open-source Nintendo Switch and Switch 2 emulator written in C++.",
       "artifacts": {
         "apk": 0,
@@ -88910,10 +88959,10 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 5357,
+      "stars": 5362,
       "forks": 1349,
       "watchers": 32,
-      "pushed_at": "2026-11-21T14:16:27Z",
+      "pushed_at": "2026-11-22T21:22:04Z",
       "latest_tag": "v2.3.3",
       "latest_date": "2026-11-16T14:03:12Z",
       "channel": "stable",
@@ -89145,9 +89194,9 @@
       "latest_date": "2026-11-16T20:53:41Z",
       "channel": "prerelease",
       "latest_body": "> [!WARNING]\n> **This is an in-development test build, not meant for general use.** It exists so the people in the linked issue can test a fix and give feedback, and it may have bugs that the regular release doesn't. If you aren't taking part in testing this build on that issue, please use the **[latest release](https://github.com/peiikai/LASRecomp/releases/latest)** instead.\n\n\nThis test build is for #779 and #812 (the missing sunlight on Qualcomm and AMD integrated GPUs). It replaces test-779-bias and is the v0.6.0 code plus the fixes on the way to v0.6.1 and these test switches:\n\n- `LARECOMP_VK_SOFT_SHADOW=13`: stripes that follow the depths the shadow test reads.\n- `LARECOMP_VK_SOFT_SHADOW=14`: stripes that follow the depths it compares against.\n- `LARECOMP_VK_SOFT_SHADOW=15`: the difference between the two, grey where they match.\n\nUnzip it into a new folder. For each of 13, 14 and 15, in a new Command Prompt in that folder, run `set LARECOMP_VK_SOFT_SHADOW=13` (then 14, then 15), start `lasrecomp.exe`, and take a screenshot outside Link's house, standing still in the same spot each time.\n\nBuilt from 559ece15 (release/0.6 with PR #803, PR #802 and branch fix/779-adreno-shadow).",
-      "latest_apk_name": "LAS.Recomp-nightly-202611221053-652fbfd-android.apk",
-      "latest_apk_url": "https://github.com/peiikai/LASRecomp/releases/download/nightly/LAS.Recomp-nightly-202611221053-652fbfd-android.apk",
-      "latest_apk_size": 79999313,
+      "latest_apk_name": "LAS.Recomp-nightly-202611221742-72791fb-android.apk",
+      "latest_apk_url": "https://github.com/peiikai/LASRecomp/releases/download/nightly/LAS.Recomp-nightly-202611221742-72791fb-android.apk",
+      "latest_apk_size": 79999369,
       "latest_apk_tag": "nightly",
       "releases": [
         {
@@ -89298,19 +89347,87 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 369,
+      "stars": 373,
       "forks": 21,
       "watchers": 7,
-      "pushed_at": "2026-11-21T20:00:32Z",
-      "latest_tag": "v0.9.80",
-      "latest_date": "2026-11-21T20:00:53Z",
+      "pushed_at": "2026-11-22T22:59:56Z",
+      "latest_tag": "v0.9.82",
+      "latest_date": "2026-11-22T23:00:12Z",
       "channel": "stable",
-      "latest_body": "- Pause menu Settings: a slow frame no longer takes you out of the list, as if Back had been pressed (#261)\n- All Weapons: the ammunition (incendiary shuriken, smoke bombs, arrows) is no longer lost when New Game starts quickly after the main menu (#268)\n",
+      "latest_body": "- All Weapons at Level 1: picking up a weapon you already hold no longer raises its level, adds a second Lunar in its slot (which Muramasa could then not upgrade) or a second Kitetsu, and the Bow no longer stays beside the Strongbow. A weapon found this way becomes yours, so turning the cheat off keeps it and the levels Muramasa gave it. Saves that already have two Lunars in one slot or a second Kitetsu are mended when an area loads (#268)\n",
       "latest_apk_name": "NinjaGaidenBlack-android-arm64.apk",
-      "latest_apk_url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.80/NinjaGaidenBlack-android-arm64.apk",
-      "latest_apk_size": 16521292,
-      "latest_apk_tag": "v0.9.80",
+      "latest_apk_url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.82/NinjaGaidenBlack-android-arm64.apk",
+      "latest_apk_size": 16525388,
+      "latest_apk_tag": "v0.9.82",
       "releases": [
+        {
+          "tag": "v0.9.82",
+          "name": "Ninja Gaiden Black Recompiled v0.9.82",
+          "date": "2026-11-22T23:00:12Z",
+          "body": "- All Weapons at Level 1: picking up a weapon you already hold no longer raises its level, adds a second Lunar in its slot (which Muramasa could then not upgrade) or a second Kitetsu, and the Bow no longer stays beside the Strongbow. A weapon found this way becomes yours, so turning the cheat off keeps it and the levels Muramasa gave it. Saves that already have two Lunars in one slot or a second Kitetsu are mended when an area loads (#268)\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "NinjaGaidenBlack-android-arm64.apk",
+              "size": 16525388,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.82/NinjaGaidenBlack-android-arm64.apk"
+            },
+            {
+              "name": "NinjaGaidenBlack-windows-x64.zip",
+              "size": 20917173,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.82/NinjaGaidenBlack-windows-x64.zip"
+            },
+            {
+              "name": "NinjaGaidenBlack-x86_64.AppImage",
+              "size": 42072568,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.82/NinjaGaidenBlack-x86_64.AppImage"
+            },
+            {
+              "name": "NinjaGaidenBlack-x86_64.AppImage.zsync",
+              "size": 144043,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.82/NinjaGaidenBlack-x86_64.AppImage.zsync"
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 299,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.82/SHA256SUMS.txt"
+            }
+          ]
+        },
+        {
+          "tag": "v0.9.81",
+          "name": "Ninja Gaiden Black Recompiled v0.9.81",
+          "date": "2026-11-22T17:49:20Z",
+          "body": "- Positional Audio \"Console\" now matches a recording of the original Xbox much more closely: the sound chip's filters are read the way the chip reads them (the old reading made it dull), and the console's speaker crosstalk is back. Console is the new default, and existing settings switch to it once; Mixed, Clear and Off are still in Sound (#270)\n- Doppler for 3D sounds, worked out as the console's DirectSound library does it, in every Positional Audio choice. As on the Xbox it is subtle (#270)\n- Android: no more black screen at boot when the movie folder listing comes back empty on the first try (#242)\n- Original HUD: no black pixels at the edge of the Ninpo orb, and with HUD Aspect Corrected the Ninpo icon sits in the middle of its frame (#272)\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "NinjaGaidenBlack-android-arm64.apk",
+              "size": 16521292,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.81/NinjaGaidenBlack-android-arm64.apk"
+            },
+            {
+              "name": "NinjaGaidenBlack-windows-x64.zip",
+              "size": 20916573,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.81/NinjaGaidenBlack-windows-x64.zip"
+            },
+            {
+              "name": "NinjaGaidenBlack-x86_64.AppImage",
+              "size": 42064376,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.81/NinjaGaidenBlack-x86_64.AppImage"
+            },
+            {
+              "name": "NinjaGaidenBlack-x86_64.AppImage.zsync",
+              "size": 144015,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.81/NinjaGaidenBlack-x86_64.AppImage.zsync"
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 404,
+              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.81/SHA256SUMS.txt"
+            }
+          ]
+        },
         {
           "tag": "v0.9.80",
           "name": "Ninja Gaiden Black Recompiled v0.9.80",
@@ -89412,74 +89529,6 @@
               "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.78/SHA256SUMS.txt"
             }
           ]
-        },
-        {
-          "tag": "v0.9.77",
-          "name": "Ninja Gaiden Black Recompiled v0.9.77",
-          "date": "2026-11-21T00:34:29Z",
-          "body": "- HUD Aspect \"Corrected\": each element stays where \"Stretched\" puts it instead of moving into the corners, as on Sigma's HUD; the Interact prompt is shaped too (#266)\n- HUD Style \"Compact\" also makes the Interact prompt smaller\n- The Talisman of Rebirth is equipped or unequipped from the pause menu's Item page instead of the Gameplay settings (#148, #223)\n- Cheats are locked at first: opening Cheats in RECOMP SETTINGS asks \"Do you want to use cheats?\", and the pause menu shows no Cheats tab until then (#267). Players who already use a cheat or an unlock are not asked. To lock them again, turn off every unlock on the Cheats page, quit, and set `cheats_unlocked = 0` in settings.ini\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "NinjaGaidenBlack-android-arm64.apk",
-              "size": 16513100,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.77/NinjaGaidenBlack-android-arm64.apk"
-            },
-            {
-              "name": "NinjaGaidenBlack-windows-x64.zip",
-              "size": 20910975,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.77/NinjaGaidenBlack-windows-x64.zip"
-            },
-            {
-              "name": "NinjaGaidenBlack-x86_64.AppImage",
-              "size": 42072568,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.77/NinjaGaidenBlack-x86_64.AppImage"
-            },
-            {
-              "name": "NinjaGaidenBlack-x86_64.AppImage.zsync",
-              "size": 144043,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.77/NinjaGaidenBlack-x86_64.AppImage.zsync"
-            },
-            {
-              "name": "SHA256SUMS.txt",
-              "size": 299,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.77/SHA256SUMS.txt"
-            }
-          ]
-        },
-        {
-          "tag": "v0.9.76",
-          "name": "Ninja Gaiden Black Recompiled v0.9.76",
-          "date": "2026-11-20T17:10:56Z",
-          "body": "- Frame Interpolation: the imps' head flames no longer leave a copy between two imps, the save statue's text no longer flickers at full brightness, and Zarkhan Falls' water no longer streaks when the camera moves (#259)\n- 16:10: the same width of view as 16:9, with more above and below, instead of a narrower picture\n- \"21:9\" now fits phone screens from 18:9 to 20:9 (#262)\n- HUD Aspect \"Corrected\": the HUD in the shape it was drawn, so the ninpo orb is round (#266)\n- Fixed a black screen at start when a file of 2 GB or more, like the disc image, was in the game folder (#257)\n",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "NinjaGaidenBlack-android-arm64.apk",
-              "size": 16509004,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.76/NinjaGaidenBlack-android-arm64.apk"
-            },
-            {
-              "name": "NinjaGaidenBlack-windows-x64.zip",
-              "size": 20906603,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.76/NinjaGaidenBlack-windows-x64.zip"
-            },
-            {
-              "name": "NinjaGaidenBlack-x86_64.AppImage",
-              "size": 42060280,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.76/NinjaGaidenBlack-x86_64.AppImage"
-            },
-            {
-              "name": "NinjaGaidenBlack-x86_64.AppImage.zsync",
-              "size": 144001,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.76/NinjaGaidenBlack-x86_64.AppImage.zsync"
-            },
-            {
-              "name": "SHA256SUMS.txt",
-              "size": 299,
-              "url": "https://github.com/gamboozino/ngbrecomp/releases/download/v0.9.76/SHA256SUMS.txt"
-            }
-          ]
         }
       ],
       "downloads_total": 0,
@@ -89540,7 +89589,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 68,
+      "stars": 69,
       "forks": 0,
       "watchers": 1,
       "pushed_at": "2026-11-22T10:19:29Z",
@@ -89719,7 +89768,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 67,
+      "stars": 71,
       "forks": 0,
       "watchers": 2,
       "pushed_at": "2026-11-22T17:44:02Z",
@@ -89850,7 +89899,7 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 60,
+      "stars": 61,
       "forks": 2,
       "watchers": 5,
       "pushed_at": "2026-11-20T04:36:26Z",
@@ -90427,19 +90476,73 @@
       ],
       "status": "active",
       "needs_review": false,
-      "stars": 32,
+      "stars": 34,
       "forks": 0,
       "watchers": 1,
-      "pushed_at": "2026-11-21T15:27:05Z",
-      "latest_tag": "alpha-2.2.2",
-      "latest_date": "2026-11-20T17:21:40Z",
+      "pushed_at": "2026-11-22T22:42:30Z",
+      "latest_tag": "alpha-2.3",
+      "latest_date": "2026-11-22T18:50:57Z",
       "channel": "stable",
-      "latest_body": "TNRP Alpha 2.2.2 — hotfix for Android.\n\nLinux and Windows stay on Alpha 2.2.1: https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/tag/alpha-2.2.1\n\n# Nimbus Alpha 2.2.2 for Android\n\nA second hotfix for Android. Linux and Windows stay on 2.2.1.\n\n## Fixed\n\n- **Phones that still showed \"Nimbus could not start graphics\" on 2.2.1** (for example some Helio G99 phones on Android 14) now start their games. On these phones Nimbus uses a second graphics path.\n- Heads up: the second graphics path is slower than Vulkan, so games on those phones may run slower. Every other device stays on Vulkan.\n- Every other device runs exactly as on 2.2.1.\n\n## Good to know\n\n- After updating, Nimbus prepares its shaders once more on the first start.\n- Online play is unchanged: 2.2.2 on Android plays with 2.2, 2.2.1 and 2.2.2 on every platform.\n\n## Updating\n\nInstall the 2.2.2 APK over 2.2 or 2.2.1. It updates in place and keeps your links and saves. Do not uninstall first.\n\nThanks to Velkooky on Reddit for finding and reporting this bug.\n",
-      "latest_apk_name": "Nimbus-Alpha-2.2.2-Android-arm64.apk",
-      "latest_apk_url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.2.2/Nimbus-Alpha-2.2.2-Android-arm64.apk",
-      "latest_apk_size": 529296368,
-      "latest_apk_tag": "alpha-2.2.2",
+      "latest_body": "VirusTotal scans\n\n[Linux 0/60](https://www.virustotal.com/gui/file/ad962ce3b46a852036987a724a5f8eb1a41dfb56ebed37a44c397c093869d352) · [Windows 1/63](https://www.virustotal.com/gui/file/370ba19211863eb8ccc3d25c0cc95e9aaf2c4f52450aca02887664564a15a13f) · [Android 0/66](https://www.virustotal.com/gui/file/d2122ff208fc5839687199ccf1fcb4078dbfd10891f67c3019fe24539ed75a6d)\n\nThe single Windows flag comes from Bkav Pro, a known false positive on large unsigned archives. Every major vendor reports it clean, and we are reporting it to Bkav as a false positive.\n\nNimbus Alpha 2.3\n\nDragon Ball remains the heart of TNRP. This release also adds a new native port that Charles made himself.\n\nNEW GAME\nBleach: Heat the Soul 7 joins Nimbus as its fifteenth game on Linux, Windows and Android. Link your own disc image.\nPlay online with up to four players. Two player Quick Match opens at the Soul VS opponent list. The disc's menus remain in Traditional Chinese, with English mode names.\nBleach's HD texture packs load before play. Find My Files recognizes Bleach and Gundam HD packs by game ID rather than filename, and rejects packs meant for the wrong platform.\n\nLIBRARY AND ONLINE",
+      "latest_apk_name": "Nimbus-Alpha-2.3-Android-arm64.apk",
+      "latest_apk_url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Android-arm64.apk",
+      "latest_apk_size": 642280925,
+      "latest_apk_tag": "alpha-2.3",
       "releases": [
+        {
+          "tag": "alpha-2.3",
+          "name": "TNRP Alpha 2.3",
+          "date": "2026-11-22T18:50:57Z",
+          "body": "VirusTotal scans\n\n[Linux 0/60](https://www.virustotal.com/gui/file/ad962ce3b46a852036987a724a5f8eb1a41dfb56ebed37a44c397c093869d352) · [Windows 1/63](https://www.virustotal.com/gui/file/370ba19211863eb8ccc3d25c0cc95e9aaf2c4f52450aca02887664564a15a13f) · [Android 0/66](https://www.virustotal.com/gui/file/d2122ff208fc5839687199ccf1fcb4078dbfd10891f67c3019fe24539ed75a6d)\n\nThe single Windows flag comes from Bkav Pro, a known false positive on large unsigned archives. Every major vendor reports it clean, and we are reporting it to Bkav as a false positive.\n\nNimbus Alpha 2.3\n\nDragon Ball remains the heart of TNRP. This release also adds a new native port that Charles made himself.\n\nNEW GAME\nBleach: Heat the Soul 7 joins Nimbus as its fifteenth game on Linux, Windows and Android. Link your own disc image.\nPlay online with up to four players. Two player Quick Match opens at the Soul VS opponent list. The disc's menus remain in Traditional Chinese, with English mode names.\nBleach's HD texture packs load before play. Find My Files recognizes Bleach and Gundam HD packs by game ID rather than filename, and rejects packs meant for the wrong platform.\n\nLIBRARY AND ONLINE",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "Nimbus-Alpha-2.3-Android-arm64.apk",
+              "size": 642280925,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Android-arm64.apk"
+            },
+            {
+              "name": "Nimbus-Alpha-2.3-Android-arm64.apk.sha256",
+              "size": 101,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Android-arm64.apk.sha256"
+            },
+            {
+              "name": "Nimbus-Alpha-2.3-Linux-x86_64.run",
+              "size": 467459499,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Linux-x86_64.run"
+            },
+            {
+              "name": "Nimbus-Alpha-2.3-Linux-x86_64.run.sha256",
+              "size": 100,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Linux-x86_64.run.sha256"
+            },
+            {
+              "name": "Nimbus-Alpha-2.3-Windows-x64.zip",
+              "size": 527338253,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Windows-x64.zip"
+            },
+            {
+              "name": "Nimbus-Alpha-2.3-Windows-x64.zip.sha256",
+              "size": 99,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/Nimbus-Alpha-2.3-Windows-x64.zip.sha256"
+            },
+            {
+              "name": "RELEASE-NOTES.txt",
+              "size": 1900,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/RELEASE-NOTES.txt"
+            },
+            {
+              "name": "release.json",
+              "size": 2563,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/release.json"
+            },
+            {
+              "name": "SHA256SUMS",
+              "size": 300,
+              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.3/SHA256SUMS"
+            }
+          ]
+        },
         {
           "tag": "alpha-2.2.2",
           "name": "TNRP Alpha 2.2.2",
@@ -90473,7 +90576,7 @@
           "tag": "alpha-2.2.1",
           "name": "TNRP Alpha 2.2.1",
           "date": "2026-11-18T00:02:09Z",
-          "body": "TNRP Alpha 2.2.1 — hotfix for Linux, Windows and Android.\n\nGundam vs. Gundam NEXT PLUS would not boot on Linux and Windows — an audio package was missing from the 2.2 build. It's in now, and Gundam boots.\n\nEverything else on Linux and Windows is identical to Alpha 2.2 — all 14 games, same packs, same saves.\n\n# Nimbus Alpha 2.2.1 for Android\n\nA hotfix for Android. Linux and Windows are already on 2.2.1 and are unchanged.\n\n## Fixed\n\n- **Black screen, then back to the Library, when starting any game on some Android devices.** On these devices every game failed to start graphics. Games now start.\n- If a device's graphics driver still cannot run Nimbus, the Library now says so and names the graphics device, where before it gave no message.\n\n## Good to know\n\n- After updating, Nimbus prepares its shaders once more. This takes a short while on the first start and does not happen again.\n- Online play is unchanged: 2.2.1 on Android plays with 2.2 and 2.2.1 on every platform.\n\n## Updating\n\nInstall the 2.2.1 APK over 2.2. It updates in place and keeps your links and saves. Do not uninstall first.\n\nThanks to Velkooky on Reddit for finding and reporting this bug.\n",
+          "body": "TNRP Alpha 2.2.1 — hotfix for Linux, Windows and Android.\n\nGundam vs. Gundam NEXT PLUS would not boot on Linux and Windows — an audio package was missing from the 2.2 build. It's in now, and Gundam boots.\n\nEverything else on Linux and Windows is identical to Alpha 2.2 — all 14 games and the same packs.\n\n# Nimbus Alpha 2.2.1 for Android\n\nA hotfix for Android. Linux and Windows are already on 2.2.1 and are unchanged.\n\n## Fixed\n\n- **Black screen, then back to the Library, when starting any game on some Android devices.** On these devices every game failed to start graphics. Games now start.\n- If a device's graphics driver still cannot run Nimbus, the Library now says so and names the graphics device, where before it gave no message.\n\n## Good to know\n\n- After updating, Nimbus prepares its shaders once more. This takes a short while on the first start and does not happen again.\n- Online play is unchanged: 2.2.1 on Android plays with 2.2 and 2.2.1 on every platform.\n\n## Updating\n\nInstall the 2.2.1 APK over 2.2. It updates in place and keeps your links and saves. Do not uninstall first.\n\nThanks to Velkooky on Reddit for finding and reporting this bug.\n\n",
           "prerelease": false,
           "assets": [
             {
@@ -90557,7 +90660,7 @@
             },
             {
               "name": "RELEASE-NOTES.txt",
-              "size": 6517,
+              "size": 6212,
               "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.2/RELEASE-NOTES.txt"
             },
             {
@@ -90611,7 +90714,7 @@
             },
             {
               "name": "RELEASE-NOTES.txt",
-              "size": 1702,
+              "size": 1675,
               "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.1/RELEASE-NOTES.txt"
             },
             {
@@ -90623,60 +90726,6 @@
               "name": "SHA256SUMS",
               "size": 300,
               "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.1/SHA256SUMS"
-            }
-          ]
-        },
-        {
-          "tag": "alpha-2.0",
-          "name": "TNRP Alpha 2.0 — The Nimbus Recompilation Project",
-          "date": "2026-11-11T17:11:06Z",
-          "body": "**The Nimbus Recompilation Project (TNRP)** — Alpha 2.0. Official site: https://nimbusrecomp.org · GitHub: https://github.com/thebabyhippo303/nimbus-recompilation-project\n\n**Watch the Alpha 2.0 trailer:** https://nimbusrecomp.org/#alpha-2-0-trailer\n\nAlpha 2.0 for Linux (Ubuntu 26.04 x86-64, Vulkan GPU), Windows 11 x64 (Vulkan GPU) and Android 13+ arm64 (Vulkan GPU). Bring your own NTSC-U discs, your own Dragon Ball Z: Supersonic Warriors (USA) and Dragon Ball Z: Taiketsu (USA) ROMs, your own Dragon Ball Z: Tenkaichi Tag Team (ULUS10537), Shin Budokai (ULUS10081) and Shin Budokai – Another Road (ULUS10234) USA ISO, CSO or ZSO, your own Dragon Ball Z: Infinite World (USA, SLUS-21842) disc image, your own Super Dragon Ball Z (USA, SLUS-21442) disc image, and your own Ridge Racer 2 (Europe, UCES-00422) ISO, CSO or ZSO: the runtime components for all eleven games are bundled, and no game files are included. Verify with `SHA256SUMS`.",
-          "prerelease": false,
-          "assets": [
-            {
-              "name": "Nimbus-Alpha-2.0-Android-arm64.apk",
-              "size": 339883666,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/Nimbus-Alpha-2.0-Android-arm64.apk"
-            },
-            {
-              "name": "Nimbus-Alpha-2.0-Android-arm64.apk.sha256",
-              "size": 101,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/Nimbus-Alpha-2.0-Android-arm64.apk.sha256"
-            },
-            {
-              "name": "Nimbus-Alpha-2.0-Linux-x86_64.run",
-              "size": 316423304,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/Nimbus-Alpha-2.0-Linux-x86_64.run"
-            },
-            {
-              "name": "Nimbus-Alpha-2.0-Linux-x86_64.run.sha256",
-              "size": 100,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/Nimbus-Alpha-2.0-Linux-x86_64.run.sha256"
-            },
-            {
-              "name": "Nimbus-Alpha-2.0-Windows-x64.zip",
-              "size": 281711338,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/Nimbus-Alpha-2.0-Windows-x64.zip"
-            },
-            {
-              "name": "Nimbus-Alpha-2.0-Windows-x64.zip.sha256",
-              "size": 99,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/Nimbus-Alpha-2.0-Windows-x64.zip.sha256"
-            },
-            {
-              "name": "RELEASE-NOTES.txt",
-              "size": 2971,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/RELEASE-NOTES.txt"
-            },
-            {
-              "name": "release.json",
-              "size": 2263,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/release.json"
-            },
-            {
-              "name": "SHA256SUMS",
-              "size": 300,
-              "url": "https://github.com/thebabyhippo303/nimbus-recompilation-project/releases/download/alpha-2.0/SHA256SUMS"
             }
           ]
         }
@@ -91358,21 +91407,21 @@
       "stars": 10,
       "forks": 0,
       "watchers": 0,
-      "pushed_at": "2026-11-22T15:03:50Z",
+      "pushed_at": "2026-11-22T19:59:13Z",
       "latest_tag": "nightly",
       "latest_date": "2026-11-14T18:18:56Z",
       "channel": "prerelease",
-      "latest_body": "APK built from 0c950192db48136af5a34975c2924b8910c89e43. Untested on a device.",
+      "latest_body": "APK built from 7429479ab4c63f70a61185e84fae8cbffdf097c0. Untested on a device.",
       "latest_apk_name": "nx2android-native.apk",
       "latest_apk_url": "https://github.com/A2redweb/Nx2android-Native-Port/releases/download/nightly/nx2android-native.apk",
-      "latest_apk_size": 9150995,
+      "latest_apk_size": 9179591,
       "latest_apk_tag": "nightly",
       "releases": [
         {
           "tag": "nightly",
           "name": "Nightly",
           "date": "2026-11-14T18:18:56Z",
-          "body": "APK built from 0c950192db48136af5a34975c2924b8910c89e43. Untested on a device.",
+          "body": "APK built from 7429479ab4c63f70a61185e84fae8cbffdf097c0. Untested on a device.",
           "prerelease": true,
           "assets": [
             {
@@ -91382,7 +91431,7 @@
             },
             {
               "name": "nx2android-native.apk",
-              "size": 9150995,
+              "size": 9179591,
               "url": "https://github.com/A2redweb/Nx2android-Native-Port/releases/download/nightly/nx2android-native.apk"
             }
           ]
@@ -92692,10 +92741,10 @@
       ],
       "status": "active",
       "needs_review": true,
-      "stars": 6,
+      "stars": 7,
       "forks": 0,
       "watchers": 0,
-      "pushed_at": "2026-11-22T17:14:50Z",
+      "pushed_at": "2026-11-22T23:54:52Z",
       "latest_tag": "v2026.11.22.12",
       "latest_date": "2026-11-22T12:33:37Z",
       "channel": "stable",
@@ -93911,16 +93960,30 @@
       "stars": 1,
       "forks": 0,
       "watchers": 0,
-      "pushed_at": "2026-11-22T02:56:38Z",
-      "latest_tag": "v0.1.1",
-      "latest_date": "2026-11-22T03:03:37Z",
+      "pushed_at": "2026-11-22T19:36:08Z",
+      "latest_tag": "v0.1.2",
+      "latest_date": "2026-11-22T19:36:09Z",
       "channel": "stable",
-      "latest_body": "## Cutscenes are no longer blurry\n\nThe story cutscenes presented as the *Golden Playhouse* broadcast (the ones with the black bars) came out as a uniform blur: faces were unreadable while the on-screen text stayed sharp the whole time.\n\nThe game's depth-of-field pass binds 28 bytes of shader constants but reads 32. On the console those last four bytes are the next bytes of the game's own structure; the port filled them with zeros, so the last parameter arrived as 0 and the blur map came out maxed over the whole image. Those bytes now come from the game's memory, which gives the pass its real value. `<data>/sin_ubo_detras` restores the old behaviour for testing.\n\n- **TV mode measured on the Flip 2** for the first time: the game renders at 1080p instead of 720p + upscale and it holds **30.0–30.1 fps with the game GPU at 4–10 ms**. It makes text and edges noticeably sharper; it is a switch in the settings panel (swipe in from the right edge).\n- Also checked with the fix: every scene that is *supposed* to be soft (the opening dream sequence, the title screen's shallow focus) is unchanged.\n\n## En español",
-      "latest_apk_name": "catherineport-v0.1.1.apk",
-      "latest_apk_url": "https://github.com/IamWilmar/catherine-recomp/releases/download/v0.1.1/catherineport-v0.1.1.apk",
-      "latest_apk_size": 21763066,
-      "latest_apk_tag": "v0.1.1",
+      "latest_body": "## Cutscenes and the title screen are sharp (the real fix)\n\nClose-ups in the *Golden Playhouse* cutscenes (the ones with the black bars) could still come out blurred from edge to edge, faces included, and the title screen looked out of focus. v0.1.1 blamed a short block of shader constants; that was wrong: the depth-of-field pass never reads those bytes.\n\nThe real cause is the depth format. The game never tells the graphics API which depth range it uses, and the port assumed the OpenGL-style one, which stores depth squeezed into 0.5–1. The game's depth-of-field planes come straight from each cutscene's data and are written for a plain 0–1 depth, so a face in a close-up landed *behind* the focus plane and the whole frame got the maximum blur. When the game does not choose, the port now uses 0–1 depth, so close-ups keep the face sharp and blur only the background, as intended.\n\n- Checked on the Flip 2: the title screen (same shot before/after: background, piano and characters go from blurred to sharp), the host's introduction, the opening credits, the opening nightmare cutscene and the first puzzle stage, at 30 fps.",
+      "latest_apk_name": "catherineport-v0.1.2.apk",
+      "latest_apk_url": "https://github.com/IamWilmar/catherine-recomp/releases/download/v0.1.2/catherineport-v0.1.2.apk",
+      "latest_apk_size": 21795834,
+      "latest_apk_tag": "v0.1.2",
       "releases": [
+        {
+          "tag": "v0.1.2",
+          "name": "v0.1.2",
+          "date": "2026-11-22T19:36:09Z",
+          "body": "## Cutscenes and the title screen are sharp (the real fix)\n\nClose-ups in the *Golden Playhouse* cutscenes (the ones with the black bars) could still come out blurred from edge to edge, faces included, and the title screen looked out of focus. v0.1.1 blamed a short block of shader constants; that was wrong: the depth-of-field pass never reads those bytes.\n\nThe real cause is the depth format. The game never tells the graphics API which depth range it uses, and the port assumed the OpenGL-style one, which stores depth squeezed into 0.5–1. The game's depth-of-field planes come straight from each cutscene's data and are written for a plain 0–1 depth, so a face in a close-up landed *behind* the focus plane and the whole frame got the maximum blur. When the game does not choose, the port now uses 0–1 depth, so close-ups keep the face sharp and blur only the background, as intended.\n\n- Checked on the Flip 2: the title screen (same shot before/after: background, piano and characters go from blurred to sharp), the host's introduction, the opening credits, the opening nightmare cutscene and the first puzzle stage, at 30 fps.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "catherineport-v0.1.2.apk",
+              "size": 21795834,
+              "url": "https://github.com/IamWilmar/catherine-recomp/releases/download/v0.1.2/catherineport-v0.1.2.apk"
+            }
+          ]
+        },
         {
           "tag": "v0.1.1",
           "name": "Catherine port v0.1.1",
@@ -94736,16 +94799,35 @@
       "stars": 0,
       "forks": 0,
       "watchers": 0,
-      "pushed_at": "2026-11-22T15:42:13Z",
-      "latest_tag": "v0.8.0-android.3",
-      "latest_date": "2026-11-22T15:14:12Z",
+      "pushed_at": "2026-11-22T21:07:52Z",
+      "latest_tag": "v0.8.0-android.4",
+      "latest_date": "2026-11-22T21:07:52Z",
       "channel": "prerelease",
-      "latest_body": "### Genma Onimusha — Android ARM64 Port (v0.8.0-android.3)\n\n- **Fitur & Perbaikan baru pada rilis ini**:\n  - Menambahkan **Touch Controls Overlay visual** (`TouchOverlayView`) langsung di atas layar SDL3: Virtual Left Analog Stick, D-Pad, tombol Xbox (**A / B / X / Y**), shoulder (**LB / RB / LT / RT**), **START**, **BACK**, serta tombol **PAD** (toggle tampil/sembunyi).\n  - Menambahkan log `LOGR` format tekstur (`vulkan: tex#...`) ke `genma.log` untuk mengisolasi akar masalah *Texture Atlas Corruption* pada title screen.\n- **Target Minimum**: Android 10+ (API 29+), ABI `arm64-v8a`, 16 KB page-aligned\n\n\n**Full Changelog**: https://github.com/EkoSaputro14/genma-recomp-android/compare/v0.8.0-android.2...v0.8.0-android.3",
-      "latest_apk_name": "GenmaOnimusha-v0.8.0-android.3-android-arm64-v8a.apk",
-      "latest_apk_url": "https://github.com/EkoSaputro14/genma-recomp-android/releases/download/v0.8.0-android.3/GenmaOnimusha-v0.8.0-android.3-android-arm64-v8a.apk",
-      "latest_apk_size": 14893552,
-      "latest_apk_tag": "v0.8.0-android.3",
+      "latest_body": "### Genma Onimusha — Android ARM64 Port (v0.8.0-android.4)\n\n- **Fitur & Perbaikan baru pada rilis ini**:\n  - **Perbaikan Texture & Framebuffer Corruption**: Membatasi lookup `palette` hanya untuk format `P8` (`0x0B`) swizzled agar tekstur `DXT1/3/5` & `LIN_X8R8G8B8` tidak melewati `DecodeDxtCpu()` atau mengalami *buffer over-read* dari staging arena; membersihkan render target warna baru ke hitam pada awal pembuatan (`vkCmdClearColorImage`).\n  - **Perbaikan Slow-Motion (~6–11 FPS -> 60 FPS target)**: Mengganti full-buffer CPU hashing pada setiap `Draw()`/`Target()` dengan sampling cepat `MemSig` + `DirtyEpoch` per-frame caching; menjaga `VkRenderPass` tetap terbuka antar-draw (`BeginRender`/`EndRender`) dan menghapus redundant `VK_PIPELINE_STAGE_ALL_COMMANDS_BIT` barriers untuk GPU TBDR Adreno; menambahkan 2-frame double buffering (`kFrames = 2`) dan shader LUT GPU untuk gamma non-identitas (tanpa CPU `Read()` stall).\n  - Menambahkan pencatatan `fps` dan `ms/frame` ke log setiap 60 frame untuk verifikasi performa.\n- **Target Minimum**: Android 10+ (API 29+), ABI `arm64-v8a`, 16 KB page-aligned",
+      "latest_apk_name": "GenmaOnimusha-v0.8.0-android.4-android-arm64-v8a.apk",
+      "latest_apk_url": "https://github.com/EkoSaputro14/genma-recomp-android/releases/download/v0.8.0-android.4/GenmaOnimusha-v0.8.0-android.4-android-arm64-v8a.apk",
+      "latest_apk_size": 14899360,
+      "latest_apk_tag": "v0.8.0-android.4",
       "releases": [
+        {
+          "tag": "v0.8.0-android.4",
+          "name": "Genma Onimusha Android ARM64 v0.8.0-android.4",
+          "date": "2026-11-22T21:07:52Z",
+          "body": "### Genma Onimusha — Android ARM64 Port (v0.8.0-android.4)\n\n- **Fitur & Perbaikan baru pada rilis ini**:\n  - **Perbaikan Texture & Framebuffer Corruption**: Membatasi lookup `palette` hanya untuk format `P8` (`0x0B`) swizzled agar tekstur `DXT1/3/5` & `LIN_X8R8G8B8` tidak melewati `DecodeDxtCpu()` atau mengalami *buffer over-read* dari staging arena; membersihkan render target warna baru ke hitam pada awal pembuatan (`vkCmdClearColorImage`).\n  - **Perbaikan Slow-Motion (~6–11 FPS -> 60 FPS target)**: Mengganti full-buffer CPU hashing pada setiap `Draw()`/`Target()` dengan sampling cepat `MemSig` + `DirtyEpoch` per-frame caching; menjaga `VkRenderPass` tetap terbuka antar-draw (`BeginRender`/`EndRender`) dan menghapus redundant `VK_PIPELINE_STAGE_ALL_COMMANDS_BIT` barriers untuk GPU TBDR Adreno; menambahkan 2-frame double buffering (`kFrames = 2`) dan shader LUT GPU untuk gamma non-identitas (tanpa CPU `Read()` stall).\n  - Menambahkan pencatatan `fps` dan `ms/frame` ke log setiap 60 frame untuk verifikasi performa.\n- **Target Minimum**: Android 10+ (API 29+), ABI `arm64-v8a`, 16 KB page-aligned",
+          "prerelease": true,
+          "assets": [
+            {
+              "name": "GenmaOnimusha-v0.8.0-android.4-android-arm64-v8a.apk",
+              "size": 14899360,
+              "url": "https://github.com/EkoSaputro14/genma-recomp-android/releases/download/v0.8.0-android.4/GenmaOnimusha-v0.8.0-android.4-android-arm64-v8a.apk"
+            },
+            {
+              "name": "SHA256SUMS",
+              "size": 119,
+              "url": "https://github.com/EkoSaputro14/genma-recomp-android/releases/download/v0.8.0-android.4/SHA256SUMS"
+            }
+          ]
+        },
         {
           "tag": "v0.8.0-android.3",
           "name": "Genma Onimusha Android ARM64 v0.8.0-android.3",
