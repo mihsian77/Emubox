@@ -26,7 +26,7 @@
         ]
       },
       "updatedAt": 1794066683000,
-      "stars": 1336
+      "stars": 1343
     },
     {
       "id": "whitebelyash",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5204
+      "stars": 5207
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 960
+      "stars": 959
     },
     {
       "id": "banner",
@@ -123,7 +123,7 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1795288843000,
+      "updatedAt": 1795359693000,
       "stars": 268
     },
     {
@@ -214,7 +214,7 @@
         ]
       },
       "updatedAt": 1794136780000,
-      "stars": 132
+      "stars": 133
     },
     {
       "id": "panvk-g720",
@@ -247,7 +247,7 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1336,
+      "stars": 1343,
       "updatedAt": 1794066683000
     },
     {
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5204,
+      "stars": 5207,
       "updatedAt": 1768398883000
     },
     {
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative 与 Winlator 的自动构建组件，含 Sarek 与 GPLAsync 分支。",
       "experimental": true,
-      "updatedAt": 1795259754000
+      "updatedAt": 1795347081000
     },
     {
       "id": "banner-components",

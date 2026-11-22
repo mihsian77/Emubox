@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-21T23:41:48Z",
+ "generated_at": "2026-11-22T17:45:43Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -192,7 +192,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1635,
+   "listingsCount": 1636,
    "keys": [
     "thormax",
     "aynthormax"
@@ -214,7 +214,7 @@
    "modelName": "11 Pro",
    "brandName": "RedMagic",
    "socName": "Snapdragon 8 Elite Gen 5",
-   "listingsCount": 1507,
+   "listingsCount": 1510,
    "keys": [
     "11pro",
     "redmagic11pro"
@@ -1772,6 +1772,17 @@
    ]
   },
   {
+   "id": "b126ecd3-db3a-4d9e-b38e-b4beac749b73",
+   "modelName": "Galaxy A32 4G",
+   "brandName": "Samsung",
+   "socName": "Helio G80",
+   "listingsCount": 13,
+   "keys": [
+    "galaxya324g",
+    "samsunggalaxya324g"
+   ]
+  },
+  {
    "id": "20beee91-1ad9-4d04-b7e1-862e5dae8bfe",
    "modelName": "Galaxy Tab S9 FE",
    "brandName": "Samsung",
@@ -1857,17 +1868,6 @@
    "keys": [
     "galaxya255g",
     "samsunggalaxya255g"
-   ]
-  },
-  {
-   "id": "b126ecd3-db3a-4d9e-b38e-b4beac749b73",
-   "modelName": "Galaxy A32 4G",
-   "brandName": "Samsung",
-   "socName": "Helio G80",
-   "listingsCount": 12,
-   "keys": [
-    "galaxya324g",
-    "samsunggalaxya324g"
    ]
   },
   {
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6290,
+   "listings": 6291,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9083,7 +9083,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1923,
+   "listings": 1924,
    "description": "Citron - Nintendo Homebrew Emulator 🍋 Welcome to Citron, a cutting-edge Nintendo Homebrew emulator designed to deliver an optimized experience for playing your favorite games and exploring new ones. Citron is a high-performance and easy-to-use emulator, tailored for enthusiasts a"
   },
   {
@@ -9096,7 +9096,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1855,
+   "listings": 1856,
    "description": ""
   },
   {
@@ -9149,7 +9149,7 @@
    "systems": [
     "nintendo_3ds"
    ],
-   "listings": 259,
+   "listings": 260,
    "description": "Azahar is an open-source 3DS emulator project based on Citra. It was created from the merging of PabloMK7's Citra fork and the Lime3DS project, both of which emerged shortly after Citra was taken down. The goal of this project is to be the de-facto platform for future development"
   },
   {
@@ -9306,7 +9306,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 54,
+   "listings": 55,
    "description": ""
   },
   {

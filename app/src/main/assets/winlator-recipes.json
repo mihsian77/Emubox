@@ -1,6 +1,6 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-21T00:00:00Z",
+ "updated_at": "2026-11-22T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
@@ -214,7 +214,7 @@
    ]
   },
   "Adreno-825": {
-   "configs": 199,
+   "configs": 204,
    "top": [
     {
      "combo": [
@@ -236,7 +236,7 @@
       ]
      ],
      "count": 28,
-     "share": 14.1
+     "share": 13.7
     },
     {
      "combo": [
@@ -258,7 +258,7 @@
       ]
      ],
      "count": 9,
-     "share": 4.5
+     "share": 4.4
     },
     {
      "combo": [
@@ -845,7 +845,7 @@
    ]
   },
   "Adreno-610": {
-   "configs": 67,
+   "configs": 68,
    "top": [
     {
      "combo": [
@@ -867,7 +867,7 @@
       ]
      ],
      "count": 4,
-     "share": 6.0
+     "share": 5.9
     },
     {
      "combo": [
@@ -889,7 +889,7 @@
       ]
      ],
      "count": 4,
-     "share": 6.0
+     "share": 5.9
     },
     {
      "combo": [
@@ -911,7 +911,7 @@
       ]
      ],
      "count": 2,
-     "share": 3.0
+     "share": 2.9
     }
    ]
   },
@@ -1739,7 +1739,7 @@
    ]
   },
   "Mali-G77": {
-   "configs": 21,
+   "configs": 22,
    "top": [
     {
      "combo": [
@@ -1761,7 +1761,7 @@
       ]
      ],
      "count": 4,
-     "share": 19.0
+     "share": 18.2
     },
     {
      "combo": [
@@ -1783,7 +1783,7 @@
       ]
      ],
      "count": 3,
-     "share": 14.3
+     "share": 13.6
     },
     {
      "combo": [
@@ -1801,7 +1801,7 @@
       ]
      ],
      "count": 2,
-     "share": 9.5
+     "share": 9.1
     }
    ]
   },
@@ -3530,7 +3530,7 @@
    ]
   },
   "Mali-G615": {
-   "configs": 153,
+   "configs": 156,
    "top": [
     {
      "combo": [
@@ -3556,7 +3556,7 @@
       ]
      ],
      "count": 21,
-     "share": 13.7
+     "share": 13.5
     },
     {
      "combo": [
@@ -3582,7 +3582,7 @@
       ]
      ],
      "count": 15,
-     "share": 9.8
+     "share": 9.6
     },
     {
      "combo": [
@@ -3608,7 +3608,7 @@
       ]
      ],
      "count": 9,
-     "share": 5.9
+     "share": 5.8
     }
    ]
   },
