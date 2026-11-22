@@ -742,6 +742,104 @@ private fun parseContentRangeTotal(contentRange: String?): Long {
     return totalPart.toLongOrNull()?.coerceAtLeast(0L) ?: 0L
 }
 
+// ── 断点续传的内容一致性判定 ──────────────────────────────────
+// 背景：自动重试会在加速节点之间轮换（见 downloadFileWithProgress）。第 1 轮从
+// 节点 A 下到 60% 断流，第 2 轮换节点 B 只发 `Range: bytes=<60%>-`。若 B 的缓存
+// 是另一个版本的同名资产（release 更新、节点缓存新旧不一），服务器会老老实实
+// 返回 206 + 新版本的后 40%，客户端 append 后就是「旧版前段 + 新版后段」的
+// 混合文件。有 sha256 的来源会校验失败白下一整轮；没有指纹的组件下载则直接
+// 当作成功装进去。
+//
+// 三道闸门：If-Range（让服务器自己拒绝）、Content-Range 起点比对（抓
+// 忽略 If-Range 的代理）、响应 ETag 比对（抓 ETag 变了但仍返回 206 的实现）。
+
+/** 续传响应是否可用 */
+internal enum class ResumeVerdict {
+    /** 服务端返回的正是请求的那一段，可以追加写 */
+    APPEND,
+
+    /** 服务端从头返回（200，或不认识 Range），丢弃旧偏移从 0 写 */
+    RESTART_FROM_SERVER,
+
+    /** 服务端给了 206，但内容与本地已有部分不是同一份/不是同一位置，必须删掉重下 */
+    DISCARD_PARTIAL
+}
+
+private val CONTENT_RANGE_START = Regex("""bytes\s+(\d+)-(\d+)/""", RegexOption.IGNORE_CASE)
+
+/** 解析 Content-Range 的起始偏移（"bytes 1024-2047/4096" → 1024）；解析不出返回 -1 */
+internal fun parseContentRangeStart(contentRange: String?): Long {
+    if (contentRange.isNullOrBlank()) return -1L
+    val m = CONTENT_RANGE_START.find(contentRange.trim()) ?: return -1L
+    return m.groupValues[1].toLongOrNull() ?: -1L
+}
+
+/**
+ * 比较两个 ETag 是否表示同一份内容。
+ * 忽略 W/ 弱标记与引号差异：代理层常把 `"abc"` 改写成 `abc` 或 `W/"abc"`，
+ * 但值本身不变——这种差异不代表内容变了，不该触发重新下载几个 GB。
+ */
+internal fun etagSameContent(a: String?, b: String?): Boolean {
+    fun norm(v: String?): String =
+        (v ?: "").trim().removePrefix("W/").removePrefix("w/").trim('"').trim()
+    val left = norm(a)
+    val right = norm(b)
+    if (left.isEmpty() || right.isEmpty()) return true // 缺一边就无从比较，不阻断
+    return left == right
+}
+
+/**
+ * 判定一次"带 Range 的响应"能否直接追加写。
+ *
+ * - 没请求 Range（offset<=0）→ 只可能是从头返回；
+ * - 非 206 → 服务端忽略了 Range，从 0 重写（已有逻辑处理 Toast 与进度归零）；
+ * - 206 但 Content-Range 起点与请求偏移不符 → 数据是错位的，追加会写出畸形文件；
+ * - 206 但 ETag 与首段记录的不同 → 这份文件换了内容，前段不能要了；
+ * - 换了节点、本地有指纹、响应却没给指纹 → 无从证明是同一份，按最坏情况处理。
+ *   这条是为"节点剥掉 ETag 头但仍照办 Range"的代理准备的：此时前两道闸门都失效。
+ */
+internal fun judgeResumeResponse(
+    requestedOffset: Long,
+    responseCode: Int,
+    contentRangeStart: Long,
+    responseEtag: String?,
+    storedEtag: String?,
+    nodeChanged: Boolean = false
+): ResumeVerdict {
+    if (requestedOffset <= 0L) return ResumeVerdict.RESTART_FROM_SERVER
+    if (responseCode != 206) return ResumeVerdict.RESTART_FROM_SERVER
+    if (contentRangeStart >= 0L && contentRangeStart != requestedOffset) {
+        return ResumeVerdict.DISCARD_PARTIAL
+    }
+    if (nodeChanged && !storedEtag.isNullOrBlank() && responseEtag.isNullOrBlank()) {
+        return ResumeVerdict.DISCARD_PARTIAL
+    }
+    if (!etagSameContent(responseEtag, storedEtag)) {
+        return ResumeVerdict.DISCARD_PARTIAL
+    }
+    return ResumeVerdict.APPEND
+}
+
+/**
+ * 有没有可以用来判断"还是不是同一份文件"的依据。
+ *
+ * 没有依据时，跨节点续传必须放弃——两个节点给出不同版本的片段时，客户端
+ * 无从分辨。同节点内重试仍可续传（同一节点的同一 URL 内容稳定）。
+ */
+internal fun hasResumeValidator(etag: String, lastModified: String): Boolean =
+    etag.isNotBlank() || lastModified.isNotBlank()
+
+/**
+ * 生成 If-Range 头的值。RFC 7233 要求强校验器：优先用非弱 ETag，
+ * 没有则退回 Last-Modified（HTTP 日期，精度 1 秒）。
+ */
+internal fun ifRangeValue(etag: String, lastModified: String): String? {
+    val strong = etag.trim()
+    if (strong.isNotEmpty() && !strong.startsWith("W/") && !strong.startsWith("w/")) return strong
+    val lm = lastModified.trim()
+    return lm.ifEmpty { null }
+}
+
 // ── 下载完整性校验 ────────────────────────────────────────────
 // 背景：App 的下载流量会经过第三方加速节点，文件在传输途中存在被替换/损坏的可能。
 // 发布方（GitHub Release）会提供 sha256 指纹，下载完成后比对一次即可发现异常。
@@ -812,7 +910,9 @@ private suspend fun transferExistingDownload(
     resume: Boolean,
     urlOverride: String? = null,
     /** 发布方提供的 sha256（"sha256:..." 或裸十六进制）；为空表示不校验 */
-    expectedSha256: String? = null
+    expectedSha256: String? = null,
+    /** 本轮请求的节点是否与上一轮不同；跨节点续传需要更严的内容校验 */
+    nodeChanged: Boolean = false
 ): Boolean = withContext(Dispatchers.IO) transfer@{
     val fileName = state.fileName
     val key = state.key
@@ -837,6 +937,12 @@ private suspend fun transferExistingDownload(
 
         if (requestedOffset > 0L) {
             requestBuilder.header("Range", "bytes=$requestedOffset-")
+            // If-Range：把首段的 ETag/Last-Modified 交回服务器。内容若是同一份，
+            // 服务器回 206 续传；换了内容则回 200 全量，客户端据此从 0 重写。
+            // 这是三道闸门里唯一能省掉流量的一道——其余两道只能事后丢弃。
+            ifRangeValue(state.etag, state.lastModified)?.let { validator ->
+                requestBuilder.header("If-Range", validator)
+            }
         }
 
         withContext(Dispatchers.Main) {
@@ -854,7 +960,13 @@ private suspend fun transferExistingDownload(
                 // 或部分文件被系统清理）→ 删掉 partial 从头下载，杜绝伪完成死文件。
                 if (response.code == 416 && requestedOffset > 0L) {
                     val localBytes = outputFileSize(context, outputUri)
-                    if (localBytes >= requestedOffset) {
+                    // 416 响应会带 `Content-Range: bytes */<总长>`。本地字节数与服务器
+                    // 报的总长一致，才能认定"文件此前已写完整"；不一致说明服务器上的
+                    // 资产换了（被替换成更大的版本），本地那份是旧版残片——继续当成
+                    // 完成会把旧文件装给用户。
+                    val serverTotal = parseContentRangeTotal(response.header("Content-Range"))
+                    val sizeMatchesServer = serverTotal <= 0L || localBytes == serverTotal
+                    if (localBytes >= requestedOffset && sizeMatchesServer) {
                         forceFreshResume.remove(key)
                         withContext(Dispatchers.Main) {
                             DownloadsManager.completeDownload(
@@ -871,8 +983,13 @@ private suspend fun transferExistingDownload(
                     // 关键：标记该文件强制从头下载，下一轮 resume=false 不再带 Range，
                     // 否则重试循环会 416→删→再 416 死循环（用户实测根因）。
                     forceFreshResume[key] = true
+                    val reason = if (!sizeMatchesServer) {
+                        "服务器上的文件已变（本地 ${localBytes}B / 服务器 ${serverTotal}B），已清空重下"
+                    } else {
+                        "HTTP 416 续传偏移与本地不符，已清空，下一轮从头下载"
+                    }
                     withContext(Dispatchers.Main) {
-                        DownloadsManager.setLastError(key, "HTTP 416 续传偏移与本地不符，已清空，下一轮从头下载")
+                        DownloadsManager.setLastError(key, reason)
                     }
                     throw IOException("HTTP 416 partial mismatch")
                 }
@@ -883,7 +1000,35 @@ private suspend fun transferExistingDownload(
             }
 
             val body = response.body ?: throw IOException("No data received")
-            val serverAcceptedResume = requestedOffset > 0L && response.code == 206
+
+            // 三道闸门的第 2、3 道：即使节点无视 If-Range 仍回了 206，
+            // 也要核对"给的确实是我要的那一段、而且还是同一份文件"。
+            val verdict = judgeResumeResponse(
+                requestedOffset = requestedOffset,
+                responseCode = response.code,
+                contentRangeStart = parseContentRangeStart(response.header("Content-Range")),
+                responseEtag = response.header("ETag"),
+                storedEtag = state.etag,
+                nodeChanged = nodeChanged
+            )
+
+            if (verdict == ResumeVerdict.DISCARD_PARTIAL) {
+                // 前段与后段不是同一份文件：拼下去只会得到坏文件，删掉从头下。
+                deletePartialOutput(context, outputUri)
+                forceFreshResume[key] = true
+                Log.w(
+                    TAG,
+                    "续传内容不一致，丢弃 partial：$key 请求偏移=$requestedOffset " +
+                        "Content-Range=${response.header("Content-Range")} " +
+                        "ETag=${response.header("ETag")} 记录=${state.etag}"
+                )
+                withContext(Dispatchers.Main) {
+                    DownloadsManager.setLastError(key, "续传内容与已下载部分不一致，已清空，下一轮从头下载")
+                }
+                throw IOException("续传内容与已下载部分不一致")
+            }
+
+            val serverAcceptedResume = verdict == ResumeVerdict.APPEND
 
             // Some hosts ignore Range and return 200. Truncate and safely restart instead of
             // appending a full response to an existing partial file.
@@ -897,6 +1042,21 @@ private suspend fun transferExistingDownload(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+
+            // 记下这份文件的指纹：下一轮换节点时用得上，进程被杀重启后也还在（随活动表持久化）。
+            // 放在开写之前——哪怕这一轮又断流，指纹也要留下供下一轮比对。
+            withContext(Dispatchers.Main) {
+                // 从 0 重写时先把显示进度拉回去：否则界面停在 60% 不动，
+                // 直到第一批字节到达才跳变，容易被当成卡死。
+                if (requestedOffset == 0L && state.downloadedBytes > 0L) {
+                    DownloadsManager.updateProgress(key, 0L)
+                }
+                DownloadsManager.updateValidators(
+                    key,
+                    response.header("ETag"),
+                    response.header("Last-Modified")
+                )
             }
 
             val bodyLength = body.contentLength().coerceAtLeast(0L)
@@ -937,10 +1097,12 @@ private suspend fun transferExistingDownload(
                     Log.e(TAG, "完整性校验失败 fileName=$fileName expected=$expected actual=$actual")
                     deletePartialOutput(context, outputUri)
                     withContext(Dispatchers.Main) {
-                        DownloadsManager.failDownload(key)
-                        DownloadsManager.setLastError(
-                            fileName,
-                            "文件校验失败：内容与发布方指纹不一致，可能被篡改或传输损坏，已删除"
+                        // 错误原因通过 failDownload 的 error 参数带入，别在之后单独
+                        // setLastError(key)——那时记录已被删除，调用是空转。
+                        DownloadsManager.failDownload(
+                            key,
+                            "文件校验失败：内容与发布方指纹不一致，可能被篡改或传输损坏，已删除",
+                            forceFail = true
                         )
                         Toast.makeText(
                             context,
@@ -1104,6 +1266,7 @@ private suspend fun downloadFileWithProgress(
     val MAX_ATTEMPTS = 6
     var success = false
     var lastErrorUrl: String? = null
+    var previousNodeId: String? = null
 
     for (attempt in 1..MAX_ATTEMPTS) {
         // 每轮从 DownloadsManager 取最新状态（保留已下载字节，支持续传）
@@ -1136,15 +1299,29 @@ private suspend fun downloadFileWithProgress(
             lastErrorUrl = targetUrl
         }
 
-        // 第 1 次全新下载；失败后保留 partial，后续轮次续传
+        // 第 1 次全新下载；失败后保留 partial，后续轮次续传。
+        // 换节点续传的前提是"能证明还是同一份文件"：有 ETag/Last-Modified 才续。
+        // 没有指纹时（老记录、剥头的源），跨节点一律从头下——省下的流量不值得
+        // 换来一个"旧前段 + 新后段"的坏文件。
         val forceFresh = forceFreshResume[key] == true
+        val nodeChanged = previousNodeId != null && previousNodeId != usedNodeId
+        val canResume = hasResumeValidator(current.etag, current.lastModified) || !nodeChanged
+        val resumeThisRound = attempt > 1 && !forceFresh && canResume
+        if (attempt > 1 && !resumeThisRound && !forceFresh) {
+            Log.i(
+                TAG,
+                "换节点且无内容指纹（etag='${current.etag}' lastModified='${current.lastModified}'），" +
+                    "放弃续传，本轮从 0 下载：$uniqueFileName"
+            )
+        }
         success = try {
             transferExistingDownload(
                 context,
                 current,
-                resume = attempt > 1 && !forceFresh,
+                resume = resumeThisRound,
                 urlOverride = targetUrl,
-                expectedSha256 = expectedSha256
+                expectedSha256 = expectedSha256,
+                nodeChanged = nodeChanged
             )
         } catch (_: IntegrityMismatchException) {
             // 指纹不一致：文件内容本身有问题，换节点/重试都只会重复下载同一份错误内容。
@@ -1153,6 +1330,7 @@ private suspend fun downloadFileWithProgress(
             return@download
         }
         if (success) break
+        previousNodeId = usedNodeId
 
         // 网络失败且本轮用的是加速节点 → 本轮内轮换下一个节点；
         // 同一加速节点连续多文件失败再入会话黑名单（防风控节点反复占用）。

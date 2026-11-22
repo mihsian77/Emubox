@@ -59,7 +59,16 @@ object DownloadsManager {
         /** 最近一次失败的 HTTP 码/异常，UI 展示便于定位下载失败根因 */
         val lastError: String? = null,
         /** 未加速的原始下载地址，用于解析项目归属（url 可能已被改写成代理域名） */
-        val sourceUrl: String = ""
+        val sourceUrl: String = "",
+        /**
+         * 首段响应的 ETag（原样保存，含引号）。续传时作为 If-Range 发给服务器，
+         * 并用于比对"这一轮拿到的还是不是同一份文件"。
+         * 断点续传会换加速节点，而不同节点的缓存可能是两个版本的同名资产——
+         * 没有这个字段时，旧版前段 + 新版后段会被拼成一个"下载完成"的坏文件。
+         */
+        val etag: String = "",
+        /** 首段响应的 Last-Modified，无 ETag 时作为 If-Range 的退路 */
+        val lastModified: String = ""
     ) {
         /** 解析项目归属时优先用未加速的直链 */
         val originUrl: String get() = sourceUrl.ifBlank { url }
@@ -80,6 +89,8 @@ object DownloadsManager {
             put("subPath", subPath)
             put("lastError", lastError)
             put("sourceUrl", sourceUrl)
+            put("etag", etag)
+            put("lastModified", lastModified)
         }
 
         companion object {
@@ -111,7 +122,11 @@ object DownloadsManager {
                     speedBytesPerSec = 0L,
                     subPath = json.optString("subPath", ""),
                     lastError = if (json.has("lastError")) json.optString("lastError") else null,
-                    sourceUrl = json.optString("sourceUrl", "")
+                    sourceUrl = json.optString("sourceUrl", ""),
+                    // 1.4.0 之前的记录没有这两个字段：空串表示"没有校验依据"，
+                    // 续传逻辑见到空串会拒绝跨节点续传（见 hasResumeValidator）。
+                    etag = json.optString("etag", ""),
+                    lastModified = json.optString("lastModified", "")
                 )
             }
         }
@@ -401,6 +416,23 @@ object DownloadsManager {
         }
     }
 
+    /**
+     * 记录这份文件的内容指纹（ETag / Last-Modified）。
+     *
+     * 只在真变化时落盘：一次下载的每个 206 响应都会带来同样的头，逐段写盘没必要。
+     * 传入空值表示"这个响应没给"，保留已有值——部分加速节点只在 200 响应里带 ETag，
+     * 续传的 206 里不带，此时不能把已有的依据清空。
+     */
+    fun updateValidators(key: String, etag: String?, lastModified: String?) {
+        _activeDownloads[key]?.let { current ->
+            val nextEtag = etag?.takeIf { it.isNotBlank() } ?: current.etag
+            val nextLm = lastModified?.takeIf { it.isNotBlank() } ?: current.lastModified
+            if (nextEtag == current.etag && nextLm == current.lastModified) return@let
+            _activeDownloads[key] = current.copy(etag = nextEtag, lastModified = nextLm)
+            saveActiveDownloads()
+        }
+    }
+
     fun completeDownload(key: String, filePath: String, sizeBytes: Long, subPath: String = "") {
         // 项目归属和文件名都要从下载中的记录里取，remove 之后就没了
         val record = _activeDownloads[key]
@@ -430,7 +462,14 @@ object DownloadsManager {
         syncDownloadService()
     }
 
-    fun failDownload(key: String, error: String? = null) {
+    /**
+     * 标记失败并移出活动表。
+     *
+     * @param forceFail 为 true 时跳过"字节已达标就当完成"的兜底。校验失败就是
+     *   典型的必须跳过场景：文件字节数确实写满了，但内容不对、文件已被删除，
+     *   走兜底会在下载库里留下一条指向不存在文件的"已完成"记录。
+     */
+    fun failDownload(key: String, error: String? = null, forceFail: Boolean = false) {
         if (error != null) {
             _activeDownloads[key]?.let { d ->
                 _activeDownloads[key] = d.copy(lastError = error)
@@ -439,7 +478,7 @@ object DownloadsManager {
         // 兜底：若字节已下载完整（下载过程完成但状态回写失败），转 completed 而非标失败，
         // 根治"明明下载完了却提示失败、重下又提示已存在"的矛盾状态。
         val d = _activeDownloads[key]
-        if (d != null && d.totalBytes > 0L && d.downloadedBytes >= d.totalBytes) {
+        if (!forceFail && d != null && d.totalBytes > 0L && d.downloadedBytes >= d.totalBytes) {
             _activeDownloads.remove(key)
             _completedDownloads.removeAll { it.fileName.equals(d.fileName, ignoreCase = true) && it.subPath == d.subPath }
             _completedDownloads.add(
