@@ -38,7 +38,6 @@ import kotlinx.coroutines.delay
 import java.io.File
 import java.util.*
 
-
 @Composable
 internal fun DriverDetectionList(
     systemDevice: VulkanDeviceInfo?
@@ -213,13 +212,14 @@ internal fun DriverDetectionList(
                     startStageService(id, "collect", dir, name, tmpDir, hookLibDir)
                     val collectJson = pollStageResult(id)
                     if (collectJson == null) {
-                        val crashed = File(context.filesDir, "driver_test_${id}.started").exists()
+                        val cause = classifyNoResult(context, "加载", id)
                         val steps = stepLogTail(id)
+                        if (cause.timedOut) stopDriverTestService(context)
                         detectionResults = detectionResults + (id to VulkanInfoPayload(
                             success = false,
-                            errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-                            errorMessage = (if (crashed) "驱动加载崩溃（独立进程被杀）" else "独立进程实测未启动，请重试") +
-                                (if (steps.isNotEmpty()) "\n崩溃步骤：$steps" else ""),
+                            errorCode = cause.code,
+                            errorMessage = cause.message +
+                                (if (steps.isNotEmpty()) "\n${if (cause.crashed) "崩溃步骤" else "最后步骤"}：$steps" else ""),
                             loader = "", instanceExtCount = 0, instanceExtensions = emptyList(),
                             deviceCount = 0, devices = emptyList()
                         ))
@@ -243,17 +243,25 @@ internal fun DriverDetectionList(
                         val renderJson = pollStageResult(renderId)
                         val renderSteps = stepLogTail(renderId)
                         renderResults = renderResults + (id to (renderJson?.getJSONObject("render")
-                            ?: org.json.JSONObject().put("success", false).put("errorCode", "STAGE_CRASHED")
-                                .put("errorMessage", "渲染阶段进程崩溃，跑分结果已保留" +
-                                    (if (renderSteps.isNotEmpty()) "\n崩溃步骤：$renderSteps" else ""))))
+                            ?: run {
+                                // 以前这里不看 .started 直接写「进程崩溃」——渲染阶段慢一点
+                                // 就被判成驱动不兼容，和加载阶段是同一个错。
+                                val cause = classifyNoResult(context, "渲染", renderId)
+                                if (cause.timedOut) stopDriverTestService(context)
+                                org.json.JSONObject().put("success", false).put("errorCode", cause.code)
+                                    .put("errorMessage", cause.message + "，跑分结果已保留" +
+                                        (if (renderSteps.isNotEmpty())
+                                            "\n${if (cause.crashed) "崩溃步骤" else "最后步骤"}：$renderSteps" else ""))
+                            }))
                     } else {
-                        val crashed = File(context.filesDir, "driver_test_${benchId}.started").exists()
+                        val cause = classifyNoResult(context, "跑分", benchId)
                         val steps = stepLogTail(benchId)
+                        if (cause.timedOut) stopDriverTestService(context)
                         adrenotoolsResults = adrenotoolsResults + (id to (payload to BenchmarkResult(
                             success = false,
-                            errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-                            errorMessage = (if (crashed) "跑分阶段进程崩溃（驱动加载后执行负载被杀）" else "跑分独立进程未启动，请重试") +
-                                (if (steps.isNotEmpty()) "\n崩溃步骤：$steps" else ""),
+                            errorCode = cause.code,
+                            errorMessage = cause.message +
+                                (if (steps.isNotEmpty()) "\n${if (cause.crashed) "崩溃步骤" else "最后步骤"}：$steps" else ""),
                             deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
                             computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                             totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
@@ -355,13 +363,14 @@ internal fun DriverDetectionList(
                         Thread.sleep(300)
                     }
                     // 超时/崩溃判定
-                    val crashed = startedFile.exists()
+                    val cause = classifyNoResult(context, "跑分", benchResultId)
                     val steps = stepLogTail(benchResultId)
+                    if (cause.timedOut) stopDriverTestService(context)
                     benchmarkResults = benchmarkResults + (id to BenchmarkResult(
                         success = false,
-                        errorCode = if (crashed) "DRIVER_CRASHED_IN_SERVICE" else "SERVICE_NOT_STARTED",
-                        errorMessage = (if (crashed) "驱动加载崩溃（独立进程被杀）。可能为驱动包与内置 AdrenoTools 运行时不匹配" else "独立进程实测未启动，请重试") +
-                            (if (steps.isNotEmpty()) "\n崩溃步骤：$steps" else ""),
+                        errorCode = cause.code,
+                        errorMessage = cause.message +
+                            (if (steps.isNotEmpty()) "\n${if (cause.crashed) "崩溃步骤" else "最后步骤"}：$steps" else ""),
                         deviceName = "", fillBandwidthGBs = 0.0, copyBandwidthGBs = 0.0,
                         computeGFLOPS = 0.0, computeError = "", cpuIntMIPS = 0.0, cpuFloatMFLOPS = 0.0, cpuThreads = 1,
                         totalScore = 0, bufferSizeMB = 0, fillIterations = 0, copyIterations = 0, timestampPeriodNs = 0.0
@@ -1024,7 +1033,13 @@ private fun DriverDetectionResultSection(
                 "DL_OPEN_FAILED", "NO_VK_ENTRY", "CREATE_INSTANCE_FAILED",
                 "ENUM_DEVICES_MISSING", "DRIVER_CRASHED" -> appString(R.string.detection_error_adrenotools)
                 "ADRENOTOOLS_OPEN_FAILED" -> "实测不可用：驱动加载失败（多为驱动与当前 GPU 不匹配或系统权限限制）。包信息已展示，可在对应模拟器内加载验证"
-                "DETECT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
+                // 下面四个此前都没有分支，全部落到 else 靠 message 关键词碰运气：
+                // ADT_EXCEPTION 会把 "Not allowed to start service..." 这类英文异常直接甩给用户。
+                // 原 DETECT_EXCEPTION 分支是死代码——仓库里没有任何一处产生这个值。
+                "DRIVER_CRASHED_IN_SERVICE", "STAGE_CRASHED" -> appString(R.string.detection_error_crashed)
+                "SERVICE_NOT_STARTED" -> appString(R.string.detection_error_not_started)
+                "DETECT_TIMEOUT" -> appString(R.string.detection_error_timeout)
+                "ADT_EXCEPTION" -> appString(R.string.detection_error_exception, (result.errorMessage ?: "unknown"))
                 else -> {
                     val raw = result.errorMessage ?: ""
                     if (raw.contains("not resolved", ignoreCase = true) || raw.contains("dlopen", ignoreCase = true))

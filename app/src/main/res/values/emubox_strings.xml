@@ -632,6 +632,9 @@ How to verify in emulator:
     <string name="detection_error_adrenotools">Detection failed: the driver may depend on the emulator runtime (e.g. glibc), which the app process cannot provide. The driver is not necessarily incompatible - please verify it inside the emulator (Winlator/Eden).</string>
     <string name="detection_error_extract">Driver package extraction failed or no .so found</string>
     <string name="detection_error_exception">Detection exception: %1$s</string>
+    <string name="detection_error_crashed">Detection failed: the isolated process was killed while loading this driver - a clear sign the driver is incompatible with this GPU or the package is corrupt. Not recommended for use.</string>
+    <string name="detection_error_not_started">Detection did not start: the isolated process could not launch (usually a system background restriction or a disabled component). This is unrelated to the driver; please retry.</string>
+    <string name="detection_error_timeout">Detection timed out: no result within 25 seconds and no sign of a process crash (the driver may be slow to load or the system is busy). Please retry.</string>
     <string name="preview_supported">Supports %1$s</string>
     <string name="preview_series">%1$s series</string>
     <string name="preview_eden">Eden emulator</string>

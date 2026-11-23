@@ -629,6 +629,11 @@
     <string name="detection_error_adrenotools">检测失败：驱动可能依赖模拟器运行环境（如 glibc），App 进程无法提供。不代表驱动不兼容——请在模拟器（Winlator/Eden）内验证。</string>
     <string name="detection_error_extract">驱动包解压失败或未找到 .so</string>
     <string name="detection_error_exception">检测异常：%1$s</string>
+    <!-- 以下三条对应「没等到结果」的三种真实归因，此前全部落到 else 分支，
+         崩溃被显示成「可能依赖 glibc，不代表不兼容」，服务没起来显示英文异常 -->
+    <string name="detection_error_crashed">检测失败：加载这份驱动时独立进程被系统杀死——这是驱动与本机 GPU 不兼容或驱动包损坏的明确信号，不建议继续使用。</string>
+    <string name="detection_error_not_started">检测未启动：独立进程没能起来（多为系统后台限制或组件被禁用），与驱动本身无关，请重试。</string>
+    <string name="detection_error_timeout">检测超时：25 秒内没有返回结果，未发现进程崩溃迹象（可能是驱动加载慢或系统繁忙），请重试。</string>
     <string name="preview_supported">支持 %1$s</string>
     <string name="preview_series">%1$s 系列</string>
     <string name="preview_eden">Eden 模拟器</string>
