@@ -6,14 +6,14 @@
         "antutu_level1": 271,
         "antutu_level2": 271,
         "antutu_level3": 48,
-        "ludashi_phone": 100,
-        "ludashi_soc": 100,
-        "ludashi_desktop_cpu": 500,
-        "ludashi_desktop_gpu": 500,
-        "ludashi_laptop_cpu": 500
+        "phone": 100,
+        "soc": 100,
+        "desktop_cpu": 500,
+        "desktop_gpu": 500,
+        "laptop_cpu": 500
       },
       "status": "ok",
-      "fetched_at": "2026-11-22T23:55:59.447Z",
+      "fetched_at": "2026-11-24T04:26:20.772Z",
       "note": "单页全量渲染，页码导航为页面干扰，无数据丢失"
     },
     "ludashi": {
@@ -22,21 +22,22 @@
         "antutu_level1": 271,
         "antutu_level2": 271,
         "antutu_level3": 48,
-        "ludashi_phone": 100,
-        "ludashi_soc": 100,
-        "ludashi_desktop_cpu": 500,
-        "ludashi_desktop_gpu": 500,
-        "ludashi_laptop_cpu": 500
+        "phone": 100,
+        "soc": 100,
+        "desktop_cpu": 500,
+        "desktop_gpu": 500,
+        "laptop_cpu": 500
       },
-      "status": "ok",
+      "status": "stale",
       "fetched_at": "2026-11-22T23:56:23.632Z",
-      "note": "各榜均无\"加载更多\"，全量"
+      "note": "各榜均无\"加载更多\"，全量",
+      "stale_days": 1
     },
     "socpk": {
       "status": "phase2",
       "note": "数值通道未完成（WASM codec / tooltip 采集）"
     }
   },
-  "fetched_at": "2026-11-22T23:55:59.447Z",
-  "integrity": "ok"
+  "fetched_at": "2026-11-24T04:26:20.772Z",
+  "integrity": "partial"
 }

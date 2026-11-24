@@ -25,8 +25,8 @@
           "Rutabaga"
         ]
       },
-      "updatedAt": 1794066683000,
-      "stars": 1346
+      "updatedAt": 1795440022000,
+      "stars": 1359
     },
     {
       "id": "whitebelyash",
@@ -49,7 +49,7 @@
         ]
       },
       "updatedAt": 1789825064000,
-      "stars": 494
+      "stars": 495
     },
     {
       "id": "k11mch1",
@@ -67,7 +67,7 @@
         ]
       },
       "updatedAt": 1768398883000,
-      "stars": 5207
+      "stars": 5209
     },
     {
       "id": "mrpurple",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 961
+      "stars": 966
     },
     {
       "id": "banner",
@@ -123,7 +123,7 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1795381805000,
+      "updatedAt": 1795472651000,
       "stars": 269
     },
     {
@@ -234,7 +234,7 @@
         ]
       },
       "updatedAt": 1790289737000,
-      "stars": 54
+      "stars": 55
     }
   ],
   "qualcommSources": [
@@ -247,8 +247,8 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1346,
-      "updatedAt": 1794066683000
+      "stars": 1359,
+      "updatedAt": 1795440022000
     },
     {
       "id": "k11mch1-qualcomm",
@@ -260,7 +260,7 @@
         "Qualcomm Driver",
         "Qualcomm"
       ],
-      "stars": 5207,
+      "stars": 5209,
       "updatedAt": 1768398883000
     },
     {
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative 与 Winlator 的自动构建组件，含 Sarek 与 GPLAsync 分支。",
       "experimental": true,
-      "updatedAt": 1795347081000
+      "updatedAt": 1795438114000
     },
     {
       "id": "banner-components",
