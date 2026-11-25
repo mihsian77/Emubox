@@ -362,13 +362,13 @@ fun DeviceScreen(
                                     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
                                         Surface(
                                             shape = RoundedCornerShape(6.dp),
-                                            color = if (ok) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+                                            color = if (ok) Fusion.Success else MaterialTheme.colorScheme.surfaceVariant
                                         ) {
                                             Text(
                                                 if (ok) "✓" else "—",
                                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
                                                 style = MaterialTheme.typography.labelSmall,
-                                                color = if (ok) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                                                color = if (ok) Fusion.OnSuccess else MaterialTheme.colorScheme.onSurfaceVariant,
                                                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
                                             )
                                         }

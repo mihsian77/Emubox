@@ -19,7 +19,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 /**
@@ -31,7 +30,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun StoragePermissionBanner(onGrant: () -> Unit) {
     Surface(
-        color = Color(0x33FFB020),
+        color = MaterialTheme.colorScheme.surfaceVariant,
         modifier = Modifier.fillMaxWidth()
     ) {
         Row(
@@ -43,7 +42,7 @@ fun StoragePermissionBanner(onGrant: () -> Unit) {
             Icon(
                 Icons.Default.Warning,
                 contentDescription = null,
-                tint = Color(0xFFFFB020)
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(Modifier.width(10.dp))
             Text(

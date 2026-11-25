@@ -15,19 +15,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -93,48 +87,6 @@ private enum class AppTab(
         Icons.Default.Person, R.string.tab_mine,
         setOf(AppScreen.SETTINGS, AppScreen.DOWNLOADS), AppScreen.SETTINGS
     )
-}
-
-/**
- * 驱动 / 组件二级切换：两者合并进同一个一级入口后，用这条分段控件在页内切换。
- * 只在一级入口底部栏上方出现，不侵入页面自身的 TopAppBar 与滚动容器。
- */
-@Composable
-private fun DriverComponentSwitch(current: AppScreen, onSelect: (AppScreen) -> Unit) {
-    val items = listOf(
-        AppScreen.DRIVERS to R.string.tab_driver,
-        AppScreen.COMPONENTS to R.string.tab_component
-    )
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color(0xE6161423))
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items.forEach { (screen, labelRes) ->
-            val selected = current == screen
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .clip(RoundedCornerShape(50))
-                    .background(if (selected) Color(0x333FD9C4) else Color.Transparent)
-                    .border(
-                        BorderStroke(1.dp, if (selected) Color(0xFF3FD9C4) else Color(0xFF332F4E)),
-                        RoundedCornerShape(50)
-                    )
-                    .clickable { onSelect(screen) }
-                    .padding(vertical = 8.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = appString(labelRes),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = if (selected) Color(0xFF3FD9C4) else Color(0xFF8B86AC)
-                )
-            }
-        }
-    }
 }
 
 class MainActivity : ComponentActivity() {
@@ -808,7 +760,7 @@ class MainActivity : ComponentActivity() {
                         topBar = {
                             // 缺文件权限时常驻提示：任何分区都能看到并一键去授权，
                             // 避免「点了下载没反应」却查不到原因
-                            if (!storageGranted.value) {
+                            if (!storageGranted.value && !showStorageDialog.value) {
                                 StoragePermissionBanner(
                                     onGrant = { requestStorageAccess() }
                                 )
@@ -828,14 +780,11 @@ class MainActivity : ComponentActivity() {
                             }
                         },
                         bottomBar = {
-                            // 模板 A「璃光暗夜」：玻璃拟态导航 + 青紫渐变发光指示
+                            // 底部导航跟随主题（容器/选中/未选中均取 colorScheme），深浅色一致
                             Column {
-                            if (currentScreen == AppScreen.DRIVERS || currentScreen == AppScreen.COMPONENTS) {
-                                DriverComponentSwitch(current = currentScreen) { currentScreen = it }
-                            }
                             Box {
                                 NavigationBar(
-                                    containerColor = Color(0xE6161423)
+                                    containerColor = MaterialTheme.colorScheme.surface
                                 ) {
                                     val navItems = AppTab.values().toList()
                                     navItems.forEach { tab ->
@@ -855,12 +804,12 @@ class MainActivity : ComponentActivity() {
                                             },
                                             label = { Text(appString(tab.labelRes)) },
                                             colors = NavigationBarItemDefaults.colors(
-                                                selectedIconColor = Color(0xFF3FD9C4),
-                                                selectedTextColor = Color(0xFF9B7CFF),
-                                                unselectedIconColor = Color(0xFF8B86AC),
-                                                unselectedTextColor = Color(0xFF756F95),
-                                                indicatorColor = Color(0x333FD9C4),
-                                                disabledIconColor = Color(0xFF756F95)
+                                                selectedIconColor = MaterialTheme.colorScheme.primary,
+                                                selectedTextColor = MaterialTheme.colorScheme.primary,
+                                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                                                disabledIconColor = MaterialTheme.colorScheme.onSurfaceVariant
                                             )
                                         )
                                     }
@@ -1042,6 +991,7 @@ class MainActivity : ComponentActivity() {
                                         }
                                     ) { padding ->
                                         DriverScreen(
+                                            onOpenComponents = { currentScreen = AppScreen.COMPONENTS },
                                             modifier = Modifier.padding(padding),
                                             deviceInfo = deviceInfo,
                                             isLoading = isLoading,

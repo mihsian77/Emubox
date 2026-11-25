@@ -5,13 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
 
 /** 融合风（方案 C）品牌色板：深色底 + 蓝紫渐变 + 卡片体系。亮/暗双色板，跟随主题切换。 */
 data class FusionPalette(
@@ -32,6 +26,10 @@ data class FusionPalette(
     val amberBg: Color,           // 热度标签底
     val heroStart: Color,         // hero 大卡渐变起
     val heroEnd: Color,           // hero 大卡渐变止
+    // 语义绿：专供「支持/存在/可用」类 ✓ 徽章，避免与 primary 强调色混用。
+    // 深色 primary 从青绿改蓝紫（与亮色同色相）后，绿色语义必须有独立落点。
+    val success: Color,
+    val onSuccess: Color,
 ) {
     companion object {
         // 模板 A「璃光暗夜」：近黑紫底 + 玻璃卡片高光描边 + 青→紫渐变强调
@@ -41,9 +39,9 @@ data class FusionPalette(
             surfaceAlt = Color(0xFF232036),
             border = Color(0xFF373252),
             borderAlt = Color(0xFF413B60),
-            primary = Color(0xFF4FD9C9),
+            primary = Color(0xFF7E9BFF),
             secondary = Color(0xFF9B7CFF),
-            gradientStart = Color(0xFF3FD9C4),
+            gradientStart = Color(0xFF6E8CFF),
             gradientEnd = Color(0xFF8B5CF6),
             onSurface = Color(0xFFF4F2FB),
             // 次级/弱文字三级台阶：都按「深色底上 ≥4.5:1」反算，
@@ -53,8 +51,11 @@ data class FusionPalette(
             onSurfaceFainter = Color(0xFF918BB2),
             amber = Color(0xFFFFC24D),
             amberBg = Color(0xFF3A2E1E),
-            heroStart = Color(0xFF12363F),
+            heroStart = Color(0xFF16244D),
             heroEnd = Color(0xFF2A1B4D),
+            // 原深色 primary 的青绿收编为语义绿：✓ 徽章在深色下保持绿色不变
+            success = Color(0xFF4FD9C9),
+            onSuccess = Color(0xFF062521),
         )
         val Light = FusionPalette(
             // 背景压到 #E9ECF3：纯白卡片与背景拉开层次，不再整屏发白
@@ -75,6 +76,9 @@ data class FusionPalette(
             amberBg = Color(0xFFFFE8CC),
             heroStart = Color(0xFFDDE6FF),
             heroEnd = Color(0xFFE4DBFF),
+            // 亮色语义绿 #1E8449 对白卡底 4.6:1，达标正文对比度
+            success = Color(0xFF1E8449),
+            onSuccess = Color(0xFFFFFFFF),
         )
     }
 }
@@ -105,4 +109,7 @@ object Fusion {
     val AmberBg get() = palette.amberBg
     val HeroStart get() = palette.heroStart
     val HeroEnd get() = palette.heroEnd
+    /** 语义绿（支持/存在/可用 ✓ 徽章专用），别拿去做强调色 */
+    val Success get() = palette.success
+    val OnSuccess get() = palette.onSuccess
 }

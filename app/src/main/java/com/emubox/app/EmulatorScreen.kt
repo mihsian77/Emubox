@@ -12,13 +12,10 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
@@ -631,110 +628,6 @@ private fun inlineImages(raw: String): List<String> {
         .take(6)
 }
 
-/** 新闻列表弹窗（近全屏）：某分区的完整新闻列表。
- *  类型筛选 chips（官方组件/运行库）与分页（8/页）都在此弹窗内，
- *  分区卡片本体只保留 3 条预览，避免占用页面空间。 */
-@Composable
-private fun NewsListDialog(
-    title: String,
-    items: List<NewsItem>,
-    category: String,
-    onDismiss: () -> Unit
-) {
-    val catItemsAll = items.filter { newsMatches(it, category) }
-    // 标签筛选：官方组件的 type（Wine / Proton / Turnip）与资讯的 tag（芯片 / 系统 / 手机 / AI）
-    // 合并成一排，按出现条数从多到少取前 12 个——这就是「各标签的分类页」入口。
-    // 原来只有驱动区能按 type 筛，科技资讯只能从头翻到尾。
-    val tagOptions = remember(items, category) {
-        catItemsAll
-            .flatMap { listOf(it.type, it.tag) }
-            .filter { it.isNotBlank() }
-            .groupingBy { it }
-            .eachCount()
-            .entries
-            .sortedWith(compareByDescending<Map.Entry<String, Int>> { it.value }.thenBy { it.key })
-            .map { it.key }
-            .take(12)
-    }
-    var selectedTag by remember(category) { mutableStateOf("") }
-    var page by remember { mutableStateOf(0) }
-    val catItems = if (selectedTag.isNotBlank()) {
-        catItemsAll.filter { it.type == selectedTag || it.tag == selectedTag }
-    } else catItemsAll
-    Dialog(onDismissRequest = onDismiss) {
-        Surface(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.92f),
-            shape = RoundedCornerShape(28.dp),
-            color = MaterialTheme.colorScheme.surface
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 14.dp)
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.Article, contentDescription = null, modifier = Modifier.size(18.dp),
-                        tint = MaterialTheme.colorScheme.primary)
-                    Spacer(Modifier.width(6.dp))
-                    Text(title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
-                    IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = appString(R.string.cancel))
-                    }
-                }
-                Spacer(Modifier.height(4.dp))
-                if (tagOptions.isNotEmpty()) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(6.dp)
-                    ) {
-                        (listOf("") + tagOptions).forEach { t ->
-                            val label = if (t.isBlank()) appString(R.string.news_type_all) else t
-                            val selected = t == selectedTag
-                            SuggestionChip(
-                                onClick = { selectedTag = t; page = 0 },
-                                label = { Text(label, style = MaterialTheme.typography.labelSmall) },
-                                colors = SuggestionChipDefaults.suggestionChipColors(
-                                    containerColor = if (selected) {
-                                        MaterialTheme.colorScheme.primaryContainer
-                                    } else {
-                                        MaterialTheme.colorScheme.surfaceVariant
-                                    },
-                                    labelColor = if (selected) {
-                                        MaterialTheme.colorScheme.onPrimaryContainer
-                                    } else {
-                                        MaterialTheme.colorScheme.onSurfaceVariant
-                                    }
-                                )
-                            )
-                        }
-                    }
-                    Spacer(Modifier.height(4.dp))
-                }
-                if (catItems.isEmpty()) {
-                    Spacer(Modifier.height(8.dp))
-                    Text(
-                        appString(R.string.news_empty),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                } else {
-                    val pageSize = 8
-                    val maxPage = ((catItems.size + pageSize - 1) / pageSize).coerceAtMost(20)
-                    val current = page.coerceIn(0, maxPage - 1)
-                    val from = current * pageSize
-                    val to = ((current + 1) * pageSize).coerceAtMost(catItems.size)
-                    LazyColumn(modifier = Modifier.weight(1f)) {
-                        items(catItems.subList(from, to), key = { it.id }) { item ->
-                            NewsRowItem(item)
-                            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
-                        }
-                    }
-                    NewsPager(total = catItems.size, page = current, pageSize = pageSize, onPage = { page = it })
-                }
-            }
-        }
-    }
-}
-
-/** 分页控制条：首页 / 上一页 / 页码 / 下一页（每页 pageSize，最大 20 页封顶） */
 @Composable
 internal fun NewsPager(
     total: Int,
@@ -789,18 +682,6 @@ internal fun NewsPager(
  * 按既定口径拆 component：Wine / Box64 / Proton / FEX 属「组件」，
  * DXVK / VKD3D(D7VK) / Wine Mono / Wine Gecko / Mono 属「运行库」。
  */
-private fun isRuntimeType(type: String): Boolean {
-    val t = type.lowercase()
-    return t.contains("dxvk") || t.contains("vkd3d") || t.contains("d7vk") ||
-        t.contains("mono") || t.contains("gecko")
-}
-
-private fun newsMatches(item: NewsItem, category: String): Boolean = when (category) {
-    "runtime" -> item.category == "component" && isRuntimeType(item.type)
-    "eco" -> item.category == "device" || item.category == "tech"
-    else -> item.category == category
-}
-
 
 @Composable
 fun EmulatorScreen(

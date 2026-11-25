@@ -34,9 +34,19 @@ private const val DRIVER_TAB_PANVK = 4
 private const val DRIVER_TAB_XCLIPSE = 5
 private const val DRIVER_TAB_WRAPPER = 6
 
+/** 驱动页顶部子分区行：前 7 项是分区筛选（索引对应 DRIVER_TAB_* 常量），
+ *  最后一项「组件」是跳转入口，不参与 driverTab 状态。 */
+@Composable
+private fun driverTabs(): List<String> = listOf(
+    appString(R.string.driver_tab_all), "动态", "Turnip",
+    appString(R.string.qualcomm_driver), "PanVK", "Xclipse", "Wrapper",
+    appString(R.string.tab_component),
+)
+
 @Composable
 fun DriverScreen(
     modifier: Modifier = Modifier,
+    onOpenComponents: () -> Unit = {},
     deviceInfo: DeviceInfo?,
     isLoading: Boolean,
     turnipSourceId: String,
@@ -221,18 +231,12 @@ fun DriverScreen(
     }
 
     Column(modifier = modifier.fillMaxSize()) {
+    // 底部的“驱动/组件”切换条已撤，“组件”并进顶部子分区行最后一项
+    val tabs = driverTabs()
     SectionTabs(
-        tabs = listOf(
-            appString(R.string.driver_tab_all),
-            "动态",
-            "Turnip",
-            appString(R.string.qualcomm_driver),
-            "PanVK",
-            "Xclipse",
-            "Wrapper",
-        ),
+        tabs = tabs,
         selected = driverTab,
-        onSelect = { driverTab = it },
+        onSelect = { idx -> if (idx == tabs.lastIndex) onOpenComponents() else driverTab = idx },
     )
     LazyColumn(
         modifier = Modifier.fillMaxSize(),

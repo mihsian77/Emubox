@@ -27,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -74,6 +75,45 @@ data class DriverTarget(
  *   后者在 App 进程内可能被 namespace/SELinux 拒绝，失败时报告里带 dlerror 原文，
  *   那本身就是有用的信息（说明该驱动不能裸加载，必须走 AdrenoTools 注入）。
  */
+/**
+ * 失败细节三行：失败步骤（为空时回退全部步骤）、缺失依赖、已加载依赖。
+ * 从 DriverRenderCheckCard 提出，正文只管调用，函数行数闸门（≤300）不放宽。
+ */
+@Composable
+private fun DriverFailureDetails(report: RenderReport) {
+    val failedSteps = report.failedSteps.ifEmpty { report.steps }
+    if (failedSteps.isNotEmpty()) {
+        Text(
+            appString(
+                R.string.driver_check_failed_steps,
+                failedSteps.joinToString("；") { "${it.name}：${it.detail}" },
+            ),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+    if (report.depsMissing.isNotEmpty()) {
+        Text(
+            appString(
+                R.string.driver_check_failed_deps_missing,
+                report.depsMissing.joinToString("、"),
+            ),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+    if (report.depsLoaded.isNotEmpty()) {
+        Text(
+            appString(
+                R.string.driver_check_failed_deps_loaded,
+                report.depsLoaded.joinToString("、"),
+            ),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
 @Composable
 fun DriverRenderCheckCard(
     modifier: Modifier = Modifier,
@@ -89,15 +129,42 @@ fun DriverRenderCheckCard(
     var selected by remember(drivers) { mutableStateOf<DriverTarget?>(null) }
     // 带宽/算力跑分：与出图共用同一个驱动库，结果跟着这张卡走
     var bench by remember { mutableStateOf<BenchmarkResult?>(null) }
+    // 最近一次报告：Failed 分支要拿 steps / depsMissing / depsLoaded 透出细节
+    var lastReport by remember { mutableStateOf<RenderReport?>(null) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    // 各目标包的 meta：IO 线程解析出来只做类型门禁，不参与解压加载
+    var metas by remember(drivers) { mutableStateOf<Map<String, DriverMetaParser.DriverMeta?>>(emptyMap()) }
+    LaunchedEffect(drivers) {
+        withContext(Dispatchers.IO) {
+            metas = drivers.associate { t ->
+                t.id to runCatching { DriverMetaParser.parse(context, t.packagePath) }.getOrNull()
+            }
+        }
+    }
+    fun verdictOf(t: DriverTarget): DriverDirectLoadGate.Verdict = DriverDirectLoadGate.verdict(metas[t.id])
     // 文案在 composable 上下文取好，onClick 里不能调 @Composable
     val exportLabel = appString(R.string.driver_check_export)
     val exportSubject = appString(R.string.driver_check_export_subject)
     val extractFailed = appString(R.string.driver_check_extract_failed)
+    val gateAdrenotools = appString(R.string.driver_check_gate_adrenotools)
+    val gateVendor = appString(R.string.driver_check_gate_vendor)
+    val gateBlocked = appString(R.string.driver_check_gate_blocked)
 
     fun start() {
         val target = selected
+        // 类型门禁：adrenotools/Mesa 包与厂商系统驱动不进裸载直载链路
+        val gateReason = target?.let { t ->
+            when (verdictOf(t)) {
+                DriverDirectLoadGate.Verdict.BLOCKED_ADRENOTOOLS -> gateAdrenotools
+                DriverDirectLoadGate.Verdict.BLOCKED_VENDOR_SYSTEM -> gateVendor
+                DriverDirectLoadGate.Verdict.LOADABLE -> null
+            }
+        }
+        if (gateReason != null) {
+            state = DriverCheckState.Failed(String.format(gateBlocked, target!!.label, gateReason))
+            return
+        }
         state = DriverCheckState.Running
         bench = null
         scope.launch {
@@ -119,7 +186,9 @@ fun DriverRenderCheckCard(
             }
             // 出图之后紧接着跑带宽/算力：同一份驱动、同一个进程，
             // 这样「能不能画对」和「画得多快」是一条结果，不再拆成两个入口。
-            if (res.isSuccess) {
+            // 没出图或报告不通过时不再追跑跑分：失败驱动重复裸载只会再报一遍错。
+            val producedImage = res.getOrNull()?.let { (bmp, report) -> bmp != null && report.ok } == true
+            if (producedImage) {
                 bench = withContext(Dispatchers.IO) {
                     runCatching {
                         BenchmarkResult.fromJson(NativeVulkanBridge.benchmarkVulkan(soPath))
@@ -129,6 +198,7 @@ fun DriverRenderCheckCard(
             }
             state = res.fold(
                 onSuccess = { (bmp, report) ->
+                    lastReport = report
                     if (bmp == null && !report.ok) {
                         // 只存原始错误串，展示时再走本地化（协程内不能调 @Composable）
                         DriverCheckState.Failed(report.error)
@@ -141,6 +211,7 @@ fun DriverRenderCheckCard(
                     }
                 },
                 onFailure = {
+                    lastReport = null
                     DriverCheckState.Failed(it.message ?: it.javaClass.simpleName)
                 },
             )
@@ -211,13 +282,15 @@ fun DriverRenderCheckCard(
                         colors = FilterChipDefaults.filterChipColors(),
                     )
                     drivers.forEach { d ->
+                        val blocked = verdictOf(d) != DriverDirectLoadGate.Verdict.LOADABLE
                         FilterChip(
                             selected = selected?.id == d.id,
                             onClick = {
+                                if (blocked) return@FilterChip
                                 selected = d
                                 if (state !is DriverCheckState.Running) state = DriverCheckState.Idle
                             },
-                            enabled = state !is DriverCheckState.Running,
+                            enabled = state !is DriverCheckState.Running && !blocked,
                             label = {
                                 Text(
                                     d.label,
@@ -228,6 +301,20 @@ fun DriverRenderCheckCard(
                             },
                         )
                     }
+                }
+                // 被门禁拦下的驱动包：写明原因，避免用户以为是卡片坏了
+                drivers.filter { verdictOf(it) != DriverDirectLoadGate.Verdict.LOADABLE }.forEach { d ->
+                    Text(
+                        "${d.label}：" + when (verdictOf(d)) {
+                            DriverDirectLoadGate.Verdict.BLOCKED_ADRENOTOOLS ->
+                                appString(R.string.driver_check_gate_adrenotools)
+                            DriverDirectLoadGate.Verdict.BLOCKED_VENDOR_SYSTEM ->
+                                appString(R.string.driver_check_gate_vendor)
+                            else -> ""
+                        },
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
             }
             Text(
@@ -260,6 +347,11 @@ fun DriverRenderCheckCard(
                     },
                 )
             }
+
+            // 失败细节：报告里解析出来的步骤成败与依赖清单，原来只存了一行错误串，
+            // 断在哪个阶段、缺哪些依赖在界面上完全看不出来。这里直接铺在卡片上。
+            val failedReport = if (state is DriverCheckState.Failed) lastReport else null
+            if (failedReport != null) DriverFailureDetails(report = failedReport)
 
             // 最近一次的图像直接贴在卡片里，不用打开抽屉也能看到画面
             val done = state as? DriverCheckState.Done
@@ -379,6 +471,8 @@ private fun buildLog(report: RenderReport, checks: List<PatternCheck>): String {
             )
         }
     })
+    root.put("depsLoaded", JSONArray().apply { report.depsLoaded.forEach { put(it) } })
+    root.put("depsMissing", JSONArray().apply { report.depsMissing.forEach { put(it) } })
     return root.toString(2)
 }
 

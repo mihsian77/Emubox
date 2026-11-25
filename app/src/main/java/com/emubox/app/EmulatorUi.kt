@@ -854,9 +854,9 @@ internal fun EmulatorHostBadge(hosts: List<String>, modifier: Modifier = Modifie
     val label = emulatorHostLabel(hosts)
     if (label.isBlank()) return
     val androidReady = hosts.any { it.equals("android", ignoreCase = true) }
-    val container = if (androidReady) MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
+    val container = if (androidReady) Fusion.Success.copy(alpha = 0.10f)
     else MaterialTheme.colorScheme.tertiary.copy(alpha = 0.12f)
-    val fg = if (androidReady) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary
+    val fg = if (androidReady) Fusion.Success else MaterialTheme.colorScheme.tertiary
     Surface(modifier = modifier, shape = RoundedCornerShape(5.dp), color = container) {
         Text(
             label,

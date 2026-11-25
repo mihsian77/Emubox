@@ -35,6 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.delay
+import com.emubox.app.ui.theme.Fusion
 import java.io.File
 import java.util.*
 
@@ -1339,13 +1340,13 @@ internal fun VulkanKeyFeatureRow(enabled: Boolean, label: String, hint: String) 
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
         Surface(
             shape = RoundedCornerShape(6.dp),
-            color = if (enabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+            color = if (enabled) Fusion.Success else MaterialTheme.colorScheme.surfaceVariant
         ) {
             Text(
                 if (enabled) "✓" else "✗",
                 modifier = Modifier.padding(horizontal = 7.dp, vertical = 2.dp),
                 style = MaterialTheme.typography.labelMedium,
-                color = if (enabled) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (enabled) Fusion.OnSuccess else MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
             )
         }
@@ -1365,13 +1366,13 @@ internal fun VulkanKeyExtensionRow(name: String, present: Boolean, hint: String)
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
         Surface(
             shape = RoundedCornerShape(6.dp),
-            color = if (present) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+            color = if (present) Fusion.Success else MaterialTheme.colorScheme.surfaceVariant
         ) {
             Text(
                 if (present) "✓" else "✗",
                 modifier = Modifier.padding(horizontal = 7.dp, vertical = 2.dp),
                 style = MaterialTheme.typography.labelMedium,
-                color = if (present) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (present) Fusion.OnSuccess else MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
             )
         }

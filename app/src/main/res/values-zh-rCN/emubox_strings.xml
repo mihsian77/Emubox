@@ -807,6 +807,12 @@
     <string name="driver_check_use_system">系统驱动</string>
     <string name="driver_check_target_note">将直接加载 %1$s（绕开系统 loader，失败会带 dlerror 原文）</string>
     <string name="driver_check_extract_failed">驱动包解压失败，取不到 .so</string>
+    <string name="driver_check_gate_adrenotools">adrenotools/Mesa 打包（Turnip/PanVK），依赖模拟器注入的运行环境，本卡不能直载实测</string>
+    <string name="driver_check_gate_vendor">厂商系统提取驱动，需 root/系统级环境，App 内无法实测</string>
+    <string name="driver_check_gate_blocked">%1$s 不能走直载实测：%2$s</string>
+    <string name="driver_check_failed_steps">失败步骤：%1$s</string>
+    <string name="driver_check_failed_deps_missing">缺失依赖：%1$s</string>
+    <string name="driver_check_failed_deps_loaded">已加载依赖：%1$s</string>
     <!-- 详情型：设备页结论卡与分组 -->
     <string name="device_conclusion_full">本机 Adreno GPU 可走 Turnip 直通，DXVK 游戏走硬件渲染（实际帧率仍取决于驱动版本与散热）</string>
     <string name="device_conclusion_partial">Xclipse/RDNA 路线支持有限：老游戏稳，新 3A 撑不住</string>

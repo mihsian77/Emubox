@@ -808,6 +808,12 @@ How to verify in emulator:
     <string name="driver_check_use_system">System driver</string>
     <string name="driver_check_target_note">Will dlopen %1$s directly (bypassing the system loader; failures report the raw dlerror)</string>
     <string name="driver_check_extract_failed">Failed to extract the driver package (.so not found)</string>
+    <string name="driver_check_gate_adrenotools">Packaged via adrenotools/Mesa (Turnip/PanVK): it relies on the runtime injected by the emulator and cannot be opened directly in this card.</string>
+    <string name="driver_check_gate_vendor">Vendor ROM-extracted driver needs root or a system-level environment and cannot be tested inside the app.</string>
+    <string name="driver_check_gate_blocked">%1$s is not eligible for a direct-load check: %2$s</string>
+    <string name="driver_check_failed_steps">Failed steps: %1$s</string>
+    <string name="driver_check_failed_deps_missing">Missing dependencies: %1$s</string>
+    <string name="driver_check_failed_deps_loaded">Loaded dependencies: %1$s</string>
     <!-- 详情型：设备页结论卡与分组 -->
     <string name="device_conclusion_full">This Adreno GPU can use Turnip directly, so DXVK games render on hardware (frame rate still depends on driver version and thermals).</string>
     <string name="device_conclusion_partial">Limited Xclipse/RDNA support: older titles are fine, new AAA titles are not.</string>
