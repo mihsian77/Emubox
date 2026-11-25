@@ -25,8 +25,8 @@
           "Rutabaga"
         ]
       },
-      "updatedAt": 1795440022000,
-      "stars": 1359
+      "updatedAt": 1795543602000,
+      "stars": 1366
     },
     {
       "id": "whitebelyash",
@@ -88,7 +88,7 @@
         ]
       },
       "updatedAt": 1786970281000,
-      "stars": 966
+      "stars": 968
     },
     {
       "id": "banner",
@@ -123,8 +123,8 @@
           "710-720-Test"
         ]
       },
-      "updatedAt": 1795472651000,
-      "stars": 269
+      "updatedAt": 1795571011000,
+      "stars": 272
     },
     {
       "id": "s1mptom",
@@ -214,7 +214,7 @@
         ]
       },
       "updatedAt": 1794136780000,
-      "stars": 134
+      "stars": 136
     },
     {
       "id": "panvk-g720",
@@ -247,8 +247,8 @@
       "filters": [
         "Qualcomm"
       ],
-      "stars": 1359,
-      "updatedAt": 1795440022000
+      "stars": 1366,
+      "updatedAt": 1795543602000
     },
     {
       "id": "k11mch1-qualcomm",
@@ -270,7 +270,7 @@
       "description": "面向 Adreno 8xx 设备的旧版高通系统驱动集合。",
       "experimental": false,
       "filters": [],
-      "stars": 21,
+      "stars": 20,
       "archived": true,
       "updatedAt": 1767609365000
     }
@@ -291,7 +291,7 @@
       "manifestUrl": "https://raw.githubusercontent.com/nicholasx417/WinNative-Components/refs/heads/main/contents.json",
       "description": "WinNative 与 Winlator 的自动构建组件，含 Sarek 与 GPLAsync 分支。",
       "experimental": true,
-      "updatedAt": 1795438114000
+      "updatedAt": 1795528171000
     },
     {
       "id": "banner-components",

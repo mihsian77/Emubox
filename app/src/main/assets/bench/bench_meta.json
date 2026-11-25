@@ -15,8 +15,8 @@
    "antutu_clusters": "(1x 2.84GHz Kryo 680 Prime & 3x 2.4GHz Kryo 680 Gold & 4x 1.8GHz Kryo 680 Sliver)",
    "ludashi_score": "480872",
    "gpu_equiv": {
-    "name": "AMD Radeon RX560XT Series 8GB",
-    "score": 140628,
+    "name": "NVIDIA GeForce GTX 1650 Ti 4GB",
+    "score": 142240,
     "est": 141151,
     "ratio": 0.294
    }
@@ -53,7 +53,7 @@
    "ludashi_score": "807517",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 2070 8GB",
-    "score": 336818,
+    "score": 336795,
     "est": 336151,
     "ratio": 0.416
    }
@@ -74,7 +74,7 @@
    "ludashi_score": "1062717",
    "gpu_equiv": {
     "name": "AMD Radeon RX 560 12GB",
-    "score": 541268,
+    "score": 540557,
     "est": 557398,
     "ratio": 0.525
    }
@@ -95,7 +95,7 @@
    "ludashi_score": "1159763",
    "gpu_equiv": {
     "name": "AMD Radeon RX 7700 XT 12GB",
-    "score": 614760,
+    "score": 614665,
     "est": 627438,
     "ratio": 0.541
    }
@@ -115,7 +115,7 @@
    "ludashi_score": "1308603",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 4070 Ti 12GB",
-    "score": 714669,
+    "score": 714673,
     "est": 715821,
     "ratio": 0.547
    }
@@ -135,7 +135,7 @@
    "ludashi_score": "1385516",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6900 XT 16GB",
-    "score": 817033,
+    "score": 816945,
     "est": 835410,
     "ratio": 0.603
    }
@@ -155,7 +155,7 @@
    "ludashi_score": "1467056",
    "gpu_equiv": {
     "name": "AMD Radeon RX 6950 XT 16GB",
-    "score": 859795,
+    "score": 859773,
     "est": 876830,
     "ratio": 0.598
    }
@@ -174,7 +174,7 @@
    "ludashi_score": "724435",
    "gpu_equiv": {
     "name": "AMD Radeon RX 5700 8GB",
-    "score": 328609,
+    "score": 328653,
     "est": 328913,
     "ratio": 0.454
    }
@@ -193,7 +193,7 @@
    "ludashi_score": "996259",
    "gpu_equiv": {
     "name": "NVIDIA TITAN V 12GB",
-    "score": 517494,
+    "score": 517525,
     "est": 522320,
     "ratio": 0.524
    }
@@ -254,8 +254,8 @@
    "antutu_clusters": "(1x 3.05GHz Cortex-X2 & 3x 2.85GHz Cortex-A710 & 4x 1.8GHz Cortex-A510)",
    "ludashi_score": "602793",
    "gpu_equiv": {
-    "name": "NVIDIA Quadro T2000 4GB",
-    "score": 158634,
+    "name": "AMD Radeon R9 200 Series 8GB",
+    "score": 158660,
     "est": 159224,
     "ratio": 0.264
    }
@@ -275,7 +275,7 @@
    "ludashi_score": "787766",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3060 Laptop GPU 12GB",
-    "score": 346818,
+    "score": 346841,
     "est": 348273,
     "ratio": 0.442
    }
@@ -295,7 +295,7 @@
    "ludashi_score": "922847",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3080 Laptop GPU 16GB",
-    "score": 467049,
+    "score": 467282,
     "est": 464817,
     "ratio": 0.504
    }
@@ -334,7 +334,7 @@
    "ludashi_score": "1372822",
    "gpu_equiv": {
     "name": "NVIDIA GeForce RTX 3080 12GB",
-    "score": 738736,
+    "score": 738721,
     "est": 735001,
     "ratio": 0.535
    }

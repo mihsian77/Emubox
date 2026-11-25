@@ -1,6 +1,6 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-24T00:00:00Z",
+ "updated_at": "2026-11-25T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
@@ -564,6 +564,77 @@
     }
    ]
   },
+  "Mali-G52": {
+   "configs": 111,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 16,
+     "share": 14.4
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 7,
+     "share": 6.3
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "1.11.1-sarek"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "System"
+      ],
+      [
+       "VKD3D",
+       "None"
+      ]
+     ],
+     "count": 5,
+     "share": 4.5
+    }
+   ]
+  },
   "Adreno-650": {
    "configs": 110,
    "top": [
@@ -635,77 +706,6 @@
     }
    ]
   },
-  "Mali-G52": {
-   "configs": 109,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 16,
-     "share": 14.7
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 7,
-     "share": 6.4
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "1.11.1-sarek"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "System"
-      ],
-      [
-       "VKD3D",
-       "None"
-      ]
-     ],
-     "count": 5,
-     "share": 4.6
-    }
-   ]
-  },
   "Adreno-735": {
    "configs": 96,
    "top": [
@@ -774,7 +774,7 @@
    ]
   },
   "Adreno-730": {
-   "configs": 81,
+   "configs": 82,
    "top": [
     {
      "combo": [
@@ -796,7 +796,7 @@
       ]
      ],
      "count": 8,
-     "share": 9.9
+     "share": 9.8
     },
     {
      "combo": [
@@ -818,7 +818,7 @@
       ]
      ],
      "count": 5,
-     "share": 6.2
+     "share": 6.1
     },
     {
      "combo": [
