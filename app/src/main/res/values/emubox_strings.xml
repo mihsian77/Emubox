@@ -296,6 +296,8 @@
     <string name="from_source">From %1$s</string>
     <string name="latest">Latest</string>
     <string name="version">Version</string>
+    <string name="component_version_summary">%1$d versions</string>
+    <string name="component_updated_on">updated %1$s</string>
     <string name="file_format_standard">%1$s standard driver package</string>
     <string name="file_format_special">%1$s special format</string>
     <string name="file">File</string>
@@ -874,8 +876,8 @@ Continuing means you understand the above.</string>
     <string name="playable_grade_tight">Struggles</string>
     <string name="playable_grade_unknown">No score</string>
     <string name="playable_legend">%1$s %2$d</string>
-    <string name="playable_gap">%1$d short</string>
-    <string name="playable_score_pair_short">%1$d / %2$d</string>
+    <string name="playable_threshold_surplus">%1$d to smooth · %2$d spare</string>
+    <string name="playable_threshold_short">%1$d to smooth · %2$d short</string>
     <string name="playable_thresholds">smooth %1$d · playable %2$d</string>
     <string name="playable_verdict_all">All %1$d platforms run</string>
     <string name="playable_verdict_playable">%1$d platforms run; %2$s is %3$d points short</string>

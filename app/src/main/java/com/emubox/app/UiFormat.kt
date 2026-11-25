@@ -186,6 +186,12 @@ internal fun formatDate(timestamp: Long): String {
     return sdf.format(Date(timestamp))
 }
 
+/** 只到天：卡片底部行用。相对时间（「3 天前」）在列表里读不出到底是哪天。 */
+internal fun formatDay(timestamp: Long): String {
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return sdf.format(Date(timestamp))
+}
+
 internal fun formatStars(stars: Long): String =
     if (stars >= 1000) String.format("%.1fk", stars / 1000.0)
     else stars.toString()

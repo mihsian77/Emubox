@@ -1752,7 +1752,12 @@ internal fun ArtifactSummaryBlock(entry: EmulatorEntry) {
                     )
                 }
                 else -> {
-                    val phone = a.installableOnPhone
+                    // 能装几个，以当场这份文件清单为准。用脚本归类的 a.installableOnPhone
+                    // 会出现「下面列了 3 个 apk，上面说 0 个能装」——脚本认不出的包
+                    // （非标准命名、放进 zip 的 apk）在这里是看得见的。
+                    val phone = if (visible.isNotEmpty()) {
+                        visible.count { artifactKindOf(it.name) == ArtifactKind.ANDROID }
+                    } else a.installableOnPhone
                     Text(
                         when {
                             phone > 0 -> "手机可直接安装 · $phone 个"

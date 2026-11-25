@@ -296,6 +296,8 @@
     <string name="from_source">来自 %1$s</string>
     <string name="latest">最新</string>
     <string name="version">版本</string>
+    <string name="component_version_summary">%1$d 个版本</string>
+    <string name="component_updated_on">更新于 %1$s</string>
     <string name="file_format_standard">%1$s 标准驱动包</string>
     <string name="file_format_special">%1$s 特殊格式</string>
     <string name="file">文件</string>
@@ -873,8 +875,8 @@
     <string name="playable_grade_tight">吃力</string>
     <string name="playable_grade_unknown">无参考分</string>
     <string name="playable_legend">%1$s %2$d</string>
-    <string name="playable_gap">差 %1$d 分</string>
-    <string name="playable_score_pair_short">%1$d / %2$d</string>
+    <string name="playable_threshold_surplus">门槛 %1$d · 余 %2$d</string>
+    <string name="playable_threshold_short">门槛 %1$d · 差 %2$d</string>
     <string name="playable_thresholds">流畅线 %1$d 分 · 能玩线 %2$d 分</string>
     <string name="playable_verdict_all">%1$d 个平台全部跑得动</string>
     <string name="playable_verdict_playable">%1$d 个平台跑得动，%2$s 差 %3$d 分</string>

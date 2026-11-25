@@ -126,12 +126,19 @@ fun PlayableLibrarySection(
             Spacer(Modifier.height(GroupGap))
             PlayableGroupHeader(grade = grade, labelRes = labelRes)
             Spacer(Modifier.height(RowGap))
-            items.forEachIndexed { index, p ->
+            // 同组内按门槛降序：门槛高的排前面，用户先看到「最吃配置的那几个」，
+            // 而不是让上游清单的顺序决定谁在上面。
+            val ordered = items.sortedByDescending { it.smooth }
+            // 刻度统一到本组最高门槛：原来每行拿自己的 smooth 当分母，
+            // 285 门槛跑满和 120 门槛跑满画出来一样长，横向根本不可比。
+            val scaleMax = ordered.firstOrNull()?.smooth ?: 0
+            ordered.forEachIndexed { index, p ->
                 if (index > 0) Spacer(Modifier.height(RowGap))
                 PlayablePlatformRow(
                     platform = p,
                     score = report.score,
                     ramMb = ramMb,
+                    scaleMax = scaleMax,
                     expanded = expandedKey == p.key,
                     onToggle = { expandedKey = if (expandedKey == p.key) null else p.key },
                     onOpen = { p.match.firstOrNull()?.let(onOpenPlatform) }
@@ -401,13 +408,15 @@ private fun PlayablePlatformRow(
     platform: PlayablePlatform,
     score: Double?,
     ramMb: Long,
+    /** 本组最高门槛：进度条与达标线共用这把尺子，行与行才可比 */
+    scaleMax: Int,
     expanded: Boolean,
     onToggle: () -> Unit,
     onOpen: () -> Unit
 ) {
     val color = gradeColor(platform.grade)
-    val ratio = platform.ratioToSmooth(score)
-    val gap = platform.gapToNextTier(score)
+    val ratio = if (score != null && scaleMax > 0) score / scaleMax else null
+    val threshold = if (scaleMax > 0) platform.smooth.toDouble() / scaleMax else 0.0
 
     Column(
         Modifier
@@ -428,13 +437,20 @@ private fun PlayablePlatformRow(
             Spacer(Modifier.width(10.dp))
             Column(horizontalAlignment = Alignment.End) {
                 Text(
+                    // 统一成「门槛 N · 余/差 M」：原来达标显示「272 / 285」、不达标显示
+                    // 「差 13 分」，两种句式要用户自己换算；而且「272 / 285」读不出
+                    // 是分数还是门槛。门槛是固定值，余量才是每个芯片不同的那个数。
                     when {
                         score == null -> gradeLabel(platform.grade)
-                        gap != null && gap > 0 -> appString(R.string.playable_gap, gap)
+                        score >= platform.smooth -> appString(
+                            R.string.playable_threshold_surplus,
+                            platform.smooth,
+                            (score - platform.smooth).roundToInt()
+                        )
                         else -> appString(
-                            R.string.playable_score_pair_short,
-                            score.roundToInt(),
-                            platform.smooth
+                            R.string.playable_threshold_short,
+                            platform.smooth,
+                            (platform.smooth - score).roundToInt()
                         )
                     },
                     style = MaterialTheme.typography.labelLarge,
@@ -462,7 +478,7 @@ private fun PlayablePlatformRow(
             )
         }
         Spacer(Modifier.height(7.dp))
-        MicroBar(ratio = ratio, color = color)
+        MicroBar(ratio = ratio, threshold = threshold, color = color)
         Spacer(Modifier.height(7.dp))
         Text(
             platform.note,
@@ -551,11 +567,14 @@ private fun PlayablePlatformRow(
 }
 
 /**
- * 微条：满格 = 1.5 倍门槛，刻度线落在 2/3（正好达标）。
+ * 微条：满格 = 1.5 倍本组最高门槛，刻度线落在各自门槛处。
+ *
+ * 分母是「本组最高门槛」而不是本行门槛，这样同一组里条长的差值就是真实的
+ * 分数差；刻度线位置随各行门槛前后移动，一眼能看出「谁的门槛更高」。
  * 用条长而不是圆环，是因为圆环在「远超门槛」时一律满环，看不出 4 倍和 12 倍的区别。
  */
 @Composable
-private fun MicroBar(ratio: Double?, color: Color) {
+private fun MicroBar(ratio: Double?, threshold: Double, color: Color) {
     val trackColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f)
     Box(
         Modifier
@@ -582,7 +601,7 @@ private fun MicroBar(ratio: Double?, color: Color) {
             )
         }
         // 达标线：白色描边在浅色轨道上也看得见
-        Box(Modifier.fillMaxWidth(2f / 3f).height(10.dp)) {
+        Box(Modifier.fillMaxWidth((threshold / 1.5).coerceIn(0.02, 0.99).toFloat()).height(10.dp)) {
             Box(
                 Modifier
                     .align(Alignment.CenterEnd)

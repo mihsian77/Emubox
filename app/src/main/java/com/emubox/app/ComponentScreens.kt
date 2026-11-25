@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.emubox.app.ui.template.CollapseRow
@@ -36,6 +35,152 @@ import java.util.*
 /** R5：来源级捆绑独立区块——列出全部组件源，一键下载各源最新一套文件。
  *  各源分发形态不同（release 仓库 / contents.json 清单），由
  *  DownloadUtils.downloadSourceBundle 按 manifestUrl 自动适配。 */
+/**
+ * 组件卡折叠头，分三层：标题行（图标 + 名称 + 版本胶囊 + 箭头）、描述两行、
+ * 底部一行「版本数 · 更新于日期」。
+ *
+ * 原来三样挤在同一行：411dp 下「17 个版本 · The412Banner · 2026-11-20」必然把
+ * 日期截成「202…」，而日期恰恰是判断「这个源还在维护吗」的唯一依据。来源名撤到
+ * 展开区的来源选择器——谁构建的，对「要不要装」没有帮助。
+ */
+@Composable
+private fun ComponentCollapsedHeader(
+    type: String,
+    fitLine: String,
+    versionCount: Int,
+    stamp: Long?,
+    selectedVersion: String,
+    versions: List<String>,
+    expanded: Boolean,
+    onToggle: () -> Unit,
+    onSelectVersion: (String) -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onToggle)
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                componentIcon(type),
+                contentDescription = null,
+                modifier = Modifier.size(22.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.width(12.dp))
+            Text(type, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+            // 折叠态也能换版本：原来这里只是一行不可点的版本名，
+            // 想换个版本必须先展开再点网格，等于把最常用的操作藏起来。
+            ComponentVersionPill(
+                selected = selectedVersion,
+                options = versions,
+                onSelect = onSelectVersion
+            )
+            Spacer(Modifier.width(4.dp))
+            Icon(
+                if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        // 与标题文字左对齐：22dp 图标 + 12dp 间距
+        val textIndent = Modifier.padding(start = 34.dp)
+        Text(
+            fitLine,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            // 原来截一行，DXVK 这种描述正好断在「…版」；给两行收住
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            modifier = textIndent.padding(top = 3.dp)
+        )
+        Text(
+            buildString {
+                append(appString(R.string.component_version_summary, versionCount))
+                if (stamp != null) {
+                    append(" · ")
+                    append(appString(R.string.component_updated_on, formatDay(stamp)))
+                }
+            },
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            modifier = textIndent.padding(top = 2.dp)
+        )
+    }
+}
+
+/**
+ * 折叠态的版本胶囊：点开直接切版本，不用先展开再在网格里找。
+ *
+ * 宽度上限给 104dp：组件版本串（`wine-10-x86_64`）比这长，超了省略——
+ * 完整串在展开后的版本网格和更新日志里都能看到，折叠态优先保住标题空间。
+ */
+@Composable
+private fun ComponentVersionPill(
+    selected: String,
+    options: List<String>,
+    onSelect: (String) -> Unit
+) {
+    if (selected.isBlank()) return
+    var expanded by remember { mutableStateOf(false) }
+    val canSwitch = options.size > 1
+    Box {
+        Surface(
+            shape = RoundedCornerShape(percent = 50),
+            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+            modifier = Modifier.clickable(enabled = canSwitch) { expanded = true }
+        ) {
+            Row(
+                modifier = Modifier.padding(
+                    start = 10.dp,
+                    end = if (canSwitch) 4.dp else 10.dp,
+                    top = 4.dp,
+                    bottom = 4.dp
+                ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    selected,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.widthIn(max = 104.dp)
+                )
+                if (canSwitch) {
+                    Icon(
+                        Icons.Default.ArrowDropDown,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            options.forEach { v ->
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            v,
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = if (v == selected) FontWeight.SemiBold else FontWeight.Normal,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    },
+                    onClick = {
+                        onSelect(v)
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
+
 @Composable
 private fun ComponentBundleSection(sources: List<ComponentSource>) {
     val context = LocalContext.current
@@ -254,66 +399,20 @@ fun ComponentSection(
         border = BorderStroke(1.dp, Fusion.Border)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
-            // 折叠头：图标 + 类型名 + 版本数 + 当前版本 + 来源 + 展开箭头
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { expanded = !expanded }
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    componentIcon(type),
-                    contentDescription = null,
-                    modifier = Modifier.size(22.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                Spacer(Modifier.width(12.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(type, style = MaterialTheme.typography.titleMedium)
-                    // 「给谁用」压到折叠态：一眼能判断这个组件要不要装
-                    val fitLine = typeProfile?.fit?.takeIf { it.isNotBlank() }
-                        ?: componentSubtitle(type)
-                    Text(
-                        fitLine,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(top = 1.dp)
-                    )
-                    Text(
-                        buildString {
-                            append("${components.size} ${appString(R.string.version)} · ${currentSource.name}")
-                            val hint = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt)
-                                .takeIf { it > 0 }?.let { formatRelativeTimeMs(it) }
-                            if (hint != null) append(" · ").append(hint)
-                        },
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        // 单行：副标题折成两行会把卡片撑高，且「25 天/前」这种断行很丑
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+            ComponentCollapsedHeader(
+                type = type,
+                fitLine = typeProfile?.fit?.takeIf { it.isNotBlank() } ?: componentSubtitle(type),
+                versionCount = components.size,
+                stamp = (updatedAtMap[currentSource.id] ?: currentSource.updatedAt).takeIf { it > 0 },
+                selectedVersion = selected?.verName.orEmpty(),
+                versions = components.map { it.verName },
+                expanded = expanded,
+                onToggle = { expanded = !expanded },
+                onSelectVersion = { v ->
+                    selectedVersion = v
+                    SettingsManager.setSelectedComponentVersion(selectionKey, v)
                 }
-                if (!expanded) {
-                    Text(
-                        text = selected?.verName ?: "",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.End,
-                        modifier = Modifier.weight(0.55f)
-                    )
-                    Spacer(Modifier.width(8.dp))
-                }
-                Icon(
-                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
+            )
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
 
             AnimatedVisibility(visible = expanded) {
