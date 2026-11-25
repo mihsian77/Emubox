@@ -1704,17 +1704,6 @@ internal fun assetArchLabel(name: String): String {
     }
 }
 
-/** 产物明细：只列非零项，手机能用的排前面（用户先关心「能不能装」） */
-private fun artifactBreakdown(a: EmulatorArtifacts): String = buildList {
-    if (a.apk > 0) add("安卓包 ${a.apk}")
-    if (a.androidZip > 0) add("安卓 zip ${a.androidZip}")
-    if (a.ipa > 0) add("iOS 包 ${a.ipa}")
-    if (a.libretroCore > 0) add("RetroArch 核心 ${a.libretroCore}")
-    if (a.desktop > 0) add("桌面端 ${a.desktop}")
-    if (a.console > 0) add("主机端 ${a.console}")
-    if (a.source > 0) add("源码 ${a.source}")
-}.joinToString(" · ")
-
 /**
  * 发布文件清单：在详情页顶部就回答「这版到底给了什么」。
  * 以前要翻到最底下的版本卡、再展开，才能看见文件名；而「给了桌面包没有安卓包」
@@ -1731,12 +1720,11 @@ internal fun ArtifactSummaryBlock(entry: EmulatorEntry) {
             // 口径与下方版本卡一致：数最新 release 的全部资产（版本卡标题写的是
             // "${release.assets.size} 个文件"）。之前用注册表的归类数
             // （openMSX 只认出 1 个源码包），同一张弹窗出现「共 1 个」与「7 个文件」。
-            val newestCount = entry.releases.firstOrNull()?.assets?.size ?: 0
-            val totalCount = when {
-                newestCount > 0 -> newestCount
-                a.displayTotal > 0 -> a.displayTotal
-                else -> 0
-            }
+            // 明细里滤掉 sha256/sig 这类校验附件：它们既不是用户要下的东西，也不该
+            // 计进总数——「共 48 个」下面只列出 40 行，用户会以为界面漏了 8 个。
+            val visible = entry.releases.firstOrNull()?.assets
+                ?.filterNot { isNoiseAsset(it.name) }.orEmpty()
+            val totalCount = if (visible.isNotEmpty()) visible.size else a.displayTotal
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("发布文件", style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.weight(1f))
@@ -1781,13 +1769,12 @@ internal fun ArtifactSummaryBlock(entry: EmulatorEntry) {
                             else -> MaterialTheme.colorScheme.error
                         }
                     )
-                    val detail = artifactBreakdown(a)
-                    if (detail.isNotBlank()) {
-                        Text(
-                            detail,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                    // 归类计数（安卓包 2 · 桌面端 3 · 源码 1）曾在这里再占一行，与上面的
+                    // 「共 N 个」和下面的文件列表构成三个口径。现在只留列表：能装的铺开，
+                    // 其余收进一行，总数与行数天然一致。
+                    if (visible.isNotEmpty()) {
+                        Spacer(Modifier.height(2.dp))
+                        ArtifactFileList(visible)
                     }
                 }
             }
