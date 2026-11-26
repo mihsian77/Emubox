@@ -773,5 +773,18 @@
  "darckrovert-projectjaina-imito": {
   "url": "icons/darckrovert-projectjaina-imito.png",
   "via": "apk"
+ },
+ "alexvorxx-winlator": {
+  "url": "icons/alexvorxx-winlator.png",
+  "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+  "via": "repo"
+ },
+ "xishanp-linuxhub": {
+  "url": "icons/xishanp-linuxhub.png",
+  "via": "apk"
+ },
+ "zolotvok-blobferry": {
+  "url": "icons/zolotvok-blobferry.png",
+  "via": "apk"
  }
 }
