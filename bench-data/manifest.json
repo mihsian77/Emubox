@@ -9,11 +9,11 @@
         "ludashi_phone": 100,
         "ludashi_soc": 100,
         "ludashi_desktop_cpu": 500,
-        "ludashi_desktop_gpu": 497,
+        "ludashi_desktop_gpu": 496,
         "ludashi_laptop_cpu": 500
       },
       "status": "ok",
-      "fetched_at": "2026-11-25T02:55:29.773Z",
+      "fetched_at": "2026-11-26T02:02:47.323Z",
       "note": "单页全量渲染，页码导航为页面干扰，无数据丢失"
     },
     "ludashi": {
@@ -25,11 +25,11 @@
         "ludashi_phone": 100,
         "ludashi_soc": 100,
         "ludashi_desktop_cpu": 500,
-        "ludashi_desktop_gpu": 497,
+        "ludashi_desktop_gpu": 496,
         "ludashi_laptop_cpu": 500
       },
       "status": "ok",
-      "fetched_at": "2026-11-25T02:55:54.242Z",
+      "fetched_at": "2026-11-26T02:03:10.790Z",
       "note": "各榜均无\"加载更多\"，全量"
     },
     "socpk": {
@@ -37,6 +37,6 @@
       "note": "数值通道未完成（WASM codec / tooltip 采集）"
     }
   },
-  "fetched_at": "2026-11-25T02:55:29.773Z",
+  "fetched_at": "2026-11-26T02:02:47.323Z",
   "integrity": "ok"
 }

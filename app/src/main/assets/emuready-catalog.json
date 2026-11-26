@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-25T02:54:46Z",
+ "generated_at": "2026-11-26T02:02:23Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -192,7 +192,7 @@
    "modelName": "Thor Max",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 1636,
+   "listingsCount": 1641,
    "keys": [
     "thormax",
     "aynthormax"
@@ -247,7 +247,7 @@
    "modelName": "Thor Pro",
    "brandName": "AYN",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 623,
+   "listingsCount": 624,
    "keys": [
     "thorpro",
     "aynthorpro"
@@ -280,7 +280,7 @@
    "modelName": "Pocket 6",
    "brandName": "Retroid",
    "socName": "Snapdragon 8 Gen 2",
-   "listingsCount": 390,
+   "listingsCount": 393,
    "keys": [
     "pocket6",
     "retroidpocket6"
@@ -1387,6 +1387,17 @@
    ]
   },
   {
+   "id": "b126ecd3-db3a-4d9e-b38e-b4beac749b73",
+   "modelName": "Galaxy A32 4G",
+   "brandName": "Samsung",
+   "socName": "Helio G80",
+   "listingsCount": 18,
+   "keys": [
+    "galaxya324g",
+    "samsunggalaxya324g"
+   ]
+  },
+  {
    "id": "871b1dc3-98d8-4ff6-9a77-b0e83ffe0b12",
    "modelName": "Poco X3 Pro",
    "brandName": "Xiaomi",
@@ -1417,17 +1428,6 @@
    "keys": [
     "edge60pro",
     "motorolaedge60pro"
-   ]
-  },
-  {
-   "id": "b126ecd3-db3a-4d9e-b38e-b4beac749b73",
-   "modelName": "Galaxy A32 4G",
-   "brandName": "Samsung",
-   "socName": "Helio G80",
-   "listingsCount": 17,
-   "keys": [
-    "galaxya324g",
-    "samsunggalaxya324g"
    ]
   },
   {
@@ -1695,6 +1695,17 @@
    ]
   },
   {
+   "id": "fc42b86c-9455-4eb9-92c3-b009bb838a64",
+   "modelName": "Pocket Nova",
+   "brandName": "Retroid",
+   "socName": "Dragonwing QCS8550",
+   "listingsCount": 14,
+   "keys": [
+    "pocketnova",
+    "retroidpocketnova"
+   ]
+  },
+  {
    "id": "85150c75-c1a0-471b-b55e-36f0afcb5ecd",
    "modelName": "Galaxy S20 Ultra  (SD)",
    "brandName": "Samsung",
@@ -1747,17 +1758,6 @@
    "keys": [
     "gtneo2",
     "realmegtneo2"
-   ]
-  },
-  {
-   "id": "fc42b86c-9455-4eb9-92c3-b009bb838a64",
-   "modelName": "Pocket Nova",
-   "brandName": "Retroid",
-   "socName": "Dragonwing QCS8550",
-   "listingsCount": 13,
-   "keys": [
-    "pocketnova",
-    "retroidpocketnova"
    ]
   },
   {
@@ -2344,6 +2344,17 @@
    ]
   },
   {
+   "id": "1c6ef59c-a3d9-4252-beec-1fc7f0346f3b",
+   "modelName": "13T",
+   "brandName": "Xiaomi",
+   "socName": "Dimensity 8200",
+   "listingsCount": 9,
+   "keys": [
+    "13t",
+    "xiaomi13t"
+   ]
+  },
+  {
    "id": "b600b2d5-3631-4f50-b235-a9d0d2559445",
    "modelName": "Pixel 8 Pro",
    "brandName": "Google",
@@ -2737,17 +2748,6 @@
    "keys": [
     "iqooz9spro",
     "vivoiqooz9spro"
-   ]
-  },
-  {
-   "id": "1c6ef59c-a3d9-4252-beec-1fc7f0346f3b",
-   "modelName": "13T",
-   "brandName": "Xiaomi",
-   "socName": "Dimensity 8200",
-   "listingsCount": 7,
-   "keys": [
-    "13t",
-    "xiaomi13t"
    ]
   },
   {
@@ -4695,6 +4695,17 @@
    "keys": [
     "pocket4",
     "retroidpocket4"
+   ]
+  },
+  {
+   "id": "ef8b93c8-7171-4b8c-ac2a-d235e7bb0cf4",
+   "modelName": "Pocket Duo",
+   "brandName": "Retroid",
+   "socName": "Dragonwing Q-7790",
+   "listingsCount": 2,
+   "keys": [
+    "pocketduo",
+    "retroidpocketduo"
    ]
   },
   {
@@ -8086,17 +8097,6 @@
    ]
   },
   {
-   "id": "ef8b93c8-7171-4b8c-ac2a-d235e7bb0cf4",
-   "modelName": "Pocket Duo",
-   "brandName": "Retroid",
-   "socName": "Dragonwing Q-7790",
-   "listingsCount": 0,
-   "keys": [
-    "pocketduo",
-    "retroidpocketduo"
-   ]
-  },
-  {
    "id": "805b694d-ec6c-4507-9b9e-35259e4f9d47",
    "modelName": "Pocket Duo Lite",
    "brandName": "Retroid",
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6296,
+   "listings": 6302,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9057,7 +9057,7 @@
    "systems": [
     "microsoft_windows"
    ],
-   "listings": 3427,
+   "listings": 3428,
    "description": ""
   },
   {
@@ -9136,7 +9136,7 @@
    "systems": [
     "sony_playstation_2"
    ],
-   "listings": 297,
+   "listings": 298,
    "description": ""
   },
   {
@@ -9149,7 +9149,7 @@
    "systems": [
     "nintendo_3ds"
    ],
-   "listings": 260,
+   "listings": 262,
    "description": "Azahar is an open-source 3DS emulator project based on Citra. It was created from the merging of PabloMK7's Citra fork and the Lime3DS project, both of which emerged shortly after Citra was taken down. The goal of this project is to be the de-facto platform for future development"
   },
   {
@@ -9162,7 +9162,7 @@
    "systems": [
     "sony_playstation_portable"
    ],
-   "listings": 258,
+   "listings": 259,
    "description": ""
   },
   {
@@ -9175,7 +9175,7 @@
    "systems": [
     "nintendo_wii_u"
    ],
-   "listings": 227,
+   "listings": 229,
    "description": ""
   },
   {
@@ -9332,7 +9332,7 @@
    "systems": [
     "sony_playstation_2"
    ],
-   "listings": 44,
+   "listings": 45,
    "description": "ARMSX2 is a new open source emulator for the PS2, it is based on the PCSX2 emulator and aims to be the next step in PS2 emulation on Android, as well as cross platform support for iOS and other ARM Platforms."
   },
   {
@@ -9345,7 +9345,7 @@
    "systems": [
     "nintendo_ds"
    ],
-   "listings": 41,
+   "listings": 42,
    "description": ""
   },
   {
