@@ -19,10 +19,12 @@ DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 # 2026-11-17：citron-neo/ci 返回 451，脚本已判死但没有登记进清单
                 "citron-ci",
                 # 2026-11-20：每日刷新把这几条标了 dead 却没同步清单，CI 因此一直红着。
-                # 逐个实测均 404，且搜不到同名新仓（不是改名）：sj0404-collab 名下两个仓消失，
-                # simipoB 整个账号已不存在。后两条是本库 11-18 收录的，作者删号。
+                # 逐个实测均 404，且搜不到同名新仓（不是改名）：sj0404-collab 名下两个仓消失。
                 "sj0404-collab-symbiosis", "sj0404-collab-winlator-hybrid-dxvk",
-                "simipob-arceus-native-android", "simipob-galar-native-android",
+                # 2026-11-26：simipoB 的两个仓库实测 200 且 11-25 还在推版本，账号已恢复
+                # （11-20 判死时整个账号 404），从清单移除。同日补登 huevoman77-redu：
+                # API 仍 404、搜索无同名新仓，仓库确已删除，之前标了 dead 却漏登清单。
+                "huevoman77-redu",
                 # 2026-11-21：每日刷新又标了两个，同样没同步清单。
                 # afeimod/linbox 11-17 还在发 prefix-pack 版，今天 API 直连 404；
                 # 账号还在、名下 37 个仓库里没有它 —— 删库或转私有，用户都拿不到。
