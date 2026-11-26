@@ -1,0 +1,34 @@
+name: 拉取自研渲染内核
+description: 从私有仓 mihsian77/emubox-drivercheck 的 aar-latest release 取 drivercheck.aar 放到 app/libs/
+
+# 这段逻辑原来在 ci.yml 的两个 job 和 release.yml 里各抄了一遍（共 3 份，加上新的
+# prerelease.yml 就是 4 份）。改一处忘记改其余，就会出现「CI 能编、发布编不过」这种
+# 只在下 tag 时才炸的故障，所以收成一个 action。
+
+inputs:
+  token:
+    description: 只读 mihsian77/emubox-drivercheck 的令牌（secrets.DRIVERCHECK_TOKEN）
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: 下载 drivercheck.aar
+      shell: bash
+      env:
+        DRIVERCHECK_TOKEN: ${{ inputs.token }}
+      run: |
+        if [ -z "$DRIVERCHECK_TOKEN" ]; then
+          echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
+          exit 1
+        fi
+        mkdir -p app/libs
+        # 私有仓 asset 必须走 API：github.com/releases/download 对私有仓不作为鉴权入口
+        AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+                -H "Accept: application/vnd.github+json" \
+                https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
+              | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
+        curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
+          -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
+          "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
+        ls -l app/libs/drivercheck.aar

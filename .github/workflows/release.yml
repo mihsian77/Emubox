@@ -11,30 +11,17 @@ jobs:
   release:
     name: 构建并发布 Release
     runs-on: ubuntu-latest
-    # 只处理正式版 tag（v1.4.0 这类）。预发布由 ci.yml 维护固定的 v1.4.0-pre，
+    # 只处理正式版 tag（v1.4.0 这类）。预发布由 prerelease.yml 处理固定的 v1.4.0-pre，
     # 这里若也响应 pre tag，每打一次就多一条 release，列表就会堆成一串。
     if: ${{ !contains(github.ref_name, 'pre') && !contains(github.ref_name, 'rc') }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: 拉取自研渲染内核（闭源 AAR）
-        env:
-          DRIVERCHECK_TOKEN: ${{ secrets.DRIVERCHECK_TOKEN }}
-        run: |
-          # 正式版与 CI 用同一份依赖；缺了这步 assembleRelease 会直接找不到 drivercheck.aar
-          if [ -z "$DRIVERCHECK_TOKEN" ]; then
-            echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
-            exit 1
-          fi
-          mkdir -p app/libs
-          AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-                  -H "Accept: application/vnd.github+json" \
-                  https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
-                | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
-          curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-            -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
-            "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
-          ls -l app/libs/drivercheck.aar
+      # 与 CI 同一个 action：正式版和预发布必须拉同一份 drivercheck.aar，
+      # 否则会出现「CI 绿、发布包行为不同」。
+      - uses: ./.github/actions/fetch-drivercheck
+        with:
+          token: ${{ secrets.DRIVERCHECK_TOKEN }}
 
       - name: 设置 JDK 17
         uses: actions/setup-java@v4

@@ -56,24 +56,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: 拉取自研渲染内核（闭源 AAR）
-        env:
-          DRIVERCHECK_TOKEN: ${{ secrets.DRIVERCHECK_TOKEN }}
-        run: |
-          if [ -z "$DRIVERCHECK_TOKEN" ]; then
-            echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
-            exit 1
-          fi
-          mkdir -p app/libs
-          # 私有仓 asset 必须走 API：github.com/releases/download 对私有仓不作为鉴权入口
-          AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-                  -H "Accept: application/vnd.github+json" \
-                  https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
-                | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
-          curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-            -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
-            "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
-          ls -l app/libs/drivercheck.aar
+      # 下载逻辑抽到 .github/actions/fetch-drivercheck：原来这段在四个工作流里各抄一份，
+      # 改一处忘其余就会出现「CI 能编、发布编不过」。
+      - uses: ./.github/actions/fetch-drivercheck
+        with:
+          token: ${{ secrets.DRIVERCHECK_TOKEN }}
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
         with:
@@ -127,28 +114,13 @@ jobs:
     name: 编译检查
     runs-on: ubuntu-latest
     needs: [i18n-check, lint]
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: 拉取自研渲染内核（闭源 AAR）
-        env:
-          DRIVERCHECK_TOKEN: ${{ secrets.DRIVERCHECK_TOKEN }}
-        run: |
-          if [ -z "$DRIVERCHECK_TOKEN" ]; then
-            echo "::error::缺少 secrets.DRIVERCHECK_TOKEN：请配置一个只读 mihsian77/emubox-drivercheck 的令牌"
-            exit 1
-          fi
-          mkdir -p app/libs
-          # 私有仓 asset 必须走 API：github.com/releases/download 对私有仓不作为鉴权入口
-          AID=$(curl -fsSL -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-                  -H "Accept: application/vnd.github+json" \
-                  https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/tags/aar-latest \
-                | python3 -c "import json,sys; print(json.load(sys.stdin)['assets'][0]['id'])")
-          curl -fsSL --retry 3 -H "Authorization: Bearer $DRIVERCHECK_TOKEN" \
-            -H "Accept: application/octet-stream" -o app/libs/drivercheck.aar \
-            "https://api.github.com/repos/mihsian77/emubox-drivercheck/releases/assets/$AID"
-          ls -l app/libs/drivercheck.aar
+      # 下载逻辑抽到 .github/actions/fetch-drivercheck：原来这段在四个工作流里各抄一份，
+      # 改一处忘其余就会出现「CI 能编、发布编不过」。
+      - uses: ./.github/actions/fetch-drivercheck
+        with:
+          token: ${{ secrets.DRIVERCHECK_TOKEN }}
       - name: 设置 JDK 17
         uses: actions/setup-java@v4
         with:
@@ -180,9 +152,9 @@ jobs:
       - name: 计算预发布版本号
         id: ver
         run: |
-          # 预发布 tag 由 gradle 里的基线版本派生（1.4.0-pre → v1.4.0-pre），
-          # 整个 1.4.0 周期只对应这一条 release；切到 1.5.0 时只改 gradle 默认值，这里自动跟着换。
-          # 构建序号只进 versionName，不进 tag —— 列表里不会堆出一串 pre.1 / pre.2 / pre.77。
+          # 版本号由 gradle 里的基线派生（1.4.0-pre → v1.4.0-pre），只用于 Actions 产物命名；
+          # 真正对外发布在 prerelease.yml，那边从 tag 反解析版本，两边读数一致。
+          # 构建序号只进 versionName，不进 tag —— 发布列表里不会堆出一串 pre.1 / pre.2 / pre.77。
           BASE=$(grep -oP '"\K[0-9]+\.[0-9]+\.[0-9]+(?=-pre")' app/build.gradle.kts | head -1)
           BASE=${BASE:-1.4.0}
           IFS=. read -r MAJ MIN PATCH <<< "$BASE"
@@ -213,52 +185,7 @@ jobs:
           path: |
             app/build/outputs/apk/debug/*.apk
             app/build/outputs/apk/release/*.apk
-      - name: 清理历史预发布条目
-        # 只在 main 的 push 上发布：PR 的构建产物不能覆盖线上预发布包
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          # 旧机制每次构建新建一条带编号的 release，列表里堆出了 pre.2 / pre.77 / 1.3.0-pre 三条，
-          # 其中 v1.3.0-pre.77 还被 GitHub 自动生成了带 @提交者的 What's Changed。
-          # 新机制一个功能批次只有一条 v<base>-pre，这里把不符合新命名的旧条目收掉（幂等）。
-          KEEP="${{ steps.ver.outputs.tag }}"
-          for TAG in $(gh release list --limit 100 --json tagName -q '.[].tagName' \
-                       | grep -E '\-pre\.[0-9]+$' || true); do
-            [ "$TAG" = "$KEEP" ] && continue
-            echo "删除旧预发布条目 $TAG"
-            gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
-          done
-          if [ "$KEEP" != "v1.3.0-pre" ]; then
-            gh release delete "v1.3.0-pre" --yes --cleanup-tag 2>/dev/null || true
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 发布预发布（固定 tag，移动 tag 并换包）
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          # 整个 1.4.0 周期只对应一条 release：tag 恒为 v1.4.0-pre，内容每次构建覆盖。
-          # tag 跟着最新提交走，release 页面显示的提交和源码包才是这次编译的那份；
-          # 不新建带编号的 tag，发布列表里就不会堆出一串 pre.1 / pre.2 / pre.77。
-          TAG="${{ steps.ver.outputs.tag }}"
-          VER="${{ steps.ver.outputs.name }}"
-          APK="EmuBox-${{ steps.ver.outputs.base }}-pre.apk"
-          TITLE="EmuBox ${{ steps.ver.outputs.base }}（预发布）"
-          cp app/build/outputs/apk/release/app-release.apk "$APK"
-
-          git tag -f "$TAG" "$GITHUB_SHA"
-          git push -f origin "refs/tags/$TAG"
-
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            # 已存在：只更新状态、标题与正文，再清空旧资产传新包（同名不堆积）
-            gh release edit "$TAG" --prerelease --title "$TITLE" --notes-file .github/release-notes.md
-            for old in $(gh release view "$TAG" --json assets -q '.assets[].name'); do
-              gh release delete-asset "$TAG" "$old" --yes 2>/dev/null || true
-            done
-            gh release upload "$TAG" "$APK"
-          else
-            gh release create "$TAG" --prerelease --title "$TITLE" \
-              --notes-file .github/release-notes.md "$APK"
-          fi
-          echo "已更新 $TAG → $VER"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# 预发布不在这里发了：推 main 只做校验和编译，产物留在 Actions 的 emubox-apks。
+# 发布改成只认 tag（见 prerelease.yml）——以前每次 push 都强制移动 v1.4.0-pre 并重传 APK，
+# 用户正好在下载中途赶上换包，就会拼出「前半段旧包 + 后半段新包」的坏文件。

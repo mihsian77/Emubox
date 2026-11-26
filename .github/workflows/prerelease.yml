@@ -1,0 +1,131 @@
+name: 预发布（打 tag 触发）
+
+# 只认 tag：推 main 不再自动发预发布。
+#
+# 旧机制每次 push main 都「git tag -f v1.4.0-pre; git push -f; 删旧资产; 传新包」。
+# 用户正好在这几十秒里下载，会发生两件事：已经下到一半的连接指向被替换的对象，
+# 续传请求拿到的 Range 落在新文件上——拼出来的 APK 签名校验必失败；或者下完的是
+# 上一版，release 页面上写的却是新版本号。
+#
+# 现在发布是一个显式动作：
+#   git tag -f v1.4.0-pre && git push -f origin refs/tags/v1.4.0-pre
+# tag 不变（整个 1.4.0 周期一条 release），内容随这次 push 的提交重建。
+# 不 force 时 tag 指向同一个提交，push 不会产生事件，也就不会重复发布。
+
+on:
+  push:
+    tags: ['v*-pre']
+
+permissions:
+  contents: write
+
+jobs:
+  prerelease:
+    name: 构建并发布预发布
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/fetch-drivercheck
+        with:
+          token: ${{ secrets.DRIVERCHECK_TOKEN }}
+
+      - name: 设置 JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 正式签名：与 release.yml 同一套 secret，没有就回退 debug 签名（能装、不能升正式版）
+      - name: 配置签名
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            mkdir -p ~/.emubox/keystore
+            echo "$KEYSTORE_BASE64" | base64 -d > app/release.jks
+            cat > ~/.emubox/keystore/keystore.properties <<EOF
+          storeFile=app/release.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          EOF
+            echo "使用正式签名"
+          else
+            echo "未配置签名 secret，回退 debug 签名"
+          fi
+
+      - name: 授予 Gradle 执行权限
+        run: chmod +x gradlew
+
+      - name: 从 tag 解析版本号
+        id: ver
+        run: |
+          # tag 形如 v1.4.0-pre；base 只取 1.4.0 三段
+          TAG="${GITHUB_REF_NAME}"
+          BASE="${TAG#v}"
+          BASE="${BASE%-pre}"
+          if ! [[ "$BASE" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::tag $TAG 不是 v<主>.<次>.<修订>-pre 的形式"
+            exit 1
+          fi
+          IFS=. read -r MAJ MIN PATCH <<< "$BASE"
+          # 末段 1–899 留给预发布，999 留给正式版：同版本号下正式版能盖掉预发布
+          BUILD=$(( GITHUB_RUN_NUMBER % 900 + 1 ))
+          CODE=$(( MAJ * 10000000 + MIN * 100000 + PATCH * 1000 + BUILD ))
+          echo "base=$BASE" >> "$GITHUB_OUTPUT"
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "name=${BASE}-pre.${BUILD}" >> "$GITHUB_OUTPUT"
+          echo "本次预发布: ${BASE}-pre.${BUILD} ($CODE) → $TAG"
+
+      - name: 编译 Release APK
+        run: ./gradlew assembleRelease --no-daemon -PemuboxVersionCode=${{ steps.ver.outputs.code }} -PemuboxVersionName=${{ steps.ver.outputs.name }}
+
+      # 闸门：R8 内联常量后资源收缩器会误判可达性，静默删掉仍在用的字符串；
+      # 编译与单测都拦不住（单测跑 debug 变体），只会在真机渲染时崩。
+      - name: 校验 APK 资源完整性
+        run: python3 scripts/check-apk-resources.py
+
+      - name: 清理历史预发布条目
+        run: |
+          # 旧机制每次构建新建一条带编号的 release，列表里堆出了 pre.2 / pre.77 / 1.3.0-pre。
+          # 只保留当前 tag 这一条，其余不合新命名的收掉（幂等）。
+          KEEP="${{ github.ref_name }}"
+          for TAG in $(gh release list --limit 100 --json tagName -q '.[].tagName' \
+                       | grep -E '\-pre\.[0-9]+$' || true); do
+            [ "$TAG" = "$KEEP" ] && continue
+            echo "删除旧预发布条目 $TAG"
+            gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          done
+          if [ "$KEEP" != "v1.3.0-pre" ]; then
+            gh release delete "v1.3.0-pre" --yes --cleanup-tag 2>/dev/null || true
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 发布预发布
+        run: |
+          # tag 由这次 push 带来，不再移动它：移动会再次触发本工作流，且换包瞬间
+          # 正在下载的人会拿到坏文件。资产同名覆盖，列表里始终只有一份。
+          TAG="${{ github.ref_name }}"
+          VER="${{ steps.ver.outputs.name }}"
+          APK="EmuBox-${{ steps.ver.outputs.base }}-pre.apk"
+          TITLE="EmuBox ${{ steps.ver.outputs.base }}（预发布）"
+          cp app/build/outputs/apk/release/app-release.apk "$APK"
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --prerelease --title "$TITLE" --notes-file .github/release-notes.md
+            for old in $(gh release view "$TAG" --json assets -q '.assets[].name'); do
+              gh release delete-asset "$TAG" "$old" --yes 2>/dev/null || true
+            done
+            gh release upload "$TAG" "$APK"
+          else
+            gh release create "$TAG" --prerelease --title "$TITLE" \
+              --notes-file .github/release-notes.md "$APK"
+          fi
+          echo "已发布 $TAG → $VER"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

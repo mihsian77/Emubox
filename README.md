@@ -52,14 +52,14 @@ EmuBox 脱胎于 [Rodrig02005/EmuHub-APP](https://github.com/Rodrig02005/EmuHub-
 
 **要求**：Android 9.0（API 28）及以上，**arm64-v8a（64 位）**。安装包只打 64 位架构，32 位机型（armeabi-v7a）没有对应版本，装了会报「应用与设备不兼容」。
 
-想拿最新构建（可能未正式发布）时，直接下 Releases 列表里那条「EmuBox x.y.0（预发布）」——同一个 tag 每次 push main 由 CI 覆盖更新。
+想拿最新构建（可能未正式发布）时，直接下 Releases 列表里那条「EmuBox x.y.0（预发布）」——只在维护者打 tag 时更新，不是每次提交都换包。
 
 ## 版本
 
 版本分正式版与预发布：
 
 - **正式版** — `x.y.0`（如 1.3.0），`y` 代表功能批次，每完成一批改动定稿发布；带 Latest 徽标。
-- **预发布** — 固定 `vx.y.0-pre`（如 `v1.4.0-pre`），整个功能批次只有这一条。每次构建由 CI 移动 tag 到最新提交、覆盖同名 APK、刷新日志正文，不新增条目；正式版发布后这条预发布自动删掉。
+- **预发布** — 固定 `vx.y.0-pre`（如 `v1.4.0-pre`），整个功能批次只有这一条。只在维护者推 tag 时重建、覆盖同名 APK、刷新日志正文，不新增条目；正式版发布后这条预发布自动删掉。
 
 所以 Releases 列表里正式版随批次累积，预发布始终只有当前这一条。
 
@@ -89,7 +89,15 @@ python3 scripts/check-i18n.py
 
 ## CI
 
-push / PR 到 main 时，`ci.yml` 依次跑 i18n 校验、文案规范、长字段行数闸门、代码结构闸门、Android Lint、单元测试，再编译 Debug / Release，校验 APK 资源完整性，最后把 Release APK 覆盖更新到当前批次的 `vx.y.0-pre` 预发布条目（tag 随之移动，列表不增条目）。正式发布走 tag `v*` 触发的 `release.yml`；带 `pre` / `rc` 的 tag 不会被它当成正式版。
+push / PR 到 main 时，`ci.yml` 依次跑 i18n 校验、文案规范、长字段行数闸门、代码结构闸门、Android Lint、单元测试，再编译 Debug / Release，校验 APK 资源完整性；产物只挂在 Actions 的 `emubox-apks` 里，**不发 Release**。对外发布是显式动作：推 `vx.y.0-pre` 触发 `prerelease.yml` 出预发布，推 `v*`（不含 `pre` / `rc`）触发 `release.yml` 出正式版。
+
+发预发布：
+
+```bash
+git tag -f v1.4.0-pre && git push -f origin refs/tags/v1.4.0-pre
+```
+
+tag 名字不变（整个批次一条 release），强制推送才让内容指向最新提交；普通推送同一个提交不产生事件，也就不会重复发布。以前是每次 push main 都换包，正在下载的人会拼出坏文件。
 
 ## 项目结构
 
