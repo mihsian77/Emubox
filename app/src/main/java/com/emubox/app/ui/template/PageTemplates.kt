@@ -123,6 +123,7 @@ fun PageTitleRow(
                 Text(
                     subtitle,
                     fontSize = 11.sp,
+                    lineHeight = 16.sp,
                     color = Fusion.OnSurfaceFaint,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
@@ -455,6 +456,7 @@ fun SectionHeader(
                 Text(
                     subtitle,
                     fontSize = 11.sp,
+                    lineHeight = 16.sp,
                     color = Fusion.OnSurfaceFaint,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
@@ -515,6 +517,7 @@ fun SettingRow(
                     Text(
                         subtitle,
                         fontSize = 11.sp,
+                        lineHeight = 16.sp,
                         color = Fusion.OnSurfaceFaint,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
@@ -634,6 +637,7 @@ fun SettingChoiceRow(
                 Text(
                     subtitle,
                     fontSize = 11.sp,
+                    lineHeight = 16.sp,
                     color = Fusion.OnSurfaceFaint,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,

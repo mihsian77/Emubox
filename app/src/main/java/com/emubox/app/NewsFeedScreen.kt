@@ -37,7 +37,8 @@ fun GlobalSearchSheet(
     var query by remember { mutableStateOf("") }
     var runtimes by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
     LaunchedEffect(Unit) {
-        runtimes = RuntimeLibraryRepository.load()
+        // 全局搜索只要组件名；拉不到就当没有运行库结果，不把失败态扩散到搜索面板
+        runtimes = (RuntimeLibraryRepository.load() as? RuntimeLoadResult.Ok)?.components.orEmpty()
     }
 
     Dialog(onDismissRequest = onDismiss) {

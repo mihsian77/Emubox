@@ -274,7 +274,6 @@
     <string name="component_vkd3d_subtitle">Direct3D 12 to Vulkan</string>
     <string name="component_d7vk_subtitle">Direct3D 7 to Vulkan</string>
     <string name="runtime_component">Runtime component</string>
-    <string name="runtime_source_from">Source: %1$s</string>
     <string name="turnip_driver">Turnip Driver</string>
     <string name="turnip_desc_8xx">Turnip builds for Adreno 8xx / Gen8 devices.</string>
     <string name="turnip_desc_6_7">Mesa Turnip builds for Adreno 6xx and 7xx devices.</string>
@@ -658,9 +657,20 @@ How to verify in emulator:
 
     <!-- 运行库 Tab -->
     <string name="runtime_title">Windows Runtime Libraries</string>
-    <string name="runtime_subtitle">VC++ / .NET / codecs / game dependencies — sourced from winlator-contents, accelerated via MirrorHub.</string>
+    <string name="runtime_subtitle">When a game refuses to start: VC++, .NET, codecs, fonts</string>
     <string name="runtime_status_upstream">Needs upstream</string>
     <string name="runtime_status_pending">Pending manual</string>
+    <string name="runtime_cat_vc">VC++ runtime</string>
+    <string name="runtime_cat_dotnet">.NET / Mono</string>
+    <string name="runtime_cat_codec">Codecs &amp; media</string>
+    <string name="runtime_cat_game">Game dependencies</string>
+    <string name="runtime_cat_fonts">Fonts &amp; CJK</string>
+    <string name="runtime_cat_system">System components</string>
+    <string name="runtime_cat_other">Other</string>
+    <string name="runtime_auto_applied">Auto-applied</string>
+    <string name="runtime_no_download_needed">No download needed</string>
+    <string name="runtime_open_upstream">Open upstream page</string>
+    <string name="runtime_in_recommended">In recommendations</string>
     <string name="runtime_no_download">No download available</string>
     <string name="runtime_loading">Reading runtime catalog…</string>
     <string name="runtime_load_failed">Failed to load runtime catalog</string>
@@ -707,7 +717,6 @@ How to verify in emulator:
     <string name="emulator_disclaimer">Emulator info is aggregated from public community sources; all rights belong to each project. This app only provides download entry and does not expose repository links. For personal study only.</string>
     <string name="component_disclaimer">Components are aggregated from open-source community repositories; all rights belong to their authors. This app only manages downloads and does not bundle or modify any component files. For personal study only.</string>
     <string name="driver_disclaimer">Drivers are aggregated from open-source community projects; all rights belong to their authors. This app only manages downloads and does not bundle or modify any driver files. Verify compatibility inside your emulator. For personal study only.</string>
-    <string name="runtime_recommended">Recommended</string>
     <string name="file_purpose">Purpose</string>
     <string name="archive_kind">Package type</string>
     <string name="archive_contains">Contains %1$d entries (key libraries below)</string>

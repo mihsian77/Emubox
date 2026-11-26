@@ -337,7 +337,7 @@ suspend fun downloadEmulator(context: Context, entry: EmulatorEntry) {
 suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent) {
     val file = component.primaryFile ?: return
     val fileName = sanitizeFileName(file.rename.ifBlank { file.fileName })
-    val category = "Runtime/${component.category.labelRes}"
+    val category = "Runtime/${component.category.dirName}"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(file.url)
     downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category, originalUrl = file.url)

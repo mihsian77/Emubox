@@ -98,20 +98,24 @@ object RuntimeLibraryRepository {
             "https://download.microsoft.com/download/5/6/3/5635D6A9-885E-4C80-A2E7-8A7F4488FBF1/VB60SP6-KB2708437-x86-ENU.msi"
     )
 
-    suspend fun load(url: String = DEFAULT_CATALOG_URL): List<RuntimeComponent> =
+    suspend fun load(url: String = DEFAULT_CATALOG_URL): RuntimeLoadResult =
         withContext(Dispatchers.IO) {
-            val community = fetchCommunity(url)
-            val merged = mergeWithOfficial(community)
-            applyUrlReplacements(merged)
+            // 拉不到就是拉不到：以前失败会返回空列表，界面把它当成「一个组件都没有」，
+            // 用户看到的是空清单而不是「网络出问题了」，重试按钮也就不该藏起来。
+            val community = fetchCommunity(url) ?: return@withContext RuntimeLoadResult.Failed
+            RuntimeLoadResult.Ok(applyUrlReplacements(mergeWithOfficial(community)))
         }
 
-    private suspend fun fetchCommunity(url: String): List<RuntimeComponent> {
+    /** null = 这次没拿到清单（网络失败 / 返回空 / 解析炸了），不是「清单里没东西」 */
+    private suspend fun fetchCommunity(url: String): List<RuntimeComponent>? {
         return try {
             val body = RemoteData.fetchText(url).orEmpty()
-            if (body.isBlank()) return emptyList()
-            RuntimeLibraryParser.parse(body)
+            if (body.isBlank()) return null
+            val parsed = RuntimeLibraryParser.parse(body)
+            // components 数组存在但一条都解析不出来，同样按失败处理
+            if (parsed.isEmpty()) null else parsed
         } catch (_: Exception) {
-            emptyList()
+            null
         }
     }
 
@@ -173,4 +177,10 @@ object RuntimeLibraryRepository {
         components.groupBy { it.category }
             .mapValues { (_, list) -> list.sortedBy { it.name } }
             .toSortedMap(compareBy { it.order })
+}
+
+/** 运行库清单的加载结果：成功才给列表，失败不再伪装成「空清单」 */
+sealed interface RuntimeLoadResult {
+    data class Ok(val components: List<RuntimeComponent>) : RuntimeLoadResult
+    data object Failed : RuntimeLoadResult
 }

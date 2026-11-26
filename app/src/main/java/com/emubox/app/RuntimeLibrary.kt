@@ -1,5 +1,6 @@
 package com.emubox.app
 
+import androidx.annotation.StringRes
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -29,6 +30,14 @@ data class RuntimeComponent(
 
     /** 可溯源官网（规则函数，自动覆盖新增条目，无需维护映射表） */
     val sourceInfo: RuntimeSourceInfo get() = RuntimeSource.lookup(name, provider)
+
+    /**
+     * 「自动生效」：清单里只有 set_windows / override_dll 这类动作，没有文件要下载。
+     * 这类条目原来既打「必需」又写「无需下载」，用户读起来是自相矛盾。
+     */
+    val isAutoApplied: Boolean
+        get() = primaryFile == null && steps.isNotEmpty() &&
+            steps.all { it.action.startsWith("set_") || it.action == "override_dll" }
 
     /** 安装方式子标签：安装包 / DLL 复制包 / 字体包 / 系统环境 */
     val installTag: String get() {
@@ -85,25 +94,25 @@ data class RuntimeFile(
     val rename: String
 )
 
-/** 运行库来源信息（官网溯源） */
+/** 运行库来源信息（官网溯源）。
+ *  只描述「这个组件是谁做的」——组件官方作者或项目官网，
+ *  不写搬运/整合仓库的名字：The412Banner 这类只是打了包，不是作者。 */
 data class RuntimeSourceInfo(
-    val name: String,          // 来源名（如 "Microsoft .NET"）
-    val url: String,           // 官网/项目地址
-    val track: String          // 更新策略：官网直链 / 镜像托管 / 上游待源
+    val name: String,          // 官方作者/项目名（如 "Microsoft .NET"），仅用于无障碍描述
+    val url: String            // 官网/项目地址，卡片右上角 ⤴ 跳这里
 )
 
 /** 运行库溯源规则：按组件名/提供方归类到可核实官网。
  *  纯规则函数，新增组件自动命中，无需维护映射表。
- *  下载文件本体仍走 winlator-contents 镜像（The412Banner 托管构建），
- *  官网地址用于查看更新日志与核对版本。 */
+ *  下载文件本体走 winlator-contents 这份社区清单，但那只是搬运渠道，
+ *  不是作者——卡片上只出现组件官方作者，⤴ 跳到对应的上游页。 */
 object RuntimeSource {
     fun lookup(name: String, provider: String): RuntimeSourceInfo {
         val n = name.lowercase()
-        val ms = "Microsoft" to "https://learn.microsoft.com"
-        val mirror = "The412Banner 镜像托管" to "https://github.com/The412Banner/winlator-contents"
+        val upstream = "上游清单" to "https://github.com/The412Banner/winlator-contents"
         return when {
             // .NET 全家（官方下载中心）
-            n.contains("dotnet") -> RuntimeSourceInfo("Microsoft .NET", "https://dotnet.microsoft.com/download", "官网直链")
+            n.contains("dotnet") -> RuntimeSourceInfo("Microsoft .NET", "https://dotnet.microsoft.com/download")
             // 微软系统组件（D3D/DirectX 运行库/媒体组件）
             n.contains("d3dcompiler") || n.contains("d3dx") || n.contains("d3d") ||
                 n.contains("directplay") || n.contains("directmusic") || n.contains("directshow") ||
@@ -117,38 +126,47 @@ object RuntimeSource {
                 n.contains("dmstyle") || n.contains("dmsynth") || n.contains("dsdmo") ||
                 n.contains("mediafoundation") || n.contains("wmdecoder") || n.contains("wmv") ||
                 n.contains("wmadmod") || n.contains("wmasf") || n.contains("qasf") ||
-                n.contains("webview2") -> RuntimeSourceInfo("Microsoft", "https://www.microsoft.com/download", "官网直链")
+                n.contains("webview2") -> RuntimeSourceInfo("Microsoft", "https://www.microsoft.com/download")
             // Vulkan 运行时
             n.contains("vulkanrt") || n.contains("vulkan") && provider.lowercase().contains("lunar") ->
-                RuntimeSourceInfo("LunarG", "https://vulkan.lunarg.com", "官网直链")
+                RuntimeSourceInfo("LunarG", "https://vulkan.lunarg.com")
             // CnCNet 社区补丁（cnc-ddraw）
-            n.contains("cnc-ddraw") || n.contains("ddraw") -> RuntimeSourceInfo("CnCNet", "https://cncnet.org", "官网直链")
+            n.contains("cnc-ddraw") || n.contains("ddraw") -> RuntimeSourceInfo("CnCNet", "https://cncnet.org")
             // 编解码包
-            n.contains("k-lite") || n.contains("codec") -> RuntimeSourceInfo("Codec Guide", "https://codecguide.com", "官网直链")
+            n.contains("k-lite") || n.contains("codec") -> RuntimeSourceInfo("Codec Guide", "https://codecguide.com")
             // XLive（Games for Windows Live 兼容层）
-            n.contains("xlive") || n.contains("xliveless") -> RuntimeSourceInfo("XLiveless/GFWL", "https://github.com/thirteenAG/Ultimate-ASI-Loader", "官网直链")
+            n.contains("xlive") || n.contains("xliveless") -> RuntimeSourceInfo("XLiveless/GFWL", "https://github.com/thirteenAG/Ultimate-ASI-Loader")
             // Adobe 字体库
-            n.contains("atmlib") || n.contains("atm") -> RuntimeSourceInfo("Adobe", "https://www.adobe.com", "官网直链")
+            n.contains("atmlib") || n.contains("atm") -> RuntimeSourceInfo("Adobe", "https://www.adobe.com")
             // 中文字体（社区收集）
             n.contains("cjk") || n.contains("font") || n.contains("sourcehan") ->
-                RuntimeSourceInfo("社区字体", "https://github.com/The412Banner/winlator-contents", "镜像托管")
+                RuntimeSourceInfo("思源黑体", "https://github.com/adobe-fonts/source-han-sans")
             // PhysX 物理引擎
-            n.contains("physx") -> RuntimeSourceInfo("NVIDIA", "https://www.nvidia.com/download", "官网直链")
-            // 默认兜底：镜像托管（二进制由 The412Banner 统一构建分发）
-            else -> RuntimeSourceInfo(mirror.first, mirror.second, "镜像托管")
+            n.contains("physx") -> RuntimeSourceInfo("NVIDIA", "https://www.nvidia.com/download")
+            // 默认兜底：社区清单转载的二进制，没有可考的官方发布页
+            else -> RuntimeSourceInfo(upstream.first, upstream.second)
         }
     }
 }
 
-/** 运行库分类 */
-enum class RuntimeCategory(val labelRes: String, val order: Int) {
-    VC_RUNTIME("VC++ 运行库", 0),
-    DOTNET(".NET / Mono", 1),
-    CODEC("解码器 / 媒体", 2),
-    GAME_DEPS("游戏依赖", 3),
-    FONTS("字体 / CJK", 4),
-    SYSTEM("系统组件", 5),
-    OTHER("其他", 6);
+/** 运行库分类。
+ *
+ *  [titleRes] 给界面显示，跟着语言走；
+ *  [dirName] 是磁盘目录名，固定写死中文——以前把显示名直接当目录用，
+ *  用户切到英文后，已下载的文件在「Runtime/VC++ runtime」下再也找不到。
+ */
+enum class RuntimeCategory(
+    @param:StringRes val titleRes: Int,
+    val dirName: String,
+    val order: Int
+) {
+    VC_RUNTIME(R.string.runtime_cat_vc, "VC++ 运行库", 0),
+    DOTNET(R.string.runtime_cat_dotnet, ".NET / Mono", 1),
+    CODEC(R.string.runtime_cat_codec, "解码器 / 媒体", 2),
+    GAME_DEPS(R.string.runtime_cat_game, "游戏依赖", 3),
+    FONTS(R.string.runtime_cat_fonts, "字体 / CJK", 4),
+    SYSTEM(R.string.runtime_cat_system, "系统组件", 5),
+    OTHER(R.string.runtime_cat_other, "其他", 6);
 
     companion object {
         fun fromName(name: String, description: String): RuntimeCategory {

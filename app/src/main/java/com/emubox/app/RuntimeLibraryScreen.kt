@@ -6,20 +6,18 @@ import android.widget.Toast
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.emubox.app.ui.template.PageTitleRow
@@ -35,13 +33,15 @@ fun RuntimeLibraryScreen(
     onDownload: (RuntimeComponent) -> Unit,
     onNavigate: (String) -> Unit = {}
 ) {
-    var components by remember { mutableStateOf<List<RuntimeComponent>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
-    var loadError by remember { mutableStateOf(false) }
+    // null = 正在读清单；Failed = 拉不到；Ok = 拿到列表。
+    // 以前失败返回空列表，界面把它画成「一个组件都没有」，重试按钮无处可放。
+    var result by remember { mutableStateOf<RuntimeLoadResult?>(null) }
     // 重试令牌：LaunchedEffect 的 key。原来重试只改状态、不换 key，
     // 副作用不会重跑，点"重试"后永远停在转圈。
     var reloadToken by remember { mutableStateOf(0) }
     var showGuide by remember { mutableStateOf(false) }
+    var searchQuery by remember { mutableStateOf("") }
+    var showAutoApplied by remember { mutableStateOf(false) }
 
     if (showGuide) {
         AlertDialog(
@@ -63,19 +63,16 @@ fun RuntimeLibraryScreen(
     }
 
     LaunchedEffect(reloadToken) {
-        isLoading = true
-        loadError = false
-        val result = withContext(Dispatchers.IO) { RuntimeLibraryRepository.load() }
-        components = result
-        isLoading = false
-        loadError = result.isEmpty()
+        result = null
+        result = withContext(Dispatchers.IO) { RuntimeLibraryRepository.load() }
     }
 
+    val all = (result as? RuntimeLoadResult.Ok)?.components.orEmpty()
+
     // 搜索过滤：匹配名称 / 中文用途 / 英文描述
-    var searchQuery by remember { mutableStateOf("") }
-    val filtered = remember(components, searchQuery) {
-        if (searchQuery.isBlank()) components
-        else components.filter {
+    val filtered = remember(all, searchQuery) {
+        if (searchQuery.isBlank()) all
+        else all.filter {
             it.name.contains(searchQuery, ignoreCase = true) ||
                 it.chineseHint.contains(searchQuery, ignoreCase = true) ||
                 it.description.contains(searchQuery, ignoreCase = true)
@@ -88,119 +85,149 @@ fun RuntimeLibraryScreen(
         "dxvk", "vkd3d", "lavfilters", "cjkfonts", "sourcehan",
         "directx9", "d3dx943", "physx", "xinput", "vc2019"
     )
-    val recommended = remember(components) {
+    val recommended = remember(all) {
         recommendedNames.mapNotNull { id ->
-            components.firstOrNull {
+            all.firstOrNull {
                 it.name.equals(id, ignoreCase = true) ||
                     it.name.lowercase().startsWith(id.lowercase())
             }
         }.distinctBy { it.name }
     }
+    val recommendedSet = remember(recommended) { recommended.mapTo(HashSet()) { it.name } }
 
-    val grouped = remember(filtered) { RuntimeLibraryRepository.groupByCategory(filtered) }
+    // 「自动生效」的条目没有文件可下，混在两列里只会稀释可操作项，收到页尾折叠组
+    val autoApplied = remember(filtered) { filtered.filter { it.isAutoApplied } }
+    val actionable = remember(filtered) { filtered.filterNot { it.isAutoApplied } }
+    val grouped = remember(actionable) { RuntimeLibraryRepository.groupByCategory(actionable) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+    // 下载活动表是 SnapshotStateMap：读一次 keys，当某个组件下完（key 被移除）时，
+    // 卡片上的「已下载」才会跟着翻；不读它就只能靠重进页面。
+    val activeKeys by remember { derivedStateOf { DownloadsManager.activeDownloads.keys.toSet() } }
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        PageTitleRow(
-            title = appString(R.string.runtime_title),
-            subtitle = appString(R.string.runtime_subtitle),
-            trailing = {
-                IconButton(onClick = { showGuide = true }) {
-                    Icon(Icons.Default.Info, contentDescription = appString(R.string.runtime_guide_title))
-                }
-            },
-        )
-
-        RelatedPartitionRow(current = "runtime", onNavigate = onNavigate)
-
-        // 搜索框
-        FusionSearchBar(
-            query = searchQuery,
-            onQueryChange = { searchQuery = it },
-            placeholder = appString(R.string.runtime_search_hint)
-        )
-
-        // 加载中不报数：0 会被读成「一个都没有」
-        if (!isLoading && !loadError) {
-            ResultCountRow(
-                count = filtered.size,
-                label = { appString(R.string.runtime_result_count, it) },
+        item(key = "title") {
+            PageTitleRow(
+                title = appString(R.string.runtime_title),
+                subtitle = appString(R.string.runtime_subtitle),
+                trailing = {
+                    IconButton(onClick = { showGuide = true }) {
+                        Icon(Icons.Default.Info, contentDescription = appString(R.string.runtime_guide_title))
+                    }
+                },
             )
         }
 
-        if (isLoading) {
-            // 只转圈不给字，整屏看起来像白屏/数据缺失；补一句在做什么
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 48.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                CircularProgressIndicator()
-                Spacer(Modifier.height(12.dp))
-                Text(
-                    appString(R.string.runtime_loading),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+        item(key = "search") {
+            FusionSearchBar(
+                query = searchQuery,
+                onQueryChange = { searchQuery = it },
+                placeholder = appString(R.string.runtime_search_hint)
+            )
+        }
+
+        // 加载中不报数：0 会被读成「一个都没有」
+        if (result is RuntimeLoadResult.Ok) {
+            item(key = "count") {
+                ResultCountRow(
+                    count = filtered.size,
+                    label = { appString(R.string.runtime_result_count, it) },
                 )
             }
-        } else if (loadError) {
-            RuntimeEmptyState(onRetry = {
-                // 换 key 触发上面那个 LaunchedEffect 真正重新拉一次
-                reloadToken++
-            })
-        } else {
-            // 推荐下载置顶区块（搜索时隐藏，聚焦搜索结果）
-            if (searchQuery.isBlank() && recommended.isNotEmpty()) {
-                Text(
-                    text = appString(R.string.runtime_recommended),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                RuntimeRecommendedStrip(
-                    components = recommended,
-                    onDownload = onDownload
-                )
+        }
+
+        when (val r = result) {
+            null -> item(key = "loading") {
+                // 只转圈不给字，整屏看起来像白屏/数据缺失；补一句在做什么
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 48.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    CircularProgressIndicator()
+                    Spacer(Modifier.height(12.dp))
+                    Text(
+                        appString(R.string.runtime_loading),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
-            grouped.forEach { (category, list) ->
-                RuntimeCategorySection(
-                    category = category,
-                    components = list,
-                    onDownload = onDownload
-                )
+
+            is RuntimeLoadResult.Failed -> item(key = "error") {
+                RuntimeEmptyState(onRetry = { reloadToken++ })
+            }
+
+            is RuntimeLoadResult.Ok -> {
+                // 推荐条不再单独起标题：它本来就在首屏第一位，标题只是多占一层
+                if (searchQuery.isBlank() && recommended.isNotEmpty()) {
+                    item(key = "recommended") {
+                        RuntimeRecommendedStrip(components = recommended, onDownload = onDownload)
+                    }
+                }
+
+                grouped.forEach { (category, list) ->
+                    item(key = "cat-${category.name}") {
+                        RuntimeCategorySection(
+                            category = category,
+                            components = list,
+                            allComponents = r.components,
+                            recommendedNames = recommendedSet,
+                            activeKeys = activeKeys,
+                            onDownload = onDownload
+                        )
+                    }
+                }
+
+                if (autoApplied.isNotEmpty()) {
+                    item(key = "auto-applied") {
+                        AutoAppliedSection(
+                            components = autoApplied,
+                            expanded = showAutoApplied,
+                            activeKeys = activeKeys,
+                            onToggle = { showAutoApplied = !showAutoApplied }
+                        )
+                    }
+                }
             }
         }
 
         // 数据来源与版权免责声明（资讯已上移到一级「资讯」分区）
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
-            )
-        ) {
-            Row(
-                modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
-                verticalAlignment = Alignment.Top
+        item(key = "disclaimer") {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+                )
             ) {
-                Icon(
-                    Icons.Default.Info,
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp),
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    text = appString(R.string.runtime_disclaimer),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Icon(
+                        Icons.Default.Info,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        text = appString(R.string.runtime_disclaimer),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
+        }
+
+        // 「继续看」挪到页尾：原来压在标题下面，首屏第一眼看到的是别的分区入口
+        item(key = "related") {
+            RelatedPartitionRow(current = "runtime", onNavigate = onNavigate)
         }
     }
 }
@@ -259,21 +286,30 @@ private fun RuntimeRecommendedStrip(
 private fun RuntimeCategorySection(
     category: RuntimeCategory,
     components: List<RuntimeComponent>,
+    allComponents: List<RuntimeComponent>,
+    recommendedNames: Set<String>,
+    activeKeys: Set<String>,
     onDownload: (RuntimeComponent) -> Unit
 ) {
     val context = LocalContext.current
-    // 总包组件：递归下载其全部子组件；普通组件直接下载
+    // 总包组件：递归下载其全部子组件；普通组件直接下载。
+    // 子组件必须从全量清单里找——原来只在当前分类里翻，跨分类的依赖永远缺席，
+    // 点「下载 N 个子组件」结果一个都没下。
+    val byName = remember(allComponents) {
+        allComponents.associateBy { it.name.lowercase() }
+    }
     val handleDownload: (RuntimeComponent) -> Unit = { comp ->
         if (comp.isBundle) {
-            val children = comp.dependencies.mapNotNull { dep ->
-                components.firstOrNull { it.name.equals(dep, ignoreCase = true) }
-            }.filter { it.primaryFile != null }
+            val wanted = comp.dependencies.map { it.lowercase() }
+            val children = wanted.mapNotNull { byName[it] }.filter { it.primaryFile != null }
             children.forEach { onDownload(it) }
-            Toast.makeText(
-                context,
-                "${comp.name}：正在下载 ${children.size} 个子组件",
-                Toast.LENGTH_SHORT
-            ).show()
+            val missing = wanted.size - children.size
+            val msg = if (missing > 0) {
+                "${comp.name}：下载 ${children.size} 个子组件，另有 $missing 个不在当前清单里"
+            } else {
+                "${comp.name}：正在下载 ${children.size} 个子组件"
+            }
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
         } else {
             onDownload(comp)
         }
@@ -285,7 +321,7 @@ private fun RuntimeCategorySection(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = category.labelRes,
+                text = appString(category.titleRes),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -296,49 +332,113 @@ private fun RuntimeCategorySection(
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(Modifier.weight(1f))
-            Divider(modifier = Modifier.weight(1f))
+            HorizontalDivider(modifier = Modifier.weight(1f))
         }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+        // 逐行铺、行内等高：原来两列各自堆叠，左 3 右 3 时右列会被拉到半屏空白，
+        // 卡片高度也互相不齐。chunked(2) 后每行是一个 Row，卡片 fillMaxHeight 拉平。
+        components.chunked(2).forEach { pair ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Max),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                components.filterIndexed { idx, _ -> idx % 2 == 0 }.forEach { comp ->
-                    RuntimeComponentCard(component = comp, onDownload = handleDownload)
+                pair.forEach { comp ->
+                    RuntimeComponentCard(
+                        component = comp,
+                        isRecommended = comp.name in recommendedNames,
+                        isActive = isComponentDownloading(comp, activeKeys),
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight(),
+                        onDownload = handleDownload
+                    )
                 }
-            }
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                components.filterIndexed { idx, _ -> idx % 2 == 1 }.forEach { comp ->
-                    RuntimeComponentCard(component = comp, onDownload = handleDownload)
+                if (pair.size == 1) {
+                    Spacer(Modifier.weight(1f))
                 }
             }
         }
     }
 }
 
+/** 「自动生效」组：只有 set_windows / override_dll 这类动作，没有文件可下 */
+@Composable
+private fun AutoAppliedSection(
+    components: List<RuntimeComponent>,
+    expanded: Boolean,
+    activeKeys: Set<String>,
+    onToggle: () -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onToggle() }
+                .padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "${appString(R.string.runtime_auto_applied)} · ${components.size}",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(Modifier.weight(1f))
+            Icon(
+                if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        if (expanded) {
+            components.chunked(2).forEach { pair ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(IntrinsicSize.Max),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    pair.forEach { comp ->
+                        RuntimeComponentCard(
+                            component = comp,
+                            isRecommended = false,
+                            isActive = isComponentDownloading(comp, activeKeys),
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxHeight(),
+                            onDownload = {}
+                        )
+                    }
+                    if (pair.size == 1) {
+                        Spacer(Modifier.weight(1f))
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 这个组件此刻是否在下载队列里（只读 key 集合，进度变化不会拖着重绘） */
+private fun isComponentDownloading(component: RuntimeComponent, activeKeys: Set<String>): Boolean {
+    val f = component.primaryFile ?: return false
+    val name = sanitizeFileName(f.rename.ifBlank { f.fileName })
+    return activeDownloadKey(name, "Runtime/${component.category.dirName}") in activeKeys
+}
+
 @Composable
 private fun RuntimeComponentCard(
     component: RuntimeComponent,
+    isRecommended: Boolean,
+    isActive: Boolean,
+    modifier: Modifier = Modifier,
     onDownload: (RuntimeComponent) -> Unit
 ) {
     val context = LocalContext.current
-    // 已下载态：与 downloadRuntimeLibrary 相同命名/路径规则
-    val downloaded = remember(component) {
-        val f = component.primaryFile
-        if (f != null) {
-            val name = sanitizeFileName(f.rename.ifBlank { f.fileName })
-            fileExistsOnDisk(context, name, "Runtime/${component.category.labelRes}")
-        } else false
-    }
+    val downloaded = rememberDownloaded(component, isActive)
+
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -356,7 +456,7 @@ private fun RuntimeComponentCard(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
                 )
-                if (!component.isReady) {
+                if (!component.isReady && !component.isAutoApplied) {
                     Spacer(Modifier.width(4.dp))
                     Text(
                         text = when (component.status) {
@@ -366,6 +466,25 @@ private fun RuntimeComponentCard(
                         },
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+                // 上游页入口：只跳转，不写任何仓库/搬运者名字。
+                // 「来源·The412Banner 镜像托管」那种行既占一整行，又把搬运者误当成作者。
+                if (component.sourceInfo.url.isNotBlank()) {
+                    Spacer(Modifier.width(2.dp))
+                    Icon(
+                        Icons.AutoMirrored.Filled.OpenInNew,
+                        contentDescription = appString(R.string.runtime_open_upstream),
+                        modifier = Modifier
+                            .size(16.dp)
+                            .clickable {
+                                runCatching {
+                                    context.startActivity(
+                                        Intent(Intent.ACTION_VIEW, Uri.parse(component.sourceInfo.url))
+                                    )
+                                }
+                            },
+                        tint = Fusion.OnSurfaceFaint
                     )
                 }
             }
@@ -380,68 +499,28 @@ private fun RuntimeComponentCard(
                 )
             }
 
-            // 安装方式子标签 + 来源 + 大小
-            // 三段文字挤一行时，未加权的 Text 会互抢宽度，右列在窄屏被裁出卡片外。
-            // 这里把它拆成两行：第一行只放「标签 + 提供方 + 大小」，来源单独一行。
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (component.installTag.isNotBlank()) {
-                    Surface(
-                        shape = RoundedCornerShape(6.dp),
-                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
-                    ) {
-                        Text(
-                            text = component.installTag,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
-                    }
-                    Spacer(Modifier.width(6.dp))
-                }
-                if (component.provider.isNotBlank()) {
-                    Text(
-                        text = component.provider,
-                        style = MaterialTheme.typography.labelSmall,
-                        // 原来是 outline（描边色 #373252），深色底上对比度只有 1.6:1，
-                        // 整行等于隐形。文字用弱正文色，不给描边色打工。
-                        color = Fusion.OnSurfaceFaint,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        // 大小先按自身宽度测量，剩余的才给提供方，窄屏不会互相挤掉
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-                if (component.fileSize > 0) {
-                    Text(
-                        text = formatFileSize(component.fileSize),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = Fusion.OnSurfaceFaint,
-                        maxLines = 1,
-                        softWrap = false,
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
-                }
-            }
-            if (component.sourceInfo.url.isNotBlank()) {
+            // 元信息压成一行：安装方式 · 提供方 · 大小。
+            // 三段各占一个 Text 时，窄卡片里必然互相挤，最后一段被裁到卡片外。
+            val meta = listOfNotNull(
+                component.installTag.takeIf { it.isNotBlank() },
+                component.provider.takeIf { it.isNotBlank() },
+                component.fileSize.takeIf { it > 0L }?.let { formatFileSize(it) },
+            )
+            if (meta.isNotEmpty()) {
                 Text(
-                    text = appString(R.string.runtime_source_from, component.sourceInfo.name),
+                    text = meta.joinToString(" · "),
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = Fusion.OnSurfaceFaint,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-                            runCatching {
-                                context.startActivity(
-                                    Intent(Intent.ACTION_VIEW, Uri.parse(component.sourceInfo.url))
-                                )
-                            }
-                        }
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            if (isRecommended) {
+                Text(
+                    text = appString(R.string.runtime_in_recommended),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
 
@@ -458,61 +537,113 @@ private fun RuntimeComponentCard(
                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                     )
                 }
-                Spacer(Modifier.height(2.dp))
             }
 
-            if (component.downloadUrl.isNotBlank() || component.isBundle) {
-                Spacer(Modifier.height(2.dp))
-                FilledTonalButton(
-                    onClick = { onDownload(component) },
-                    modifier = Modifier.fillMaxWidth(),
-                    contentPadding = PaddingValues(vertical = 4.dp),
-                    enabled = !downloaded
-                ) {
-                    if (downloaded) {
-                        Icon(Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(6.dp))
+            Spacer(Modifier.weight(1f, fill = false))
+
+            when {
+                // 自动生效：配置项，没有文件要下。以前这里写「无需下载」，
+                // 卡片上又标着「必需」，两句话读起来是矛盾的
+                component.isAutoApplied -> {
+                    FilledTonalButton(
+                        onClick = {},
+                        modifier = Modifier.fillMaxWidth(),
+                        contentPadding = PaddingValues(vertical = 4.dp),
+                        enabled = false
+                    ) {
                         Text(
-                            appString(R.string.already_downloaded),
-                            style = MaterialTheme.typography.labelMedium,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    } else {
-                        Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(6.dp))
-                        Text(
-                            if (component.isBundle) {
-                                "${appString(R.string.download)} ${component.dependencies.size} ${appString(R.string.runtime_bundle_children)}"
-                            } else {
-                                appString(R.string.download)
-                            },
+                            appString(R.string.runtime_no_download_needed),
                             style = MaterialTheme.typography.labelMedium,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
                 }
-                // 社区清单基本不带摘要：明确标注「没校验」而不是让用户误以为已校验
-                if (!component.isBundle && component.downloadUrl.isNotBlank() &&
-                    component.checksum.isBlank()
-                ) {
+
+                component.downloadUrl.isNotBlank() || component.isBundle -> {
+                    FilledTonalButton(
+                        onClick = { onDownload(component) },
+                        modifier = Modifier.fillMaxWidth(),
+                        contentPadding = PaddingValues(vertical = 4.dp),
+                        enabled = !downloaded
+                    ) {
+                        if (downloaded) {
+                            Icon(Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                appString(R.string.already_downloaded),
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        } else {
+                            Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                if (component.isBundle) {
+                                    "${appString(R.string.download)} ${component.dependencies.size} ${appString(R.string.runtime_bundle_children)}"
+                                } else {
+                                    appString(R.string.download)
+                                },
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+                    // 社区清单基本不带摘要：明确标注「没校验」而不是让用户误以为已校验
+                    if (!component.isBundle && component.downloadUrl.isNotBlank() &&
+                        component.checksum.isBlank()
+                    ) {
+                        Text(
+                            appString(R.string.runtime_checksum_missing),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Fusion.OnSurfaceFaint
+                        )
+                    }
+                }
+
+                else -> {
                     Text(
-                        appString(R.string.runtime_checksum_missing),
+                        text = component.noDownloadReason.ifBlank { appString(R.string.runtime_no_download) },
                         style = MaterialTheme.typography.labelSmall,
-                        color = Fusion.OnSurfaceFaint
+                        color = MaterialTheme.colorScheme.tertiary,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
-            } else {
-                Text(
-                    text = component.noDownloadReason.ifBlank { appString(R.string.runtime_no_download) },
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.tertiary,
-                    modifier = Modifier.fillMaxWidth()
-                )
             }
         }
     }
+}
+
+/**
+ * 已下载态。
+ *
+ * 两个改动：
+ *  1. 查盘走 IO —— 原来在组合期直接 fileExistsOnDisk，131 张卡就是一屏 131 次主线程磁盘访问；
+ *  2. 状态跟着下载队列变 —— 原来 remember(component) 只算一次，下载完按钮还是灰的，
+ *     得退出页面再进来才会变。
+ */
+@Composable
+private fun rememberDownloaded(component: RuntimeComponent, isActive: Boolean): Boolean {
+    val context = LocalContext.current
+    val prepared = remember(component) {
+        val f = component.primaryFile ?: return@remember null
+        val name = sanitizeFileName(f.rename.ifBlank { f.fileName })
+        name to "Runtime/${component.category.dirName}"
+    }
+    var downloaded by remember(component) { mutableStateOf(false) }
+    LaunchedEffect(prepared, isActive) {
+        if (prepared == null || isActive) {
+            downloaded = false
+            return@LaunchedEffect
+        }
+        val (name, dir) = prepared
+        downloaded = withContext(Dispatchers.IO) {
+            DownloadsManager.existsCompleted(name, dir) || fileExistsOnDisk(context, name, dir)
+        }
+    }
+    return downloaded
 }
 
 @Composable

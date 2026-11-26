@@ -449,7 +449,7 @@ internal fun EmulatorDetailDialog(
                                                 modifier = Modifier.size(18.dp),
                                                 tint = if (asset.url.isNotBlank())
                                                     MaterialTheme.colorScheme.primary
-                                                else MaterialTheme.colorScheme.outline
+                                                else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
                                             )
                                         }
                                     }
