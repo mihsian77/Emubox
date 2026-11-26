@@ -16,8 +16,9 @@
     <string name="download_library">Download library</string>
     <string name="download_library_desc">Everything you download from EmuBox in one place.</string>
     <string name="active">Active</string>
-    <string name="saved">Saved</string>
-    <string name="stored">Stored</string>
+    <string name="disk_used">Space used</string>
+    <!-- 统计条的值列：数字要带单位，光写 5 不知道是 5 个还是 5 MB -->
+    <string name="count_items">%1$d items</string>
     <string name="downloading_now">Downloading now</string>
     <string name="downloaded_files">Downloaded files</string>
     <string name="ready_open_share_manage">Ready to open, share or manage</string>
@@ -43,7 +44,7 @@
     <string name="error_deleting">Error deleting: %1$s</string>
     <string name="share_chooser">Share</string>
     <string name="no_downloads_yet">No downloads yet</string>
-    <string name="downloads_started_here">Downloads started from the hub will appear here.</string>
+    <string name="downloads_started_here">Downloads started from emulators, drivers or runtimes appear here.</string>
     <string name="appearance">Appearance</string>
     <string name="appearance_desc">Personalize EmuBox with Material 3 themes.</string>
     <string name="language">Language</string>
@@ -58,15 +59,15 @@
     <string name="theme_mode">Theme mode</string>
     <string name="theme_mode_desc">Choose how light and dark mode are applied.</string>
     <string name="color_theme">Color theme</string>
-    <string name="color_theme_desc">Dynamic uses your Android wallpaper colors when supported.</string>
-    <string name="theme_system">System</string>
+    <string name="color_theme_desc">Follow system picks up your wallpaper colours on Android 12 and later; other options are fixed palettes.</string>
+    <string name="theme_system">Follow system</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
-    <string name="theme_dynamic">Dynamic</string>
+    <string name="theme_dynamic">Follow system</string>
     <string name="theme_blue">Blue</string>
     <string name="theme_purple">Purple</string>
     <string name="theme_orange">Orange</string>
-    <string name="theme_cn">CN Edition</string>
+    <string name="theme_cn">Red &amp; blue</string>
     <string name="sources">Driver Match</string>
     <string name="sources_desc">Filter driver builds by the device GPU and architecture.</string>
     <string name="source_catalog">Source catalog</string>
@@ -817,7 +818,10 @@ How to verify in emulator:
     <string name="driver_check_failed_deps_missing">Missing dependencies: %1$s</string>
     <string name="driver_check_failed_deps_loaded">Loaded dependencies: %1$s</string>
     <!-- 详情型：设备页结论卡与分组 -->
-    <string name="device_conclusion_full">This Adreno GPU can use Turnip directly, so DXVK games render on hardware (frame rate still depends on driver version and thermals).</string>
+    <string name="device_conclusion_full">This Adreno GPU can run Turnip directly, so DXVK games render on hardware.</string>
+    <!-- 结论只留判断，限定条件挪到证据行：17sp 粗体长句在 411dp 上要换三行，
+         换行后「（实际帧率…）」这段限定语反而比结论本身更抢眼 -->
+    <string name="device_conclusion_note">frame rate depends on driver build and thermals</string>
     <string name="device_conclusion_partial">Limited Xclipse/RDNA support: older titles are fine, new AAA titles are not.</string>
     <string name="device_conclusion_none">Mali GPUs go through PanVK — Turnip is not available, so translation layers cost performance.</string>
     <string name="device_conclusion_unknown">GPU vendor not recognised — start with VirGL</string>
@@ -829,7 +833,7 @@ How to verify in emulator:
     <string name="device_section_chip">Chipset &amp; performance</string>
     <string name="runtime_result_count">%1$d components</string>
     <string name="runtime_meta_title">Sources &amp; news</string>
-    <string name="storage_perm_banner_title">File access not granted — downloads and local scanning will fail</string>
+    <string name="storage_perm_banner_title">File access not granted</string>
     <string name="storage_perm_banner_action">Grant</string>
     <string name="storage_dialog_title">File access is required</string>
     <string name="storage_dialog_body">EmuBox needs the system “All files access” permission to write drivers into Download/EmuBox, scan existing files and delete downloads.</string>

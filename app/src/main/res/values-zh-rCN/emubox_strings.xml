@@ -16,8 +16,8 @@
     <string name="download_library">下载库</string>
     <string name="download_library_desc">从 EmuBox 下载的所有文件都在这里。</string>
     <string name="active">进行中</string>
-    <string name="saved">已保存</string>
-    <string name="stored">已存储</string>
+    <string name="disk_used">占用</string>
+    <string name="count_items">%1$d 个</string>
     <string name="downloading_now">正在下载</string>
     <string name="downloaded_files">已下载文件</string>
     <string name="ready_open_share_manage">可打开、分享或管理</string>
@@ -43,7 +43,7 @@
     <string name="error_deleting">删除失败：%1$s</string>
     <string name="share_chooser">分享</string>
     <string name="no_downloads_yet">暂无下载</string>
-    <string name="downloads_started_here">从资源中心开始的下载会显示在这里。</string>
+    <string name="downloads_started_here">从模拟器、驱动、运行库开始的下载会显示在这里。</string>
     <string name="appearance">外观</string>
     <string name="appearance_desc">使用 Material 3 主题个性化 EmuBox。</string>
     <string name="language">语言</string>
@@ -58,15 +58,15 @@
     <string name="theme_mode">主题模式</string>
     <string name="theme_mode_desc">选择浅色和深色模式的应用方式。</string>
     <string name="color_theme">配色主题</string>
-    <string name="color_theme_desc">动态配色在支持时使用你的安卓壁纸颜色。</string>
+    <string name="color_theme_desc">跟随系统会取用壁纸配色（Android 12 及以上）；其余为固定色板。</string>
     <string name="theme_system">跟随系统</string>
     <string name="theme_light">浅色</string>
     <string name="theme_dark">深色</string>
-    <string name="theme_dynamic">动态</string>
+    <string name="theme_dynamic">跟随系统</string>
     <string name="theme_blue">蓝色</string>
     <string name="theme_purple">紫色</string>
     <string name="theme_orange">橙色</string>
-    <string name="theme_cn">国内版</string>
+    <string name="theme_cn">红蓝</string>
     <string name="sources">驱动匹配</string>
     <string name="sources_desc">按本机 GPU 与架构筛选可用的驱动版本。</string>
     <string name="source_catalog">资源目录</string>
@@ -816,7 +816,8 @@
     <string name="driver_check_failed_deps_missing">缺失依赖：%1$s</string>
     <string name="driver_check_failed_deps_loaded">已加载依赖：%1$s</string>
     <!-- 详情型：设备页结论卡与分组 -->
-    <string name="device_conclusion_full">本机 Adreno GPU 可走 Turnip 直通，DXVK 游戏走硬件渲染（实际帧率仍取决于驱动版本与散热）</string>
+    <string name="device_conclusion_full">本机 Adreno GPU 可走 Turnip 直通</string>
+    <string name="device_conclusion_note">帧率取决于驱动版本与散热</string>
     <string name="device_conclusion_partial">Xclipse/RDNA 路线支持有限：老游戏稳，新 3A 撑不住</string>
     <string name="device_conclusion_none">Mali GPU 走 PanVK 路线，暂不支持 Turnip；走翻译层时性能受限</string>
     <string name="device_conclusion_unknown">显卡厂商未识别，先用 VirGL 兜底</string>
@@ -828,8 +829,8 @@
     <string name="device_section_chip">芯片与性能</string>
     <string name="runtime_result_count">%1$d 个运行库</string>
     <string name="runtime_meta_title">来源与资讯</string>
-    <string name="storage_perm_banner_title">未授予文件访问权限，下载与本地文件扫描会失败</string>
-    <string name="storage_perm_banner_action">去授权</string>
+    <string name="storage_perm_banner_title">未授予文件权限</string>
+    <string name="storage_perm_banner_action">授权</string>
     <string name="storage_dialog_title">需要文件访问权限</string>
     <string name="storage_dialog_body">EmuBox 需要系统的「所有文件访问」权限，才能把驱动写入 Download/EmuBox、扫描已有文件并删除下载。</string>
     <string name="storage_dialog_body2">也可以选一个文件夹授权：权限仅限于该文件夹，不需要开系统广权限。</string>

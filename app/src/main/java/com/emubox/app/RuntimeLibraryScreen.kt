@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.emubox.app.ui.template.PageTitleRow
 import com.emubox.app.ui.template.ResultCountRow
+import com.emubox.app.ui.theme.Fusion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -405,7 +406,9 @@ private fun RuntimeComponentCard(
                     Text(
                         text = component.provider,
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.outline,
+                        // 原来是 outline（描边色 #373252），深色底上对比度只有 1.6:1，
+                        // 整行等于隐形。文字用弱正文色，不给描边色打工。
+                        color = Fusion.OnSurfaceFaint,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         // 大小先按自身宽度测量，剩余的才给提供方，窄屏不会互相挤掉
@@ -416,7 +419,7 @@ private fun RuntimeComponentCard(
                     Text(
                         text = formatFileSize(component.fileSize),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.outline,
+                        color = Fusion.OnSurfaceFaint,
                         maxLines = 1,
                         softWrap = false,
                         modifier = Modifier.padding(start = 8.dp)
@@ -497,7 +500,7 @@ private fun RuntimeComponentCard(
                     Text(
                         appString(R.string.runtime_checksum_missing),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.outline
+                        color = Fusion.OnSurfaceFaint
                     )
                 }
             } else {
@@ -530,7 +533,7 @@ private fun RuntimeEmptyState(onRetry: () -> Unit) {
                 Icons.Default.ErrorOutline,
                 contentDescription = null,
                 modifier = Modifier.size(40.dp),
-                tint = MaterialTheme.colorScheme.outline
+                tint = Fusion.OnSurfaceFaint
             )
             Text(
                 text = appString(R.string.runtime_load_failed),

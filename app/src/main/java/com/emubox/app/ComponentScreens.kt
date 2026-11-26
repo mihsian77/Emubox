@@ -755,7 +755,8 @@ fun ComponentScreen(
             Text(
                 text = appString(R.string.versions_footer),
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.outline,
+                // outline 是描边色，深色底上读不出来；页脚是正文，用弱正文色
+                color = Fusion.OnSurfaceFaint,
                 modifier = Modifier.fillMaxWidth()
             )
         }

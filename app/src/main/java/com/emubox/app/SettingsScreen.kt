@@ -879,9 +879,11 @@ private fun ThemeModeSelector(
                         selected = selected == mode,
                         onClick = { onSelected(mode) },
                         label = { Text(data.first) },
+                        // 选中态统一用 ✓ 表达：同一张卡里配色主题一直是这么做的，
+                        // 主题模式却只靠底色加粗，两组的「选中」看起来不是一套东西。
                         leadingIcon = {
                             Icon(
-                                imageVector = data.second,
+                                imageVector = if (selected == mode) Icons.Default.Check else data.second,
                                 contentDescription = null,
                                 modifier = Modifier.size(18.dp)
                             )

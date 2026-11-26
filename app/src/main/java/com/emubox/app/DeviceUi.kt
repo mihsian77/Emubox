@@ -236,6 +236,12 @@ internal fun DeviceConclusionBlock(
                     socPrimary,
                     listOf(deviceInfo.deviceBrand, deviceMarketingName(deviceInfo.deviceModel, context))
                         .filter { it.isNotBlank() }.distinct().joinToString(" ").ifBlank { null },
+                    // 原本挂在结论句尾巴上的「（帧率取决于驱动与散热）」：17sp 粗体里它是被
+                    // 换行丢掉的那半句，放在 12sp 证据行反而会被读到。只在 FULL 分支出现，
+                    // 因为这句限定语原本就只写在那一条里。
+                    if (route?.turnipSupport == TurnipSupport.FULL) {
+                        appString(R.string.device_conclusion_note)
+                    } else null,
                 ).joinToString(" · "),
                 badge = badge,
                 tone = tone,

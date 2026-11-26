@@ -593,20 +593,25 @@ private fun EmuReadyCard(deviceInfo: DeviceInfo) {
                 }
             }
 
-            // 数据口径徽章：本机实测 / 同芯片机型聚合，别让用户误以为都是本机数据
-            Spacer(Modifier.height(6.dp))
-            val (badge, tint) = when {
-                useDevice -> appString(R.string.emuready_badge_device) to MaterialTheme.colorScheme.primary
-                socCompatSnapshot != null -> appString(R.string.emuready_badge_soc) to MaterialTheme.colorScheme.secondary
-                else -> appString(R.string.emuready_badge_none) to MaterialTheme.colorScheme.outline
-            }
-            Surface(shape = RoundedCornerShape(6.dp), color = tint.copy(alpha = 0.14f)) {
-                Text(
-                    badge,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = tint,
-                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                )
+            // 数据口径徽章：本机实测 / 同芯片机型聚合，别让用户误以为都是本机数据。
+            // 还在查的时候不画徽章：那时只能落到「暂无数据」，等于用一句结论盖住「还没查完」，
+            // 用户刚进页面就会看到「无数据」，几秒后又变成「本机实测」。
+            if (!(loading && rows == 0)) {
+                Spacer(Modifier.height(6.dp))
+                val (badge, tint) = when {
+                    useDevice -> appString(R.string.emuready_badge_device) to MaterialTheme.colorScheme.primary
+                    socCompatSnapshot != null -> appString(R.string.emuready_badge_soc) to MaterialTheme.colorScheme.secondary
+                    // 原来用 outline（卡片描边色 #373252）当文字色，深色底上几乎看不见
+                    else -> appString(R.string.emuready_badge_none) to Fusion.OnSurfaceFaint
+                }
+                Surface(shape = RoundedCornerShape(6.dp), color = tint.copy(alpha = 0.14f)) {
+                    Text(
+                        badge,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = tint,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
             }
 
             if (useDevice) {

@@ -147,14 +147,14 @@ fun DownloadsScreen(onBack: () -> Unit, showBack: Boolean = true) {
             contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 32.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            // 统计收成一行三段：三个独立格子等于用 3 倍面积说 3 个数
+            // 统计收成一行三段（三格 = 3 倍面积说 3 个数）；后两段原叫「已保存/已存储」，同指一个数
             item(key = "download_summary") {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     SpecStrip(
                         listOf(
                             SpecItem(appString(R.string.active), active.size.toString()),
-                            SpecItem(appString(R.string.saved), completed.size.toString()),
-                            SpecItem(appString(R.string.stored), formatBytes(completedBytes)),
+                            SpecItem(appString(R.string.downloaded), appString(R.string.count_items, completed.size)),
+                            SpecItem(appString(R.string.disk_used), formatBytes(completedBytes)),
                         )
                     )
                     // 本地扫描诊断：显示最近一次扫描查到了什么，便于定位「扫不出」根因。
