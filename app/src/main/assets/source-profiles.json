@@ -628,9 +628,9 @@
     "wrapper-bionic-vulkan": {
       "fit": "Winlator Bionic/CMOD 上的 Vk-on-Vk 包装层，给 Mali、老 Adreno 与 Xclipse 跑 DX",
       "how": [
-        "下载 .so 驱动库",
-        "按 README 说明放进 Contents 对应目录",
-        "重启模拟器或容器"
+        "下载 .so 包装层",
+        "按 README 放进 Contents 对应目录",
+        "重启容器生效"
       ],
       "caution": "",
       "generated": true
@@ -648,9 +648,9 @@
     "wrapper-vkwind11": {
       "fit": "Winlator 里的 D3D10/11/12 → Vulkan 转译层，VKWIND（D3D9）的配套",
       "how": [
-        "下载 .so 驱动库",
-        "按 README 说明放进 Contents 对应目录",
-        "重启模拟器或容器"
+        "下载 .so 包装层",
+        "按 README 放进 Contents 对应目录",
+        "重启容器生效"
       ],
       "caution": "",
       "generated": true
@@ -668,9 +668,9 @@
     "xclipse-exynostools": {
       "fit": "三星 Xclipse 的 Vortek 驱动包，按 Exynos 机型分包，Winlator 直接加载",
       "how": [
-        "下载 zip 解压或直接导入",
-        "模拟器「设置 → 驱动」里选中",
-        "回到游戏重启"
+        "下载机型对应的 zip",
+        "Winlator 容器「显卡驱动」里导入",
+        "重启容器生效"
       ],
       "caution": "",
       "generated": true
@@ -678,9 +678,9 @@
     "xclipse-mdix": {
       "fit": "Xclipse 的实验性 Vulkan 兼容层，按 Exynos 机型分包，含 Nativo 原生路径",
       "how": [
-        "下载 zip 解压或直接导入",
-        "模拟器「设置 → 驱动」里选中",
-        "回到游戏重启"
+        "下载机型对应的 zip",
+        "Winlator 容器「显卡驱动」里导入",
+        "重启容器生效"
       ],
       "caution": "",
       "generated": true

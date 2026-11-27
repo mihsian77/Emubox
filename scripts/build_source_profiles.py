@@ -83,11 +83,24 @@ def how_for(entry):
     dtype = entry.get("driverType") or ""
     fmt = (entry.get("packageFormat") or "").lower()
     target = (entry.get("targetEmulator") or "").lower()
+    frontend = (entry.get("frontend") or "").lower()
     # 目标平台优先于通用格式：Winlator / Eden 的导入入口和模拟器不一样
     if target == "winlator" and dtype in ("panvk", "radv", "turnip", "qualcomm"):
         return ["下载驱动包", "Winlator 容器「显卡驱动」里导入", "重启容器生效"]
     if target == "eden" and dtype in ("panvk", "radv", "turnip"):
         return ["下载驱动包", "Eden「设置 → 驱动」导入", "选中后重启游戏"]
+    # wrapper 要先按用途分：Vortek 驱动包走显卡驱动入口，
+    # .tzst 是挂载包装层，裸 .so 只能按 README 放 Contents。
+    # 此前一行判断在格式分支之后，winlator+wrapper+zip 会落进「模拟器设置→驱动」，
+    # 对 Winlator 用户是错的入口。
+    if dtype == "wrapper":
+        if frontend == "vortek":
+            return ["下载机型对应的 zip", "Winlator 容器「显卡驱动」里导入", "重启容器生效"]
+        if fmt == "tzst":
+            return HOW_BY_FORMAT["tzst"]
+        if fmt == "so":
+            return ["下载 .so 包装层", "按 README 放进 Contents 对应目录", "重启容器生效"]
+        return HOW_WRAPPER
     # 其次看格式：装法由产物格式决定，比仓库类型更准
     if fmt in HOW_BY_FORMAT:
         return HOW_BY_FORMAT[fmt]
@@ -123,6 +136,7 @@ def main():
             "driverType": r.get("driver_type"),
             "packageFormat": r.get("package_format"),
             "targetEmulator": r.get("target_emulator"),
+            "frontend": r.get("frontend"),
         })
         notes = (r.get("notes") or "").strip()
         caution = notes if notes and RISK_LEAD.search(notes) else ""
