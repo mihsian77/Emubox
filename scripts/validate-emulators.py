@@ -29,7 +29,10 @@ DEAD_SOURCES = {"yuzu-official", "citron-emulator",
                 # afeimod/linbox 11-17 还在发 prefix-pack 版，今天 API 直连 404；
                 # 账号还在、名下 37 个仓库里没有它 —— 删库或转私有，用户都拿不到。
                 # ptyfyre 整个账号 404（与 simipoB 一样），mandarine-neo 随之失效。
-                "afeimod-linbox", "mandarineneo-3ds"}
+                "afeimod-linbox", "mandarineneo-3ds",
+                # 2026-11-27：a2redweb/nx2android 实测 404，搜索无同名新仓（20 个结果里
+                # 没有它），确认删库；每日刷新已标 dead，清单同步。
+                "a2redweb-nx2android-native-port"}
 # 注意：这份清单是「已确认下架」的快照，不是判死规则。
 # afeimod-linbox 曾在这里，但 11-16 还在发新版（GitHub 当日 404 属于误判），
 # 已移出：清单只记「现在确实打不开」的，判死仍交给刷新脚本每日复核。

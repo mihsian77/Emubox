@@ -490,6 +490,16 @@
       "caution": "",
       "generated": true
     },
+    "turnip-nihui": {
+      "fit": "nihui 独立维护的 Android Mesa Turnip 构建，每个 Mesa 版本跟一次",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
     "v3kt0r-builder": {
       "fit": "Turnip Magisk 模块构建脚本，适合有 root 的用户",
       "how": [
@@ -615,6 +625,16 @@
       "caution": "",
       "generated": true
     },
+    "wrapper-bionic-vulkan": {
+      "fit": "Winlator Bionic/CMOD 上的 Vk-on-Vk 包装层，给 Mali、老 Adreno 与 Xclipse 跑 DX",
+      "how": [
+        "下载 .so 驱动库",
+        "按 README 说明放进 Contents 对应目录",
+        "重启模拟器或容器"
+      ],
+      "caution": "",
+      "generated": true
+    },
     "wrapper-fristoner": {
       "fit": "FristOneRR Vulkan wrapper，配合 FristOneRR PanVK on Mali (kbase) 使用",
       "how": [
@@ -625,12 +645,52 @@
       "caution": "",
       "generated": true
     },
+    "wrapper-vkwind11": {
+      "fit": "Winlator 里的 D3D10/11/12 → Vulkan 转译层，VKWIND（D3D9）的配套",
+      "how": [
+        "下载 .so 驱动库",
+        "按 README 说明放进 Contents 对应目录",
+        "重启模拟器或容器"
+      ],
+      "caution": "",
+      "generated": true
+    },
     "wrapper-winx": {
       "fit": "WinXclipse 随包 wrapper：wrapper-cmod-v2 / wrapper-gamenative，三星 Xclipse 专用",
       "how": [
         "下载 .tzst 包装层",
         "Winlator 容器里作为 Wrapper 挂载",
         "配合对应驱动一起用"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "xclipse-exynostools": {
+      "fit": "三星 Xclipse 的 Vortek 驱动包，按 Exynos 机型分包，Winlator 直接加载",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "xclipse-mdix": {
+      "fit": "Xclipse 的实验性 Vulkan 兼容层，按 Exynos 机型分包，含 Nativo 原生路径",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
+      ],
+      "caution": "",
+      "generated": true
+    },
+    "xclipse-radv-aaditya": {
+      "fit": "面向 Galaxy S24 FE（Xclipse 940）的 Mesa RADV 移植，走三星 sgpu 内核驱动",
+      "how": [
+        "下载 zip 解压或直接导入",
+        "模拟器「设置 → 驱动」里选中",
+        "回到游戏重启"
       ],
       "caution": "",
       "generated": true

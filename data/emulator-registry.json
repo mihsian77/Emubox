@@ -20383,7 +20383,7 @@
       "downloads_lifetime": 4351,
       "note": "桌面端模拟器；未发现官方 Android 安装包。",
       "latest_apk_tag": "dev",
-      "download_kind": "desktop-build",
+      "download_kind": "github-release",
       "android_ready_source": "release"
     },
     {
@@ -96905,7 +96905,201 @@
       "download_kind": "source-only",
       "android_ready_source": "unknown",
       "downloads_basis": "none"
+    },
+    {
+      "id": "hardsilinder-fabledroid",
+      "name": "FableDroid",
+      "name_zh": "《神鬼寓言 2》安卓原生移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "hardsilinder-fabledroid",
+      "family_label": "FableDroid（《神鬼寓言 2》安卓原生移植）",
+      "owner": "hardsilinder",
+      "repo": "hardsilinder/FableDroid",
+      "repo_url": "https://github.com/hardsilinder/FableDroid",
+      "homepage": "",
+      "description": "Xbox 360 版《神鬼寓言 2》静态重编译到 arm64，Vulkan 渲染；需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "platforms": [
+        "xbox360"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": true,
+      "method": "recomp",
+      "runtime": "android-native",
+      "stars": 50,
+      "pushed_at": "2026-11-25T20:35:30Z",
+      "releases": [
+        {
+          "tag": "v0.9.0",
+          "name": "FableDroid 0.9.0",
+          "date": "2026-11-25T19:24:26Z",
+          "body": "FableDroid 0.9.0: about 99% of the game's code is now decompiled to native code (59,958 of 60,481 functions: game code 99.5%, library code 98.5%). The remaining ~520 functions still run through the recompiled path and are being rewritten by hand.\n\n### Status\n- Tested on the AYN Thor (Adreno 740): boots, loads a save and plays the full forest route with no crashes.\n- Performance on the Thor: the default is a locked 30 FPS (the Xbox 360's cap, steadiest). With the experimental 60 FPS setting (Settings > Frame rate) it runs about 57 FPS median, with lows around 37 FPS in heavy scenes; 40 and 60 FPS can stutter briefly while walking.\n- Adreno 8xx (Odin 3, Snapdragon 8 Elite/Gen 5) and Mali are still untested on this build. Reports and logs are very welcome.\n\n### Known issues\n- The item wheel in the on-screen display occasionally draws incorrectly.\n\n### Installing\nInstalls over 0.6.x as a normal update; your game files and saves are kept.\n\nNew installs: install the APK and follow the setup steps in the README. You still need your own copy of Fable II (Game of the Year edition); no game files are included.\n\nSHA-256: `fed486bae071f47457a5f9f6fb32fd6859d25cb2528bc3a69daa85e4a72770bd`\n",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FableDroid-0.9.0.apk",
+              "size": 82741239,
+              "url": "https://github.com/hardsilinder/FableDroid/releases/download/v0.9.0/FableDroid-0.9.0.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.3-beta",
+          "name": "FableDroid 0.6.3 beta",
+          "date": "2026-11-02T17:01:29Z",
+          "body": "> **Beta.** Playable at the 30 FPS cap on the AYN Thor, with known graphics bugs and only a few devices tested so far.\n\n**Update to 0.6.2.** Installs over 0.6.2 and keeps your saves (same signing key).\n\n**Bring your own game:** you need an ISO of a supported Fable II disc. This APK contains no game data (no art, audio, maps or video).\n\n## What's fixed\n- **On-screen touch controls didn't work on some phones**, so the game stayed on \"Press A to start\" (#3, also reported on Reddit with a Snapdragon 8s Gen 4). Some phones (e.g. Xiaomi/Poco on HyperOS) have a built-in key device that reports a d-pad; it was mistaken for a game controller and received the touch presses. Now only real gamepads count as controllers, so touch input reaches the game.\n- **\"Unrecognised game executable\"** now shows a short ID of your game file. Please include it when reporting, so we can identify the version (#4).\n\n## Controllers\nBluetooth and USB gamepads and the built-in controls on handhelds (AYN Thor, Odin, Retroid) are supported. The touch overlay hides automatically when a controller is connected (configurable), and buttons can be remapped in the launcher.\n\n## Install",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FableDroid-0.6.3-beta.apk",
+              "size": 45861883,
+              "url": "https://github.com/hardsilinder/FableDroid/releases/download/v0.6.3-beta/FableDroid-0.6.3-beta.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.2-beta",
+          "name": "FableDroid 0.6.2 Beta",
+          "date": "2026-10-30T03:22:34Z",
+          "body": "> **Beta.** Playable at the 30 FPS cap on the AYN Thor, with known graphics bugs and only two devices tested so far.\n\n**Update to 0.6.1.** Installs over 0.6.1 and keeps your saves (same signing key).\n\n**Bring your own game:** you need an ISO of a supported Fable II disc. This APK contains no game data (no art, audio, maps or video).\n\n## What's new\n- **Automatic GPU driver recommendation.** The GPU drivers / downloads screen now detects your GPU and shows a Recommended section: bundled Turnip for Adreno 7xx (tested on AYN Thor), System for Adreno 8xx and other Adreno generations get a matching Turnip download offered as an experimental alternative. Mali, Immortalis, PowerVR, Xclipse and unknown GPUs get a System recommendation, explicitly labeled experimental. Manual driver choices are always preserved.\n- The launcher's default driver choice for a fresh install now follows the same GPU detection, instead of always defaulting to bundled Turnip.\n\n## Install\n1. Download **FableDroid-0.6.2-beta.apk** below and open it on your device.\n2. First install only: copy your Fable II ISO to the device, open the app, tap **Select game ISO**, choose the file and wait for it to install.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FableDroid-0.6.2-beta.apk",
+              "size": 45861751,
+              "url": "https://github.com/hardsilinder/FableDroid/releases/download/v0.6.2-beta/FableDroid-0.6.2-beta.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.1-beta",
+          "name": "FableDroid 0.6.1 Beta",
+          "date": "2026-10-29T22:49:48Z",
+          "body": "> **Beta.** Playable at the 30 FPS cap on the AYN Thor, with known graphics bugs and only two devices tested so far.\n\n**Bug-fix update to 0.6.0.** Installs over 0.6.0 and keeps your saves (same signing key).\n\n**Bring your own game:** you need an ISO of a supported Fable II disc. This APK contains no game data (no art, audio, maps or video).\n\n## What's new\n- **Fixed: purple strip along the bottom of the screen.** Fable II clears some buffers by drawing a rectangle over them. The emulator assumed these covered all of the GPU's render memory, so the last few rows of a half-resolution buffer kept stale data and reached the screen. Clears now only replace the rows they actually draw. No performance cost: still a steady 30 FPS on the Thor.\n\n## Install\n1. Download **FableDroid-0.6.1-beta.apk** below and open it on your device.\n2. First install only: copy your Fable II ISO to the device, open the app, tap **Select game ISO**, choose the file and wait for it to install.\n3. Tap **Play**.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FableDroid-0.6.1-beta.apk",
+              "size": 45854195,
+              "url": "https://github.com/hardsilinder/FableDroid/releases/download/v0.6.1-beta/FableDroid-0.6.1-beta.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.0-beta",
+          "name": "FableDroid 0.6 Beta",
+          "date": "2026-10-29T17:46:39Z",
+          "body": "> **Beta.** Playable at the 30 FPS cap on the AYN Thor, with known graphics bugs and only two devices tested so far.\n\n**Fable II, running natively on Android.** First public build of FableDroid.\n\n**Bring your own game:** you need an ISO of a supported Fable II disc. This APK contains no game data (no art, audio, maps or video).\n\n## Install\n1. Download **FableDroid-0.6.0-beta.apk** below and open it on your device.\n2. Copy your Fable II ISO to the device.\n3. Open the app, tap **Select game ISO**, choose the file and wait for it to install.\n4. Tap **Play**.\n\nRequires Android 12+, 64-bit, about 7 GB free (plus the ISO while installing). An Adreno 7xx GPU (Snapdragon 8 Gen 1 or newer) is strongly recommended. On non-Adreno GPUs, choose **GPU drivers / downloads → System driver**.\n\n## Highlights\n- Native arm64 + Vulkan, 30 FPS cap held on an AYN Thor (Snapdragon 8 Gen 2) at 720p\n- Low-latency mode and high tick rate on by default\n- FXAA + dithered foliage instead of slow MSAA\n- Install straight from the ISO on the device, one-tap save backup\n- Controller remapping, touch controls with a layout editor\n- Bundled Mesa Turnip driver plus a driver manager\n\n## Supported versions",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "FableDroid-0.6.0-beta.apk",
+              "size": 45846991,
+              "url": "https://github.com/hardsilinder/FableDroid/releases/download/v0.6.0-beta/FableDroid-0.6.0-beta.apk"
+            }
+          ]
+        }
+      ],
+      "latest_tag": "v0.9.0",
+      "latest_date": "2026-11-25T19:24:26Z",
+      "latest_body": "FableDroid 0.9.0: about 99% of the game's code is now decompiled to native code (59,958 of 60,481 functions: game code 99.5%, library code 98.5%). The remaining ~520 functions still run through the recompiled path and are being rewritten by hand.\n\n### Status\n- Tested on the AYN Thor (Adreno 740): boots, loads a save and plays the full forest route with no crashes.\n- Performance on the Thor: the default is a locked 30 FPS (the Xbox 360's cap, steadiest). With the experimental 60 FPS setting (Settings > Frame rate) it runs about 57 FPS median, with lows around 37 FPS in heavy scenes; 40 and 60 FPS can stutter briefly while walking.\n- Adreno 8xx (Odin 3, Snapdragon 8 Elite/Gen 5) and Mali are still untested on this build. Reports and logs are very welcome.\n\n### Known issues\n- The item wheel in the on-screen display occasionally draws incorrectly.\n\n### Installing\nInstalls over 0.6.x as a normal update; your game files and saves are kept.\n\nNew installs: install the APK and follow the setup steps in the README. You still need your own copy of Fable II (Game of the Year edition); no game files are included.\n\nSHA-256: `fed486bae071f47457a5f9f6fb32fd6859d25cb2528bc3a69daa85e4a72770bd`\n",
+      "channel": "stable",
+      "latest_apk_name": "FableDroid-0.9.0.apk",
+      "latest_apk_url": "https://github.com/hardsilinder/FableDroid/releases/download/v0.9.0/FableDroid-0.9.0.apk",
+      "latest_apk_size": 82741239,
+      "latest_apk_tag": "v0.9.0",
+      "platform_families": [
+        "microsoft"
+      ],
+      "download_kind": "github-release",
+      "android_ready_source": "unknown",
+      "downloads_basis": "lifetime",
+      "downloads_lifetime": 364,
+      "downloads_total": 364
+    },
+    {
+      "id": "belmantegu-rayman-origins-recomp",
+      "name": "Rayman Origins Android",
+      "name_zh": "《雷曼：起源》安卓原生移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "belmantegu-rayman-origins-recomp",
+      "family_label": "Rayman Origins Android（《雷曼：起源》安卓原生移植）",
+      "owner": "BelmanteGu",
+      "repo": "BelmanteGu/RaymanOriginsPCRecomp",
+      "repo_url": "https://github.com/BelmanteGu/RaymanOriginsPCRecomp",
+      "homepage": "",
+      "description": "PC 版《雷曼：起源》静态重编译到 Android arm64，Vulkan 1.1；不含游戏资源，需自备。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "platforms": [
+        "windows-pc"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": true,
+      "method": "recomp",
+      "runtime": "android-native",
+      "stars": 3,
+      "pushed_at": "2026-11-26T02:25:10Z",
+      "releases": [
+        {
+          "tag": "v1.1",
+          "name": "Rayman Origins PC Recomp 1.1 (Android)",
+          "date": "2026-11-25T02:08:56Z",
+          "body": "Rayman Origins (PC, 1.0.32504) recompilado para rodar nativo no Android (arm64). Requer a sua própria cópia da Steam. Atualiza por cima da 1.0.\n\n**Testado**\n\n| Aparelho | Chip / GPU | RAM | Android | Resolução | FPS |\n|---|---|---|---|---|---|\n| Galaxy S23 Ultra | Snapdragon 8 Gen 2 / Adreno 740 | 12 GB | 17 | 1080p | 60 |\n| Galaxy S23 | Snapdragon 8 Gen 2 / Adreno 740 | 8 GB | 16 | 1080p | 60 |\n| POCO F7 | Snapdragon 8s Gen 4 | — | — | 1080p | 60 |\n| Galaxy A56 | Exynos 1580 / Xclipse 540 | — | 16 | 1080p | 60 |\n| Moto G200 | Snapdragon 888+ / Adreno 660 | — | — | 1080p | 60 |\n| Black Shark 5 Pro | Snapdragon 8 Gen 1 / Adreno 730 | 12 GB | 11 | 1080p | 60 |\n| Moto G62 | Snapdragon 750G / Adreno 619 | 4 GB | 13 | 1080p | 30 |\n| Galaxy S21 FE | Exynos 2100 / Mali-G78 | 6 GB | 16 | 1080p | 30 |\n| Galaxy Note 10+ | Exynos 9825 / Mali-G76 | 12 GB | 12 | 1080p | 30 |\n| Redmi 10C | Snapdragon 680 / Adreno 610 | 4 GB | 13 | 540p | 30 |\n\n**Novidades**\n\n**Driver de GPU** (Arquivos do jogo → Driver de GPU)\n- Uma lista com:\n  - o driver do sistema (Turnip desligado);\n  - os drivers já instalados, que trocam com um toque;",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "RaymanOriginsPC-v1.1-android-arm64.apk",
+              "size": 28663849,
+              "url": "https://github.com/BelmanteGu/RaymanOriginsPCRecomp/releases/download/v1.1/RaymanOriginsPC-v1.1-android-arm64.apk"
+            }
+          ]
+        },
+        {
+          "tag": "v1.0",
+          "name": "Rayman Origins PC Recomp 1.0 (Android)",
+          "date": "2026-11-23T03:06:09Z",
+          "body": "Rayman Origins (PC, 1.0.32504) recompilado para rodar nativo no Android (arm64). Requer a sua própria cópia da Steam.\n\n**Como instalar**\n1. Instale o APK.\n2. Em **Arquivos do jogo**, escolha a pasta do jogo da Steam (com `Rayman Origins.exe` e `GameData`) ou um `.zip` dela.\n3. Na primeira vez, o launcher cria a cópia leve do jogo (cerca de 1 minuto num S23). Depois disso, toque em **Jogar**.\n\n**Novidades**\n- **Cópia leve:** o jogo passa de 2,4 GB para cerca de 0,6 GB. Os sons ficam em Opus; o resto dos arquivos volta idêntico ao original.\n- **Importação por .zip:** aceita o `.zip` do jogo completo ou o da cópia leve. O da cópia leve entra direto, sem comprimir de novo.\n- **Menu dentro do jogo (engrenagem):** tem as mesmas opções do launcher, editor de posição dos botões e volta ao launcher.\n- **Botões de toque:** chegam ao jogo como um controle de Xbox. A pausa e o menu do port são botões separados.\n- **Dicas na tela:** mostram as bolinhas A/B/X/Y, RT etc. no lugar das teclas.\n- **Gráficos:** Direct3D 9 via DXVK (Vulkan) e suporte a ultrawide.\n\n**Limitações conhecidas**\n- A dica \"[Delete] Delete file\" ainda aparece como texto.",
+          "prerelease": false,
+          "assets": [
+            {
+              "name": "RaymanOriginsPC-v1.0-android-arm64.apk",
+              "size": 28159727,
+              "url": "https://github.com/BelmanteGu/RaymanOriginsPCRecomp/releases/download/v1.0/RaymanOriginsPC-v1.0-android-arm64.apk"
+            }
+          ]
+        }
+      ],
+      "latest_tag": "v1.1",
+      "latest_date": "2026-11-25T02:08:56Z",
+      "latest_body": "Rayman Origins (PC, 1.0.32504) recompilado para rodar nativo no Android (arm64). Requer a sua própria cópia da Steam. Atualiza por cima da 1.0.\n\n**Testado**\n\n| Aparelho | Chip / GPU | RAM | Android | Resolução | FPS |\n|---|---|---|---|---|---|\n| Galaxy S23 Ultra | Snapdragon 8 Gen 2 / Adreno 740 | 12 GB | 17 | 1080p | 60 |\n| Galaxy S23 | Snapdragon 8 Gen 2 / Adreno 740 | 8 GB | 16 | 1080p | 60 |\n| POCO F7 | Snapdragon 8s Gen 4 | — | — | 1080p | 60 |\n| Galaxy A56 | Exynos 1580 / Xclipse 540 | — | 16 | 1080p | 60 |\n| Moto G200 | Snapdragon 888+ / Adreno 660 | — | — | 1080p | 60 |\n| Black Shark 5 Pro | Snapdragon 8 Gen 1 / Adreno 730 | 12 GB | 11 | 1080p | 60 |\n| Moto G62 | Snapdragon 750G / Adreno 619 | 4 GB | 13 | 1080p | 30 |\n| Galaxy S21 FE | Exynos 2100 / Mali-G78 | 6 GB | 16 | 1080p | 30 |\n| Galaxy Note 10+ | Exynos 9825 / Mali-G76 | 12 GB | 12 | 1080p | 30 |\n| Redmi 10C | Snapdragon 680 / Adreno 610 | 4 GB | 13 | 540p | 30 |\n\n**Novidades**\n\n**Driver de GPU** (Arquivos do jogo → Driver de GPU)\n- Uma lista com:\n  - o driver do sistema (Turnip desligado);\n  - os drivers já instalados, que trocam com um toque;\n  - drivers para baixar direto do GitHub: **Turnip 26.3 R6** (recomendad",
+      "channel": "stable",
+      "latest_apk_name": "RaymanOriginsPC-v1.1-android-arm64.apk",
+      "latest_apk_url": "https://github.com/BelmanteGu/RaymanOriginsPCRecomp/releases/download/v1.1/RaymanOriginsPC-v1.1-android-arm64.apk",
+      "latest_apk_size": 28663849,
+      "latest_apk_tag": "v1.1",
+      "platform_families": [
+        "pc"
+      ],
+      "download_kind": "github-release",
+      "android_ready_source": "unknown",
+      "downloads_basis": "lifetime",
+      "downloads_lifetime": 565,
+      "downloads_total": 565
     }
   ],
-  "count": 542
+  "count": 544
 }
