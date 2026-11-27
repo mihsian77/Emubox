@@ -1,11 +1,11 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-26T00:00:00Z",
+ "updated_at": "2026-11-27T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
   "Adreno-830": {
-   "configs": 350,
+   "configs": 353,
    "top": [
     {
      "combo": [
@@ -27,7 +27,7 @@
       ]
      ],
      "count": 33,
-     "share": 9.4
+     "share": 9.3
     },
     {
      "combo": [
@@ -49,7 +49,7 @@
       ]
      ],
      "count": 24,
-     "share": 6.9
+     "share": 6.8
     },
     {
      "combo": [
@@ -72,77 +72,6 @@
      ],
      "count": 18,
      "share": 5.1
-    }
-   ]
-  },
-  "Adreno-840": {
-   "configs": 232,
-   "top": [
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2508"
-      ],
-      [
-       "GPU",
-       "turnip-sdk36"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 23,
-     "share": 9.9
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.3"
-      ],
-      [
-       "FEXCore",
-       "2609-unix"
-      ],
-      [
-       "GPU",
-       "turnip-sdk36"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 8,
-     "share": 3.4
-    },
-    {
-     "combo": [
-      [
-       "DXVK",
-       "2.7.1-1-gplasync-arm64ec-0"
-      ],
-      [
-       "FEXCore",
-       "FEX-2607+323-Nightly-unix-0"
-      ],
-      [
-       "GPU",
-       "Turnip Gen8 V33"
-      ],
-      [
-       "VKD3D",
-       "2.8"
-      ]
-     ],
-     "count": 5,
-     "share": 2.2
     }
    ]
   },
@@ -202,6 +131,77 @@
       [
        "GPU",
        "System"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 5,
+     "share": 2.2
+    }
+   ]
+  },
+  "Adreno-840": {
+   "configs": 231,
+   "top": [
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2508"
+      ],
+      [
+       "GPU",
+       "turnip-sdk36"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 23,
+     "share": 10.0
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.3"
+      ],
+      [
+       "FEXCore",
+       "2609-unix"
+      ],
+      [
+       "GPU",
+       "turnip-sdk36"
+      ],
+      [
+       "VKD3D",
+       "2.8"
+      ]
+     ],
+     "count": 8,
+     "share": 3.5
+    },
+    {
+     "combo": [
+      [
+       "DXVK",
+       "2.7.1-1-gplasync-arm64ec-0"
+      ],
+      [
+       "FEXCore",
+       "FEX-2607+323-Nightly-unix-0"
+      ],
+      [
+       "GPU",
+       "Turnip Gen8 V33"
       ],
       [
        "VKD3D",
@@ -285,7 +285,7 @@
    ]
   },
   "Adreno-750": {
-   "configs": 193,
+   "configs": 194,
    "top": [
     {
      "combo": [
@@ -351,7 +351,7 @@
       ]
      ],
      "count": 3,
-     "share": 1.6
+     "share": 1.5
     }
    ]
   },
@@ -1668,7 +1668,7 @@
    ]
   },
   "Mali-G610": {
-   "configs": 31,
+   "configs": 32,
    "top": [
     {
      "combo": [
@@ -1690,7 +1690,7 @@
       ]
      ],
      "count": 5,
-     "share": 16.1
+     "share": 15.6
     },
     {
      "combo": [
@@ -1712,7 +1712,7 @@
       ]
      ],
      "count": 3,
-     "share": 9.7
+     "share": 9.4
     },
     {
      "combo": [
@@ -1734,7 +1734,7 @@
       ]
      ],
      "count": 3,
-     "share": 9.7
+     "share": 9.4
     }
    ]
   },
@@ -3364,7 +3364,7 @@
  },
  "mali_combos": {
   "Mali-G57": {
-   "configs": 181,
+   "configs": 183,
    "top": [
     {
      "combo": [
@@ -3390,7 +3390,7 @@
       ]
      ],
      "count": 59,
-     "share": 32.6
+     "share": 32.2
     },
     {
      "combo": [
@@ -3416,7 +3416,7 @@
       ]
      ],
      "count": 18,
-     "share": 9.9
+     "share": 9.8
     },
     {
      "combo": [
@@ -3442,7 +3442,7 @@
       ]
      ],
      "count": 15,
-     "share": 8.3
+     "share": 8.2
     }
    ]
   },
