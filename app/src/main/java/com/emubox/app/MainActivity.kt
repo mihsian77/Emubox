@@ -759,11 +759,11 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         topBar = {
                             // 缺文件权限时常驻提示：任何分区都能看到并一键去授权，
-                            // 避免「点了下载没反应」却查不到原因
-                            if (!storageGranted.value && !showStorageDialog.value) {
-                                StoragePermissionBanner(
-                                    onGrant = { requestStorageAccess() }
-                                )
+                            // 避免「点了下载没反应」却查不到原因。与失败弹窗互斥，故拆两层判断
+                            if (!storageGranted.value) {
+                                if (!showStorageDialog.value) {
+                                    StoragePermissionBanner(onGrant = { requestStorageAccess() })
+                                }
                                 if (showStorageDialog.value) {
                                     StoragePermissionDialog(
                                         onGrant = {
@@ -822,9 +822,9 @@ class MainActivity : ComponentActivity() {
                                         .background(
                                             androidx.compose.ui.graphics.Brush.horizontalGradient(
                                                 listOf(
-                                                    Color(0x003FD9C4),
+                                                    Color.Transparent,
                                                     Color(0x998B5CF6),
-                                                    Color(0x003FD9C4)
+                                                    Color.Transparent
                                                 )
                                             )
                                         )
