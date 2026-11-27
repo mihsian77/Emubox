@@ -97099,7 +97099,1586 @@
       "downloads_basis": "lifetime",
       "downloads_lifetime": 565,
       "downloads_total": 565
+    },
+    {
+      "id": "morerokk-mhgurecomp",
+      "name": "MHGU Recomp",
+      "name_zh": "《怪物猎人 XX（MHGU）》Android 重编译",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "mhgu-recomp",
+      "family_label": "MHGU Recomp",
+      "owner": "morerokk",
+      "repo": "morerokk/MHGURecomp",
+      "repo_url": "https://github.com/morerokk/MHGURecomp",
+      "homepage": "",
+      "description": "《怪物猎人 世代终极版》（Monster Hunter Generations Ultimate）静态重编译到 Android，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "0.20.4",
+      "latest_date": "2026-11-26T17:23:40Z",
+      "channel": "stable",
+      "latest_body": "# MHGU Recomp 0.20.4\n\n- Added setting to share credit for clearing Deviant Quests! That means everyone gets credit for clearing the quest, not just the poster. This should make Deviant Quests a lot more enjoyable when playing with groups\n    - This setting is enabled by default\n    - This only clears quests that you \"should\" have access to. If your friend is 1 quest ahead and you complete that Deviant quest together, it will not count retroactively (as with village quests in the hub)\n- Added support for Switch 2 Pro Controllers\n- (Android) Added rumble for devices that have controller rumble but report that they don't (like the AYN Thor)\n    - If you are playing this on your phone, this likely means that your phone will vibrate! You can turn off rumble in the *ingame* main menu options if it's annoying\n- Weapon icons for unknown weapon types (like modded weapons) now show up as a large red \"X\" in the Search Hubs list and in the hub player list, instead of a Greatsword icon",
+      "latest_apk_name": "Android-MHGURecomp.0.20.4.apk",
+      "latest_apk_url": "https://github.com/morerokk/MHGURecomp/releases/download/0.20.4/Android-MHGURecomp.0.20.4.apk",
+      "latest_apk_size": 140375592,
+      "latest_apk_tag": "0.20.4",
+      "distribution": "release-apk",
+      "stars": 774,
+      "forks": 72,
+      "watchers": 0,
+      "downloads_total": 2079,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T02:00:17Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "nintendo"
+      ],
+      "downloads_lifetime": 2079,
+      "releases": [
+        {
+          "tag": "0.20.4",
+          "name": "0.20.4 - Deviant Quests Shared, Bugfixes",
+          "date": "2026-11-26T17:23:40Z",
+          "body": "# MHGU Recomp 0.20.4\n\n- Added setting to share credit for clearing Deviant Quests! That means everyone gets credit for clearing the quest, not just the poster. This should make Deviant Quests a lot more enjoyable when playing with groups\n    - This setting is enabled by default\n    - This only clears quests that you \"should\" have access to. If your friend is 1 quest ahead and you complete that Deviant quest together, it will not count retroactively (as with village quests in the hub)\n- Added support for Switch 2 Pro Controllers\n- (Android) Added rumble for devices that have controller rumble but report that they don't (like the AYN Thor)\n    - If you are playing this on your phone, this likely means that your phone will vibrate! You can turn off rumble in the *ingame* main menu options if it's annoying\n- Weapon icons for unknown weapon types (like modded weapons) now show up as a large red \"X\" in the Search Hubs list and in the hub player list, instead of a Greatsword icon",
+          "assets": [
+            {
+              "name": "Android-MHGURecomp.0.20.4.apk",
+              "size": 140375592,
+              "dl": 464
+            },
+            {
+              "name": "Linux-MHGURecomp.0.20.4.tar.gz",
+              "size": 46718341,
+              "dl": 273
+            },
+            {
+              "name": "Windows-MHGURecomp.0.20.4.zip",
+              "size": 45495341,
+              "dl": 1759
+            }
+          ]
+        },
+        {
+          "tag": "0.20.3",
+          "name": "0.20.3 - Bugfixes, mods",
+          "date": "2026-11-25T20:39:12Z",
+          "body": "# MHGU Recomp 0.20.3\n\n- Made most mods load and perform *much* faster, particularly large content-adding mods\n- Changed `subsdk` mod handling to be much more accurate to emulators\n- Fixed a lot of Steam Deck and Steam Controller annoyances that caused the `SELECT`+`START` settings menu and the \"Are you sure you want to exit?\" prompt to misbehave\n- Fixed MHXX-style 2nd screen on dual-screen devices (like the AYN Thor) not accepting touch input properly\n- Half-fixed a bug in GU where at high framerates, Pierce Shots from Bowguns and most Bow shots did not deal the correct amount of damage\n    - This should fix the infamous \"Lao HBG speedrun at 60 FPS not getting the head break\" bug at 60 FPS\n    - Thanks a lot to the reporters for their detailed reports! (#23)\n    - This bug is not 100% fixed, and rears its head again at 120+ FPS, but at a smaller scale. I'm looking into it!\n- Fixed a bug where the game would crash before saving if a lot of mods were installed\n- Fixed a bug where you could very rarely get a \"The hub server runs a different version\" message\n- Added improved logging for mod conflicts\n- Fixed timezoneservice log spam in log.txt files",
+          "assets": [
+            {
+              "name": "Android-MHGURecomp.0.20.3.apk",
+              "size": 140260904,
+              "dl": 854
+            },
+            {
+              "name": "Linux-MHGURecomp.0.20.3.tar.gz",
+              "size": 46745319,
+              "dl": 300
+            },
+            {
+              "name": "Windows-MHGURecomp.0.20.3.zip",
+              "size": 46424538,
+              "dl": 1799
+            }
+          ]
+        },
+        {
+          "tag": "0.20.2",
+          "name": "0.20.2 - Bugfixes, Mods",
+          "date": "2026-11-25T18:04:49Z",
+          "body": "# MHGU Recomp 0.20.2\n\n- Made most mods load and perform *much* faster, particularly large content-adding mods\n- Fixed a lot of Steam Deck and Steam Controller annoyances that caused the `SELECT`+`START` settings menu and the \"Are you sure you want to exit?\" prompt to misbehave\n- Changed `subsdk` mod handling to be much more accurate to emulators (this might temporarily break something, please open an issue if you are a mod author and find your mod is broken by this update!)\n- Fixed MHXX-style 2nd screen on dual-screen devices (like the AYN Thor) not accepting touch input properly\n- Half-fixed a bug in GU where at high framerates, Pierce Shots from Bowguns and most Bow shots did not deal the correct amount of damage\n    - This should fix the infamous \"Lao HBG speedrun at 60 FPS not getting the head break\" bug at 60 FPS\n    - Thanks a lot to the reporters for their detailed reports! (#23)\n    - This bug is not 100% fixed, and rears its head again above 120 FPS, but at a smaller scale. I'm looking into it!\n- Fixed a bug where the game would crash before saving if a lot of mods were installed",
+          "assets": [
+            {
+              "name": "Android-MHGURecomp.0.20.2.apk",
+              "size": 140260904,
+              "dl": 35
+            },
+            {
+              "name": "Linux-MHGURecomp.0.20.2.tar.gz",
+              "size": 46745263,
+              "dl": 20
+            },
+            {
+              "name": "Windows-MHGURecomp.0.20.2.zip",
+              "size": 46423368,
+              "dl": 58
+            }
+          ]
+        },
+        {
+          "tag": "0.20.1",
+          "name": "0.20.1 - Bugfixes",
+          "date": "2026-11-25T11:36:43Z",
+          "body": "# MHGU Recomp 0.20.1\n\n- Made most mods load and perform *much* faster, particularly large content-adding mods\n- Fixed MHXX-style 2nd screen on dual-screen devices (like the AYN Thor) not accepting touch input properly\n- Fixed a bug in GU where at high framerates, Pierce Shots from Bowguns and most Bow shots did not deal the correct amount of damage\n    - This should fix the infamous \"Lao HBG speedrun at 60 FPS not getting the head break\" bug\n    - Thanks a lot to the reporters for their detailed reports! (#23)\n- Fixed a bug where the game would crash before saving if a lot of mods were installed\n- Fixed a bug where you could very rarely get a \"The hub server runs a different version\" message\n- Added improved logging for mod conflicts\n- Fixed timezoneservice log spam in log.txt files\n\n**NOTE:** The default server now has crossplay between PC Public and Android Public MHGURecomp players! Lobbies are no longer separated.\n\n## Installation\n\n### Windows/Linux\n\n- Download the release zip/tar.gz for your platform, and extract it anywhere",
+          "assets": [
+            {
+              "name": "Android-MHGURecomp.0.20.1.apk",
+              "size": 140359208,
+              "dl": 80
+            },
+            {
+              "name": "Linux-MHGURecomp.0.20.1.tar.gz",
+              "size": 46690304,
+              "dl": 42
+            },
+            {
+              "name": "Windows-MHGURecomp.0.20.1.zip",
+              "size": 46352886,
+              "dl": 150
+            }
+          ]
+        },
+        {
+          "tag": "0.20.0",
+          "name": "0.20.0 - Dual Screen, Bugfixes",
+          "date": "2026-11-24T13:40:12Z",
+          "body": "# MHGU Recomp 0.20.0\n\n- Added MHXX-style dual screen for devices like the AYN Thor, and other dual-screen handhelds (thanks cerroverb!)\n    - This moves the map, hunter arts and item selector to the \"bottom\" screen. Has touch controls support for activating HA's\n    - Works on all 3 platforms\n    - This setting is disabled by default, you have to enable it manually for now to avoid \"false positives\" (and to avoid annoyances)\n    - You can set a custom wallpaper/backdrop for the bottom screen. Put a wallpaper in the `wallpapers/` subfolder inside the game folder. This *has* to be a `.bmp` file. On Android, it's wherever you told the game to save its data (where \"Files\" leads), or a path like `/sdcard/Android/data/io.github.morerokk.mhgurecomp/files/wallpapers/` by default.\n- (Android) Added temperature indicator setting\n- Fixed a bug where bows and bowguns were hard to control with the mouse while moving\n- Fixed Hunter Art key rebinding not always triggering arts correctly, and not showing the right prompt when using Control Style 3\n- Fixed VSync Off not working on some devices (#447)\n- (Android) Workaround for driver bugs that caused severe performance problems",
+          "assets": [
+            {
+              "name": "Android-MHGURecomp.0.20.0.apk",
+              "size": 140277288,
+              "dl": 646
+            },
+            {
+              "name": "Linux-MHGURecomp.0.20.0.tar.gz",
+              "size": 46589590,
+              "dl": 371
+            },
+            {
+              "name": "Windows-MHGURecomp.0.20.0.zip",
+              "size": 46261283,
+              "dl": 2538
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kvse-dsr-native",
+      "name": "DSR Native",
+      "name_zh": "《黑暗之魂 重制版》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "dsr-native",
+      "family_label": "Dark Souls Remastered Native",
+      "owner": "kvse",
+      "repo": "kvse/dsr-native",
+      "repo_url": "https://github.com/kvse/dsr-native",
+      "homepage": "",
+      "description": "《黑暗之魂 重制版》Switch 版静态重编译到 Android，含触控皮肤、FSR 放大，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.4.0",
+      "latest_date": "2026-11-24T18:18:45Z",
+      "channel": "stable",
+      "latest_body": "## What's new?\n\n- **Touch control skins:** Support for custom touch control skins as well as a new default skin brought to you by @v39192503-ux !!\n<img width=\"1920\" height=\"1080\" alt=\"Screenshot_20261124_114700_Top\" src=\"https://github.com/user-attachments/assets/787ce66a-edb7-4eec-8948-74cf4496e539\" />\n\n- **Simpler logging:** Logs by default are now much smaller and create less frequently to reduce file sizes and save storage. Detailed logging can be re-enabled inside the settings tab.\n- **FSR Upscaling:** You can now upscale the game from any resolution using FSR! Even the standard 720p! Brought to you by @fernanfez00 \n- **Sharp UI:** When enabled and using a lower render resolution, the HUD, the UI, and text all render at the device's native resolution.\n- **Shadow quality:** Options to reduce shadow quality or turn it off altogether. Turning it off improves performance on low-end devices.\n- **Culling:** Hides what you cannot see to improve performance. Found under experimental GPU settings as \"Skip hidden objects\". Here thanks to @fernanfez00",
+      "latest_apk_name": "dsr-loader-v0.4.0.apk",
+      "latest_apk_url": "https://github.com/kvse/dsr-native/releases/download/v0.4.0/dsr-loader-v0.4.0.apk",
+      "latest_apk_size": 4610220,
+      "latest_apk_tag": "v0.4.0",
+      "distribution": "release-apk",
+      "stars": 186,
+      "forks": 24,
+      "watchers": 0,
+      "downloads_total": 23517,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T14:17:24Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "nintendo"
+      ],
+      "downloads_lifetime": 23517,
+      "releases": [
+        {
+          "tag": "v0.4.0",
+          "name": "dsr-native-loader v0.4.0",
+          "date": "2026-11-24T18:18:45Z",
+          "body": "## What's new?\n\n- **Touch control skins:** Support for custom touch control skins as well as a new default skin brought to you by @v39192503-ux !!\n<img width=\"1920\" height=\"1080\" alt=\"Screenshot_20261124_114700_Top\" src=\"https://github.com/user-attachments/assets/787ce66a-edb7-4eec-8948-74cf4496e539\" />\n\n- **Simpler logging:** Logs by default are now much smaller and create less frequently to reduce file sizes and save storage. Detailed logging can be re-enabled inside the settings tab.\n- **FSR Upscaling:** You can now upscale the game from any resolution using FSR! Even the standard 720p! Brought to you by @fernanfez00 \n- **Sharp UI:** When enabled and using a lower render resolution, the HUD, the UI, and text all render at the device's native resolution.\n- **Shadow quality:** Options to reduce shadow quality or turn it off altogether. Turning it off improves performance on low-end devices.\n- **Culling:** Hides what you cannot see to improve performance. Found under experimental GPU settings as \"Skip hidden objects\". Here thanks to @fernanfez00",
+          "assets": [
+            {
+              "name": "dsr-loader-v0.4.0.apk",
+              "size": 4610220,
+              "dl": 4556
+            }
+          ]
+        },
+        {
+          "tag": "v0.3.0",
+          "name": "dsr-native-loader v0.3.0",
+          "date": "2026-11-22T09:37:37Z",
+          "body": "## What's new?\n\n- **Cheat support:** You can now import or write your own cheat text files similarly to how you would on Eden emu.\n- **Unlocked FPS option:** When this is selected the fps now caps itself to your screens refresh rate. (Expect bugs and glitches playing above 60FPS)\n- **Included optional Turnip driver for Adreno:** I have tested the turnip driver on an Adreno 740 and 630 and both seem to run better using the newly included v39 driver compared to system default. If any graphical issues occur use the system driver, or a different custom driver.\n- **Lighter post-processing option**\n- **More Mali gpu optimizations**\n- **Slight performance optimizations overall**\n## Fixes\n\n- A crash that may occur during Ornstein & Smough or Centipede Demon fight at 60fps\n",
+          "assets": [
+            {
+              "name": "dsr-loader-v0.3.0.apk",
+              "size": 4159578,
+              "dl": 4318
+            }
+          ]
+        },
+        {
+          "tag": "v0.2.1",
+          "name": "dsr-native-loader v0.2.1",
+          "date": "2026-11-14T02:22:09Z",
+          "body": "UPDATE 1.0.3 ACTUALLY WORKS NOW",
+          "assets": [
+            {
+              "name": "dsr-loader-v0.2.1.apk",
+              "size": 1417259,
+              "dl": 11593
+            }
+          ]
+        },
+        {
+          "tag": "v0.2.0",
+          "name": "dsr-native-loader v0.2.0",
+          "date": "2026-11-13T07:07:35Z",
+          "body": "## What's new?\n\n- **Update v1.0.3 support:** Update v1.0.3 is now fully supported! You can either install the update with its nsp/xci file through the floating gui or select a game install with update v1.0.3 already installed.\n- **Language options:** You can now select the multiple language options the game offers through the floating settings menu (Hold - and + for about one full second)\n- **Skip intro patch:** A custom made patch that bypasses the intro logos upon every app start.\n- **NSP/XCI support:** You can now select an nsp/xci file for the app to extract game files from without doing it yourself. (Requires your own prod.keys file for extracting)\n- **Graphics settings:** A brand new graphics tab with a \"performance mode\" option and a newly added render scale.\n- **Auto FPS cap button:** Automatically caps your fps depending on the amount of frames your hardware can produce to reduce stuttering and poor frame-pacing\n- **Experimental Mali GPU Support:** Various Mali GPU fixes thanks to @fernanfez00 , as well as experimental Mali GPU settings found in the graphics tab\n- **Touch control layout presets:** You can now save and load layout presets for touch controls",
+          "assets": [
+            {
+              "name": "dsr-loader-v0.2.0.apk",
+              "size": 1412671,
+              "dl": 1221
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "dsr-native-loader v0.1.0",
+          "date": "2026-11-11T01:38:01Z",
+          "body": "## What's new?\n- **Custom game install locations:** You are now able to select your own game install directory! The game will by default search \"/Download/DSRNative/game\" for game files, but if they are not found you will be asked to choose a folder with the game files and will boot from there in the future.\n- **Touch controls:** Touch controls are now fully implemented. They auto-hide when a controller is detected, but you can bring it up by double-tapping the screen.\n- **Floating GUI:** There is now a floating GUI you can bring up by holding minus + plus (start + select) for 1 full second. It has various adjustable settings for you to configure.\n- **Rendering fixes:** This build should fix all previous visual bugs/glitches seen in the last build.\n- **Extended Adreno GPU support:** Game should now fully load on older Snapdragon chipsets! (Tested with an Adreno 630)\n- **Custom drivers:** Using the new floating GUI, you will be able to import and load your own custom drivers for the game to use. The game will use them upon next boot. (Note: each time drivers are changed it must rebuild shaders, so expect a few seconds of texture pop-in next launch.)",
+          "assets": [
+            {
+              "name": "dsr-loader-v0.1.0.apk",
+              "size": 1218607,
+              "dl": 1829
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "masterllgod-naruto-storm-generations",
+      "name": "Naruto Storm Generations",
+      "name_zh": "《火影忍者疾风传：究极忍者风暴 世代》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "naruto-storm-generations",
+      "family_label": "Naruto Storm Generations",
+      "owner": "Masterllgod",
+      "repo": "Masterllgod/naruto-storm-generations-port-nativo",
+      "repo_url": "https://github.com/Masterllgod/naruto-storm-generations-port-nativo",
+      "homepage": "",
+      "description": "《火影忍者疾风传：究极忍者风暴 世代》Xbox 360 版静态重编译到 Android，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.4.16",
+      "latest_date": "2026-11-03T17:10:46Z",
+      "channel": "stable",
+      "latest_body": "## 🌀 v0.4.16: mais proteção contra congelamentos\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStormGenerations-PortNativo-v0.4.16-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou desde a v0.4.15\n\n**Mais proteção contra congelamentos (igual ao Storm 2)**\n- Barreiras de memória no processador de comandos da GPU antes de avisar o jogo que um comando terminou: no ARM o jogo podia reaproveitar a memória cedo demais e travar a imagem depois de alguns minutos.\n- Um buffer de comandos estragado não roda mais em círculo para sempre (antes prendia o jogo com a CPU a 100%).\n- As esperas do processador de comandos avançam o ponteiro de leitura como o console faz e têm prazo, em vez de esperar para sempre.\n\n### 🔁 Se você vem de uma versão de 30/10 ou anterior\n\n**Não fecha mais ao abrir com internet ligada (Android 11 e 12)**",
+      "latest_apk_name": "NarutoStormGenerations-PortNativo-v0.4.16-arm64.apk",
+      "latest_apk_url": "https://github.com/Masterllgod/naruto-storm-generations-port-nativo/releases/download/v0.4.16/NarutoStormGenerations-PortNativo-v0.4.16-arm64.apk",
+      "latest_apk_size": 15900818,
+      "latest_apk_tag": "v0.4.16",
+      "distribution": "release-apk",
+      "stars": 118,
+      "forks": 11,
+      "watchers": 0,
+      "downloads_total": 11612,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-03T17:11:57Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "microsoft"
+      ],
+      "downloads_lifetime": 11612,
+      "releases": [
+        {
+          "tag": "v0.4.16",
+          "name": "v0.4.16: mais proteção contra congelamentos",
+          "date": "2026-11-03T17:10:46Z",
+          "body": "## 🌀 v0.4.16: mais proteção contra congelamentos\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStormGenerations-PortNativo-v0.4.16-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou desde a v0.4.15\n\n**Mais proteção contra congelamentos (igual ao Storm 2)**\n- Barreiras de memória no processador de comandos da GPU antes de avisar o jogo que um comando terminou: no ARM o jogo podia reaproveitar a memória cedo demais e travar a imagem depois de alguns minutos.\n- Um buffer de comandos estragado não roda mais em círculo para sempre (antes prendia o jogo com a CPU a 100%).\n- As esperas do processador de comandos avançam o ponteiro de leitura como o console faz e têm prazo, em vez de esperar para sempre.\n\n### 🔁 Se você vem de uma versão de 30/10 ou anterior\n\n**Não fecha mais ao abrir com internet ligada (Android 11 e 12)**",
+          "assets": [
+            {
+              "name": "NarutoStormGenerations-PortNativo-v0.4.16-arm64.apk",
+              "size": 15900818,
+              "dl": 6843
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.15",
+          "name": "v0.4.15: geração de quadros (AMD FG), fim dos congelamentos e abre com internet no Android 11/12",
+          "date": "2026-11-03T16:53:06Z",
+          "body": "## 🌀 v0.4.15: geração de quadros (AMD FG), fim dos congelamentos e abre com internet no Android 11/12\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStormGenerations-PortNativo-v0.4.15-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou desde a v0.4.11\n\n**Não fecha mais ao abrir com internet ligada (Android 11 e 12)**\n- Em vários celulares com Android 11 ou 12 o app mostrava \"apresenta falhas continuamente\" e só abria com o Wi-Fi e os dados desligados. A causa era a checagem de atualização, que usava uma função do Android 13. Corrigido: agora abre normal com internet.\n- Quem está no Android 11/12 com uma versão antiga precisa **baixar este APK à mão** (o aviso de atualização da versão antiga é justamente o que fechava o app). Dá para abrir o app sem internet e instalar por cima; o save e a pasta do jogo continuam.\n\n**Geração de quadros própria (AMD FG)**\n- Nova opção **\"Gerar quadros (AMD)\"**: Off / 2x / 3x / 4x. O jogo roda a 30 FPS e a tela recebe 60, 90 ou 120 quadros por segundo.",
+          "assets": [
+            {
+              "name": "NarutoStormGenerations-PortNativo-v0.4.15-arm64.apk",
+              "size": 15899914,
+              "dl": 114
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.11",
+          "name": "v0.4.11: resolução 540p e Xclipse no shadowZero",
+          "date": "2026-10-30T18:17:26Z",
+          "body": "## 🌀 v0.4.11: resolução 540p e GPU Xclipse no renderizador nativo\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStormGenerations-PortNativo-v0.4.11-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou\n- **Resolução 540p nova:** entre o 480p e o 720p (960x540 por dentro, 56% dos pixels do 720p). Bom meio-termo para celular médio que não segura o 720p. Quem já tinha escolhido uma resolução continua nela.\n- Na primeira luta depois de instalar podem aparecer pequenas travadas enquanto os shaders são preparados de novo; depois some.\n- **Samsung com GPU Xclipse agora usa o shadowZero** (o renderizador nativo, mais leve) em vez do Xenia.\n- **JOGAR não abria depois de atualizar** em alguns celulares: o aviso antigo de checagem da GPU é ignorado e o jogo confere a GPU de novo.\n\n### 📋 Antes de instalar\nÉ preciso a **sua própria cópia** do jogo. Veja o [README](https://github.com/Masterllgod/naruto-storm-generations-port-nativo).\n\n### 🔒 SHA-256\n- APK: `e14786e0128b5d69b3bb371632740b84bf65a488a7f6ffefaa63cd801d5f7b4d`\n",
+          "assets": [
+            {
+              "name": "NarutoStormGenerations-PortNativo-v0.4.11-arm64.apk",
+              "size": 15278198,
+              "dl": 2626
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.9",
+          "name": "v0.4.9: FSR, tela 16:9 certa, preparo de shaders e Shadow menor",
+          "date": "2026-10-30T12:20:53Z",
+          "body": "## 🌀 v0.4.9: FSR, tela 16:9 certa, preparo de shaders e Shadow menor\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStormGenerations-PortNativo-v0.4.9-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo é mantida.\n\n### ✨ O que mudou desde a v0.4.2\n- **Bloom sem quadriculado nas GPUs Mali:** o brilho saía em quadrados de 16 pixels; agora sai liso.\n- **FSR e Nitidez:** \"Escala na tela\" agora é Normal/FSR e tem a opção **Nitidez** (Off/Baixa/Média/Alta). O seletor de Brilho saiu (a imagem já sai certa).\n- **Tela 16:9 / Esticar funcionando no shadowZero:** antes a opção não fazia nada e a imagem era cortada nas bordas.\n- **Shadow pequeno no lugar da engrenagem:** o emblema do Shadow fica pequeno na linha de cima, arrastável, e aparece também com controle plugado. No menu dele: Tela 16:9/esticar, **Mostrar FPS** e **Ocultar o Shadow** (um toque no mesmo lugar traz de volta). Fica transparente quando parado.\n- **\"Preparando shaders\":** antes do jogo começar, os shaders já conhecidos são compilados uma vez, para não engasgar na primeira luta.\n- **Ícone novo.**\n\n### 📋 Antes de instalar",
+          "assets": [
+            {
+              "name": "NarutoStormGenerations-PortNativo-v0.4.9-arm64.apk",
+              "size": 15269390,
+              "dl": 506
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.2",
+          "name": "v0.4.2: sem fechamentos aleatórios no ARM",
+          "date": "2026-10-28T17:25:16Z",
+          "body": "Novidades da v0.4.2\n\n- Mesma correção de estabilidade do Storm 3 v0.5.4: no processador do celular (ARM), uma thread do jogo podia pegar um objeto antes de ele estar pronto e o jogo fechava (\"indirect call to unknown address\"). Agora a ordem de memória é respeitada como no console.\n\nTudo da v0.4.1 continua: renderizador shadowZero, 900p e dois controles.\n",
+          "assets": [
+            {
+              "name": "NarutoStormGenerations-PortNativo-v0.4.2-arm64.apk",
+              "size": 14962571,
+              "dl": 1523
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "masterllgod-naruto-storm-3-full-burst",
+      "name": "Naruto Storm 3 Full Burst",
+      "name_zh": "《火影忍者疾风传：究极忍者风暴 3 全力爆发》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "naruto-storm-3-full-burst",
+      "family_label": "Naruto Storm 3 Full Burst",
+      "owner": "Masterllgod",
+      "repo": "Masterllgod/naruto-storm-3-full-burst-port-nativo",
+      "repo_url": "https://github.com/Masterllgod/naruto-storm-3-full-burst-port-nativo",
+      "homepage": "",
+      "description": "《火影忍者疾风传：究极忍者风暴 3 全力爆发》Xbox 360 版静态重编译到 Android，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.6.16",
+      "latest_date": "2026-11-03T17:10:39Z",
+      "channel": "stable",
+      "latest_body": "## 🌀 v0.6.16: mais proteção contra congelamentos\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStorm3FullBurst-PortNativo-v0.6.16-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou desde a v0.6.15\n\n**Mais proteção contra congelamentos (igual ao Storm 2)**\n- Barreiras de memória no processador de comandos da GPU antes de avisar o jogo que um comando terminou: no ARM o jogo podia reaproveitar a memória cedo demais e travar a imagem depois de alguns minutos.\n- Um buffer de comandos estragado não roda mais em círculo para sempre (antes prendia o jogo com a CPU a 100%).\n- As esperas do processador de comandos avançam o ponteiro de leitura como o console faz e têm prazo, em vez de esperar para sempre.\n\n### 🔁 Se você vem de uma versão de 30/10 ou anterior\n\n**Não fecha mais ao abrir com internet ligada (Android 11 e 12)**",
+      "latest_apk_name": "NarutoStorm3FullBurst-PortNativo-v0.6.16-arm64.apk",
+      "latest_apk_url": "https://github.com/Masterllgod/naruto-storm-3-full-burst-port-nativo/releases/download/v0.6.16/NarutoStorm3FullBurst-PortNativo-v0.6.16-arm64.apk",
+      "latest_apk_size": 23208679,
+      "latest_apk_tag": "v0.6.16",
+      "distribution": "release-apk",
+      "stars": 111,
+      "forks": 10,
+      "watchers": 0,
+      "downloads_total": 34984,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-03T17:11:51Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "microsoft"
+      ],
+      "downloads_lifetime": 34984,
+      "releases": [
+        {
+          "tag": "v0.6.16",
+          "name": "v0.6.16: mais proteção contra congelamentos",
+          "date": "2026-11-03T17:10:39Z",
+          "body": "## 🌀 v0.6.16: mais proteção contra congelamentos\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStorm3FullBurst-PortNativo-v0.6.16-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou desde a v0.6.15\n\n**Mais proteção contra congelamentos (igual ao Storm 2)**\n- Barreiras de memória no processador de comandos da GPU antes de avisar o jogo que um comando terminou: no ARM o jogo podia reaproveitar a memória cedo demais e travar a imagem depois de alguns minutos.\n- Um buffer de comandos estragado não roda mais em círculo para sempre (antes prendia o jogo com a CPU a 100%).\n- As esperas do processador de comandos avançam o ponteiro de leitura como o console faz e têm prazo, em vez de esperar para sempre.\n\n### 🔁 Se você vem de uma versão de 30/10 ou anterior\n\n**Não fecha mais ao abrir com internet ligada (Android 11 e 12)**",
+          "assets": [
+            {
+              "name": "NarutoStorm3FullBurst-PortNativo-v0.6.16-arm64.apk",
+              "size": 23208679,
+              "dl": 25305
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.15",
+          "name": "v0.6.15: geração de quadros (AMD FG), fim dos congelamentos e abre com internet no Android 11/12",
+          "date": "2026-11-03T16:53:02Z",
+          "body": "## 🌀 v0.6.15: geração de quadros (AMD FG), fim dos congelamentos e abre com internet no Android 11/12\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStorm3FullBurst-PortNativo-v0.6.15-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou desde a v0.6.11\n\n**Não fecha mais ao abrir com internet ligada (Android 11 e 12)**\n- Em vários celulares com Android 11 ou 12 o app mostrava \"apresenta falhas continuamente\" e só abria com o Wi-Fi e os dados desligados. A causa era a checagem de atualização, que usava uma função do Android 13. Corrigido: agora abre normal com internet.\n- Quem está no Android 11/12 com uma versão antiga precisa **baixar este APK à mão** (o aviso de atualização da versão antiga é justamente o que fechava o app). Dá para abrir o app sem internet e instalar por cima; o save e a pasta do jogo continuam.\n\n**Geração de quadros própria (AMD FG)**\n- Nova opção **\"Gerar quadros (AMD)\"**: Off / 2x / 3x / 4x. O jogo roda a 30 FPS e a tela recebe 60, 90 ou 120 quadros por segundo.",
+          "assets": [
+            {
+              "name": "NarutoStorm3FullBurst-PortNativo-v0.6.15-arm64.apk",
+              "size": 23208195,
+              "dl": 357
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.11",
+          "name": "v0.6.11: resolução 540p",
+          "date": "2026-10-30T18:17:21Z",
+          "body": "## 🌀 v0.6.11: resolução 540p\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStorm3FullBurst-PortNativo-v0.6.11-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo, o save e as opções são mantidos.\n\n### ✨ O que mudou\n- **Resolução 540p nova:** entre o 480p e o 720p (960x540 por dentro, 56% dos pixels do 720p). Bom meio-termo para celular médio que não segura o 720p. Quem já tinha escolhido uma resolução continua nela.\n- Na primeira luta depois de instalar podem aparecer pequenas travadas enquanto os shaders são preparados de novo; depois some.\n\n\n### 📋 Antes de instalar\nÉ preciso a **sua própria cópia** do jogo. Veja o [README](https://github.com/Masterllgod/naruto-storm-3-full-burst-port-nativo).\n\n### 🔒 SHA-256\n- APK: `285e96651e455d3287630063f96d5aebaa218c5f23d0fbb9a3cce13cf64a11b2`\n",
+          "assets": [
+            {
+              "name": "NarutoStorm3FullBurst-PortNativo-v0.6.11-arm64.apk",
+              "size": 22583651,
+              "dl": 7246
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.10",
+          "name": "v0.6.10: JOGAR volta a abrir depois de atualizar (Xclipse)",
+          "date": "2026-10-30T14:42:02Z",
+          "body": "## 🌀 v0.6.10: JOGAR volta a abrir depois de atualizar (Xclipse) e mais GPUs Mali\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStorm3FullBurst-PortNativo-v0.6.10-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo é mantida.\n\n### 🛠️ O que mudou desde a v0.6.5\n- **O JOGAR voltou a abrir o jogo depois de atualizar:** em vários celulares (principalmente Samsung Xclipse), quem vinha de uma versão antiga ficava preso em \"Celular não suportado\", porque o app lia um aviso de GPU gravado pela versão velha. Agora esse aviso antigo é descartado e o jogo confere a GPU de novo ao abrir.\n- **Mais compatibilidade com GPUs Mali mais antigas:** ajustes no renderizador para GPUs sem alguns recursos de Vulkan (depth clamp, indexação de texturas). Celular que ainda não tem o necessário mostra **\"Celular não suportado\"** dizendo o motivo, com o botão **ENVIAR LOG PARA O SHADOW**.\n- **Log com a versão do app:** o \"Enviar log\" agora diz qual versão está instalada.\n\n### 📋 Antes de instalar",
+          "assets": [
+            {
+              "name": "NarutoStorm3FullBurst-PortNativo-v0.6.10-arm64.apk",
+              "size": 22583059,
+              "dl": 972
+            }
+          ]
+        },
+        {
+          "tag": "v0.6.5",
+          "name": "v0.6.5: PT-BR, FSR, tela 16:9 certa e preparo de shaders",
+          "date": "2026-10-30T12:20:49Z",
+          "body": "## 🌀 v0.6.5: PT-BR, FSR, tela 16:9 certa, preparo de shaders e Shadow menor\n\n### 📦 Download\n| Plataforma | Arquivo |\n|---|---|\n| 📱 **Android** (11+, arm64) | `NarutoStorm3FullBurst-PortNativo-v0.6.5-arm64.apk` |\n\nInstala por cima da versão anterior (o aviso de atualização aparece no próprio app). A pasta do jogo é mantida.\n\n### ✨ O que mudou desde a v0.5.4\n- **Textos em português:** chave **PT-BR** no launcher (o jogo já tem a tradução; agora ela é escolhida).\n- **Sempre no shadowZero:** inclusive nas Samsung com GPU Xclipse (Exynos). Celular sem os recursos de Vulkan necessários mostra \"Celular não suportado\" com o botão **ENVIAR LOG PARA O SHADOW** e o link do grupo.\n- **Bloom sem quadriculado nas GPUs Mali:** o brilho saía em quadrados de 16 pixels; agora sai liso.\n- **FSR e Nitidez:** \"Escala na tela\" agora é Normal/FSR e tem a opção **Nitidez** (Off/Baixa/Média/Alta). O seletor de Brilho saiu (a imagem já sai certa).\n- **Tela 16:9 / Esticar funcionando no shadowZero:** antes a opção não fazia nada e a imagem era cortada nas bordas.",
+          "assets": [
+            {
+              "name": "NarutoStorm3FullBurst-PortNativo-v0.6.5-arm64.apk",
+              "size": 22576787,
+              "dl": 1104
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "desm0nt-divinity-original-sin-2",
+      "name": "Divinity: Original Sin 2",
+      "name_zh": "《神界：原罪 2 决定版》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "divinity-os2",
+      "family_label": "Divinity Original Sin 2",
+      "owner": "Desm0nt",
+      "repo": "Desm0nt/divinity-original-sin-2-port",
+      "repo_url": "https://github.com/Desm0nt/divinity-original-sin-2-port",
+      "homepage": "",
+      "description": "《神界：原罪 2 决定版》Switch 版原生移植到 Android，支持触控 UI 与宽屏，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.3.5",
+      "latest_date": "2026-11-24T20:07:19Z",
+      "channel": "stable",
+      "latest_body": "Divinity Original Sin 2 Mobile 0.3.5: save previews in the load menu are back.\n\n> [!NOTE]\n> **From 0.3.x:** just install the new APK over the old one (saves stay). If you have not done it for 0.3.4 yet: run setup again and copy `romfs/Data/TouchUI.pak` for the new health bars of the Touch mode (optional). **From older versions:** follow the update steps of [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0) first.\n\n> [!NOTE]\n> **С 0.3.x:** просто поставьте новый APK поверх старого (сохранения остаются). Если ещё не делали этого для 0.3.4: запустите setup ещё раз и скопируйте `romfs/Data/TouchUI.pak` ради новых полосок здоровья в режиме «Касание» (по желанию). **Со старых версий:** сначала сделайте шаги обновления из [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0).\n\n## English\n\n**Fixes**\n- The picture of a save in the load menu was black since 0.3.0. New saves show the scene again (saves made with 0.3.0 - 0.3.4 keep their black picture).\n\n## Русский\n\n**Исправления**",
+      "latest_apk_name": "DOS2-Mobile-v0.3.5-arm64.apk",
+      "latest_apk_url": "https://github.com/Desm0nt/divinity-original-sin-2-port/releases/download/v0.3.5/DOS2-Mobile-v0.3.5-arm64.apk",
+      "latest_apk_size": 62351619,
+      "latest_apk_tag": "v0.3.5",
+      "distribution": "release-apk",
+      "stars": 48,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 692,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-24T20:07:00Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "nintendo"
+      ],
+      "downloads_lifetime": 692,
+      "releases": [
+        {
+          "tag": "v0.3.5",
+          "name": "v0.3.5",
+          "date": "2026-11-24T20:07:19Z",
+          "body": "Divinity Original Sin 2 Mobile 0.3.5: save previews in the load menu are back.\n\n> [!NOTE]\n> **From 0.3.x:** just install the new APK over the old one (saves stay). If you have not done it for 0.3.4 yet: run setup again and copy `romfs/Data/TouchUI.pak` for the new health bars of the Touch mode (optional). **From older versions:** follow the update steps of [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0) first.\n\n> [!NOTE]\n> **С 0.3.x:** просто поставьте новый APK поверх старого (сохранения остаются). Если ещё не делали этого для 0.3.4: запустите setup ещё раз и скопируйте `romfs/Data/TouchUI.pak` ради новых полосок здоровья в режиме «Касание» (по желанию). **Со старых версий:** сначала сделайте шаги обновления из [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0).\n\n## English\n\n**Fixes**\n- The picture of a save in the load menu was black since 0.3.0. New saves show the scene again (saves made with 0.3.0 - 0.3.4 keep their black picture).\n\n## Русский\n\n**Исправления**",
+          "assets": [
+            {
+              "name": "DOS2-Mobile-v0.3.5-arm64-android10.apk",
+              "size": 62408963,
+              "dl": 70
+            },
+            {
+              "name": "DOS2-Mobile-v0.3.5-arm64.apk",
+              "size": 62351619,
+              "dl": 241
+            }
+          ]
+        },
+        {
+          "tag": "v0.3.4",
+          "name": "v0.3.4",
+          "date": "2026-11-24T14:00:05Z",
+          "body": "Divinity Original Sin 2 Mobile 0.3.4: the selected slot in inventories and containers is visible again, and the Touch mode gets the console HUD's health bars.\n\n> [!NOTE]\n> **From 0.3.x:** install the new APK over the old one (saves stay). For the new health and armour bars of the Touch mode, also run setup again in the same folder (it remakes only the touch interface package, a couple of minutes) and copy `romfs/Data/TouchUI.pak` to the phone again - without it everything works, the bars just stay as they were. **From older versions:** follow the update steps of [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0) first.\n\n> [!NOTE]\n> **С 0.3.x:** поставьте новый APK поверх старого (сохранения остаются). Для новых полосок здоровья и брони в режиме «Касание» ещё раз запустите setup в той же папке (он переделает только пакет сенсорного интерфейса, пара минут) и заново скопируйте на телефон `romfs/Data/TouchUI.pak` — без этого всё работает, полоски просто остаются прежними. **Со старых версий:** сначала сделайте шаги обновления из [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0).\n\n## English\n\n**Fixes**",
+          "assets": [
+            {
+              "name": "DOS2-Mobile-v0.3.4-arm64-android10.apk",
+              "size": 62408963,
+              "dl": 19
+            },
+            {
+              "name": "DOS2-Mobile-v0.3.4-arm64.apk",
+              "size": 62351619,
+              "dl": 77
+            }
+          ]
+        },
+        {
+          "tag": "v0.3.3",
+          "name": "v0.3.3",
+          "date": "2026-11-24T09:59:53Z",
+          "body": "Divinity Original Sin 2 Mobile 0.3.3: the Touch interface no longer crashes when you open the settings.\n\n> [!NOTE]\n> **From 0.3.x:** just install the new APK over the old one - no setup run and no file copying needed. Saves stay. **From older versions:** follow the update steps of [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0) first.\n\n> [!NOTE]\n> **С 0.3.x:** просто поставьте новый APK поверх старого — запускать setup и копировать файлы не нужно. Сохранения остаются. **Со старых версий:** сначала сделайте шаги обновления из [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0).\n\n## English\n\n**Fixes**\n- Touch interface: the game crashed the moment you opened a settings page (Options → Sound, Game, ...) (#12). Fixed: the settings open and work like in the Hybrid mode, the touch HUD stays as it was.\n\n## Русский\n\n**Исправления**\n- Интерфейс «Касание»: игра вылетала, как только открывалась страница настроек («Параметры» → «Звук», «Игра» и т. д.) (#12). Исправлено: настройки открываются и работают как в режиме «Гибрид», сенсорный интерфейс в игре остаётся прежним.",
+          "assets": [
+            {
+              "name": "DOS2-Mobile-v0.3.3-arm64-android10.apk",
+              "size": 62400771,
+              "dl": 12
+            },
+            {
+              "name": "DOS2-Mobile-v0.3.3-arm64.apk",
+              "size": 62343427,
+              "dl": 63
+            }
+          ]
+        },
+        {
+          "tag": "v0.3.2",
+          "name": "v0.3.2",
+          "date": "2026-11-24T06:13:30Z",
+          "body": "Divinity Original Sin 2 Mobile 0.3.2: the game checks its files at start, so a broken copy gives a clear message instead of a black screen.\n\n> [!NOTE]\n> **From 0.3.0 / 0.3.1:** just install the new APK over the old one - no setup run and no file copying needed. Saves stay. **From older versions:** follow the update steps of [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0) first.\n\n> [!NOTE]\n> **С 0.3.0 / 0.3.1:** просто поставьте новый APK поверх старого — запускать setup и копировать файлы не нужно. Сохранения остаются. **Со старых версий:** сначала сделайте шаги обновления из [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0).\n\n## English\n\n**Fixes**\n- Black screen with sound and the FPS counter running (#8, #10): the shaders were missing on the phone (`dm/shaders/shaders.xgspack`). Now the game looks for them at start, also in the usual wrong places a folder ends up after copying, and if they are not there it says so instead of showing a black screen.",
+          "assets": [
+            {
+              "name": "DOS2-Mobile-v0.3.2-arm64-android10.apk",
+              "size": 62400771,
+              "dl": 12
+            },
+            {
+              "name": "DOS2-Mobile-v0.3.2-arm64.apk",
+              "size": 62343427,
+              "dl": 70
+            }
+          ]
+        },
+        {
+          "tag": "v0.3.1",
+          "name": "v0.3.1",
+          "date": "2026-11-23T21:52:45Z",
+          "body": "Divinity Original Sin 2 Mobile 0.3.1: touch fixes for wide screens with black bars, foldables and tablets.\n\n> [!NOTE]\n> **From 0.3.0:** just install the new APK over the old one - no setup run and no file copying needed. Saves stay. **From older versions:** follow the update steps of [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0) first.\n\n> [!NOTE]\n> **С 0.3.0:** просто поставьте новый APK поверх старого — запускать setup и копировать файлы не нужно. Сохранения остаются. **Со старых версий:** сначала сделайте шаги обновления из [0.3.0](https://github.com/Desm0nt/divinity-original-sin-2-port/releases/tag/v0.3.0).\n\n## English\n\n**Fixes**\n- With *16:9 with black side bars* taps now land where your finger is. Before, they missed more and more towards the screen edges (#9, fix by alex-panch).\n- Turning *Show the gamepad* off in the gear now hides the whole on-screen pad: buttons, sticks and skill icons. The gear button stays.\n- Foldables' inner screens and 16:10 / 4:3 tablets: widescreen no longer squeezes the picture into a thin wide band. These screens now get a normal 16:9 picture with black bars (#9).\n\n## Русский\n\n**Исправления**",
+          "assets": [
+            {
+              "name": "DOS2-Mobile-v0.3.1-arm64-android10.apk",
+              "size": 62376195,
+              "dl": 32
+            },
+            {
+              "name": "DOS2-Mobile-v0.3.1-arm64.apk",
+              "size": 62318851,
+              "dl": 96
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "potatorecomp-underground-2",
+      "name": "NFS Underground 2",
+      "name_zh": "《极品飞车：地下狂飙 2》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "nfs-underground-2",
+      "family_label": "NFS Underground 2",
+      "owner": "PotatoRecomp",
+      "repo": "PotatoRecomp/Underground-2-Android",
+      "repo_url": "https://github.com/PotatoRecomp/Underground-2-Android",
+      "homepage": "",
+      "description": "《极品飞车：地下狂飙 2》初代 Xbox 版静态重编译到 Android，Vulkan 渲染，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v1.1.0",
+      "latest_date": "2026-11-27T12:55:37Z",
+      "channel": "stable",
+      "latest_body": "<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/PotatoRecomp/Underground-2-Android/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png\" width=\"96\" alt=\"Underground 2\">\n</p>\n\n<h1 align=\"center\">Underground 2 for Android v1.1.0</h1>\n\n<p align=\"center\">\n  An unofficial native Android port of the original Xbox version of <b>Need for Speed: Underground 2</b>,<br>\n  statically recompiled with <a href=\"https://github.com/TGP482/XboxXBE-Recomp\">XboxXBE-Recomp</a> and drawn with Vulkan.\n</p>\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/Android-10%2B-3DDC84?logo=android&logoColor=white\" alt=\"Android 10+\">\n  <img src=\"https://img.shields.io/badge/arch-arm64--v8a-blue\" alt=\"arm64-v8a\">\n  <img src=\"https://img.shields.io/badge/Vulkan-1.1-AC162C?logo=vulkan&logoColor=white\" alt=\"Vulkan 1.1\">\n  <img src=\"https://img.shields.io/badge/SDL-3-1D4F91\" alt=\"SDL3\">\n</p>\n\n> [!IMPORTANT]\n> This release contains **no game assets**. You need the files from your own legally acquired copy of *Need for Speed: Underground 2* (Xbox, USA release).\n\n## 📦 Download\n\n| File | Size | SHA-256 |\n| --- | --- | --- |",
+      "latest_apk_name": "Underground2-1.1.0.apk",
+      "latest_apk_url": "https://github.com/PotatoRecomp/Underground-2-Android/releases/download/v1.1.0/Underground2-1.1.0.apk",
+      "latest_apk_size": 11928042,
+      "latest_apk_tag": "v1.1.0",
+      "distribution": "release-apk",
+      "stars": 45,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 25447,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T12:45:46Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "microsoft"
+      ],
+      "downloads_lifetime": 25447,
+      "releases": [
+        {
+          "tag": "v1.1.0",
+          "name": "Underground 2 for Android v1.1.0",
+          "date": "2026-11-27T12:55:37Z",
+          "body": "<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/PotatoRecomp/Underground-2-Android/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png\" width=\"96\" alt=\"Underground 2\">\n</p>\n\n<h1 align=\"center\">Underground 2 for Android v1.1.0</h1>\n\n<p align=\"center\">\n  An unofficial native Android port of the original Xbox version of <b>Need for Speed: Underground 2</b>,<br>\n  statically recompiled with <a href=\"https://github.com/TGP482/XboxXBE-Recomp\">XboxXBE-Recomp</a> and drawn with Vulkan.\n</p>\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/Android-10%2B-3DDC84?logo=android&logoColor=white\" alt=\"Android 10+\">\n  <img src=\"https://img.shields.io/badge/arch-arm64--v8a-blue\" alt=\"arm64-v8a\">\n  <img src=\"https://img.shields.io/badge/Vulkan-1.1-AC162C?logo=vulkan&logoColor=white\" alt=\"Vulkan 1.1\">\n  <img src=\"https://img.shields.io/badge/SDL-3-1D4F91\" alt=\"SDL3\">\n</p>\n\n> [!IMPORTANT]\n> This release contains **no game assets**. You need the files from your own legally acquired copy of *Need for Speed: Underground 2* (Xbox, USA release).\n\n## 📦 Download\n\n| File | Size | SHA-256 |\n| --- | --- | --- |",
+          "assets": [
+            {
+              "name": "Underground2-1.1.0.apk",
+              "size": 11928042,
+              "dl": 1425
+            }
+          ]
+        },
+        {
+          "tag": "v1.0.0",
+          "name": "Underground 2 for Android v1.0.0",
+          "date": "2026-11-23T11:36:57Z",
+          "body": "<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/PotatoRecomp/Underground-2-Android/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png\" width=\"96\" alt=\"Underground 2\">\n</p>\n\n<h1 align=\"center\">Underground 2 for Android v1.0.0</h1>\n\n<p align=\"center\">\n  An unofficial native Android port of the original Xbox version of <b>Need for Speed: Underground 2</b>,<br>\n  statically recompiled with <a href=\"https://github.com/TGP482/XboxXBE-Recomp\">XboxXBE-Recomp</a> and drawn with Vulkan.\n</p>\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/Android-10%2B-3DDC84?logo=android&logoColor=white\" alt=\"Android 10+\">\n  <img src=\"https://img.shields.io/badge/arch-arm64--v8a-blue\" alt=\"arm64-v8a\">\n  <img src=\"https://img.shields.io/badge/Vulkan-1.1-AC162C?logo=vulkan&logoColor=white\" alt=\"Vulkan 1.1\">\n  <img src=\"https://img.shields.io/badge/SDL-3-1D4F91\" alt=\"SDL3\">\n</p>\n\n> [!IMPORTANT]\n> This release contains **no game assets**. You need the files from your own legally acquired copy of *Need for Speed: Underground 2* (Xbox, USA release).\n\n## 📦 Download\n\n| File | Size | SHA-256 |\n| --- | --- | --- |",
+          "assets": [
+            {
+              "name": "Underground2-1.0.0.apk",
+              "size": 11926582,
+              "dl": 24022
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys-winner-pc-decomp-bs1",
+      "name": "BioShock Native",
+      "name_zh": "《生化奇兵》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "bioshock-native",
+      "family_label": "BioShock Native",
+      "owner": "phys-winner",
+      "repo": "phys-winner/pc_decomp_bs1",
+      "repo_url": "https://github.com/phys-winner/pc_decomp_bs1",
+      "homepage": "",
+      "description": "《生化奇兵》经典版静态重编译到 Android ARM64，实验性构建，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.3-dev",
+      "latest_date": "2026-11-26T20:59:15Z",
+      "channel": "stable",
+      "latest_body": "Development release of the experimental Android ARM64 port of BioShock Classic. Changes since v0.2.1-dev.\n\n## Saves and stability\n\n- Save files are written to a temporary file, validated, synchronized and atomically committed after the last handle closes. Write, sync and rename errors reach the game; failed temporary files are retained for possible recovery.\n- Existing saves are validated before enumeration. Damaged files are omitted and quarantined under `SaveGames/damaged/`, fixing the main-menu crash path caused by an interrupted save. Checks cover headers, PNG thumbnails, metadata and zlib packages. This does not repair damaged save data.\n- Added a workaround for device loss in high-quality bloom passes on Adreno 650 with the bundled Turnip driver reporting Vulkan API 1.3.335.\n\n## Performance and rendering\n\n- Optimized static index buffers, occlusion query batching, query reset and nonblocking result reads, and deferred offscreen clears on PanVK / Mali-G76 MC4. Automatic enablement is restricted to the measured GPU model.\n- Updated bundled PanVK with deferred occlusion availability for Bifrost v7, command batch cleanup fixes and allocation error handling.",
+      "latest_apk_name": "bioshock-v-0.3-dev-15be5c77.apk",
+      "latest_apk_url": "https://github.com/phys-winner/pc_decomp_bs1/releases/download/v0.3-dev/bioshock-v-0.3-dev-15be5c77.apk",
+      "latest_apk_size": 95457895,
+      "latest_apk_tag": "v0.3-dev",
+      "distribution": "release-apk",
+      "stars": 39,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 11586,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-26T20:58:04Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "pc"
+      ],
+      "downloads_lifetime": 11586,
+      "releases": [
+        {
+          "tag": "v0.3-dev",
+          "name": "BioShock Classic for Android v0.3-dev",
+          "date": "2026-11-26T20:59:15Z",
+          "body": "Development release of the experimental Android ARM64 port of BioShock Classic. Changes since v0.2.1-dev.\n\n## Saves and stability\n\n- Save files are written to a temporary file, validated, synchronized and atomically committed after the last handle closes. Write, sync and rename errors reach the game; failed temporary files are retained for possible recovery.\n- Existing saves are validated before enumeration. Damaged files are omitted and quarantined under `SaveGames/damaged/`, fixing the main-menu crash path caused by an interrupted save. Checks cover headers, PNG thumbnails, metadata and zlib packages. This does not repair damaged save data.\n- Added a workaround for device loss in high-quality bloom passes on Adreno 650 with the bundled Turnip driver reporting Vulkan API 1.3.335.\n\n## Performance and rendering\n\n- Optimized static index buffers, occlusion query batching, query reset and nonblocking result reads, and deferred offscreen clears on PanVK / Mali-G76 MC4. Automatic enablement is restricted to the measured GPU model.\n- Updated bundled PanVK with deferred occlusion availability for Bifrost v7, command batch cleanup fixes and allocation error handling.",
+          "assets": [
+            {
+              "name": "bioshock-v-0.3-dev-15be5c77.apk",
+              "size": 95457895,
+              "dl": 2036
+            },
+            {
+              "name": "bioshock-v-0.3-dev-15be5c77.apk.sha256",
+              "size": 99,
+              "dl": 5
+            },
+            {
+              "name": "changes-0.3-dev-15be5c77.en.txt",
+              "size": 12597,
+              "dl": 10
+            },
+            {
+              "name": "update.json",
+              "size": 21142,
+              "dl": 2997
+            },
+            {
+              "name": "versions.json",
+              "size": 1920,
+              "dl": 8
+            }
+          ]
+        },
+        {
+          "tag": "v0.2.1-dev",
+          "name": "BioShock Classic for Android v0.2.1-dev",
+          "date": "2026-11-26T07:04:28Z",
+          "body": "Development release of the experimental Android ARM64 port of BioShock Classic. Changes since v0.2-dev:\n\n## Changes and fixes\n\n- Added crash reports with a copy-to-clipboard button. Reports are saved under `BioShock/crashes` and include the game log, build information and available native crash details. Crash monitoring can be disabled in the launcher.\n- Fixed a buffer overflow when taking research-camera photos. Vulkan and OpenGL ES now respect the source and destination regions and resize the captured image to 256 x 256.\n- Added movement-stick settings for the dead zone, visibility and fixed position.\n- Added a slide-out weapon and plasmid inventory bar for the Port touch layout. Its **Weapon selection: On/Off** toggle is on **Input and prompts**. Weapon swipes now use a larger threshold and a rate limit for more controlled selection.\n- Made the map and journal use interfaces that support both touch and gamepad input.\n- Added launcher cleanup options for unused installation files and rebuildable caches. Limited diagnostic log growth and removed stale shader cache entries.",
+          "assets": [
+            {
+              "name": "bioshock-v-0.2.1-dev-9a1f1064.apk",
+              "size": 93725287,
+              "dl": 1888
+            },
+            {
+              "name": "bioshock-v-0.2.1-dev-9a1f1064.apk.sha256",
+              "size": 101,
+              "dl": 24
+            },
+            {
+              "name": "update.json",
+              "size": 15844,
+              "dl": 2661
+            },
+            {
+              "name": "versions.json",
+              "size": 1587,
+              "dl": 17
+            }
+          ]
+        },
+        {
+          "tag": "v0.2-dev",
+          "name": "BioShock Classic for Android v0.2-dev",
+          "date": "2026-11-25T11:45:48Z",
+          "body": "Development release of the experimental Android ARM64 port of BioShock Classic. Changes since v0.1.1-dev:\n\n## Performance and rendering\n\n- Moved Vulkan pipeline and OpenGL ES program warm-up to low-priority background workers, with a larger seed recorded across all 15 levels. Cached results are reused on later starts.\n- Reduced loading stalls through fairer thread handoffs, background logging and memory cleanup, texture read-ahead, and caching repeated missing-file checks.\n- Removed redundant Vulkan buffer bindings and OpenGL ES state changes. Fixed compressed-texture uploads and preserved the aspect ratio when changing render resolution.\n- Fixed first-person weapon and arm framing on wide screens while preserving world FOV, weapon FOV, and zoom settings.\n- Updated bundled PanVK; compatible Mali devices can now use it on Android 11 or later. Added an Adreno 618 workaround for GPU loss with bundled Turnip.\n- Renderer startup failures and device/context loss now return to the launcher with a reason and an offer to select another renderer.\n- ADPF is now off by default.\n\n## Controls and interface",
+          "assets": [
+            {
+              "name": "bioshock-v-0.2-dev-d44286b0.apk",
+              "size": 93672039,
+              "dl": 2442
+            },
+            {
+              "name": "bioshock-v-0.2-dev-d44286b0.apk.sha256",
+              "size": 99,
+              "dl": 16
+            },
+            {
+              "name": "update.json",
+              "size": 12889,
+              "dl": 4723
+            },
+            {
+              "name": "versions.json",
+              "size": 1190,
+              "dl": 5
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.1-dev",
+          "name": "BioShock Classic for Android v0.1.1-dev",
+          "date": "2026-11-24T16:02:58Z",
+          "body": "Second development release of the experimental Android ARM64 port of BioShock Classic.\n\n## Controls and interface\n\n- Added iPhone and iPad touch layouts alongside the port layout and a hidden-controls mode. The iOS layouts use 52 original sprites, including eight weapon icons and 22 plasmid icons. They show the equipped weapon and plasmid, the active slot, crouch or stand state, and the alternate reload icon in plasmid mode.\n- Added a 50–200% iOS control scale and context-sensitive Hack, Rescue, and Harvest buttons. Control groups scale together and the left group accounts for the health and ammo HUD. Map and Pause activate on release over the same button.\n- Kept movement and camera gestures available with the overlay hidden. Fixed absolute touch coordinates at screen edges and input recovery after graphics changes or a stalled input event.\n- Added phone vibration for in-game rumble and touch feedback, with an on/off switch and strength adjustment in 25% steps.\n- Added optional touch aim assist using BioShock's controller aim system. Each touch sample is consumed once, and direct touch look remains available when the game's aim properties are unavailable.",
+          "assets": [
+            {
+              "name": "bioshock-v-0.1.1-dev-09b22b5c.apk",
+              "size": 93499805,
+              "dl": 4826
+            },
+            {
+              "name": "bioshock-v-0.1.1-dev-09b22b5c.apk.sha256",
+              "size": 100,
+              "dl": 35
+            },
+            {
+              "name": "update.json",
+              "size": 10114,
+              "dl": 6187
+            },
+            {
+              "name": "versions.json",
+              "size": 795,
+              "dl": 15
+            }
+          ]
+        },
+        {
+          "tag": "v0.1-dev",
+          "name": "BioShock Classic for Android v0.1-dev",
+          "date": "2026-11-23T19:50:51Z",
+          "body": "First development release of the experimental Android ARM64 port of BioShock Classic. The port uses ahead-of-time recompilation of the original Windows x86 code.\n\n## Features\n\n- OpenGL ES 3.2 and Vulkan rendering, with bundled Turnip and PanVK options for compatible GPUs.\n- Touch controls, gamepad input, and configurable controls.\n- Launcher with folder and ZIP game-data import, renderer selection, optional texture conversion, and update checks.\n\n## Requirements and installation\n\n- An ARM64 Android device running Android 8.0 or later. OpenGL ES 3.2 is the default renderer. See the repository README for Vulkan and driver requirements.\n- Your own installation of **BioShock Classic for Windows, patch 1.1, GOG build 127339**. The original game files are required separately.\n- Sideload the APK. Copy your Classic game folder to the device with its `Builds/` and `Content/` directories, then select that folder under **Game data** in the launcher and press **Play**.\n\n## Known limitations\n\nDevice, driver, and full-campaign testing is limited in this development release.\n",
+          "assets": [
+            {
+              "name": "bioshock-v-0.1-dev-78433b07.apk",
+              "size": 92881790,
+              "dl": 394
+            },
+            {
+              "name": "bioshock-v-0.1-dev-78433b07.apk.sha256",
+              "size": 98,
+              "dl": 17
+            },
+            {
+              "name": "update.json",
+              "size": 3271,
+              "dl": 4716
+            },
+            {
+              "name": "versions.json",
+              "size": 398,
+              "dl": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys-winner-pc-decomp-pk",
+      "name": "Painkiller Native",
+      "name_zh": "《止痛药 黑盒版》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "painkiller-native",
+      "family_label": "Painkiller Black Edition",
+      "owner": "phys-winner",
+      "repo": "phys-winner/pc_decomp_pk",
+      "repo_url": "https://github.com/phys-winner/pc_decomp_pk",
+      "homepage": "",
+      "description": "《止痛药 黑盒版》静态 x86 重编译到 Android ARM64，含 Battle out of Hell，需自备 GOG 版游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.1-dev",
+      "latest_date": "2026-11-26T20:06:18Z",
+      "channel": "stable",
+      "latest_body": "# Painkiller Android 0.1-dev\n\nExperimental Android ARM64 port compatible with Painkiller Black Edition 1.64 from GOG, including Battle out of Hell. Bring your own game files: https://www.gog.com/en/game/painkiller\n\n## Features and fixes\n\n- Native OpenGL ES and Vulkan renderers, with system Vulkan and supported bundled Turnip/PanVK drivers.\n- Touch movement and aiming, configurable weapon controls, an editable layout, gyroscope input, and physical keyboard, mouse and controller input.\n- Launcher import from a game folder, ZIP archive or GOG offline installer, with optional ASTC/ETC2 texture conversion.\n- In-game port options, FSR1 scaling, native damage blur, performance overlay and Android performance hints.\n- Fixes for rocket-combat NaNs, renderer presentation and lifecycle issues, and touch controls near display cutouts.\n- Existing uncapped profiles migrate to a 60 FPS default once; finite caps and later player choices are preserved.\n- Selected Fix Compilation v4.4 fixes, with balance/gameplay changes available as a separate option.\n\n## Source checkout",
+      "latest_apk_name": "painkiller-0.1-dev-2b846ee3.apk",
+      "latest_apk_url": "https://github.com/phys-winner/pc_decomp_pk/releases/download/v0.1-dev/painkiller-0.1-dev-2b846ee3.apk",
+      "latest_apk_size": 49922141,
+      "latest_apk_tag": "v0.1-dev",
+      "distribution": "release-apk",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 14,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-26T20:05:30Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "pc"
+      ],
+      "downloads_lifetime": 14,
+      "releases": [
+        {
+          "tag": "v0.1-dev",
+          "name": "Painkiller Android 0.1-dev",
+          "date": "2026-11-26T20:06:18Z",
+          "body": "# Painkiller Android 0.1-dev\n\nExperimental Android ARM64 port compatible with Painkiller Black Edition 1.64 from GOG, including Battle out of Hell. Bring your own game files: https://www.gog.com/en/game/painkiller\n\n## Features and fixes\n\n- Native OpenGL ES and Vulkan renderers, with system Vulkan and supported bundled Turnip/PanVK drivers.\n- Touch movement and aiming, configurable weapon controls, an editable layout, gyroscope input, and physical keyboard, mouse and controller input.\n- Launcher import from a game folder, ZIP archive or GOG offline installer, with optional ASTC/ETC2 texture conversion.\n- In-game port options, FSR1 scaling, native damage blur, performance overlay and Android performance hints.\n- Fixes for rocket-combat NaNs, renderer presentation and lifecycle issues, and touch controls near display cutouts.\n- Existing uncapped profiles migrate to a 60 FPS default once; finite caps and later player choices are preserved.\n- Selected Fix Compilation v4.4 fixes, with balance/gameplay changes available as a separate option.\n\n## Source checkout",
+          "assets": [
+            {
+              "name": "painkiller-0.1-dev-2b846ee3.apk",
+              "size": 49922141,
+              "dl": 14
+            },
+            {
+              "name": "painkiller-0.1-dev-2b846ee3.apk.sha256",
+              "size": 99,
+              "dl": 3
+            },
+            {
+              "name": "painkiller-0.1-dev-2b846ee3.json",
+              "size": 1927,
+              "dl": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vinterus-mafia2-re",
+      "name": "Mafia II Recomp",
+      "name_zh": "《黑手党 2》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "mafia2-re",
+      "family_label": "Mafia II Recomp",
+      "owner": "VinTeRuS",
+      "repo": "VinTeRuS/mafia2-re",
+      "repo_url": "https://github.com/VinTeRuS/mafia2-re",
+      "homepage": "",
+      "description": "《黑手党 2》（2010）静态 x86 重编译到 Android，自带 Win32/D3D9 层，早期版本，需自备游戏。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.1.2",
+      "latest_date": "2026-11-27T14:35:13Z",
+      "channel": "stable",
+      "latest_body": "**Still a very early test build.** Install it over the previous version: saves and settings stay.\n\n### Fixes\n- **Adreno 8xx (810, 825, 830, 840, ...)**: Turnip now draws in a safer mode (system memory) on all of them, for the graphics glitches reported on the Adreno 830.\n- **Less CPU load**: the cloth simulation (coats, jackets) took about a third of the CPU. It is now much cheaper: fewer solver iterations on low and medium \"Game graphics\" (low 2, medium 3, high keeps the game's 5) and faster code. Less heat on long sessions.\n\n### New\n- **Menu arrows**: on-screen up/down/left/right buttons in the menus, so you don't have to steer the cursor.\n\n### Reporting bugs: logs are required\nPlease attach **both** `mafia2-native.log` and `app_process64_d3d9.log` from `Android/data/com.mafia2re.game/files/`, plus your phone model. Reports without logs can't be fixed. The issue form asks for them.\n\n### Known issues\n- Phones with old CPU cores only (Cortex-A53/A73, e.g. Snapdragon 625/660/665) are not supported.\n- Mali GPUs with Vulkan 1.1 drivers can't run it; low-end GPUs (e.g. Mali-G57) are too slow.\n",
+      "latest_apk_name": "mafia2re-v0.1.2.apk",
+      "latest_apk_url": "https://github.com/VinTeRuS/mafia2-re/releases/download/v0.1.2/mafia2re-v0.1.2.apk",
+      "latest_apk_size": 62319317,
+      "latest_apk_tag": "v0.1.2",
+      "distribution": "release-apk",
+      "stars": 20,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 704,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T14:35:13Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "pc"
+      ],
+      "downloads_lifetime": 704,
+      "releases": [
+        {
+          "tag": "v0.1.2",
+          "name": "v0.1.2 — Adreno 8xx graphics, lighter cloth physics, menu arrows",
+          "date": "2026-11-27T14:35:13Z",
+          "body": "**Still a very early test build.** Install it over the previous version: saves and settings stay.\n\n### Fixes\n- **Adreno 8xx (810, 825, 830, 840, ...)**: Turnip now draws in a safer mode (system memory) on all of them, for the graphics glitches reported on the Adreno 830.\n- **Less CPU load**: the cloth simulation (coats, jackets) took about a third of the CPU. It is now much cheaper: fewer solver iterations on low and medium \"Game graphics\" (low 2, medium 3, high keeps the game's 5) and faster code. Less heat on long sessions.\n\n### New\n- **Menu arrows**: on-screen up/down/left/right buttons in the menus, so you don't have to steer the cursor.\n\n### Reporting bugs: logs are required\nPlease attach **both** `mafia2-native.log` and `app_process64_d3d9.log` from `Android/data/com.mafia2re.game/files/`, plus your phone model. Reports without logs can't be fixed. The issue form asks for them.\n\n### Known issues\n- Phones with old CPU cores only (Cortex-A53/A73, e.g. Snapdragon 625/660/665) are not supported.\n- Mali GPUs with Vulkan 1.1 drivers can't run it; low-end GPUs (e.g. Mali-G57) are too slow.\n",
+          "assets": [
+            {
+              "name": "mafia2re-v0.1.2.apk",
+              "size": 62319317,
+              "dl": 0
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.1",
+          "name": "v0.1.1 — Adreno 8xx and Mali fixes, cutscene sound, English, gyro aim",
+          "date": "2026-11-27T09:56:09Z",
+          "body": "**Still a very early test build.** Install it over v0.1.0: saves and settings stay.\n\n### Fixes\n- **Crash on start with Adreno 8xx (830, 840, ...)**: the bundled Turnip driver was wrongly rejected, so the game fell back to Qualcomm's driver and crashed. Turnip is now detected properly.\n- **Adreno 810 and 825**: added to the bundled Turnip (they were \"unsupported\" and crashed). Untested on real devices yet; please report.\n- **Oversaturated, too dark / too bright picture on some Mali GPUs** (e.g. Mali-G615): fixed.\n- **No sound in pre-rendered cutscenes and intro logos**: movie audio now plays.\n\n### New\n- **Game language**: English by default when the English files (`pc/sds_en`) are present, switchable in the settings (\"Game language\").\n- **Voice**: English speech with Russian text (fan pack as `pc/sds_ru_en`).\n- **Gyro aim**: settings → \"Gyro aim\": off / while aiming / always.\n- **Aim as a toggle**: one tap to aim, the next to stop (settings → \"Aim\").\n\n### Known issues\n- Phones with old CPU cores (Cortex-A53/A73 only, e.g. Snapdragon 625/660/665) are not supported.\n- Mali GPUs with Vulkan 1.1 drivers (e.g. Mali-G68 on some phones) can't run it.",
+          "assets": [
+            {
+              "name": "mafia2re-v0.1.1.apk",
+              "size": 62319317,
+              "dl": 209
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "v0.1.0 — first test build (very early)",
+          "date": "2026-11-26T10:28:37Z",
+          "body": "**First test build. The project is at a very early stage:** expect crashes, graphics glitches, slowdowns and lost progress.\n\n### Requirements\n- Android 10+, arm64. Tested on a Pixel 6 (Mali-G78) only.\n- Your own copy of **GOG Mafia II (the 2010 original, not the Definitive Edition)**. The APK has no game files.\n- On phones weaker than a Pixel 6 the game may run badly or not start at all.\n\n### Installing\n1. Copy the game's `pc` and `edit` folders to `Internal storage/Android/data/com.mafia2re.game/files/game` (or to `Internal storage/Mafia II`).\n2. Next to them, a `physx` folder with `PhysXCore_283.dll` and `NxCooking_283.dll` from the PhysX installer in the game's `Redist` folder.\n3. Install the APK and start it.\n\nLanguage: the game runs in the language of your files. With a Russian copy you can add:\n- English text and speech: the `pc/sds_en` folder of an English install next to `pc/sds_ru`, then \"Game language: English\" in the settings;\n- English speech with Russian text: the fan pack's `sds_ru` folder as `pc/sds_ru_en`, then \"Voice: English\".\nThe DLC episodes keep the language of their own files.\n\n### What works",
+          "assets": [
+            {
+              "name": "mafia2re-v0.1.0.apk",
+              "size": 62315221,
+              "dl": 495
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jayhud7-pocket-hollow",
+      "name": "Pocket Hollow",
+      "name_zh": "《星际火狐 冒险》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "pocket-hollow",
+      "family_label": "Star Fox Adventures",
+      "owner": "JAYHUD7",
+      "repo": "JAYHUD7/pocket-hollow",
+      "repo_url": "https://github.com/JAYHUD7/pocket-hollow",
+      "homepage": "",
+      "description": "《星际火狐 冒险》（Star Fox Adventures）Android ARM64 移植，原生 Vulkan 渲染，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "gamecube"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "1.4",
+      "latest_date": "2026-11-27T14:02:18Z",
+      "channel": "stable",
+      "latest_body": "## Pocket-Hollow v1.4\n\nFirst off, huge apologies to **Galaxy S26 Ultra** and **Xiaomi 17 Ultra** players on Recompa for taking so long to get this out — turned out to be a pretty simple fix once I dug into it. Appreciate everyone who reported it and stuck around!\n\n### What's Fixed\n* **Galaxy S26 Ultra & Xiaomi 17 Ultra (Adreno 830 / 840):** Automatically defaults Adreno 8xx phones to **OpenGL ES 3.2** on first boot so they don't crash on Qualcomm's stock Vulkan driver. Every other GPU still defaults to **Vulkan** like normal.\n* **Smarter Crash Recovery:** If Vulkan ever fails to boot on a device, Pocket-Hollow now automatically falls back to **OpenGL ES** on your next launch instead of getting stuck in a crash loop.\n* **Android 16 File Permissions & Region Warning:** Fixed storage permission drops on One UI 8 / HyperOS 3, and added a clear popup if you accidentally pick a Europe (`GSAP01`) or Japan (`GSAJ01`) ISO instead of the required **USA (`GSAE01`)** ISO.\n",
+      "latest_apk_name": "pocket-hollow.apk",
+      "latest_apk_url": "https://github.com/JAYHUD7/pocket-hollow/releases/download/1.4/pocket-hollow.apk",
+      "latest_apk_size": 540941454,
+      "latest_apk_tag": "1.4",
+      "distribution": "release-apk",
+      "stars": 14,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 300,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T14:02:18Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "nintendo"
+      ],
+      "downloads_lifetime": 300,
+      "releases": [
+        {
+          "tag": "1.4",
+          "name": "Pocket-Holow v1.4",
+          "date": "2026-11-27T14:02:18Z",
+          "body": "## Pocket-Hollow v1.4\n\nFirst off, huge apologies to **Galaxy S26 Ultra** and **Xiaomi 17 Ultra** players on Recompa for taking so long to get this out — turned out to be a pretty simple fix once I dug into it. Appreciate everyone who reported it and stuck around!\n\n### What's Fixed\n* **Galaxy S26 Ultra & Xiaomi 17 Ultra (Adreno 830 / 840):** Automatically defaults Adreno 8xx phones to **OpenGL ES 3.2** on first boot so they don't crash on Qualcomm's stock Vulkan driver. Every other GPU still defaults to **Vulkan** like normal.\n* **Smarter Crash Recovery:** If Vulkan ever fails to boot on a device, Pocket-Hollow now automatically falls back to **OpenGL ES** on your next launch instead of getting stuck in a crash loop.\n* **Android 16 File Permissions & Region Warning:** Fixed storage permission drops on One UI 8 / HyperOS 3, and added a clear popup if you accidentally pick a Europe (`GSAP01`) or Japan (`GSAJ01`) ISO instead of the required **USA (`GSAE01`)** ISO.\n",
+          "assets": [
+            {
+              "name": "pocket-hollow.apk",
+              "size": 540941454,
+              "dl": 2
+            }
+          ]
+        },
+        {
+          "tag": "v1.3.5",
+          "name": "Pocket-Holow v1.3.5",
+          "date": "2026-11-26T23:33:55Z",
+          "body": "# Pocket-Hollow v1.3.5\n\n### What's New & Improved\n* **Live Native FPS & Frametime Telemetry:** Fixed an issue where the on-screen telemetry pill (`FPS` and `ms`) remained stuck at `0`. Both counters now read live frame presentation timing directly from Aurora's graphics pipeline.\n* **RivaTuner-Style Frame Pacing & Thermal Efficiency:** Implemented a phase-locked hybrid sleep + micro-spin frame pacer at the swap boundary for flat `16.7 ms` frametimes at 60 FPS while reporting real performance dips honestly and keeping passive-cooled devices cool and power-efficient.\n* **Extended Point-Light Draw & Fade-In Distance:** Increased point-light attenuation and fade-in radius by `1.5x` so torches, crystals, and ambient light sources illuminate smoothly from farther away without close-range pop-in.\n* **Explosion & Lighting Stability:** Added micro-depth-biasing on translucent particle passes to eliminate explosion Z-fighting flicker and synced GX `lightMask` uniform updates to prevent random lighting shifts.\n* **Launcher UI Polish:** Fixed corrupted dropdown arrow characters (`â–¾`) across all launcher settings tabs so clean dropdown indicators (`▾`) render properly.",
+          "assets": [
+            {
+              "name": "pocket-hollow.apk",
+              "size": 540941454,
+              "dl": 84
+            }
+          ]
+        },
+        {
+          "tag": "1.3.4",
+          "name": "Pocket-Holow v1.3.4",
+          "date": "2026-11-26T22:09:52Z",
+          "body": "#### Pocket-Hollow v1.3.4\n\n#### What's Fixed & Improved\n\n* **Live Native FPS & Frametime Counter:** Fixed an issue where the on-screen telemetry pill (FPS and ms) remained stuck at 0. The overlay now reads live frame presentation timing directly from Aurora's graphics pipeline.\n* **Launcher UI Dropdown Arrows:** Fixed corrupted text characters (â–¾) next to launcher dropdown options so clean dropdown indicators (▾) render properly across all settings tabs.\n* **Endgame & Temple Stability:** Preserves all recent crash and progression fixes, including Moon Temple / Walled City stability and Krazoa Palace / Shrine 5 SharpClaw guard spawns.\n\n#### Important Installation Note (Your Saves Are Safe)\n\n* **If Android blocks an update over an older version (\"App not installed as package conflicts with an existing package\"):** Uninstall the previous version of **Pocket-Hollow** first, then install this new pocket-hollow.apk.",
+          "assets": [
+            {
+              "name": "pocket-hollow.apk",
+              "size": 540940902,
+              "dl": 30
+            }
+          ]
+        },
+        {
+          "tag": "v1.3.3",
+          "name": "Pocket-Holow v1.3.3",
+          "date": "2026-11-26T18:16:52Z",
+          "body": "# Pocket-Hollow v1.3.3\n\n## What's New in v1.3.3\n\n### Controls & Customization\n* **Dedicated `CONTROLS` Launcher Tab:** Organized all touch, controller, and accessibility settings into a dedicated **CONTROLS** tab alongside **GRAPHICS**, **MODS**, and **STATS**.\n* **Dolphin-Style Multi-Touch GameCube Controller:** Added a hardware-accelerated GameCube touch overlay featuring octagonal analog stick gates, floating left stick, yellow C-stick, curved kidney-bean `X`/`Y` buttons with thumb-roll support, sculpted `+` cross D-pad, bottom-center `START`, and `L`/`R`/`Z` triggers, plus a **Touch Haptic Vibration** toggle.\n* **Custom Touch Layout & Live Resize Editor:** Added **Set Custom Touch Layout & Size** in the **CONTROLS** tab, opening a full-screen grid editor where you can drag any button, stick, or D-pad anywhere on screen and smoothly adjust individual **Size (`40%`–`250%`)** and **Opacity (`20%`–`100%`)** via live sliders in the floating HUD panel.",
+          "assets": [
+            {
+              "name": "pocket-hollow.apk",
+              "size": 503650293,
+              "dl": 51
+            }
+          ]
+        },
+        {
+          "tag": "v1.3.2",
+          "name": "Pocket-Holow v1.3.2",
+          "date": "2026-11-25T21:18:39Z",
+          "body": "#### Pocket-Hollow v1.3.1 — Unofficial Fan-Made Android Port\n\n*Sorry for so many updates—whenever I find something wrong, I fix it right away. It's just how I am!* \n\nAn independent, fan-made Android ARM64 port and launcher built by a fan who wanted to play the game on Android handhelds and smartphones. **Pocket-Hollow is not affiliated with, endorsed by, or connected to the upstream Foxhollow project or its developers.** \n\n#### What’s New & Fixed\n\n* **Lower Bluetooth & Wireless Controller Latency:** Bypassed Android's VSync input batching so wireless controller sticks and buttons register immediately, and removed the redundant V-Sync toggle from Graphics.\n* **Automatic GPU & Driver Detection:** Detects the device's GPU on startup and automatically selects the optimal Vulkan driver and starting resolution scale across Snapdragon (Adreno 6xx/7xx/8xx), MediaTek Dimensity (Mali/Immortalis), Google Tensor, and Samsung Exynos devices.\n* **Third-Person Camera Wall-Standoff Fix:** Added a 3-ray horizontal corner sweep against both map geometry and object hitboxes so rotating the camera 180° around walls, pillars, and doorways keeps it cleanly outside geometry.",
+          "assets": [
+            {
+              "name": "pocket-hollow.apk",
+              "size": 503617525,
+              "dl": 133
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "retrogameworld-forgotten-sands",
+      "name": "Forgotten Sands Recomp",
+      "name_zh": "《波斯王子：遗忘之沙》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "forgotten-sands",
+      "family_label": "Prince of Persia: The Forgotten Sands",
+      "owner": "retrogameworld",
+      "repo": "retrogameworld/Forgotten-Sands-Android-Recomp",
+      "repo_url": "https://github.com/retrogameworld/Forgotten-Sands-Android-Recomp",
+      "homepage": "",
+      "description": "《波斯王子：遗忘之沙》Xbox 360 版静态重编译到 Android，需自备光盘镜像。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v1.4",
+      "latest_date": "2026-11-27T10:21:15Z",
+      "channel": "stable",
+      "latest_body": "**Forgotten Sands Android Recomp 1.4** - native Android port of Prince of Persia: The Forgotten Sands (Xbox 360), made by static recompilation. No game files are included: you need your own disc image (.iso) of the Xbox 360 disc release (title ID 5553083E).\n\n**Tested only on the AYN Odin 3 and the Samsung Galaxy S26. Other devices may not work.** (64-bit ARM, Vulkan, Android 11 or newer)\n\n1. Install **ForgottenSandsRecompiled-Android-arm64.apk**.\n2. Start it and choose your disc image (.iso) when asked. It is unpacked once (about 5 GB of space needed, about 13 GB while the .iso is also on the device).\n3. Play with the handheld's own controls, a paired controller or the on-screen touch controls. Resolution, frame rate, button pictures, touch controls and more are under Settings on the start screen.\n\n**What's new in 1.4**\n- New: achievements. The game's 40 Xbox 360 achievements now unlock as you play. A notice with the achievement's icon,\n  name and gamerscore appears at the top of the screen for a few seconds. Story achievements you passed before this\n  version can unlock soon after you continue your save.",
+      "latest_apk_name": "ForgottenSandsRecompiled-Android-arm64.apk",
+      "latest_apk_url": "https://github.com/retrogameworld/Forgotten-Sands-Android-Recomp/releases/download/v1.4/ForgottenSandsRecompiled-Android-arm64.apk",
+      "latest_apk_size": 118410139,
+      "latest_apk_tag": "v1.4",
+      "distribution": "release-apk",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 98,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T10:21:14Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "microsoft"
+      ],
+      "downloads_lifetime": 98,
+      "releases": [
+        {
+          "tag": "v1.4",
+          "name": "Forgotten Sands Android Recomp 1.4",
+          "date": "2026-11-27T10:21:15Z",
+          "body": "**Forgotten Sands Android Recomp 1.4** - native Android port of Prince of Persia: The Forgotten Sands (Xbox 360), made by static recompilation. No game files are included: you need your own disc image (.iso) of the Xbox 360 disc release (title ID 5553083E).\n\n**Tested only on the AYN Odin 3 and the Samsung Galaxy S26. Other devices may not work.** (64-bit ARM, Vulkan, Android 11 or newer)\n\n1. Install **ForgottenSandsRecompiled-Android-arm64.apk**.\n2. Start it and choose your disc image (.iso) when asked. It is unpacked once (about 5 GB of space needed, about 13 GB while the .iso is also on the device).\n3. Play with the handheld's own controls, a paired controller or the on-screen touch controls. Resolution, frame rate, button pictures, touch controls and more are under Settings on the start screen.\n\n**What's new in 1.4**\n- New: achievements. The game's 40 Xbox 360 achievements now unlock as you play. A notice with the achievement's icon,\n  name and gamerscore appears at the top of the screen for a few seconds. Story achievements you passed before this\n  version can unlock soon after you continue your save.",
+          "assets": [
+            {
+              "name": "ForgottenSandsRecompiled-Android-arm64.apk",
+              "size": 118410139,
+              "dl": 27
+            }
+          ]
+        },
+        {
+          "tag": "v1.3",
+          "name": "Forgotten Sands Android Recomp 1.3",
+          "date": "2026-11-27T09:49:45Z",
+          "body": "**Forgotten Sands Android Recomp 1.3** - native Android port of Prince of Persia: The Forgotten Sands (Xbox 360), made by static recompilation. No game files are included: you need your own disc image (.iso) of the Xbox 360 disc release (title ID 5553083E).\n\n**Tested only on the AYN Odin 3 and the Samsung Galaxy S26. Other devices may not work.** (64-bit ARM, Vulkan, Android 11 or newer)\n\n1. Install **ForgottenSandsRecompiled-Android-arm64.apk**.\n2. Start it and choose your disc image (.iso) when asked. It is unpacked once (about 5 GB of space needed, about 13 GB while the .iso is also on the device).\n3. Play with the handheld's own controls, a paired controller or the on-screen touch controls. Resolution, frame rate, button pictures, touch controls and more are under Settings on the start screen.\n\n**What's new in 1.3**\n- Fixed: since 1.1 enemies did not attack and jars could not be broken (reported on GitHub). The memory change of 1.1\n  placed the game's memory blocks directly one after another, which the game does not expect; there is a little room\n  between them again. The memory fix of 1.1 (no more running out of memory) stays.",
+          "assets": [
+            {
+              "name": "ForgottenSandsRecompiled-Android-arm64.apk",
+              "size": 118377371,
+              "dl": 3
+            }
+          ]
+        },
+        {
+          "tag": "v1.2",
+          "name": "Forgotten Sands Android Recomp 1.2",
+          "date": "2026-11-27T05:54:22Z",
+          "body": "**Forgotten Sands Android Recomp 1.2** - native Android port of Prince of Persia: The Forgotten Sands (Xbox 360), made by static recompilation. No game files are included: you need your own disc image (.iso) of the Xbox 360 disc release (title ID 5553083E).\n\n**Tested only on the AYN Odin 3 and the Samsung Galaxy S26. Other devices may not work.** (64-bit ARM, Vulkan, Android 11 or newer)\n\n1. Install **ForgottenSandsRecompiled-Android-arm64.apk**.\n2. Start it and choose your disc image (.iso) when asked. It is unpacked once (about 5 GB of space needed, about 13 GB while the .iso is also on the device).\n3. Play with the handheld's own controls, a paired controller or the on-screen touch controls. Resolution, frame rate, button pictures, touch controls and more are under Settings on the start screen.\n\n**What's new in 1.2**\n- New, experimental: Settings > GPU driver. Devices whose own GPU driver lacks what the game needs (Adreno 6xx such as\n  the Retroid Pocket 5 or Poco F3: no 64-bit shader integers) can load a custom Vulkan driver package (.zip), for\n  example a Mesa Turnip build of the kind Android emulators use. The app does not include a driver. If the custom",
+          "assets": [
+            {
+              "name": "ForgottenSandsRecompiled-Android-arm64.apk",
+              "size": 118377369,
+              "dl": 10
+            }
+          ]
+        },
+        {
+          "tag": "v1.1",
+          "name": "Forgotten Sands Android Recomp 1.1",
+          "date": "2026-11-26T22:39:47Z",
+          "body": "**Forgotten Sands Android Recomp 1.1** - native Android port of Prince of Persia: The Forgotten Sands (Xbox 360), made by static recompilation. No game files are included: you need your own disc image (.iso) of the Xbox 360 disc release (title ID 5553083E).\n\n**Tested only on the AYN Odin 3 and the Samsung Galaxy S26. Other devices may not work.** (64-bit ARM, Vulkan, Android 11 or newer)\n\n1. Install **ForgottenSandsRecompiled-Android-arm64.apk**.\n2. Start it and choose your disc image (.iso) when asked. It is unpacked once (about 5 GB of space needed, about 13 GB while the .iso is also on the device).\n3. Play with the handheld's own controls, a paired controller or the on-screen touch controls. Resolution, frame rate, button pictures, touch controls and more are under Settings on the start screen.\n\n**What's new in 1.1**\n- Fixed: walls, floors and stairs of some rooms were invisible later in the game (you saw the desert backdrop\n  through them; first seen in the courtyard after the gate). Reported on a Poco F5 (GitHub issue #2), reproduced\n  and fixed on the AYN Odin 3.",
+          "assets": [
+            {
+              "name": "ForgottenSandsRecompiled-Android-arm64.apk",
+              "size": 118241710,
+              "dl": 18
+            }
+          ]
+        },
+        {
+          "tag": "v1.0",
+          "name": "Forgotten Sands Android Recomp 1.0",
+          "date": "2026-11-25T21:57:44Z",
+          "body": "**Forgotten Sands Android Recomp 1.0** - native Android port of Prince of Persia: The Forgotten Sands (Xbox 360), made by static recompilation. No game files are included: you need your own disc image (.iso) of the Xbox 360 disc release (title ID 5553083E).\n\n**Tested only on the AYN Odin 3 and the Samsung Galaxy S26. Other devices may not work.** (64-bit ARM, Vulkan, Android 11 or newer)\n\n1. Install **ForgottenSandsRecompiled-Android-arm64.apk**.\n2. Start it and choose your disc image (.iso) when asked. It is unpacked once (about 5 GB of space needed, about 13 GB while the .iso is also on the device).\n3. Play with the handheld's own controls, a paired controller or the on-screen touch controls. Resolution, frame rate, button pictures, touch controls and more are under Settings on the start screen.\n\n**What's new in 1.0**\nFirst Android release.\n\n- Native Android port (64-bit ARM, Vulkan) of Prince of Persia: The Forgotten Sands (Xbox 360), made by static\n  recompilation - not an emulator.\n- Runs from your own disc image: pick the `.iso` at the first start and it is unpacked once into the app's folder.",
+          "assets": [
+            {
+              "name": "ForgottenSandsRecompiled-Android-arm64.apk",
+              "size": 118225326,
+              "dl": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elkiro1311-smrpg-recomp",
+      "name": "SMRPG Recomp",
+      "name_zh": "《超级马力欧 RPG》Android 重编译",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "smrpg-recomp",
+      "family_label": "Super Mario RPG",
+      "owner": "ElKiro1311",
+      "repo": "ElKiro1311/smrpg-recompiled-android",
+      "repo_url": "https://github.com/ElKiro1311/smrpg-recompiled-android",
+      "homepage": "",
+      "description": "《超级马力欧 RPG》（Switch 2023）静态重编译到 Android，基于 LASRecomp，alpha 阶段，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "0.10.0-alpha",
+      "latest_date": "2026-11-23T14:45:43Z",
+      "channel": "stable",
+      "latest_body": "**SMRPG Recomp for Android**: an unofficial port of *Super Mario RPG* (Nintendo Switch, 2023, version 1.0.0) to Android by static recompilation, on top of the [LASRecomp](https://github.com/peiikai/LASRecomp) runtime. It is an **alpha**.\n\n### What's new\n\n- **The settings menu is in English**, and in Spanish when the game's language is Spanish (Video > Game language). With \"Automatic\" it follows the system's language.\n- The whole repository is in English now: code, log messages, scripts and documents. The README is also [in Spanish](https://github.com/ElKiro1311/smrpg-recompiled-android/blob/main/README.es.md).\n- New names, in English, for the HD texture folders (`textures/` and `textures-dump/`) and for the test environment file (`env.txt`). The earlier ones still work.\n\n**Updating from 0.9.1-alpha:** install the APK on top. Your saves, your settings and the game code you already built (`lasgame.so`) stay as they are: there is nothing to build again.",
+      "latest_apk_name": "smrpg-recomp-android-0.10.0-alpha.apk",
+      "latest_apk_url": "https://github.com/ElKiro1311/smrpg-recompiled-android/releases/download/0.10.0-alpha/smrpg-recomp-android-0.10.0-alpha.apk",
+      "latest_apk_size": 13823020,
+      "latest_apk_tag": "0.10.0-alpha",
+      "distribution": "release-apk",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 22,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-23T15:04:22Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "nintendo"
+      ],
+      "downloads_lifetime": 22,
+      "releases": [
+        {
+          "tag": "0.10.0-alpha",
+          "name": "0.10.0-alpha: in English and Spanish",
+          "date": "2026-11-23T14:45:43Z",
+          "body": "**SMRPG Recomp for Android**: an unofficial port of *Super Mario RPG* (Nintendo Switch, 2023, version 1.0.0) to Android by static recompilation, on top of the [LASRecomp](https://github.com/peiikai/LASRecomp) runtime. It is an **alpha**.\n\n### What's new\n\n- **The settings menu is in English**, and in Spanish when the game's language is Spanish (Video > Game language). With \"Automatic\" it follows the system's language.\n- The whole repository is in English now: code, log messages, scripts and documents. The README is also [in Spanish](https://github.com/ElKiro1311/smrpg-recompiled-android/blob/main/README.es.md).\n- New names, in English, for the HD texture folders (`textures/` and `textures-dump/`) and for the test environment file (`env.txt`). The earlier ones still work.\n\n**Updating from 0.9.1-alpha:** install the APK on top. Your saves, your settings and the game code you already built (`lasgame.so`) stay as they are: there is nothing to build again.",
+          "assets": [
+            {
+              "name": "ffmpeg-9.0.2.tar.xz",
+              "size": 12040788,
+              "dl": 5
+            },
+            {
+              "name": "smrpg-recomp-android-0.10.0-alpha.apk",
+              "size": 13823020,
+              "dl": 18
+            }
+          ]
+        },
+        {
+          "tag": "0.9.1-alpha",
+          "name": "0.9.1-alpha: first published APK",
+          "date": "2026-11-23T14:05:07Z",
+          "body": "First published build of **SMRPG Recomp for Android**: an unofficial port of *Super Mario RPG* (Nintendo Switch, 2023, version 1.0.0) to Android by static recompilation, on top of the [LASRecomp](https://github.com/peiikai/LASRecomp) runtime. It is an **alpha**.\n\n> **Legal notice.** A non-profit fan project, not affiliated with or endorsed by Nintendo or Square Enix. *Super Mario RPG* and *Mario* are trademarks of Nintendo; the game is © Nintendo / SQUARE ENIX. Neither the APK nor the repository contains any of the game's files, code, graphics, music or text. You need the files of **your own copy** of the game, already extracted (the `exefs` and `romfs` folders of version 1.0.0); there are no instructions here on how to obtain them.\n\n### Installing\n\n1. Install `smrpg-recomp-android-0.9.1-alpha.apk` (Android 13 or newer, 64-bit ARM, Vulkan 1.3).\n2. Compile the game's code for your device (`lasgame.so`) from your extracted copy, on a Windows PC: [README, \"Building\"](https://github.com/ElKiro1311/smrpg-recompiled-android#building). The APK contains nothing of the game, so it can't do this step for you yet.",
+          "assets": [
+            {
+              "name": "ffmpeg-9.0.2.tar.xz",
+              "size": 12040788,
+              "dl": 2
+            },
+            {
+              "name": "smrpg-recomp-android-0.9.1-alpha.apk",
+              "size": 13806659,
+              "dl": 4
+            }
+          ]
+        }
+      ]
     }
   ],
-  "count": 544
+  "count": 556
 }
