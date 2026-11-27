@@ -428,8 +428,8 @@ internal fun NewsRowItem(item: NewsItem) {
 
 /** 新闻全文弹窗（近全屏，仿指南窗口）：标题 + 分类 + 时间 + 正文。
  *  正文优先用 data.body（资讯正文 / release 完整日志），无全文时回退摘要。
- *  官方组件/运行库/驱动条目（type 非空）提供"翻译"与"查看原文"按钮；
- *  资讯类条目不暴露外链（来源站名不出现在任何位置）。 */
+ *  「查看原文」对所有条目可用；「翻译」只给官方组件/运行库/驱动条目（type 非空），
+ *  中文资讯本身就是中文，翻译无意义。资讯条目底部展示「来源：IT之家」署名。 */
 @Composable
 private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
     val context = LocalContext.current
@@ -512,19 +512,20 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                                 Spacer(Modifier.height(10.dp))
                             }
                             // Release 正文是 Markdown 原文，直接 Text 渲染会把 ## / ** / [文字](网址)
-                            // 原样显示出来；翻译结果已是纯文本，不再处理
+                            // 原样显示出来；资讯纯文本也可能残留 <br>/<p> 标签，同一套轻量清理复用；
+                            // 翻译结果已是纯文本，不再处理
                             val transSnapshot = translated
                             val shownBody = remember(item.id, transSnapshot, baseText) {
                                 if (transSnapshot != null) transSnapshot.trim()
-                                else if (isOfficial) cleanReleaseBody(baseText)
-                                else baseText
+                                else cleanReleaseBody(baseText)
                             }
                             Text(shownBody, style = MaterialTheme.typography.bodyMedium)
                             // 正文内嵌图（GitHub user-attachments / <img>）：示例图、对比图都在这里，
-                            // 只渲染文字等于丢掉一半内容
+                            // 只渲染文字等于丢掉一半内容；官方条目从 body 提取，资讯条目用脚本入库的数组
                             val inlineImgs = remember(item.id) {
-                                if (isOfficial) inlineImages(item.body) else emptyList()
-                            }
+                                (if (isOfficial) inlineImages(item.body) else emptyList()) +
+                                    item.inlineImages
+                            }.distinct().take(6)
                             inlineImgs.forEach { url ->
                                 Spacer(Modifier.height(8.dp))
                                 AsyncImage(
@@ -539,17 +540,25 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                         }
                     }
                 }
+                // 资讯条目来源署名（合规转载口径）；官方 release 条目不显示
+                if (!isOfficial) {
+                    Text(
+                        appString(R.string.source_format, item.source.ifBlank {
+                            appString(R.string.news_source_ithome)
+                        }),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
                 // 底部操作
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // 设备/泛科技报道本来就是中文，翻译与「查看原文」在这里没有意义；
-                    // 组件/驱动这类英文 release 才保留
-                    val showActions = baseText.isNotBlank() &&
-                        item.category !in setOf("device", "tech", "eco")
-                    if (showActions) {
+                    // 翻译只给官方英文 release 条目；中文资讯本来就是中文，翻译无意义
+                    if (isOfficial && baseText.isNotBlank()) {
                         OutlinedButton(
                             onClick = {
                                 if (translated == null) {
@@ -572,6 +581,9 @@ private fun NewsDetailDialog(item: NewsItem, onDismiss: () -> Unit) {
                                 }
                             )
                         }
+                    }
+                    // 打开原文对所有条目可用：摘要/正文之后保留回原文链接
+                    if (item.url.isNotBlank()) {
                         OutlinedButton(onClick = { openNewsLink(context, item.url) }) {
                             Text(appString(R.string.view_original))
                         }

@@ -14,12 +14,14 @@ data class NewsItem(
     val category: String,    // emulator / driver / component / runtime / eco / general
     val summary: String,
     val type: String = "",   // 官方组件/运行库类型：DXVK / VKD3D-Proton / Box64 / Proton-GE 等
-    val body: String = "",   // 详情弹窗正文：仅官方 release 日志入库；资讯不转载第三方正文，弹窗回退显示摘要并跳原文
+    val body: String = "",   // 详情弹窗正文：官方 release 日志 / 资讯正文纯文本
     val tag: String = "",    // 资讯具体主题标签（脚本按标题提取：系统/芯片/手机/游戏/AI 等）
     val image: String = "",  // 缩略图 URL（IT之家 img.ithome.com，卡片列表用）
     val commentCount: Int = 0, // 评论数（官方接口 commentcount / 栏目页 review-num）
     val section: String = "",  // 分区（emulator / device / tech），App 分区过滤用
-    val channel: String = ""   // 一级栏目（软件之家 / Linux / Windows / 数码之家 等）
+    val channel: String = "",  // 一级栏目（软件之家 / Linux / Windows / 数码之家 等）
+    val inlineImages: List<String> = emptyList(), // 正文内嵌图热链 URL（脚本入库；官方条目从 body 提取）
+    val source: String = ""   // 来源站名（资讯条目：IT之家），详情弹窗底部署名用
 ) {
     /** 分类展示名：资讯条目优先显示具体主题标签（tag），无 tag（官方条目）回退大类名 */
     val categoryLabel: String
@@ -76,7 +78,12 @@ object NewsRepository {
                             image = o.optString("image", ""),
                             commentCount = o.optInt("commentcount", 0),
                             section = o.optString("section", ""),
-                            channel = o.optString("channel", "")
+                            channel = o.optString("channel", ""),
+                            inlineImages = buildList {
+                                val arr = o.optJSONArray("inlineImages")
+                                if (arr != null) for (j in 0 until arr.length()) add(arr.optString(j))
+                            },
+                            source = o.optString("source", "")
                         )
                     )
                 }

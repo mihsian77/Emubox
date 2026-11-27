@@ -7,7 +7,8 @@
   Mesa / Mono / glibc，条目带 type 字段，App 端按组件类型筛选 + 多页面展示。
 
 输出：
-  { version, updated_at, source, items: [{id, title, url, published_at, category, type?, summary}] }
+  { version, updated_at, source, items: [{id, title, url, published_at, category, type?, summary,
+    body?, inlineImages?, source?}] }
 """
 import hashlib
 import datetime
@@ -27,6 +28,11 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO_ROOT, "data/news-data.json")
 OFFLINE = os.path.join(REPO_ROOT, "app", "src", "main", "assets", "news_offline.json")
 UA = "EmuHub-CN news-refresh/1.3 (+https://github.com/mihsian77/EmuHub-CN)"
+
+# 资讯正文增量抓取：只对本轮新出现的条目取正文，存量条目不回溯回填；
+# 正文内嵌图只存热链 URL，图片不落仓库。
+BODY_FETCH_LIMIT = 30        # 单次运行最多抓多少篇正文（控 CI 时长与反爬压力）
+BODY_REQUEST_INTERVAL = 1.2   # 篇与篇之间礼貌间隔（秒），避免触发风控
 
 # ===== IT之家 官方 JSON 接口（资讯主源，Option A）=====
 # 全站分页 newslistpageget：每页实返 25 条，page 递增；字段带 cid/sid（栏目ID）、
@@ -62,7 +68,9 @@ SECTION_WORDS = [
     ("emulator", ["安卓模拟器", "手游模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu",
                   "Dolphin", "PCSX2", "PPSSPP", "RPCS3", "Xenia", "Citra", "MAME", "DuckStation",
                   "AetherSX2", "Vita3K", "Skyline", "Winlator", "Wine", "Box64", "Proton",
-                  "DXVK", "VKD3D", "Mesa"]),
+                  "DXVK", "VKD3D", "Mesa",
+                  # 移植窄词：只认民间/PC 移植口径，主机游戏发售稿不含这些写法，避免误拉进模拟器区
+                  "民间移植", "PC移植", "PC 移植", "移植版"]),
     ("device", ["手机", "安卓", "Android", "电脑", "平板", "折叠屏", "芯片", "骁龙", "天玑", "麒麟",
                 "SoC", "GPU", "显卡", "处理器", "VR", "耳机", "显示器"]),
 ]
@@ -218,6 +226,10 @@ def fetch_ithome_soft() -> list:
             tmt = re.search(r'class="post-time">(.*?)</span>', block)
             rm = re.search(r'class="review-num">(\d+)', block)
             sec = CHANNEL_SECTION.get(label, "tech")
+            # 游戏电竞等泛科技栏目里的民间/PC 移植稿按标题窄词救回模拟器区；
+            # 纯游戏发售稿不含移植写法，section_by_title 仍落 tech，不受影响
+            if sec == "tech" and section_by_title(title) == "emulator":
+                sec = "emulator"
             items.append({
                 "id": hashlib.md5(u.encode()).hexdigest()[:8],
                 "title": title[:120],
@@ -242,6 +254,8 @@ EMU_WORDS = [
     "模拟器", "emulator", "RetroArch", "Cemu", "Ryujinx", "Yuzu", "Dolphin", "PCSX2", "PPSSPP",
     "RPCS3", "Xenia", "Citra", "MAME", "DuckStation", "AetherSX2", "Vita3K", "Skyline", "Mupen",
     "Winlator",
+    # 移植窄词（同 SECTION_WORDS）：民间/PC 移植、移植版
+    "民间移植", "PC移植", "PC 移植", "移植版",
 ]
 # 纯促销导购条目：标题特征命中即整条丢弃（红包/秒杀/价格对比/国补价等）
 # 后三条是补漏：实测「京东自营 46.9 元：卡夫多款洗发水 12.9 元/斤闭眼囤」被归进
@@ -452,6 +466,59 @@ def _fetch_text(url: str, timeout: int = 25, ua: str = None) -> str:
         return resp.read().decode("utf-8", "ignore")
 
 
+def _extract_article_body(html_text: str):
+    """从 IT之家详情页提取正文纯文本与内嵌图 URL 列表。
+
+    桌面版容器是 <div class="post_content" id="paragraph">，移动版是
+    <div class="news-content">；正文尾部混着相关推荐、广告 iframe 与脚本，
+    切片时在这些节点前截断。返回 (body_text, inline_images)，解析不出返 ("", [])。
+    """
+    m = re.search(r'<div[^>]*id="paragraph"[^>]*>', html_text)
+    if not m:
+        m = re.search(r'<div[^>]*class="news-content[^"]*"[^>]*>', html_text)
+    if not m:
+        return "", []
+    seg = html_text[m.end():]
+    # 尾部杂项边界：相关推荐 / 广告 iframe / 脚本 / 评论区，先到先截
+    stop = len(seg)
+    for marker in ("相关文章", "relevant-news-box", "<script", "<iframe", "<ul", 'id="post_comm"'):
+        k = seg.find(marker)
+        if k >= 0:
+            stop = min(stop, k)
+    seg = seg[:stop]
+    # 去掉「感谢网友投递」的投稿提示块
+    seg = re.sub(r"<div[^>]*class=['\"]tougao-user['\"][^>]*>.*?</div>", "", seg, flags=re.S)
+    # 内嵌图：懒加载 data-original 优先，其次 src；协议相对地址补全 https:
+    images = []
+    for attr in ("data-original", "src"):
+        for mm in re.finditer(rf'<img[^>]+{attr}=["\']([^"\']+)["\']', seg, re.I):
+            u = mm.group(1)
+            if u.startswith("//"):
+                u = "https:" + u
+            if u.startswith(("http://", "https://")):
+                images.append(u)
+    images = list(dict.fromkeys(images))[:6]
+    # 段落/换行标签转换行，其余标签摘掉再解实体
+    seg = re.sub(r"<br\s*/?>", "\n", seg, flags=re.I)
+    seg = re.sub(r"</(p|div|h\d|li)>", "\n", seg, flags=re.I)
+    text = strip_html(seg)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return text, images
+
+
+def fetch_article_body(url: str):
+    """抓详情页正文；任何失败都返 ("", [])，不拖垮主流程。"""
+    try:
+        req = urllib.request.Request(
+            url, headers={"User-Agent": API_UA, "Referer": "https://m.ithome.com/"})
+        html_text = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")
+        return _extract_article_body(html_text)
+    except Exception as e:
+        print(f"  正文抓取失败 {url}: {e}", file=sys.stderr)
+        return "", []
+
+
 def _head_last_modified(url: str) -> int:
     """文件 HEAD → Last-Modified（RFC1123）→ epoch 秒；失败返回 0"""
     try:
@@ -642,10 +709,8 @@ def main():
     fresh_news = []
     try:
         api_items = fetch_ithome_api(max_pages=12) + fetch_ithome_soft()
-        # 正文抓取范围：emulator/device 全量 + tech 最新 20 条（控制 CI 时长与反爬频率）
-        # 只收标题、摘要与原文链接：不抓取、不存储第三方正文，
-        # 弹窗内展示摘要并给出「打开原文」，阅读与流量都留在原站。
-        fresh_news = [{**it, "body": ""} for it in api_items]
+        # 正文在下面合并阶段只对本轮新条目增量抓取；这里先占位空正文。
+        fresh_news = [{**it, "body": "", "inlineImages": []} for it in api_items]
     except Exception as e:
         print(f"资讯官方接口抓取失败（继续用官方源）: {e}", file=sys.stderr)
 
@@ -733,12 +798,6 @@ def main():
     ]
     if before != len(merged):
         print(f"标题级去重：{before} → {len(merged)} 条（-{before - len(merged)}）", file=sys.stderr)
-    # 历史资讯条目曾因旧解析器（嵌套 div 提前截断）抓不到正文，这里对 body 为空的
-    # 资讯条目补抓一次完整正文（增量：已非空的跳过）。
-    # 旧库同 id（= 同 url）条目已抓到的正文直接继承：merged 每次以 fresh_news
-    # 重建，旧条目的 body 不会自动带过来；不继承的话每次运行都要全量重抓一遍。
-    # 历史条目里残留的第三方正文已随本次运行清空（见文件末尾统一收敛），
-    # 不再做正文继承或补抓：正文既不写入，也就无需修补。
     # 纯促销导购标题（红包/秒杀/价格对比/国补价等）整条丢弃，不占资讯位
     merged = [
         it for it in merged
@@ -758,6 +817,24 @@ def main():
     if dropped:
         print(f"汽车/家电无关稿丢弃 {dropped} 条", file=sys.stderr)
     merged = [it for it in merged if not _car_drop(it)]
+    # 正文增量抓取：只给本轮新出现的资讯条目取正文，存量条目不回溯回填。
+    # 官方 release 日志不走这里；单篇失败留空，下一轮新条目再补。
+    old_ids = {it.get("id") for it in old}
+    body_fetched = 0
+    for it in merged:
+        if it.get("type") or "ithome.com" not in it.get("url", ""):
+            continue
+        if it["id"] in old_ids:
+            continue
+        if body_fetched >= BODY_FETCH_LIMIT:
+            break
+        body_text, imgs = fetch_article_body(it["url"])
+        it["body"] = body_text
+        it["inlineImages"] = imgs
+        body_fetched += 1
+        time.sleep(BODY_REQUEST_INTERVAL)
+    if body_fetched:
+        print(f"新条目正文抓取 {body_fetched} 篇", file=sys.stderr)
     # 历史条目标题/摘要可能是旧解析器未清洗的，统一再清洗一次来源站名字样，
     # 摘要里促销导购片段（直达链接/红包/领券）截掉；资讯条目加具体主题标签（tag）。
     for it in merged:
@@ -767,16 +844,13 @@ def main():
             it["summary"] = trim_promo(hide_source(clean_text(it.get("summary", ""))))
             if not it.get("type"):
                 it["tag"] = extract_tag(it.get("title", ""), it.get("summary", ""))
+            # 合规转载口径：详情页底部展示来源署名；链接原文保留在 url 字段
+            it["source"] = "IT之家"
     # 官方 release 条目优先保留（180 天窗口内），避免被 300 条上限
     # 与高频资讯条目挤掉（用户反馈组件/运行库资讯时常为空）
     official_items = [it for it in merged if it.get("type")]
     other_items = [it for it in merged if not it.get("type")]
     merged = (official_items + other_items)[:300]
-
-    # 资讯条目只保留标题、摘要与链接；官方 release 日志属于发布说明，保留正文。
-    for it in merged:
-        if not it.get("type"):
-            it["body"] = ""
 
     data = {
         "version": 3,

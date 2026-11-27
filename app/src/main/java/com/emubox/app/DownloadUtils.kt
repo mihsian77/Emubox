@@ -188,7 +188,10 @@ suspend fun downloadComponent(context: Context, component: Component) {
     val category = "Components/${component.type}"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(component.remoteUrl)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category, originalUrl = component.remoteUrl)
+    downloadFileWithProgress(
+        context.applicationContext, acceleratedUrl, fileName, category,
+        originalUrl = component.remoteUrl, expectedSha256 = component.checksum
+    )
 }
 
 /** R5：来源级捆绑——一键下载某组件来源"最新一套"文件。
@@ -282,7 +285,10 @@ suspend fun downloadSourceBundle(context: Context, manifestUrl: String, sourceNa
                 return@forEach
             }
             val acceleratedUrl = Accelerator.rewriteUrl(url)
-            downloadFileWithProgress(context.applicationContext, acceleratedUrl, desiredName, subPath, originalUrl = url)
+            downloadFileWithProgress(
+                context.applicationContext, acceleratedUrl, desiredName, subPath,
+                originalUrl = url, expectedSha256 = component.checksum
+            )
             success += rawName
         } catch (e: Exception) {
             failed += rawName
@@ -340,7 +346,10 @@ suspend fun downloadRuntimeLibrary(context: Context, component: RuntimeComponent
     val category = "Runtime/${component.category.dirName}"
     if (ensureFileNotExists(context, fileName, category)) return
     val acceleratedUrl = Accelerator.rewriteUrl(file.url)
-    downloadFileWithProgress(context.applicationContext, acceleratedUrl, fileName, category, originalUrl = file.url)
+    downloadFileWithProgress(
+        context.applicationContext, acceleratedUrl, fileName, category,
+        originalUrl = file.url, expectedSha256 = component.checksum
+    )
 }
 
 /**

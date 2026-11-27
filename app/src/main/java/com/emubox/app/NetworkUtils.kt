@@ -71,7 +71,9 @@ data class Component(
     val verCode: String,
     val remoteUrl: String,
     /** 文件字节数；contents.json 清单不含大小，需要时通过 HEAD 懒加载获取 */
-    val sizeBytes: Long? = null
+    val sizeBytes: Long? = null,
+    /** 发布方指纹（sha256，"sha256:..." 或裸十六进制）；清单未提供时为空，跳过完整性校验 */
+    val checksum: String = ""
 )
 
 /** wrapper 清单条目（winlator-contents wrappers.json，作者维护的目录，不依赖 release 标签顺序） */
@@ -492,7 +494,8 @@ private suspend fun refreshComponents(manifestUrl: String): Map<String, List<Com
             type = type,
             verName = verName,
             verCode = obj.opt("verCode")?.toString().orEmpty(),
-            remoteUrl = remoteUrl
+            remoteUrl = remoteUrl,
+            checksum = obj.optString("checksum").ifBlank { obj.optString("sha256") }
         )
         map.getOrPut(component.type) { mutableListOf() }.add(component)
     }
