@@ -42,6 +42,11 @@ EXTRA_OTHER = {
     "daryan044-tessera-linux", "beauty114514-trierarch-app", "droidtop-droidtop",
 }
 
+# 名字里不带 winlator 字样、但确实是 Winlator 分支的条目。
+# WinXclipse 面向三星 Xclipse GPU，id/name 都只有 xclipse，靠正则归不进容器组；
+# 放 EXTRA_OTHER 会归错成「其它容器」，所以单独列一张表。
+EXTRA_WINLATOR = {"avavo-winxclipse"}
+
 # frontend-tool：直接用 kind，不另造词
 FRONTEND_KINDS = {"frontend", "tool", "emulator"}
 
@@ -49,6 +54,8 @@ FRONTEND_KINDS = {"frontend", "tool", "emulator"}
 def compat_group(e):
     if e.get("id") in EXTRA_OTHER:
         return "other-container"
+    if e.get("id") in EXTRA_WINLATOR:
+        return "winlator"
     # runtime 已是 winlator 的条目按容器组兜底，避免名字没关键词就掉进未归组
     if e.get("runtime") == "winlator":
         return "winlator"

@@ -100907,7 +100907,8 @@
       ],
       "download_kind": "github-release",
       "android_ready": true,
-      "android_ready_source": "release"
+      "android_ready_source": "release",
+      "subcategory": "winlator"
     }
   ],
   "count": 569
