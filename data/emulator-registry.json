@@ -98955,7 +98955,90 @@
           ]
         }
       ]
+    },
+    {
+      "id": "kiwi360",
+      "name": "Kiwi360",
+      "name_zh": "Xbox 360 模拟器",
+      "category": "主机模拟",
+      "section": "console-emulation",
+      "family": "kiwi360",
+      "family_label": "Kiwi360（Xbox 360 模拟器）",
+      "owner": "Kiwi360",
+      "repo": "Kiwi360/Kiwi360",
+      "repo_url": "https://git.lemon-emu.org/Kiwi360/Kiwi360",
+      "homepage": "https://kiwi360.org",
+      "description": "Xbox 360 的 Android 模拟器，基于 Xenia Edge，自带 Lemon-Ade 定制驱动与逐游戏推荐设置，应用内更新。",
+      "summary": "",
+      "official": false,
+      "source": "gitea",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "xbox360"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "emulation",
+      "latest_tag": "v0.2.0",
+      "latest_date": "2026-11-27T21:21:58Z",
+      "channel": "stable",
+      "latest_body": "Kiwi360 0.2.0 is the first public release: faster with the bundled driver, image effects, recommended settings per game, and an updater, so later versions are offered in the app. Testers on 0.1.0: install this one by hand once.\n\n**Faster**\n- **Zero-copy guest memory now works with custom GPU drivers.** With Lemon-Ade (the default on Snapdragon) the game's memory used to fall back to staging copies; it is shared with the GPU again, as on the system driver.\n- **Lemon-Ade v0.0.9 rebuilt** with 16 more Mesa changes, among them an Adreno 830 workaround and shader compiler and occlusion query fixes.\n\n**More stable**\n- **No more \"app not responding\" while playing:** the emulator no longer asks for the GPU's top priority, which could leave the app's own menus and touch input waiting behind the game.\n- **Unsupported processors are explained instead of crashing:** Kiwi360 needs an ARMv8.2 CPU (Snapdragon 845 or later, or an equivalent MediaTek, Exynos or Tensor). On older Cortex-A53/A73 chips it now says so.\n- **Better reports:** *Share logs* now includes the last 8 sessions (and every one from the last 48 hours), the crash reports, and which GPU driver each game uses.\n\n**New**",
+      "latest_apk_name": "Kiwi360-v0.2.0.apk",
+      "latest_apk_url": "https://git.lemon-emu.org/Kiwi360/Kiwi360/releases/download/v0.2.0/Kiwi360-v0.2.0.apk",
+      "latest_apk_size": 32913550,
+      "latest_apk_tag": "v0.2.0",
+      "distribution": "gitea-release",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 0,
+      "downloads_basis": "lifetime",
+      "downloads_lifetime": 0,
+      "pushed_at": "2026-11-27T21:20:29Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "android_ready": true,
+      "android_ready_source": "release",
+      "platform_families": [
+        "microsoft"
+      ],
+      "releases": [
+        {
+          "tag": "v0.2.0",
+          "name": "Kiwi360 v0.2.0",
+          "date": "2026-11-27T21:21:58Z",
+          "body": "Kiwi360 0.2.0 is the first public release: faster with the bundled driver, image effects, recommended settings per game, and an updater, so later versions are offered in the app. Testers on 0.1.0: install this one by hand once.\n\n**Faster**\n- **Zero-copy guest memory now works with custom GPU drivers.** With Lemon-Ade (the default on Snapdragon) the game's memory used to fall back to staging copies; it is shared with the GPU again, as on the system driver.\n- **Lemon-Ade v0.0.9 rebuilt** with 16 more Mesa changes, among them an Adreno 830 workaround and shader compiler and occlusion query fixes.\n\n**More stable**\n- **No more \"app not responding\" while playing:** the emulator no longer asks for the GPU's top priority, which could leave the app's own menus and touch input waiting behind the game.\n- **Unsupported processors are explained instead of crashing:** Kiwi360 needs an ARMv8.2 CPU (Snapdragon 845 or later, or an equivalent MediaTek, Exynos or Tensor). On older Cortex-A53/A73 chips it now says so.\n- **Better reports:** *Share logs* now includes the last 8 sessions (and every one from the last 48 hours), the crash reports, and which GPU driver each game uses.\n\n**New**",
+          "assets": [
+            {
+              "name": "Kiwi360-v0.2.0-lgpl-source.zip",
+              "size": 23153750,
+              "dl": 0
+            },
+            {
+              "name": "Kiwi360-v0.2.0.apk",
+              "size": 32913550,
+              "dl": 0
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release"
     }
   ],
-  "count": 556
+  "count": 557
 }
