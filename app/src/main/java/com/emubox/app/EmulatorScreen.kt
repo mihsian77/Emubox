@@ -1031,11 +1031,9 @@ fun EmulatorScreen(
         }
 if (emuTab == 0) item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    appString(R.string.emulator_result_count, flatItems.size),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Fusion.OnSurfaceDim
-                )
+                // 总数只在头部说一次：没筛选时这里与头部「N 款」同值，说了是重复；
+                // 筛过之后才变成另一个数，同屏两个数字读起来互相矛盾。
+                EmulatorFilterCount(shown = flatItems.size, total = entries.size)
                 Spacer(Modifier.weight(1f))
                 IconToggleButton(
                     checked = onlyFav,
@@ -1266,4 +1264,20 @@ if (emuTab == 0) item(key = "emulator_tools", span = { GridItemSpan(maxLineSpan)
             showCompare = false
         }
     }
+}
+
+/**
+ * 项目页的「筛选后结果数」。
+ *
+ * 只在筛选生效（结果数与总数不等）时显示——头部已经报过一次总数，默认状态下再说一遍
+ * 就是同一个数字出现两次；一旦筛过、两个数分叉，同屏并排又像在互相矛盾。
+ */
+@Composable
+private fun EmulatorFilterCount(shown: Int, total: Int) {
+    if (shown == total) return
+    Text(
+        appString(R.string.emulator_result_count, shown),
+        style = MaterialTheme.typography.labelMedium,
+        color = Fusion.OnSurfaceDim
+    )
 }

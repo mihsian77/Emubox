@@ -3,6 +3,7 @@ package com.emubox.app
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -238,6 +239,26 @@ fun DriverScreen(
         selected = driverTab,
         onSelect = { idx -> if (idx == tabs.lastIndex) onOpenComponents() else driverTab = idx },
     )
+    // 计数口径跟着当前子分区走：切到 Turnip 就只数 Turnip 源，切到「动态」不报源数。
+    // 原来固定把五类求和，切到单类分区仍报全量、「动态」页也在报，一屏出现两套数。
+    // 隐藏的分区同样不计入（按设备匹配关掉的 Mali/Xclipse 分区不在页面上，不该算进这句话）。
+    // Qualcomm 还多一层：releases 拉不到时整块不渲染（showQualcomm），计数得跟着让位，
+    // 否则会变成「顶部说 39 个源、页面上只数得出 38 个」。
+    val visibleSourceCount = when (driverTab) {
+        DRIVER_TAB_ACTIVITY -> 0
+        DRIVER_TAB_TURNIP -> if (showTurnipSection) filteredTurnip.size else 0
+        DRIVER_TAB_QUALCOMM -> if (showQualcommSection && showQualcomm) filteredQualcomm.size else 0
+        DRIVER_TAB_PANVK -> if (showPanvkSection) filteredPanvk.size else 0
+        DRIVER_TAB_XCLIPSE -> if (showXclipseSection) filteredXclipse.size else 0
+        DRIVER_TAB_WRAPPER -> if (showWrapperSection) filteredWrapper.size else 0
+        else -> listOf(
+            if (showTurnipSection) filteredTurnip.size else 0,
+            if (showPanvkSection) filteredPanvk.size else 0,
+            if (showQualcommSection && showQualcomm) filteredQualcomm.size else 0,
+            if (showXclipseSection) filteredXclipse.size else 0,
+            if (showWrapperSection) filteredWrapper.size else 0,
+        ).sum()
+    }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         state = listState,
@@ -285,8 +306,7 @@ fun DriverScreen(
                 "搜索更新（驱动名 / 版本 / 日志）"
             } else headerHint,
             // 一条源都没有时不显示「0 个驱动源」——下面已有专门的空态卡，重复说两次没有意义
-            resultCount = (filteredTurnip.size + filteredPanvk.size + filteredQualcomm.size +
-                filteredXclipse.size + filteredWrapper.size).takeIf { it > 0 },
+            resultCount = visibleSourceCount.takeIf { it > 0 },
             resultLabel = { appString(R.string.driver_result_count, it) },
         )
 
@@ -470,39 +490,46 @@ fun DriverScreen(
             }
         }
 
-        if (q.isNotBlank() && filteredTurnip.isEmpty() && filteredPanvk.isEmpty() && filteredQualcomm.isEmpty()) {
-            item(key = "driver_search_empty") {
-                Text(
-                    appString(R.string.search_empty),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(vertical = 24.dp).fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
+        // 两种空态都按「当前分区可见的源数」判，和顶部计数同一口径。
+        // 原来搜索空态只查 turnip/panvk/qualcomm（搜到 Xclipse/Wrapper 也报搜不到），
+        // 「暂无可用驱动」只看 turnip/qualcomm 的 releases（PanVK/Wrapper 正常列出时仍挂这句）。
+        driverEmptyStates(q = q, visibleCount = visibleSourceCount, isLoading = isLoading, tab = driverTab)
+    }
+    }
+}
 
-        if (!isLoading && turnipReleases.isEmpty() && qualcommReleases.isEmpty()) {
-            item(key = "driver_empty") {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(28.dp)
-                ) {
-                    Column(Modifier.padding(20.dp)) {
-                        Text(
-                            appString(R.string.no_drivers),
-                            style = MaterialTheme.typography.titleSmall
-                        )
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            appString(R.string.no_drivers_hint),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
+/**
+ * 驱动页空态，两种互斥：搜索无命中 / 一个源都没有。
+ *
+ * 判据统一走「当前分区可见的源数」，避免出现「顶部说 39 个源、底部说暂无驱动」这种同屏矛盾。
+ * 单个分区 releases 拉取失败不算全局空态——那是各分区自己「未找到兼容的版本」要说明的事。
+ */
+private fun LazyListScope.driverEmptyStates(q: String, visibleCount: Int, isLoading: Boolean, tab: Int) {
+    val global = tab != DRIVER_TAB_ACTIVITY && visibleCount == 0
+    if (global && q.isNotBlank()) {
+        item(key = "driver_search_empty") {
+            Text(
+                appString(R.string.search_empty),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(vertical = 24.dp).fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+    if (global && q.isBlank() && !isLoading) {
+        item(key = "driver_empty") {
+            Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(28.dp)) {
+                Column(Modifier.padding(20.dp)) {
+                    Text(appString(R.string.no_drivers), style = MaterialTheme.typography.titleSmall)
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        appString(R.string.no_drivers_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
         }
-    }
     }
 }

@@ -672,7 +672,8 @@ internal fun EmulatorRecipesCard(recipes: List<EmulatorRecipe>) {
  */
 internal fun heroReasonText(entry: EmulatorEntry, total: Int): String {
     val parts = ArrayList<String>(4)
-    if (total > 1) parts += "${total} 个项目里热度第 1"
+    // 总数在同一屏的「共 N 个模拟器」里已经说过，这里只报名次，不再复述那个 N。
+    if (total > 1) parts += "热度第 1"
     val days = daysSinceIso(entry.pushedAt)
     when {
         days == 0L -> parts += "今天有提交"

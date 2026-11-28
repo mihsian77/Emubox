@@ -257,17 +257,18 @@ def main():
             changed = True
         e["stars"] = int(meta.get("stargazers_count") or 0)
         e["pushed_at"] = meta.get("pushed_at") or ""
-        # 只存最近 5 个版本：详情页最多展开看几个，存 30 个让 registry 从 9MB 涨到 30MB，
-        # 而 91% 的体积都在 releases 上（每个 release 带完整 changelog 与 assets 列表）。
-        e["releases"] = rels[:RELEASES_KEPT]
         if rels:
             # 最新一条就是「当前版本」，预发布也算。
             # 旧逻辑优先挑「非预发布且带 changelog」的那条，于是只发 nightly/beta 的项目
             # 永远停在旧正式版，发过预发布的项目在「按日期排序」里也会被排到后面。
-            # GitHub 的 /releases 按 created_at 排，改过草稿的旧 tag 会插到前面，
-            # 这里按 published_at 再排一次，保证「最新发布的」真的是第一条。
+            # GitHub 的 /releases 按 created_at 排，先建草稿、后发布的旧 tag 会排在新版本前面。
+            # 必须排序后再截断：反过来先切前 5 条，最新发布的那版可能连进候选的机会都没有
+            # （BioShock 就是这样取到 v0.2.1-dev、漏掉更晚发布的 v0.3-dev）。
             rels = sorted(rels, key=lambda r: r.get("date") or "", reverse=True)
-            e["releases"] = rels[:RELEASES_KEPT]
+        # 只存最近 5 个版本：详情页最多展开看几个，存 30 个让 registry 从 9MB 涨到 30MB，
+        # 而 91% 的体积都在 releases 上（每个 release 带完整 changelog 与 assets 列表）。
+        e["releases"] = rels[:RELEASES_KEPT]
+        if rels:
             r0 = rels[0]
             e["latest_tag"] = r0["tag"]
             e["latest_date"] = r0["date"]
