@@ -1,6 +1,6 @@
 {
   "version": "1.3.1",
-  "updated_at": "2026-11-28T01:48:53Z",
+  "updated_at": "2026-11-28T09:49:08Z",
   "emulators": [
     {
       "id": "1nsec-naruto-the-broken-bond-android-port",
@@ -99038,7 +99038,1877 @@
         }
       ],
       "download_kind": "github-release"
+    },
+    {
+      "id": "dguillot-gh-phantom-hourglass-recomp",
+      "name": "Phantom Hourglass Recomp",
+      "name_zh": "《塞尔达传说：幻影沙漏》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "phantom-hourglass-recomp",
+      "family_label": "Phantom Hourglass Recomp",
+      "owner": "dguillot-gh",
+      "repo": "dguillot-gh/phantom-hourglass-recomp",
+      "repo_url": "https://github.com/dguillot-gh/phantom-hourglass-recomp",
+      "homepage": "",
+      "description": "《塞尔达传说：幻影沙漏》（NDS）静态重编译到 Android，同时提供 Windows 版，需自备 ROM。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.2.0",
+      "latest_date": "2026-11-26T04:39:41Z",
+      "channel": "stable",
+      "latest_body": "You need your own Phantom Hourglass ROM (USA or Europe): the game is built from it on your PC or phone the first time (about a minute). Nothing from the game is included here.\n\n- Windows: download PhantomHourglass.exe, run it, select your ROM.\n- Android: install PhantomHourglass.apk, then import your ROM in the app.\n\nBuilt from commit f2587c0.\n\n<!-- versionCode: 474035 -->\n",
+      "latest_apk_name": "PhantomHourglass.apk",
+      "latest_apk_url": "https://github.com/dguillot-gh/phantom-hourglass-recomp/releases/download/v0.2.0/PhantomHourglass.apk",
+      "latest_apk_size": 77484325,
+      "latest_apk_tag": "v0.2.0",
+      "distribution": "release-apk",
+      "stars": 101,
+      "forks": 9,
+      "watchers": 0,
+      "downloads_total": 344,
+      "downloads_lifetime": 344,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T16:58:10Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "v0.2.0",
+          "name": "Phantom Hourglass Recomp v0.2.0",
+          "date": "2026-11-26T04:39:41Z",
+          "body": "You need your own Phantom Hourglass ROM (USA or Europe): the game is built from it on your PC or phone the first time (about a minute). Nothing from the game is included here.\n\n- Windows: download PhantomHourglass.exe, run it, select your ROM.\n- Android: install PhantomHourglass.apk, then import your ROM in the app.\n\nBuilt from commit f2587c0.\n\n<!-- versionCode: 474035 -->\n",
+          "assets": [
+            {
+              "name": "PhantomHourglass.apk",
+              "size": 77484325,
+              "dl": 298
+            },
+            {
+              "name": "PhantomHourglass.exe",
+              "size": 147009536,
+              "dl": 209
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 174,
+              "dl": 15
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.1",
+          "name": "v0.1.1",
+          "date": "2026-11-25T22:00:43Z",
+          "body": "## What's Changed\n* Feature/pc setup by @dguillot-gh in https://github.com/dguillot-gh/phantom-hourglass-recomp/pull/21\n* README: Download and play, and the clean-dump D-pad note by @dguillot-gh in https://github.com/dguillot-gh/phantom-hourglass-recomp/pull/22\n\n\n**Full Changelog**: https://github.com/dguillot-gh/phantom-hourglass-recomp/compare/v0.1.0...v0.1.1",
+          "assets": [
+            {
+              "name": "PhantomHourglass.apk",
+              "size": 10089004,
+              "dl": 34
+            },
+            {
+              "name": "PhantomHourglass.exe",
+              "size": 11939840,
+              "dl": 36
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 174,
+              "dl": 5
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "Phantom Hourglass Recomp v0.1.0",
+          "date": "2026-11-25T20:18:28Z",
+          "body": "You need your own Phantom Hourglass ROM (USA or Europe): the game is built from it on your PC or phone the first time (about a minute). Nothing from the game is included here.\n\n- Windows: download PhantomHourglass.exe, run it, select your ROM.\n- Android: install PhantomHourglass.apk, then import your ROM in the app.\n\nBuilt from commit 6e10e17.\n\n<!-- versionCode: 473535 -->\n",
+          "assets": [
+            {
+              "name": "PhantomHourglass.apk",
+              "size": 10089008,
+              "dl": 12
+            },
+            {
+              "name": "PhantomHourglass.exe",
+              "size": 10831872,
+              "dl": 12
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 174,
+              "dl": 5
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "dguillot-gh-spirit-tracks-recomp",
+      "name": "Spirit Tracks Recomp",
+      "name_zh": "《塞尔达传说：灵魂轨迹》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "spirit-tracks-recomp",
+      "family_label": "Spirit Tracks Recomp",
+      "owner": "dguillot-gh",
+      "repo": "dguillot-gh/spirit-tracks-recomp",
+      "repo_url": "https://github.com/dguillot-gh/spirit-tracks-recomp",
+      "homepage": "",
+      "description": "《塞尔达传说：灵魂轨迹》（NDS）静态重编译到 Android，仓库不含游戏数据，需自备 ROM。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "nds"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.3.0",
+      "latest_date": "2026-11-26T04:27:15Z",
+      "channel": "stable",
+      "latest_body": "You need your own Spirit Tracks (USA) ROM: the game is built from it on your PC or phone the first time (about a minute). Nothing from the game is included here.\n\n- Windows: download SpiritTracks.exe, run it, select your ROM.\n- Android: install SpiritTracks.apk, then import your ROM in the app.\n\nBuilt from commit 2b781e8.\n\n<!-- versionCode: 474023 -->\n",
+      "latest_apk_name": "SpiritTracks.apk",
+      "latest_apk_url": "https://github.com/dguillot-gh/spirit-tracks-recomp/releases/download/v0.3.0/SpiritTracks.apk",
+      "latest_apk_size": 77322590,
+      "latest_apk_tag": "v0.3.0",
+      "distribution": "release-apk",
+      "stars": 56,
+      "forks": 2,
+      "watchers": 0,
+      "downloads_total": 282,
+      "downloads_lifetime": 282,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T16:58:13Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "v0.3.0",
+          "name": "Spirit Tracks Recomp v0.3.0",
+          "date": "2026-11-26T04:27:15Z",
+          "body": "You need your own Spirit Tracks (USA) ROM: the game is built from it on your PC or phone the first time (about a minute). Nothing from the game is included here.\n\n- Windows: download SpiritTracks.exe, run it, select your ROM.\n- Android: install SpiritTracks.apk, then import your ROM in the app.\n\nBuilt from commit 2b781e8.\n\n<!-- versionCode: 474023 -->\n",
+          "assets": [
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 166,
+              "dl": 15
+            },
+            {
+              "name": "SpiritTracks.apk",
+              "size": 77322590,
+              "dl": 243
+            },
+            {
+              "name": "SpiritTracks.exe",
+              "size": 147272704,
+              "dl": 105
+            }
+          ]
+        },
+        {
+          "tag": "v0.2.1",
+          "name": "v0.2.1",
+          "date": "2026-11-25T21:52:00Z",
+          "body": "**Full Changelog**: https://github.com/dguillot-gh/spirit-tracks-recomp/compare/v0.2.0...v0.2.1\n\nFixed linking issues in GitHub actions workflow. ",
+          "assets": [
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 166,
+              "dl": 4
+            },
+            {
+              "name": "SpiritTracks.apk",
+              "size": 9909497,
+              "dl": 30
+            },
+            {
+              "name": "SpiritTracks.exe",
+              "size": 12204544,
+              "dl": 24
+            }
+          ]
+        },
+        {
+          "tag": "v0.2.0",
+          "name": "Spirit Tracks Recomp v0.2.0",
+          "date": "2026-11-25T19:56:47Z",
+          "body": "You need your own Spirit Tracks (USA) ROM: the game is built from it on your PC or phone the first time (about a minute). Nothing from the game is included here.\n\n- Windows: download SpiritTracks.exe, run it, select your ROM.\n- Android: install SpiritTracks.apk, then import your ROM in the app.\n\nBuilt from commit b7a5694.\n\n<!-- versionCode: 473513 -->\n",
+          "assets": [
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 166,
+              "dl": 3
+            },
+            {
+              "name": "SpiritTracks.apk",
+              "size": 9909501,
+              "dl": 9
+            },
+            {
+              "name": "SpiritTracks.exe",
+              "size": 11094528,
+              "dl": 10
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "pateeerq-freedomuniterecomp",
+      "name": "Freedom Unite Recomp",
+      "name_zh": "《怪物猎人 自由联合》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "freedom-unite-recomp",
+      "family_label": "Freedom Unite Recomp",
+      "owner": "PateeerQ",
+      "repo": "PateeerQ/FreedomUniteRecomp",
+      "repo_url": "https://github.com/PateeerQ/FreedomUniteRecomp",
+      "homepage": "",
+      "description": "《怪物猎人 自由联合》（PSP 美版 MHFU）静态重编译到 Android 与 Windows，支持联机，需自备 ISO。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "psp"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.5.1",
+      "latest_date": "2026-11-28T07:32:05Z",
+      "channel": "stable",
+      "latest_body": "## Monster Hunter: Freedom Unite Recomp v0.5.1 **BETTER 60FPS MODE**\n\nA native port of Monster Hunter Freedom Unite / Portable 2nd G (PSP) for **Windows**, **Linux** and **Android**,\nstatically recompiled. No emulator. Maintained by **PateeerQ**.\n\nThe Android app offers this update by itself (drawer → *Check for updates*).\n\n### New\n- **60 FPS now comes in two modes** (issues #27, #28, #29). Pick one in the launcher (*Play* or *Mods* page →\n  *60 FPS*), in the in-game menu (*Display* → *60 FPS*), or cycle with **F4** on PC:\n  - **Interpolation (Recommended, BETA)**: 60 pictures a second, one made between each two of the game's. The game\n    itself keeps running at its own 30, so monsters, attacks, weapon draws and timers keep their real speed: no\n    more Nargacuga tail slams turning around, too-fast Long Sword draw attacks or hits passing through monsters.\n    Beta: a small glitch can still show now and then while running. Vsync is on while this mode is on.\n  - **CWCheat (BETA)**: the old 60 FPS mode, the game itself at 60 through the CWCheat \"60 FPS\" code. Some things\n    still run too fast in it. In a room everyone plays at the slowest player's rate.",
+      "latest_apk_name": "FreedomUniteRecomp-v0.5.1-android-arm64-universal.apk",
+      "latest_apk_url": "https://github.com/PateeerQ/FreedomUniteRecomp/releases/download/v0.5.1/FreedomUniteRecomp-v0.5.1-android-arm64-universal.apk",
+      "latest_apk_size": 130962777,
+      "latest_apk_tag": "v0.5.1",
+      "distribution": "release-apk",
+      "stars": 74,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 6363,
+      "downloads_lifetime": 6363,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-28T07:32:05Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "platform_families": [
+        "sony"
+      ],
+      "releases": [
+        {
+          "tag": "v0.5.1",
+          "name": "v0.5.1",
+          "date": "2026-11-28T07:32:05Z",
+          "body": "## Monster Hunter: Freedom Unite Recomp v0.5.1 **BETTER 60FPS MODE**\n\nA native port of Monster Hunter Freedom Unite / Portable 2nd G (PSP) for **Windows**, **Linux** and **Android**,\nstatically recompiled. No emulator. Maintained by **PateeerQ**.\n\nThe Android app offers this update by itself (drawer → *Check for updates*).\n\n### New\n- **60 FPS now comes in two modes** (issues #27, #28, #29). Pick one in the launcher (*Play* or *Mods* page →\n  *60 FPS*), in the in-game menu (*Display* → *60 FPS*), or cycle with **F4** on PC:\n  - **Interpolation (Recommended, BETA)**: 60 pictures a second, one made between each two of the game's. The game\n    itself keeps running at its own 30, so monsters, attacks, weapon draws and timers keep their real speed: no\n    more Nargacuga tail slams turning around, too-fast Long Sword draw attacks or hits passing through monsters.\n    Beta: a small glitch can still show now and then while running. Vsync is on while this mode is on.\n  - **CWCheat (BETA)**: the old 60 FPS mode, the game itself at 60 through the CWCheat \"60 FPS\" code. Some things\n    still run too fast in it. In a room everyone plays at the slowest player's rate.",
+          "assets": [
+            {
+              "name": "FreedomUniteRecomp-v0.5.1-android-arm64-universal.apk",
+              "size": 130962777,
+              "dl": 20
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.5.1-android-armv7-universal.apk",
+              "size": 125109245,
+              "dl": 5
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.5.1-linux-x64-universal.tar.gz",
+              "size": 170777518,
+              "dl": 1
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.5.1-windows-x64-universal.zip",
+              "size": 182113436,
+              "dl": 2
+            }
+          ]
+        },
+        {
+          "tag": "v0.5.0",
+          "name": "v0.5.0",
+          "date": "2026-11-27T05:23:17Z",
+          "body": "## Monster Hunter: Freedom Unite Recomp v0.5.0\n\nA native port of Monster Hunter Freedom Unite / Portable 2nd G (PSP) for **Windows**, **Linux** and **Android**,\nstatically recompiled. No emulator. Maintained by **PateeerQ**.\n\nThe Android app offers this update by itself (drawer → *Check for updates*).\n\n### New\n- **Android: 32-bit phones** (armeabi-v7a). Phones and Android versions that can only run 32-bit apps now have their\n  own APK, `...-android-armv7-universal.apk`. Everyone else keeps the 64-bit one; the in-app updater picks the right\n  file by itself. The 32-bit build is slower than the 64-bit one on the same phone, so use the 64-bit APK whenever\n  your phone can install it. It still needs OpenGL ES 3.0.\n- **Android: combined stick and d-pad for the Legacy PSP button style** (issue #23). The round control (stick in the\n  middle, d-pad as a ring around it) can now be used with Legacy PSP too: in-game menu → *Controls* → *Stick and\n  d-pad*. Each button style keeps its own choice; Legacy PSP starts with them apart, as before.\n- **Windows: the game asks for the stronger graphics card** (issue #22). On laptops with integrated and dedicated",
+          "assets": [
+            {
+              "name": "FreedomUniteRecomp-v0.5.0-android-arm64-universal.apk",
+              "size": 130965133,
+              "dl": 277
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.5.0-android-armv7-universal.apk",
+              "size": 125100893,
+              "dl": 43
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.5.0-linux-x64-universal.tar.gz",
+              "size": 170773764,
+              "dl": 14
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.5.0-windows-x64-universal.zip",
+              "size": 182109848,
+              "dl": 50
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.9",
+          "name": "v0.4.9",
+          "date": "2026-11-17T09:27:50Z",
+          "body": "## Monster Hunter: Freedom Unite Recomp v0.4.9\n\nA native port of Monster Hunter Freedom Unite / Portable 2nd G (PSP) for **Windows**, **Linux** and **Android**,\nstatically recompiled. No emulator. Maintained by **PateeerQ**.\n\nThe Android app offers this update by itself (drawer → *Check for updates*).\n\n### New\n- **HUD in the corners for ultrawide screens** (beta). With *Widescreen* on, the hunting HUD moves to the screen's\n  edges instead of staying in a 16:9 middle:\n  - The clock, health and stamina bars and your name go to the left edge.\n  - The map and the item bar go to the right edge.\n  - Notices such as \"Time limit\" stay in the middle.\n  - Menus, the Start menu and the end-of-quest screens stay in the middle as before.\n  - Turn it on in the launcher's *Mods* page (under Widescreen), the window's *Options* menu, or the in-game menu's\n    *Mods* tab.\n\n- **Android: fishing button.** While fishing in a quest (Mobile button style) the touch controls show one big ✕\n  to reel in, and the stick is hidden. Before, Yes/No buttons showed up instead.\n\n### Fixed\n- **Android: Yes/No buttons stuck for the rest of a quest** (issues #17 and #19). After the BBQ spit, or after mining",
+          "assets": [
+            {
+              "name": "FreedomUniteRecomp-v0.4.9-android-arm64-universal.apk",
+              "size": 130944309,
+              "dl": 2774
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.4.9-linux-x64-universal.tar.gz",
+              "size": 170762626,
+              "dl": 64
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.4.9-windows-x64-universal.zip",
+              "size": 182104899,
+              "dl": 227
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.8",
+          "name": "v0.4.8",
+          "date": "2026-11-15T07:03:58Z",
+          "body": "## Monster Hunter: Freedom Unite Recomp v0.4.8\n\nA native port of Monster Hunter Freedom Unite / Portable 2nd G (PSP) for **Windows**, **Linux** and **Android**,\nstatically recompiled. No emulator. Maintained by **PateeerQ**.\n\nThe Android app offers this update by itself (drawer → *Check for updates*).\n\n### New (Android)\n- **Combo buttons** (issue #13). One button that presses several PSP buttons at once, for example △+○ with one\n  finger.\n  - Set them up in *Controls → Combo buttons*: up to 3, each any mix of the 12 PSP buttons. The first one is △+○ by\n    default.\n  - They show above the face buttons in the *Legacy PSP* button style. Move and resize them in *Edit button layout*.\n- **Vibration** (issue #13). *Controls → Vibration*: Off, Light, Medium or Strong. The phone buzzes when your finger\n  lands on a button. Off by default.\n- **Swipe camera: Turn only** (issue #15). *Controls → Swipe camera*: *Turn and tilt* (as before) or *Turn only*,\n  where dragging a finger turns the camera left and right but never tilts it up or down.\n\n### Fixed\n- **Texture packs that PPSSPP replaces fully now work here too** (issue #14, MH2G_KHD 1.6). The title screen, Capcom",
+          "assets": [
+            {
+              "name": "FreedomUniteRecomp-v0.4.8-android-arm64-universal.apk",
+              "size": 130936989,
+              "dl": 1214
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.4.8-linux-x64-universal.tar.gz",
+              "size": 170753062,
+              "dl": 19
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.4.8-windows-x64-universal.zip",
+              "size": 182106168,
+              "dl": 98
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.7",
+          "name": "v0.4.7",
+          "date": "2026-11-12T10:16:00Z",
+          "body": "## Monster Hunter: Freedom Unite Recomp v0.4.7 — LINUX Version is Here!\n\nA native port of Monster Hunter Freedom Unite / Portable 2nd G (PSP) for **Windows**, **Linux** and **Android**,\nstatically recompiled. No emulator. Maintained by **PateeerQ**.\n\nThe Android app offers this update by itself (drawer → *Check for updates*).\n\n### New: Linux and Steam Deck\n- **A native Linux build** (x86_64) with the same launcher as on Windows. It also runs on the **Steam Deck**.\n  It plays every release the Windows version does: Europe, USA, Japan (Portable 2nd G) and FUComplete.\n- Runs on **SteamOS 3.6+, Ubuntu 24.04+, Fedora 40+, Arch** and other distros with glibc 2.38 or newer. FFmpeg is\n  built in; nothing else to install.\n- **Steam Deck:** the Deck's controls work as a controller. **R3** (press the right stick) opens the in-game menu.\n  The touch screen works in the menu and the launcher. Choose *Fullscreen* on the Play page for Game Mode.\n- **Keyboard and mouse, as on Windows:**\n  - Hold the **right mouse button** and move to turn the camera, or press **F7** for mouse look.\n  - **F1** opens the menu. In a room F1 opens the chat instead, or the key you set for chat.",
+          "assets": [
+            {
+              "name": "FreedomUniteRecomp-v0.4.7-android-arm64-universal.apk",
+              "size": 130907945,
+              "dl": 825
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.4.7-linux-x64-universal.tar.gz",
+              "size": 170733726,
+              "dl": 33
+            },
+            {
+              "name": "FreedomUniteRecomp-v0.4.7-windows-x64-universal.zip",
+              "size": 182105508,
+              "dl": 131
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "peiikai-retri",
+      "name": "ReTri",
+      "name_zh": "《塞尔达传说：智慧的再现》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "retri",
+      "family_label": "ReTri",
+      "owner": "peiikai",
+      "repo": "peiikai/ReTri",
+      "repo_url": "https://github.com/peiikai/ReTri",
+      "homepage": "",
+      "description": "《塞尔达传说：智慧的再现》（Switch）静态重编译，覆盖 Windows / macOS / Linux / iOS / Android，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "nightly",
+      "latest_date": "2026-11-21T20:20:28Z",
+      "channel": "prerelease",
+      "latest_body": "> [!WARNING]\n> **These are nightly builds of the next version, made from the `develop` branch.** They have the newest changes and can be broken on any given day. For normal play, use the **[latest release](https://github.com/peiikai/ReTri/releases/latest)**.\n\nBuilt from [`0e8c1f6`](https://github.com/peiikai/ReTri/commit/0e8c1f604d72d98ea26f244a7e4e24a2600215cc) on 2026-11-27 19:18 UTC. Each platform's file appears as soon as it is built, and the start screen tells you when a newer nightly is here. A nightly only offers newer nightlies, never a release.\n\n- macOS: `macOS.dmg`\n- Windows: `windows-x64.zip`; Windows on ARM: `windows-arm64.zip`\n- Linux: `linux-x64.AppImage`, `linux-arm64.AppImage`; the same as a folder (no FUSE needed): `linux-x64.tar.gz`, `linux-arm64.tar.gz`\n- Android: `android.apk`\n- iPhone and iPad: `iOS.laskit`, made into the app with a nightly desktop build of the same date\n\n## Changes\n\n<!-- nightly-changes: 202611271918 -->\n**2026-11-27**\n\n- README: beta note instead of 'first public release' (#126)\n- Menu sounds: Echoes of Wisdom's own menu sounds in ReTri's menus (#125)\n- EoW: Remove tilt-shift blur works and shows in General (#108) (#124)",
+      "latest_apk_name": "ReTri-nightly-202611271918-0e8c1f6-android.apk",
+      "latest_apk_url": "https://github.com/peiikai/ReTri/releases/download/nightly/ReTri-nightly-202611271918-0e8c1f6-android.apk",
+      "latest_apk_size": 77675468,
+      "latest_apk_tag": "nightly",
+      "distribution": "release-apk",
+      "stars": 28,
+      "forks": 1,
+      "watchers": 0,
+      "downloads_total": 3,
+      "downloads_lifetime": 3,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-28T07:29:56Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "test-108-tilt-shift",
+          "name": "Test build: Remove tilt-shift blur (#108)",
+          "date": "2026-11-27T17:27:17Z",
+          "body": "> [!WARNING]\n> **This is a test build for #108, not a release.** It is made from the `develop` branch (the next version, still in development) plus the change in #124. For normal play, use the **[latest release](https://github.com/peiikai/ReTri/releases/latest)**.\n\n**What's in it:** the \"Remove tilt-shift blur\" setting for Echoes of Wisdom (F1 > General, Off by default). On, the top and bottom of the screen stay sharp. It switches live.\n\n**How to try it:**\n1. Unzip it into a new folder and keep your normal install as it is.\n2. On first start it builds the game code again, which takes a few minutes.\n3. Turn on F1 > General > Remove tilt-shift blur and play for a while, including a real-time cutscene.\n4. Tell us on #108 if the top and bottom stay sharp and the cutscenes look right. Attach `eowrecomp.log` either way.\n\nWhen the next version is out, this build offers it as an update.\n\nBuilt from [`691013d`](https://github.com/peiikai/ReTri/commit/691013d518c5fd2dc5193be98a17da7352672901) (`feature/108-test-tilt-shift`).\n\n| File | sha256 |\n|---|---|\n| `ReTri-test-108-tilt-shift-windows-x64.zip` | `ce8f790705d1fc86526696a7eede1d5f264b3654767302cbd8c53959f8c66261` |\n",
+          "assets": [
+            {
+              "name": "ReTri-test-108-tilt-shift-windows-x64.zip",
+              "size": 80278692,
+              "dl": 4
+            },
+            {
+              "name": "update-windows-x64.txt",
+              "size": 34783,
+              "dl": 2
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.2",
+          "name": "Beta 1.2 - v0.1.2",
+          "date": "2026-11-27T09:58:36Z",
+          "body": "Beta 1.2\n\nThree fixes from player reports.\n\n**Fixed**\n- Setup now refuses an incomplete romfs and says so, instead of the game crashing as it starts (#104). The romfs\n  must be the full game's, extracted with the update applied for 1.0.1 and later.\n- Vulkan (Windows, Linux): shadows no longer flicker or vanish after opening a game menu, such as the echo list\n  (#109). Before, only a restart brought them back.\n- Remember window size: a remembered window bigger than the screen no longer opens with its title bar off the\n  screen. It now fits inside the screen, clear of the taskbar (#108).\n\nBuilt from 92408e440baa681a85dcb990d6c48b9e13dc178a.\n\n| File | sha256 |\n|---|---|\n| `ReTri-v0.1.2-linux-x64.AppImage` | `85da0c2133a5777a0511fc980515c0e1de8ed77398f57fdf634f6d7e110de5f4` |\n| `ReTri-v0.1.2-linux-x64.tar.gz` | `4e9917af8ca03d14f2a724f7b0e885a295bab51f5838e99f7f9495d8a72c90e5` |\n| `ReTri-v0.1.2-macOS.dmg` | `ae525c48bb19905058725231e53a845810565f56b670ab558b62ea67c7b0aee6` |\n| `ReTri-v0.1.2-windows-x64.zip` | `73c2daf09d24685dc18ad7172ede1ea96e7a3845e1cf1eba2f07135dabf7a4d5` |\n\n",
+          "assets": [
+            {
+              "name": "appcast-macOS.xml",
+              "size": 3101,
+              "dl": 6
+            },
+            {
+              "name": "ReTri-v0.1.2-linux-x64.AppImage",
+              "size": 76110328,
+              "dl": 42
+            },
+            {
+              "name": "ReTri-v0.1.2-linux-x64.tar.gz",
+              "size": 83860881,
+              "dl": 83
+            },
+            {
+              "name": "ReTri-v0.1.2-macOS.dmg",
+              "size": 76782328,
+              "dl": 21
+            },
+            {
+              "name": "ReTri-v0.1.2-windows-x64.zip",
+              "size": 80273150,
+              "dl": 741
+            },
+            {
+              "name": "update-linux-x64.txt",
+              "size": 300,
+              "dl": 5
+            },
+            {
+              "name": "update-windows-x64.txt",
+              "size": 34757,
+              "dl": 24
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.1",
+          "name": "Beta 1.1 - v0.1.1",
+          "date": "2026-11-26T01:15:19Z",
+          "body": "Beta 1.1\n\nFixes for the most reported crashes so far, and support for game version 1.1.0.\n\n**New**\n- Game version 1.1.0 works, besides 1.0.0, 1.0.1 and 1.0.2. Saves from older versions load in 1.1.0.\n- 119 more shader variants are prepared on the start screen (from player logs and play tests), so fewer stutters\n  the first time a scene or effect shows.\n\n**Fixed**\n- Summoning an echo no longer crashes the game with \"no function at ...\" (#87, #89).\n- Game 1.1.0: the game no longer crashes when certain sound effects play.\n- Windows 10: the game no longer crashes as it starts (#81). Until you import the Switch fonts, the game text uses\n  BIZ UDPGothic, now in the Windows zip.\n- A font the game can't fully use no longer crashes it: missing characters are left out instead.\n- Setup no longer says \"Wrong version of the game\" for supported files whose program files aren't in a folder named\n  exefs (#92).\n- RecompLauncher: on Windows, `eowrecomp.log` is now written next to the exe when the launcher starts the game.\n\nBuilt from 1f0e75e0fe5593201fcf9361b59f231b52a4687b.\n\n| File | sha256 |\n|---|---|",
+          "assets": [
+            {
+              "name": "appcast-macOS.xml",
+              "size": 3966,
+              "dl": 7
+            },
+            {
+              "name": "ReTri-v0.1.1-linux-x64.AppImage",
+              "size": 76110328,
+              "dl": 40
+            },
+            {
+              "name": "ReTri-v0.1.1-linux-x64.tar.gz",
+              "size": 83857298,
+              "dl": 68
+            },
+            {
+              "name": "ReTri-v0.1.1-macOS.dmg",
+              "size": 76784655,
+              "dl": 22
+            },
+            {
+              "name": "ReTri-v0.1.1-windows-x64.zip",
+              "size": 80277293,
+              "dl": 704
+            },
+            {
+              "name": "update-linux-x64.txt",
+              "size": 300,
+              "dl": 9
+            },
+            {
+              "name": "update-windows-x64.txt",
+              "size": 34757,
+              "dl": 36
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "Beta 1 - v0.1.0",
+          "date": "2026-11-24T04:02:28Z",
+          "body": "Initial Release\n\nBuilt from bab988ccc6d3b6cbd8120546eaae209e5d665dfc.\n\n| File | sha256 |\n|---|---|\n| `ReTri-v0.1.0-linux-x64.AppImage` | `5060d9e63bac04de4e9bace793002f7fb4a10c5480caa86556d788e2298e59d7` |\n| `ReTri-v0.1.0-linux-x64.tar.gz` | `4b41f213e923c2401c6b253fac522b9872f70eaf5a1121e40f62f060c9a2b479` |\n| `ReTri-v0.1.0-macOS.dmg` | `2ca23d149546cd64d77b0bb4fc0fb0505a0cb077ae49f4f66cccd759c47a46ab` |\n| `ReTri-v0.1.0-windows-x64.zip` | `61924a4d6f31fb27db4aa3fc1c6fd269da6289e6776d8258116a949cbfc48bb6` |\n",
+          "assets": [
+            {
+              "name": "appcast-macOS.xml",
+              "size": 1435,
+              "dl": 13
+            },
+            {
+              "name": "ReTri-v0.1.0-linux-x64.AppImage",
+              "size": 76098040,
+              "dl": 39
+            },
+            {
+              "name": "ReTri-v0.1.0-linux-x64.tar.gz",
+              "size": 83847633,
+              "dl": 86
+            },
+            {
+              "name": "ReTri-v0.1.0-macOS.dmg",
+              "size": 76790681,
+              "dl": 22
+            },
+            {
+              "name": "ReTri-v0.1.0-windows-x64.zip",
+              "size": 77243102,
+              "dl": 745
+            },
+            {
+              "name": "update-linux-x64.txt",
+              "size": 300,
+              "dl": 6
+            },
+            {
+              "name": "update-windows-x64.txt",
+              "size": 34558,
+              "dl": 9
+            }
+          ]
+        },
+        {
+          "tag": "nightly",
+          "name": "Nightly builds",
+          "date": "2026-11-21T20:20:28Z",
+          "body": "> [!WARNING]\n> **These are nightly builds of the next version, made from the `develop` branch.** They have the newest changes and can be broken on any given day. For normal play, use the **[latest release](https://github.com/peiikai/ReTri/releases/latest)**.\n\nBuilt from [`0e8c1f6`](https://github.com/peiikai/ReTri/commit/0e8c1f604d72d98ea26f244a7e4e24a2600215cc) on 2026-11-27 19:18 UTC. Each platform's file appears as soon as it is built, and the start screen tells you when a newer nightly is here. A nightly only offers newer nightlies, never a release.\n\n- macOS: `macOS.dmg`\n- Windows: `windows-x64.zip`; Windows on ARM: `windows-arm64.zip`\n- Linux: `linux-x64.AppImage`, `linux-arm64.AppImage`; the same as a folder (no FUSE needed): `linux-x64.tar.gz`, `linux-arm64.tar.gz`\n- Android: `android.apk`\n- iPhone and iPad: `iOS.laskit`, made into the app with a nightly desktop build of the same date\n\n## Changes\n\n<!-- nightly-changes: 202611271918 -->\n**2026-11-27**\n\n- README: beta note instead of 'first public release' (#126)\n- Menu sounds: Echoes of Wisdom's own menu sounds in ReTri's menus (#125)\n- EoW: Remove tilt-shift blur works and shows in General (#108) (#124)",
+          "assets": [
+            {
+              "name": "appcast-macOS.xml",
+              "size": 27929,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-android.apk",
+              "size": 77675468,
+              "dl": 3
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-iOS.laskit",
+              "size": 228109691,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-linux-arm64.AppImage",
+              "size": 72202760,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-linux-arm64.tar.gz",
+              "size": 80242746,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-linux-x64.AppImage",
+              "size": 76114424,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-linux-x64.tar.gz",
+              "size": 83870367,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-macOS.dmg",
+              "size": 76796186,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-windows-arm64.zip",
+              "size": 72897567,
+              "dl": 0
+            },
+            {
+              "name": "ReTri-nightly-202611271918-0e8c1f6-windows-x64.zip",
+              "size": 80275338,
+              "dl": 1
+            },
+            {
+              "name": "update-linux-arm64.txt",
+              "size": 348,
+              "dl": 0
+            },
+            {
+              "name": "update-linux-x64.txt",
+              "size": 344,
+              "dl": 0
+            },
+            {
+              "name": "update-windows-arm64.txt",
+              "size": 34703,
+              "dl": 0
+            },
+            {
+              "name": "update-windows-x64.txt",
+              "size": 34801,
+              "dl": 0
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "timbo722-zlaa",
+      "name": "ZLAA",
+      "name_zh": "《塞尔达传说：织梦岛》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "zlaa",
+      "family_label": "ZLAA",
+      "owner": "timbo722",
+      "repo": "timbo722/ZLAA",
+      "repo_url": "https://github.com/timbo722/ZLAA",
+      "homepage": "",
+      "description": "《塞尔达传说：织梦岛》（Switch）重编译到 Android 原生运行，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.2.0",
+      "latest_date": "2026-11-26T03:22:58Z",
+      "channel": "stable",
+      "latest_body": "Touch controls, button remapping and building on a PC!\n\n**New**\n\n- Touch controls have been added, with options to resize, move, and change the opacity of the buttons (Settings › Input, and **Edit Touch Controls** in the pause menu). Either a d-pad or joystick can be displayed.\n\n- Button remapping for controllers (Settings › Input › Button Remapping).\n\n- **ZLAA Builder**: build the game on a Windows or Linux PC in about 10-30 minutes instead of on your phone. Download `ZLAA-Builder-0.2.0-windows.zip` or `ZLAA-Builder-0.2.0-linux.tar.gz` below and follow its `README.txt`.\n\n**Improved**\n\n- Less stutter the first time you visit a place, while its shaders are prepared.\n\n**Updating**\n\nChoose **Update available** on the start screen, or install `ZLAA.apk` over your current version.\n\n> [!IMPORTANT]\n> **No game files are included.** You need your own legally obtained copy of *Link's Awakening* (**v1.0.0, v1.0.1 or v1.1.0**), extracted as its `exefs` and `romfs` folders.\n\n> [!WARNING]\n> ZLAA isn't on the Play Store, so Android and Play Protect may warn you when you install `ZLAA.apk`. That's expected for any app installed this way. Only download it from this page.",
+      "latest_apk_name": "ZLAA.apk",
+      "latest_apk_url": "https://github.com/timbo722/ZLAA/releases/download/v0.2.0/ZLAA.apk",
+      "latest_apk_size": 75349623,
+      "latest_apk_tag": "v0.2.0",
+      "distribution": "release-apk",
+      "stars": 6,
+      "forks": 1,
+      "watchers": 0,
+      "downloads_total": 255,
+      "downloads_lifetime": 255,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-26T05:17:45Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "v0.2.0",
+          "name": "ZLAA 0.2.0",
+          "date": "2026-11-26T03:22:58Z",
+          "body": "Touch controls, button remapping and building on a PC!\n\n**New**\n\n- Touch controls have been added, with options to resize, move, and change the opacity of the buttons (Settings › Input, and **Edit Touch Controls** in the pause menu). Either a d-pad or joystick can be displayed.\n\n- Button remapping for controllers (Settings › Input › Button Remapping).\n\n- **ZLAA Builder**: build the game on a Windows or Linux PC in about 10-30 minutes instead of on your phone. Download `ZLAA-Builder-0.2.0-windows.zip` or `ZLAA-Builder-0.2.0-linux.tar.gz` below and follow its `README.txt`.\n\n**Improved**\n\n- Less stutter the first time you visit a place, while its shaders are prepared.\n\n**Updating**\n\nChoose **Update available** on the start screen, or install `ZLAA.apk` over your current version.\n\n> [!IMPORTANT]\n> **No game files are included.** You need your own legally obtained copy of *Link's Awakening* (**v1.0.0, v1.0.1 or v1.1.0**), extracted as its `exefs` and `romfs` folders.\n\n> [!WARNING]\n> ZLAA isn't on the Play Store, so Android and Play Protect may warn you when you install `ZLAA.apk`. That's expected for any app installed this way. Only download it from this page.",
+          "assets": [
+            {
+              "name": "ZLAA-Builder-0.2.0-linux.tar.gz",
+              "size": 60371995,
+              "dl": 23
+            },
+            {
+              "name": "ZLAA-Builder-0.2.0-windows.zip",
+              "size": 74343616,
+              "dl": 73
+            },
+            {
+              "name": "ZLAA.apk",
+              "size": 75349623,
+              "dl": 107
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.3",
+          "name": "ZLAA 0.1.3",
+          "date": "2026-11-23T01:10:02Z",
+          "body": "Stability update!\n\n**Fixed**\n\n- Freezing that occurred spontaneously during gameplay has been fixed.\n\n- Shaders are now made in a new way, and the GPU runs them more efficiently. \n\n**Updating**\n\nChoose **Update available** on the start screen, or install `ZLAA.apk` over your current version. \n\n> [!IMPORTANT]\n> **No game files are included.** You need your own legally obtained copy of *Link's Awakening* (**v1.0.0, v1.0.1 or v1.1.0**), extracted as its `exefs` and `romfs` folders.\n\n> [!WARNING]\n> ZLAA isn't on the Play Store, so Android and Play Protect may warn you when you install `ZLAA.apk`. That's expected for any app installed this way. Only download it from this page.\n\nSetup, features and known issues are in the [README](https://github.com/timbo722/ZLAA#getting-started).\n\nFound a bug? [Open an issue](https://github.com/timbo722/ZLAA/issues) with your device, your game version and the app's `log.txt` (from `Android/data/io.github.zlaa/files/`).\n\n---\n\nAn unofficial fan project, not affiliated with Nintendo.\n",
+          "assets": [
+            {
+              "name": "ZLAA.apk",
+              "size": 75316855,
+              "dl": 50
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.2",
+          "name": "ZLAA 0.1.2",
+          "date": "2026-11-17T23:34:44Z",
+          "body": "Updating has now been made easy!\n\n**New**\n\n- ZLAA checks GitHub for a new version when it starts. You can turn this off in **Settings › Interface › Check for Updates**.\n- When a new version is out, **Update available** appears next to the version number on the start screen. Choose it to download and install the update from inside the app.\n- A **What's New** window shows what changed the first time you open a new version.\n\n**Updating**\n\nInstall `ZLAA.apk` over your current version, your saves and settings will be kept. After this update, you can update from inside the app.\n\n> [!IMPORTANT]\n> **No game files are included.** You need your own legally obtained copy of *Link's Awakening* (**v1.0.0, v1.0.1 or v1.1.0**), extracted as its `exefs` and `romfs` folders.\n\n> [!WARNING]\n> ZLAA isn't on the Play Store, so Android and Play Protect may warn you when you install `ZLAA.apk`. That's expected for any app installed this way. Only download it from this page.\n\nSetup, features and known issues are in the [README](https://github.com/timbo722/ZLAA#getting-started).",
+          "assets": [
+            {
+              "name": "ZLAA.apk",
+              "size": 75312759,
+              "dl": 36
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.1",
+          "name": "ZLAA 0.1.1",
+          "date": "2026-11-14T17:30:56Z",
+          "body": "Multi-language support has now been added!\n\n**New**\n\n- You can now play in all 14 of the game's languages (**Settings › Interface › Game Language**).\n- Chinese, Japanese and Korean text displays correctly.\n- If your device can't run ZLAA, the app will now tell you why.\n\n**Updating**\n\nInstall `ZLAA.apk` over your current version, your saves and settings will be kept.\n\n> [!IMPORTANT]\n> **No game files are included.** You need your own legally obtained copy of *Link's Awakening* (**v1.0.0, v1.0.1 or v1.1.0**), extracted as its `exefs` and `romfs` folders.\n\n> [!WARNING]\n> ZLAA isn't on the Play Store, so Android and Play Protect may warn you when you install `ZLAA.apk`. That's expected for any app installed this way. Only download it from this page.\n\nSetup, features and known issues are in the [README](https://github.com/timbo722/ZLAA#getting-started).\n\nFound a bug? [Open an issue](https://github.com/timbo722/ZLAA/issues) with your device, your game version and the app's `log.txt` (from `Android/data/io.github.zlaa/files/`).\n\n---\n\nAn unofficial fan project, not affiliated with Nintendo.\n",
+          "assets": [
+            {
+              "name": "ZLAA.apk",
+              "size": 75296233,
+              "dl": 33
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.0",
+          "name": "ZLAA 0.1.0",
+          "date": "2026-11-08T05:34:38Z",
+          "body": "The Wind Fish's island is on Android!\n\nVery first release of **ZLAA**: *The Legend of Zelda: Link's Awakening* (Nintendo Switch, 2019), recompiled into a native Android app.\n\n> [!IMPORTANT]\n> **No game files are included.** You need your own legally obtained copy of *Link's Awakening* (**v1.0.0, v1.0.1 or v1.1.0**), extracted as its `exefs` and `romfs` folders.\n\n> [!WARNING]\n> ZLAA isn't on the Play Store, so Android and Play Protect may warn you when you install `ZLAA.apk`. That's expected for any app installed this way. Only download it from this page.\n\nSetup, features and known issues are in the [README](https://github.com/timbo722/ZLAA#getting-started).\n\nFound a bug? [Open an issue](https://github.com/timbo722/ZLAA/issues) with your device, your game version and the app's `log.txt` (from `Android/data/io.github.zlaa/files/`).\n\n---\n\nAn unofficial fan project, not affiliated with Nintendo.\n",
+          "assets": [
+            {
+              "name": "ZLAA.apk",
+              "size": 67648579,
+              "dl": 29
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "simipob-paldea-native-android",
+      "name": "Paldea Native",
+      "name_zh": "《宝可梦 朱／紫》Android 原生运行",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "paldea-native",
+      "family_label": "Paldea Native",
+      "owner": "simipoB",
+      "repo": "simipoB/Paldea-Native-Android",
+      "repo_url": "https://github.com/simipoB/Paldea-Native-Android",
+      "homepage": "",
+      "description": "《宝可梦 朱／紫》（Switch）在 Android 上原生 ARM64 运行，不经模拟器，需自备自行转储的游戏数据。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v1.01",
+      "latest_date": "2026-11-25T18:33:18Z",
+      "channel": "stable",
+      "latest_body": "> [!WARNING]\n> **How far this was tested.** The changes in 1.01 were built and checked on a PC, but have not been played on a phone yet. Expect problems, and please report them with a debug report (☰ → Bug reports → Make a debug report).\n\nInstall it over 1.0 or older. Your saves and settings stay. **Setup runs again once after updating**: the shaders change, so the app rebuilds them before Play.\n\nEverything here applies to both Pokémon Scarlet and Pokémon Violet (update 4.0.0).\n\n---\n\n## Fixed\n\n- **Missing buildings, ground, rocks, walls, trees and furniture**: objects the game culls on the GPU were all drawn in the same spot, so many of them never appeared. They should now show up on every GPU.\n- **Ground missing on older Adreno drivers** (sky visible through the terrain, seen on an Adreno 730): a vertex workaround meant for Mali now runs only on Mali by default.\n\n## Known problems\n\n- **Untested on a phone** (see above).\n- **Crashes with \"device lost\" on Adreno** (at character creation, after picking a starter, or after a loading screen): reported on several phones and being looked into. A debug report from the moment it happens helps a lot.",
+      "latest_apk_name": "PaldeaNative-v1.01.apk",
+      "latest_apk_url": "https://github.com/simipoB/Paldea-Native-Android/releases/download/v1.01/PaldeaNative-v1.01.apk",
+      "latest_apk_size": 24395008,
+      "latest_apk_tag": "v1.01",
+      "distribution": "release-apk",
+      "stars": 11,
+      "forks": 1,
+      "watchers": 0,
+      "downloads_total": 863,
+      "downloads_lifetime": 863,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-25T18:33:17Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "v1.01",
+          "name": "Paldea Native 1.01",
+          "date": "2026-11-25T18:33:18Z",
+          "body": "> [!WARNING]\n> **How far this was tested.** The changes in 1.01 were built and checked on a PC, but have not been played on a phone yet. Expect problems, and please report them with a debug report (☰ → Bug reports → Make a debug report).\n\nInstall it over 1.0 or older. Your saves and settings stay. **Setup runs again once after updating**: the shaders change, so the app rebuilds them before Play.\n\nEverything here applies to both Pokémon Scarlet and Pokémon Violet (update 4.0.0).\n\n---\n\n## Fixed\n\n- **Missing buildings, ground, rocks, walls, trees and furniture**: objects the game culls on the GPU were all drawn in the same spot, so many of them never appeared. They should now show up on every GPU.\n- **Ground missing on older Adreno drivers** (sky visible through the terrain, seen on an Adreno 730): a vertex workaround meant for Mali now runs only on Mali by default.\n\n## Known problems\n\n- **Untested on a phone** (see above).\n- **Crashes with \"device lost\" on Adreno** (at character creation, after picking a starter, or after a loading screen): reported on several phones and being looked into. A debug report from the moment it happens helps a lot.",
+          "assets": [
+            {
+              "name": "PaldeaNative-v1.01.apk",
+              "size": 24395008,
+              "dl": 187
+            }
+          ]
+        },
+        {
+          "tag": "v1.0",
+          "name": "Paldea Native 1.0",
+          "date": "2026-11-25T01:08:05Z",
+          "body": "> [!WARNING]\n> **How far this was tested.** Everything new in 1.0 was built and checked on a PC (including simulated Mali, Adreno, Xclipse and PowerVR GPUs), but has not been played on a phone yet. Expect problems, and please report them with a debug report (☰ → Bug reports → Make a debug report).\n\nInstall it over v0.99 or older. Your saves, settings and setup stay. **No new setup is needed**: just press Play.\n\nEverything here applies to both Pokémon Scarlet and Pokémon Violet (update 4.0.0).\n\n---\n\n## Fixed: a possible crash at start in v0.99\n\n- A diagnostic that sampled the game during loads could break the game's code and close it (it did so in Legends: Arceus v0.99). It is now off by default and made safe. If you added `DM_LOAD_PROF=0` to env.txt, you can remove it.\n\n## New in 1.0\n\n- **Less work for the GPU**: fewer drawing passes per frame (clears are folded into the next pass, empty depth passes are gone) and depth and stencil that a pass does not change are no longer written back to memory. This helps most on Mali and older Adreno phones. If objects go missing or flicker after updating, add `DM_VK_LAZY_CLEAR=0` to env.txt and tell us in an issue.\n\n## From v0.99",
+          "assets": [
+            {
+              "name": "PaldeaNative-v1.0.apk",
+              "size": 24395008,
+              "dl": 436
+            }
+          ]
+        },
+        {
+          "tag": "v0.99",
+          "name": "Paldea Native v0.99",
+          "date": "2026-11-24T19:38:58Z",
+          "body": "> [!WARNING]\n> **How far this was tested.** Everything below was built and checked on a PC; the crash fixes and the speed work have not been played on a phone with Scarlet or Violet yet. Expect problems, and please report them (see the end of these notes).\n\nInstall it over v0.98 or v0.96. Your saves, settings and setup stay. **No new setup is needed**: just press Play.\n\nEverything here applies to both Pokémon Scarlet and Pokémon Violet (one app runs both, update 4.0.0).\n\n---\n\n## Crash fixes\n\n- **A graphics driver that crashes on one shader no longer stops the game from starting.** Some phones' own Qualcomm drivers (seen on a Galaxy Z Fold4, Adreno 730) crashed while preparing one of the game's shaders, at every start. The game now remembers the shader that crashed the driver and leaves it out from the next start on. Something small may be missing from the picture then; it may take one or two more crashes before the game gets through.\n- **Turnip: the crash right after making your character** (when the ID photo is taken) should be fixed: the photo is now copied in a way that driver handles.",
+          "assets": [
+            {
+              "name": "PaldeaNative-v0.99.apk",
+              "size": 24370432,
+              "dl": 41
+            }
+          ]
+        },
+        {
+          "tag": "v0.98",
+          "name": "Paldea Native v0.98",
+          "date": "2026-11-24T03:25:53Z",
+          "body": "> [!WARNING]\n> **How far this was tested.** Everything below was built and checked on a PC. Scarlet and Violet have not been played on our test phone with this version. The new setup (from extracted folders) ran with real game files on a PC (Sword / Shield); the phone's folder picker, the \"move the files\" choice and the new Players screen have not been run on a phone yet. Expect problems, and please report them (see the end of these notes).\n\nInstall it over v0.96. Your saves, settings and setup stay. **No new setup is needed**: just press Play.\n\n---\n\n## Setup: your extracted game files, no keys\n\n- **Setup now takes the ExeFS and RomFS folders you extracted from your own game**, with **update 4.0.0 applied** (choose the folder holding both, or each in turn), plus one RomFS folder per DLC with **Add DLC** (its folder name must carry the DLC's title ID or number). Setup copies them into the app; if there is not enough room, it offers to move them instead.\n- **No keys and no `.nsp` / `.xci` any more.** Keys stored by an older version are deleted.\n- Games already set up keep working.",
+          "assets": [
+            {
+              "name": "PaldeaNative-v0.98.apk",
+              "size": 23821495,
+              "dl": 85
+            }
+          ]
+        },
+        {
+          "tag": "v0.96",
+          "name": "Paldea Native v0.96",
+          "date": "2026-11-23T12:57:37Z",
+          "body": "\n\n> [!WARNING]\n> **Scarlet and Violet have not been played on our test phone with this build.** Everything below was built and checked on a PC. Some of it was tried by players with earlier test builds, but nobody has played this exact build. Expect problems, and please report them (see the end of these notes).\n\nInstall it over v0.82 or v0.60. Your saves, settings and setup stay. **No new setup is needed**: the shader translation is the same as in v0.60 and v0.82, so just press Play.\n\nEverything here applies to both Pokémon Scarlet and Pokémon Violet (one app runs both, update 4.0.0).\n\nThe version number jumps from 0.82 to 0.96 because Paldea Native, Galar Native and Arceus Native now share one engine and one version number. This release brings Scarlet and Violet up to that shared engine: everything Galar Native and Arceus Native gained since v0.82, as far as it applies to these games.\n\n---\n\n## Changed\n\n- **Frame generation is switched off** for Scarlet and Violet for now, including Lossless Scaling (v0.82 offered it). Pictures made between uneven frames looked worse than none; it comes back once the game holds a steady 30.\n\n## Setup",
+          "assets": [
+            {
+              "name": "PaldeaNative-v0.96.apk",
+              "size": 24861955,
+              "dl": 86
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "p1r4n351-hwaoi-android",
+      "name": "HW AoI Native",
+      "name_zh": "《塞尔达无双：封印战记》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "hwaoi",
+      "family_label": "HW Age of Imprisonment",
+      "owner": "P1R4N351",
+      "repo": "P1R4N351/hwaoi-android",
+      "repo_url": "https://github.com/P1R4N351/hwaoi-android",
+      "homepage": "",
+      "description": "《塞尔达无双：封印战记》（Switch 2）原生 Android 移植，早期版本，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch2"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.1.0-beta.2",
+      "latest_date": "2026-11-26T20:42:01Z",
+      "channel": "prerelease",
+      "latest_body": "Second beta pre-release of **AoI Native** (`io.github.p1r4n351.hwaoi`) for **Hyrule Warriors: Age of Imprisonment** (`04003F40232DE000`, update `v196608`, Nintendo Switch 2 Edition). **This is a developer/tester beta, not a finished end-user release.**\n\n## Read this first\n\n- **No game files, keys, firmware, shaders, or saves are included.** You must supply your own legally obtained Switch 2 `.nup` / dump of `04003F40232DE000` (`v196608`).\n- **On-device setup & shader compilation bundled (`NX_PACK_ENGINE=native`):** This release embeds the native packer and SPIR-V translator (`libpython3.14.so`, `libnxpack.so`, `libdmsh_xlate.so`, `libSPIRV-Tools-shared.so`, `libzbicdec.so`, `libcra.so`). Pre-built `dmsh_vk.lib` archives prepared with `scripts/pack_android.py` also drop directly into the pack folder.\n- **Target hardware:** 16 GB **AYN Thor** (`QCS8550` / Adreno 740, Android 13 SDK 33, 1080p top screen + `1240x1080` secondary `Display 4`) with Mesa `Turnip`.",
+      "latest_apk_name": "AoI-Native-0.1.0-beta.2.apk",
+      "latest_apk_url": "https://github.com/P1R4N351/hwaoi-android/releases/download/v0.1.0-beta.2/AoI-Native-0.1.0-beta.2.apk",
+      "latest_apk_size": 31837058,
+      "latest_apk_tag": "v0.1.0-beta.2",
+      "distribution": "release-apk",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 7,
+      "downloads_lifetime": 7,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-26T20:40:27Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "v0.1.0-beta.2",
+          "name": "AoI Native v0.1.0-beta.2 (Beta Pre-release)",
+          "date": "2026-11-26T20:42:01Z",
+          "body": "Second beta pre-release of **AoI Native** (`io.github.p1r4n351.hwaoi`) for **Hyrule Warriors: Age of Imprisonment** (`04003F40232DE000`, update `v196608`, Nintendo Switch 2 Edition). **This is a developer/tester beta, not a finished end-user release.**\n\n## Read this first\n\n- **No game files, keys, firmware, shaders, or saves are included.** You must supply your own legally obtained Switch 2 `.nup` / dump of `04003F40232DE000` (`v196608`).\n- **On-device setup & shader compilation bundled (`NX_PACK_ENGINE=native`):** This release embeds the native packer and SPIR-V translator (`libpython3.14.so`, `libnxpack.so`, `libdmsh_xlate.so`, `libSPIRV-Tools-shared.so`, `libzbicdec.so`, `libcra.so`). Pre-built `dmsh_vk.lib` archives prepared with `scripts/pack_android.py` also drop directly into the pack folder.\n- **Target hardware:** 16 GB **AYN Thor** (`QCS8550` / Adreno 740, Android 13 SDK 33, 1080p top screen + `1240x1080` secondary `Display 4`) with Mesa `Turnip`.",
+          "assets": [
+            {
+              "name": "AoI-Native-0.1.0-beta.2.apk",
+              "size": 31837058,
+              "dl": 1
+            },
+            {
+              "name": "AoI-Native-0.1.0-beta.2.apk.sha256",
+              "size": 94,
+              "dl": 1
+            }
+          ]
+        },
+        {
+          "tag": "v0.1.0-beta.1",
+          "name": "AoI Native v0.1.0-beta.1 (Beta Pre-release)",
+          "date": "2026-11-19T17:14:47Z",
+          "body": "First experimental beta pre-release of **AoI Native** (`io.github.p1r4n351.hwaoi`) for **Hyrule Warriors: Age of Imprisonment** (`04003F40232DE000`, update `v196608`, Nintendo Switch 2 Edition). **This is an early developer/tester beta, not a finished end-user release.**\n\n## Read this first\n\n- **No game files, keys, firmware, shaders, or saves are included.** You must supply your own legally obtained Switch 2 `.nup` / dump of `04003F40232DE000` (`v196608`).\n- **On-device pack preparation is not bundled yet (`NX_PACK_ENGINE=fake`).** Build your Android pack and `15,449`-shader `dmsh_vk.lib` SPIR-V shader library (`478.7 MB`) on a PC with `scripts/pack_android.py` and copy them to device storage before launching.\n- **Tested on one hardware target only:** a `16 GB` **AYN Thor** (`QCS8550` / Adreno 740, Android 13 SDK 33) with a bundled Mesa `Turnip 27.0.0-devel` AdrenoTools driver (`driver.id=18`, Vulkan `1.4.363`). Expect rough edges outside covered early scenes.",
+          "assets": [
+            {
+              "name": "AoI-Native-0.1.0-beta.1.apk",
+              "size": 8148020,
+              "dl": 6
+            },
+            {
+              "name": "AoI-Native-0.1.0-beta.1.apk.sha256",
+              "size": 94,
+              "dl": 2
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "p1r4n351-hwaoc-android",
+      "name": "HW AoC Native",
+      "name_zh": "《塞尔达无双：灾厄启示录》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "hwaoc",
+      "family_label": "HW Age of Calamity",
+      "owner": "P1R4N351",
+      "repo": "P1R4N351/hwaoc-android",
+      "repo_url": "https://github.com/P1R4N351/hwaoc-android",
+      "homepage": "",
+      "description": "《塞尔达无双：灾厄启示录》（Switch v1.3.0）原生 Android 移植框架，早期版本，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "hwaoc-v0.1.0-beta.2",
+      "latest_date": "2026-11-26T20:42:09Z",
+      "channel": "prerelease",
+      "latest_body": "Second beta pre-release of **AoC Native** (`io.github.p1r4n351.hwaoc`) for **Hyrule Warriors: Age of Calamity** (`01002B00111A2000`, version `1.3.0` / `v327680`). **This is an early developer/tester beta, not a finished end-user release.**\n\n## Read this first\n\n- **No game files, keys, firmware, shaders, or saves are included.** Supply your own legally obtained dump of `01002B00111A2000` (`1.3.0`) and stage the rewritten modules (`main`, `subsdk0`, `sdk`), merged RomFS image (`11,719,230,892` bytes), and shader seed (`games/totk/scripts/prepare_hwaoc_seed.py`) manually from a computer (`ondevice_setup = false`).\n- **Release-build verification note:** This exact non-debuggable, release-signed APK (`v0.1.0-beta.2`, `versionCode` `102`) passed `audit_apk.py` (`72` entries, `gpl_companion = false`), `aapt2`, `apksigner`, and the 59-test Python/JVM/C suite (`test_vk_tbuf_spv`, `test_vk_minimap`, `test_ktgl_wid`, `test_companion_screen`, `test_game_variables`, `test_release_apk`). Companion UI behavior and Vulkan depth/buffer-texture fixes were exercised live on AYN Thor in `0.1.0-perf76` and `0.1.0-perf77-depthfix` (`048bfef`).\n\n## What is new since `hwaoc-v0.1.0-beta.1`",
+      "latest_apk_name": "AoC-Native-0.1.0-beta.2.apk",
+      "latest_apk_url": "https://github.com/P1R4N351/hwaoc-android/releases/download/hwaoc-v0.1.0-beta.2/AoC-Native-0.1.0-beta.2.apk",
+      "latest_apk_size": 18784168,
+      "latest_apk_tag": "hwaoc-v0.1.0-beta.2",
+      "distribution": "release-apk",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 16,
+      "downloads_lifetime": 16,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-26T20:40:29Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "MIT",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "hwaoc-v0.1.0-beta.2",
+          "name": "AoC Native v0.1.0-beta.2 (Beta Pre-release)",
+          "date": "2026-11-26T20:42:09Z",
+          "body": "Second beta pre-release of **AoC Native** (`io.github.p1r4n351.hwaoc`) for **Hyrule Warriors: Age of Calamity** (`01002B00111A2000`, version `1.3.0` / `v327680`). **This is an early developer/tester beta, not a finished end-user release.**\n\n## Read this first\n\n- **No game files, keys, firmware, shaders, or saves are included.** Supply your own legally obtained dump of `01002B00111A2000` (`1.3.0`) and stage the rewritten modules (`main`, `subsdk0`, `sdk`), merged RomFS image (`11,719,230,892` bytes), and shader seed (`games/totk/scripts/prepare_hwaoc_seed.py`) manually from a computer (`ondevice_setup = false`).\n- **Release-build verification note:** This exact non-debuggable, release-signed APK (`v0.1.0-beta.2`, `versionCode` `102`) passed `audit_apk.py` (`72` entries, `gpl_companion = false`), `aapt2`, `apksigner`, and the 59-test Python/JVM/C suite (`test_vk_tbuf_spv`, `test_vk_minimap`, `test_ktgl_wid`, `test_companion_screen`, `test_game_variables`, `test_release_apk`). Companion UI behavior and Vulkan depth/buffer-texture fixes were exercised live on AYN Thor in `0.1.0-perf76` and `0.1.0-perf77-depthfix` (`048bfef`).\n\n## What is new since `hwaoc-v0.1.0-beta.1`",
+          "assets": [
+            {
+              "name": "AoC-Native-0.1.0-beta.2.apk",
+              "size": 18784168,
+              "dl": 3
+            },
+            {
+              "name": "AoC-Native-0.1.0-beta.2.apk.sha256",
+              "size": 94,
+              "dl": 1
+            }
+          ]
+        },
+        {
+          "tag": "hwaoc-v0.1.0-beta.1",
+          "name": "AoC Native v0.1.0-beta.1 (Beta Pre-release)",
+          "date": "2026-11-19T17:14:51Z",
+          "body": "First beta pre-release of **AoC Native** (`io.github.p1r4n351.hwaoc`) for **Hyrule Warriors: Age of Calamity** (`01002B00111A2000`, `1.3.0` / `v327680`). **This is an early developer/tester beta, not a finished end-user release.**\n\n## Read this first\n\n- **No game files, keys, firmware, shaders, or saves are included.** You must supply your own legally obtained dump of Age of Calamity `1.3.0` (`01002B00111A2000`, `v327680`).\n- **Manual dump/pack preparation is required:** See [`games/hwaoc/ANDROID.md`](https://github.com/P1R4N351/hwaoc-android/blob/hwaoc-v0.1.0-beta.1/games/hwaoc/ANDROID.md) and [`games/hwaoc/README.md`](https://github.com/P1R4N351/hwaoc-android/blob/hwaoc-v0.1.0-beta.1/games/hwaoc/README.md) for module rewrite and staging instructions.\n- **Tested on one hardware target only:** a `16 GB` **AYN Thor** (`QCS8550` / Adreno 740, Android 13 SDK 33) with the bundled Mesa Turnip driver.",
+          "assets": [
+            {
+              "name": "AoC-Native-0.1.0-beta.1.apk",
+              "size": 18567157,
+              "dl": 13
+            },
+            {
+              "name": "AoC-Native-0.1.0-beta.1.apk.sha256",
+              "size": 94,
+              "dl": 2
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "gjr787878-nx2android-it-takes-two",
+      "name": "It Takes Two Android",
+      "name_zh": "《双人成行》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "it-takes-two-android",
+      "family_label": "It Takes Two",
+      "owner": "GJR787878",
+      "repo": "GJR787878/nx2android-it-takes-two",
+      "repo_url": "https://github.com/GJR787878/nx2android-it-takes-two",
+      "homepage": "",
+      "description": "《双人成行》（Switch）经 nx2android 转译到 Android，alpha13 阶段，附 30/60fps 档位与源码，需自备游戏文件。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "switch"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "ci-20261124-alpha13-r2",
+      "latest_date": "2026-11-24T00:10:06Z",
+      "channel": "stable",
+      "latest_body": "## 合并后的主仓库：nx2android-it-takes-two\n\n`nx2android-it-takes-two2` 已合并进本仓库的 `main`，合并提交\n`e95eb5f3cd243ae3bcb0091bb70e4b15a24121dd`。原仓库继续作为主体；CI 工作流、四个档案脚本、\nclean-port 修复和文档都在 `main` 上。合并后的首次 CI 构建\n[`45294935869`](https://github.com/GJR787878/nx2android-it-takes-two/actions/runs/45294935869)\n已成功（7 分 25 秒），产物就是本 Release 的 APK。\n\n## 这次修的是“重新移植失败”，不是构建失败\n\n失败点：clean 安装后重新移植《双人成行》时，`build_ipa_from_nsp.py` 的 `split_shaders()` 去读\n`dm/games/010092A0172E4000/shader_map.tsv`，但该档案只有 `game.tsv` 和 `android.tsv`，文件不存在。\n\n旧端口能跑，是因为旧端口目录里已有之前生成的 shader 表；clean 安装没有这些表，于是暴露了\n“两文件档案被当成完整档案”的分支错误。\n\n修复（提交 `70f4e38`）：档案缺表时禁用包复用，先把本次 shader split 生成的\n`shader_map.tsv`、`shader_facts.tsv`、`shader_pairs.tsv` 写进本次档案副本，再继续后续步骤；\n表齐全时才做数据行比对。\n\n## 真机日志\n\n`IT2-60fps-alpha13-r2-cleanport-log.zip` 是完整 15 文件日志：\n\n- 端口退出码 `0`，结束时间 `2026-11-24 07:53:06`；\n- 设备 OPPO OPD2409、Android 17、15,440 MB RAM；\n- 构建 `010092A0172E4000`、`v131072`、XCI `1G+1U+2D`、60 fps；\n- 日志里出现 `game profile ... has no shader_map.tsv ... taking the split tables as its first port's`，\n  随后 7/9 Vulkan、8/9 host、9/9 data pack 全部完成。\n\n文本日志在仓库的 `logs/it2-alpha13-r2-20261124-080056/`；压缩包是原始完整日志。\n\n## 产物\n\n- `nx2android-v0.4.1-alpha13-it2-ci-r2.apk`：259,504,735 B，SHA-256",
+      "latest_apk_name": "nx2android-v0.4.1-alpha13-it2-ci-r2.apk",
+      "latest_apk_url": "https://github.com/GJR787878/nx2android-it-takes-two/releases/download/ci-20261124-alpha13-r2/nx2android-v0.4.1-alpha13-it2-ci-r2.apk",
+      "latest_apk_size": 259504735,
+      "latest_apk_tag": "ci-20261124-alpha13-r2",
+      "distribution": "release-apk",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 9,
+      "downloads_lifetime": 9,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-25T04:39:14Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "platform_families": [
+        "nintendo"
+      ],
+      "releases": [
+        {
+          "tag": "ci-20261124-alpha13-r2",
+          "name": "CI r2: alpha13 clean-port (device-verified)",
+          "date": "2026-11-24T00:10:06Z",
+          "body": "## 合并后的主仓库：nx2android-it-takes-two\n\n`nx2android-it-takes-two2` 已合并进本仓库的 `main`，合并提交\n`e95eb5f3cd243ae3bcb0091bb70e4b15a24121dd`。原仓库继续作为主体；CI 工作流、四个档案脚本、\nclean-port 修复和文档都在 `main` 上。合并后的首次 CI 构建\n[`45294935869`](https://github.com/GJR787878/nx2android-it-takes-two/actions/runs/45294935869)\n已成功（7 分 25 秒），产物就是本 Release 的 APK。\n\n## 这次修的是“重新移植失败”，不是构建失败\n\n失败点：clean 安装后重新移植《双人成行》时，`build_ipa_from_nsp.py` 的 `split_shaders()` 去读\n`dm/games/010092A0172E4000/shader_map.tsv`，但该档案只有 `game.tsv` 和 `android.tsv`，文件不存在。\n\n旧端口能跑，是因为旧端口目录里已有之前生成的 shader 表；clean 安装没有这些表，于是暴露了\n“两文件档案被当成完整档案”的分支错误。\n\n修复（提交 `70f4e38`）：档案缺表时禁用包复用，先把本次 shader split 生成的\n`shader_map.tsv`、`shader_facts.tsv`、`shader_pairs.tsv` 写进本次档案副本，再继续后续步骤；\n表齐全时才做数据行比对。\n\n## 真机日志\n\n`IT2-60fps-alpha13-r2-cleanport-log.zip` 是完整 15 文件日志：\n\n- 端口退出码 `0`，结束时间 `2026-11-24 07:53:06`；\n- 设备 OPPO OPD2409、Android 17、15,440 MB RAM；\n- 构建 `010092A0172E4000`、`v131072`、XCI `1G+1U+2D`、60 fps；\n- 日志里出现 `game profile ... has no shader_map.tsv ... taking the split tables as its first port's`，\n  随后 7/9 Vulkan、8/9 host、9/9 data pack 全部完成。\n\n文本日志在仓库的 `logs/it2-alpha13-r2-20261124-080056/`；压缩包是原始完整日志。\n\n## 产物\n\n- `nx2android-v0.4.1-alpha13-it2-ci-r2.apk`：259,504,735 B，SHA-256",
+          "assets": [
+            {
+              "name": "CHECKSUMS-CI.txt",
+              "size": 300,
+              "dl": 0
+            },
+            {
+              "name": "CI_BUILD_REPORT.md",
+              "size": 4226,
+              "dl": 0
+            },
+            {
+              "name": "IT2-60fps-alpha13-r2-cleanport-log.zip",
+              "size": 86625,
+              "dl": 5
+            },
+            {
+              "name": "nx2a-profiles-ci-r2.zip",
+              "size": 2006,
+              "dl": 3
+            },
+            {
+              "name": "nx2android-v0.4.1-alpha13-it2-ci-r2.apk",
+              "size": 259504735,
+              "dl": 4
+            }
+          ]
+        },
+        {
+          "tag": "v0.4.1-alpha13",
+          "name": "It Takes Two Android port — v0.4.1-alpha13",
+          "date": "2026-11-23T19:00:33Z",
+          "body": "# It Takes Two Android port — alpha13 (verified build)\n\nThis release is the latest verified It Takes Two port build, plus the 30 fps and 60 fps logs,\nthe source snapshot and the profile package.\n\n## Verified build\n\n- **APK:** `nx2android-v0.4.1-alpha13-it2-srgb.apk`\n- **versionCode / versionName:** `32` / `0.4.1-alpha13`\n- **SHA-256:** `3886fc7e95a04ce50a3c60ffd0b311c64dc6685174843a5c58a32afdc1cd5622`\n- **Package:** `com.gjr.nx2androidx` (same signer as alpha12; installs over it)\n- **No game data / keys included.**\n\n## Test logs\n\n- `IT2-30fps-alpha11-log.zip`: 467 s, 14,100 frames; frame p50 33.14 ms, GPU p50 12.71 ms.\n- `IT2-60fps-alpha12-log.zip`: 373 s, 20,399 presents; frame p50 16.65 ms, GPU 8–12 ms.\n- `IT2-60fps-alpha13-srgb-log.zip`: 417 s, ~21,200 frames; frame p50 16.6–16.7 ms, GPU p50\n  10.2–11.1 ms; no `[RED]`, `VK_ERROR`, device lost or OOM. Application pool reached\n  `3.00 GB / 3.21 GB`.\n\n## Profile package\n\n`nx2a-profiles-r2-it2.zip` — 185 profiles (184 original + `010092A0172E4000`), revision 2,\nSHA-256 `1061681ded85736b64ceae635866004df1088926d30d72c9dd2ca685b6f28e6c`. Import it in the",
+          "assets": [
+            {
+              "name": "apk-sha256-v13.txt",
+              "size": 147,
+              "dl": 1
+            },
+            {
+              "name": "CHECKSUMS.txt",
+              "size": 501,
+              "dl": 1
+            },
+            {
+              "name": "IT2-30fps-alpha11-log.zip",
+              "size": 64138,
+              "dl": 4
+            },
+            {
+              "name": "IT2-60fps-alpha12-log.zip",
+              "size": 45800,
+              "dl": 3
+            },
+            {
+              "name": "IT2-60fps-alpha13-srgb-log.zip",
+              "size": 93294,
+              "dl": 3
+            },
+            {
+              "name": "IT2-full-unlock-notes.md",
+              "size": 3235,
+              "dl": 1
+            },
+            {
+              "name": "nx2a-profiles-r2-it2.zip",
+              "size": 93883247,
+              "dl": 4
+            },
+            {
+              "name": "nx2android-v0.4.1-alpha12-it2diag-update.apk",
+              "size": 17805128,
+              "dl": 1
+            },
+            {
+              "name": "nx2android-v0.4.1-alpha13-it2-srgb.apk",
+              "size": 259504271,
+              "dl": 4
+            },
+            {
+              "name": "profiles-r2-it2.sha256",
+              "size": 91,
+              "dl": 1
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "onederson-the-3rd-birthday-recomp-android",
+      "name": "The 3rd Birthday Recomp",
+      "name_zh": "《第三次生日》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "the-3rd-birthday-recomp",
+      "family_label": "The 3rd Birthday",
+      "owner": "onederson",
+      "repo": "onederson/the-3rd-birthday-recomp-android",
+      "repo_url": "https://github.com/onederson/the-3rd-birthday-recomp-android",
+      "homepage": "",
+      "description": "《第三次生日》（PSP）静态重编译到 Android，Vulkan 渲染，需自备 ISO。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "psp"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v1.1",
+      "latest_date": "2026-11-27T20:21:24Z",
+      "channel": "stable",
+      "latest_body": "## The 3rd Birthday for Android — v1.1\n\n### Fixed\n- **Movies (cutscenes) are smooth and in sync with their audio.** The phone's video decoder runs in parallel and sometimes answers a few milliseconds late; each late picture was lost and pushed the rest of the movie one frame later, so the picture ended up seconds behind the sound. Now the app waits briefly for each picture and catches up if one is late. The end of a movie is no longer cut short either.\n  Measured on a Moto G200: opening movie 4140 of 4141 frames, picture 138.2 s vs audio 138.1 s (before, a 35 s movie lost 91 frames and ended ~3 s behind).\n- Future app updates no longer ask you to rebuild the game when nothing it needs has changed.\n\n### Updating from v1.0\nInstall the new APK over the old one (your saves stay). **This one time** the app asks to rebuild the game (**Update the game**, ~10 minutes, uses the ISO you already imported). Later updates skip this unless really needed.\n\n### New install",
+      "latest_apk_name": "the-3rd-birthday-android-v1.1.apk",
+      "latest_apk_url": "https://github.com/onederson/the-3rd-birthday-recomp-android/releases/download/v1.1/the-3rd-birthday-android-v1.1.apk",
+      "latest_apk_size": 69320845,
+      "latest_apk_tag": "v1.1",
+      "distribution": "release-apk",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 3,
+      "downloads_lifetime": 3,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T20:21:23Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "platform_families": [
+        "sony"
+      ],
+      "releases": [
+        {
+          "tag": "v1.1",
+          "name": "v1.1 — Movies in sync / Vídeos sincronizados",
+          "date": "2026-11-27T20:21:24Z",
+          "body": "## The 3rd Birthday for Android — v1.1\n\n### Fixed\n- **Movies (cutscenes) are smooth and in sync with their audio.** The phone's video decoder runs in parallel and sometimes answers a few milliseconds late; each late picture was lost and pushed the rest of the movie one frame later, so the picture ended up seconds behind the sound. Now the app waits briefly for each picture and catches up if one is late. The end of a movie is no longer cut short either.\n  Measured on a Moto G200: opening movie 4140 of 4141 frames, picture 138.2 s vs audio 138.1 s (before, a 35 s movie lost 91 frames and ended ~3 s behind).\n- Future app updates no longer ask you to rebuild the game when nothing it needs has changed.\n\n### Updating from v1.0\nInstall the new APK over the old one (your saves stay). **This one time** the app asks to rebuild the game (**Update the game**, ~10 minutes, uses the ISO you already imported). Later updates skip this unless really needed.\n\n### New install",
+          "assets": [
+            {
+              "name": "the-3rd-birthday-android-v1.1.apk",
+              "size": 69320845,
+              "dl": 1
+            }
+          ]
+        },
+        {
+          "tag": "v1.0",
+          "name": "v1.0 — The 3rd Birthday for Android",
+          "date": "2026-11-27T03:43:23Z",
+          "body": "## The 3rd Birthday for Android — v1.0\n\nFirst public release. **No computer needed**: install the APK, tap **Choose ISO**, pick your own copy of the game (US version, `ULUS10567`), and the phone builds the game once (about 10 minutes on a Moto G200). Then just play.\n\n**This APK contains no Square Enix code or data.** You need your own copy of the game (a dump of your UMD).\n\n### How to install\n1. Download **`the-3rd-birthday-android-v1.0.apk`** below and install it (allow installing from this source).\n2. Open the app, allow notifications, tap **Choose ISO** and pick your `.iso`.\n3. Wait for **\"Ready! The game is built.\"** and tap **Play**.\n\nStep-by-step guide: [TUTORIAL_EN.md](https://github.com/onederson/the-3rd-birthday-recomp-android/blob/main/TUTORIAL_EN.md)\n\n### Highlights\n- Builds the game on the phone from your ISO (bundled Zig compiler). Keeps going with the app minimized and resumes if Android closes the app.\n- Internal resolution 1x–4x and 30–144 FPS, live.\n- Touch controls with a layout editor (swipe the right side to turn the camera, double tap to reset it), physical controllers, native settings menu on Back.\n\n### Requirements",
+          "assets": [
+            {
+              "name": "the-3rd-birthday-android-v1.0.apk",
+              "size": 69320345,
+              "dl": 2
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "rappudoggu-dark-reign-2-reigncarnated",
+      "name": "Dark Reign 2 Reigncarnated",
+      "name_zh": "《暗黑统治 2》Android 移植",
+      "category": "原生移植",
+      "section": "native-port",
+      "family": "dark-reign-2",
+      "family_label": "Dark Reign 2",
+      "owner": "RappuDoggu",
+      "repo": "RappuDoggu/Dark-Reign-2-Reigncarnated",
+      "repo_url": "https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated",
+      "homepage": "",
+      "description": "《暗黑统治 2》（2000，PC 即时战略）重编译并移植到 Android，需自备光盘镜像。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "port",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "recomp",
+      "latest_tag": "v0.1",
+      "latest_date": "2026-11-07T20:10:53Z",
+      "channel": "prerelease",
+      "latest_body": "![Dark Reign 2](https://raw.githubusercontent.com/RappuDoggu/Dark-Reign-2-Reigncarnated/main/docs/images/dark-reign-2-banner.jpg)\n\n## Reigncarnated 0.1\n\n**Dark Reign 2, now on Android.**\n\n[Download APK](https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/releases/download/v0.1/Reigncarnated-0.1.apk) · [Source ZIP](https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/releases/download/v0.1/Reigncarnated-0.1-source-relink.zip) · [Player guide](https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/blob/main/docs/PLAYER_GUIDE.md)\n\n### Included\n\n- Instant Action with the original AI and practice mode.\n- JDA and Sprawler campaign starts, individual missions and cutscenes.\n- Touch selection, orders, group selection, building rotation and map pan.\n- Music, voices and combat audio from your imported installation.\n- Android settings, game-data import/export and diagnostics.\n\n### Install\n\nAndroid 8.0+, ARM64 and GLES 3.0 required. Install the APK and import your complete PC game files. Game data is not included. Install updates over the existing app to keep your data.\n\n### Planned features",
+      "latest_apk_name": "Reigncarnated-0.1.apk",
+      "latest_apk_url": "https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/releases/download/v0.1/Reigncarnated-0.1.apk",
+      "latest_apk_size": 9549153,
+      "latest_apk_tag": "v0.1",
+      "distribution": "release-apk",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "downloads_total": 57,
+      "downloads_lifetime": 57,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-27T08:53:27Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "",
+      "platform_families": [
+        "pc"
+      ],
+      "releases": [
+        {
+          "tag": "v0.1",
+          "name": "Reigncarnated 0.1 — Android Early Access",
+          "date": "2026-11-07T20:10:53Z",
+          "body": "![Dark Reign 2](https://raw.githubusercontent.com/RappuDoggu/Dark-Reign-2-Reigncarnated/main/docs/images/dark-reign-2-banner.jpg)\n\n## Reigncarnated 0.1\n\n**Dark Reign 2, now on Android.**\n\n[Download APK](https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/releases/download/v0.1/Reigncarnated-0.1.apk) · [Source ZIP](https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/releases/download/v0.1/Reigncarnated-0.1-source-relink.zip) · [Player guide](https://github.com/RappuDoggu/Dark-Reign-2-Reigncarnated/blob/main/docs/PLAYER_GUIDE.md)\n\n### Included\n\n- Instant Action with the original AI and practice mode.\n- JDA and Sprawler campaign starts, individual missions and cutscenes.\n- Touch selection, orders, group selection, building rotation and map pan.\n- Music, voices and combat audio from your imported installation.\n- Android settings, game-data import/export and diagnostics.\n\n### Install\n\nAndroid 8.0+, ARM64 and GLES 3.0 required. Install the APK and import your complete PC game files. Game data is not included. Install updates over the existing app to keep your data.\n\n### Planned features",
+          "assets": [
+            {
+              "name": "build-receipt.json",
+              "size": 2911,
+              "dl": 4
+            },
+            {
+              "name": "Reigncarnated-0.1-source-relink.zip",
+              "size": 30912974,
+              "dl": 10
+            },
+            {
+              "name": "Reigncarnated-0.1.apk",
+              "size": 9549153,
+              "dl": 57
+            },
+            {
+              "name": "SHA256SUMS.txt",
+              "size": 275,
+              "dl": 4
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
+    },
+    {
+      "id": "avavo-winxclipse",
+      "name": "WinXclipse",
+      "name_zh": "三星 Xclipse 专用 Winlator",
+      "category": "Windows 兼容层",
+      "section": "windows-compat",
+      "family": "winlator",
+      "family_label": "Winlator 系",
+      "owner": "avavo",
+      "repo": "avavo/WinXclipse",
+      "repo_url": "https://github.com/avavo/WinXclipse",
+      "homepage": "",
+      "description": "面向三星 Xclipse（Exynos RDNA）GPU 的 Winlator 分支，内置 Exynos 调优、Wrapper 与 Vulkan 配置。",
+      "summary": "",
+      "official": false,
+      "source": "github",
+      "kind": "emulator",
+      "runtime": "android-native",
+      "platforms": [
+        "windows-pc"
+      ],
+      "hosts": [
+        "android"
+      ],
+      "status": "active",
+      "needs_review": false,
+      "method": "translation",
+      "latest_tag": "v0.9.6",
+      "latest_date": "2026-11-04T19:18:08Z",
+      "channel": "stable",
+      "latest_body": "# WinXclipse v0.9.6\n\n## Reinstall required: back up first\n\n**The APK signing key changed. If you are using the old key, including the original 0.9.5, you must uninstall the old APK and reinstall this version. Uninstalling deletes the app's private data.**\n\nBefore uninstalling, export your **saves and full containers**, and back up settings and control presets. Verify the backups and copy them to shared storage or a computer, outside the app's private folders. A community configuration ZIP is not a full container/save backup. Restore your backups after installing the new APK.\n\nRecent local 0.9.6 builds already use this key and do not require this migration.\n\n## Highlights\n\n- Vulkan compositor, optional DisplayX, more video controls and configurable OpenGL drivers.\n- Faster Wine/Proton preparation, working installation progress and corrected runtime downloads.\n- Reworked sidebar, aligned switches, rounded controls and editable defaults for new containers.\n- Expanded HUD with consistent RAM readings, temperatures, swap and power measurements.\n- Improved FSR, file transfers, physical mouse/keyboard input and stability.",
+      "latest_apk_name": "WinXclipse-v0.9.6.apk",
+      "latest_apk_url": "https://github.com/avavo/WinXclipse/releases/download/v0.9.6/WinXclipse-v0.9.6.apk",
+      "latest_apk_size": 571156285,
+      "latest_apk_tag": "v0.9.6",
+      "distribution": "release-apk",
+      "stars": 50,
+      "forks": 6,
+      "watchers": 0,
+      "downloads_total": 7181,
+      "downloads_lifetime": 7181,
+      "downloads_basis": "lifetime",
+      "pushed_at": "2026-11-04T19:06:56Z",
+      "artifacts": {
+        "apk": 1,
+        "android_zip": 0,
+        "ipa": 0,
+        "libretro_core": 0,
+        "desktop": 0,
+        "console": 0,
+        "source": 0,
+        "total": 1
+      },
+      "requires_original": true,
+      "logo_url": "",
+      "license": "GPL-3.0",
+      "platform_families": [
+        "pc"
+      ],
+      "releases": [
+        {
+          "tag": "v0.9.6",
+          "name": "WinXclipse v0.9.6",
+          "date": "2026-11-04T19:18:08Z",
+          "body": "# WinXclipse v0.9.6\n\n## Reinstall required: back up first\n\n**The APK signing key changed. If you are using the old key, including the original 0.9.5, you must uninstall the old APK and reinstall this version. Uninstalling deletes the app's private data.**\n\nBefore uninstalling, export your **saves and full containers**, and back up settings and control presets. Verify the backups and copy them to shared storage or a computer, outside the app's private folders. A community configuration ZIP is not a full container/save backup. Restore your backups after installing the new APK.\n\nRecent local 0.9.6 builds already use this key and do not require this migration.\n\n## Highlights\n\n- Vulkan compositor, optional DisplayX, more video controls and configurable OpenGL drivers.\n- Faster Wine/Proton preparation, working installation progress and corrected runtime downloads.\n- Reworked sidebar, aligned switches, rounded controls and editable defaults for new containers.\n- Expanded HUD with consistent RAM readings, temperatures, swap and power measurements.\n- Improved FSR, file transfers, physical mouse/keyboard input and stability.",
+          "assets": [
+            {
+              "name": "WinXclipse-v0.9.6-Antutu.apk",
+              "size": 571156285,
+              "dl": 639
+            },
+            {
+              "name": "WinXclipse-v0.9.6-Geekbench.apk",
+              "size": 571156285,
+              "dl": 75
+            },
+            {
+              "name": "WinXclipse-v0.9.6-PUBG.apk",
+              "size": 571156285,
+              "dl": 116
+            },
+            {
+              "name": "WinXclipse-v0.9.6.apk",
+              "size": 571156285,
+              "dl": 1332
+            }
+          ]
+        },
+        {
+          "tag": "v0.9.5",
+          "name": "WinXclipse v0.9.5",
+          "date": "2026-09-14T16:55:29Z",
+          "body": "# WinXclipse v0.9.5\n\nWinXclipse v0.9.5 is a major experimental update for Exynos/Xclipse devices. It adds configurable Apex frame generation, reorganizes the Vulkan wrappers, ports the newer Souza touch controls, improves the HUD, incorporates the applicable platform work documented in the Souza branch changelog, and fixes long-session virtual-controller lockups, recording-related audio loss, rumble routing, and several container, shortcut and input-editor crashes.\n\n## Highlights\n\n### Apex Frame Generation\n\n- Added experimental GLES 3.1 Frame Generation for Vulkan.\n- Added Fast, Balanced and Quality profiles.\n- Added 1.5x–5x fixed multipliers and Automatic target FPS.\n- Added live configuration from the Display panel and shortcut overrides.\n- Fixed EGL 3.1 detection and Xclipse `image2D` precision errors.\n- Restored the stable GLES Compute path and removed the unstable native `libapex` route.\n- Removed Low Latency extrapolation; Apex now always interpolates.\n- Added finite generated-frame budgeting based on real Presents.\n- Fixed stale-frame redraws, scheduling issues and GPU queue stalls.\n- Added Apex HUD telemetry, failure reporting and `GEN 0 FPS` diagnostics.",
+          "assets": [
+            {
+              "name": "WinXclipse-v0.9.5-Antutu.apk",
+              "size": 518669492,
+              "dl": 900
+            },
+            {
+              "name": "WinXclipse-v0.9.5-Geekbench.apk",
+              "size": 518669708,
+              "dl": 135
+            },
+            {
+              "name": "WinXclipse-v0.9.5-Pubg.apk",
+              "size": 518669488,
+              "dl": 171
+            },
+            {
+              "name": "WinXclipse-v0.9.5.apk",
+              "size": 518669652,
+              "dl": 2260
+            }
+          ]
+        },
+        {
+          "tag": "wrappers",
+          "name": "WinXclipse Wrapper Catalog 0.9.5",
+          "date": "2026-08-31T14:44:08Z",
+          "body": "Official wrapper catalog compatible with the WinXclipse 0.9.5 downloader.\n\n- Wrapper-CMOD v2\n- Wrapper-Leegao (download-only)\n- Wrapper-GameNative\n- Wrapper-Ref4ik v6\n\nSHA-256:\n\nwrapper-cmod-v2.tzst: 68BFA91D88D374B67A7DBC2079AFBF243F42F1C7D5DFFD0C84A7A276C94F4526\nwrapper-gamenative.tzst: 1FDBB8DD9807743B86C00089DCF9972ADF0B06A9C069DFD8629B8F0B76DD7D87\nwrapper-leegao.tzst: D34E5DF6699049E27B48D72D2D150F1FDFF8A6E84ED8C4F0BF8883598342D1A2\nwrapper-ref4ik-v6.tzst: 1C1A9686FBB76B65BDBEEA7C10B84CED9E5348B739DE289C0C86002C1787D0D7",
+          "assets": [
+            {
+              "name": "wrapper-cmod-v2.tzst",
+              "size": 5435191,
+              "dl": 564
+            },
+            {
+              "name": "wrapper-gamenative.tzst",
+              "size": 747945,
+              "dl": 726
+            },
+            {
+              "name": "wrapper-leegao.tzst",
+              "size": 3018041,
+              "dl": 302
+            },
+            {
+              "name": "wrapper-ref4ik-v6.tzst",
+              "size": 5532411,
+              "dl": 398
+            }
+          ]
+        },
+        {
+          "tag": "v0.9.1",
+          "name": "WinXclipse v0.9.1; Bug Fix & Stability Release",
+          "date": "2026-08-30T20:24:11Z",
+          "body": "# WinXclipse v0.9.1\n\nThis is an incremental update to WinXclipse v0.9 focused on Community Configs, Wine input and shortcut reliability, x86/x86_64 and 32-bit compatibility, smoother Wine navigation, and safer DXVK/VKD3D setup.\n\n# What Changed Compared to v0.9\n\n### Community Configs\n\n- Added a Community Configs catalog backed by the dedicated GitHub release.\n- Config ZIPs download automatically; users do not need to download or keep the ZIP manually.\n- Added fallback through the public release-assets page, a saved catalog index, and validated offline cache when the GitHub API is unavailable or rate-limited.\n- Added toolbar search by game name.\n- On the first visit, a one-time AMOLED dialog explains how to export and submit tested configs and opens the project Discord directly.\n- Equivalent names are grouped regardless of case, trailing spaces, punctuation, or Arabic/Roman sequel numbers through X.\n- Every matching config is checked for an embedded cover before browser artwork is requested.\n- Community covers can be replaced manually.",
+          "assets": [
+            {
+              "name": "WinXclipse-0.9.1-Antutu.apk",
+              "size": 551787977,
+              "dl": 219
+            },
+            {
+              "name": "WinXclipse-0.9.1-Geekbench.apk",
+              "size": 551787929,
+              "dl": 30
+            },
+            {
+              "name": "WinXclipse-0.9.1-Pubg.apk",
+              "size": 551787829,
+              "dl": 29
+            },
+            {
+              "name": "WinXclipse-0.9.1.apk",
+              "size": 551787797,
+              "dl": 450
+            }
+          ]
+        },
+        {
+          "tag": "community-configs",
+          "name": "WinXclipse Community Configs",
+          "date": "2026-08-28T15:50:30Z",
+          "body": "Community-maintained WinXclipse container configurations. Attach exported .zip configuration files and optional same-basename .png cover images to this release.",
+          "assets": [
+            {
+              "name": "Cyberpunk-2077-SM-S926B.zip",
+              "size": 32593,
+              "dl": 1053
+            },
+            {
+              "name": "Dark-Souls-III-SM-S926.zip",
+              "size": 45120,
+              "dl": 1299
+            },
+            {
+              "name": "Dark-Souls-Remastered-SM-S926.zip",
+              "size": 24186,
+              "dl": 1295
+            },
+            {
+              "name": "Devil-May-Cry-HD-Edition-SM-S926B.zip",
+              "size": 251502,
+              "dl": 1090
+            },
+            {
+              "name": "Dragon-Ball-FighterZ-SM-S721.zip",
+              "size": 2482286,
+              "dl": 1304
+            },
+            {
+              "name": "God-of-War-2018-SM-S926.zip",
+              "size": 1684,
+              "dl": 1273
+            },
+            {
+              "name": "GTA-IV-SM-A556E-2.zip",
+              "size": 480600,
+              "dl": 1096
+            },
+            {
+              "name": "GTA-IV-SM-A556E.zip",
+              "size": 479531,
+              "dl": 1143
+            },
+            {
+              "name": "GTA-IV-SM-S926B-2.zip",
+              "size": 1907,
+              "dl": 1119
+            },
+            {
+              "name": "GTA-V-SM-S926B.zip",
+              "size": 3208453,
+              "dl": 1121
+            },
+            {
+              "name": "Hollow-Knight-Silksong-SM-S926.zip",
+              "size": 194230,
+              "dl": 1222
+            },
+            {
+              "name": "Mortal-sin-SM-X520.zip",
+              "size": 1748,
+              "dl": 1211
+            },
+            {
+              "name": "Need-for-Speed-Payback-SM-S926.zip",
+              "size": 148582,
+              "dl": 1205
+            },
+            {
+              "name": "Red-Dead-Redemption-2-SM-S921B.zip",
+              "size": 192968,
+              "dl": 1045
+            },
+            {
+              "name": "Red-Dead-Redemption-2-SM-S926B.zip",
+              "size": 192921,
+              "dl": 1101
+            },
+            {
+              "name": "Red-Dead-Redemption-SM-S926B-2.zip",
+              "size": 221504,
+              "dl": 1091
+            },
+            {
+              "name": "resident-evil-2-remake-SM-A566B.zip",
+              "size": 223961,
+              "dl": 1044
+            },
+            {
+              "name": "Resident-Evil-2-Remake-SM-S926B.zip",
+              "size": 223937,
+              "dl": 1037
+            },
+            {
+              "name": "Resident-Evil-3-Remake-SM-S926B.zip",
+              "size": 179259,
+              "dl": 1098
+            },
+            {
+              "name": "Resident-Evil-4-Remake-SM-S926B.zip",
+              "size": 94601,
+              "dl": 977
+            },
+            {
+              "name": "Rise-of-the-Tomb-Raider-SM-S721.zip",
+              "size": 49476,
+              "dl": 1172
+            },
+            {
+              "name": "Stray-SM-S926.zip",
+              "size": 192612,
+              "dl": 1163
+            },
+            {
+              "name": "Tekken-7-SM-S921B-2.zip",
+              "size": 286145,
+              "dl": 745
+            },
+            {
+              "name": "TESIV-Oblivion-2006-SM-X520.zip",
+              "size": 245440,
+              "dl": 966
+            },
+            {
+              "name": "The-wicher-3-SM-S926B.zip",
+              "size": 209275,
+              "dl": 511
+            }
+          ]
+        }
+      ],
+      "download_kind": "github-release",
+      "android_ready": true,
+      "android_ready_source": "release"
     }
   ],
-  "count": 557
+  "count": 569
 }
