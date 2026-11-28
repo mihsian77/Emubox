@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated_at": "2026-11-27T02:02:20Z",
+ "generated_at": "2026-11-28T01:48:56Z",
  "source": "https://www.emuready.com/api/mobile/trpc",
  "note": "EmuReady 公开接口离线目录：设备用于本地精确匹配（避免联网模糊搜索命中错设备），systems/emulators 供界面展示。由 scripts/refresh-emuready.py 生成。",
  "stats": {
@@ -214,7 +214,7 @@
    "modelName": "11 Pro",
    "brandName": "RedMagic",
    "socName": "Snapdragon 8 Elite Gen 5",
-   "listingsCount": 1510,
+   "listingsCount": 1513,
    "keys": [
     "11pro",
     "redmagic11pro"
@@ -302,7 +302,7 @@
    "modelName": "Pocket G2",
    "brandName": "Retroid",
    "socName": "Snapdragon G2 Gen 2",
-   "listingsCount": 248,
+   "listingsCount": 249,
    "keys": [
     "pocketg2",
     "retroidpocketg2"
@@ -9044,7 +9044,7 @@
     "nintendo_switch_2",
     "nintendo_switch"
    ],
-   "listings": 6302,
+   "listings": 6304,
    "description": "**Nintendo Switch Emulator** Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind. It is written in C++ with cross-platform support for Windows, Linux, FreeBSD, Solaris, OpenBSD, and Android."
   },
   {
@@ -9083,7 +9083,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1924,
+   "listings": 1925,
    "description": "Citron - Nintendo Homebrew Emulator 🍋 Welcome to Citron, a cutting-edge Nintendo Homebrew emulator designed to deliver an optimized experience for playing your favorite games and exploring new ones. Citron is a high-performance and easy-to-use emulator, tailored for enthusiasts a"
   },
   {
@@ -9096,7 +9096,7 @@
    "systems": [
     "nintendo_switch"
    ],
-   "listings": 1856,
+   "listings": 1857,
    "description": ""
   },
   {

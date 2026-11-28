@@ -1,6 +1,6 @@
 {
  "version": "1.2.0",
- "updated_at": "2026-11-27T00:00:00Z",
+ "updated_at": "2026-11-28T00:00:00Z",
  "description": "Winlator 社区配置推荐（统计层：聚合 bannerlator-game-configs + Winlator-Mali-Community-Configs；官方层：入门配置指引）",
  "generated": true,
  "gpu_combos": {
@@ -214,7 +214,7 @@
    ]
   },
   "Adreno-825": {
-   "configs": 206,
+   "configs": 207,
    "top": [
     {
      "combo": [
@@ -236,7 +236,7 @@
       ]
      ],
      "count": 28,
-     "share": 13.6
+     "share": 13.5
     },
     {
      "combo": [
@@ -257,8 +257,8 @@
        "2.8"
       ]
      ],
-     "count": 10,
-     "share": 4.9
+     "count": 11,
+     "share": 5.3
     },
     {
      "combo": [
@@ -356,7 +356,7 @@
    ]
   },
   "Adreno-740": {
-   "configs": 176,
+   "configs": 177,
    "top": [
     {
      "combo": [
@@ -400,7 +400,7 @@
       ]
      ],
      "count": 10,
-     "share": 5.7
+     "share": 5.6
     },
     {
      "combo": [
@@ -423,7 +423,7 @@
    ]
   },
   "Mali-G615": {
-   "configs": 133,
+   "configs": 135,
    "top": [
     {
      "combo": [
@@ -445,7 +445,7 @@
       ]
      ],
      "count": 27,
-     "share": 20.3
+     "share": 20.0
     },
     {
      "combo": [
@@ -466,8 +466,8 @@
        "2.8"
       ]
      ],
-     "count": 11,
-     "share": 8.3
+     "count": 12,
+     "share": 8.9
     },
     {
      "combo": [
@@ -1179,7 +1179,7 @@
    ]
   },
   "Adreno-619": {
-   "configs": 43,
+   "configs": 44,
    "top": [
     {
      "combo": [
@@ -1201,7 +1201,7 @@
       ]
      ],
      "count": 7,
-     "share": 16.3
+     "share": 15.9
     },
     {
      "combo": [
@@ -1219,7 +1219,7 @@
       ]
      ],
      "count": 2,
-     "share": 4.7
+     "share": 4.5
     },
     {
      "combo": [
@@ -1241,7 +1241,7 @@
       ]
      ],
      "count": 2,
-     "share": 4.7
+     "share": 4.5
     }
    ]
   },
@@ -3530,7 +3530,7 @@
    ]
   },
   "Mali-G615": {
-   "configs": 158,
+   "configs": 159,
    "top": [
     {
      "combo": [
@@ -3556,7 +3556,7 @@
       ]
      ],
      "count": 21,
-     "share": 13.3
+     "share": 13.2
     },
     {
      "combo": [
@@ -3582,7 +3582,7 @@
       ]
      ],
      "count": 15,
-     "share": 9.5
+     "share": 9.4
     },
     {
      "combo": [
